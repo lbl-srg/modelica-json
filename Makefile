@@ -5,7 +5,7 @@
 .PHONY: test run
 
 test:
-	npm test)
+	npm test
 
 install-node-packages:
 	npm install --save
