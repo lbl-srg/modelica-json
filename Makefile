@@ -5,7 +5,7 @@
 .PHONY: test run
 
 test:
-	(cd motojson && node test)
+	(cd motojson && npm test)
 
 install-node-packages:
 	npm install --save
