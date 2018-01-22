@@ -6,6 +6,7 @@ const tmp = require('tmp')
 const fs = require('fs')
 const fse = require('fs-extra')
 const find = require('find')
+var logger = require('winston')
 
 /** Get the JSON data structure of the JSON file.
   *
@@ -22,8 +23,13 @@ function getJson (jsonFile) {
   *@@return A JSON representation of the Modelica file.
   */
 function toJSON (modelicaFile) {
-  const parser = pa.join(__dirname, '..', 'java', 'moParser.jar')
+  const parser = pa.join(__dirname, '..', '..', 'java', 'moParser.jar')
 
+  if (!fs.existsSync(parser)) {
+    const msg = 'Modelica parser ' + parser + ' does not exist. Did you install the software correctly.'
+    logger.error(msg)
+    throw new Error(msg)
+  }
   const temDir = tmp.dirSync({prefix: 'modelica-json-'})
   try {
     cp.execFileSync('java',
@@ -33,7 +39,9 @@ function toJSON (modelicaFile) {
         modelicaFile,
         '--out-dir', temDir.name + pa.sep])
   } catch (error) {
-    console.log('*** Error when parsing ' + modelicaFile + ': ' + error.message)
+    const msg = '*** Error when parsing ' + modelicaFile + ': ' + error.message
+    logger.error(msg)
+    throw new Error(msg)
   }
   // Read the json file
   const jsonFiles = find.fileSync(/\.json$/, temDir.name)

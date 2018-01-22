@@ -29,10 +29,10 @@ function simplifyModelicaJSON (model) {
   const proOutputs = this.getComponentsOfClass(
       model, 'Buildings.Controls.OBC.CDL.Interfaces.*Output', 'protected')
   if (proOutputs.length !== 0) {
-    const msg = 'Received protected output connectors, which is an invalid specification.' +
+    const msg2 = 'Received protected output connectors, which is an invalid specification.' +
     ' Check ' + className
-    logger.error(msg)
-    throw new Error(msg)
+    logger.error(msg2)
+    throw new Error(msg2)
   }
   const pubModels = this.getModels(model, 'public')
   const proModels = this.getModels(model, 'protected')
