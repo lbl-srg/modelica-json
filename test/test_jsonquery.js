@@ -19,22 +19,6 @@ mo.describe('jsonquery', function () {
         'aa <img src="Buildings/Resources/Images/test.png"> bb <img src="Buildings/Resources/Images/test2.png">')
     })
   })
-  mo.describe('returnImageLocations()', function () {
-    mo.it('should return', function () {
-      as.deepEqual(jq.getImageLocations(
-        'aa <img src="Buildings/Resources/Images/test.png" alt="altComment">'),
-        ['Buildings/Resources/Images/test.png'])
-      as.deepEqual(jq.getImageLocations(
-        'aa <img src="Buildings/Resources/Images/test.png">'),
-        ['Buildings/Resources/Images/test.png'])
-      as.deepEqual(jq.getImageLocations(
-        'aa <img src="Buildings/Resources/Images/test.png"/>'),
-        ['Buildings/Resources/Images/test.png'])
-      as.deepEqual(jq.getImageLocations(
-        'aa <img src="Buildings/Resources/Images/test.png"> bb <img src="Buildings/Resources/Images/test2.png">'),
-        ['Buildings/Resources/Images/test.png', 'Buildings/Resources/Images/test2.png'])
-    })
-  })
   mo.describe('isType()', function () {
     mo.it('should return true', function () {
       as.equal(jq.isType('Real'), true)

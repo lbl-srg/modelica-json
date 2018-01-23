@@ -6,38 +6,7 @@ const ArgumentParser = require('argparse').ArgumentParser
 const mj = require('./lib/modelicaToJSON.js')
 const jq = require('./lib/jsonquery.js')
 const hw = require('./lib/htmlWriter.js')
-
-/*
- fixme: (1) process the model top-down, search for instances
-        that are blocks, and whose class is in
-        a package that contains 'Controls'.
-        Save these in a list.
-        Go through the list, starting with these
-        elements whose outputs are connected to
-        actuators, and when processed, remove them from the list.
-        For each instance,
-        describe its class name, short class description,
-        parameters values (indicating what is default and what is
-        overwritten), input and outputs, info section and link to the
-        class description.
-        If not in Buildings, put the class in a set S
-        (that has no dublicate classes) so it can be described later.
-        Next, describe what their inputs are connected to.
-        If an input or output is connected to a class
-        in *Fluid*, or *Utilities*, store it in
-        a point list.
-
-        When visting an instance, put its class name into the set S.
-
-        (2) Loop through the set S.
-        If the instance is not in Buildings, then it must be
-        a custom class. Hence, go to (1).
-
-        (3) If the instance is in Buildings, emit its
-        name, short description,
-        parameters, input, outputs, and info section,
-        with a link to the html help.
-*/
+const ut = require('./lib/util.js')
 
 function getNewData (jsonData, data) {
   // Search for the blocks used in the block so that they can also be parsed
@@ -98,7 +67,8 @@ var parser = new ArgumentParser({
 parser.addArgument(
   [ '-f', '--file' ],
   {
-    help: 'Filename of the top-level Modelica class.'
+    help: 'Filename that contains the top-level Modelica class.',
+    required: true
   }
 )
 parser.addArgument(
@@ -107,6 +77,14 @@ parser.addArgument(
     help: "Logging level, 'info' is the default.",
     choices: ['warn', 'info', 'verbose', 'debug'],
     defaultValue: 'info'
+  }
+)
+parser.addArgument(
+  [ '-w', '--write' ],
+  {
+    help: 'Specify output format.',
+    choices: ['html', 'json', 'json-simplified'],
+    defaultValue: 'html'
   }
 )
 var args = parser.parseArgs()
@@ -131,42 +109,34 @@ logger.level = args.log
 // Get the json representation for the model with file name args.file
 var data = []
 const jsonContent = mj.toJSON(args.file)
-data.push(jq.simplifyModelicaJSON(jsonContent))
+logger.info('args ' + args.write)
+if (args.write === 'json-simplified' || args.write === 'html') {
+  data.push(jq.simplifyModelicaJSON(jsonContent))
 
-// Build array with the new files that need to be parsed.
-var newData = []
-newData[0] = data[0]
-while (true) {
-  logger.log('Getting next data')
-  // Only search on newData, but pass data as an argument
-  // as getNewData need to check whether it has been parsed already
-  newData = getNewData(newData, data)
-  if (newData.length !== 0) {
-    data = data.concat(newData)
-  } else {
-    // We received no new data that need to be parsed
-    break
+  // Build array with the new files that need to be parsed.
+  var newData = []
+  newData[0] = data[0]
+  while (true) {
+    logger.log('Getting next data')
+    // Only search on newData, but pass data as an argument
+    // as getNewData need to check whether it has been parsed already
+    newData = getNewData(newData, data)
+    if (newData.length !== 0) {
+      data = data.concat(newData)
+    } else {
+      // We received no new data that need to be parsed
+      break
+    }
   }
+  // Order the input and output connectors.
+  // This needs to be done on the whole data structure
+  data = jq.orderConnections(data)
+
+  if (args.write === 'html') {
+    hw.write('test.html', data)
+  } else if (args.write === 'json-simplified') {
+    ut.writeFile('test.json', JSON.stringify(data, null, 2))
+  }
+} else if (args.write === 'json') {
+  ut.writeFile('test.json', JSON.stringify(jsonContent, null, 2))
 }
-// Order the input and output connectors.
-// This needs to be done on the whole data structure
-data = jq.orderConnections(data)
-
-// Get the html snippet of the component
-const htmlComp = []
-data.forEach(function (dat) {
-  htmlComp.push(hw.toHtml(dat))
-})
-
-const page = hw.getPage(htmlComp.join(''))
-hw.writePage('test.html', page)
-
-// Copy the images
-const files = []
-data.forEach(function (dat) {
-  const f = jq.getImageLocations(dat.info)
-  f.forEach(function (obj) {
-    files.push(obj)
-  })
-})
-hw.copyImages(files)

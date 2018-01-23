@@ -17,4 +17,20 @@ mo.describe('htmlWriter', function () {
       as.notEqual(hw.removeHtmlTag('aa </AHTML> bb', 'html'), 'aa  bb')
     })
   })
+  mo.describe('returnImageLocations()', function () {
+    mo.it('should return', function () {
+      as.deepEqual(hw.getImageLocations(
+        'aa <img src="Buildings/Resources/Images/test.png" alt="altComment">'),
+        ['Buildings/Resources/Images/test.png'])
+      as.deepEqual(hw.getImageLocations(
+        'aa <img src="Buildings/Resources/Images/test.png">'),
+        ['Buildings/Resources/Images/test.png'])
+      as.deepEqual(hw.getImageLocations(
+        'aa <img src="Buildings/Resources/Images/test.png"/>'),
+        ['Buildings/Resources/Images/test.png'])
+      as.deepEqual(hw.getImageLocations(
+        'aa <img src="Buildings/Resources/Images/test.png"> bb <img src="Buildings/Resources/Images/test2.png">'),
+        ['Buildings/Resources/Images/test.png', 'Buildings/Resources/Images/test2.png'])
+    })
+  })
 })
