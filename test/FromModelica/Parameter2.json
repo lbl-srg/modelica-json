@@ -1,0 +1,137 @@
+{
+  "within": [
+    "FromModelica"
+  ],
+  "class_definition": [
+    {
+      "class_prefixes": "block",
+      "class_specifier": {
+        "long_class_specifier": {
+          "name": "Parameter2",
+          "comment": "\"Some class comment\"",
+          "composition": {
+            "element_list": {
+              "element": [
+                {
+                  "component_clause": {
+                    "type_prefix": "parameter",
+                    "type_specifier": "Real",
+                    "component_list": {
+                      "component_declaration": [
+                        {
+                          "declaration": {
+                            "name": "myPar1",
+                            "value": "1"
+                          },
+                          "comment": {
+                            "string_comment": "\"Some comment\""
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "component_clause": {
+                    "type_prefix": "parameter",
+                    "type_specifier": "Real",
+                    "component_list": {
+                      "component_declaration": [
+                        {
+                          "declaration": {
+                            "name": "myParNoValue"
+                          },
+                          "comment": {
+                            "string_comment": "\"Some comment\""
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "component_clause": {
+                    "type_prefix": "parameter",
+                    "type_specifier": "Real",
+                    "component_list": {
+                      "component_declaration": [
+                        {
+                          "declaration": {
+                            "name": "myParMin",
+                            "class_modification": {
+                              "modifications": [
+                                {
+                                  "name": "min",
+                                  "value": "0"
+                                }
+                              ]
+                            }
+                          },
+                          "comment": {
+                            "string_comment": "\"Some comment\""
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "component_clause": {
+                    "type_prefix": "parameter",
+                    "type_specifier": "Real",
+                    "component_list": {
+                      "component_declaration": [
+                        {
+                          "declaration": {
+                            "name": "myParMax",
+                            "class_modification": {
+                              "modifications": [
+                                {
+                                  "name": "max",
+                                  "value": "0"
+                                }
+                              ]
+                            }
+                          },
+                          "comment": {
+                            "string_comment": "\"Some comment\""
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "component_clause": {
+                    "type_prefix": "parameter",
+                    "type_specifier": "Real",
+                    "component_list": {
+                      "component_declaration": [
+                        {
+                          "declaration": {
+                            "name": "myParUnit",
+                            "class_modification": {
+                              "modifications": [
+                                {
+                                  "name": "unit",
+                                  "value": "\"K\""
+                                }
+                              ]
+                            }
+                          },
+                          "comment": {
+                            "string_comment": "\"Some comment\""
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  ]
+}

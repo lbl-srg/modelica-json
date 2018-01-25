@@ -19,34 +19,38 @@ logger.cli()
 
 logger.level = 'error'
 
-mo.describe('parser.js', function () {
-  mo.describe('parse from Modelica', function () {
-    mo.it('json files should be equal', () => {
-      const pattern = path.join(__dirname, 'FromModelica', '*.mo')
-      const testMoFiles = glob.sync(pattern)
-      return Promise.all(testMoFiles).then(files => {
-        // files are all .mo files to be parsed
-        return Promise.all(files.map(fil => {
-          return pa.getJSON(fil, 'json-simplified')
-        }))
-      .then(jsonSimple => {
-        // Read the stored json representation from disk
-        return Promise.all(jsonSimple.map(entry => {
-          const oldFil = path.join(__dirname, (entry[0].topClassName.replace(/\./g, path.sep) + '-simplified.json'))
-
+/** Function that checks parsing from Modelica to JSON
+  */
+var checkJSON = function (outFormat, extension, message) {
+  mo.it(message, () => {
+    const pattern = path.join(__dirname, 'FromModelica', '*.mo')
+    const testMoFiles = glob.sync(pattern)
+    return Promise.all(testMoFiles).then(files => {
+      // files are all .mo files to be parsed
+      return Promise.all(files.map(fil => {
+        return pa.getJSON(fil, outFormat)
+        .then(jsonSimple => {
+          // Read the stored json representation from disk
+          // logger.error('jsonSimple =' + JSON.stringify(jsonSimple, null, 2))
+          const oldFil = fil.slice(0, -3) + extension
           // Read the old json
           return ut.readJSON(oldFil).then(function (jsonOld) {
-            as.deepEqual(entry[0], jsonOld[0], 'JSON result differs from file for ' + entry[0].topClassName)
-          })
-          .catch(function (error) {
-            console.log(error)
-            return Promise.reject(error)
+            as.deepEqual(jsonSimple[0], jsonOld[0], 'JSON result differs from file for ' + jsonSimple.topClassName)
           })
         })
-          )
-      })
-      })
-      // .catch(as.equal(false, true, 'Error in parsing json.'))
-    }) // end of it
-  }) // end of describe
+      }))
+    })
+    .catch(function (error) {
+      console.log(error)
+      return Promise.reject(error)
+    })
+  })
+ // end of it
+} // end of describe
+
+mo.describe('parser.js', function () {
+  mo.describe('Testing parse from Modelica', function () {
+    checkJSON('json-simplified', '-simplified.json', 'Testing simplified json for equality')
+    checkJSON('json', '.json', 'Testing unmodified json for equality')
+  })
 })
