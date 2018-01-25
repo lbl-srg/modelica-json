@@ -35,18 +35,13 @@ var checkJSON = function (outFormat, extension, message) {
           const oldFil = fil.slice(0, -3) + extension
           // Read the old json
           return ut.readJSON(oldFil).then(function (jsonOld) {
-            as.deepEqual(jsonSimple[0], jsonOld[0], 'JSON result differs from file for ' + jsonSimple.topClassName)
+            return as.deepEqual(jsonSimple[0], jsonOld[0], 'JSON result differs for ' + fil)
           })
         })
       }))
     })
-    .catch(function (error) {
-      console.log(error)
-      return Promise.reject(error)
-    })
   })
- // end of it
-} // end of describe
+}
 
 mo.describe('parser.js', function () {
   mo.describe('Testing parse from Modelica', function () {
