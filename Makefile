@@ -2,13 +2,20 @@
 # Makefile to build and test the project
 #########################################
 
-.PHONY: test run
+.PHONY: test run compile-java
 
 test:
 	npm test
 
 install-node-packages:
 	npm install --save
+
+compile-java:
+	@echo "Compiling java code to produce jar"
+
+clean-installation:
+	rm -rf node-modules
+	@echo "Cleaning compiled java code"
 
 run:
 	node app.js \
