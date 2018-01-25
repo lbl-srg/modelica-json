@@ -24,8 +24,7 @@ mo.describe('parser.js', function () {
     mo.it('json files should be equal', () => {
       const pattern = path.join(__dirname, 'FromModelica', '*.mo')
       const testMoFiles = glob(pattern)
-      testMoFiles
-      .then(function (files) {
+      Promise.all(testMoFiles).then(files => {
         // files are all .mo files to be parsed
         return Promise.all(files.map(fil => pa.getJSON(fil, 'json-simplified')))
       }) // end of then
