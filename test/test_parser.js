@@ -1,11 +1,9 @@
 'use strict'
 const as = require('assert')
 const mo = require('mocha')
-const ch = require('chai')
 const path = require('path')
 const pa = require('../lib/parser')
 const ut = require('../lib/util')
-const fs = require('fs')
 const glob = require('glob-promise')
 var logger = require('winston')
 
@@ -19,7 +17,7 @@ logger.configure({
 })
 logger.cli()
 
-logger.level = 'debug'
+logger.level = 'error'
 
 mo.describe('parser.js', function () {
   mo.describe('parse from Modelica', function () {
@@ -28,26 +26,17 @@ mo.describe('parser.js', function () {
       const testMoFiles = glob.sync(pattern)
       return Promise.all(testMoFiles).then(files => {
         // files are all .mo files to be parsed
-        logger.info('**1 Parsing' + files)
         return Promise.all(files.map(fil => {
-          logger.info('**1.1 Parsing' + fil)
           return pa.getJSON(fil, 'json-simplified')
         }))
       .then(jsonSimple => {
-            // Read the stored json representation from disk
-            // logger.info('**** jsonSimple = ' + JSON.stringify(jsonSimple, 2, null))
-        logger.warn('++3 Parsing ' + jsonSimple)
+        // Read the stored json representation from disk
         return Promise.all(jsonSimple.map(entry => {
-//          logger.warn('++2 Parsing ' + JSON.stringify(entry))
           const oldFil = path.join(__dirname, (entry[0].topClassName.replace(/\./g, path.sep) + '-simplified.json'))
-//          logger.warn('entry.length ' + entry.length)
 
           // Read the old json
           return ut.readJSON(oldFil).then(function (jsonOld) {
-              // ch.assert.deepEqual(jsonOld[0], entry[0], 'JSON should be equal') // , 'JSON representations are not   ual.')
-            //as.deepEqual(true, true, 'JSON result differs from file for ' + entry[0].topClassName)
-            as.deepEqual(entry[0], jsonOld[0], 'JSON result differs from file for ' + entry[0].topClassName) // ,   SON representations are not equal.')
-            // return jsonOld
+            as.deepEqual(entry[0], jsonOld[0], 'JSON result differs from file for ' + entry[0].topClassName)
           })
           .catch(function (error) {
             console.log(error)
@@ -56,7 +45,7 @@ mo.describe('parser.js', function () {
         })
           )
       })
-      }) // end of then
+      })
       // .catch(as.equal(false, true, 'Error in parsing json.'))
     }) // end of it
   }) // end of describe
