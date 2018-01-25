@@ -1,4 +1,4 @@
-within Buildings.Controls.OBC.CDL.Continuous;
+within FromModelica;
 block Gain "Output the product of a gain value with the input signal"
 
   parameter Real k "Gain value multiplied with input signal";

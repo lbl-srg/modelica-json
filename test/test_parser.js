@@ -1,7 +1,8 @@
 const as = require('assert')
 const mo = require('mocha')
 const path = require('path')
-const pa = require('../lib/parser.js')
+const pa = require('../lib/parser')
+const ut = require('../lib/util')
 const fs = require('fs')
 const glob = require('glob-promise')
 var logger = require('winston')
@@ -20,15 +21,33 @@ logger.level = 'debug'
 
 mo.describe('parser.js', function () {
   mo.describe('parse from Modelica', function () {
-    mo.it('should return true', function () {
+    mo.it('json files should be equal', () => {
       const pattern = path.join(__dirname, 'FromModelica', '*.mo')
-      glob(pattern).then(function (files) {
+      const testMoFiles = glob(pattern)
+      testMoFiles
+      .then(function (files) {
         // files are all .mo files to be parsed
-        console.log('&&&& files ', files)
-        return Promise.all(files.map(fil => pa.run2(fil, 'json-simplified')))
+        return Promise.all(files.map(fil => pa.getJSON(fil, 'json-simplified')))
       }) // end of then
-      .then(function (res) {
-        logger.debug('aaaaa in allJson ' + JSON.stringify(res))
+      // .catch(as.equal(false, true, 'Error in parsing json.'))
+      .then(function (jsonSimple) {
+        // Read the stored json representation from disk
+        return Promise.all(jsonSimple.map((entry) => {
+          const oldFil = path.join(__dirname, (entry[0].topClassName.replace(/\./g, path.sep) + '-simplified.json'))
+
+          // Read the old json
+          ut.readJSON(oldFil).then(function (jsonOld) {
+            console.log('Read old file', jsonOld)
+            return as.deepEqual(jsonOld, {'abc': 'www'}, 'JSON representations are not equal.')
+            // return jsonOld
+          })
+          .catch(function (error) {
+            console.log(error)
+            return Promise.reject(error)
+          })
+        })
+      )
+        //console.log('p ==== ' + JSON.stringify(jsonSimple, null, 2))
       })
     }) // end of it
   }) // end of describe
