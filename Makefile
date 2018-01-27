@@ -2,10 +2,16 @@
 # Makefile to build and test the project
 #########################################
 
-.PHONY: test run compile-java
+.PHONY: test run compile-java generate-reference-output
+
 
 test:
 	npm test
+
+generate-reference-output:
+	(for ff in `find . -name '*.mo'`; do \
+	  echo $${ff}; \
+		done)
 
 install-node-packages:
 	npm install --save

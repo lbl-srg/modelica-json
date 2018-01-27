@@ -22,7 +22,9 @@ logger.level = 'error'
 /** Function that checks parsing from Modelica to JSON
   */
 var checkJSON = function (outFormat, extension, message) {
+  process.env.MODELICAPATH = __dirname
   mo.it(message, () => {
+    setTimeout(2000) // avoid time out error as these tests take a while
     const pattern = path.join(__dirname, 'FromModelica', '*.mo')
     const testMoFiles = glob.sync(pattern)
     return Promise.all(testMoFiles).then(files => {
@@ -35,7 +37,7 @@ var checkJSON = function (outFormat, extension, message) {
           const oldFil = fil.slice(0, -3) + extension
           // Read the old json
           return ut.readJSON(oldFil).then(function (jsonOld) {
-            return as.deepEqual(jsonSimple[0], jsonOld[0], 'JSON result differs for ' + fil)
+            as.deepEqual(jsonSimple[0], jsonOld[0], 'JSON result differs for ' + fil)
           })
         })
       }))
