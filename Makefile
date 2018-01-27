@@ -8,10 +8,16 @@
 test:
 	npm test
 
+# Target to generate reference output files
+# This typically only needs to be run
+# if the output format changes.
 generate-reference-output:
-	(for ff in `find . -name '*.mo'`; do \
-	  echo $${ff}; \
-		done)
+	(cd test/FromModelica && \
+	for ff in `find . -name '*.mo'`; do \
+		node ../../app.js -f $${ff} -w json; \
+		node ../../app.js -f $${ff} -w json-simplified; \
+		done && \
+		rm modelica-json.log)
 
 install-node-packages:
 	npm install --save
