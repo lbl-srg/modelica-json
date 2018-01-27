@@ -14,10 +14,10 @@ test:
 generate-reference-output:
 	(cd test/FromModelica && \
 	for ff in `find . -name '*.mo'`; do \
-		node ../../app.js -f $${ff} -w json; \
-		node ../../app.js -f $${ff} -w json-simplified; \
+		node ../../app.js -l error -f $${ff} -w json; \
+		node ../../app.js -l error -f $${ff} -w json-simplified; \
 		done && \
-		rm modelica-json.log)
+		rm -f modelica-json.log)
 
 install-node-packages:
 	npm install --save
