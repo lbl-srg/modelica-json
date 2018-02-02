@@ -12,10 +12,22 @@ run_maven:
 	$(eval export PATH=$(dir $(realpath $(firstword $(MAKEFILE_LIST))))apache_maven/bin:${PATH}) 
 	cd java && mvn package && cp parser/target/parser-1.0-SNAPSHOT-jar-with-dependencies.jar moParser.jar && mvn clean
 
-.PHONY: test run compile-java
+.PHONY: test run compile-java generate-reference-output
+
 
 test:
 	npm test
+
+# Target to generate reference output files
+# This typically only needs to be run
+# if the output format changes.
+generate-reference-output:
+	(cd test/FromModelica && \
+	for ff in `find . -name '*.mo'`; do \
+		node ../../app.js -l error -f $${ff} -w json; \
+		node ../../app.js -l error -f $${ff} -w json-simplified; \
+		done && \
+		rm -f modelica-json.log)
 
 install-node-packages:
 	npm install --save

@@ -1,6 +1,5 @@
-within ;
+within FromModelica;
 block ParameterWithInfo "Some class comment"
-
 
   annotation (Documentation(info="<html>
 <p>

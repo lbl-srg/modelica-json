@@ -1,31 +1,29 @@
 [
   {
     "topClassName": "FromModelica.Parameter2",
-    "comment": "\"Some class comment\"",
+    "comment": "Some class comment",
     "public": {
       "parameters": [
         {
           "name": "myPar1",
           "value": "1",
-          "comment": "\"Some comment\"",
+          "comment": "Some comment",
           "html": {
-            "comment": "Some comment",
             "type": "Real"
           },
           "className": "Real"
         },
         {
           "name": "myParNoValue",
-          "comment": "\"Some comment\"",
+          "comment": "Some comment",
           "html": {
-            "comment": "Some comment",
             "type": "Real"
           },
           "className": "Real"
         },
         {
           "name": "myParMin",
-          "comment": "\"Some comment\"",
+          "comment": "Some comment",
           "min": {
             "value": "0"
           },
@@ -36,7 +34,6 @@
             }
           ],
           "html": {
-            "comment": "Some comment",
             "min": "0",
             "type": "Real"
           },
@@ -44,7 +41,7 @@
         },
         {
           "name": "myParMax",
-          "comment": "\"Some comment\"",
+          "comment": "Some comment",
           "max": {
             "value": "0"
           },
@@ -55,7 +52,6 @@
             }
           ],
           "html": {
-            "comment": "Some comment",
             "max": "0",
             "type": "Real"
           },
@@ -63,7 +59,7 @@
         },
         {
           "name": "myParUnit",
-          "comment": "\"Some comment\"",
+          "comment": "Some comment",
           "unit": {
             "value": "\"K\""
           },
@@ -74,16 +70,53 @@
             }
           ],
           "html": {
-            "comment": "Some comment",
             "unit": "K",
+            "type": "Real"
+          },
+          "className": "Real"
+        },
+        {
+          "name": "myParInGroup",
+          "comment": "Some comment",
+          "annotation": {
+            "dialog": {
+              "group": "Gains"
+            }
+          },
+          "html": {
+            "type": "Real"
+          },
+          "className": "Real"
+        },
+        {
+          "name": "myParInTab",
+          "comment": "Some comment",
+          "annotation": {
+            "dialog": {
+              "tab": "Initialization tab"
+            }
+          },
+          "html": {
+            "type": "Real"
+          },
+          "className": "Real"
+        },
+        {
+          "name": "myParInTabInGroup",
+          "comment": "Some comment",
+          "annotation": {
+            "dialog": {
+              "tab": "Initialization tab",
+              "group": "Gains"
+            }
+          },
+          "html": {
             "type": "Real"
           },
           "className": "Real"
         }
       ]
     },
-    "html": {
-      "comment": "Some class comment"
-    }
+    "info": null
   }
 ]

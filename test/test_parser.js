@@ -22,8 +22,10 @@ logger.level = 'error'
 /** Function that checks parsing from Modelica to JSON
   */
 var checkJSON = function (outFormat, extension, message) {
+  process.env.MODELICAPATH = __dirname
   mo.it(message, () => {
     const pattern = path.join(__dirname, 'FromModelica', '*.mo')
+    // Array of mo files to be tested.
     const testMoFiles = glob.sync(pattern)
     return Promise.all(testMoFiles).then(files => {
       // files are all .mo files to be parsed

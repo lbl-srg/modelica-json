@@ -23,7 +23,7 @@ parser.addArgument(
   [ '-l', '--log' ],
   {
     help: "Logging level, 'info' is the default.",
-    choices: ['warn', 'info', 'verbose', 'debug'],
+    choices: ['error', 'warn', 'info', 'verbose', 'debug'],
     defaultValue: 'info'
   }
 )
