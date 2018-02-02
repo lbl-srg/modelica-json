@@ -11,6 +11,7 @@ install_maven:
 run_maven:
 	$(eval export PATH=$(dir $(realpath $(firstword $(MAKEFILE_LIST))))apache_maven/bin:${PATH}) 
 	cd java && mvn package && cp parser/target/parser-1.0-SNAPSHOT-jar-with-dependencies.jar moParser.jar && mvn clean
+	rm -rf apache_maven
 
 .PHONY: test run compile-java generate-reference-output
 
