@@ -15,25 +15,25 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Main {  	
+public class Main {
 	List<String> sumResults;
-	
-	private static final String modelicaSourceCode(String filePath) {    			
+
+	private static final String modelicaSourceCode(String filePath) {
 		return readLineByLineJava8(filePath);
 	}
-	
-	private static String readLineByLineJava8(String filePath) {   	
+
+	private static String readLineByLineJava8(String filePath) {
 		StringBuilder contentBuilder = new StringBuilder();
 		Path path = Paths.get(filePath);
-		try (Stream<String> lines = Files.lines(path, StandardCharsets.UTF_8)) { 	     	
+		try (Stream<String> lines = Files.lines(path, StandardCharsets.UTF_8)) {
 			lines.forEach(s -> contentBuilder.append(s).append("\n"));
 		}
 		catch (IOException e) {
 			e.printStackTrace();
-		}            
+		}
 		return contentBuilder.toString();
 	}
-	
+
 	private String fileNameToSearch;
 	private List<String> result = new ArrayList<String>();
 	public String getFileNameToSearch() {
@@ -45,8 +45,8 @@ public class Main {
 	public List<String> getResult() {
 		return result;
 	}
-    
-    public static void main(String[] args) throws Exception {    
+
+    public static void main(String[] args) throws Exception {
     	List<String> result = new ArrayList<String>();
     	try {
     		Main parser = new Main();
@@ -55,24 +55,24 @@ public class Main {
     	} catch (Exception e) {
     		//System.err.println(e);
     		e.printStackTrace();
-    		System.exit(1);    		    		
+    		System.exit(1);
     	}
-    }    
-    
-    private List<String> moParser(String[] args) throws Exception {	   	
-    	String cwDir = System.getProperty("user.dir");  
+    }
+
+    private List<String> moParser(String[] args) throws Exception {
+    	String cwDir = System.getProperty("user.dir");
     	String modelicaSource= "";
     	String jsonOut= "";
-    	List<String> runLog = new ArrayList<String>(); 
-    	
+    	List<String> runLog = new ArrayList<String>();
+
     	String helMes = "\n Input arguments should be like: \n"
 					+ "    \'-h\' : help info; \n"
 					+ "or, \'--mo xx/xx/*.mo\' : parsed json text will be stored in memory; \n"
 					+ "or, \'--mo xx/xx/*.mo --out-dir xx/\' : parsed json text will be stored in *.json in folder xx/; \n";
     	try {
-    		if ((args.length == 1 && !args[0].equals("-h")) 
-    			 || (args.length == 2 && !args[0].equals("--mo"))	
-    			 || (args.length == 4 && (!args[0].equals("--mo") || !args[2].equals("--out-dir")))) {   
+    		if ((args.length == 1 && !args[0].equals("-h"))
+    			 || (args.length == 2 && !args[0].equals("--mo"))
+    			 || (args.length == 4 && (!args[0].equals("--mo") || !args[2].equals("--out-dir")))) {
     			throw new IOException(helMes);
     		}
     	} catch (Exception e) {
@@ -80,66 +80,67 @@ public class Main {
     		this.sumResults = runLog;
     		throw new Exception(e);
     	}
-    	   	
-    	if (args.length == 1) {   		
+
+    	if (args.length == 1) {
     		System.out.println(helMes);
     		runLog.add(helMes);
     		return runLog;
     	}
-    	    	    	    	
-    	String moFilePath  = fullInputPath(args[1], cwDir);       	    	    	
-	    	
+
+    	String moFilePath  = fullInputPath(args[1], cwDir);
+
     	int slaInd = moFilePath.lastIndexOf("/");
-    	String moFileName = moFilePath.substring(slaInd+1, moFilePath.length());    	
-    	String moFileDir = moFilePath.substring(0,slaInd);   	   	
-    	
+    	String moFileName = moFilePath.substring(slaInd+1, moFilePath.length());
+    	String moFileDir = moFilePath.substring(0,slaInd);
+
     	String dirToBeSearched = moFileDir;
-    	Main fileSearch = new Main(); 
+    	Main fileSearch = new Main();
     	fileSearch.searchDirectory(new File(dirToBeSearched), moFileName);
-    	   	
+
     	if (fileSearch.getResult().size() == 0) {
-    		System.out.println("\nNo result found!");
-    	} else {  	
-    	    for (String matched : fileSearch.getResult()){       	    	
+    		runLog.add("No result found!");
+				throw new Exception("No result found!");
+    	} else {
+    	    for (String matched : fileSearch.getResult()){
     	    	modelicaSource = modelicaSourceCode(matched);
     	    	Stored_definition antlrParseOut = null;
     	    	try {
-    	    		antlrParseOut = new VisitorOrientedParser().parse(modelicaSource); 
+    	    		antlrParseOut = new VisitorOrientedParser().parse(modelicaSource);
     	    	} catch (Exception e) {
     	    		runLog.add(e.getMessage());
     	    		throw new Exception(e);
     	    	}
-    	    	Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create(); 
-    	    	//Gson gson = new Gson(); 
-    	    	jsonOut = gson.toJson(antlrParseOut); 
-    	    	
+    	    	Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
+    	    	//Gson gson = new Gson();
+    	    	jsonOut = gson.toJson(antlrParseOut);
+
     	    	if (args.length>2) {
     	    		String jsFile = "";
-    	    		String jsFilePath = args[3];  
+    	    		String jsFilePath = args[3];
     	    		/* --- the json output file path could be a/ or a ---*/
-    	    		if (jsFilePath.charAt(jsFilePath.length()-1) == '/') {    			
+    	    		if (jsFilePath.charAt(jsFilePath.length()-1) == '/') {
     	    			jsFile = jsFilePath;
     	    		} else {
     	    			jsFile = jsFilePath.concat("/");
-    	    		}        	    		  	    		
-    	    		exportJsonFile(matched, moFileName, jsonOut, jsFile);    	    		  	    		    		
+    	    		}
+    	    		exportJsonFile(matched, moFileName, jsonOut, jsFile);
     	    	} else {
-    	    		System.out.printf(jsonOut); 
-    	    	}   
+    	    		System.out.printf(jsonOut);
+    	    	}
     	    	runLog.add(jsonOut);
-    	    }	 
+    	    }
     	}
     	this.sumResults = runLog;
     	return runLog;
     }
-       
+
     private static String fullInputPath(String moFileInputPath, String cwDir) {
     	String fullPath = "";
-    	if (moFileInputPath.contains("/home/")) {   		
+    	if (moFileInputPath.contains("/home/")) {
     		fullPath = moFileInputPath;
 		} else {
 			// if the given path is like ../xxx/xxx.mo
-			if (moFileInputPath.contains("../")) {    				
+			if (moFileInputPath.contains("../")) {
 				Pattern p = Pattern.compile("../");
 				Matcher m = p.matcher(moFileInputPath);
 				int count1 = 0;
@@ -157,15 +158,15 @@ public class Main {
 						}
 					}
 				}
-				fullPath = cwDir.substring(0, dashInd.get(dashInd.size()-1)+1).concat(moFileInputPath);    				
+				fullPath = cwDir.substring(0, dashInd.get(dashInd.size()-1)+1).concat(moFileInputPath);
 			} else {
 				fullPath = cwDir.concat("/".concat(moFileInputPath));
-			}    
+			}
 		}
     	return fullPath;
     }
-    
-    
+
+
     private void exportJsonFile(String searchedFile, String moFileName, String jsonOut, String jsFile) throws Exception {
     	String nameForJson = jsonDir(searchedFile, moFileName, jsFile).get(0);
 		String dirRootStr = jsonDir(searchedFile, moFileName, jsFile).get(1);
@@ -174,7 +175,7 @@ public class Main {
 		if (! dirRoot.exists()) {
     		try {
     		    Files.createDirectories(path);
-    		} catch (IOException e) {   			
+    		} catch (IOException e) {
     		    System.err.println("Cannot create directories - " + e);
     		    throw new Exception(e);
     		}
@@ -182,10 +183,10 @@ public class Main {
 		File newTextFile = new File(nameForJson);
 		FileWriter fw = new FileWriter(newTextFile);
 		fw.write(jsonOut);
-		fw.close(); 
+		fw.close();
     }
-    
-    
+
+
     private static List<String> jsonDir(String str, String moFile, String jsFile) {
     	List<String> jsName_Dir = new ArrayList<String>();
     	String nameForJson = "";
@@ -193,18 +194,18 @@ public class Main {
     	if (str.contains("/Buildings/")) {
     		int indexBuildings = str.indexOf("/Buildings/");
     		String buiSubDirForJson = str.substring(indexBuildings+1, str.lastIndexOf("."));
-    		nameForJson = jsFile.concat(buiSubDirForJson.concat(".json"));    	    		
+    		nameForJson = jsFile.concat(buiSubDirForJson.concat(".json"));
     	} else {
     		int dotIndinFile = moFile.lastIndexOf(".");
-    		nameForJson = jsFile.concat(moFile.substring(0, dotIndinFile).concat(".json"));    	    		
-    	}   	    	
+    		nameForJson = jsFile.concat(moFile.substring(0, dotIndinFile).concat(".json"));
+    	}
 		dirRootStr = nameForJson.substring(0, nameForJson.lastIndexOf("/"));
 		jsName_Dir.add(nameForJson);
 		jsName_Dir.add(dirRootStr);
 		return jsName_Dir;
     }
-    
-    
+
+
     public void searchDirectory(File directory, String fileNameToSearch) {
     	setFileNameToSearch(fileNameToSearch);
     	if (directory.isDirectory()) {
@@ -213,11 +214,11 @@ public class Main {
     	    System.out.println(directory.getAbsoluteFile() + " is not a directory!");
     	}
       }
-    
+
     private void search(File file) {
     	if (file.isDirectory()) {
     	    if (file.canRead()) {
-    	    	for (File temp : file.listFiles()) { 
+    	    	for (File temp : file.listFiles()) {
     	    		if (getFileNameToSearch().equals(temp.getName())) {
     	    			result.add(temp.getAbsoluteFile().toString());
     	    		}
