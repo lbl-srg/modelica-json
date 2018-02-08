@@ -136,7 +136,8 @@ public class Main {
 
     private static String fullInputPath(String moFileInputPath, String cwDir) {
     	String fullPath = "";
-    	if (moFileInputPath.contains("/home/")) {
+			Path path = Paths.get(moFileInputPath);
+    	if (path.isAbsolute()) {
     		fullPath = moFileInputPath;
 		} else {
 			// if the given path is like ../xxx/xxx.mo
