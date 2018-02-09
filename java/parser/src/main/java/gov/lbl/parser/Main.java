@@ -98,8 +98,9 @@ public class Main {
     	fileSearch.searchDirectory(new File(dirToBeSearched), moFileName);
 
     	if (fileSearch.getResult().size() == 0) {
-    		runLog.add("No result found!");
-				throw new Exception("No result found!");
+				String noFilMes = moFileName + " cannot be found. \nCheck file name and path: " + moFilePath;
+    		runLog.add(noFilMes);
+			throw new Exception(noFilMes);
     	} else {
     	    for (String matched : fileSearch.getResult()){
     	    	modelicaSource = modelicaSourceCode(matched);
