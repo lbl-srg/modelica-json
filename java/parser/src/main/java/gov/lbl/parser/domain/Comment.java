@@ -52,12 +52,13 @@ public class Comment {
        	String defaultName;
     	String diagram;
     	String icon;
-    	Collection<Dialog> dialog;
+    	Collection<StrPair> dialog;
     	String placement;
     	String line;
     	String text;
     	Documentation documentation;
-    	Collection<OtherAnn> others;
+    	VendorAnnotation vendor_annotation;
+    	Collection<StrPair> others;
 
     	private AnnBlo annClass(String annStr) {
     		String nameStr;
@@ -68,14 +69,26 @@ public class Comment {
     		String diagramStr = findSubStr(annStr, "Diagram ");
     		String iconStr = findSubStr(annStr, "Icon ");
     		String textStr = findSubStr(annStr, "Text ");
+    		String venAnnStr = findSubStr(annStr, "__");
 
     		this.placement = placementStr;
     		this.line = lineStr;
     		this.diagram = diagramStr;
     		this.icon = iconStr;
     		this.text = textStr;
-
-    		/** find value of "defaultComponentName" **/
+    		
+    		/** find vendor annotation **/
+    		String venAnnName = "";
+    		if (venAnnStr != null) {
+    			venAnnName = annStr.substring(annStr.indexOf("__"), annStr.indexOf("(",annStr.indexOf("__")));    			
+    			VendorAnnotation venAnn = new VendorAnnotation();
+    			venAnn.vendorAnnotation(venAnnName,venAnnStr);
+        		this.vendor_annotation = venAnn;
+    		} else {
+    			this.vendor_annotation = null;
+    		}
+    		
+    		/** find "defaultComponentName" **/
     		if (annStr.contains("defaultComponentName")) {
     			int beginInd = annStr.indexOf("\"", annStr.indexOf("defaultComponentName")+"defaultComponentName".length()-1);
     			int endInd = annStr.indexOf("\"", beginInd+1);
@@ -85,7 +98,7 @@ public class Comment {
     		}
 
     		/** created a list of String that will be removed from annotation string "annStr",
-    		    so for finding out "others" **/
+    		    so to find out "others" **/
     		List<String> strListToBeRem = new ArrayList<String>();
     		if (dialogStr != null) {
     			strListToBeRem.add("Dialog" + " (" + dialogStr + " )");
@@ -111,6 +124,9 @@ public class Comment {
     		if (nameStr != null) {
     			strListToBeRem.add("defaultComponentName =" + nameStr);
     		}
+    		if (venAnnStr != null) {
+    			strListToBeRem.add(venAnnName + "("+venAnnStr+" )");
+    		}
 
     		/** find out "others" **/
     		String otherAnnStr = annStr;
@@ -125,21 +141,21 @@ public class Comment {
     			otherAnnStr = annStr;
     		}
 
-    		/** find out output value of "defaultName" **/
+    		/** find defaultName **/
     		if (nameStr != null) {
     			this.defaultName = nameStr;
     		} else {
-    			// "defaultName" should be null when annotation is not model annotation.
+    			/* "defaultName" should be null when it is not model annotation. */
     			if (lineStr != null || dialogStr != null || placementStr != null || (otherAnnStr != null && otherAnnStr.contains("="))) {
     				this.defaultName = null;
-    			// "defaultName" should have value when annotation is model annotation.
+    			/* "defaultName" should have value when it is model annotation. */
     			} else {
     				this.defaultName = "Fixme: default name is missing!";
     			}
     		}
 
     		/** find out element in Dialog (...) **/
-    		List<Dialog> diaEle = new ArrayList<Dialog>();
+    		List<StrPair> diaEle = new ArrayList<StrPair>();
     		if (dialogStr == null) {
     			this.dialog = null;
     		} else {
@@ -151,16 +167,16 @@ public class Comment {
     				int equInd = strSets.get(i).indexOf("=");
     				name = strSets.get(i).substring(0,equInd-1);
     				value = strSets.get(i).substring(equInd+1, strSets.get(i).length());
-    				diaEle.add(new Dialog(name,value));
+    				diaEle.add(new StrPair(name,value));
     			}
     			this.dialog = diaEle;
     		}
 
     		/** find out other elements in Annotation (...) **/
-    		List<OtherAnn> othEle = new ArrayList<OtherAnn>();
+    		List<StrPair> othEle = new ArrayList<StrPair>();   		
     		if (otherAnnStr == null || !otherAnnStr.contains("=")) {
     			this.others = null;
-    		} else {
+    		} else {    			
     			String name;
     			String value;
     			List<String> othSetTemp = new ArrayList<String>();
@@ -175,11 +191,12 @@ public class Comment {
     				int equInd = othSet.get(i).indexOf("=");
     				name = othSet.get(i).substring(0, equInd-1);
     				value = othSet.get(i).substring(equInd+1, othSet.get(i).length());
-    				othEle.add(new OtherAnn(name,value));
+    				othEle.add(new StrPair(name,value));
     			}
     			this.others = othEle;
-    		}
-
+    		}    		
+    		
+    		
     		/** find out elements in documentation (info = , revisions = ) **/
     		if (docStr == null) {
     			this.documentation = null;
@@ -204,12 +221,42 @@ public class Comment {
     			}
     			this.documentation = new Documentation(infoStr, revStr);
     		}
-
     		return new AnnBlo(annStr);
     	}
     }
 
-    /** access sub-string "subStr" in string "str" with syntex of "keyStr (subStr)" **/
+    private class VendorAnnotation{
+    	private String name;
+    	private Collection<StrPair> annotation;
+    	private VenAnnMod vendorAnnotation(String venAnnName, String venAnnStr) {
+    		this.name = venAnnName.replaceAll("\\s+", "");
+    		List<StrPair> venAnnEle = new ArrayList<StrPair>();
+    		if (venAnnStr == null || !venAnnStr.contains("=")) {
+    			this.annotation = null;
+    		} else {    			
+    			String name;
+    			String value;
+    			List<String> venSetTemp = new ArrayList<String>();
+    			venSetTemp.addAll(splitAtComma(venAnnStr));
+    			List<String> venSet = new ArrayList<String>();
+    			for (int i=0; i<venSetTemp.size(); i++) {
+    				if (!venSetTemp.get(i).trim().isEmpty()) {
+    					venSet.add(venSetTemp.get(i));
+    				}
+    			}
+    			for (int i=0; i<venSet.size(); i++) {
+    				int equInd = venSet.get(i).indexOf("=");
+    				name = venSet.get(i).substring(0, equInd-1);
+    				value = venSet.get(i).substring(equInd+1, venSet.get(i).length());
+    				venAnnEle.add(new StrPair(name,value));
+    			}
+    			this.annotation = venAnnEle;
+    		}    		
+    		return new VenAnnMod(venAnnStr);
+    	}
+    }
+    
+    /** access sub-string "subStr" in string "str" with syntax of "keyStr (subStr)" **/
     private static String findSubStr(String str, String keyStr) {
     	String subStr;
     	if (str.contains(keyStr)) {
@@ -235,6 +282,10 @@ public class Comment {
     	return subStr;
     }
 
+    /** check if index "fromInd" is enclosed in a completed "symbol1" and "symbol2",
+        such as ( ), [ ], { }, " ". 
+        If it is not enclosed and the symbols is completed, then return true, 
+        otherwise, return false. **/
     private static Boolean ifEnclosed(String str, String symbol1, String symbol2, Integer fromInd) {
     	Boolean ifEnclosed = false;
     	if (symbol1 == "\"") {
@@ -272,6 +323,8 @@ public class Comment {
     	return ifEnclosed;
     }
 
+    /** Split string with commas. These commas are independent and not included in
+        brackets. **/
     private static Collection<String> splitAtComma(String str) {
     	List<String> strSets = new ArrayList<String>();
     	if (!str.contains(",")) {
@@ -309,7 +362,6 @@ public class Comment {
 			} else {
 				commaInd = fullCommaInd;
 			}
-
 			if (commaInd.size() == 0) {
 				strSets.add(str);
 			} else if (commaInd.size() == 1) {
@@ -338,9 +390,6 @@ public class Comment {
     	return strSets;
     }
 
-
-
-
     private static Collection<Integer> searchComEle(Collection<Integer> list1,
             										Collection<Integer> list2,
             										Collection<Integer> list3,
@@ -360,22 +409,20 @@ public class Comment {
     	}
     }
 
-    private class Dialog {
+    public class VenAnnMod {
+    	private VenAnnMod(String venAnnStr) {
+    	}
+    }
+    
+    private class StrPair {
     	String name;
     	String value;
-    	private Dialog(String name, String value) {
+    	private StrPair(String name, String value) {
     		this.name = name;
     		this.value = value;
     	}
     }
-    private class OtherAnn {
-    	String name;
-    	String value;
-    	private OtherAnn(String name, String value) {
-    		this.name = name;
-    		this.value = value;
-    	}
-    }
+
     private class Documentation {
     	String info;
     	String revisions;

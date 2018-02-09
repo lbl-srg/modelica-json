@@ -101,8 +101,6 @@ public class Composition {
 
     	private AnnBlo annClass(String annStr) {
     		String nameStr;
-    		//System.out.printf("%n************");
-    		//System.out.printf("%nannStr=: '%s'", annStr);
     		String docStr = findSubStr(annStr, "Documentation ");
     		String diagramStr = findSubStr(annStr, "Diagram ");
     		String iconStr = findSubStr(annStr, "Icon ");
