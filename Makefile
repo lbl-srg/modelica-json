@@ -34,6 +34,7 @@ generate-reference-output:
 	for ff in `find . -name '*.mo'`; do \
 		node ../../app.js -l debug -f $${ff} -w json; \
 		node ../../app.js -l debug -f $${ff} -w json-simplified; \
+		node ../../app.js -l debug -f $${ff} -w html; \
 		done)
 	rm -f test/FromModelica/modelica-json.log
 
