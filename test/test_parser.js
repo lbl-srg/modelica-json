@@ -27,23 +27,23 @@ var checkJSON = function (outFormat, extension, message) {
     const pattern = path.join(__dirname, 'FromModelica', '*.mo')
     // Array of mo files to be tested.
     const testMoFiles = glob.sync(pattern)
-    return Promise.all(testMoFiles)
-      .then(files => {
-        // files are all .mo files to be parsed
-        return Promise.all(files.map(fil => {
-          return pa.getJSON(fil, outFormat)
-          .then(jsonSimple => {
-            // Read the stored json representation from disk
-            // logger.error('jsonSimple =' + JSON.stringify(jsonSimple, null, 2))
-            const oldFil = fil.slice(0, -3) + extension
-            // Read the old json
-            return ut.readJSON(oldFil)
-              .then(function (jsonOld) {
-                return as.deepEqual(jsonSimple[0], jsonOld[0], 'JSON result differs for ' + fil)
-              })
-          })
-        }))
-      })
+    // files are all .mo files to be parsed
+    return Promise.all(testMoFiles.map(fil => {
+      return pa.getJSON(fil, outFormat)
+        .then(jsonSimple => {
+        // Read the stored json representation from disk
+        // logger.error('jsonSimple =' + JSON.stringify(jsonSimple, null, 2))
+          const oldFil = fil.slice(0, -3) + extension
+          // Read the old json
+          return ut.readJSON(oldFil)
+            .then(function (jsonOld) {
+              const old = outFormat === 'json' ? jsonOld : jsonOld[0]
+              const ne = outFormat === 'json' ? jsonSimple : jsonSimple[0]
+              as.notEqual(old, undefined, 'JSON is undefined')
+              return as.deepEqual(ne, old, 'JSON result differs for ' + fil)
+            })
+        })
+    }))
   })
 }
 
