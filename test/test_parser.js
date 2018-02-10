@@ -48,8 +48,13 @@ var checkJSON = function (outFormat, extension, message) {
             .then(function (jsonOld) {
               const old = outFormat === 'json' ? jsonOld : jsonOld[0]
               const ne = outFormat === 'json' ? jsonSimple : jsonSimple[0]
+              // Update the path to be relative to the project home.
+              // This is needed for the regression tests to be portable.
+              if (ne.modelicaFile) {
+                ne['modelicaFile'] = ne['modelicaFile'].replace(path.join(__dirname, 'FromModelica'), '.')
+              }
               as.notEqual(old, undefined, 'JSON is undefined')
-              return as.deepEqual(ne, old, 'JSON result differs for ' + fil)
+              return as.deepEqual(old, ne, 'JSON result differs for ' + oldFil)
             })
         })
     }))
@@ -76,8 +81,10 @@ var compareHtml = function () {
 
 mo.describe('parser.js', function () {
   mo.describe('Testing parse from Modelica', function () {
-    checkJSON('json-simplified', '-simplified.json', 'Testing simplified json for equality')
     checkJSON('json', '.json', 'Testing unmodified json for equality')
+  })
+  mo.describe('Testing parse from Modelica', function () {
+    checkJSON('json-simplified', '-simplified.json', 'Testing simplified json for equality')
   })
   mo.describe('Testing html generation from Modelica', compareHtml)
 })
