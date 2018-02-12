@@ -44,7 +44,7 @@ clean-node-packages:
 clean-maven:
 	rm -rf apache_maven
 
-clean-installation: clean-node clean-maven
+clean-installation: clean-node-packages clean-maven
 
 
 run:
