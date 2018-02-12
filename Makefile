@@ -2,7 +2,7 @@
 # Makefile to build and test the project
 #########################################
 
-.PHONY: install-maven install-node-packages install compile test run compile-java generate-reference-output
+.PHONY: install-maven install-node-packages install compile test run compile-java generate-reference-output clean-node-packages clean-maven clean-installation
 
 # download maven source file to current directory and change its name
 install-maven:
@@ -38,12 +38,17 @@ generate-reference-output:
 		done)
 	rm -f test/FromModelica/modelica-json.log
 
-clean-installation:
+clean-node-packages:
 	rm -rf node-modules
+
+clean-maven:
 	rm -rf apache_maven
+
+clean-installation: clean-node clean-maven
+
 
 run:
 	node app.js \
 	--log debug \
-	-f ~/GitFolder/modelica-buildings/Buildings/Controls/OBC/ASHRAE/G36_PR1/AHUs/MultiZone/Controller.mo \
+	-f ~/proj/ldrd/bie/modeling/github/lbl-srg/modelica-buildings/Buildings/Controls/OBC/ASHRAE/G36_PR1/AHUs/MultiZone/Controller.mo \
 	-w html
