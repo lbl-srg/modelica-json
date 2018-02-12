@@ -55,16 +55,15 @@ logger.cli()
 logger.level = args.log
 
 // Parse the json representation for the model with file name args.file
-pa.getJSON(args.file, args.write).then(function (json) {
-  const idx = args.file.lastIndexOf(path.sep)
-  const outputFileBase = args.file.slice(idx + 1, -3)
-  var outFile
-  if (args.write === 'json') {
-    outFile = outputFileBase + '.json'
-  } else if (args.write === 'json-simplified') {
-    outFile = outputFileBase + '-simplified.json'
-  } else {
-    outFile = outputFileBase + '.html'
-  }
-  pa.exportJSON(json, outFile, args.write)
-})
+const json = pa.getJSON(args.file, args.write)
+const idx = args.file.lastIndexOf(path.sep)
+const outputFileBase = args.file.slice(idx + 1, -3)
+var outFile
+if (args.write === 'json') {
+  outFile = outputFileBase + '.json'
+} else if (args.write === 'json-simplified') {
+  outFile = outputFileBase + '-simplified.json'
+} else {
+  outFile = outputFileBase + '.html'
+}
+pa.exportJSON(json, outFile, args.write)
