@@ -126,7 +126,7 @@ public class Main {
     	    		}
     	    		exportJsonFile(matched, moFileName, jsonOut, jsFile);
     	    	} else {
-    	    		System.out.printf(jsonOut);
+    	    		System.out.println(jsonOut);
     	    	}
     	    	runLog.add(jsonOut);
     	    }
