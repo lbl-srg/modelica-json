@@ -10,6 +10,12 @@
           "name": "myPar1",
           "value": "1",
           "comment": "Some comment",
+          "annotation": {
+            "dialog": {
+              "tab": "General",
+              "group": "Parameters"
+            }
+          },
           "html": {
             "type": "Real"
           },
@@ -18,6 +24,12 @@
         {
           "name": "myParNoValue",
           "comment": "Some comment",
+          "annotation": {
+            "dialog": {
+              "tab": "General",
+              "group": "Parameters"
+            }
+          },
           "html": {
             "type": "Real"
           },
@@ -35,6 +47,12 @@
               "isFinal": false
             }
           ],
+          "annotation": {
+            "dialog": {
+              "tab": "General",
+              "group": "Parameters"
+            }
+          },
           "html": {
             "min": "0",
             "type": "Real"
@@ -53,6 +71,12 @@
               "isFinal": false
             }
           ],
+          "annotation": {
+            "dialog": {
+              "tab": "General",
+              "group": "Parameters"
+            }
+          },
           "html": {
             "max": "0",
             "type": "Real"
@@ -71,6 +95,12 @@
               "isFinal": false
             }
           ],
+          "annotation": {
+            "dialog": {
+              "tab": "General",
+              "group": "Parameters"
+            }
+          },
           "html": {
             "unit": "K",
             "type": "Real"
@@ -82,7 +112,8 @@
           "comment": "Some comment",
           "annotation": {
             "dialog": {
-              "group": "Gains"
+              "group": "Gains",
+              "tab": "General"
             }
           },
           "html": {
@@ -95,7 +126,8 @@
           "comment": "Some comment",
           "annotation": {
             "dialog": {
-              "tab": "Initialization tab"
+              "tab": "Initialization tab",
+              "group": "Parameters"
             }
           },
           "html": {
@@ -104,12 +136,26 @@
           "className": "Real"
         },
         {
-          "name": "myParInTabInGroup",
-          "comment": "Some comment",
+          "name": "myParInTabInGroup1",
+          "comment": "Some comment 1",
           "annotation": {
             "dialog": {
               "tab": "Initialization tab",
-              "group": "Gains"
+              "group": "Initial state"
+            }
+          },
+          "html": {
+            "type": "Real"
+          },
+          "className": "Real"
+        },
+        {
+          "name": "myParInTabInGroup2",
+          "comment": "Some comment 2",
+          "annotation": {
+            "dialog": {
+              "tab": "Initialization tab",
+              "group": "Initial state"
             }
           },
           "html": {

@@ -10,5 +10,7 @@ block Parameter2 "Some class comment"
   parameter Real myParInGroup "Some comment" annotation(Dialog(group="Gains"));
   parameter Real myParInTab "Some comment" annotation(Dialog(tab="Initialization tab"));
 
-  parameter Real myParInTabInGroup "Some comment" annotation(Dialog(tab="Initialization tab", group="Gains"));
+  parameter Real myParInTabInGroup1 "Some comment 1" annotation(Dialog(tab="Initialization tab", group="Initial state"));
+  parameter Real myParInTabInGroup2 "Some comment 2" annotation(Dialog(tab="Initialization tab", group="Initial state"));
+
 end Parameter2;
