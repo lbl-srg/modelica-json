@@ -2,20 +2,38 @@
   {
     "modelicaFile": "./Parameter1WithVendorAnnotation.mo",
     "within": "FromModelica",
-    "topClassName": "FromModelica.Parameter1",
+    "topClassName": "FromModelica.Parameter1WithVendorAnnotation",
     "comment": "Some class comment",
     "public": {
-      "parameters": [
-        {
-          "name": "kP",
-          "value": "1",
-          "comment": "Some comment",
-          "html": {
-            "type": "Real"
-          },
-          "className": "Real"
-        }
-      ]
+      "parameters": {
+        "tabs": [
+          {
+            "name": "General",
+            "groups": [
+              {
+                "name": "Parameters",
+                "parameters": [
+                  {
+                    "name": "kP",
+                    "value": "1",
+                    "comment": "Some comment",
+                    "annotation": {
+                      "dialog": {
+                        "tab": "General",
+                        "group": "Parameters"
+                      }
+                    },
+                    "html": {
+                      "type": "Real"
+                    },
+                    "className": "Real"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
     },
     "info": null
   }

@@ -37,7 +37,7 @@ var checkJSON = function (outFormat, extension, message) {
     // Array of mo files to be tested.
     const testMoFiles = getMoFiles()
     // files are all .mo files to be parsed
-    return Promise.all(testMoFiles.map(fil => {
+    testMoFiles.map(fil => {
       const jsonSimple = pa.getJSON(fil, outFormat)
       // Read the stored json representation from disk
       const oldFil = fil.slice(0, -3) + extension
@@ -52,9 +52,9 @@ var checkJSON = function (outFormat, extension, message) {
             ne['modelicaFile'] = ne['modelicaFile'].replace(path.join(__dirname, 'FromModelica'), '.')
           }
           as.notEqual(old, undefined, 'JSON is undefined')
-          return as.deepEqual(old, ne, 'JSON result differs for ' + oldFil)
+          return as.deepEqual(ne, old, 'JSON result differs for ' + oldFil)
         })
-    }))
+    })
   })
 }
 
@@ -64,13 +64,13 @@ var compareHtml = function () {
     // Array of mo files to be tested.
     const testMoFiles = getMoFiles()
     // files are all .mo files to be parsed
-    return Promise.all(testMoFiles.map(fil => {
+    testMoFiles.map(fil => {
       const jsonSimple = pa.getJSON(fil, 'json-simplified')
       const html = ht.getHtmlPage(jsonSimple)
       const htmlFil = fil.replace('.mo', '.html')
       const oldHtml = fs.readFileSync(htmlFil, 'utf8')
       as.equal(html, oldHtml, 'html representation differs for ' + htmlFil)
-    }))
+    })
   })
 }
 

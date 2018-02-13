@@ -49,6 +49,6 @@ clean-installation: clean-node-packages clean-maven
 
 run:
 	node app.js \
-	--log debug \
-	-f ~/proj/ldrd/bie/modeling/github/lbl-srg/modelica-buildings/Buildings/Controls/OBC/ASHRAE/G36_PR1/AHUs/MultiZone/Controller.mo \
+	--log warn \
+	-f ~/proj/ldrd/bie/modeling/github/lbl-srg/modelica-buildings/Buildings/Controls/OBC/ASHRAE/G36_PR1/AHUs/MultiZone/Economizers/Controller.mo \
 	-w html

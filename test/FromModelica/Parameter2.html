@@ -39,7 +39,13 @@
   tr:nth-child(odd) {
       background-color: #f2f2f2;
   }
-
+  tr.tab{
+      background-color: grey;
+      color: white;
+  }
+  tr.group{
+      background-color: #A8A8A8;
+  }
   code, pre{
     font-family: 'Consolas', 'Deja Vu Sans Mono', 'Bitstream Vera Sans Mono', monospace;
     border: 0;
@@ -123,7 +129,10 @@
     <th>Display unit</th>
     <th class="type">Type        </th>
     <th>min    </th>
-    <th>max    </th></td>
+    <th>max    </th>
+    </td>
+    <tr class="tab"><td colspan="8">General</td></tr>
+    <tr class="group"><td colspan="8">Parameters</td></tr>
     <tr>
     <td><code>myPar1</code><a name=""></a></td>
     <td>Some comment</td>
@@ -174,6 +183,7 @@
     <td></td>
     <td></td>
     </tr>
+    <tr class="group"><td colspan="8">Gains</td></tr>
     <tr>
     <td><code>myParInGroup</code><a name=""></a></td>
     <td>Some comment</td>
@@ -184,6 +194,8 @@
     <td></td>
     <td></td>
     </tr>
+    <tr class="tab"><td colspan="8">Initialization tab</td></tr>
+    <tr class="group"><td colspan="8">Parameters</td></tr>
     <tr>
     <td><code>myParInTab</code><a name=""></a></td>
     <td>Some comment</td>
@@ -194,9 +206,20 @@
     <td></td>
     <td></td>
     </tr>
+    <tr class="group"><td colspan="8">Initial state</td></tr>
     <tr>
-    <td><code>myParInTabInGroup</code><a name=""></a></td>
-    <td>Some comment</td>
+    <td><code>myParInTabInGroup1</code><a name=""></a></td>
+    <td>Some comment 1</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>Real</td>
+    <td></td>
+    <td></td>
+    </tr>
+    <tr>
+    <td><code>myParInTabInGroup2</code><a name=""></a></td>
+    <td>Some comment 2</td>
     <td></td>
     <td></td>
     <td></td>
@@ -217,7 +240,6 @@
 
 <h3>Protected Parameters</h3>
     <p>It has no parameters.</p>
-
 
 <h3>Protected Blocks</h3>
     <p>It has no protected blocks.</p>
