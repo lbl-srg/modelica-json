@@ -145,13 +145,7 @@ public class Comment {
     		if (nameStr != null) {
     			this.defaultName = nameStr;
     		} else {
-    			/* "defaultName" should be null when it is not model annotation. */
-    			if (lineStr != null || dialogStr != null || placementStr != null || (otherAnnStr != null && otherAnnStr.contains("="))) {
-    				this.defaultName = null;
-    			/* "defaultName" should have value when it is model annotation. */
-    			} else {
-    				this.defaultName = "Fixme: default name is missing!";
-    			}
+    			this.defaultName = null;   			
     		}
 
     		/** find out element in Dialog (...) **/
@@ -447,8 +441,8 @@ public class Comment {
     	String info;
     	String revisions;
     	private Documentation(String info, String revisions) {
-    		this.info = (info == null) ? "Fixme: info section is missing!" : info;
-    		this.revisions = (revisions == null) ? "Fixme: revision record is missing!" : revisions;
+    		this.info = info;
+    		this.revisions = revisions;
     	}
     }
 

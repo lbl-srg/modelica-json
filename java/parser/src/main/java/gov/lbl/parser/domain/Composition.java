@@ -116,7 +116,7 @@ public class Composition {
     			this.defaultName = nameStr;
     		} else {
     			nameStr = null;
-    			this.defaultName = "Fixme: default name is missing!";
+    			this.defaultName = null;
     		}
     		List<String> strListToBeRem = new ArrayList<String>();
     		if (docStr != null) {
@@ -209,8 +209,8 @@ public class Composition {
     	String info;
     	String revisions;
     	private Documentation(String info, String revisions) {
-    		this.info = (info == null) ? "Fixme: info section is missing!" : info;
-    		this.revisions = (revisions == null) ? "Fixme: revision record is missing!" : revisions;
+    		this.info = info;
+    		this.revisions = revisions;
     	}
     }
 }

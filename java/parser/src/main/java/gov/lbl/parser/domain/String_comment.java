@@ -6,8 +6,6 @@ import java.util.ArrayList;
 
 public class String_comment {
 	private String string;
-    //private Collection<String> string;
-
     public String_comment(Collection<String> str_dec) {
     	String nameString = "";
     	if (str_dec.size() == 0) {
@@ -22,7 +20,6 @@ public class String_comment {
         			nameString = nameString + "+" + strList.get(i);
         		}
         	}
-
     	}
       this.string = nameString;
     }
