@@ -120,7 +120,7 @@ public class Main {
     	    	} catch (Exception e) {
     	    		runLog.add(e.getMessage());
     	    		throw new Exception(e);
-    	    	}
+    	    	}    	    	
     	    	Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
     	    	//Gson gson = new Gson();
     	    	jsonOut = gson.toJson(antlrParseOut);
