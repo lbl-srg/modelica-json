@@ -68,7 +68,10 @@ public class Main {
     	String helMes = "\n Input arguments should be like: \n"
 					+ "    \'-h\' : help info; \n"
 					+ "or, \'--mo xx/xx/*.mo\' : parsed json text will be stored in memory; \n"
-					+ "or, \'--mo xx/xx/*.mo --out-dir xx/\' : parsed json text will be stored in *.json in folder xx/; \n";
+					+ "or, \'--mo xx/xx/*.mo --out-dir xx/\' : parsed json text will be stored in folder xx/; \n"
+					+ "or, \'--mo xx/xx/\' : parse .mo files in the folder, parsed json text will be stored in memory; \n"
+					+ "or, \'--mo xx/xx/ --out-dir xx/\' : parse .mo files in the folder, parsed json text will be stored in folder xx/; \n";
+    	
     	try {
     		if ((args.length == 1 && !args[0].equals("-h"))
     			 || (args.length == 2 && !args[0].equals("--mo"))
