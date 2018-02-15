@@ -68,7 +68,10 @@ public class Main {
     	String helMes = "\n Input arguments should be like: \n"
 					+ "    \'-h\' : help info; \n"
 					+ "or, \'--mo xx/xx/*.mo\' : parsed json text will be stored in memory; \n"
-					+ "or, \'--mo xx/xx/*.mo --out-dir xx/\' : parsed json text will be stored in *.json in folder xx/; \n";
+					+ "or, \'--mo xx/xx/*.mo --out-dir xx/\' : parsed json text will be stored in folder xx/; \n"
+					+ "or, \'--mo xx/xx/\' : parse .mo files in the folder, parsed json text will be stored in memory; \n"
+					+ "or, \'--mo xx/xx/ --out-dir xx/\' : parse .mo files in the folder, parsed json text will be stored in folder xx/; \n";
+    	
     	try {
     		if ((args.length == 1 && !args[0].equals("-h"))
     			 || (args.length == 2 && !args[0].equals("--mo"))
@@ -88,17 +91,24 @@ public class Main {
     	}
 
     	String moFilePath  = fullInputPath(args[1], cwDir);
-
-    	int slaInd = moFilePath.lastIndexOf("/");
-    	String moFileName = moFilePath.substring(slaInd+1, moFilePath.length());
-    	String moFileDir = moFilePath.substring(0,slaInd);
+   	
+    	String moFileName = "";
+    	String moFileDir = "";
+    	if (moFilePath.contains(".mo")) {
+    		int slaInd = moFilePath.lastIndexOf("/");
+    		moFileName = moFilePath.substring(slaInd+1, moFilePath.length());
+        	moFileDir = moFilePath.substring(0,slaInd);
+    	} else {
+    		moFileName = ".mo";
+    		moFileDir = moFilePath;
+    	}   	 	
 
     	String dirToBeSearched = moFileDir;
     	Main fileSearch = new Main();
     	fileSearch.searchDirectory(new File(dirToBeSearched), moFileName);
 
     	if (fileSearch.getResult().size() == 0) {
-				String noFilMes = moFileName + " cannot be found. \nCheck file name and path: " + moFilePath;
+			String noFilMes = moFileName + " cannot be found. \nCheck file name and path: " + moFilePath;
     		runLog.add(noFilMes);
 			throw new Exception(noFilMes);
     	} else {
@@ -110,7 +120,7 @@ public class Main {
     	    	} catch (Exception e) {
     	    		runLog.add(e.getMessage());
     	    		throw new Exception(e);
-    	    	}
+    	    	}    	    	
     	    	Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
     	    	//Gson gson = new Gson();
     	    	jsonOut = gson.toJson(antlrParseOut);
@@ -137,14 +147,20 @@ public class Main {
 
     private static String fullInputPath(String moFileInputPath, String cwDir) {
     	String fullPath = "";
-			Path path = Paths.get(moFileInputPath);
+    	String tempPath = "";
+    	if (moFileInputPath.charAt(moFileInputPath.length()-1) == '/') {
+    		tempPath = moFileInputPath.substring(0, moFileInputPath.length()-1);
+    	} else {
+    		tempPath = moFileInputPath;
+    	}   	
+		Path path = Paths.get(tempPath);
     	if (path.isAbsolute()) {
-    		fullPath = moFileInputPath;
+    		fullPath = tempPath;
 		} else {
 			// if the given path is like ../xxx/xxx.mo
-			if (moFileInputPath.contains("../")) {
+			if (tempPath.contains("../")) {
 				Pattern p = Pattern.compile("../");
-				Matcher m = p.matcher(moFileInputPath);
+				Matcher m = p.matcher(tempPath);
 				int count1 = 0;
 				while (m.find()){
 				    count1 +=1;
@@ -160,17 +176,17 @@ public class Main {
 						}
 					}
 				}
-				fullPath = cwDir.substring(0, dashInd.get(dashInd.size()-1)+1).concat(moFileInputPath);
+				fullPath = cwDir.substring(0, dashInd.get(dashInd.size()-1)+1).concat(tempPath);
 			} else {
-				fullPath = cwDir.concat("/".concat(moFileInputPath));
+				fullPath = cwDir.concat("/".concat(tempPath));
 			}
 		}
     	return fullPath;
     }
 
-
+    
     private void exportJsonFile(String searchedFile, String moFileName, String jsonOut, String jsFile) throws Exception {
-    	String nameForJson = jsonDir(searchedFile, moFileName, jsFile).get(0);
+    	String nameForJson = jsonDir(searchedFile, moFileName, jsFile).get(0);   	
 		String dirRootStr = jsonDir(searchedFile, moFileName, jsFile).get(1);
 		Path path = Paths.get(dirRootStr);
 		File dirRoot = new File(dirRootStr);
@@ -192,15 +208,21 @@ public class Main {
     private static List<String> jsonDir(String str, String moFile, String jsFile) {
     	List<String> jsName_Dir = new ArrayList<String>();
     	String nameForJson = "";
-    	String dirRootStr = "";
+    	String dirRootStr = "";   	
     	if (str.contains("/Buildings/")) {
     		int indexBuildings = str.indexOf("/Buildings/");
     		String buiSubDirForJson = str.substring(indexBuildings+1, str.lastIndexOf("."));
     		nameForJson = jsFile.concat(buiSubDirForJson.concat(".json"));
-    	} else {
-    		int dotIndinFile = moFile.lastIndexOf(".");
-    		nameForJson = jsFile.concat(moFile.substring(0, dotIndinFile).concat(".json"));
-    	}
+    	} else {   		
+    		if (!moFile.equals(".mo")) {
+    			int dotIndinFile = moFile.lastIndexOf(".");
+    			nameForJson = jsFile.concat(moFile.substring(0, dotIndinFile).concat(".json"));
+    		} else {
+    			int lasSlaInd = str.lastIndexOf("/");
+    			int lasDotInd = str.lastIndexOf(".");
+    			nameForJson = jsFile.concat(str.substring(lasSlaInd+1, lasDotInd).concat(".json"));
+    		}
+    	}   		
 		dirRootStr = nameForJson.substring(0, nameForJson.lastIndexOf("/"));
 		jsName_Dir.add(nameForJson);
 		jsName_Dir.add(dirRootStr);
@@ -221,8 +243,16 @@ public class Main {
     	if (file.isDirectory()) {
     	    if (file.canRead()) {
     	    	for (File temp : file.listFiles()) {
-    	    		if (getFileNameToSearch().equals(temp.getName())) {
-    	    			result.add(temp.getAbsoluteFile().toString());
+    	    		if (temp.isDirectory()) {
+    	    			search(temp);
+    	    		} else {
+    	    			int dotInd = temp.getName().lastIndexOf(".");
+    	    			int nameLen = temp.getName().length();
+    	    			int indForExt = dotInd==(-1) ? 0 : dotInd;	    		
+    	    			if ((getFileNameToSearch().equals(".mo") && getFileNameToSearch().equals(temp.getName().substring(indForExt,nameLen)))
+    	    				 || (!getFileNameToSearch().equals(".mo") && getFileNameToSearch().equals(temp.getName()))) {
+    	    				result.add(temp.getAbsoluteFile().toString());
+    	    			}
     	    		}
     	    	}
     	 } else {

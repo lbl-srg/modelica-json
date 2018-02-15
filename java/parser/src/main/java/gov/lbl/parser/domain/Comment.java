@@ -60,7 +60,7 @@ public class Comment {
     	VendorAnnotation vendor_annotation;
     	Collection<StrPair> others;
 
-    	private AnnBlo annClass(String annStr) {
+    	private AnnBlo annClass(String annStr) {    		
     		String nameStr;
     		String dialogStr = findSubStr(annStr, "Dialog ");
     		String placementStr = findSubStr(annStr, "Placement ");
@@ -68,7 +68,7 @@ public class Comment {
     		String docStr = findSubStr(annStr, "Documentation ");
     		String diagramStr = findSubStr(annStr, "Diagram ");
     		String iconStr = findSubStr(annStr, "Icon ");
-    		String textStr = findSubStr(annStr, "Text ");
+    		String textStr = findSubStr(annStr, "Text ");   		
     		String venAnnStr = findSubStr(annStr, "__");
 
     		this.placement = placementStr;
@@ -176,7 +176,7 @@ public class Comment {
     		List<StrPair> othEle = new ArrayList<StrPair>();   		
     		if (otherAnnStr == null || !otherAnnStr.contains("=")) {
     			this.others = null;
-    		} else {    			
+    		} else {    		    			
     			String name;
     			String value;
     			List<String> othSetTemp = new ArrayList<String>();
@@ -188,10 +188,26 @@ public class Comment {
     				}
     			}
     			for (int i=0; i<othSet.size(); i++) {
-    				int equInd = othSet.get(i).indexOf("=");
-    				name = othSet.get(i).substring(0, equInd-1);
-    				value = othSet.get(i).substring(equInd+1, othSet.get(i).length());
-    				othEle.add(new StrPair(name,value));
+    				String othSetEle = othSet.get(i);
+    				int equInd;
+    				if (othSetEle.contains("(")) {
+    					if (othSetEle.indexOf("=") < othSetEle.indexOf("(")) {
+    						equInd = othSetEle.indexOf("=");
+    						name = othSetEle.substring(0, equInd-1);
+    	    				value = othSetEle.substring(equInd+1, othSet.get(i).length());
+    	    				othEle.add(new StrPair(name,value));
+    					} else {
+    						int braInd = othSetEle.indexOf("(");
+    						name = othSetEle.substring(0,braInd-1);
+    						value = othSetEle.substring(braInd+1,othSetEle.length()-2);
+    						othEle.add(new StrPair(name,value));
+    					}
+    				} else {
+    					equInd = othSetEle.indexOf("=");
+						name = othSetEle.substring(0, equInd-1);
+	    				value = othSetEle.substring(equInd+1, othSet.get(i).length());
+	    				othEle.add(new StrPair(name,value));
+    				}    				   				
     			}
     			this.others = othEle;
     		}    		
@@ -257,8 +273,11 @@ public class Comment {
     }
     
     /** access sub-string "subStr" in string "str" with syntax of "keyStr (subStr)" **/
-    private static String findSubStr(String str, String keyStr) {
+    private static String findSubStr(String str, String keyStr) {    	
     	String subStr;
+    	if (!ifEnclosed(str, "(", ")", str.indexOf(keyStr))) {
+    		subStr = null;
+    	} else {    	
     	if (str.contains(keyStr)) {
 			int leftRBcount = 0;
 			int beginInd = str.indexOf("(",str.indexOf(keyStr)+keyStr.length()-2);
@@ -279,6 +298,7 @@ public class Comment {
 		} else {
 			subStr = null;
 		}
+    	}
     	return subStr;
     }
 
