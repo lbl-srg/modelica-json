@@ -2,6 +2,12 @@
 # Makefile to build and test the project
 #########################################
 
+ifeq ($(wildcard ./apache_maven/bin/mvn),)
+MVN = mvn  # Use maven from system installation
+else
+MVN = ../apache_maven/bin/mvn
+endif
+
 .PHONY: install-maven install-node-packages install compile test run compile-java generate-reference-output clean-node-packages clean-maven clean-installation
 
 # download maven source file to current directory and change its name
@@ -19,9 +25,9 @@ install: install-maven install-node-packages
 
 compile:
 	@echo "Compiling java to produce jar"
-	cd java && ../apache_maven/bin/mvn package
+	cd java && $(MVN) package
 	mv java/parser/target/parser-1.0-SNAPSHOT-jar-with-dependencies.jar java/moParser.jar
-	cd java && ../apache_maven/bin/mvn clean
+	cd java && $(MVN) clean
 
 test:
 	npm test
