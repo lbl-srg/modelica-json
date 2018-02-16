@@ -32,6 +32,9 @@ compile:
 test:
 	npm test
 
+test-moParser:
+	java -jar java/moParser.jar --mo test/FromModelica/Block1.mo
+	
 # Target to generate reference output files
 # This only needs to be run when the output format changes,
 # or when new tests are added.

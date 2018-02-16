@@ -1,7 +1,7 @@
 language: node_js
 node_js:
-  - "iojs"
-  - "7"
+  - "6"
 
 before_install:
   - make compile
+  - make test-moParser
