@@ -20,7 +20,7 @@ logger.configure({
 })
 logger.cli()
 
-logger.level = 'error'
+logger.level = 'debug'
 
 /** Function to get all the Modelica files to be tested
   */
