@@ -41,4 +41,8 @@ license agreement for such Enhancements, then you hereby grant the following lic
 a non-exclusive, royalty-free, perpetual license to install, use, modify,
 prepare derivative works, incorporate into other computer software, distribute,
 and sublicense such Enhancements or derivative works thereof, in binary and
-source code form.  
+source code form.
+
+NOTE: This license corresponds to the "revised BSD" or "3-clause BSD" license
+and includes the following modification:  Paragraph 3. has been added by the
+University of California.
