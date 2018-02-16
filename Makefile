@@ -2,6 +2,12 @@
 # Makefile to build and test the project
 #########################################
 
+ifeq ($(wildcard ./apache_maven/bin/mvn),)
+MVN = mvn  # Use maven from system installation
+else
+MVN = ../apache_maven/bin/mvn
+endif
+
 .PHONY: install-maven install-node-packages install compile test run compile-java generate-reference-output clean-node-packages clean-maven clean-installation
 
 # download maven source file to current directory and change its name
@@ -19,16 +25,19 @@ install: install-maven install-node-packages
 
 compile:
 	@echo "Compiling java to produce jar"
-	cd java && ../apache_maven/bin/mvn package
+	cd java && $(MVN) package
 	mv java/parser/target/parser-1.0-SNAPSHOT-jar-with-dependencies.jar java/moParser.jar
-	cd java && ../apache_maven/bin/mvn clean
+	cd java && $(MVN) clean
 
 test:
 	npm test
 
+test-moParser:
+	java -jar java/moParser.jar --mo test/FromModelica/Block1.mo
+	
 # Target to generate reference output files
-# This typically only needs to be run
-# if the output format changes.
+# This only needs to be run when the output format changes,
+# or when new tests are added.
 generate-reference-output:
 	(cd test/FromModelica && \
 	for ff in `find . -name '*.mo'`; do \

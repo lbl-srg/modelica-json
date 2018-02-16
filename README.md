@@ -1,5 +1,7 @@
 # Modelica to JSON parser
 
+[![Build Status](https://travis-ci.org/lbl-srg/modelica-json.svg?branch=master)](https://travis-ci.org/lbl-srg/modelica-json)
+
 This is a parser that parses Modelica to JSON,
 and from JSON to different output formats.
 
