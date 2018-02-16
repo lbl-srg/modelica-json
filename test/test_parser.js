@@ -65,7 +65,7 @@ var compareHtml = function () {
     const testMoFiles = getMoFiles()
     // files are all .mo files to be parsed
     testMoFiles.map(fil => {
-      const jsonSimple = pa.getJSON(fil, 'json-simplified')
+      const jsonSimple = pa.getJSON(fil, 'html')
       const html = ht.getHtmlPage(jsonSimple)
       const htmlFil = fil.replace('.mo', '.html')
       const oldHtml = fs.readFileSync(htmlFil, 'utf8')
