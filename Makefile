@@ -27,8 +27,8 @@ test:
 	npm test
 
 # Target to generate reference output files
-# This typically only needs to be run
-# if the output format changes.
+# This only needs to be run when the output format changes,
+# or when new tests are added.
 generate-reference-output:
 	(cd test/FromModelica && \
 	for ff in `find . -name '*.mo'`; do \
