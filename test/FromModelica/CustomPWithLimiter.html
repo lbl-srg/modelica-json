@@ -1,0 +1,333 @@
+<head>
+  <meta charset="utf-8">
+  <title></title>
+
+  <!-- Custom styles for this template -->
+  <style>
+  html{
+    color: #022e4d;
+    font-family: "Helvetica Neue", Helvetica, Verdana, sans-serif;
+    /*padding: 10px;*/
+  }
+  /* Avoid images to be too large on small screens */
+  img{
+    max-width: 100%;
+  }
+  a:link, a:hover, a:visited, a:focus{
+    color: #750000;
+    text-decoration: underline;
+    }
+
+  th, td{
+    padding-inline-start: 15px;
+    padding-top: .5em;
+    padding-bottom: .5em;
+    padding-left: 1em;
+    padding-right: 1em;
+    vertical-align: top;
+  }
+  th {
+      background-color: grey;
+      color: white;
+  }
+  th.description{
+    min-width: 50%;
+  }
+  th.type{
+    max-width: 30%;
+  }
+  tr:nth-child(odd) {
+      background-color: #f2f2f2;
+  }
+  tr.tab{
+      background-color: grey;
+      color: white;
+  }
+  tr.group{
+      background-color: #A8A8A8;
+  }
+  code, pre{
+    font-family: 'Consolas', 'Deja Vu Sans Mono', 'Bitstream Vera Sans Mono', monospace;
+    border: 0;
+    color: #750000;
+  /* background-color: #f5f5f5; */
+
+  }
+  tr.border_top td {
+    border-top:1pt solid #022e4d;
+  }
+  tr.border_bottom td {
+    border-bottom:1pt solid #022e4d;
+  }
+
+  ul.list-parameter-assignments {
+    list-style-type: none;
+  }
+  h1{
+    font-size: 2em;
+  }
+  .h2, h2{
+    font-size: 1.7em;
+  }
+  .h3, h3{
+    font-size: 1.5em;
+  }
+  .h4, h4{
+    font-size: 1.2em;
+  }
+  .footer{
+  /*  background-color: white;
+    border-color: white; */
+    background-color: #f8f8f8;
+    padding: 10px;
+    font-size: 75%;
+    border-width:0px;
+    background-image: none;
+    border-radius: 4px;
+
+  }
+
+  /* Counters for header */
+  body {counter-reset: h2}
+  h2 {counter-reset: h3}
+  h3 {counter-reset: h4}
+  h4 {counter-reset: h5}
+  h5 {counter-reset: h6}
+
+  h2:before {counter-increment: h2; content: counter(h2) ". "}
+  h3:before {counter-increment: h3; content: counter(h2) "." counter(h3) ". "}
+  h4:before {counter-increment: h4; content: counter(h2) "." counter(h3) "." counter(h4) ". "}
+  h5:before {counter-increment: h5; content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) ". "}
+  h6:before {counter-increment: h6; content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) "." counter(h6) ". "}
+
+  h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.nocount:before
+    { content: ""; counter-increment: none }
+
+  </style>
+
+</head>
+<body>
+
+<h2>FromModelica.CustomPWithLimiter<a name="FromModelica.CustomPWithLimiter"></a></h2>
+
+  <p>Custom implementation of a P controller with variable output limiter</p>
+
+<h3>Functionality</h3>
+
+  
+<p>
+Block that output <code>y = min(yMax, k*e)</code>,
+where
+<code><a href="#FromModelica.CustomPWithLimiter.yMax">yMax</a></code> and <code><a href="#FromModelica.CustomPWithLimiter.e">e</a></code> are real-valued input signals and
+<code><a href="#undefined">k</a></code> is a parameter.
+</p>
+
+  
+
+<h3>Public Parameters</h3>
+    <p>
+    It has the following publicly visible parameters:
+    </p>
+    <table>
+    <tr><th>Name    </th>
+    <th class="description">Description</th>
+    <th>Value    </th>
+    <th>Unit     </th>
+    <th>Display unit</th>
+    <th class="type">Type        </th>
+    <th>min    </th>
+    <th>max    </th>
+    </td>
+    <tr class="tab"><td colspan="8">General</td></tr>
+    <tr class="group"><td colspan="8">Parameters</td></tr>
+    <tr>
+    <td><code>k</code><a name=""></a></td>
+    <td>Constant gain</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>Real</td>
+    <td></td>
+    <td></td>
+    </tr>
+    </table>
+
+<h3>Inputs</h3>
+    <p>
+    It has the following inputs:
+    </p>
+    <table>
+    <tr>
+      <th class="type">Type        </th>
+      <th>Name    </th>
+      <th class="description">Description</th>
+      <th>min    </th>
+      <th>max    </th>
+      <th>Unit     </th>
+      <th>Display unit     </th>
+      </td>
+    <tr>
+      <td>
+      <code>
+      Real
+      </code>
+      </td>
+      <td><code>yMax</code><a name="FromModelica.CustomPWithLimiter.yMax"></a></td>
+      <td>Maximum value of output signal</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+    <tr>
+      <td>
+      <code>
+      Real
+      </code>
+      </td>
+      <td><code>e</code><a name="FromModelica.CustomPWithLimiter.e"></a></td>
+      <td>Control error</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+    </table>
+
+<h3>Outputs</h3>
+    <p>
+    It has the following outputs:
+    </p>
+    <table>
+    <tr>
+      <th class="type">Type        </th>
+      <th>Name    </th>
+      <th class="description">Description</th>
+      <th>min    </th>
+      <th>max    </th>
+      <th>Unit     </th>
+      <th>Display unit     </th>
+      </td>
+    <tr>
+      <td>
+      <code>
+      Real
+      </code>
+      </td>
+      <td><code>y</code><a name="FromModelica.CustomPWithLimiter.y"></a></td>
+      <td>Control signal</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+    </table>
+
+<h3>Public Blocks</h3>
+    <p>
+    It has the following public blocks:
+    </p>
+    <table>
+    <tr>
+      <th class="type">Type</th>
+      <th>Name</th>
+      <th class="description">Description</th>
+      <th>Parameter Assignments</th>
+    </td>
+    <tr>
+      <td>
+      <code>
+      <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Gain">Buildings.Controls.OBC.CDL.Continuous.Gain</a>
+      </code>
+      </td>
+      <td>
+      <code>
+      gain
+      </code>
+      <a name="FromModelica.CustomPWithLimiter.gain"></a></td>
+      <td>Constant gain</td>
+      <td>
+      <ul class="list-parameter-assignments">
+      <li>
+      <code>
+       final  k = k
+      </code>
+      </li>
+      </ul>
+      </td>
+      </tr>
+    <tr>
+      <td>
+      <code>
+      <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Min">Buildings.Controls.OBC.CDL.Continuous.Min</a>
+      </code>
+      </td>
+      <td>
+      <code>
+      minValue
+      </code>
+      <a name="FromModelica.CustomPWithLimiter.minValue"></a></td>
+      <td>Outputs the minimum of its inputs</td>
+      <td>
+      </td>
+      </tr>
+    </table>
+
+<h3>Protected Parameters</h3>
+    <p>It has no parameters.</p>
+
+<h3>Protected Blocks</h3>
+    <p>It has no protected blocks.</p>
+
+<h3>Internal connections</h3>
+    <p>
+    The inputs of the internal blocks are connected to the following outputs:
+    </p>
+    <ol>
+    <li>
+    <code>
+    <a href="#FromModelica.CustomPWithLimiter.minValue">minValue</a>.<a href="#Buildings.Controls.OBC.CDL.Continuous.Min.u1" >u1</a>
+    </code>
+    &rarr;
+    <code>
+    <a href="#FromModelica.CustomPWithLimiter.yMax">yMax</a>
+    </code>
+    </li>
+    <li>
+    <code>
+    <a href="#FromModelica.CustomPWithLimiter.gain.u">gain.u</a>
+    </code>
+    &rarr;
+    <code>
+    <a href="#FromModelica.CustomPWithLimiter.e">e</a>
+    </code>
+    </li>
+    <li>
+    <code>
+    <a href="#FromModelica.CustomPWithLimiter.gain">gain</a>.<a href="#Buildings.Controls.OBC.CDL.Continuous.Gain.y" >y</a>
+    </code>
+    &rarr;
+    <code>
+    <a href="#FromModelica.CustomPWithLimiter.minValue">minValue</a>.<a href="#Buildings.Controls.OBC.CDL.Continuous.Min.u2" >u2</a>
+    </code>
+    </li>
+    <li>
+    <code>
+    <a href="#FromModelica.CustomPWithLimiter.minValue">minValue</a>.<a href="#Buildings.Controls.OBC.CDL.Continuous.Min.y" >y</a>
+    </code>
+    &rarr;
+    <code>
+    <a href="#FromModelica.CustomPWithLimiter.y">y</a>
+    </code>
+    </li>
+    </ol>
+
+</body>
+<footer>
+    <div class="footer">
+<p>
+    Generated through CDL export of <a href="http://obc.lbl.gov">OpenBuildingControl</a>,
+    <a href="https://www.lbl.gov">Berkeley Lab</a>.
+</p>
+</div>
+</footer>
