@@ -34,10 +34,12 @@ public class Modification {
 
     @Override
     public String toString() {
-      return "Modification{" +
-              "\nclass_modification=" + class_modification + '\'' +
-              "\nsymbol=" + symbol + '\'' +
-              "\nexpression=" + expression + '\'' +
-              '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Modification{")
+    			     .append("\nclass_modification=").append(class_modification).append('\'')
+    			     .append("\nsymbol=").append(symbol).append('\'')
+    			     .append("\nexpression=").append(expression)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

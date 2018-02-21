@@ -44,9 +44,10 @@ public class Connect_clause {
 
     @Override
     public String toString() {
-      return "Connect_clause{" +
-              "\ncomponent1=" + component1 + '\'' +
-              "\ncomponent2=" + component2 + '\'' +
-              '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Connect_clause{")
+    			     .append("\ncomponent1=").append(component1).append('\'')
+    			     .append("\ncomponent2=").append(component2).append('\'').append('}')
+    			     .toString();
     }
 }

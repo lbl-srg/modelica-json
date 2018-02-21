@@ -38,11 +38,13 @@ public class Function_arguments {
 
     @Override
     public String toString() {
-    	return "Function_arguments{" +
-               "\nargument=" + argument + '\'' +
-               "\narguments=" + arguments + '\'' +
-               "\nfor_indices=" + for_indices + '\'' +
-               "\nnamed_arguments=" + named_arguments + '\'' +
-               '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Function_arguments{")
+    			     .append("\nargument=").append(argument).append('\'')
+    			     .append("\narguments=").append(arguments).append('\'')
+    			     .append("\nfor_indices=").append(for_indices).append('\'')
+    			     .append("\nnamed_arguments=").append(named_arguments)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

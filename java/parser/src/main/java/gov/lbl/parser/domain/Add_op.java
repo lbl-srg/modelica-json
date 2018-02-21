@@ -24,8 +24,10 @@ public class Add_op {
 
     @Override
     public String toString() {
-      return "Add_op{" +
-              "\nadd_op=" + add_op + '\'' +
-              '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Add_op{")
+    			     .append("\nadd_op=").append(add_op)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

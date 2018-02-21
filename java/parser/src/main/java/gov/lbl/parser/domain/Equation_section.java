@@ -32,9 +32,11 @@ public class Equation_section {
 
     @Override
     public String toString() {
-      return "Equation_section{" +
-    		 "\nprefix=" + prefix + '\'' +
-             "\nequation=" + equation + '\'' +
-             '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Equation_section{")
+    			     .append("\nprefix=").append(prefix).append('\'')
+    			     .append("\nequation=").append(equation)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

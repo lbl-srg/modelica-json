@@ -24,8 +24,10 @@ public class Class_modification {
 
     @Override
     public String toString() {
-      return "Class_modification{" +
-              "\nargument_list=" + argument_list + '\'' +
-              '}';
+    	StringBuilder temStr = new StringBuilder();
+      return temStr.append("Class_modification{")
+    		       .append("\nargument_list=").append(argument_list)
+    		       .append('\'').append('}')
+    		       .toString();
     }
 }

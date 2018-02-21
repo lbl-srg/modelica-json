@@ -47,8 +47,10 @@ public class Name {
 
     @Override
     public String toString() {
-      return "Name{" +
-              "\nname=" + name + '\'' +
-              '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Name{")
+    			     .append("\nname=").append(name)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

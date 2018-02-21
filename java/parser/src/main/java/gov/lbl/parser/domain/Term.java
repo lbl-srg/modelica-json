@@ -35,10 +35,12 @@ public class Term {
 
     @Override
     public String toString() {
-      return "Term{" +
-              "\nfactor=" + factor + '\'' +
-              "\nmul_op=" + mul_op + '\'' +
-              "\nfactors=" + factors + '\'' +
-              '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Term{")
+    			     .append("\nfactor=").append(factor).append('\'')
+    			     .append("\nmul_op=").append(mul_op).append('\'')
+    			     .append("\nfactors=").append(factors)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

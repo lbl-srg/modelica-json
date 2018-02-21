@@ -52,13 +52,15 @@ public class Import_clause {
 
     @Override
     public String toString() {
-        return "Import_clause{" +
-               "\nprefix=" + prefix + '\'' +
-               "\nident=" + ident + '\'' +
-               "\nname=" + name + '\'' +
-               "\nimport_list=" + import_list + '\'' +
-               "\nsymbols=" + symbols + '\'' +
-               "\ncomment=" + comment + '\'' +
-               '}';
+    	StringBuilder temStr = new StringBuilder();
+        return temStr.append("Import_clause{")
+        		     .append("\nprefix=").append(prefix).append('\'')
+        		     .append("\nident=").append(ident).append('\'')
+        		     .append("\nname=").append(name).append('\'')
+        		     .append("\nimport_list=").append(import_list).append('\'')
+        		     .append("\nsymbols=").append(symbols).append('\'')
+        		     .append("\ncomment=").append(comment)
+        		     .append('\'').append('}')
+        		     .toString();
     }
 }

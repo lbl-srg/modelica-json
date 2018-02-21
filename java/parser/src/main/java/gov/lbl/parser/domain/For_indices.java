@@ -26,8 +26,10 @@ public class For_indices {
 
     @Override
     public String toString() {
-      return "For_indices{" +
-              "\nfor_index=" + for_index + '\'' +
-              '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("For_indices{")
+    			     .append("\nfor_index=").append(for_index)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

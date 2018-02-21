@@ -29,9 +29,11 @@ public class Enumeration_literal {
 
     @Override
     public String toString() {
-      return "Enumeration_literal{" +
-              "\nname=" + name + '\'' +
-              "\ncomment=" + comment + '\'' +
-              '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Enumeration_literal{")
+    			     .append("\nname=").append(name).append('\'')
+    			     .append("\ncomment=").append(comment)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

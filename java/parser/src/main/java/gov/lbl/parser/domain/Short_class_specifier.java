@@ -60,16 +60,18 @@ public class Short_class_specifier {
 
     @Override
     public String toString() {
-        return "Short_class_specifier{" +
-        	   "\nclassName=" + className + '\'' +
-        	   "\nbase_prefix=" + base_prefix + '\'' +
-        	   "\ninputName=" + inputName + '\'' +
-        	   "\narray_subscripts=" + array_subscripts + '\'' +
-        	   "\nclass_modification=" + class_modification + '\'' +
-        	   "\nprefix=" + prefix + '\'' +
-         	   "\nenum_list=" + enum_list + '\'' +
-         	   "\nlist_colon=" + list_colon + '\'' +
-               "\ncomment=" + comment + '\'' +
-               '}';
+    	StringBuilder temStr = new StringBuilder();
+        return temStr.append("Short_class_specifier{")
+        		     .append("\nclassName=").append(className).append('\'')
+        		     .append("\nbase_prefix=").append(base_prefix).append('\'')
+        		     .append("\ninputName=").append(inputName).append('\'')
+        		     .append("\narray_subscripts=").append(array_subscripts).append('\'')
+        		     .append("\nclass_modification=").append(class_modification).append('\'')
+        		     .append("\nprefix=").append(prefix).append('\'')
+        		     .append("\nenum_list=").append(enum_list).append('\'')
+        		     .append("\nlist_colon=").append(list_colon).append('\'')
+        		     .append("\ncomment=").append(comment)
+        		     .append('\'').append('}')
+        		     .toString();
     }
 }

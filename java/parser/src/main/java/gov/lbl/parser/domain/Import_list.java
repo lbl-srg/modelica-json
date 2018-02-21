@@ -35,8 +35,10 @@ public class Import_list {
 
     @Override
     public String toString() {
-      return "Import_list{" +
-              "\nimportList=" + importList + '\'' +
-              '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Import_list{")
+    			     .append("\nimportList=").append(importList)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

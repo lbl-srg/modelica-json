@@ -34,10 +34,12 @@ public class External_function_call {
 
     @Override
     public String toString() {
-      return "External_function_call{" +
-             "\ncomponent_reference=" + component_reference + '\'' +
-             "\nname=" + name + '\'' +
-             "\nexpression_list=" + expression_list + '\'' +
-             '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("External_function_call{")
+    			     .append("\ncomponent_reference=").append(component_reference).append('\'')
+    			     .append("\nname=").append(name).append('\'')
+    			     .append("\nexpression_list=").append(expression_list)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

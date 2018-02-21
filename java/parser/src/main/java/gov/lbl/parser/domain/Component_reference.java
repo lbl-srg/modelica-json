@@ -51,9 +51,11 @@ public class Component_reference {
 
     @Override
     public String toString() {
-    	  return "Component_reference{" +
-                  "\ncomponent=" + component + '\'' +
-                  "\narray=" + array + '\'' +
-                  '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Component_reference{")
+    			     .append("\ncomponent=").append(component).append('\'')
+    			     .append("\narray=").append(array)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

@@ -86,13 +86,14 @@ public class Declaration {
 
     @Override
     public String toString() {
-    	return "Declaration{" +
-              "\nname=" + name + '\'' +
-              "\nclass_modification=" + class_modification + '\'' +
-              "\noperator=" + operator + '\'' +
-              "\narray_subscripts=" + array_subscripts + '\'' +
-              "\nmodification=" + value + '\'' +
-              '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Declaration{")
+    			     .append("\nname=").append(name).append('\'')
+    			     .append("\nclass_modification=").append(class_modification).append('\'')
+    			     .append("\noperator=").append(operator).append('\'')
+    			     .append("\narray_subscripts=").append(array_subscripts).append('\'')
+    			     .append("\nmodification=").append(value).append('\'').append('}')
+    			     .toString();
     }
 
     private class ClassMod {
@@ -229,7 +230,6 @@ public class Declaration {
     					per_modification = null;
     				} else {
     					prefix = null;
-    					//name = "per";
     					name = null;
     					value = null;
     					PerMod perMod = new PerMod();

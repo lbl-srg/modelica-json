@@ -36,11 +36,13 @@ public class Algorithm_section {
 
     @Override
     public String toString() {
-    	return "Algorithm_section{" +
-               "\ninitial=" + initial + '\'' +
-               "\nalgorithmDec=" + algorithm + '\'' +
-               "\nstatement=" + statement + '\'' +
-               '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Algorithm_section{")
+    			     .append("\ninitial=").append(initial).append('\'')
+    			     .append("\nalgorithmDec=").append(algorithm).append('\'')
+    			     .append("\nstatement=").append(statement)
+    			     .append('\'').append('}')
+    			     .toString();
 
 
     }

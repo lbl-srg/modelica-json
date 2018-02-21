@@ -39,11 +39,13 @@ public class Element_replaceable {
 
     @Override
     public String toString() {
-      return "Element_replaceable{" +
-             "\nprefix=" + prefix + '\'' +
-             "\nshort_class_definition=" + short_class_definition + '\'' +
-             "\ncomponent_clause1=" + component_clause1 + '\'' +
-             "\nconstraining_clause=" + constraining_clause + '\'' +
-             '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Element_replaceable{")
+    			     .append("\nprefix=").append(prefix).append('\'')
+    			     .append("\nshort_class_definition=").append(short_class_definition).append('\'')
+    			     .append("\ncomponent_clause1=").append(component_clause1).append('\'')
+    			     .append("\nconstraining_clause=").append(constraining_clause)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

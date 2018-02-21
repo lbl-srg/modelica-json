@@ -34,10 +34,12 @@ public class Class_definition {
 
     @Override
     public String toString() {
-      return "Class_definition{" +
-              "\nencapsulated=" + encapsulated + '\'' +
-              "\nclass_prefixes=" + class_prefixes + '\'' +
-              "\nclass_specifier=" + class_specifier + '\'' +
-              '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Class_definition{")
+    			     .append("\nencapsulated=").append(encapsulated).append('\'')
+    			     .append("\nclass_prefixes=").append(class_prefixes).append('\'')
+    			     .append("\nclass_specifier=").append(class_specifier)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

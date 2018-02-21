@@ -68,17 +68,19 @@ public class Element {
 
     @Override
     public String toString() {
-        return "Element{" +
-               "\nimport_clause=" + import_clause + '\'' +
-               "\nextends_clause=" + extends_clause + '\'' +
-               "\nprefix=" + prefix + '\'' +
-               "\nclass_definition=" + class_definition + '\'' +
-               "\ncomponent_clause=" + component_clause + '\'' +
-               "\nreplaceable=" + replaceable + '\'' +
-               "\nreplaceable_class_definition=" + replaceable_class_definition + '\'' +
-               "\nreplaceable_component_clause=" + replaceable_component_clause + '\'' +
-               "\nconstraining_clause=" + constraining_clause + '\'' +
-               "\ncomment=" + comment + '\'' +
-               '}';
+    	StringBuilder temStr = new StringBuilder();
+        return temStr.append("Element{")
+        		     .append("\nimport_clause=").append(import_clause).append('\'')
+        		     .append("\nextends_clause=").append(extends_clause).append('\'')
+        		     .append("\nprefix=").append(prefix).append('\'')
+        		     .append("\nclass_definition=").append(class_definition).append('\'')
+        		     .append("\ncomponent_clause=").append(component_clause).append('\'')
+        		     .append("\nreplaceable=").append(replaceable).append('\'')
+        		     .append("\nreplaceable_class_definition=").append(replaceable_class_definition).append('\'')
+        		     .append("\nreplaceable_component_clause=").append(replaceable_component_clause).append('\'')
+        		     .append("\nconstraining_clause=").append(constraining_clause).append('\'')
+        		     .append("\ncomment=").append(comment)
+        		     .append('\'').append('}')
+        		     .toString();
     }
 }

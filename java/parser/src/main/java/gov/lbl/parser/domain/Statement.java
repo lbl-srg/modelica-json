@@ -78,19 +78,21 @@ public class Statement {
 
     @Override
     public String toString() {
-    	  return "Statement{" +
-                 "\ncomponent_reference=" + component_reference + '\'' +
-                 "\noperator=" + operator + '\'' +
-                 "\nexpression=" + expression +
-                 "\nfunction_call_args=" + function_call_args + '\'' +
-    			 "\noutput_expression_list=" + output_expression_list + '\'' +
-                 "\nbreak=" + bReak + '\'' +
-                 "\nreturn=" + reTurn + '\'' +
-                 "\nif_statement=" + if_statement + '\'' +
-                 "\nfor_statement=" + for_statement + '\'' +
-                 "\nwhile_statement=" + while_statement + '\'' +
-                 "\nwhen_statement=" + when_statement + '\'' +
-                 "\ncomment=" + comment + '\'' +
-                 '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Statement{")
+    			     .append("\ncomponent_reference=").append(component_reference).append('\'')
+    			     .append("\noperator=").append(operator).append('\'')
+    			     .append("\nexpression=").append(expression)
+    			     .append("\nfunction_call_args=").append(function_call_args).append('\'')
+    			     .append("\noutput_expression_list=").append(output_expression_list).append('\'')
+    			     .append("\nbreak=").append(bReak).append('\'')
+    			     .append("\nreturn=").append(reTurn).append('\'')
+    			     .append("\nif_statement=").append(if_statement).append('\'')
+    			     .append("\nfor_statement=").append(for_statement).append('\'')
+    			     .append("\nwhile_statement=").append(while_statement).append('\'')
+    			     .append("\nwhen_statement=").append(when_statement).append('\'')
+    			     .append("\ncomment=").append(comment)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

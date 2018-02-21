@@ -29,9 +29,11 @@ public class Logical_factor {
 
     @Override
     public String toString() {
-      return "Logical_factor{" +
-              "\nnot=" + not + '\'' +
-              "\nrelation=" + relation + '\'' +
-              '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Logical_factor{")
+    			     .append("\nnot=").append(not).append('\'')
+    			     .append("\nrelation=").append(relation)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

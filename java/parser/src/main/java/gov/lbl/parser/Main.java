@@ -65,12 +65,14 @@ public class Main {
     	String jsonOut= "";
     	List<String> runLog = new ArrayList<String>();
 
-    	String helMes = "\n Input arguments should be like: \n"
-					+ "    \'-h\' : help info; \n"
-					+ "or, \'--mo xx/xx/*.mo\' : parsed json text will be stored in memory; \n"
-					+ "or, \'--mo xx/xx/*.mo --out-dir xx/\' : parsed json text will be stored in folder xx/; \n"
-					+ "or, \'--mo xx/xx/\' : parse .mo files in the folder, parsed json text will be stored in memory; \n"
-					+ "or, \'--mo xx/xx/ --out-dir xx/\' : parse .mo files in the folder, parsed json text will be stored in folder xx/; \n";
+    	StringBuilder helMesBui = new StringBuilder();
+    	String helMes = helMesBui.append("\n Input arguments should be like: \n")
+    			                 .append( "    \'-h\' : help info; \n")
+    			                 .append("or, \'--mo xx/xx/*.mo\' : parsed json text will be stored in memory; \n")
+    			                 .append("or, \'--mo xx/xx/*.mo --out-dir xx/\' : parsed json text will be stored in folder xx/; \n")
+    			                 .append("or, \'--mo xx/xx/\' : parse .mo files in the folder, parsed json text will be stored in memory; \n")
+    			                 .append("or, \'--mo xx/xx/ --out-dir xx/\' : parse .mo files in the folder, parsed json text will be stored in folder xx/; \n")
+    			                 .toString();
 
     	try {
     		if ((args.length == 1 && !args[0].equals("-h"))
@@ -108,7 +110,11 @@ public class Main {
     	fileSearch.searchDirectory(new File(dirToBeSearched), moFileName);
 
     	if (fileSearch.getResult().size() == 0) {
-			String noFilMes = moFileName + " cannot be found. \nCheck file name and path: " + moFilePath;
+    		StringBuilder temStr = new StringBuilder();
+			String noFilMes = temStr.append(moFileName)
+					                .append(" cannot be found. \nCheck file name and path: ")
+					                .append(moFilePath)
+					                .toString();
     		runLog.add(noFilMes);
 			throw new Exception(noFilMes);
     	} else {
@@ -148,6 +154,7 @@ public class Main {
     private static String fullInputPath(String moFileInputPath, String cwDir) {
     	String fullPath = "";
     	String tempPath = "";
+    	StringBuilder temStr = new StringBuilder();
     	if (moFileInputPath.charAt(moFileInputPath.length()-1) == '/') {
     		tempPath = moFileInputPath.substring(0, moFileInputPath.length()-1);
     	} else {
@@ -176,9 +183,14 @@ public class Main {
 						}
 					}
 				}
-				fullPath = cwDir.substring(0, dashInd.get(dashInd.size()-1)+1).concat(tempPath);
+				fullPath = temStr.append(cwDir.substring(0, dashInd.get(dashInd.size()-1)+1))
+						         .append(tempPath)
+						         .toString();
 			} else {
-				fullPath = cwDir.concat("/".concat(tempPath));
+				fullPath = temStr.append(cwDir)
+						         .append("/")
+						         .append(tempPath)
+						         .toString();
 			}
 		}
     	return fullPath;
@@ -209,18 +221,28 @@ public class Main {
     	List<String> jsName_Dir = new ArrayList<String>();
     	String nameForJson = "";
     	String dirRootStr = "";
+    	StringBuilder temStr = new StringBuilder();
     	if (str.contains("/Buildings/")) {
     		int indexBuildings = str.indexOf("/Buildings/");
     		String buiSubDirForJson = str.substring(indexBuildings+1, str.lastIndexOf("."));
-    		nameForJson = jsFile.concat(buiSubDirForJson.concat(".json"));
+    		nameForJson =temStr.append(jsFile)
+    				           .append(buiSubDirForJson)
+    				           .append(".json")
+    				           .toString();
     	} else {
     		if (!moFile.equals(".mo")) {
     			int dotIndinFile = moFile.lastIndexOf(".");
-    			nameForJson = jsFile.concat(moFile.substring(0, dotIndinFile).concat(".json"));
+    			nameForJson = temStr.append(jsFile)
+    					            .append(moFile.substring(0, dotIndinFile))
+    					            .append(".json")
+    					            .toString();
     		} else {
     			int lasSlaInd = str.lastIndexOf("/");
     			int lasDotInd = str.lastIndexOf(".");
-    			nameForJson = jsFile.concat(str.substring(lasSlaInd+1, lasDotInd).concat(".json"));
+    			nameForJson = temStr.append(jsFile)
+    					            .append(str.substring(lasSlaInd+1, lasDotInd))
+    					            .append(".json")
+    					            .toString();
     		}
     	}
 		dirRootStr = nameForJson.substring(0, nameForJson.lastIndexOf("/"));

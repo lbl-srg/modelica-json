@@ -25,8 +25,10 @@ public class Language_specification {
 
     @Override
     public String toString() {
-      return "Language_specification{" +
-              "\nlanguage_specification=" + language_specification + '\'' +
-              '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Language_specification{")
+    			     .append("\nlanguage_specification=").append(language_specification)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

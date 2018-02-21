@@ -71,16 +71,18 @@ public class Primary {
 
     @Override
     public String toString() {
-    	  return "Primary{" +
-    			  "\nsimple_primary=" + simple_primary + '\'' +
-                  "\nname=" + name + '\'' +
-                  "\nder=" + der + '\'' +
-                  "\ninitial=" + initial + '\'' +
-                  "\nfunction_call_args=" + function_call_args + '\'' +
-    			  "\ncomponent_reference=" + component_reference + '\'' +
-    			  "\noutput_expression_list=" + output_expression_list + '\'' +
-    			  "\nexpression_list=" + expression_list + '\'' +
-    			  "\nfunction_arguments=" + function_arguments + '\'' +
-                  '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Primary{")
+    			     .append("\nsimple_primary=").append(simple_primary).append('\'')
+    			     .append("\nname=").append(name).append('\'')
+    			     .append("\nder=").append(der).append('\'')
+    			     .append("\ninitial=").append(initial).append('\'')
+    			     .append("\nfunction_call_args=").append(function_call_args).append('\'')
+    			     .append("\ncomponent_reference=").append(component_reference).append('\'')
+    			     .append("\noutput_expression_list=").append(output_expression_list).append('\'')
+    			     .append("\nexpression_list=").append(expression_list).append('\'')
+    			     .append("\nfunction_arguments=").append(function_arguments)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

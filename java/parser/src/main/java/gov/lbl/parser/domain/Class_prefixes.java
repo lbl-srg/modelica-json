@@ -26,8 +26,10 @@ public class Class_prefixes {
 
     @Override
     public String toString() {
-      return "Class_prefixes{" +
-              "\nprefix=" + prefix + '\'' +
-              '}';
+    	StringBuilder temStr = new StringBuilder();
+      return temStr.append("Class_prefixes{")
+    		       .append("\nprefix=").append(prefix)
+    		       .append('\'').append('}')
+    		       .toString();
     }
 }

@@ -41,11 +41,13 @@ public class Der_class_specifier {
 
     @Override
     public String toString() {
-      return "Der_class_specifier{" +
-              "\nder_left=" + der_left + '\'' +
-              "\nname=" + name + '\'' +
-              "\nder_in=" + der_in + '\'' +
-              "\ncomment=" + comment + '\'' +
-              '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Der_class_specifier{")
+    			     .append("\nder_left=").append(der_left).append('\'')
+    			     .append("\nname=").append(name).append('\'')
+    			     .append("\nder_in=").append(der_in).append('\'')
+    			     .append("\ncomment=").append(comment)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

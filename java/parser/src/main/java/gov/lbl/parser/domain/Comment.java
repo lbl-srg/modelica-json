@@ -42,10 +42,12 @@ public class Comment {
 
     @Override
     public String toString() {
-      return "Comment{" +
-              "\nstring_comment=" + string_comment + '\'' +
-              "\nannotation=" + annotation + '\'' +
-              '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Comment{")
+    			     .append("\nstring_comment=").append(string_comment).append('\'')
+    			     .append("\nannotation=").append(annotation)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 
     public class AnnotationClass {
@@ -101,31 +103,65 @@ public class Comment {
     		    so to find out "others" **/
     		List<String> strListToBeRem = new ArrayList<String>();
     		if (dialogStr != null) {
-    			strListToBeRem.add("Dialog" + " (" + dialogStr + " )");
+    			StringBuilder temStr = new StringBuilder();    			
+    			strListToBeRem.add(temStr.append("Dialog (")
+    					                 .append(dialogStr)
+    					                 .append(" )")
+    					                 .toString());
     		}
     		if (placementStr != null) {
-    			strListToBeRem.add("Placement" + " (" + placementStr + " )");
+    			StringBuilder temStr = new StringBuilder();
+    			strListToBeRem.add(temStr.append("Placement (")
+    					                 .append(placementStr)
+    					                 .append(" )")
+    					                 .toString());
     		}
     		if (lineStr != null) {
-    			strListToBeRem.add("Line" + " (" + lineStr + " )");
+    			StringBuilder temStr = new StringBuilder();
+    			strListToBeRem.add(temStr.append("Line (")
+    					                 .append(lineStr)
+    					                 .append(" )")
+    					                 .toString());
     		}
     		if (docStr != null) {
-    			strListToBeRem.add("Documentation" + " (" + docStr + " )");
+    			StringBuilder temStr = new StringBuilder();
+    			strListToBeRem.add(temStr.append("Documentation (")
+    					                 .append(docStr)
+    					                 .append(" )")
+    					                 .toString());
     		}
     		if (diagramStr != null) {
-    			strListToBeRem.add("Diagram" + " (" + diagramStr + " )");
+    			StringBuilder temStr = new StringBuilder();
+    			strListToBeRem.add(temStr.append("Diagram (")
+    					                 .append(diagramStr)
+    					                 .append(" )")
+    					                 .toString());
     		}
     		if (iconStr != null) {
-    			strListToBeRem.add("Icon" + " (" + iconStr + " )");
+    			StringBuilder temStr = new StringBuilder();
+    			strListToBeRem.add(temStr.append("Icon (")
+    					                 .append(iconStr)
+    					                 .append(" )")
+    					                 .toString());
     		}
     		if (textStr != null) {
-    			strListToBeRem.add("Text" + " (" + textStr + " )");
+    			StringBuilder temStr = new StringBuilder();
+    			strListToBeRem.add(temStr.append("Text (")
+    					                 .append(textStr)
+    					                 .append(" )")
+    					                 .toString());
     		}
     		if (nameStr != null) {
-    			strListToBeRem.add("defaultComponentName =" + nameStr);
+    			StringBuilder temStr = new StringBuilder();
+    			strListToBeRem.add(temStr.append("defaultComponentName =")
+    					                 .append(nameStr)
+    					                 .toString());
     		}
     		if (venAnnStr != null) {
-    			strListToBeRem.add(venAnnName + "("+venAnnStr+" )");
+    			StringBuilder temStr = new StringBuilder();
+    			strListToBeRem.add(temStr.append(venAnnName).append("(")
+    					                 .append(venAnnStr).append(" )")
+    					                 .toString());
     		}
 
     		/** find out "others" **/

@@ -38,12 +38,14 @@ public class Simple_expression {
 
     @Override
     public String toString() {
-      return "Simple_expression{" +
-             "\nexpression1=" + expression1 + '\'' +
-             "\noperator1=" + operator1 + '\'' +
-             "\nexpression2=" + expression2 + '\'' +
-             "\noperator2=" + operator2 + '\'' +
-             "\nexpression3=" + expression3 + '\'' +
-             '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Simple_expression{")
+    			     .append("\nexpression1=").append(expression1).append('\'')
+    			     .append("\noperator1=").append(operator1).append('\'')
+    			     .append("\nexpression2=").append(expression2).append('\'')
+    			     .append("\noperator2=").append(operator2).append('\'')
+    			     .append("\nexpression3=").append(expression3)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

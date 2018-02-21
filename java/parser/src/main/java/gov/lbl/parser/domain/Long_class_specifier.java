@@ -45,12 +45,14 @@ public class Long_class_specifier {
 
     @Override
     public String toString() {
-    	return "Long_class_specifier{" +
-               "\nprefix=" + prefix + '\'' +
-               "\nname=" + name + '\'' +
-               "\nclass_modification=" + class_modification + '\'' +
-               "\ncomment=" + comment + '\'' +
-               "\ncomposition=" + composition + '\'' +
-               '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Long_class_specifier{")
+    			     .append("\nprefix=").append(prefix).append('\'')
+    			     .append("\nname=").append(name).append('\'')
+    			     .append("\nclass_modification=").append(class_modification).append('\'')
+    			     .append("\ncomment=").append(comment).append('\'')
+    			     .append("\ncomposition=").append(composition)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

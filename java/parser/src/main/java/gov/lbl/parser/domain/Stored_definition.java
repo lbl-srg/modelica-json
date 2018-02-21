@@ -39,10 +39,12 @@ public class Stored_definition {
 
     @Override
     public String toString() {
-      return "Stored_definition{" +
-              "\nwithin=" + within + '\'' +
-              "\nprefix=" + prefix + '\'' +
-              "\nclass_definition=" + class_definition + '\'' +
-              '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Stored_definition{")
+    			     .append("\nwithin=").append(within).append('\'')
+    			     .append("\nprefix=").append(prefix).append('\'')
+    			     .append("\nclass_definition=").append(class_definition)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

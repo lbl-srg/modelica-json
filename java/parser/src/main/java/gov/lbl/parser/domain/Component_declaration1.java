@@ -29,9 +29,11 @@ public class Component_declaration1 {
 
     @Override
     public String toString() {
-      return "Component_declaration1{" +
-              "\ndeclaration=" + declaration + '\'' +
-              "\ncomment=" + comment + '\'' +
-              '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Component_declaration1{")
+    			     .append("\ndeclaration=").append(declaration).append('\'')
+    			     .append("\ncomment=").append(comment)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

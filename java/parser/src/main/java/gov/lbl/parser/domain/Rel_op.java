@@ -24,8 +24,10 @@ public class Rel_op {
 
     @Override
     public String toString() {
-      return "Rel_op{" +
-              "\nrel_op=" + rel_op + '\'' +
-              '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Rel_op{")
+    			     .append("\nrel_op=").append(rel_op)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

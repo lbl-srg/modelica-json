@@ -35,10 +35,12 @@ public class Element_modification_or_replaceable {
 
     @Override
     public String toString() {
-      return "Element_modification_or_replaceable{" +
-              "\nprefix=" + prefix + '\'' +
-              "\nelement_modification=" + element_modification + '\'' +
-              "\nelement_replaceable=" + element_replaceable + '\'' +
-              '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Element_modification_or_replaceable{")
+    			     .append("\nprefix=").append(prefix).append('\'')
+    			     .append("\nelement_modification=").append(element_modification).append('\'')
+    			     .append("\nelement_replaceable=").append(element_replaceable)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

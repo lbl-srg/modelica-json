@@ -24,8 +24,10 @@ public class Base_prefix {
 
     @Override
     public String toString() {
-      return "Base_prefix{" +
-              "\ntype_prefix=" + type_prefix + '\'' +
-              '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Base_prefix{")
+    			     .append("\ntype_prefix=").append(type_prefix)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }
