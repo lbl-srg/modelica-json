@@ -29,9 +29,11 @@ public class For_index {
 
     @Override
     public String toString() {
-      return "For_index{" +
-              "\nfor_index=" + for_index + '\'' +
-              "\nin_expression=" + in_expression + '\'' +
-              '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("For_index{")
+    			     .append("\nfor_index=").append(for_index).append('\'')
+    			     .append("\nin_expression=").append(in_expression)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

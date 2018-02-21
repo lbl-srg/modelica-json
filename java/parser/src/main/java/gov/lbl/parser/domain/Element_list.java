@@ -26,8 +26,10 @@ public class Element_list {
 
     @Override
     public String toString() {
-      return "Element_list{" +
-              "\nelement=" + element + '\'' +
-              '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Element_list{")
+    			     .append("\nelement=").append(element)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

@@ -41,8 +41,10 @@ public class String_comment {
 
     @Override
     public String toString() {
-      return "String_comment{" +
-             "\nstring=" + string + '\'' +
-             '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("String_comment{")
+    			     .append("\nstring=").append(string)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

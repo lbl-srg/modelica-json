@@ -34,10 +34,12 @@ public class Element_modification {
 
     @Override
     public String toString() {
-      return "Element_modification{" +
-              "\nname=" + name + '\'' +
-              "\nmodification=" + modification + '\'' +
-              "\ncomment=" + comment + '\'' +
-              '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Element_modification{")
+    			     .append("\nname=").append(name).append('\'')
+    			     .append("\nmodification=").append(modification).append('\'')
+    			     .append("\ncomment=").append(comment)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

@@ -26,8 +26,10 @@ public class Output_expression_list {
 
     @Override
     public String toString() {
-      return "Output_expression_list{" +
-              "\nexpression=" + expression + '\'' +
-              '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Output_expression_list{")
+    			     .append("\nexpression=").append(expression)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

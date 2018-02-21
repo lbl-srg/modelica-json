@@ -35,10 +35,12 @@ public class Logical_expression {
 
     @Override
     public String toString() {
-      return "Logical_expression{" +
-    		  "\nlogical_term=" + logical_term + '\'' +
-    		  "\nlogical_relation=" + logical_relation + '\'' +
-              "\nlogical_terms=" + logical_terms + '\'' +
-              '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Logical_expression{")
+    			     .append("\nlogical_term=").append(logical_term).append('\'')
+    			     .append("\nlogical_relation=").append(logical_relation).append('\'')
+    			     .append("\nlogical_terms=").append(logical_terms)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

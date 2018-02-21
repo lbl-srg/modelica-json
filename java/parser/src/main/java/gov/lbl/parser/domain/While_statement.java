@@ -31,9 +31,11 @@ public class While_statement {
 
     @Override
     public String toString() {
-      return "While_statement{" +
-              "\nwhile=" + wHile + '\'' +
-              "\nloop=" + loop + '\'' +
-              '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("While_statement{")
+    			     .append("\nwhile=").append(wHile).append('\'')
+    			     .append("\nloop=").append(loop)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

@@ -33,10 +33,12 @@ public class Extends_clause {
 
     @Override
     public String toString() {
-      return "Extends_clause{" +
-             "\nname=" + name + '\'' +
-             "\nclass_modification=" + class_modification + '\'' +
-             "\nannotation=" + annotation + '\'' +
-             '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Extends_clause{")
+    			     .append("\nname=").append(name).append('\'')
+    			     .append("\nclass_modification=").append(class_modification).append('\'')
+    			     .append("\nannotation=").append(annotation)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

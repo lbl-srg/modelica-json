@@ -26,8 +26,10 @@ public class Component_list {
 
     @Override
     public String toString() {
-      return "Component_list{" +
-              "\ncomponent_declaration=" + component_declaration + '\'' +
-              '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Component_list{")
+    				 .append("\ncomponent_declaration=").append(component_declaration)
+    				 .append('\'').append('}')
+    				 .toString();
     }
 }

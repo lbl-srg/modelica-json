@@ -34,10 +34,12 @@ public class Component_clause1 {
 
     @Override
     public String toString() {
-      return "Component_clause1{" +
-              "\ntype_prefix=" + type_prefix + '\'' +
-              "\ntype_specifier=" + type_specifier + '\'' +
-              "\ncomponent_declaration1=" + component_declaration1 + '\'' +
-              '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Component_clause1{")
+    			     .append("\ntype_prefix=").append(type_prefix).append('\'')
+    			     .append("\ntype_specifier=").append(type_specifier).append('\'')
+    			     .append("\ncomponent_declaration1=").append(component_declaration1)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

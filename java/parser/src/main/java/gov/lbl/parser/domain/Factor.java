@@ -30,9 +30,11 @@ public class Factor {
 
     @Override
     public String toString() {
-      return "Factor{" +
-              "\nprimarys=" + primarys + '\'' +
-              "\noperator=" + operator + '\'' +
-              '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Factor{")
+    			     .append("\nprimarys=").append(primarys).append('\'')
+    			     .append("\noperator=").append(operator)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

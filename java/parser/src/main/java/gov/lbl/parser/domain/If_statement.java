@@ -47,12 +47,14 @@ public class If_statement {
 
     @Override
     public String toString() {
-      return "If_statement{" +
-              "\nif=" + iF + '\'' +
-              "\nthen=" + if_then + '\'' +
-              "\nelseif=" + elseiF + '\'' +
-              "\nthen=" + elseif_then + '\'' +
-              "\nelse=" + eLse + '\'' +
-              '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("If_statement{")
+    			     .append("\nif=").append(iF).append('\'')
+    			     .append("\nthen=").append(if_then).append('\'')
+    			     .append("\nelseif=").append(elseiF).append('\'')
+    			     .append("\nthen=").append(elseif_then).append('\'')
+    			     .append("\nelse=").append(eLse)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

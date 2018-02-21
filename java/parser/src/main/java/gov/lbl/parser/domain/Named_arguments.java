@@ -28,9 +28,11 @@ public class Named_arguments {
 
     @Override
     public String toString() {
-      return "Named_arguments{" +
-              "\nargument=" + argument + '\'' +
-              "\narguments=" + arguments + '\'' +
-              '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Named_arguments{")
+    			     .append("\nargument=").append(argument).append('\'')
+    			     .append("\narguments=").append(arguments)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

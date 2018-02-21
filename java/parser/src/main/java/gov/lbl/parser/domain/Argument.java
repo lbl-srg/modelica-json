@@ -29,9 +29,11 @@ public class Argument {
 
     @Override
     public String toString() {
-      return "Argument{" +
-              "\nelement_modification_or_replaceable=" + element_modification_or_replaceable + '\'' +
-              "\nelement_redeclaration=" + element_redeclaration + '\'' +
-              '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Argument{")
+    			     .append("\nelement_modification_or_replaceable=").append(element_modification_or_replaceable)
+    			     .append('\'').append("\nelement_redeclaration=").append(element_redeclaration)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

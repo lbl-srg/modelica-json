@@ -32,9 +32,11 @@ public class For_equation {
 
     @Override
     public String toString() {
-      return "For_equation{" +
-              "\nloop_indices=" + loop_indices + '\'' +
-              "\nloop_equations=" + loop_equations + '\'' +
-              '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("For_equation{")
+    			     .append("\nloop_indices=").append(loop_indices).append('\'')
+    			     .append("\nloop_equations=").append(loop_equations)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

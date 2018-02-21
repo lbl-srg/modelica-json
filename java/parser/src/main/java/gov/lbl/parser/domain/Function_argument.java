@@ -35,10 +35,12 @@ public class Function_argument {
 
     @Override
     public String toString() {
-      return "Function_argument{" +
-              "\nname=" + name + '\'' +
-              "\narguments=" + arguments + '\'' +
-              "\nexpressions=" + expressions + '\'' +
-              '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Function_argument{")
+    			     .append("\nname=").append(name).append('\'')
+    			     .append("\narguments=").append(arguments).append('\'')
+    			     .append("\nexpressions=").append(expressions)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

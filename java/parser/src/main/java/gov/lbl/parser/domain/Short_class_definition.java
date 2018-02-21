@@ -29,9 +29,11 @@ public class Short_class_definition {
 
     @Override
     public String toString() {
-      return "Short_class_definition{" +
-              "\nprefix=" + prefix + '\'' +
-              "\nspecifier=" + specifier + '\'' +
-              '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Short_class_definition{")
+    			     .append("\nprefix=").append(prefix).append('\'')
+    			     .append("\nspecifier=").append(specifier)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

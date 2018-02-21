@@ -41,11 +41,13 @@ public class Element_redeclaration {
 
     @Override
     public String toString() {
-      return "Element_redeclaration{" +
-    		 "\nprefix=" + prefix + '\'' +
-             "\nshort_class_definition=" + short_class_definition + '\'' +
-             "\ncomponent_clause1=" + component_clause1 + '\'' +
-             "\nelement_replaceable=" + element_replaceable + '\'' +
-             '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Element_redeclaration{")
+    			     .append("\nprefix=").append(prefix).append('\'')
+    			     .append("\nshort_class_definition=").append(short_class_definition).append('\'')
+    			     .append("\ncomponent_clause1=").append(component_clause1).append('\'')
+    			     .append("\nelement_replaceable=").append(element_replaceable)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

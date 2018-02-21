@@ -32,9 +32,11 @@ public class For_statement {
 
     @Override
     public String toString() {
-      return "For_statement{" +
-              "\nloop_indices=" + loop_indices + '\'' +
-              "\nloop_statements=" + loop_statements + '\'' +
-              '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("For_statement{")
+    			     .append("\nloop_indices=").append(loop_indices).append('\'')
+    			     .append("\nloop_statements=").append(loop_statements)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

@@ -30,9 +30,11 @@ public class Constraining_clause {
 
     @Override
     public String toString() {
-      return "Constrainedby{" +
-              "\nname=" + name + '\'' +
-              "\nclass_modification=" + class_modification + '\'' +
-              '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Constrainedby{")
+    			     .append("\nname=").append(name).append('\'')
+    			     .append("\nclass_modification=").append(class_modification)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

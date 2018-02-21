@@ -69,17 +69,19 @@ public class Equation {
 
     @Override
     public String toString() {
-      return "Equation{" +
-             "\nsimple_expression=" + simple_expression + '\'' +
-             "\noperator=" + operator + '\'' +
-             "\nexpression=" + expression + '\'' +
-             "\nif_equation=" + if_equation + '\'' +
-             "\nfor_equation=" + for_equation + '\'' +
-             "\nconnect_clause=" + connect_clause + '\'' +
-             "\nwhen_equation=" + when_equation + '\'' +
-             "\nname=" + name + '\'' +
-             "\nfunction_call_args=" + function_call_args + '\'' +
-             "\ncomment=" + comment + '\'' +
-             '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Equation{")
+    			     .append("\nsimple_expression=").append(simple_expression).append('\'')
+    			     .append("\noperator=").append(operator).append('\'')
+    			     .append("\nexpression=").append(expression).append('\'')
+    			     .append("\nif_equation=").append(if_equation).append('\'')
+    			     .append("\nfor_equation=").append(for_equation).append('\'')
+    			     .append("\nconnect_clause=").append(connect_clause).append('\'')
+    			     .append("\nwhen_equation=").append(when_equation).append('\'')
+    			     .append("\nname=").append(name).append('\'')
+    			     .append("\nfunction_call_args=").append(function_call_args).append('\'')
+    			     .append("\ncomment=").append(comment)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

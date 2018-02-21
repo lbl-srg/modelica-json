@@ -28,9 +28,11 @@ public class Subscript {
 
     @Override
     public String toString() {
-      return "Subscript{" +
-             "\nsubscript=" + subscript + '\'' +
-             "\nsubscript_colon=" + subscript_colon + '\'' +
-             '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Subscript{")
+    		         .append("\nsubscript=").append(subscript).append('\'')
+    		         .append("\nsubscript_colon=").append(subscript_colon)
+    		         .append('\'').append('}')
+    		         .toString();
     }
 }

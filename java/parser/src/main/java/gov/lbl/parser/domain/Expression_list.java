@@ -26,8 +26,10 @@ public class Expression_list {
 
     @Override
     public String toString() {
-      return "Expression_list{" +
-              "\nexpression=" + expression + '\'' +
-              '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Expression_list{")
+    			     .append("\nexpression=").append(expression)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

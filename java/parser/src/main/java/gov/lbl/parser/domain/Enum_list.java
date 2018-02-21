@@ -26,8 +26,10 @@ public class Enum_list {
 
     @Override
     public String toString() {
-      return "Enum_list{" +
-              "\nenumeration_literal=" + enumeration_literal + '\'' +
-              '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Enum_list{")
+    			     .append("\nenumeration_literal=").append(enumeration_literal)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

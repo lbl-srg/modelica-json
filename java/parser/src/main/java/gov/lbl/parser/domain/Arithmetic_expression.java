@@ -35,10 +35,12 @@ public class Arithmetic_expression {
 
     @Override
     public String toString() {
-    	return "Arithmetic_expression{" +
-                "\nadd_pre=" + add_pre + '\'' +
-                "\nterms=" + terms + '\'' +
-                "\nadds=" + adds + '\'' +
-                '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Arithmetic_expression{")
+    			     .append("\nadd_pre=").append(add_pre).append('\'')
+    			     .append("\nterms=").append(terms).append('\'')
+    			     .append("\nadds=").append(adds)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

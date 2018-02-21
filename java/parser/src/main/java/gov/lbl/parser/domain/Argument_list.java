@@ -26,10 +26,10 @@ public class Argument_list {
 
     @Override
     public String toString() {
-    	  return "Argument_list{" +
-                  "\nargument=" + argument + '\'' +
-                  '}';
-
-
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Argument_list{")
+    			     .append("\nargument=").append(argument)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

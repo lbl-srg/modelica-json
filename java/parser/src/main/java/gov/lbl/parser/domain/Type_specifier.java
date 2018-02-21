@@ -24,8 +24,10 @@ public class Type_specifier {
 
     @Override
     public String toString() {
-      return "Type_specifier{" +
-              "\nspecifier=" + specifier + '\'' +
-              '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Type_specifier{")
+    			     .append("\nspecifier=").append(specifier)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

@@ -41,11 +41,13 @@ public class When_statement {
 
     @Override
     public String toString() {
-      return "When_statement{" +
-              "\nwhen=" + when + '\'' +
-              "\nthen=" + when_then + '\'' +
-              "\nelsewhen=" + else_when + '\'' +
-              "\nthen=" + else_then + '\'' +
-              '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("When_statement{")
+    			     .append("\nwhen=").append(when).append('\'')
+    			     .append("\nthen=").append(when_then).append('\'')
+    			     .append("\nelsewhen=").append(else_when).append('\'')
+    			     .append("\nthen=").append(else_then)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

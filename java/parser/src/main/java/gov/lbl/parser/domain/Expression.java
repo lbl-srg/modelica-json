@@ -46,13 +46,15 @@ public class Expression {
 
     @Override
     public String toString() {
-      return "Expression{" +
-              "\nsimple_expression=" + simple_expression + '\'' +
-              "\nif=" + iF + '\'' +
-              "\nthen=" + if_then + '\'' +
-              "\nelseif=" + elseiF + '\'' +
-              "\nthen=" + elseif_then + '\'' +
-              "\nelse=" + eLse + '\'' +
-              '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Expression{")
+    			     .append("\nsimple_expression=").append(simple_expression).append('\'')
+    			     .append("\nif=").append(iF).append('\'')
+    			     .append("\nthen=").append(if_then).append('\'')
+    			     .append("\nelseif=").append(elseiF).append('\'')
+    			     .append("\nthen=").append(elseif_then).append('\'')
+    			     .append("\nelse=").append(eLse)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

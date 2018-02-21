@@ -34,10 +34,12 @@ public class Class_specifier {
 
     @Override
     public String toString() {
-      return "Class_specifier{" +
-              "\nlong_class_specifier=" + long_class_specifier + '\'' +
-              "\nshort_class_specifier=" + short_class_specifier + '\'' +
-              "\nder_class_specifier=" + der_class_specifier + '\'' +
-              '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Class_specifier{")
+    			     .append("\nlong_class_specifier=").append(long_class_specifier).append('\'')
+    			     .append("\nshort_class_specifier=").append(short_class_specifier).append('\'')
+    			     .append("\nder_class_specifier=").append(der_class_specifier)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

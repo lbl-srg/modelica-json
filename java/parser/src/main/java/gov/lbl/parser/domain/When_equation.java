@@ -39,11 +39,13 @@ public class When_equation {
 
     @Override
     public String toString() {
-      return "When_equation{" +
-              "\nwhen=" + when + '\'' +
-              "\nthen=" + when_then + '\'' +
-              "\nelse_when=" + else_when + '\'' +
-              "\nthen=" + else_then + '\'' +
-              '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("When_equation{")
+    			     .append("\nwhen=").append(when).append('\'')
+    			     .append("\nthen=").append(when_then).append('\'')
+    			     .append("\nelse_when=").append(else_when).append('\'')
+    			     .append("\nthen=").append(else_then)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

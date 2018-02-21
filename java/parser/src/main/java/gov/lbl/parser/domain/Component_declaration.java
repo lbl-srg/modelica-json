@@ -35,11 +35,11 @@ public class Component_declaration {
 
     @Override
     public String toString() {
-      return "Component_declaration{" +
-              "\ndeclaration=" + declaration + '\'' +
-              "\ncondition_attribute=" + condition_attribute + '\'' +
-              "\ncomment=" + comment + '\'' +
-              //"\nannotation=" + annotation + '\'' +
-              '}';
+    	StringBuilder temStr = new StringBuilder();
+      return temStr.append("Component_declaration{")
+    		       .append("\ndeclaration=").append(declaration).append('\'')
+    		       .append("\ncondition_attribute=").append(condition_attribute).append('\'')
+    		       .append("\ncomment=").append(comment).append('\'').append('}')
+    		       .toString();
     }
 }

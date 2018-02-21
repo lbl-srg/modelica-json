@@ -24,8 +24,10 @@ public class Function_call_args {
 
     @Override
     public String toString() {
-      return "Function_call_args{" +
-              "\narguments=" + arguments + '\'' +
-              '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Function_call_args{")
+    			     .append("\narguments=").append(arguments)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

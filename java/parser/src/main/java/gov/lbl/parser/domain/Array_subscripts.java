@@ -26,8 +26,10 @@ public class Array_subscripts {
 
     @Override
     public String toString() {
-      return "Array_subscripts{" +
-              "\nsubscript=" + subscript + '\'' +
-              '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Array_subscripts{")
+    			     .append("\nsubscript=").append(subscript)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

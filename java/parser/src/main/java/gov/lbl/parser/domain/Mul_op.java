@@ -24,8 +24,10 @@ public class Mul_op {
 
     @Override
     public String toString() {
-      return "Mul_op{" +
-              "\nmul_op=" + mul_op + '\'' +
-              '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Mul_op{")
+    		         .append("\nmul_op=").append(mul_op)
+    		         .append('\'').append('}')
+    		         .toString();
     }
 }

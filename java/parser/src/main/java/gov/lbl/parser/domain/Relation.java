@@ -32,10 +32,12 @@ public class Relation {
 
     @Override
     public String toString() {
-      return "Relation{" +
-              "\nexpression1=" + expression1 + '\'' +
-              "\noperator=" + rel_op + '\'' +
-              "\nexpression2=" + expression2 + '\'' +
-              '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Relation{")
+    			     .append("\nexpression1=").append(expression1).append('\'')
+    			     .append("\noperator=").append(rel_op).append('\'')
+    			     .append("\nexpression2=").append(expression2)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

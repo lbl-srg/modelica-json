@@ -28,9 +28,11 @@ public class Annotation {
 
     @Override
     public String toString() {
-      return "Annotation{" +
-    		  "\nprefix=" + prefix + '\'' +
-              "\nannotation=" + annotation + '\'' +
-              '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Annotation{")
+    			     .append("\nprefix=").append(prefix).append('\'')
+    			     .append("\nannotation=").append(annotation)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

@@ -39,11 +39,13 @@ public class Component_clause {
 
     @Override
     public String toString() {
-      return "Component_clause{" +
-              "\ntype_prefix=" + type_prefix + '\'' +
-              "\ntype_specifier=" + type_specifier + '\'' +
-              "\narray_subscripts=" + array_subscripts + '\'' +
-              "\ncomponent_list=" + component_list + '\'' +
-              '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Component_clause{")
+    			     .append("\ntype_prefix=").append(type_prefix).append('\'')
+    			     .append("\ntype_specifier=").append(type_specifier).append('\'')
+    			     .append("\narray_subscripts=").append(array_subscripts).append('\'')
+    			     .append("\ncomponent_list=").append(component_list)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

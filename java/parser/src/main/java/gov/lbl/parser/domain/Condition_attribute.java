@@ -29,9 +29,11 @@ public class Condition_attribute {
 
     @Override
     public String toString() {
-      return "Condition_attribute{" +
-             "\nif=" + iF + '\'' +
-             "\nexpression=" + expression + '\'' +
-             '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Condition_attribute{")
+    			     .append("\nif=").append(iF).append('\'')
+    			     .append("\nexpression=").append(expression)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 }

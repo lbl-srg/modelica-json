@@ -76,19 +76,21 @@ public class Composition {
 
     @Override
     public String toString() {
-      return "Composition{" +
-             "\nelement_list=" + element_list + '\'' +
-             "\npublic=" + prefix_public + '\'' +
-             "\nprotect=" + prefix_protect + '\'' +
-             "\nprefixed_element=" + prefixed_element + '\'' +
-             "\nequation_section=" + equation_section + '\'' +
-             "\nalgorithm_section=" + algorithm_section + '\'' +
-             "\nexternal=" + external + '\'' +
-             "\nlanguage_specification=" + language_specification + '\'' +
-             "\nexternal_function_call=" + external_function_call + '\'' +
-             "\next_annotation=" + ext_annotation + '\'' +
-             "\ncomp_annotation=" + comp_annotation + '\'' +
-             '}';
+    	StringBuilder temStr = new StringBuilder();
+    	return temStr.append("Composition{")
+    			     .append("\nelement_list=").append(element_list).append('\'')
+    			     .append("\npublic=").append(prefix_public).append('\'')
+    			     .append("\nprotect=").append(prefix_protect).append('\'')
+    			     .append("\nprefixed_element=").append(prefixed_element).append('\'')
+    			     .append("\nequation_section=").append(equation_section).append('\'')
+    			     .append("\nalgorithm_section=").append(algorithm_section).append('\'')
+    			     .append("\nexternal=").append(external).append('\'')
+    			     .append("\nlanguage_specification=").append(language_specification).append('\'')
+    			     .append("\nexternal_function_call=").append(external_function_call).append('\'')
+    			     .append("\next_annotation=").append(ext_annotation).append('\'')
+    			     .append("\ncomp_annotation=").append(comp_annotation)
+    			     .append('\'').append('}')
+    			     .toString();
     }
 
     private class AnnotationClass {
@@ -120,19 +122,34 @@ public class Composition {
     		}
     		List<String> strListToBeRem = new ArrayList<String>();
     		if (docStr != null) {
-    			strListToBeRem.add("Documentation" + " (" + docStr + " )");
+    			StringBuilder temStr = new StringBuilder();
+    			strListToBeRem.add(temStr.append("Documentation (")
+    					                 .append(docStr).append(" )")
+    					                 .toString());
     		}
     		if (diagramStr != null) {
-    			strListToBeRem.add("Diagram" + " (" + diagramStr + " )");
+    			StringBuilder temStr = new StringBuilder();
+    			strListToBeRem.add(temStr.append("Diagram (")
+    					                 .append(diagramStr).append(" )")
+    					                 .toString());
     		}
     		if (iconStr != null) {
-    			strListToBeRem.add("Icon" + " (" + iconStr + " )");
+    			StringBuilder temStr = new StringBuilder();
+    			strListToBeRem.add(temStr.append("Icon (")
+    					                 .append(iconStr).append(" )")
+    					                 .toString());
     		}
     		if (textStr != null) {
-    			strListToBeRem.add("Text" + " (" + textStr + " )");
+    			StringBuilder temStr = new StringBuilder();
+    			strListToBeRem.add(temStr.append("Text (")
+    					                 .append(textStr).append(" )")
+    					                 .toString());
     		}
     		if (nameStr != null) {
-    			strListToBeRem.add("defaultComponentName =" + nameStr);
+    			StringBuilder temStr = new StringBuilder();
+    			strListToBeRem.add(temStr.append("defaultComponentName =")
+    					                 .append(nameStr)
+    					                 .toString());
     		}
 
     		String otherAnnStr = annStr;
