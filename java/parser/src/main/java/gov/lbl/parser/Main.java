@@ -53,7 +53,6 @@ public class Main {
     		result = parser.moParser(args);
     		System.exit(0);
     	} catch (Exception e) {
-    		//System.err.println(e);
     		e.printStackTrace();
     		System.exit(1);
     	}
@@ -164,38 +163,10 @@ public class Main {
     	if (path.isAbsolute()) {
     		fullPath = tempPath;
 		} else {
-			// if the given path is like ../xxx/xxx.mo
-			if (tempPath.contains("../")) {
-				Pattern p = Pattern.compile("../");
-				Matcher m = p.matcher(tempPath);
-				int count1 = 0;
-				while (m.find()){
-				    count1 +=1;
-				}
-				int count2 = 0;
-				List<Integer> dashInd = new ArrayList<Integer> ();
-				for (int i=cwDir.length()-1; i > 0; i--) {
-					if (cwDir.charAt(i) == '/') {
-						count2 = count2 +1;
-						dashInd.add(i);
-						if (count2 == count1) {
-							break;
-						}
-					}
-				}
-				fullPath = temStr.append(cwDir.substring(0, dashInd.get(dashInd.size()-1)+1))
-						         .append(tempPath)
-						         .toString();
-			} else {
-				fullPath = temStr.append(cwDir)
-						         .append("/")
-						         .append(tempPath)
-						         .toString();
-			}
+			fullPath = Paths.get(cwDir, moFileInputPath).toString();
 		}
     	return fullPath;
     }
-
 
     private void exportJsonFile(String searchedFile, String moFileName, String jsonOut, String jsFile) throws Exception {
     	String nameForJson = jsonDir(searchedFile, moFileName, jsFile).get(0);
