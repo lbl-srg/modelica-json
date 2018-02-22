@@ -96,9 +96,9 @@ public class Main {
     	String moFileName = "";
     	String moFileDir = "";
     	if (moFilePath.contains(".mo")) {
-    		int slaInd = moFilePath.lastIndexOf("/");
-    		moFileName = moFilePath.substring(slaInd+1, moFilePath.length());
-        	moFileDir = moFilePath.substring(0,slaInd);
+				Path p = Paths.get(moFilePath);
+    		moFileName = p.getName(p.getNameCount()-1).toString();
+        moFileDir = moFilePath.substring(0,moFilePath.lastIndexOf(moFileName));
     	} else {
     		moFileName = ".mo";
     		moFileDir = moFilePath;
