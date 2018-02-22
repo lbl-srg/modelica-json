@@ -53,6 +53,7 @@ public class Main {
     		result = parser.moParser(args);
     		System.exit(0);
     	} catch (Exception e) {
+    		//System.err.println(e);
     		e.printStackTrace();
     		System.exit(1);
     	}
@@ -96,9 +97,9 @@ public class Main {
     	String moFileName = "";
     	String moFileDir = "";
     	if (moFilePath.contains(".mo")) {
-				Path p = Paths.get(moFilePath);
-    		moFileName = p.getName(p.getNameCount()-1).toString();
-        moFileDir = moFilePath.substring(0,moFilePath.lastIndexOf(moFileName));
+    		Path p = Paths.get(moFilePath);
+    		moFileName = p.getName(p.getNameCount()-1).toString();  
+        	moFileDir = moFilePath.substring(0,moFilePath.lastIndexOf(moFileName));
     	} else {
     		moFileName = ".mo";
     		moFileDir = moFilePath;
@@ -133,11 +134,11 @@ public class Main {
     	    	if (args.length>2) {
     	    		String jsFile = "";
     	    		String jsFilePath = args[3];
-    	    		/* --- the json output file path could be a/ or a ---*/
-    	    		if (jsFilePath.charAt(jsFilePath.length()-1) == '/') {
-    	    			jsFile = jsFilePath;
+    	    		if (jsFilePath.charAt(jsFilePath.length()-1) == '/'
+    	    				|| jsFilePath.charAt(jsFilePath.length()-1) == '\\') {
+    	    			jsFile = jsFilePath.substring(0, jsFilePath.length()-1);
     	    		} else {
-    	    			jsFile = jsFilePath.concat("/");
+    	    			jsFile = jsFilePath;
     	    		}
     	    		exportJsonFile(matched, moFileName, jsonOut, jsFile);
     	    	} else {
@@ -153,8 +154,8 @@ public class Main {
     private static String fullInputPath(String moFileInputPath, String cwDir) {
     	String fullPath = "";
     	String tempPath = "";
-    	StringBuilder temStr = new StringBuilder();
-    	if (moFileInputPath.charAt(moFileInputPath.length()-1) == '/') {
+    	if (moFileInputPath.charAt(moFileInputPath.length()-1) == '/'
+    			|| moFileInputPath.charAt(moFileInputPath.length()-1) == '\\') {
     		tempPath = moFileInputPath.substring(0, moFileInputPath.length()-1);
     	} else {
     		tempPath = moFileInputPath;
@@ -163,10 +164,11 @@ public class Main {
     	if (path.isAbsolute()) {
     		fullPath = tempPath;
 		} else {
-			fullPath = Paths.get(cwDir, moFileInputPath).toString();
+			fullPath = Paths.get(cwDir, moFileInputPath).toString();		
 		}
     	return fullPath;
     }
+
 
     private void exportJsonFile(String searchedFile, String moFileName, String jsonOut, String jsFile) throws Exception {
     	String nameForJson = jsonDir(searchedFile, moFileName, jsFile).get(0);
@@ -193,30 +195,25 @@ public class Main {
     	String nameForJson = "";
     	String dirRootStr = "";
     	StringBuilder temStr = new StringBuilder();
-    	if (str.contains("/Buildings/")) {
-    		int indexBuildings = str.indexOf("/Buildings/");
-    		String buiSubDirForJson = str.substring(indexBuildings+1, str.lastIndexOf("."));
-    		nameForJson =temStr.append(jsFile)
-    				           .append(buiSubDirForJson)
-    				           .append(".json")
-    				           .toString();
+    	if (str.contains("Buildings")) {
+    		int indexBuildings = str.indexOf("Buildings");
+    		String buiSubDirForJson = str.substring(indexBuildings, str.lastIndexOf("."));
+    		temStr.append(buiSubDirForJson).append(".json");    		
     	} else {
     		if (!moFile.equals(".mo")) {
     			int dotIndinFile = moFile.lastIndexOf(".");
-    			nameForJson = temStr.append(jsFile)
-    					            .append(moFile.substring(0, dotIndinFile))
-    					            .append(".json")
-    					            .toString();
+    			temStr.append(moFile.substring(0, dotIndinFile)).append(".json");
     		} else {
-    			int lasSlaInd = str.lastIndexOf("/");
-    			int lasDotInd = str.lastIndexOf(".");
-    			nameForJson = temStr.append(jsFile)
-    					            .append(str.substring(lasSlaInd+1, lasDotInd))
-    					            .append(".json")
-    					            .toString();
+    			Path p = Paths.get(str);
+        		String fileName = p.getName(p.getNameCount()-1).toString(); 
+        		int lasDotInd = fileName.lastIndexOf(".");
+    			temStr.append(fileName.substring(0, lasDotInd)).append(".json");
     		}
     	}
-		dirRootStr = nameForJson.substring(0, nameForJson.lastIndexOf("/"));
+    	nameForJson = Paths.get(jsFile, temStr.toString()).toString();
+    	Path fullPath = Paths.get(nameForJson);
+    	String jsName = fullPath.getName(fullPath.getNameCount()-1).toString();
+    	dirRootStr = nameForJson.substring(0, nameForJson.lastIndexOf(jsName)-1);
 		jsName_Dir.add(nameForJson);
 		jsName_Dir.add(dirRootStr);
 		return jsName_Dir;
