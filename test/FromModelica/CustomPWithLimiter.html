@@ -31,10 +31,12 @@
       color: white;
   }
   th.description{
-    min-width: 50%;
   }
   th.type{
-    max-width: 30%;
+    max-width: 20%;
+  }
+  td.type{
+    max-width: 20%;
   }
   tr:nth-child(odd) {
       background-color: #f2f2f2;
@@ -45,6 +47,7 @@
   }
   tr.group{
       background-color: #A8A8A8;
+      color: white;
   }
   code, pre{
     font-family: 'Consolas', 'Deja Vu Sans Mono', 'Bitstream Vera Sans Mono', monospace;
@@ -116,7 +119,7 @@
 
   
 <p>
-Block that output <code>y = min(yMax, k*e)</code>,
+Block that outputs <code>y = min(yMax, k*e)</code>,
 where
 <code><a href="#FromModelica.CustomPWithLimiter.yMax">yMax</a></code> and <code><a href="#FromModelica.CustomPWithLimiter.e">e</a></code> are real-valued input signals and
 <code><a href="#undefined">k</a></code> is a parameter.
@@ -146,7 +149,7 @@ where
     <td></td>
     <td></td>
     <td></td>
-    <td>Real</td>
+    <td class="type">Real</td>
     <td></td>
     <td></td>
     </tr>
@@ -235,7 +238,7 @@ where
       <th>Parameter Assignments</th>
     </td>
     <tr>
-      <td>
+      <td class="type">
       <code>
       <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Gain">Buildings.Controls.OBC.CDL.Continuous.Gain</a>
       </code>
@@ -257,7 +260,7 @@ where
       </td>
       </tr>
     <tr>
-      <td>
+      <td class="type">
       <code>
       <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Min">Buildings.Controls.OBC.CDL.Continuous.Min</a>
       </code>
@@ -285,40 +288,28 @@ where
     </p>
     <ol>
     <li>
-    <code>
-    <a href="#FromModelica.CustomPWithLimiter.minValue">minValue</a>.<a href="#Buildings.Controls.OBC.CDL.Continuous.Min.u1" >u1</a>
+    <code><a href="#FromModelica.CustomPWithLimiter.minValue">minValue</a>.u1
     </code>
     &rarr;
-    <code>
-    <a href="#FromModelica.CustomPWithLimiter.yMax">yMax</a>
+    <code><a href="#FromModelica.CustomPWithLimiter.yMax">yMax</a></code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.CustomPWithLimiter.gain.u">gain.u</a></code>
+    &rarr;
+    <code><a href="#FromModelica.CustomPWithLimiter.e">e</a></code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.CustomPWithLimiter.gain">gain</a>.y
+    </code>
+    &rarr;
+    <code><a href="#FromModelica.CustomPWithLimiter.minValue">minValue</a>.u2
     </code>
     </li>
     <li>
-    <code>
-    <a href="#FromModelica.CustomPWithLimiter.gain.u">gain.u</a>
+    <code><a href="#FromModelica.CustomPWithLimiter.minValue">minValue</a>.y
     </code>
     &rarr;
-    <code>
-    <a href="#FromModelica.CustomPWithLimiter.e">e</a>
-    </code>
-    </li>
-    <li>
-    <code>
-    <a href="#FromModelica.CustomPWithLimiter.gain">gain</a>.<a href="#Buildings.Controls.OBC.CDL.Continuous.Gain.y" >y</a>
-    </code>
-    &rarr;
-    <code>
-    <a href="#FromModelica.CustomPWithLimiter.minValue">minValue</a>.<a href="#Buildings.Controls.OBC.CDL.Continuous.Min.u2" >u2</a>
-    </code>
-    </li>
-    <li>
-    <code>
-    <a href="#FromModelica.CustomPWithLimiter.minValue">minValue</a>.<a href="#Buildings.Controls.OBC.CDL.Continuous.Min.y" >y</a>
-    </code>
-    &rarr;
-    <code>
-    <a href="#FromModelica.CustomPWithLimiter.y">y</a>
-    </code>
+    <code><a href="#FromModelica.CustomPWithLimiter.y">y</a></code>
     </li>
     </ol>
 
