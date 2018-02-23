@@ -20,19 +20,19 @@ parser.addArgument(
   }
 )
 parser.addArgument(
+  [ '-o', '--output' ],
+  {
+    help: 'Specify output format.',
+    choices: ['html', 'json', 'json-simplified'],
+    defaultValue: 'html'
+  }
+)
+parser.addArgument(
   [ '-l', '--log' ],
   {
     help: "Logging level, 'info' is the default.",
     choices: ['error', 'warn', 'info', 'verbose', 'debug'],
     defaultValue: 'info'
-  }
-)
-parser.addArgument(
-  [ '-w', '--write' ],
-  {
-    help: 'Specify output format.',
-    choices: ['html', 'json', 'json-simplified'],
-    defaultValue: 'html'
   }
 )
 var args = parser.parseArgs()
@@ -55,15 +55,15 @@ logger.cli()
 logger.level = args.log
 
 // Parse the json representation for the model with file name args.file
-const json = pa.getJSON(args.file, args.write)
+const json = pa.getJSON(args.file, args.output)
 const idx = args.file.lastIndexOf(path.sep)
 const outputFileBase = args.file.slice(idx + 1, -3)
 var outFile
-if (args.write === 'json') {
+if (args.output === 'json') {
   outFile = outputFileBase + '.json'
-} else if (args.write === 'json-simplified') {
+} else if (args.output === 'json-simplified') {
   outFile = outputFileBase + '-simplified.json'
 } else {
   outFile = outputFileBase + '.html'
 }
-pa.exportJSON(json, outFile, args.write)
+pa.exportJSON(json, outFile, args.output)
