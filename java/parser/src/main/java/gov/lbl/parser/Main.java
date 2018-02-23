@@ -93,19 +93,18 @@ public class Main {
     	}
 
     	Path moFilePath  = fullInputPath(args[1], cwDir);
-    	String fullPathStr = moFilePath.toString();
-
     	String moFileName = "";
     	String moFileDir = "";
     	Boolean singleMo;
-    	if (fullPathStr.endsWith(".mo")) {
+    	
+    	if (Files.isRegularFile(moFilePath)) {
     		singleMo = true;
     		moFileName = moFilePath.getFileName().toString();
     		moFileDir = moFilePath.getParent().toString();
     	} else {
     		singleMo = false;
     		moFileName = ".mo";
-    		moFileDir = fullPathStr;
+    		moFileDir = moFilePath.toString();
     	}
 
     	String dirToBeSearched = moFileDir;
