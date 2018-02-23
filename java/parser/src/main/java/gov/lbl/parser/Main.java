@@ -100,8 +100,8 @@ public class Main {
     	Boolean singleMo;
     	if (fullPathStr.endsWith(".mo")) {
     		singleMo = true;
-    		moFileName = moFilePath.getName(moFilePath.getNameCount()-1).toString();
-        moFileDir = fullPathStr.substring(0,fullPathStr.lastIndexOf(moFileName));
+    		moFileName = moFilePath.getFileName().toString();
+    		moFileDir = moFilePath.getParent().toString();
     	} else {
     		singleMo = false;
     		moFileName = ".mo";
@@ -137,7 +137,7 @@ public class Main {
     	    	String jsFile = "";
     	    	String jsFilePath = args[3];
     	    	Path jsPath = Paths.get(cwDir, jsFilePath);
-    	    	jsFile = jsPath.getName(jsPath.getNameCount()-1).toString();
+    	    	jsFile = jsPath.getFileName().toString();
     	    	exportJsonFile(matched, moFileName, jsonOut, jsFile, singleMo);
     	    } else {
     	    	System.out.println(jsonOut);
@@ -202,7 +202,7 @@ public class Main {
     	}
     	nameForJson = Paths.get(jsFile, temStr.toString()).toString();
     	Path fullPath = Paths.get(nameForJson);
-    	String jsName = fullPath.getName(fullPath.getNameCount()-1).toString();
+    	String jsName = fullPath.getFileName().toString();
     	dirRootStr = nameForJson.substring(0, nameForJson.lastIndexOf(jsName)-1);
 			jsName_Dir.add(nameForJson);
 			jsName_Dir.add(dirRootStr);
