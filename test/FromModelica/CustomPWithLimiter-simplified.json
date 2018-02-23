@@ -17,14 +17,14 @@
                     "name": "k",
                     "value": "2",
                     "comment": "Constant gain",
+                    "html": {
+                      "type": "Real"
+                    },
                     "annotation": {
                       "dialog": {
                         "tab": "General",
                         "group": "Parameters"
                       }
-                    },
-                    "html": {
-                      "type": "Real"
                     },
                     "className": "Real"
                   }
@@ -45,12 +45,6 @@
               "isFinal": true
             }
           ],
-          "annotation": {
-            "dialog": {
-              "tab": "General",
-              "group": "Parameters"
-            }
-          },
           "html": {
             "anchor": "FromModelica.CustomPWithLimiter.gain",
             "target": "http://simulationresearch.lbl.gov/modelica/releases/v5.0.1/help/Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Gain"
@@ -61,12 +55,6 @@
         {
           "name": "minValue",
           "comment": "Outputs the minimum of its inputs",
-          "annotation": {
-            "dialog": {
-              "tab": "General",
-              "group": "Parameters"
-            }
-          },
           "html": {
             "anchor": "FromModelica.CustomPWithLimiter.minValue",
             "target": "http://simulationresearch.lbl.gov/modelica/releases/v5.0.1/help/Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Min"
@@ -80,12 +68,6 @@
       {
         "name": "yMax",
         "comment": "Maximum value of output signal",
-        "annotation": {
-          "dialog": {
-            "tab": "General",
-            "group": "Parameters"
-          }
-        },
         "html": {
           "anchor": "FromModelica.CustomPWithLimiter.yMax",
           "targetName": "http://simulationresearch.lbl.gov/modelica/releases/v5.0.1/help/Buildings_Controls_OBC_CDL_Interfaces.html#Buildings.Controls.OBC.CDL.Interfaces.RealInput",
@@ -96,12 +78,6 @@
       {
         "name": "e",
         "comment": "Control error",
-        "annotation": {
-          "dialog": {
-            "tab": "General",
-            "group": "Parameters"
-          }
-        },
         "html": {
           "anchor": "FromModelica.CustomPWithLimiter.e",
           "targetName": "http://simulationresearch.lbl.gov/modelica/releases/v5.0.1/help/Buildings_Controls_OBC_CDL_Interfaces.html#Buildings.Controls.OBC.CDL.Interfaces.RealInput",
@@ -114,12 +90,6 @@
       {
         "name": "y",
         "comment": "Control signal",
-        "annotation": {
-          "dialog": {
-            "tab": "General",
-            "group": "Parameters"
-          }
-        },
         "html": {
           "anchor": "FromModelica.CustomPWithLimiter.y",
           "targetName": "http://simulationresearch.lbl.gov/modelica/releases/v5.0.1/help/Buildings_Controls_OBC_CDL_Interfaces.html#Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
@@ -128,14 +98,13 @@
         "className": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput"
       }
     ],
-    "info": "\n<p>\nBlock that output <code>y = min(yMax, k*e)</code>,\nwhere\n<code><a href=\"#FromModelica.CustomPWithLimiter.yMax\">yMax</a></code> and <code><a href=\"#FromModelica.CustomPWithLimiter.e\">e</a></code> are real-valued input signals and\n<code><a href=\"#undefined\">k</a></code> is a parameter.\n</p>\n",
+    "info": "\n<p>\nBlock that outputs <code>y = min(yMax, k*e)</code>,\nwhere\n<code><a href=\"#FromModelica.CustomPWithLimiter.yMax\">yMax</a></code> and <code><a href=\"#FromModelica.CustomPWithLimiter.e\">e</a></code> are real-valued input signals and\n<code><a href=\"#undefined\">k</a></code> is a parameter.\n</p>\n",
     "connections": [
       [
         {
           "instance": "minValue",
           "connector": "u1",
-          "instanceLinkTarget": "FromModelica.CustomPWithLimiter.minValue",
-          "portLinkTarget": "Buildings.Controls.OBC.CDL.Continuous.Min.u1"
+          "instanceLinkTarget": "FromModelica.CustomPWithLimiter.minValue"
         },
         {
           "instance": "yMax",
@@ -156,22 +125,19 @@
         {
           "instance": "gain",
           "connector": "y",
-          "instanceLinkTarget": "FromModelica.CustomPWithLimiter.gain",
-          "portLinkTarget": "Buildings.Controls.OBC.CDL.Continuous.Gain.y"
+          "instanceLinkTarget": "FromModelica.CustomPWithLimiter.gain"
         },
         {
           "instance": "minValue",
           "connector": "u2",
-          "instanceLinkTarget": "FromModelica.CustomPWithLimiter.minValue",
-          "portLinkTarget": "Buildings.Controls.OBC.CDL.Continuous.Min.u2"
+          "instanceLinkTarget": "FromModelica.CustomPWithLimiter.minValue"
         }
       ],
       [
         {
           "instance": "minValue",
           "connector": "y",
-          "instanceLinkTarget": "FromModelica.CustomPWithLimiter.minValue",
-          "portLinkTarget": "Buildings.Controls.OBC.CDL.Continuous.Min.y"
+          "instanceLinkTarget": "FromModelica.CustomPWithLimiter.minValue"
         },
         {
           "instance": "y",

@@ -34,16 +34,16 @@ test:
 
 test-moParser:
 	java -jar java/moParser.jar --mo test/FromModelica/Block1.mo
-	
+
 # Target to generate reference output files
 # This only needs to be run when the output format changes,
 # or when new tests are added.
 generate-reference-output:
 	(cd test/FromModelica && \
 	for ff in `find . -name '*.mo'`; do \
-		node ../../app.js -l debug -f $${ff} -w json; \
-		node ../../app.js -l debug -f $${ff} -w json-simplified; \
-		node ../../app.js -l debug -f $${ff} -w html; \
+		node ../../app.js -l debug -f $${ff} -o json; \
+		node ../../app.js -l debug -f $${ff} -o json-simplified; \
+		node ../../app.js -l debug -f $${ff} -o html; \
 		done)
 	rm -f test/FromModelica/modelica-json.log
 
@@ -60,4 +60,4 @@ run:
 	node app.js \
 	--log warn \
 	-f ~/proj/ldrd/bie/modeling/github/lbl-srg/modelica-buildings/Buildings/Controls/OBC/ASHRAE/G36_PR1/AHUs/MultiZone/Economizers/Controller.mo \
-	-w html
+	-o html

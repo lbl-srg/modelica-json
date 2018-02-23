@@ -92,17 +92,19 @@ public class Main {
     		return runLog;
     	}
 
-    	String moFilePath  = fullInputPath(args[1], cwDir);
-
+    	Path moFilePath  = fullInputPath(args[1], cwDir);
     	String moFileName = "";
     	String moFileDir = "";
-    	if (moFilePath.contains(".mo")) {
-    		Path p = Paths.get(moFilePath);
-    		moFileName = p.getName(p.getNameCount()-1).toString();  
-        	moFileDir = moFilePath.substring(0,moFilePath.lastIndexOf(moFileName));
+    	Boolean singleMo;
+    	
+    	if (Files.isRegularFile(moFilePath)) {
+    		singleMo = true;
+    		moFileName = moFilePath.getFileName().toString();
+    		moFileDir = moFilePath.getParent().toString();
     	} else {
+    		singleMo = false;
     		moFileName = ".mo";
-    		moFileDir = moFilePath;
+    		moFileDir = moFilePath.toString();
     	}
 
     	String dirToBeSearched = moFileDir;
@@ -111,86 +113,73 @@ public class Main {
 
     	if (fileSearch.getResult().size() == 0) {
     		StringBuilder temStr = new StringBuilder();
-			String noFilMes = temStr.append(moFileName)
+				String noFilMes = temStr.append(moFileName)
 					                .append(" cannot be found. \nCheck file name and path: ")
 					                .append(moFilePath)
 					                .toString();
     		runLog.add(noFilMes);
-			throw new Exception(noFilMes);
+				throw new Exception(noFilMes);
     	} else {
-    	    for (String matched : fileSearch.getResult()){
-    	    	modelicaSource = modelicaSourceCode(matched);
-    	    	Stored_definition antlrParseOut = null;
-    	    	try {
-    	    		antlrParseOut = new VisitorOrientedParser().parse(modelicaSource);
-    	    	} catch (Exception e) {
-    	    		runLog.add(e.getMessage());
-    	    		throw new Exception(e);
-    	    	}
-    	    	Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
-    	    	//Gson gson = new Gson();
-    	    	jsonOut = gson.toJson(antlrParseOut);
-
-    	    	if (args.length>2) {
-    	    		String jsFile = "";
-    	    		String jsFilePath = args[3];
-    	    		if (jsFilePath.charAt(jsFilePath.length()-1) == '/'
-    	    				|| jsFilePath.charAt(jsFilePath.length()-1) == '\\') {
-    	    			jsFile = jsFilePath.substring(0, jsFilePath.length()-1);
-    	    		} else {
-    	    			jsFile = jsFilePath;
-    	    		}
-    	    		exportJsonFile(matched, moFileName, jsonOut, jsFile);
-    	    	} else {
-    	    		System.out.println(jsonOut);
-    	    	}
-    	    	runLog.add(jsonOut);
+				for (String matched : fileSearch.getResult()){
+    	    modelicaSource = modelicaSourceCode(matched);
+    	    Stored_definition antlrParseOut = null;
+    	    try {
+    	    	antlrParseOut = new VisitorOrientedParser().parse(modelicaSource);
+    	    } catch (Exception e) {
+    	    	runLog.add(e.getMessage());
+    	    	throw new Exception(e);
     	    }
+    	    Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
+    	    //Gson gson = new Gson();
+    	    jsonOut = gson.toJson(antlrParseOut);
+    	    if (args.length>2) {
+    	    	String jsFile = "";
+    	    	String jsFilePath = args[3];
+    	    	Path jsPath = Paths.get(cwDir, jsFilePath);
+    	    	jsFile = jsPath.getFileName().toString();
+    	    	exportJsonFile(matched, moFileName, jsonOut, jsFile, singleMo);
+    	    } else {
+    	    	System.out.println(jsonOut);
+    	    }
+    	    runLog.add(jsonOut);
+    	  }
     	}
     	this.sumResults = runLog;
     	return runLog;
     }
 
-    private static String fullInputPath(String moFileInputPath, String cwDir) {
-    	String fullPath = "";
-    	String tempPath = "";
-    	if (moFileInputPath.charAt(moFileInputPath.length()-1) == '/'
-    			|| moFileInputPath.charAt(moFileInputPath.length()-1) == '\\') {
-    		tempPath = moFileInputPath.substring(0, moFileInputPath.length()-1);
-    	} else {
-    		tempPath = moFileInputPath;
-    	}
-		Path path = Paths.get(tempPath);
-    	if (path.isAbsolute()) {
-    		fullPath = tempPath;
-		} else {
-			fullPath = Paths.get(cwDir, moFileInputPath).toString();		
-		}
+    private static Path fullInputPath(String moFileInputPath, String cwDir) {
+    	Path fullPath;
+    	if (Paths.get(moFileInputPath).isAbsolute()) {
+    		fullPath = Paths.get(moFileInputPath);
+			} else {
+				fullPath = Paths.get(cwDir, moFileInputPath);
+			}
     	return fullPath;
     }
 
 
-    private void exportJsonFile(String searchedFile, String moFileName, String jsonOut, String jsFile) throws Exception {
-    	String nameForJson = jsonDir(searchedFile, moFileName, jsFile).get(0);
-		String dirRootStr = jsonDir(searchedFile, moFileName, jsFile).get(1);
-		Path path = Paths.get(dirRootStr);
-		File dirRoot = new File(dirRootStr);
-		if (! dirRoot.exists()) {
+    private void exportJsonFile(String searchedFile, String moFileName, String jsonOut, String jsFile, Boolean singleMo) throws Exception {
+    	String nameForJson = jsonDir(searchedFile, moFileName, jsFile, singleMo).get(0);
+			String dirRootStr = jsonDir(searchedFile, moFileName, jsFile, singleMo).get(1);
+			Path path = Paths.get(dirRootStr);
+			File dirRoot = new File(dirRootStr);
+			if (! dirRoot.exists()) {
     		try {
-    		    Files.createDirectories(path);
+    		  Files.createDirectories(path);
     		} catch (IOException e) {
-    		    System.err.println("Cannot create directories - " + e);
-    		    throw new Exception(e);
+    		  System.err.println("Cannot create directories - " + e);
+    		  throw new Exception(e);
     		}
     	}
-		File newTextFile = new File(nameForJson);
-		FileWriter fw = new FileWriter(newTextFile);
-		fw.write(jsonOut);
-		fw.close();
+			File newTextFile = new File(nameForJson);
+			FileWriter fw = new FileWriter(newTextFile);
+			fw.write(jsonOut);
+			fw.close();
     }
 
 
-    private static List<String> jsonDir(String str, String moFile, String jsFile) {
+    private static List<String> jsonDir(String str, String moFile, String jsFile, Boolean singleMo) {
     	List<String> jsName_Dir = new ArrayList<String>();
     	String nameForJson = "";
     	String dirRootStr = "";
@@ -198,36 +187,36 @@ public class Main {
     	if (str.contains("Buildings")) {
     		int indexBuildings = str.indexOf("Buildings");
     		String buiSubDirForJson = str.substring(indexBuildings, str.lastIndexOf("."));
-    		temStr.append(buiSubDirForJson).append(".json");    		
+    		temStr.append(buiSubDirForJson).append(".json");
     	} else {
-    		if (!moFile.equals(".mo")) {
+    		if (singleMo) {
     			int dotIndinFile = moFile.lastIndexOf(".");
     			temStr.append(moFile.substring(0, dotIndinFile)).append(".json");
     		} else {
     			Path p = Paths.get(str);
-        		String fileName = p.getName(p.getNameCount()-1).toString(); 
-        		int lasDotInd = fileName.lastIndexOf(".");
+        	String fileName = p.getName(p.getNameCount()-1).toString();
+        	int lasDotInd = fileName.lastIndexOf(".");
     			temStr.append(fileName.substring(0, lasDotInd)).append(".json");
     		}
     	}
     	nameForJson = Paths.get(jsFile, temStr.toString()).toString();
     	Path fullPath = Paths.get(nameForJson);
-    	String jsName = fullPath.getName(fullPath.getNameCount()-1).toString();
+    	String jsName = fullPath.getFileName().toString();
     	dirRootStr = nameForJson.substring(0, nameForJson.lastIndexOf(jsName)-1);
-		jsName_Dir.add(nameForJson);
-		jsName_Dir.add(dirRootStr);
-		return jsName_Dir;
+			jsName_Dir.add(nameForJson);
+			jsName_Dir.add(dirRootStr);
+			return jsName_Dir;
     }
 
 
     public void searchDirectory(File directory, String fileNameToSearch) {
     	setFileNameToSearch(fileNameToSearch);
     	if (directory.isDirectory()) {
-    	    search(directory);
+    	  search(directory);
     	} else {
-    	    System.out.println(directory.getAbsoluteFile() + " is not a directory!");
+    	  System.err.println(directory.getAbsoluteFile() + " is not a directory!");
     	}
-      }
+    }
 
     private void search(File file) {
     	if (file.isDirectory()) {
@@ -240,16 +229,14 @@ public class Main {
     	    			int nameLen = temp.getName().length();
     	    			int indForExt = dotInd==(-1) ? 0 : dotInd;
     	    			if ((getFileNameToSearch().equals(".mo") && getFileNameToSearch().equals(temp.getName().substring(indForExt,nameLen)))
-    	    				 || (!getFileNameToSearch().equals(".mo") && getFileNameToSearch().equals(temp.getName()))) {
+    	    				 			|| (!getFileNameToSearch().equals(".mo") && getFileNameToSearch().equals(temp.getName()))) {
     	    				result.add(temp.getAbsoluteFile().toString());
     	    			}
     	    		}
     	    	}
-    	 } else {
-    		System.out.println(file.getAbsoluteFile() + "Permission Denied");
-    	 }
-          }
-
-      }
-
+    	 		} else {
+    			System.err.println(file.getAbsoluteFile() + "Permission Denied");
+    	 	}
+    	}
+  	}
 }

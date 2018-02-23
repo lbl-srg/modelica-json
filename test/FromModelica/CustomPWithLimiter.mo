@@ -34,7 +34,7 @@ equation
 
   annotation (Documentation(info="<html>
 <p>
-Block that output <code>y = min(yMax, k*e)</code>,
+Block that outputs <code>y = min(yMax, k*e)</code>,
 where
 <code>yMax</code> and <code>e</code> are real-valued input signals and
 <code>k</code> is a parameter.
