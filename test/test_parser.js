@@ -79,8 +79,7 @@ mo.describe('parser.js', function () {
     checkJSON('json', '.json', 'Testing unmodified json for equality')
   })
   mo.describe('Testing parse from Modelica', function () {
-    console.log('*** fixme')
-    // checkJSON('json-simplified', '-simplified.json', 'Testing simplified json for equality')
+    checkJSON('json-simplified', '-simplified.json', 'Testing simplified json for equality')
   })
   mo.describe('Testing html generation from Modelica', compareHtml)
 })
