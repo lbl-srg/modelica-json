@@ -41,9 +41,9 @@ test-moParser:
 generate-reference-output:
 	(cd test/FromModelica && \
 	for ff in `find . -name '*.mo'`; do \
-		node ../../app.js -l debug -f $${ff} -o json; \
-		node ../../app.js -l debug -f $${ff} -o json-simplified; \
-		node ../../app.js -l debug -f $${ff} -o html; \
+		node ../../app.js -l warn -f $${ff} -o json; \
+		node ../../app.js -l warn -f $${ff} -o json-simplified; \
+		node ../../app.js -l warn -f $${ff} -o html; \
 		done)
 	rm -f test/FromModelica/modelica-json.log
 
