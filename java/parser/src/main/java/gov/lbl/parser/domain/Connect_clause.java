@@ -10,7 +10,7 @@ public class Connect_clause {
     private List<String> component2;
 
     public Connect_clause(String component_reference1, String component_reference2) {
-    	Pattern pattern = Pattern.compile(".");
+    	Pattern pattern = Pattern.compile("\\.");
     	Matcher matcher1 = pattern.matcher(component_reference1);
     	Matcher matcher2 = pattern.matcher(component_reference1);
 
