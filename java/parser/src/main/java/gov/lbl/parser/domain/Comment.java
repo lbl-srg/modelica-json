@@ -379,67 +379,62 @@ public class Comment {
     	List<String> strSets = new ArrayList<String>();
     	if (!str.contains(",")) {
     		strSets.add(str);
-		} else {
-			List<Integer> commaInd = new ArrayList<Integer>();
-			List<Integer> fullCommaInd = new ArrayList<Integer> ();
+    	} else {
+    		List<Integer> commaInd = new ArrayList<Integer>();
+    		List<Integer> fullCommaInd = new ArrayList<Integer> ();
 
-			for (int i=0; i<str.length(); i++) {
-				if (str.charAt(i) == ',') {
-					fullCommaInd.add(i);
-				}
-			}
-			if (str.contains("{") || str.contains("[") || str.contains("(") || str.contains("\"")) {
-				List<Integer> cbCommaInd = new ArrayList<Integer> ();
-				List<Integer> sbCommaInd = new ArrayList<Integer> ();
-				List<Integer> rbCommaInd = new ArrayList<Integer> ();
-				List<Integer> quoCommaInd = new ArrayList<Integer> ();
+    		for (int i=0; i<str.length(); i++) {
+    			if (str.charAt(i) == ',') {
+    				fullCommaInd.add(i);
+    			}
+    		}
+    		if (str.contains("{") || str.contains("[") || str.contains("(") || str.contains("\"")) {
+    			List<Integer> cbCommaInd = new ArrayList<Integer> ();
+    			List<Integer> sbCommaInd = new ArrayList<Integer> ();
+    			List<Integer> rbCommaInd = new ArrayList<Integer> ();
+    			List<Integer> quoCommaInd = new ArrayList<Integer> ();
 
-				for (int i=0; i<fullCommaInd.size(); i++) {
-					if (ifEnclosed(str,"{","}",fullCommaInd.get(i))) {
-						cbCommaInd.add(fullCommaInd.get(i));
-					}
-					if (ifEnclosed(str,"[","]",fullCommaInd.get(i))) {
-						sbCommaInd.add(fullCommaInd.get(i));
-					}
-					if (ifEnclosed(str,"(",")",fullCommaInd.get(i))) {
-						rbCommaInd.add(fullCommaInd.get(i));
-					}
-					if (ifEnclosed(str,"\"","\"",fullCommaInd.get(i))) {
-						quoCommaInd.add(fullCommaInd.get(i));
-					}
+    			for (int i=0; i<fullCommaInd.size(); i++) {
+    				if (ifEnclosed(str,"{","}",fullCommaInd.get(i))) {
+    					cbCommaInd.add(fullCommaInd.get(i));
+    				}
+    				if (ifEnclosed(str,"[","]",fullCommaInd.get(i))) {
+    					sbCommaInd.add(fullCommaInd.get(i));
+    				}
+    				if (ifEnclosed(str,"(",")",fullCommaInd.get(i))) {
+    					rbCommaInd.add(fullCommaInd.get(i));
+    				}
+    				if (ifEnclosed(str,"\"","\"",fullCommaInd.get(i))) {
+    					quoCommaInd.add(fullCommaInd.get(i));
+    				}
+    			}
+    			commaInd.addAll(searchComEle(cbCommaInd,sbCommaInd,rbCommaInd,quoCommaInd));
+    		} else {
+    			commaInd = fullCommaInd;
+    		}
+    		if (commaInd.size() == 0) {
+    			strSets.add(str);
+    		} else if (commaInd.size() == 1) {
+    			strSets.add(str.substring(0, commaInd.get(0)));
+    			strSets.add(str.substring(commaInd.get(0)+1, str.length()));
+    		} else {
+    			strSets.add(str.substring(0, commaInd.get(0)));
+    			for (int i=0; i<commaInd.size()-1; i++) {
+					strSets.add(str.substring(commaInd.get(i)+1,commaInd.get(i+1)));
 				}
-				commaInd.addAll(searchComEle(cbCommaInd,sbCommaInd,rbCommaInd,quoCommaInd));
-			} else {
-				commaInd = fullCommaInd;
-			}
-			if (commaInd.size() == 0) {
-				strSets.add(str);
-			} else if (commaInd.size() == 1) {
-				strSets.add(str.substring(0, commaInd.get(0)-1));
-				if (str.charAt(str.length()-1) != ' ') {
-					strSets.add(str.substring(commaInd.get(0)+1, str.length()));
-				} else {
-					strSets.add(str.substring(commaInd.get(0)+1, str.length()-1));
-				}
-			} else {
-				strSets.add(str.substring(0, commaInd.get(0)-1));
-				if (commaInd.size() == 2) {
-					strSets.add(str.substring(commaInd.get(0)+1,commaInd.get(1)-1));
-				} else {
-					for (int i=0; i<commaInd.size()-1; i++) {
-						strSets.add(str.substring(commaInd.get(i)+1,commaInd.get(i+1)-1));
-					}
-				}
-				if (str.charAt(str.length()-1) != ' ') {
-					strSets.add(str.substring(commaInd.get(commaInd.size()-1)+1, str.length()));
-				} else {
-					strSets.add(str.substring(commaInd.get(commaInd.size()-1)+1, str.length()-1));
-				}
-			}
-		}
+    			strSets.add(str.substring(commaInd.get(commaInd.size()-1)+1, str.length()));
+    		}
+    		for (int i=0; i<strSets.size(); i++) {
+    			if (strSets.get(i).charAt(strSets.get(i).length()-1) == ' ') {
+    				String temStr = strSets.get(i);
+    				strSets.set(i, temStr.substring(0,temStr.length()-1));
+    			}
+    		}    	  		
+    	}
     	return strSets;
     }
-
+ 
+    
     private static Collection<Integer> searchComEle(Collection<Integer> list1,
             										Collection<Integer> list2,
             										Collection<Integer> list3,

@@ -262,16 +262,15 @@ public class Composition {
     		String annStrTem = annStr.substring(1, annStr.length()-1);
     		List<String> strSet = new ArrayList<String>();
     		strSet.addAll(splitAtComma(annStrTem));
-    		
     		List<AnnotationString> annStrSet = new ArrayList<AnnotationString>();
     		
     		String strEle;
     		String namTem;
     		String annTem;
     		for (int i=0; i<strSet.size(); i++) {
-    			strEle = strSet.get(i);
+    			strEle = strSet.get(i);   			
     			namTem = strEle.substring(0, strEle.indexOf("(")).trim();
-    			annTem = strEle.substring(strEle.indexOf("(")+1, strEle.length());
+    			annTem = strEle.substring(strEle.indexOf("(")+1, strEle.lastIndexOf(")"));
     			AnnotationString temCla = new AnnotationString();
     			temCla.annStr(namTem, annTem);
     			annStrSet.add(temCla);
@@ -293,7 +292,7 @@ public class Composition {
     		String value;
     		int equInd;
     		String temStr;
-    		for (int i=0; i<strSet.size(); i++) {
+    		for (int i=0; i<strSet.size(); i++) {    			
     			temStr = strSet.get(i);
     			equInd = temStr.indexOf("=");
     			name = temStr.substring(0, equInd);
@@ -418,30 +417,25 @@ public class Composition {
     		if (commaInd.size() == 0) {
     			strSets.add(str);
     		} else if (commaInd.size() == 1) {
-    			strSets.add(str.substring(0, commaInd.get(0)-1));
-    			if (str.charAt(str.length()-1) != ' ') {
-    				strSets.add(str.substring(commaInd.get(0)+1, str.length()));
-    			} else {
-    				strSets.add(str.substring(commaInd.get(0)+1, str.length()-1));
-    			}
+    			strSets.add(str.substring(0, commaInd.get(0)));
+    			strSets.add(str.substring(commaInd.get(0)+1, str.length()));
     		} else {
-    			strSets.add(str.substring(0, commaInd.get(0)-1));
-    			if (commaInd.size() == 2) {
-    				strSets.add(str.substring(commaInd.get(0)+1,commaInd.get(1)-1));
-    			} else {
-    				for (int i=0; i<commaInd.size()-1; i++) {
-    					strSets.add(str.substring(commaInd.get(i)+1,commaInd.get(i+1)-1));
-    				}
-    			}
-    			if (str.charAt(str.length()-1) != ' ') {
-    				strSets.add(str.substring(commaInd.get(commaInd.size()-1)+1, str.length()));
-    			} else {
-    				strSets.add(str.substring(commaInd.get(commaInd.size()-1)+1, str.length()-1));
-    			}
+    			strSets.add(str.substring(0, commaInd.get(0)));
+    			for (int i=0; i<commaInd.size()-1; i++) {
+					strSets.add(str.substring(commaInd.get(i)+1,commaInd.get(i+1)));
+				}
+    			strSets.add(str.substring(commaInd.get(commaInd.size()-1)+1, str.length()));
     		}
+    		for (int i=0; i<strSets.size(); i++) {
+    			if (strSets.get(i).charAt(strSets.get(i).length()-1) == ' ') {
+    				String temStr = strSets.get(i);
+    				strSets.set(i, temStr.substring(0,temStr.length()-1));
+    			}
+    		}    	  		
     	}
     	return strSets;
     }
+    
     
     private static Collection<Integer> searchComEle(Collection<Integer> list1,
 													Collection<Integer> list2,
