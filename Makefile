@@ -61,3 +61,8 @@ run:
 	--log warn \
 	-f ~/proj/ldrd/bie/modeling/github/lbl-srg/modelica-buildings/Buildings/Controls/OBC/ASHRAE/G36_PR1/AHUs/MultiZone/Economizers/Controller.mo \
 	-o html
+
+ibpsa-library:
+	node app.js \
+	-o json \
+	-f ~/proj/ldrd/bie/modeling/github/ibpsa/modelica-ibpsa/IBPSA/Fluid/FixedResistances/HydraulicDiameter.mo
