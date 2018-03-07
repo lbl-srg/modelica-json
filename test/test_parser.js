@@ -3,7 +3,6 @@ const as = require('assert')
 const mo = require('mocha')
 const path = require('path')
 const pa = require('../lib/parser')
-const ut = require('../lib/util')
 const ht = require('../lib/htmlWriter')
 const Promise = require('bluebird')
 const fs = Promise.promisifyAll(require('fs'))
@@ -42,18 +41,16 @@ var checkJSON = function (outFormat, extension, message) {
       // Read the stored json representation from disk
       const oldFil = fil.slice(0, -3) + extension
       // Read the old json
-      return ut.readJSON(oldFil)
-        .then(function (jsonOld) {
-          const old = outFormat === 'json' ? jsonOld : jsonOld[0]
-          const ne = outFormat === 'json' ? jsonSimple : jsonSimple[0]
-          // Update the path to be relative to the project home.
-          // This is needed for the regression tests to be portable.
-          if (ne.modelicaFile) {
-            ne['modelicaFile'] = ne['modelicaFile'].replace(path.join(__dirname, 'FromModelica'), '.')
-          }
-          as.notEqual(old, undefined, 'JSON is undefined')
-          return as.deepEqual(ne, old, 'JSON result differs for ' + oldFil)
-        })
+      const jsonOld = JSON.parse(fs.readFileSync(oldFil, 'utf8'))
+      const old = outFormat === 'json' ? jsonOld : jsonOld[0]
+      const ne = outFormat === 'json' ? jsonSimple : jsonSimple[0]
+      // Update the path to be relative to the project home.
+      // This is needed for the regression tests to be portable.
+      if (ne.modelicaFile) {
+        ne['modelicaFile'] = ne['modelicaFile'].replace(path.join(__dirname, 'FromModelica'), '.')
+      }
+      as.notEqual(old, undefined, 'JSON is undefined')
+      as.deepEqual(ne, old, 'JSON result differs for ' + oldFil)
     })
   })
 }
