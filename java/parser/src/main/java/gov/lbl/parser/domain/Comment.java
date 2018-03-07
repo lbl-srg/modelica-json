@@ -424,6 +424,10 @@ public class Comment {
 				}
     			strSets.add(str.substring(commaInd.get(commaInd.size()-1)+1, str.length()));
     		}
+    		if (strSets.get(strSets.size()-1).isEmpty()) {
+    			strSets.remove(strSets.size()-1);
+    		}
+    		
     		for (int i=0; i<strSets.size(); i++) {
     			if (strSets.get(i).charAt(strSets.get(i).length()-1) == ' ') {
     				String temStr = strSets.get(i);
