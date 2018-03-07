@@ -5,32 +5,20 @@
     "topClassName": "FromModelica.CustomPWithLimiter",
     "comment": "Custom implementation of a P controller with variable output limiter",
     "public": {
-      "parameters": {
-        "tabs": [
-          {
-            "name": "General",
-            "groups": [
-              {
-                "name": "Parameters",
-                "parameters": [
-                  {
-                    "name": "k",
-                    "value": "2",
-                    "comment": "Constant gain",
-                    "annotation": {
-                      "dialog": {
-                        "tab": "General",
-                        "group": "Parameters"
-                      }
-                    },
-                    "className": "Real"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
+      "parameters": [
+        {
+          "name": "k",
+          "value": "2",
+          "comment": "Constant gain",
+          "annotation": {
+            "dialog": {
+              "tab": "General",
+              "group": "Parameters"
+            }
+          },
+          "className": "Real"
+        }
+      ],
       "models": [
         {
           "name": "gain",

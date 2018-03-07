@@ -5,167 +5,135 @@
     "topClassName": "FromModelica.Parameter2",
     "comment": "Some class comment",
     "public": {
-      "parameters": {
-        "tabs": [
-          {
-            "name": "General",
-            "groups": [
-              {
-                "name": "Parameters",
-                "parameters": [
-                  {
-                    "name": "myPar1",
-                    "value": "1",
-                    "comment": "Some comment",
-                    "annotation": {
-                      "dialog": {
-                        "tab": "General",
-                        "group": "Parameters"
-                      }
-                    },
-                    "className": "Real"
-                  },
-                  {
-                    "name": "myParNoValue",
-                    "comment": "Some comment",
-                    "annotation": {
-                      "dialog": {
-                        "tab": "General",
-                        "group": "Parameters"
-                      }
-                    },
-                    "className": "Real"
-                  },
-                  {
-                    "name": "myParMin",
-                    "comment": "Some comment",
-                    "min": {
-                      "value": "0"
-                    },
-                    "modifications": [
-                      {
-                        "value": "0",
-                        "isFinal": false
-                      }
-                    ],
-                    "annotation": {
-                      "dialog": {
-                        "tab": "General",
-                        "group": "Parameters"
-                      }
-                    },
-                    "className": "Real"
-                  },
-                  {
-                    "name": "myParMax",
-                    "comment": "Some comment",
-                    "max": {
-                      "value": "0"
-                    },
-                    "modifications": [
-                      {
-                        "value": "0",
-                        "isFinal": false
-                      }
-                    ],
-                    "annotation": {
-                      "dialog": {
-                        "tab": "General",
-                        "group": "Parameters"
-                      }
-                    },
-                    "className": "Real"
-                  },
-                  {
-                    "name": "myParUnit",
-                    "comment": "Some comment",
-                    "unit": {
-                      "value": "\"K\""
-                    },
-                    "modifications": [
-                      {
-                        "value": "\"K\"",
-                        "isFinal": false
-                      }
-                    ],
-                    "annotation": {
-                      "dialog": {
-                        "tab": "General",
-                        "group": "Parameters"
-                      }
-                    },
-                    "className": "Real"
-                  }
-                ]
-              },
-              {
-                "name": "Gains",
-                "parameters": [
-                  {
-                    "name": "myParInGroup",
-                    "comment": "Some comment",
-                    "annotation": {
-                      "dialog": {
-                        "group": "Gains",
-                        "tab": "General"
-                      }
-                    },
-                    "className": "Real"
-                  }
-                ]
-              }
-            ]
+      "parameters": [
+        {
+          "name": "myPar1",
+          "value": "1",
+          "comment": "Some comment",
+          "annotation": {
+            "dialog": {
+              "tab": "General",
+              "group": "Parameters"
+            }
           },
-          {
-            "name": "Initialization tab",
-            "groups": [
-              {
-                "name": "Parameters",
-                "parameters": [
-                  {
-                    "name": "myParInTab",
-                    "comment": "Some comment",
-                    "annotation": {
-                      "dialog": {
-                        "tab": "Initialization tab",
-                        "group": "Parameters"
-                      }
-                    },
-                    "className": "Real"
-                  }
-                ]
-              },
-              {
-                "name": "Initial state",
-                "parameters": [
-                  {
-                    "name": "myParInTabInGroup1",
-                    "comment": "Some comment 1",
-                    "annotation": {
-                      "dialog": {
-                        "tab": "Initialization tab",
-                        "group": "Initial state"
-                      }
-                    },
-                    "className": "Real"
-                  },
-                  {
-                    "name": "myParInTabInGroup2",
-                    "comment": "Some comment 2",
-                    "annotation": {
-                      "dialog": {
-                        "tab": "Initialization tab",
-                        "group": "Initial state"
-                      }
-                    },
-                    "className": "Real"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
+          "className": "Real"
+        },
+        {
+          "name": "myParNoValue",
+          "comment": "Some comment",
+          "annotation": {
+            "dialog": {
+              "tab": "General",
+              "group": "Parameters"
+            }
+          },
+          "className": "Real"
+        },
+        {
+          "name": "myParMin",
+          "comment": "Some comment",
+          "min": {
+            "value": "0"
+          },
+          "modifications": [
+            {
+              "value": "0",
+              "isFinal": false
+            }
+          ],
+          "annotation": {
+            "dialog": {
+              "tab": "General",
+              "group": "Parameters"
+            }
+          },
+          "className": "Real"
+        },
+        {
+          "name": "myParMax",
+          "comment": "Some comment",
+          "max": {
+            "value": "0"
+          },
+          "modifications": [
+            {
+              "value": "0",
+              "isFinal": false
+            }
+          ],
+          "annotation": {
+            "dialog": {
+              "tab": "General",
+              "group": "Parameters"
+            }
+          },
+          "className": "Real"
+        },
+        {
+          "name": "myParUnit",
+          "comment": "Some comment",
+          "unit": {
+            "value": "\"K\""
+          },
+          "modifications": [
+            {
+              "value": "\"K\"",
+              "isFinal": false
+            }
+          ],
+          "annotation": {
+            "dialog": {
+              "tab": "General",
+              "group": "Parameters"
+            }
+          },
+          "className": "Real"
+        },
+        {
+          "name": "myParInGroup",
+          "comment": "Some comment",
+          "annotation": {
+            "dialog": {
+              "group": "Gains",
+              "tab": "General"
+            }
+          },
+          "className": "Real"
+        },
+        {
+          "name": "myParInTab",
+          "comment": "Some comment",
+          "annotation": {
+            "dialog": {
+              "tab": "Initialization tab",
+              "group": "Parameters"
+            }
+          },
+          "className": "Real"
+        },
+        {
+          "name": "myParInTabInGroup1",
+          "comment": "Some comment 1",
+          "annotation": {
+            "dialog": {
+              "tab": "Initialization tab",
+              "group": "Initial state"
+            }
+          },
+          "className": "Real"
+        },
+        {
+          "name": "myParInTabInGroup2",
+          "comment": "Some comment 2",
+          "annotation": {
+            "dialog": {
+              "tab": "Initialization tab",
+              "group": "Initial state"
+            }
+          },
+          "className": "Real"
+        }
+      ]
     },
     "info": null
   }
