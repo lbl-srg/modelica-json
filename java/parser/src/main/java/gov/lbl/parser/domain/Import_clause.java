@@ -27,40 +27,4 @@ public class Import_clause {
     	}
         this.comment = comment;
     }
-
-    @Override
-    public boolean equals(Object o) {
-      if (this == o) return true;
-      if (o == null || getClass() != o.getClass()) return false;
-
-      Import_clause aImport_clause = (Import_clause) o;
-      if (prefix != null ? !prefix.equals(aImport_clause.prefix) : aImport_clause.prefix != null) return false;
-      if (name != null ? !name.equals(aImport_clause.name) : aImport_clause.name != null) return false;
-      return comment != null ? comment.equals(aImport_clause.comment) : aImport_clause.comment == null;
-    }
-
-    @Override
-    public int hashCode() {
-      int result = prefix != null ? prefix.hashCode() : 0;
-      result = 31 * result + (ident != null ? ident.hashCode() : 0);
-      result = 31 * result + (symbols != null ? symbols.hashCode() : 0);
-      result = 31 * result + (name != null ? name.hashCode() : 0);
-      result = 31 * result + (import_list != null ? import_list.hashCode() : 0);
-      result = 31 * result + (comment != null ? comment.hashCode() : 0);
-      return result;
-    }
-
-    @Override
-    public String toString() {
-    	StringBuilder temStr = new StringBuilder();
-        return temStr.append("Import_clause{")
-        		     .append("\nprefix=").append(prefix).append('\'')
-        		     .append("\nident=").append(ident).append('\'')
-        		     .append("\nname=").append(name).append('\'')
-        		     .append("\nimport_list=").append(import_list).append('\'')
-        		     .append("\nsymbols=").append(symbols).append('\'')
-        		     .append("\ncomment=").append(comment)
-        		     .append('\'').append('}')
-        		     .toString();
-    }
 }

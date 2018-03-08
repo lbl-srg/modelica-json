@@ -49,50 +49,6 @@ public class Composition {
         }
     }
 
-    @Override
-    public boolean equals(Object o) {
-      if (this == o) return true;
-      if (o == null || getClass() != o.getClass()) return false;
-
-      Composition aComposition = (Composition) o;
-      return element_list != null ? element_list.equals(aComposition.element_list) : aComposition.element_list == null;
-    }
-
-    @Override
-    public int hashCode() {
-      int result = element_list != null ? element_list.hashCode() : 0;
-      result = 31 * result + (prefix_public != null ? prefix_public.hashCode() : 0);
-      result = 31 * result + (prefix_protect != null ? prefix_protect.hashCode() : 0);
-      result = 31 * result + (prefixed_element != null ? prefixed_element.hashCode() : 0);
-      result = 31 * result + (equation_section != null ? equation_section.hashCode() : 0);
-      result = 31 * result + (algorithm_section != null ? algorithm_section.hashCode() : 0);
-      result = 31 * result + (external != null ? external.hashCode() : 0);
-      result = 31 * result + (language_specification != null ? language_specification.hashCode() : 0);
-      result = 31 * result + (external_function_call != null ? external_function_call.hashCode() : 0);
-      result = 31 * result + (ext_annotation != null ? ext_annotation.hashCode() : 0);
-      result = 31 * result + (comp_annotation != null ? comp_annotation.hashCode() : 0);
-      return result;
-    }
-
-    @Override
-    public String toString() {
-    	StringBuilder temStr = new StringBuilder();
-    	return temStr.append("Composition{")
-    			     .append("\nelement_list=").append(element_list).append('\'')
-    			     .append("\npublic=").append(prefix_public).append('\'')
-    			     .append("\nprotect=").append(prefix_protect).append('\'')
-    			     .append("\nprefixed_element=").append(prefixed_element).append('\'')
-    			     .append("\nequation_section=").append(equation_section).append('\'')
-    			     .append("\nalgorithm_section=").append(algorithm_section).append('\'')
-    			     .append("\nexternal=").append(external).append('\'')
-    			     .append("\nlanguage_specification=").append(language_specification).append('\'')
-    			     .append("\nexternal_function_call=").append(external_function_call).append('\'')
-    			     .append("\next_annotation=").append(ext_annotation).append('\'')
-    			     .append("\ncomp_annotation=").append(comp_annotation)
-    			     .append('\'').append('}')
-    			     .toString();
-    }
-
     private class AnnotationClass {
     	String defaultName;
     	String diagram;
@@ -310,26 +266,26 @@ public class Composition {
     			|| !ifEnclosed(str, "\"", "\"", str.indexOf(keyStr))) {
     		subStr = null;
     	} else {
-    	if (str.contains(keyStr)) {
-			int leftRBcount = 0;
-			int beginInd = str.indexOf("(",str.indexOf(keyStr)+keyStr.length()-1);
-			int endInd = 0;
-			for (int i = beginInd; i < str.length(); i++) {
-				if (str.charAt(i) == '(') {
-					leftRBcount = leftRBcount+1;
-					}
-				if (str.charAt(i) == ')') {
-					leftRBcount = leftRBcount-1;
-					if (leftRBcount == 0) {
-						endInd = i;
-						break;
+    		if (str.contains(keyStr)) {
+    			int leftRBcount = 0;
+    			int beginInd = str.indexOf("(",str.indexOf(keyStr)+keyStr.length()-1);
+    			int endInd = 0;
+    			for (int i = beginInd; i < str.length(); i++) {
+    				if (str.charAt(i) == '(') {
+    					leftRBcount = leftRBcount+1;
+						}
+    				if (str.charAt(i) == ')') {
+    					leftRBcount = leftRBcount-1;
+    					if (leftRBcount == 0) {
+    						endInd = i;
+    						break;
 						}
 					}
 				}
 			subStr = str.substring(beginInd+1, endInd-1);
-		} else {
-			subStr = null;
-		}
+    		} else {
+    			subStr = null;
+    		}
     	}
     	return subStr;
     }

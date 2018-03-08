@@ -12,34 +12,4 @@ public class Class_specifier {
       this.short_class_specifier = short_class_specifier;
       this.der_class_specifier = der_class_specifier;
     }
-
-    @Override
-    public boolean equals(Object o) {
-      if (this == o) return true;
-      if (o == null || getClass() != o.getClass()) return false;
-
-      Class_specifier aClass_specifier = (Class_specifier) o;
-      return (long_class_specifier != null ? long_class_specifier.equals(aClass_specifier.long_class_specifier) : aClass_specifier.long_class_specifier == null)
-              || (short_class_specifier != null ? short_class_specifier.equals(aClass_specifier.short_class_specifier) : aClass_specifier.short_class_specifier == null)
-              || (der_class_specifier != null ? der_class_specifier.equals(aClass_specifier.der_class_specifier) : aClass_specifier.der_class_specifier == null);
-    }
-
-    @Override
-    public int hashCode() {
-      int result = long_class_specifier != null ? long_class_specifier.hashCode() : 0;
-      result = 31 * result + (short_class_specifier != null ? short_class_specifier.hashCode() : 0);
-      result = 31 * result + (der_class_specifier != null ? der_class_specifier.hashCode() : 0);
-      return result;
-    }
-
-    @Override
-    public String toString() {
-    	StringBuilder temStr = new StringBuilder();
-    	return temStr.append("Class_specifier{")
-    			     .append("\nlong_class_specifier=").append(long_class_specifier).append('\'')
-    			     .append("\nshort_class_specifier=").append(short_class_specifier).append('\'')
-    			     .append("\nder_class_specifier=").append(der_class_specifier)
-    			     .append('\'').append('}')
-    			     .toString();
-    }
 }
