@@ -63,39 +63,6 @@ public class Declaration {
     		}
     	}
 
-    @Override
-    public boolean equals(Object o) {
-    	if (this == o) return true;
-    	if (o == null || getClass() != o.getClass()) return false;
-
-    	Declaration aDeclaration = (Declaration) o;
-    	if (name != null ? !name.equals(aDeclaration.name) : aDeclaration.name != null) return false;
-    	if (array_subscripts != null ? !array_subscripts.equals(aDeclaration.array_subscripts) : aDeclaration.array_subscripts != null) return false;
-    	return value != null ? value.equals(aDeclaration.value) : aDeclaration.value == null;
-    	}
-
-    @Override
-    public int hashCode() {
-    	int result = name != null ? name.hashCode() : 0;
-    	result = 31 * result + (array_subscripts != null ? array_subscripts.hashCode() : 0);
-    	result = 31 * result + (class_modification != null ? class_modification.hashCode() : 0);
-    	result = 31 * result + (operator != null ? operator.hashCode() : 0);
-    	result = 31 * result + (value != null ? value.hashCode() : 0);
-    	return result;
-    	}
-
-    @Override
-    public String toString() {
-    	StringBuilder temStr = new StringBuilder();
-    	return temStr.append("Declaration{")
-    			     .append("\nname=").append(name).append('\'')
-    			     .append("\nclass_modification=").append(class_modification).append('\'')
-    			     .append("\noperator=").append(operator).append('\'')
-    			     .append("\narray_subscripts=").append(array_subscripts).append('\'')
-    			     .append("\nmodification=").append(value).append('\'').append('}')
-    			     .toString();
-    }
-
     private class ClassMod {
     	private Collection<ClassModList> modifications;
 		private Mod classMod(String classModStr) {

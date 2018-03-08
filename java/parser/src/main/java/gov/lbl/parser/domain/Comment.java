@@ -22,34 +22,7 @@ public class Comment {
     		this.annotation = annCla;
     	}
     }
-
-    @Override
-    public boolean equals(Object o) {
-      if (this == o) return true;
-      if (o == null || getClass() != o.getClass()) return false;
-
-      Comment aComment = (Comment) o;
-      if (string_comment != null ? !string_comment.equals(aComment.string_comment) : aComment.string_comment != null) return false;
-      return annotation != null ? annotation.equals(aComment.annotation) : aComment.annotation == null;
-    }
-
-    @Override
-    public int hashCode() {
-      int result = string_comment != null ? string_comment.hashCode() : 0;
-      result = 31 * result + (annotation != null ? annotation.hashCode() : 0);
-      return result;
-    }
-
-    @Override
-    public String toString() {
-    	StringBuilder temStr = new StringBuilder();
-    	return temStr.append("Comment{")
-    			     .append("\nstring_comment=").append(string_comment).append('\'')
-    			     .append("\nannotation=").append(annotation)
-    			     .append('\'').append('}')
-    			     .toString();
-    }
-
+   
     public class AnnotationClass {
        	String defaultName;
     	String diagram;
@@ -308,26 +281,26 @@ public class Comment {
     	if (!ifEnclosed(str, "(", ")", str.indexOf(keyStr))) {
     		subStr = null;
     	} else {    	
-    	if (str.contains(keyStr)) {
-			int leftRBcount = 0;
-			int beginInd = str.indexOf("(",str.indexOf(keyStr)+keyStr.length()-2);
-			int endInd = 0;
-			for (int i = beginInd; i < str.length(); i++) {
-				if (str.charAt(i) == '(') {
-					leftRBcount = leftRBcount+1;
-					}
-				if (str.charAt(i) == ')') {
-					leftRBcount = leftRBcount-1;
-					if (leftRBcount == 0) {
-						endInd = i;
-						break;
-						}
-					}
-				}
-			subStr = str.substring(beginInd+1, endInd-1);
-		} else {
-			subStr = null;
-		}
+    		if (str.contains(keyStr)) {
+    			int leftRBcount = 0;
+    			int beginInd = str.indexOf("(",str.indexOf(keyStr)+keyStr.length()-2);
+    			int endInd = 0;
+    			for (int i = beginInd; i < str.length(); i++) {
+    				if (str.charAt(i) == '(') {
+    					leftRBcount = leftRBcount+1;
+    				}
+    				if (str.charAt(i) == ')') {
+    					leftRBcount = leftRBcount-1;
+    					if (leftRBcount == 0) {
+    						endInd = i;
+    						break;
+    					}
+    				}
+    			}
+    			subStr = str.substring(beginInd+1, endInd-1);
+    		} else {
+    			subStr = null;
+    		}
     	}
     	return subStr;
     }
