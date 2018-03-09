@@ -276,7 +276,7 @@ public class Comment {
     }
     
     /** access sub-string "subStr" in string "str" with syntax of "keyStr (subStr)" **/
-    private static String findSubStr(String str, String keyStr) {    	
+    public static String findSubStr(String str, String keyStr) {    	
     	String subStr;
     	if (!ifEnclosed(str, "(", ")", str.indexOf(keyStr))) {
     		subStr = null;
@@ -309,7 +309,7 @@ public class Comment {
         such as ( ), [ ], { }, " ". 
         If it is not enclosed and the symbols is completed, then return true, 
         otherwise, return false. **/
-    private static Boolean ifEnclosed(String str, String symbol1, String symbol2, Integer fromInd) {
+    public static Boolean ifEnclosed(String str, String symbol1, String symbol2, Integer fromInd) {
     	Boolean ifEnclosed = false;
     	if (symbol1 == "\"") {
     		if (str.contains(symbol1)) {
@@ -348,7 +348,7 @@ public class Comment {
 
     /** Split string with commas. These commas are independent and not included in
         brackets. **/
-    private static Collection<String> splitAtComma(String str) {
+    public static Collection<String> splitAtComma(String str) {
     	List<String> strSets = new ArrayList<String>();
     	if (!str.contains(",")) {
     		strSets.add(str);
@@ -412,7 +412,7 @@ public class Comment {
     }
  
     
-    private static Collection<Integer> searchComEle(Collection<Integer> list1,
+    public static Collection<Integer> searchComEle(Collection<Integer> list1,
             										Collection<Integer> list2,
             										Collection<Integer> list3,
             										Collection<Integer> list4) {
