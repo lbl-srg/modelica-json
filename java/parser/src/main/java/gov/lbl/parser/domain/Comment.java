@@ -144,7 +144,7 @@ public class Comment {
     			for (int i=0; i<strListToBeRem.size(); i++) {
     				tempStrInList = strListToBeRem.get(i);
     				otherAnnStr = otherAnnStr.replace(tempStrInList, "");
-    				}
+    			}
     			otherAnnStr = otherAnnStr.isEmpty() ? null : otherAnnStr;
     		} else {
     			otherAnnStr = annStr;
@@ -168,8 +168,8 @@ public class Comment {
     			strSets.addAll(splitAtComma(dialogStr));
     			for (int i=0; i<strSets.size(); i++) {
     				int equInd = strSets.get(i).indexOf("=");
-    				name = strSets.get(i).substring(0,equInd-1);
-    				value = strSets.get(i).substring(equInd+1, strSets.get(i).length());
+    				name = strSets.get(i).substring(0,equInd).trim();
+    				value = strSets.get(i).substring(equInd+1, strSets.get(i).length()).trim();
     				diaEle.add(new StrPair(name,value));
     			}
     			this.dialog = diaEle;
@@ -196,19 +196,19 @@ public class Comment {
     				if (othSetEle.contains("(")) {
     					if (othSetEle.indexOf("=") < othSetEle.indexOf("(")) {
     						equInd = othSetEle.indexOf("=");
-    						name = othSetEle.substring(0, equInd-1);
-    	    				value = othSetEle.substring(equInd+1, othSet.get(i).length());
+    						name = othSetEle.substring(0, equInd).trim();
+    	    				value = othSetEle.substring(equInd+1, othSet.get(i).length()).trim();
     	    				othEle.add(new StrPair(name,value));
     					} else {
     						int braInd = othSetEle.indexOf("(");
-    						name = othSetEle.substring(0,braInd-1);
-    						value = othSetEle.substring(braInd+1,othSetEle.length()-2);
+    						name = othSetEle.substring(0,braInd).trim();
+    						value = othSetEle.substring(braInd+1,othSetEle.length()-2).trim();
     						othEle.add(new StrPair(name,value));
     					}
     				} else {
     					equInd = othSetEle.indexOf("=");
-						name = othSetEle.substring(0, equInd-1);
-	    				value = othSetEle.substring(equInd+1, othSet.get(i).length());
+						name = othSetEle.substring(0, equInd).trim();
+	    				value = othSetEle.substring(equInd+1, othSet.get(i).length()).trim();
 	    				othEle.add(new StrPair(name,value));
     				}    				   				
     			}
@@ -265,8 +265,8 @@ public class Comment {
     			}
     			for (int i=0; i<venSet.size(); i++) {
     				int equInd = venSet.get(i).indexOf("=");
-    				name = venSet.get(i).substring(0, equInd-1);
-    				value = venSet.get(i).substring(equInd+1, venSet.get(i).length());
+    				name = venSet.get(i).substring(0, equInd).trim();
+    				value = venSet.get(i).substring(equInd+1, venSet.get(i).length()).trim();
     				venAnnEle.add(new StrPair(name,value));
     			}
     			this.annotation = venAnnEle;
@@ -278,7 +278,8 @@ public class Comment {
     /** access sub-string "subStr" in string "str" with syntax of "keyStr (subStr)" **/
     public static String findSubStr(String str, String keyStr) {    	
     	String subStr;
-    	if (!ifEnclosed(str, "(", ")", str.indexOf(keyStr))) {
+    	if (!ifEnclosed(str, "(", ")", str.indexOf(keyStr))
+    			|| !ifEnclosed(str, "\"", "\"", str.indexOf(keyStr))) {
     		subStr = null;
     	} else {    	
     		if (str.contains(keyStr)) {

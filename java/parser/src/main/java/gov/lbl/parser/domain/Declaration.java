@@ -5,6 +5,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import gov.lbl.parser.domain.Comment;
 
@@ -35,9 +36,7 @@ public class Declaration {
     			} else {
     				temStrL = modification.substring(1,modification.length()-1);
     			}
-        		if (temStrL.charAt(temStrL.length()-1) == ' ') {
-        			temStrL = temStrL.substring(0, temStrL.length()-1);
-        		} 
+    			temStrL.trim();
         		this.operator = null;
         		this.value = temStrR.isEmpty() ? null : temStrR;
         		ClassMod classMod = new ClassMod();
@@ -53,8 +52,9 @@ public class Declaration {
     				this.operator = null;
     				this.value = modification.split("(?<==)")[1];
     			} else if (!matcher2.matches()) {
-    				this.operator = modification.split("(?<=:=)")[0];
-    				this.value = modification.split("(?<=:=)")[1];
+    				String[] temStr = modification.split("(?<=:=)");
+    				this.operator = temStr[0];
+    				this.value = temStr[1];
     				}
     			}
     		}
@@ -78,43 +78,35 @@ public class Declaration {
     			if (!strSets.get(i).contains("(")
     					|| (strSets.get(i).contains("(") && (strSets.get(i).indexOf('(')> strSets.get(i).indexOf('=')))) {
     				if (strSets.get(i).contains("=")) {
-    					tempLeftStr = strSets.get(i).split("=")[0];
-    					tempRightStr = strSets.get(i).split("=")[1];
+    					String[] temStr = strSets.get(i).split("=");
+    					tempLeftStr = temStr[0];
+    					tempRightStr = temStr[1];
     				} else {
     					tempLeftStr = strSets.get(i);
     					tempRightStr = " ";
     				}
     				String[] tempLeftSets = tempLeftStr.split(" ");
     				if (tempLeftSets.length > 1) {
-    					String prefixTemp = "";
-    					for (int j=0; j<tempLeftSets.length-1; j++) {
-    						prefixTemp = prefixTemp + tempLeftSets[j] + " ";
-    					}
-    					prefix = prefixTemp.substring(0, prefixTemp.length()-1);
+    					String[] temStr = Arrays.copyOfRange(tempLeftSets,0,tempLeftSets.length-1);    					
+    					prefix = String.join(" ", temStr);
     					name = tempLeftSets[tempLeftSets.length-1];
     				} else {
     					prefix = null;
     					name = tempLeftSets[0];
-    				}
-    				if (tempRightStr.charAt(tempRightStr.length()-1) == ' ') {
-    					tempRightStr = tempRightStr.substring(0, tempRightStr.length()-1);
-    				}
+    				}   				
+    				tempRightStr.trim();
     				value = tempRightStr.isEmpty() ? null : tempRightStr;
     			} else if ((strSets.get(i).contains("(") && (strSets.get(i).indexOf('(')< strSets.get(i).indexOf('=')))) {    				
     				String variable = strSets.get(i).substring(0,strSets.get(i).indexOf('(')-1);
-    				String[] temStr = variable.split(" ");
-    				if (temStr.length > 1) {
-    					String prefixTemp = "";
-    					for (int j=0; j<temStr.length-1; j++) {
-    						prefixTemp = prefixTemp + temStr[j] + " ";
-    					}
-    					prefix = prefixTemp.substring(0, prefixTemp.length()-1);
+    				String[] temStr = variable.split(" ");  				
+    				if (temStr.length > 1) {   					
+    					String[] temStr2 = Arrays.copyOfRange(temStr, 0, temStr.length-1);
+    					prefix = String.join(" ", temStr2);
     					name = temStr[temStr.length-1];
     				} else {
     					prefix = null;
     					name = (temStr[0] != "per") ? temStr[0] : null;
-    				}
-    				
+    				}   				   				
     				List<Integer> isoEquInd = new ArrayList<Integer>();
     				isoEquInd.addAll(isoEqu(strSets.get(i)));
     				String temStr2 = "";
@@ -145,45 +137,9 @@ public class Declaration {
     		return new Mod(classModStr);
     	}
     }
-
-
-    private static Boolean ifEnclosed(String str, String symbol1, String symbol2, Integer fromInd) {
-    	Boolean ifEnclosed = false;
-    	if (symbol1 == "\"") {
-    		if (str.contains(symbol1)) {
-    			int index = 0;
-    			for (int j = fromInd; j>=0; j--) {
-    				if (str.charAt(j) == symbol1.charAt(0)) {
-    					index = index + 1;
-    				}
-    			}
-    			if (index % 2 == 0) {
-    				ifEnclosed = true;
-    			}
-    		} else {
-    			ifEnclosed = true;
-    		}
-    	} else {
-    		if (str.contains(symbol1)) {
-    			int index = 0;
-    			for (int j=fromInd; j>=0 ; j--) {
-    				if (str.charAt(j) == symbol2.charAt(0)) {
-    					index = index+1;
-    				}
-    				if (str.charAt(j) == symbol1.charAt(0)) {
-    					index = index-1;
-    				}
-    			}
-    			if (index == 0) {
-    				ifEnclosed = true;
-    			}
-    		} else {
-    			ifEnclosed = true;
-    		}
-    	}
-    	return ifEnclosed;
-    }
-
+    
+    /* Check if the input string "str" contains isolated "=" that is not enclosed in bracket.
+     * If it has, then return their positions "equSymbol" in the string.*/
     private static Collection<Integer> isoEqu(String str) {
     	List<Integer> equSymbolTemp = new ArrayList<Integer>();
 		for (int i=1; i<str.length()-2; i++) {
@@ -197,7 +153,7 @@ public class Declaration {
 		}
 		List<Integer> equSymbol = new ArrayList<Integer> ();
 		for (int i=0; i<equSymbolTemp.size(); i++) {
-			if (!ifEnclosed(str, "(", ")", equSymbolTemp.get(i))) {
+			if (!Comment.ifEnclosed(str, "(", ")", equSymbolTemp.get(i))) {
 				equSymbolTemp.set(i, 0);
 			}
 			if (equSymbolTemp.get(i) !=0) {
