@@ -19,40 +19,4 @@ public class Long_class_specifier {
       this.comment = string_comment;
       this.composition = composition;
     }
-
-    @Override
-    public boolean equals(Object o) {
-      if (this == o) return true;
-      if (o == null || getClass() != o.getClass()) return false;
-
-      Long_class_specifier aLong_class_specifier = (Long_class_specifier) o;
-
-      if (name != null ? !name.equals(aLong_class_specifier.name) : aLong_class_specifier.name != null) return false;
-      if (comment != null ? !comment.equals(aLong_class_specifier.comment) : aLong_class_specifier.comment != null) return false;
-      if (composition != null ? !composition.equals(aLong_class_specifier.composition) : aLong_class_specifier.composition != null) return false;
-      return class_modification != null ? class_modification.equals(aLong_class_specifier.class_modification) : aLong_class_specifier.class_modification == null;
-    }
-
-    @Override
-    public int hashCode() {
-      int result = prefix != null ? prefix.hashCode() : 0;
-      result = 31 * result + (name != null ? name.hashCode() : 0);
-      result = 31 * result + (comment != null ? comment.hashCode() : 0);
-      result = 31 * result + (composition != null ? composition.hashCode() : 0);
-      result = 31 * result + (class_modification != null ? class_modification.hashCode() : 0);
-      return result;
-    }
-
-    @Override
-    public String toString() {
-    	StringBuilder temStr = new StringBuilder();
-    	return temStr.append("Long_class_specifier{")
-    			     .append("\nprefix=").append(prefix).append('\'')
-    			     .append("\nname=").append(name).append('\'')
-    			     .append("\nclass_modification=").append(class_modification).append('\'')
-    			     .append("\ncomment=").append(comment).append('\'')
-    			     .append("\ncomposition=").append(composition)
-    			     .append('\'').append('}')
-    			     .toString();
-    }
 }

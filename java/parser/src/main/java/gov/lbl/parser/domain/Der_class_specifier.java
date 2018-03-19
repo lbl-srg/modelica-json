@@ -18,36 +18,4 @@ public class Der_class_specifier {
       this.der_in = ident2;
       this.comment = comment;
     }
-
-    @Override
-    public boolean equals(Object o) {
-      if (this == o) return true;
-      if (o == null || getClass() != o.getClass()) return false;
-
-      Der_class_specifier aDer_class_specifier = (Der_class_specifier) o;
-
-      if (der_left != null ? !der_left.equals(aDer_class_specifier.der_left) : aDer_class_specifier.der_left != null) return false;
-      if (der_in != null ? !der_in.equals(aDer_class_specifier.der_in) : aDer_class_specifier.der_in != null) return false;
-      return comment != null ? comment.equals(aDer_class_specifier.comment) : aDer_class_specifier.comment == null;
-    }
-
-    @Override
-    public int hashCode() {
-      int result = der_left != null ? der_left.hashCode() : 0;
-      result = 31 * result + (der_in != null ? der_in.hashCode() : 0);
-      result = 31 * result + (comment != null ? comment.hashCode() : 0);
-      return result;
-    }
-
-    @Override
-    public String toString() {
-    	StringBuilder temStr = new StringBuilder();
-    	return temStr.append("Der_class_specifier{")
-    			     .append("\nder_left=").append(der_left).append('\'')
-    			     .append("\nname=").append(name).append('\'')
-    			     .append("\nder_in=").append(der_in).append('\'')
-    			     .append("\ncomment=").append(comment)
-    			     .append('\'').append('}')
-    			     .toString();
-    }
 }

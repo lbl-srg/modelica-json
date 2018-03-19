@@ -22,34 +22,7 @@ public class Comment {
     		this.annotation = annCla;
     	}
     }
-
-    @Override
-    public boolean equals(Object o) {
-      if (this == o) return true;
-      if (o == null || getClass() != o.getClass()) return false;
-
-      Comment aComment = (Comment) o;
-      if (string_comment != null ? !string_comment.equals(aComment.string_comment) : aComment.string_comment != null) return false;
-      return annotation != null ? annotation.equals(aComment.annotation) : aComment.annotation == null;
-    }
-
-    @Override
-    public int hashCode() {
-      int result = string_comment != null ? string_comment.hashCode() : 0;
-      result = 31 * result + (annotation != null ? annotation.hashCode() : 0);
-      return result;
-    }
-
-    @Override
-    public String toString() {
-    	StringBuilder temStr = new StringBuilder();
-    	return temStr.append("Comment{")
-    			     .append("\nstring_comment=").append(string_comment).append('\'')
-    			     .append("\nannotation=").append(annotation)
-    			     .append('\'').append('}')
-    			     .toString();
-    }
-
+   
     public class AnnotationClass {
        	String defaultName;
     	String diagram;
@@ -171,7 +144,7 @@ public class Comment {
     			for (int i=0; i<strListToBeRem.size(); i++) {
     				tempStrInList = strListToBeRem.get(i);
     				otherAnnStr = otherAnnStr.replace(tempStrInList, "");
-    				}
+    			}
     			otherAnnStr = otherAnnStr.isEmpty() ? null : otherAnnStr;
     		} else {
     			otherAnnStr = annStr;
@@ -195,8 +168,8 @@ public class Comment {
     			strSets.addAll(splitAtComma(dialogStr));
     			for (int i=0; i<strSets.size(); i++) {
     				int equInd = strSets.get(i).indexOf("=");
-    				name = strSets.get(i).substring(0,equInd-1);
-    				value = strSets.get(i).substring(equInd+1, strSets.get(i).length());
+    				name = strSets.get(i).substring(0,equInd).trim();
+    				value = strSets.get(i).substring(equInd+1, strSets.get(i).length()).trim();
     				diaEle.add(new StrPair(name,value));
     			}
     			this.dialog = diaEle;
@@ -223,19 +196,19 @@ public class Comment {
     				if (othSetEle.contains("(")) {
     					if (othSetEle.indexOf("=") < othSetEle.indexOf("(")) {
     						equInd = othSetEle.indexOf("=");
-    						name = othSetEle.substring(0, equInd-1);
-    	    				value = othSetEle.substring(equInd+1, othSet.get(i).length());
+    						name = othSetEle.substring(0, equInd).trim();
+    	    				value = othSetEle.substring(equInd+1, othSet.get(i).length()).trim();
     	    				othEle.add(new StrPair(name,value));
     					} else {
     						int braInd = othSetEle.indexOf("(");
-    						name = othSetEle.substring(0,braInd-1);
-    						value = othSetEle.substring(braInd+1,othSetEle.length()-2);
+    						name = othSetEle.substring(0,braInd).trim();
+    						value = othSetEle.substring(braInd+1,othSetEle.length()-2).trim();
     						othEle.add(new StrPair(name,value));
     					}
     				} else {
     					equInd = othSetEle.indexOf("=");
-						name = othSetEle.substring(0, equInd-1);
-	    				value = othSetEle.substring(equInd+1, othSet.get(i).length());
+						name = othSetEle.substring(0, equInd).trim();
+	    				value = othSetEle.substring(equInd+1, othSet.get(i).length()).trim();
 	    				othEle.add(new StrPair(name,value));
     				}    				   				
     			}
@@ -292,8 +265,8 @@ public class Comment {
     			}
     			for (int i=0; i<venSet.size(); i++) {
     				int equInd = venSet.get(i).indexOf("=");
-    				name = venSet.get(i).substring(0, equInd-1);
-    				value = venSet.get(i).substring(equInd+1, venSet.get(i).length());
+    				name = venSet.get(i).substring(0, equInd).trim();
+    				value = venSet.get(i).substring(equInd+1, venSet.get(i).length()).trim();
     				venAnnEle.add(new StrPair(name,value));
     			}
     			this.annotation = venAnnEle;
@@ -303,31 +276,32 @@ public class Comment {
     }
     
     /** access sub-string "subStr" in string "str" with syntax of "keyStr (subStr)" **/
-    private static String findSubStr(String str, String keyStr) {    	
+    public static String findSubStr(String str, String keyStr) {    	
     	String subStr;
-    	if (!ifEnclosed(str, "(", ")", str.indexOf(keyStr))) {
+    	if (!ifEnclosed(str, "(", ")", str.indexOf(keyStr))
+    			|| !ifEnclosed(str, "\"", "\"", str.indexOf(keyStr))) {
     		subStr = null;
     	} else {    	
-    	if (str.contains(keyStr)) {
-			int leftRBcount = 0;
-			int beginInd = str.indexOf("(",str.indexOf(keyStr)+keyStr.length()-2);
-			int endInd = 0;
-			for (int i = beginInd; i < str.length(); i++) {
-				if (str.charAt(i) == '(') {
-					leftRBcount = leftRBcount+1;
-					}
-				if (str.charAt(i) == ')') {
-					leftRBcount = leftRBcount-1;
-					if (leftRBcount == 0) {
-						endInd = i;
-						break;
-						}
-					}
-				}
-			subStr = str.substring(beginInd+1, endInd-1);
-		} else {
-			subStr = null;
-		}
+    		if (str.contains(keyStr)) {
+    			int leftRBcount = 0;
+    			int beginInd = str.indexOf("(",str.indexOf(keyStr)+keyStr.length()-2);
+    			int endInd = 0;
+    			for (int i = beginInd; i < str.length(); i++) {
+    				if (str.charAt(i) == '(') {
+    					leftRBcount = leftRBcount+1;
+    				}
+    				if (str.charAt(i) == ')') {
+    					leftRBcount = leftRBcount-1;
+    					if (leftRBcount == 0) {
+    						endInd = i;
+    						break;
+    					}
+    				}
+    			}
+    			subStr = str.substring(beginInd+1, endInd-1);
+    		} else {
+    			subStr = null;
+    		}
     	}
     	return subStr;
     }
@@ -336,7 +310,7 @@ public class Comment {
         such as ( ), [ ], { }, " ". 
         If it is not enclosed and the symbols is completed, then return true, 
         otherwise, return false. **/
-    private static Boolean ifEnclosed(String str, String symbol1, String symbol2, Integer fromInd) {
+    public static Boolean ifEnclosed(String str, String symbol1, String symbol2, Integer fromInd) {
     	Boolean ifEnclosed = false;
     	if (symbol1 == "\"") {
     		if (str.contains(symbol1)) {
@@ -375,7 +349,8 @@ public class Comment {
 
     /** Split string with commas. These commas are independent and not included in
         brackets. **/
-    private static Collection<String> splitAtComma(String str) {
+    public static Collection<String> splitAtComma(String str) {
+    	str.trim();
     	List<String> strSets = new ArrayList<String>();
     	if (!str.contains(",")) {
     		strSets.add(str);
@@ -415,31 +390,24 @@ public class Comment {
     		if (commaInd.size() == 0) {
     			strSets.add(str);
     		} else if (commaInd.size() == 1) {
-    			strSets.add(str.substring(0, commaInd.get(0)));
-    			strSets.add(str.substring(commaInd.get(0)+1, str.length()));
+    			strSets.add(str.substring(0, commaInd.get(0)).trim());
+    			strSets.add(str.substring(commaInd.get(0)+1, str.length()).trim());
     		} else {
     			strSets.add(str.substring(0, commaInd.get(0)));
     			for (int i=0; i<commaInd.size()-1; i++) {
-					strSets.add(str.substring(commaInd.get(i)+1,commaInd.get(i+1)));
+					strSets.add(str.substring(commaInd.get(i)+1,commaInd.get(i+1)).trim());
 				}
-    			strSets.add(str.substring(commaInd.get(commaInd.size()-1)+1, str.length()));
+    			strSets.add(str.substring(commaInd.get(commaInd.size()-1)+1, str.length()).trim());
     		}
     		if (strSets.get(strSets.size()-1).isEmpty()) {
     			strSets.remove(strSets.size()-1);
-    		}
-    		
-    		for (int i=0; i<strSets.size(); i++) {
-    			if (strSets.get(i).charAt(strSets.get(i).length()-1) == ' ') {
-    				String temStr = strSets.get(i);
-    				strSets.set(i, temStr.substring(0,temStr.length()-1));
-    			}
     		}    	  		
     	}
     	return strSets;
     }
  
     
-    private static Collection<Integer> searchComEle(Collection<Integer> list1,
+    public static Collection<Integer> searchComEle(Collection<Integer> list1,
             										Collection<Integer> list2,
             										Collection<Integer> list3,
             										Collection<Integer> list4) {

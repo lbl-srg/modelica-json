@@ -5,6 +5,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
+
+import gov.lbl.parser.domain.Comment;
 
 public class Declaration {
     private String name;
@@ -20,32 +23,25 @@ public class Declaration {
     	this.name = ident;
     	this.array_subscripts = (array_subscripts == null ? null : array_subscripts);
     	if (modification != null) {
-    		if (modification.charAt(0) == '(') {
-    			Pattern pattern1 = Pattern.compile("\\)=");
-    			Pattern pattern2 = Pattern.compile("\\) =");
-    			Pattern pattern3 = Pattern.compile("\\)");
-    			Matcher matcher1 = pattern1.matcher(modification);
-    			Matcher matcher2 = pattern2.matcher(modification);
-    			Matcher matcher3 = pattern3.matcher(modification);
-    			String splitSym = "";
-    			String tempClaStr = "";
-    			String[] splitStr;
-    			if (!matcher1.matches() || !matcher2.matches() || !matcher3.matches()) {
-    				splitSym = (!matcher1.matches()) ? "\\)="
-    					      : ((!matcher2.matches()) ? "\\) =" : "\\)");
-    				splitStr = modification.split(splitSym);
-    				tempClaStr = splitStr[0];
-    				if (splitStr.length > 1) {
-    					this.operator = null;
-    					this.value = splitStr[1];
-    				} else {
-    					this.operator = null;
-    					this.value = null;
-    				}
+    		if (modification.charAt(0) == '(') {    		
+    			List<Integer> equSymbol = new ArrayList<Integer> ();
+        		equSymbol.addAll(isoEqu(modification));
+        		
+        		String temStrL = "";
+        		String temStrR = "";
+        		
+    			if (!equSymbol.isEmpty()) {
+    				temStrL = modification.substring(1, equSymbol.get(0));
+    				temStrR = modification.substring(equSymbol.get(0)+1,modification.length());
+    			} else {
+    				temStrL = modification.substring(1,modification.length()-1);
     			}
-    			ClassMod classMod = new ClassMod();
-    			classMod.classMod(tempClaStr);
-    			this.class_modification = classMod;
+    			temStrL.trim();
+        		this.operator = null;
+        		this.value = temStrR.isEmpty() ? null : temStrR;
+        		ClassMod classMod = new ClassMod();
+    			classMod.classMod(temStrL);
+    			this.class_modification = classMod; 			
     		} else {
     			this.class_modification = null;
     			Pattern pattern1 = Pattern.compile("=");
@@ -56,138 +52,20 @@ public class Declaration {
     				this.operator = null;
     				this.value = modification.split("(?<==)")[1];
     			} else if (!matcher2.matches()) {
-    				this.operator = modification.split("(?<=:=)")[0];
-    				this.value = modification.split("(?<=:=)")[1];
+    				String[] temStr = modification.split("(?<=:=)");
+    				this.operator = temStr[0];
+    				this.value = temStr[1];
     				}
     			}
     		}
     	}
-
-    @Override
-    public boolean equals(Object o) {
-    	if (this == o) return true;
-    	if (o == null || getClass() != o.getClass()) return false;
-
-    	Declaration aDeclaration = (Declaration) o;
-    	if (name != null ? !name.equals(aDeclaration.name) : aDeclaration.name != null) return false;
-    	if (array_subscripts != null ? !array_subscripts.equals(aDeclaration.array_subscripts) : aDeclaration.array_subscripts != null) return false;
-    	return value != null ? value.equals(aDeclaration.value) : aDeclaration.value == null;
-    	}
-
-    @Override
-    public int hashCode() {
-    	int result = name != null ? name.hashCode() : 0;
-    	result = 31 * result + (array_subscripts != null ? array_subscripts.hashCode() : 0);
-    	result = 31 * result + (class_modification != null ? class_modification.hashCode() : 0);
-    	result = 31 * result + (operator != null ? operator.hashCode() : 0);
-    	result = 31 * result + (value != null ? value.hashCode() : 0);
-    	return result;
-    	}
-
-    @Override
-    public String toString() {
-    	StringBuilder temStr = new StringBuilder();
-    	return temStr.append("Declaration{")
-    			     .append("\nname=").append(name).append('\'')
-    			     .append("\nclass_modification=").append(class_modification).append('\'')
-    			     .append("\noperator=").append(operator).append('\'')
-    			     .append("\narray_subscripts=").append(array_subscripts).append('\'')
-    			     .append("\nmodification=").append(value).append('\'').append('}')
-    			     .toString();
-    }
 
     private class ClassMod {
     	private Collection<ClassModList> modifications;
 		private Mod classMod(String classModStr) {
-    		String tempStr = classModStr.substring(1,classModStr.length()-1);
-    		//String tempStr = classModStr.substring(1,classModStr.length()+1);
-    		List<Integer> equSymbolTemp = new ArrayList<Integer>();
-    		for (int i=1; i<tempStr.length()-2; i++) {
-    			if ((tempStr.charAt(i) == '=')
-    					&& (tempStr.charAt(i+1) != '=') && (tempStr.charAt(i-1) != '=')) {
-    				equSymbolTemp.add(i);
-    			}
-    		}
-    		if (tempStr.charAt(tempStr.length()-2) == '=') {
-    			equSymbolTemp.add(tempStr.length()-2);
-    		}
-    		List<Integer> equSymbol = new ArrayList<Integer> ();
-    		for (int i=0; i<equSymbolTemp.size(); i++) {
-    			if (!ifEnclosed(tempStr, "{", "}", equSymbolTemp.get(i))
-    					|| !ifEnclosed(tempStr, "(", ")", equSymbolTemp.get(i))
-    					|| !ifEnclosed(tempStr, "[", "]", equSymbolTemp.get(i))) {
-    				equSymbolTemp.set(i, 0);
-    			}
-    			if (equSymbolTemp.get(i) !=0) {
-    				equSymbol.add(equSymbolTemp.get(i));
-    			}
-    		}
-
     		List<String> strSets = new ArrayList<String>();
-    		if (equSymbol.size() == 1)   {
-    			strSets.add(tempStr);
-    		} else {
-    			List<Integer> commaInd = new ArrayList<Integer>();
-    			List<Integer> fullCommaInd = new ArrayList<Integer> ();
-    			for (int i=0; i<tempStr.length(); i++) {
-    				if (tempStr.charAt(i) == ',') {
-    					fullCommaInd.add(i);
-    				}
-    			}
-    			if (equSymbol.size() > fullCommaInd.size()) {
-    				commaInd = fullCommaInd;
-    			} else {
-    				if (tempStr.contains("{") || tempStr.contains("[") || tempStr.contains("(") || tempStr.contains("\"")) {
-    					List<Integer> cbCommaInd = new ArrayList<Integer> ();
-    					List<Integer> sbCommaInd = new ArrayList<Integer> ();
-    					List<Integer> rbCommaInd = new ArrayList<Integer> ();
-    					List<Integer> quoCommaInd = new ArrayList<Integer> ();
-    					for (int i=0; i<fullCommaInd.size(); i++) {
-    						if (ifEnclosed(tempStr,"{","}",fullCommaInd.get(i))) {
-    							cbCommaInd.add(fullCommaInd.get(i));
-    						}
-    						if (ifEnclosed(tempStr,"[","]",fullCommaInd.get(i))) {
-    							sbCommaInd.add(fullCommaInd.get(i));
-    						}
-    						if (ifEnclosed(tempStr,"(",")",fullCommaInd.get(i))) {
-    							rbCommaInd.add(fullCommaInd.get(i));
-    						}
-    						if (ifEnclosed(tempStr,"\"","\"",fullCommaInd.get(i))) {
-    							quoCommaInd.add(fullCommaInd.get(i));
-    						}
-    					}
-    					commaInd.addAll(searchComEle(cbCommaInd,sbCommaInd,rbCommaInd,quoCommaInd));
-    				} else {
-    					commaInd = fullCommaInd;
-    				}
-    			}
-
-    			if (commaInd.size() == 0) {
-    				strSets.add(tempStr);
-    			} else if (commaInd.size() == 1) {
-					strSets.add(tempStr.substring(0, commaInd.get(0)-1));
-					if (tempStr.charAt(tempStr.length()-1) != ' ') {
-						strSets.add(tempStr.substring(commaInd.get(0)+1, tempStr.length()));
-					} else {
-						strSets.add(tempStr.substring(commaInd.get(0)+1, tempStr.length()-1));
-					}
-				} else {
-					strSets.add(tempStr.substring(0, commaInd.get(0)-1));
-					if (commaInd.size() == 2) {
-						strSets.add(tempStr.substring(commaInd.get(0)+1,commaInd.get(1)-1));
-					} else {
-						for (int i=0; i<commaInd.size()-1; i++) {
-							strSets.add(tempStr.substring(commaInd.get(i)+1,commaInd.get(i+1)-1));
-						}
-					}
-					if (tempStr.charAt(tempStr.length()-1) != ' ') {
-						strSets.add(tempStr.substring(commaInd.get(commaInd.size()-1)+1, tempStr.length()));
-					} else {
-						strSets.add(tempStr.substring(commaInd.get(commaInd.size()-1)+1, tempStr.length()-1));
-					}
-				}
-    		}
-
+    		strSets.addAll(Comment.splitAtComma(classModStr));  		   		
+    		
     		List<ClassModList> modListEle = new ArrayList<ClassModList>();
     		for (int i=0; i<strSets.size(); i++) {
     			String tempLeftStr = "";
@@ -199,41 +77,56 @@ public class Declaration {
         		PerMod per_modification = null;
     			if (!strSets.get(i).contains("(")
     					|| (strSets.get(i).contains("(") && (strSets.get(i).indexOf('(')> strSets.get(i).indexOf('=')))) {
-    				tempLeftStr = strSets.get(i).split("=")[0];
-    				tempRightStr = strSets.get(i).split("=")[1];
+    				if (strSets.get(i).contains("=")) {
+    					String[] temStr = strSets.get(i).split("=");
+    					tempLeftStr = temStr[0];
+    					tempRightStr = temStr[1];
+    				} else {
+    					tempLeftStr = strSets.get(i);
+    					tempRightStr = " ";
+    				}
     				String[] tempLeftSets = tempLeftStr.split(" ");
     				if (tempLeftSets.length > 1) {
-    					String prefixTemp = "";
-    					for (int j=0; j<tempLeftSets.length-1; j++) {
-    						prefixTemp = prefixTemp + tempLeftSets[j] + " ";
-    					}
-    					prefix = prefixTemp.substring(0, prefixTemp.length()-1);
+    					String[] temStr = Arrays.copyOfRange(tempLeftSets,0,tempLeftSets.length-1);    					
+    					prefix = String.join(" ", temStr);
     					name = tempLeftSets[tempLeftSets.length-1];
     				} else {
     					prefix = null;
     					name = tempLeftSets[0];
-    				}
-    				if (tempRightStr.charAt(tempRightStr.length()-1) == ' ') {
-    					tempRightStr = tempRightStr.substring(0, tempRightStr.length()-1);
-    				}
-    				value = tempRightStr;
-    			} else if ((strSets.get(i).contains("(") && (strSets.get(i).indexOf('(')< strSets.get(i).indexOf('=')))) {
-    				String variable = strSets.get(i).substring(0,strSets.get(i).indexOf('(')-1);
-    				if (!variable.equals("per")) {
+    				}   				
+    				tempRightStr.trim();
+    				value = tempRightStr.isEmpty() ? null : tempRightStr.trim();
+    			} else if ((strSets.get(i).contains("(") && (strSets.get(i).indexOf('(')< strSets.get(i).indexOf('=')))) {    				
+    				String variable = strSets.get(i).substring(0,strSets.get(i).indexOf('(')-1).trim();
+    				String[] temStr = variable.split(" ");  				
+    				if (temStr.length > 1) {   					
+    					String[] temStr2 = Arrays.copyOfRange(temStr, 0, temStr.length-1);
+    					prefix = String.join(" ", temStr2);
+    					name = temStr[temStr.length-1];
+    				} else {
     					prefix = null;
-    					name = variable;
+    					name = (temStr[0] != "per") ? temStr[0] : null;
+    				}   				   				
+    				List<Integer> isoEquInd = new ArrayList<Integer>();
+    				isoEquInd.addAll(isoEqu(strSets.get(i)));
+    				String temStr2 = "";
+    				if (!isoEquInd.isEmpty()) {
+    					value = strSets.get(i).substring(isoEquInd.get(0)+1,strSets.get(i).length()).trim();
+    					int index = strSets.get(i).lastIndexOf(')',isoEquInd.get(0));
+    					temStr2 = strSets.get(i).substring(strSets.get(i).indexOf('(')+1, index).trim();
+    				} else {
     					value = null;
-    					String tempStrInU = strSets.get(i).substring(strSets.get(i).indexOf('('), strSets.get(i).length());
+    					int index = strSets.get(i).lastIndexOf(')');
+    					temStr2 = strSets.get(i).substring(strSets.get(i).indexOf('(')+1, index).trim();
+    				}    				 				    				
+    				if (!name.equals("per")) {
     					VariableMod varMod = new VariableMod();
-    					varMod.variableMod(tempStrInU);
+    					varMod.variableMod(temStr2);
     					variable_modification = varMod;
     					per_modification = null;
     				} else {
-    					prefix = null;
-    					name = null;
-    					value = null;
     					PerMod perMod = new PerMod();
-    					perMod.perMod(strSets.get(i).substring(strSets.get(i).indexOf('('), strSets.get(i).length()));
+    					perMod.perMod(temStr2);
     					per_modification = perMod;
     					variable_modification = null;
     				}
@@ -244,45 +137,33 @@ public class Declaration {
     		return new Mod(classModStr);
     	}
     }
-
-
-    private static Boolean ifEnclosed(String str, String symbol1, String symbol2, Integer fromInd) {
-    	Boolean ifEnclosed = false;
-    	if (symbol1 == "\"") {
-    		if (str.contains(symbol1)) {
-    			int index = 0;
-    			for (int j = fromInd; j>=0; j--) {
-    				if (str.charAt(j) == symbol1.charAt(0)) {
-    					index = index + 1;
-    				}
-    			}
-    			if (index % 2 == 0) {
-    				ifEnclosed = true;
-    			}
-    		} else {
-    			ifEnclosed = true;
-    		}
-    	} else {
-    		if (str.contains(symbol1)) {
-    			int index = 0;
-    			for (int j=fromInd; j>=0 ; j--) {
-    				if (str.charAt(j) == symbol2.charAt(0)) {
-    					index = index+1;
-    				}
-    				if (str.charAt(j) == symbol1.charAt(0)) {
-    					index = index-1;
-    				}
-    			}
-    			if (index == 0) {
-    				ifEnclosed = true;
-    			}
-    		} else {
-    			ifEnclosed = true;
-    		}
-    	}
-    	return ifEnclosed;
+    
+    /* Check if the input string "str" contains isolated "=" that is not enclosed in bracket.
+     * If it has, then return their positions "equSymbol" in the string.*/
+    private static Collection<Integer> isoEqu(String str) {
+    	List<Integer> equSymbolTemp = new ArrayList<Integer>();
+		for (int i=1; i<str.length()-2; i++) {
+			if ((str.charAt(i) == '=')
+					&& (str.charAt(i+1) != '=') && (str.charAt(i-1) != '=')) {
+				equSymbolTemp.add(i);
+			}
+		}
+		if (str.charAt(str.length()-2) == '=') {
+			equSymbolTemp.add(str.length()-2);
+		}
+		List<Integer> equSymbol = new ArrayList<Integer> ();
+		for (int i=0; i<equSymbolTemp.size(); i++) {
+			if (!Comment.ifEnclosed(str, "(", ")", equSymbolTemp.get(i))) {
+				equSymbolTemp.set(i, 0);
+			}
+			if (equSymbolTemp.get(i) !=0) {
+				equSymbol.add(equSymbolTemp.get(i));
+			}
+		}
+		return equSymbol;
     }
-
+    
+    
     private static Collection<Integer> searchComEle(Collection<Integer> list1,
     		                                        Collection<Integer> list2,
     		                                        Collection<Integer> list3,

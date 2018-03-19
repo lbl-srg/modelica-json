@@ -597,7 +597,7 @@ public class VisitorOrientedParser implements Parser {
         		ctx.array_subscripts() == null ? null : ctx.array_subscripts().accept(array_subscriptsVisitor);
         ModificationVisitor modificationVisitor = new ModificationVisitor();
         String modification_1 = 
-        		ctx.modification() == null ? null : ctx.modification().accept(modificationVisitor);
+        		ctx.modification() == null ? null : ctx.modification().accept(modificationVisitor);        
         return new Declaration(ident, array_subscripts_1, modification_1);
       }
     }
@@ -676,7 +676,7 @@ public class VisitorOrientedParser implements Parser {
         Element_redeclarationVisitor element_redeclarationVisitor = new Element_redeclarationVisitor();
         String element_redeclaration_1 = 
         		ctx.element_redeclaration() == null ? null : ctx.element_redeclaration().accept(element_redeclarationVisitor);
-        String argStr = (element_redeclaration_1 != null) ? element_redeclaration_1 : element_modification_or_replaceable_1;      
+        String argStr = (element_redeclaration_1 != null) ? element_redeclaration_1 : element_modification_or_replaceable_1;          
         return argStr;
         //return new Argument(element_modification_or_replaceable_1, element_redeclaration_1);
       }
@@ -762,7 +762,7 @@ public class VisitorOrientedParser implements Parser {
         	} else {
         		temStr.append(component_clause1_1);
         	}
-        }
+        }                
         eleRedStr = temStr.toString();
         return eleRedStr;      
         //return new Element_redeclaration(red_dec, each_dec, final_dec, short_class_definition_1, component_clause1_1, element_replaceable_1);
@@ -809,10 +809,12 @@ public class VisitorOrientedParser implements Parser {
         Component_declaration1Visitor component_declaration1Visitor = new Component_declaration1Visitor();
         String component_declaration1_1 = ctx.component_declaration1().accept(component_declaration1Visitor);
         StringBuilder temStr = new StringBuilder();
-        String comCla1Str = temStr.append(type_prefix_1).append(" ")
-        		                  .append(type_specifier_1).append(" ")
+        if (type_prefix_1 != null) {
+        	temStr.append(type_prefix_1).append(" ");
+        }
+        String comCla1Str = temStr.append(type_specifier_1).append(" ")
         		                  .append(component_declaration1_1)
-        		                  .toString();
+        		                  .toString();             
         return comCla1Str;
         //return new Component_clause1(type_prefix_1, type_specifier_1, component_declaration1_1);
       }
@@ -822,9 +824,11 @@ public class VisitorOrientedParser implements Parser {
       @Override
       public String visitComponent_declaration1(@NotNull modelicaParser.Component_declaration1Context ctx) {
         DeclarationVisitor declarationVisitor = new DeclarationVisitor();
-        Declaration declaration_1 = ctx.declaration().accept(declarationVisitor);
+        //Declaration declaration_1 = ctx.declaration().accept(declarationVisitor);
+        String declaration_1 = ctx.declaration().getText();
         CommentVisitor commentVisitor = new CommentVisitor();
-        Comment comment_1 = ctx.comment().accept(commentVisitor);        
+        //Comment comment_1 = ctx.comment().accept(commentVisitor);   
+        String comment_1 = ctx.comment().getText();
         String comStr = String.valueOf(comment_1);
         StringBuilder temStr = new StringBuilder();
         String comDec1Str = temStr.append(declaration_1).append(" ").append(comStr).toString();
