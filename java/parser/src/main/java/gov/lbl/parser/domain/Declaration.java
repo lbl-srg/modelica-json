@@ -95,9 +95,9 @@ public class Declaration {
     					name = tempLeftSets[0];
     				}   				
     				tempRightStr.trim();
-    				value = tempRightStr.isEmpty() ? null : tempRightStr;
+    				value = tempRightStr.isEmpty() ? null : tempRightStr.trim();
     			} else if ((strSets.get(i).contains("(") && (strSets.get(i).indexOf('(')< strSets.get(i).indexOf('=')))) {    				
-    				String variable = strSets.get(i).substring(0,strSets.get(i).indexOf('(')-1);
+    				String variable = strSets.get(i).substring(0,strSets.get(i).indexOf('(')-1).trim();
     				String[] temStr = variable.split(" ");  				
     				if (temStr.length > 1) {   					
     					String[] temStr2 = Arrays.copyOfRange(temStr, 0, temStr.length-1);
@@ -111,13 +111,13 @@ public class Declaration {
     				isoEquInd.addAll(isoEqu(strSets.get(i)));
     				String temStr2 = "";
     				if (!isoEquInd.isEmpty()) {
-    					value = strSets.get(i).substring(isoEquInd.get(0)+1,strSets.get(i).length());
+    					value = strSets.get(i).substring(isoEquInd.get(0)+1,strSets.get(i).length()).trim();
     					int index = strSets.get(i).lastIndexOf(')',isoEquInd.get(0));
-    					temStr2 = strSets.get(i).substring(strSets.get(i).indexOf('(')+1, index);
+    					temStr2 = strSets.get(i).substring(strSets.get(i).indexOf('(')+1, index).trim();
     				} else {
     					value = null;
     					int index = strSets.get(i).lastIndexOf(')');
-    					temStr2 = strSets.get(i).substring(strSets.get(i).indexOf('(')+1, index);
+    					temStr2 = strSets.get(i).substring(strSets.get(i).indexOf('(')+1, index).trim();
     				}    				 				    				
     				if (!name.equals("per")) {
     					VariableMod varMod = new VariableMod();

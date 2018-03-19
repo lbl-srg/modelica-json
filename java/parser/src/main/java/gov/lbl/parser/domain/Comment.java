@@ -350,6 +350,7 @@ public class Comment {
     /** Split string with commas. These commas are independent and not included in
         brackets. **/
     public static Collection<String> splitAtComma(String str) {
+    	str.trim();
     	List<String> strSets = new ArrayList<String>();
     	if (!str.contains(",")) {
     		strSets.add(str);
@@ -389,24 +390,17 @@ public class Comment {
     		if (commaInd.size() == 0) {
     			strSets.add(str);
     		} else if (commaInd.size() == 1) {
-    			strSets.add(str.substring(0, commaInd.get(0)));
-    			strSets.add(str.substring(commaInd.get(0)+1, str.length()));
+    			strSets.add(str.substring(0, commaInd.get(0)).trim());
+    			strSets.add(str.substring(commaInd.get(0)+1, str.length()).trim());
     		} else {
     			strSets.add(str.substring(0, commaInd.get(0)));
     			for (int i=0; i<commaInd.size()-1; i++) {
-					strSets.add(str.substring(commaInd.get(i)+1,commaInd.get(i+1)));
+					strSets.add(str.substring(commaInd.get(i)+1,commaInd.get(i+1)).trim());
 				}
-    			strSets.add(str.substring(commaInd.get(commaInd.size()-1)+1, str.length()));
+    			strSets.add(str.substring(commaInd.get(commaInd.size()-1)+1, str.length()).trim());
     		}
     		if (strSets.get(strSets.size()-1).isEmpty()) {
     			strSets.remove(strSets.size()-1);
-    		}
-    		
-    		for (int i=0; i<strSets.size(); i++) {
-    			if (strSets.get(i).charAt(strSets.get(i).length()-1) == ' ') {
-    				String temStr = strSets.get(i);
-    				strSets.set(i, temStr.substring(0,temStr.length()-1));
-    			}
     		}    	  		
     	}
     	return strSets;

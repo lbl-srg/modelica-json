@@ -217,7 +217,7 @@ public class Composition {
     	private Collection<AnnotationString> annotation;
     	private TemCla simAnnotation(String name, String annStr) {
     		this.name = name;
-    		String annStrTem = annStr.substring(1, annStr.length()-1);
+    		String annStrTem = annStr.substring(1, annStr.length()-1).trim();
     		List<String> strSet = new ArrayList<String>();
     		strSet.addAll(Comment.splitAtComma(annStrTem));
     		List<AnnotationString> annStrSet = new ArrayList<AnnotationString>();
