@@ -28,41 +28,37 @@ public class Declaration {
         		equSymbol.addAll(isoEqu(modification));
         		
         		String temStrL = "";
-        		String temStrR = "";
-        		
+        		String temStrR = "";        		
     			if (!equSymbol.isEmpty()) {
-    				temStrL = modification.substring(1, equSymbol.get(0));
+    				temStrL = modification.substring(1, equSymbol.get(0)-1);
     				temStrR = modification.substring(equSymbol.get(0)+1,modification.length());
     			} else {
     				temStrL = modification.substring(1,modification.length()-1);
     			}
-    			temStrL.trim();
+    			temStrL.trim();  			
         		this.operator = null;
-        		this.value = temStrR.isEmpty() ? null : temStrR;
+        		this.value = temStrR.isEmpty() ? null : temStrR.trim();
         		ClassMod classMod = new ClassMod();
     			classMod.classMod(temStrL);
     			this.class_modification = classMod; 			
     		} else {
     			this.class_modification = null;
-    			Pattern pattern1 = Pattern.compile("=");
-    			Pattern pattern2 = Pattern.compile(":=");
-    			Matcher matcher1 = pattern1.matcher(modification);
-    			Matcher matcher2 = pattern2.matcher(modification);
-    			if (!matcher1.matches()) {
+    			if (modification.contains(":=")) {
+    				this.operator = ":=";
+    				int ind = modification.indexOf(":=");   				
+    				this.value = modification.substring(ind+2,modification.length()).trim();
+    			} else {
     				this.operator = null;
-    				this.value = modification.split("(?<==)")[1];
-    			} else if (!matcher2.matches()) {
-    				String[] temStr = modification.split("(?<=:=)");
-    				this.operator = temStr[0];
-    				this.value = temStr[1];
-    				}
-    			}
+    				int equInd = modification.indexOf("=");
+    				this.value = modification.substring(equInd+1,modification.length()).trim();
+    			}		
     		}
     	}
+    }
 
-    private class ClassMod {
+    public class ClassMod {
     	private Collection<ClassModList> modifications;
-		private Mod classMod(String classModStr) {
+		public Mod classMod(String classModStr) {			
     		List<String> strSets = new ArrayList<String>();
     		strSets.addAll(Comment.splitAtComma(classModStr));  		   		
     		
@@ -161,21 +157,6 @@ public class Declaration {
 			}
 		}
 		return equSymbol;
-    }
-    
-    
-    private static Collection<Integer> searchComEle(Collection<Integer> list1,
-    		                                        Collection<Integer> list2,
-    		                                        Collection<Integer> list3,
-    		                                        Collection<Integer> list4) {
-    	List<Integer> comEle = new ArrayList<Integer> ();
-    	if (list1.size()>0 && list2.size()>0 && list3.size()>0 && list4.size()>0) {
-    		list2.retainAll(list1);
-    		list3.retainAll(list2);
-    		list4.retainAll(list3);
-    		comEle.addAll(list4);
-    	}
-    	return comEle;
     }
 
     private class ClassModList {
