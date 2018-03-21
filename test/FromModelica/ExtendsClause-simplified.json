@@ -1,0 +1,73 @@
+[
+  {
+    "modelicaFile": "./ExtendsClause.mo",
+    "within": "FromModelica",
+    "topClassName": "FromModelica.ExtendsClause",
+    "comment": "model with extends clause",
+    "public": {
+      "parameters": [
+        {
+          "name": "length",
+          "comment": "Length of the pipe",
+          "annotation": {
+            "dialog": {
+              "tab": "General",
+              "group": "Parameters"
+            }
+          },
+          "className": "Modelica.SIunits.Length"
+        }
+      ],
+      "models": [
+        {
+          "prefix": "extends",
+          "name": "Buildings.Controls.OBC.CDL.Continuous.LimPID",
+          "modifications": [
+            {
+              "name": "k",
+              "value": "2",
+              "isFinal": false
+            },
+            {
+              "name": "Ti",
+              "value": "2",
+              "isFinal": false
+            }
+          ],
+          "within": "FromModelica",
+          "className": "Buildings.Controls.OBC.CDL.Continuous.LimPID"
+        },
+        {
+          "name": "gain",
+          "comment": "Constant gain",
+          "modifications": [
+            {
+              "name": "k",
+              "value": "k",
+              "isFinal": true
+            }
+          ],
+          "within": "FromModelica",
+          "className": "Buildings.Controls.OBC.CDL.Continuous.Gain"
+        }
+      ]
+    },
+    "protected": {
+      "parameters": [
+        {
+          "name": "ARound",
+          "value": "dh^2*Modelica.Constants.pi*4",
+          "comment": "Cross sectional area (assuming a round cross section area)",
+          "annotation": {
+            "dialog": {
+              "tab": "General",
+              "group": "Parameters"
+            }
+          },
+          "className": "Modelica.SIunits.Area"
+        }
+      ]
+    },
+    "info": "<html>\ntest...test...test...test...test...\n</html>"
+  }
+]
