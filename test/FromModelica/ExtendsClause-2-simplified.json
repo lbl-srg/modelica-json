@@ -1,6 +1,6 @@
 [
   {
-    "modelicaFile": "./ExtendsClause.mo",
+    "modelicaFile": "./ExtendsClause-2.mo",
     "within": "FromModelica",
     "topClassName": "FromModelica.ExtendsClause",
     "comment": "model with extends clause",
@@ -38,6 +38,32 @@
           "className": "Buildings.Controls.OBC.CDL.Continuous.LimPID"
         },
         {
+          "prefix": "extends",
+          "name": "Buildings.Controls.OBC.CDL.Logical.TrueHoldWithReset",
+          "modifications": [
+            {
+              "prefix": "redeclare",
+              "className": "Buildings.Controls.OBC.CDL.Logical.TrueDelay",
+              "name": "onDelay",
+              "modifications": [
+                {
+                  "name": "delayTime",
+                  "value": "duration",
+                  "isFinal": true
+                }
+              ],
+              "isFinal": false
+            },
+            {
+              "name": "duration",
+              "value": "300",
+              "isFinal": true
+            }
+          ],
+          "within": "FromModelica",
+          "className": "Buildings.Controls.OBC.CDL.Logical.TrueHoldWithReset"
+        },
+        {
           "name": "gain",
           "comment": "Constant gain",
           "modifications": [
@@ -56,7 +82,7 @@
       "parameters": [
         {
           "name": "ARound",
-          "value": "dh^2*Modelica.Constants.pi*4",
+          "value": "dh^2*Modelica.Constants.pi/4",
           "comment": "Cross sectional area (assuming a round cross section area)",
           "annotation": {
             "dialog": {

@@ -14,7 +14,7 @@ public class Extends_clause {
       this.name = name;
       this.annotation  = (annotation == null ? null : annotation);
       if (class_modification != null) {
-    	  if (class_modification.charAt(0) == '(') {   		  
+    	  if (class_modification.charAt(0) == '(') {   	   		  
   			  Declaration test = new Declaration(null, null, class_modification);
   			  String tempStr = class_modification.substring(1,class_modification.length()-1);
   			  Declaration.ClassMod classMod = test.new ClassMod();
