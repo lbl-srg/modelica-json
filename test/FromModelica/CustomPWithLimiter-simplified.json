@@ -7,6 +7,7 @@
     "public": {
       "parameters": [
         {
+          "className": "Real",
           "name": "k",
           "value": "2",
           "comment": "Constant gain",
@@ -15,12 +16,12 @@
               "tab": "General",
               "group": "Parameters"
             }
-          },
-          "className": "Real"
+          }
         }
       ],
       "models": [
         {
+          "className": "Buildings.Controls.OBC.CDL.Continuous.Gain",
           "name": "gain",
           "comment": "Constant gain",
           "modifications": [
@@ -29,34 +30,31 @@
               "value": "k",
               "isFinal": true
             }
-          ],
-          "within": "FromModelica",
-          "className": "Buildings.Controls.OBC.CDL.Continuous.Gain"
+          ]
         },
         {
+          "className": "Buildings.Controls.OBC.CDL.Continuous.Min",
           "name": "minValue",
-          "comment": "Outputs the minimum of its inputs",
-          "within": "FromModelica",
-          "className": "Buildings.Controls.OBC.CDL.Continuous.Min"
+          "comment": "Outputs the minimum of its inputs"
         }
       ],
       "inputs": [
         {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
           "name": "yMax",
-          "comment": "Maximum value of output signal",
-          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealInput"
+          "comment": "Maximum value of output signal"
         },
         {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
           "name": "e",
-          "comment": "Control error",
-          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealInput"
+          "comment": "Control error"
         }
       ],
       "outputs": [
         {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
           "name": "y",
-          "comment": "Control signal",
-          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput"
+          "comment": "Control signal"
         }
       ]
     },

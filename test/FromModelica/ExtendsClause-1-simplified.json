@@ -7,6 +7,7 @@
     "public": {
       "parameters": [
         {
+          "className": "Modelica.SIunits.Length",
           "name": "length",
           "comment": "Length of the pipe",
           "annotation": {
@@ -14,12 +15,12 @@
               "tab": "General",
               "group": "Parameters"
             }
-          },
-          "className": "Modelica.SIunits.Length"
+          }
         }
       ],
       "models": [
         {
+          "className": "Buildings.Controls.OBC.CDL.Continuous.LimPID",
           "prefix": "extends",
           "name": "Buildings.Controls.OBC.CDL.Continuous.LimPID",
           "modifications": [
@@ -33,11 +34,10 @@
               "value": "2",
               "isFinal": false
             }
-          ],
-          "within": "FromModelica",
-          "className": "Buildings.Controls.OBC.CDL.Continuous.LimPID"
+          ]
         },
         {
+          "className": "Buildings.Controls.OBC.CDL.Continuous.Gain",
           "name": "gain",
           "comment": "Constant gain",
           "modifications": [
@@ -46,15 +46,14 @@
               "value": "k",
               "isFinal": true
             }
-          ],
-          "within": "FromModelica",
-          "className": "Buildings.Controls.OBC.CDL.Continuous.Gain"
+          ]
         }
       ]
     },
     "protected": {
       "parameters": [
         {
+          "className": "Modelica.SIunits.Area",
           "name": "ARound",
           "value": "dh^2*Modelica.Constants.pi/4",
           "comment": "Cross sectional area (assuming a round cross section area)",
@@ -63,8 +62,7 @@
               "tab": "General",
               "group": "Parameters"
             }
-          },
-          "className": "Modelica.SIunits.Area"
+          }
         }
       ]
     },
