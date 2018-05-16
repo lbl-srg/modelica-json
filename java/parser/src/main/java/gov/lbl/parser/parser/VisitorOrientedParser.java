@@ -34,8 +34,8 @@ public class VisitorOrientedParser implements Parser {
     private static class Stored_definitionVisitor extends modelicaBaseVisitor<Stored_definition> {
       @Override
       public Stored_definition visitStored_definition(modelicaParser.Stored_definitionContext ctx) {
-        List<String> within_dec = ctx.WITHIN() == null ? null : ctx.WITHIN()           		
-                .stream() 
+        List<String> within_dec = ctx.WITHIN() == null ? null : ctx.WITHIN()
+                .stream()
                 .map(WITHIN -> WITHIN.getText())
                 .collect(toList());
         NameVisitor nameVisitor = new NameVisitor();
@@ -59,7 +59,7 @@ public class VisitorOrientedParser implements Parser {
     private static class Class_definitionVisitor extends modelicaBaseVisitor<Class_definition> {
       @Override
       public Class_definition visitClass_definition(modelicaParser.Class_definitionContext ctx) {
-        String enca_dec = ctx.ENCAPSULATED() == null ? null : ctx.ENCAPSULATED().getText();       
+        String enca_dec = ctx.ENCAPSULATED() == null ? null : ctx.ENCAPSULATED().getText();
         Class_prefixesVisitor class_prefixesVisitor = new Class_prefixesVisitor();
         String class_prefixes_1 = ctx.class_prefixes().accept(class_prefixesVisitor);
         Class_specifierVisitor class_specifierVisitor = new Class_specifierVisitor();
@@ -72,13 +72,13 @@ public class VisitorOrientedParser implements Parser {
       @Override
       public Class_specifier visitClass_specifier(modelicaParser.Class_specifierContext ctx) {
         Long_class_specifierVisitor long_class_specifierVisitor = new Long_class_specifierVisitor();
-        Long_class_specifier long_class_specifier_1 = 
+        Long_class_specifier long_class_specifier_1 =
         		ctx.long_class_specifier() == null ? null : ctx.long_class_specifier().accept(long_class_specifierVisitor);
         Short_class_specifierVisitor short_class_specifierVisitor = new Short_class_specifierVisitor();
-        Short_class_specifier short_class_specifier_1 = 
+        Short_class_specifier short_class_specifier_1 =
         		ctx.short_class_specifier() == null ? null : ctx.short_class_specifier().accept(short_class_specifierVisitor);
         Der_class_specifierVisitor der_class_specifierVisitor = new Der_class_specifierVisitor();
-        Der_class_specifier der_class_specifier_1 = 
+        Der_class_specifier der_class_specifier_1 =
         		ctx.der_class_specifier() == null ? null : ctx.der_class_specifier().accept(der_class_specifierVisitor);
         return new Class_specifier(long_class_specifier_1, short_class_specifier_1, der_class_specifier_1);
       }
@@ -86,32 +86,32 @@ public class VisitorOrientedParser implements Parser {
 
     private static class Class_prefixesVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitClass_prefixes(modelicaParser.Class_prefixesContext ctx) { 	  
-        String partial_dec = 
+      public String visitClass_prefixes(modelicaParser.Class_prefixesContext ctx) {
+        String partial_dec =
         		ctx.PARTIAL() == null ? "" : ctx.PARTIAL().getText();
-        String class_dec = 
+        String class_dec =
         		ctx.CLASS() == null ? "" : ctx.CLASS().getText();
-        String model_dec = 
+        String model_dec =
         		ctx.MODEL() == null ? "" : ctx.MODEL().getText();
-        String block_dec = 
+        String block_dec =
         		ctx.BLOCK() == null ? "" : ctx.BLOCK().getText();
-        String type_dec = 
+        String type_dec =
         		ctx.TYPE() == null ? "" : ctx.TYPE().getText();
-        String package_dec = 
+        String package_dec =
         		ctx.PACKAGE() == null ? "" : ctx.PACKAGE().getText();
-        String operator_dec = 
+        String operator_dec =
         		ctx.OPERATOR() == null ? "" : ctx.OPERATOR().getText();
-        String record_dec = 
+        String record_dec =
         		ctx.RECORD() == null ? "" : ctx.RECORD().getText();
-        String expandable_dec = 
+        String expandable_dec =
         		ctx.EXPANDABLE() == null ? "" : ctx.EXPANDABLE().getText();
-        String connector_dec = 
+        String connector_dec =
         		ctx.CONNECTOR() == null ? "" : ctx.CONNECTOR().getText();
-        String pure_dec = 
+        String pure_dec =
         		ctx.PURE() == null ? "" : ctx.PURE().getText();
-        String impure_dec = 
+        String impure_dec =
         		ctx.IMPURE() == null ? "" : ctx.IMPURE().getText();
-        String function_dec = 
+        String function_dec =
         		ctx.FUNCTION() == null ? "" : ctx.FUNCTION().getText();
         String other_dec;
         if ((!function_dec.isEmpty()) && (connector_dec.isEmpty()) && (record_dec.isEmpty())) {
@@ -121,20 +121,20 @@ public class VisitorOrientedParser implements Parser {
     		} else {
     	        StringBuilder temStr = new StringBuilder();
     			tempStr = temStr.append(operator_dec).append(" ").append(function_dec).toString();
-    		}     	
+    		}
         	if (pure_dec.isEmpty() && impure_dec.isEmpty()) {
-        		other_dec = tempStr;        		       		
+        		other_dec = tempStr;
         	} else {
         		StringBuilder temStr = new StringBuilder();
         		other_dec = temStr.append(pure_dec).append(impure_dec).append(" ").append(tempStr).toString();
-        	}         
+        	}
         } else if ((!connector_dec.isEmpty()) && (function_dec.isEmpty()) && (record_dec.isEmpty())) {
         	StringBuilder temStr = new StringBuilder();
-        	other_dec = (expandable_dec.isEmpty()) ? connector_dec 
+        	other_dec = (expandable_dec.isEmpty()) ? connector_dec
         			                               : (temStr.append(expandable_dec).append(" ").append(connector_dec).toString());
         } else if ((!record_dec.isEmpty()) && (function_dec.isEmpty()) && (connector_dec.isEmpty())) {
         	StringBuilder temStr = new StringBuilder();
-        	other_dec = (operator_dec.isEmpty()) ? record_dec 
+        	other_dec = (operator_dec.isEmpty()) ? record_dec
         			                             : (temStr.append(operator_dec).append(" ").append(record_dec).toString());
         } else {
         	StringBuilder temStr = new StringBuilder();
@@ -147,10 +147,10 @@ public class VisitorOrientedParser implements Parser {
         	other_dec = temStr.toString();
         }
         StringBuilder temStr = new StringBuilder();
-        String claPreStr = 
-        		(!partial_dec.isEmpty()) ? (temStr.append(partial_dec).append(" ").append(other_dec).toString()) 
+        String claPreStr =
+        		(!partial_dec.isEmpty()) ? (temStr.append(partial_dec).append(" ").append(other_dec).toString())
         				                 : other_dec;
-        		
+
         return claPreStr;
       }
     }
@@ -162,14 +162,14 @@ public class VisitorOrientedParser implements Parser {
         		.stream()
         		.map(IDENT -> IDENT.getText())
         		.collect(toList());
-        String extends_dec = 
+        String extends_dec =
         		ctx.EXTENDS() == null ? null : ctx.EXTENDS().getText();
         String_commentVisitor string_commentVisitor = new String_commentVisitor();
         String string_comment_1 = ctx.string_comment().accept(string_commentVisitor);
         CompositionVisitor compositionVisitor = new CompositionVisitor();
         Composition composition_1 = ctx.composition().accept(compositionVisitor);
         Class_modificationVisitor class_modificationVisitor = new Class_modificationVisitor();
-        String class_modification_1 = 
+        String class_modification_1 =
         		ctx.class_modification() == null ? null : ctx.class_modification().accept(class_modificationVisitor);
         return new Long_class_specifier(extends_dec, ident.get(0), string_comment_1, composition_1, class_modification_1);
       }
@@ -178,29 +178,29 @@ public class VisitorOrientedParser implements Parser {
     private static class Short_class_specifierVisitor extends modelicaBaseVisitor<Short_class_specifier> {
       @Override
       public Short_class_specifier visitShort_class_specifier(modelicaParser.Short_class_specifierContext ctx) {
-        String enum_dec = 
+        String enum_dec =
         		ctx.ENUMERATION() == null ? null : ctx.ENUMERATION().getText();
         String ident = ctx.IDENT().getText();
         Base_prefixVisitor base_prefixVisitor = new Base_prefixVisitor();
-        String base_prefix_1 = 
+        String base_prefix_1 =
         		ctx.base_prefix() == null ? null : ctx.base_prefix().accept(base_prefixVisitor);
         Array_subscriptsVisitor array_subscriptsVisitor = new Array_subscriptsVisitor();
-        String array_subscripts_1 = 
+        String array_subscripts_1 =
         		ctx.array_subscripts() == null ? null : ctx.array_subscripts().accept(array_subscriptsVisitor);
         Class_modificationVisitor class_modificationVisitor = new Class_modificationVisitor();
-        String class_modification_1 = 
+        String class_modification_1 =
         		ctx.class_modification() == null ? null : ctx.class_modification().accept(class_modificationVisitor);
-        
+
         CommentVisitor commentVisitor = new CommentVisitor();
-        Comment comment = 
-        		ctx.comment() == null ? null : ctx.comment().accept(commentVisitor);       
+        Comment comment =
+        		ctx.comment() == null ? null : ctx.comment().accept(commentVisitor);
         Enum_listVisitor enum_listVisitor = new Enum_listVisitor();
-        Enum_list enum_list_1 = 
-        		ctx.enum_list() == null ? null : ctx.enum_list().accept(enum_listVisitor);       		       
+        Enum_list enum_list_1 =
+        		ctx.enum_list() == null ? null : ctx.enum_list().accept(enum_listVisitor);
         NameVisitor nameVisitor = new NameVisitor();
-        String name_1 = 
+        String name_1 =
         		ctx.name() == null ? null : ctx.name().accept(nameVisitor);
-        String symCol = 
+        String symCol =
         		ctx.SYMBOL_COLON() == null ? null : ctx.SYMBOL_COLON().getText();
         return new Short_class_specifier(enum_dec, ident, base_prefix_1, name_1, array_subscripts_1,
                                          class_modification_1, comment, enum_list_1);
@@ -215,11 +215,11 @@ public class VisitorOrientedParser implements Parser {
     			.map(IDENT -> IDENT.getText())
     			.collect(toList());
         String ident1 = idents.get(0);
-        List<String> ident2 = idents.subList(1, idents.size());    
+        List<String> ident2 = idents.subList(1, idents.size());
         List<String> comma = ctx.SYMBOL_COMMA() == null ? null : ctx.SYMBOL_COMMA()
         		.stream()
         		.map(SYMBOL_COMMA -> SYMBOL_COMMA.getText())
-        		.collect(toList());      
+        		.collect(toList());
         NameVisitor nameVisitor = new NameVisitor();
         String name_1 = ctx.name().accept(nameVisitor);
         CommentVisitor commentVisitor = new CommentVisitor();
@@ -271,16 +271,16 @@ public class VisitorOrientedParser implements Parser {
         		.stream()
         		.map(PROTECTED -> PROTECTED.getText())
         		.collect(toList());
-        String external_dec = 
+        String external_dec =
         		ctx.EXTERNAL() == null ? null : ctx.EXTERNAL().getText();
         Element_listVisitor element_listVisitor = new Element_listVisitor();
         List<Element_list> element_lists = ctx.element_list()
                 .stream()
                 .map(element_list -> element_list.accept(element_listVisitor))
                 .collect(toList());
-        Element_list element_list1 = element_lists.get(0);        
-        List<Element_list> element_list2 = 
-        		element_lists.size() < 2 ? null : element_lists.subList(1,element_lists.size()); 
+        Element_list element_list1 = element_lists.get(0);
+        List<Element_list> element_list2 =
+        		element_lists.size() < 2 ? null : element_lists.subList(1,element_lists.size());
         Equation_sectionVisitor equation_sectionVisitor = new Equation_sectionVisitor();
         List<Equation_section> equation_section_1 = ctx.equation_section() == null ? null : ctx.equation_section()
                 .stream()
@@ -292,10 +292,10 @@ public class VisitorOrientedParser implements Parser {
                 .map(algorithm_section -> algorithm_section.accept(algorithm_sectionVisitor))
                 .collect(toList());
         Language_specificationVisitor language_specificationVisitor = new Language_specificationVisitor();
-        String language_specification_1 = 
+        String language_specification_1 =
         		ctx.language_specification() == null ? null : ctx.language_specification().accept(language_specificationVisitor);
         External_function_callVisitor external_function_callVisitor = new External_function_callVisitor();
-        String external_function_call_1 = 
+        String external_function_call_1 =
         		ctx.external_function_call() == null ? null : ctx.external_function_call().accept(external_function_callVisitor);
         AnnotationVisitor annotationVisitor = new AnnotationVisitor();
         List<String> annotations = ctx.annotation() == null ? null : ctx.annotation()
@@ -335,17 +335,17 @@ public class VisitorOrientedParser implements Parser {
       public String visitExternal_function_call(modelicaParser.External_function_callContext ctx) {
     	  String ident = ctx.IDENT().getText();
     	  Component_referenceVisitor component_referenceVisitor = new Component_referenceVisitor();
-    	  String component_reference_1 = 
+    	  String component_reference_1 =
     			  ctx.component_reference() == null ? null : ctx.component_reference().accept(component_referenceVisitor);
     	  Expression_listVisitor expression_listVisitor = new Expression_listVisitor();
-    	  String expression_list_1 = 
+    	  String expression_list_1 =
     			  ctx.expression_list() == null ? "" : ctx.expression_list().accept(expression_listVisitor);
     	  StringBuilder temStr1 = new StringBuilder();
-    	  StringBuilder temStr2 = new StringBuilder();    	    	  
-    	  String extFunCalStr = (component_reference_1 != null) 
+    	  StringBuilder temStr2 = new StringBuilder();
+    	  String extFunCalStr = (component_reference_1 != null)
     			  ? (temStr1.append(component_reference_1).append("=").append(ident).append("(").append(expression_list_1).append(")").toString())
     			  : (temStr2.append(ident).append("(").append(expression_list_1).append(")").toString());
-    	  return extFunCalStr;   
+    	  return extFunCalStr;
     	  //return new External_function_call(ident, component_reference_1, expression_list_1);
       }
     }
@@ -365,15 +365,15 @@ public class VisitorOrientedParser implements Parser {
     private static class ElementVisitor extends modelicaBaseVisitor<Element> {
       @Override
       public Element visitElement(modelicaParser.ElementContext ctx) {
-        String red_dec = 
+        String red_dec =
         		ctx.REDECLARE() == null ? null : ctx.REDECLARE().getText();
-        String final_dec = 
+        String final_dec =
         		ctx.FINAL() == null ? null : ctx.FINAL().getText();
-        String inner_dec = 
+        String inner_dec =
         		ctx.INNER() == null ? null : ctx.INNER().getText();
-        String outer_der = 
+        String outer_der =
         		ctx.OUTER() == null ? null : ctx.OUTER().getText();
-        String rep_dec = 
+        String rep_dec =
         		ctx.REPLACEABLE() == null ? null : ctx.REPLACEABLE().getText();
         Class_definition class_definition1;
         Class_definition class_definition2;
@@ -381,34 +381,34 @@ public class VisitorOrientedParser implements Parser {
         Component_clause component_clause2;
         if (rep_dec != null) {
           Class_definitionVisitor class_definitionVisitor = new Class_definitionVisitor();
-          class_definition2 = 
+          class_definition2 =
         		  ctx.class_definition() == null ? null : ctx.class_definition().accept(class_definitionVisitor);
           Component_clauseVisitor component_clauseVisitor = new Component_clauseVisitor();
-          component_clause2 = 
+          component_clause2 =
         		  ctx.component_clause() == null ? null : ctx.component_clause().accept(component_clauseVisitor);
           class_definition1 = null;
           component_clause1 = null;
         } else {
           Class_definitionVisitor class_definitionVisitor = new Class_definitionVisitor();
-          class_definition1 = 
+          class_definition1 =
         		  ctx.class_definition() == null ? null : ctx.class_definition().accept(class_definitionVisitor);
           Component_clauseVisitor component_clauseVisitor = new Component_clauseVisitor();
-          component_clause1 = 
+          component_clause1 =
         		  ctx.component_clause() == null ? null : ctx.component_clause().accept(component_clauseVisitor);
           class_definition2 = null;
           component_clause2 = null;
         }
         Import_clauseVisitor import_clauseVisitor = new Import_clauseVisitor();
-        Import_clause import_clause_1 = 
+        Import_clause import_clause_1 =
         		ctx.import_clause() == null ? null : ctx.import_clause().accept(import_clauseVisitor);
         Extends_clauseVisitor extends_clauseVisitor = new Extends_clauseVisitor();
-        Extends_clause extends_clause_1 = 
+        Extends_clause extends_clause_1 =
         		ctx.extends_clause() == null ? null : ctx.extends_clause().accept(extends_clauseVisitor);
         Constraining_clauseVisitor constraining_clauseVisitor = new Constraining_clauseVisitor();
-        String constraining_clause_1 = 
+        String constraining_clause_1 =
         		ctx.constraining_clause() == null ? null : ctx.constraining_clause().accept(constraining_clauseVisitor);
         CommentVisitor commentVisitor = new CommentVisitor();
-        Comment comment_1 = 
+        Comment comment_1 =
         		ctx.comment() == null ? null : ctx.comment().accept(commentVisitor);
         return new Element(red_dec, final_dec, inner_dec, outer_der, rep_dec, import_clause_1,
                            extends_clause_1, class_definition1, class_definition2,
@@ -420,15 +420,16 @@ public class VisitorOrientedParser implements Parser {
       @Override
       public Import_clause visitImport_clause(modelicaParser.Import_clauseContext ctx) {
         String import_dec = ctx.IMPORT().getText();
-        String ident = 
+        String ident =
         		ctx.IDENT() == null ? null : ctx.IDENT().getText();
-        String dotStar = 
+        String dotStar =
         		ctx.SYMBOL_DOTSTAR() == null ? null : ctx.SYMBOL_DOTSTAR().getText();
         Import_listVisitor import_listVisitor = new Import_listVisitor();
-        String import_list_1 = 
+        String import_list_1 =
         		ctx.import_list() == null ? null : ctx.import_list().accept(import_listVisitor);
         CommentVisitor commentVisitor = new CommentVisitor();
-        Comment comment_1 = ctx.comment().accept(commentVisitor);
+        Comment comment_1 =
+            ctx.comment().getText().length() == 0 ? null : ctx.comment().accept(commentVisitor);
         NameVisitor nameVisitor = new NameVisitor();
         String name_1 = ctx.name().accept(nameVisitor);
         return new Import_clause(import_dec, ident, dotStar, name_1, import_list_1, comment_1);
@@ -463,11 +464,11 @@ public class VisitorOrientedParser implements Parser {
         NameVisitor nameVisitor = new NameVisitor();
         String name_1 = ctx.name().accept(nameVisitor);
         Class_modificationVisitor class_modificationVisitor = new Class_modificationVisitor();
-        String class_modification_1 = 
+        String class_modification_1 =
         		ctx.class_modification() == null ? null : ctx.class_modification().accept(class_modificationVisitor);
         AnnotationVisitor annotationVisitor = new AnnotationVisitor();
-        String annotation_1 = 
-        		ctx.annotation() == null ? null : ctx.annotation().accept(annotationVisitor);      
+        String annotation_1 =
+        		ctx.annotation() == null ? null : ctx.annotation().accept(annotationVisitor);
         return new Extends_clause(ext_dec, name_1, class_modification_1, annotation_1);
       }
     }
@@ -479,7 +480,7 @@ public class VisitorOrientedParser implements Parser {
         NameVisitor nameVisitor = new NameVisitor();
         String name_1 = ctx.name().accept(nameVisitor);
         Class_modificationVisitor class_modificationVisitor = new Class_modificationVisitor();
-        String class_modification_1 = 
+        String class_modification_1 =
         		ctx.class_modification() == null ? null : ctx.class_modification().accept(class_modificationVisitor);
         StringBuilder temStr = new StringBuilder();
         String conClaStr = temStr.append(constrain_dec).append(" ").append(name_1).toString();
@@ -494,12 +495,12 @@ public class VisitorOrientedParser implements Parser {
       @Override
       public Component_clause visitComponent_clause(modelicaParser.Component_clauseContext ctx) {
         Type_prefixVisitor type_prefixVisitor = new Type_prefixVisitor();
-        String type_prefix_1 = 
+        String type_prefix_1 =
         		ctx.type_prefix() == null ? null : ctx.type_prefix().accept(type_prefixVisitor);
         Type_specifierVisitor type_specifierVisitor = new Type_specifierVisitor();
         String type_specifier_1 = ctx.type_specifier().accept(type_specifierVisitor);
         Array_subscriptsVisitor array_subscriptsVisitor = new Array_subscriptsVisitor();
-        String array_subscripts_1 = 
+        String array_subscripts_1 =
         		ctx.array_subscripts() == null ? null : ctx.array_subscripts().accept(array_subscriptsVisitor);
         Component_listVisitor component_listVisitor = new Component_listVisitor();
         Component_list component_list_1 = ctx.component_list().accept(component_listVisitor);
@@ -510,28 +511,28 @@ public class VisitorOrientedParser implements Parser {
     private static class Type_prefixVisitor extends modelicaBaseVisitor<String> {
       @Override
       public String visitType_prefix(modelicaParser.Type_prefixContext ctx) {
-    	  String flow_dec = 
+    	  String flow_dec =
     			  ctx.FLOW() == null ? null : ctx.FLOW().getText();
-    	  String stream_dec = 
+    	  String stream_dec =
     			  ctx.STREAM() == null ? null : ctx.STREAM().getText();
-    	  String disc_dec = 
+    	  String disc_dec =
     			  ctx.DISCRETE() == null ? null : ctx.DISCRETE().getText();
-    	  String par_dec = 
+    	  String par_dec =
     			  ctx.PARAMETER() == null ? null : ctx.PARAMETER().getText();
-    	  String con_dec = 
+    	  String con_dec =
     			  ctx.CONSTANT() == null ? null : ctx.CONSTANT().getText();
-    	  String in_dec = 
+    	  String in_dec =
     			  ctx.INPUT() == null ? null : ctx.INPUT().getText();
-    	  String out_dec = 
+    	  String out_dec =
     			  ctx.OUTPUT() == null ? null : ctx.OUTPUT().getText();
-    	  String prefix = (flow_dec != null) ? flow_dec 
+    	  String prefix = (flow_dec != null) ? flow_dec
         		        	: (stream_dec != null ? stream_dec
-        		        			: (disc_dec != null ? disc_dec 
-        		        					: (par_dec != null ? par_dec 
+        		        			: (disc_dec != null ? disc_dec
+        		        					: (par_dec != null ? par_dec
         		        							: (con_dec != null ? con_dec
         		        									: (in_dec != null ? in_dec
         		        											: out_dec)))));
-    	  return prefix;        
+    	  return prefix;
     	  //return new Type_prefix(flow_dec, stream_dec, disc_dec, par_dec,
     	  //                       con_dec, in_dec, out_dec);
       }
@@ -565,10 +566,10 @@ public class VisitorOrientedParser implements Parser {
         DeclarationVisitor declarationVisitor = new DeclarationVisitor();
         Declaration declaration_1 = ctx.declaration().accept(declarationVisitor);
         Condition_attributeVisitor condition_attributeVisitor = new Condition_attributeVisitor();
-        String condition_attribute_1 = 
+        String condition_attribute_1 =
         		ctx.condition_attribute() == null ? null : ctx.condition_attribute().accept(condition_attributeVisitor);
         CommentVisitor commentVisitor = new CommentVisitor();
-        Comment comment_1 = 
+        Comment comment_1 =
         		ctx.comment() == null ? null : ctx.comment().accept(commentVisitor);
         return new Component_declaration(declaration_1, condition_attribute_1, comment_1);
       }
@@ -592,30 +593,30 @@ public class VisitorOrientedParser implements Parser {
       public Declaration visitDeclaration(modelicaParser.DeclarationContext ctx) {
         String ident = ctx.IDENT().getText();
         Array_subscriptsVisitor array_subscriptsVisitor = new Array_subscriptsVisitor();
-        String array_subscripts_1 = 
+        String array_subscripts_1 =
         		ctx.array_subscripts() == null ? null : ctx.array_subscripts().accept(array_subscriptsVisitor);
         ModificationVisitor modificationVisitor = new ModificationVisitor();
-        String modification_1 = 
-        		ctx.modification() == null ? null : ctx.modification().accept(modificationVisitor);        
+        String modification_1 =
+        		ctx.modification() == null ? null : ctx.modification().accept(modificationVisitor);
         return new Declaration(ident, array_subscripts_1, modification_1);
       }
     }
 
     private static class ModificationVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitModification(modelicaParser.ModificationContext ctx) {    	  
+      public String visitModification(modelicaParser.ModificationContext ctx) {
         Class_modificationVisitor class_modificationVisitor = new Class_modificationVisitor();
-        String class_modification_1 = 
+        String class_modification_1 =
         		ctx.class_modification() == null ? null : ctx.class_modification().accept(class_modificationVisitor);
         ExpressionVisitor expressionVisitor = new ExpressionVisitor();
-        String expression_1 = 
+        String expression_1 =
         		ctx.expression() == null ? null : ctx.expression().accept(expressionVisitor);
         String eqSymb = ctx.SYMBOL_EQUAL() == null ? null : ctx.SYMBOL_EQUAL().getText();
         String colEqSymb = ctx.SYMBOL_COLONEQUAL() == null ? null : ctx.SYMBOL_COLONEQUAL().getText();
         String modStr = "";
         StringBuilder temStr = new StringBuilder();
         if (class_modification_1 != null) {
-        	if (expression_1 != null) {        		
+        	if (expression_1 != null) {
         		modStr = temStr.append(class_modification_1).append("=").append(expression_1).toString();
         	} else {
         		modStr = class_modification_1;
@@ -624,8 +625,8 @@ public class VisitorOrientedParser implements Parser {
         	modStr = temStr.append(eqSymb).append(expression_1).toString();
         } else if (colEqSymb != null && expression_1 != null) {
         	modStr = temStr.append(colEqSymb).append(expression_1).toString();
-        }        
-        return modStr;       
+        }
+        return modStr;
         // return new Modification(class_modification_1, eqSymb, colEqSymb, expression_1);
       }
     }
@@ -634,10 +635,10 @@ public class VisitorOrientedParser implements Parser {
       @Override
       public String visitClass_modification(modelicaParser.Class_modificationContext ctx) {
         Argument_listVisitor argument_listVisitor = new Argument_listVisitor();
-        String argument_list_1 = 
+        String argument_list_1 =
         		ctx.argument_list() == null ? null : ctx.argument_list().accept(argument_listVisitor);
         StringBuilder temStr = new StringBuilder();
-        String claModStr = temStr.append("(").append(argument_list_1).append(")").toString();       
+        String claModStr = temStr.append("(").append(argument_list_1).append(")").toString();
         return claModStr;
         //return new Class_modification(argument_list_1);
       }
@@ -658,8 +659,8 @@ public class VisitorOrientedParser implements Parser {
         	for (int i=1; i<argument_1.size(); i++) {
         		temStr.append(",").append(argument_1.get(i));
         	}
-        }   
-        argLisStr = temStr.toString();       
+        }
+        argLisStr = temStr.toString();
         return argLisStr;
         //return new Argument_list(argument_1);
       }
@@ -669,12 +670,12 @@ public class VisitorOrientedParser implements Parser {
       @Override
       public String visitArgument(modelicaParser.ArgumentContext ctx) {
         Element_modification_or_replaceableVisitor element_modification_or_replaceableVisitor = new Element_modification_or_replaceableVisitor();
-        String element_modification_or_replaceable_1 = 
+        String element_modification_or_replaceable_1 =
         		ctx.element_modification_or_replaceable() == null ? null : ctx.element_modification_or_replaceable().accept(element_modification_or_replaceableVisitor);
         Element_redeclarationVisitor element_redeclarationVisitor = new Element_redeclarationVisitor();
-        String element_redeclaration_1 = 
+        String element_redeclaration_1 =
         		ctx.element_redeclaration() == null ? null : ctx.element_redeclaration().accept(element_redeclarationVisitor);
-        String argStr = (element_redeclaration_1 != null) ? element_redeclaration_1 : element_modification_or_replaceable_1;         
+        String argStr = (element_redeclaration_1 != null) ? element_redeclaration_1 : element_modification_or_replaceable_1;
         return argStr;
         //return new Argument(element_modification_or_replaceable_1, element_redeclaration_1);
       }
@@ -683,23 +684,23 @@ public class VisitorOrientedParser implements Parser {
     private static class Element_modification_or_replaceableVisitor extends modelicaBaseVisitor<String> {
       @Override
       public String visitElement_modification_or_replaceable(modelicaParser.Element_modification_or_replaceableContext ctx) {
-        String each_dec = 
+        String each_dec =
         		ctx.EACH() == null ? null : ctx.EACH().getText();
-        String final_dec = 
+        String final_dec =
         		ctx.FINAL() == null ? null : ctx.FINAL().getText();
         Element_modificationVisitor element_modificationVisitor = new Element_modificationVisitor();
-        String element_modification_1 = 
+        String element_modification_1 =
         		ctx.element_modification() == null ? null : ctx.element_modification().accept(element_modificationVisitor);
         Element_replaceableVisitor element_replaceableVisitor = new Element_replaceableVisitor();
-        String element_replaceable_1 = 
+        String element_replaceable_1 =
         		ctx.element_replaceable() == null ? null : ctx.element_replaceable().accept(element_replaceableVisitor);
         String eleModRep = "";
         StringBuilder temStr = new StringBuilder();
         temStr.append(eleModRep);
         if (each_dec != null) {temStr.append(each_dec).append(" ");}
         if (final_dec != null) {temStr.append(final_dec).append(" ");}
-        if (element_modification_1 != null) {       	
-        	temStr.append(element_modification_1);      	
+        if (element_modification_1 != null) {
+        	temStr.append(element_modification_1);
         } else {
         	temStr.append(element_replaceable_1);
         }
@@ -715,17 +716,17 @@ public class VisitorOrientedParser implements Parser {
         NameVisitor nameVisitor = new NameVisitor();
         String name_1 = ctx.name().accept(nameVisitor);
         ModificationVisitor modificationVisitor = new ModificationVisitor();
-        String modification_1 = 
-        		ctx.modification() == null ? null : ctx.modification().accept(modificationVisitor);        
+        String modification_1 =
+        		ctx.modification() == null ? null : ctx.modification().accept(modificationVisitor);
         //String modStr = String.valueOf(modification_1);
         String_commentVisitor string_commentVisitor = new String_commentVisitor();
         String string_comment_1 = ctx.string_comment().accept(string_commentVisitor);
         StringBuilder temStr1 = new StringBuilder();
         StringBuilder temStr2 = new StringBuilder();
-        String eleModStr = (modification_1 == null) 
+        String eleModStr = (modification_1 == null)
         		           ? (temStr1.append(name_1).append(" ").append(string_comment_1).toString())
         		           : (temStr2.append(name_1).append(" ").append(modification_1).append(" ").append(string_comment_1).toString());
-        return eleModStr;		    
+        return eleModStr;
         //return new Element_modification(name_1, modification_1, string_comment_1);
       }
     }
@@ -734,18 +735,18 @@ public class VisitorOrientedParser implements Parser {
       @Override
       public String visitElement_redeclaration(modelicaParser.Element_redeclarationContext ctx) {
         String red_dec = ctx.REDECLARE().getText();
-        String each_dec = 
+        String each_dec =
         		ctx.EACH() == null ? null : ctx.EACH().getText();
-        String final_dec = 
+        String final_dec =
         		ctx.FINAL() == null ? null : ctx.FINAL().getText();
         Short_class_definitionVisitor short_class_definitionVisitor = new Short_class_definitionVisitor();
-        String shoClaDefStr = 
+        String shoClaDefStr =
         		ctx.short_class_definition() == null ? null : ctx.short_class_definition().accept(short_class_definitionVisitor);
-        Component_clause1Visitor component_clause1Visitor = new Component_clause1Visitor();       
-        String component_clause1_1 = 
+        Component_clause1Visitor component_clause1Visitor = new Component_clause1Visitor();
+        String component_clause1_1 =
         		ctx.component_clause1() == null ? null : ctx.component_clause1().accept(component_clause1Visitor);
         Element_replaceableVisitor element_replaceableVisitor = new Element_replaceableVisitor();
-        String element_replaceable_1 = 
+        String element_replaceable_1 =
         		ctx.element_replaceable() == null ? null : ctx.element_replaceable().accept(element_replaceableVisitor);
         StringBuilder temStr = new StringBuilder();
         String eleRedStr = temStr.append(red_dec).append(" ").toString();
@@ -759,9 +760,9 @@ public class VisitorOrientedParser implements Parser {
         	} else {
         		temStr.append(component_clause1_1);
         	}
-        }                
-        eleRedStr = temStr.toString();        
-        return eleRedStr;      
+        }
+        eleRedStr = temStr.toString();
+        return eleRedStr;
         //return new Element_redeclaration(red_dec, each_dec, final_dec, short_class_definition_1, component_clause1_1, element_replaceable_1);
       }
     }
@@ -771,13 +772,13 @@ public class VisitorOrientedParser implements Parser {
       public String visitElement_replaceable(modelicaParser.Element_replaceableContext ctx) {
         String rep_dec = ctx.REPLACEABLE().getText();
         Short_class_definitionVisitor short_class_definitionVisitor = new Short_class_definitionVisitor();
-        String shoClaDefStr = 
+        String shoClaDefStr =
         		ctx.short_class_definition() == null ? null : ctx.short_class_definition().accept(short_class_definitionVisitor);
         Component_clause1Visitor component_clause1Visitor = new Component_clause1Visitor();
-        String component_clause1_1 = 
+        String component_clause1_1 =
         		ctx.component_clause1() == null ? null : ctx.component_clause1().accept(component_clause1Visitor);
         Constraining_clauseVisitor constraining_clauseVisitor = new Constraining_clauseVisitor();
-        String constraining_clause_1 = 
+        String constraining_clause_1 =
         		ctx.constraining_clause() == null ? null : ctx.constraining_clause().accept(constraining_clauseVisitor);
         StringBuilder temStr = new StringBuilder();
         String eleRepStr = temStr.append(rep_dec).append(" ").toString();
@@ -810,7 +811,7 @@ public class VisitorOrientedParser implements Parser {
         }
         String comCla1Str = temStr.append(type_specifier_1).append(" ")
         		                  .append(component_declaration1_1)
-        		                  .toString();           
+        		                  .toString();
         return comCla1Str;
         //return new Component_clause1(type_prefix_1, type_specifier_1, component_declaration1_1);
       }
@@ -826,14 +827,14 @@ public class VisitorOrientedParser implements Parser {
     		  int a = ctx.declaration().start.getStartIndex();
     	        int b = ctx.declaration().stop.getStopIndex();
     	        Interval interval = new Interval(a,b);
-    	        CharStream decStr = ctx.declaration().start.getInputStream();       
+    	        CharStream decStr = ctx.declaration().start.getInputStream();
     	        declaration_1 = decStr.getText(interval).trim();
     	  }
-    	  
+
           String comStr = ctx.comment().getText();
           StringBuilder temStr = new StringBuilder();
           String comDec1Str = temStr.append(declaration_1).append(" ").append(comStr).toString();
-        
+
           return comDec1Str;
         //return new Component_declaration1(declaration_1, comment_1);
       }
@@ -843,12 +844,12 @@ public class VisitorOrientedParser implements Parser {
       @Override
       public String visitShort_class_definition(modelicaParser.Short_class_definitionContext ctx) {
         Class_prefixesVisitor class_prefixesVisitor = new Class_prefixesVisitor();
-        String class_prefixes_1 
+        String class_prefixes_1
         	= ctx.class_prefixes().accept(class_prefixesVisitor);
         Short_class_specifierVisitor short_class_specifierVisitor = new Short_class_specifierVisitor();
         Short_class_specifier shortClaSpe = ctx.short_class_specifier().accept(short_class_specifierVisitor);
         String shortClaSpeStr;
-        String comeStr;       
+        String comeStr;
     	if (shortClaSpe.comment != null) {
     		if (shortClaSpe.comment.string_comment == null && shortClaSpe.comment.annotation == null) {
     			comeStr = "";
@@ -861,7 +862,7 @@ public class VisitorOrientedParser implements Parser {
     			comeStr = shortClaSpe.comment.string_comment;
     		} else {
     			StringBuilder temStr = new StringBuilder();
-    			comeStr = temStr.append(shortClaSpe.comment.string_comment).append(" ") 
+    			comeStr = temStr.append(shortClaSpe.comment.string_comment).append(" ")
     					        .append("annotation (")
     					        .append(shortClaSpe.comment.annotation.toString()).append(")")
     					        .toString();
@@ -869,19 +870,19 @@ public class VisitorOrientedParser implements Parser {
     	} else {
     		comeStr = "";
     	}
-        if (shortClaSpe.base_prefix != null || shortClaSpe.inputName != null) {     
+        if (shortClaSpe.base_prefix != null || shortClaSpe.inputName != null) {
         	StringBuilder temStr = new StringBuilder();
         	shortClaSpeStr = temStr.append(shortClaSpe.className).append(" =")
-        			.append((shortClaSpe.base_prefix == null ? "" : (shortClaSpe.base_prefix+ " "))) 
-        			.append((shortClaSpe.inputName == null ? "" : (shortClaSpe.inputName+" "))) 
-        			.append((shortClaSpe.array_subscripts == null ? "" : (shortClaSpe.array_subscripts+" "))) 
-        			.append((shortClaSpe.class_modification == null ? "" : (shortClaSpe.class_modification+" "))) 
+        			.append((shortClaSpe.base_prefix == null ? "" : (shortClaSpe.base_prefix+ " ")))
+        			.append((shortClaSpe.inputName == null ? "" : (shortClaSpe.inputName+" ")))
+        			.append((shortClaSpe.array_subscripts == null ? "" : (shortClaSpe.array_subscripts+" ")))
+        			.append((shortClaSpe.class_modification == null ? "" : (shortClaSpe.class_modification+" ")))
         			.append(comeStr)
-        			.toString();      	
+        			.toString();
         } else {
         	String listStr;
         	if (shortClaSpe.list_colon == null) {
-        		listStr = shortClaSpe.enum_list == null ? "" : shortClaSpe.enum_list.toString();        	
+        		listStr = shortClaSpe.enum_list == null ? "" : shortClaSpe.enum_list.toString();
         	} else {
         		listStr = shortClaSpe.list_colon;
         	}
@@ -889,9 +890,9 @@ public class VisitorOrientedParser implements Parser {
         	shortClaSpeStr = temStr.append(shortClaSpe.className).append(" =")
         			               .append(shortClaSpe.prefix).append("(").append(listStr).append(")")
         			               .append(comeStr).toString();
-        }         
+        }
         StringBuilder temStr = new StringBuilder();
-        String shoClaDef = temStr.append(class_prefixes_1).append(" ").append(shortClaSpeStr).toString();     
+        String shoClaDef = temStr.append(class_prefixes_1).append(" ").append(shortClaSpeStr).toString();
         return shoClaDef;
         //return new Short_class_definition(class_prefixes_1, short_class_specifier_1);
       }
@@ -900,7 +901,7 @@ public class VisitorOrientedParser implements Parser {
     private static class Equation_sectionVisitor extends modelicaBaseVisitor<Equation_section> {
       @Override
       public Equation_section visitEquation_section(modelicaParser.Equation_sectionContext ctx) {
-        String init_dec = 
+        String init_dec =
         		ctx.INITIAL() == null ? null : ctx.INITIAL().getText();
         String equ_dec = ctx.EQUATION().getText();
         EquationVisitor equationVisitor = new EquationVisitor();
@@ -915,7 +916,7 @@ public class VisitorOrientedParser implements Parser {
     private static class Algorithm_sectionVisitor extends modelicaBaseVisitor<String> {
       @Override
       public String visitAlgorithm_section(modelicaParser.Algorithm_sectionContext ctx) {
-        String init_dec = 
+        String init_dec =
         		ctx.INITIAL() == null ? null : ctx.INITIAL().getText();
         String alg_dec = ctx.ALGORITHM().getText();
         StatementVisitor statementVisitor = new StatementVisitor();
@@ -924,7 +925,7 @@ public class VisitorOrientedParser implements Parser {
                 .map(statement -> statement.accept(statementVisitor))
                 .collect(toList());
         StringBuilder temStr = new StringBuilder();
-        String algSecStr = (init_dec != null) ? (temStr.append(init_dec).append(" ").append(alg_dec).toString()) 
+        String algSecStr = (init_dec != null) ? (temStr.append(init_dec).append(" ").append(alg_dec).toString())
         		                              : alg_dec;
         if (statement_1.size()>0) {
         	StringBuilder temStr2 = new StringBuilder();
@@ -943,31 +944,31 @@ public class VisitorOrientedParser implements Parser {
       @Override
       public Equation visitEquation(modelicaParser.EquationContext ctx) {
         Simple_expressionVisitor simple_expressionVisitor = new Simple_expressionVisitor();
-        String simple_expression_1 = 
+        String simple_expression_1 =
         		ctx.simple_expression() == null ? null : ctx.simple_expression().accept(simple_expressionVisitor);
         ExpressionVisitor expressionVisitor = new ExpressionVisitor();
-        String expression_1 = 
+        String expression_1 =
         		ctx.expression() == null ? null : ctx.expression().accept(expressionVisitor);
         If_equationVisitor if_equationVisitor = new If_equationVisitor();
-        String if_equation_1 = 
+        String if_equation_1 =
         		ctx.if_equation() == null ? null : ctx.if_equation().accept(if_equationVisitor);
         For_equationVisitor for_equationVisitor = new For_equationVisitor();
-        String for_equation_1 = 
+        String for_equation_1 =
         		ctx.for_equation() == null ? null : ctx.for_equation().accept(for_equationVisitor);
         Connect_clauseVisitor connect_clauseVisitor = new Connect_clauseVisitor();
-        Connect_clause connect_clause_1 = 
+        Connect_clause connect_clause_1 =
         		ctx.connect_clause() == null ? null : ctx.connect_clause().accept(connect_clauseVisitor);
         When_equationVisitor when_equationVisitor = new When_equationVisitor();
-        String when_equation_1 = 
+        String when_equation_1 =
         		ctx.when_equation() == null ? null : ctx.when_equation().accept(when_equationVisitor);
         NameVisitor nameVisitor = new NameVisitor();
-        String name_1 = 
+        String name_1 =
         		ctx.name() == null ? null : ctx.name().accept(nameVisitor);
         Function_call_argsVisitor function_call_argsVisitor = new Function_call_argsVisitor();
-        String function_call_args_1 = 
+        String function_call_args_1 =
         		ctx.function_call_args() == null ? null : ctx.function_call_args().accept(function_call_argsVisitor);
         CommentVisitor commentVisitor = new CommentVisitor();
-        Comment comment_1 = 
+        Comment comment_1 =
         		ctx.comment() == null ? null : ctx.comment().accept(commentVisitor);
         return new Equation(simple_expression_1, expression_1, if_equation_1, for_equation_1, connect_clause_1,
                             when_equation_1, name_1, function_call_args_1, comment_1);
@@ -977,57 +978,57 @@ public class VisitorOrientedParser implements Parser {
     private static class StatementVisitor extends modelicaBaseVisitor<String> {
       @Override
       public String visitStatement(modelicaParser.StatementContext ctx) {
-        String bre_dec = 
+        String bre_dec =
         		ctx.BREAK() == null ? "" : ctx.BREAK().getText();
-        String ret_dec = 
+        String ret_dec =
         		ctx.RETURN() == null ? "" : ctx.RETURN().getText();
         Component_referenceVisitor component_referenceVisitor = new Component_referenceVisitor();
-        String component_reference_1 = 
+        String component_reference_1 =
         		ctx.component_reference() == null ? "" : ctx.component_reference().accept(component_referenceVisitor);
         ExpressionVisitor expressionVisitor = new ExpressionVisitor();
-        String expression_1 = 
+        String expression_1 =
         		ctx.expression() == null ? null : ctx.expression().accept(expressionVisitor);
         Function_call_argsVisitor function_call_argsVisitor = new Function_call_argsVisitor();
-        String function_call_args_1 = 
+        String function_call_args_1 =
         		ctx.function_call_args() == null ? "" : ctx.function_call_args().accept(function_call_argsVisitor);
         Output_expression_listVisitor output_expression_listVisitor = new Output_expression_listVisitor();
-        String output_expression_list_1 = 
+        String output_expression_list_1 =
         		ctx.output_expression_list() == null ? null : ctx.output_expression_list().accept(output_expression_listVisitor);
         If_statementVisitor if_statementVisitor = new If_statementVisitor();
-        String if_statement_1 = 
+        String if_statement_1 =
         		ctx.if_statement() == null ? "" : ctx.if_statement().accept(if_statementVisitor);
         For_statementVisitor for_statementVisitor = new For_statementVisitor();
-        String for_statement_1 = 
+        String for_statement_1 =
         		ctx.for_statement() == null ? "" : ctx.for_statement().accept(for_statementVisitor);
         While_statementVisitor while_statementVisitor = new While_statementVisitor();
-        String while_statement_1 = 
+        String while_statement_1 =
         		ctx.while_statement() == null ? "" : ctx.while_statement().accept(while_statementVisitor);
         When_statementVisitor when_statementVisitor = new When_statementVisitor();
-        String when_statement_1 = 
+        String when_statement_1 =
         		ctx.when_statement() == null ? "" : ctx.when_statement().accept(when_statementVisitor);
         CommentVisitor commentVisitor = new CommentVisitor();
         Comment comment_1 = ctx.comment().accept(commentVisitor);
-        String comStr = String.valueOf(comment_1);            	  	
+        String comStr = String.valueOf(comment_1);
         StringBuilder temStr1 = new StringBuilder();
         StringBuilder temStr2 = new StringBuilder();
         StringBuilder temStr3 = new StringBuilder();
         String temp1 = (expression_1 == null) ? "" : (temStr1.append("=").append(expression_1).toString());
-        String temp2 = (output_expression_list_1 == null) ? "" 
+        String temp2 = (output_expression_list_1 == null) ? ""
         		       : (temStr2.append("(").append(output_expression_list_1).append(")").append(":=")
         		    		     .append(component_reference_1).append(" ").append(function_call_args_1)
         		    		     .toString());
-        String staStr = temStr3.append(component_reference_1).append(temp1).append(function_call_args_1) 
+        String staStr = temStr3.append(component_reference_1).append(temp1).append(function_call_args_1)
         		               .append(temp2).append(bre_dec).append(ret_dec).append(if_statement_1)
         		               .append(for_statement_1).append(while_statement_1)
         		               .append(when_statement_1).append(comStr)
-        		               .toString();      
+        		               .toString();
         return staStr;
         //return new Statement(bre_dec, ret_dec, component_reference_1, expression_1, function_call_args_1,
         //                    output_expression_list_1, if_statement_1, for_statement_1, while_statement_1, when_statement_1, comment_1);
       }
     }
 
-    private static class If_equationVisitor extends modelicaBaseVisitor<String> {   	
+    private static class If_equationVisitor extends modelicaBaseVisitor<String> {
 	@Override
       public String visitIf_equation(modelicaParser.If_equationContext ctx) {
     	  String temStr = "";
@@ -1039,7 +1040,7 @@ public class VisitorOrientedParser implements Parser {
   	  	  	  Interval interval = new Interval(a,b);
   	  	  	  CharStream charStr = ctx.start.getInputStream();
   	  	      temStr = charStr.getText(interval).trim();
-    	  }            
+    	  }
         return temStr;
         //return new If_equation(expression1, equation1, expression2, equation2, equation3);
       }
@@ -1075,8 +1076,8 @@ public class VisitorOrientedParser implements Parser {
   	  	  	   Interval interval = new Interval(a,b);
   	  	  	   CharStream charStr = ctx.start.getInputStream();
   	  	       temStr = charStr.getText(interval).trim();
-    	   }   
-        return temStr;       
+    	   }
+        return temStr;
         //return new For_equation(for_indices_1, equation_1);
       }
     }
@@ -1107,7 +1108,7 @@ public class VisitorOrientedParser implements Parser {
     			  .stream()
     			  .map(for_index -> for_index.accept(for_indexVisitor))
     			  .collect(toList());
-    	  StringBuilder temStr = new StringBuilder();   	  
+    	  StringBuilder temStr = new StringBuilder();
     	  temStr.append(for_index_1.get(0));
     	  if (for_index_1.size() > 1) {
     		  for (int i=1; i<for_index_1.size(); i++) {
@@ -1124,7 +1125,7 @@ public class VisitorOrientedParser implements Parser {
       public String visitFor_index(modelicaParser.For_indexContext ctx) {
         String ident = ctx.IDENT().getText();
         ExpressionVisitor expressionVisitor = new ExpressionVisitor();
-        String expression_1 = 
+        String expression_1 =
         		ctx.expression() == null ? null : ctx.expression().accept(expressionVisitor);
         StringBuilder temStr = new StringBuilder();
         temStr.append(ident);
@@ -1148,7 +1149,7 @@ public class VisitorOrientedParser implements Parser {
  	  	  	   Interval interval = new Interval(a,b);
  	  	  	   CharStream charStr = ctx.start.getInputStream();
  	  	       temStr = charStr.getText(interval).trim();
-   	   }      
+   	   }
         return temStr;
         //return new While_statement(expression_1, statement_1);
       }
@@ -1156,7 +1157,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class When_equationVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitWhen_equation(modelicaParser.When_equationContext ctx) {  
+      public String visitWhen_equation(modelicaParser.When_equationContext ctx) {
     	  String temStr = "";
    	   if (ctx.getText().isEmpty()) {
    		   temStr = null;
@@ -1167,7 +1168,7 @@ public class VisitorOrientedParser implements Parser {
  	  	  	   CharStream charStr = ctx.start.getInputStream();
  	  	       temStr = charStr.getText(interval).trim();
    	   }
-        return temStr;        
+        return temStr;
         //return new When_equation(expression1, equation1, expression2, equation2);
       }
     }
@@ -1184,8 +1185,8 @@ public class VisitorOrientedParser implements Parser {
  	  	  	   Interval interval = new Interval(a,b);
  	  	  	   CharStream charStr = ctx.start.getInputStream();
  	  	       temStr = charStr.getText(interval).trim();
-   	   }  	   
-        return temStr;                  
+   	   }
+        return temStr;
         //return new When_statement(expression1, statement1, expression2, statement2);
       }
     }
@@ -1214,8 +1215,8 @@ public class VisitorOrientedParser implements Parser {
 	  	  	   Interval interval = new Interval(a,b);
 	  	  	   CharStream charStr = ctx.start.getInputStream();
 	  	       temStr = charStr.getText(interval).trim();
- 	   }   
- 	  return temStr;       		
+ 	   }
+ 	  return temStr;
         //return new Expression(simple_expression_1, expression1, expression2,
         //                      expression3, expression4, expression5);
       }
@@ -1233,8 +1234,8 @@ public class VisitorOrientedParser implements Parser {
    	  	  	   Interval interval = new Interval(a,b);
    	  	  	   CharStream charStr = ctx.start.getInputStream();
    	  	       temStr = charStr.getText(interval).trim();
-    	   }   	   
-    	  return temStr;   	  
+    	   }
+    	  return temStr;
         //return new Simple_expression(logical_expression1, logical_expression2, logical_expression3);
       }
     }
@@ -1255,10 +1256,10 @@ public class VisitorOrientedParser implements Parser {
     	  temStr.append(logical_terms.get(0));
     	  if (or_decs != null) {
     		  for (int i=0; i<or_decs.size(); i++) {
-    			  temStr.append(" ").append(or_decs.get(i)).append(" ").append(logical_terms.get(i+1));   			  
+    			  temStr.append(" ").append(or_decs.get(i)).append(" ").append(logical_terms.get(i+1));
     		  }
     	  }
-    	  return temStr.toString();       		
+    	  return temStr.toString();
     	  //return new Logical_expression(logical_term_1, or_decs, logical_term_2);
       }
     }
@@ -1279,7 +1280,7 @@ public class VisitorOrientedParser implements Parser {
     	  temStr.append(logical_factors.get(0));
     	  if (and_decs != null) {
     		  for (int i=0; i<and_decs.size(); i++) {
-    			  temStr.append(" ").append(and_decs.get(i)).append(" ").append(logical_factors.get(i+1)); 
+    			  temStr.append(" ").append(and_decs.get(i)).append(" ").append(logical_factors.get(i+1));
     		  }
     	  }
     	  return temStr.toString();
@@ -1290,13 +1291,13 @@ public class VisitorOrientedParser implements Parser {
     private static class Logical_factorVisitor extends modelicaBaseVisitor<String> {
       @Override
       public String visitLogical_factor(modelicaParser.Logical_factorContext ctx) {
-        String not_dec = 
+        String not_dec =
         		ctx.NOT() == null ? null : ctx.NOT().getText();
         RelationVisitor relationVisitor = new RelationVisitor();
         String relation = ctx.relation().accept(relationVisitor);
         StringBuilder temStr = new StringBuilder();
-        String logFacStr = (not_dec != null) ? (temStr.append(not_dec).append(" ").append(relation).toString()) 
-        		                             : (relation);        	
+        String logFacStr = (not_dec != null) ? (temStr.append(not_dec).append(" ").append(relation).toString())
+        		                             : (relation);
         return logFacStr;
         //return new Logical_factor(not_dec, relation);
       }
@@ -1309,16 +1310,16 @@ public class VisitorOrientedParser implements Parser {
     	  List<String> arithmetic_expressions = ctx.arithmetic_expression()
     			  .stream()
     			  .map(arithmetic_expression -> arithmetic_expression.accept(arithmetic_expressionVisitor))
-    			  .collect(toList()); 
+    			  .collect(toList());
     	  Rel_opVisitor rel_opVisitor = new Rel_opVisitor();
-    	  String rel_op1 = 
-    			  ctx.rel_op() == null ? null : ctx.rel_op().accept(rel_opVisitor);  
+    	  String rel_op1 =
+    			  ctx.rel_op() == null ? null : ctx.rel_op().accept(rel_opVisitor);
     	  StringBuilder temStr = new StringBuilder();
     	  temStr.append(arithmetic_expressions.get(0));
     	  if (rel_op1 != null) {
     		  temStr.append(rel_op1).append(arithmetic_expressions.get(1));
     	  }
-    	  return temStr.toString();       
+    	  return temStr.toString();
         // return new Relation(arithmetic_expression1, rel_op1, arithmetic_expression2);
       }
     }
@@ -1326,7 +1327,7 @@ public class VisitorOrientedParser implements Parser {
     private static class Rel_opVisitor extends modelicaBaseVisitor<String> {
       @Override
       public String visitRel_op(modelicaParser.Rel_opContext ctx) {
-    	String relOpe = ctx.getText();  
+    	String relOpe = ctx.getText();
     	return relOpe;
         //return new Rel_op(ope_dec);
       }
@@ -1339,24 +1340,24 @@ public class VisitorOrientedParser implements Parser {
     	  List<String> add_ops = ctx.add_op() == null ? null : ctx.add_op()
     			  .stream()
     			  .map(add_op -> add_op.accept(add_opVisitor))
-    			  .collect(toList());  
+    			  .collect(toList());
     	  TermVisitor termVisitor = new TermVisitor();
     	  List<String> terms = ctx.term()
     			  .stream()
     			  .map(term -> term.accept(termVisitor))
-    			  .collect(toList());  
+    			  .collect(toList());
     	  StringBuilder temStr = new StringBuilder();
     	  if (add_ops.size() == terms.size()) {
     		  for (int i=0; i<terms.size(); i++) {
     			  temStr.append(add_ops.get(i)).append(terms.get(i));
     		  }
-    	  } else {    		  
+    	  } else {
     		  temStr.append(terms.get(0));
     		  for (int i=1; i<terms.size(); i++) {
     			  temStr.append(add_ops.get(i-1)).append(terms.get(i));
     		  }
     	  }
-          return temStr.toString();       
+          return temStr.toString();
         //return new Arithmetic_expression(add_op1, terms, add_op2);
       }
     }
@@ -1364,7 +1365,7 @@ public class VisitorOrientedParser implements Parser {
     private static class Add_opVisitor extends modelicaBaseVisitor<String> {
       @Override
       public String visitAdd_op(modelicaParser.Add_opContext ctx) {
-    	String addOpe = ctx.getText(); 
+    	String addOpe = ctx.getText();
     	return addOpe;
         //return new Add_op(add_dec);
       }
@@ -1382,7 +1383,7 @@ public class VisitorOrientedParser implements Parser {
         List<String> factors = ctx.factor()
               .stream()
               .map(factor -> factor.accept(factorVisitor))
-              .collect(toList());        
+              .collect(toList());
         StringBuilder temStr = new StringBuilder();
         temStr.append(factors.get(0));
         if (mul_op_1 != null) {
@@ -1390,15 +1391,15 @@ public class VisitorOrientedParser implements Parser {
         		temStr.append(mul_op_1.get(0)).append(factors.get(i+1));
         	}
         }
-        return temStr.toString();		
+        return temStr.toString();
         //return new Term(factor_1, mul_op_1, factor_2);
       }
     }
 
     private static class Mul_opVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitMul_op(modelicaParser.Mul_opContext ctx) {  			  	
-        String mulOpe = ctx.getText(); 
+      public String visitMul_op(modelicaParser.Mul_opContext ctx) {
+        String mulOpe = ctx.getText();
         return mulOpe;
         //return new Mul_op(mul_dec);
       }
@@ -1412,9 +1413,9 @@ public class VisitorOrientedParser implements Parser {
     			  .stream()
     			  .map(primary -> primary.accept(primaryVisitor))
     			  .collect(toList());
-    	  String caret = 
+    	  String caret =
     			  ctx.SYMBOL_CARET()==null ? null : ctx.SYMBOL_CARET().getText();
-    	  String dotCaret = 
+    	  String dotCaret =
     			  ctx.SYMBOL_DOTCARET()==null ? null : ctx.SYMBOL_DOTCARET().getText();
     	  String facStr = primarys.get(0);
     	  if (primarys.size()>1) {
@@ -1429,7 +1430,7 @@ public class VisitorOrientedParser implements Parser {
     					         .toString();
     		  }
     	  }
-    	  return facStr;       		
+    	  return facStr;
         // return new Factor(primarys, caret, dotCaret);
       }
     }
@@ -1437,31 +1438,31 @@ public class VisitorOrientedParser implements Parser {
     private static class PrimaryVisitor extends modelicaBaseVisitor<String> {
       @Override
       public String visitPrimary(modelicaParser.PrimaryContext ctx) {
-        String num_dec = 
+        String num_dec =
         		ctx.UNSIGNED_NUMBER() == null ? null : ctx.UNSIGNED_NUMBER().getText();
-        String str_dec = 
+        String str_dec =
         		ctx.STRING() == null ? null : ctx.STRING().getText();
-        String false_dec = 
+        String false_dec =
         		ctx.FALSE() == null ? null : ctx.FALSE().getText();
-        String true_dec = 
+        String true_dec =
         		ctx.TRUE() == null ? null : ctx.TRUE().getText();
-        String der_der = 
+        String der_der =
         		ctx.DER() == null ? null : ctx.DER().getText();
-        String init_dec = 
+        String init_dec =
         		ctx.INITIAL() == null ? null : ctx.INITIAL().getText();
-        String end_dec = 
-        		ctx.END() == null ? null : ctx.END().getText();       
+        String end_dec =
+        		ctx.END() == null ? null : ctx.END().getText();
         NameVisitor nameVisitor = new NameVisitor();
-        String name1 = 
-        		ctx.name() == null ? null : ctx.name().accept(nameVisitor);        
+        String name1 =
+        		ctx.name() == null ? null : ctx.name().accept(nameVisitor);
         Function_call_argsVisitor function_call_argsVisitor = new Function_call_argsVisitor();
-        String function_call_args1 = 
+        String function_call_args1 =
         		ctx.function_call_args() == null ? null : ctx.function_call_args().accept(function_call_argsVisitor);
         Component_referenceVisitor component_referenceVisitor = new Component_referenceVisitor();
-        String component_reference1 = 
+        String component_reference1 =
         		ctx.component_reference() == null ? null : ctx.component_reference().accept(component_referenceVisitor);
         Output_expression_listVisitor output_expression_listVisitor = new Output_expression_listVisitor();
-        String output_expression_list1 = 
+        String output_expression_list1 =
         		ctx.output_expression_list() == null ? null : ctx.output_expression_list().accept(output_expression_listVisitor);
         Expression_listVisitor expression_listVisitor = new Expression_listVisitor();
         List<String> expression_list_1 = ctx.expression_list() == null ? null : ctx.expression_list()
@@ -1473,7 +1474,7 @@ public class VisitorOrientedParser implements Parser {
         		.map(SYMBOL_SEMICOLON -> SYMBOL_SEMICOLON.getText())
         		.collect(toList());
         Function_argumentsVisitor function_argumentsVisitor = new Function_argumentsVisitor();
-        String function_arguments1 = 
+        String function_arguments1 =
         		ctx.function_arguments() == null ? null : ctx.function_arguments().accept(function_argumentsVisitor);
         StringBuilder temStr = new StringBuilder();
         String priStr = num_dec;
@@ -1487,7 +1488,7 @@ public class VisitorOrientedParser implements Parser {
         		priStr = temStr.append(der_der).append(" ").append(function_call_args1).toString();}
         	else {
         		priStr = temStr.append(init_dec).append(" ").append(function_call_args1).toString();}
-        	} 
+        	}
         else if (component_reference1 != null) {
         	priStr = component_reference1;}
         else if (output_expression_list1 != null) {
@@ -1500,11 +1501,11 @@ public class VisitorOrientedParser implements Parser {
         		}
         	}
         	StringBuilder temStr2 = new StringBuilder();
-        	priStr = temStr2.append("[").append(temStr.toString()).append("]").toString(); } 
+        	priStr = temStr2.append("[").append(temStr.toString()).append("]").toString(); }
         else if (function_arguments1 != null) {
-        	priStr = temStr.append("{").append(function_arguments1).append("}").toString(); } 
+        	priStr = temStr.append("{").append(function_arguments1).append("}").toString(); }
         else if (end_dec != null) {priStr = end_dec;}
-        return priStr;      
+        return priStr;
         //return new Primary(num_dec, str_dec, false_dec, true_dec, name1, der_der, init_dec,
         //                   function_call_args1, component_reference1, output_expression_list1,
         //                   expression_list_1, function_arguments1, end_dec);
@@ -1536,7 +1537,7 @@ public class VisitorOrientedParser implements Parser {
         			temStr.append(dots.get(i-1)).append(ident.get(i));
         		}
         	}
-        }              
+        }
         return temStr.toString();
         //return new Name(dots, ident);
       }
@@ -1554,7 +1555,7 @@ public class VisitorOrientedParser implements Parser {
    	  	  	   Interval interval = new Interval(a,b);
    	  	  	   CharStream charStr = ctx.start.getInputStream();
    	  	       temStr = charStr.getText(interval).trim();
-    	   }  	   
+    	   }
     	  return temStr;
         // return new Component_reference(ident, dots, array_subscripts_1);
       }
@@ -1564,7 +1565,7 @@ public class VisitorOrientedParser implements Parser {
       @Override
       public String visitFunction_call_args(modelicaParser.Function_call_argsContext ctx) {
         Function_argumentsVisitor function_argumentsVisitor = new Function_argumentsVisitor();
-        String function_arguments = 
+        String function_arguments =
         		ctx.function_arguments() == null ? "" : ctx.function_arguments().accept(function_argumentsVisitor);
         StringBuilder temStr = new StringBuilder();
         String funCalArgs = temStr.append("(").append(function_arguments).append(")")
@@ -1578,18 +1579,18 @@ public class VisitorOrientedParser implements Parser {
       @Override
       public String visitFunction_arguments(modelicaParser.Function_argumentsContext ctx) {
         Function_argumentVisitor function_argumentVisitor = new Function_argumentVisitor();
-        String function_argument = 
+        String function_argument =
         		ctx.function_argument() == null ? null : ctx.function_argument().accept(function_argumentVisitor);
         Function_argumentsVisitor function_argumentsVisitor = new Function_argumentsVisitor();
-        String function_arguments = 
+        String function_arguments =
         		ctx.function_arguments() == null ? null : ctx.function_arguments().accept(function_argumentsVisitor);
-        String for_dec = 
+        String for_dec =
         		ctx.FOR() == null ? null : ctx.FOR().getText();
         For_indicesVisitor for_indicesVisitor = new For_indicesVisitor();
-        String for_indices = 
+        String for_indices =
         		ctx.for_indices() == null ? null : ctx.for_indices().accept(for_indicesVisitor);
         Named_argumentsVisitor named_argumentsVisitor = new Named_argumentsVisitor();
-        String named_arguments = 
+        String named_arguments =
         		ctx.named_arguments() == null ? null : ctx.named_arguments().accept(named_argumentsVisitor);
         String funArgsStr = named_arguments;
         if (function_argument != null) {
@@ -1597,14 +1598,14 @@ public class VisitorOrientedParser implements Parser {
         	if (function_arguments != null) {
         		temStr1.append(",").append(function_arguments);
         	} else if (for_indices != null) {
-        		temStr1.append("for ").append(for_indices);       		
-        	}   
+        		temStr1.append("for ").append(for_indices);
+        	}
         	StringBuilder temStr2 = new StringBuilder();
         	funArgsStr = temStr2.append(function_argument)
         			            .append(temStr1.toString())
         			            .toString();
         }
-        return funArgsStr;    
+        return funArgsStr;
         //return new Function_arguments(function_argument, function_arguments, for_dec, for_indices, named_arguments);
       }
     }
@@ -1613,19 +1614,19 @@ public class VisitorOrientedParser implements Parser {
       @Override
       public String visitNamed_arguments(modelicaParser.Named_argumentsContext ctx) {
         Named_argumentVisitor named_argumentVisitor = new Named_argumentVisitor();
-        String named_argument = 
+        String named_argument =
         		ctx.named_argument().accept(named_argumentVisitor);
         Named_argumentsVisitor named_argumentsVisitor = new Named_argumentsVisitor();
-        String named_arguments = 
+        String named_arguments =
         		ctx.named_arguments() == null ? null : ctx.named_arguments().accept(named_argumentsVisitor);
-        String comma = 
+        String comma =
         		ctx.SYMBOL_COMMA()==null ? null : ctx.SYMBOL_COMMA().getText();
         String namedArgsStr = named_argument;
         if (comma != null) {
         	StringBuilder temStr = new StringBuilder();
         	namedArgsStr = temStr.append(namedArgsStr).append(",")
         			             .append(named_arguments)
-        			             .toString();       	
+        			             .toString();
         }
         return namedArgsStr;
         //return new Named_arguments(named_argument,named_arguments);
@@ -1637,7 +1638,7 @@ public class VisitorOrientedParser implements Parser {
       public String visitNamed_argument(modelicaParser.Named_argumentContext ctx) {
     	  String ident = ctx.IDENT().getText();
     	  Function_argumentVisitor function_argumentVisitor = new Function_argumentVisitor();
-    	  String function_argument = 
+    	  String function_argument =
     			  ctx.function_argument().accept(function_argumentVisitor);
     	  StringBuilder temStr = new StringBuilder();
     	  String namedArgStr = temStr.append(ident).append("=")
@@ -1651,24 +1652,24 @@ public class VisitorOrientedParser implements Parser {
     private static class Function_argumentVisitor extends modelicaBaseVisitor<String> {
       @Override
       public String visitFunction_argument(modelicaParser.Function_argumentContext ctx) {
-    	  String fun_dec = 
+    	  String fun_dec =
     			  ctx.FUNCTION() == null ? null : ctx.FUNCTION().getText();
     	  NameVisitor nameVisitor = new NameVisitor();
-    	  String name = 
+    	  String name =
     			  ctx.name() == null ? null : ctx.name().accept(nameVisitor);
     	  Named_argumentsVisitor named_argumentsVisitor = new Named_argumentsVisitor();
-    	  String named_arguments = 
+    	  String named_arguments =
     			  ctx.named_arguments() == null ? "" : ctx.named_arguments().accept(named_argumentsVisitor);
     	  ExpressionVisitor expressionVisitor = new ExpressionVisitor();
-    	  String expression = 
-    			  ctx.expression() == null ? null : ctx.expression().accept(expressionVisitor);    	  
+    	  String expression =
+    			  ctx.expression() == null ? null : ctx.expression().accept(expressionVisitor);
     	  String funArgStr = expression;
     	  if (fun_dec != null) {
     		  StringBuilder temStr = new StringBuilder();
     		  funArgStr = temStr.append(fun_dec).append(" ").append(name)
     		                    .append("(").append(named_arguments).append(")")
     		                    .toString();
-    	  } 
+    	  }
     	  return funArgStr;
         //return new Function_argument(fun_dec, name, named_arguments, expression);
       }
@@ -1686,8 +1687,8 @@ public class VisitorOrientedParser implements Parser {
    	  	  	   Interval interval = new Interval(a,b);
    	  	  	   CharStream charStr = ctx.start.getInputStream();
    	  	       temStr = charStr.getText(interval).trim();
-    	   }   	   
-    	  return temStr;     
+    	   }
+    	  return temStr;
         //return new Output_expression_list(expression_1);
       }
     }
@@ -1705,7 +1706,7 @@ public class VisitorOrientedParser implements Parser {
         if (expression_1.size()>1) {
         	for (int i=1; i<expression_1.size(); i++) {
         		temStr.append(",").append(expression_1.get(i));
-        	}       	
+        	}
         }
         return temStr.toString();
         //return new Expression_list(expression_1);
@@ -1736,8 +1737,8 @@ public class VisitorOrientedParser implements Parser {
     				               .append(temStr2.toString())
     				               .append("]")
     				               .toString();
-    	  } 
-    	  return arraySubStr;       
+    	  }
+    	  return arraySubStr;
     	  //return new Array_subscripts(subscript_1);
       }
     }
@@ -1745,14 +1746,14 @@ public class VisitorOrientedParser implements Parser {
     private static class SubscriptVisitor extends modelicaBaseVisitor<String> {
       @Override
       public String visitSubscript(modelicaParser.SubscriptContext ctx) {
-    	  String colon = 
+    	  String colon =
     			  ctx.SYMBOL_COLON() == null ? null : ctx.SYMBOL_COLON().getText();
     	  ExpressionVisitor expressionVisitor = new ExpressionVisitor();
-    	  String expression = 
+    	  String expression =
     			  ctx.expression() == null ? null : ctx.expression().accept(expressionVisitor);
-    	  String subStr = 
+    	  String subStr =
     			  colon != null ? colon : expression;
-    	  return subStr;    	  
+    	  return subStr;
     	  //return new Subscript(expression);
       }
     }
@@ -1763,10 +1764,10 @@ public class VisitorOrientedParser implements Parser {
       @Override
       public Comment visitComment(modelicaParser.CommentContext ctx) {
         String_commentVisitor string_commentVisitor = new String_commentVisitor();
-        String string_comment1 = 
+        String string_comment1 =
         		ctx.string_comment() == null ? null : ctx.string_comment().accept(string_commentVisitor);
         AnnotationVisitor annotationVisitor = new AnnotationVisitor();
-        String annotation1 = 
+        String annotation1 =
         		ctx.annotation() == null ? null : ctx.annotation().accept(annotationVisitor);
         this.string_comment1 = string_comment1;
         this.annotation1 = annotation1;
@@ -1784,7 +1785,7 @@ public class VisitorOrientedParser implements Parser {
         String strCom = "";
         if (str_dec.size() == 1) {
         	strCom = str_dec.get(0);
-        } else if (str_dec.size() > 1) {       	
+        } else if (str_dec.size() > 1) {
         	StringBuilder temStr = new StringBuilder();
         	temStr.append(str_dec.get(0));
         	for (int i=1; i<str_dec.size(); i++) {
