@@ -41,11 +41,21 @@ test-moParser:
 generate-reference-output:
 	(cd test/FromModelica && \
 	for ff in `find . -name '*.mo'`; do \
-		node ../../app.js -l warn -f $${ff} -o json; \
-		node ../../app.js -l warn -f $${ff} -o json-simplified; \
-		node ../../app.js -l warn -f $${ff} -o html; \
+		node ../../app.js -l warn -f $${ff} -o json -m cdl; \
+		node ../../app.js -l warn -f $${ff} -o json-simplified -m cdl; \
+		node ../../app.js -l warn -f $${ff} -o html -m cdl; \
 		done)
-	rm -f test/FromModelica/modelica-json.log
+	cp -r test/FromModelica/json test/FromModelica/cdl && rm -R test/FromModelica/json
+	cp -r test/FromModelica/simplified test/FromModelica/cdl && rm -R test/FromModelica/simplified
+	cp -r test/FromModelica/html test/FromModelica/cdl && rm -R test/FromModelica/html
+	(cd test && \
+	node ../app.js -l warn -f FromModelica -o json -m modelica; \
+	node ../app.js -l warn -f FromModelica -o json-simplified -m modelica; \
+	node ../app.js -l warn -f FromModelica -o html -m modelica)
+	cp -r test/FromModelica/json test/FromModelica/modelica && rm -R test/FromModelica/json
+	cp -r test/FromModelica/simplified test/FromModelica/modelica && rm -R test/FromModelica/simplified
+	cp -r test/FromModelica/html test/FromModelica/modelica && rm -R test/FromModelica/html
+	rm -f test/modelica-json.log test/FromModelica/modelica-json.log 
 
 clean-node-packages:
 	rm -rf node-modules
