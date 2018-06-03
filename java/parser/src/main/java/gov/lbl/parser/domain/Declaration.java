@@ -59,8 +59,7 @@ public class Declaration {
 
     public class ClassMod {
     	private Collection<ClassModList> modifications;
-		public Mod classMod(String classModStr) {	
-			
+		public TemCla classMod(String classModStr) {				
     		List<String> strSets = new ArrayList<String>();
     		strSets.addAll(Comment.splitAtComma(classModStr));  		   		
     		
@@ -70,6 +69,7 @@ public class Declaration {
         		String tempRightStr = "";
         		String prefix = "";
         		String className = "";
+        		String packageName = "";
         		String name = "";
         		String value = "";
         		ClassMod modification = null;
@@ -93,86 +93,95 @@ public class Declaration {
         				ClassMod classMod = new ClassMod();
             			classMod.classMod(modStr); 
             			modification = classMod;
-            			modListEle.add(new ClassModList(prefix,name,null,null,null,className,modification));
+            			modListEle.add(new ClassModList(prefix,name,null,null,null,className,null,modification));
         			} else {
-        				String[] strSet = str.split(" ");
-        				if (strSet.length > 3) {
-        					String[] temStr = Arrays.copyOfRange(strSet, 0, strSet.length-3);
-        					prefix = String.join(" ", temStr);
+        				if (str.contains("package")) {
+        					String[] strSet = str.split("=");
+        					String[] temStr1 = strSet[0].split(" "); 
+        					String[] temStr2 = Arrays.copyOfRange(temStr1, 0, temStr1.length-1);
+        					prefix = String.join(" ", temStr2);
+        					packageName = temStr1[temStr1.length-1];
+        					name = strSet[strSet.length-1];
+        					modListEle.add(new ClassModList(prefix,name,null,null,null,null,packageName,null));
         				} else {
-        					prefix = strSet[0];
+        					String[] strSet = str.split(" ");
+        					if (strSet.length > 3) {
+        						String[] temStr = Arrays.copyOfRange(strSet, 0, strSet.length-3);
+        						prefix = String.join(" ", temStr);
+        					} else {
+        						prefix = strSet[0];
+        					}
+        					className = strSet[strSet.length-2];
+        					name = strSet[strSet.length-1];  
+        					modListEle.add(new ClassModList(prefix,name,null,null,null,className,null,null));
         				}
-        				className = strSet[strSet.length-2];
-        				name = strSet[strSet.length-1];  
-        				modListEle.add(new ClassModList(prefix,name,null,null,null,className,null));
         			}      			
         		} else {
-        		
-    			if (!str.contains("(")
+        			if (!str.contains("(")
     					|| (str.contains("(") && (str.indexOf('(')> str.indexOf('=')))) {
-    				if (str.contains("=")) {
-    					String[] temStr = str.split("=");
-    					tempLeftStr = temStr[0];
-    					tempRightStr = temStr[1];
-    				} else {
-    					tempLeftStr = str;
-    					tempRightStr = " ";
-    				}
-    				String[] tempLeftSets = tempLeftStr.split(" ");
-    				if (tempLeftSets.length > 1) {
-    					String[] temStr = Arrays.copyOfRange(tempLeftSets,0,tempLeftSets.length-1);    					
-    					prefix = String.join(" ", temStr);
-    					name = tempLeftSets[tempLeftSets.length-1];
-    				} else {
-    					prefix = null;
-    					name = tempLeftSets[0];
-    				}   				
-    				tempRightStr.trim();
-    				value = tempRightStr.isEmpty() ? null : tempRightStr.trim();
-    			} else if ((str.contains("(") && (str.indexOf('(')< str.indexOf('=')))) {    				
-    				String variable = str.substring(0,str.indexOf('(')-1).trim();
-    				String[] temStr = variable.split(" ");  				
-    				if (temStr.length > 1) {   					
-    					String[] temStr2 = Arrays.copyOfRange(temStr, 0, temStr.length-1);
-    					prefix = String.join(" ", temStr2);
-    					name = temStr[temStr.length-1];
-    				} else {
-    					prefix = null;
-    					name = (temStr[0] != "per") ? temStr[0] : null;
-    				}   				   				
-    				List<Integer> isoEquInd = new ArrayList<Integer>();
-    				isoEquInd.addAll(isoEqu(str));
-    				String temStr2 = "";
-    				if (!isoEquInd.isEmpty()) {
-    					value = str.substring(isoEquInd.get(0)+1,str.length()).trim();
-    					int index = str.lastIndexOf(')',isoEquInd.get(0));
-    					temStr2 = str.substring(str.indexOf('(')+1, index).trim();
-    				} else {
-    					value = null;
-    					int index = str.lastIndexOf(')');
-    					temStr2 = str.substring(str.indexOf('(')+1, index).trim();
-    				}    				 				    				
-    				if (!name.equals("per")) {
-    					VariableMod varMod = new VariableMod();
-    					varMod.variableMod(temStr2);
-    					variable_modification = varMod;
-    					per_modification = null;
-    				} else {
-    					PerMod perMod = new PerMod();
-    					perMod.perMod(temStr2);
-    					per_modification = perMod;
-    					variable_modification = null;
-    				}
-    			}
-    			modListEle.add(new ClassModList(prefix,name,value,variable_modification,per_modification, null, null));
+        				if (str.contains("=")) {
+        					String[] temStr = str.split("=");
+        					tempLeftStr = temStr[0];
+        					tempRightStr = temStr[1];
+        				} else {
+        					tempLeftStr = str;
+        					tempRightStr = " ";
+        				}
+        				String[] tempLeftSets = tempLeftStr.split(" ");
+        				if (tempLeftSets.length > 1) {
+        					String[] temStr = Arrays.copyOfRange(tempLeftSets,0,tempLeftSets.length-1);    					
+        					prefix = String.join(" ", temStr);
+        					name = tempLeftSets[tempLeftSets.length-1];
+        				} else {
+        					prefix = null;
+        					name = tempLeftSets[0];
+        				}   				
+        				tempRightStr.trim();
+        				value = tempRightStr.isEmpty() ? null : tempRightStr.trim();
+        			} else if ((str.contains("(") && (str.indexOf('(')< str.indexOf('=')))) {    				
+        				String variable = str.substring(0,str.indexOf('(')-1).trim();
+        				String[] temStr = variable.split(" ");  				
+        				if (temStr.length > 1) {   					
+        					String[] temStr2 = Arrays.copyOfRange(temStr, 0, temStr.length-1);
+        					prefix = String.join(" ", temStr2);
+        					name = temStr[temStr.length-1];
+        				} else {
+        					prefix = null;
+        					name = (temStr[0] != "per") ? temStr[0] : null;
+        				}   				   				
+        				List<Integer> isoEquInd = new ArrayList<Integer>();
+        				isoEquInd.addAll(isoEqu(str));
+        				String temStr2 = "";
+        				if (!isoEquInd.isEmpty()) {
+        					value = str.substring(isoEquInd.get(0)+1,str.length()).trim();
+        					int index = str.lastIndexOf(')',isoEquInd.get(0));
+        					temStr2 = str.substring(str.indexOf('(')+1, index).trim();
+        				} else {
+        					value = null;
+        					int index = str.lastIndexOf(')');
+        					temStr2 = str.substring(str.indexOf('(')+1, index).trim();
+        				}    				 				    				
+        				if (!name.equals("per")) {
+        					VariableMod varMod = new VariableMod();
+        					varMod.variableMod(temStr2);
+        					variable_modification = varMod;
+        					per_modification = null;
+        				} else {
+        					PerMod perMod = new PerMod();
+        					perMod.perMod(temStr2);
+        					per_modification = perMod;
+        					variable_modification = null;
+        				}
+        			}
+        			modListEle.add(new ClassModList(prefix,name,value,variable_modification,per_modification, null,null,null));
         		}    			
     		}
     		this.modifications = modListEle;
-    		return new Mod(classModStr);
+    		return new TemCla(classModStr);
     	}
     }
     
-    /* Check if the input string "str" contains isolated "=" that is not enclosed in bracket.
+    /** Check if the input string "str" contains isolated "=" that is not enclosed in bracket.
      * If it has, then return their positions "equSymbol" in the string.*/
     private static Collection<Integer> isoEqu(String str) {
     	List<Integer> equSymbolTemp = new ArrayList<Integer>();
@@ -200,6 +209,7 @@ public class Declaration {
     private class ClassModList {
     	String prefix;
     	String className;
+    	String packageName;
     	String name;
     	String value;
     	VariableMod variable_modification;
@@ -208,49 +218,41 @@ public class Declaration {
     	private ClassModList(String prefix, String name, String value,
     			             VariableMod variable_modification,
     			             PerMod per_modification,
-    			             String className, ClassMod modification) {
+    			             String className, String packageName,
+    			             ClassMod modification) {
     		this.prefix = prefix;
     		this.name = name;
     		this.value = value;
     		this.variable_modification = variable_modification;
     		this.per = per_modification;
     		this.className = className;
+    		this.packageName = packageName;
     		this.modification = modification;
     	}
     }
-
+ 
     private class VariableMod {
     	ClassMod modification;
-    	private VarMod variableMod(String str) {
+    	private TemCla variableMod(String str) {
     		ClassMod classMod = new ClassMod();
 			classMod.classMod(str);
 			this.modification = classMod;
-    		return new VarMod(str);
+    		return new TemCla(str);
     	}
     }
 
     private class PerMod {
     	ClassMod modification;
-    	private Per_mod perMod(String perModStr) {
+    	private TemCla perMod(String perModStr) {
     		ClassMod classMod = new ClassMod();
 			classMod.classMod(perModStr);
 			this.modification = classMod;
-    		return new Per_mod(perModStr);
+    		return new TemCla(perModStr);
     	}
     }
 
-    public class Mod {
-    	private Mod(String classModStr) {
-    	}
-    }
-
-    public class VarMod {
-    	private VarMod(String strSets) {
-    	}
-    }
-
-    public class Per_mod {
-    	private Per_mod(String perModStr) {
+    public class TemCla {
+    	private TemCla(String str) {
     	}
     }
 

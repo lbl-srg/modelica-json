@@ -28,14 +28,14 @@ public class Comment {
     	String diagram;
     	String icon;
     	Collection<StrPair> dialog;
-    	String placement;
-    	String line;
+    	Collection<PlacementBlock> placement;
+    	LineBlock line;
     	String text;
     	Documentation documentation;
     	VendorAnnotation vendor_annotation;
     	Collection<StrPair> others;
 
-    	private AnnBlo annClass(String annStr) {    		
+    	private TemCla annClass(String annStr) {    		
     		String nameStr;
     		String dialogStr = findSubStr(annStr, "Dialog ");
     		String placementStr = findSubStr(annStr, "Placement ");
@@ -46,8 +46,28 @@ public class Comment {
     		String textStr = findSubStr(annStr, "Text ");   		
     		String venAnnStr = findSubStr(annStr, "__");
 
-    		this.placement = placementStr;
-    		this.line = lineStr;
+    		if (placementStr != null) {   			
+    			List<PlacementBlock> plaEle = new ArrayList<PlacementBlock>();
+    			List<String> strSets = new ArrayList<String>();
+    			strSets.addAll(splitAtComma(placementStr));
+    			for (String str : strSets) {
+    				PlacementBlock plaBlo = new PlacementBlock();
+    				plaBlo.placementBlock(str);
+    				plaEle.add(plaBlo);
+    			}
+    			this.placement = plaEle;
+    		} else {
+    			this.placement = null;
+    		}
+    		    		
+    		if (lineStr != null) {
+    			LineBlock linBlo = new LineBlock();
+    			linBlo.lineBlock(lineStr);
+    			this.line = linBlo;
+    		} else {
+    			this.line = null;
+    		}
+    		
     		this.diagram = diagramStr;
     		this.icon = iconStr;
     		this.text = textStr;
@@ -240,14 +260,14 @@ public class Comment {
     			}
     			this.documentation = new Documentation(infoStr, revStr);
     		}
-    		return new AnnBlo(annStr);
+    		return new TemCla(annStr);
     	}
     }
 
     private class VendorAnnotation{
     	private String name;
     	private Collection<StrPair> annotation;
-    	private VenAnnMod vendorAnnotation(String venAnnName, String venAnnStr) {
+    	private TemCla vendorAnnotation(String venAnnName, String venAnnStr) {
     		this.name = venAnnName.replaceAll("\\s+", "");
     		List<StrPair> venAnnEle = new ArrayList<StrPair>();
     		if (venAnnStr == null || !venAnnStr.contains("=")) {
@@ -271,9 +291,79 @@ public class Comment {
     			}
     			this.annotation = venAnnEle;
     		}    		
-    		return new VenAnnMod(venAnnStr);
+    		return new TemCla(venAnnStr);
     	}
     }
+    
+    
+    public class PlacementBlock{
+    	private String name;
+    	private String extent;
+    	private String value;
+    	private String rotation;
+    	private String origin;
+    	public TemCla placementBlock(String placementStr) {
+    		if ((placementStr.contains("(") && (placementStr.indexOf('=') < placementStr.indexOf('(')))
+    		    || (!placementStr.contains("("))) {
+    			int indEq = placementStr.indexOf('=');
+    			this.name = placementStr.substring(0,indEq).trim();
+    			this.value = placementStr.substring(indEq+1, placementStr.length()).trim();
+    			this.extent = null;
+    			this.rotation = null;
+    			this.origin = null;
+    		} else {
+    			this.name = placementStr.substring(0,placementStr.indexOf('(')).trim();
+    			String lefStr = placementStr.substring(placementStr.indexOf('(')+1,placementStr.lastIndexOf(')')).trim();
+    			List<String> strSets = new ArrayList<String>();
+    			strSets.addAll(splitAtComma(lefStr));
+    			String extStr = null;
+    			String rotStr = null;
+    			String oriStr = null;
+    			for (String str : strSets) {
+    				if (str.contains("extent")) {
+    					int temInd = str.indexOf('=');
+    					extStr = str.substring(temInd+1,str.length()).trim();
+    				}
+    				if (str.contains("rotation")) {
+    					rotStr = str.substring(str.indexOf('=')+1, str.length()).trim();
+    				}
+    				if (str.contains("origin")) {
+    					oriStr = str.substring(str.indexOf('=')+1, str.length()).trim();
+    				}   				
+    			}
+    			this.extent = extStr;
+    			this.rotation = rotStr;
+    			this.origin = oriStr;
+    			this.value = null;
+    		}
+    		return new TemCla(placementStr);
+    	}
+    }
+    
+    public class LineBlock{
+    	private String points;
+    	private String color;
+    	private String smooth;
+    	public TemCla lineBlock(String lineStr) {
+    		List<String> strSets = new ArrayList<String>();
+    		strSets.addAll(splitAtComma(lineStr));
+    		for (String str : strSets) {  			
+    			if (str.contains("points")) {
+    				int indRB= str.indexOf('{',str.indexOf('='));
+    				this.points = str.substring(indRB+1, str.lastIndexOf('}')).trim();
+    			} else if (str.contains("color")) {
+    				this.color = str.substring(str.indexOf('=')+1, str.length()).trim();
+    			} 
+    			if (str.contains("smooth")) {
+    				this.smooth = str.substring(str.indexOf('=')+1, str.length()).trim();
+    			} else {
+    				this.smooth = null;
+    			}
+    		} 
+    		return new TemCla(lineStr);
+    	}
+    }
+    
     
     /** access sub-string "subStr" in string "str" with syntax of "keyStr (subStr)" **/
     public static String findSubStr(String str, String keyStr) {    	
@@ -408,9 +498,9 @@ public class Comment {
  
     
     public static Collection<Integer> searchComEle(Collection<Integer> list1,
-            										Collection<Integer> list2,
-            										Collection<Integer> list3,
-            										Collection<Integer> list4) {
+            									   Collection<Integer> list2,
+            									   Collection<Integer> list3,
+            									   Collection<Integer> list4) {
     	List<Integer> comEle = new ArrayList<Integer> ();
     	if (list1.size()>0 && list2.size()>0 && list3.size()>0 && list4.size()>0) {
     		list2.retainAll(list1);
@@ -421,13 +511,8 @@ public class Comment {
     	return comEle;
     }
 
-    private class AnnBlo {
-    	private AnnBlo(String annString) {
-    	}
-    }
-
-    public class VenAnnMod {
-    	private VenAnnMod(String venAnnStr) {
+    private class TemCla {
+    	private TemCla(String str) {
     	}
     }
     

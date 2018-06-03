@@ -53,8 +53,8 @@ public class Composition {
 
     private class AnnotationClass {
     	String defaultName;
-    	String diagram;
-    	String icon;
+    	GraphicLayers diagram;
+    	GraphicLayers icon;
     	String text;
     	Documentation documentation;
     	VendorAnnotation vendor_annotation;
@@ -68,10 +68,23 @@ public class Composition {
     		String textStr = Comment.findSubStr(annStr, "Text ");
     		String venAnnStr = Comment.findSubStr(annStr, "__");
 
-    		this.diagram = diagramStr;
-    		this.icon = iconStr;
     		this.text = textStr;
     		
+    		if (diagramStr != null) {
+    			GraphicLayers temp = new GraphicLayers();
+    			temp.graphicLayers(diagramStr);
+    			this.diagram = temp;
+    		} else {
+    			this.diagram = null;
+    		}
+    			
+    		if (iconStr != null) {
+    			GraphicLayers temp = new GraphicLayers();
+    			temp.graphicLayers(iconStr);
+    			this.icon = temp;
+    		} else {
+    			this.icon = null;
+    		}
     		
     		if (annStr.contains("defaultComponentName")) {
     			int beginInd = annStr.indexOf("\"", annStr.indexOf("defaultComponentName")+"defaultComponentName".length()-1);
@@ -142,7 +155,7 @@ public class Composition {
     		} else {
     			otherAnnStr = annStr;
     		}
-    		this.othAnns = otherAnnStr.isEmpty() ? null : otherAnnStr;
+    		this.othAnns = otherAnnStr.replaceAll(" ,", "").isEmpty() ? null : otherAnnStr;
 
     		if (docStr == null) {
     			this.documentation = null;
@@ -246,8 +259,7 @@ public class Composition {
     		List<String> strSet = new ArrayList<String>();
     		strSet.addAll(Comment.splitAtComma(str));
     		List<StrPair> strPair = new ArrayList<StrPair>();
-    		String name;
-    		String value;
+    		String name, value;
     		int equInd;
     		String temStr;
     		for (int i=0; i<strSet.size(); i++) {    			
@@ -261,7 +273,93 @@ public class Composition {
     		return new TemCla(str);
     	}
     }
- 
+    
+    
+    
+    /** Parse graphical contents in Icon and Diagram layers:
+     * Icon(coordinateSystem(extent={....}),
+     *      graphics={Rectangle(extent={....}),Text(extent={...}, textString="...")}));
+     * Diagram(coordinateSystem(extent={....}),
+     *         graphics={Rectangle(extent={....}),Text(extent={...}, textString="...")}));      
+     **/
+    public class GraphicLayers {
+    	private Collection<StrPair> coordinateSystem;
+    	private Collection<Graphics> graphics;
+    	private TemCla graphicLayers(String layStr) {
+    		List<String> strSet1 = new ArrayList<String>();
+    		strSet1.addAll(Comment.splitAtComma(layStr));
+    		String coorSysStr = "";
+    		String grapStr = "";
+    		for (String str : strSet1) {
+    			coorSysStr = str.contains("coordinateSystem (") ? str.substring(str.indexOf('(')+1,str.lastIndexOf(')')).trim()
+    					     : null;
+    			grapStr = str.contains("graphics =") ? str.substring(str.indexOf('{')+1, str.lastIndexOf('}')).trim()
+    					  : null;    			   			
+    		}   		
+    		
+    		if (coorSysStr != null) {
+    			List<String> strSet2 = new ArrayList<String>();
+    		    strSet2.addAll(Comment.splitAtComma(coorSysStr));   		
+    		    List<StrPair> strPair = new ArrayList<StrPair>();
+    		    String name, value;
+    		    int indEq;
+    		    for (String str : strSet2) {
+    		    	indEq = str.indexOf('=');
+    		    	name = str.substring(0, indEq).trim();
+    		    	value = str.substring(indEq+1, str.length()).trim(); 		    	
+    		    	strPair.add(new StrPair(name,value));
+    		    	}
+    		    this.coordinateSystem = strPair;
+    		} else {
+    			this.coordinateSystem = null;
+    		}
+    		
+    		if (grapStr != null) {
+    			List<String> strSet3 = new ArrayList<String>();
+    			strSet3.addAll(Comment.splitAtComma(grapStr));
+    			List<Graphics> graBlo = new ArrayList<Graphics>();
+    			for (String str : strSet3) {
+    				Graphics temp = new Graphics();
+    				temp.graphics(str);
+    				graBlo.add(temp);
+    			}
+    			this.graphics = graBlo;
+    		} else {
+    			this.graphics = null;
+    		}
+    		   		    		  	   		
+    		return new TemCla(layStr);
+    	}
+    }   
+    
+    /** Parse graphical contents in Icon(), Diagram():
+     * graphics={Rectangle(extent={....}),Text(extent={...}, textString="...")}));     
+     **/
+    private class Graphics {
+    	private String name;
+    	private Collection<StrPair> value;
+    	private TemCla graphics(String graStr) {
+    		String valueStr;
+    		int indBr = graStr.indexOf('(');
+    		this.name = graStr.substring(0,indBr).trim();	
+    		valueStr = graStr.substring(indBr+1,graStr.lastIndexOf(')')).trim();
+    		List<String> strSet = new ArrayList<String>();
+    		strSet.addAll(Comment.splitAtComma(valueStr));			
+    		List<StrPair> strPair = new ArrayList<StrPair>();
+    		String name, value;
+    		int indEq;
+    		for (String str : strSet) {
+    			indEq = str.indexOf('=');
+    			name = str.substring(0, indEq).trim();
+    			value = str.substring(indEq+1, str.length()).trim();   			
+    			strPair.add(new StrPair(name,value));
+    		}
+    		this.value = strPair;   		   		
+    		
+    		return new TemCla(graStr);
+    	}
+    }
+    
     public class TemCla {
     	private TemCla(String str) {
     	}

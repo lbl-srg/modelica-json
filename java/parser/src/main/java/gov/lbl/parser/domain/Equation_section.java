@@ -9,7 +9,9 @@ public class Equation_section {
     public Equation_section(String init_dec,
                             String equ_dec,
                             Collection<Equation> equation) {
-      this.prefix = (init_dec==null ? "" : (init_dec + " ")) + " " + equ_dec;
-      this.equation = (equation.size()>0 ? equation : null);
+    	StringBuilder temStr = new StringBuilder();
+    	temStr.append(init_dec).append(" ").append(equ_dec);
+    	this.prefix = init_dec==null ? equ_dec : temStr.toString();
+    	this.equation = (equation.size()>0 ? equation : null);
     }
 }
