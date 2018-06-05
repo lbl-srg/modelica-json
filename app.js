@@ -31,7 +31,7 @@ parser.addArgument(
 parser.addArgument(
   [ '-m', '--mode' ],
   {
-    help: "Specify if it is parsing single CDL model or buildings modelica library package, 'cdl' is the default.",
+    help: "Parsing mode, single CDL model or buildings modelica library package, 'cdl' is the default.",
     choices: ['cdl', 'modelica'],
     defaultValue: 'cdl'
   }
@@ -61,10 +61,6 @@ logger.configure({
 logger.cli()
 
 logger.level = args.log
-
-// if (args.obc === 'true' && !args.file.includes('Controls/OBC')) {
-//  throw new Error('Wrong OBC input model: ' + args.file)
-// }
 
 // Get mo files array
 var moFiles = ut.getMoFiles(args.mode, args.file)
