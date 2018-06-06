@@ -61,7 +61,7 @@ public class Declaration {
     	private Collection<ClassModList> modifications;
 		public TemCla classMod(String classModStr) {				
     		List<String> strSets = new ArrayList<String>();
-    		strSets.addAll(Comment.splitAtComma(classModStr));  		   		
+    		strSets.addAll(Comment.splitAtComma(classModStr));  
     		
     		List<ClassModList> modListEle = new ArrayList<ClassModList>();
     		for (String str : strSets) {	 			
@@ -120,9 +120,9 @@ public class Declaration {
         			if (!str.contains("(")
     					|| (str.contains("(") && (str.indexOf('(')> str.indexOf('=')))) {
         				if (str.contains("=")) {
-        					String[] temStr = str.split("=");
-        					tempLeftStr = temStr[0];
-        					tempRightStr = temStr[1];
+        					int idx = str.indexOf('=');
+        					tempLeftStr = str.substring(0, idx).trim();
+        					tempRightStr = str.substring(idx + 1, str.length()).trim();					
         				} else {
         					tempLeftStr = str;
         					tempRightStr = " ";
@@ -161,7 +161,7 @@ public class Declaration {
         					int index = str.lastIndexOf(')');
         					temStr2 = str.substring(str.indexOf('(')+1, index).trim();
         				}    				 				    				
-        				if (!name.equals("per")) {
+        				if (!name.equals("per")) {       					
         					VariableMod varMod = new VariableMod();
         					varMod.variableMod(temStr2);
         					variable_modification = varMod;
@@ -233,7 +233,7 @@ public class Declaration {
  
     private class VariableMod {
     	ClassMod modification;
-    	private TemCla variableMod(String str) {
+    	private TemCla variableMod(String str) { 		
     		ClassMod classMod = new ClassMod();
 			classMod.classMod(str);
 			this.modification = classMod;

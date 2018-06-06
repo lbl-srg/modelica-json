@@ -22,7 +22,20 @@ public class Comment {
     		this.annotation = annCla;
     	}
     }
-   
+    
+    /**
+     * AnnotationClass --- program to parse 
+     *                     annotation(defaultComponentName = ...,
+     *                                Diagram (...),
+     *                                Icon (...),
+     *                                Dialog (..., ..., ...),
+     *                                Placement (..., ..., ...),
+     *                                Line (...),
+     *                                Text (...),
+     *                                Documentation (...),
+     *                                __Annotation (...))
+     *
+     */
     public class AnnotationClass {
        	String defaultName;
     	String diagram;
@@ -298,50 +311,79 @@ public class Comment {
     
     public class PlacementBlock{
     	private String name;
-    	private String extent;
-    	private String value;
-    	private String rotation;
-    	private String origin;
+    	private String value; 
+    	private Transformation transformation;
+    	private Transformation iconTranformation;
+    	 	
     	public TemCla placementBlock(String placementStr) {
+    		// Placement(.. = ...)
     		if ((placementStr.contains("(") && (placementStr.indexOf('=') < placementStr.indexOf('(')))
     		    || (!placementStr.contains("("))) {
     			int indEq = placementStr.indexOf('=');
     			this.name = placementStr.substring(0,indEq).trim();
     			this.value = placementStr.substring(indEq+1, placementStr.length()).trim();
-    			this.extent = null;
-    			this.rotation = null;
-    			this.origin = null;
+    			this.transformation = null;
     		} else {
-    			this.name = placementStr.substring(0,placementStr.indexOf('(')).trim();
+    			// Placement(transformation(extent = ..., rotation = ..., origin = ...), 
+    			//           iconTransformation(extent = ...))
+    			String name = placementStr.substring(0,placementStr.indexOf('(')).trim();
     			String lefStr = placementStr.substring(placementStr.indexOf('(')+1,placementStr.lastIndexOf(')')).trim();
-    			List<String> strSets = new ArrayList<String>();
-    			strSets.addAll(splitAtComma(lefStr));
-    			String extStr = null;
-    			String rotStr = null;
-    			String oriStr = null;
-    			for (String str : strSets) {
-    				if (str.contains("extent")) {
-    					int temInd = str.indexOf('=');
-    					extStr = str.substring(temInd+1,str.length()).trim();
-    				}
-    				if (str.contains("rotation")) {
-    					rotStr = str.substring(str.indexOf('=')+1, str.length()).trim();
-    				}
-    				if (str.contains("origin")) {
-    					oriStr = str.substring(str.indexOf('=')+1, str.length()).trim();
-    				}   				
-    			}
-    			this.extent = extStr;
-    			this.rotation = rotStr;
-    			this.origin = oriStr;
+    			Transformation temp = new Transformation();
+    			temp.transformation(lefStr);
+    			this.transformation = (name.contains("transformation")) ? temp : null;
+    			this.iconTranformation = (name.contains("iconTranformation")) ? temp : null;
     			this.value = null;
+    			this.name = null;
     		}
     		return new TemCla(placementStr);
     	}
     }
     
+    public class Transformation{
+    	private Collection<Points> extent;
+    	private Double rotation;
+    	private Points origin;
+    	public TemCla transformation(String traStr) {
+    		List<String> strSets = new ArrayList<String>();
+			strSets.addAll(splitAtComma(traStr));
+			String extStr = null;
+			List<Points> extPoints = new ArrayList<Points>();
+			Double rotStr = null;
+			String oriStr = null;
+			Points oriPoint = new Points();
+			for (String str : strSets) {
+				if (str.contains("extent")) {
+					int temInd = str.indexOf('=');
+					extStr = str.substring(temInd+1,str.length()).trim();
+					String temp = extStr.substring(extStr.indexOf('{') + 1, extStr.lastIndexOf('}')).trim();
+					
+    				List<String> pointsSet = new ArrayList<String>();
+    				pointsSet.addAll(splitAtComma(temp));
+    				for (String p : pointsSet) {
+    					Points point = new Points();
+    					point.points(p);
+    					extPoints.add(point);
+    				} 
+				}
+				if (str.contains("rotation")) {
+					rotStr = Double.valueOf(str.substring(str.indexOf('=')+1, str.length()).trim());
+				}
+				if (str.contains("origin")) {
+					oriStr = str.substring(str.indexOf('=')+1, str.length()).trim();
+					oriPoint.points(oriStr);
+				}   				
+			}
+			this.extent = extStr == null ? null : extPoints;
+			this.rotation = rotStr;
+			this.origin = oriStr == null ? null : oriPoint;
+    		return new TemCla(traStr);
+    	}
+    	
+    }
+    
+    
     public class LineBlock{
-    	private String points;
+    	private Collection<Points> points;
     	private String color;
     	private String smooth;
     	public TemCla lineBlock(String lineStr) {
@@ -350,7 +392,16 @@ public class Comment {
     		for (String str : strSets) {  			
     			if (str.contains("points")) {
     				int indRB= str.indexOf('{',str.indexOf('='));
-    				this.points = str.substring(indRB+1, str.lastIndexOf('}')).trim();
+    				String temp = str.substring(indRB+1, str.lastIndexOf('}')).trim();
+    				List<Points> linePoints = new ArrayList<Points>();
+    				List<String> pointsSet = new ArrayList<String>();
+    				pointsSet.addAll(splitAtComma(temp));
+    				for (String p : pointsSet) {
+    					Points point = new Points();
+    					point.points(p);
+    					linePoints.add(point);
+    				}
+    				this.points = linePoints;
     			} else if (str.contains("color")) {
     				this.color = str.substring(str.indexOf('=')+1, str.length()).trim();
     			} 
@@ -363,6 +414,23 @@ public class Comment {
     		return new TemCla(lineStr);
     	}
     }
+    
+    
+    public class Points{
+    	private Double x1;
+    	private Double x2;
+    	public TemCla points(String pointStr) {
+    		int lefBra = pointStr.indexOf('{');
+    		int rigBra = pointStr.indexOf('}');
+    		String temStr = pointStr.substring(lefBra + 1, rigBra).trim();
+    		List<String> strSets = new ArrayList<String>();
+    		strSets.addAll(splitAtComma(temStr));
+    		this.x1 = Double.valueOf(strSets.get(0));
+    		this.x2 = Double.valueOf(strSets.get(1));
+    		return new TemCla(pointStr);
+    	}
+    }
+    
     
     
     /** access sub-string "subStr" in string "str" with syntax of "keyStr (subStr)" **/
@@ -395,7 +463,8 @@ public class Comment {
     	}
     	return subStr;
     }
-
+    
+    
     /** check if index "fromInd" is enclosed in a completed "symbol1" and "symbol2",
         such as ( ), [ ], { }, " ". 
         If it is not enclosed and the symbols is completed, then return true, 

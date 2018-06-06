@@ -283,7 +283,7 @@ public class Composition {
      *         graphics={Rectangle(extent={....}),Text(extent={...}, textString="...")}));      
      **/
     public class GraphicLayers {
-    	private Collection<StrPair> coordinateSystem;
+    	private Coordinate coordinateSystem;
     	private Collection<Graphics> graphics;
     	private TemCla graphicLayers(String layStr) {
     		List<String> strSet1 = new ArrayList<String>();
@@ -298,18 +298,9 @@ public class Composition {
     		}   		
     		
     		if (coorSysStr != null) {
-    			List<String> strSet2 = new ArrayList<String>();
-    		    strSet2.addAll(Comment.splitAtComma(coorSysStr));   		
-    		    List<StrPair> strPair = new ArrayList<StrPair>();
-    		    String name, value;
-    		    int indEq;
-    		    for (String str : strSet2) {
-    		    	indEq = str.indexOf('=');
-    		    	name = str.substring(0, indEq).trim();
-    		    	value = str.substring(indEq+1, str.length()).trim(); 		    	
-    		    	strPair.add(new StrPair(name,value));
-    		    	}
-    		    this.coordinateSystem = strPair;
+    		    Coordinate temp = new Coordinate();
+    		    temp.coordinate(coorSysStr);		    	   		       
+    		    this.coordinateSystem = temp;
     		} else {
     			this.coordinateSystem = null;
     		}
@@ -332,33 +323,119 @@ public class Composition {
     	}
     }   
     
+    /** parse coordinateSystem(extent={....}, preserveAspectedRatio=..., initialScale=...)
+     */
+    private class Coordinate {
+    	private Collection<Comment.Points> extent;
+    	private Boolean preserveAspectedRatio;
+    	private Double initialScale;
+    	private TemCla coordinate(String coorSysStr) {
+    		List<String> strSet = new ArrayList<String>();
+		    strSet.addAll(Comment.splitAtComma(coorSysStr));
+		    List<Comment.Points> extPoints = new ArrayList<Comment.Points>();
+		    Double iniScaStr = null;
+			Boolean preAspRatStr = null;
+			
+		    for (String str : strSet) {
+		    	int indEq = str.indexOf('=');
+		    	String name = str.substring(0, indEq).trim();
+		    	String value = str.substring(indEq+1, str.length()).trim(); 
+		    	if (name.contains("extent")) {
+		    		String temp = value.substring(value.indexOf('{') + 1, value.lastIndexOf('}')).trim();
+		    		List<String> pointsSet = new ArrayList<String>();
+		    		pointsSet.addAll(Comment.splitAtComma(temp));
+		    		for (String p : pointsSet) {
+		    			Comment test = new Comment("", null);
+		    			Comment.Points point = test.new Points();
+		    			point.points(p);
+		    			extPoints.add(point);
+		    		}
+		    	} else if (name.contains("initialScale")) {
+		    		iniScaStr = Double.valueOf(value);
+		    	} else if (name.contains("preserveAspectRatio")) {
+		    		preAspRatStr = Boolean.valueOf(value);
+		    	}		    	
+		    }	
+		    this.extent = extPoints.isEmpty() ? null : extPoints;
+	    	this.initialScale = iniScaStr;
+	    	this.preserveAspectedRatio = preAspRatStr;
+    		return new TemCla(coorSysStr);
+    	}
+    }
+    
+    
     /** Parse graphical contents in Icon(), Diagram():
      * graphics={Rectangle(extent={....}),Text(extent={...}, textString="...")}));     
      **/
     private class Graphics {
     	private String name;
-    	private Collection<StrPair> value;
+    	private GraphicContents value;
     	private TemCla graphics(String graStr) {
     		String valueStr;
     		int indBr = graStr.indexOf('(');
     		this.name = graStr.substring(0,indBr).trim();	
     		valueStr = graStr.substring(indBr+1,graStr.lastIndexOf(')')).trim();
-    		List<String> strSet = new ArrayList<String>();
-    		strSet.addAll(Comment.splitAtComma(valueStr));			
-    		List<StrPair> strPair = new ArrayList<StrPair>();
-    		String name, value;
-    		int indEq;
-    		for (String str : strSet) {
-    			indEq = str.indexOf('=');
-    			name = str.substring(0, indEq).trim();
-    			value = str.substring(indEq+1, str.length()).trim();   			
-    			strPair.add(new StrPair(name,value));
-    		}
-    		this.value = strPair;   		   		
-    		
+    		GraphicContents temp = new GraphicContents();
+    		temp.graCon(valueStr);
+    		this.value = temp;   	  		  		   		  		
     		return new TemCla(graStr);
     	}
     }
+    
+    
+    private class GraphicContents {
+    	private Collection<Comment.Points> extent;
+    	private String fillColor;
+    	private String lineColor;
+    	private String fillPattern;
+    	private String textString;
+    	private String interaction;
+    	private TemCla graCon(String graConStr) {
+    		List<String> strSet = new ArrayList<String>();
+    		strSet.addAll(Comment.splitAtComma(graConStr));
+    		List<Comment.Points> extPoints = new ArrayList<Comment.Points>();
+		    String lineColor = null;
+			String fillColor = null;
+			String fillPattern = null;
+			String textString = null;
+			String interaction = null;						
+    		for (String str : strSet) {
+    			int indEq = str.indexOf('=');
+		    	String name = str.substring(0, indEq).trim();
+		    	String value = str.substring(indEq+1, str.length()).trim();
+		    	if (name.contains("extent")) {
+		    		String temp = value.substring(value.indexOf('{') + 1, value.lastIndexOf('}')).trim();
+		    		List<String> pointsSet = new ArrayList<String>();
+		    		pointsSet.addAll(Comment.splitAtComma(temp));
+		    		for (String p : pointsSet) {
+		    			Comment test = new Comment("", null);
+		    			Comment.Points point = test.new Points();
+		    			point.points(p);
+		    			extPoints.add(point);
+		    		}
+		    	} else if (name.contains("fillColor")) {
+		    		fillColor = value;
+		    	} else if (name.contains("lineColor")) {
+		    		lineColor = value;
+		    	} else if (name.contains("fillPattern")) {
+		    		fillPattern = value;
+		    	} else if (name.contains("textString")) {
+		    		textString = value;
+		    	} else if (name.contains("interaction")) {
+		    		interaction = value;
+		    	}		      		
+    		}
+    		this.extent = extPoints.isEmpty() ? null : extPoints;
+    		this.fillColor = fillColor;
+    		this.lineColor = lineColor;
+    		this.fillPattern = fillPattern;
+    		this.textString = textString;
+    		this.interaction = interaction;
+    		return new TemCla(graConStr);
+    	}
+    }
+    
+    
     
     public class TemCla {
     	private TemCla(String str) {
