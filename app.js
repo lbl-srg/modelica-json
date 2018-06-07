@@ -10,7 +10,7 @@ const ArgumentParser = require('argparse').ArgumentParser
 var parser = new ArgumentParser({
   version: '0.0.1',
   addHelp: true,
-  description: 'Buildings modelica parser'
+  description: 'Modelica parser'
 })
 parser.addArgument(
   [ '-o', '--output' ],
@@ -43,6 +43,13 @@ parser.addArgument(
     required: true
   }
 )
+parser.addArgument(
+  [ '-d', '--directory' ],
+  {
+    help: 'Specify output directory, with the default being the current.',
+    defaultValue: 'current'
+  }
+)
 var args = parser.parseArgs()
 
 const logFile = 'modelica-json.log'
@@ -69,6 +76,6 @@ var moFiles = ut.getMoFiles(args.mode, args.file)
 var json = pa.getJSON(moFiles, args.mode, args.output)
 
 // Get the name array of output files
-var outFile = ut.getOutFile(args.mode, args.file, args.output, moFiles, json)
+var outFile = ut.getOutFile(args.mode, args.file, args.output, args.directory, moFiles, json)
 
 pa.exportJSON(json, outFile, args.output, args.mode)
