@@ -331,7 +331,7 @@ public class Comment {
     			Transformation temp = new Transformation();
     			temp.transformation(lefStr);
     			this.transformation = (name.contains("transformation")) ? temp : null;
-    			this.iconTranformation = (name.contains("iconTranformation")) ? temp : null;
+    			this.iconTranformation = (name.contains("iconTransformation")) ? temp : null;
     			this.value = null;
     			this.name = null;
     		}
