@@ -131,7 +131,7 @@ var getHtml = function (files, mode) {
   const moFiles = (mode === 'cdl') ? files.split()
                                    : ut.getMoFiles(mode, files)
   const json = pa.getJSON(moFiles, mode, 'html')
-  const outFile = ut.getOutFile(mode, files, 'html', moFiles, json)
+  const outFile = ut.getOutFile(mode, files, 'html', 'current', moFiles, json)
   const html = ht.getHtmlPage(outFile, json, mode)
   return html
 }
