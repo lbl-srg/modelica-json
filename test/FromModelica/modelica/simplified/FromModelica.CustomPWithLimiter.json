@@ -30,31 +30,111 @@
               "value": "k",
               "isFinal": true
             }
+          ],
+          "placement": [
+            {
+              "transformation": {
+                "extent": [
+                  {
+                    "x1": -60,
+                    "x2": -50
+                  },
+                  {
+                    "x1": -40,
+                    "x2": -30
+                  }
+                ]
+              }
+            }
           ]
         },
         {
           "className": "Buildings.Controls.OBC.CDL.Continuous.Min",
           "name": "minValue",
-          "comment": "Outputs the minimum of its inputs"
+          "comment": "Outputs the minimum of its inputs",
+          "placement": [
+            {
+              "transformation": {
+                "extent": [
+                  {
+                    "x1": 20,
+                    "x2": -10
+                  },
+                  {
+                    "x1": 40,
+                    "x2": 10
+                  }
+                ]
+              }
+            }
+          ]
         }
       ],
       "inputs": [
         {
           "className": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
           "name": "yMax",
-          "comment": "Maximum value of output signal"
+          "comment": "Maximum value of output signal",
+          "placement": [
+            {
+              "transformation": {
+                "extent": [
+                  {
+                    "x1": -140,
+                    "x2": 20
+                  },
+                  {
+                    "x1": -100,
+                    "x2": 60
+                  }
+                ]
+              }
+            }
+          ]
         },
         {
           "className": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
           "name": "e",
-          "comment": "Control error"
+          "comment": "Control error",
+          "placement": [
+            {
+              "transformation": {
+                "extent": [
+                  {
+                    "x1": -140,
+                    "x2": -60
+                  },
+                  {
+                    "x1": -100,
+                    "x2": -20
+                  }
+                ]
+              }
+            }
+          ]
         }
       ],
       "outputs": [
         {
           "className": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
           "name": "y",
-          "comment": "Control signal"
+          "comment": "Control signal",
+          "placement": [
+            {
+              "transformation": {
+                "extent": [
+                  {
+                    "x1": 100,
+                    "x2": -10
+                  },
+                  {
+                    "x1": 120,
+                    "x2": 10
+                  }
+                ]
+              }
+            }
+          ]
         }
       ]
     },
@@ -67,6 +147,31 @@
         {
           "instance": "minValue",
           "connector": "u1"
+        },
+        {
+          "linePoints": [
+            {
+              "x1": -120,
+              "x2": 40
+            },
+            {
+              "x1": -120,
+              "x2": 40
+            },
+            {
+              "x1": -20,
+              "x2": 40
+            },
+            {
+              "x1": -20,
+              "x2": 6
+            },
+            {
+              "x1": 18,
+              "x2": 6
+            }
+          ],
+          "lineColor": "{0,0,127}"
         }
       ],
       [
@@ -76,6 +181,23 @@
         {
           "instance": "gain",
           "connector": "u"
+        },
+        {
+          "linePoints": [
+            {
+              "x1": -120,
+              "x2": -40
+            },
+            {
+              "x1": -92,
+              "x2": -40
+            },
+            {
+              "x1": -62,
+              "x2": -40
+            }
+          ],
+          "lineColor": "{0,0,127}"
         }
       ],
       [
@@ -86,6 +208,27 @@
         {
           "instance": "minValue",
           "connector": "u2"
+        },
+        {
+          "linePoints": [
+            {
+              "x1": -39,
+              "x2": -40
+            },
+            {
+              "x1": -20,
+              "x2": -40
+            },
+            {
+              "x1": -20,
+              "x2": -6
+            },
+            {
+              "x1": 18,
+              "x2": -6
+            }
+          ],
+          "lineColor": "{0,0,127}"
         }
       ],
       [
@@ -95,6 +238,19 @@
         },
         {
           "instance": "y"
+        },
+        {
+          "linePoints": [
+            {
+              "x1": 41,
+              "x2": 0
+            },
+            {
+              "x1": 110,
+              "x2": 0
+            }
+          ],
+          "lineColor": "{0,0,127}"
         }
       ]
     ]
