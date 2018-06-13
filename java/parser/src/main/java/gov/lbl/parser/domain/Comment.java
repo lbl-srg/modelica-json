@@ -1,8 +1,13 @@
 package gov.lbl.parser.domain;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
+
+import gov.lbl.parser.domain.Composition.GraphicLayers;
+
 import java.util.ArrayList;
+import gov.lbl.parser.domain.Composition;
 
 public class Comment {
     public String string_comment;
@@ -38,8 +43,8 @@ public class Comment {
      */
     public class AnnotationClass {
        	String defaultName;
-    	String diagram;
-    	String icon;
+       	Composition.GraphicLayers diagram;
+       	Composition.GraphicLayers icon;
     	Collection<StrPair> dialog;
     	Collection<PlacementBlock> placement;
     	LineBlock line;
@@ -81,8 +86,28 @@ public class Comment {
     			this.line = null;
     		}
     		
-    		this.diagram = diagramStr;
-    		this.icon = iconStr;
+    		Composition comp = new Composition(null, Collections.emptyList(),
+    										   Collections.emptyList(),null,
+    										   Collections.emptyList(),
+    										   Collections.emptyList(),
+    										   Collections.emptyList(),
+    										   null,null,null,null);
+    		if (diagramStr != null) {
+    			Composition.GraphicLayers temp = comp.new GraphicLayers();
+    			temp.graphicLayers(diagramStr);
+    			this.diagram = temp;
+    		} else {
+    			this.diagram = null;
+    		}
+    			
+    		if (iconStr != null) {
+    			Composition.GraphicLayers temp = comp.new GraphicLayers();
+    			temp.graphicLayers(iconStr);
+    			this.icon = temp;
+    		} else {
+    			this.icon = null;
+    		}
+    		
     		this.text = textStr;
     		
     		/** find vendor annotation **/
@@ -313,7 +338,7 @@ public class Comment {
     	private String name;
     	private String value; 
     	private Transformation transformation;
-    	private Transformation iconTranformation;
+    	private Transformation iconTransformation;
     	 	
     	public TemCla placementBlock(String placementStr) {
     		// Placement(.. = ...)
@@ -331,7 +356,7 @@ public class Comment {
     			Transformation temp = new Transformation();
     			temp.transformation(lefStr);
     			this.transformation = (name.contains("transformation")) ? temp : null;
-    			this.iconTranformation = (name.contains("iconTransformation")) ? temp : null;
+    			this.iconTransformation = (name.contains("iconTransformation")) ? temp : null;
     			this.value = null;
     			this.name = null;
     		}
@@ -384,7 +409,7 @@ public class Comment {
     
     public class LineBlock{
     	private Collection<Points> points;
-    	private String color;
+    	private Color color;
     	private String smooth;
     	public TemCla lineBlock(String lineStr) {
     		List<String> strSets = new ArrayList<String>();
@@ -403,7 +428,10 @@ public class Comment {
     				}
     				this.points = linePoints;
     			} else if (str.contains("color")) {
-    				this.color = str.substring(str.indexOf('=')+1, str.length()).trim();
+    				String colorStr = str.substring(str.indexOf('=')+1, str.length()).trim();
+    				Color color = new Color();
+    				color.color(colorStr);
+    				this.color = color;
     			} 
     			if (str.contains("smooth")) {
     				this.smooth = str.substring(str.indexOf('=')+1, str.length()).trim();
@@ -431,6 +459,22 @@ public class Comment {
     	}
     }
     
+    public class Color{
+    	private Double r;
+    	private Double g;
+    	private Double b;
+    	public TemCla color(String colorStr) {
+    		int lefBra = colorStr.indexOf('{');
+    		int rigBra = colorStr.indexOf('}');
+    		String temStr = colorStr.substring(lefBra  + 1, rigBra).trim();
+    		List<String> strSets = new ArrayList<String>();
+    		strSets.addAll(splitAtComma(temStr));
+    		this.r = Double.valueOf(strSets.get(0));
+    		this.g = Double.valueOf(strSets.get(1));
+    		this.b = Double.valueOf(strSets.get(2));
+    		return new TemCla(colorStr);
+    	}
+    }
     
     
     /** access sub-string "subStr" in string "str" with syntax of "keyStr (subStr)" **/

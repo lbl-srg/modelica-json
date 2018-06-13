@@ -277,8 +277,8 @@ public class VisitorOrientedParser implements Parser {
         List<Element_list> element_lists = ctx.element_list()
                 .stream()
                 .map(element_list -> element_list.accept(element_listVisitor))
-                .collect(toList());
-        Element_list element_list1 = element_lists.get(0);        
+                .collect(toList()); 
+        Element_list element_list1 = element_lists.get(0);    
         List<Element_list> element_list2 = 
         		element_lists.size() < 2 ? null : element_lists.subList(1,element_lists.size()); 
         Equation_sectionVisitor equation_sectionVisitor = new Equation_sectionVisitor();

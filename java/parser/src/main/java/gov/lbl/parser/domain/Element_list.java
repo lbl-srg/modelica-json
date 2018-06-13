@@ -6,6 +6,6 @@ public class Element_list {
     private Collection<Element> element;
 
     public Element_list(Collection<Element> element) {
-      this.element = (element.size() > 0 ? element : null);
+      this.element = (element.isEmpty() ? null : element); 
     }
 }
