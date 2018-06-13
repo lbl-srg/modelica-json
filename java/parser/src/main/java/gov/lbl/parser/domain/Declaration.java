@@ -28,61 +28,94 @@ public class Declaration {
         		equSymbol.addAll(isoEqu(modification));
         		
         		String temStrL = "";
-        		String temStrR = "";
-        		
+        		String temStrR = "";        		
     			if (!equSymbol.isEmpty()) {
-    				temStrL = modification.substring(1, equSymbol.get(0));
+    				temStrL = modification.substring(1, equSymbol.get(0)-1);
     				temStrR = modification.substring(equSymbol.get(0)+1,modification.length());
     			} else {
     				temStrL = modification.substring(1,modification.length()-1);
     			}
-    			temStrL.trim();
+    			
+    			temStrL.trim();  			
         		this.operator = null;
-        		this.value = temStrR.isEmpty() ? null : temStrR;
+        		this.value = temStrR.isEmpty() ? null : temStrR.trim();
         		ClassMod classMod = new ClassMod();
     			classMod.classMod(temStrL);
     			this.class_modification = classMod; 			
     		} else {
     			this.class_modification = null;
-    			Pattern pattern1 = Pattern.compile("=");
-    			Pattern pattern2 = Pattern.compile(":=");
-    			Matcher matcher1 = pattern1.matcher(modification);
-    			Matcher matcher2 = pattern2.matcher(modification);
-    			if (!matcher1.matches()) {
+    			if (modification.contains(":=")) {
+    				this.operator = ":=";
+    				int ind = modification.indexOf(":=");   				
+    				this.value = modification.substring(ind+2,modification.length()).trim();
+    			} else {
     				this.operator = null;
-    				this.value = modification.split("(?<==)")[1];
-    			} else if (!matcher2.matches()) {
-    				String[] temStr = modification.split("(?<=:=)");
-    				this.operator = temStr[0];
-    				this.value = temStr[1];
-    				}
-    			}
+    				int equInd = modification.indexOf("=");
+    				this.value = modification.substring(equInd+1,modification.length()).trim();
+    			}		
     		}
     	}
+    }
 
-    private class ClassMod {
+    public class ClassMod {
     	private Collection<ClassModList> modifications;
-		private Mod classMod(String classModStr) {
+		public Mod classMod(String classModStr) {	
+			
     		List<String> strSets = new ArrayList<String>();
     		strSets.addAll(Comment.splitAtComma(classModStr));  		   		
     		
     		List<ClassModList> modListEle = new ArrayList<ClassModList>();
-    		for (int i=0; i<strSets.size(); i++) {
+    		for (String str : strSets) {	 			
     			String tempLeftStr = "";
         		String tempRightStr = "";
         		String prefix = "";
+        		String className = "";
         		String name = "";
         		String value = "";
+        		ClassMod modification = null;
     			VariableMod variable_modification = null;
         		PerMod per_modification = null;
-    			if (!strSets.get(i).contains("(")
-    					|| (strSets.get(i).contains("(") && (strSets.get(i).indexOf('(')> strSets.get(i).indexOf('=')))) {
-    				if (strSets.get(i).contains("=")) {
-    					String[] temStr = strSets.get(i).split("=");
+        		if (str.startsWith("redeclare")) {
+        			if (str.contains("(")) {
+        				int indBR = str.indexOf('(');
+        				String modStr = str.substring(indBR+1, str.lastIndexOf(')')).trim();
+        				String lefStr = str.substring(0, indBR).trim();
+        				String[] lefStrSet = lefStr.split(" ");
+        				if (lefStrSet.length > 3) {
+        					String[] temStr = Arrays.copyOfRange(lefStrSet, 0, lefStrSet.length-3);
+        					prefix = String.join(" ", temStr);
+        				} else {
+        					prefix = lefStrSet[0];
+        				}
+        				className = lefStrSet[lefStrSet.length-2];
+        				name = lefStrSet[lefStrSet.length-1];       			        				
+        				
+        				ClassMod classMod = new ClassMod();
+            			classMod.classMod(modStr); 
+            			modification = classMod;
+            			modListEle.add(new ClassModList(prefix,name,null,null,null,className,modification));
+        			} else {
+        				String[] strSet = str.split(" ");
+        				if (strSet.length > 3) {
+        					String[] temStr = Arrays.copyOfRange(strSet, 0, strSet.length-3);
+        					prefix = String.join(" ", temStr);
+        				} else {
+        					prefix = strSet[0];
+        				}
+        				className = strSet[strSet.length-2];
+        				name = strSet[strSet.length-1];  
+        				modListEle.add(new ClassModList(prefix,name,null,null,null,className,null));
+        			}      			
+        		} else {
+        		
+    			if (!str.contains("(")
+    					|| (str.contains("(") && (str.indexOf('(')> str.indexOf('=')))) {
+    				if (str.contains("=")) {
+    					String[] temStr = str.split("=");
     					tempLeftStr = temStr[0];
     					tempRightStr = temStr[1];
     				} else {
-    					tempLeftStr = strSets.get(i);
+    					tempLeftStr = str;
     					tempRightStr = " ";
     				}
     				String[] tempLeftSets = tempLeftStr.split(" ");
@@ -96,8 +129,8 @@ public class Declaration {
     				}   				
     				tempRightStr.trim();
     				value = tempRightStr.isEmpty() ? null : tempRightStr.trim();
-    			} else if ((strSets.get(i).contains("(") && (strSets.get(i).indexOf('(')< strSets.get(i).indexOf('=')))) {    				
-    				String variable = strSets.get(i).substring(0,strSets.get(i).indexOf('(')-1).trim();
+    			} else if ((str.contains("(") && (str.indexOf('(')< str.indexOf('=')))) {    				
+    				String variable = str.substring(0,str.indexOf('(')-1).trim();
     				String[] temStr = variable.split(" ");  				
     				if (temStr.length > 1) {   					
     					String[] temStr2 = Arrays.copyOfRange(temStr, 0, temStr.length-1);
@@ -108,16 +141,16 @@ public class Declaration {
     					name = (temStr[0] != "per") ? temStr[0] : null;
     				}   				   				
     				List<Integer> isoEquInd = new ArrayList<Integer>();
-    				isoEquInd.addAll(isoEqu(strSets.get(i)));
+    				isoEquInd.addAll(isoEqu(str));
     				String temStr2 = "";
     				if (!isoEquInd.isEmpty()) {
-    					value = strSets.get(i).substring(isoEquInd.get(0)+1,strSets.get(i).length()).trim();
-    					int index = strSets.get(i).lastIndexOf(')',isoEquInd.get(0));
-    					temStr2 = strSets.get(i).substring(strSets.get(i).indexOf('(')+1, index).trim();
+    					value = str.substring(isoEquInd.get(0)+1,str.length()).trim();
+    					int index = str.lastIndexOf(')',isoEquInd.get(0));
+    					temStr2 = str.substring(str.indexOf('(')+1, index).trim();
     				} else {
     					value = null;
-    					int index = strSets.get(i).lastIndexOf(')');
-    					temStr2 = strSets.get(i).substring(strSets.get(i).indexOf('(')+1, index).trim();
+    					int index = str.lastIndexOf(')');
+    					temStr2 = str.substring(str.indexOf('(')+1, index).trim();
     				}    				 				    				
     				if (!name.equals("per")) {
     					VariableMod varMod = new VariableMod();
@@ -131,7 +164,8 @@ public class Declaration {
     					variable_modification = null;
     				}
     			}
-    			modListEle.add(new ClassModList(prefix,name,value,variable_modification,per_modification));
+    			modListEle.add(new ClassModList(prefix,name,value,variable_modification,per_modification, null, null));
+        		}    			
     		}
     		this.modifications = modListEle;
     		return new Mod(classModStr);
@@ -162,36 +196,26 @@ public class Declaration {
 		}
 		return equSymbol;
     }
-    
-    
-    private static Collection<Integer> searchComEle(Collection<Integer> list1,
-    		                                        Collection<Integer> list2,
-    		                                        Collection<Integer> list3,
-    		                                        Collection<Integer> list4) {
-    	List<Integer> comEle = new ArrayList<Integer> ();
-    	if (list1.size()>0 && list2.size()>0 && list3.size()>0 && list4.size()>0) {
-    		list2.retainAll(list1);
-    		list3.retainAll(list2);
-    		list4.retainAll(list3);
-    		comEle.addAll(list4);
-    	}
-    	return comEle;
-    }
 
     private class ClassModList {
     	String prefix;
+    	String className;
     	String name;
     	String value;
     	VariableMod variable_modification;
-		PerMod per;
+		PerMod per;		
+		ClassMod modification;
     	private ClassModList(String prefix, String name, String value,
     			             VariableMod variable_modification,
-    			             PerMod per_modification) {
+    			             PerMod per_modification,
+    			             String className, ClassMod modification) {
     		this.prefix = prefix;
     		this.name = name;
     		this.value = value;
     		this.variable_modification = variable_modification;
     		this.per = per_modification;
+    		this.className = className;
+    		this.modification = modification;
     	}
     }
 

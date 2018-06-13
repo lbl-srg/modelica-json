@@ -1,0 +1,100 @@
+{
+  "modelicaFile": "./CustomPWithLimiter.mo",
+  "within": "FromModelica",
+  "topClassName": "FromModelica.CustomPWithLimiter",
+  "comment": "Custom implementation of a P controller with variable output limiter",
+  "public": {
+    "parameters": [
+      {
+        "className": "Real",
+        "name": "k",
+        "value": "2",
+        "comment": "Constant gain",
+        "annotation": {
+          "dialog": {
+            "tab": "General",
+            "group": "Parameters"
+          }
+        }
+      }
+    ],
+    "models": [
+      {
+        "className": "Buildings.Controls.OBC.CDL.Continuous.Gain",
+        "name": "gain",
+        "comment": "Constant gain",
+        "modifications": [
+          {
+            "name": "k",
+            "value": "k",
+            "isFinal": true
+          }
+        ]
+      },
+      {
+        "className": "Buildings.Controls.OBC.CDL.Continuous.Min",
+        "name": "minValue",
+        "comment": "Outputs the minimum of its inputs"
+      }
+    ],
+    "inputs": [
+      {
+        "className": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+        "name": "yMax",
+        "comment": "Maximum value of output signal"
+      },
+      {
+        "className": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+        "name": "e",
+        "comment": "Control error"
+      }
+    ],
+    "outputs": [
+      {
+        "className": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
+        "name": "y",
+        "comment": "Control signal"
+      }
+    ]
+  },
+  "info": "<html>\n<p>\nBlock that outputs <code>y = min(yMax, k*e)</code>,\nwhere\n<code>yMax</code> and <code>e</code> are real-valued input signals and\n<code>k</code> is a parameter.\n</p>\n</html>",
+  "connections": [
+    [
+      {
+        "instance": "yMax"
+      },
+      {
+        "instance": "minValue",
+        "connector": "u1"
+      }
+    ],
+    [
+      {
+        "instance": "e"
+      },
+      {
+        "instance": "gain",
+        "connector": "u"
+      }
+    ],
+    [
+      {
+        "instance": "gain",
+        "connector": "y"
+      },
+      {
+        "instance": "minValue",
+        "connector": "u2"
+      }
+    ],
+    [
+      {
+        "instance": "minValue",
+        "connector": "y"
+      },
+      {
+        "instance": "y"
+      }
+    ]
+  ]
+}

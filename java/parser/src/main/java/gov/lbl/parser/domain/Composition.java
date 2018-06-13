@@ -71,8 +71,8 @@ public class Composition {
     		this.diagram = diagramStr;
     		this.icon = iconStr;
     		this.text = textStr;
-    		
-    		
+
+
     		if (annStr.contains("defaultComponentName")) {
     			int beginInd = annStr.indexOf("\"", annStr.indexOf("defaultComponentName")+"defaultComponentName".length()-1);
     			int endInd = annStr.indexOf("\"", beginInd+1);
@@ -82,18 +82,18 @@ public class Composition {
     			nameStr = null;
     			this.defaultName = null;
     		}
-    		
+
     		/** find vendor annotation **/
     		String venAnnName = "";
     		if (venAnnStr != null) {
-    			venAnnName = annStr.substring(annStr.indexOf("__"), annStr.indexOf("(",annStr.indexOf("__")));    			
+    			venAnnName = annStr.substring(annStr.indexOf("__"), annStr.indexOf("(",annStr.indexOf("__")));
     			VendorAnnotation venAnn = new VendorAnnotation();
     			venAnn.vendorAnnotation(venAnnName,venAnnStr);
         		this.vendor_annotation = venAnn;
     		} else {
     			this.vendor_annotation = null;
     		}
-    		
+
     		List<String> strListToBeRem = new ArrayList<String>();
     		if (docStr != null) {
     			StringBuilder temStr = new StringBuilder();
@@ -181,38 +181,38 @@ public class Composition {
     		List<StrPair> venAnnEle = new ArrayList<StrPair>();
     		List<SimAnnotation> simAnnEle = new ArrayList<SimAnnotation>();
     		if (venAnnStr == null || !venAnnStr.contains("=")) {
-    			this.annotation = null;      			
-    		} else { 
+    			this.annotation = null;
+    		} else {
     			String name;
     			String value;
     			List<String> venSetTemp = new ArrayList<String>();
-    			venSetTemp.addAll(Comment.splitAtComma(venAnnStr));    			
+    			venSetTemp.addAll(Comment.splitAtComma(venAnnStr));
     			List<String> venSet = new ArrayList<String>();
     			for (int i=0; i<venSetTemp.size(); i++) {
     				if (!venSetTemp.get(i).trim().isEmpty()) {
     					venSet.add(venSetTemp.get(i));
     				}
-    			}    			
+    			}
     			for (int i=0; i<venSet.size(); i++) {
     				int equInd = venSet.get(i).indexOf("=");
-    				name = venSet.get(i).substring(0, equInd).trim();   				
-    				value = venSet.get(i).substring(equInd+1, venSet.get(i).length()).trim();  
+    				name = venSet.get(i).substring(0, equInd).trim();
+    				value = venSet.get(i).substring(equInd+1, venSet.get(i).length()).trim();
     				if (!(value.charAt(0) == '{') || !value.contains("=")) {
     					venAnnEle.add(new StrPair(name,value));
-    				} else {    					
-    					SimAnnotation tem = new SimAnnotation();   					
+    				} else {
+    					SimAnnotation tem = new SimAnnotation();
     					tem.simAnnotation(name, value);
     					simAnnEle.add(tem);
     				}
     			}
     			this.annotation = venAnnEle.isEmpty()? null : venAnnEle;
     			this.innerAnnotation = simAnnEle.isEmpty()? null : simAnnEle;
-    		}    		
+    		}
     		return new TemCla(venAnnStr);
     	}
     }
-    
-    private class SimAnnotation{   	    	
+
+    private class SimAnnotation{
     	private String name;
     	private Collection<AnnotationString> annotation;
     	private TemCla simAnnotation(String name, String annStr) {
@@ -221,12 +221,12 @@ public class Composition {
     		List<String> strSet = new ArrayList<String>();
     		strSet.addAll(Comment.splitAtComma(annStrTem));
     		List<AnnotationString> annStrSet = new ArrayList<AnnotationString>();
-    		
+
     		String strEle;
     		String namTem;
     		String annTem;
     		for (int i=0; i<strSet.size(); i++) {
-    			strEle = strSet.get(i);   			
+    			strEle = strSet.get(i);
     			namTem = strEle.substring(0, strEle.indexOf("(")).trim();
     			annTem = strEle.substring(strEle.indexOf("(")+1, strEle.lastIndexOf(")")).trim();
     			AnnotationString temCla = new AnnotationString();
@@ -236,8 +236,8 @@ public class Composition {
     		this.annotation = annStrSet;
     		return new TemCla(annStr);
     	}
-    }    
-    
+    }
+
     private class AnnotationString{
     	private String name;
     	private Collection<StrPair> annotation;
@@ -250,23 +250,23 @@ public class Composition {
     		String value;
     		int equInd;
     		String temStr;
-    		for (int i=0; i<strSet.size(); i++) {    			
+    		for (int i=0; i<strSet.size(); i++) {
     			temStr = strSet.get(i);
     			equInd = temStr.indexOf("=");
     			name = temStr.substring(0, equInd).trim();
     			value = temStr.substring(equInd+1,temStr.length()).trim();
     			strPair.add(new StrPair(name,value));
     		}
-    		this.annotation = strPair;   		
+    		this.annotation = strPair;
     		return new TemCla(str);
     	}
     }
- 
+
     public class TemCla {
     	private TemCla(String str) {
     	}
     }
-    
+
     private class Documentation {
     	String info;
     	String revisions;
@@ -275,7 +275,7 @@ public class Composition {
     		this.revisions = revisions;
     	}
     }
-    
+
     private class StrPair {
     	String name;
     	String value;
