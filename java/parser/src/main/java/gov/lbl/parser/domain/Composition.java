@@ -69,7 +69,7 @@ public class Composition {
     		String venAnnStr = Comment.findSubStr(annStr, "__");
 
     		this.text = textStr;
-    		
+
     		if (diagramStr != null) {
     			GraphicLayers temp = new GraphicLayers();
     			temp.graphicLayers(diagramStr);
@@ -77,7 +77,7 @@ public class Composition {
     		} else {
     			this.diagram = null;
     		}
-    			
+
     		if (iconStr != null) {
     			GraphicLayers temp = new GraphicLayers();
     			temp.graphicLayers(iconStr);
@@ -85,7 +85,7 @@ public class Composition {
     		} else {
     			this.icon = null;
     		}
-    		
+
     		if (annStr.contains("defaultComponentName")) {
     			int beginInd = annStr.indexOf("\"", annStr.indexOf("defaultComponentName")+"defaultComponentName".length()-1);
     			int endInd = annStr.indexOf("\"", beginInd+1);
@@ -95,18 +95,18 @@ public class Composition {
     			nameStr = null;
     			this.defaultName = null;
     		}
-    		
+
     		/** find vendor annotation **/
     		String venAnnName = "";
     		if (venAnnStr != null) {
-    			venAnnName = annStr.substring(annStr.indexOf("__"), annStr.indexOf("(",annStr.indexOf("__")));    			
+    			venAnnName = annStr.substring(annStr.indexOf("__"), annStr.indexOf("(",annStr.indexOf("__")));
     			VendorAnnotation venAnn = new VendorAnnotation();
     			venAnn.vendorAnnotation(venAnnName,venAnnStr);
         		this.vendor_annotation = venAnn;
     		} else {
     			this.vendor_annotation = null;
     		}
-    		
+
     		List<String> strListToBeRem = new ArrayList<String>();
     		if (docStr != null) {
     			StringBuilder temStr = new StringBuilder();
@@ -194,38 +194,38 @@ public class Composition {
     		List<StrPair> venAnnEle = new ArrayList<StrPair>();
     		List<SimAnnotation> simAnnEle = new ArrayList<SimAnnotation>();
     		if (venAnnStr == null || !venAnnStr.contains("=")) {
-    			this.annotation = null;      			
-    		} else { 
+    			this.annotation = null;
+    		} else {
     			String name;
     			String value;
     			List<String> venSetTemp = new ArrayList<String>();
-    			venSetTemp.addAll(Comment.splitAtComma(venAnnStr));    			
+    			venSetTemp.addAll(Comment.splitAtComma(venAnnStr));
     			List<String> venSet = new ArrayList<String>();
     			for (int i=0; i<venSetTemp.size(); i++) {
     				if (!venSetTemp.get(i).trim().isEmpty()) {
     					venSet.add(venSetTemp.get(i));
     				}
-    			}    			
+    			}
     			for (int i=0; i<venSet.size(); i++) {
     				int equInd = venSet.get(i).indexOf("=");
-    				name = venSet.get(i).substring(0, equInd).trim();   				
-    				value = venSet.get(i).substring(equInd+1, venSet.get(i).length()).trim();  
+    				name = venSet.get(i).substring(0, equInd).trim();
+    				value = venSet.get(i).substring(equInd+1, venSet.get(i).length()).trim();
     				if (!(value.charAt(0) == '{') || !value.contains("=")) {
     					venAnnEle.add(new StrPair(name,value));
-    				} else {    					
-    					SimAnnotation tem = new SimAnnotation();   					
+    				} else {
+    					SimAnnotation tem = new SimAnnotation();
     					tem.simAnnotation(name, value);
     					simAnnEle.add(tem);
     				}
     			}
     			this.annotation = venAnnEle.isEmpty()? null : venAnnEle;
     			this.innerAnnotation = simAnnEle.isEmpty()? null : simAnnEle;
-    		}    		
+    		}
     		return new TemCla(venAnnStr);
     	}
     }
-    
-    private class SimAnnotation{   	    	
+
+    private class SimAnnotation{
     	private String name;
     	private Collection<AnnotationString> annotation;
     	private TemCla simAnnotation(String name, String annStr) {
@@ -234,12 +234,12 @@ public class Composition {
     		List<String> strSet = new ArrayList<String>();
     		strSet.addAll(Comment.splitAtComma(annStrTem));
     		List<AnnotationString> annStrSet = new ArrayList<AnnotationString>();
-    		
+
     		String strEle;
     		String namTem;
     		String annTem;
     		for (int i=0; i<strSet.size(); i++) {
-    			strEle = strSet.get(i);   			
+    			strEle = strSet.get(i);
     			namTem = strEle.substring(0, strEle.indexOf("(")).trim();
     			annTem = strEle.substring(strEle.indexOf("(")+1, strEle.lastIndexOf(")")).trim();
     			AnnotationString temCla = new AnnotationString();
@@ -249,8 +249,8 @@ public class Composition {
     		this.annotation = annStrSet;
     		return new TemCla(annStr);
     	}
-    }    
-    
+    }
+
     private class AnnotationString{
     	private String name;
     	private Collection<StrPair> annotation;
@@ -262,65 +262,50 @@ public class Composition {
     		String name, value;
     		int equInd;
     		String temStr;
-    		for (int i=0; i<strSet.size(); i++) {    			
+    		for (int i=0; i<strSet.size(); i++) {
     			temStr = strSet.get(i);
     			equInd = temStr.indexOf("=");
     			name = temStr.substring(0, equInd).trim();
     			value = temStr.substring(equInd+1,temStr.length()).trim();
     			strPair.add(new StrPair(name,value));
     		}
-    		this.annotation = strPair;   		
+    		this.annotation = strPair;
     		return new TemCla(str);
     	}
     }
-    
-    
+
+
     /** Parse graphical contents in Icon and Diagram layers:
      * Icon(coordinateSystem(extent={....}),
      *      graphics={Rectangle(extent={....}),Text(extent={...}, textString="...")}));
      * Diagram(coordinateSystem(extent={....}),
-     *         graphics={Rectangle(extent={....}),Text(extent={...}, textString="...")}));      
+     *         graphics={Rectangle(extent={....}),Text(extent={...}, textString="...")}));
      **/
     public class GraphicLayers {
     	private Coordinate coordinateSystem;
-    	private Collection<Graphics> graphics;
+    	private Graphics graphics;
     	public TemCla graphicLayers(String layStr) {
-    		List<String> strSet1 = new ArrayList<String>();
-    		strSet1.addAll(Comment.splitAtComma(layStr));
+    		List<String> strSet = new ArrayList<String>();
+    		strSet.addAll(Comment.splitAtComma(layStr));
     		String coorSysStr = "";
     		String grapStr = "";
-    		for (String str : strSet1) {
+    		for (String str : strSet) {
     			if (str.contains("coordinateSystem (")) {
     				coorSysStr = str.substring(str.indexOf('(')+1,str.lastIndexOf(')')).trim();
+    				Coordinate temp = new Coordinate();
+        		    temp.coordinate(coorSysStr);
+        		    this.coordinateSystem = temp;
     			} else if (str.contains("graphics =")) {
     				grapStr = str.substring(str.indexOf('{')+1, str.lastIndexOf('}')).trim();
-    			}    			   			
-    		}   		  		
-    		if (!coorSysStr.isEmpty()) {
-    		    Coordinate temp = new Coordinate();
-    		    temp.coordinate(coorSysStr);		    	   		       
-    		    this.coordinateSystem = temp;
-    		} else {
-    			this.coordinateSystem = null;
-    		}
-    		if (!grapStr.isEmpty()) {
-    			List<String> strSet3 = new ArrayList<String>();
-    			strSet3.addAll(Comment.splitAtComma(grapStr));
-    			List<Graphics> graBlo = new ArrayList<Graphics>();
-    			for (String str : strSet3) {
     				Graphics temp = new Graphics();
-    				temp.graphics(str);
-    				graBlo.add(temp);
+        			temp.graphics(grapStr);
+        			this.graphics = temp;
     			}
-    			this.graphics = graBlo;
-    		} else {
-    			this.graphics = null;
     		}
-    		   		    		  	   		
     		return new TemCla(layStr);
     	}
-    }   
-    
+    }
+
     /** parse coordinateSystem(extent={....}, preserveAspectedRatio=..., initialScale=...)
      */
     private class Coordinate {
@@ -333,11 +318,11 @@ public class Composition {
 		    List<Comment.Points> extPoints = new ArrayList<Comment.Points>();
 		    Double iniScaStr = null;
 			Boolean preAspRatStr = null;
-			
+
 		    for (String str : strSet) {
 		    	int indEq = str.indexOf('=');
 		    	String name = str.substring(0, indEq).trim();
-		    	String value = str.substring(indEq+1, str.length()).trim(); 
+		    	String value = str.substring(indEq+1, str.length()).trim();
 		    	if (name.contains("extent")) {
 		    		String temp = value.substring(value.indexOf('{') + 1, value.lastIndexOf('}')).trim();
 		    		List<String> pointsSet = new ArrayList<String>();
@@ -352,105 +337,393 @@ public class Composition {
 		    		iniScaStr = Double.valueOf(value);
 		    	} else if (name.contains("preserveAspectRatio")) {
 		    		preAspRatStr = Boolean.valueOf(value);
-		    	}		    	
-		    }	
+		    	}
+		    }
 		    this.extent = extPoints.isEmpty() ? null : extPoints;
 	    	this.initialScale = iniScaStr;
 	    	this.preserveAspectedRatio = preAspRatStr;
     		return new TemCla(coorSysStr);
     	}
     }
-    
-    
+
+
     /** Parse graphical contents in Icon(), Diagram():
-     * graphics={Rectangle(extent={....}),Text(extent={...}, textString="...")}));     
+     * graphics={Rectangle(extent={....}),Text(extent={...}, textString="...")}));
      **/
     private class Graphics {
-    	private String name;
-    	private GraphicContents value;
+    	private Comment.LineBlock line;
+    	private Polygon polygon;
+    	private Rectangle rectangle;
+    	private Ellipse ellipse;
+    	private Text text;
+    	private Bitmap bitmap;
     	private TemCla graphics(String graStr) {
-    		String valueStr;
-    		int indBr = graStr.indexOf('(');
-    		this.name = graStr.substring(0,indBr).trim();	
-    		valueStr = graStr.substring(indBr+1,graStr.lastIndexOf(')')).trim();
-    		GraphicContents temp = new GraphicContents();
-    		temp.graCon(valueStr);
-    		this.value = temp;   	  		  		   		  		
+    		List<String> strSet = new ArrayList<String>();
+    		strSet.addAll(Comment.splitAtComma(graStr));
+    		Comment test = new Comment("", null);
+    		for (String str : strSet) {
+    			int indBr = str.indexOf('(');
+        		String primitive = str.substring(0, indBr).trim();
+        		String specification = str.substring(indBr+1, str.lastIndexOf(')')).trim();
+        		if (primitive.contains("Line")) {
+        			Comment.LineBlock line = test.new LineBlock();
+        			line.lineBlock(specification);
+        			this.line = line;
+        		} else if (primitive.contains("Polygon")) {
+        			Polygon polygon = new Polygon();
+        			polygon.polygon(specification);
+        			this.polygon = polygon;
+        		} else if (primitive.contains("Rectangle")) {
+        			Rectangle rectangle = new Rectangle();
+        			rectangle.rectangle(specification);
+        			this.rectangle = rectangle;
+        		} else if (primitive.contains("Ellipse")) {
+        			Ellipse ellipse = new Ellipse();
+        			ellipse.ellipse(specification);
+        			this.ellipse = ellipse;
+        		} else if (primitive.contains("Text")) {
+        			Text text = new Text();
+        			text.text(specification);
+        			this.text = text;
+        		} else if (primitive.contains("Bitmap")) {
+        			Bitmap bitmap = new Bitmap();
+        			bitmap.bitmap(specification);
+        			this.bitmap = bitmap;
+        		}
+    		}
     		return new TemCla(graStr);
     	}
     }
-    
-    
-    private class GraphicContents {
-    	private Collection<Comment.Points> extent;
-    	private Comment.Color fillColor;
+
+
+    private class Polygon {
+    	private Boolean visible;
+    	private Comment.Points origin;
+    	private Double rotation;
     	private Comment.Color lineColor;
+    	private Comment.Color fillColor;
+    	private String pattern;
     	private String fillPattern;
-    	private String textString;
-    	private String interaction;
+    	private Double lineThickness;
     	private Collection<Comment.Points> points;
-    	private TemCla graCon(String graConStr) {
-    		List<String> strSet = new ArrayList<String>();
-    		strSet.addAll(Comment.splitAtComma(graConStr));
-    		List<Comment.Points> extPoints = new ArrayList<Comment.Points>();
-    		List<Comment.Points> points = new ArrayList<Comment.Points>();
+    	private String smooth;
+    	private TemCla polygon(String polStr) {
     		Comment test = new Comment("", null);
-    		Comment.Color fillColor = test.new Color();
-    		Comment.Color lineColor = test.new Color();
-			String fillPattern = null;
-			String textString = null;
-			String interaction = null;						
+    		List<String> strSet = new ArrayList<String>();
+    		strSet.addAll(Comment.splitAtComma(polStr));
     		for (String str : strSet) {
     			int indEq = str.indexOf('=');
 		    	String name = str.substring(0, indEq).trim();
 		    	String value = str.substring(indEq+1, str.length()).trim();
-		    	if (name.contains("extent")) {
-		    		String temp = value.substring(value.indexOf('{') + 1, value.lastIndexOf('}')).trim();
-		    		List<String> pointsSet = new ArrayList<String>();
-		    		pointsSet.addAll(Comment.splitAtComma(temp));
-		    		for (String p : pointsSet) {
-		    			Comment.Points point = test.new Points();
-		    			point.points(p);
-		    			extPoints.add(point);
-		    		}
-		    	} else if (name.contains("points")) {
-		    		String temp = value.substring(value.indexOf('{') + 1, value.lastIndexOf('}')).trim();
-		    		List<String> pointsSet = new ArrayList<String>();
-		    		pointsSet.addAll(Comment.splitAtComma(temp));
-		    		for (String p : pointsSet) {
-		    			Comment.Points point = test.new Points();
-		    			point.points(p);
-		    			points.add(point);
-		    		}
-		    	} else if (name.contains("fillColor")) {
-		    		fillColor.color(value);
+		    	if (name.contains("visible")) {
+		    		this.visible = Boolean.valueOf(value);
+		    	} else if (name.contains("origin")) {
+		    		Comment.Points origin = test.new Points();
+		    		origin.points(value);
+		    		this.origin = origin;
+		    	} else if (name.contains("rotation")) {
+		    		this.rotation = Double.valueOf(value);
 		    	} else if (name.contains("lineColor")) {
+		    		Comment.Color lineColor = test.new Color();
 		    		lineColor.color(value);
+		    		this.lineColor = lineColor;
+		    	} else if (name.contains("fillColor")) {
+		    		Comment.Color fillColor = test.new Color();
+		    		fillColor.color(value);
+		    		this.fillColor = fillColor;
 		    	} else if (name.contains("fillPattern")) {
-		    		fillPattern = value;
-		    	} else if (name.contains("textString")) {
-		    		textString = value;
-		    	} else if (name.contains("interaction")) {
-		    		interaction = value;
-		    	}		      		
+		    		this.fillPattern = value;
+		    	} else if (name.contains("pattern")) {
+		    		this.pattern = value;
+		    	} else if (name.contains("lineThickness")) {
+		    		this.lineThickness = Double.valueOf(value);
+		    	} else if (name.contains("smooth")) {
+		    		this.smooth = value;
+		    	} else if (name.contains("points")) {
+		    		int indRB= value.indexOf('{');
+		    		String temp = value.substring(indRB+1, value.lastIndexOf('}')).trim();
+    				List<String> pointsSet = new ArrayList<String>();
+    				pointsSet.addAll(Comment.splitAtComma(temp));
+    				List<Comment.Points> points = new ArrayList<Comment.Points>();
+    				for (String p : pointsSet) {
+    					Comment.Points point = test.new Points();
+    					point.points(p);
+    					points.add(point);
+    				}
+    				this.points = points;
+		    	}
     		}
-    		this.extent = extPoints.isEmpty() ? null : extPoints;
-    		this.fillColor = fillColor;
-    		this.lineColor = lineColor;
-    		this.fillPattern = fillPattern;
-    		this.textString = textString;
-    		this.interaction = interaction;
-    		this.points = points;
-    		return new TemCla(graConStr);
+
+    		return new TemCla(polStr);
     	}
     }
-    
-    
+
+
+    private class Rectangle {
+    	private Boolean visible;
+    	private Comment.Points origin;
+    	private Double rotation;
+    	private Comment.Color lineColor;
+    	private Comment.Color fillColor;
+    	private String pattern;
+    	private String fillPattern;
+    	private Double lineThickness;
+    	private String borderPattern;
+    	private Collection<Comment.Points> extent;
+    	private Double radius;
+    	private TemCla rectangle(String recStr) {
+    		Comment test = new Comment("", null);
+    		List<String> strSet = new ArrayList<String>();
+    		strSet.addAll(Comment.splitAtComma(recStr));
+    		for (String str : strSet) {
+    			int indEq = str.indexOf('=');
+		    	String name = str.substring(0, indEq).trim();
+		    	String value = str.substring(indEq+1, str.length()).trim();
+		    	if (name.contains("visible")) {
+		    		this.visible = Boolean.valueOf(value);
+		    	} else if (name.contains("origin")) {
+		    		Comment.Points origin = test.new Points();
+		    		origin.points(value);
+		    		this.origin = origin;
+		    	} else if (name.contains("rotation")) {
+		    		this.rotation = Double.valueOf(value);
+		    	} else if (name.contains("lineColor")) {
+		    		Comment.Color lineColor = test.new Color();
+		    		lineColor.color(value);
+		    		this.lineColor = lineColor;
+		    	} else if (name.contains("fillColor")) {
+		    		Comment.Color fillColor = test.new Color();
+		    		fillColor.color(value);
+		    		this.fillColor = fillColor;
+		    	} else if (name.contains("fillPattern")) {
+		    		this.fillPattern = value;
+		    	} else if (name.contains("pattern")) {
+		    		this.pattern = value;
+		    	} else if (name.contains("lineThickness")) {
+		    		this.lineThickness = Double.valueOf(value);
+		    	} else if (name.contains("borderPattern")) {
+		    		this.borderPattern = value;
+		    	} else if (name.contains("radius")) {
+		    		this.radius = Double.valueOf(value);
+		    	} else if (name.contains("extent")) {
+		    		int indRB= value.indexOf('{');
+		    		String temp = value.substring(indRB+1, value.lastIndexOf('}')).trim();
+    				List<String> pointsSet = new ArrayList<String>();
+    				pointsSet.addAll(Comment.splitAtComma(temp));
+    				List<Comment.Points> extent = new ArrayList<Comment.Points>();
+    				for (String p : pointsSet) {
+
+    					Comment.Points point = test.new Points();
+    					point.points(p);
+    					extent.add(point);
+    				}
+    				this.extent = extent;
+		    	}
+    		}
+
+    		return new TemCla(recStr);
+    	}
+    }
+
+
+    private class Text {
+    	private Boolean visible;
+    	private Comment.Points origin;
+    	private Double rotation;
+    	private Comment.Color lineColor;
+    	private Comment.Color fillColor;
+    	private String pattern;
+    	private String fillPattern;
+    	private Double lineThickness;
+    	private Collection<Comment.Points> extent;
+    	private String textString;
+    	private Double fontSize;
+    	private String fontName;
+    	private String textStyle;
+    	private Comment.Color textColor;
+    	private String horizontalAlignment;
+    	private TemCla text(String texStr) {
+    		Comment test = new Comment("", null);
+    		List<String> strSet = new ArrayList<String>();
+    		strSet.addAll(Comment.splitAtComma(texStr));
+    		for (String str : strSet) {
+    			int indEq = str.indexOf('=');
+		    	String name = str.substring(0, indEq).trim();
+		    	String value = str.substring(indEq+1, str.length()).trim();
+		    	if (name.contains("visible")) {
+		    		this.visible = Boolean.valueOf(value);
+		    	} else if (name.contains("origin")) {
+		    		Comment.Points origin = test.new Points();
+		    		origin.points(value);
+		    		this.origin = origin;
+		    	} else if (name.contains("rotation")) {
+		    		this.rotation = Double.valueOf(value);
+		    	} else if (name.contains("lineColor")) {
+		    		Comment.Color lineColor = test.new Color();
+		    		lineColor.color(value);
+		    		this.lineColor = lineColor;
+		    	} else if (name.contains("fillColor")) {
+		    		Comment.Color fillColor = test.new Color();
+		    		fillColor.color(value);
+		    		this.fillColor = fillColor;
+		    	} else if (name.contains("fillPattern")) {
+		    		this.fillPattern = value;
+		    	} else if (name.contains("pattern")) {
+		    		this.pattern = value;
+		    	} else if (name.contains("lineThickness")) {
+		    		this.lineThickness = Double.valueOf(value);
+		    	} else if (name.contains("extent")) {
+		    		int indRB= value.indexOf('{');
+		    		String temp = value.substring(indRB+1, value.lastIndexOf('}')).trim();
+    				List<String> pointsSet = new ArrayList<String>();
+    				pointsSet.addAll(Comment.splitAtComma(temp));
+    				List<Comment.Points> extent = new ArrayList<Comment.Points>();
+    				for (String p : pointsSet) {
+    					Comment.Points point = test.new Points();
+    					point.points(p);
+    					extent.add(point);
+    				}
+    				this.extent = extent;
+		    	} else if (name.contains("textString")) {
+		    		this.textString = value;
+		    	} else if (name.contains("fontSize")) {
+		    		this.fontSize = Double.valueOf(value);
+		    	} else if (name.contains("fontName")) {
+		    		this.fontName = value;
+		    	} else if (name.contains("textStyle")) {
+		    		this.textStyle = value;
+		    	} else if (name.contains("textColor")) {
+		    		Comment.Color textColor = test.new Color();
+		    		textColor.color(value);
+		    		this.textColor = textColor;
+		    	} else if (name.contains("horizontalAlignment")) {
+		    		this.horizontalAlignment = value;
+		    	}
+    		}
+    		return new TemCla(texStr);
+    	}
+    }
+
+
+    private class Bitmap {
+    	private Boolean visible;
+    	private Comment.Points origin;
+    	private Double rotation;
+    	private Collection<Comment.Points> extent;
+    	private String fileName;
+    	private String imageSource;
+    	private TemCla bitmap(String bitStr) {
+    		Comment test = new Comment("", null);
+    		List<String> strSet = new ArrayList<String>();
+    		strSet.addAll(Comment.splitAtComma(bitStr));
+    		for (String str : strSet) {
+    			int indEq = str.indexOf('=');
+		    	String name = str.substring(0, indEq).trim();
+		    	String value = str.substring(indEq+1, str.length()).trim();
+		    	if (name.contains("visible")) {
+		    		this.visible = Boolean.valueOf(value);
+		    	} else if (name.contains("origin")) {
+		    		Comment.Points origin = test.new Points();
+		    		origin.points(value);
+		    		this.origin = origin;
+		    	} else if (name.contains("rotation")) {
+		    		this.rotation = Double.valueOf(value);
+		    	} else if (name.contains("extent")) {
+		    		int indRB= value.indexOf('{');
+		    		String temp = value.substring(indRB+1, value.lastIndexOf('}')).trim();
+    				List<String> pointsSet = new ArrayList<String>();
+    				pointsSet.addAll(Comment.splitAtComma(temp));
+    				List<Comment.Points> extent = new ArrayList<Comment.Points>();
+    				for (String p : pointsSet) {
+    					Comment.Points point = test.new Points();
+    					point.points(p);
+    					extent.add(point);
+    				}
+    				this.extent = extent;
+		    	} else if (name.contains("fileName")) {
+		    		this.fileName = value;
+		    	} else if (name.contains("imageSource")) {
+		    		this.imageSource = value;
+		    	}
+    		}
+    		return new TemCla(bitStr);
+    	}
+    }
+
+
+    private class Ellipse {
+    	private Boolean visible;
+    	private Comment.Points origin;
+    	private Double rotation;
+    	private Comment.Color lineColor;
+    	private Comment.Color fillColor;
+    	private String pattern;
+    	private String fillPattern;
+    	private Double lineThickness;
+    	private Collection<Comment.Points> extent;
+    	private Double startAngle;
+    	private Double endAngle;
+    	private String closure;
+    	private TemCla ellipse(String ellStr) {
+    		Comment test = new Comment("", null);
+    		List<String> strSet = new ArrayList<String>();
+    		strSet.addAll(Comment.splitAtComma(ellStr));
+    		for (String str : strSet) {
+    			int indEq = str.indexOf('=');
+		    	String name = str.substring(0, indEq).trim();
+		    	String value = str.substring(indEq+1, str.length()).trim();
+		    	if (name.contains("visible")) {
+		    		this.visible = Boolean.valueOf(value);
+		    	} else if (name.contains("origin")) {
+		    		Comment.Points origin = test.new Points();
+		    		origin.points(value);
+		    		this.origin = origin;
+		    	} else if (name.contains("rotation")) {
+		    		this.rotation = Double.valueOf(value);
+		    	} else if (name.contains("lineColor")) {
+		    		Comment.Color lineColor = test.new Color();
+		    		lineColor.color(value);
+		    		this.lineColor = lineColor;
+		    	} else if (name.contains("fillColor")) {
+		    		Comment.Color fillColor = test.new Color();
+		    		fillColor.color(value);
+		    		this.fillColor = fillColor;
+		    	} else if (name.contains("fillPattern")) {
+		    		this.fillPattern = value;
+		    	} else if (name.contains("pattern")) {
+		    		this.pattern = value;
+		    	} else if (name.contains("lineThickness")) {
+		    		this.lineThickness = Double.valueOf(value);
+		    	} else if (name.contains("closure")) {
+		    		this.closure = value;
+		    	} else if (name.contains("startAngle")) {
+		    		this.startAngle = Double.valueOf(value);
+		    	} else if (name.contains("endAngle")) {
+		    		this.endAngle = Double.valueOf(value);
+		    	} else if (name.contains("extent")) {
+		    		int indRB= value.indexOf('{');
+		    		String temp = value.substring(indRB+1, value.lastIndexOf('}')).trim();
+    				List<String> pointsSet = new ArrayList<String>();
+    				pointsSet.addAll(Comment.splitAtComma(temp));
+    				List<Comment.Points> extent = new ArrayList<Comment.Points>();
+    				for (String p : pointsSet) {
+    					Comment.Points point = test.new Points();
+    					point.points(p);
+    					extent.add(point);
+    				}
+    				this.extent = extent;
+		    	}
+    		}
+    		return new TemCla(ellStr);
+    	}
+    }
+
+
     public class TemCla {
     	private TemCla(String str) {
     	}
     }
-    
+
     private class Documentation {
     	String info;
     	String revisions;
@@ -459,7 +732,7 @@ public class Composition {
     		this.revisions = revisions;
     	}
     }
-    
+
     private class StrPair {
     	String name;
     	String value;

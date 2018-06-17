@@ -46,7 +46,7 @@ public class Comment {
        	Composition.GraphicLayers diagram;
        	Composition.GraphicLayers icon;
     	Collection<StrPair> dialog;
-    	Collection<PlacementBlock> placement;
+    	PlacementBlock placement;
     	LineBlock line;
     	String text;
     	Documentation documentation;
@@ -64,16 +64,10 @@ public class Comment {
     		String textStr = findSubStr(annStr, "Text ");   		
     		String venAnnStr = findSubStr(annStr, "__");
 
-    		if (placementStr != null) {   			
-    			List<PlacementBlock> plaEle = new ArrayList<PlacementBlock>();
-    			List<String> strSets = new ArrayList<String>();
-    			strSets.addAll(splitAtComma(placementStr));
-    			for (String str : strSets) {
-    				PlacementBlock plaBlo = new PlacementBlock();
-    				plaBlo.placementBlock(str);
-    				plaEle.add(plaBlo);
-    			}
-    			this.placement = plaEle;
+    		if (placementStr != null) {  
+    			PlacementBlock placement = new PlacementBlock();
+    			placement.placementBlock(placementStr);
+    			this.placement = placement;
     		} else {
     			this.placement = null;
     		}
@@ -335,31 +329,37 @@ public class Comment {
     
     
     public class PlacementBlock{
-    	private String name;
-    	private String value; 
+    	private Boolean visible; 
     	private Transformation transformation;
     	private Transformation iconTransformation;
     	 	
     	public TemCla placementBlock(String placementStr) {
-    		// Placement(.. = ...)
-    		if ((placementStr.contains("(") && (placementStr.indexOf('=') < placementStr.indexOf('(')))
-    		    || (!placementStr.contains("("))) {
-    			int indEq = placementStr.indexOf('=');
-    			this.name = placementStr.substring(0,indEq).trim();
-    			this.value = placementStr.substring(indEq+1, placementStr.length()).trim();
-    			this.transformation = null;
-    		} else {
-    			// Placement(transformation(extent = ..., rotation = ..., origin = ...), 
-    			//           iconTransformation(extent = ...))
-    			String name = placementStr.substring(0,placementStr.indexOf('(')).trim();
-    			String lefStr = placementStr.substring(placementStr.indexOf('(')+1,placementStr.lastIndexOf(')')).trim();
-    			Transformation temp = new Transformation();
-    			temp.transformation(lefStr);
-    			this.transformation = (name.contains("transformation")) ? temp : null;
-    			this.iconTransformation = (name.contains("iconTransformation")) ? temp : null;
-    			this.value = null;
-    			this.name = null;
+    		List<String> strSets = new ArrayList<String>();
+			strSets.addAll(splitAtComma(placementStr));
+			Boolean visible = null;
+			Transformation transformation = null;
+			Transformation iconTransformation = null;
+			String name = null;
+			String lefStr = null;
+			Transformation temp = new Transformation();
+    		for (String str : strSets) {
+    			if (str.contains("visible")) {
+    				visible = Boolean.valueOf(str.substring(str.indexOf('=')+1, str.length()).trim());
+    			} else {
+    				name = str.substring(0, str.indexOf('(')).trim();
+    				lefStr = str.substring(str.indexOf('(')+1, str.lastIndexOf(')')).trim();
+    				temp.transformation(lefStr);
+    				if (name.contains("transformation")) {
+        				transformation = temp;
+        			} else if (name.contains("iconTransformation")) {
+        				iconTransformation = temp;
+        			}
+    			}
     		}
+    		
+    		this.visible = visible;
+			this.transformation = transformation;
+			this.iconTransformation = iconTransformation;
     		return new TemCla(placementStr);
     	}
     }
@@ -408,16 +408,26 @@ public class Comment {
     
     
     public class LineBlock{
+    	private Boolean visible;
+    	private Points origin;
+    	private Double rotation;
     	private Collection<Points> points;
     	private Color color;
+    	private String pattern;
+    	private Double thickness;
+    	private String arrow;
+    	private Double arrowSize;
     	private String smooth;
     	public TemCla lineBlock(String lineStr) {
     		List<String> strSets = new ArrayList<String>();
     		strSets.addAll(splitAtComma(lineStr));
-    		for (String str : strSets) {  			
-    			if (str.contains("points")) {
-    				int indRB= str.indexOf('{',str.indexOf('='));
-    				String temp = str.substring(indRB+1, str.lastIndexOf('}')).trim();
+    		for (String str : strSets) {
+    			int indEq = str.indexOf('=');
+		    	String name = str.substring(0, indEq).trim();
+		    	String value = str.substring(indEq+1, str.length()).trim();
+    			if (name.contains("points")) {
+    				int indRB= value.indexOf('{');
+    				String temp = value.substring(indRB+1, value.lastIndexOf('}')).trim();
     				List<Points> linePoints = new ArrayList<Points>();
     				List<String> pointsSet = new ArrayList<String>();
     				pointsSet.addAll(splitAtComma(temp));
@@ -427,16 +437,28 @@ public class Comment {
     					linePoints.add(point);
     				}
     				this.points = linePoints;
-    			} else if (str.contains("color")) {
-    				String colorStr = str.substring(str.indexOf('=')+1, str.length()).trim();
+    			} else if (name.contains("color")) {
     				Color color = new Color();
-    				color.color(colorStr);
+    				color.color(value);
     				this.color = color;
-    			} 
-    			if (str.contains("smooth")) {
-    				this.smooth = str.substring(str.indexOf('=')+1, str.length()).trim();
-    			} else {
-    				this.smooth = null;
+    			} else if (name.contains("pattern")) {
+    				this.pattern = value;
+    			} else if (name.contains("thickness")) {
+    				this.thickness = Double.valueOf(value);
+    			} else if (name.contains("arrow")) {
+    				this.arrow = value;
+    			} else if (name.contains("arrowSize")) {
+    				this.arrowSize = Double.valueOf(value);
+    			} else if (name.contains("smooth")) {
+    				this.smooth = value;
+    			} else if (name.contains("visible")) {
+    				this.visible = Boolean.valueOf(value);
+    			} else if (name.contains("origin")) {
+    				Points origin = new Points();
+    				origin.points(value);
+    				this.origin = origin;
+    			} else if (name.contains("rotation")) {
+    				this.rotation = Double.valueOf(value);
     			}
     		} 
     		return new TemCla(lineStr);
