@@ -351,16 +351,24 @@ public class Composition {
      * graphics={Rectangle(extent={....}),Text(extent={...}, textString="...")}));
      **/
     private class Graphics {
-    	private Comment.LineBlock line;
-    	private Polygon polygon;
-    	private Rectangle rectangle;
-    	private Ellipse ellipse;
-    	private Text text;
-    	private Bitmap bitmap;
+    	private Collection<Comment.LineBlock> line;
+    	private Collection<Polygon> polygon;
+    	private Collection<Rectangle> rectangle;
+    	private Collection<Ellipse> ellipse;
+    	private Collection<Text> text;
+    	private Collection<Bitmap> bitmap;
     	private TemCla graphics(String graStr) {
     		List<String> strSet = new ArrayList<String>();
     		strSet.addAll(Comment.splitAtComma(graStr));
     		Comment test = new Comment("", null);
+    		
+    		List<Comment.LineBlock> lines = new ArrayList<Comment.LineBlock>();
+    		List<Polygon> polygons = new ArrayList<Polygon>();
+    		List<Rectangle> rectangles = new ArrayList<Rectangle>();
+    		List<Ellipse> ellipses = new ArrayList<Ellipse>();
+    		List<Text> texts = new ArrayList<Text>();
+    		List<Bitmap> bitmaps = new ArrayList<Bitmap>();
+    		
     		for (String str : strSet) {
     			int indBr = str.indexOf('(');
         		String primitive = str.substring(0, indBr).trim();
@@ -368,29 +376,35 @@ public class Composition {
         		if (primitive.contains("Line")) {
         			Comment.LineBlock line = test.new LineBlock();
         			line.lineBlock(specification);
-        			this.line = line;
+        			lines.add(line);
         		} else if (primitive.contains("Polygon")) {
         			Polygon polygon = new Polygon();
         			polygon.polygon(specification);
-        			this.polygon = polygon;
+        			polygons.add(polygon);
         		} else if (primitive.contains("Rectangle")) {
         			Rectangle rectangle = new Rectangle();
         			rectangle.rectangle(specification);
-        			this.rectangle = rectangle;
+        			rectangles.add(rectangle);
         		} else if (primitive.contains("Ellipse")) {
         			Ellipse ellipse = new Ellipse();
         			ellipse.ellipse(specification);
-        			this.ellipse = ellipse;
+        			ellipses.add(ellipse);
         		} else if (primitive.contains("Text")) {
         			Text text = new Text();
         			text.text(specification);
-        			this.text = text;
+        			texts.add(text);
         		} else if (primitive.contains("Bitmap")) {
         			Bitmap bitmap = new Bitmap();
         			bitmap.bitmap(specification);
-        			this.bitmap = bitmap;
+        			bitmaps.add(bitmap);
         		}
     		}
+    		this.line = lines.isEmpty() ? null : lines;
+    		this.polygon = polygons.isEmpty() ? null : polygons;
+    		this.rectangle = rectangles.isEmpty() ? null : rectangles;
+    		this.ellipse = ellipses.isEmpty() ? null : ellipses;
+    		this.text = texts.isEmpty() ? null : texts;
+    		this.bitmap = bitmaps.isEmpty() ? null : bitmaps;
     		return new TemCla(graStr);
     	}
     }
