@@ -306,11 +306,11 @@ public class Composition {
     	}
     }
 
-    /** parse coordinateSystem(extent={....}, preserveAspectedRatio=..., initialScale=...)
+    /** parse coordinateSystem(extent={....}, preserveAspectRatio=..., initialScale=...)
      */
     private class Coordinate {
     	private Collection<Comment.Points> extent;
-    	private Boolean preserveAspectedRatio;
+    	private Boolean preserveAspectRatio;
     	private Double initialScale;
     	private TemCla coordinate(String coorSysStr) {
     		List<String> strSet = new ArrayList<String>();
@@ -341,7 +341,7 @@ public class Composition {
 		    }
 		    this.extent = extPoints.isEmpty() ? null : extPoints;
 	    	this.initialScale = iniScaStr;
-	    	this.preserveAspectedRatio = preAspRatStr;
+	    	this.preserveAspectRatio = preAspRatStr;
     		return new TemCla(coorSysStr);
     	}
     }
@@ -361,14 +361,14 @@ public class Composition {
     		List<String> strSet = new ArrayList<String>();
     		strSet.addAll(Comment.splitAtComma(graStr));
     		Comment test = new Comment("", null);
-    		
+
     		List<Comment.LineBlock> lines = new ArrayList<Comment.LineBlock>();
     		List<Polygon> polygons = new ArrayList<Polygon>();
     		List<Rectangle> rectangles = new ArrayList<Rectangle>();
     		List<Ellipse> ellipses = new ArrayList<Ellipse>();
     		List<Text> texts = new ArrayList<Text>();
     		List<Bitmap> bitmaps = new ArrayList<Bitmap>();
-    		
+
     		for (String str : strSet) {
     			int indBr = str.indexOf('(');
         		String primitive = str.substring(0, indBr).trim();
