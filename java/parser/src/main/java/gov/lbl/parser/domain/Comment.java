@@ -341,13 +341,13 @@ public class Comment {
 			Transformation iconTransformation = null;
 			String name = null;
 			String lefStr = null;
-			Transformation temp = new Transformation();
     		for (String str : strSets) {
     			if (str.contains("visible")) {
     				visible = Boolean.valueOf(str.substring(str.indexOf('=')+1, str.length()).trim());
     			} else {
     				name = str.substring(0, str.indexOf('(')).trim();
     				lefStr = str.substring(str.indexOf('(')+1, str.lastIndexOf(')')).trim();
+				Transformation temp = new Transformation();
     				temp.transformation(lefStr);
     				if (name.contains("transformation")) {
         				transformation = temp;

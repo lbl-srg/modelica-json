@@ -72,7 +72,7 @@ logger.level = args.log
 // Get mo files array
 var moFiles = ut.getMoFiles(args.mode, args.file)
 
-// Parse the json representation for  moFiles
+// Parse the json representation for moFiles
 var json = pa.getJSON(moFiles, args.mode, args.output)
 
 // Get the name array of output files
