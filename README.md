@@ -9,7 +9,7 @@ See the directory `test/FromModelica` for simple examples.
 
 The parser requires Java and node, which can be installed on Ubuntu using
 ```
-sudo apt-get install nodejs-legacy npm default-jdk
+sudo apt-get install nodejs npm default-jdk
 ```
 
 To install dependencies of the parser, run
