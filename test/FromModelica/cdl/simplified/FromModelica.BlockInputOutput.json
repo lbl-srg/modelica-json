@@ -1,62 +1,508 @@
-{
-  "modelicaFile": "./BlockInputOutput.mo",
-  "within": "FromModelica",
-  "topClassName": "FromModelica.BlockInputOutput",
-  "comment": "A block with an input and an output signal",
-  "public": {
-    "inputs": [
-      {
-        "className": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
-        "name": "u",
-        "comment": "Input connector",
-        "placement": {
-          "transformation": {
-            "extent": [
-              {
-                "x1": -140,
-                "x2": -20
-              },
-              {
-                "x1": -100,
-                "x2": 20
-              }
-            ]
-          },
-          "iconTransformation": {
-            "extent": [
-              {
-                "x1": -140,
-                "x2": -20
-              },
-              {
-                "x1": -100,
-                "x2": 20
-              }
-            ]
+[
+  {
+    "modelicaFile": "./BlockInputOutput.mo",
+    "within": "FromModelica",
+    "topClassName": "FromModelica.BlockInputOutput",
+    "comment": "A block with an input and an output signal",
+    "public": {
+      "inputs": [
+        {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+          "name": "u",
+          "comment": "Input connector",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x1": -140,
+                  "x2": -20
+                },
+                {
+                  "x1": -100,
+                  "x2": 20
+                }
+              ]
+            },
+            "iconTransformation": {
+              "extent": [
+                {
+                  "x1": -140,
+                  "x2": -20
+                },
+                {
+                  "x1": -100,
+                  "x2": 20
+                }
+              ]
+            }
           }
         }
+      ],
+      "outputs": [
+        {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
+          "name": "y",
+          "comment": "Output connector",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x1": 100,
+                  "x2": -10
+                },
+                {
+                  "x1": 120,
+                  "x2": 10
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "icon": {
+      "coordinateSystem": {
+        "extent": [
+          {
+            "x1": -100,
+            "x2": -100
+          },
+          {
+            "x1": 100,
+            "x2": 100
+          }
+        ],
+        "preserveAspectRatio": true,
+        "initialScale": 0.1
       }
-    ],
-    "outputs": [
-      {
-        "className": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
-        "name": "y",
-        "comment": "Output connector",
-        "placement": {
-          "transformation": {
-            "extent": [
+    },
+    "svg": {
+      "icon": {
+        "items": {
+          "width": 260,
+          "height": 200,
+          "intPolygons": [
+            {
+              "points": "0,120 40,100 0,80",
+              "hasFill": true,
+              "fill": "rgb(0,0,127)",
+              "stroke": "rgb(0,0,127)",
+              "strokeDasharray": "1,0",
+              "strokeWidth": 0.25
+            },
+            {
+              "points": "240,110 260,100 240,90",
+              "hasFill": true,
+              "fill": "rgb(255,255,255)",
+              "stroke": "rgb(0,0,127)",
+              "strokeDasharray": "1,0",
+              "strokeWidth": 0.25
+            }
+          ],
+          "hasDots": false
+        },
+        "coordinate": [
+          {
+            "x1": 40,
+            "x2": 200
+          },
+          {
+            "x1": 240,
+            "x2": 0
+          }
+        ],
+        "initialScale": 0.1,
+        "preserveAspectRatio": true,
+        "drawing": "<svg version=\"1.1\" baseProfile=\"full\" width=\"260mm\" height=\"200mm\"\n     viewBox=\"0 0 260 200\" xmlns=\"http://www.w3.org/2000/svg\">\n\n\n\n\n\n\n\n\n<polygon points=\"0,120 40,100 0,80\"  fill=\"rgb(0,0,127)\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polygon points=\"240,110 260,100 240,90\"  fill=\"rgb(255,255,255)\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n\n\n\n\n\n\n</svg>"
+      },
+      "diagram": {
+        "items": {
+          "width": 260,
+          "height": 200,
+          "intPolygons": [
+            {
+              "points": "20,110 40,100 20,90 20,110",
+              "hasFill": true,
+              "fill": "rgb(0,0,127)",
+              "stroke": "rgb(0,0,127)",
+              "strokeDasharray": "1,0",
+              "strokeWidth": 0.25
+            },
+            {
+              "points": "240,105 250,100 240,95",
+              "hasFill": true,
+              "fill": "rgb(255,255,255)",
+              "stroke": "rgb(0,0,127)",
+              "strokeDasharray": "1,0",
+              "strokeWidth": 0.25
+            }
+          ],
+          "hasDots": false
+        },
+        "initialScale": 0.1,
+        "preserveAspectRatio": true,
+        "drawing": "<svg version=\"1.1\" baseProfile=\"full\" width=\"260mm\" height=\"200mm\"\n     viewBox=\"0 0 260 200\" xmlns=\"http://www.w3.org/2000/svg\">\n\n\n\n\n\n\n\n\n<polygon points=\"20,110 40,100 20,90 20,110\"  fill=\"rgb(0,0,127)\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polygon points=\"240,105 250,100 240,95\"  fill=\"rgb(255,255,255)\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n\n\n\n\n\n\n</svg>"
+      }
+    },
+    "diagram": {
+      "coordinateSystem": {
+        "extent": [
+          {
+            "x1": -100,
+            "x2": -100
+          },
+          {
+            "x1": 100,
+            "x2": 100
+          }
+        ],
+        "preserveAspectRatio": true,
+        "initialScale": 0.1
+      }
+    }
+  },
+  {
+    "modelicaFile": "/home/jianjun/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Interfaces/RealInput.mo",
+    "within": "Buildings.Controls.OBC.CDL.Interfaces",
+    "topClassName": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+    "comment": "'input Real' as connector",
+    "public": {
+      "models": [
+        {
+          "className": "RealInput",
+          "basePrefix": "input",
+          "name": "Real",
+          "comment": "'input Real' as connector"
+        }
+      ]
+    },
+    "info": "<html>\n<p>\nConnector with one input signal of type Real.\n</p>\n</html>",
+    "icon": {
+      "coordinateSystem": {
+        "extent": [
+          {
+            "x1": -100,
+            "x2": -100
+          },
+          {
+            "x1": 100,
+            "x2": 100
+          }
+        ],
+        "preserveAspectRatio": true,
+        "initialScale": 0.2
+      },
+      "graphics": {
+        "polygon": [
+          {
+            "lineColor": {
+              "r": 0,
+              "g": 0,
+              "b": 127
+            },
+            "fillColor": {
+              "r": 0,
+              "g": 0,
+              "b": 127
+            },
+            "fillPattern": "FillPattern.Solid",
+            "points": [
+              {
+                "x1": -100,
+                "x2": 100
+              },
               {
                 "x1": 100,
-                "x2": -10
+                "x2": 0
               },
               {
-                "x1": 120,
-                "x2": 10
+                "x1": -100,
+                "x2": -100
               }
             ]
           }
-        }
+        ]
       }
-    ]
+    },
+    "diagram": {
+      "coordinateSystem": {
+        "extent": [
+          {
+            "x1": -100,
+            "x2": -100
+          },
+          {
+            "x1": 100,
+            "x2": 100
+          }
+        ],
+        "preserveAspectRatio": true,
+        "initialScale": 0.2
+      },
+      "graphics": {
+        "polygon": [
+          {
+            "lineColor": {
+              "r": 0,
+              "g": 0,
+              "b": 127
+            },
+            "fillColor": {
+              "r": 0,
+              "g": 0,
+              "b": 127
+            },
+            "fillPattern": "FillPattern.Solid",
+            "points": [
+              {
+                "x1": 0,
+                "x2": 50
+              },
+              {
+                "x1": 100,
+                "x2": 0
+              },
+              {
+                "x1": 0,
+                "x2": -50
+              },
+              {
+                "x1": 0,
+                "x2": 50
+              }
+            ]
+          }
+        ],
+        "text": [
+          {
+            "lineColor": {
+              "r": 0,
+              "g": 0,
+              "b": 127
+            },
+            "extent": [
+              {
+                "x1": -10,
+                "x2": 60
+              },
+              {
+                "x1": -10,
+                "x2": 85
+              }
+            ],
+            "textString": "\"%name\""
+          }
+        ]
+      }
+    },
+    "svg": {
+      "icon": {
+        "items": {
+          "layerPolygons": [
+            {
+              "points": "0,0 200,100 0,200",
+              "hasFill": true,
+              "fill": "rgb(0,0,127)",
+              "stroke": "rgb(0,0,127)",
+              "strokeWidth": 0.25,
+              "strokeDasharray": "1,0"
+            }
+          ],
+          "width": 200,
+          "height": 200
+        },
+        "initialScale": 0.2,
+        "preserveAspectRatio": true,
+        "drawing": "<svg version=\"1.1\" baseProfile=\"full\" width=\"200mm\" height=\"200mm\"\n     viewBox=\"0 0 200 200\" xmlns=\"http://www.w3.org/2000/svg\">\n\n\n<polygon points=\"0,0 200,100 0,200\"  fill=\"rgb(0,0,127)\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n\n\n\n\n\n\n\n\n\n\n\n\n</svg>"
+      },
+      "diagram": {
+        "items": {
+          "layerPolygons": [
+            {
+              "points": "100,50 200,100 100,150 100,50",
+              "hasFill": true,
+              "fill": "rgb(0,0,127)",
+              "stroke": "rgb(0,0,127)",
+              "strokeWidth": 0.25,
+              "strokeDasharray": "1,0"
+            }
+          ],
+          "width": 200,
+          "height": 200
+        },
+        "initialScale": 0.2,
+        "preserveAspectRatio": true,
+        "drawing": "<svg version=\"1.1\" baseProfile=\"full\" width=\"200mm\" height=\"200mm\"\n     viewBox=\"0 0 200 200\" xmlns=\"http://www.w3.org/2000/svg\">\n\n\n<polygon points=\"100,50 200,100 100,150 100,50\"  fill=\"rgb(0,0,127)\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n\n\n\n\n\n\n\n\n\n\n\n\n</svg>"
+      }
+    }
+  },
+  {
+    "modelicaFile": "/home/jianjun/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Interfaces/RealOutput.mo",
+    "within": "Buildings.Controls.OBC.CDL.Interfaces",
+    "topClassName": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
+    "comment": "'output Real' as connector",
+    "public": {
+      "models": [
+        {
+          "className": "RealOutput",
+          "basePrefix": "output",
+          "name": "Real",
+          "comment": "'output Real' as connector"
+        }
+      ]
+    },
+    "info": "<html>\n<p>\nConnector with one output signal of type Real.\n</p>\n</html>",
+    "icon": {
+      "coordinateSystem": {
+        "extent": [
+          {
+            "x1": -100,
+            "x2": -100
+          },
+          {
+            "x1": 100,
+            "x2": 100
+          }
+        ],
+        "preserveAspectRatio": true
+      },
+      "graphics": {
+        "polygon": [
+          {
+            "lineColor": {
+              "r": 0,
+              "g": 0,
+              "b": 127
+            },
+            "fillColor": {
+              "r": 255,
+              "g": 255,
+              "b": 255
+            },
+            "fillPattern": "FillPattern.Solid",
+            "points": [
+              {
+                "x1": -100,
+                "x2": 100
+              },
+              {
+                "x1": 100,
+                "x2": 0
+              },
+              {
+                "x1": -100,
+                "x2": -100
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "diagram": {
+      "coordinateSystem": {
+        "extent": [
+          {
+            "x1": -100,
+            "x2": -100
+          },
+          {
+            "x1": 100,
+            "x2": 100
+          }
+        ],
+        "preserveAspectRatio": true
+      },
+      "graphics": {
+        "polygon": [
+          {
+            "lineColor": {
+              "r": 0,
+              "g": 0,
+              "b": 127
+            },
+            "fillColor": {
+              "r": 255,
+              "g": 255,
+              "b": 255
+            },
+            "fillPattern": "FillPattern.Solid",
+            "points": [
+              {
+                "x1": -100,
+                "x2": 50
+              },
+              {
+                "x1": 0,
+                "x2": 0
+              },
+              {
+                "x1": -100,
+                "x2": -50
+              }
+            ]
+          }
+        ],
+        "text": [
+          {
+            "lineColor": {
+              "r": 0,
+              "g": 0,
+              "b": 127
+            },
+            "extent": [
+              {
+                "x1": 30,
+                "x2": 60
+              },
+              {
+                "x1": 30,
+                "x2": 110
+              }
+            ],
+            "textString": "\"%name\""
+          }
+        ]
+      }
+    },
+    "svg": {
+      "icon": {
+        "items": {
+          "layerPolygons": [
+            {
+              "points": "0,0 200,100 0,200",
+              "hasFill": true,
+              "fill": "rgb(255,255,255)",
+              "stroke": "rgb(0,0,127)",
+              "strokeWidth": 0.25,
+              "strokeDasharray": "1,0"
+            }
+          ],
+          "width": 200,
+          "height": 200
+        },
+        "initialScale": 0.1,
+        "preserveAspectRatio": true,
+        "drawing": "<svg version=\"1.1\" baseProfile=\"full\" width=\"200mm\" height=\"200mm\"\n     viewBox=\"0 0 200 200\" xmlns=\"http://www.w3.org/2000/svg\">\n\n\n<polygon points=\"0,0 200,100 0,200\"  fill=\"rgb(255,255,255)\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n\n\n\n\n\n\n\n\n\n\n\n\n</svg>"
+      },
+      "diagram": {
+        "items": {
+          "layerPolygons": [
+            {
+              "points": "0,50 100,100 0,150",
+              "hasFill": true,
+              "fill": "rgb(255,255,255)",
+              "stroke": "rgb(0,0,127)",
+              "strokeWidth": 0.25,
+              "strokeDasharray": "1,0"
+            }
+          ],
+          "width": 200,
+          "height": 200
+        },
+        "initialScale": 0.1,
+        "preserveAspectRatio": true,
+        "drawing": "<svg version=\"1.1\" baseProfile=\"full\" width=\"200mm\" height=\"200mm\"\n     viewBox=\"0 0 200 200\" xmlns=\"http://www.w3.org/2000/svg\">\n\n\n<polygon points=\"0,50 100,100 0,150\"  fill=\"rgb(255,255,255)\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n\n\n\n\n\n\n\n\n\n\n\n\n</svg>"
+      }
+    }
   }
-}
+]

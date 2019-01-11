@@ -1,41 +1,17 @@
-{
-  "within": [
-    "FromModelica"
-  ],
-  "class_definition": [
-    {
-      "class_prefixes": "block",
-      "class_specifier": {
-        "long_class_specifier": {
-          "name": "BlockWithBlock1",
-          "comment": "\"A block that instantiates another public and protected block\"",
-          "composition": {
-            "element_list": {
-              "element": [
-                {
-                  "component_clause": {
-                    "type_specifier": "Block1",
-                    "component_list": {
-                      "component_declaration": [
-                        {
-                          "declaration": {
-                            "name": "bloPub"
-                          },
-                          "comment": {
-                            "string_comment": "\"A public block\""
-                          }
-                        }
-                      ]
-                    }
-                  }
-                }
-              ]
-            },
-            "prefix_protect": [
-              "protected"
-            ],
-            "prefixed_element": [
-              {
+[
+  {
+    "within": [
+      "FromModelica"
+    ],
+    "class_definition": [
+      {
+        "class_prefixes": "block",
+        "class_specifier": {
+          "long_class_specifier": {
+            "name": "BlockWithBlock1",
+            "comment": "\"A block that instantiates another public and protected block\"",
+            "composition": {
+              "element_list": {
                 "element": [
                   {
                     "component_clause": {
@@ -44,10 +20,10 @@
                         "component_declaration": [
                           {
                             "declaration": {
-                              "name": "bloPro"
+                              "name": "bloPub"
                             },
                             "comment": {
-                              "string_comment": "\"A protected block\""
+                              "string_comment": "\"A public block\""
                             }
                           }
                         ]
@@ -55,12 +31,38 @@
                     }
                   }
                 ]
-              }
-            ]
+              },
+              "prefix_protect": [
+                "protected"
+              ],
+              "prefixed_element": [
+                {
+                  "element": [
+                    {
+                      "component_clause": {
+                        "type_specifier": "Block1",
+                        "component_list": {
+                          "component_declaration": [
+                            {
+                              "declaration": {
+                                "name": "bloPro"
+                              },
+                              "comment": {
+                                "string_comment": "\"A protected block\""
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
           }
         }
       }
-    }
-  ],
-  "modelicaFile": "./BlockWithBlock1.mo"
-}
+    ],
+    "modelicaFile": "./BlockWithBlock1.mo"
+  }
+]
