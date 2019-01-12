@@ -5,6 +5,7 @@ const path = require('path')
 const pa = require('../lib/parser')
 const ht = require('../lib/htmlWriter')
 const ut = require('../lib/util')
+const js = require('../lib/jsonquery')
 const Promise = require('bluebird')
 const fs = Promise.promisifyAll(require('fs'))
 const glob = require('glob-promise')
@@ -38,7 +39,7 @@ var getIntFiles = function (mode) {
   */
 var checkCdlJSON = function (outFormat, extension, message) {
   var mode = 'cdl'
-  process.env.MODELICAPATH = __dirname
+  // process.env.MODELICAPATH = __dirname
   mo.it(message, () => {
     // mo files array to be tested.
     const testMoFilesTemp = getIntFiles(mode)
@@ -63,15 +64,18 @@ var checkCdlJSON = function (outFormat, extension, message) {
                                   fil.slice(idx + 1, -3) + extension)
       // Read the old json
       const jsonOldCDL = JSON.parse(fs.readFileSync(oldFilCDL, 'utf8'))
-      const oldCDL = jsonOldCDL
+
+      const oldCDL = jsonOldCDL[0]
       const neCDL = jsonNewCDL[0]
       // Update the path to be relative to the project home.
       // This is needed for the regression tests to be portable.
       if (neCDL.modelicaFile) {
         neCDL['modelicaFile'] = neCDL['modelicaFile'].replace(path.join(__dirname, 'FromModelica'), '.')
       }
-      as.notEqual(oldCDL, undefined, 'JSON is undefined')
-      as.deepEqual(neCDL, oldCDL, 'JSON result differs for ' + oldFilCDL)
+      const tempOld = JSON.stringify(oldCDL)
+      const tempNew = JSON.stringify(neCDL)
+      as.notEqual(tempOld, undefined, 'JSON is undefined')
+      as.deepEqual(tempNew, tempOld, 'JSON result differs for ' + oldFilCDL)
     })
   })
 }
@@ -80,7 +84,7 @@ var checkCdlJSON = function (outFormat, extension, message) {
   */
 var checkModJSON = function (outFormat, extension, message) {
   var mode = 'modelica'
-  process.env.MODELICAPATH = __dirname
+  // process.env.MODELICAPATH = __dirname
   mo.it(message, () => {
     // mo files package to be tested
     const testMoFilesPack = getIntFiles(mode)
@@ -114,8 +118,10 @@ var checkModJSON = function (outFormat, extension, message) {
       if (neMOD[0].modelicaFile) {
         neMOD[0]['modelicaFile'] = neMOD[0]['modelicaFile'].replace(path.join(__dirname, 'FromModelica'), 'FromModelica')
       }
-      as.notEqual(jsonOldMOD, undefined, 'JSON is undefined')
-      as.deepEqual(neMOD, jsonOldMOD, 'JSON result differs for ' + oldFileMOD)
+      const tempOld = JSON.stringify(jsonOldMOD)
+      const tempNew = JSON.stringify(neMOD)
+      as.notEqual(tempOld, undefined, 'JSON is undefined')
+      as.deepEqual(tempNew, tempOld, 'JSON result differs for ' + oldFileMOD)
     }
   })
 }
@@ -132,7 +138,8 @@ var getHtml = function (files, mode) {
                                    : ut.getMoFiles(mode, files)
   const json = pa.getJSON(moFiles, mode, 'html')
   const outFile = ut.getOutFile(mode, files, 'html', 'current', moFiles, json)
-  const html = ht.getHtmlPage(outFile, json, mode)
+  var nonCDLJson = json.filter(ele => ele.topClassName !== undefined && !js.isElementaryCDL(ele.topClassName))
+  const html = ht.getHtmlPage(outFile, nonCDLJson, mode)
   return html
 }
 
@@ -140,7 +147,7 @@ var getHtml = function (files, mode) {
   */
 var compareCdlHtml = function () {
   var mode = 'cdl'
-  process.env.MODELICAPATH = __dirname
+  // process.env.MODELICAPATH = __dirname
   mo.it('Testing html for equality', () => {
     // Array of mo files to be tested.
     const testMoFilesTemp = getIntFiles(mode)
@@ -168,7 +175,7 @@ var compareCdlHtml = function () {
   */
 var compareModHtml = function () {
   var mode = 'modelica'
-  process.env.MODELICAPATH = __dirname
+  // process.env.MODELICAPATH = __dirname
   mo.it('Testing html for equality', () => {
     // mo files package to be tested
     const testMoFiles = getIntFiles(mode)

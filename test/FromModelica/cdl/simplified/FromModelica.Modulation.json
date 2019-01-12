@@ -1,8 +1,8 @@
 [
   {
     "modelicaFile": "./Modulation.mo",
-    "within": "Buildings.Controls.OBC.ASHRAE.G36_PR1.AHUs.MultiZone.VAV.Economizers.Subsequences",
-    "topClassName": "Buildings.Controls.OBC.ASHRAE.G36_PR1.AHUs.MultiZone.VAV.Economizers.Subsequences.Modulation",
+    "within": "FromModelica",
+    "topClassName": "FromModelica.Modulation",
     "comment": "Outdoor and return air damper position modulation sequence for multi zone VAV AHU",
     "public": {
       "parameters": [
@@ -750,7 +750,7 @@
           }
         },
         {
-          "className": "CDL.Discrete.FirstOrderHold",
+          "className": "Buildings.Controls.OBC.CDL.Discrete.FirstOrderHold",
           "name": "firOrdHolOutDam",
           "comment": "First order hold to avoid too fast opening/closing of damper (which may cause freeze protection to be too slow to compensate)",
           "modifications": [
@@ -776,7 +776,7 @@
           }
         },
         {
-          "className": "CDL.Discrete.FirstOrderHold",
+          "className": "Buildings.Controls.OBC.CDL.Discrete.FirstOrderHold",
           "name": "firOrdHolRetDam",
           "comment": "First order hold to avoid too fast opening/closing of damper (which may cause freeze protection to be too slow to compensate)",
           "modifications": [

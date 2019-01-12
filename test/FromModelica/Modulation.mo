@@ -1,4 +1,4 @@
-within Buildings.Controls.OBC.ASHRAE.G36_PR1.AHUs.MultiZone.VAV.Economizers.Subsequences;
+within FromModelica;
 block Modulation
   "Outdoor and return air damper position modulation sequence for multi zone VAV AHU"
 
@@ -104,10 +104,12 @@ protected
   Buildings.Controls.OBC.CDL.Continuous.Max max "Overwrite due to freeze protection"
     annotation (Placement(transformation(extent={{60,50},{80,70}})));
 
-  CDL.Discrete.FirstOrderHold firOrdHolOutDam(final samplePeriod=samplePeriod)
+  Buildings.Controls.OBC.CDL.Discrete.FirstOrderHold firOrdHolOutDam(final
+      samplePeriod=samplePeriod)
     "First order hold to avoid too fast opening/closing of damper (which may cause freeze protection to be too slow to compensate)"
     annotation (Placement(transformation(extent={{92,-70},{112,-50}})));
-  CDL.Discrete.FirstOrderHold firOrdHolRetDam(final samplePeriod=samplePeriod)
+  Buildings.Controls.OBC.CDL.Discrete.FirstOrderHold firOrdHolRetDam(final
+      samplePeriod=samplePeriod)
     "First order hold to avoid too fast opening/closing of damper (which may cause freeze protection to be too slow to compensate)"
     annotation (Placement(transformation(extent={{90,50},{110,70}})));
 equation

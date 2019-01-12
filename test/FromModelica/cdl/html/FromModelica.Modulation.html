@@ -1,0 +1,1241 @@
+<head>
+  <meta charset="utf-8">
+  <title></title>
+
+  <!-- Custom styles for this template -->
+  <style>
+  html{
+    color: #022e4d;
+    font-family: "Helvetica Neue", Helvetica, Verdana, sans-serif;
+    /*padding: 10px;*/
+  }
+  /* Avoid images to be too large on small screens */
+  img{
+    max-width: 100%;
+  }
+  a:link, a:hover, a:visited, a:focus{
+    color: #750000;
+    text-decoration: underline;
+    }
+
+  th, td{
+    padding-inline-start: 15px;
+    padding-top: .5em;
+    padding-bottom: .5em;
+    padding-left: 1em;
+    padding-right: 1em;
+    vertical-align: top;
+  }
+  th {
+      background-color: grey;
+      color: white;
+  }
+  th.description{
+  }
+  th.type{
+    max-width: 20%;
+  }
+  td.type{
+    max-width: 20%;
+  }
+  tr:nth-child(odd) {
+      background-color: #f2f2f2;
+  }
+  tr.tab{
+      background-color: grey;
+      color: white;
+  }
+  tr.group{
+      background-color: #A8A8A8;
+      color: white;
+  }
+  code, pre{
+    font-family: 'Consolas', 'Deja Vu Sans Mono', 'Bitstream Vera Sans Mono', monospace;
+    border: 0;
+    color: #750000;
+  /* background-color: #f5f5f5; */
+
+  }
+  tr.border_top td {
+    border-top:1pt solid #022e4d;
+  }
+  tr.border_bottom td {
+    border-bottom:1pt solid #022e4d;
+  }
+
+  ul.list-parameter-assignments {
+    list-style-type: none;
+  }
+  h1{
+    font-size: 2em;
+  }
+  .h2, h2{
+    font-size: 1.7em;
+  }
+  .h3, h3{
+    font-size: 1.5em;
+  }
+  .h4, h4{
+    font-size: 1.2em;
+  }
+  .footer{
+  /*  background-color: white;
+    border-color: white; */
+    background-color: #f8f8f8;
+    padding: 10px;
+    font-size: 75%;
+    border-width:0px;
+    background-image: none;
+    border-radius: 4px;
+
+  }
+
+  /* Counters for header */
+  body {counter-reset: h2}
+  h2 {counter-reset: h3}
+  h3 {counter-reset: h4}
+  h4 {counter-reset: h5}
+  h5 {counter-reset: h6}
+
+  h2:before {counter-increment: h2; content: counter(h2) ". "}
+  h3:before {counter-increment: h3; content: counter(h2) "." counter(h3) ". "}
+  h4:before {counter-increment: h4; content: counter(h2) "." counter(h3) "." counter(h4) ". "}
+  h5:before {counter-increment: h5; content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) ". "}
+  h6:before {counter-increment: h6; content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) "." counter(h6) ". "}
+
+  h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.nocount:before
+    { content: ""; counter-increment: none }
+
+  </style>
+
+</head>
+<body>
+
+<h2>FromModelica.Modulation<a name="FromModelica.Modulation"></a></h2>
+
+  <p>Outdoor and return air damper position modulation sequence for multi zone VAV AHU</p>
+
+<h3>Info</h3>
+  
+<p>
+This is a multi zone VAV AHU economizer modulation block. It calculates
+the outdoor and return air damper positions based on the supply air temperature
+control loop signal. The implementation is in line with ASHRAE
+Guidline 36 (G36), PART5.N.2.c. Damper positions are linearly mapped to
+the supply air control loop signal. This is a final sequence in the
+composite multi zone VAV AHU economizer control sequence. Damper position
+limits, which are the inputs to the sequence, are the outputs of
+<a href="Buildings.Controls.OBC.ASHRAE.G36_PR1.AHUs.MultiZone.VAV.Economizers.Subsequences.Limits">
+Buildings.Controls.OBC.ASHRAE.G36_PR1.AHUs.MultiZone.VAV.Economizers.Subsequences.Limits</a> and
+<a href="Buildings.Controls.OBC.ASHRAE.G36_PR1.AHUs.MultiZone.VAV.Economizers.Subsequences.Enable">
+Buildings.Controls.OBC.ASHRAE.G36_PR1.AHUs.MultiZone.VAV.Economizers.Subsequences.Enable</a>
+sequences.
+</p>
+<p>
+When the economizer is enabled, the PI controller modulates the damper
+positions. Return and outdoor damper are not interlocked. When the economizer is disabled,
+the damper positions are set to the minimum outdoor air damper position limits.
+</p>
+<p>
+The time rate of change of the damper signals is limited by a first order hold,
+using the sample time <code><a href="#FromModelica.Modulation.samplePeriod">samplePeriod</a></code>.
+This prevents a quick opening of the outdoor air damper, for example when the
+outdoor airflow setpoint has a step change.
+Slowing down the opening of the outdoor air damper allows the freeze protection
+to componensate with its dynamics that is faster than the opening of the outdoor air damper.
+To avoid that all dampers are closed, the return air damper has the same
+time rate of change limitation.
+</p>
+<p>
+The control charts below show the input-output structure and an economizer damper
+modulation sequence assuming a well configured controller. Control diagram:
+</p>
+<p align="center">
+<img alt="Image of the multi zone AHU modulation sequence control diagram" src="/home/jianjun/GitFolder/modelica-json/Buildings/Resources/Images/Controls/OBC/ASHRAE/G36_PR1/AHUs/EconModulationControlDiagramMultiZone.png">
+</p>
+<p>
+Multi zone AHU economizer modulation control chart:
+<br>
+</p>
+<p align="center">
+<img alt="Image of the multi zone AHU modulation sequence expected performance" src="/home/jianjun/GitFolder/modelica-json/Buildings/Resources/Images/Controls/OBC/ASHRAE/G36_PR1/AHUs/EconModulationControlChartMultiZone.png">
+</p>
+
+
+
+<h3>Parameters</h3>
+    <p>
+    It has the following parameters:
+    </p>
+    <table>
+    <tr><th>Name    </th>
+    <th class="description">Description</th>
+    <th>Value    </th>
+    <th>Unit     </th>
+    <th>Display unit</th>
+    <th class="mode">Type        </th>
+    <th>min    </th>
+    <th>max    </th>
+    </tr>
+    <tr class="tab"><td colspan="8">Commissioning</td></tr>
+    <tr class="group"><td colspan="8">Controller</td></tr>
+    <tr>
+    <td><code>uMin</code><a name="FromModelica.Modulation.uMin"></a></td>
+    <td>Lower limit of controller input when outdoor damper opens (see diagram)</td>
+    <td>-0.25</td>
+    <td>1</td>
+    <td></td>
+    <td class="type">Real</td>
+    <td></td>
+    <td>0 (adjustable)</td>
+    </tr>
+    <tr>
+    <td><code>uMax</code><a name="FromModelica.Modulation.uMax"></a></td>
+    <td>Upper limit of controller input when return damper is closed (see diagram)</td>
+    <td>+0.25</td>
+    <td>1</td>
+    <td></td>
+    <td class="type">Real</td>
+    <td>0 (adjustable)</td>
+    <td></td>
+    </tr>
+    <tr>
+    <td><code>uOutDamMax</code><a name="FromModelica.Modulation.uOutDamMax"></a></td>
+    <td>Maximum loop signal for the OA damper to be fully open</td>
+    <td>(uMin + uMax)&#x2F;2</td>
+    <td>1</td>
+    <td></td>
+    <td class="type">Real</td>
+    <td>-1 (adjustable)</td>
+    <td>1 (adjustable)</td>
+    </tr>
+    <tr>
+    <td><code>uRetDamMin</code><a name="FromModelica.Modulation.uRetDamMin"></a></td>
+    <td>Minimum loop signal for the RA damper to be fully open</td>
+    <td>(uMin + uMax)&#x2F;2</td>
+    <td>1</td>
+    <td></td>
+    <td class="type">Real</td>
+    <td>-1 (adjustable)</td>
+    <td>1 (adjustable)</td>
+    </tr>
+    <tr class="tab"><td colspan="8">General</td></tr>
+    <tr class="group"><td colspan="8">Parameters</td></tr>
+    <tr>
+    <td><code>samplePeriod</code><a name="FromModelica.Modulation.samplePeriod"></a></td>
+    <td>Sample period of component, used to limit the rate of change of the dampers (to avoid quick opening that can result in frost)</td>
+    <td>300</td>
+    <td>s</td>
+    <td></td>
+    <td class="type">Time</td>
+    <td></td>
+    <td></td>
+    </tr>
+    </table>
+
+<h3>Inputs</h3>
+    <p>
+    It has the following inputs:
+    </p>
+    <table>
+    <tr>
+      <th class="type">Type        </th>
+      <th>Name    </th>
+      <th class="description">Description</th>
+      <th>min    </th>
+      <th>max    </th>
+      <th>Unit     </th>
+      <th>Display unit     </th>
+      </tr>
+    <tr>
+      <td>
+      <code>
+      Real
+      </code>
+      </td>
+      <td><code>uTSup</code><a name="FromModelica.Modulation.uTSup"></a></td>
+      <td>Signal for supply air temperature control (T Sup Control Loop Signal in diagram)</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+    <tr>
+      <td>
+      <code>
+      Real
+      </code>
+      </td>
+      <td><code>uOutDamPosMin</code><a name="FromModelica.Modulation.uOutDamPosMin"></a></td>
+      <td>Minimum economizer damper position limit as returned by the damper position limits  sequence</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+    <tr>
+      <td>
+      <code>
+      Real
+      </code>
+      </td>
+      <td><code>uOutDamPosMax</code><a name="FromModelica.Modulation.uOutDamPosMax"></a></td>
+      <td>Maximum economizer damper position limit as returned by the economizer enable-disable sequence.
+    If the economizer is disabled, this value equals uOutDamPosMin</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+    <tr>
+      <td>
+      <code>
+      Real
+      </code>
+      </td>
+      <td><code>uRetDamPosMin</code><a name="FromModelica.Modulation.uRetDamPosMin"></a></td>
+      <td>Minimum return air damper position limit as returned by the economizer enable-disable sequence</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+    <tr>
+      <td>
+      <code>
+      Real
+      </code>
+      </td>
+      <td><code>uRetDamPosMax</code><a name="FromModelica.Modulation.uRetDamPosMax"></a></td>
+      <td>Maximum return air damper position limit as returned by the economizer enable-disable sequence</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+    </table>
+
+<h3>Outputs</h3>
+    <p>
+    It has the following outputs:
+    </p>
+    <table>
+    <tr>
+      <th class="type">Type        </th>
+      <th>Name    </th>
+      <th class="description">Description</th>
+      <th>min    </th>
+      <th>max    </th>
+      <th>Unit     </th>
+      <th>Display unit     </th>
+      </tr>
+    <tr>
+      <td>
+      <code>
+      Real
+      </code>
+      </td>
+      <td><code>yOutDamPos</code><a name="FromModelica.Modulation.yOutDamPos"></a></td>
+      <td>Economizer damper position</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+    <tr>
+      <td>
+      <code>
+      Real
+      </code>
+      </td>
+      <td><code>yRetDamPos</code><a name="FromModelica.Modulation.yRetDamPos"></a></td>
+      <td>Return air damper position</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+    </table>
+
+
+
+<h3>Protected Blocks</h3>
+    <p>
+    It has the following protected blocks:
+    </p>
+    <table>
+    <tr>
+      <th class="type">Type</th>
+      <th>Name</th>
+      <th class="description">Description</th>
+      <th>Parameter Assignments</th>
+    </tr>
+    <tr>
+      <td class="type">
+      <code>
+      <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous_Sources.html#Buildings.Controls.OBC.CDL.Continuous.Sources.Constant">Buildings.Controls.OBC.CDL.Continuous.Sources.Constant</a>
+      </code>
+      </td>
+      <td>
+      <code>
+      outDamMinLimSig
+      </code>
+      <a name="FromModelica.Modulation.outDamMinLimSig"></a></td>
+      <td>Minimal control loop signal for the outdoor air damper</td>
+      <td>
+      <ul class="list-parameter-assignments">
+      <li>
+      <code>
+       final  k = uMin
+      </code>
+      </li>
+      </ul>
+      </td>
+      </tr>
+    <tr>
+      <td class="type">
+      <code>
+      <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous_Sources.html#Buildings.Controls.OBC.CDL.Continuous.Sources.Constant">Buildings.Controls.OBC.CDL.Continuous.Sources.Constant</a>
+      </code>
+      </td>
+      <td>
+      <code>
+      outDamMaxLimSig
+      </code>
+      <a name="FromModelica.Modulation.outDamMaxLimSig"></a></td>
+      <td>Maximum control loop signal for the outdoor air damper</td>
+      <td>
+      <ul class="list-parameter-assignments">
+      <li>
+      <code>
+       final  k = uOutDamMax
+      </code>
+      </li>
+      </ul>
+      </td>
+      </tr>
+    <tr>
+      <td class="type">
+      <code>
+      <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous_Sources.html#Buildings.Controls.OBC.CDL.Continuous.Sources.Constant">Buildings.Controls.OBC.CDL.Continuous.Sources.Constant</a>
+      </code>
+      </td>
+      <td>
+      <code>
+      retDamConMinLimSig
+      </code>
+      <a name="FromModelica.Modulation.retDamConMinLimSig"></a></td>
+      <td>Minimal control loop signal for the return air damper</td>
+      <td>
+      <ul class="list-parameter-assignments">
+      <li>
+      <code>
+       final  k = uRetDamMin
+      </code>
+      </li>
+      </ul>
+      </td>
+      </tr>
+    <tr>
+      <td class="type">
+      <code>
+      <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous_Sources.html#Buildings.Controls.OBC.CDL.Continuous.Sources.Constant">Buildings.Controls.OBC.CDL.Continuous.Sources.Constant</a>
+      </code>
+      </td>
+      <td>
+      <code>
+      retDamMaxLimSig
+      </code>
+      <a name="FromModelica.Modulation.retDamMaxLimSig"></a></td>
+      <td>Maximal control loop signal for the return air damper</td>
+      <td>
+      <ul class="list-parameter-assignments">
+      <li>
+      <code>
+       final  k = uMax
+      </code>
+      </li>
+      </ul>
+      </td>
+      </tr>
+    <tr>
+      <td class="type">
+      <code>
+      <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Line">Buildings.Controls.OBC.CDL.Continuous.Line</a>
+      </code>
+      </td>
+      <td>
+      <code>
+      outDamPos
+      </code>
+      <a name="FromModelica.Modulation.outDamPos"></a></td>
+      <td>Damper position is linearly proportional to the control signal between signal limits</td>
+      <td>
+      <ul class="list-parameter-assignments">
+      <li>
+      <code>
+       final  limitBelow = true
+      </code>
+      </li>
+      <li>
+      <code>
+       final  limitAbove = true
+      </code>
+      </li>
+      </ul>
+      </td>
+      </tr>
+    <tr>
+      <td class="type">
+      <code>
+      <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Line">Buildings.Controls.OBC.CDL.Continuous.Line</a>
+      </code>
+      </td>
+      <td>
+      <code>
+      retDamPos
+      </code>
+      <a name="FromModelica.Modulation.retDamPos"></a></td>
+      <td>Damper position is linearly proportional to the control signal between signal limits</td>
+      <td>
+      <ul class="list-parameter-assignments">
+      <li>
+      <code>
+       final  limitBelow = true
+      </code>
+      </li>
+      <li>
+      <code>
+       final  limitAbove = true
+      </code>
+      </li>
+      </ul>
+      </td>
+      </tr>
+    <tr>
+      <td class="type">
+      <code>
+      <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Min">Buildings.Controls.OBC.CDL.Continuous.Min</a>
+      </code>
+      </td>
+      <td>
+      <code>
+      min
+      </code>
+      <a name="FromModelica.Modulation.min"></a></td>
+      <td>Overwrite due to freeze protection</td>
+      <td>
+      </td>
+      </tr>
+    <tr>
+      <td class="type">
+      <code>
+      <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Max">Buildings.Controls.OBC.CDL.Continuous.Max</a>
+      </code>
+      </td>
+      <td>
+      <code>
+      max
+      </code>
+      <a name="FromModelica.Modulation.max"></a></td>
+      <td>Overwrite due to freeze protection</td>
+      <td>
+      </td>
+      </tr>
+    <tr>
+      <td class="type">
+      <code>
+      <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Discrete.html#Buildings.Controls.OBC.CDL.Discrete.FirstOrderHold">Buildings.Controls.OBC.CDL.Discrete.FirstOrderHold</a>
+      </code>
+      </td>
+      <td>
+      <code>
+      firOrdHolOutDam
+      </code>
+      <a name="FromModelica.Modulation.firOrdHolOutDam"></a></td>
+      <td>First order hold to avoid too fast opening&#x2F;closing of damper (which may cause freeze protection to be too slow to compensate)</td>
+      <td>
+      <ul class="list-parameter-assignments">
+      <li>
+      <code>
+       final  samplePeriod = samplePeriod
+      </code>
+      </li>
+      </ul>
+      </td>
+      </tr>
+    <tr>
+      <td class="type">
+      <code>
+      <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Discrete.html#Buildings.Controls.OBC.CDL.Discrete.FirstOrderHold">Buildings.Controls.OBC.CDL.Discrete.FirstOrderHold</a>
+      </code>
+      </td>
+      <td>
+      <code>
+      firOrdHolRetDam
+      </code>
+      <a name="FromModelica.Modulation.firOrdHolRetDam"></a></td>
+      <td>First order hold to avoid too fast opening&#x2F;closing of damper (which may cause freeze protection to be too slow to compensate)</td>
+      <td>
+      <ul class="list-parameter-assignments">
+      <li>
+      <code>
+       final  samplePeriod = samplePeriod
+      </code>
+      </li>
+      </ul>
+      </td>
+      </tr>
+    </table>
+
+    <h3>Connections</h3>
+    <p>
+    The inputs of the internal blocks are connected to the following outputs:
+    </p>
+    <ol>
+    <li>
+    <code><a href="#FromModelica.Modulation.outDamPos">outDamPos</a>.x2
+    </code>
+    &rarr;
+    <code><a href="#FromModelica.Modulation.outDamMaxLimSig">outDamMaxLimSig</a>.y
+    </code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Modulation.outDamPos">outDamPos</a>.x1
+    </code>
+    &rarr;
+    <code><a href="#FromModelica.Modulation.outDamMinLimSig">outDamMinLimSig</a>.y
+    </code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Modulation.outDamPos">outDamPos</a>.f1
+    </code>
+    &rarr;
+    <code><a href="#FromModelica.Modulation.uOutDamPosMin">uOutDamPosMin</a></code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Modulation.outDamPos">outDamPos</a>.f2
+    </code>
+    &rarr;
+    <code><a href="#FromModelica.Modulation.uOutDamPosMax">uOutDamPosMax</a></code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Modulation.retDamPos">retDamPos</a>.x2
+    </code>
+    &rarr;
+    <code><a href="#FromModelica.Modulation.retDamMaxLimSig">retDamMaxLimSig</a>.y
+    </code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Modulation.retDamPos">retDamPos</a>.x1
+    </code>
+    &rarr;
+    <code><a href="#FromModelica.Modulation.retDamConMinLimSig">retDamConMinLimSig</a>.y
+    </code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Modulation.retDamPos">retDamPos</a>.f1
+    </code>
+    &rarr;
+    <code><a href="#FromModelica.Modulation.uRetDamPosMax">uRetDamPosMax</a></code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Modulation.retDamPos">retDamPos</a>.f2
+    </code>
+    &rarr;
+    <code><a href="#FromModelica.Modulation.uRetDamPosMin">uRetDamPosMin</a></code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Modulation.min">min</a>.u2
+    </code>
+    &rarr;
+    <code><a href="#FromModelica.Modulation.uOutDamPosMax">uOutDamPosMax</a></code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Modulation.min">min</a>.u1
+    </code>
+    &rarr;
+    <code><a href="#FromModelica.Modulation.outDamPos">outDamPos</a>.y
+    </code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Modulation.max">max</a>.u1
+    </code>
+    &rarr;
+    <code><a href="#FromModelica.Modulation.retDamPos">retDamPos</a>.y
+    </code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Modulation.uRetDamPosMin">uRetDamPosMin</a></code>
+    &rarr;
+    <code><a href="#FromModelica.Modulation.max">max</a>.u2
+    </code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Modulation.min">min</a>.y
+    </code>
+    &rarr;
+    <code><a href="#FromModelica.Modulation.firOrdHolOutDam">firOrdHolOutDam</a>.u
+    </code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Modulation.firOrdHolOutDam">firOrdHolOutDam</a>.y
+    </code>
+    &rarr;
+    <code><a href="#FromModelica.Modulation.yOutDamPos">yOutDamPos</a></code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Modulation.uTSup">uTSup</a></code>
+    &rarr;
+    <code><a href="#FromModelica.Modulation.retDamPos">retDamPos</a>.u
+    </code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Modulation.uTSup">uTSup</a></code>
+    &rarr;
+    <code><a href="#FromModelica.Modulation.outDamPos">outDamPos</a>.u
+    </code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Modulation.max">max</a>.y
+    </code>
+    &rarr;
+    <code><a href="#FromModelica.Modulation.firOrdHolRetDam">firOrdHolRetDam</a>.u
+    </code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Modulation.firOrdHolRetDam">firOrdHolRetDam</a>.y
+    </code>
+    &rarr;
+    <code><a href="#FromModelica.Modulation.yRetDamPos">yRetDamPos</a></code>
+    </li>
+    </ol>
+
+  <body>
+  <svg version="1.1" baseProfile="full" width="300mm" height="248mm"
+     viewBox="0 0 300 248" xmlns="http://www.w3.org/2000/svg">
+
+<rect x="134" y="10" width="72" height="236"  fill="rgb(215,215,215)" stroke="rgb(0,0,0)"  stroke-dasharray="1,0" stroke-width="0.25"  />
+<rect x="42" y="10" width="84" height="236"  fill="rgb(215,215,215)" stroke="rgb(0,0,0)"  stroke-dasharray="1,0" stroke-width="0.25"  />
+<rect x="212" y="10" width="66" height="236"  fill="rgb(215,215,215)" stroke="rgb(0,0,0)"  stroke-dasharray="1,0" stroke-width="0.25"  />
+
+
+
+
+<text font-family="helvetica" font-size="4" x="81.75999999999999" y="18" fill="rgb(0,0,0)" dominant-baseline="central" alignment-baseline="middle">
+<tspan x="81.75999999999999"  dy="0" >Damper position</tspan>
+<tspan x="81.75999999999999"  dy="4" >supply air temperature</tspan>
+<tspan x="81.75999999999999"  dy="4" >control loop</tspan>
+</text>
+<text font-family="helvetica" font-size="4" x="148.2" y="20" fill="rgb(0,0,0)" dominant-baseline="central" alignment-baseline="middle">
+<tspan x="148.2"  dy="0" >Damper position</tspan>
+<tspan x="148.2"  dy="4" >assignments</tspan>
+</text>
+<text font-family="helvetica" font-size="4" x="218" y="20" fill="rgb(0,0,0)" dominant-baseline="central" alignment-baseline="middle">
+<tspan x="218"  dy="0" >Overwrite if the freeze protection</tspan>
+<tspan x="218"  dy="4" >that tracks TFre at the measured</tspan>
+<tspan x="218"  dy="4" >mixed air temperature limits the</tspan>
+<tspan x="218"  dy="4" >damper position</tspan>
+</text>
+
+<polyline fill="none" points="158,162 130,162 130,178 81,178" stroke="rgb(255,255,255)" stroke-dasharray="1,0" stroke-width="1.25" />
+<polyline fill="none" points="158,162 130,162 130,178 81,178" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polyline fill="none" points="158,150 121,150" stroke="rgb(255,255,255)" stroke-dasharray="1,0" stroke-width="1.25" />
+<polyline fill="none" points="158,150 121,150" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polyline fill="none" points="158,154 136,154 136,228 20,228" stroke="rgb(255,255,255)" stroke-dasharray="1,0" stroke-width="1.25" />
+<polyline fill="none" points="158,154 136,154 136,228 20,228" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polyline fill="none" points="158,166 140,166 140,194 52,194 52,178 20,178" stroke="rgb(255,255,255)" stroke-dasharray="1,0" stroke-width="1.25" />
+<polyline fill="none" points="158,166 140,166 140,194 52,194 52,178 20,178" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polyline fill="none" points="158,62 132,62 132,108 121,108" stroke="rgb(255,255,255)" stroke-dasharray="1,0" stroke-width="1.25" />
+<polyline fill="none" points="158,62 132,62 132,108 121,108" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polyline fill="none" points="158,50 101,50" stroke="rgb(255,255,255)" stroke-dasharray="1,0" stroke-width="1.25" />
+<polyline fill="none" points="158,50 101,50" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polyline fill="none" points="158,54 112,54 112,28 20,28" stroke="rgb(255,255,255)" stroke-dasharray="1,0" stroke-width="1.25" />
+<polyline fill="none" points="158,54 112,54 112,28 20,28" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polyline fill="none" points="158,66 148,66 148,78 20,78" stroke="rgb(255,255,255)" stroke-dasharray="1,0" stroke-width="1.25" />
+<polyline fill="none" points="158,66 148,66 148,78 20,78" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polyline fill="none" points="218,194 52,194 52,178 20,178" stroke="rgb(255,255,255)" stroke-dasharray="1,0" stroke-width="1.25" />
+<polyline fill="none" points="218,194 52,194 52,178 20,178" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polyline fill="none" points="218,182 188,182 188,158 181,158" stroke="rgb(255,255,255)" stroke-dasharray="1,0" stroke-width="1.25" />
+<polyline fill="none" points="218,182 188,182 188,158 181,158" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polyline fill="none" points="218,62 190,62 190,58 181,58" stroke="rgb(255,255,255)" stroke-dasharray="1,0" stroke-width="1.25" />
+<polyline fill="none" points="218,62 190,62 190,58 181,58" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polyline fill="none" points="20,78 148,78 148,74 218,74" stroke="rgb(255,255,255)" stroke-dasharray="1,0" stroke-width="1.25" />
+<polyline fill="none" points="20,78 148,78 148,74 218,74" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polyline fill="none" points="241,188 250,188" stroke="rgb(255,255,255)" stroke-dasharray="1,0" stroke-width="1.25" />
+<polyline fill="none" points="241,188 250,188" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polyline fill="none" points="273,188 290,188" stroke="rgb(255,255,255)" stroke-dasharray="1,0" stroke-width="1.25" />
+<polyline fill="none" points="273,188 290,188" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polyline fill="none" points="20,128 138,128 138,58 158,58" stroke="rgb(255,255,255)" stroke-dasharray="1,0" stroke-width="1.25" />
+<polyline fill="none" points="20,128 138,128 138,58 158,58" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polyline fill="none" points="20,128 138,128 138,158 158,158" stroke="rgb(255,255,255)" stroke-dasharray="1,0" stroke-width="1.25" />
+<polyline fill="none" points="20,128 138,128 138,158 158,158" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polyline fill="none" points="241,68 248,68" stroke="rgb(255,255,255)" stroke-dasharray="1,0" stroke-width="1.25" />
+<polyline fill="none" points="241,68 248,68" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polyline fill="none" points="271,68 290,68" stroke="rgb(255,255,255)" stroke-dasharray="1,0" stroke-width="1.25" />
+<polyline fill="none" points="271,68 290,68" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+
+<ellipse cx="140" cy="194" rx="1" ry="1"  fill="rgb(0,0,127)"  />
+<ellipse cx="148" cy="74" rx="1" ry="1"  fill="rgb(0,0,127)"  />
+<ellipse cx="138" cy="128" rx="1" ry="1"  fill="rgb(0,0,127)"  />
+
+<polygon points="20,138 40,128 20,118 20,138"  fill="rgb(0,0,127)" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polygon points="20,238 40,228 20,218 20,238"  fill="rgb(0,0,127)" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polygon points="20,188 40,178 20,168 20,188"  fill="rgb(0,0,127)" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polygon points="20,88 40,78 20,68 20,88"  fill="rgb(0,0,127)" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polygon points="20,38 40,28 20,18 20,38"  fill="rgb(0,0,127)" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polygon points="280,193 290,188 280,183"  fill="rgb(255,255,255)" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polygon points="280,73 290,68 280,63"  fill="rgb(255,255,255)" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+
+<rect x="100" y="140" width="20" height="20"  fill="rgb(255,255,255)" stroke="rgb(0,0,127)"  stroke-dasharray="1,0" stroke-width="0.041666666666666664"  />
+<rect x="60" y="168" width="20" height="20"  fill="rgb(255,255,255)" stroke="rgb(0,0,127)"  stroke-dasharray="1,0" stroke-width="0.041666666666666664"  />
+<rect x="80" y="40" width="20" height="20"  fill="rgb(255,255,255)" stroke="rgb(0,0,127)"  stroke-dasharray="1,0" stroke-width="0.041666666666666664"  />
+<rect x="100" y="98" width="20" height="20"  fill="rgb(255,255,255)" stroke="rgb(0,0,127)"  stroke-dasharray="1,0" stroke-width="0.041666666666666664"  />
+<rect x="160" y="148" width="20" height="20"  fill="rgb(255,255,255)" stroke="rgb(0,0,127)"  stroke-dasharray="1,0" stroke-width="0.041666666666666664"  />
+<rect x="160" y="48" width="20" height="20"  fill="rgb(255,255,255)" stroke="rgb(0,0,127)"  stroke-dasharray="1,0" stroke-width="0.041666666666666664"  />
+<rect x="220" y="178" width="20" height="20"  fill="rgb(255,255,255)" stroke="rgb(0,0,127)"  stroke-dasharray="1,0" stroke-width="0.041666666666666664"  />
+<rect x="220" y="58" width="20" height="20"  fill="rgb(255,255,255)" stroke="rgb(0,0,127)"  stroke-dasharray="1,0" stroke-width="0.041666666666666664"  />
+<rect x="252" y="178" width="20" height="20"  fill="rgb(223,211,169)" stroke="rgb(0,0,127)"  stroke-dasharray="1,0" stroke-width="0.041666666666666664"  />
+<rect x="251.908" y="177.908" width="0.092" height="20.092"  fill="rgb(172,168,153)" stroke="none"  />
+<rect x="251.908" y="198" width="20.092" height="0.092"  fill="rgb(172,168,153)" stroke="none"  />
+<rect x="272" y="178" width="0.092" height="20.092"  fill="rgb(172,168,153)" stroke="none"  />
+<rect x="252" y="177.908" width="20.092" height="0.092"  fill="rgb(172,168,153)" stroke="none"  />
+<rect x="252" y="178" width="0.13799999999999998" height="20"  fill="rgb(255,255,255)" stroke="none"  />
+<rect x="252" y="178" width="20" height="0.138"  fill="rgb(255,255,255)" stroke="none"  />
+<rect x="271.908" y="178" width="0.092" height="20"  fill="rgb(113,111,100)" stroke="none"  />
+<rect x="252" y="197.90800000000002" width="20" height="0.092"  fill="rgb(113,111,100)" stroke="none"  />
+<rect x="271.81600000000003" y="178.092" width="0.092" height="19.816"  fill="rgb(172,168,153)" stroke="none"  />
+<rect x="252.092" y="197.816" width="19.816" height="0.092"  fill="rgb(172,168,153)" stroke="none"  />
+<rect x="250" y="58" width="20" height="20"  fill="rgb(223,211,169)" stroke="rgb(0,0,127)"  stroke-dasharray="1,0" stroke-width="0.041666666666666664"  />
+<rect x="249.908" y="57.908" width="0.092" height="20.092"  fill="rgb(172,168,153)" stroke="none"  />
+<rect x="249.908" y="78" width="20.092" height="0.092"  fill="rgb(172,168,153)" stroke="none"  />
+<rect x="270" y="58" width="0.092" height="20.092"  fill="rgb(172,168,153)" stroke="none"  />
+<rect x="250" y="57.908" width="20.092" height="0.092"  fill="rgb(172,168,153)" stroke="none"  />
+<rect x="250" y="58" width="0.13799999999999998" height="20"  fill="rgb(255,255,255)" stroke="none"  />
+<rect x="250" y="58" width="20" height="0.138"  fill="rgb(255,255,255)" stroke="none"  />
+<rect x="269.908" y="58" width="0.092" height="20"  fill="rgb(113,111,100)" stroke="none"  />
+<rect x="250" y="77.908" width="20" height="0.092"  fill="rgb(113,111,100)" stroke="none"  />
+<rect x="269.81600000000003" y="58.092" width="0.092" height="19.816"  fill="rgb(172,168,153)" stroke="none"  />
+<rect x="250.092" y="77.816" width="19.816" height="0.092"  fill="rgb(172,168,153)" stroke="none"  />
+
+<polygon points="102,141 101.2,143.2 102.8,143.2 102,141"  fill="rgb(192,192,192)" stroke="rgb(192,192,192)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polygon points="119,157 116.8,156.2 116.8,157.8 119,157"  fill="rgb(192,192,192)" stroke="rgb(192,192,192)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polygon points="120,151 122,150 120,149"  fill="rgb(255,255,255)" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polygon points="62,169 61.2,171.2 62.8,171.2 62,169"  fill="rgb(192,192,192)" stroke="rgb(192,192,192)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polygon points="79,185 76.8,184.2 76.8,185.8 79,185"  fill="rgb(192,192,192)" stroke="rgb(192,192,192)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polygon points="80,179 82,178 80,177"  fill="rgb(255,255,255)" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polygon points="82,41 81.2,43.2 82.8,43.2 82,41"  fill="rgb(192,192,192)" stroke="rgb(192,192,192)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polygon points="99,57 96.8,56.2 96.8,57.8 99,57"  fill="rgb(192,192,192)" stroke="rgb(192,192,192)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polygon points="100,51 102,50 100,49"  fill="rgb(255,255,255)" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polygon points="102,99 101.2,101.2 102.8,101.2 102,99"  fill="rgb(192,192,192)" stroke="rgb(192,192,192)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polygon points="119,115 116.8,114.2 116.8,115.8 119,115"  fill="rgb(192,192,192)" stroke="rgb(192,192,192)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polygon points="120,109 122,108 120,107"  fill="rgb(255,255,255)" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polygon points="179.2,165.8 177,165 177,166.6 179.2,165.8"  fill="rgb(192,192,192)" stroke="rgb(192,192,192)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polygon points="162,148.8 161.2,151 162.8,151 162,148.8"  fill="rgb(192,192,192)" stroke="rgb(192,192,192)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polygon points="156,152 160,150 156,148"  fill="rgb(0,0,127)" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polygon points="156,156 160,154 156,152"  fill="rgb(0,0,127)" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polygon points="156,164 160,162 156,160"  fill="rgb(0,0,127)" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polygon points="156,168 160,166 156,164"  fill="rgb(0,0,127)" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polygon points="156,160 160,158 156,156"  fill="rgb(0,0,127)" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polygon points="180,159 182,158 180,157"  fill="rgb(255,255,255)" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polygon points="179.2,65.8 177,65 177,66.6 179.2,65.8"  fill="rgb(192,192,192)" stroke="rgb(192,192,192)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polygon points="162,48.8 161.2,51 162.8,51 162,48.8"  fill="rgb(192,192,192)" stroke="rgb(192,192,192)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polygon points="156,52 160,50 156,48"  fill="rgb(0,0,127)" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polygon points="156,56 160,54 156,52"  fill="rgb(0,0,127)" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polygon points="156,64 160,62 156,60"  fill="rgb(0,0,127)" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polygon points="156,68 160,66 156,64"  fill="rgb(0,0,127)" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polygon points="156,60 160,58 156,56"  fill="rgb(0,0,127)" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polygon points="180,59 182,58 180,57"  fill="rgb(255,255,255)" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polygon points="216,184 220,182 216,180"  fill="rgb(0,0,127)" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polygon points="216,196 220,194 216,192"  fill="rgb(0,0,127)" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polygon points="240,189 242,188 240,187"  fill="rgb(255,255,255)" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polygon points="216,64 220,62 216,60"  fill="rgb(0,0,127)" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polygon points="216,76 220,74 216,72"  fill="rgb(0,0,127)" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polygon points="240,69 242,68 240,67"  fill="rgb(255,255,255)" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polygon points="248,190 252,188 248,186"  fill="rgb(0,0,127)" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polygon points="272,189 274,188 272,187"  fill="rgb(255,255,255)" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polygon points="246,70 250,68 246,66"  fill="rgb(0,0,127)" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polygon points="270,69 272,68 270,67"  fill="rgb(255,255,255)" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+
+<ellipse cx="175" cy="162.4" rx="0.6" ry="0.6"  fill="rgb(0,0,0)"  />
+<ellipse cx="170.8" cy="158.8" rx="0.6" ry="0.6"  fill="rgb(0,0,127)"  />
+<ellipse cx="165.4" cy="154" rx="0.6" ry="0.6"  fill="rgb(0,0,0)"  />
+<ellipse cx="175" cy="62.400000000000006" rx="0.6" ry="0.6"  fill="rgb(0,0,0)"  />
+<ellipse cx="170.8" cy="58.8" rx="0.6" ry="0.6"  fill="rgb(0,0,127)"  />
+<ellipse cx="165.4" cy="54" rx="0.6" ry="0.6"  fill="rgb(0,0,0)"  />
+
+<polyline fill="none" points="102,143.2 102,158" stroke="rgb(192,192,192)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polyline fill="none" points="101,157 118.2,157" stroke="rgb(192,192,192)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polyline fill="none" points="102,150 118,150" stroke="rgb(0,0,0)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polyline fill="none" points="62,171.2 62,186" stroke="rgb(192,192,192)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polyline fill="none" points="61,185 78.2,185" stroke="rgb(192,192,192)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polyline fill="none" points="62,178 78,178" stroke="rgb(0,0,0)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polyline fill="none" points="82,43.2 82,58" stroke="rgb(192,192,192)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polyline fill="none" points="81,57 98.2,57" stroke="rgb(192,192,192)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polyline fill="none" points="82,50 98,50" stroke="rgb(0,0,0)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polyline fill="none" points="102,101.2 102,116" stroke="rgb(192,192,192)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polyline fill="none" points="101,115 118.2,115" stroke="rgb(192,192,192)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polyline fill="none" points="102,108 118,108" stroke="rgb(0,0,0)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polyline fill="none" points="165.4,154 175,162.4" stroke="rgb(0,0,0)" stroke-dasharray="1,0" stroke-width="0.5" />
+<polyline fill="none" points="162,166 162,150.8" stroke="rgb(192,192,192)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polyline fill="none" points="161.2,165.8 177.6,165.8" stroke="rgb(192,192,192)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polyline fill="none" points="160,150 163.6,150" stroke="rgb(28,108,200)" stroke-dasharray="1,2" stroke-width="0.25" />
+<polyline fill="none" points="163.6,150 163.8,165.8" stroke="rgb(28,108,200)" stroke-dasharray="1,2" stroke-width="0.25" />
+<polyline fill="none" points="160,154 161.2,154" stroke="rgb(28,108,200)" stroke-dasharray="1,2" stroke-width="0.25" />
+<polyline fill="none" points="161.2,154 165.2,154" stroke="rgb(28,108,200)" stroke-dasharray="1,2" stroke-width="0.25" />
+<polyline fill="none" points="160,162 174.8,161.6" stroke="rgb(28,108,200)" stroke-dasharray="1,2" stroke-width="0.25" />
+<polyline fill="none" points="174.8,161.6 175,165.8" stroke="rgb(28,108,200)" stroke-dasharray="1,2" stroke-width="0.25" />
+<polyline fill="none" points="160,166 166.2,163.6" stroke="rgb(28,108,200)" stroke-dasharray="1,2" stroke-width="0.25" />
+<polyline fill="none" points="166.2,163.6 174.8,162.4" stroke="rgb(28,108,200)" stroke-dasharray="1,2" stroke-width="0.25" />
+<polyline fill="none" points="160,158 163.8,158" stroke="rgb(28,108,200)" stroke-dasharray="1,2" stroke-width="0.25" />
+<polyline fill="none" points="163.8,158 170.8,158.8" stroke="rgb(28,108,200)" stroke-dasharray="1,2" stroke-width="0.25" />
+<polyline fill="none" points="171,158.8 175.2,158.8" stroke="rgb(28,108,200)" stroke-dasharray="1,2" stroke-width="0.25" />
+<polyline fill="none" points="175.2,158.8 180,158" stroke="rgb(28,108,200)" stroke-dasharray="1,2" stroke-width="0.25" />
+<polyline fill="none" points="175,162.4 178,165" stroke="rgb(0,0,0)" stroke-dasharray="1,0" stroke-width="0.5" />
+<polyline fill="none" points="175.2,162.4 178.6,162.4" stroke="rgb(238,46,47)" stroke-dasharray="1,0" stroke-width="0.5" />
+<polyline fill="none" points="162,151.2 165.4,154" stroke="rgb(0,0,0)" stroke-dasharray="1,0" stroke-width="0.5" />
+<polyline fill="none" points="162,154 165.4,154" stroke="rgb(238,46,47)" stroke-dasharray="1,0" stroke-width="0.5" />
+<polyline fill="none" points="165.4,54 175,62.400000000000006" stroke="rgb(0,0,0)" stroke-dasharray="1,0" stroke-width="0.5" />
+<polyline fill="none" points="162,66 162,50.8" stroke="rgb(192,192,192)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polyline fill="none" points="161.2,65.8 177.6,65.8" stroke="rgb(192,192,192)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polyline fill="none" points="160,50 163.6,50" stroke="rgb(28,108,200)" stroke-dasharray="1,2" stroke-width="0.25" />
+<polyline fill="none" points="163.6,50 163.8,65.8" stroke="rgb(28,108,200)" stroke-dasharray="1,2" stroke-width="0.25" />
+<polyline fill="none" points="160,54 161.2,54" stroke="rgb(28,108,200)" stroke-dasharray="1,2" stroke-width="0.25" />
+<polyline fill="none" points="161.2,54 165.2,54" stroke="rgb(28,108,200)" stroke-dasharray="1,2" stroke-width="0.25" />
+<polyline fill="none" points="160,62 174.8,61.6" stroke="rgb(28,108,200)" stroke-dasharray="1,2" stroke-width="0.25" />
+<polyline fill="none" points="174.8,61.6 175,65.8" stroke="rgb(28,108,200)" stroke-dasharray="1,2" stroke-width="0.25" />
+<polyline fill="none" points="160,66 166.2,63.599999999999994" stroke="rgb(28,108,200)" stroke-dasharray="1,2" stroke-width="0.25" />
+<polyline fill="none" points="166.2,63.599999999999994 174.8,62.400000000000006" stroke="rgb(28,108,200)" stroke-dasharray="1,2" stroke-width="0.25" />
+<polyline fill="none" points="160,58 163.8,58" stroke="rgb(28,108,200)" stroke-dasharray="1,2" stroke-width="0.25" />
+<polyline fill="none" points="163.8,58 170.8,58.8" stroke="rgb(28,108,200)" stroke-dasharray="1,2" stroke-width="0.25" />
+<polyline fill="none" points="171,58.8 175.2,58.8" stroke="rgb(28,108,200)" stroke-dasharray="1,2" stroke-width="0.25" />
+<polyline fill="none" points="175.2,58.8 180,58" stroke="rgb(28,108,200)" stroke-dasharray="1,2" stroke-width="0.25" />
+<polyline fill="none" points="175,62.400000000000006 178,65" stroke="rgb(0,0,0)" stroke-dasharray="1,0" stroke-width="0.5" />
+<polyline fill="none" points="175.2,62.400000000000006 178.6,62.400000000000006" stroke="rgb(238,46,47)" stroke-dasharray="1,0" stroke-width="0.5" />
+<polyline fill="none" points="162,51.2 165.4,54" stroke="rgb(0,0,0)" stroke-dasharray="1,0" stroke-width="0.5" />
+<polyline fill="none" points="162,54 165.4,54" stroke="rgb(238,46,47)" stroke-dasharray="1,0" stroke-width="0.5" />
+<polyline fill="none" points="254.1,192.1 256.1,191.3 258,187.9 260,187.1 262,181.7 264.1,186 266.1,187 268,186" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polyline fill="none" points="268,186 270.1,187" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polyline fill="none" points="252.1,72.1 254.1,71.3 256,67.9 258,67.1 260,61.7 262.1,66 264.1,67 266,66" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+<polyline fill="none" points="266,66 268.1,67" stroke="rgb(0,0,127)" stroke-dasharray="1,0" stroke-width="0.25" />
+
+<text font-family="helvetica" font-size="2" x="107.7" y="138" fill="rgb(0,0,255)" dominant-baseline="central" alignment-baseline="middle">
+<tspan x="103.10000000000001" >outDamMinLimSig</tspan>
+</text>
+<text font-family="helvetica" font-size="2" x="108.16" y="164" fill="rgb(0,0,0)" dominant-baseline="central" alignment-baseline="middle">
+<tspan x="107.24" >k&#x3D;uMin</tspan>
+</text>
+<text font-family="helvetica" font-size="2" x="67.7" y="166" fill="rgb(0,0,255)" dominant-baseline="central" alignment-baseline="middle">
+<tspan x="63.1" >outDamMaxLimSig</tspan>
+</text>
+<text font-family="helvetica" font-size="2" x="68.16" y="192" fill="rgb(0,0,0)" dominant-baseline="central" alignment-baseline="middle">
+<tspan x="64.47999999999999" >k&#x3D;uOutDamMax</tspan>
+</text>
+<text font-family="helvetica" font-size="2" x="87.7" y="38" fill="rgb(0,0,255)" dominant-baseline="central" alignment-baseline="middle">
+<tspan x="81.72" >retDamConMinLimSig</tspan>
+</text>
+<text font-family="helvetica" font-size="2" x="88.16" y="64" fill="rgb(0,0,0)" dominant-baseline="central" alignment-baseline="middle">
+<tspan x="84.47999999999999" >k&#x3D;uRetDamMin</tspan>
+</text>
+<text font-family="helvetica" font-size="2" x="107.7" y="96" fill="rgb(0,0,255)" dominant-baseline="central" alignment-baseline="middle">
+<tspan x="103.10000000000001" >retDamMaxLimSig</tspan>
+</text>
+<text font-family="helvetica" font-size="2" x="108.16" y="122" fill="rgb(0,0,0)" dominant-baseline="central" alignment-baseline="middle">
+<tspan x="107.24" >k&#x3D;uMax</tspan>
+</text>
+<text font-family="helvetica" font-size="2" x="167.7" y="146" fill="rgb(0,0,255)" dominant-baseline="central" alignment-baseline="middle">
+<tspan x="165.85999999999999" >outDamPos</tspan>
+</text>
+<text font-family="helvetica" font-size="2" x="167.7" y="46" fill="rgb(0,0,255)" dominant-baseline="central" alignment-baseline="middle">
+<tspan x="165.85999999999999" >retDamPos</tspan>
+</text>
+<text font-family="helvetica" font-size="2" x="227.7" y="176" fill="rgb(0,0,255)" dominant-baseline="central" alignment-baseline="middle">
+<tspan x="228.61999999999998" >min</tspan>
+</text>
+<text font-family="helvetica" font-size="3.5999999999999996" x="225.86" y="189.8" fill="rgb(160,160,164)" dominant-baseline="central" alignment-baseline="middle">
+<tspan x="225.86" >min()</tspan>
+</text>
+<text font-family="helvetica" font-size="2" x="227.7" y="56" fill="rgb(0,0,255)" dominant-baseline="central" alignment-baseline="middle">
+<tspan x="228.61999999999998" >max</tspan>
+</text>
+<text font-family="helvetica" font-size="3.5999999999999996" x="225.86" y="69.8" fill="rgb(160,160,164)" dominant-baseline="central" alignment-baseline="middle">
+<tspan x="225.86" >max()</tspan>
+</text>
+<text font-family="helvetica" font-size="2" x="259.7" y="176" fill="rgb(0,0,255)" dominant-baseline="central" alignment-baseline="middle">
+<tspan x="255.1" >firOrdHolOutDam</tspan>
+</text>
+<text font-family="helvetica" font-size="2" x="257.7" y="56" fill="rgb(0,0,255)" dominant-baseline="central" alignment-baseline="middle">
+<tspan x="253.1" >firOrdHolRetDam</tspan>
+</text>
+
+</svg>
+  </body>
+
+   <a href = 'data:image/svg+xml;utf,&lt;svg version&#x3D;&quot;1.1&quot; baseProfile&#x3D;&quot;full&quot; width&#x3D;&quot;300mm&quot; height&#x3D;&quot;248mm&quot;
+     viewBox&#x3D;&quot;0 0 300 248&quot; xmlns&#x3D;&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2000&#x2F;svg&quot;&gt;
+
+&lt;rect x&#x3D;&quot;134&quot; y&#x3D;&quot;10&quot; width&#x3D;&quot;72&quot; height&#x3D;&quot;236&quot;  fill&#x3D;&quot;rgb(215,215,215)&quot; stroke&#x3D;&quot;rgb(0,0,0)&quot;  stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot;  &#x2F;&gt;
+&lt;rect x&#x3D;&quot;42&quot; y&#x3D;&quot;10&quot; width&#x3D;&quot;84&quot; height&#x3D;&quot;236&quot;  fill&#x3D;&quot;rgb(215,215,215)&quot; stroke&#x3D;&quot;rgb(0,0,0)&quot;  stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot;  &#x2F;&gt;
+&lt;rect x&#x3D;&quot;212&quot; y&#x3D;&quot;10&quot; width&#x3D;&quot;66&quot; height&#x3D;&quot;236&quot;  fill&#x3D;&quot;rgb(215,215,215)&quot; stroke&#x3D;&quot;rgb(0,0,0)&quot;  stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot;  &#x2F;&gt;
+
+
+
+
+&lt;text font-family&#x3D;&quot;helvetica&quot; font-size&#x3D;&quot;4&quot; x&#x3D;&quot;81.75999999999999&quot; y&#x3D;&quot;18&quot; fill&#x3D;&quot;rgb(0,0,0)&quot; dominant-baseline&#x3D;&quot;central&quot; alignment-baseline&#x3D;&quot;middle&quot;&gt;
+&lt;tspan x&#x3D;&quot;81.75999999999999&quot;  dy&#x3D;&quot;0&quot; &gt;Damper position&lt;&#x2F;tspan&gt;
+&lt;tspan x&#x3D;&quot;81.75999999999999&quot;  dy&#x3D;&quot;4&quot; &gt;supply air temperature&lt;&#x2F;tspan&gt;
+&lt;tspan x&#x3D;&quot;81.75999999999999&quot;  dy&#x3D;&quot;4&quot; &gt;control loop&lt;&#x2F;tspan&gt;
+&lt;&#x2F;text&gt;
+&lt;text font-family&#x3D;&quot;helvetica&quot; font-size&#x3D;&quot;4&quot; x&#x3D;&quot;148.2&quot; y&#x3D;&quot;20&quot; fill&#x3D;&quot;rgb(0,0,0)&quot; dominant-baseline&#x3D;&quot;central&quot; alignment-baseline&#x3D;&quot;middle&quot;&gt;
+&lt;tspan x&#x3D;&quot;148.2&quot;  dy&#x3D;&quot;0&quot; &gt;Damper position&lt;&#x2F;tspan&gt;
+&lt;tspan x&#x3D;&quot;148.2&quot;  dy&#x3D;&quot;4&quot; &gt;assignments&lt;&#x2F;tspan&gt;
+&lt;&#x2F;text&gt;
+&lt;text font-family&#x3D;&quot;helvetica&quot; font-size&#x3D;&quot;4&quot; x&#x3D;&quot;218&quot; y&#x3D;&quot;20&quot; fill&#x3D;&quot;rgb(0,0,0)&quot; dominant-baseline&#x3D;&quot;central&quot; alignment-baseline&#x3D;&quot;middle&quot;&gt;
+&lt;tspan x&#x3D;&quot;218&quot;  dy&#x3D;&quot;0&quot; &gt;Overwrite if the freeze protection&lt;&#x2F;tspan&gt;
+&lt;tspan x&#x3D;&quot;218&quot;  dy&#x3D;&quot;4&quot; &gt;that tracks TFre at the measured&lt;&#x2F;tspan&gt;
+&lt;tspan x&#x3D;&quot;218&quot;  dy&#x3D;&quot;4&quot; &gt;mixed air temperature limits the&lt;&#x2F;tspan&gt;
+&lt;tspan x&#x3D;&quot;218&quot;  dy&#x3D;&quot;4&quot; &gt;damper position&lt;&#x2F;tspan&gt;
+&lt;&#x2F;text&gt;
+
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;158,162 130,162 130,178 81,178&quot; stroke&#x3D;&quot;rgb(255,255,255)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;1.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;158,162 130,162 130,178 81,178&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;158,150 121,150&quot; stroke&#x3D;&quot;rgb(255,255,255)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;1.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;158,150 121,150&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;158,154 136,154 136,228 20,228&quot; stroke&#x3D;&quot;rgb(255,255,255)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;1.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;158,154 136,154 136,228 20,228&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;158,166 140,166 140,194 52,194 52,178 20,178&quot; stroke&#x3D;&quot;rgb(255,255,255)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;1.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;158,166 140,166 140,194 52,194 52,178 20,178&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;158,62 132,62 132,108 121,108&quot; stroke&#x3D;&quot;rgb(255,255,255)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;1.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;158,62 132,62 132,108 121,108&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;158,50 101,50&quot; stroke&#x3D;&quot;rgb(255,255,255)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;1.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;158,50 101,50&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;158,54 112,54 112,28 20,28&quot; stroke&#x3D;&quot;rgb(255,255,255)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;1.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;158,54 112,54 112,28 20,28&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;158,66 148,66 148,78 20,78&quot; stroke&#x3D;&quot;rgb(255,255,255)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;1.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;158,66 148,66 148,78 20,78&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;218,194 52,194 52,178 20,178&quot; stroke&#x3D;&quot;rgb(255,255,255)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;1.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;218,194 52,194 52,178 20,178&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;218,182 188,182 188,158 181,158&quot; stroke&#x3D;&quot;rgb(255,255,255)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;1.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;218,182 188,182 188,158 181,158&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;218,62 190,62 190,58 181,58&quot; stroke&#x3D;&quot;rgb(255,255,255)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;1.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;218,62 190,62 190,58 181,58&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;20,78 148,78 148,74 218,74&quot; stroke&#x3D;&quot;rgb(255,255,255)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;1.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;20,78 148,78 148,74 218,74&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;241,188 250,188&quot; stroke&#x3D;&quot;rgb(255,255,255)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;1.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;241,188 250,188&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;273,188 290,188&quot; stroke&#x3D;&quot;rgb(255,255,255)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;1.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;273,188 290,188&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;20,128 138,128 138,58 158,58&quot; stroke&#x3D;&quot;rgb(255,255,255)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;1.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;20,128 138,128 138,58 158,58&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;20,128 138,128 138,158 158,158&quot; stroke&#x3D;&quot;rgb(255,255,255)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;1.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;20,128 138,128 138,158 158,158&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;241,68 248,68&quot; stroke&#x3D;&quot;rgb(255,255,255)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;1.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;241,68 248,68&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;271,68 290,68&quot; stroke&#x3D;&quot;rgb(255,255,255)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;1.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;271,68 290,68&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+
+&lt;ellipse cx&#x3D;&quot;140&quot; cy&#x3D;&quot;194&quot; rx&#x3D;&quot;1&quot; ry&#x3D;&quot;1&quot;  fill&#x3D;&quot;rgb(0,0,127)&quot;  &#x2F;&gt;
+&lt;ellipse cx&#x3D;&quot;148&quot; cy&#x3D;&quot;74&quot; rx&#x3D;&quot;1&quot; ry&#x3D;&quot;1&quot;  fill&#x3D;&quot;rgb(0,0,127)&quot;  &#x2F;&gt;
+&lt;ellipse cx&#x3D;&quot;138&quot; cy&#x3D;&quot;128&quot; rx&#x3D;&quot;1&quot; ry&#x3D;&quot;1&quot;  fill&#x3D;&quot;rgb(0,0,127)&quot;  &#x2F;&gt;
+
+&lt;polygon points&#x3D;&quot;20,138 40,128 20,118 20,138&quot;  fill&#x3D;&quot;rgb(0,0,127)&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polygon points&#x3D;&quot;20,238 40,228 20,218 20,238&quot;  fill&#x3D;&quot;rgb(0,0,127)&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polygon points&#x3D;&quot;20,188 40,178 20,168 20,188&quot;  fill&#x3D;&quot;rgb(0,0,127)&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polygon points&#x3D;&quot;20,88 40,78 20,68 20,88&quot;  fill&#x3D;&quot;rgb(0,0,127)&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polygon points&#x3D;&quot;20,38 40,28 20,18 20,38&quot;  fill&#x3D;&quot;rgb(0,0,127)&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polygon points&#x3D;&quot;280,193 290,188 280,183&quot;  fill&#x3D;&quot;rgb(255,255,255)&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polygon points&#x3D;&quot;280,73 290,68 280,63&quot;  fill&#x3D;&quot;rgb(255,255,255)&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+
+&lt;rect x&#x3D;&quot;100&quot; y&#x3D;&quot;140&quot; width&#x3D;&quot;20&quot; height&#x3D;&quot;20&quot;  fill&#x3D;&quot;rgb(255,255,255)&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot;  stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.041666666666666664&quot;  &#x2F;&gt;
+&lt;rect x&#x3D;&quot;60&quot; y&#x3D;&quot;168&quot; width&#x3D;&quot;20&quot; height&#x3D;&quot;20&quot;  fill&#x3D;&quot;rgb(255,255,255)&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot;  stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.041666666666666664&quot;  &#x2F;&gt;
+&lt;rect x&#x3D;&quot;80&quot; y&#x3D;&quot;40&quot; width&#x3D;&quot;20&quot; height&#x3D;&quot;20&quot;  fill&#x3D;&quot;rgb(255,255,255)&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot;  stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.041666666666666664&quot;  &#x2F;&gt;
+&lt;rect x&#x3D;&quot;100&quot; y&#x3D;&quot;98&quot; width&#x3D;&quot;20&quot; height&#x3D;&quot;20&quot;  fill&#x3D;&quot;rgb(255,255,255)&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot;  stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.041666666666666664&quot;  &#x2F;&gt;
+&lt;rect x&#x3D;&quot;160&quot; y&#x3D;&quot;148&quot; width&#x3D;&quot;20&quot; height&#x3D;&quot;20&quot;  fill&#x3D;&quot;rgb(255,255,255)&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot;  stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.041666666666666664&quot;  &#x2F;&gt;
+&lt;rect x&#x3D;&quot;160&quot; y&#x3D;&quot;48&quot; width&#x3D;&quot;20&quot; height&#x3D;&quot;20&quot;  fill&#x3D;&quot;rgb(255,255,255)&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot;  stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.041666666666666664&quot;  &#x2F;&gt;
+&lt;rect x&#x3D;&quot;220&quot; y&#x3D;&quot;178&quot; width&#x3D;&quot;20&quot; height&#x3D;&quot;20&quot;  fill&#x3D;&quot;rgb(255,255,255)&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot;  stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.041666666666666664&quot;  &#x2F;&gt;
+&lt;rect x&#x3D;&quot;220&quot; y&#x3D;&quot;58&quot; width&#x3D;&quot;20&quot; height&#x3D;&quot;20&quot;  fill&#x3D;&quot;rgb(255,255,255)&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot;  stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.041666666666666664&quot;  &#x2F;&gt;
+&lt;rect x&#x3D;&quot;252&quot; y&#x3D;&quot;178&quot; width&#x3D;&quot;20&quot; height&#x3D;&quot;20&quot;  fill&#x3D;&quot;rgb(223,211,169)&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot;  stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.041666666666666664&quot;  &#x2F;&gt;
+&lt;rect x&#x3D;&quot;251.908&quot; y&#x3D;&quot;177.908&quot; width&#x3D;&quot;0.092&quot; height&#x3D;&quot;20.092&quot;  fill&#x3D;&quot;rgb(172,168,153)&quot; stroke&#x3D;&quot;none&quot;  &#x2F;&gt;
+&lt;rect x&#x3D;&quot;251.908&quot; y&#x3D;&quot;198&quot; width&#x3D;&quot;20.092&quot; height&#x3D;&quot;0.092&quot;  fill&#x3D;&quot;rgb(172,168,153)&quot; stroke&#x3D;&quot;none&quot;  &#x2F;&gt;
+&lt;rect x&#x3D;&quot;272&quot; y&#x3D;&quot;178&quot; width&#x3D;&quot;0.092&quot; height&#x3D;&quot;20.092&quot;  fill&#x3D;&quot;rgb(172,168,153)&quot; stroke&#x3D;&quot;none&quot;  &#x2F;&gt;
+&lt;rect x&#x3D;&quot;252&quot; y&#x3D;&quot;177.908&quot; width&#x3D;&quot;20.092&quot; height&#x3D;&quot;0.092&quot;  fill&#x3D;&quot;rgb(172,168,153)&quot; stroke&#x3D;&quot;none&quot;  &#x2F;&gt;
+&lt;rect x&#x3D;&quot;252&quot; y&#x3D;&quot;178&quot; width&#x3D;&quot;0.13799999999999998&quot; height&#x3D;&quot;20&quot;  fill&#x3D;&quot;rgb(255,255,255)&quot; stroke&#x3D;&quot;none&quot;  &#x2F;&gt;
+&lt;rect x&#x3D;&quot;252&quot; y&#x3D;&quot;178&quot; width&#x3D;&quot;20&quot; height&#x3D;&quot;0.138&quot;  fill&#x3D;&quot;rgb(255,255,255)&quot; stroke&#x3D;&quot;none&quot;  &#x2F;&gt;
+&lt;rect x&#x3D;&quot;271.908&quot; y&#x3D;&quot;178&quot; width&#x3D;&quot;0.092&quot; height&#x3D;&quot;20&quot;  fill&#x3D;&quot;rgb(113,111,100)&quot; stroke&#x3D;&quot;none&quot;  &#x2F;&gt;
+&lt;rect x&#x3D;&quot;252&quot; y&#x3D;&quot;197.90800000000002&quot; width&#x3D;&quot;20&quot; height&#x3D;&quot;0.092&quot;  fill&#x3D;&quot;rgb(113,111,100)&quot; stroke&#x3D;&quot;none&quot;  &#x2F;&gt;
+&lt;rect x&#x3D;&quot;271.81600000000003&quot; y&#x3D;&quot;178.092&quot; width&#x3D;&quot;0.092&quot; height&#x3D;&quot;19.816&quot;  fill&#x3D;&quot;rgb(172,168,153)&quot; stroke&#x3D;&quot;none&quot;  &#x2F;&gt;
+&lt;rect x&#x3D;&quot;252.092&quot; y&#x3D;&quot;197.816&quot; width&#x3D;&quot;19.816&quot; height&#x3D;&quot;0.092&quot;  fill&#x3D;&quot;rgb(172,168,153)&quot; stroke&#x3D;&quot;none&quot;  &#x2F;&gt;
+&lt;rect x&#x3D;&quot;250&quot; y&#x3D;&quot;58&quot; width&#x3D;&quot;20&quot; height&#x3D;&quot;20&quot;  fill&#x3D;&quot;rgb(223,211,169)&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot;  stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.041666666666666664&quot;  &#x2F;&gt;
+&lt;rect x&#x3D;&quot;249.908&quot; y&#x3D;&quot;57.908&quot; width&#x3D;&quot;0.092&quot; height&#x3D;&quot;20.092&quot;  fill&#x3D;&quot;rgb(172,168,153)&quot; stroke&#x3D;&quot;none&quot;  &#x2F;&gt;
+&lt;rect x&#x3D;&quot;249.908&quot; y&#x3D;&quot;78&quot; width&#x3D;&quot;20.092&quot; height&#x3D;&quot;0.092&quot;  fill&#x3D;&quot;rgb(172,168,153)&quot; stroke&#x3D;&quot;none&quot;  &#x2F;&gt;
+&lt;rect x&#x3D;&quot;270&quot; y&#x3D;&quot;58&quot; width&#x3D;&quot;0.092&quot; height&#x3D;&quot;20.092&quot;  fill&#x3D;&quot;rgb(172,168,153)&quot; stroke&#x3D;&quot;none&quot;  &#x2F;&gt;
+&lt;rect x&#x3D;&quot;250&quot; y&#x3D;&quot;57.908&quot; width&#x3D;&quot;20.092&quot; height&#x3D;&quot;0.092&quot;  fill&#x3D;&quot;rgb(172,168,153)&quot; stroke&#x3D;&quot;none&quot;  &#x2F;&gt;
+&lt;rect x&#x3D;&quot;250&quot; y&#x3D;&quot;58&quot; width&#x3D;&quot;0.13799999999999998&quot; height&#x3D;&quot;20&quot;  fill&#x3D;&quot;rgb(255,255,255)&quot; stroke&#x3D;&quot;none&quot;  &#x2F;&gt;
+&lt;rect x&#x3D;&quot;250&quot; y&#x3D;&quot;58&quot; width&#x3D;&quot;20&quot; height&#x3D;&quot;0.138&quot;  fill&#x3D;&quot;rgb(255,255,255)&quot; stroke&#x3D;&quot;none&quot;  &#x2F;&gt;
+&lt;rect x&#x3D;&quot;269.908&quot; y&#x3D;&quot;58&quot; width&#x3D;&quot;0.092&quot; height&#x3D;&quot;20&quot;  fill&#x3D;&quot;rgb(113,111,100)&quot; stroke&#x3D;&quot;none&quot;  &#x2F;&gt;
+&lt;rect x&#x3D;&quot;250&quot; y&#x3D;&quot;77.908&quot; width&#x3D;&quot;20&quot; height&#x3D;&quot;0.092&quot;  fill&#x3D;&quot;rgb(113,111,100)&quot; stroke&#x3D;&quot;none&quot;  &#x2F;&gt;
+&lt;rect x&#x3D;&quot;269.81600000000003&quot; y&#x3D;&quot;58.092&quot; width&#x3D;&quot;0.092&quot; height&#x3D;&quot;19.816&quot;  fill&#x3D;&quot;rgb(172,168,153)&quot; stroke&#x3D;&quot;none&quot;  &#x2F;&gt;
+&lt;rect x&#x3D;&quot;250.092&quot; y&#x3D;&quot;77.816&quot; width&#x3D;&quot;19.816&quot; height&#x3D;&quot;0.092&quot;  fill&#x3D;&quot;rgb(172,168,153)&quot; stroke&#x3D;&quot;none&quot;  &#x2F;&gt;
+
+&lt;polygon points&#x3D;&quot;102,141 101.2,143.2 102.8,143.2 102,141&quot;  fill&#x3D;&quot;rgb(192,192,192)&quot; stroke&#x3D;&quot;rgb(192,192,192)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polygon points&#x3D;&quot;119,157 116.8,156.2 116.8,157.8 119,157&quot;  fill&#x3D;&quot;rgb(192,192,192)&quot; stroke&#x3D;&quot;rgb(192,192,192)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polygon points&#x3D;&quot;120,151 122,150 120,149&quot;  fill&#x3D;&quot;rgb(255,255,255)&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polygon points&#x3D;&quot;62,169 61.2,171.2 62.8,171.2 62,169&quot;  fill&#x3D;&quot;rgb(192,192,192)&quot; stroke&#x3D;&quot;rgb(192,192,192)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polygon points&#x3D;&quot;79,185 76.8,184.2 76.8,185.8 79,185&quot;  fill&#x3D;&quot;rgb(192,192,192)&quot; stroke&#x3D;&quot;rgb(192,192,192)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polygon points&#x3D;&quot;80,179 82,178 80,177&quot;  fill&#x3D;&quot;rgb(255,255,255)&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polygon points&#x3D;&quot;82,41 81.2,43.2 82.8,43.2 82,41&quot;  fill&#x3D;&quot;rgb(192,192,192)&quot; stroke&#x3D;&quot;rgb(192,192,192)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polygon points&#x3D;&quot;99,57 96.8,56.2 96.8,57.8 99,57&quot;  fill&#x3D;&quot;rgb(192,192,192)&quot; stroke&#x3D;&quot;rgb(192,192,192)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polygon points&#x3D;&quot;100,51 102,50 100,49&quot;  fill&#x3D;&quot;rgb(255,255,255)&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polygon points&#x3D;&quot;102,99 101.2,101.2 102.8,101.2 102,99&quot;  fill&#x3D;&quot;rgb(192,192,192)&quot; stroke&#x3D;&quot;rgb(192,192,192)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polygon points&#x3D;&quot;119,115 116.8,114.2 116.8,115.8 119,115&quot;  fill&#x3D;&quot;rgb(192,192,192)&quot; stroke&#x3D;&quot;rgb(192,192,192)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polygon points&#x3D;&quot;120,109 122,108 120,107&quot;  fill&#x3D;&quot;rgb(255,255,255)&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polygon points&#x3D;&quot;179.2,165.8 177,165 177,166.6 179.2,165.8&quot;  fill&#x3D;&quot;rgb(192,192,192)&quot; stroke&#x3D;&quot;rgb(192,192,192)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polygon points&#x3D;&quot;162,148.8 161.2,151 162.8,151 162,148.8&quot;  fill&#x3D;&quot;rgb(192,192,192)&quot; stroke&#x3D;&quot;rgb(192,192,192)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polygon points&#x3D;&quot;156,152 160,150 156,148&quot;  fill&#x3D;&quot;rgb(0,0,127)&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polygon points&#x3D;&quot;156,156 160,154 156,152&quot;  fill&#x3D;&quot;rgb(0,0,127)&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polygon points&#x3D;&quot;156,164 160,162 156,160&quot;  fill&#x3D;&quot;rgb(0,0,127)&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polygon points&#x3D;&quot;156,168 160,166 156,164&quot;  fill&#x3D;&quot;rgb(0,0,127)&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polygon points&#x3D;&quot;156,160 160,158 156,156&quot;  fill&#x3D;&quot;rgb(0,0,127)&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polygon points&#x3D;&quot;180,159 182,158 180,157&quot;  fill&#x3D;&quot;rgb(255,255,255)&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polygon points&#x3D;&quot;179.2,65.8 177,65 177,66.6 179.2,65.8&quot;  fill&#x3D;&quot;rgb(192,192,192)&quot; stroke&#x3D;&quot;rgb(192,192,192)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polygon points&#x3D;&quot;162,48.8 161.2,51 162.8,51 162,48.8&quot;  fill&#x3D;&quot;rgb(192,192,192)&quot; stroke&#x3D;&quot;rgb(192,192,192)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polygon points&#x3D;&quot;156,52 160,50 156,48&quot;  fill&#x3D;&quot;rgb(0,0,127)&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polygon points&#x3D;&quot;156,56 160,54 156,52&quot;  fill&#x3D;&quot;rgb(0,0,127)&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polygon points&#x3D;&quot;156,64 160,62 156,60&quot;  fill&#x3D;&quot;rgb(0,0,127)&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polygon points&#x3D;&quot;156,68 160,66 156,64&quot;  fill&#x3D;&quot;rgb(0,0,127)&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polygon points&#x3D;&quot;156,60 160,58 156,56&quot;  fill&#x3D;&quot;rgb(0,0,127)&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polygon points&#x3D;&quot;180,59 182,58 180,57&quot;  fill&#x3D;&quot;rgb(255,255,255)&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polygon points&#x3D;&quot;216,184 220,182 216,180&quot;  fill&#x3D;&quot;rgb(0,0,127)&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polygon points&#x3D;&quot;216,196 220,194 216,192&quot;  fill&#x3D;&quot;rgb(0,0,127)&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polygon points&#x3D;&quot;240,189 242,188 240,187&quot;  fill&#x3D;&quot;rgb(255,255,255)&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polygon points&#x3D;&quot;216,64 220,62 216,60&quot;  fill&#x3D;&quot;rgb(0,0,127)&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polygon points&#x3D;&quot;216,76 220,74 216,72&quot;  fill&#x3D;&quot;rgb(0,0,127)&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polygon points&#x3D;&quot;240,69 242,68 240,67&quot;  fill&#x3D;&quot;rgb(255,255,255)&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polygon points&#x3D;&quot;248,190 252,188 248,186&quot;  fill&#x3D;&quot;rgb(0,0,127)&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polygon points&#x3D;&quot;272,189 274,188 272,187&quot;  fill&#x3D;&quot;rgb(255,255,255)&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polygon points&#x3D;&quot;246,70 250,68 246,66&quot;  fill&#x3D;&quot;rgb(0,0,127)&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polygon points&#x3D;&quot;270,69 272,68 270,67&quot;  fill&#x3D;&quot;rgb(255,255,255)&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+
+&lt;ellipse cx&#x3D;&quot;175&quot; cy&#x3D;&quot;162.4&quot; rx&#x3D;&quot;0.6&quot; ry&#x3D;&quot;0.6&quot;  fill&#x3D;&quot;rgb(0,0,0)&quot;  &#x2F;&gt;
+&lt;ellipse cx&#x3D;&quot;170.8&quot; cy&#x3D;&quot;158.8&quot; rx&#x3D;&quot;0.6&quot; ry&#x3D;&quot;0.6&quot;  fill&#x3D;&quot;rgb(0,0,127)&quot;  &#x2F;&gt;
+&lt;ellipse cx&#x3D;&quot;165.4&quot; cy&#x3D;&quot;154&quot; rx&#x3D;&quot;0.6&quot; ry&#x3D;&quot;0.6&quot;  fill&#x3D;&quot;rgb(0,0,0)&quot;  &#x2F;&gt;
+&lt;ellipse cx&#x3D;&quot;175&quot; cy&#x3D;&quot;62.400000000000006&quot; rx&#x3D;&quot;0.6&quot; ry&#x3D;&quot;0.6&quot;  fill&#x3D;&quot;rgb(0,0,0)&quot;  &#x2F;&gt;
+&lt;ellipse cx&#x3D;&quot;170.8&quot; cy&#x3D;&quot;58.8&quot; rx&#x3D;&quot;0.6&quot; ry&#x3D;&quot;0.6&quot;  fill&#x3D;&quot;rgb(0,0,127)&quot;  &#x2F;&gt;
+&lt;ellipse cx&#x3D;&quot;165.4&quot; cy&#x3D;&quot;54&quot; rx&#x3D;&quot;0.6&quot; ry&#x3D;&quot;0.6&quot;  fill&#x3D;&quot;rgb(0,0,0)&quot;  &#x2F;&gt;
+
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;102,143.2 102,158&quot; stroke&#x3D;&quot;rgb(192,192,192)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;101,157 118.2,157&quot; stroke&#x3D;&quot;rgb(192,192,192)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;102,150 118,150&quot; stroke&#x3D;&quot;rgb(0,0,0)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;62,171.2 62,186&quot; stroke&#x3D;&quot;rgb(192,192,192)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;61,185 78.2,185&quot; stroke&#x3D;&quot;rgb(192,192,192)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;62,178 78,178&quot; stroke&#x3D;&quot;rgb(0,0,0)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;82,43.2 82,58&quot; stroke&#x3D;&quot;rgb(192,192,192)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;81,57 98.2,57&quot; stroke&#x3D;&quot;rgb(192,192,192)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;82,50 98,50&quot; stroke&#x3D;&quot;rgb(0,0,0)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;102,101.2 102,116&quot; stroke&#x3D;&quot;rgb(192,192,192)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;101,115 118.2,115&quot; stroke&#x3D;&quot;rgb(192,192,192)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;102,108 118,108&quot; stroke&#x3D;&quot;rgb(0,0,0)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;165.4,154 175,162.4&quot; stroke&#x3D;&quot;rgb(0,0,0)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.5&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;162,166 162,150.8&quot; stroke&#x3D;&quot;rgb(192,192,192)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;161.2,165.8 177.6,165.8&quot; stroke&#x3D;&quot;rgb(192,192,192)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;160,150 163.6,150&quot; stroke&#x3D;&quot;rgb(28,108,200)&quot; stroke-dasharray&#x3D;&quot;1,2&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;163.6,150 163.8,165.8&quot; stroke&#x3D;&quot;rgb(28,108,200)&quot; stroke-dasharray&#x3D;&quot;1,2&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;160,154 161.2,154&quot; stroke&#x3D;&quot;rgb(28,108,200)&quot; stroke-dasharray&#x3D;&quot;1,2&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;161.2,154 165.2,154&quot; stroke&#x3D;&quot;rgb(28,108,200)&quot; stroke-dasharray&#x3D;&quot;1,2&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;160,162 174.8,161.6&quot; stroke&#x3D;&quot;rgb(28,108,200)&quot; stroke-dasharray&#x3D;&quot;1,2&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;174.8,161.6 175,165.8&quot; stroke&#x3D;&quot;rgb(28,108,200)&quot; stroke-dasharray&#x3D;&quot;1,2&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;160,166 166.2,163.6&quot; stroke&#x3D;&quot;rgb(28,108,200)&quot; stroke-dasharray&#x3D;&quot;1,2&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;166.2,163.6 174.8,162.4&quot; stroke&#x3D;&quot;rgb(28,108,200)&quot; stroke-dasharray&#x3D;&quot;1,2&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;160,158 163.8,158&quot; stroke&#x3D;&quot;rgb(28,108,200)&quot; stroke-dasharray&#x3D;&quot;1,2&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;163.8,158 170.8,158.8&quot; stroke&#x3D;&quot;rgb(28,108,200)&quot; stroke-dasharray&#x3D;&quot;1,2&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;171,158.8 175.2,158.8&quot; stroke&#x3D;&quot;rgb(28,108,200)&quot; stroke-dasharray&#x3D;&quot;1,2&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;175.2,158.8 180,158&quot; stroke&#x3D;&quot;rgb(28,108,200)&quot; stroke-dasharray&#x3D;&quot;1,2&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;175,162.4 178,165&quot; stroke&#x3D;&quot;rgb(0,0,0)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.5&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;175.2,162.4 178.6,162.4&quot; stroke&#x3D;&quot;rgb(238,46,47)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.5&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;162,151.2 165.4,154&quot; stroke&#x3D;&quot;rgb(0,0,0)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.5&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;162,154 165.4,154&quot; stroke&#x3D;&quot;rgb(238,46,47)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.5&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;165.4,54 175,62.400000000000006&quot; stroke&#x3D;&quot;rgb(0,0,0)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.5&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;162,66 162,50.8&quot; stroke&#x3D;&quot;rgb(192,192,192)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;161.2,65.8 177.6,65.8&quot; stroke&#x3D;&quot;rgb(192,192,192)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;160,50 163.6,50&quot; stroke&#x3D;&quot;rgb(28,108,200)&quot; stroke-dasharray&#x3D;&quot;1,2&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;163.6,50 163.8,65.8&quot; stroke&#x3D;&quot;rgb(28,108,200)&quot; stroke-dasharray&#x3D;&quot;1,2&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;160,54 161.2,54&quot; stroke&#x3D;&quot;rgb(28,108,200)&quot; stroke-dasharray&#x3D;&quot;1,2&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;161.2,54 165.2,54&quot; stroke&#x3D;&quot;rgb(28,108,200)&quot; stroke-dasharray&#x3D;&quot;1,2&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;160,62 174.8,61.6&quot; stroke&#x3D;&quot;rgb(28,108,200)&quot; stroke-dasharray&#x3D;&quot;1,2&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;174.8,61.6 175,65.8&quot; stroke&#x3D;&quot;rgb(28,108,200)&quot; stroke-dasharray&#x3D;&quot;1,2&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;160,66 166.2,63.599999999999994&quot; stroke&#x3D;&quot;rgb(28,108,200)&quot; stroke-dasharray&#x3D;&quot;1,2&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;166.2,63.599999999999994 174.8,62.400000000000006&quot; stroke&#x3D;&quot;rgb(28,108,200)&quot; stroke-dasharray&#x3D;&quot;1,2&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;160,58 163.8,58&quot; stroke&#x3D;&quot;rgb(28,108,200)&quot; stroke-dasharray&#x3D;&quot;1,2&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;163.8,58 170.8,58.8&quot; stroke&#x3D;&quot;rgb(28,108,200)&quot; stroke-dasharray&#x3D;&quot;1,2&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;171,58.8 175.2,58.8&quot; stroke&#x3D;&quot;rgb(28,108,200)&quot; stroke-dasharray&#x3D;&quot;1,2&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;175.2,58.8 180,58&quot; stroke&#x3D;&quot;rgb(28,108,200)&quot; stroke-dasharray&#x3D;&quot;1,2&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;175,62.400000000000006 178,65&quot; stroke&#x3D;&quot;rgb(0,0,0)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.5&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;175.2,62.400000000000006 178.6,62.400000000000006&quot; stroke&#x3D;&quot;rgb(238,46,47)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.5&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;162,51.2 165.4,54&quot; stroke&#x3D;&quot;rgb(0,0,0)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.5&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;162,54 165.4,54&quot; stroke&#x3D;&quot;rgb(238,46,47)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.5&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;254.1,192.1 256.1,191.3 258,187.9 260,187.1 262,181.7 264.1,186 266.1,187 268,186&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;268,186 270.1,187&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;252.1,72.1 254.1,71.3 256,67.9 258,67.1 260,61.7 262.1,66 264.1,67 266,66&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+&lt;polyline fill&#x3D;&quot;none&quot; points&#x3D;&quot;266,66 268.1,67&quot; stroke&#x3D;&quot;rgb(0,0,127)&quot; stroke-dasharray&#x3D;&quot;1,0&quot; stroke-width&#x3D;&quot;0.25&quot; &#x2F;&gt;
+
+&lt;text font-family&#x3D;&quot;helvetica&quot; font-size&#x3D;&quot;2&quot; x&#x3D;&quot;107.7&quot; y&#x3D;&quot;138&quot; fill&#x3D;&quot;rgb(0,0,255)&quot; dominant-baseline&#x3D;&quot;central&quot; alignment-baseline&#x3D;&quot;middle&quot;&gt;
+&lt;tspan x&#x3D;&quot;103.10000000000001&quot; &gt;outDamMinLimSig&lt;&#x2F;tspan&gt;
+&lt;&#x2F;text&gt;
+&lt;text font-family&#x3D;&quot;helvetica&quot; font-size&#x3D;&quot;2&quot; x&#x3D;&quot;108.16&quot; y&#x3D;&quot;164&quot; fill&#x3D;&quot;rgb(0,0,0)&quot; dominant-baseline&#x3D;&quot;central&quot; alignment-baseline&#x3D;&quot;middle&quot;&gt;
+&lt;tspan x&#x3D;&quot;107.24&quot; &gt;k&amp;#x3D;uMin&lt;&#x2F;tspan&gt;
+&lt;&#x2F;text&gt;
+&lt;text font-family&#x3D;&quot;helvetica&quot; font-size&#x3D;&quot;2&quot; x&#x3D;&quot;67.7&quot; y&#x3D;&quot;166&quot; fill&#x3D;&quot;rgb(0,0,255)&quot; dominant-baseline&#x3D;&quot;central&quot; alignment-baseline&#x3D;&quot;middle&quot;&gt;
+&lt;tspan x&#x3D;&quot;63.1&quot; &gt;outDamMaxLimSig&lt;&#x2F;tspan&gt;
+&lt;&#x2F;text&gt;
+&lt;text font-family&#x3D;&quot;helvetica&quot; font-size&#x3D;&quot;2&quot; x&#x3D;&quot;68.16&quot; y&#x3D;&quot;192&quot; fill&#x3D;&quot;rgb(0,0,0)&quot; dominant-baseline&#x3D;&quot;central&quot; alignment-baseline&#x3D;&quot;middle&quot;&gt;
+&lt;tspan x&#x3D;&quot;64.47999999999999&quot; &gt;k&amp;#x3D;uOutDamMax&lt;&#x2F;tspan&gt;
+&lt;&#x2F;text&gt;
+&lt;text font-family&#x3D;&quot;helvetica&quot; font-size&#x3D;&quot;2&quot; x&#x3D;&quot;87.7&quot; y&#x3D;&quot;38&quot; fill&#x3D;&quot;rgb(0,0,255)&quot; dominant-baseline&#x3D;&quot;central&quot; alignment-baseline&#x3D;&quot;middle&quot;&gt;
+&lt;tspan x&#x3D;&quot;81.72&quot; &gt;retDamConMinLimSig&lt;&#x2F;tspan&gt;
+&lt;&#x2F;text&gt;
+&lt;text font-family&#x3D;&quot;helvetica&quot; font-size&#x3D;&quot;2&quot; x&#x3D;&quot;88.16&quot; y&#x3D;&quot;64&quot; fill&#x3D;&quot;rgb(0,0,0)&quot; dominant-baseline&#x3D;&quot;central&quot; alignment-baseline&#x3D;&quot;middle&quot;&gt;
+&lt;tspan x&#x3D;&quot;84.47999999999999&quot; &gt;k&amp;#x3D;uRetDamMin&lt;&#x2F;tspan&gt;
+&lt;&#x2F;text&gt;
+&lt;text font-family&#x3D;&quot;helvetica&quot; font-size&#x3D;&quot;2&quot; x&#x3D;&quot;107.7&quot; y&#x3D;&quot;96&quot; fill&#x3D;&quot;rgb(0,0,255)&quot; dominant-baseline&#x3D;&quot;central&quot; alignment-baseline&#x3D;&quot;middle&quot;&gt;
+&lt;tspan x&#x3D;&quot;103.10000000000001&quot; &gt;retDamMaxLimSig&lt;&#x2F;tspan&gt;
+&lt;&#x2F;text&gt;
+&lt;text font-family&#x3D;&quot;helvetica&quot; font-size&#x3D;&quot;2&quot; x&#x3D;&quot;108.16&quot; y&#x3D;&quot;122&quot; fill&#x3D;&quot;rgb(0,0,0)&quot; dominant-baseline&#x3D;&quot;central&quot; alignment-baseline&#x3D;&quot;middle&quot;&gt;
+&lt;tspan x&#x3D;&quot;107.24&quot; &gt;k&amp;#x3D;uMax&lt;&#x2F;tspan&gt;
+&lt;&#x2F;text&gt;
+&lt;text font-family&#x3D;&quot;helvetica&quot; font-size&#x3D;&quot;2&quot; x&#x3D;&quot;167.7&quot; y&#x3D;&quot;146&quot; fill&#x3D;&quot;rgb(0,0,255)&quot; dominant-baseline&#x3D;&quot;central&quot; alignment-baseline&#x3D;&quot;middle&quot;&gt;
+&lt;tspan x&#x3D;&quot;165.85999999999999&quot; &gt;outDamPos&lt;&#x2F;tspan&gt;
+&lt;&#x2F;text&gt;
+&lt;text font-family&#x3D;&quot;helvetica&quot; font-size&#x3D;&quot;2&quot; x&#x3D;&quot;167.7&quot; y&#x3D;&quot;46&quot; fill&#x3D;&quot;rgb(0,0,255)&quot; dominant-baseline&#x3D;&quot;central&quot; alignment-baseline&#x3D;&quot;middle&quot;&gt;
+&lt;tspan x&#x3D;&quot;165.85999999999999&quot; &gt;retDamPos&lt;&#x2F;tspan&gt;
+&lt;&#x2F;text&gt;
+&lt;text font-family&#x3D;&quot;helvetica&quot; font-size&#x3D;&quot;2&quot; x&#x3D;&quot;227.7&quot; y&#x3D;&quot;176&quot; fill&#x3D;&quot;rgb(0,0,255)&quot; dominant-baseline&#x3D;&quot;central&quot; alignment-baseline&#x3D;&quot;middle&quot;&gt;
+&lt;tspan x&#x3D;&quot;228.61999999999998&quot; &gt;min&lt;&#x2F;tspan&gt;
+&lt;&#x2F;text&gt;
+&lt;text font-family&#x3D;&quot;helvetica&quot; font-size&#x3D;&quot;3.5999999999999996&quot; x&#x3D;&quot;225.86&quot; y&#x3D;&quot;189.8&quot; fill&#x3D;&quot;rgb(160,160,164)&quot; dominant-baseline&#x3D;&quot;central&quot; alignment-baseline&#x3D;&quot;middle&quot;&gt;
+&lt;tspan x&#x3D;&quot;225.86&quot; &gt;min()&lt;&#x2F;tspan&gt;
+&lt;&#x2F;text&gt;
+&lt;text font-family&#x3D;&quot;helvetica&quot; font-size&#x3D;&quot;2&quot; x&#x3D;&quot;227.7&quot; y&#x3D;&quot;56&quot; fill&#x3D;&quot;rgb(0,0,255)&quot; dominant-baseline&#x3D;&quot;central&quot; alignment-baseline&#x3D;&quot;middle&quot;&gt;
+&lt;tspan x&#x3D;&quot;228.61999999999998&quot; &gt;max&lt;&#x2F;tspan&gt;
+&lt;&#x2F;text&gt;
+&lt;text font-family&#x3D;&quot;helvetica&quot; font-size&#x3D;&quot;3.5999999999999996&quot; x&#x3D;&quot;225.86&quot; y&#x3D;&quot;69.8&quot; fill&#x3D;&quot;rgb(160,160,164)&quot; dominant-baseline&#x3D;&quot;central&quot; alignment-baseline&#x3D;&quot;middle&quot;&gt;
+&lt;tspan x&#x3D;&quot;225.86&quot; &gt;max()&lt;&#x2F;tspan&gt;
+&lt;&#x2F;text&gt;
+&lt;text font-family&#x3D;&quot;helvetica&quot; font-size&#x3D;&quot;2&quot; x&#x3D;&quot;259.7&quot; y&#x3D;&quot;176&quot; fill&#x3D;&quot;rgb(0,0,255)&quot; dominant-baseline&#x3D;&quot;central&quot; alignment-baseline&#x3D;&quot;middle&quot;&gt;
+&lt;tspan x&#x3D;&quot;255.1&quot; &gt;firOrdHolOutDam&lt;&#x2F;tspan&gt;
+&lt;&#x2F;text&gt;
+&lt;text font-family&#x3D;&quot;helvetica&quot; font-size&#x3D;&quot;2&quot; x&#x3D;&quot;257.7&quot; y&#x3D;&quot;56&quot; fill&#x3D;&quot;rgb(0,0,255)&quot; dominant-baseline&#x3D;&quot;central&quot; alignment-baseline&#x3D;&quot;middle&quot;&gt;
+&lt;tspan x&#x3D;&quot;253.1&quot; &gt;firOrdHolRetDam&lt;&#x2F;tspan&gt;
+&lt;&#x2F;text&gt;
+
+&lt;&#x2F;svg&gt;'
+   download=FromModelica.Modulation.svg>Download</a>
+
+</body>
+<footer>
+    <div class="footer">
+<p>
+    Generated through CDL export of <a href="http://obc.lbl.gov">OpenBuildingControl</a>,
+    <a href="https://www.lbl.gov">Berkeley Lab</a>.
+</p>
+</div>
+</footer>

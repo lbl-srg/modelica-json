@@ -1,0 +1,1657 @@
+[
+  {
+    "modelicaFile": "FromModelica/Modulation.mo",
+    "within": "FromModelica",
+    "topClassName": "FromModelica.Modulation",
+    "comment": "Outdoor and return air damper position modulation sequence for multi zone VAV AHU",
+    "public": {
+      "parameters": [
+        {
+          "className": "Real",
+          "name": "uMin",
+          "value": "-0.25",
+          "comment": "Lower limit of controller input when outdoor damper opens (see diagram)",
+          "unit": {
+            "prefix": "final",
+            "value": "\"1\""
+          },
+          "max": {
+            "prefix": "final",
+            "value": "0"
+          },
+          "modifications": [
+            {
+              "value": "0",
+              "isFinal": true
+            },
+            {
+              "value": "\"1\"",
+              "isFinal": true
+            }
+          ],
+          "annotation": {
+            "dialog": {
+              "tab": "Commissioning",
+              "group": "Controller"
+            }
+          }
+        },
+        {
+          "className": "Real",
+          "name": "uMax",
+          "value": "+0.25",
+          "comment": "Upper limit of controller input when return damper is closed (see diagram)",
+          "unit": {
+            "prefix": "final",
+            "value": "\"1\""
+          },
+          "min": {
+            "prefix": "final",
+            "value": "0"
+          },
+          "modifications": [
+            {
+              "value": "0",
+              "isFinal": true
+            },
+            {
+              "value": "\"1\"",
+              "isFinal": true
+            }
+          ],
+          "annotation": {
+            "dialog": {
+              "tab": "Commissioning",
+              "group": "Controller"
+            }
+          }
+        },
+        {
+          "className": "Real",
+          "name": "uOutDamMax",
+          "value": "(uMin + uMax)/2",
+          "comment": "Maximum loop signal for the OA damper to be fully open",
+          "unit": {
+            "prefix": "final",
+            "value": "\"1\""
+          },
+          "min": {
+            "prefix": "final",
+            "value": "-1"
+          },
+          "max": {
+            "prefix": "final",
+            "value": "1"
+          },
+          "modifications": [
+            {
+              "value": "-1",
+              "isFinal": true
+            },
+            {
+              "value": "1",
+              "isFinal": true
+            },
+            {
+              "value": "\"1\"",
+              "isFinal": true
+            }
+          ],
+          "annotation": {
+            "dialog": {
+              "tab": "Commissioning",
+              "group": "Controller"
+            }
+          }
+        },
+        {
+          "className": "Real",
+          "name": "uRetDamMin",
+          "value": "(uMin + uMax)/2",
+          "comment": "Minimum loop signal for the RA damper to be fully open",
+          "unit": {
+            "prefix": "final",
+            "value": "\"1\""
+          },
+          "min": {
+            "prefix": "final",
+            "value": "-1"
+          },
+          "max": {
+            "prefix": "final",
+            "value": "1"
+          },
+          "modifications": [
+            {
+              "value": "-1",
+              "isFinal": true
+            },
+            {
+              "value": "1",
+              "isFinal": true
+            },
+            {
+              "value": "\"1\"",
+              "isFinal": true
+            }
+          ],
+          "annotation": {
+            "dialog": {
+              "tab": "Commissioning",
+              "group": "Controller"
+            }
+          }
+        },
+        {
+          "className": "Modelica.SIunits.Time",
+          "name": "samplePeriod",
+          "value": "300",
+          "comment": "Sample period of component, used to limit the rate of change of the dampers (to avoid quick opening that can result in frost)",
+          "annotation": {
+            "dialog": {
+              "tab": "General",
+              "group": "Parameters"
+            }
+          }
+        }
+      ],
+      "inputs": [
+        {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+          "name": "uTSup",
+          "comment": "Signal for supply air temperature control (T Sup Control Loop Signal in diagram)",
+          "unit": {
+            "prefix": "final",
+            "value": "\"1\""
+          },
+          "modifications": [
+            {
+              "value": "\"1\"",
+              "isFinal": true
+            }
+          ],
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x1": -160,
+                  "x2": -20
+                },
+                {
+                  "x1": -120,
+                  "x2": 20
+                }
+              ]
+            },
+            "iconTransformation": {
+              "extent": [
+                {
+                  "x1": -120,
+                  "x2": -10
+                },
+                {
+                  "x1": -100,
+                  "x2": 10
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+          "name": "uOutDamPosMin",
+          "comment": "Minimum economizer damper position limit as returned by the damper position limits  sequence",
+          "unit": {
+            "prefix": "final",
+            "value": "\"1\""
+          },
+          "min": {
+            "prefix": "final",
+            "value": "0"
+          },
+          "max": {
+            "prefix": "final",
+            "value": "1"
+          },
+          "modifications": [
+            {
+              "value": "0",
+              "isFinal": true
+            },
+            {
+              "value": "1",
+              "isFinal": true
+            },
+            {
+              "value": "\"1\"",
+              "isFinal": true
+            }
+          ],
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x1": -160,
+                  "x2": -120
+                },
+                {
+                  "x1": -120,
+                  "x2": -80
+                }
+              ]
+            },
+            "iconTransformation": {
+              "extent": [
+                {
+                  "x1": -120,
+                  "x2": -90
+                },
+                {
+                  "x1": -100,
+                  "x2": -70
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+          "name": "uOutDamPosMax",
+          "comment": "Maximum economizer damper position limit as returned by the economizer enable-disable sequence.\n    If the economizer is disabled, this value equals uOutDamPosMin",
+          "unit": {
+            "prefix": "final",
+            "value": "\"1\""
+          },
+          "min": {
+            "prefix": "final",
+            "value": "0"
+          },
+          "max": {
+            "prefix": "final",
+            "value": "1"
+          },
+          "modifications": [
+            {
+              "value": "0",
+              "isFinal": true
+            },
+            {
+              "value": "1",
+              "isFinal": true
+            },
+            {
+              "value": "\"1\"",
+              "isFinal": true
+            }
+          ],
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x1": -160,
+                  "x2": -70
+                },
+                {
+                  "x1": -120,
+                  "x2": -30
+                }
+              ]
+            },
+            "iconTransformation": {
+              "extent": [
+                {
+                  "x1": -120,
+                  "x2": -50
+                },
+                {
+                  "x1": -100,
+                  "x2": -30
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+          "name": "uRetDamPosMin",
+          "comment": "Minimum return air damper position limit as returned by the economizer enable-disable sequence",
+          "unit": {
+            "prefix": "final",
+            "value": "\"1\""
+          },
+          "min": {
+            "prefix": "final",
+            "value": "0"
+          },
+          "max": {
+            "prefix": "final",
+            "value": "1"
+          },
+          "modifications": [
+            {
+              "value": "0",
+              "isFinal": true
+            },
+            {
+              "value": "1",
+              "isFinal": true
+            },
+            {
+              "value": "\"1\"",
+              "isFinal": true
+            }
+          ],
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x1": -160,
+                  "x2": 30
+                },
+                {
+                  "x1": -120,
+                  "x2": 70
+                }
+              ]
+            },
+            "iconTransformation": {
+              "extent": [
+                {
+                  "x1": -120,
+                  "x2": 30
+                },
+                {
+                  "x1": -100,
+                  "x2": 50
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+          "name": "uRetDamPosMax",
+          "comment": "Maximum return air damper position limit as returned by the economizer enable-disable sequence",
+          "unit": {
+            "prefix": "final",
+            "value": "\"1\""
+          },
+          "min": {
+            "prefix": "final",
+            "value": "0"
+          },
+          "max": {
+            "prefix": "final",
+            "value": "1"
+          },
+          "modifications": [
+            {
+              "value": "0",
+              "isFinal": true
+            },
+            {
+              "value": "1",
+              "isFinal": true
+            },
+            {
+              "value": "\"1\"",
+              "isFinal": true
+            }
+          ],
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x1": -160,
+                  "x2": 80
+                },
+                {
+                  "x1": -120,
+                  "x2": 120
+                }
+              ]
+            },
+            "iconTransformation": {
+              "extent": [
+                {
+                  "x1": -120,
+                  "x2": 70
+                },
+                {
+                  "x1": -100,
+                  "x2": 90
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
+          "name": "yOutDamPos",
+          "comment": "Economizer damper position",
+          "unit": {
+            "prefix": "final",
+            "value": "\"1\""
+          },
+          "min": {
+            "prefix": "final",
+            "value": "0"
+          },
+          "max": {
+            "prefix": "final",
+            "value": "1"
+          },
+          "modifications": [
+            {
+              "value": "0",
+              "isFinal": true
+            },
+            {
+              "value": "1",
+              "isFinal": true
+            },
+            {
+              "value": "\"1\"",
+              "isFinal": true
+            }
+          ],
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x1": 120,
+                  "x2": -70
+                },
+                {
+                  "x1": 140,
+                  "x2": -50
+                }
+              ]
+            },
+            "iconTransformation": {
+              "extent": [
+                {
+                  "x1": 100,
+                  "x2": -30
+                },
+                {
+                  "x1": 120,
+                  "x2": -10
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
+          "name": "yRetDamPos",
+          "comment": "Return air damper position",
+          "unit": {
+            "prefix": "final",
+            "value": "\"1\""
+          },
+          "min": {
+            "prefix": "final",
+            "value": "0"
+          },
+          "max": {
+            "prefix": "final",
+            "value": "1"
+          },
+          "modifications": [
+            {
+              "value": "0",
+              "isFinal": true
+            },
+            {
+              "value": "1",
+              "isFinal": true
+            },
+            {
+              "value": "\"1\"",
+              "isFinal": true
+            }
+          ],
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x1": 120,
+                  "x2": 50
+                },
+                {
+                  "x1": 140,
+                  "x2": 70
+                }
+              ]
+            },
+            "iconTransformation": {
+              "extent": [
+                {
+                  "x1": 100,
+                  "x2": 10
+                },
+                {
+                  "x1": 120,
+                  "x2": 30
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "protected": {
+      "models": [
+        {
+          "className": "Buildings.Controls.OBC.CDL.Continuous.Sources.Constant",
+          "name": "outDamMinLimSig",
+          "comment": "Minimal control loop signal for the outdoor air damper",
+          "modifications": [
+            {
+              "name": "k",
+              "value": "uMin",
+              "isFinal": true
+            }
+          ],
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x1": -60,
+                  "x2": -32
+                },
+                {
+                  "x1": -40,
+                  "x2": -12
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Continuous.Sources.Constant",
+          "name": "outDamMaxLimSig",
+          "comment": "Maximum control loop signal for the outdoor air damper",
+          "modifications": [
+            {
+              "name": "k",
+              "value": "uOutDamMax",
+              "isFinal": true
+            }
+          ],
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x1": -100,
+                  "x2": -60
+                },
+                {
+                  "x1": -80,
+                  "x2": -40
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Continuous.Sources.Constant",
+          "name": "retDamConMinLimSig",
+          "comment": "Minimal control loop signal for the return air damper",
+          "modifications": [
+            {
+              "name": "k",
+              "value": "uRetDamMin",
+              "isFinal": true
+            }
+          ],
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x1": -80,
+                  "x2": 68
+                },
+                {
+                  "x1": -60,
+                  "x2": 88
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Continuous.Sources.Constant",
+          "name": "retDamMaxLimSig",
+          "comment": "Maximal control loop signal for the return air damper",
+          "modifications": [
+            {
+              "name": "k",
+              "value": "uMax",
+              "isFinal": true
+            }
+          ],
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x1": -60,
+                  "x2": 10
+                },
+                {
+                  "x1": -40,
+                  "x2": 30
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Continuous.Line",
+          "name": "outDamPos",
+          "comment": "Damper position is linearly proportional to the control signal between signal limits",
+          "modifications": [
+            {
+              "name": "limitBelow",
+              "value": "true",
+              "isFinal": true
+            },
+            {
+              "name": "limitAbove",
+              "value": "true",
+              "isFinal": true
+            }
+          ],
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x1": 0,
+                  "x2": -40
+                },
+                {
+                  "x1": 20,
+                  "x2": -20
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Continuous.Line",
+          "name": "retDamPos",
+          "comment": "Damper position is linearly proportional to the control signal between signal limits",
+          "modifications": [
+            {
+              "name": "limitBelow",
+              "value": "true",
+              "isFinal": true
+            },
+            {
+              "name": "limitAbove",
+              "value": "true",
+              "isFinal": true
+            }
+          ],
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x1": 0,
+                  "x2": 60
+                },
+                {
+                  "x1": 20,
+                  "x2": 80
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Continuous.Min",
+          "name": "min",
+          "comment": "Overwrite due to freeze protection",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x1": 60,
+                  "x2": -70
+                },
+                {
+                  "x1": 80,
+                  "x2": -50
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Continuous.Max",
+          "name": "max",
+          "comment": "Overwrite due to freeze protection",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x1": 60,
+                  "x2": 50
+                },
+                {
+                  "x1": 80,
+                  "x2": 70
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Discrete.FirstOrderHold",
+          "name": "firOrdHolOutDam",
+          "comment": "First order hold to avoid too fast opening/closing of damper (which may cause freeze protection to be too slow to compensate)",
+          "modifications": [
+            {
+              "name": "samplePeriod",
+              "value": "samplePeriod",
+              "isFinal": true
+            }
+          ],
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x1": 92,
+                  "x2": -70
+                },
+                {
+                  "x1": 112,
+                  "x2": -50
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Discrete.FirstOrderHold",
+          "name": "firOrdHolRetDam",
+          "comment": "First order hold to avoid too fast opening/closing of damper (which may cause freeze protection to be too slow to compensate)",
+          "modifications": [
+            {
+              "name": "samplePeriod",
+              "value": "samplePeriod",
+              "isFinal": true
+            }
+          ],
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x1": 90,
+                  "x2": 50
+                },
+                {
+                  "x1": 110,
+                  "x2": 70
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "info": "<html>\n<p>\nThis is a multi zone VAV AHU economizer modulation block. It calculates\nthe outdoor and return air damper positions based on the supply air temperature\ncontrol loop signal. The implementation is in line with ASHRAE\nGuidline 36 (G36), PART5.N.2.c. Damper positions are linearly mapped to\nthe supply air control loop signal. This is a final sequence in the\ncomposite multi zone VAV AHU economizer control sequence. Damper position\nlimits, which are the inputs to the sequence, are the outputs of\n<a href=\"Buildings.Controls.OBC.ASHRAE.G36_PR1.AHUs.MultiZone.VAV.Economizers.Subsequences.Limits\">\nBuildings.Controls.OBC.ASHRAE.G36_PR1.AHUs.MultiZone.VAV.Economizers.Subsequences.Limits</a> and\n<a href=\"Buildings.Controls.OBC.ASHRAE.G36_PR1.AHUs.MultiZone.VAV.Economizers.Subsequences.Enable\">\nBuildings.Controls.OBC.ASHRAE.G36_PR1.AHUs.MultiZone.VAV.Economizers.Subsequences.Enable</a>\nsequences.\n</p>\n<p>\nWhen the economizer is enabled, the PI controller modulates the damper\npositions. Return and outdoor damper are not interlocked. When the economizer is disabled,\nthe damper positions are set to the minimum outdoor air damper position limits.\n</p>\n<p>\nThe time rate of change of the damper signals is limited by a first order hold,\nusing the sample time <code>samplePeriod</code>.\nThis prevents a quick opening of the outdoor air damper, for example when the\noutdoor airflow setpoint has a step change.\nSlowing down the opening of the outdoor air damper allows the freeze protection\nto componensate with its dynamics that is faster than the opening of the outdoor air damper.\nTo avoid that all dampers are closed, the return air damper has the same\ntime rate of change limitation.\n</p>\n<p>\nThe control charts below show the input-output structure and an economizer damper\nmodulation sequence assuming a well configured controller. Control diagram:\n</p>\n<p align=\"center\">\n<img alt=\"Image of the multi zone AHU modulation sequence control diagram\"\nsrc=\"Buildings/Resources/Images/Controls/OBC/ASHRAE/G36_PR1/AHUs/EconModulationControlDiagramMultiZone.png\"/>\n</p>\n<p>\nMulti zone AHU economizer modulation control chart:\n<br/>\n</p>\n<p align=\"center\">\n<img alt=\"Image of the multi zone AHU modulation sequence expected performance\"\nsrc=\"Buildings/Resources/Images/Controls/OBC/ASHRAE/G36_PR1/AHUs/EconModulationControlChartMultiZone.png\"/>\n</p>\n</html>",
+    "icon": {
+      "graphics": {
+        "line": [
+          {
+            "points": [
+              {
+                "x1": 20,
+                "x2": 58
+              }
+            ],
+            "color": {
+              "r": 28,
+              "g": 108,
+              "b": 200
+            }
+          },
+          {
+            "points": [
+              {
+                "x1": -92,
+                "x2": -84
+              },
+              {
+                "x1": -50,
+                "x2": -84
+              },
+              {
+                "x1": 12,
+                "x2": 70
+              },
+              {
+                "x1": 82,
+                "x2": 70
+              }
+            ],
+            "color": {
+              "r": 0,
+              "g": 0,
+              "b": 127
+            },
+            "thickness": 0.5
+          },
+          {
+            "points": [
+              {
+                "x1": -66,
+                "x2": 58
+              },
+              {
+                "x1": 12,
+                "x2": 58
+              },
+              {
+                "x1": 50,
+                "x2": -76
+              },
+              {
+                "x1": 100,
+                "x2": -76
+              }
+            ],
+            "color": {
+              "r": 0,
+              "g": 0,
+              "b": 127
+            },
+            "pattern": "LinePattern.Dash",
+            "thickness": 0.5
+          }
+        ],
+        "rectangle": [
+          {
+            "lineColor": {
+              "r": 0,
+              "g": 0,
+              "b": 127
+            },
+            "fillColor": {
+              "r": 255,
+              "g": 255,
+              "b": 255
+            },
+            "fillPattern": "FillPattern.Solid",
+            "extent": [
+              {
+                "x1": -100,
+                "x2": -100
+              },
+              {
+                "x1": 100,
+                "x2": 100
+              }
+            ]
+          }
+        ],
+        "text": [
+          {
+            "lineColor": {
+              "r": 0,
+              "g": 0,
+              "b": 127
+            },
+            "extent": [
+              {
+                "x1": -108,
+                "x2": 138
+              },
+              {
+                "x1": 102,
+                "x2": 110
+              }
+            ],
+            "textString": "\"%name\""
+          }
+        ]
+      }
+    },
+    "diagram": {
+      "coordinateSystem": {
+        "extent": [
+          {
+            "x1": -120,
+            "x2": -120
+          },
+          {
+            "x1": 120,
+            "x2": 120
+          }
+        ],
+        "preserveAspectRatio": false
+      },
+      "graphics": {
+        "rectangle": [
+          {
+            "lineColor": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
+            "fillColor": {
+              "r": 215,
+              "g": 215,
+              "b": 215
+            },
+            "fillPattern": "FillPattern.Solid",
+            "extent": [
+              {
+                "x1": -26,
+                "x2": 118
+              },
+              {
+                "x1": 46,
+                "x2": -118
+              }
+            ]
+          },
+          {
+            "lineColor": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
+            "fillColor": {
+              "r": 215,
+              "g": 215,
+              "b": 215
+            },
+            "fillPattern": "FillPattern.Solid",
+            "extent": [
+              {
+                "x1": -118,
+                "x2": 118
+              },
+              {
+                "x1": -34,
+                "x2": -118
+              }
+            ]
+          },
+          {
+            "lineColor": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
+            "fillColor": {
+              "r": 215,
+              "g": 215,
+              "b": 215
+            },
+            "fillPattern": "FillPattern.Solid",
+            "extent": [
+              {
+                "x1": 52,
+                "x2": 118
+              },
+              {
+                "x1": 118,
+                "x2": -118
+              }
+            ]
+          }
+        ],
+        "text": [
+          {
+            "lineColor": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
+            "extent": [
+              {
+                "x1": -80,
+                "x2": 128
+              },
+              {
+                "x1": -36,
+                "x2": 88
+              }
+            ],
+            "textString": "\"Damper position\nsupply air temperature\ncontrol loop\"",
+            "fontSize": 12,
+            "horizontalAlignment": "TextAlignment.Left"
+          },
+          {
+            "lineColor": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
+            "extent": [
+              {
+                "x1": -20,
+                "x2": 128
+              },
+              {
+                "x1": 24,
+                "x2": 88
+              }
+            ],
+            "textString": "\"Damper position\nassignments\"",
+            "fontSize": 12,
+            "horizontalAlignment": "TextAlignment.Left"
+          },
+          {
+            "lineColor": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
+            "extent": [
+              {
+                "x1": 58,
+                "x2": 124
+              },
+              {
+                "x1": 102,
+                "x2": 84
+              }
+            ],
+            "textString": "\"Overwrite if the freeze protection\nthat tracks TFre at the measured\nmixed air temperature limits the\ndamper position\"",
+            "fontSize": 12,
+            "horizontalAlignment": "TextAlignment.Left"
+          }
+        ]
+      }
+    },
+    "connections": [
+      [
+        {
+          "instance": "outDamPos",
+          "connector": "x2"
+        },
+        {
+          "instance": "outDamMaxLimSig",
+          "connector": "y"
+        },
+        {
+          "points": [
+            {
+              "x1": -2,
+              "x2": -34
+            },
+            {
+              "x1": -30,
+              "x2": -34
+            },
+            {
+              "x1": -30,
+              "x2": -50
+            },
+            {
+              "x1": -79,
+              "x2": -50
+            }
+          ],
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 127
+          }
+        }
+      ],
+      [
+        {
+          "instance": "outDamPos",
+          "connector": "x1"
+        },
+        {
+          "instance": "outDamMinLimSig",
+          "connector": "y"
+        },
+        {
+          "points": [
+            {
+              "x1": -2,
+              "x2": -22
+            },
+            {
+              "x1": -39,
+              "x2": -22
+            }
+          ],
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 127
+          }
+        }
+      ],
+      [
+        {
+          "instance": "outDamPos",
+          "connector": "f1"
+        },
+        {
+          "instance": "uOutDamPosMin"
+        },
+        {
+          "points": [
+            {
+              "x1": -2,
+              "x2": -26
+            },
+            {
+              "x1": -24,
+              "x2": -26
+            },
+            {
+              "x1": -24,
+              "x2": -100
+            },
+            {
+              "x1": -140,
+              "x2": -100
+            }
+          ],
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 127
+          }
+        }
+      ],
+      [
+        {
+          "instance": "outDamPos",
+          "connector": "f2"
+        },
+        {
+          "instance": "uOutDamPosMax"
+        },
+        {
+          "points": [
+            {
+              "x1": -2,
+              "x2": -38
+            },
+            {
+              "x1": -20,
+              "x2": -38
+            },
+            {
+              "x1": -20,
+              "x2": -66
+            },
+            {
+              "x1": -108,
+              "x2": -66
+            },
+            {
+              "x1": -108,
+              "x2": -50
+            },
+            {
+              "x1": -140,
+              "x2": -50
+            }
+          ],
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 127
+          }
+        }
+      ],
+      [
+        {
+          "instance": "retDamPos",
+          "connector": "x2"
+        },
+        {
+          "instance": "retDamMaxLimSig",
+          "connector": "y"
+        },
+        {
+          "points": [
+            {
+              "x1": -2,
+              "x2": 66
+            },
+            {
+              "x1": -28,
+              "x2": 66
+            },
+            {
+              "x1": -28,
+              "x2": 20
+            },
+            {
+              "x1": -39,
+              "x2": 20
+            }
+          ],
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 127
+          }
+        }
+      ],
+      [
+        {
+          "instance": "retDamPos",
+          "connector": "x1"
+        },
+        {
+          "instance": "retDamConMinLimSig",
+          "connector": "y"
+        },
+        {
+          "points": [
+            {
+              "x1": -2,
+              "x2": 78
+            },
+            {
+              "x1": -59,
+              "x2": 78
+            }
+          ],
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 127
+          }
+        }
+      ],
+      [
+        {
+          "instance": "retDamPos",
+          "connector": "f1"
+        },
+        {
+          "instance": "uRetDamPosMax"
+        },
+        {
+          "points": [
+            {
+              "x1": -2,
+              "x2": 74
+            },
+            {
+              "x1": -48,
+              "x2": 74
+            },
+            {
+              "x1": -48,
+              "x2": 100
+            },
+            {
+              "x1": -140,
+              "x2": 100
+            }
+          ],
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 127
+          }
+        }
+      ],
+      [
+        {
+          "instance": "retDamPos",
+          "connector": "f2"
+        },
+        {
+          "instance": "uRetDamPosMin"
+        },
+        {
+          "points": [
+            {
+              "x1": -2,
+              "x2": 62
+            },
+            {
+              "x1": -12,
+              "x2": 62
+            },
+            {
+              "x1": -12,
+              "x2": 50
+            },
+            {
+              "x1": -140,
+              "x2": 50
+            }
+          ],
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 127
+          }
+        }
+      ],
+      [
+        {
+          "instance": "min",
+          "connector": "u2"
+        },
+        {
+          "instance": "uOutDamPosMax"
+        },
+        {
+          "points": [
+            {
+              "x1": 58,
+              "x2": -66
+            },
+            {
+              "x1": -108,
+              "x2": -66
+            },
+            {
+              "x1": -108,
+              "x2": -50
+            },
+            {
+              "x1": -140,
+              "x2": -50
+            }
+          ],
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 127
+          }
+        }
+      ],
+      [
+        {
+          "instance": "min",
+          "connector": "u1"
+        },
+        {
+          "instance": "outDamPos",
+          "connector": "y"
+        },
+        {
+          "points": [
+            {
+              "x1": 58,
+              "x2": -54
+            },
+            {
+              "x1": 28,
+              "x2": -54
+            },
+            {
+              "x1": 28,
+              "x2": -30
+            },
+            {
+              "x1": 21,
+              "x2": -30
+            }
+          ],
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 127
+          }
+        }
+      ],
+      [
+        {
+          "instance": "max",
+          "connector": "u1"
+        },
+        {
+          "instance": "retDamPos",
+          "connector": "y"
+        },
+        {
+          "points": [
+            {
+              "x1": 58,
+              "x2": 66
+            },
+            {
+              "x1": 30,
+              "x2": 66
+            },
+            {
+              "x1": 30,
+              "x2": 70
+            },
+            {
+              "x1": 21,
+              "x2": 70
+            }
+          ],
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 127
+          }
+        }
+      ],
+      [
+        {
+          "instance": "uRetDamPosMin"
+        },
+        {
+          "instance": "max",
+          "connector": "u2"
+        },
+        {
+          "points": [
+            {
+              "x1": -140,
+              "x2": 50
+            },
+            {
+              "x1": -12,
+              "x2": 50
+            },
+            {
+              "x1": -12,
+              "x2": 54
+            },
+            {
+              "x1": 58,
+              "x2": 54
+            }
+          ],
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 127
+          }
+        }
+      ],
+      [
+        {
+          "instance": "min",
+          "connector": "y"
+        },
+        {
+          "instance": "firOrdHolOutDam",
+          "connector": "u"
+        },
+        {
+          "points": [
+            {
+              "x1": 81,
+              "x2": -60
+            },
+            {
+              "x1": 90,
+              "x2": -60
+            }
+          ],
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 127
+          }
+        }
+      ],
+      [
+        {
+          "instance": "firOrdHolOutDam",
+          "connector": "y"
+        },
+        {
+          "instance": "yOutDamPos"
+        },
+        {
+          "points": [
+            {
+              "x1": 113,
+              "x2": -60
+            },
+            {
+              "x1": 130,
+              "x2": -60
+            }
+          ],
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 127
+          }
+        }
+      ],
+      [
+        {
+          "instance": "uTSup"
+        },
+        {
+          "instance": "retDamPos",
+          "connector": "u"
+        },
+        {
+          "points": [
+            {
+              "x1": -140,
+              "x2": 0
+            },
+            {
+              "x1": -22,
+              "x2": 0
+            },
+            {
+              "x1": -22,
+              "x2": 70
+            },
+            {
+              "x1": -2,
+              "x2": 70
+            }
+          ],
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 127
+          }
+        }
+      ],
+      [
+        {
+          "instance": "uTSup"
+        },
+        {
+          "instance": "outDamPos",
+          "connector": "u"
+        },
+        {
+          "points": [
+            {
+              "x1": -140,
+              "x2": 0
+            },
+            {
+              "x1": -22,
+              "x2": 0
+            },
+            {
+              "x1": -22,
+              "x2": -30
+            },
+            {
+              "x1": -2,
+              "x2": -30
+            }
+          ],
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 127
+          }
+        }
+      ],
+      [
+        {
+          "instance": "max",
+          "connector": "y"
+        },
+        {
+          "instance": "firOrdHolRetDam",
+          "connector": "u"
+        },
+        {
+          "points": [
+            {
+              "x1": 81,
+              "x2": 60
+            },
+            {
+              "x1": 88,
+              "x2": 60
+            }
+          ],
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 127
+          }
+        }
+      ],
+      [
+        {
+          "instance": "firOrdHolRetDam",
+          "connector": "y"
+        },
+        {
+          "instance": "yRetDamPos"
+        },
+        {
+          "points": [
+            {
+              "x1": 111,
+              "x2": 60
+            },
+            {
+              "x1": 130,
+              "x2": 60
+            }
+          ],
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 127
+          }
+        }
+      ]
+    ]
+  }
+]
