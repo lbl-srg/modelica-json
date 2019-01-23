@@ -63,7 +63,7 @@ clean-installation: clean-node-packages clean-maven
 run:
 	node app.js \
 	--log warn \
-	-f ~/proj/ldrd/bie/modeling/github/lbl-srg/modelica-buildings/Buildings/Controls/OBC/ASHRAE/G36_PR1/AHUs/MultiZone/Economizers/Controller.mo \
+	-f ~/GitFolder/modelica-buildings/Buildings/Controls/OBC/ASHRAE/G36_PR1/AHUs/MultiZone/VAV/Economizers/Subsequences/Modulation.mo \
 	-o html
 
 ibpsa-library:
