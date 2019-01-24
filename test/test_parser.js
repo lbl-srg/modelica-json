@@ -138,13 +138,18 @@ var getHtml = function (files, mode) {
                                    : ut.getMoFiles(mode, files)
   const json = pa.getJSON(moFiles, mode, 'html')
   const outFile = ut.getOutFile(mode, files, 'html', 'current', moFiles, json)
-  console.log('===============================')
-  console.log(outFile[0])
-  console.log(process.cwd())
-  console.log('-------------------------------')
   var nonCDLJson = json.filter(ele => ele.topClassName !== undefined && !js.isElementaryCDL(ele.topClassName))
   var basDir = outFile[0].substring(0, outFile[0].lastIndexOf('/'))
   var imgDir = path.join(basDir, 'img')
+  // Copy the images
+  const imgfiles = []
+  nonCDLJson.forEach(function (dat) {
+    const f = ht.getImageLocations(dat.info)
+    f.forEach(function (obj) {
+      imgfiles.push(obj)
+    })
+  })
+  ht.copyImages(imgfiles, imgDir)
   const html = ht.getHtmlPage(outFile, imgDir, nonCDLJson, mode)
   return html
 }
