@@ -139,7 +139,9 @@ var getHtml = function (files, mode) {
   const json = pa.getJSON(moFiles, mode, 'html')
   const outFile = ut.getOutFile(mode, files, 'html', 'current', moFiles, json)
   var nonCDLJson = json.filter(ele => ele.topClassName !== undefined && !js.isElementaryCDL(ele.topClassName))
-  const html = ht.getHtmlPage(outFile, nonCDLJson, mode)
+  var basDir = outFile[0].substring(0, outFile[0].lastIndexOf('/'))
+  var imgDir = path.join(basDir, 'img')
+  const html = ht.getHtmlPage(outFile, imgDir, nonCDLJson, mode)
   return html
 }
 
