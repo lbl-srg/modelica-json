@@ -5,9 +5,6 @@ node_js:
 env:
   - MODELICAPATH="./modelica-buildings"
 
-git:
-  submodules: false
-
 before_install:
   - unset _JAVA_OPTIONS # To suppress a warning from Java to stderr
   - git clone --branch=master https://github.com/lbl-srg/modelica-buildings
@@ -19,4 +16,4 @@ install:
 
 script:
   - make test
-  - rm -rf modelica-buildings
+  - rm -rf ./modelica-buildings
