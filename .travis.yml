@@ -3,17 +3,16 @@ node_js:
   - "8"
 
 env:
-  - MODELICAPATH="./modelica-buildings"
+  - MODELICAPATH="./.temp/modelica-buildings"
 
 before_install:
   - unset _JAVA_OPTIONS # To suppress a warning from Java to stderr
-  - git clone --branch=master https://github.com/lbl-srg/modelica-buildings
 
 install:
+  - git clone --branch=master https://github.com/lbl-srg/modelica-buildings ./.temp
   - make install
   - make compile
   - make test-moParser
 
 script:
   - make test
-  - rm -rf ./modelica-buildings
