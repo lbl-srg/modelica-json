@@ -138,7 +138,16 @@ var getHtml = function (files, mode) {
                                    : ut.getMoFiles(mode, files)
   const json = pa.getJSON(moFiles, mode, 'html')
   const outFile = ut.getOutFile(mode, files, 'html', 'current', moFiles, json)
-  var nonCDLJson = json.filter(ele => ele.topClassName !== undefined && !js.isElementaryCDL(ele.topClassName))
+  var nonCDLJson = []
+  if (mode === 'modelica') {
+    json.forEach(function (ele) {
+      if (ele[0].topClassName !== undefined && !js.isElementaryCDL(ele[0].topClassName)) {
+        nonCDLJson.push(ele[0])
+      }
+    })
+  } else {
+    nonCDLJson = json.filter(ele => ele.topClassName !== undefined && !js.isElementaryCDL(ele.topClassName))
+  }
   var basDir = outFile[0].substring(0, outFile[0].lastIndexOf('/'))
   var imgDir = path.join(basDir, 'img')
   // Copy the images
