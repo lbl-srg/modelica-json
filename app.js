@@ -1,6 +1,6 @@
-const path = require('path')
 const fs = require('fs')
 const pa = require('./lib/parser.js')
+const ut = require('./lib/util.js')
 
 const logger = require('winston')
 
@@ -10,15 +10,8 @@ const ArgumentParser = require('argparse').ArgumentParser
 var parser = new ArgumentParser({
   version: '0.0.1',
   addHelp: true,
-  description: 'CDL parser'
+  description: 'Modelica parser'
 })
-parser.addArgument(
-  [ '-f', '--file' ],
-  {
-    help: 'Filename that contains the top-level Modelica class.',
-    required: true
-  }
-)
 parser.addArgument(
   [ '-o', '--output' ],
   {
@@ -33,6 +26,28 @@ parser.addArgument(
     help: "Logging level, 'info' is the default.",
     choices: ['error', 'warn', 'info', 'verbose', 'debug'],
     defaultValue: 'info'
+  }
+)
+parser.addArgument(
+  [ '-m', '--mode' ],
+  {
+    help: "Parsing mode, single CDL model or buildings modelica library package, 'cdl' is the default.",
+    choices: ['cdl', 'modelica'],
+    defaultValue: 'cdl'
+  }
+)
+parser.addArgument(
+  [ '-f', '--file' ],
+  {
+    help: 'Filename or packagename that contains the top-level Modelica class.',
+    required: true
+  }
+)
+parser.addArgument(
+  [ '-d', '--directory' ],
+  {
+    help: 'Specify output directory, with the default being the current.',
+    defaultValue: 'current'
   }
 )
 var args = parser.parseArgs()
@@ -54,16 +69,13 @@ logger.cli()
 
 logger.level = args.log
 
-// Parse the json representation for the model with file name args.file
-const json = pa.getJSON(args.file, args.output)
-const idx = args.file.lastIndexOf(path.sep)
-const outputFileBase = args.file.slice(idx + 1, -3)
-var outFile
-if (args.output === 'json') {
-  outFile = outputFileBase + '.json'
-} else if (args.output === 'json-simplified') {
-  outFile = outputFileBase + '-simplified.json'
-} else {
-  outFile = outputFileBase + '.html'
-}
-pa.exportJSON(json, outFile, args.output)
+// Get mo files array
+var moFiles = ut.getMoFiles(args.mode, args.file)
+
+// Parse the json representation for moFiles
+var json = pa.getJSON(moFiles, args.mode, args.output)
+
+// Get the name array of output files
+var outFile = ut.getOutFile(args.mode, args.file, args.output, args.directory, moFiles, json)
+
+pa.exportJSON(json, outFile, args.output, args.mode)

@@ -1,8 +1,13 @@
 package gov.lbl.parser.domain;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
+
+import gov.lbl.parser.domain.Composition.GraphicLayers;
+
 import java.util.ArrayList;
+import gov.lbl.parser.domain.Composition;
 
 public class Comment {
     public String string_comment;
@@ -22,20 +27,33 @@ public class Comment {
     		this.annotation = annCla;
     	}
     }
-   
+    
+    /**
+     * AnnotationClass --- program to parse 
+     *                     annotation(defaultComponentName = ...,
+     *                                Diagram (...),
+     *                                Icon (...),
+     *                                Dialog (..., ..., ...),
+     *                                Placement (..., ..., ...),
+     *                                Line (...),
+     *                                Text (...),
+     *                                Documentation (...),
+     *                                __Annotation (...))
+     *
+     */
     public class AnnotationClass {
        	String defaultName;
-    	String diagram;
-    	String icon;
+       	Composition.GraphicLayers diagram;
+       	Composition.GraphicLayers icon;
     	Collection<StrPair> dialog;
-    	String placement;
-    	String line;
+    	PlacementBlock placement;
+    	LineBlock line;
     	String text;
     	Documentation documentation;
     	VendorAnnotation vendor_annotation;
     	Collection<StrPair> others;
 
-    	private AnnBlo annClass(String annStr) {    		
+    	private TemCla annClass(String annStr) {    		
     		String nameStr;
     		String dialogStr = findSubStr(annStr, "Dialog ");
     		String placementStr = findSubStr(annStr, "Placement ");
@@ -46,10 +64,44 @@ public class Comment {
     		String textStr = findSubStr(annStr, "Text ");   		
     		String venAnnStr = findSubStr(annStr, "__");
 
-    		this.placement = placementStr;
-    		this.line = lineStr;
-    		this.diagram = diagramStr;
-    		this.icon = iconStr;
+    		if (placementStr != null) {  
+    			PlacementBlock placement = new PlacementBlock();
+    			placement.placementBlock(placementStr);
+    			this.placement = placement;
+    		} else {
+    			this.placement = null;
+    		}
+    		    		
+    		if (lineStr != null) {
+    			LineBlock linBlo = new LineBlock();
+    			linBlo.lineBlock(lineStr);
+    			this.line = linBlo;
+    		} else {
+    			this.line = null;
+    		}
+    		
+    		Composition comp = new Composition(null, Collections.emptyList(),
+    										   Collections.emptyList(),null,
+    										   Collections.emptyList(),
+    										   Collections.emptyList(),
+    										   Collections.emptyList(),
+    										   null,null,null,null);
+    		if (diagramStr != null) {
+    			Composition.GraphicLayers temp = comp.new GraphicLayers();
+    			temp.graphicLayers(diagramStr);
+    			this.diagram = temp;
+    		} else {
+    			this.diagram = null;
+    		}
+    			
+    		if (iconStr != null) {
+    			Composition.GraphicLayers temp = comp.new GraphicLayers();
+    			temp.graphicLayers(iconStr);
+    			this.icon = temp;
+    		} else {
+    			this.icon = null;
+    		}
+    		
     		this.text = textStr;
     		
     		/** find vendor annotation **/
@@ -240,14 +292,14 @@ public class Comment {
     			}
     			this.documentation = new Documentation(infoStr, revStr);
     		}
-    		return new AnnBlo(annStr);
+    		return new TemCla(annStr);
     	}
     }
 
     private class VendorAnnotation{
     	private String name;
     	private Collection<StrPair> annotation;
-    	private VenAnnMod vendorAnnotation(String venAnnName, String venAnnStr) {
+    	private TemCla vendorAnnotation(String venAnnName, String venAnnStr) {
     		this.name = venAnnName.replaceAll("\\s+", "");
     		List<StrPair> venAnnEle = new ArrayList<StrPair>();
     		if (venAnnStr == null || !venAnnStr.contains("=")) {
@@ -271,9 +323,181 @@ public class Comment {
     			}
     			this.annotation = venAnnEle;
     		}    		
-    		return new VenAnnMod(venAnnStr);
+    		return new TemCla(venAnnStr);
     	}
     }
+    
+    
+    public class PlacementBlock{
+    	private Boolean visible; 
+    	private Transformation transformation;
+    	private Transformation iconTransformation;
+    	 	
+    	public TemCla placementBlock(String placementStr) {
+    		List<String> strSets = new ArrayList<String>();
+			strSets.addAll(splitAtComma(placementStr));
+			Boolean visible = null;
+			Transformation transformation = null;
+			Transformation iconTransformation = null;
+			String name = null;
+			String lefStr = null;
+    		for (String str : strSets) {
+    			if (str.contains("visible")) {
+    				visible = Boolean.valueOf(str.substring(str.indexOf('=')+1, str.length()).trim());
+    			} else {
+    				name = str.substring(0, str.indexOf('(')).trim();
+    				lefStr = str.substring(str.indexOf('(')+1, str.lastIndexOf(')')).trim();
+				Transformation temp = new Transformation();
+    				temp.transformation(lefStr);
+    				if (name.contains("transformation")) {
+        				transformation = temp;
+        			} else if (name.contains("iconTransformation")) {
+        				iconTransformation = temp;
+        			}
+    			}
+    		}
+    		
+    		this.visible = visible;
+			this.transformation = transformation;
+			this.iconTransformation = iconTransformation;
+    		return new TemCla(placementStr);
+    	}
+    }
+    
+    public class Transformation{
+    	private Collection<Points> extent;
+    	private Double rotation;
+    	private Points origin;
+    	public TemCla transformation(String traStr) {
+    		List<String> strSets = new ArrayList<String>();
+			strSets.addAll(splitAtComma(traStr));
+			String extStr = null;
+			List<Points> extPoints = new ArrayList<Points>();
+			Double rotStr = null;
+			String oriStr = null;
+			Points oriPoint = new Points();
+			for (String str : strSets) {
+				if (str.contains("extent")) {
+					int temInd = str.indexOf('=');
+					extStr = str.substring(temInd+1,str.length()).trim();
+					String temp = extStr.substring(extStr.indexOf('{') + 1, extStr.lastIndexOf('}')).trim();
+					
+    				List<String> pointsSet = new ArrayList<String>();
+    				pointsSet.addAll(splitAtComma(temp));
+    				for (String p : pointsSet) {
+    					Points point = new Points();
+    					point.points(p);
+    					extPoints.add(point);
+    				} 
+				}
+				if (str.contains("rotation")) {
+					rotStr = Double.valueOf(str.substring(str.indexOf('=')+1, str.length()).trim());
+				}
+				if (str.contains("origin")) {
+					oriStr = str.substring(str.indexOf('=')+1, str.length()).trim();
+					oriPoint.points(oriStr);
+				}   				
+			}
+			this.extent = extStr == null ? null : extPoints;
+			this.rotation = rotStr;
+			this.origin = oriStr == null ? null : oriPoint;
+    		return new TemCla(traStr);
+    	}
+    	
+    }
+    
+    
+    public class LineBlock{
+    	private Boolean visible;
+    	private Points origin;
+    	private Double rotation;
+    	private Collection<Points> points;
+    	private Color color;
+    	private String pattern;
+    	private Double thickness;
+    	private String arrow;
+    	private Double arrowSize;
+    	private String smooth;
+    	public TemCla lineBlock(String lineStr) {
+    		List<String> strSets = new ArrayList<String>();
+    		strSets.addAll(splitAtComma(lineStr));
+    		for (String str : strSets) {
+    			int indEq = str.indexOf('=');
+		    	String name = str.substring(0, indEq).trim();
+		    	String value = str.substring(indEq+1, str.length()).trim();
+    			if (name.contains("points")) {
+    				int indRB= value.indexOf('{');
+    				String temp = value.substring(indRB+1, value.lastIndexOf('}')).trim();
+    				List<Points> linePoints = new ArrayList<Points>();
+    				List<String> pointsSet = new ArrayList<String>();
+    				pointsSet.addAll(splitAtComma(temp));
+    				for (String p : pointsSet) {
+    					Points point = new Points();
+    					point.points(p);
+    					linePoints.add(point);
+    				}
+    				this.points = linePoints;
+    			} else if (name.contains("color")) {
+    				Color color = new Color();
+    				color.color(value);
+    				this.color = color;
+    			} else if (name.contains("pattern")) {
+    				this.pattern = value;
+    			} else if (name.contains("thickness")) {
+    				this.thickness = Double.valueOf(value);
+    			} else if (name.contains("arrow")) {
+    				this.arrow = value;
+    			} else if (name.contains("arrowSize")) {
+    				this.arrowSize = Double.valueOf(value);
+    			} else if (name.contains("smooth")) {
+    				this.smooth = value;
+    			} else if (name.contains("visible")) {
+    				this.visible = Boolean.valueOf(value);
+    			} else if (name.contains("origin")) {
+    				Points origin = new Points();
+    				origin.points(value);
+    				this.origin = origin;
+    			} else if (name.contains("rotation")) {
+    				this.rotation = Double.valueOf(value);
+    			}
+    		} 
+    		return new TemCla(lineStr);
+    	}
+    }
+    
+    
+    public class Points{
+    	private Double x1;
+    	private Double x2;
+    	public TemCla points(String pointStr) {
+    		int lefBra = pointStr.indexOf('{');
+    		int rigBra = pointStr.indexOf('}');
+    		String temStr = pointStr.substring(lefBra + 1, rigBra).trim();
+    		List<String> strSets = new ArrayList<String>();
+    		strSets.addAll(splitAtComma(temStr));
+    		this.x1 = Double.valueOf(strSets.get(0));
+    		this.x2 = Double.valueOf(strSets.get(1));
+    		return new TemCla(pointStr);
+    	}
+    }
+    
+    public class Color{
+    	private Double r;
+    	private Double g;
+    	private Double b;
+    	public TemCla color(String colorStr) {
+    		int lefBra = colorStr.indexOf('{');
+    		int rigBra = colorStr.indexOf('}');
+    		String temStr = colorStr.substring(lefBra  + 1, rigBra).trim();
+    		List<String> strSets = new ArrayList<String>();
+    		strSets.addAll(splitAtComma(temStr));
+    		this.r = Double.valueOf(strSets.get(0));
+    		this.g = Double.valueOf(strSets.get(1));
+    		this.b = Double.valueOf(strSets.get(2));
+    		return new TemCla(colorStr);
+    	}
+    }
+    
     
     /** access sub-string "subStr" in string "str" with syntax of "keyStr (subStr)" **/
     public static String findSubStr(String str, String keyStr) {    	
@@ -305,7 +529,8 @@ public class Comment {
     	}
     	return subStr;
     }
-
+    
+    
     /** check if index "fromInd" is enclosed in a completed "symbol1" and "symbol2",
         such as ( ), [ ], { }, " ". 
         If it is not enclosed and the symbols is completed, then return true, 
@@ -408,9 +633,9 @@ public class Comment {
  
     
     public static Collection<Integer> searchComEle(Collection<Integer> list1,
-            										Collection<Integer> list2,
-            										Collection<Integer> list3,
-            										Collection<Integer> list4) {
+            									   Collection<Integer> list2,
+            									   Collection<Integer> list3,
+            									   Collection<Integer> list4) {
     	List<Integer> comEle = new ArrayList<Integer> ();
     	if (list1.size()>0 && list2.size()>0 && list3.size()>0 && list4.size()>0) {
     		list2.retainAll(list1);
@@ -421,13 +646,8 @@ public class Comment {
     	return comEle;
     }
 
-    private class AnnBlo {
-    	private AnnBlo(String annString) {
-    	}
-    }
-
-    public class VenAnnMod {
-    	private VenAnnMod(String venAnnStr) {
+    private class TemCla {
+    	private TemCla(String str) {
     	}
     }
     

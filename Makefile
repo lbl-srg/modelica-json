@@ -41,11 +41,15 @@ test-moParser:
 generate-reference-output:
 	(cd test/FromModelica && \
 	for ff in `find . -name '*.mo'`; do \
-		node ../../app.js -l warn -f $${ff} -o json; \
-		node ../../app.js -l warn -f $${ff} -o json-simplified; \
-		node ../../app.js -l warn -f $${ff} -o html; \
-		done)
-	rm -f test/FromModelica/modelica-json.log
+		node ../../app.js -l warn -f $${ff} -o json -d ./cdl -m cdl; \
+		node ../../app.js -l warn -f $${ff} -o json-simplified -d ./cdl -m cdl; \
+		node ../../app.js -l warn -f $${ff} -o html -d ./cdl -m cdl; \
+		done)	
+	(cd test && \
+	node ../app.js -l warn -f FromModelica -o json -d ./FromModelica/modelica -m modelica; \
+	node ../app.js -l warn -f FromModelica -o json-simplified -d ./FromModelica/modelica -m modelica; \
+	node ../app.js -l warn -f FromModelica -o html -d ./FromModelica/modelica -m modelica)
+	rm -f test/modelica-json.log test/FromModelica/modelica-json.log 
 
 clean-node-packages:
 	rm -rf node-modules
@@ -59,7 +63,7 @@ clean-installation: clean-node-packages clean-maven
 run:
 	node app.js \
 	--log warn \
-	-f ~/proj/ldrd/bie/modeling/github/lbl-srg/modelica-buildings/Buildings/Controls/OBC/ASHRAE/G36_PR1/AHUs/MultiZone/Economizers/Controller.mo \
+	-f ~/GitFolder/modelica-buildings/Buildings/Controls/OBC/ASHRAE/G36_PR1/AHUs/MultiZone/VAV/Economizers/Subsequences/Modulation.mo \
 	-o html
 
 ibpsa-library:

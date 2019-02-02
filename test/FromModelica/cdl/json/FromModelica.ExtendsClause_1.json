@@ -1,0 +1,137 @@
+[
+  {
+    "within": [
+      "FromModelica"
+    ],
+    "class_definition": [
+      {
+        "class_prefixes": "block",
+        "class_specifier": {
+          "long_class_specifier": {
+            "name": "ExtendsClause_1",
+            "comment": "\"model with extends clause\"",
+            "composition": {
+              "element_list": {
+                "element": [
+                  {
+                    "extends_clause": {
+                      "name": "Buildings.Controls.OBC.CDL.Continuous.LimPID",
+                      "class_modification": {
+                        "modifications": [
+                          {
+                            "name": "k",
+                            "value": "2"
+                          },
+                          {
+                            "name": "Ti",
+                            "value": "2"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "component_clause": {
+                      "type_specifier": "Buildings.Controls.OBC.CDL.Continuous.Gain",
+                      "component_list": {
+                        "component_declaration": [
+                          {
+                            "declaration": {
+                              "name": "gain",
+                              "class_modification": {
+                                "modifications": [
+                                  {
+                                    "prefix": "final",
+                                    "name": "k",
+                                    "value": "k"
+                                  }
+                                ]
+                              }
+                            },
+                            "comment": {
+                              "string_comment": "\"Constant gain\"",
+                              "annotation": {
+                                "placement": {
+                                  "transformation": {
+                                    "extent": [
+                                      {
+                                        "x1": -60,
+                                        "x2": -50
+                                      },
+                                      {
+                                        "x1": -40,
+                                        "x2": -30
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "component_clause": {
+                      "type_prefix": "parameter",
+                      "type_specifier": "Modelica.SIunits.Length",
+                      "component_list": {
+                        "component_declaration": [
+                          {
+                            "declaration": {
+                              "name": "length"
+                            },
+                            "comment": {
+                              "string_comment": "\"Length of the pipe\""
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              },
+              "prefix_protect": [
+                "protected"
+              ],
+              "prefixed_element": [
+                {
+                  "element": [
+                    {
+                      "component_clause": {
+                        "type_prefix": "parameter",
+                        "type_specifier": "Modelica.SIunits.Area",
+                        "component_list": {
+                          "component_declaration": [
+                            {
+                              "declaration": {
+                                "name": "ARound",
+                                "value": "dh^2*Modelica.Constants.pi/4"
+                              },
+                              "comment": {
+                                "string_comment": "\"Cross sectional area (assuming a round cross section area)\""
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              ],
+              "comp_annotation": {
+                "defaultName": "\"res\"",
+                "documentation": {
+                  "info": "\"<html>\ntest...test...test...test...test...\n</html>\"",
+                  "revisions": "\"<html>\ntest...test...test...\n</html>\""
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "modelicaFile": "./ExtendsClause_1.mo"
+  }
+]

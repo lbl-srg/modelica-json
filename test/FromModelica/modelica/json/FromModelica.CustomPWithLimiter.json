@@ -1,0 +1,383 @@
+[
+  {
+    "within": [
+      "FromModelica"
+    ],
+    "class_definition": [
+      {
+        "class_prefixes": "block",
+        "class_specifier": {
+          "long_class_specifier": {
+            "name": "CustomPWithLimiter",
+            "comment": "\"Custom implementation of a P controller with variable output limiter\"",
+            "composition": {
+              "element_list": {
+                "element": [
+                  {
+                    "component_clause": {
+                      "type_prefix": "parameter",
+                      "type_specifier": "Real",
+                      "component_list": {
+                        "component_declaration": [
+                          {
+                            "declaration": {
+                              "name": "k",
+                              "value": "2"
+                            },
+                            "comment": {
+                              "string_comment": "\"Constant gain\""
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "component_clause": {
+                      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+                      "component_list": {
+                        "component_declaration": [
+                          {
+                            "declaration": {
+                              "name": "yMax"
+                            },
+                            "comment": {
+                              "string_comment": "\"Maximum value of output signal\"",
+                              "annotation": {
+                                "placement": {
+                                  "transformation": {
+                                    "extent": [
+                                      {
+                                        "x1": -140,
+                                        "x2": 20
+                                      },
+                                      {
+                                        "x1": -100,
+                                        "x2": 60
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "component_clause": {
+                      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+                      "component_list": {
+                        "component_declaration": [
+                          {
+                            "declaration": {
+                              "name": "e"
+                            },
+                            "comment": {
+                              "string_comment": "\"Control error\"",
+                              "annotation": {
+                                "placement": {
+                                  "transformation": {
+                                    "extent": [
+                                      {
+                                        "x1": -140,
+                                        "x2": -60
+                                      },
+                                      {
+                                        "x1": -100,
+                                        "x2": -20
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "component_clause": {
+                      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
+                      "component_list": {
+                        "component_declaration": [
+                          {
+                            "declaration": {
+                              "name": "y"
+                            },
+                            "comment": {
+                              "string_comment": "\"Control signal\"",
+                              "annotation": {
+                                "placement": {
+                                  "transformation": {
+                                    "extent": [
+                                      {
+                                        "x1": 100,
+                                        "x2": -10
+                                      },
+                                      {
+                                        "x1": 120,
+                                        "x2": 10
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "component_clause": {
+                      "type_specifier": "Buildings.Controls.OBC.CDL.Continuous.Gain",
+                      "component_list": {
+                        "component_declaration": [
+                          {
+                            "declaration": {
+                              "name": "gain",
+                              "class_modification": {
+                                "modifications": [
+                                  {
+                                    "prefix": "final",
+                                    "name": "k",
+                                    "value": "k"
+                                  }
+                                ]
+                              }
+                            },
+                            "comment": {
+                              "string_comment": "\"Constant gain\"",
+                              "annotation": {
+                                "placement": {
+                                  "transformation": {
+                                    "extent": [
+                                      {
+                                        "x1": -60,
+                                        "x2": -50
+                                      },
+                                      {
+                                        "x1": -40,
+                                        "x2": -30
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "component_clause": {
+                      "type_specifier": "Buildings.Controls.OBC.CDL.Continuous.Min",
+                      "component_list": {
+                        "component_declaration": [
+                          {
+                            "declaration": {
+                              "name": "minValue"
+                            },
+                            "comment": {
+                              "string_comment": "\"Outputs the minimum of its inputs\"",
+                              "annotation": {
+                                "placement": {
+                                  "transformation": {
+                                    "extent": [
+                                      {
+                                        "x1": 20,
+                                        "x2": -10
+                                      },
+                                      {
+                                        "x1": 40,
+                                        "x2": 10
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              },
+              "equation_section": [
+                {
+                  "prefix": "equation",
+                  "equation": [
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "yMax"
+                        ],
+                        "component2": [
+                          "minValue",
+                          "u1"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x1": -120,
+                                "x2": 40
+                              },
+                              {
+                                "x1": -120,
+                                "x2": 40
+                              },
+                              {
+                                "x1": -20,
+                                "x2": 40
+                              },
+                              {
+                                "x1": -20,
+                                "x2": 6
+                              },
+                              {
+                                "x1": 18,
+                                "x2": 6
+                              }
+                            ],
+                            "color": {
+                              "r": 0,
+                              "g": 0,
+                              "b": 127
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "e"
+                        ],
+                        "component2": [
+                          "gain",
+                          "u"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x1": -120,
+                                "x2": -40
+                              },
+                              {
+                                "x1": -92,
+                                "x2": -40
+                              },
+                              {
+                                "x1": -62,
+                                "x2": -40
+                              }
+                            ],
+                            "color": {
+                              "r": 0,
+                              "g": 0,
+                              "b": 127
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "gain",
+                          "y"
+                        ],
+                        "component2": [
+                          "minValue",
+                          "u2"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x1": -39,
+                                "x2": -40
+                              },
+                              {
+                                "x1": -20,
+                                "x2": -40
+                              },
+                              {
+                                "x1": -20,
+                                "x2": -6
+                              },
+                              {
+                                "x1": 18,
+                                "x2": -6
+                              }
+                            ],
+                            "color": {
+                              "r": 0,
+                              "g": 0,
+                              "b": 127
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "minValue",
+                          "y"
+                        ],
+                        "component2": [
+                          "y"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x1": 41,
+                                "x2": 0
+                              },
+                              {
+                                "x1": 110,
+                                "x2": 0
+                              }
+                            ],
+                            "color": {
+                              "r": 0,
+                              "g": 0,
+                              "b": 127
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              ],
+              "comp_annotation": {
+                "documentation": {
+                  "info": "\"<html>\n<p>\nBlock that outputs <code>y = min(yMax, k*e)</code>,\nwhere\n<code>yMax</code> and <code>e</code> are real-valued input signals and\n<code>k</code> is a parameter.\n</p>\n</html>\""
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "modelicaFile": "FromModelica/CustomPWithLimiter.mo"
+  }
+]

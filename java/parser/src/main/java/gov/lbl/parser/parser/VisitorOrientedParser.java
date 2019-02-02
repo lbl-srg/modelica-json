@@ -6,23 +6,22 @@ import gov.lbl.antlr4.visitor.modelicaParser;
 
 import gov.lbl.parser.domain.*;
 
-import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.TokenStream;
-import org.antlr.v4.runtime.misc.NotNull;
+import org.antlr.v4.runtime.misc.Interval;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
-
 import java.util.ArrayList;
 
 public class VisitorOrientedParser implements Parser {
 
     public Stored_definition parse(String modelicaSourceCode) {
-        CharStream charStream = new ANTLRInputStream(modelicaSourceCode);
+    	CharStream charStream = CharStreams.fromString(modelicaSourceCode);
         modelicaLexer lexer = new modelicaLexer(charStream);
         TokenStream tokens = new CommonTokenStream(lexer);
         modelicaParser parser = new modelicaParser(tokens);
@@ -34,7 +33,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class Stored_definitionVisitor extends modelicaBaseVisitor<Stored_definition> {
       @Override
-      public Stored_definition visitStored_definition(@NotNull modelicaParser.Stored_definitionContext ctx) {
+      public Stored_definition visitStored_definition(modelicaParser.Stored_definitionContext ctx) {
         List<String> within_dec = ctx.WITHIN() == null ? null : ctx.WITHIN()           		
                 .stream() 
                 .map(WITHIN -> WITHIN.getText())
@@ -59,7 +58,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class Class_definitionVisitor extends modelicaBaseVisitor<Class_definition> {
       @Override
-      public Class_definition visitClass_definition(@NotNull modelicaParser.Class_definitionContext ctx) {
+      public Class_definition visitClass_definition(modelicaParser.Class_definitionContext ctx) {
         String enca_dec = ctx.ENCAPSULATED() == null ? null : ctx.ENCAPSULATED().getText();       
         Class_prefixesVisitor class_prefixesVisitor = new Class_prefixesVisitor();
         String class_prefixes_1 = ctx.class_prefixes().accept(class_prefixesVisitor);
@@ -71,7 +70,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class Class_specifierVisitor extends modelicaBaseVisitor<Class_specifier> {
       @Override
-      public Class_specifier visitClass_specifier(@NotNull modelicaParser.Class_specifierContext ctx) {
+      public Class_specifier visitClass_specifier(modelicaParser.Class_specifierContext ctx) {
         Long_class_specifierVisitor long_class_specifierVisitor = new Long_class_specifierVisitor();
         Long_class_specifier long_class_specifier_1 = 
         		ctx.long_class_specifier() == null ? null : ctx.long_class_specifier().accept(long_class_specifierVisitor);
@@ -87,7 +86,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class Class_prefixesVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitClass_prefixes(@NotNull modelicaParser.Class_prefixesContext ctx) {
+      public String visitClass_prefixes(modelicaParser.Class_prefixesContext ctx) { 	  
         String partial_dec = 
         		ctx.PARTIAL() == null ? "" : ctx.PARTIAL().getText();
         String class_dec = 
@@ -151,14 +150,14 @@ public class VisitorOrientedParser implements Parser {
         String claPreStr = 
         		(!partial_dec.isEmpty()) ? (temStr.append(partial_dec).append(" ").append(other_dec).toString()) 
         				                 : other_dec;
-        return claPreStr;       
-        // return new Class_prefixes(partial_dec, other_dec);
+        		
+        return claPreStr;
       }
     }
 
     private static class Long_class_specifierVisitor extends modelicaBaseVisitor<Long_class_specifier> {
       @Override
-      public Long_class_specifier visitLong_class_specifier(@NotNull modelicaParser.Long_class_specifierContext ctx) {
+      public Long_class_specifier visitLong_class_specifier(modelicaParser.Long_class_specifierContext ctx) {
         List<String> ident = ctx.IDENT()
         		.stream()
         		.map(IDENT -> IDENT.getText())
@@ -178,7 +177,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class Short_class_specifierVisitor extends modelicaBaseVisitor<Short_class_specifier> {
       @Override
-      public Short_class_specifier visitShort_class_specifier(@NotNull modelicaParser.Short_class_specifierContext ctx) {
+      public Short_class_specifier visitShort_class_specifier(modelicaParser.Short_class_specifierContext ctx) {
         String enum_dec = 
         		ctx.ENUMERATION() == null ? null : ctx.ENUMERATION().getText();
         String ident = ctx.IDENT().getText();
@@ -210,7 +209,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class Der_class_specifierVisitor extends modelicaBaseVisitor<Der_class_specifier> {
       @Override
-      public Der_class_specifier visitDer_class_specifier(@NotNull modelicaParser.Der_class_specifierContext ctx) {
+      public Der_class_specifier visitDer_class_specifier(modelicaParser.Der_class_specifierContext ctx) {
     	List<String> idents = ctx.IDENT()
     			.stream()
     			.map(IDENT -> IDENT.getText())
@@ -231,7 +230,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class Base_prefixVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitBase_prefix(@NotNull modelicaParser.Base_prefixContext ctx) {
+      public String visitBase_prefix(modelicaParser.Base_prefixContext ctx) {
         Type_prefixVisitor type_prefixVisitor = new Type_prefixVisitor();
         String basPreStr = ctx.type_prefix().accept(type_prefixVisitor);
         return basPreStr;
@@ -241,7 +240,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class Enum_listVisitor extends modelicaBaseVisitor<Enum_list> {
       @Override
-      public Enum_list visitEnum_list(@NotNull modelicaParser.Enum_listContext ctx) {
+      public Enum_list visitEnum_list(modelicaParser.Enum_listContext ctx) {
         Enumeration_literalVisitor enumeration_literalVisitor = new Enumeration_literalVisitor();
         List<Enumeration_literal> enumeration_literal_1 = ctx.enumeration_literal()
                 .stream()
@@ -253,7 +252,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class Enumeration_literalVisitor extends modelicaBaseVisitor<Enumeration_literal> {
       @Override
-      public Enumeration_literal visitEnumeration_literal(@NotNull modelicaParser.Enumeration_literalContext ctx) {
+      public Enumeration_literal visitEnumeration_literal(modelicaParser.Enumeration_literalContext ctx) {
         String ident = ctx.IDENT().getText();
         CommentVisitor commentVisitor = new CommentVisitor();
         Comment comment_1 = ctx.comment().accept(commentVisitor);
@@ -263,7 +262,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class CompositionVisitor extends modelicaBaseVisitor<Composition> {
       @Override
-      public Composition visitComposition(@NotNull modelicaParser.CompositionContext ctx) {
+      public Composition visitComposition(modelicaParser.CompositionContext ctx) {
         List<String> public_dec = ctx.PUBLIC() == null ? null : ctx.PUBLIC()
         		.stream()
         		.map(PUBLIC -> PUBLIC.getText())
@@ -278,8 +277,8 @@ public class VisitorOrientedParser implements Parser {
         List<Element_list> element_lists = ctx.element_list()
                 .stream()
                 .map(element_list -> element_list.accept(element_listVisitor))
-                .collect(toList());
-        Element_list element_list1 = element_lists.get(0);        
+                .collect(toList()); 
+        Element_list element_list1 = element_lists.get(0);    
         List<Element_list> element_list2 = 
         		element_lists.size() < 2 ? null : element_lists.subList(1,element_lists.size()); 
         Equation_sectionVisitor equation_sectionVisitor = new Equation_sectionVisitor();
@@ -324,7 +323,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class Language_specificationVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitLanguage_specification(@NotNull modelicaParser.Language_specificationContext ctx) {
+      public String visitLanguage_specification(modelicaParser.Language_specificationContext ctx) {
         String string = ctx.STRING().getText();
         return string;
         //return new Language_specification(ident);
@@ -333,7 +332,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class External_function_callVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitExternal_function_call(@NotNull modelicaParser.External_function_callContext ctx) {
+      public String visitExternal_function_call(modelicaParser.External_function_callContext ctx) {
     	  String ident = ctx.IDENT().getText();
     	  Component_referenceVisitor component_referenceVisitor = new Component_referenceVisitor();
     	  String component_reference_1 = 
@@ -353,7 +352,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class Element_listVisitor extends modelicaBaseVisitor<Element_list> {
       @Override
-      public Element_list visitElement_list(@NotNull modelicaParser.Element_listContext ctx) {
+      public Element_list visitElement_list(modelicaParser.Element_listContext ctx) {
         ElementVisitor elementVisitor = new ElementVisitor();
         List<Element> element_1 = ctx.element() == null ? null : ctx.element()
                 .stream()
@@ -365,7 +364,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class ElementVisitor extends modelicaBaseVisitor<Element> {
       @Override
-      public Element visitElement(@NotNull modelicaParser.ElementContext ctx) {
+      public Element visitElement(modelicaParser.ElementContext ctx) {
         String red_dec = 
         		ctx.REDECLARE() == null ? null : ctx.REDECLARE().getText();
         String final_dec = 
@@ -419,7 +418,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class Import_clauseVisitor extends modelicaBaseVisitor<Import_clause> {
       @Override
-      public Import_clause visitImport_clause(@NotNull modelicaParser.Import_clauseContext ctx) {
+      public Import_clause visitImport_clause(modelicaParser.Import_clauseContext ctx) {
         String import_dec = ctx.IMPORT().getText();
         String ident = 
         		ctx.IDENT() == null ? null : ctx.IDENT().getText();
@@ -429,7 +428,8 @@ public class VisitorOrientedParser implements Parser {
         String import_list_1 = 
         		ctx.import_list() == null ? null : ctx.import_list().accept(import_listVisitor);
         CommentVisitor commentVisitor = new CommentVisitor();
-        Comment comment_1 = ctx.comment().accept(commentVisitor);
+        Comment comment_1 = 
+        		ctx.comment().getText().length() == 0 ? null : ctx.comment().accept(commentVisitor);
         NameVisitor nameVisitor = new NameVisitor();
         String name_1 = ctx.name().accept(nameVisitor);
         return new Import_clause(import_dec, ident, dotStar, name_1, import_list_1, comment_1);
@@ -438,7 +438,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class Import_listVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitImport_list(@NotNull modelicaParser.Import_listContext ctx) {
+      public String visitImport_list(modelicaParser.Import_listContext ctx) {
     	  List<String> ident = ctx.IDENT()
     			  .stream()
     			  .map(IDENT -> IDENT.getText())
@@ -459,7 +459,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class Extends_clauseVisitor extends modelicaBaseVisitor<Extends_clause> {
       @Override
-      public Extends_clause visitExtends_clause(@NotNull modelicaParser.Extends_clauseContext ctx) {
+      public Extends_clause visitExtends_clause(modelicaParser.Extends_clauseContext ctx) {
         String ext_dec = ctx.EXTENDS().getText();
         NameVisitor nameVisitor = new NameVisitor();
         String name_1 = ctx.name().accept(nameVisitor);
@@ -468,14 +468,14 @@ public class VisitorOrientedParser implements Parser {
         		ctx.class_modification() == null ? null : ctx.class_modification().accept(class_modificationVisitor);
         AnnotationVisitor annotationVisitor = new AnnotationVisitor();
         String annotation_1 = 
-        		ctx.annotation() == null ? null : ctx.annotation().accept(annotationVisitor);
+        		ctx.annotation() == null ? null : ctx.annotation().accept(annotationVisitor);      
         return new Extends_clause(ext_dec, name_1, class_modification_1, annotation_1);
       }
     }
 
     private static class Constraining_clauseVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitConstraining_clause(@NotNull modelicaParser.Constraining_clauseContext ctx) {
+      public String visitConstraining_clause(modelicaParser.Constraining_clauseContext ctx) {
         String constrain_dec = ctx.CONSTRAINEDBY().getText();
         NameVisitor nameVisitor = new NameVisitor();
         String name_1 = ctx.name().accept(nameVisitor);
@@ -493,7 +493,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class Component_clauseVisitor extends modelicaBaseVisitor<Component_clause> {
       @Override
-      public Component_clause visitComponent_clause(@NotNull modelicaParser.Component_clauseContext ctx) {
+      public Component_clause visitComponent_clause(modelicaParser.Component_clauseContext ctx) {
         Type_prefixVisitor type_prefixVisitor = new Type_prefixVisitor();
         String type_prefix_1 = 
         		ctx.type_prefix() == null ? null : ctx.type_prefix().accept(type_prefixVisitor);
@@ -510,7 +510,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class Type_prefixVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitType_prefix(@NotNull modelicaParser.Type_prefixContext ctx) {
+      public String visitType_prefix(modelicaParser.Type_prefixContext ctx) {
     	  String flow_dec = 
     			  ctx.FLOW() == null ? null : ctx.FLOW().getText();
     	  String stream_dec = 
@@ -540,7 +540,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class Type_specifierVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitType_specifier(@NotNull modelicaParser.Type_specifierContext ctx) {
+      public String visitType_specifier(modelicaParser.Type_specifierContext ctx) {
         NameVisitor nameVisitor = new NameVisitor();
         String specifier = ctx.name().accept(nameVisitor);
         return specifier;
@@ -550,7 +550,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class Component_listVisitor extends modelicaBaseVisitor<Component_list> {
       @Override
-      public Component_list visitComponent_list(@NotNull modelicaParser.Component_listContext ctx) {
+      public Component_list visitComponent_list(modelicaParser.Component_listContext ctx) {
         Component_declarationVisitor component_declarationVisitor = new Component_declarationVisitor();
         List<Component_declaration> component_declaration_1 = ctx.component_declaration()
                 .stream()
@@ -562,7 +562,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class Component_declarationVisitor extends modelicaBaseVisitor<Component_declaration> {
       @Override
-      public Component_declaration visitComponent_declaration(@NotNull modelicaParser.Component_declarationContext ctx) {
+      public Component_declaration visitComponent_declaration(modelicaParser.Component_declarationContext ctx) {
         DeclarationVisitor declarationVisitor = new DeclarationVisitor();
         Declaration declaration_1 = ctx.declaration().accept(declarationVisitor);
         Condition_attributeVisitor condition_attributeVisitor = new Condition_attributeVisitor();
@@ -577,7 +577,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class Condition_attributeVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitCondition_attribute(@NotNull modelicaParser.Condition_attributeContext ctx) {
+      public String visitCondition_attribute(modelicaParser.Condition_attributeContext ctx) {
         String if_dec = ctx.IF().getText();
         ExpressionVisitor expressionVisitor = new ExpressionVisitor();
         String expression_1 = ctx.expression().accept(expressionVisitor);
@@ -590,7 +590,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class DeclarationVisitor extends modelicaBaseVisitor<Declaration> {
       @Override
-      public Declaration visitDeclaration(@NotNull modelicaParser.DeclarationContext ctx) {
+      public Declaration visitDeclaration(modelicaParser.DeclarationContext ctx) {
         String ident = ctx.IDENT().getText();
         Array_subscriptsVisitor array_subscriptsVisitor = new Array_subscriptsVisitor();
         String array_subscripts_1 = 
@@ -604,7 +604,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class ModificationVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitModification(@NotNull modelicaParser.ModificationContext ctx) {
+      public String visitModification(modelicaParser.ModificationContext ctx) {    	  
         Class_modificationVisitor class_modificationVisitor = new Class_modificationVisitor();
         String class_modification_1 = 
         		ctx.class_modification() == null ? null : ctx.class_modification().accept(class_modificationVisitor);
@@ -625,8 +625,7 @@ public class VisitorOrientedParser implements Parser {
         	modStr = temStr.append(eqSymb).append(expression_1).toString();
         } else if (colEqSymb != null && expression_1 != null) {
         	modStr = temStr.append(colEqSymb).append(expression_1).toString();
-        }
-        
+        }        
         return modStr;       
         // return new Modification(class_modification_1, eqSymb, colEqSymb, expression_1);
       }
@@ -634,12 +633,12 @@ public class VisitorOrientedParser implements Parser {
 
     private static class Class_modificationVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitClass_modification(@NotNull modelicaParser.Class_modificationContext ctx) {
+      public String visitClass_modification(modelicaParser.Class_modificationContext ctx) {
         Argument_listVisitor argument_listVisitor = new Argument_listVisitor();
         String argument_list_1 = 
         		ctx.argument_list() == null ? null : ctx.argument_list().accept(argument_listVisitor);
         StringBuilder temStr = new StringBuilder();
-        String claModStr = temStr.append("(").append(argument_list_1).append(")").toString();
+        String claModStr = temStr.append("(").append(argument_list_1).append(")").toString();       
         return claModStr;
         //return new Class_modification(argument_list_1);
       }
@@ -647,7 +646,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class Argument_listVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitArgument_list(@NotNull modelicaParser.Argument_listContext ctx) {
+      public String visitArgument_list(modelicaParser.Argument_listContext ctx) {
         ArgumentVisitor argumentVisitor = new ArgumentVisitor();
         List<String> argument_1 = ctx.argument()
                 .stream()
@@ -661,7 +660,7 @@ public class VisitorOrientedParser implements Parser {
         		temStr.append(",").append(argument_1.get(i));
         	}
         }   
-        argLisStr = temStr.toString();
+        argLisStr = temStr.toString();       
         return argLisStr;
         //return new Argument_list(argument_1);
       }
@@ -669,14 +668,14 @@ public class VisitorOrientedParser implements Parser {
 
     private static class ArgumentVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitArgument(@NotNull modelicaParser.ArgumentContext ctx) {
+      public String visitArgument(modelicaParser.ArgumentContext ctx) {
         Element_modification_or_replaceableVisitor element_modification_or_replaceableVisitor = new Element_modification_or_replaceableVisitor();
         String element_modification_or_replaceable_1 = 
         		ctx.element_modification_or_replaceable() == null ? null : ctx.element_modification_or_replaceable().accept(element_modification_or_replaceableVisitor);
         Element_redeclarationVisitor element_redeclarationVisitor = new Element_redeclarationVisitor();
         String element_redeclaration_1 = 
         		ctx.element_redeclaration() == null ? null : ctx.element_redeclaration().accept(element_redeclarationVisitor);
-        String argStr = (element_redeclaration_1 != null) ? element_redeclaration_1 : element_modification_or_replaceable_1;          
+        String argStr = (element_redeclaration_1 != null) ? element_redeclaration_1 : element_modification_or_replaceable_1;         
         return argStr;
         //return new Argument(element_modification_or_replaceable_1, element_redeclaration_1);
       }
@@ -684,7 +683,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class Element_modification_or_replaceableVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitElement_modification_or_replaceable(@NotNull modelicaParser.Element_modification_or_replaceableContext ctx) {
+      public String visitElement_modification_or_replaceable(modelicaParser.Element_modification_or_replaceableContext ctx) {
         String each_dec = 
         		ctx.EACH() == null ? null : ctx.EACH().getText();
         String final_dec = 
@@ -713,7 +712,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class Element_modificationVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitElement_modification(@NotNull modelicaParser.Element_modificationContext ctx) {
+      public String visitElement_modification(modelicaParser.Element_modificationContext ctx) {
         NameVisitor nameVisitor = new NameVisitor();
         String name_1 = ctx.name().accept(nameVisitor);
         ModificationVisitor modificationVisitor = new ModificationVisitor();
@@ -734,7 +733,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class Element_redeclarationVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitElement_redeclaration(@NotNull modelicaParser.Element_redeclarationContext ctx) {
+      public String visitElement_redeclaration(modelicaParser.Element_redeclarationContext ctx) {
         String red_dec = ctx.REDECLARE().getText();
         String each_dec = 
         		ctx.EACH() == null ? null : ctx.EACH().getText();
@@ -743,7 +742,6 @@ public class VisitorOrientedParser implements Parser {
         Short_class_definitionVisitor short_class_definitionVisitor = new Short_class_definitionVisitor();
         String shoClaDefStr = 
         		ctx.short_class_definition() == null ? null : ctx.short_class_definition().accept(short_class_definitionVisitor);
-        //String shoClaDefStr = String.valueOf(short_class_definition_1);
         Component_clause1Visitor component_clause1Visitor = new Component_clause1Visitor();       
         String component_clause1_1 = 
         		ctx.component_clause1() == null ? null : ctx.component_clause1().accept(component_clause1Visitor);
@@ -763,7 +761,7 @@ public class VisitorOrientedParser implements Parser {
         		temStr.append(component_clause1_1);
         	}
         }                
-        eleRedStr = temStr.toString();
+        eleRedStr = temStr.toString();        
         return eleRedStr;      
         //return new Element_redeclaration(red_dec, each_dec, final_dec, short_class_definition_1, component_clause1_1, element_replaceable_1);
       }
@@ -771,12 +769,11 @@ public class VisitorOrientedParser implements Parser {
 
     private static class Element_replaceableVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitElement_replaceable(@NotNull modelicaParser.Element_replaceableContext ctx) {
+      public String visitElement_replaceable(modelicaParser.Element_replaceableContext ctx) {
         String rep_dec = ctx.REPLACEABLE().getText();
         Short_class_definitionVisitor short_class_definitionVisitor = new Short_class_definitionVisitor();
         String shoClaDefStr = 
         		ctx.short_class_definition() == null ? null : ctx.short_class_definition().accept(short_class_definitionVisitor);
-        //String shoClaDefStr = String.valueOf(short_class_definition_1);
         Component_clause1Visitor component_clause1Visitor = new Component_clause1Visitor();
         String component_clause1_1 = 
         		ctx.component_clause1() == null ? null : ctx.component_clause1().accept(component_clause1Visitor);
@@ -801,7 +798,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class Component_clause1Visitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitComponent_clause1(@NotNull modelicaParser.Component_clause1Context ctx) {
+      public String visitComponent_clause1(modelicaParser.Component_clause1Context ctx) {
         Type_prefixVisitor type_prefixVisitor = new Type_prefixVisitor();
         String type_prefix_1 = ctx.type_prefix().accept(type_prefixVisitor);
         Type_specifierVisitor type_specifierVisitor = new Type_specifierVisitor();
@@ -814,7 +811,7 @@ public class VisitorOrientedParser implements Parser {
         }
         String comCla1Str = temStr.append(type_specifier_1).append(" ")
         		                  .append(component_declaration1_1)
-        		                  .toString();             
+        		                  .toString();           
         return comCla1Str;
         //return new Component_clause1(type_prefix_1, type_specifier_1, component_declaration1_1);
       }
@@ -822,24 +819,30 @@ public class VisitorOrientedParser implements Parser {
 
     private static class Component_declaration1Visitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitComponent_declaration1(@NotNull modelicaParser.Component_declaration1Context ctx) {
-        DeclarationVisitor declarationVisitor = new DeclarationVisitor();
-        //Declaration declaration_1 = ctx.declaration().accept(declarationVisitor);
-        String declaration_1 = ctx.declaration().getText();
-        CommentVisitor commentVisitor = new CommentVisitor();
-        //Comment comment_1 = ctx.comment().accept(commentVisitor);   
-        String comment_1 = ctx.comment().getText();
-        String comStr = String.valueOf(comment_1);
-        StringBuilder temStr = new StringBuilder();
-        String comDec1Str = temStr.append(declaration_1).append(" ").append(comStr).toString();
-        return comDec1Str;
+      public String visitComponent_declaration1(modelicaParser.Component_declaration1Context ctx) {
+    	  String declaration_1 = "";
+    	  if (ctx.declaration().getText().isEmpty()) {
+    		  declaration_1 = null;
+    	  } else {
+    		  int a = ctx.declaration().start.getStartIndex();
+    	        int b = ctx.declaration().stop.getStopIndex();
+    	        Interval interval = new Interval(a,b);
+    	        CharStream decStr = ctx.declaration().start.getInputStream();       
+    	        declaration_1 = decStr.getText(interval).trim();
+    	  }
+    	  
+          String comStr = ctx.comment().getText();
+          StringBuilder temStr = new StringBuilder();
+          String comDec1Str = temStr.append(declaration_1).append(" ").append(comStr).toString();
+        
+          return comDec1Str;
         //return new Component_declaration1(declaration_1, comment_1);
       }
     }
 
     private static class Short_class_definitionVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitShort_class_definition(@NotNull modelicaParser.Short_class_definitionContext ctx) {
+      public String visitShort_class_definition(modelicaParser.Short_class_definitionContext ctx) {
         Class_prefixesVisitor class_prefixesVisitor = new Class_prefixesVisitor();
         String class_prefixes_1 
         	= ctx.class_prefixes().accept(class_prefixesVisitor);
@@ -897,7 +900,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class Equation_sectionVisitor extends modelicaBaseVisitor<Equation_section> {
       @Override
-      public Equation_section visitEquation_section(@NotNull modelicaParser.Equation_sectionContext ctx) {
+      public Equation_section visitEquation_section(modelicaParser.Equation_sectionContext ctx) {
         String init_dec = 
         		ctx.INITIAL() == null ? null : ctx.INITIAL().getText();
         String equ_dec = ctx.EQUATION().getText();
@@ -912,7 +915,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class Algorithm_sectionVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitAlgorithm_section(@NotNull modelicaParser.Algorithm_sectionContext ctx) {
+      public String visitAlgorithm_section(modelicaParser.Algorithm_sectionContext ctx) {
         String init_dec = 
         		ctx.INITIAL() == null ? null : ctx.INITIAL().getText();
         String alg_dec = ctx.ALGORITHM().getText();
@@ -939,7 +942,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class EquationVisitor extends modelicaBaseVisitor<Equation> {
       @Override
-      public Equation visitEquation(@NotNull modelicaParser.EquationContext ctx) {
+      public Equation visitEquation(modelicaParser.EquationContext ctx) {
         Simple_expressionVisitor simple_expressionVisitor = new Simple_expressionVisitor();
         String simple_expression_1 = 
         		ctx.simple_expression() == null ? null : ctx.simple_expression().accept(simple_expressionVisitor);
@@ -967,7 +970,6 @@ public class VisitorOrientedParser implements Parser {
         CommentVisitor commentVisitor = new CommentVisitor();
         Comment comment_1 = 
         		ctx.comment() == null ? null : ctx.comment().accept(commentVisitor);
-        //String comStr = String.valueOf(comment_1);
         return new Equation(simple_expression_1, expression_1, if_equation_1, for_equation_1, connect_clause_1,
                             when_equation_1, name_1, function_call_args_1, comment_1);
       }
@@ -975,7 +977,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class StatementVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitStatement(@NotNull modelicaParser.StatementContext ctx) {
+      public String visitStatement(modelicaParser.StatementContext ctx) {
         String bre_dec = 
         		ctx.BREAK() == null ? "" : ctx.BREAK().getText();
         String ret_dec = 
@@ -1006,7 +1008,7 @@ public class VisitorOrientedParser implements Parser {
         		ctx.when_statement() == null ? "" : ctx.when_statement().accept(when_statementVisitor);
         CommentVisitor commentVisitor = new CommentVisitor();
         Comment comment_1 = ctx.comment().accept(commentVisitor);
-        String comStr = String.valueOf(comment_1);       
+        String comStr = String.valueOf(comment_1);            	  	
         StringBuilder temStr1 = new StringBuilder();
         StringBuilder temStr2 = new StringBuilder();
         StringBuilder temStr3 = new StringBuilder();
@@ -1027,213 +1029,80 @@ public class VisitorOrientedParser implements Parser {
     }
 
     private static class If_equationVisitor extends modelicaBaseVisitor<String> {   	
-      @SuppressWarnings("unused")
 	@Override
-      public String visitIf_equation(@NotNull modelicaParser.If_equationContext ctx) {
-        List<String> if_dec = ctx.IF()
-        		.stream()
-        		.map(IF -> IF.getText())
-        		.collect(toList());
-        List<String> elseif_dec = ctx.ELSEIF() == null ? null : ctx.ELSEIF()
-        		.stream()
-        		.map(ELSEIF -> ELSEIF.getText())
-        		.collect(toList());
-        String else_dec = 
-        		ctx.ELSE() == null ? null : ctx.ELSE().getText();
-        ExpressionVisitor expressionVisitor = new ExpressionVisitor();
-        List<String> expressions = ctx.expression()
-                .stream()
-                .map(expression -> expression.accept(expressionVisitor))
-                .collect(toList());
-        String expression1 = expressions.get(0);
-        List<String> expression2 = null;
-        if (elseif_dec.size() > 0) {
-        	expression2 = expressions.subList(1, expressions.size());
-        }       
-        List<Equation> equation1 = null;
-        List<Equation> equation2 = null;
-        List<Equation> equation3 = null;
-        if (if_dec.size() > 0) {
-          EquationVisitor equationVisitor = new EquationVisitor();
-          equation1 = ctx.equation() == null ? null : ctx.equation()
-                  .stream()
-                  .map(equation -> equation.accept(equationVisitor))
-                  .collect(toList());
-        } else if (elseif_dec.size() > 0) {
-          EquationVisitor equationVisitor = new EquationVisitor();
-          equation2 = ctx.equation() == null ? null : ctx.equation()
-                  .stream()
-                  .map(equation -> equation.accept(equationVisitor))
-                  .collect(toList());
-        } else if (else_dec != null) {
-          EquationVisitor equationVisitor = new EquationVisitor();
-          equation3 = ctx.equation() == null ? null : ctx.equation()
-                  .stream()
-                  .map(equation -> equation.accept(equationVisitor))
-                  .collect(toList());
-        }
-        List<String> equ1Str = equation1 == null ? null : equation1.stream()
-        		                        .map(Equation::toString)
-        		                        .collect(Collectors.toList());
-        List<String> equ2Str = equation2 == null ? null : equation2.stream()
-                						.map(Equation::toString)
-                						.collect(Collectors.toList());
-        List<String> equ3Str = equation3 == null ? null : equation3.stream()
-                						.map(Equation::toString)
-                						.collect(Collectors.toList());
-        StringBuilder temStr = new StringBuilder();
-        temStr.append("if ").append(expression1).append(" ").append("then").append("\n");
-        for (int i=0; i<equ1Str.size(); i++) {
-        	temStr.append(equ1Str.get(i)).append(";").append("\n");
-        }      
-        if (elseif_dec != null) {
-        	for (int i=0; i<elseif_dec.size(); i++) {
-        		temStr.append(elseif_dec.get(i)).append(" ").append(expression2.get(i)).append(" ").append("then").append("\n");
-        	}
-        	if (equ2Str != null) {
-        		for (int i=0; i<equ2Str.size(); i++) {
-        			temStr.append(equ2Str.get(i)).append(";").append("\n");
-        		}
-        	}
-        }
-        if (else_dec != null) {
-        	if (equ3Str != null) {
-        		for (int i=0; i<equ3Str.size(); i++) {
-        			temStr.append(equ3Str.get(i)).append(";").append("\n");
-        		}
-        	}
-        }
-        temStr.append("end if");
-        return temStr.toString();
+      public String visitIf_equation(modelicaParser.If_equationContext ctx) {
+    	  String temStr = "";
+    	  if (ctx.getText().isEmpty()) {
+    		  temStr = null;
+    	  } else {
+    		  int a = ctx.start.getStartIndex();
+  	  	  	  int b = ctx.stop.getStopIndex();
+  	  	  	  Interval interval = new Interval(a,b);
+  	  	  	  CharStream charStr = ctx.start.getInputStream();
+  	  	      temStr = charStr.getText(interval).trim();
+    	  }            
+        return temStr;
         //return new If_equation(expression1, equation1, expression2, equation2, equation3);
       }
     }
 
     private static class If_statementVisitor extends modelicaBaseVisitor<String> {
-       @SuppressWarnings("unused")
 	@Override
-      public String visitIf_statement(@NotNull modelicaParser.If_statementContext ctx) {
-    	   //System.out.printf("token for if_expression 633: %n '%s' %n",ctx.getTokens(633));
-        List<String> if_dec = ctx.IF()
-        		.stream()
-        		.map(IF -> IF.getText())
-        		.collect(toList());
-        List<String> elseif_dec = ctx.ELSEIF() == null ? null : ctx.ELSEIF()
-        		.stream()
-        		.map(ELSEIF -> ELSEIF.getText())
-        		.collect(toList());        
-        String else_dec = 
-        		ctx.ELSE() == null ? null : ctx.ELSE().getText();
-        ExpressionVisitor expressionVisitor = new ExpressionVisitor();
-        List<String> expressions = ctx.expression()
-                .stream()
-                .map(expression -> expression.accept(expressionVisitor))
-                .collect(toList());
-        String expression1 = expressions.get(0);
-        List<String> expression2 = null;
-        if (elseif_dec != null) {
-        	expression2 = expressions.subList(1, expressions.size());
-        }
-        List<String> statement1 = null;
-        List<String> statement2 = null;
-        List<String> statement3 = null;      
-        if (if_dec.size()>0) {
-          StatementVisitor statementVisitor = new StatementVisitor();
-          statement1 = ctx.statement() == null ? null : ctx.statement()
-                  .stream()
-                  .map(statement -> statement.accept(statementVisitor))
-                  .collect(toList());
-        } else if (elseif_dec != null) {
-          StatementVisitor statementVisitor = new StatementVisitor();
-          statement2 = ctx.statement() == null ? null : ctx.statement()
-                  .stream()
-                  .map(statement -> statement.accept(statementVisitor))
-                  .collect(toList());
-        } else if (else_dec != null) {
-          StatementVisitor statementVisitor = new StatementVisitor();
-          statement3 = ctx.statement() == null ? null : ctx.statement()
-                  .stream()
-                  .map(statement -> statement.accept(statementVisitor))
-                  .collect(toList());
-        }
-        StringBuilder temStr = new StringBuilder();
-        temStr.append("if ").append(expression1).append(" ").append("then").append("\n");
-        for (int i=0; i<statement1.size(); i++) {
-        	temStr.append(statement1.get(i)).append(";").append("\n");
-        }      
-        if (elseif_dec != null) {
-        	for (int i=0; i<elseif_dec.size(); i++) {
-        		temStr.append(elseif_dec.get(i)).append(" ").append(expression2.get(i)).append(" ").append("then").append("\n");
-        	}
-        	if (statement2 != null) {
-        		for (int i=0; i<statement2.size(); i++) {
-        			temStr.append(statement2.get(i)).append(";").append("\n");
-        		}
-        	}
-        }
-        if (else_dec != null) {
-        	if (statement3 != null) {
-        		for (int i=0; i<statement3.size(); i++) {
-        			temStr.append(statement3.get(i)).append(";").append("\n");
-        		}
-        	}
-        }
-        temStr.append("end if");
-        return temStr.toString();
+      public String visitIf_statement(modelicaParser.If_statementContext ctx) {
+    	   String temStr = "";
+     	   if (ctx.getText().isEmpty()) {
+     		   temStr = null;
+     	   } else {
+     		   int a = ctx.start.getStartIndex();
+   	  	  	   int b = ctx.stop.getStopIndex();
+   	  	  	   Interval interval = new Interval(a,b);
+   	  	  	   CharStream charStr = ctx.start.getInputStream();
+   	  	       temStr = charStr.getText(interval).trim();
+     	   }
+        return temStr;
         //return new If_statement(expression1, statement1, expression2, statement2, statement3);
       }
     }
 
     private static class For_equationVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitFor_equation(@NotNull modelicaParser.For_equationContext ctx) {
-        For_indicesVisitor for_indicesVisitor = new For_indicesVisitor();
-        String for_indices_1 = ctx.for_indices().accept(for_indicesVisitor);
-        EquationVisitor equationVisitor = new EquationVisitor();
-        List<Equation> equation_1 = ctx.equation() == null ? null : ctx.equation()
-                .stream()
-                .map(equation -> equation.accept(equationVisitor))
-                .collect(toList());
-        List<String> equStrList = equation_1.stream()
-        		                            .map(Equation::toString)
-        		                            .collect(Collectors.toList());
-        StringBuilder temStr = new StringBuilder();
-        temStr.append("for").append(" ").append(for_indices_1).append("loop").append("\n");
-        StringBuilder temStr2 = new StringBuilder();
-        for (int i=0; i<equStrList.size(); i++) {
-        	temStr2.append(equStrList.get(i)).append(";").append("\n");
-        }
-        temStr.append(temStr2.toString()).append("end for");
-        return temStr.toString();       
+      public String visitFor_equation(modelicaParser.For_equationContext ctx) {
+    	  String temStr = "";
+    	   if (ctx.getText().isEmpty()) {
+    		   temStr = null;
+    	   } else {
+    		   int a = ctx.start.getStartIndex();
+  	  	  	   int b = ctx.stop.getStopIndex();
+  	  	  	   Interval interval = new Interval(a,b);
+  	  	  	   CharStream charStr = ctx.start.getInputStream();
+  	  	       temStr = charStr.getText(interval).trim();
+    	   }   
+        return temStr;       
         //return new For_equation(for_indices_1, equation_1);
       }
     }
 
     private static class For_statementVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitFor_statement(@NotNull modelicaParser.For_statementContext ctx) {
-        For_indicesVisitor for_indicesVisitor = new For_indicesVisitor();
-        String for_indices_1 = ctx.for_indices().accept(for_indicesVisitor);
-        StatementVisitor statementVisitor = new StatementVisitor();
-        List<String> statement_1 = ctx.statement() == null ? null : ctx.statement()
-                .stream()
-                .map(statement -> statement.accept(statementVisitor))
-                .collect(toList());
-        StringBuilder temStr = new StringBuilder();
-        temStr.append("for").append(" ").append(for_indices_1).append("loop").append("\n");
-        StringBuilder temStr2 = new StringBuilder();
-        for (int i=0; i<statement_1.size(); i++) {
-        	temStr2.append(statement_1.get(i)).append(";").append("\n");
-        }
-        temStr.append(temStr2.toString()).append("end for");
-        return temStr.toString();
+      public String visitFor_statement(modelicaParser.For_statementContext ctx) {
+    	  String temStr = "";
+    	  if (ctx.getText().isEmpty()) {
+    		  temStr = null;
+    	  } else {
+    		  int a = ctx.start.getStartIndex();
+ 	  	  	  int b = ctx.stop.getStopIndex();
+ 	  	  	  Interval interval = new Interval(a,b);
+ 	  	  	  CharStream charStr = ctx.start.getInputStream();
+ 	  	      temStr = charStr.getText(interval).trim();
+   	   	  }
+        return temStr;
         //return new For_statement(for_indices_1, statement_1);
       }
     }
 
     private static class For_indicesVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitFor_indices(@NotNull modelicaParser.For_indicesContext ctx) {
+      public String visitFor_indices(modelicaParser.For_indicesContext ctx) {
     	  For_indexVisitor for_indexVisitor = new For_indexVisitor();
     	  List<String> for_index_1 = ctx.for_index()
     			  .stream()
@@ -1253,7 +1122,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class For_indexVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitFor_index(@NotNull modelicaParser.For_indexContext ctx) {
+      public String visitFor_index(modelicaParser.For_indexContext ctx) {
         String ident = ctx.IDENT().getText();
         ExpressionVisitor expressionVisitor = new ExpressionVisitor();
         String expression_1 = 
@@ -1270,162 +1139,61 @@ public class VisitorOrientedParser implements Parser {
 
     private static class While_statementVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitWhile_statement(@NotNull modelicaParser.While_statementContext ctx) {
-        ExpressionVisitor expressionVisitor = new ExpressionVisitor();
-        String expression_1 = ctx.expression().accept(expressionVisitor);
-        StatementVisitor statementVisitor = new StatementVisitor();
-        List<String> statement_1 = ctx.statement() == null ? null : ctx.statement()
-                .stream()
-                .map(statement -> statement.accept(statementVisitor))
-                .collect(toList());
-        StringBuilder temStr = new StringBuilder();
-        temStr.append("while ").append(expression_1).append("loop").append("\n");
-        StringBuilder temStr2 = new StringBuilder();
-        for (int i=0; i<statement_1.size(); i++) {
-        	temStr2.append(statement_1.get(i)).append(";").append("\n");
-        }
-        temStr.append(temStr2.toString()).append("end while");
-        return temStr.toString();
+      public String visitWhile_statement(modelicaParser.While_statementContext ctx) {
+    	  String temStr = "";
+   	   if (ctx.getText().isEmpty()) {
+   		   temStr = null;
+   	   } else {
+   		   int a = ctx.start.getStartIndex();
+ 	  	  	   int b = ctx.stop.getStopIndex();
+ 	  	  	   Interval interval = new Interval(a,b);
+ 	  	  	   CharStream charStr = ctx.start.getInputStream();
+ 	  	       temStr = charStr.getText(interval).trim();
+   	   }      
+        return temStr;
         //return new While_statement(expression_1, statement_1);
       }
     }
 
     private static class When_equationVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitWhen_equation(@NotNull modelicaParser.When_equationContext ctx) {    	  
-    	  //System.out.printf("token for When: %n '%s' %n",ctx.getTokens(728)); 	  
-        List<String> when_dec = ctx.WHEN()
-        		.stream()
-        		.map(WHEN -> WHEN.getText())
-        		.collect(toList());
-        List<String> elsewhen_dec = ctx.ELSEWHEN() == null ? null : ctx.ELSEWHEN()
-        		.stream()
-        		.map(ELSEWHEN -> ELSEWHEN.getText())
-        		.collect(toList());
-        ExpressionVisitor expressionVisitor = new ExpressionVisitor();
-        List<String> expressions = ctx.expression()
-                .stream()
-                .map(expression -> expression.accept(expressionVisitor))
-                .collect(toList());
-        String expression1 = expressions.get(0);
-        List<String> expression2 = 
-        		elsewhen_dec.size() == 0 ? null : expressions.subList(1, expressions.size());
-        List<Equation> equation1 = null;
-        List<Equation> equation2 = null;       
-        if (when_dec.size()>0) {    
-        	EquationVisitor equationVisitor = new EquationVisitor();
-        	equation1 = ctx.equation() == null ? null : ctx.equation()
-        			.stream()
-        			.map(equation -> equation.accept(equationVisitor))
-        			.collect(toList());
-        	equation2 = null;
-        } else {
-        	EquationVisitor equationVisitor = new EquationVisitor();
-        	equation1 = null;
-        	equation2 = ctx.equation() == null ? null : ctx.equation()
-        			.stream()
-        			.map(equation -> equation.accept(equationVisitor))
-        			.collect(toList());
-        }        
-        List<String> equ1Str = equation1==null? null : equation1.stream()
-        		                        .map(Equation::toString)
-        		                        .collect(Collectors.toList());
-        List<String> equ2Str = equation2==null? null : equation2.stream()
-                						.map(Equation::toString)
-                						.collect(Collectors.toList());
-        StringBuilder temStr = new StringBuilder();
-        temStr.append("when ").append(expression1).append(" then").append("\n");
-        if (equ1Str != null) {
-        	StringBuilder temStr2 = new StringBuilder();
-        	for (int i=0; i<equ1Str.size(); i++) {
-        		temStr2.append(equ1Str.get(i)).append(";").append("\n");
-        	}
-        	temStr.append(temStr2.toString());
-        }
-        if (expression2 != null) {
-        	for (int i=0; i<expression2.size(); i++) {
-        		temStr.append("elsewhen ").append(expression2.get(i)).append(" then").append("\n");
-        	}
-        }
-        if (equ2Str != null) {
-        	StringBuilder temStr2 = new StringBuilder();
-        	for (int i=0; i<equ2Str.size(); i++) {
-        		temStr2.append(equ2Str.get(i)).append(";").append("\n");
-        	}
-        	temStr.append(temStr2.toString());
-        }
-        temStr.append("end when");
-        return temStr.toString();        
+      public String visitWhen_equation(modelicaParser.When_equationContext ctx) {  
+    	  String temStr = "";
+   	   if (ctx.getText().isEmpty()) {
+   		   temStr = null;
+   	   } else {
+   		   int a = ctx.start.getStartIndex();
+ 	  	  	   int b = ctx.stop.getStopIndex();
+ 	  	  	   Interval interval = new Interval(a,b);
+ 	  	  	   CharStream charStr = ctx.start.getInputStream();
+ 	  	       temStr = charStr.getText(interval).trim();
+   	   }
+        return temStr;        
         //return new When_equation(expression1, equation1, expression2, equation2);
       }
     }
 
     private static class When_statementVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitWhen_statement(@NotNull modelicaParser.When_statementContext ctx) {
-        List<String> when_dec = ctx.WHEN()
-        		.stream()
-        		.map(WHEN -> WHEN.getText())
-        		.collect(toList());
-        List<String> elsewhen_dec = ctx.ELSEWHEN() == null ? null : ctx.ELSEWHEN()
-        		.stream()
-        		.map(ELSEWHEN -> ELSEWHEN.getText())
-        		.collect(toList());
-        ExpressionVisitor expressionVisitor = new ExpressionVisitor();
-        List<String> expressions = ctx.expression()
-                .stream()
-                .map(expression -> expression.accept(expressionVisitor))
-                .collect(toList());
-        String expression1 = expressions.get(0);
-        List<String> expression2 = null;
-        if (elsewhen_dec != null) {
-        	expression2 = expressions.subList(1, expressions.size());
-        }
-        List<String> statement1 = null;
-        List<String> statement2 = null;
-        if (when_dec != null) {     
-          StatementVisitor statementVisitor = new StatementVisitor();
-          statement1 = ctx.statement() == null ? null : ctx.statement()
-                  .stream()
-                  .map(statement -> statement.accept(statementVisitor))
-                  .collect(toList());
-        } else if (elsewhen_dec != null) {
-          StatementVisitor statementVisitor = new StatementVisitor();
-          statement2 = ctx.statement() == null ? null : ctx.statement()
-                  .stream()
-                  .map(statement -> statement.accept(statementVisitor))
-                  .collect(toList());
-        }
-        StringBuilder temStr = new StringBuilder();
-        temStr.append("when ").append(expression1).append(" then").append("\n");
-        if (statement1 != null) {
-        	StringBuilder temStr2 = new StringBuilder();
-        	for (int i=0; i<statement1.size(); i++) {
-        		temStr2.append(statement1.get(i)).append(";").append("\n");
-        	}
-        	temStr.append(temStr2.toString());
-        }
-        if (expression2 != null) {
-        	for (int i=0; i<expression2.size(); i++) {
-        		temStr.append("elsewhen ").append(expression2.get(i)).append(" then").append("\n");
-        	}
-        }
-        if (statement2 != null) {
-        	StringBuilder temStr2 = new StringBuilder();
-        	for (int i=0; i<statement2.size(); i++) {
-        		temStr2.append(statement2.get(i)).append(";").append("\n");
-        	}
-        	temStr.append(temStr2.toString());
-        }
-        temStr.append("end when");
-        return temStr.toString();                  
+      public String visitWhen_statement(modelicaParser.When_statementContext ctx) {
+    	  String temStr = "";
+   	   if (ctx.getText().isEmpty()) {
+   		   temStr = null;
+   	   } else {
+   		   int a = ctx.start.getStartIndex();
+ 	  	  	   int b = ctx.stop.getStopIndex();
+ 	  	  	   Interval interval = new Interval(a,b);
+ 	  	  	   CharStream charStr = ctx.start.getInputStream();
+ 	  	       temStr = charStr.getText(interval).trim();
+   	   }  	   
+        return temStr;                  
         //return new When_statement(expression1, statement1, expression2, statement2);
       }
     }
 
     private static class Connect_clauseVisitor extends modelicaBaseVisitor<Connect_clause> {
       @Override
-      public Connect_clause visitConnect_clause(@NotNull modelicaParser.Connect_clauseContext ctx) {
+      public Connect_clause visitConnect_clause(modelicaParser.Connect_clauseContext ctx) {
         Component_referenceVisitor component_referenceVisitor = new Component_referenceVisitor();
         List<String> component_reference_1 = ctx.component_reference()
                 .stream()
@@ -1437,62 +1205,18 @@ public class VisitorOrientedParser implements Parser {
 
     private static class ExpressionVisitor extends modelicaBaseVisitor<String> {
 	@Override
-      public String visitExpression(@NotNull modelicaParser.ExpressionContext ctx) {
-        Simple_expressionVisitor simple_expressionVisitor = new Simple_expressionVisitor();
-        String simple_expression_1 = 
-        		ctx.simple_expression() == null ? null : ctx.simple_expression().accept(simple_expressionVisitor);
-    	List<String> elseif_dec = ctx.ELSEIF() == null ? null : ctx.ELSEIF()
-          		.stream()
-          		.map(ELSEIF -> ELSEIF.getText())
-          		.collect(toList());
-        ExpressionVisitor expressionVisitor = new ExpressionVisitor();
-        List<String> expressions = ctx.expression() == null ? null : ctx.expression()
-        		.stream()
-        		.map(expression -> expression.accept(expressionVisitor))
-        		.collect(toList());       
-        String expression1 = 
-        		expressions.size()>0 ? expressions.get(0) : null;
-        String expression2 = 
-        		expressions.size()>0 ? expressions.get(1) : null;
-        List<String> expression3 = new ArrayList<>(); 
-        List<String> expression4 = new ArrayList<>(); 
-        if (elseif_dec.size() == 0) {
-        	expression3 = null;
-        	expression4 = null;
-        } else if (elseif_dec.size() == 1) {
-        	expression3 = expressions.subList(2,3);
-        	expression4 = expressions.subList(3,4);
-        } else {
-
-        	for (int i=1; i<((expressions.size()-3)/2+1); i++) {
-        		expression3.add(expressions.get(2*i));
-        		expression4.add(expressions.get(2*i+1));
-        	}       	
-        }
-        String expression5 = 
-        		expressions.size()>0 ? expressions.get(expressions.size()-1) : null;
-        String expStr = simple_expression_1;
-        if (simple_expression_1 == null) {
-        	StringBuilder temStr = new StringBuilder();
-        	if (elseif_dec.size() == 0) {
-        		expStr = temStr.append("if ").append(expression1).append("\n") 
-        				       .append("then ").append(expression2).append("\n") 
-        				       .append("else ").append(expression5)
-        				       .toString();
-        	} else {
-        		for (int i=0; i<expression3.size(); i++) {
-        			temStr.append("elseif ").append(expression3).append("\n")
-        			      .append("then ").append(expression4).append("\n");
-        		}
-        		StringBuilder temStr2 = new StringBuilder();
-        		expStr = temStr2.append("if ").append(expression1).append("\n") 
-        				        .append("then ").append(expression2).append("\n") 
-        				        .append(temStr.toString())
-        				        .append("else ").append(expression5)
-        				        .toString();
-        	}
-        }
-        return expStr;		       		
+      public String visitExpression(modelicaParser.ExpressionContext ctx) {
+		String temStr = "";
+ 	   if (ctx.getText().isEmpty()) {
+ 		   temStr = null;
+ 	   } else {
+ 		   int a = ctx.start.getStartIndex();
+	  	  	   int b = ctx.stop.getStopIndex();
+	  	  	   Interval interval = new Interval(a,b);
+	  	  	   CharStream charStr = ctx.start.getInputStream();
+	  	       temStr = charStr.getText(interval).trim();
+ 	   }   
+ 	  return temStr;       		
         //return new Expression(simple_expression_1, expression1, expression2,
         //                      expression3, expression4, expression5);
       }
@@ -1500,31 +1224,25 @@ public class VisitorOrientedParser implements Parser {
 
     private static class Simple_expressionVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitSimple_expression(@NotNull modelicaParser.Simple_expressionContext ctx) {
-        Logical_expressionVisitor logical_expressionVisitor = new Logical_expressionVisitor();
-        List<String> logical_expressions = ctx.logical_expression()
-        		.stream()
-        		.map(logical_expression -> logical_expression.accept(logical_expressionVisitor))
-        		.collect(toList());
-        List<String> colon = ctx.SYMBOL_COLON()==null ? null : ctx.SYMBOL_COLON()
-        		.stream()
-        		.map(SYMBOL_COLON -> SYMBOL_COLON.getText())
-        		.collect(toList());
-        StringBuilder temStr = new StringBuilder();
-  	  	temStr.append(logical_expressions.get(0));
-        if (colon != null) {
-        	for (int i=0; i<colon.size(); i++) {
-        		temStr.append(colon.get(i)).append(logical_expressions.get(i+1));        		
-        	}
-        }
-        return temStr.toString();
+      public String visitSimple_expression(modelicaParser.Simple_expressionContext ctx) {
+    	  String temStr = "";
+    	   if (ctx.getText().isEmpty()) {
+    		   temStr = null;
+    	   } else {
+    		   int a = ctx.start.getStartIndex();
+   	  	  	   int b = ctx.stop.getStopIndex();
+   	  	  	   Interval interval = new Interval(a,b);
+   	  	  	   CharStream charStr = ctx.start.getInputStream();
+   	  	       temStr = charStr.getText(interval).trim();
+    	   }   	   
+    	  return temStr;   	  
         //return new Simple_expression(logical_expression1, logical_expression2, logical_expression3);
       }
     }
 
     private static class Logical_expressionVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitLogical_expression(@NotNull modelicaParser.Logical_expressionContext ctx) {
+      public String visitLogical_expression(modelicaParser.Logical_expressionContext ctx) {
     	  List<String> or_decs = ctx.OR() == null ? null : ctx.OR()
     			  .stream()
     			  .map(OR -> OR.getText())
@@ -1548,7 +1266,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class Logical_termVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitLogical_term(@NotNull modelicaParser.Logical_termContext ctx) {
+      public String visitLogical_term(modelicaParser.Logical_termContext ctx) {
     	  List<String> and_decs = ctx.AND() == null ? null : ctx.AND()
     			  .stream()
     			  .map(AND -> AND.getText())
@@ -1572,7 +1290,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class Logical_factorVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitLogical_factor(@NotNull modelicaParser.Logical_factorContext ctx) {
+      public String visitLogical_factor(modelicaParser.Logical_factorContext ctx) {
         String not_dec = 
         		ctx.NOT() == null ? null : ctx.NOT().getText();
         RelationVisitor relationVisitor = new RelationVisitor();
@@ -1587,7 +1305,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class RelationVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitRelation(@NotNull modelicaParser.RelationContext ctx) {
+      public String visitRelation(modelicaParser.RelationContext ctx) {
     	  Arithmetic_expressionVisitor arithmetic_expressionVisitor = new Arithmetic_expressionVisitor();
     	  List<String> arithmetic_expressions = ctx.arithmetic_expression()
     			  .stream()
@@ -1608,7 +1326,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class Rel_opVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitRel_op(@NotNull modelicaParser.Rel_opContext ctx) {
+      public String visitRel_op(modelicaParser.Rel_opContext ctx) {
     	String relOpe = ctx.getText();  
     	return relOpe;
         //return new Rel_op(ope_dec);
@@ -1617,7 +1335,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class Arithmetic_expressionVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitArithmetic_expression(@NotNull modelicaParser.Arithmetic_expressionContext ctx) {
+      public String visitArithmetic_expression(modelicaParser.Arithmetic_expressionContext ctx) {
     	  Add_opVisitor add_opVisitor = new Add_opVisitor();
     	  List<String> add_ops = ctx.add_op() == null ? null : ctx.add_op()
     			  .stream()
@@ -1646,7 +1364,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class Add_opVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitAdd_op(@NotNull modelicaParser.Add_opContext ctx) {
+      public String visitAdd_op(modelicaParser.Add_opContext ctx) {
     	String addOpe = ctx.getText(); 
     	return addOpe;
         //return new Add_op(add_dec);
@@ -1655,7 +1373,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class TermVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitTerm(@NotNull modelicaParser.TermContext ctx) {
+      public String visitTerm(modelicaParser.TermContext ctx) {
         Mul_opVisitor mul_opVisitor = new Mul_opVisitor();
         List<String> mul_op_1 = ctx.mul_op() == null ? null : ctx.mul_op()
                 .stream()
@@ -1680,8 +1398,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class Mul_opVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitMul_op(@NotNull modelicaParser.Mul_opContext ctx) {  			
-    	//Mul_opVisitor mul_opVisitor = new Mul_opVisitor();   	
+      public String visitMul_op(modelicaParser.Mul_opContext ctx) {  			  	
         String mulOpe = ctx.getText(); 
         return mulOpe;
         //return new Mul_op(mul_dec);
@@ -1690,7 +1407,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class FactorVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitFactor(@NotNull modelicaParser.FactorContext ctx) {
+      public String visitFactor(modelicaParser.FactorContext ctx) {
     	  PrimaryVisitor primaryVisitor = new PrimaryVisitor();
     	  List<String> primarys = ctx.primary()
     			  .stream()
@@ -1720,7 +1437,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class PrimaryVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitPrimary(@NotNull modelicaParser.PrimaryContext ctx) {
+      public String visitPrimary(modelicaParser.PrimaryContext ctx) {
         String num_dec = 
         		ctx.UNSIGNED_NUMBER() == null ? null : ctx.UNSIGNED_NUMBER().getText();
         String str_dec = 
@@ -1797,7 +1514,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class NameVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitName(@NotNull modelicaParser.NameContext ctx) {
+      public String visitName(modelicaParser.NameContext ctx) {
     	List<String> dots = ctx.SYMBOL_DOT()==null ? null : ctx.SYMBOL_DOT()
     			.stream()
     			.map(SYMBOL_DOT -> SYMBOL_DOT.getText())
@@ -1828,67 +1545,25 @@ public class VisitorOrientedParser implements Parser {
 
     private static class Component_referenceVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitComponent_reference(@NotNull modelicaParser.Component_referenceContext ctx) {
-    	List<String> dots = ctx.SYMBOL_DOT()==null ? null : ctx.SYMBOL_DOT()
-    			.stream()
-    			.map(SYMBOL_DOT -> SYMBOL_DOT.getText())
-    			.collect(toList());
-    	List<String> ident = ctx.IDENT()
-          		.stream()
-          		.map(IDENT -> IDENT.getText())
-          		.collect(toList());
-        Array_subscriptsVisitor array_subscriptsVisitor = new Array_subscriptsVisitor();
-        List<String> array_subscripts_1 = ctx.array_subscripts() == null ? null : ctx.array_subscripts()
-              .stream()
-              .map(array_subscripts -> array_subscripts.accept(array_subscriptsVisitor))
-              .collect(toList());
-        StringBuilder temStr = new StringBuilder();
-        if (ident.size()==1) {
-        	if (dots.size() >0 && array_subscripts_1.size() == 0) {
-        		temStr.append(dots.get(0)).append(ident.get(0));
-        	} else if (dots.size() == 0 && array_subscripts_1.size() > 0) {
-        		temStr.append(ident.get(0)).append(array_subscripts_1.get(0));
-        	} else if (dots.size() == 0 && array_subscripts_1.size() == 0) {
-        		temStr.append(ident.get(0));
-        	} else {
-        		temStr.append(dots.get(0)).append(ident.get(0)).append(array_subscripts_1.get(0));
-        	}
-        } else {
-        	int i;
-        	if (ident.size() == dots.size()) {
-        		for (i=0; i<ident.size(); i++) {
-        			if (i<array_subscripts_1.size()) {
-        				temStr.append(dots.get(i)).append(ident.get(i)).append(array_subscripts_1.get(i));
-        			} else {
-        				temStr.append(dots.get(i)).append(ident.get(i));
-        			}
-        		}       		
-        	} else {
-        		if (array_subscripts_1.size() >0) {
-        			temStr.append(ident.get(0)).append(array_subscripts_1.get(0));
-        			for (i=1; i<ident.size(); i++) {
-        				if (i<array_subscripts_1.size()) {
-        					temStr.append(dots.get(i-1)).append(ident.get(i)).append(array_subscripts_1.get(i));
-        				} else {
-        					temStr.append(dots.get(i-1)).append(ident.get(i));
-        				}
-        			}
-        		} else {
-        			temStr.append(ident.get(0));
-        			for (i=1; i<ident.size(); i++) {
-        				temStr.append(dots.get(i-1)).append(ident.get(i));     				
-        			}
-        		}       		
-        	}
-        }
-        return temStr.toString();
+      public String visitComponent_reference(modelicaParser.Component_referenceContext ctx) {
+    	  String temStr = "";
+    	   if (ctx.getText().isEmpty()) {
+    		   temStr = null;
+    	   } else {
+    		   int a = ctx.start.getStartIndex();
+   	  	  	   int b = ctx.stop.getStopIndex();
+   	  	  	   Interval interval = new Interval(a,b);
+   	  	  	   CharStream charStr = ctx.start.getInputStream();
+   	  	       temStr = charStr.getText(interval).trim();
+    	   }  	   
+    	  return temStr;
         // return new Component_reference(ident, dots, array_subscripts_1);
       }
     }
 
     private static class Function_call_argsVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitFunction_call_args(@NotNull modelicaParser.Function_call_argsContext ctx) {
+      public String visitFunction_call_args(modelicaParser.Function_call_argsContext ctx) {
         Function_argumentsVisitor function_argumentsVisitor = new Function_argumentsVisitor();
         String function_arguments = 
         		ctx.function_arguments() == null ? "" : ctx.function_arguments().accept(function_argumentsVisitor);
@@ -1902,7 +1577,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class Function_argumentsVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitFunction_arguments(@NotNull modelicaParser.Function_argumentsContext ctx) {
+      public String visitFunction_arguments(modelicaParser.Function_argumentsContext ctx) {
         Function_argumentVisitor function_argumentVisitor = new Function_argumentVisitor();
         String function_argument = 
         		ctx.function_argument() == null ? null : ctx.function_argument().accept(function_argumentVisitor);
@@ -1937,7 +1612,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class Named_argumentsVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitNamed_arguments(@NotNull modelicaParser.Named_argumentsContext ctx) {
+      public String visitNamed_arguments(modelicaParser.Named_argumentsContext ctx) {
         Named_argumentVisitor named_argumentVisitor = new Named_argumentVisitor();
         String named_argument = 
         		ctx.named_argument().accept(named_argumentVisitor);
@@ -1960,7 +1635,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class Named_argumentVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitNamed_argument(@NotNull modelicaParser.Named_argumentContext ctx) {
+      public String visitNamed_argument(modelicaParser.Named_argumentContext ctx) {
     	  String ident = ctx.IDENT().getText();
     	  Function_argumentVisitor function_argumentVisitor = new Function_argumentVisitor();
     	  String function_argument = 
@@ -1976,7 +1651,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class Function_argumentVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitFunction_argument(@NotNull modelicaParser.Function_argumentContext ctx) {
+      public String visitFunction_argument(modelicaParser.Function_argumentContext ctx) {
     	  String fun_dec = 
     			  ctx.FUNCTION() == null ? null : ctx.FUNCTION().getText();
     	  NameVisitor nameVisitor = new NameVisitor();
@@ -2002,42 +1677,25 @@ public class VisitorOrientedParser implements Parser {
 
     private static class Output_expression_listVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitOutput_expression_list(@NotNull modelicaParser.Output_expression_listContext ctx) {
-        ExpressionVisitor expressionVisitor = new ExpressionVisitor();
-        List<String> expression_1 = ctx.expression() == null ? null : ctx.expression()
-              .stream()
-              .map(expression -> expression.accept(expressionVisitor))
-              .collect(toList());
-        List<String> comma = ctx.SYMBOL_COMMA() == null ? null : ctx.SYMBOL_COMMA()
-          		.stream()
-          		.map(SYMBOL_COMMA -> SYMBOL_COMMA.getText())
-          		.collect(toList());       
-        StringBuilder temStr = new StringBuilder();
-        int i=0;
-        if (comma != null) {
-        	if (expression_1.size()==comma.size()) {
-        		for (i=0; i<comma.size(); i++) {
-        			temStr.append(comma.get(i)).append(expression_1.get(i));
-        		}       		
-        	} else {
-        		temStr.append(expression_1.get(0));
-        		for (i=0; i<comma.size(); i++) {
-        			if (i<expression_1.size()) {
-        				temStr.append(comma.get(i)).append(expression_1.get(i));
-        			} else {
-        				temStr.append(comma.get(i));
-        			}
-        		}
-        	}
-        }
-        return temStr.toString();      
+      public String visitOutput_expression_list(modelicaParser.Output_expression_listContext ctx) {
+    	  String temStr = "";
+    	   if (ctx.getText().isEmpty()) {
+    		   temStr = null;
+    	   } else {
+    		   int a = ctx.start.getStartIndex();
+   	  	  	   int b = ctx.stop.getStopIndex();
+   	  	  	   Interval interval = new Interval(a,b);
+   	  	  	   CharStream charStr = ctx.start.getInputStream();
+   	  	       temStr = charStr.getText(interval).trim();
+    	   }   	   
+    	  return temStr;     
         //return new Output_expression_list(expression_1);
       }
     }
 
     private static class Expression_listVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitExpression_list(@NotNull modelicaParser.Expression_listContext ctx) {
+      public String visitExpression_list(modelicaParser.Expression_listContext ctx) {
         ExpressionVisitor expressionVisitor = new ExpressionVisitor();
         List<String> expression_1 = ctx.expression()
               .stream()
@@ -2057,7 +1715,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class Array_subscriptsVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitArray_subscripts(@NotNull modelicaParser.Array_subscriptsContext ctx) {
+      public String visitArray_subscripts(modelicaParser.Array_subscriptsContext ctx) {
     	  SubscriptVisitor subscriptVisitor = new SubscriptVisitor();
     	  List<String> subscript_1 = ctx.subscript()
     			  .stream()
@@ -2087,7 +1745,7 @@ public class VisitorOrientedParser implements Parser {
 
     private static class SubscriptVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitSubscript(@NotNull modelicaParser.SubscriptContext ctx) {
+      public String visitSubscript(modelicaParser.SubscriptContext ctx) {
     	  String colon = 
     			  ctx.SYMBOL_COLON() == null ? null : ctx.SYMBOL_COLON().getText();
     	  ExpressionVisitor expressionVisitor = new ExpressionVisitor();
@@ -2104,7 +1762,7 @@ public class VisitorOrientedParser implements Parser {
     	String string_comment1;
     	String annotation1;
       @Override
-      public Comment visitComment(@NotNull modelicaParser.CommentContext ctx) {
+      public Comment visitComment(modelicaParser.CommentContext ctx) {
         String_commentVisitor string_commentVisitor = new String_commentVisitor();
         String string_comment1 = 
         		ctx.string_comment() == null ? null : ctx.string_comment().accept(string_commentVisitor);
@@ -2119,7 +1777,7 @@ public class VisitorOrientedParser implements Parser {
 
     public static class String_commentVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitString_comment(@NotNull modelicaParser.String_commentContext ctx) {
+      public String visitString_comment(modelicaParser.String_commentContext ctx) {
         List<String> str_dec = ctx.STRING() == null ? null : ctx.STRING()
         		.stream()
         		.map(STRING -> STRING.getText())
@@ -2142,7 +1800,7 @@ public class VisitorOrientedParser implements Parser {
 
     public static class AnnotationVisitor extends modelicaBaseVisitor<String> {
       @Override
-      public String visitAnnotation(@NotNull modelicaParser.AnnotationContext ctx) {
+      public String visitAnnotation(modelicaParser.AnnotationContext ctx) {
     	String ann_dec = ctx.ANNOTATION().getText();
         Class_modificationVisitor class_modificationVisitor = new Class_modificationVisitor();
         String class_modification = ctx.class_modification().accept(class_modificationVisitor);
