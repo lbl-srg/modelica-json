@@ -5,70 +5,137 @@
   "title": "JSON parsed Modelica file",
   "description": "Json representation of a Modelica model",
   "definitions": {
-    "ModelicaBlock":{
+    "ModelicaBlock": {
       "description": "Info of a modelica block: model, parameter, input or output",
       "type": "array",
       "items": {
-        "type":"object",
-        "required": ["className", "name"],
+        "type": "object",
+        "required": [
+          "className",
+          "name"
+        ],
         "properties": {
-          "className":{
+          "className": {
             "description": "Name of the class: no special characters or spaces",
-            "type":"string",
-            "pattern": "^([a-zA-Z0-9.*]*)$"
+            "type": "string",
+            "pattern": "^([a-zA-Z0-9._*]*)$"
           },
-          "name":{
+          "name": {
             "description": "Name of the block: no special characters or spaces",
-            "type":"string",
-            "pattern": "^([a-zA-Z0-9.*]*)$"
+            "type": "string",
+            "pattern": "^([a-zA-Z0-9._*]*)$"
           },
-          "comment":{
+          "comment": {
             "description": "comment on the block: no special characters or spaces",
-            "type":"string"
+            "type": "string"
           },
-          "value":{
+          "value": {
             "description": "value of the block, if applicable",
-            "type":"string"
+            "type": "string"
           },
-          "annotation":{
-            "type" : "object",
-            "required": ["dialog"],
-            "properties":{
-              "dialog":{
+          "annotation": {
+            "type": "object",
+            "required": [
+              "dialog"
+            ],
+            "properties": {
+              "dialog": {
                 "type": "object",
-                "properties":{
-                  "tab":{
-                    "type":"string",
-                    "examples": ["General"]
+                "properties": {
+                  "tab": {
+                    "type": "string",
+                    "examples": [
+                      "General"
+                    ]
                   },
-                  "group":{
-                    "type":"string",
-                    "examples": ["Parameters"]
+                  "group": {
+                    "type": "string",
+                    "examples": [
+                      "Parameters"
+                    ]
                   }
                 }
               }
             }
           },
-          "modifications":{
-            "type":"array",
+          "modifications": {
+            "type": "array",
             "items": {
               "type": "object",
               "properties": {
                 "value": {
                   "type": "string"
                 },
-                "isFinal":{
-                  "type":"boolean"
+                "isFinal": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "placement": {
+            "type": "object",
+            "properties": {
+              "transformation": {
+                "type": "object",
+                "properties": {
+                  "extent": {
+                    "$ref": "#/definitions/coordinates"
+                  }
                 }
               }
             }
           }
         }
       }
+    },
+    "coordinates": {
+      "description": "Coordinates on a 2d plan",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "x1",
+          "x2"
+        ],
+        "properties": {
+          "x1": {
+            "type": "number"
+          },
+          "x2": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "color": {
+      "description": "RGB colors",
+      "type": "object",
+      "required": [
+        "r",
+        "g",
+        "b"
+      ],
+      "properties": {
+        "r": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 255
+        },
+        "g": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 255
+        },
+        "b": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 255
+        }
+      }
     }
   },
-  "items":{
-    "type":"object",
+  "items": {
+    "type": "object",
     "required": [
       "modelicaFile",
       "topClassName"
@@ -82,28 +149,28 @@
       "within": {
         "description": "Within statement from the Modelica file : no special characters or spaces",
         "type": "string",
-        "pattern": "^([a-zA-Z0-9.*]*)$"
+        "pattern": "^([a-zA-Z0-9._*]*)$"
       },
       "topClassName": {
         "description": "Name of the top class of the Modelica model: no special characters or spaces ",
         "type": "string",
-        "pattern": "^([a-zA-Z0-9.*]*)$"
+        "pattern": "^([a-zA-Z0-9._*]*)$"
       },
       "comment": {
         "description": "Comment on the model",
-        "type" : "string"
+        "type": "string"
       },
       "public": {
-        "type":"object",
-        "description" : "Public part of the modelica file",
-        "properties" : {
-          "parameters":{
+        "type": "object",
+        "description": "Public part of the modelica file",
+        "properties": {
+          "parameters": {
             "$ref": "#/definitions/ModelicaBlock"
           },
           "models": {
             "$ref": "#/definitions/ModelicaBlock"
           },
-          "inputs":{
+          "inputs": {
             "$ref": "#/definitions/ModelicaBlock"
           },
           "outputs": {
@@ -112,39 +179,44 @@
         }
       },
       "protected": {
-        "type":"object",
+        "type": "object",
         "description": "Protected part of the modelica file",
         "properties": {
-          "parameters":{
+          "parameters": {
             "$ref": "#/definitions/ModelicaBlock"
           },
-          "models":{
+          "models": {
             "$ref": "#/definitions/ModelicaBlock"
           }
         }
       },
       "connections": {
-        "type":"array",
+        "type": "array",
         "items": {
-          "type":"array",
+          "type": "array",
           "items": {
-          "type": "object",
-          "required": ["instance"],
-          "properties": {
-            "instance": {
-              "type": "string"
-            },
-            "connector":{
-              "type":"string"
+            "type": "object",
+            "properties": {
+              "instance": {
+                "type": "string"
+              },
+              "connector": {
+                "type": "string"
+              },
+              "points": {
+                "$ref": "#/definitions/coordinates"
+              },
+              "color": {
+                "$ref": "#/definitions/color"
+              }
             }
           }
-         }
         }
       },
       "info": {
         "description": "Informations of the model must be in html format",
-        "type":"string",
-        "pattern": "^(<(html|HTML)>)(.|\n)*(<\/(html|HTML)>)$"
+        "type": "string",
+        "pattern": "^(<(html|HTML)>)(.|\n)*(</(html|HTML)>)$"
       }
     }
   }
