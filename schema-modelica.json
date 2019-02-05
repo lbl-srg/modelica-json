@@ -1,0 +1,151 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "schema-modelica.json",
+  "type": "array",
+  "title": "JSON parsed Modelica file",
+  "description": "Json representation of a Modelica model",
+  "definitions": {
+    "ModelicaBlock":{
+      "description": "Info of a modelica block: model, parameter, input or output",
+      "type": "array",
+      "items": {
+        "type":"object",
+        "required": ["className", "name"],
+        "properties": {
+          "className":{
+            "description": "Name of the class: no special characters or spaces",
+            "type":"string",
+            "pattern": "^([a-zA-Z0-9.*]*)$"
+          },
+          "name":{
+            "description": "Name of the block: no special characters or spaces",
+            "type":"string",
+            "pattern": "^([a-zA-Z0-9.*]*)$"
+          },
+          "comment":{
+            "description": "comment on the block: no special characters or spaces",
+            "type":"string"
+          },
+          "value":{
+            "description": "value of the block, if applicable",
+            "type":"string"
+          },
+          "annotation":{
+            "type" : "object",
+            "required": ["dialog"],
+            "properties":{
+              "dialog":{
+                "type": "object",
+                "properties":{
+                  "tab":{
+                    "type":"string",
+                    "examples": ["General"]
+                  },
+                  "group":{
+                    "type":"string",
+                    "examples": ["Parameters"]
+                  }
+                }
+              }
+            }
+          },
+          "modifications":{
+            "type":"array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "string"
+                },
+                "isFinal":{
+                  "type":"boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "items":{
+    "type":"object",
+    "required": [
+      "modelicaFile",
+      "topClassName"
+    ],
+    "properties": {
+      "modelicaFile": {
+        "decription": "Name of the Modelica file. Ends with '.mo'",
+        "type": "string",
+        "pattern": ".*.(mo|MO)"
+      },
+      "within": {
+        "description": "Within statement from the Modelica file : no special characters or spaces",
+        "type": "string",
+        "pattern": "^([a-zA-Z0-9.*]*)$"
+      },
+      "topClassName": {
+        "description": "Name of the top class of the Modelica model: no special characters or spaces ",
+        "type": "string",
+        "pattern": "^([a-zA-Z0-9.*]*)$"
+      },
+      "comment": {
+        "description": "Comment on the model",
+        "type" : "string"
+      },
+      "public": {
+        "type":"object",
+        "description" : "Public part of the modelica file",
+        "properties" : {
+          "parameters":{
+            "$ref": "#/definitions/ModelicaBlock"
+          },
+          "models": {
+            "$ref": "#/definitions/ModelicaBlock"
+          },
+          "inputs":{
+            "$ref": "#/definitions/ModelicaBlock"
+          },
+          "outputs": {
+            "$ref": "#/definitions/ModelicaBlock"
+          }
+        }
+      },
+      "protected": {
+        "type":"object",
+        "description": "Protected part of the modelica file",
+        "properties": {
+          "parameters":{
+            "$ref": "#/definitions/ModelicaBlock"
+          },
+          "models":{
+            "$ref": "#/definitions/ModelicaBlock"
+          }
+        }
+      },
+      "connections": {
+        "type":"array",
+        "items": {
+          "type":"array",
+          "items": {
+          "type": "object",
+          "required": ["instance"],
+          "properties": {
+            "instance": {
+              "type": "string"
+            },
+            "connector":{
+              "type":"string"
+            }
+          }
+         }
+        }
+      },
+      "info": {
+        "description": "Informations of the model must be in html format",
+        "type":"string",
+        "pattern": "^(<(html|HTML)>)(.|\n)*(<\/(html|HTML)>)$"
+      }
+    }
+  }
+}
