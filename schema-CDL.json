@@ -5,6 +5,475 @@
   "title": "JSON parsed Modelica file",
   "description": "Json representation of a Modelica model",
   "definitions": {
+    "rgbcolors": {
+      "type": "string",
+      "oneOf": [
+        {
+          "pattern": "^(rgb[(])[0-9]{1,3},[0-9]{1,3},[0-9]{1,3}[)]$"
+        },
+        {
+          "pattern": "^none$"
+        }
+      ]
+    },
+    "value": {
+      "type": "object",
+      "required": [
+        "value"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "prefix": {
+          "type": "string",
+          "pattern": "^([a-zA-Z0-9._*]*)$"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "color": {
+      "description": "RGB colors",
+      "type": "object",
+      "required": [
+        "r",
+        "g",
+        "b"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "r": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 255
+        },
+        "g": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 255
+        },
+        "b": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 255
+        }
+      }
+    },
+    "polygon": {
+      "type": "array",
+      "required": [
+        "lineColor",
+        "fillColor",
+        "fillPattern",
+        "points"
+      ],
+      "items": {
+        "type": "object",
+        "properties": {
+          "lineColor": {
+            "$ref": "#/definitions/color"
+          },
+          "fillColor": {
+            "$ref": "#/definitions/color"
+          },
+          "color":{
+            "$ref": "#/definitions/color"
+          },
+          "fillPattern": {
+            "type": "string",
+            "pattern": "^([a-zA-Z0-9._*]*)$"
+          },
+          "points": {
+            "$ref": "#/definitions/coordinates"
+          },
+          "extent": {
+            "$ref": "#/definitions/coordinates"
+          },
+          "visible": {
+            "type": "boolean"
+          },
+          "origin": {
+            "properties": {
+              "x1": {
+                "type": "number"
+              },
+              "x2": {
+                "type": "number"
+              }
+            }
+          },
+          "rotation": {
+            "type": "number"
+          },
+          "pattern": {
+            "type": "string",
+            "pattern": "^([a-zA-Z0-9._*]*)$"
+          },
+          "lineThickness": {
+            "type": "number",
+            "minimum": 0
+          },
+          "thickness":{
+            "type": "number",
+            "minimum": 0
+          },
+          "borderPattern": {
+            "type": "string",
+            "pattern": "^([a-zA-Z0-9._*]*)$"
+          }
+        }
+      }
+    },
+    "text": {
+      "type": "array",
+      "required": [
+        "lineColor",
+        "extent",
+        "textString"
+      ],
+      "items": {
+        "lineColor": {
+          "$ref": "#/definitions/color"
+        },
+        "extent": {
+          "$ref": "#/definitions/coordinates"
+        },
+        "textString": {
+          "type": "string"
+        }
+      }
+    },
+    "textElement": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "font",
+          "fontSize",
+          "xStart",
+          "yStart",
+          "fill",
+          "moreLines",
+          "tSpan"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "font": {
+            "type": "string",
+            "pattern": "[a-zA-Z]*",
+            "examples": [
+              "helvetica"
+            ]
+          },
+          "fontSize": {
+            "type": "number",
+            "minimum": 0
+          },
+          "xStart": {
+            "type": "number"
+          },
+          "yStart": {
+            "type": "number"
+          },
+          "fill": {
+            "$ref": "#/definitions/rgbcolors"
+          },
+          "moreLines": {
+            "type": "boolean"
+          },
+          "tSpan": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "xSpan": {
+                  "type": "number"
+                },
+                "dy": {
+                  "type": "number"
+                },
+                "textString": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "classElement": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "cx",
+          "cy",
+          "rx",
+          "ry",
+          "hasFill",
+          "fill",
+          "hasPattern",
+          "stroke",
+          "strokeDasharray",
+          "strokeWidth"
+        ],
+        "properties": {
+          "cx": {
+            "type": "number"
+          },
+          "cy": {
+            "type": "number"
+          },
+          "rx": {
+            "type": "number"
+          },
+          "ry": {
+            "type": "number"
+          },
+          "hasFill": {
+            "type": "boolean"
+          },
+          "fill": {
+            "$ref": "#/definitions/rgbcolors"
+          },
+          "hasPattern": {
+            "type": "boolean"
+          },
+          "stroke": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/rgbcolors"
+              },
+              {
+                "const": null
+              }
+            ]
+          },
+          "strokeDasharray": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "const": null
+              }
+            ]
+          },
+          "strokeWidth": {
+            "oneOf": [
+              {
+                "type": "number",
+                "minimum": 0
+              },
+              {
+                "const": null
+              }
+            ]
+          }
+        }
+      }
+    },
+    "coordinates": {
+      "description": "Coordinates on a 2d plan",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "x1",
+          "x2"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "x1": {
+            "type": "number"
+          },
+          "x2": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "polygons": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "fill",
+          "stroke",
+          "strokeWidth",
+          "strokeDasharray"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "points": {
+            "type": "string",
+            "pattern": "[0-9, ]*"
+          },
+          "hasFill": {
+            "type": "boolean"
+          },
+          "fill": {
+            "$ref": "#/definitions/rgbcolors"
+          },
+          "stroke": {
+            "$ref": "#/definitions/rgbcolors"
+          },
+          "strokeWidth": {
+            "type": "number",
+            "minimum": 0
+          },
+          "strokeDasharray": {
+            "type": "string",
+            "pattern": "[0-9, ]*"
+          },
+          "hasStroke": {
+            "type": "boolean"
+          },
+          "x": {
+            "type": "number",
+            "minimum": 0
+          },
+          "y": {
+            "type": "number",
+            "minimum": 0
+          },
+          "width": {
+            "type": "number",
+            "minimum": 0
+          },
+          "height": {
+            "type": "number",
+            "minimum": 0
+          },
+          "font": {
+            "type": "string",
+            "pattern": "[a-zA-Z]*",
+            "examples": [
+              "helvetica"
+            ]
+          }
+        }
+      }
+    },
+    "GraphicalBlock": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "drawing": {
+          "type": "string",
+          "pattern": "^(<(svg|SVG))(.|\n)*(</(svg|SVG)>)$"
+        },
+        "extent": {
+          "$ref": "#/definitions/coordinates"
+        },
+        "coordinate": {
+          "$ref": "#/definitions/coordinates"
+        },
+        "preserveAspectRatio": {
+          "type": "boolean"
+        },
+        "initialScale": {
+          "type": "number",
+          "minimum": 0
+        },
+        "items": {
+          "type": "object",
+          "required": [
+            "width",
+            "height"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "width": {
+              "type": "number",
+              "minimum": 0
+            },
+            "height": {
+              "type": "number",
+              "minimum": 0
+            },
+            "hasDots": {
+              "type": "boolean"
+            },
+            "layerPolygons": {
+              "$ref": "#/definitions/polygons"
+            },
+            "classPolygons": {
+              "$ref": "#/definitions/polygons"
+            },
+            "intPolygons": {
+              "$ref": "#/definitions/polygons"
+            },
+            "connectionPolylines": {
+              "$ref": "#/definitions/polygons"
+            },
+            "classRectangles": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/polygons"
+                },
+                {
+                  "required": [
+                    "x",
+                    "y",
+                    "hasStroke"
+                  ]
+                }
+              ]
+            },
+            "layerRectangles": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/polygons"
+                },
+                {
+                  "required": [
+                    "x",
+                    "y",
+                    "hasStroke"
+                  ]
+                }
+              ]
+            },
+            "layerPolylines": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/polygons"
+                },
+                {
+                  "required": [
+                    "x",
+                    "y",
+                    "hasStroke",
+                    "fill"
+                  ]
+                }
+              ]
+            },
+            "layerTexts": {
+              "$ref": "#/definitions/textElement"
+            },
+            "connectionLineDots": {
+              "$ref": "#/definitions/classElement"
+            },
+            "classEllipses": {
+              "$ref": "#/definitions/classElement"
+            },
+            "classPolylines": {
+              "$ref": "#/definitions/polygons"
+            },
+            "classTexts": {
+              "$ref": "#/definitions/textElement"
+            },
+            "layerEllipses":{
+              "$ref": "#/definitions/classElement"
+            }
+          }
+        }
+      }
+    },
     "ModelicaBlock": {
       "description": "Info of a modelica block: model, parameter, input or output",
       "type": "array",
@@ -14,9 +483,23 @@
           "className",
           "name"
         ],
+        "additionalProperties": false,
         "properties": {
           "className": {
             "description": "Name of the class: no special characters or spaces",
+            "type": "string",
+            "pattern": "^([a-zA-Z0-9._*]*)$"
+          },
+          "unit": {
+            "$ref": "#/definitions/value"
+          },
+          "max": {
+            "$ref": "#/definitions/value"
+          },
+          "min": {
+            "$ref": "#/definitions/value"
+          },
+          "basePrefix": {
             "type": "string",
             "pattern": "^([a-zA-Z0-9._*]*)$"
           },
@@ -29,6 +512,15 @@
             "description": "comment on the block: no special characters or spaces",
             "type": "string"
           },
+          "start":{
+            "type":"object",
+            "additionalProperties": false,
+            "properties": {
+              "value":{
+                "type":"string"
+              }
+            }
+          },
           "value": {
             "description": "value of the block, if applicable",
             "type": "string"
@@ -38,9 +530,11 @@
             "required": [
               "dialog"
             ],
+            "additionalProperties": false,
             "properties": {
               "dialog": {
                 "type": "object",
+                "additionalProperties": false,
                 "properties": {
                   "tab": {
                     "type": "string",
@@ -62,7 +556,11 @@
             "type": "array",
             "items": {
               "type": "object",
+              "additionalProperties": false,
               "properties": {
+                "name": {
+                  "type": "string"
+                },
                 "value": {
                   "type": "string"
                 },
@@ -74,129 +572,34 @@
           },
           "placement": {
             "type": "object",
+            "additionalProperties": false,
             "properties": {
               "transformation": {
-                "type": "object",
-                "properties": {
-                  "extent": {
-                    "$ref": "#/definitions/coordinates"
+                "allOf": [
+                  {
+                    "$ref": "#/definitions/GraphicalBlock"
+                  },
+                  {
+                    "required": [
+                      "extent"
+                    ]
                   }
-                }
+                ]
+              },
+              "iconTransformation": {
+                "allOf": [
+                  {
+                    "$ref": "#/definitions/GraphicalBlock"
+                  },
+                  {
+                    "required": [
+                      "extent"
+                    ]
+                  }
+                ]
               }
             }
           }
-        }
-      }
-    },
-    "coordinates": {
-      "description": "Coordinates on a 2d plan",
-      "type": "array",
-      "items": {
-        "type": "object",
-        "required": [
-          "x1",
-          "x2"
-        ],
-        "properties": {
-          "x1": {
-            "type": "number"
-          },
-          "x2": {
-            "type": "number"
-          }
-        }
-      }
-    },
-    "GraphicalBlock":{
-      "type":"object",
-      "properties": {
-        "extent": {
-          "$ref": "#/definitions/coordinates"
-        },
-        "coordinate":{
-          "$ref": "#/definitions/coordinates"
-        },
-        "preserveAspectRatio":{
-          "type": "boolean"
-        },
-        "initialScale":{
-          "type":"number",
-          "minimum": 0
-        },
-        "items":{
-          "type":"object",
-          "required": ["width","height"],
-          "properties": {
-            "width":{
-              "type":"number",
-              "minimum": 0
-            },
-            "height":{
-              "type":"number",
-              "minimum": 0
-            },
-            "hasDots":{
-              "type":"boolean"
-            },
-            "layerPolygons":{
-              "type":"array",
-              "items": {
-                "type":"object",
-                "required": ["points","hasFill","fill","stroke","strokeWidth","strokeDasharray"],
-                "properties": {
-                  "points":{
-                    "type":"string",
-                    "pattern": "[0-9, ]*"
-                  },
-                  "hasFill":{
-                    "type":"boolean"
-                  },
-                  "fill":{
-                    "type":"string"                  },
-                  "stroke":{
-                    "type":"string"                  },
-                  "strokeWidth": {
-                    "type":"number",
-                    "minimum": 0
-                  },
-                  "strokeDasharray":{
-                    "type":"string",
-                    "pattern": "[0-9, ]*"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "drawing":{
-          "type":"string",
-          "pattern": "^(<(svg|SVG))(.|\n)*(</(svg|SVG)>)$"
-        }
-      }
-    },
-    "color": {
-      "description": "RGB colors",
-      "type": "object",
-      "required": [
-        "r",
-        "g",
-        "b"
-      ],
-      "properties": {
-        "r": {
-          "type": "number",
-          "minimum": 0,
-          "maximum": 255
-        },
-        "g": {
-          "type": "number",
-          "minimum": 0,
-          "maximum": 255
-        },
-        "b": {
-          "type": "number",
-          "minimum": 0,
-          "maximum": 255
         }
       }
     }
@@ -207,9 +610,9 @@
       "modelicaFile",
       "topClassName",
       "icon",
-      "svg",
-      "diagram"
+      "svg"
     ],
+    "additionalProperties": false,
     "properties": {
       "modelicaFile": {
         "decription": "Name of the Modelica file. Ends with '.mo'",
@@ -233,6 +636,7 @@
       "public": {
         "type": "object",
         "description": "Public part of the modelica file",
+        "additionalProperties": false,
         "properties": {
           "parameters": {
             "$ref": "#/definitions/ModelicaBlock"
@@ -241,16 +645,35 @@
             "$ref": "#/definitions/ModelicaBlock"
           },
           "inputs": {
-            "$ref": "#/definitions/ModelicaBlock"
+            "allOf": [
+              {
+                "$ref": "#/definitions/ModelicaBlock"
+              },
+              {
+                "className": {
+                  "pattern": "Buildings.Controls.OBC.CDL.Interfaces.RealInput"
+                }
+              }
+            ]
           },
           "outputs": {
-            "$ref": "#/definitions/ModelicaBlock"
+            "allOf": [
+              {
+                "$ref": "#/definitions/ModelicaBlock"
+              },
+              {
+                "className": {
+                  "pattern": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput"
+                }
+              }
+            ]
           }
         }
       },
       "protected": {
         "type": "object",
         "description": "Protected part of the modelica file",
+        "additionalProperties": false,
         "properties": {
           "parameters": {
             "$ref": "#/definitions/ModelicaBlock"
@@ -266,6 +689,7 @@
           "type": "array",
           "items": {
             "type": "object",
+            "additionalProperties": false,
             "properties": {
               "instance": {
                 "type": "string"
@@ -278,6 +702,14 @@
               },
               "color": {
                 "$ref": "#/definitions/color"
+              },
+              "pattern": {
+                "type": "string",
+                "pattern": "^([a-zA-Z0-9._*]*)$"
+              },
+              "thickness": {
+                "type": "number",
+                "minimum": 0
               }
             }
           }
@@ -289,42 +721,176 @@
         "pattern": "^(<(html|HTML)>)(.|\n)*(</(html|HTML)>)$"
       },
       "icon": {
-        "type":"object",
-        "required": ["coordinateSystem"],
+        "type": "object",
+        "required": [
+          "coordinateSystem"
+        ],
+        "additionalProperties": false,
         "properties": {
-          "coordinateSystem":{
+          "coordinateSystem": {
             "allOf": [
-              {"$ref": "#/definitions/GraphicalBlock"},
-              {"required": ["extent", "preserveAspectRatio"]}
+              {
+                "$ref": "#/definitions/GraphicalBlock"
+              },
+              {
+                "required": [
+                  "extent",
+                  "preserveAspectRatio"
+                ]
+              }
             ]
+          },
+          "graphics": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "polygon": {
+                "$ref": "#/definitions/polygon"
+              },
+              "text": {
+                "$ref": "#/definitions/text"
+              },
+              "line": {
+                "allOf": [
+                  {
+                    "$ref": "#/definitions/polygon"
+                  },
+                  {
+                    "required": [
+                      "points",
+                      "color",
+                      "visible",
+                      "origin",
+                      "rotation",
+                      "pattern",
+                      "thickness"
+                    ]
+                  }
+                ]
+              },
+              "rectangle": {
+                "allOf": [
+                  {
+                    "$ref": "#/definitions/polygon"
+                  },
+                  {
+                    "required": [
+                      "origin",
+                      "visible",
+                      "lineColor",
+                      "fillColor",
+                      "fillPattern",
+                      "extent"
+                    ]
+                  }
+                ]
+              },
+              "ellipse":{
+                "allOf": [
+                  {
+                    "$ref": "#/definitions/polygon"
+                  },
+                  {
+                    "required": [
+                      "origin",
+                      "visible",
+                      "lineColor",
+                      "fillColor",
+                      "fillPattern",
+                      "extent",
+                      "pattern"
+                    ]
+                  }
+                ]
+              }
+            }
           }
         }
       },
       "svg": {
-        "type":"object",
+        "type": "object",
+        "additionalProperties": false,
         "properties": {
-          "icon":{
+          "icon": {
             "allOf": [
-              {"$ref": "#/definitions/GraphicalBlock"},
-              {"required": ["items", "initialScale", "preserveAspectRatio","drawing"]}
+              {
+                "$ref": "#/definitions/GraphicalBlock"
+              },
+              {
+                "required": [
+                  "items",
+                  "initialScale",
+                  "preserveAspectRatio",
+                  "drawing"
+                ]
+              }
             ]
           },
-          "diagram":{
+          "diagram": {
             "allOf": [
-              {"$ref": "#/definitions/GraphicalBlock"},
-              {"required": ["items", "preserveAspectRatio","drawing"]}
+              {
+                "$ref": "#/definitions/GraphicalBlock"
+              },
+              {
+                "required": [
+                  "items",
+                  "preserveAspectRatio",
+                  "drawing"
+                ]
+              }
             ]
           }
         }
       },
-      "diagram":{
-        "type":"object",
+      "diagram": {
+        "type": "object",
+        "additionalProperties": false,
         "properties": {
-          "coordinateSystem":{
+          "coordinateSystem": {
             "allOf": [
-              {"$ref": "#/definitions/GraphicalBlock"},
-              {"required": ["extent", "preserveAspectRatio"]}
+              {
+                "$ref": "#/definitions/GraphicalBlock"
+              },
+              {
+                "required": [
+                  "extent",
+                  "preserveAspectRatio"
+                ]
+              }
             ]
+          },
+          "graphics": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "polygon": {
+                "$ref": "#/definitions/polygon"
+              },
+              "text": {
+                "$ref": "#/definitions/text"
+              },
+              "rectangle": {
+                "allOf": [
+                  {
+                    "$ref": "#/definitions/polygon"
+                  },
+                  {
+                    "required": [
+                      "rotation",
+                      "pattern",
+                      "lineThickness",
+                      "borderPattern",
+                      "origin",
+                      "visible",
+                      "lineColor",
+                      "fillColor",
+                      "fillPattern",
+                      "extent"
+                    ]
+                  }
+                ]
+              }
+            }
           }
         }
       }
