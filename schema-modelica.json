@@ -5,9 +5,200 @@
   "title": "JSON parsed Modelica file",
   "description": "Json representation of a Modelica model",
   "definitions": {
+    "coordinates": {
+      "description": "Coordinates on a 2d plan",
+      "type": "array",
+      "additionalItems": false,
+      "items": {
+        "type": "object",
+        "required": [
+          "x1",
+          "x2"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "x1": {
+            "type": "number"
+          },
+          "x2": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "color": {
+      "description": "RGB colors",
+      "type": "object",
+      "required": [
+        "r",
+        "g",
+        "b"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "r": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 255
+        },
+        "g": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 255
+        },
+        "b": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 255
+        }
+      }
+    },
+    "value": {
+      "type": "object",
+      "required": [
+        "value"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "prefix": {
+          "type": "string",
+          "pattern": "^([a-zA-Z0-9._*]*)$"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "graphicalElement": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "color": {
+            "$ref": "#/definitions/color"
+          },
+          "points": {
+            "$ref": "#/definitions/coordinates"
+          },
+          "pattern": {
+            "type": "string",
+            "pattern": "^([a-zA-Z0-9._*]*)$"
+          },
+          "thickness": {
+            "type": "number",
+            "minimum": 0
+          },
+          "lineColor": {
+            "$ref": "#/definitions/color"
+          },
+          "fillColor": {
+            "$ref": "#/definitions/color"
+          },
+          "fillPattern": {
+            "type": "string",
+            "pattern": "^([a-zA-Z0-9._*]*)$"
+          },
+          "extent": {
+            "$ref": "#/definitions/coordinates"
+          },
+          "textString": {
+            "type": "string"
+          },
+          "preserveAspectRatio": {
+            "type": "boolean"
+          },
+          "fontSize": {
+            "type": "number",
+            "minimum": 0
+          },
+          "horizontalAlignment": {
+            "type": "string",
+            "pattern": "^([a-zA-Z0-9._*]*)$"
+          }
+        }
+      }
+    },
+    "GraphicalBlock": {
+      "type": "object",
+      "required": [
+        "graphics"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "graphics": {
+          "type": "object",
+          "required": [
+            "rectangle"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "line": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/graphicalElement"
+                },
+                {
+                  "required": [
+                    "points",
+                    "color",
+                    "pattern",
+                    "thickness"
+                  ]
+                }
+              ]
+            },
+            "rectangle": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/graphicalElement"
+                },
+                {
+                  "required": [
+                    "lineColor",
+                    "fillColor",
+                    "fillPattern",
+                    "extent"
+                  ]
+                }
+              ]
+            },
+            "text": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/graphicalElement"
+                },
+                {
+                  "required": [
+                    "lineColor",
+                    "textString",
+                    "extent",
+                    "fontSize",
+                    "horizontalAlignment"
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        "coordinateSystem": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "extent": {
+              "$ref": "#/definitions/graphicalElement/items/properties/extent"
+            },
+            "preserveAspectRatio": {
+              "$ref": "#/definitions/graphicalElement/items/properties/preserveAspectRatio"
+            }
+          }
+        }
+      }
+    },
     "ModelicaBlock": {
       "description": "Info of a modelica block: model, parameter, input or output",
       "type": "array",
+      "additionalItems": false,
       "items": {
         "type": "object",
         "required": [
@@ -15,6 +206,15 @@
         ],
         "additionalProperties": false,
         "properties": {
+          "unit": {
+            "$ref": "#/definitions/value"
+          },
+          "max": {
+            "$ref": "#/definitions/value"
+          },
+          "min": {
+            "$ref": "#/definitions/value"
+          },
           "prefix": {
             "type": "string"
           },
@@ -68,21 +268,23 @@
               {
                 "type": "object",
                 "additionalProperties": false,
-                  "properties": {
-                    "value": {
-                      "type": "string"
-                    },
-                    "isFinal": {
-                      "type": "boolean"
-                    },
-                    "name": {
-                      "type": "string"
-                    }
+                "properties": {
+                  "value": {
+                    "type": "string"
+                  },
+                  "isFinal": {
+                    "type": "boolean"
+                  },
+                  "name": {
+                    "type": "string"
                   }
-                },
+                }
+              },
               {
                 "properties": {
-                  "modifications":{"$ref": "#/definitions/ModelicaBlock"}
+                  "modifications": {
+                    "$ref": "#/definitions/ModelicaBlock"
+                  }
                 }
               }
             ]
@@ -96,7 +298,7 @@
                 "additionalProperties": false,
                 "properties": {
                   "extent": {
-                    "$ref": "#/definitions/coordinates"
+                    "$ref": "#/definitions/graphicalElement/items/properties/extent"
                   }
                 }
               },
@@ -105,7 +307,7 @@
                 "additionalProperties": false,
                 "properties": {
                   "extent": {
-                    "$ref": "#/definitions/coordinates"
+                    "$ref": "#/definitions/graphicalElement/items/properties/extent"
                   }
                 }
               }
@@ -113,55 +315,9 @@
           }
         }
       }
-    },
-    "coordinates": {
-      "description": "Coordinates on a 2d plan",
-      "type": "array",
-      "items": {
-        "type": "object",
-        "required": [
-          "x1",
-          "x2"
-        ],
-        "additionalProperties": false,
-        "properties": {
-          "x1": {
-            "type": "number"
-          },
-          "x2": {
-            "type": "number"
-          }
-        }
-      }
-    },
-    "color": {
-      "description": "RGB colors",
-      "type": "object",
-      "required": [
-        "r",
-        "g",
-        "b"
-      ],
-      "additionalProperties": false,
-      "properties": {
-        "r": {
-          "type": "number",
-          "minimum": 0,
-          "maximum": 255
-        },
-        "g": {
-          "type": "number",
-          "minimum": 0,
-          "maximum": 255
-        },
-        "b": {
-          "type": "number",
-          "minimum": 0,
-          "maximum": 255
-        }
-      }
     }
   },
+  "additionalItems": false,
   "items": {
     "type": "object",
     "required": [
@@ -223,8 +379,10 @@
       },
       "connections": {
         "type": "array",
+        "additionalItems": false,
         "items": {
           "type": "array",
+          "additionalItems": false,
           "items": {
             "type": "object",
             "additionalProperties": false,
@@ -252,6 +410,12 @@
       },
       "extends": {
         "$ref": "#/definitions/ModelicaBlock"
+      },
+      "icon": {
+        "$ref": "#/definitions/GraphicalBlock"
+      },
+      "diagram": {
+        "$ref": "#/definitions/GraphicalBlock"
       }
     }
   }
