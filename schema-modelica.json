@@ -238,9 +238,6 @@
           },
           "annotation": {
             "type": "object",
-            "required": [
-              "dialog"
-            ],
             "additionalProperties": false,
             "properties": {
               "dialog": {
@@ -258,6 +255,30 @@
                     "examples": [
                       "Parameters"
                     ]
+                  }
+                }
+              },
+              "__cdl":{
+                "type":"object",
+                "additionalProperties": false,
+                "properties":{
+                  "haystack":{
+                    "type":"object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "dis":{
+                        "type":"string"
+                      },
+                      "area":{
+                        "type":"string"
+                      }
+                    }
+                  },
+                  "brick":{
+                    "type":"string"
+                  },
+                  "point":{
+                    "type":"string"
                   }
                 }
               }
@@ -416,6 +437,9 @@
       },
       "diagram": {
         "$ref": "#/definitions/GraphicalBlock"
+      },
+      "vendorAnnotation":{
+        "$ref": "#/definitions/ModelicaBlock/items/properties/annotation"
       }
     }
   }
