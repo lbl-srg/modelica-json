@@ -31,7 +31,7 @@ parser.addArgument(
 parser.addArgument(
   [ '-m', '--mode' ],
   {
-    help: "Parsing mode, single CDL model or buildings modelica library package, 'cdl' is the default.",
+    help: "Parsing mode, CDL model or a package of the Modelica Buildings library, 'cdl' is the default.",
     choices: ['cdl', 'modelica'],
     defaultValue: 'cdl'
   }
