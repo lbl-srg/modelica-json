@@ -63,10 +63,10 @@ clean-installation: clean-node-packages clean-maven
 run:
 	node app.js \
 	--log warn \
-	-f ~/GitFolder/modelica-buildings/Buildings/Controls/OBC/ASHRAE/G36_PR1/AHUs/MultiZone/VAV/Economizers/Subsequences/Modulation.mo \
+	-f Buildings/Controls/OBC/ASHRAE/G36_PR1/AHUs/MultiZone/VAV/Economizers/Subsequences/Modulation.mo \
 	-o html
 
 ibpsa-library:
 	node app.js \
 	-o json \
-	-f ~/proj/ldrd/bie/modeling/github/ibpsa/modelica-ibpsa/IBPSA/Fluid/FixedResistances/HydraulicDiameter.mo
+	-f IBPSA/Fluid/FixedResistances/HydraulicDiameter.mo
