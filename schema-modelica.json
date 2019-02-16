@@ -8,7 +8,7 @@
     "coordinates": {
       "description": "Coordinates on a 2d plan",
       "type": "array",
-      "additionalItems": false,
+      "additionalItems": true,
       "items": {
         "type": "object",
         "required": [
@@ -73,7 +73,7 @@
       "type": "array",
       "items": {
         "type": "object",
-        "additionalProperties": false,
+        "additionalProperties": true,
         "properties": {
           "color": {
             "$ref": "#/definitions/color"
@@ -121,17 +121,11 @@
     },
     "GraphicalBlock": {
       "type": "object",
-      "required": [
-        "graphics"
-      ],
-      "additionalProperties": false,
+      "additionalProperties": true,
       "properties": {
         "graphics": {
           "type": "object",
-          "required": [
-            "rectangle"
-          ],
-          "additionalProperties": false,
+          "additionalProperties": true,
           "properties": {
             "line": {
               "allOf": [
@@ -183,7 +177,7 @@
         },
         "coordinateSystem": {
           "type": "object",
-          "additionalProperties": false,
+          "additionalProperties": true,
           "properties": {
             "extent": {
               "$ref": "#/definitions/graphicalElement/items/properties/extent"
@@ -198,13 +192,13 @@
     "ModelicaBlock": {
       "description": "Info of a modelica block: model, parameter, input or output",
       "type": "array",
-      "additionalItems": false,
+      "additionalItems": true,
       "items": {
         "type": "object",
         "required": [
           "className"
         ],
-        "additionalProperties": false,
+        "additionalProperties": true,
         "properties": {
           "unit": {
             "$ref": "#/definitions/value"
@@ -238,7 +232,7 @@
           },
           "annotation": {
             "type": "object",
-            "additionalProperties": false,
+            "additionalProperties": true,
             "properties": {
               "dialog": {
                 "type": "object",
@@ -288,7 +282,7 @@
             "oneOf": [
               {
                 "type": "object",
-                "additionalProperties": false,
+                "additionalProperties": true,
                 "properties": {
                   "value": {
                     "type": "string"
@@ -345,7 +339,7 @@
       "modelicaFile",
       "topClassName"
     ],
-    "additionalProperties": false,
+    "additionalProperties": true,
     "properties": {
       "modelicaFile": {
         "decription": "Name of the Modelica file. Ends with '.mo'",
@@ -400,13 +394,13 @@
       },
       "connections": {
         "type": "array",
-        "additionalItems": false,
+        "additionalItems": true,
         "items": {
           "type": "array",
-          "additionalItems": false,
+          "additionalItems": true,
           "items": {
             "type": "object",
-            "additionalProperties": false,
+            "additionalProperties": true,
             "properties": {
               "instance": {
                 "type": "string"
