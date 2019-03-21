@@ -74,7 +74,7 @@
       "properties": {
         "prefix": {
           "type": "string",
-          "pattern": "^([a-zA-Z0-9._*]*)$"
+          "pattern": "^([a-zA-Z0-9._ *]*)$"
         },
         "value": {
           "type": "string"
@@ -242,6 +242,9 @@
           },
           "endAngle": {
             "type": "number"
+          },
+          "radius": {
+            "type": "number"
           }
         }
       }
@@ -281,7 +284,14 @@
             "type": "boolean"
           },
           "fill": {
-            "$ref": "#/definitions/rgbcolors"
+            "oneOf": [
+              {
+                "$ref": "#/definitions/rgbcolors"
+              },
+              {
+                "const": null
+              }
+            ]
           },
           "hasPattern": {
             "type": "boolean"
@@ -328,8 +338,7 @@
         "required": [
           "fill",
           "stroke",
-          "strokeWidth",
-          "strokeDasharray"
+          "strokeWidth"
         ],
         "additionalProperties": false,
         "properties": {
@@ -341,7 +350,14 @@
             "type": "boolean"
           },
           "fill": {
-            "$ref": "#/definitions/rgbcolors"
+            "oneOf": [
+              {
+                "$ref": "#/definitions/rgbcolors"
+              },
+              {
+                "const": null
+              }
+            ]
           },
           "stroke": {
             "$ref": "#/definitions/rgbcolors"
@@ -478,6 +494,31 @@
                   ]
                 }
               ]
+            },
+            "bitmap": {
+              "type": "array",
+              "additionalItems": false,
+              "items": {
+                "type": "object",
+                "properties": {
+                  "extent": {
+                    "$ref": "#/definitions/graphicalElement/items/properties/extent"
+                  },
+                  "fileName": {
+                    "type": "string",
+                    "pattern": "^([a-zA-Z0-9._ \"\\:/]*)$"
+                  },
+                  "rotation": {
+                    "$ref": "#/definitions/graphicalElement/items/properties/rotation"
+                  },
+                  "origin": {
+                    "$ref": "#/definitions/graphicalElement/items/properties/origin"
+                  },
+                  "visible": {
+                    "type": "boolean"
+                  }
+                }
+              }
             }
           }
         },
@@ -687,6 +728,14 @@
                     "examples": [
                       "Parameters"
                     ]
+                  },
+                  "enable": {
+                    "type": "string",
+                    "pattern": "^([(\n)a-zA-Z0-9._ =\\*]*)$"
+                  },
+                  "connectorSizing": {
+                    "type": "string",
+                    "pattern": "^([a-z*]*)$"
                   }
                 }
               },
@@ -749,22 +798,58 @@
               "transformation": {
                 "type": "object",
                 "additionalProperties": false,
+                "required": [
+                  "extent"
+                ],
                 "properties": {
                   "extent": {
                     "$ref": "#/definitions/graphicalElement/items/properties/extent"
+                  },
+                  "rotation": {
+                    "$ref": "#/definitions/graphicalElement/items/properties/rotation"
+                  },
+                  "origin": {
+                    "$ref": "#/definitions/graphicalElement/items/properties/origin"
                   }
                 }
               },
               "iconTransformation": {
                 "type": "object",
                 "additionalProperties": false,
+                "required": [
+                  "extent"
+                ],
                 "properties": {
                   "extent": {
                     "$ref": "#/definitions/graphicalElement/items/properties/extent"
+                  },
+                  "rotation": {
+                    "$ref": "#/definitions/graphicalElement/items/properties/rotation"
+                  },
+                  "origin": {
+                    "$ref": "#/definitions/graphicalElement/items/properties/origin"
                   }
                 }
+              },
+              "visible": {
+                "type": "boolean"
               }
             }
+          },
+          "displayUnit": {
+            "allOf": [
+              {
+                "$ref": "#/definitions/value"
+              },
+              {
+                "value": {
+                  "pattern": "^(\\\")[a-zA-Z0-9._*]*(\\\")$"
+                }
+              }
+            ]
+          },
+          "quantity": {
+            "$ref": "#/definitions/value"
           }
         }
       }
@@ -818,7 +903,7 @@
               },
               {
                 "className": {
-                  "pattern": "Buildings.Controls.OBC.CDL.Interfaces.RealInput"
+                  "pattern": "Buildings.Controls.OBC.CDL.Interfaces.(Boolean|DayType|Integer|Real)Input"
                 }
               }
             ]
@@ -830,7 +915,7 @@
               },
               {
                 "className": {
-                  "pattern": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput"
+                  "pattern": "Buildings.Controls.OBC.CDL.Interfaces.(Boolean|DayType|Integer|Real)Input"
                 }
               }
             ]
@@ -847,6 +932,18 @@
           },
           "models": {
             "$ref": "#/definitions/ModelicaBlock"
+          },
+          "inputs": {
+            "allOf": [
+              {
+                "$ref": "#/definitions/ModelicaBlock"
+              },
+              {
+                "className": {
+                  "pattern": "Buildings.Controls.OBC.CDL.Interfaces.(Boolean|DayType|Integer|Real)Input"
+                }
+              }
+            ]
           }
         }
       },
@@ -879,6 +976,10 @@
               "thickness": {
                 "type": "number",
                 "minimum": 0
+              },
+              "portLinkTarget": {
+                "type": "string",
+                "pattern": "^([a-zA-Z0-9._[]*]*)$"
               }
             }
           }
@@ -902,16 +1003,7 @@
         ]
       },
       "diagram": {
-        "allOf": [
-          {
-            "$ref": "#/definitions/GraphicalBlock"
-          },
-          {
-            "required": [
-              "coordinateSystem"
-            ]
-          }
-        ]
+        "$ref": "#/definitions/GraphicalBlock"
       },
       "vendorAnnotation": {
         "$ref": "#/definitions/ModelicaBlock/items/properties/annotation"
