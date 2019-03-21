@@ -256,8 +256,6 @@
         "type": "object",
         "additionalProperties": false,
         "required": [
-          "cx",
-          "cy",
           "rx",
           "ry",
           "hasFill",
@@ -762,6 +760,15 @@
                     "type": "string"
                   }
                 }
+              },
+              "__Dymola_Commands": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "pattern": "^([a-zA-Z0-9._ \"\\:/]*)$"
+                  }
+                }
               }
             }
           },
@@ -979,7 +986,7 @@
               },
               "portLinkTarget": {
                 "type": "string",
-                "pattern": "^([a-zA-Z0-9._[]*]*)$"
+                "pattern": "^([a-zA-Z0-9. _[]*]*)$"
               }
             }
           }
