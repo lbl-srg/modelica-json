@@ -372,12 +372,10 @@
             "type": "boolean"
           },
           "x": {
-            "type": "number",
-            "minimum": 0
+            "type": "number"
           },
           "y": {
-            "type": "number",
-            "minimum": 0
+            "type": "number"
           },
           "width": {
             "type": "number",
@@ -993,9 +991,16 @@
         }
       },
       "info": {
-        "description": "Informations of the model must be in html format",
-        "type": "string",
-        "pattern": "^(<(html|HTML)>)(.|\n)*(</(html|HTML)>)$"
+        "oneOf": [
+          {
+            "description": "Informations of the model must be in html format",
+            "type": "string",
+            "pattern": "^(<(html|HTML)>)(.|\n)*(</(html|HTML)>)$"
+          },
+          {
+            "const": ""
+          }
+        ]
       },
       "icon": {
         "allOf": [
