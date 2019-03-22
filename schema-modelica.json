@@ -27,6 +27,17 @@
         }
       }
     },
+    "rgbcolors": {
+      "type": "string",
+      "oneOf": [
+        {
+          "pattern": "^(rgb[(])[0-9]{1,3},[0-9]{1,3},[0-9]{1,3}[)]$"
+        },
+        {
+          "pattern": "^none$"
+        }
+      ]
+    },
     "color": {
       "description": "RGB colors",
       "type": "object",
@@ -63,15 +74,83 @@
       "properties": {
         "prefix": {
           "type": "string",
-          "pattern": "^([a-zA-Z0-9._*]*)$"
+          "pattern": "^([a-zA-Z0-9._ *]*)$"
         },
         "value": {
           "type": "string"
         }
       }
     },
+    "textElement": {
+      "type": "array",
+      "additionalItems": true,
+      "items": {
+        "type": "object",
+        "required": [
+          "font",
+          "fontSize",
+          "xStart",
+          "yStart",
+          "fill",
+          "moreLines",
+          "tSpan"
+        ],
+        "additionalProperties": true,
+        "properties": {
+          "font": {
+            "type": "string",
+            "pattern": "[a-zA-Z]*",
+            "examples": [
+              "helvetica"
+            ]
+          },
+          "fontSize": {
+            "type": "number",
+            "minimum": 0
+          },
+          "xStart": {
+            "type": "number"
+          },
+          "yStart": {
+            "type": "number"
+          },
+          "fill": {
+            "$ref": "#/definitions/rgbcolors"
+          },
+          "moreLines": {
+            "type": "boolean"
+          },
+          "tSpan": {
+            "type": "array",
+            "additionalItems": true,
+            "items": {
+              "type": "object",
+              "additionalProperties": true,
+              "properties": {
+                "xSpan": {
+                  "type": "number"
+                },
+                "dy": {
+                  "type": "number"
+                },
+                "textString": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "graphicalElement": {
       "type": "array",
+      "additionalItems": true,
+      "required": [
+        "lineColor",
+        "fillColor",
+        "fillPattern",
+        "points"
+      ],
       "items": {
         "type": "object",
         "additionalProperties": true,
@@ -116,6 +195,202 @@
           "horizontalAlignment": {
             "type": "string",
             "pattern": "^([a-zA-Z0-9._*]*)$"
+          },
+          "visible": {
+            "type": "boolean"
+          },
+          "origin": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "x1": {
+                "type": "number"
+              },
+              "x2": {
+                "type": "number"
+              }
+            }
+          },
+          "rotation": {
+            "type": "number"
+          },
+          "lineThickness": {
+            "type": "number",
+            "minimum": 0
+          },
+          "borderPattern": {
+            "type": "string",
+            "pattern": "^([a-zA-Z0-9._*]*)$"
+          },
+          "fontName": {
+            "type": "string",
+            "pattern": "[a-zA-Z]*",
+            "examples": [
+              "helvetica",
+              "Arial"
+            ]
+          },
+          "textColor": {
+            "$ref": "#/definitions/color"
+          },
+          "smooth": {
+            "type": "string",
+            "pattern": "^([a-zA-Z0-9._*]*)$"
+          },
+          "startAngle": {
+            "type": "number"
+          },
+          "endAngle": {
+            "type": "number"
+          },
+          "radius": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "classElement": {
+      "type": "array",
+      "additionalItems": false,
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": [
+          "rx",
+          "ry",
+          "hasFill",
+          "fill",
+          "hasPattern",
+          "stroke",
+          "strokeDasharray",
+          "strokeWidth"
+        ],
+        "properties": {
+          "cx": {
+            "type": "number"
+          },
+          "cy": {
+            "type": "number"
+          },
+          "rx": {
+            "type": "number"
+          },
+          "ry": {
+            "type": "number"
+          },
+          "hasFill": {
+            "type": "boolean"
+          },
+          "fill": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/rgbcolors"
+              },
+              {
+                "const": null
+              }
+            ]
+          },
+          "hasPattern": {
+            "type": "boolean"
+          },
+          "stroke": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/rgbcolors"
+              },
+              {
+                "const": null
+              }
+            ]
+          },
+          "strokeDasharray": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "const": null
+              }
+            ]
+          },
+          "strokeWidth": {
+            "oneOf": [
+              {
+                "type": "number",
+                "minimum": 0
+              },
+              {
+                "const": null
+              }
+            ]
+          }
+        }
+      }
+    },
+    "polygons": {
+      "type": "array",
+      "additionalItems": false,
+      "items": {
+        "type": "object",
+        "required": [
+          "fill",
+          "stroke",
+          "strokeWidth"
+        ],
+        "additionalProperties": true,
+        "properties": {
+          "points": {
+            "type": "string",
+            "pattern": "[0-9, ]*"
+          },
+          "hasFill": {
+            "type": "boolean"
+          },
+          "fill": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/rgbcolors"
+              },
+              {
+                "const": null
+              }
+            ]
+          },
+          "stroke": {
+            "$ref": "#/definitions/rgbcolors"
+          },
+          "strokeWidth": {
+            "type": "number",
+            "minimum": 0
+          },
+          "strokeDasharray": {
+            "type": "string",
+            "pattern": "[0-9, ]*"
+          },
+          "hasStroke": {
+            "type": "boolean"
+          },
+          "x": {
+            "type": "number"
+          },
+          "y": {
+            "type": "number"
+          },
+          "width": {
+            "type": "number",
+            "minimum": 0
+          },
+          "height": {
+            "type": "number",
+            "minimum": 0
+          },
+          "font": {
+            "type": "string",
+            "pattern": "[a-zA-Z]*",
+            "examples": [
+              "helvetica"
+            ]
           }
         }
       }
@@ -128,6 +403,21 @@
           "type": "object",
           "additionalProperties": true,
           "properties": {
+            "polygon": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/graphicalElement"
+                },
+                {
+                  "required": [
+                    "lineColor",
+                    "fillColor",
+                    "fillPattern",
+                    "points"
+                  ]
+                }
+              ]
+            },
             "line": {
               "allOf": [
                 {
@@ -173,6 +463,49 @@
                   ]
                 }
               ]
+            },
+            "ellipse": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/graphicalElement"
+                },
+                {
+                  "required": [
+                    "origin",
+                    "visible",
+                    "lineColor",
+                    "fillColor",
+                    "fillPattern",
+                    "extent",
+                    "pattern"
+                  ]
+                }
+              ]
+            },
+            "bitmap": {
+              "type": "array",
+              "additionalItems": true,
+              "items": {
+                "type": "object",
+                "properties": {
+                  "extent": {
+                    "$ref": "#/definitions/graphicalElement/items/properties/extent"
+                  },
+                  "fileName": {
+                    "type": "string",
+                    "pattern": "^([a-zA-Z0-9._ \"\\:/]*)$"
+                  },
+                  "rotation": {
+                    "$ref": "#/definitions/graphicalElement/items/properties/rotation"
+                  },
+                  "origin": {
+                    "$ref": "#/definitions/graphicalElement/items/properties/origin"
+                  },
+                  "visible": {
+                    "type": "boolean"
+                  }
+                }
+              }
             }
           }
         },
@@ -185,6 +518,121 @@
             },
             "preserveAspectRatio": {
               "$ref": "#/definitions/graphicalElement/items/properties/preserveAspectRatio"
+            },
+            "initialScale": {
+              "type": "number",
+              "minimum": 0
+            }
+          }
+        },
+        "drawing": {
+          "type": "string",
+          "pattern": "^(<(svg|SVG))(.|\n)*(</(svg|SVG)>)$"
+        },
+        "extent": {
+          "$ref": "#/definitions/coordinates"
+        },
+        "coordinate": {
+          "$ref": "#/definitions/coordinates"
+        },
+        "preserveAspectRatio": {
+          "type": "boolean"
+        },
+        "initialScale": {
+          "type": "number",
+          "minimum": 0
+        },
+        "items": {
+          "type": "object",
+          "required": [
+            "width",
+            "height"
+          ],
+          "additionalProperties": true,
+          "properties": {
+            "width": {
+              "type": "number",
+              "minimum": 0
+            },
+            "height": {
+              "type": "number",
+              "minimum": 0
+            },
+            "hasDots": {
+              "type": "boolean"
+            },
+            "layerPolygons": {
+              "$ref": "#/definitions/polygons"
+            },
+            "classPolygons": {
+              "$ref": "#/definitions/polygons"
+            },
+            "intPolygons": {
+              "$ref": "#/definitions/polygons"
+            },
+            "connectionPolylines": {
+              "$ref": "#/definitions/polygons"
+            },
+            "classRectangles": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/polygons"
+                },
+                {
+                  "required": [
+                    "x",
+                    "y",
+                    "hasStroke"
+                  ]
+                }
+              ]
+            },
+            "layerRectangles": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/polygons"
+                },
+                {
+                  "required": [
+                    "x",
+                    "y",
+                    "hasStroke"
+                  ]
+                }
+              ]
+            },
+            "layerPolylines": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/polygons"
+                },
+                {
+                  "required": [
+                    "x",
+                    "y",
+                    "hasStroke",
+                    "fill"
+                  ]
+                }
+              ]
+            },
+            "layerTexts": {
+              "$ref": "#/definitions/textElement"
+            },
+            "connectionLineDots": {
+              "$ref": "#/definitions/classElement"
+            },
+            "classEllipses": {
+              "$ref": "#/definitions/classElement"
+            },
+            "classPolylines": {
+              "$ref": "#/definitions/polygons"
+            },
+            "classTexts": {
+              "$ref": "#/definitions/textElement"
+            },
+            "layerEllipses": {
+              "$ref": "#/definitions/classElement"
             }
           }
         }
@@ -201,6 +649,19 @@
         ],
         "additionalProperties": true,
         "properties": {
+          "start": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+              "value": {
+                "type": "string"
+              }
+            }
+          },
+          "basePrefix": {
+            "type": "string",
+            "pattern": "^([a-zA-Z0-9._*]*)$"
+          },
           "unit": {
             "$ref": "#/definitions/value"
           },
@@ -237,7 +698,7 @@
             "properties": {
               "dialog": {
                 "type": "object",
-                "additionalProperties": false,
+                "additionalProperties": true,
                 "properties": {
                   "tab": {
                     "type": "string",
@@ -250,30 +711,47 @@
                     "examples": [
                       "Parameters"
                     ]
+                  },
+                  "enable": {
+                    "type": "string",
+                    "pattern": "^([(\n)a-zA-Z0-9._ =\\*]*)$"
+                  },
+                  "connectorSizing": {
+                    "type": "string",
+                    "pattern": "^([a-z*]*)$"
                   }
                 }
               },
-              "__cdl":{
-                "type":"object",
-                "additionalProperties": false,
-                "properties":{
-                  "haystack":{
-                    "type":"object",
-                    "additionalProperties": false,
+              "__cdl": {
+                "type": "object",
+                "additionalProperties": true,
+                "properties": {
+                  "haystack": {
+                    "type": "object",
+                    "additionalProperties": true,
                     "properties": {
-                      "dis":{
-                        "type":"string"
+                      "dis": {
+                        "type": "string"
                       },
-                      "area":{
-                        "type":"string"
+                      "area": {
+                        "type": "string"
                       }
                     }
                   },
-                  "brick":{
-                    "type":"string"
+                  "brick": {
+                    "type": "string"
                   },
-                  "point":{
-                    "type":"string"
+                  "point": {
+                    "type": "string"
+                  }
+                }
+              },
+              "__Dymola_Commands": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "pattern": "^([a-zA-Z0-9._ \"\\:/]*)$"
                   }
                 }
               }
@@ -307,27 +785,63 @@
           },
           "placement": {
             "type": "object",
-            "additionalProperties": false,
+            "additionalProperties": true,
             "properties": {
               "transformation": {
                 "type": "object",
-                "additionalProperties": false,
+                "additionalProperties": true,
+                "required": [
+                  "extent"
+                ],
                 "properties": {
                   "extent": {
                     "$ref": "#/definitions/graphicalElement/items/properties/extent"
+                  },
+                  "rotation": {
+                    "$ref": "#/definitions/graphicalElement/items/properties/rotation"
+                  },
+                  "origin": {
+                    "$ref": "#/definitions/graphicalElement/items/properties/origin"
                   }
                 }
               },
               "iconTransformation": {
                 "type": "object",
-                "additionalProperties": false,
+                "additionalProperties": true,
+                "required": [
+                  "extent"
+                ],
                 "properties": {
                   "extent": {
                     "$ref": "#/definitions/graphicalElement/items/properties/extent"
+                  },
+                  "rotation": {
+                    "$ref": "#/definitions/graphicalElement/items/properties/rotation"
+                  },
+                  "origin": {
+                    "$ref": "#/definitions/graphicalElement/items/properties/origin"
                   }
                 }
+              },
+              "visible": {
+                "type": "boolean"
               }
             }
+          },
+          "displayUnit": {
+            "allOf": [
+              {
+                "$ref": "#/definitions/value"
+              },
+              {
+                "value": {
+                  "pattern": "^(\\\")[a-zA-Z0-9._*]*(\\\")$"
+                }
+              }
+            ]
+          },
+          "quantity": {
+            "$ref": "#/definitions/value"
           }
         }
       }
@@ -364,7 +878,7 @@
       "public": {
         "type": "object",
         "description": "Public part of the modelica file",
-        "additionalProperties": false,
+        "additionalProperties": true,
         "properties": {
           "parameters": {
             "$ref": "#/definitions/ModelicaBlock"
@@ -383,7 +897,7 @@
       "protected": {
         "type": "object",
         "description": "Protected part of the modelica file",
-        "additionalProperties": false,
+        "additionalProperties": true,
         "properties": {
           "parameters": {
             "$ref": "#/definitions/ModelicaBlock"
@@ -414,6 +928,18 @@
               },
               "color": {
                 "$ref": "#/definitions/color"
+              },
+              "pattern": {
+                "type": "string",
+                "pattern": "^([a-zA-Z0-9._*]*)$"
+              },
+              "thickness": {
+                "type": "number",
+                "minimum": 0
+              },
+              "portLinkTarget": {
+                "type": "string",
+                "pattern": "^([a-zA-Z0-9. _[]*]*)$"
               }
             }
           }
@@ -435,6 +961,41 @@
       },
       "vendorAnnotation":{
         "$ref": "#/definitions/ModelicaBlock/items/properties/annotation"
+      },
+      "svg": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "icon": {
+            "allOf": [
+              {
+                "$ref": "#/definitions/GraphicalBlock"
+              },
+              {
+                "required": [
+                  "items",
+                  "initialScale",
+                  "preserveAspectRatio",
+                  "drawing"
+                ]
+              }
+            ]
+          },
+          "diagram": {
+            "allOf": [
+              {
+                "$ref": "#/definitions/GraphicalBlock"
+              },
+              {
+                "required": [
+                  "items",
+                  "preserveAspectRatio",
+                  "drawing"
+                ]
+              }
+            ]
+          }
+        }
       }
     }
   }
