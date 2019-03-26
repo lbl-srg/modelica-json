@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>JSON Schema Viewer</title>
+
+    <!-- Bootstrap -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|PT+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/jsv.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+    <!-- Nav/Toolbar -->
+    <div class="btn-group" id="app-toolbar">
+        <button id="sourceButton" type="button" class="btn btn-default"><span class="glyphicon glyphicon-align-left"> </span> Source</button>
+        <button id="visualizeButton" type="button" class="btn btn-default"><span class="glyphicon glyphicon-eye-open"> </span> Visualize</button>
+        <button id="validateButton" type="button" class="btn btn-default"><span class="glyphicon glyphicon-ok"> </span> Validate</button>
+    </div>
+
+    <!-- Editor -->
+    <div id="editor">{
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "schema-modelica.json",
+      "type": "array",
+      "title": "JSON parsed Modelica file",
+      "description": "Json representation of a Modelica model",
+      "definitions": {
+        "coordinates": {
+          "description": "Coordinates on a 2d plan",
+          "type": "array",
+          "additionalItems": true,
+          "items": {
+            "type": "object",
+            "required": [
+              "x1",
+              "x2"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "x1": {
+                "type": "number"
+              },
+              "x2": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        "color": {
+          "description": "RGB colors",
+          "type": "object",
+          "required": [
+            "r",
+            "g",
+            "b"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "r": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 255
+            },
+            "g": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 255
+            },
+            "b": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 255
+            }
+          }
+        },
+        "value": {
+          "type": "object",
+          "required": [
+            "value"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "prefix": {
+              "type": "string",
+              "pattern": "^([a-zA-Z0-9._*]*)$"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        },
+        "graphicalElement": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+              "color": {
+                "$ref": "#/definitions/color"
+              },
+              "points": {
+                "$ref": "#/definitions/coordinates"
+              },
+              "pattern": {
+                "type": "string",
+                "pattern": "^([a-zA-Z0-9._*]*)$"
+              },
+              "thickness": {
+                "type": "number",
+                "minimum": 0
+              },
+              "lineColor": {
+                "$ref": "#/definitions/color"
+              },
+              "fillColor": {
+                "$ref": "#/definitions/color"
+              },
+              "fillPattern": {
+                "type": "string",
+                "pattern": "^([a-zA-Z0-9._*]*)$"
+              },
+              "extent": {
+                "$ref": "#/definitions/coordinates"
+              },
+              "textString": {
+                "type": "string"
+              },
+              "preserveAspectRatio": {
+                "type": "boolean"
+              },
+              "fontSize": {
+                "type": "number",
+                "minimum": 0
+              },
+              "horizontalAlignment": {
+                "type": "string",
+                "pattern": "^([a-zA-Z0-9._*]*)$"
+              }
+            }
+          }
+        },
+        "GraphicalBlock": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "graphics": {
+              "type": "object",
+              "additionalProperties": true,
+              "properties": {
+                "line": {
+                  "allOf": [
+                    {
+                      "$ref": "#/definitions/graphicalElement"
+                    },
+                    {
+                      "required": [
+                        "points",
+                        "color",
+                        "pattern",
+                        "thickness"
+                      ]
+                    }
+                  ]
+                },
+                "rectangle": {
+                  "allOf": [
+                    {
+                      "$ref": "#/definitions/graphicalElement"
+                    },
+                    {
+                      "required": [
+                        "lineColor",
+                        "fillColor",
+                        "fillPattern",
+                        "extent"
+                      ]
+                    }
+                  ]
+                },
+                "text": {
+                  "allOf": [
+                    {
+                      "$ref": "#/definitions/graphicalElement"
+                    },
+                    {
+                      "required": [
+                        "lineColor",
+                        "textString",
+                        "extent",
+                        "fontSize",
+                        "horizontalAlignment"
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            "coordinateSystem": {
+              "type": "object",
+              "additionalProperties": true,
+              "properties": {
+                "extent": {
+                  "$ref": "#/definitions/graphicalElement/items/properties/extent"
+                },
+                "preserveAspectRatio": {
+                  "$ref": "#/definitions/graphicalElement/items/properties/preserveAspectRatio"
+                }
+              }
+            }
+          }
+        },
+        "ModelicaBlock": {
+          "description": "Info of a modelica block: model, parameter, input or output",
+          "type": "array",
+          "additionalItems": true,
+          "items": {
+            "type": "object",
+            "required": [
+              "className"
+            ],
+            "additionalProperties": true,
+            "properties": {
+              "unit": {
+                "$ref": "#/definitions/value"
+              },
+              "max": {
+                "$ref": "#/definitions/value"
+              },
+              "min": {
+                "$ref": "#/definitions/value"
+              },
+              "prefix": {
+                "type": "string"
+              },
+              "className": {
+                "description": "Name of the class: no special characters or spaces",
+                "type": "string",
+                "pattern": "^([a-zA-Z0-9._*]*)$"
+              },
+              "name": {
+                "description": "Name of the block: no special characters or spaces",
+                "type": "string",
+                "pattern": "^([a-zA-Z0-9._*]*)$"
+              },
+              "comment": {
+                "description": "comment on the block: no special characters or spaces",
+                "type": "string"
+              },
+              "value": {
+                "description": "value of the block, if applicable",
+                "type": "string"
+              },
+              "annotation": {
+                "type": "object",
+                "additionalProperties": true,
+                "properties": {
+                  "dialog": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "tab": {
+                        "type": "string",
+                        "examples": [
+                          "General"
+                        ]
+                      },
+                      "group": {
+                        "type": "string",
+                        "examples": [
+                          "Parameters"
+                        ]
+                      }
+                    }
+                  },
+                  "__cdl":{
+                    "type":"object",
+                    "additionalProperties": false,
+                    "properties":{
+                      "haystack":{
+                        "type":"object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "dis":{
+                            "type":"string"
+                          },
+                          "area":{
+                            "type":"string"
+                          }
+                        }
+                      },
+                      "brick":{
+                        "type":"string"
+                      },
+                      "point":{
+                        "type":"string"
+                      }
+                    }
+                  }
+                }
+              },
+              "modifications": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "isFinal": {
+                        "type": "boolean"
+                      },
+                      "name": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  {
+                    "properties": {
+                      "modifications": {
+                        "$ref": "#/definitions/ModelicaBlock"
+                      }
+                    }
+                  }
+                ]
+              },
+              "placement": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "transformation": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "extent": {
+                        "$ref": "#/definitions/graphicalElement/items/properties/extent"
+                      }
+                    }
+                  },
+                  "iconTransformation": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "extent": {
+                        "$ref": "#/definitions/graphicalElement/items/properties/extent"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "additionalItems": false,
+      "items": {
+        "type": "object",
+        "required": [
+          "modelicaFile",
+          "topClassName"
+        ],
+        "additionalProperties": true,
+        "properties": {
+          "modelicaFile": {
+            "decription": "Name of the Modelica file. Ends with '.mo'",
+            "type": "string",
+            "pattern": ".*.(mo|MO)"
+          },
+          "within": {
+            "description": "Within statement from the Modelica file : no special characters or spaces",
+            "type": "string",
+            "pattern": "^([a-zA-Z0-9._*]*)$"
+          },
+          "topClassName": {
+            "description": "Name of the top class of the Modelica model: no special characters or spaces ",
+            "type": "string",
+            "pattern": "^([a-zA-Z0-9._*]*)$"
+          },
+          "comment": {
+            "description": "Comment on the model",
+            "type": "string"
+          },
+          "public": {
+            "type": "object",
+            "description": "Public part of the modelica file",
+            "additionalProperties": false,
+            "properties": {
+              "parameters": {
+                "$ref": "#/definitions/ModelicaBlock"
+              },
+              "models": {
+                "$ref": "#/definitions/ModelicaBlock"
+              },
+              "inputs": {
+                "$ref": "#/definitions/ModelicaBlock"
+              },
+              "outputs": {
+                "$ref": "#/definitions/ModelicaBlock"
+              }
+            }
+          },
+          "protected": {
+            "type": "object",
+            "description": "Protected part of the modelica file",
+            "additionalProperties": false,
+            "properties": {
+              "parameters": {
+                "$ref": "#/definitions/ModelicaBlock"
+              },
+              "models": {
+                "$ref": "#/definitions/ModelicaBlock"
+              }
+            }
+          },
+          "connections": {
+            "type": "array",
+            "additionalItems": true,
+            "items": {
+              "type": "array",
+              "additionalItems": true,
+              "items": {
+                "type": "object",
+                "additionalProperties": true,
+                "properties": {
+                  "instance": {
+                    "type": "string"
+                  },
+                  "connector": {
+                    "type": "string"
+                  },
+                  "points": {
+                    "$ref": "#/definitions/coordinates"
+                  },
+                  "color": {
+                    "$ref": "#/definitions/color"
+                  }
+                }
+              }
+            }
+          },
+          "info": {
+            "description": "Informations of the model must be in html format",
+            "type": "string",
+            "pattern": "^(<(html|HTML)>)(.|\n)*(</(html|HTML)>)$"
+          },
+          "extends": {
+            "$ref": "#/definitions/ModelicaBlock"
+          },
+          "icon": {
+            "$ref": "#/definitions/GraphicalBlock"
+          },
+          "diagram": {
+            "$ref": "#/definitions/GraphicalBlock"
+          },
+          "vendorAnnotation":{
+            "$ref": "#/definitions/ModelicaBlock/items/properties/annotation"
+          }
+        }
+      }
+    }
+</div>
+
+    <!-- JSV -->
+    <div id="main-body"></div>
+    <script>
+      NProgress.start();
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.5/ace.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.5/mode-json.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.5/theme-chrome.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.15.0/lodash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tv4/1.2.7/tv4.min.js"></script>
+    <script src="js/jsv.js"></script>
+    <script src="js/ref-parser.min.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+      NProgress.done();
+    </script>
+  </body>
+</html>

@@ -33,6 +33,8 @@ To clean the current installation, run
 make clean-installation
 ```
 
+# JSON Schema
+
 # License
 
 Modified 3-clause BSD, see [LICENSE.md](LICENSE.md).
