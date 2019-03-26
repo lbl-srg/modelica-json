@@ -40,12 +40,12 @@ The simplified JSON representation of Modelica and CDL models must be compliant 
 JSON Schemas describe the data format and file structure to ensure the quality of the JSON files.
 
 Two schemas are available :
-- [Schema-CDL.json](schema-CDL.json) validates the JSON files parsed from CDL
-- [Schema-modelica.json](Schema-modelica.json) validates the JSON files parsed from Modelica models
+- [Schema-CDL.json](https://raw.githubusercontent.com/lbl-srg/modelica-json/issue55_JSONSchema/schema-CDL.json) validates the JSON files parsed from CDL
+- [Schema-modelica.json](https://raw.githubusercontent.com/lbl-srg/modelica-json/issue55_JSONSchema/schema-modelica.json) validates the JSON files parsed from Modelica models
 
 Graphical representations of the Schemas can be found here:
-- [Schema-CDL.json](index_CDL.html)
-- [Schema-modelica.json](index_modelica.html)
+- [CDL Schema](https://cdn.rawgit.com/lbl-srg/modelica-json/issue55_JSONSchema/index_CDL.html)
+- [Modelica Schema](https://cdn.rawgit.com/lbl-srg/modelica-json/issue55_JSONSchema/index_modelica.html)
 
 When parsing a file using `app.js`, the schema is chosen according to the mode.
 
