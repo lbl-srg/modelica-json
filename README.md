@@ -43,10 +43,6 @@ Two schemas are available :
 - [Schema-CDL.json](https://raw.githubusercontent.com/lbl-srg/modelica-json/issue55_JSONSchema/schema-CDL.json) validates the JSON files parsed from CDL
 - [Schema-modelica.json](https://raw.githubusercontent.com/lbl-srg/modelica-json/issue55_JSONSchema/schema-modelica.json) validates the JSON files parsed from Modelica models
 
-Graphical representations of the Schemas can be found here (Please refresh the browser once in the page and click on the "Visualize" button):
-- [CDL Schema](https://cdn.rawgit.com/lbl-srg/modelica-json/issue55_JSONSchema/index_CDL.html)
-- [Modelica Schema](https://cdn.rawgit.com/lbl-srg/modelica-json/issue55_JSONSchema/index_modelica.html)
-
 When parsing a file using `app.js`, the schema is chosen according to the mode.
 
 To validate an existing JSON file against the schema, run
