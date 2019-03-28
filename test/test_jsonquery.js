@@ -7,16 +7,16 @@ mo.describe('jsonquery', function () {
     mo.it('should return', function () {
       as.equal(jq.updateImageLocations(
         'aa <img src="modelica://Buildings/Resources/Images/test.png" alt="altComment">'),
-        'aa <img src="Buildings/Resources/Images/test.png" alt="altComment">')
+      'aa <img src="Buildings/Resources/Images/test.png" alt="altComment">')
       as.equal(jq.updateImageLocations(
         'aa <img src="modelica://Buildings/Resources/Images/test.png">'),
-        'aa <img src="Buildings/Resources/Images/test.png">')
+      'aa <img src="Buildings/Resources/Images/test.png">')
       as.equal(jq.updateImageLocations(
         'aa <img src="modelica://Buildings/Resources/Images/test.png">'),
-        'aa <img src="Buildings/Resources/Images/test.png">')
+      'aa <img src="Buildings/Resources/Images/test.png">')
       as.equal(jq.updateImageLocations(
         'aa <img src="modelica://Buildings/Resources/Images/test.png"> bb <img src="modelica://Buildings/Resources/Images/test2.png">'),
-        'aa <img src="Buildings/Resources/Images/test.png"> bb <img src="Buildings/Resources/Images/test2.png">')
+      'aa <img src="Buildings/Resources/Images/test.png"> bb <img src="Buildings/Resources/Images/test2.png">')
     })
   })
   mo.describe('isType()', function () {

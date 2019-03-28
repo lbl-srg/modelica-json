@@ -59,7 +59,7 @@ var checkCdlJSON = function (outFormat, extension, message) {
       // Read the stored json representation from disk
       // It's like '../test/FromModelica/cdl/json/***.json'
       const oldFilCDL = path.join(packBase, mode, subPackName,
-                                  tempName[tempName.length - 1] +
+        tempName[tempName.length - 1] +
                                   '.' +
                                   fil.slice(idx + 1, -3) + extension)
       // Read the old json
@@ -135,7 +135,7 @@ var getHtml = function (files, mode) {
   // 'getMoFiles', the 'moFiles' will be an array and the elements are the
   // mo files in the package.
   const moFiles = (mode === 'cdl') ? files.split()
-                                   : ut.getMoFiles(mode, files)
+    : ut.getMoFiles(mode, files)
   const json = pa.getJSON(moFiles, mode, 'html')
   const outFile = ut.getOutFile(mode, files, 'html', 'current', moFiles, json)
   var nonCDLJson = []
@@ -182,7 +182,7 @@ var compareCdlHtml = function () {
       var packBase = fil.slice(0, idx)
       var tempNames = packBase.split(path.sep)
       const htmlFil = path.join(packBase, mode, 'html',
-                                tempNames[tempNames.length - 1] +
+        tempNames[tempNames.length - 1] +
                                 '.' + fil.slice(idx + 1, -3) + '.html')
       const oldHtml = fs.readFileSync(htmlFil, 'utf8')
       as.equal(htmlCDL, oldHtml, 'html representation differs for ' + htmlFil)
