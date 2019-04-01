@@ -21,16 +21,16 @@ mo.describe('htmlWriter', function () {
     mo.it('should return', function () {
       as.deepEqual(hw.getImageLocations(
         'aa <img src="Buildings/Resources/Images/test.png" alt="altComment">'),
-        ['Buildings/Resources/Images/test.png'])
+      ['Buildings/Resources/Images/test.png'])
       as.deepEqual(hw.getImageLocations(
         'aa <img src="Buildings/Resources/Images/test.png">'),
-        ['Buildings/Resources/Images/test.png'])
+      ['Buildings/Resources/Images/test.png'])
       as.deepEqual(hw.getImageLocations(
         'aa <img src="Buildings/Resources/Images/test.png"/>'),
-        ['Buildings/Resources/Images/test.png'])
+      ['Buildings/Resources/Images/test.png'])
       as.deepEqual(hw.getImageLocations(
         'aa <img src="Buildings/Resources/Images/test.png"> bb <img src="Buildings/Resources/Images/test2.png">'),
-        ['Buildings/Resources/Images/test.png', 'Buildings/Resources/Images/test2.png'])
+      ['Buildings/Resources/Images/test.png', 'Buildings/Resources/Images/test2.png'])
     })
   })
 })
