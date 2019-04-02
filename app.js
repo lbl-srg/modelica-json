@@ -16,7 +16,7 @@ parser.addArgument(
   [ '-o', '--output' ],
   {
     help: 'Specify output format.',
-    choices: ['html', 'json', 'json-simplified'],
+    choices: ['html', 'raw-json', 'json'],
     defaultValue: 'html'
   }
 )
