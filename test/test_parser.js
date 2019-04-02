@@ -47,7 +47,7 @@ var checkCdlJSON = function (outFormat, extension, message) {
       return !obj.includes('Extends')
     })
     // Name of subpackage to store json output files
-    var subPackName = (outFormat === 'json' ? 'json' : 'simplified')
+    var subPackName = (outFormat === 'raw-json' ? 'raw-json' : 'json')
     // When parsing mode is 'cdl', the moFiles should feed into parser one-by-one
     testMoFiles.map(fil => {
       // 'fil.split()' changes string 'fil' to be string array with single element
@@ -93,7 +93,7 @@ var checkModJSON = function (outFormat, extension, message) {
 
     const testMoFiles = ut.getMoFiles(mode, testMoFilesPack)
     // Name of subpackage to store json output files
-    var subPackName = (outFormat === 'json' ? 'json' : 'simplified')
+    var subPackName = (outFormat === 'raw-json' ? 'raw-json' : 'json')
     // When parsing mode is 'modelica', the moFiles should feed into parser in package
     const jsonNewMOD = pa.getJSON(testMoFiles, mode, outFormat)
 
@@ -214,17 +214,17 @@ var compareModHtml = function () {
 }
 
 mo.describe('parser.js', function () {
-  mo.describe('Testing parse from Modelica to Json, in "cdl" parsing mode', function () {
-    checkCdlJSON('json', '.json', 'Testing unmodified json for equality, "cdl" mode')
+  mo.describe('Testing parse from Modelica to raw Json, in "cdl" parsing mode', function () {
+    checkCdlJSON('raw-json', '.json', 'Testing unmodified json for equality, "cdl" mode')
+  })
+  mo.describe('Testing parse from Modelica to raw Json, in "modelica" parsing mode', function () {
+    checkModJSON('raw-json', '.json', 'Testing unmodified json for equality, "modelica" mode')
+  })
+  mo.describe('Testing parse from Modelica to  Json, in "cdl" parsing mode', function () {
+    checkCdlJSON('json', '.json', 'Testing json for equality, "cdl" mode')
   })
   mo.describe('Testing parse from Modelica to Json, in "modelica" parsing mode', function () {
-    checkModJSON('json', '.json', 'Testing unmodified json for equality, "modelica" mode')
-  })
-  mo.describe('Testing parse from Modelica to simplified Json, in "cdl" parsing mode', function () {
-    checkCdlJSON('json-simplified', '.json', 'Testing simplified json for equality, "cdl" mode')
-  })
-  mo.describe('Testing parse from Modelica to simplified Json, in "modelica" parsing mode', function () {
-    checkModJSON('json-simplified', '.json', 'Testing simplified json for equality, "modelica" mode')
+    checkModJSON('json', '.json', 'Testing json for equality, "modelica" mode')
   })
   mo.describe('Testing html generation from Modelica, in "cdl" parsing mode', compareCdlHtml)
   mo.describe('Testing html generation from Modelica, in "modelica" parsing mode', compareModHtml)
