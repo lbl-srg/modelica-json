@@ -35,7 +35,7 @@ make clean-installation
 
 # JSON Schemas
 
-The simplified JSON representation of Modelica and CDL models must be compliant with the corresponding JSON Schema.
+The JSON (not raw) representation of Modelica and CDL models must be compliant with the corresponding JSON Schema.
 
 JSON Schemas describe the data format and file structure to ensure the quality of the JSON files.
 

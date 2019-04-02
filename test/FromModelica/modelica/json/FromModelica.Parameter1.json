@@ -1,44 +1,24 @@
 [
   {
-    "within": [
-      "FromModelica"
-    ],
-    "class_definition": [
-      {
-        "class_prefixes": "block",
-        "class_specifier": {
-          "long_class_specifier": {
-            "name": "Parameter1",
-            "comment": "\"Some class comment\"",
-            "composition": {
-              "element_list": {
-                "element": [
-                  {
-                    "component_clause": {
-                      "type_prefix": "parameter",
-                      "type_specifier": "Real",
-                      "component_list": {
-                        "component_declaration": [
-                          {
-                            "declaration": {
-                              "name": "kP",
-                              "value": "1"
-                            },
-                            "comment": {
-                              "string_comment": "\"Some comment\""
-                            }
-                          }
-                        ]
-                      }
-                    }
-                  }
-                ]
-              }
+    "modelicaFile": "FromModelica/Parameter1.mo",
+    "within": "FromModelica",
+    "topClassName": "FromModelica.Parameter1",
+    "comment": "Some class comment",
+    "public": {
+      "parameters": [
+        {
+          "className": "Real",
+          "name": "kP",
+          "value": "1",
+          "comment": "Some comment",
+          "annotation": {
+            "dialog": {
+              "tab": "General",
+              "group": "Parameters"
             }
           }
         }
-      }
-    ],
-    "modelicaFile": "FromModelica/Parameter1.mo"
+      ]
+    }
   }
 ]
