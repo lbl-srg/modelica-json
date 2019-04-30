@@ -1,3 +1,9 @@
+---
+title: Modelica JSON 
+permalink: index.html
+---
+
+
 # Modelica to JSON parser
 
 [![Build Status](https://travis-ci.org/lbl-srg/modelica-json.svg?branch=master)](https://travis-ci.org/lbl-srg/modelica-json)
