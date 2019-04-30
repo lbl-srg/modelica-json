@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Modelica JSON
-permalink: index.html
+permalink: /index.html
 ---
 
 
