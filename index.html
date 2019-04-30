@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Modelica JSON | Modelica-JSON</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Modelica JSON" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="This is a parser that parses Modelica to JSON, and from JSON to different output formats." />
+<meta property="og:description" content="This is a parser that parses Modelica to JSON, and from JSON to different output formats." />
+<link rel="canonical" href="http://localhost:4000/modelica-json/" />
+<meta property="og:url" content="http://localhost:4000/modelica-json/" />
+<meta property="og:site_name" content="Modelica-JSON" />
+<script type="application/ld+json">
+{"@type":"WebSite","headline":"Modelica JSON","url":"http://localhost:4000/modelica-json/","name":"Modelica-JSON","description":"This is a parser that parses Modelica to JSON, and from JSON to different output formats.","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/modelica-json/assets/css/style.css?v=">
+  </head>
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      
+      <h1><a href="http://localhost:4000/modelica-json/">Modelica-JSON</a></h1>
+      
+
+      <article class="post">
+
+  <div class="post-content">
+    <h1 id="modelica-to-json-parser">Modelica to JSON parser</h1>
+
+<p><a href="https://travis-ci.org/lbl-srg/modelica-json"><img src="https://travis-ci.org/lbl-srg/modelica-json.svg?branch=master" alt="Build Status" /></a></p>
+
+<p>This is a parser that parses Modelica to JSON,
+and from JSON to different output formats.</p>
+
+<p>See the directory <code class="highlighter-rouge">test/FromModelica</code> for simple examples.</p>
+
+<p>The parser requires Java and node, which can be installed on Ubuntu using</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt-get install nodejs npm default-jdk
+</code></pre></div></div>
+
+<p>To install dependencies of the parser, run</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>make install
+</code></pre></div></div>
+<p>To compile the Java files, run</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>make compile
+</code></pre></div></div>
+<p>To run the test cases, run</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm test
+</code></pre></div></div>
+<p>To get more help, run</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node app.js -h
+</code></pre></div></div>
+<p>To clean the current installation, run</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>make clean-installation
+</code></pre></div></div>
+
+<h1 id="json-schemas">JSON Schemas</h1>
+
+<p>The simplified JSON representation of Modelica and CDL models must be compliant with the corresponding JSON Schema.</p>
+
+<p>JSON Schemas describe the data format and file structure to ensure the quality of the JSON files.</p>
+
+<p>Two schemas are available (links to the raw files) :</p>
+<ul>
+  <li><a href="https://raw.githubusercontent.com/lbl-srg/modelica-json/master/schema-CDL.json">Schema-CDL.json</a> validates the JSON files parsed from CDL</li>
+  <li><a href="https://raw.githubusercontent.com/lbl-srg/modelica-json/master/schema-modelica.json">Schema-modelica.json</a> validates the JSON files parsed from Modelica models</li>
+</ul>
+
+<p>Graphical viewers are avaiable (please use right click + open in a new tab) :</p>
+<ul>
+  <li><a href="/modelica-json/CDL.html">CDL Schema viewer</a></li>
+  <li><a href="/modelica-json/modelica.html">Modelica Schema viewer</a></li>
+</ul>
+
+<p>When parsing a file using <code class="highlighter-rouge">app.js</code>, the schema is chosen according to the mode.</p>
+
+<p>To validate an existing JSON file against the schema, run</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node validation.js -f &lt;path to the json file&gt;
+</code></pre></div></div>
+<p>The default schema is CDL. To chose the Modelica schema, run:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node validation.js -f &lt;path to the json file&gt; -m modelica
+</code></pre></div></div>
+<h1 id="license">License</h1>
+
+<p>Modified 3-clause BSD, see <a href="/modelica-json/LICENSE.md">LICENSE.md</a>.</p>
+
+<h1 id="copyright">Copyright</h1>
+
+<p>See <a href="/modelica-json/COPYRIGHT.html">copyright notice</a>.</p>
+
+  </div>
+
+</article>
+
+
+      
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js" integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
+    <script>anchors.add();</script>
+    
+  </body>
+</html>
