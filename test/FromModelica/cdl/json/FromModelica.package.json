@@ -1,41 +1,81 @@
 [
   {
-    "class_definition": [
-      {
-        "class_prefixes": "package",
-        "class_specifier": {
-          "long_class_specifier": {
-            "name": "FromModelica",
-            "comment": "\"Package with test models\"",
-            "composition": {
-              "element_list": {
-                "element": [
-                  {
-                    "component_clause": {
-                      "type_prefix": "constant",
-                      "type_specifier": "Integer",
-                      "component_list": {
-                        "component_declaration": [
-                          {
-                            "declaration": {
-                              "name": "one",
-                              "value": "1"
-                            },
-                            "comment": {
-                              "string_comment": "\"An integer constant with value 1\""
-                            }
-                          }
-                        ]
-                      }
-                    }
-                  }
-                ]
-              }
-            }
-          }
+    "modelicaFile": "./package.mo",
+    "topClassName": "FromModelica",
+    "comment": "Package with test models",
+    "public": {
+      "models": [
+        {
+          "className": "Integer",
+          "name": "one",
+          "value": "1",
+          "comment": "An integer constant with value 1"
         }
+      ]
+    },
+    "icon": {
+      "coordinateSystem": {
+        "extent": [
+          {
+            "x1": -100,
+            "x2": -100
+          },
+          {
+            "x1": 100,
+            "x2": 100
+          }
+        ],
+        "preserveAspectRatio": true,
+        "initialScale": 0.1
       }
-    ],
-    "modelicaFile": "./package.mo"
+    },
+    "svg": {
+      "icon": {
+        "items": {
+          "width": 200,
+          "height": 200,
+          "hasDots": false
+        },
+        "coordinate": [
+          {
+            "x1": 0,
+            "x2": 200
+          },
+          {
+            "x1": 200,
+            "x2": 0
+          }
+        ],
+        "initialScale": 0.1,
+        "preserveAspectRatio": true,
+        "drawing": "<svg version=\"1.1\" baseProfile=\"full\" width=\"200mm\" height=\"200mm\"\n     viewBox=\"0 0 200 200\" xmlns=\"http://www.w3.org/2000/svg\">\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n</svg>"
+      },
+      "diagram": {
+        "items": {
+          "width": 200,
+          "height": 200,
+          "hasDots": false
+        },
+        "initialScale": 0.1,
+        "preserveAspectRatio": true,
+        "drawing": "<svg version=\"1.1\" baseProfile=\"full\" width=\"200mm\" height=\"200mm\"\n     viewBox=\"0 0 200 200\" xmlns=\"http://www.w3.org/2000/svg\">\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n</svg>"
+      }
+    },
+    "diagram": {
+      "coordinateSystem": {
+        "extent": [
+          {
+            "x1": -100,
+            "x2": -100
+          },
+          {
+            "x1": 100,
+            "x2": 100
+          }
+        ],
+        "preserveAspectRatio": true,
+        "initialScale": 0.1
+      }
+    }
   }
 ]
