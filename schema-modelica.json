@@ -851,7 +851,7 @@
   "items": {
     "type": "object",
     "required": [
-      "modelicaFile",
+      "within",
       "topClassName"
     ],
     "additionalProperties": true,
@@ -862,7 +862,7 @@
         "pattern": ".*.(mo|MO)"
       },
       "within": {
-        "description": "Within statement from the Modelica file : no special characters or spaces",
+        "description": "Within statement from the Modelica file : no special characters or spaces. If empty string, it is probably a package file.",
         "type": "string",
         "pattern": "^([a-zA-Z0-9._*]*)$"
       },
