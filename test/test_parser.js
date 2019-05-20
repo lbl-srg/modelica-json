@@ -44,7 +44,7 @@ var checkCdlJSON = function (outFormat, extension, message) {
     // mo files array to be tested.
     const testMoFilesTemp = getIntFiles(mode)
     const testMoFiles = testMoFilesTemp.filter(function (obj) {
-      return !obj.includes('Extends')
+      return !obj.includes('Extends') & !obj.includes('Within')
     })
     // Name of subpackage to store json output files
     var subPackName = (outFormat === 'raw-json' ? 'raw-json' : 'json')
