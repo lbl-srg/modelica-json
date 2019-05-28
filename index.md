@@ -18,7 +18,7 @@ permalink: /index.html
 
 ## 1. General Description
 
-[Modelica-json](https://github.com/lbl-srg/modelica-json) is a translator that parses the Modelica language to JSON, and JSON to HTML. Two translation modes have been implemented :
+[Modelica-json](https://github.com/lbl-srg/modelica-json) is a translator that parses the Modelica language to JSON and HTML. Two translation modes have been implemented :
 The first mode aims to parse Modelica packages and takes into input a directory of .mo files. The other mode aims to parse CDL files and takes a single .mo file compliant with the CDL language as input. For more information on the CDL Language, please refer to the [OpenBuildingControl ](http://obc.lbl.gov/specification/cdl.html) project website.
 
 See the directory `test/FromModelica` from [Modelica-json](https://github.com/lbl-srg/modelica-json) for simple examples from Modelica and CDL to detailed and simplified JSON formats and HTML.
