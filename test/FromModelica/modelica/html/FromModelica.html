@@ -3,117 +3,44 @@
   <title></title>
 
   <!-- Custom styles for this template -->
-  <style>
-  html{
-    color: #022e4d;
-    font-family: "Helvetica Neue", Helvetica, Verdana, sans-serif;
-    /*padding: 10px;*/
-  }
-  /* Avoid images to be too large on small screens */
-  img{
-    max-width: 100%;
-  }
-  a:link, a:hover, a:visited, a:focus{
-    color: #750000;
-    text-decoration: underline;
-    }
+  <style type="text/css">
+*       { font-size: 100%; font-family: Arial, sans-serif; }
+h4      { font-size: 100%; font-weight: bold; color: green; }
+h3      { font-size: 110%; font-weight: bold; color: green; }
+h2      { font-size: 130%; font-weight: bold; color: green; }
+address { font-weight: normal; }
+td      { padding: 2px; border: 1px solid #808080; vertical-align: top; }
+th      { padding: 2px; border: 1px solid #808080; vertical-align: top; font-weight: bold; }
+table   { border: 1px solid #808080; border-collapse: collapse; }
+pre, code {font-family: "Courier New", monospace;}
+pre {white-space: pre; overflow-x : hidden;}
+.ModelicaDescription {font-weight: bold;} /* For the description string of the class. */
+.ModelicaParameterTab { background-color: #c0c0c0; font-weight: bold; } /* The tab-heading in the table of parameters */
+.ModelicaParameterGroup { background-color: #e0e0e0; } /* The group-heading in the table of parameters */
 
-  th, td{
-    padding-inline-start: 15px;
-    padding-top: .5em;
-    padding-bottom: .5em;
-    padding-left: 1em;
-    padding-right: 1em;
-    vertical-align: top;
-  }
-  th {
-      background-color: grey;
-      color: white;
-  }
-  th.description{
-  }
-  th.type{
-    max-width: 20%;
-  }
-  td.type{
-    max-width: 20%;
-  }
-  tr:nth-child(odd) {
-      background-color: #f2f2f2;
-  }
-  tr.tab{
-      background-color: grey;
-      color: white;
-  }
-  tr.group{
-      background-color: #A8A8A8;
-      color: white;
-  }
-  code, pre{
-    font-family: 'Consolas', 'Deja Vu Sans Mono', 'Bitstream Vera Sans Mono', monospace;
-    border: 0;
-    color: #750000;
-  /* background-color: #f5f5f5; */
+/* Counters for header */
+body {counter-reset: h2}
+h2 {counter-reset: h3}
+h3 {counter-reset: h4}
+h4 {counter-reset: h5}
+h5 {counter-reset: h6}
 
-  }
-  tr.border_top td {
-    border-top:1pt solid #022e4d;
-  }
-  tr.border_bottom td {
-    border-bottom:1pt solid #022e4d;
-  }
+h2:before {counter-increment: h2; content: counter(h2) ". "}
+h3:before {counter-increment: h3; content: counter(h2) "." counter(h3) ". "}
+h4:before {counter-increment: h4; content: counter(h2) "." counter(h3) "." counter(h4) ". "}
+h5:before {counter-increment: h5; content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) ". "}
+h6:before {counter-increment: h6; content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) "." counter(h6) ". "}
 
-  ul.list-parameter-assignments {
-    list-style-type: none;
-  }
-  h1{
-    font-size: 2em;
-  }
-  .h2, h2{
-    font-size: 1.7em;
-  }
-  .h3, h3{
-    font-size: 1.5em;
-  }
-  .h4, h4{
-    font-size: 1.2em;
-  }
-  .footer{
-  /*  background-color: white;
-    border-color: white; */
-    background-color: #f8f8f8;
-    padding: 10px;
-    font-size: 75%;
-    border-width:0px;
-    background-image: none;
-    border-radius: 4px;
-
-  }
-
-  /* Counters for header */
-  body {counter-reset: h2}
-  h2 {counter-reset: h3}
-  h3 {counter-reset: h4}
-  h4 {counter-reset: h5}
-  h5 {counter-reset: h6}
-
-  h2:before {counter-increment: h2; content: counter(h2) ". "}
-  h3:before {counter-increment: h3; content: counter(h2) "." counter(h3) ". "}
-  h4:before {counter-increment: h4; content: counter(h2) "." counter(h3) "." counter(h4) ". "}
-  h5:before {counter-increment: h5; content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) ". "}
-  h6:before {counter-increment: h6; content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) "." counter(h6) ". "}
-
-  h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.nocount:before
-    { content: ""; counter-increment: none }
-
-  </style>
+h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.nocount:before
+  { content: ""; counter-increment: none }
+</style>
 
 </head>
 <body>
 
 <h2>FromModelica<a name="FromModelica"></a></h2>
 
-  <p>Package with test models</p>
+  <span class="ModelicaDescription">Package with test models</span><br>
 
 
 
@@ -148,9 +75,9 @@
       </tr>
     </table><h2>FromModelica.Block1<a name="FromModelica.Block1"></a></h2>
 
-  <p>A block that instantiates nothing</p><h2>FromModelica.BlockInputOutput<a name="FromModelica.BlockInputOutput"></a></h2>
+  <span class="ModelicaDescription">A block that instantiates nothing</span><br><h2>FromModelica.BlockInputOutput<a name="FromModelica.BlockInputOutput"></a></h2>
 
-  <p>A block with an input and an output signal</p>
+  <span class="ModelicaDescription">A block with an input and an output signal</span><br>
 
 
 
@@ -213,7 +140,7 @@
       </tr>
     </table><h2>FromModelica.BlockWithBlock1<a name="FromModelica.BlockWithBlock1"></a></h2>
 
-  <p>A block that instantiates another public and protected block</p>
+  <span class="ModelicaDescription">A block that instantiates another public and protected block</span><br>
 
 
 
@@ -277,7 +204,7 @@
       </tr>
     </table><h2>FromModelica.CustomPWithLimiter<a name="FromModelica.CustomPWithLimiter"></a></h2>
 
-  <p>Custom implementation of a P controller with variable output limiter</p>
+  <span class="ModelicaDescription">Custom implementation of a P controller with variable output limiter</span><br>
 
 <h3>Info</h3>
   
@@ -295,26 +222,27 @@ where
     It has the following parameters:
     </p>
     <table>
-    <tr><th>Name    </th>
-    <th class="description">Description</th>
-    <th>Value    </th>
+    <tr>
+    <th class="mode">Type        </th>
+    <th>Name    </th>
+    <th>Default    </th>
     <th>Unit     </th>
     <th>Display unit</th>
-    <th class="mode">Type        </th>
     <th>min    </th>
     <th>max    </th>
+    <th class="description">Description</th>
     </tr>
-    <tr class="tab"><td colspan="8">General</td></tr>
-    <tr class="group"><td colspan="8">Parameters</td></tr>
+    <tr class="tab ModelicaParameterTab"><td colspan="8">General</td></tr>
+    <tr class="group ModelicaParameterGroup"><td colspan="8">Parameters</td></tr>
     <tr>
+    <td class="type">Real</td>
     <td><code>k</code><a name="FromModelica.CustomPWithLimiter.k"></a></td>
-    <td>Constant gain</td>
     <td>2</td>
     <td></td>
     <td></td>
-    <td class="type">Real</td>
     <td></td>
     <td></td>
+    <td>Constant gain</td>
     </tr>
     </table>
 
@@ -473,7 +401,7 @@ where
     </li>
     </ol><h2>FromModelica.ExtendsClause_1<a name="FromModelica.ExtendsClause_1"></a></h2>
 
-  <p>model with extends clause</p>
+  <span class="ModelicaDescription">model with extends clause</span><br>
 
 <h3>Info</h3>
   
@@ -517,26 +445,27 @@ test...test...test...test...test...
     It has the following parameters:
     </p>
     <table>
-    <tr><th>Name    </th>
-    <th class="description">Description</th>
-    <th>Value    </th>
+    <tr>
+    <th class="mode">Type        </th>
+    <th>Name    </th>
+    <th>Default    </th>
     <th>Unit     </th>
     <th>Display unit</th>
-    <th class="mode">Type        </th>
     <th>min    </th>
     <th>max    </th>
+    <th class="description">Description</th>
     </tr>
-    <tr class="tab"><td colspan="8">General</td></tr>
-    <tr class="group"><td colspan="8">Parameters</td></tr>
+    <tr class="tab ModelicaParameterTab"><td colspan="8">General</td></tr>
+    <tr class="group ModelicaParameterGroup"><td colspan="8">Parameters</td></tr>
     <tr>
-    <td><code>length</code><a name="FromModelica.ExtendsClause_1.length"></a></td>
-    <td>Length of the pipe</td>
-    <td></td>
-    <td></td>
-    <td></td>
     <td class="type">Modelica.SIunits.Length</td>
+    <td><code>length</code><a name="FromModelica.ExtendsClause_1.length"></a></td>
     <td></td>
     <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>Length of the pipe</td>
     </tr>
     </table>
 
@@ -582,30 +511,31 @@ test...test...test...test...test...
     It has the following protected parameters:
     </p>
     <table>
-    <tr><th>Name    </th>
-    <th class="description">Description</th>
-    <th>Value    </th>
+    <tr>
+    <th class="type">Type        </th>
+    <th>Name    </th>
+    <th>Default    </th>
     <th>Unit     </th>
     <th>Display unit</th>
-    <th class="type">Type        </th>
     <th>min    </th>
     <th>max    </th>
+    <th class="description">Description</th>
     </tr>
-    <tr class="tab"><td colspan="8">General</td></tr>
-    <tr class="group"><td colspan="8">Parameters</td></tr>
+    <tr class="tab ModelicaParameterTab"><td colspan="8">General</td></tr>
+    <tr class="group ModelicaParameterGroup"><td colspan="8">Parameters</td></tr>
     <tr>
+    <td class="type">Modelica.SIunits.Area</td>
     <td><code>ARound</code><a name="FromModelica.ExtendsClause_1.ARound"></a></td>
-    <td>Cross sectional area (assuming a round cross section area)</td>
     <td>dh^2*Modelica.Constants.pi&#x2F;4</td>
     <td></td>
     <td></td>
-    <td class="type">Modelica.SIunits.Area</td>
     <td></td>
     <td></td>
+    <td>Cross sectional area (assuming a round cross section area)</td>
     </tr>
     </table><h2>FromModelica.ExtendsClause_2<a name="FromModelica.ExtendsClause_2"></a></h2>
 
-  <p>model with extends clause</p>
+  <span class="ModelicaDescription">model with extends clause</span><br>
 
 <h3>Info</h3>
   
@@ -677,26 +607,27 @@ test...test...test...test...test...
     It has the following parameters:
     </p>
     <table>
-    <tr><th>Name    </th>
-    <th class="description">Description</th>
-    <th>Value    </th>
+    <tr>
+    <th class="mode">Type        </th>
+    <th>Name    </th>
+    <th>Default    </th>
     <th>Unit     </th>
     <th>Display unit</th>
-    <th class="mode">Type        </th>
     <th>min    </th>
     <th>max    </th>
+    <th class="description">Description</th>
     </tr>
-    <tr class="tab"><td colspan="8">General</td></tr>
-    <tr class="group"><td colspan="8">Parameters</td></tr>
+    <tr class="tab ModelicaParameterTab"><td colspan="8">General</td></tr>
+    <tr class="group ModelicaParameterGroup"><td colspan="8">Parameters</td></tr>
     <tr>
-    <td><code>length</code><a name="FromModelica.ExtendsClause_2.length"></a></td>
-    <td>Length of the pipe</td>
-    <td></td>
-    <td></td>
-    <td></td>
     <td class="type">Modelica.SIunits.Length</td>
+    <td><code>length</code><a name="FromModelica.ExtendsClause_2.length"></a></td>
     <td></td>
     <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>Length of the pipe</td>
     </tr>
     </table>
 
@@ -742,30 +673,31 @@ test...test...test...test...test...
     It has the following protected parameters:
     </p>
     <table>
-    <tr><th>Name    </th>
-    <th class="description">Description</th>
-    <th>Value    </th>
+    <tr>
+    <th class="type">Type        </th>
+    <th>Name    </th>
+    <th>Default    </th>
     <th>Unit     </th>
     <th>Display unit</th>
-    <th class="type">Type        </th>
     <th>min    </th>
     <th>max    </th>
+    <th class="description">Description</th>
     </tr>
-    <tr class="tab"><td colspan="8">General</td></tr>
-    <tr class="group"><td colspan="8">Parameters</td></tr>
+    <tr class="tab ModelicaParameterTab"><td colspan="8">General</td></tr>
+    <tr class="group ModelicaParameterGroup"><td colspan="8">Parameters</td></tr>
     <tr>
+    <td class="type">Modelica.SIunits.Area</td>
     <td><code>ARound</code><a name="FromModelica.ExtendsClause_2.ARound"></a></td>
-    <td>Cross sectional area (assuming a round cross section area)</td>
     <td>dh^2*Modelica.Constants.pi&#x2F;4</td>
     <td></td>
     <td></td>
-    <td class="type">Modelica.SIunits.Area</td>
     <td></td>
     <td></td>
+    <td>Cross sectional area (assuming a round cross section area)</td>
     </tr>
     </table><h2>FromModelica.ExtendsClause_3<a name="FromModelica.ExtendsClause_3"></a></h2>
 
-  <p>model with extends clause</p>
+  <span class="ModelicaDescription">model with extends clause</span><br>
 
 <h3>Info</h3>
   
@@ -813,26 +745,27 @@ test...test...test...test...test...
     It has the following parameters:
     </p>
     <table>
-    <tr><th>Name    </th>
-    <th class="description">Description</th>
-    <th>Value    </th>
+    <tr>
+    <th class="mode">Type        </th>
+    <th>Name    </th>
+    <th>Default    </th>
     <th>Unit     </th>
     <th>Display unit</th>
-    <th class="mode">Type        </th>
     <th>min    </th>
     <th>max    </th>
+    <th class="description">Description</th>
     </tr>
-    <tr class="tab"><td colspan="8">General</td></tr>
-    <tr class="group"><td colspan="8">Parameters</td></tr>
+    <tr class="tab ModelicaParameterTab"><td colspan="8">General</td></tr>
+    <tr class="group ModelicaParameterGroup"><td colspan="8">Parameters</td></tr>
     <tr>
-    <td><code>length</code><a name="FromModelica.ExtendsClause_3.length"></a></td>
-    <td>Length of the pipe</td>
-    <td></td>
-    <td></td>
-    <td></td>
     <td class="type">Modelica.SIunits.Length</td>
+    <td><code>length</code><a name="FromModelica.ExtendsClause_3.length"></a></td>
     <td></td>
     <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>Length of the pipe</td>
     </tr>
     </table>
 
@@ -878,30 +811,31 @@ test...test...test...test...test...
     It has the following protected parameters:
     </p>
     <table>
-    <tr><th>Name    </th>
-    <th class="description">Description</th>
-    <th>Value    </th>
+    <tr>
+    <th class="type">Type        </th>
+    <th>Name    </th>
+    <th>Default    </th>
     <th>Unit     </th>
     <th>Display unit</th>
-    <th class="type">Type        </th>
     <th>min    </th>
     <th>max    </th>
+    <th class="description">Description</th>
     </tr>
-    <tr class="tab"><td colspan="8">General</td></tr>
-    <tr class="group"><td colspan="8">Parameters</td></tr>
+    <tr class="tab ModelicaParameterTab"><td colspan="8">General</td></tr>
+    <tr class="group ModelicaParameterGroup"><td colspan="8">Parameters</td></tr>
     <tr>
+    <td class="type">Modelica.SIunits.Area</td>
     <td><code>ARound</code><a name="FromModelica.ExtendsClause_3.ARound"></a></td>
-    <td>Cross sectional area (assuming a round cross section area)</td>
     <td>dh^2*Modelica.Constants.pi&#x2F;4</td>
     <td></td>
     <td></td>
-    <td class="type">Modelica.SIunits.Area</td>
     <td></td>
     <td></td>
+    <td>Cross sectional area (assuming a round cross section area)</td>
     </tr>
     </table><h2>FromModelica.Modulation<a name="FromModelica.Modulation"></a></h2>
 
-  <p>Outdoor and return air damper position modulation sequence for multi zone VAV AHU</p>
+  <span class="ModelicaDescription">Outdoor and return air damper position modulation sequence for multi zone VAV AHU</span><br>
 
 <h3>Info</h3>
   
@@ -954,68 +888,69 @@ Multi zone AHU economizer modulation control chart:
     It has the following parameters:
     </p>
     <table>
-    <tr><th>Name    </th>
-    <th class="description">Description</th>
-    <th>Value    </th>
+    <tr>
+    <th class="mode">Type        </th>
+    <th>Name    </th>
+    <th>Default    </th>
     <th>Unit     </th>
     <th>Display unit</th>
-    <th class="mode">Type        </th>
     <th>min    </th>
     <th>max    </th>
+    <th class="description">Description</th>
     </tr>
-    <tr class="tab"><td colspan="8">Commissioning</td></tr>
-    <tr class="group"><td colspan="8">Controller</td></tr>
+    <tr class="tab ModelicaParameterTab"><td colspan="8">Commissioning</td></tr>
+    <tr class="group ModelicaParameterGroup"><td colspan="8">Controller</td></tr>
     <tr>
+    <td class="type">Real</td>
     <td><code>uMin</code><a name="FromModelica.Modulation.uMin"></a></td>
-    <td>Lower limit of controller input when outdoor damper opens (see diagram)</td>
     <td>-0.25</td>
     <td>1</td>
     <td></td>
-    <td class="type">Real</td>
     <td></td>
     <td>0 (adjustable)</td>
+    <td>Lower limit of controller input when outdoor damper opens (see diagram)</td>
     </tr>
     <tr>
+    <td class="type">Real</td>
     <td><code>uMax</code><a name="FromModelica.Modulation.uMax"></a></td>
-    <td>Upper limit of controller input when return damper is closed (see diagram)</td>
     <td>+0.25</td>
     <td>1</td>
     <td></td>
-    <td class="type">Real</td>
     <td>0 (adjustable)</td>
     <td></td>
+    <td>Upper limit of controller input when return damper is closed (see diagram)</td>
     </tr>
     <tr>
+    <td class="type">Real</td>
     <td><code>uOutDamMax</code><a name="FromModelica.Modulation.uOutDamMax"></a></td>
+    <td>(uMin + uMax)&#x2F;2</td>
+    <td>1</td>
+    <td></td>
+    <td>-1 (adjustable)</td>
+    <td>1 (adjustable)</td>
     <td>Maximum loop signal for the OA damper to be fully open</td>
-    <td>(uMin + uMax)&#x2F;2</td>
-    <td>1</td>
-    <td></td>
-    <td class="type">Real</td>
-    <td>-1 (adjustable)</td>
-    <td>1 (adjustable)</td>
     </tr>
     <tr>
+    <td class="type">Real</td>
     <td><code>uRetDamMin</code><a name="FromModelica.Modulation.uRetDamMin"></a></td>
-    <td>Minimum loop signal for the RA damper to be fully open</td>
     <td>(uMin + uMax)&#x2F;2</td>
     <td>1</td>
     <td></td>
-    <td class="type">Real</td>
     <td>-1 (adjustable)</td>
     <td>1 (adjustable)</td>
+    <td>Minimum loop signal for the RA damper to be fully open</td>
     </tr>
-    <tr class="tab"><td colspan="8">General</td></tr>
-    <tr class="group"><td colspan="8">Parameters</td></tr>
+    <tr class="tab ModelicaParameterTab"><td colspan="8">General</td></tr>
+    <tr class="group ModelicaParameterGroup"><td colspan="8">Parameters</td></tr>
     <tr>
+    <td class="type">Time</td>
     <td><code>samplePeriod</code><a name="FromModelica.Modulation.samplePeriod"></a></td>
-    <td>Sample period of component, used to limit the rate of change of the dampers (to avoid quick opening that can result in frost)</td>
     <td>300</td>
     <td>s</td>
     <td></td>
-    <td class="type">Time</td>
     <td></td>
     <td></td>
+    <td>Sample period of component, used to limit the rate of change of the dampers (to avoid quick opening that can result in frost)</td>
     </tr>
     </table>
 
@@ -1497,7 +1432,7 @@ Multi zone AHU economizer modulation control chart:
     </li>
     </ol><h2>FromModelica.Parameter1<a name="FromModelica.Parameter1"></a></h2>
 
-  <p>Some class comment</p>
+  <span class="ModelicaDescription">Some class comment</span><br>
 
 
 
@@ -1506,30 +1441,31 @@ Multi zone AHU economizer modulation control chart:
     It has the following parameters:
     </p>
     <table>
-    <tr><th>Name    </th>
-    <th class="description">Description</th>
-    <th>Value    </th>
+    <tr>
+    <th class="mode">Type        </th>
+    <th>Name    </th>
+    <th>Default    </th>
     <th>Unit     </th>
     <th>Display unit</th>
-    <th class="mode">Type        </th>
     <th>min    </th>
     <th>max    </th>
+    <th class="description">Description</th>
     </tr>
-    <tr class="tab"><td colspan="8">General</td></tr>
-    <tr class="group"><td colspan="8">Parameters</td></tr>
+    <tr class="tab ModelicaParameterTab"><td colspan="8">General</td></tr>
+    <tr class="group ModelicaParameterGroup"><td colspan="8">Parameters</td></tr>
     <tr>
+    <td class="type">Real</td>
     <td><code>kP</code><a name="FromModelica.Parameter1.kP"></a></td>
-    <td>Some comment</td>
     <td>1</td>
     <td></td>
     <td></td>
-    <td class="type">Real</td>
     <td></td>
     <td></td>
+    <td>Some comment</td>
     </tr>
     </table><h2>FromModelica.Parameter1WithVendorAnnotation<a name="FromModelica.Parameter1WithVendorAnnotation"></a></h2>
 
-  <p>Some class comment</p>
+  <span class="ModelicaDescription">Some class comment</span><br>
 
 
 
@@ -1538,30 +1474,31 @@ Multi zone AHU economizer modulation control chart:
     It has the following parameters:
     </p>
     <table>
-    <tr><th>Name    </th>
-    <th class="description">Description</th>
-    <th>Value    </th>
+    <tr>
+    <th class="mode">Type        </th>
+    <th>Name    </th>
+    <th>Default    </th>
     <th>Unit     </th>
     <th>Display unit</th>
-    <th class="mode">Type        </th>
     <th>min    </th>
     <th>max    </th>
+    <th class="description">Description</th>
     </tr>
-    <tr class="tab"><td colspan="8">General</td></tr>
-    <tr class="group"><td colspan="8">Parameters</td></tr>
+    <tr class="tab ModelicaParameterTab"><td colspan="8">General</td></tr>
+    <tr class="group ModelicaParameterGroup"><td colspan="8">Parameters</td></tr>
     <tr>
+    <td class="type">Real</td>
     <td><code>kP</code><a name="FromModelica.Parameter1WithVendorAnnotation.kP"></a></td>
-    <td>Some comment</td>
     <td>1</td>
     <td></td>
     <td></td>
-    <td class="type">Real</td>
     <td></td>
     <td></td>
+    <td>Some comment</td>
     </tr>
     </table><h2>FromModelica.Parameter2<a name="FromModelica.Parameter2"></a></h2>
 
-  <p>Some class comment</p>
+  <span class="ModelicaDescription">Some class comment</span><br>
 
 
 
@@ -1570,114 +1507,115 @@ Multi zone AHU economizer modulation control chart:
     It has the following parameters:
     </p>
     <table>
-    <tr><th>Name    </th>
-    <th class="description">Description</th>
-    <th>Value    </th>
+    <tr>
+    <th class="mode">Type        </th>
+    <th>Name    </th>
+    <th>Default    </th>
     <th>Unit     </th>
     <th>Display unit</th>
-    <th class="mode">Type        </th>
     <th>min    </th>
     <th>max    </th>
+    <th class="description">Description</th>
     </tr>
-    <tr class="tab"><td colspan="8">General</td></tr>
-    <tr class="group"><td colspan="8">Parameters</td></tr>
+    <tr class="tab ModelicaParameterTab"><td colspan="8">General</td></tr>
+    <tr class="group ModelicaParameterGroup"><td colspan="8">Parameters</td></tr>
     <tr>
+    <td class="type">Real</td>
     <td><code>myPar1</code><a name="FromModelica.Parameter2.myPar1"></a></td>
-    <td>Some comment</td>
     <td>1</td>
     <td></td>
     <td></td>
-    <td class="type">Real</td>
     <td></td>
     <td></td>
+    <td>Some comment</td>
     </tr>
     <tr>
+    <td class="type">Real</td>
     <td><code>myParNoValue</code><a name="FromModelica.Parameter2.myParNoValue"></a></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
     <td>Some comment</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td class="type">Real</td>
-    <td></td>
-    <td></td>
     </tr>
     <tr>
+    <td class="type">Real</td>
     <td><code>myParMin</code><a name="FromModelica.Parameter2.myParMin"></a></td>
-    <td>Some comment</td>
     <td></td>
     <td></td>
     <td></td>
-    <td class="type">Real</td>
     <td>0</td>
     <td></td>
+    <td>Some comment</td>
     </tr>
     <tr>
+    <td class="type">Real</td>
     <td><code>myParMax</code><a name="FromModelica.Parameter2.myParMax"></a></td>
-    <td>Some comment</td>
     <td></td>
     <td></td>
     <td></td>
-    <td class="type">Real</td>
     <td></td>
     <td>0</td>
+    <td>Some comment</td>
     </tr>
     <tr>
+    <td class="type">Real</td>
     <td><code>myParUnit</code><a name="FromModelica.Parameter2.myParUnit"></a></td>
-    <td>Some comment</td>
     <td></td>
     <td>K</td>
     <td></td>
-    <td class="type">Real</td>
     <td></td>
     <td></td>
+    <td>Some comment</td>
     </tr>
-    <tr class="group"><td colspan="8">Gains</td></tr>
+    <tr class="group ModelicaParameterGroup"><td colspan="8">Gains</td></tr>
     <tr>
+    <td class="type">Real</td>
     <td><code>myParInGroup</code><a name="FromModelica.Parameter2.myParInGroup"></a></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
     <td>Some comment</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td class="type">Real</td>
-    <td></td>
-    <td></td>
     </tr>
-    <tr class="tab"><td colspan="8">Initialization tab</td></tr>
-    <tr class="group"><td colspan="8">Parameters</td></tr>
+    <tr class="tab ModelicaParameterTab"><td colspan="8">Initialization tab</td></tr>
+    <tr class="group ModelicaParameterGroup"><td colspan="8">Parameters</td></tr>
     <tr>
+    <td class="type">Real</td>
     <td><code>myParInTab</code><a name="FromModelica.Parameter2.myParInTab"></a></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
     <td>Some comment</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td class="type">Real</td>
-    <td></td>
-    <td></td>
     </tr>
-    <tr class="group"><td colspan="8">Initial state</td></tr>
+    <tr class="group ModelicaParameterGroup"><td colspan="8">Initial state</td></tr>
     <tr>
+    <td class="type">Real</td>
     <td><code>myParInTabInGroup1</code><a name="FromModelica.Parameter2.myParInTabInGroup1"></a></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
     <td>Some comment 1</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td class="type">Real</td>
-    <td></td>
-    <td></td>
     </tr>
     <tr>
-    <td><code>myParInTabInGroup2</code><a name="FromModelica.Parameter2.myParInTabInGroup2"></a></td>
-    <td>Some comment 2</td>
-    <td></td>
-    <td></td>
-    <td></td>
     <td class="type">Real</td>
+    <td><code>myParInTabInGroup2</code><a name="FromModelica.Parameter2.myParInTabInGroup2"></a></td>
     <td></td>
     <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>Some comment 2</td>
     </tr>
     </table><h2>FromModelica.ParameterWithInfo<a name="FromModelica.ParameterWithInfo"></a></h2>
 
-  <p>Some class comment</p>
+  <span class="ModelicaDescription">Some class comment</span><br>
 
 <h3>Info</h3>
   
@@ -1692,30 +1630,31 @@ This is the info section.
     It has the following parameters:
     </p>
     <table>
-    <tr><th>Name    </th>
-    <th class="description">Description</th>
-    <th>Value    </th>
+    <tr>
+    <th class="mode">Type        </th>
+    <th>Name    </th>
+    <th>Default    </th>
     <th>Unit     </th>
     <th>Display unit</th>
-    <th class="mode">Type        </th>
     <th>min    </th>
     <th>max    </th>
+    <th class="description">Description</th>
     </tr>
-    <tr class="tab"><td colspan="8">General</td></tr>
-    <tr class="group"><td colspan="8">Parameters</td></tr>
+    <tr class="tab ModelicaParameterTab"><td colspan="8">General</td></tr>
+    <tr class="group ModelicaParameterGroup"><td colspan="8">Parameters</td></tr>
     <tr>
+    <td class="type">Real</td>
     <td><code>kP</code><a name="FromModelica.ParameterWithInfo.kP"></a></td>
-    <td>Some comment</td>
     <td>1</td>
     <td></td>
     <td></td>
-    <td class="type">Real</td>
     <td></td>
     <td></td>
+    <td>Some comment</td>
     </tr>
     </table><h2>FromModelica.ParameterWithVendorAnnotationInInfo<a name="FromModelica.ParameterWithVendorAnnotationInInfo"></a></h2>
 
-  <p>Some class comment</p>
+  <span class="ModelicaDescription">Some class comment</span><br>
 
 <h3>Info</h3>
   
@@ -1730,26 +1669,27 @@ This is the info section.
     It has the following parameters:
     </p>
     <table>
-    <tr><th>Name    </th>
-    <th class="description">Description</th>
-    <th>Value    </th>
+    <tr>
+    <th class="mode">Type        </th>
+    <th>Name    </th>
+    <th>Default    </th>
     <th>Unit     </th>
     <th>Display unit</th>
-    <th class="mode">Type        </th>
     <th>min    </th>
     <th>max    </th>
+    <th class="description">Description</th>
     </tr>
-    <tr class="tab"><td colspan="8">General</td></tr>
-    <tr class="group"><td colspan="8">Parameters</td></tr>
+    <tr class="tab ModelicaParameterTab"><td colspan="8">General</td></tr>
+    <tr class="group ModelicaParameterGroup"><td colspan="8">Parameters</td></tr>
     <tr>
+    <td class="type">Real</td>
     <td><code>kP</code><a name="FromModelica.ParameterWithVendorAnnotationInInfo.kP"></a></td>
-    <td>Some comment</td>
     <td>1</td>
     <td></td>
     <td></td>
-    <td class="type">Real</td>
     <td></td>
     <td></td>
+    <td>Some comment</td>
     </tr>
     </table>
 
