@@ -18,7 +18,7 @@ permalink: /index.html
 
 ## 1. General Description
 
-[Modelica-json](https://github.com/lbl-srg/modelica-json) is a translator that parses the Modelica language to JSON and HTML. Two translation modes have been implemented :
+[Modelica-json](https://github.com/lbl-srg/modelica-json) is a translator that parses the Modelica language to JSON, HTML and docx. Two translation modes have been implemented :
 The first mode aims to parse Modelica packages and takes into input a directory of .mo files. The other mode aims to parse CDL files and takes a single .mo file compliant with the CDL language as input. For more information on the CDL Language, please refer to the [OpenBuildingControl ](http://obc.lbl.gov/specification/cdl.html) project website.
 
 See the directory `test/FromModelica` from [Modelica-json](https://github.com/lbl-srg/modelica-json) for simple examples from Modelica and CDL to detailed and simplified JSON formats and HTML.
@@ -70,6 +70,7 @@ This parser takes a .mo file in input and has three possible outputs, that can b
 - **raw-json** : detailed transcription of a Modelica file in JSON
 - **json**: simplified JSON format, easier to read an interpret
 - **html** (default): transcription from json with links for documentation
+- **docx** : transcription of the HTML documentation to an editable format
 
 ##### --mode / -m
 
@@ -97,7 +98,7 @@ Two schemas are available (links to the raw files) :
 - [Schema-CDL.json](https://raw.githubusercontent.com/lbl-srg/modelica-json/master/schema-CDL.json) validates the JSON files parsed from CDL
 - [Schema-modelica.json](https://raw.githubusercontent.com/lbl-srg/modelica-json/master/schema-modelica.json) validates the JSON files parsed from Modelica models
 
-Graphical viewers are available (please use right click + open in a new tab or refresh the page if necessary) :
+Graphical viewers are available (please use right click + open in a new tab or refresh the page if necessary - this is not optimized for Firefox) :
 - [CDL Schema viewer](CDL.html)
 - [Modelica Schema viewer](modelica.html)
 
