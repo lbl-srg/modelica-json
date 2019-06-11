@@ -165,44 +165,29 @@ var getHtml = function (files, mode) {
 }
 
 /** Function that return docx data array
-  */
+    */
 var getDocx = function (files, mode) {
   // If it is 'cdl' mode, the input 'files' will be a single file. With 'file.split()'.
   // the 'moFiles' will be an array with only one element in it.
   // If it is 'modelica' mode, the input 'files' will be a package name. With
   // 'getMoFiles', the 'moFiles' will be an array and the elements are the
   // mo files in the package.
-  const moFiles = (mode === 'cdl') ? files.split()
-    : ut.getMoFiles(mode, files)
-  const json = pa.getJSON(moFiles, mode, 'docx')
-  const outFile = ut.getOutFile(mode, files, 'docx', 'current', moFiles, json)
-  var nonCDLJson = []
-  if (mode === 'modelica') {
-    json.forEach(function (ele) {
-      if (ele[0].topClassName !== undefined && !js.isElementaryCDL(ele[0].topClassName)) {
-        nonCDLJson.push(ele[0])
-      }
-    })
+  if (mode === 'cdl') {
+    const htmldoc = getHtml(files, mode)
+    const docxBlob = HtmlDocx.asBlob(htmldoc)
+    const rawDocx = docxBlob.toString()
+    const re = RegExp(/<body\b[^>]*>([\s\S]*?)<\/footer>/gm)
+    const docx = re.exec(rawDocx)[1]
+    return docx
   } else {
-    nonCDLJson = json.filter(ele => ele.topClassName !== undefined && !js.isElementaryCDL(ele.topClassName))
+    const htmldoc = getHtml(files, mode)[0]
+    const docxBlob = HtmlDocx.asBlob(htmldoc)
+    const rawDocx = docxBlob.toString()
+    const re = RegExp(/<body\b[^>]*>([\s\S]*?)<\/footer>/gm)
+    const docx = []
+    docx.push(re.exec(rawDocx)[1])
+    return docx
   }
-  var basDir = outFile[0].substring(0, outFile[0].lastIndexOf('/'))
-  var imgDir = path.join(basDir, 'img')
-  // Copy the images
-  const imgfiles = []
-  nonCDLJson.forEach(function (dat) {
-    const f = ht.getImageLocations(dat.info)
-    f.forEach(function (obj) {
-      imgfiles.push(obj)
-    })
-  })
-  ht.copyImages(imgfiles, imgDir)
-  const htmldoc = ht.getHtmlPage(outFile, imgDir, nonCDLJson, mode)
-  const docxBlob = HtmlDocx.asBlob(htmldoc)
-  const rawDocx = docxBlob.toString()
-  const re = RegExp(/<body\b[^>]*>([\s\S]*?)<\/footer>/gm)
-  const docx = re.exec(rawDocx)[1]
-  return docx
 }
 
 /** Function that check parsing from Modelica to html, in 'cdl' mode
@@ -286,27 +271,28 @@ var compareModHtml = function () {
 }
 
 /** Function that check parsing from Modelica to docx, in 'modelica' mode
-
+*/
 var compareModDocx = function () {
   var mode = 'modelica'
   // process.env.MODELICAPATH = __dirname
   mo.it('Testing docx for equality', () => {
     // mo files package to be tested
     const testMoFiles = getIntFiles(mode)
-    const docxMOD = getHtml(testMoFiles, mode)
+    const docxMOD = getDocx(testMoFiles, mode)
     // Get stored docx files
     const pattern = path.join(__dirname, 'FromModelica', 'modelica', 'docx', '*.docx')
     const oldDocxMODPath = glob.sync(pattern)
+    const re = RegExp(/<body\b[^>]*>([\s\S]*?)<\/footer>/gm)
     if (docxMOD.length === oldDocxMODPath.length) {
       for (var i = 0; i < oldDocxMODPath.length; i++) {
-        const oldDocxMOD = fs.readFileSync(oldDocxMODPath[i], 'utf8')
-        as.equal(docxMOD[i], oldDocxMOD, 'docx representation differs for ' + oldDocxMODPath[i])
+        const rawOldDocxMOD = fs.readFileSync(oldDocxMODPath[i], 'utf8')
+        const OldDocxMOD = re.exec(rawOldDocxMOD)[1]
+        as.equal(docxMOD[i], OldDocxMOD, 'docx representation differs for ' + oldDocxMODPath[i])
       }
     }
     ut.deleteFolderRecursive(path.join(__dirname, 'docx'))
   })
 }
-*/
 
 mo.describe('parser.js', function () {
   mo.describe('Testing parse from Modelica to raw Json, in "cdl" parsing mode', function () {
@@ -324,5 +310,5 @@ mo.describe('parser.js', function () {
   mo.describe('Testing html generation from Modelica, in "cdl" parsing mode', compareCdlHtml)
   mo.describe('Testing html generation from Modelica, in "modelica" parsing mode', compareModHtml)
   mo.describe('Testing docx generation from Modelica, in "cdl" parsing mode', compareCdlDocx)
-  // mo.describe('Testing docx generation from Modelica, in "modelica" parsing mode', compareModDocx)
+  mo.describe('Testing docx generation from Modelica, in "modelica" parsing mode', compareModDocx)
 })
