@@ -9,8 +9,22 @@ h4      { font-size: 100%; font-weight: bold; color: green; }
 h3      { font-size: 110%; font-weight: bold; color: green; }
 h2      { font-size: 130%; font-weight: bold; color: green; }
 address { font-weight: normal; }
-td      { padding: 2px; border: 1px solid #808080; vertical-align: top; }
-th      { padding: 2px; border: 1px solid #808080; vertical-align: top; font-weight: bold; }
+td      { padding: 2px; border: 1px solid #808080; vertical-align: top; max-width: 450 }
+td.text { max-width: 450 }
+td.text span { white-space: nowrap;
+               overflow: hidden;
+               text-overflow: ellipsis;
+               display: inline-block;
+               max-width: 100%;
+             }
+td.text:hover span:not(.empty) { background-color: #BDE5F8;
+                                 overflow: visible;
+                                 white-space: normal;
+                                 height: auto;
+                                 position: absolute;
+                                }
+
+th      { padding: 2px; border: 1px solid #808080; vertical-align: top; font-weight: bold; max-width: 450; }
 table   { border: 1px solid #808080; border-collapse: collapse; }
 pre, code {font-family: "Courier New", monospace;}
 pre {white-space: pre; overflow-x : hidden;}
@@ -60,6 +74,7 @@ where
     <table>
     <tr>
     <th class="mode">Type        </th>
+    <th>Quantity  </th>
     <th>Name    </th>
     <th>Default    </th>
     <th>Unit     </th>
@@ -68,14 +83,15 @@ where
     <th>max    </th>
     <th class="description">Description</th>
     </tr>
-    <tr class="tab ModelicaParameterTab"><td colspan="8">General</td></tr>
-    <tr class="group ModelicaParameterGroup"><td colspan="8">Parameters</td></tr>
+    <tr class="tab ModelicaParameterTab"><td colspan="9">General</td></tr>
+    <tr class="group ModelicaParameterGroup"><td colspan="9">Parameters</td></tr>
     <tr>
-    <td class="type">Real</td>
+    <td class="type, text"><span>Real</span></td>
+    <td></td>
     <td><code>k</code><a name="FromModelica.CustomPWithLimiter.k"></a></td>
     <td>2</td>
-    <td></td>
-    <td></td>
+    <td>1</td>
+    <td>1</td>
     <td></td>
     <td></td>
     <td>Constant gain</td>
@@ -89,6 +105,7 @@ where
     <table>
     <tr>
       <th class="type">Type        </th>
+      <th>Quantity  </th>
       <th>Name    </th>
       <th class="description">Description</th>
       <th>min    </th>
@@ -102,6 +119,7 @@ where
       Real
       </code>
       </td>
+      <td></td>
       <td><code>yMax</code><a name="FromModelica.CustomPWithLimiter.yMax"></a></td>
       <td>Maximum value of output signal</td>
       <td></td>
@@ -115,6 +133,7 @@ where
       Real
       </code>
       </td>
+      <td></td>
       <td><code>e</code><a name="FromModelica.CustomPWithLimiter.e"></a></td>
       <td>Control error</td>
       <td></td>
@@ -131,6 +150,7 @@ where
     <table>
     <tr>
       <th class="type">Type        </th>
+      <th>Quantity  </th>
       <th>Name    </th>
       <th class="description">Description</th>
       <th>min    </th>
@@ -144,6 +164,7 @@ where
       Real
       </code>
       </td>
+      <td></td>
       <td><code>y</code><a name="FromModelica.CustomPWithLimiter.y"></a></td>
       <td>Control signal</td>
       <td></td>
@@ -165,11 +186,11 @@ where
       <th>Parameter Assignments</th>
     </tr>
     <tr>
-      <td class="type">
+      <td class="type, text"><span>
       <code>
       <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Gain">Buildings.Controls.OBC.CDL.Continuous.Gain</a>
       </code>
-      </td>
+      </span></td>
       <td>
       <code>
       gain
@@ -187,11 +208,11 @@ where
       </td>
       </tr>
     <tr>
-      <td class="type">
+      <td class="type, text"><span>
       <code>
       <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Min">Buildings.Controls.OBC.CDL.Continuous.Min</a>
       </code>
-      </td>
+      </span></td>
       <td>
       <code>
       minValue
@@ -242,8 +263,9 @@ where
   </p>
 
 </body>
+
 <footer>
-    <div class="footer">
+<div class="footer">
 <p>
     Generated through CDL export of <a href="http://obc.lbl.gov">OpenBuildingControl</a>,
     <a href="https://www.lbl.gov">Berkeley Lab</a>.

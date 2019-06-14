@@ -9,8 +9,22 @@ h4      { font-size: 100%; font-weight: bold; color: green; }
 h3      { font-size: 110%; font-weight: bold; color: green; }
 h2      { font-size: 130%; font-weight: bold; color: green; }
 address { font-weight: normal; }
-td      { padding: 2px; border: 1px solid #808080; vertical-align: top; }
-th      { padding: 2px; border: 1px solid #808080; vertical-align: top; font-weight: bold; }
+td      { padding: 2px; border: 1px solid #808080; vertical-align: top; max-width: 450 }
+td.text { max-width: 450 }
+td.text span { white-space: nowrap;
+               overflow: hidden;
+               text-overflow: ellipsis;
+               display: inline-block;
+               max-width: 100%;
+             }
+td.text:hover span:not(.empty) { background-color: #BDE5F8;
+                                 overflow: visible;
+                                 white-space: normal;
+                                 height: auto;
+                                 position: absolute;
+                                }
+
+th      { padding: 2px; border: 1px solid #808080; vertical-align: top; font-weight: bold; max-width: 450; }
 table   { border: 1px solid #808080; border-collapse: collapse; }
 pre, code {font-family: "Courier New", monospace;}
 pre {white-space: pre; overflow-x : hidden;}
@@ -59,11 +73,11 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
       <th>Parameter Assignments</th>
     </tr>
     <tr>
-      <td class="type">
+      <td class="type, text"><span>
       <code>
       <a href="FromModelica.html#Integer">Integer</a>
       </code>
-      </td>
+      </span></td>
       <td>
       <code>
       one
@@ -89,6 +103,7 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
     <table>
     <tr>
       <th class="type">Type        </th>
+      <th>Quantity  </th>
       <th>Name    </th>
       <th class="description">Description</th>
       <th>min    </th>
@@ -102,6 +117,7 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
       Real
       </code>
       </td>
+      <td></td>
       <td><code>u</code><a name="FromModelica.BlockInputOutput.u"></a></td>
       <td>Input connector</td>
       <td></td>
@@ -118,6 +134,7 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
     <table>
     <tr>
       <th class="type">Type        </th>
+      <th>Quantity  </th>
       <th>Name    </th>
       <th class="description">Description</th>
       <th>min    </th>
@@ -131,6 +148,7 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
       Real
       </code>
       </td>
+      <td></td>
       <td><code>y</code><a name="FromModelica.BlockInputOutput.y"></a></td>
       <td>Output connector</td>
       <td></td>
@@ -159,11 +177,11 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
       <th>Parameter Assignments</th>
     </tr>
     <tr>
-      <td class="type">
+      <td class="type, text"><span>
       <code>
       <a href="FromModelica.html#Block1">Block1</a>
       </code>
-      </td>
+      </span></td>
       <td>
       <code>
       bloPub
@@ -188,11 +206,11 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
       <th>Parameter Assignments</th>
     </tr>
     <tr>
-      <td class="type">
+      <td class="type, text"><span>
       <code>
       <a href="FromModelica.html#Block1">Block1</a>
       </code>
-      </td>
+      </span></td>
       <td>
       <code>
       bloPro
@@ -224,6 +242,7 @@ where
     <table>
     <tr>
     <th class="mode">Type        </th>
+    <th>Quantity  </th>
     <th>Name    </th>
     <th>Default    </th>
     <th>Unit     </th>
@@ -232,14 +251,15 @@ where
     <th>max    </th>
     <th class="description">Description</th>
     </tr>
-    <tr class="tab ModelicaParameterTab"><td colspan="8">General</td></tr>
-    <tr class="group ModelicaParameterGroup"><td colspan="8">Parameters</td></tr>
+    <tr class="tab ModelicaParameterTab"><td colspan="9">General</td></tr>
+    <tr class="group ModelicaParameterGroup"><td colspan="9">Parameters</td></tr>
     <tr>
-    <td class="type">Real</td>
+    <td class="type, text"><span>Real</span></td>
+    <td></td>
     <td><code>k</code><a name="FromModelica.CustomPWithLimiter.k"></a></td>
     <td>2</td>
-    <td></td>
-    <td></td>
+    <td>1</td>
+    <td>1</td>
     <td></td>
     <td></td>
     <td>Constant gain</td>
@@ -253,6 +273,7 @@ where
     <table>
     <tr>
       <th class="type">Type        </th>
+      <th>Quantity  </th>
       <th>Name    </th>
       <th class="description">Description</th>
       <th>min    </th>
@@ -266,6 +287,7 @@ where
       Real
       </code>
       </td>
+      <td></td>
       <td><code>yMax</code><a name="FromModelica.CustomPWithLimiter.yMax"></a></td>
       <td>Maximum value of output signal</td>
       <td></td>
@@ -279,6 +301,7 @@ where
       Real
       </code>
       </td>
+      <td></td>
       <td><code>e</code><a name="FromModelica.CustomPWithLimiter.e"></a></td>
       <td>Control error</td>
       <td></td>
@@ -295,6 +318,7 @@ where
     <table>
     <tr>
       <th class="type">Type        </th>
+      <th>Quantity  </th>
       <th>Name    </th>
       <th class="description">Description</th>
       <th>min    </th>
@@ -308,6 +332,7 @@ where
       Real
       </code>
       </td>
+      <td></td>
       <td><code>y</code><a name="FromModelica.CustomPWithLimiter.y"></a></td>
       <td>Control signal</td>
       <td></td>
@@ -329,11 +354,11 @@ where
       <th>Parameter Assignments</th>
     </tr>
     <tr>
-      <td class="type">
+      <td class="type, text"><span>
       <code>
       <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Gain">Buildings.Controls.OBC.CDL.Continuous.Gain</a>
       </code>
-      </td>
+      </span></td>
       <td>
       <code>
       gain
@@ -351,11 +376,11 @@ where
       </td>
       </tr>
     <tr>
-      <td class="type">
+      <td class="type, text"><span>
       <code>
       <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Min">Buildings.Controls.OBC.CDL.Continuous.Min</a>
       </code>
-      </td>
+      </span></td>
       <td>
       <code>
       minValue
@@ -418,11 +443,11 @@ test...test...test...test...test...
       <th>Modification</th>
     </tr>
     <tr>
-      <td class="type">
+      <td class="type, text"><span>
       <code>
       <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.LimPID">Buildings.Controls.OBC.CDL.Continuous.LimPID</a>
       </code>
-      </td>
+      </span></td>
       <td>
       <ul class="list-parameter-assignments">
       <li>
@@ -447,6 +472,7 @@ test...test...test...test...test...
     <table>
     <tr>
     <th class="mode">Type        </th>
+    <th>Quantity  </th>
     <th>Name    </th>
     <th>Default    </th>
     <th>Unit     </th>
@@ -455,14 +481,15 @@ test...test...test...test...test...
     <th>max    </th>
     <th class="description">Description</th>
     </tr>
-    <tr class="tab ModelicaParameterTab"><td colspan="8">General</td></tr>
-    <tr class="group ModelicaParameterGroup"><td colspan="8">Parameters</td></tr>
+    <tr class="tab ModelicaParameterTab"><td colspan="9">General</td></tr>
+    <tr class="group ModelicaParameterGroup"><td colspan="9">Parameters</td></tr>
     <tr>
-    <td class="type">Modelica.SIunits.Length</td>
+    <td class="type, text"><span>Modelica.SIunits.Length</span></td>
+    <td></td>
     <td><code>length</code><a name="FromModelica.ExtendsClause_1.length"></a></td>
     <td></td>
-    <td></td>
-    <td></td>
+    <td>1</td>
+    <td>1</td>
     <td></td>
     <td></td>
     <td>Length of the pipe</td>
@@ -483,11 +510,11 @@ test...test...test...test...test...
       <th>Parameter Assignments</th>
     </tr>
     <tr>
-      <td class="type">
+      <td class="type, text"><span>
       <code>
       <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Gain">Buildings.Controls.OBC.CDL.Continuous.Gain</a>
       </code>
-      </td>
+      </span></td>
       <td>
       <code>
       gain
@@ -513,6 +540,7 @@ test...test...test...test...test...
     <table>
     <tr>
     <th class="type">Type        </th>
+    <th>Quantity  </th>
     <th>Name    </th>
     <th>Default    </th>
     <th>Unit     </th>
@@ -521,14 +549,15 @@ test...test...test...test...test...
     <th>max    </th>
     <th class="description">Description</th>
     </tr>
-    <tr class="tab ModelicaParameterTab"><td colspan="8">General</td></tr>
-    <tr class="group ModelicaParameterGroup"><td colspan="8">Parameters</td></tr>
+    <tr class="tab ModelicaParameterTab"><td colspan="9">General</td></tr>
+    <tr class="group ModelicaParameterGroup"><td colspan="9">Parameters</td></tr>
     <tr>
-    <td class="type">Modelica.SIunits.Area</td>
+    <td class="type, text"><span>Real</span></td>
+    <td>Area</td>
     <td><code>ARound</code><a name="FromModelica.ExtendsClause_1.ARound"></a></td>
     <td>dh^2*Modelica.Constants.pi&#x2F;4</td>
-    <td></td>
-    <td></td>
+    <td>m2</td>
+    <td>ft2</td>
     <td></td>
     <td></td>
     <td>Cross sectional area (assuming a round cross section area)</td>
@@ -552,11 +581,11 @@ test...test...test...test...test...
       <th>Modification</th>
     </tr>
     <tr>
-      <td class="type">
+      <td class="type, text"><span>
       <code>
       <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.LimPID">Buildings.Controls.OBC.CDL.Continuous.LimPID</a>
       </code>
-      </td>
+      </span></td>
       <td>
       <ul class="list-parameter-assignments">
       <li>
@@ -573,11 +602,11 @@ test...test...test...test...test...
       </td>
       </tr>
     <tr>
-      <td class="type">
+      <td class="type, text"><span>
       <code>
       <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Logical.html#Buildings.Controls.OBC.CDL.Logical.TrueHoldWithReset">Buildings.Controls.OBC.CDL.Logical.TrueHoldWithReset</a>
       </code>
-      </td>
+      </span></td>
       <td>
       <ul class="list-parameter-assignments">
       <li>
@@ -609,6 +638,7 @@ test...test...test...test...test...
     <table>
     <tr>
     <th class="mode">Type        </th>
+    <th>Quantity  </th>
     <th>Name    </th>
     <th>Default    </th>
     <th>Unit     </th>
@@ -617,14 +647,15 @@ test...test...test...test...test...
     <th>max    </th>
     <th class="description">Description</th>
     </tr>
-    <tr class="tab ModelicaParameterTab"><td colspan="8">General</td></tr>
-    <tr class="group ModelicaParameterGroup"><td colspan="8">Parameters</td></tr>
+    <tr class="tab ModelicaParameterTab"><td colspan="9">General</td></tr>
+    <tr class="group ModelicaParameterGroup"><td colspan="9">Parameters</td></tr>
     <tr>
-    <td class="type">Modelica.SIunits.Length</td>
+    <td class="type, text"><span>Modelica.SIunits.Length</span></td>
+    <td></td>
     <td><code>length</code><a name="FromModelica.ExtendsClause_2.length"></a></td>
     <td></td>
-    <td></td>
-    <td></td>
+    <td>1</td>
+    <td>1</td>
     <td></td>
     <td></td>
     <td>Length of the pipe</td>
@@ -645,11 +676,11 @@ test...test...test...test...test...
       <th>Parameter Assignments</th>
     </tr>
     <tr>
-      <td class="type">
+      <td class="type, text"><span>
       <code>
       <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Gain">Buildings.Controls.OBC.CDL.Continuous.Gain</a>
       </code>
-      </td>
+      </span></td>
       <td>
       <code>
       gain
@@ -675,6 +706,7 @@ test...test...test...test...test...
     <table>
     <tr>
     <th class="type">Type        </th>
+    <th>Quantity  </th>
     <th>Name    </th>
     <th>Default    </th>
     <th>Unit     </th>
@@ -683,14 +715,15 @@ test...test...test...test...test...
     <th>max    </th>
     <th class="description">Description</th>
     </tr>
-    <tr class="tab ModelicaParameterTab"><td colspan="8">General</td></tr>
-    <tr class="group ModelicaParameterGroup"><td colspan="8">Parameters</td></tr>
+    <tr class="tab ModelicaParameterTab"><td colspan="9">General</td></tr>
+    <tr class="group ModelicaParameterGroup"><td colspan="9">Parameters</td></tr>
     <tr>
-    <td class="type">Modelica.SIunits.Area</td>
+    <td class="type, text"><span>Real</span></td>
+    <td>Area</td>
     <td><code>ARound</code><a name="FromModelica.ExtendsClause_2.ARound"></a></td>
     <td>dh^2*Modelica.Constants.pi&#x2F;4</td>
-    <td></td>
-    <td></td>
+    <td>m2</td>
+    <td>ft2</td>
     <td></td>
     <td></td>
     <td>Cross sectional area (assuming a round cross section area)</td>
@@ -714,20 +747,20 @@ test...test...test...test...test...
       <th>Modification</th>
     </tr>
     <tr>
-      <td class="type">
+      <td class="type, text"><span>
       <code>
       <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL.html#Buildings.Controls.OBC.CDL.Constants">Buildings.Controls.OBC.CDL.Constants</a>
       </code>
-      </td>
+      </span></td>
       <td>
       </td>
       </tr>
     <tr>
-      <td class="type">
+      <td class="type, text"><span>
       <code>
       <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Logical.html#Buildings.Controls.OBC.CDL.Logical.TrueHoldWithReset">Buildings.Controls.OBC.CDL.Logical.TrueHoldWithReset</a>
       </code>
-      </td>
+      </span></td>
       <td>
       <ul class="list-parameter-assignments">
       <li>
@@ -747,6 +780,7 @@ test...test...test...test...test...
     <table>
     <tr>
     <th class="mode">Type        </th>
+    <th>Quantity  </th>
     <th>Name    </th>
     <th>Default    </th>
     <th>Unit     </th>
@@ -755,14 +789,15 @@ test...test...test...test...test...
     <th>max    </th>
     <th class="description">Description</th>
     </tr>
-    <tr class="tab ModelicaParameterTab"><td colspan="8">General</td></tr>
-    <tr class="group ModelicaParameterGroup"><td colspan="8">Parameters</td></tr>
+    <tr class="tab ModelicaParameterTab"><td colspan="9">General</td></tr>
+    <tr class="group ModelicaParameterGroup"><td colspan="9">Parameters</td></tr>
     <tr>
-    <td class="type">Modelica.SIunits.Length</td>
+    <td class="type, text"><span>Modelica.SIunits.Length</span></td>
+    <td></td>
     <td><code>length</code><a name="FromModelica.ExtendsClause_3.length"></a></td>
     <td></td>
-    <td></td>
-    <td></td>
+    <td>1</td>
+    <td>1</td>
     <td></td>
     <td></td>
     <td>Length of the pipe</td>
@@ -783,11 +818,11 @@ test...test...test...test...test...
       <th>Parameter Assignments</th>
     </tr>
     <tr>
-      <td class="type">
+      <td class="type, text"><span>
       <code>
       <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Gain">Buildings.Controls.OBC.CDL.Continuous.Gain</a>
       </code>
-      </td>
+      </span></td>
       <td>
       <code>
       gain
@@ -813,6 +848,7 @@ test...test...test...test...test...
     <table>
     <tr>
     <th class="type">Type        </th>
+    <th>Quantity  </th>
     <th>Name    </th>
     <th>Default    </th>
     <th>Unit     </th>
@@ -821,14 +857,15 @@ test...test...test...test...test...
     <th>max    </th>
     <th class="description">Description</th>
     </tr>
-    <tr class="tab ModelicaParameterTab"><td colspan="8">General</td></tr>
-    <tr class="group ModelicaParameterGroup"><td colspan="8">Parameters</td></tr>
+    <tr class="tab ModelicaParameterTab"><td colspan="9">General</td></tr>
+    <tr class="group ModelicaParameterGroup"><td colspan="9">Parameters</td></tr>
     <tr>
-    <td class="type">Modelica.SIunits.Area</td>
+    <td class="type, text"><span>Real</span></td>
+    <td>Area</td>
     <td><code>ARound</code><a name="FromModelica.ExtendsClause_3.ARound"></a></td>
     <td>dh^2*Modelica.Constants.pi&#x2F;4</td>
-    <td></td>
-    <td></td>
+    <td>m2</td>
+    <td>ft2</td>
     <td></td>
     <td></td>
     <td>Cross sectional area (assuming a round cross section area)</td>
@@ -890,6 +927,7 @@ Multi zone AHU economizer modulation control chart:
     <table>
     <tr>
     <th class="mode">Type        </th>
+    <th>Quantity  </th>
     <th>Name    </th>
     <th>Default    </th>
     <th>Unit     </th>
@@ -898,56 +936,61 @@ Multi zone AHU economizer modulation control chart:
     <th>max    </th>
     <th class="description">Description</th>
     </tr>
-    <tr class="tab ModelicaParameterTab"><td colspan="8">Commissioning</td></tr>
-    <tr class="group ModelicaParameterGroup"><td colspan="8">Controller</td></tr>
+    <tr class="tab ModelicaParameterTab"><td colspan="9">Commissioning</td></tr>
+    <tr class="group ModelicaParameterGroup"><td colspan="9">Controller</td></tr>
     <tr>
-    <td class="type">Real</td>
+    <td class="type, text"><span>Real</span></td>
+    <td></td>
     <td><code>uMin</code><a name="FromModelica.Modulation.uMin"></a></td>
     <td>-0.25</td>
     <td>1</td>
-    <td></td>
+    <td>1</td>
     <td></td>
     <td>0 (adjustable)</td>
     <td>Lower limit of controller input when outdoor damper opens (see diagram)</td>
     </tr>
     <tr>
-    <td class="type">Real</td>
+    <td class="type, text"><span>Real</span></td>
+    <td></td>
     <td><code>uMax</code><a name="FromModelica.Modulation.uMax"></a></td>
     <td>+0.25</td>
     <td>1</td>
-    <td></td>
+    <td>1</td>
     <td>0 (adjustable)</td>
     <td></td>
     <td>Upper limit of controller input when return damper is closed (see diagram)</td>
     </tr>
     <tr>
-    <td class="type">Real</td>
+    <td class="type, text"><span>Real</span></td>
+    <td></td>
     <td><code>uOutDamMax</code><a name="FromModelica.Modulation.uOutDamMax"></a></td>
     <td>(uMin + uMax)&#x2F;2</td>
     <td>1</td>
-    <td></td>
+    <td>1</td>
     <td>-1 (adjustable)</td>
     <td>1 (adjustable)</td>
     <td>Maximum loop signal for the OA damper to be fully open</td>
     </tr>
     <tr>
-    <td class="type">Real</td>
+    <td class="type, text"><span>Real</span></td>
+    <td></td>
     <td><code>uRetDamMin</code><a name="FromModelica.Modulation.uRetDamMin"></a></td>
     <td>(uMin + uMax)&#x2F;2</td>
     <td>1</td>
-    <td></td>
+    <td>1</td>
     <td>-1 (adjustable)</td>
     <td>1 (adjustable)</td>
     <td>Minimum loop signal for the RA damper to be fully open</td>
     </tr>
-    <tr class="tab ModelicaParameterTab"><td colspan="8">General</td></tr>
-    <tr class="group ModelicaParameterGroup"><td colspan="8">Parameters</td></tr>
+    <tr class="tab ModelicaParameterTab"><td colspan="9">General</td></tr>
+    <tr class="group ModelicaParameterGroup"><td colspan="9">Parameters</td></tr>
     <tr>
-    <td class="type">Time</td>
+    <td class="type, text"><span>Real</span></td>
+    <td>Time</td>
     <td><code>samplePeriod</code><a name="FromModelica.Modulation.samplePeriod"></a></td>
     <td>300</td>
     <td>s</td>
-    <td></td>
+    <td>s</td>
     <td></td>
     <td></td>
     <td>Sample period of component, used to limit the rate of change of the dampers (to avoid quick opening that can result in frost)</td>
@@ -961,6 +1004,7 @@ Multi zone AHU economizer modulation control chart:
     <table>
     <tr>
       <th class="type">Type        </th>
+      <th>Quantity  </th>
       <th>Name    </th>
       <th class="description">Description</th>
       <th>min    </th>
@@ -974,12 +1018,13 @@ Multi zone AHU economizer modulation control chart:
       Real
       </code>
       </td>
+      <td></td>
       <td><code>uTSup</code><a name="FromModelica.Modulation.uTSup"></a></td>
       <td>Signal for supply air temperature control (T Sup Control Loop Signal in diagram)</td>
       <td></td>
       <td></td>
-      <td></td>
-      <td></td>
+      <td>1</td>
+      <td>1</td>
       </tr>
     <tr>
       <td>
@@ -987,12 +1032,13 @@ Multi zone AHU economizer modulation control chart:
       Real
       </code>
       </td>
+      <td></td>
       <td><code>uOutDamPosMin</code><a name="FromModelica.Modulation.uOutDamPosMin"></a></td>
       <td>Minimum economizer damper position limit as returned by the damper position limits  sequence</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td>0 (adjustable)</td>
+      <td>1 (adjustable)</td>
+      <td>1</td>
+      <td>1</td>
       </tr>
     <tr>
       <td>
@@ -1000,13 +1046,14 @@ Multi zone AHU economizer modulation control chart:
       Real
       </code>
       </td>
+      <td></td>
       <td><code>uOutDamPosMax</code><a name="FromModelica.Modulation.uOutDamPosMax"></a></td>
       <td>Maximum economizer damper position limit as returned by the economizer enable-disable sequence.
     If the economizer is disabled, this value equals uOutDamPosMin</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td>0 (adjustable)</td>
+      <td>1 (adjustable)</td>
+      <td>1</td>
+      <td>1</td>
       </tr>
     <tr>
       <td>
@@ -1014,12 +1061,13 @@ Multi zone AHU economizer modulation control chart:
       Real
       </code>
       </td>
+      <td></td>
       <td><code>uRetDamPosMin</code><a name="FromModelica.Modulation.uRetDamPosMin"></a></td>
       <td>Minimum return air damper position limit as returned by the economizer enable-disable sequence</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td>0 (adjustable)</td>
+      <td>1 (adjustable)</td>
+      <td>1</td>
+      <td>1</td>
       </tr>
     <tr>
       <td>
@@ -1027,12 +1075,13 @@ Multi zone AHU economizer modulation control chart:
       Real
       </code>
       </td>
+      <td></td>
       <td><code>uRetDamPosMax</code><a name="FromModelica.Modulation.uRetDamPosMax"></a></td>
       <td>Maximum return air damper position limit as returned by the economizer enable-disable sequence</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td>0 (adjustable)</td>
+      <td>1 (adjustable)</td>
+      <td>1</td>
+      <td>1</td>
       </tr>
     </table>
 
@@ -1043,6 +1092,7 @@ Multi zone AHU economizer modulation control chart:
     <table>
     <tr>
       <th class="type">Type        </th>
+      <th>Quantity  </th>
       <th>Name    </th>
       <th class="description">Description</th>
       <th>min    </th>
@@ -1056,12 +1106,13 @@ Multi zone AHU economizer modulation control chart:
       Real
       </code>
       </td>
+      <td></td>
       <td><code>yOutDamPos</code><a name="FromModelica.Modulation.yOutDamPos"></a></td>
       <td>Economizer damper position</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td>0 (adjustable)</td>
+      <td>1 (adjustable)</td>
+      <td>1</td>
+      <td>1</td>
       </tr>
     <tr>
       <td>
@@ -1069,12 +1120,13 @@ Multi zone AHU economizer modulation control chart:
       Real
       </code>
       </td>
+      <td></td>
       <td><code>yRetDamPos</code><a name="FromModelica.Modulation.yRetDamPos"></a></td>
       <td>Return air damper position</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td>0 (adjustable)</td>
+      <td>1 (adjustable)</td>
+      <td>1</td>
+      <td>1</td>
       </tr>
     </table>
 
@@ -1092,11 +1144,11 @@ Multi zone AHU economizer modulation control chart:
       <th>Parameter Assignments</th>
     </tr>
     <tr>
-      <td class="type">
+      <td class="type, text"><span>
       <code>
       <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous_Sources.html#Buildings.Controls.OBC.CDL.Continuous.Sources.Constant">Buildings.Controls.OBC.CDL.Continuous.Sources.Constant</a>
       </code>
-      </td>
+      </span></td>
       <td>
       <code>
       outDamMinLimSig
@@ -1114,11 +1166,11 @@ Multi zone AHU economizer modulation control chart:
       </td>
       </tr>
     <tr>
-      <td class="type">
+      <td class="type, text"><span>
       <code>
       <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous_Sources.html#Buildings.Controls.OBC.CDL.Continuous.Sources.Constant">Buildings.Controls.OBC.CDL.Continuous.Sources.Constant</a>
       </code>
-      </td>
+      </span></td>
       <td>
       <code>
       outDamMaxLimSig
@@ -1136,11 +1188,11 @@ Multi zone AHU economizer modulation control chart:
       </td>
       </tr>
     <tr>
-      <td class="type">
+      <td class="type, text"><span>
       <code>
       <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous_Sources.html#Buildings.Controls.OBC.CDL.Continuous.Sources.Constant">Buildings.Controls.OBC.CDL.Continuous.Sources.Constant</a>
       </code>
-      </td>
+      </span></td>
       <td>
       <code>
       retDamConMinLimSig
@@ -1158,11 +1210,11 @@ Multi zone AHU economizer modulation control chart:
       </td>
       </tr>
     <tr>
-      <td class="type">
+      <td class="type, text"><span>
       <code>
       <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous_Sources.html#Buildings.Controls.OBC.CDL.Continuous.Sources.Constant">Buildings.Controls.OBC.CDL.Continuous.Sources.Constant</a>
       </code>
-      </td>
+      </span></td>
       <td>
       <code>
       retDamMaxLimSig
@@ -1180,11 +1232,11 @@ Multi zone AHU economizer modulation control chart:
       </td>
       </tr>
     <tr>
-      <td class="type">
+      <td class="type, text"><span>
       <code>
       <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Line">Buildings.Controls.OBC.CDL.Continuous.Line</a>
       </code>
-      </td>
+      </span></td>
       <td>
       <code>
       outDamPos
@@ -1207,11 +1259,11 @@ Multi zone AHU economizer modulation control chart:
       </td>
       </tr>
     <tr>
-      <td class="type">
+      <td class="type, text"><span>
       <code>
       <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Line">Buildings.Controls.OBC.CDL.Continuous.Line</a>
       </code>
-      </td>
+      </span></td>
       <td>
       <code>
       retDamPos
@@ -1234,11 +1286,11 @@ Multi zone AHU economizer modulation control chart:
       </td>
       </tr>
     <tr>
-      <td class="type">
+      <td class="type, text"><span>
       <code>
       <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Min">Buildings.Controls.OBC.CDL.Continuous.Min</a>
       </code>
-      </td>
+      </span></td>
       <td>
       <code>
       min
@@ -1249,11 +1301,11 @@ Multi zone AHU economizer modulation control chart:
       </td>
       </tr>
     <tr>
-      <td class="type">
+      <td class="type, text"><span>
       <code>
       <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Max">Buildings.Controls.OBC.CDL.Continuous.Max</a>
       </code>
-      </td>
+      </span></td>
       <td>
       <code>
       max
@@ -1264,11 +1316,11 @@ Multi zone AHU economizer modulation control chart:
       </td>
       </tr>
     <tr>
-      <td class="type">
+      <td class="type, text"><span>
       <code>
       <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Discrete.html#Buildings.Controls.OBC.CDL.Discrete.FirstOrderHold">Buildings.Controls.OBC.CDL.Discrete.FirstOrderHold</a>
       </code>
-      </td>
+      </span></td>
       <td>
       <code>
       firOrdHolOutDam
@@ -1286,11 +1338,11 @@ Multi zone AHU economizer modulation control chart:
       </td>
       </tr>
     <tr>
-      <td class="type">
+      <td class="type, text"><span>
       <code>
       <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Discrete.html#Buildings.Controls.OBC.CDL.Discrete.FirstOrderHold">Buildings.Controls.OBC.CDL.Discrete.FirstOrderHold</a>
       </code>
-      </td>
+      </span></td>
       <td>
       <code>
       firOrdHolRetDam
@@ -1443,6 +1495,7 @@ Multi zone AHU economizer modulation control chart:
     <table>
     <tr>
     <th class="mode">Type        </th>
+    <th>Quantity  </th>
     <th>Name    </th>
     <th>Default    </th>
     <th>Unit     </th>
@@ -1451,14 +1504,15 @@ Multi zone AHU economizer modulation control chart:
     <th>max    </th>
     <th class="description">Description</th>
     </tr>
-    <tr class="tab ModelicaParameterTab"><td colspan="8">General</td></tr>
-    <tr class="group ModelicaParameterGroup"><td colspan="8">Parameters</td></tr>
+    <tr class="tab ModelicaParameterTab"><td colspan="9">General</td></tr>
+    <tr class="group ModelicaParameterGroup"><td colspan="9">Parameters</td></tr>
     <tr>
-    <td class="type">Real</td>
+    <td class="type, text"><span>Real</span></td>
+    <td></td>
     <td><code>kP</code><a name="FromModelica.Parameter1.kP"></a></td>
     <td>1</td>
-    <td></td>
-    <td></td>
+    <td>1</td>
+    <td>1</td>
     <td></td>
     <td></td>
     <td>Some comment</td>
@@ -1476,6 +1530,7 @@ Multi zone AHU economizer modulation control chart:
     <table>
     <tr>
     <th class="mode">Type        </th>
+    <th>Quantity  </th>
     <th>Name    </th>
     <th>Default    </th>
     <th>Unit     </th>
@@ -1484,14 +1539,15 @@ Multi zone AHU economizer modulation control chart:
     <th>max    </th>
     <th class="description">Description</th>
     </tr>
-    <tr class="tab ModelicaParameterTab"><td colspan="8">General</td></tr>
-    <tr class="group ModelicaParameterGroup"><td colspan="8">Parameters</td></tr>
+    <tr class="tab ModelicaParameterTab"><td colspan="9">General</td></tr>
+    <tr class="group ModelicaParameterGroup"><td colspan="9">Parameters</td></tr>
     <tr>
-    <td class="type">Real</td>
+    <td class="type, text"><span>Real</span></td>
+    <td></td>
     <td><code>kP</code><a name="FromModelica.Parameter1WithVendorAnnotation.kP"></a></td>
     <td>1</td>
-    <td></td>
-    <td></td>
+    <td>1</td>
+    <td>1</td>
     <td></td>
     <td></td>
     <td>Some comment</td>
@@ -1509,6 +1565,7 @@ Multi zone AHU economizer modulation control chart:
     <table>
     <tr>
     <th class="mode">Type        </th>
+    <th>Quantity  </th>
     <th>Name    </th>
     <th>Default    </th>
     <th>Unit     </th>
@@ -1517,98 +1574,107 @@ Multi zone AHU economizer modulation control chart:
     <th>max    </th>
     <th class="description">Description</th>
     </tr>
-    <tr class="tab ModelicaParameterTab"><td colspan="8">General</td></tr>
-    <tr class="group ModelicaParameterGroup"><td colspan="8">Parameters</td></tr>
+    <tr class="tab ModelicaParameterTab"><td colspan="9">General</td></tr>
+    <tr class="group ModelicaParameterGroup"><td colspan="9">Parameters</td></tr>
     <tr>
-    <td class="type">Real</td>
+    <td class="type, text"><span>Real</span></td>
+    <td></td>
     <td><code>myPar1</code><a name="FromModelica.Parameter2.myPar1"></a></td>
+    <td>1</td>
+    <td>1</td>
     <td>1</td>
     <td></td>
     <td></td>
-    <td></td>
-    <td></td>
     <td>Some comment</td>
     </tr>
     <tr>
-    <td class="type">Real</td>
+    <td class="type, text"><span>Real</span></td>
+    <td></td>
     <td><code>myParNoValue</code><a name="FromModelica.Parameter2.myParNoValue"></a></td>
     <td></td>
-    <td></td>
-    <td></td>
+    <td>1</td>
+    <td>1</td>
     <td></td>
     <td></td>
     <td>Some comment</td>
     </tr>
     <tr>
-    <td class="type">Real</td>
+    <td class="type, text"><span>Real</span></td>
+    <td></td>
     <td><code>myParMin</code><a name="FromModelica.Parameter2.myParMin"></a></td>
     <td></td>
-    <td></td>
-    <td></td>
+    <td>1</td>
+    <td>1</td>
     <td>0</td>
     <td></td>
     <td>Some comment</td>
     </tr>
     <tr>
-    <td class="type">Real</td>
+    <td class="type, text"><span>Real</span></td>
+    <td></td>
     <td><code>myParMax</code><a name="FromModelica.Parameter2.myParMax"></a></td>
     <td></td>
-    <td></td>
-    <td></td>
+    <td>1</td>
+    <td>1</td>
     <td></td>
     <td>0</td>
     <td>Some comment</td>
     </tr>
     <tr>
-    <td class="type">Real</td>
+    <td class="type, text"><span>Real</span></td>
+    <td></td>
     <td><code>myParUnit</code><a name="FromModelica.Parameter2.myParUnit"></a></td>
     <td></td>
-    <td>K</td>
-    <td></td>
+    <td>1</td>
+    <td>1</td>
     <td></td>
     <td></td>
     <td>Some comment</td>
     </tr>
-    <tr class="group ModelicaParameterGroup"><td colspan="8">Gains</td></tr>
+    <tr class="group ModelicaParameterGroup"><td colspan="9">Gains</td></tr>
     <tr>
-    <td class="type">Real</td>
+    <td class="type, text"><span>Real</span></td>
+    <td></td>
     <td><code>myParInGroup</code><a name="FromModelica.Parameter2.myParInGroup"></a></td>
     <td></td>
-    <td></td>
-    <td></td>
+    <td>1</td>
+    <td>1</td>
     <td></td>
     <td></td>
     <td>Some comment</td>
     </tr>
-    <tr class="tab ModelicaParameterTab"><td colspan="8">Initialization tab</td></tr>
-    <tr class="group ModelicaParameterGroup"><td colspan="8">Parameters</td></tr>
+    <tr class="tab ModelicaParameterTab"><td colspan="9">Initialization tab</td></tr>
+    <tr class="group ModelicaParameterGroup"><td colspan="9">Parameters</td></tr>
     <tr>
-    <td class="type">Real</td>
+    <td class="type, text"><span>Real</span></td>
+    <td></td>
     <td><code>myParInTab</code><a name="FromModelica.Parameter2.myParInTab"></a></td>
     <td></td>
-    <td></td>
-    <td></td>
+    <td>1</td>
+    <td>1</td>
     <td></td>
     <td></td>
     <td>Some comment</td>
     </tr>
-    <tr class="group ModelicaParameterGroup"><td colspan="8">Initial state</td></tr>
+    <tr class="group ModelicaParameterGroup"><td colspan="9">Initial state</td></tr>
     <tr>
-    <td class="type">Real</td>
+    <td class="type, text"><span>Real</span></td>
+    <td></td>
     <td><code>myParInTabInGroup1</code><a name="FromModelica.Parameter2.myParInTabInGroup1"></a></td>
     <td></td>
-    <td></td>
-    <td></td>
+    <td>1</td>
+    <td>1</td>
     <td></td>
     <td></td>
     <td>Some comment 1</td>
     </tr>
     <tr>
-    <td class="type">Real</td>
+    <td class="type, text"><span>Real</span></td>
+    <td></td>
     <td><code>myParInTabInGroup2</code><a name="FromModelica.Parameter2.myParInTabInGroup2"></a></td>
     <td></td>
-    <td></td>
-    <td></td>
+    <td>1</td>
+    <td>1</td>
     <td></td>
     <td></td>
     <td>Some comment 2</td>
@@ -1632,6 +1698,7 @@ This is the info section.
     <table>
     <tr>
     <th class="mode">Type        </th>
+    <th>Quantity  </th>
     <th>Name    </th>
     <th>Default    </th>
     <th>Unit     </th>
@@ -1640,14 +1707,15 @@ This is the info section.
     <th>max    </th>
     <th class="description">Description</th>
     </tr>
-    <tr class="tab ModelicaParameterTab"><td colspan="8">General</td></tr>
-    <tr class="group ModelicaParameterGroup"><td colspan="8">Parameters</td></tr>
+    <tr class="tab ModelicaParameterTab"><td colspan="9">General</td></tr>
+    <tr class="group ModelicaParameterGroup"><td colspan="9">Parameters</td></tr>
     <tr>
-    <td class="type">Real</td>
+    <td class="type, text"><span>Real</span></td>
+    <td></td>
     <td><code>kP</code><a name="FromModelica.ParameterWithInfo.kP"></a></td>
     <td>1</td>
-    <td></td>
-    <td></td>
+    <td>1</td>
+    <td>1</td>
     <td></td>
     <td></td>
     <td>Some comment</td>
@@ -1671,6 +1739,7 @@ This is the info section.
     <table>
     <tr>
     <th class="mode">Type        </th>
+    <th>Quantity  </th>
     <th>Name    </th>
     <th>Default    </th>
     <th>Unit     </th>
@@ -1679,14 +1748,15 @@ This is the info section.
     <th>max    </th>
     <th class="description">Description</th>
     </tr>
-    <tr class="tab ModelicaParameterTab"><td colspan="8">General</td></tr>
-    <tr class="group ModelicaParameterGroup"><td colspan="8">Parameters</td></tr>
+    <tr class="tab ModelicaParameterTab"><td colspan="9">General</td></tr>
+    <tr class="group ModelicaParameterGroup"><td colspan="9">Parameters</td></tr>
     <tr>
-    <td class="type">Real</td>
+    <td class="type, text"><span>Real</span></td>
+    <td></td>
     <td><code>kP</code><a name="FromModelica.ParameterWithVendorAnnotationInInfo.kP"></a></td>
     <td>1</td>
-    <td></td>
-    <td></td>
+    <td>1</td>
+    <td>1</td>
     <td></td>
     <td></td>
     <td>Some comment</td>
@@ -1694,8 +1764,9 @@ This is the info section.
     </table>
 
 </body>
+
 <footer>
-    <div class="footer">
+<div class="footer">
 <p>
     Generated through CDL export of <a href="http://obc.lbl.gov">OpenBuildingControl</a>,
     <a href="https://www.lbl.gov">Berkeley Lab</a>.

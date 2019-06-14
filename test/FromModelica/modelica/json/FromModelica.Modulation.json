@@ -8,11 +8,15 @@
       "parameters": [
         {
           "className": "Real",
+          "type": "Real",
           "name": "uMin",
           "value": "-0.25",
           "comment": "Lower limit of controller input when outdoor damper opens (see diagram)",
           "unit": {
             "prefix": "final",
+            "value": "\"1\""
+          },
+          "displayUnit": {
             "value": "\"1\""
           },
           "max": {
@@ -38,11 +42,15 @@
         },
         {
           "className": "Real",
+          "type": "Real",
           "name": "uMax",
           "value": "+0.25",
           "comment": "Upper limit of controller input when return damper is closed (see diagram)",
           "unit": {
             "prefix": "final",
+            "value": "\"1\""
+          },
+          "displayUnit": {
             "value": "\"1\""
           },
           "min": {
@@ -68,11 +76,15 @@
         },
         {
           "className": "Real",
+          "type": "Real",
           "name": "uOutDamMax",
           "value": "(uMin + uMax)/2",
           "comment": "Maximum loop signal for the OA damper to be fully open",
           "unit": {
             "prefix": "final",
+            "value": "\"1\""
+          },
+          "displayUnit": {
             "value": "\"1\""
           },
           "min": {
@@ -106,11 +118,15 @@
         },
         {
           "className": "Real",
+          "type": "Real",
           "name": "uRetDamMin",
           "value": "(uMin + uMax)/2",
           "comment": "Minimum loop signal for the RA damper to be fully open",
           "unit": {
             "prefix": "final",
+            "value": "\"1\""
+          },
+          "displayUnit": {
             "value": "\"1\""
           },
           "min": {
@@ -144,9 +160,19 @@
         },
         {
           "className": "Modelica.SIunits.Time",
+          "type": "Real",
           "name": "samplePeriod",
           "value": "300",
           "comment": "Sample period of component, used to limit the rate of change of the dampers (to avoid quick opening that can result in frost)",
+          "unit": {
+            "value": "\"s\""
+          },
+          "displayUnit": {
+            "value": "\"s\""
+          },
+          "quantity": {
+            "value": "\"Time\""
+          },
           "annotation": {
             "dialog": {
               "tab": "General",

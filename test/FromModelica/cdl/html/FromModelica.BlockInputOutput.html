@@ -9,8 +9,22 @@ h4      { font-size: 100%; font-weight: bold; color: green; }
 h3      { font-size: 110%; font-weight: bold; color: green; }
 h2      { font-size: 130%; font-weight: bold; color: green; }
 address { font-weight: normal; }
-td      { padding: 2px; border: 1px solid #808080; vertical-align: top; }
-th      { padding: 2px; border: 1px solid #808080; vertical-align: top; font-weight: bold; }
+td      { padding: 2px; border: 1px solid #808080; vertical-align: top; max-width: 450 }
+td.text { max-width: 450 }
+td.text span { white-space: nowrap;
+               overflow: hidden;
+               text-overflow: ellipsis;
+               display: inline-block;
+               max-width: 100%;
+             }
+td.text:hover span:not(.empty) { background-color: #BDE5F8;
+                                 overflow: visible;
+                                 white-space: normal;
+                                 height: auto;
+                                 position: absolute;
+                                }
+
+th      { padding: 2px; border: 1px solid #808080; vertical-align: top; font-weight: bold; max-width: 450; }
 table   { border: 1px solid #808080; border-collapse: collapse; }
 pre, code {font-family: "Courier New", monospace;}
 pre {white-space: pre; overflow-x : hidden;}
@@ -52,6 +66,7 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
     <table>
     <tr>
       <th class="type">Type        </th>
+      <th>Quantity  </th>
       <th>Name    </th>
       <th class="description">Description</th>
       <th>min    </th>
@@ -65,6 +80,7 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
       Real
       </code>
       </td>
+      <td></td>
       <td><code>u</code><a name="FromModelica.BlockInputOutput.u"></a></td>
       <td>Input connector</td>
       <td></td>
@@ -81,6 +97,7 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
     <table>
     <tr>
       <th class="type">Type        </th>
+      <th>Quantity  </th>
       <th>Name    </th>
       <th class="description">Description</th>
       <th>min    </th>
@@ -94,6 +111,7 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
       Real
       </code>
       </td>
+      <td></td>
       <td><code>y</code><a name="FromModelica.BlockInputOutput.y"></a></td>
       <td>Output connector</td>
       <td></td>
@@ -112,8 +130,9 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
   </p>
 
 </body>
+
 <footer>
-    <div class="footer">
+<div class="footer">
 <p>
     Generated through CDL export of <a href="http://obc.lbl.gov">OpenBuildingControl</a>,
     <a href="https://www.lbl.gov">Berkeley Lab</a>.
