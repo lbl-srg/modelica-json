@@ -10,7 +10,7 @@ h3      { font-size: 110%; font-weight: bold; color: green; }
 h2      { font-size: 130%; font-weight: bold; color: green; }
 address { font-weight: normal; }
 td      { padding: 2px; border: 1px solid #808080; vertical-align: top; max-width: 450; }
-td.text { max-width: 450 }
+td.text { max-width: 450; }
 td.text span { white-space: nowrap;
                overflow: hidden;
                text-overflow: ellipsis;
@@ -27,6 +27,7 @@ td.text:hover span:not(.empty) { background-color: #BDE5F8;
 
 th      { padding: 2px; border: 1px solid #808080; vertical-align: top; font-weight: bold; max-width: 450; }
 table   { border: 1px solid #808080; border-collapse: collapse; }
+ul.list-parameter-assignments { list-style-type: none; margin-top: 0rem; margin-bottom: 0rem; padding: 2px; }
 pre, code {font-family: "Courier New", monospace;}
 pre {white-space: pre; overflow-x : hidden;}
 .ModelicaDescription {font-weight: bold;} /* For the description string of the class. */
@@ -85,8 +86,8 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
       </code>
       <a name="FromModelica.one"></a></td>
       <td>An integer constant with value 1</td>
-      <td>
-      </td>
+      <td class="text"><span>
+      </span></td>
       </tr>
     </table>
 

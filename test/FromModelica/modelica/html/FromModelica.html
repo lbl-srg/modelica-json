@@ -10,7 +10,7 @@ h3      { font-size: 110%; font-weight: bold; color: green; }
 h2      { font-size: 130%; font-weight: bold; color: green; }
 address { font-weight: normal; }
 td      { padding: 2px; border: 1px solid #808080; vertical-align: top; max-width: 450; }
-td.text { max-width: 450 }
+td.text { max-width: 450; }
 td.text span { white-space: nowrap;
                overflow: hidden;
                text-overflow: ellipsis;
@@ -27,6 +27,7 @@ td.text:hover span:not(.empty) { background-color: #BDE5F8;
 
 th      { padding: 2px; border: 1px solid #808080; vertical-align: top; font-weight: bold; max-width: 450; }
 table   { border: 1px solid #808080; border-collapse: collapse; }
+ul.list-parameter-assignments { list-style-type: none; margin-top: 0rem; margin-bottom: 0rem; padding: 2px; }
 pre, code {font-family: "Courier New", monospace;}
 pre {white-space: pre; overflow-x : hidden;}
 .ModelicaDescription {font-weight: bold;} /* For the description string of the class. */
@@ -85,8 +86,8 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
       </code>
       <a name="FromModelica.one"></a></td>
       <td>An integer constant with value 1</td>
-      <td>
-      </td>
+      <td class="text"><span>
+      </span></td>
       </tr>
     </table><h2>FromModelica.Block1<a name="FromModelica.Block1"></a></h2>
 
@@ -189,8 +190,8 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
       </code>
       <a name="FromModelica.BlockWithBlock1.bloPub"></a></td>
       <td>A public block</td>
-      <td>
-      </td>
+      <td class="text"><span>
+      </span></td>
       </tr>
     </table>
 
@@ -218,8 +219,8 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
       </code>
       <a name="FromModelica.BlockWithBlock1.bloPro"></a></td>
       <td>A protected block</td>
-      <td>
-      </td>
+      <td class="text"><span>
+      </span></td>
       </tr>
     </table><h2>FromModelica.CustomPWithLimiter<a name="FromModelica.CustomPWithLimiter"></a></h2>
 
@@ -366,7 +367,7 @@ where
       </code>
       <a name="FromModelica.CustomPWithLimiter.gain"></a></td>
       <td>Constant gain</td>
-      <td>
+      <td class="text"><span>
       <ul class="list-parameter-assignments">
       <li>
       <code>
@@ -374,7 +375,7 @@ where
       </code>
       </li>
       </ul>
-      </td>
+      </span></td>
       </tr>
     <tr>
       <td class="type, text"><span>
@@ -388,8 +389,8 @@ where
       </code>
       <a name="FromModelica.CustomPWithLimiter.minValue"></a></td>
       <td>Outputs the minimum of its inputs</td>
-      <td>
-      </td>
+      <td class="text"><span>
+      </span></td>
       </tr>
     </table>
 
@@ -449,7 +450,7 @@ test...test...test...test...test...
       <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.LimPID">Buildings.Controls.OBC.CDL.Continuous.LimPID</a>
       </code>
       </span></td>
-      <td>
+      <td class="text"><span>
       <ul class="list-parameter-assignments">
       <li>
       <code>
@@ -462,7 +463,7 @@ test...test...test...test...test...
       </code>
       </li>
       </ul>
-      </td>
+      </span></td>
       </tr>
     </table>
 
@@ -522,7 +523,7 @@ test...test...test...test...test...
       </code>
       <a name="FromModelica.ExtendsClause_1.gain"></a></td>
       <td>Constant gain</td>
-      <td>
+      <td class="text"><span>
       <ul class="list-parameter-assignments">
       <li>
       <code>
@@ -530,7 +531,7 @@ test...test...test...test...test...
       </code>
       </li>
       </ul>
-      </td>
+      </span></td>
       </tr>
     </table>
 
@@ -587,7 +588,7 @@ test...test...test...test...test...
       <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.LimPID">Buildings.Controls.OBC.CDL.Continuous.LimPID</a>
       </code>
       </span></td>
-      <td>
+      <td class="text"><span>
       <ul class="list-parameter-assignments">
       <li>
       <code>
@@ -600,7 +601,7 @@ test...test...test...test...test...
       </code>
       </li>
       </ul>
-      </td>
+      </span></td>
       </tr>
     <tr>
       <td class="type, text"><span>
@@ -608,7 +609,7 @@ test...test...test...test...test...
       <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Logical.html#Buildings.Controls.OBC.CDL.Logical.TrueHoldWithReset">Buildings.Controls.OBC.CDL.Logical.TrueHoldWithReset</a>
       </code>
       </span></td>
-      <td>
+      <td class="text"><span>
       <ul class="list-parameter-assignments">
       <li>
       <code>
@@ -628,7 +629,7 @@ test...test...test...test...test...
       </code>
       </li>
       </ul>
-      </td>
+      </span></td>
       </tr>
     </table>
 
@@ -688,7 +689,7 @@ test...test...test...test...test...
       </code>
       <a name="FromModelica.ExtendsClause_2.gain"></a></td>
       <td>Constant gain</td>
-      <td>
+      <td class="text"><span>
       <ul class="list-parameter-assignments">
       <li>
       <code>
@@ -696,7 +697,7 @@ test...test...test...test...test...
       </code>
       </li>
       </ul>
-      </td>
+      </span></td>
       </tr>
     </table>
 
@@ -753,8 +754,8 @@ test...test...test...test...test...
       <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL.html#Buildings.Controls.OBC.CDL.Constants">Buildings.Controls.OBC.CDL.Constants</a>
       </code>
       </span></td>
-      <td>
-      </td>
+      <td class="text"><span>
+      </span></td>
       </tr>
     <tr>
       <td class="type, text"><span>
@@ -762,7 +763,7 @@ test...test...test...test...test...
       <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Logical.html#Buildings.Controls.OBC.CDL.Logical.TrueHoldWithReset">Buildings.Controls.OBC.CDL.Logical.TrueHoldWithReset</a>
       </code>
       </span></td>
-      <td>
+      <td class="text"><span>
       <ul class="list-parameter-assignments">
       <li>
       <code>
@@ -770,7 +771,7 @@ test...test...test...test...test...
       </code>
       </li>
       </ul>
-      </td>
+      </span></td>
       </tr>
     </table>
 
@@ -830,7 +831,7 @@ test...test...test...test...test...
       </code>
       <a name="FromModelica.ExtendsClause_3.gain"></a></td>
       <td>Constant gain</td>
-      <td>
+      <td class="text"><span>
       <ul class="list-parameter-assignments">
       <li>
       <code>
@@ -838,7 +839,7 @@ test...test...test...test...test...
       </code>
       </li>
       </ul>
-      </td>
+      </span></td>
       </tr>
     </table>
 
@@ -1156,7 +1157,7 @@ Multi zone AHU economizer modulation control chart:
       </code>
       <a name="FromModelica.Modulation.outDamMinLimSig"></a></td>
       <td>Minimal control loop signal for the outdoor air damper</td>
-      <td>
+      <td class="text"><span>
       <ul class="list-parameter-assignments">
       <li>
       <code>
@@ -1164,7 +1165,7 @@ Multi zone AHU economizer modulation control chart:
       </code>
       </li>
       </ul>
-      </td>
+      </span></td>
       </tr>
     <tr>
       <td class="type, text"><span>
@@ -1178,7 +1179,7 @@ Multi zone AHU economizer modulation control chart:
       </code>
       <a name="FromModelica.Modulation.outDamMaxLimSig"></a></td>
       <td>Maximum control loop signal for the outdoor air damper</td>
-      <td>
+      <td class="text"><span>
       <ul class="list-parameter-assignments">
       <li>
       <code>
@@ -1186,7 +1187,7 @@ Multi zone AHU economizer modulation control chart:
       </code>
       </li>
       </ul>
-      </td>
+      </span></td>
       </tr>
     <tr>
       <td class="type, text"><span>
@@ -1200,7 +1201,7 @@ Multi zone AHU economizer modulation control chart:
       </code>
       <a name="FromModelica.Modulation.retDamConMinLimSig"></a></td>
       <td>Minimal control loop signal for the return air damper</td>
-      <td>
+      <td class="text"><span>
       <ul class="list-parameter-assignments">
       <li>
       <code>
@@ -1208,7 +1209,7 @@ Multi zone AHU economizer modulation control chart:
       </code>
       </li>
       </ul>
-      </td>
+      </span></td>
       </tr>
     <tr>
       <td class="type, text"><span>
@@ -1222,7 +1223,7 @@ Multi zone AHU economizer modulation control chart:
       </code>
       <a name="FromModelica.Modulation.retDamMaxLimSig"></a></td>
       <td>Maximal control loop signal for the return air damper</td>
-      <td>
+      <td class="text"><span>
       <ul class="list-parameter-assignments">
       <li>
       <code>
@@ -1230,7 +1231,7 @@ Multi zone AHU economizer modulation control chart:
       </code>
       </li>
       </ul>
-      </td>
+      </span></td>
       </tr>
     <tr>
       <td class="type, text"><span>
@@ -1244,7 +1245,7 @@ Multi zone AHU economizer modulation control chart:
       </code>
       <a name="FromModelica.Modulation.outDamPos"></a></td>
       <td>Damper position is linearly proportional to the control signal between signal limits</td>
-      <td>
+      <td class="text"><span>
       <ul class="list-parameter-assignments">
       <li>
       <code>
@@ -1257,7 +1258,7 @@ Multi zone AHU economizer modulation control chart:
       </code>
       </li>
       </ul>
-      </td>
+      </span></td>
       </tr>
     <tr>
       <td class="type, text"><span>
@@ -1271,7 +1272,7 @@ Multi zone AHU economizer modulation control chart:
       </code>
       <a name="FromModelica.Modulation.retDamPos"></a></td>
       <td>Damper position is linearly proportional to the control signal between signal limits</td>
-      <td>
+      <td class="text"><span>
       <ul class="list-parameter-assignments">
       <li>
       <code>
@@ -1284,7 +1285,7 @@ Multi zone AHU economizer modulation control chart:
       </code>
       </li>
       </ul>
-      </td>
+      </span></td>
       </tr>
     <tr>
       <td class="type, text"><span>
@@ -1298,8 +1299,8 @@ Multi zone AHU economizer modulation control chart:
       </code>
       <a name="FromModelica.Modulation.min"></a></td>
       <td>Overwrite due to freeze protection</td>
-      <td>
-      </td>
+      <td class="text"><span>
+      </span></td>
       </tr>
     <tr>
       <td class="type, text"><span>
@@ -1313,8 +1314,8 @@ Multi zone AHU economizer modulation control chart:
       </code>
       <a name="FromModelica.Modulation.max"></a></td>
       <td>Overwrite due to freeze protection</td>
-      <td>
-      </td>
+      <td class="text"><span>
+      </span></td>
       </tr>
     <tr>
       <td class="type, text"><span>
@@ -1328,7 +1329,7 @@ Multi zone AHU economizer modulation control chart:
       </code>
       <a name="FromModelica.Modulation.firOrdHolOutDam"></a></td>
       <td>First order hold to avoid too fast opening&#x2F;closing of damper (which may cause freeze protection to be too slow to compensate)</td>
-      <td>
+      <td class="text"><span>
       <ul class="list-parameter-assignments">
       <li>
       <code>
@@ -1336,7 +1337,7 @@ Multi zone AHU economizer modulation control chart:
       </code>
       </li>
       </ul>
-      </td>
+      </span></td>
       </tr>
     <tr>
       <td class="type, text"><span>
@@ -1350,7 +1351,7 @@ Multi zone AHU economizer modulation control chart:
       </code>
       <a name="FromModelica.Modulation.firOrdHolRetDam"></a></td>
       <td>First order hold to avoid too fast opening&#x2F;closing of damper (which may cause freeze protection to be too slow to compensate)</td>
-      <td>
+      <td class="text"><span>
       <ul class="list-parameter-assignments">
       <li>
       <code>
@@ -1358,7 +1359,7 @@ Multi zone AHU economizer modulation control chart:
       </code>
       </li>
       </ul>
-      </td>
+      </span></td>
       </tr>
     </table>
 
