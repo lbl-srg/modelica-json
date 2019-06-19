@@ -44,11 +44,13 @@ generate-reference-output:
 		node ../../app.js -l warn -f $${ff} -o raw-json -d ./cdl -m cdl; \
 		node ../../app.js -l warn -f $${ff} -o json -d ./cdl -m cdl; \
 		node ../../app.js -l warn -f $${ff} -o html -d ./cdl -m cdl; \
+		node ../../app.js -l warn -f $${ff} -o docx -d ./cdl -m cdl; \
 		done)
 	(cd test && \
 	node ../app.js -l warn -f FromModelica -o raw-json -d ./FromModelica/modelica -m modelica; \
 	node ../app.js -l warn -f FromModelica -o json -d ./FromModelica/modelica -m modelica; \
-	node ../app.js -l warn -f FromModelica -o html -d ./FromModelica/modelica -m modelica)
+	node ../app.js -l warn -f FromModelica -o html -d ./FromModelica/modelica -m modelica; \
+	node ../app.js -l warn -f FromModelica -o docx -d ./FromModelica/modelica -m modelica)
 	rm -f test/modelica-json.log test/FromModelica/modelica-json.log
 
 clean-node-packages:
