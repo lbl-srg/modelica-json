@@ -3,117 +3,60 @@
   <title></title>
 
   <!-- Custom styles for this template -->
-  <style>
-  html{
-    color: #022e4d;
-    font-family: "Helvetica Neue", Helvetica, Verdana, sans-serif;
-    /*padding: 10px;*/
-  }
-  /* Avoid images to be too large on small screens */
-  img{
-    max-width: 100%;
-  }
-  a:link, a:hover, a:visited, a:focus{
-    color: #750000;
-    text-decoration: underline;
-    }
+  <style type="text/css">
+*       { font-size: 100%; font-family: Arial, sans-serif; }
+h4      { font-size: 100%; font-weight: bold; color: green; }
+h3      { font-size: 110%; font-weight: bold; color: green; }
+h2      { font-size: 130%; font-weight: bold; color: green; }
+address { font-weight: normal; }
+td      { padding: 2px; border: 1px solid #808080; vertical-align: top; max-width: 450; }
+td.text { max-width: 450; }
+td.text span { white-space: nowrap;
+               overflow: hidden;
+               text-overflow: ellipsis;
+               display: inline-block;
+               max-width: 100%;
+             }
+tr:hover { background-color: #ffff99; }
+td.text:hover span:not(.empty) { background-color: #BDE5F8;
+                                 overflow: visible;
+                                 white-space: normal;
+                                 height: auto;
+                                 position: absolute;
+                                }
 
-  th, td{
-    padding-inline-start: 15px;
-    padding-top: .5em;
-    padding-bottom: .5em;
-    padding-left: 1em;
-    padding-right: 1em;
-    vertical-align: top;
-  }
-  th {
-      background-color: grey;
-      color: white;
-  }
-  th.description{
-  }
-  th.type{
-    max-width: 20%;
-  }
-  td.type{
-    max-width: 20%;
-  }
-  tr:nth-child(odd) {
-      background-color: #f2f2f2;
-  }
-  tr.tab{
-      background-color: grey;
-      color: white;
-  }
-  tr.group{
-      background-color: #A8A8A8;
-      color: white;
-  }
-  code, pre{
-    font-family: 'Consolas', 'Deja Vu Sans Mono', 'Bitstream Vera Sans Mono', monospace;
-    border: 0;
-    color: #750000;
-  /* background-color: #f5f5f5; */
+th      { padding: 2px; border: 1px solid #808080; vertical-align: top; font-weight: bold; max-width: 450; }
+table   { border: 1px solid #808080; border-collapse: collapse; }
+ul.list-parameter-assignments { list-style-type: none; margin-top: 0rem; margin-bottom: 0rem; padding: 2px; }
+pre, code {font-family: "Courier New", monospace;}
+pre {white-space: pre; overflow-x : hidden;}
+.ModelicaDescription {font-weight: bold;} /* For the description string of the class. */
+.ModelicaParameterTab { background-color: #c0c0c0; font-weight: bold; } /* The tab-heading in the table of parameters */
+.ModelicaParameterGroup { background-color: #e0e0e0; } /* The group-heading in the table of parameters */
 
-  }
-  tr.border_top td {
-    border-top:1pt solid #022e4d;
-  }
-  tr.border_bottom td {
-    border-bottom:1pt solid #022e4d;
-  }
+/* Counters for header */
+body {counter-reset: h2}
+h2 {counter-reset: h3}
+h3 {counter-reset: h4}
+h4 {counter-reset: h5}
+h5 {counter-reset: h6}
 
-  ul.list-parameter-assignments {
-    list-style-type: none;
-  }
-  h1{
-    font-size: 2em;
-  }
-  .h2, h2{
-    font-size: 1.7em;
-  }
-  .h3, h3{
-    font-size: 1.5em;
-  }
-  .h4, h4{
-    font-size: 1.2em;
-  }
-  .footer{
-  /*  background-color: white;
-    border-color: white; */
-    background-color: #f8f8f8;
-    padding: 10px;
-    font-size: 75%;
-    border-width:0px;
-    background-image: none;
-    border-radius: 4px;
+h2:before {counter-increment: h2; content: counter(h2) ". "}
+h3:before {counter-increment: h3; content: counter(h2) "." counter(h3) ". "}
+h4:before {counter-increment: h4; content: counter(h2) "." counter(h3) "." counter(h4) ". "}
+h5:before {counter-increment: h5; content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) ". "}
+h6:before {counter-increment: h6; content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) "." counter(h6) ". "}
 
-  }
-
-  /* Counters for header */
-  body {counter-reset: h2}
-  h2 {counter-reset: h3}
-  h3 {counter-reset: h4}
-  h4 {counter-reset: h5}
-  h5 {counter-reset: h6}
-
-  h2:before {counter-increment: h2; content: counter(h2) ". "}
-  h3:before {counter-increment: h3; content: counter(h2) "." counter(h3) ". "}
-  h4:before {counter-increment: h4; content: counter(h2) "." counter(h3) "." counter(h4) ". "}
-  h5:before {counter-increment: h5; content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) ". "}
-  h6:before {counter-increment: h6; content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) "." counter(h6) ". "}
-
-  h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.nocount:before
-    { content: ""; counter-increment: none }
-
-  </style>
+h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.nocount:before
+  { content: ""; counter-increment: none }
+</style>
 
 </head>
 <body>
 
 <h2>FromModelica.Modulation<a name="FromModelica.Modulation"></a></h2>
 
-  <p>Outdoor and return air damper position modulation sequence for multi zone VAV AHU</p>
+  <span class="ModelicaDescription">Outdoor and return air damper position modulation sequence for multi zone VAV AHU</span><br>
 
 <h3>Info</h3>
   
@@ -166,68 +109,75 @@ Multi zone AHU economizer modulation control chart:
     It has the following parameters:
     </p>
     <table>
-    <tr><th>Name    </th>
-    <th class="description">Description</th>
-    <th>Value    </th>
+    <tr>
+    <th class="mode">Type        </th>
+    <th>Quantity  </th>
+    <th>Name    </th>
+    <th>Default    </th>
     <th>Unit     </th>
     <th>Display unit</th>
-    <th class="mode">Type        </th>
     <th>min    </th>
     <th>max    </th>
+    <th class="description">Description</th>
     </tr>
-    <tr class="tab"><td colspan="8">Commissioning</td></tr>
-    <tr class="group"><td colspan="8">Controller</td></tr>
+    <tr class="tab ModelicaParameterTab"><td colspan="9">Commissioning</td></tr>
+    <tr class="group ModelicaParameterGroup"><td colspan="9">Controller</td></tr>
     <tr>
+    <td class="type, text"><span>Real</span></td>
+    <td></td>
     <td><code>uMin</code><a name="FromModelica.Modulation.uMin"></a></td>
-    <td>Lower limit of controller input when outdoor damper opens (see diagram)</td>
     <td>-0.25</td>
     <td>1</td>
-    <td></td>
-    <td class="type">Real</td>
+    <td>1</td>
     <td></td>
     <td>0 (adjustable)</td>
+    <td>Lower limit of controller input when outdoor damper opens (see diagram)</td>
     </tr>
     <tr>
+    <td class="type, text"><span>Real</span></td>
+    <td></td>
     <td><code>uMax</code><a name="FromModelica.Modulation.uMax"></a></td>
-    <td>Upper limit of controller input when return damper is closed (see diagram)</td>
     <td>+0.25</td>
     <td>1</td>
-    <td></td>
-    <td class="type">Real</td>
+    <td>1</td>
     <td>0 (adjustable)</td>
     <td></td>
+    <td>Upper limit of controller input when return damper is closed (see diagram)</td>
     </tr>
     <tr>
+    <td class="type, text"><span>Real</span></td>
+    <td></td>
     <td><code>uOutDamMax</code><a name="FromModelica.Modulation.uOutDamMax"></a></td>
+    <td>(uMin + uMax)&#x2F;2</td>
+    <td>1</td>
+    <td>1</td>
+    <td>-1 (adjustable)</td>
+    <td>1 (adjustable)</td>
     <td>Maximum loop signal for the OA damper to be fully open</td>
-    <td>(uMin + uMax)&#x2F;2</td>
-    <td>1</td>
-    <td></td>
-    <td class="type">Real</td>
-    <td>-1 (adjustable)</td>
-    <td>1 (adjustable)</td>
     </tr>
     <tr>
+    <td class="type, text"><span>Real</span></td>
+    <td></td>
     <td><code>uRetDamMin</code><a name="FromModelica.Modulation.uRetDamMin"></a></td>
-    <td>Minimum loop signal for the RA damper to be fully open</td>
     <td>(uMin + uMax)&#x2F;2</td>
     <td>1</td>
-    <td></td>
-    <td class="type">Real</td>
+    <td>1</td>
     <td>-1 (adjustable)</td>
     <td>1 (adjustable)</td>
+    <td>Minimum loop signal for the RA damper to be fully open</td>
     </tr>
-    <tr class="tab"><td colspan="8">General</td></tr>
-    <tr class="group"><td colspan="8">Parameters</td></tr>
+    <tr class="tab ModelicaParameterTab"><td colspan="9">General</td></tr>
+    <tr class="group ModelicaParameterGroup"><td colspan="9">Parameters</td></tr>
     <tr>
+    <td class="type, text"><span>Real</span></td>
+    <td>Time</td>
     <td><code>samplePeriod</code><a name="FromModelica.Modulation.samplePeriod"></a></td>
-    <td>Sample period of component, used to limit the rate of change of the dampers (to avoid quick opening that can result in frost)</td>
     <td>300</td>
     <td>s</td>
+    <td>s</td>
     <td></td>
-    <td class="type">Time</td>
     <td></td>
-    <td></td>
+    <td>Sample period of component, used to limit the rate of change of the dampers (to avoid quick opening that can result in frost)</td>
     </tr>
     </table>
 
@@ -238,6 +188,7 @@ Multi zone AHU economizer modulation control chart:
     <table>
     <tr>
       <th class="type">Type        </th>
+      <th>Quantity  </th>
       <th>Name    </th>
       <th class="description">Description</th>
       <th>min    </th>
@@ -251,12 +202,13 @@ Multi zone AHU economizer modulation control chart:
       Real
       </code>
       </td>
+      <td></td>
       <td><code>uTSup</code><a name="FromModelica.Modulation.uTSup"></a></td>
       <td>Signal for supply air temperature control (T Sup Control Loop Signal in diagram)</td>
       <td></td>
       <td></td>
-      <td></td>
-      <td></td>
+      <td>1</td>
+      <td>1</td>
       </tr>
     <tr>
       <td>
@@ -264,12 +216,13 @@ Multi zone AHU economizer modulation control chart:
       Real
       </code>
       </td>
+      <td></td>
       <td><code>uOutDamPosMin</code><a name="FromModelica.Modulation.uOutDamPosMin"></a></td>
       <td>Minimum economizer damper position limit as returned by the damper position limits  sequence</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td>0 (adjustable)</td>
+      <td>1 (adjustable)</td>
+      <td>1</td>
+      <td>1</td>
       </tr>
     <tr>
       <td>
@@ -277,13 +230,14 @@ Multi zone AHU economizer modulation control chart:
       Real
       </code>
       </td>
+      <td></td>
       <td><code>uOutDamPosMax</code><a name="FromModelica.Modulation.uOutDamPosMax"></a></td>
       <td>Maximum economizer damper position limit as returned by the economizer enable-disable sequence.
     If the economizer is disabled, this value equals uOutDamPosMin</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td>0 (adjustable)</td>
+      <td>1 (adjustable)</td>
+      <td>1</td>
+      <td>1</td>
       </tr>
     <tr>
       <td>
@@ -291,12 +245,13 @@ Multi zone AHU economizer modulation control chart:
       Real
       </code>
       </td>
+      <td></td>
       <td><code>uRetDamPosMin</code><a name="FromModelica.Modulation.uRetDamPosMin"></a></td>
       <td>Minimum return air damper position limit as returned by the economizer enable-disable sequence</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td>0 (adjustable)</td>
+      <td>1 (adjustable)</td>
+      <td>1</td>
+      <td>1</td>
       </tr>
     <tr>
       <td>
@@ -304,12 +259,13 @@ Multi zone AHU economizer modulation control chart:
       Real
       </code>
       </td>
+      <td></td>
       <td><code>uRetDamPosMax</code><a name="FromModelica.Modulation.uRetDamPosMax"></a></td>
       <td>Maximum return air damper position limit as returned by the economizer enable-disable sequence</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td>0 (adjustable)</td>
+      <td>1 (adjustable)</td>
+      <td>1</td>
+      <td>1</td>
       </tr>
     </table>
 
@@ -320,6 +276,7 @@ Multi zone AHU economizer modulation control chart:
     <table>
     <tr>
       <th class="type">Type        </th>
+      <th>Quantity  </th>
       <th>Name    </th>
       <th class="description">Description</th>
       <th>min    </th>
@@ -333,12 +290,13 @@ Multi zone AHU economizer modulation control chart:
       Real
       </code>
       </td>
+      <td></td>
       <td><code>yOutDamPos</code><a name="FromModelica.Modulation.yOutDamPos"></a></td>
       <td>Economizer damper position</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td>0 (adjustable)</td>
+      <td>1 (adjustable)</td>
+      <td>1</td>
+      <td>1</td>
       </tr>
     <tr>
       <td>
@@ -346,12 +304,13 @@ Multi zone AHU economizer modulation control chart:
       Real
       </code>
       </td>
+      <td></td>
       <td><code>yRetDamPos</code><a name="FromModelica.Modulation.yRetDamPos"></a></td>
       <td>Return air damper position</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td>0 (adjustable)</td>
+      <td>1 (adjustable)</td>
+      <td>1</td>
+      <td>1</td>
       </tr>
     </table>
 
@@ -369,18 +328,18 @@ Multi zone AHU economizer modulation control chart:
       <th>Parameter Assignments</th>
     </tr>
     <tr>
-      <td class="type">
+      <td class="type, text"><span>
       <code>
       <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous_Sources.html#Buildings.Controls.OBC.CDL.Continuous.Sources.Constant">Buildings.Controls.OBC.CDL.Continuous.Sources.Constant</a>
       </code>
-      </td>
+      </span></td>
       <td>
       <code>
       outDamMinLimSig
       </code>
       <a name="FromModelica.Modulation.outDamMinLimSig"></a></td>
       <td>Minimal control loop signal for the outdoor air damper</td>
-      <td>
+      <td class="text"><span>
       <ul class="list-parameter-assignments">
       <li>
       <code>
@@ -388,21 +347,21 @@ Multi zone AHU economizer modulation control chart:
       </code>
       </li>
       </ul>
-      </td>
+      </span></td>
       </tr>
     <tr>
-      <td class="type">
+      <td class="type, text"><span>
       <code>
       <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous_Sources.html#Buildings.Controls.OBC.CDL.Continuous.Sources.Constant">Buildings.Controls.OBC.CDL.Continuous.Sources.Constant</a>
       </code>
-      </td>
+      </span></td>
       <td>
       <code>
       outDamMaxLimSig
       </code>
       <a name="FromModelica.Modulation.outDamMaxLimSig"></a></td>
       <td>Maximum control loop signal for the outdoor air damper</td>
-      <td>
+      <td class="text"><span>
       <ul class="list-parameter-assignments">
       <li>
       <code>
@@ -410,21 +369,21 @@ Multi zone AHU economizer modulation control chart:
       </code>
       </li>
       </ul>
-      </td>
+      </span></td>
       </tr>
     <tr>
-      <td class="type">
+      <td class="type, text"><span>
       <code>
       <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous_Sources.html#Buildings.Controls.OBC.CDL.Continuous.Sources.Constant">Buildings.Controls.OBC.CDL.Continuous.Sources.Constant</a>
       </code>
-      </td>
+      </span></td>
       <td>
       <code>
       retDamConMinLimSig
       </code>
       <a name="FromModelica.Modulation.retDamConMinLimSig"></a></td>
       <td>Minimal control loop signal for the return air damper</td>
-      <td>
+      <td class="text"><span>
       <ul class="list-parameter-assignments">
       <li>
       <code>
@@ -432,21 +391,21 @@ Multi zone AHU economizer modulation control chart:
       </code>
       </li>
       </ul>
-      </td>
+      </span></td>
       </tr>
     <tr>
-      <td class="type">
+      <td class="type, text"><span>
       <code>
       <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous_Sources.html#Buildings.Controls.OBC.CDL.Continuous.Sources.Constant">Buildings.Controls.OBC.CDL.Continuous.Sources.Constant</a>
       </code>
-      </td>
+      </span></td>
       <td>
       <code>
       retDamMaxLimSig
       </code>
       <a name="FromModelica.Modulation.retDamMaxLimSig"></a></td>
       <td>Maximal control loop signal for the return air damper</td>
-      <td>
+      <td class="text"><span>
       <ul class="list-parameter-assignments">
       <li>
       <code>
@@ -454,21 +413,21 @@ Multi zone AHU economizer modulation control chart:
       </code>
       </li>
       </ul>
-      </td>
+      </span></td>
       </tr>
     <tr>
-      <td class="type">
+      <td class="type, text"><span>
       <code>
       <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Line">Buildings.Controls.OBC.CDL.Continuous.Line</a>
       </code>
-      </td>
+      </span></td>
       <td>
       <code>
       outDamPos
       </code>
       <a name="FromModelica.Modulation.outDamPos"></a></td>
       <td>Damper position is linearly proportional to the control signal between signal limits</td>
-      <td>
+      <td class="text"><span>
       <ul class="list-parameter-assignments">
       <li>
       <code>
@@ -481,21 +440,21 @@ Multi zone AHU economizer modulation control chart:
       </code>
       </li>
       </ul>
-      </td>
+      </span></td>
       </tr>
     <tr>
-      <td class="type">
+      <td class="type, text"><span>
       <code>
       <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Line">Buildings.Controls.OBC.CDL.Continuous.Line</a>
       </code>
-      </td>
+      </span></td>
       <td>
       <code>
       retDamPos
       </code>
       <a name="FromModelica.Modulation.retDamPos"></a></td>
       <td>Damper position is linearly proportional to the control signal between signal limits</td>
-      <td>
+      <td class="text"><span>
       <ul class="list-parameter-assignments">
       <li>
       <code>
@@ -508,51 +467,51 @@ Multi zone AHU economizer modulation control chart:
       </code>
       </li>
       </ul>
-      </td>
+      </span></td>
       </tr>
     <tr>
-      <td class="type">
+      <td class="type, text"><span>
       <code>
       <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Min">Buildings.Controls.OBC.CDL.Continuous.Min</a>
       </code>
-      </td>
+      </span></td>
       <td>
       <code>
       min
       </code>
       <a name="FromModelica.Modulation.min"></a></td>
       <td>Overwrite due to freeze protection</td>
-      <td>
-      </td>
+      <td class="text"><span>
+      </span></td>
       </tr>
     <tr>
-      <td class="type">
+      <td class="type, text"><span>
       <code>
       <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Max">Buildings.Controls.OBC.CDL.Continuous.Max</a>
       </code>
-      </td>
+      </span></td>
       <td>
       <code>
       max
       </code>
       <a name="FromModelica.Modulation.max"></a></td>
       <td>Overwrite due to freeze protection</td>
-      <td>
-      </td>
+      <td class="text"><span>
+      </span></td>
       </tr>
     <tr>
-      <td class="type">
+      <td class="type, text"><span>
       <code>
       <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Discrete.html#Buildings.Controls.OBC.CDL.Discrete.FirstOrderHold">Buildings.Controls.OBC.CDL.Discrete.FirstOrderHold</a>
       </code>
-      </td>
+      </span></td>
       <td>
       <code>
       firOrdHolOutDam
       </code>
       <a name="FromModelica.Modulation.firOrdHolOutDam"></a></td>
       <td>First order hold to avoid too fast opening&#x2F;closing of damper (which may cause freeze protection to be too slow to compensate)</td>
-      <td>
+      <td class="text"><span>
       <ul class="list-parameter-assignments">
       <li>
       <code>
@@ -560,21 +519,21 @@ Multi zone AHU economizer modulation control chart:
       </code>
       </li>
       </ul>
-      </td>
+      </span></td>
       </tr>
     <tr>
-      <td class="type">
+      <td class="type, text"><span>
       <code>
       <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Discrete.html#Buildings.Controls.OBC.CDL.Discrete.FirstOrderHold">Buildings.Controls.OBC.CDL.Discrete.FirstOrderHold</a>
       </code>
-      </td>
+      </span></td>
       <td>
       <code>
       firOrdHolRetDam
       </code>
       <a name="FromModelica.Modulation.firOrdHolRetDam"></a></td>
       <td>First order hold to avoid too fast opening&#x2F;closing of damper (which may cause freeze protection to be too slow to compensate)</td>
-      <td>
+      <td class="text"><span>
       <ul class="list-parameter-assignments">
       <li>
       <code>
@@ -582,7 +541,7 @@ Multi zone AHU economizer modulation control chart:
       </code>
       </li>
       </ul>
-      </td>
+      </span></td>
       </tr>
     </table>
 
@@ -714,8 +673,9 @@ Multi zone AHU economizer modulation control chart:
   </p>
 
 </body>
+
 <footer>
-    <div class="footer">
+<div class="footer">
 <p>
     Generated through CDL export of <a href="http://obc.lbl.gov">OpenBuildingControl</a>,
     <a href="https://www.lbl.gov">Berkeley Lab</a>.
