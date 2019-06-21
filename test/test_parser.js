@@ -10,6 +10,7 @@ const Promise = require('bluebird')
 const fs = Promise.promisifyAll(require('fs'))
 const glob = require('glob-promise')
 var logger = require('winston')
+var HtmlDocx = require('html-docx-js')
 
 logger.configure({
   transports: [
@@ -163,6 +164,32 @@ var getHtml = function (files, mode) {
   return html
 }
 
+/** Function that return docx data array
+    */
+var getDocx = function (files, mode) {
+  // If it is 'cdl' mode, the input 'files' will be a single file. With 'file.split()'.
+  // the 'moFiles' will be an array with only one element in it.
+  // If it is 'modelica' mode, the input 'files' will be a package name. With
+  // 'getMoFiles', the 'moFiles' will be an array and the elements are the
+  // mo files in the package.
+  if (mode === 'cdl') {
+    const htmldoc = getHtml(files, mode)
+    const docxBlob = HtmlDocx.asBlob(htmldoc)
+    const rawDocx = docxBlob.toString()
+    const re = RegExp(/<body\b[^>]*>([\s\S]*?)<\/footer>/gm)
+    const docx = re.exec(rawDocx)[1]
+    return docx
+  } else {
+    const htmldoc = getHtml(files, mode)[0]
+    const docxBlob = HtmlDocx.asBlob(htmldoc)
+    const rawDocx = docxBlob.toString()
+    const re = RegExp(/<body\b[^>]*>([\s\S]*?)<\/footer>/gm)
+    const docx = []
+    docx.push(re.exec(rawDocx)[1])
+    return docx
+  }
+}
+
 /** Function that check parsing from Modelica to html, in 'cdl' mode
   */
 var compareCdlHtml = function () {
@@ -191,6 +218,36 @@ var compareCdlHtml = function () {
   })
 }
 
+/** Function that check parsing from Modelica to docx, in 'cdl' mode
+  */
+var compareCdlDocx = function () {
+  var mode = 'cdl'
+  // process.env.MODELICAPATH = __dirname
+  mo.it('Testing Docx for equality', () => {
+    // Array of mo files to be tested.
+    const testMoFilesTemp = getIntFiles(mode)
+    const testMoFiles = testMoFilesTemp.filter(function (obj) {
+      return !obj.includes('Extends')
+    })
+    // When parsing mode is 'cdl', there will be one Docx for each mo file
+    testMoFiles.map(fil => {
+      const docxCDL = getDocx(fil, mode)
+      // Get stored docx files
+      var idx = fil.lastIndexOf(path.sep)
+      var packBase = fil.slice(0, idx)
+      var tempNames = packBase.split(path.sep)
+      const docxFil = path.join(packBase, mode, 'docx',
+        tempNames[tempNames.length - 1] +
+                                '.' + fil.slice(idx + 1, -3) + '.docx')
+      const rawOldDocx = fs.readFileSync(docxFil, 'utf8')
+      const re = RegExp(/<body\b[^>]*>([\s\S]*?)<\/footer>/gm)
+      const oldDocx = re.exec(rawOldDocx)[1]
+      as.equal(docxCDL, oldDocx, 'Docxrepresentation differs for ' + docxFil)
+    })
+    ut.deleteFolderRecursive(path.join(__dirname, 'FromModelica', 'docx'))
+  })
+}
+
 /** Function that check parsing from Modelica to html, in 'modelica' mode
   */
 var compareModHtml = function () {
@@ -213,6 +270,30 @@ var compareModHtml = function () {
   })
 }
 
+/** Function that check parsing from Modelica to docx, in 'modelica' mode
+*/
+var compareModDocx = function () {
+  var mode = 'modelica'
+  // process.env.MODELICAPATH = __dirname
+  mo.it('Testing docx for equality', () => {
+    // mo files package to be tested
+    const testMoFiles = getIntFiles(mode)
+    const docxMOD = getDocx(testMoFiles, mode)
+    // Get stored docx files
+    const pattern = path.join(__dirname, 'FromModelica', 'modelica', 'docx', '*.docx')
+    const oldDocxMODPath = glob.sync(pattern)
+    const re = RegExp(/<body\b[^>]*>([\s\S]*?)<\/footer>/gm)
+    if (docxMOD.length === oldDocxMODPath.length) {
+      for (var i = 0; i < oldDocxMODPath.length; i++) {
+        const rawOldDocxMOD = fs.readFileSync(oldDocxMODPath[i], 'utf8')
+        const OldDocxMOD = re.exec(rawOldDocxMOD)[1]
+        as.equal(docxMOD[i], OldDocxMOD, 'docx representation differs for ' + oldDocxMODPath[i])
+      }
+    }
+    ut.deleteFolderRecursive(path.join(__dirname, 'docx'))
+  })
+}
+
 mo.describe('parser.js', function () {
   mo.describe('Testing parse from Modelica to raw Json, in "cdl" parsing mode', function () {
     checkCdlJSON('raw-json', '.json', 'Testing unmodified json for equality, "cdl" mode')
@@ -228,4 +309,6 @@ mo.describe('parser.js', function () {
   })
   mo.describe('Testing html generation from Modelica, in "cdl" parsing mode', compareCdlHtml)
   mo.describe('Testing html generation from Modelica, in "modelica" parsing mode', compareModHtml)
+  mo.describe('Testing docx generation from Modelica, in "cdl" parsing mode', compareCdlDocx)
+  mo.describe('Testing docx generation from Modelica, in "modelica" parsing mode', compareModDocx)
 })
