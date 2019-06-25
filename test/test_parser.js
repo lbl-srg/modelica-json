@@ -36,6 +36,25 @@ var getIntFiles = function (mode) {
   }
 }
 
+var checkwithinStatement = function (filelist) {
+  var nowithin = []
+  var within = []
+  var iswithin = RegExp(/within/gm)
+  var isemptywithin = RegExp(/within ;/gm)
+  for (var i = 0; i < filelist.length; i++) {
+    var element = filelist[i]
+    var file = fs.readFileSync(element).toString()
+    var match1 = file.match(iswithin)
+    var match2 = file.match(isemptywithin)
+    if (match1 === null | match2 !== null) {
+      nowithin.push(element)
+    } else {
+      within.push(element)
+    }
+  }
+  return [nowithin, within]
+}
+
 /** Function that checks parsing from Modelica to JSON, in 'cdl' parsing mode
   */
 var checkCdlJSON = function (outFormat, extension, message) {
@@ -45,12 +64,13 @@ var checkCdlJSON = function (outFormat, extension, message) {
     // mo files array to be tested.
     const testMoFilesTemp = getIntFiles(mode)
     const testMoFiles = testMoFilesTemp.filter(function (obj) {
-      return !obj.includes('Extends') & !obj.includes('Within')
+      return !obj.includes('Extends')
     })
     // Name of subpackage to store json output files
     var subPackName = (outFormat === 'raw-json' ? 'raw-json' : 'json')
     // When parsing mode is 'cdl', the moFiles should feed into parser one-by-one
-    testMoFiles.map(fil => {
+    var withinfiles = checkwithinStatement(testMoFiles)[1]
+    withinfiles.map(fil => {
       // 'fil.split()' changes string 'fil' to be string array with single element
       // 'fil' is like '../test/FromModelica/***.mo'
       const jsonNewCDL = pa.getJSON(fil.split(), mode, outFormat)
@@ -88,22 +108,23 @@ var checkModJSON = function (outFormat, extension, message) {
   // process.env.MODELICAPATH = __dirname
   mo.it(message, () => {
     // mo files package to be tested
-    const testMoFilesPack = getIntFiles(mode)
+    const testMoFilesTemp = getIntFiles(mode)
     // mo files array in the package
-    const moFiles = glob.sync(path.join(testMoFilesPack, '*.mo'))
+    const moFiles = glob.sync(path.join(testMoFilesTemp, '*.mo'))
+    var withinfiles = checkwithinStatement(moFiles)[1]
 
-    const testMoFiles = ut.getMoFiles(mode, testMoFilesPack)
+    const testMoFiles = ut.getMoFiles(mode, testMoFilesTemp)
     // Name of subpackage to store json output files
     var subPackName = (outFormat === 'raw-json' ? 'raw-json' : 'json')
     // When parsing mode is 'modelica', the moFiles should feed into parser in package
     const jsonNewMOD = pa.getJSON(testMoFiles, mode, outFormat)
 
-    for (var i = 0; i < moFiles.length; i++) {
-      var idx2 = moFiles[i].lastIndexOf(path.sep)
-      var packBase2 = moFiles[i].slice(0, idx2)
+    for (var i = 0; i < withinfiles.length; i++) {
+      var idx2 = withinfiles[i].lastIndexOf(path.sep)
+      var packBase2 = withinfiles[i].slice(0, idx2)
       var tempName2 = packBase2.split(path.sep)
       const fileNameMOD = tempName2[tempName2.length - 1] +
-                          '.' + moFiles[i].slice(idx2 + 1, -3) + extension
+                          '.' + withinfiles[i].slice(idx2 + 1, -3) + extension
       // Read the stored json representation from disk
       const oldFileMOD = path.join(packBase2, mode, subPackName, fileNameMOD)
       // Read the old json
@@ -201,8 +222,9 @@ var compareCdlHtml = function () {
     const testMoFiles = testMoFilesTemp.filter(function (obj) {
       return !obj.includes('Extends')
     })
+    var withinfiles = checkwithinStatement(testMoFiles)[1]
     // When parsing mode is 'cdl', there will be one html for each mo file
-    testMoFiles.map(fil => {
+    withinfiles.map(fil => {
       const htmlCDL = getHtml(fil, mode)
       // Get stored html files
       var idx = fil.lastIndexOf(path.sep)
@@ -229,8 +251,9 @@ var compareCdlDocx = function () {
     const testMoFiles = testMoFilesTemp.filter(function (obj) {
       return !obj.includes('Extends')
     })
+    var withinfiles = checkwithinStatement(testMoFiles)[1]
     // When parsing mode is 'cdl', there will be one Docx for each mo file
-    testMoFiles.map(fil => {
+    withinfiles.map(fil => {
       const docxCDL = getDocx(fil, mode)
       // Get stored docx files
       var idx = fil.lastIndexOf(path.sep)
