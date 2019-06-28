@@ -36,6 +36,27 @@ var getIntFiles = function (mode) {
   }
 }
 
+var checkwithinStatement = function (filelist) {
+  var nowithin = []
+  var within = []
+  var iswithin = RegExp(/within/gm)
+  var isemptywithin = RegExp(/within ;/gm)
+  var ispackagemo = RegExp(/([\s\S]*?\/package\.mo)$/gm)
+  for (var i = 0; i < filelist.length; i++) {
+    var element = filelist[i]
+    var file = fs.readFileSync(element).toString()
+    var match1 = file.match(iswithin)
+    var match2 = file.match(isemptywithin)
+    var match3 = element.match(ispackagemo)
+    if ((match1 === null | match2 !== null) && (match3 == null)) {
+      nowithin.push(element)
+    } else {
+      within.push(element)
+    }
+  }
+  return [nowithin, within]
+}
+
 /** Function that checks parsing from Modelica to JSON, in 'cdl' parsing mode
   */
 var checkCdlJSON = function (outFormat, extension, message) {
@@ -50,7 +71,9 @@ var checkCdlJSON = function (outFormat, extension, message) {
     // Name of subpackage to store json output files
     var subPackName = (outFormat === 'raw-json' ? 'raw-json' : 'json')
     // When parsing mode is 'cdl', the moFiles should feed into parser one-by-one
-    testMoFiles.map(fil => {
+    var withinfiles = checkwithinStatement(testMoFiles)[1]
+    var nowithinfiles = checkwithinStatement(testMoFiles)[0]
+    withinfiles.map(fil => {
       // 'fil.split()' changes string 'fil' to be string array with single element
       // 'fil' is like '../test/FromModelica/***.mo'
       const jsonNewCDL = pa.getJSON(fil.split(), mode, outFormat)
@@ -78,6 +101,34 @@ var checkCdlJSON = function (outFormat, extension, message) {
       as.notEqual(tempOld, undefined, 'JSON is undefined')
       as.deepEqual(tempNew, tempOld, 'JSON result differs for ' + oldFilCDL)
     })
+    nowithinfiles.map(fil => {
+      // 'fil.split()' changes string 'fil' to be string array with single element
+      // 'fil' is like '../test/FromModelica/***.mo'
+      const jsonNewCDL = pa.getJSON(fil.split(), mode, outFormat)
+      var idx = fil.lastIndexOf(path.sep)
+      var packBase = fil.slice(0, idx)
+      var tempName = packBase.split(path.sep)
+      // Read the stored json representation from disk
+      // It's like '../test/FromModelica/cdl/json/***.json'
+      const oldFilCDL = path.join(packBase, mode, subPackName,
+        tempName[tempName.length - 1] +
+                                  '.' +
+                                  fil.slice(idx + 1, -3) + '-package' + extension)
+      // Read the old json
+      const jsonOldCDL = JSON.parse(fs.readFileSync(oldFilCDL, 'utf8'))
+
+      const oldCDL = jsonOldCDL[0]
+      const neCDL = jsonNewCDL[0]
+      // Update the path to be relative to the project home.
+      // This is needed for the regression tests to be portable.
+      if (neCDL.modelicaFile) {
+        neCDL['modelicaFile'] = neCDL['modelicaFile'].replace(path.join(__dirname, 'FromModelica'), '.')
+      }
+      const tempOld = JSON.stringify(oldCDL)
+      const tempNew = JSON.stringify(neCDL)
+      as.notEqual(tempOld, undefined, 'JSON is undefined')
+      as.deepEqual(tempNew, tempOld, 'JSON result differs for ' + oldFilCDL)
+    })
   })
 }
 
@@ -88,22 +139,24 @@ var checkModJSON = function (outFormat, extension, message) {
   // process.env.MODELICAPATH = __dirname
   mo.it(message, () => {
     // mo files package to be tested
-    const testMoFilesPack = getIntFiles(mode)
+    const testMoFilesTemp = getIntFiles(mode)
     // mo files array in the package
-    const moFiles = glob.sync(path.join(testMoFilesPack, '*.mo'))
+    const moFiles = glob.sync(path.join(testMoFilesTemp, '*.mo'))
+    var withinfiles = checkwithinStatement(moFiles)[1]
+    var nowithinfiles = checkwithinStatement(moFiles)[0]
 
-    const testMoFiles = ut.getMoFiles(mode, testMoFilesPack)
+    const testMoFiles = ut.getMoFiles(mode, testMoFilesTemp)
     // Name of subpackage to store json output files
     var subPackName = (outFormat === 'raw-json' ? 'raw-json' : 'json')
     // When parsing mode is 'modelica', the moFiles should feed into parser in package
     const jsonNewMOD = pa.getJSON(testMoFiles, mode, outFormat)
 
-    for (var i = 0; i < moFiles.length; i++) {
-      var idx2 = moFiles[i].lastIndexOf(path.sep)
-      var packBase2 = moFiles[i].slice(0, idx2)
+    for (var i = 0; i < withinfiles.length; i++) {
+      var idx2 = withinfiles[i].lastIndexOf(path.sep)
+      var packBase2 = withinfiles[i].slice(0, idx2)
       var tempName2 = packBase2.split(path.sep)
       const fileNameMOD = tempName2[tempName2.length - 1] +
-                          '.' + moFiles[i].slice(idx2 + 1, -3) + extension
+                          '.' + withinfiles[i].slice(idx2 + 1, -3) + extension
       // Read the stored json representation from disk
       const oldFileMOD = path.join(packBase2, mode, subPackName, fileNameMOD)
       // Read the old json
@@ -116,6 +169,32 @@ var checkModJSON = function (outFormat, extension, message) {
         return tempName === fileNameBase
       })
       var neMOD = neMODTemp[0]
+      if (neMOD[0].modelicaFile) {
+        neMOD[0]['modelicaFile'] = neMOD[0]['modelicaFile'].replace(path.join(__dirname, 'FromModelica'), 'FromModelica')
+      }
+      const tempOld = JSON.stringify(jsonOldMOD)
+      const tempNew = JSON.stringify(neMOD)
+      as.notEqual(tempOld, undefined, 'JSON is undefined')
+      as.deepEqual(tempNew, tempOld, 'JSON result differs for ' + oldFileMOD)
+    }
+    for (var j = 0; j < nowithinfiles.length; j++) {
+      var idx3 = nowithinfiles[j].lastIndexOf(path.sep)
+      var packBase3 = nowithinfiles[j].slice(0, idx3)
+      var tempName3 = packBase3.split(path.sep)
+      const fileNameMOD = tempName3[tempName3.length - 1] +
+                          '.' + nowithinfiles[j].slice(idx3 + 1, -3) + '-package' + extension
+      // Read the stored json representation from disk
+      const oldFileMOD = path.join(packBase3, mode, subPackName, fileNameMOD)
+      // Read the old json
+      const jsonOldMOD = JSON.parse(fs.readFileSync(oldFileMOD, 'utf8'))
+      // Find the corresponded new json file
+      const neMODTemp = jsonNewMOD.filter(function (obj) {
+        var fileNameBase = fileNameMOD.slice(0, -13)
+        const temp = obj[0].modelicaFile.slice(0, -3).split(path.sep)
+        const tempName = [temp[temp.length - 2], temp[temp.length - 1]].join('.')
+        return tempName === fileNameBase
+      })
+      let neMOD = neMODTemp[0]
       if (neMOD[0].modelicaFile) {
         neMOD[0]['modelicaFile'] = neMOD[0]['modelicaFile'].replace(path.join(__dirname, 'FromModelica'), 'FromModelica')
       }
@@ -201,16 +280,30 @@ var compareCdlHtml = function () {
     const testMoFiles = testMoFilesTemp.filter(function (obj) {
       return !obj.includes('Extends')
     })
+    let withinfiles = checkwithinStatement(testMoFiles)[1]
+    let nowithinfiles = checkwithinStatement(testMoFiles)[0]
     // When parsing mode is 'cdl', there will be one html for each mo file
-    testMoFiles.map(fil => {
+    withinfiles.map(fil => {
       const htmlCDL = getHtml(fil, mode)
       // Get stored html files
-      var idx = fil.lastIndexOf(path.sep)
-      var packBase = fil.slice(0, idx)
-      var tempNames = packBase.split(path.sep)
+      let idx = fil.lastIndexOf(path.sep)
+      let packBase = fil.slice(0, idx)
+      let tempNames = packBase.split(path.sep)
       const htmlFil = path.join(packBase, mode, 'html',
         tempNames[tempNames.length - 1] +
                                 '.' + fil.slice(idx + 1, -3) + '.html')
+      const oldHtml = fs.readFileSync(htmlFil, 'utf8')
+      as.equal(htmlCDL, oldHtml, 'html representation differs for ' + htmlFil)
+    })
+    nowithinfiles.map(fil => {
+      const htmlCDL = getHtml(fil, mode)
+      // Get stored html files
+      let idx = fil.lastIndexOf(path.sep)
+      let packBase = fil.slice(0, idx)
+      let tempNames = packBase.split(path.sep)
+      const htmlFil = path.join(packBase, mode, 'html',
+        tempNames[tempNames.length - 1] +
+                                '.' + fil.slice(idx + 1, -3) + '-package.html')
       const oldHtml = fs.readFileSync(htmlFil, 'utf8')
       as.equal(htmlCDL, oldHtml, 'html representation differs for ' + htmlFil)
     })
@@ -229,8 +322,10 @@ var compareCdlDocx = function () {
     const testMoFiles = testMoFilesTemp.filter(function (obj) {
       return !obj.includes('Extends')
     })
+    var withinfiles = checkwithinStatement(testMoFiles)[1]
+    let nowithinfiles = checkwithinStatement(testMoFiles)[0]
     // When parsing mode is 'cdl', there will be one Docx for each mo file
-    testMoFiles.map(fil => {
+    withinfiles.map(fil => {
       const docxCDL = getDocx(fil, mode)
       // Get stored docx files
       var idx = fil.lastIndexOf(path.sep)
@@ -239,6 +334,20 @@ var compareCdlDocx = function () {
       const docxFil = path.join(packBase, mode, 'docx',
         tempNames[tempNames.length - 1] +
                                 '.' + fil.slice(idx + 1, -3) + '.docx')
+      const rawOldDocx = fs.readFileSync(docxFil, 'utf8')
+      const re = RegExp(/<body\b[^>]*>([\s\S]*?)<\/footer>/gm)
+      const oldDocx = re.exec(rawOldDocx)[1]
+      as.equal(docxCDL, oldDocx, 'Docxrepresentation differs for ' + docxFil)
+    })
+    nowithinfiles.map(fil => {
+      const docxCDL = getDocx(fil, mode)
+      // Get stored docx files
+      var idx = fil.lastIndexOf(path.sep)
+      var packBase = fil.slice(0, idx)
+      var tempNames = packBase.split(path.sep)
+      const docxFil = path.join(packBase, mode, 'docx',
+        tempNames[tempNames.length - 1] +
+                                '.' + fil.slice(idx + 1, -3) + '-package.docx')
       const rawOldDocx = fs.readFileSync(docxFil, 'utf8')
       const re = RegExp(/<body\b[^>]*>([\s\S]*?)<\/footer>/gm)
       const oldDocx = re.exec(rawOldDocx)[1]
