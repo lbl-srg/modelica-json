@@ -138,6 +138,14 @@
                 }
               }
             }
+          },
+          "textAnchor": {
+            "type": "string",
+            "enum": [
+              "middle",
+              "start",
+              "end"
+            ]
           }
         }
       }
@@ -842,6 +850,25 @@
           },
           "quantity": {
             "$ref": "#/definitions/value"
+          },
+          "type": {
+            "type": "string",
+            "oneOf": [
+              {
+                "enum": [
+                  "Real",
+                  "Boolean",
+                  "Integer",
+                  "String"
+                ]
+              },
+              {
+                "pattern": "^Modelica.SIunits.(.*)"
+              },
+              {
+                "pattern": "(.*)CDL.Types.(.*)"
+              }
+            ]
           }
         }
       }

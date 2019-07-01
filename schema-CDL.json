@@ -114,6 +114,14 @@
           "yStart": {
             "type": "number"
           },
+          "textAnchor": {
+            "type": "string",
+            "enum": [
+              "middle",
+              "start",
+              "end"
+            ]
+          },
           "fill": {
             "$ref": "#/definitions/rgbcolors"
           },
@@ -521,10 +529,6 @@
         "coordinateSystem": {
           "type": "object",
           "additionalProperties": false,
-          "required": [
-            "extent",
-            "preserveAspectRatio"
-          ],
           "properties": {
             "extent": {
               "$ref": "#/definitions/graphicalElement/items/properties/extent"
@@ -855,6 +859,25 @@
           },
           "quantity": {
             "$ref": "#/definitions/value"
+          },
+          "type": {
+            "type": "string",
+            "oneOf": [
+              {
+                "enum": [
+                  "Real",
+                  "Boolean",
+                  "Integer",
+                  "String"
+                ]
+              },
+              {
+                "pattern": "^Modelica.SIunits.(.*)"
+              },
+              {
+                "pattern": "(.*)CDL.Types.(.*)"
+              }
+            ]
           }
         }
       }
