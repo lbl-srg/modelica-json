@@ -138,6 +138,14 @@
                 }
               }
             }
+          },
+          "textAnchor": {
+            "type": "string",
+            "enum": [
+              "middle",
+              "start",
+              "end"
+            ]
           }
         }
       }
@@ -842,6 +850,22 @@
           },
           "quantity": {
             "$ref": "#/definitions/value"
+          },
+          "type": {
+            "type": "string",
+            "oneOf": [
+              {
+                "enum": [
+                  "Real",
+                  "Boolean",
+                  "Integer",
+                  "String"
+                ]
+              },
+              {
+                "pattern": "(.*)CDL.Types.(.*)"
+              }
+            ]
           }
         }
       }
@@ -851,7 +875,7 @@
   "items": {
     "type": "object",
     "required": [
-      "modelicaFile",
+      "within",
       "topClassName"
     ],
     "additionalProperties": true,
@@ -862,7 +886,7 @@
         "pattern": ".*.(mo|MO)"
       },
       "within": {
-        "description": "Within statement from the Modelica file : no special characters or spaces",
+        "description": "Within statement from the Modelica file : no special characters or spaces. If empty string, it may be a package file.",
         "type": "string",
         "pattern": "^([a-zA-Z0-9._*]*)$"
       },
