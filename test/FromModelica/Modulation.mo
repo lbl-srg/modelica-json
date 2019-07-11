@@ -249,7 +249,7 @@ modulation sequence assuming a well configured controller. Control diagram:
 </p>
 <p align=\"center\">
 <img alt=\"Image of the multi zone AHU modulation sequence control diagram\"
-src=\"modelica://Buildings/Resources/Images/Controls/OBC/ASHRAE/G36_PR1/AHUs/EconModulationControlDiagramMultiZone.png\"/>
+src=\"modelica://Buildings/Resources/Images/Controls/OBC/ASHRAE/G36_PR1/AHUs/MultiZone/EconModulationControlDiagram.png\"/>
 </p>
 <p>
 Multi zone AHU economizer modulation control chart:
@@ -257,7 +257,7 @@ Multi zone AHU economizer modulation control chart:
 </p>
 <p align=\"center\">
 <img alt=\"Image of the multi zone AHU modulation sequence expected performance\"
-src=\"modelica://Buildings/Resources/Images/Controls/OBC/ASHRAE/G36_PR1/AHUs/EconModulationControlChartMultiZone.png\"/>
+src=\"modelica://Buildings/Resources/Images/Controls/OBC/ASHRAE/G36_PR1/AHUs/MultiZone/EconModulationControlChart.png\"/>
 </p>
 </html>", revisions="<html>
 <ul>
