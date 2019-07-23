@@ -78,6 +78,6 @@ var json = pa.getJSON(moFiles, args.mode, args.output)
 // Get the name array of output files
 var outFile = ut.getOutFile(args.mode, args.file, args.output, args.directory, moFiles, json)
 
-pa.exportJSON(json, outFile, args.output, args.mode)
+pa.exportJSON(json, outFile, args.output, args.mode, args.directory)
 
 setTimeout(function () { ut.jsonSchemaValidate(args.mode, outFile[0], args.output) }, 100)
