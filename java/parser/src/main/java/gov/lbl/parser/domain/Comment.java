@@ -468,7 +468,7 @@ public class Comment {
 
     public class Points{
     	private Double x1;
-    	private Double y1;
+    	private Double x2;
     	public TemCla points(String pointStr) {
     		int lefBra = pointStr.indexOf('{');
     		int rigBra = pointStr.indexOf('}');
@@ -476,7 +476,7 @@ public class Comment {
     		List<String> strSets = new ArrayList<String>();
     		strSets.addAll(splitAtComma(temStr));
     		this.x1 = Double.valueOf(strSets.get(0));
-    		this.y1 = Double.valueOf(strSets.get(1));
+    		this.x2 = Double.valueOf(strSets.get(1));
     		return new TemCla(pointStr);
     	}
     }
