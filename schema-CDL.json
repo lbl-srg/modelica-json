@@ -12,16 +12,53 @@
       "additionalItems": false,
       "items": {
         "type": "object",
+        "additionalProperties": false,
+        "oneOf": [
+          {
+            "required": [
+              "x1",
+              "y1"
+            ]
+          },
+          {
+            "required": [
+              "x2",
+              "y2"
+            ]
+          }
+        ],
+        "properties": {
+          "x1": {
+            "type": "number"
+          },
+          "y1": {
+            "type": "number"
+          },
+          "x2": {
+            "type": "number"
+          },
+          "y2": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "points": {
+      "description": "points on a 2d plan",
+      "type": "array",
+      "additionalItems": false,
+      "items": {
+        "type": "object",
         "required": [
           "x1",
-          "x2"
+          "y1"
         ],
         "additionalProperties": false,
         "properties": {
           "x1": {
             "type": "number"
           },
-          "x2": {
+          "y1": {
             "type": "number"
           }
         }
@@ -167,7 +204,7 @@
             "$ref": "#/definitions/color"
           },
           "points": {
-            "$ref": "#/definitions/coordinates"
+            "$ref": "#/definitions/points"
           },
           "pattern": {
             "type": "string",
@@ -214,7 +251,7 @@
               "x1": {
                 "type": "number"
               },
-              "x2": {
+              "y1": {
                 "type": "number"
               }
             }
@@ -989,7 +1026,7 @@
                 "type": "string"
               },
               "points": {
-                "$ref": "#/definitions/coordinates"
+                "$ref": "#/definitions/points"
               },
               "color": {
                 "$ref": "#/definitions/color"
