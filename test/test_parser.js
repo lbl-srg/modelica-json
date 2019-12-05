@@ -459,7 +459,7 @@ mo.describe('parser.js', function () {
   mo.describe('Testing parse from Modelica to raw Json, in "modelica" parsing mode', function () {
     checkModJSON('raw-json', '.json', 'Testing unmodified json for equality, "modelica" mode')
   })
-  mo.describe('Testing parse from Modelica to  Json, in "cdl" parsing mode', function () {
+  mo.describe('Testing parse from Modelica to Json, in "cdl" parsing mode', function () {
     checkCdlJSON('json', '.json', 'Testing json for equality, "cdl" mode')
   })
   mo.describe('Testing parse from Modelica to Json, in "modelica" parsing mode', function () {
