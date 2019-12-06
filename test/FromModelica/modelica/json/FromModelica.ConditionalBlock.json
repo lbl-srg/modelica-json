@@ -1,0 +1,108 @@
+[
+  {
+    "modelicaFile": "FromModelica/ConditionalBlock.mo",
+    "within": "FromModelica",
+    "topClassName": "FromModelica.ConditionalBlock",
+    "comment": "A block with a flag for disabling instances",
+    "public": {
+      "parameters": [
+        {
+          "className": "Boolean",
+          "type": "Boolean",
+          "name": "enaBlo",
+          "value": "true",
+          "comment": "Flag for enabling instance",
+          "unit": {
+            "value": "\"1\""
+          },
+          "displayUnit": {
+            "value": "\"1\""
+          },
+          "annotation": {
+            "dialog": {
+              "tab": "General",
+              "group": "Parameters"
+            }
+          }
+        }
+      ],
+      "models": [
+        {
+          "className": "Buildings.Controls.OBC.CDL.Continuous.Abs",
+          "name": "abs",
+          "comment": "Instance could be conditional disabled",
+          "enable": "not enaBlo",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x1": -8,
+                  "y1": -10
+                },
+                {
+                  "x1": 12,
+                  "y1": 10
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "inputs": [
+        {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+          "name": "u",
+          "comment": "Input connector",
+          "enable": "enaBlo",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x1": -140,
+                  "y1": -20
+                },
+                {
+                  "x1": -100,
+                  "y1": 20
+                }
+              ]
+            },
+            "iconTransformation": {
+              "extent": [
+                {
+                  "x1": -140,
+                  "y1": -20
+                },
+                {
+                  "x1": -100,
+                  "y1": 20
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
+          "name": "y",
+          "comment": "Output connector",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x1": 100,
+                  "y1": -10
+                },
+                {
+                  "x1": 120,
+                  "y1": 10
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  }
+]
