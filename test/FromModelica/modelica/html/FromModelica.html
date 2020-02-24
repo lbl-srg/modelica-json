@@ -222,6 +222,135 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
       <td class="text"><span>
       </span></td>
       </tr>
+    </table><h2>FromModelica.ConditionalBlock<a name="FromModelica.ConditionalBlock"></a></h2>
+
+  <span class="ModelicaDescription">A block with a flag for disabling instances</span><br>
+
+
+
+<h3>Parameters</h3>
+    <p>
+    It has the following parameters:
+    </p>
+    <table>
+    <tr>
+    <th class="mode">Type        </th>
+    <th>Quantity  </th>
+    <th>Name    </th>
+    <th>Default    </th>
+    <th>Unit     </th>
+    <th>Display unit</th>
+    <th>min    </th>
+    <th>max    </th>
+    <th class="description">Description</th>
+    </tr>
+    <tr class="tab ModelicaParameterTab"><td colspan="9">General</td></tr>
+    <tr class="group ModelicaParameterGroup"><td colspan="9">Parameters</td></tr>
+    <tr>
+    <td class="type, text"><span>Boolean</span></td>
+    <td></td>
+    <td><code>enaBlo</code><a name="FromModelica.ConditionalBlock.enaBlo"></a></td>
+    <td>true</td>
+    <td>1</td>
+    <td>1</td>
+    <td></td>
+    <td></td>
+    <td>Flag for enabling instance</td>
+    </tr>
+    </table>
+
+<h3>Inputs</h3>
+    <p>
+    It has the following inputs:
+    </p>
+    <table>
+    <tr>
+      <th class="type">Type        </th>
+      <th>Quantity  </th>
+      <th>Name    </th>
+      <th class="description">Description</th>
+      <th>min    </th>
+      <th>max    </th>
+      <th>Unit     </th>
+      <th>Display unit     </th>
+      <th>Enable    </th>
+      </tr>
+    <tr>
+      <td>
+      <code>
+      Real
+      </code>
+      </td>
+      <td></td>
+      <td><code>u</code><a name="FromModelica.ConditionalBlock.u"></a></td>
+      <td>Input connector</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>enaBlo</td>
+      </tr>
+    </table>
+
+<h3>Outputs</h3>
+    <p>
+    It has the following outputs:
+    </p>
+    <table>
+    <tr>
+      <th class="type">Type        </th>
+      <th>Quantity  </th>
+      <th>Name    </th>
+      <th class="description">Description</th>
+      <th>min    </th>
+      <th>max    </th>
+      <th>Unit     </th>
+      <th>Display unit     </th>
+      </tr>
+    <tr>
+      <td>
+      <code>
+      Real
+      </code>
+      </td>
+      <td></td>
+      <td><code>y</code><a name="FromModelica.ConditionalBlock.y"></a></td>
+      <td>Output connector</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+    </table>
+
+<h3>Blocks</h3>
+    <p>
+    It has the following blocks:
+    </p>
+    <table>
+    <tr>
+      <th class="type">Type</th>
+      <th>Name</th>
+      <th class="description">Description</th>
+      <th>Enable    </th>
+      <th>Parameter Assignments</th>
+    </tr>
+    <tr>
+      <td class="type, text"><span>
+      <code>
+      <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Abs">Buildings.Controls.OBC.CDL.Continuous.Abs</a>
+      </code>
+      </span></td>
+      <td>
+      <code>
+      abs
+      </code>
+      <a name="FromModelica.ConditionalBlock.abs"></a></td>
+      <td>Instance could be conditional disabled</td>
+      <td>not enaBlo</td>
+      <td class="text"><span>
+      </span></td>
+      </tr>
     </table><h2>FromModelica.CustomPWithLimiter<a name="FromModelica.CustomPWithLimiter"></a></h2>
 
   <span class="ModelicaDescription">Custom implementation of a P controller with variable output limiter</span><br>
