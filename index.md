@@ -55,6 +55,8 @@ To clean the current installation, run
 make clean-installation
 ```
 
+test
+
 ## 3. How to use the parser
 
 The parser can be run with the app.js file as follows:
