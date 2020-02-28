@@ -60,11 +60,17 @@ make clean-installation
 
 ### Windows
 
-First, create the MODELICAPATH environment variable and set the value as the path to modelica buildings library.
+- First, create the MODELICAPATH environment variable and set the value as the path of Modelica Buildings Library.
 
-Then, install [Java SE Development Kit, 64-bit version](https://www.oracle.com/java/technologies/javase-downloads.html), [Java Runtime Environment, 64-bit version](https://java.com/en/download/manual.jsp) and [Node.js](https://nodejs.org/en/download/).
+- Then, install [Java SE Development Kit, 64-bit version](https://www.oracle.com/java/technologies/javase-downloads.html), [Java Runtime Environment, 64-bit version](https://java.com/en/download/manual.jsp) and [Node.js](https://nodejs.org/en/download/).
 
-To install dependencies and compile the Java files, run batch file `InstallOnWindows.bat`.
+- To install dependencies and compile the Java files, run batch file `InstallOnWindows.bat`.
+
+To test the installation, from the `modelica-json` directory, run the parser on Command Prompt:
+```
+node app.js -f test\FromModelica\Modulation.mo
+```
+
 
 ## 3. How to use the parser
 
