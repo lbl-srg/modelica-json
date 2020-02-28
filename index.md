@@ -24,6 +24,8 @@ The first mode aims to parse Modelica packages and takes into input a directory 
 See the directory `test/FromModelica` from [Modelica-json](https://github.com/lbl-srg/modelica-json) for simple examples from Modelica and CDL to detailed and simplified JSON formats and HTML.
 
 ## 2. Installation and help
+
+### On Linux
 First, set the MODELICAPATH environment variable by adding the following line to your ~/.bashrc file:
 ```
 export MODELICAPATH=${MODELICAPATH}:/usr/local/Modelica/Library/
@@ -54,6 +56,12 @@ To clean the current installation, run
 ```
 make clean-installation
 ```
+
+### On Windows OS
+First, create the environment variable MODELICAPATH and set the value as your Buildings library path.
+
+
+
 
 ## 3. How to use the parser
 
