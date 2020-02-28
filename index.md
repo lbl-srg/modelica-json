@@ -66,7 +66,7 @@ make clean-installation
 
 - To install dependencies and compile the Java files, run batch file `InstallOnWindows.bat`.
 
-To test the installation, from the `modelica-json` directory, run the parser on Command Prompt:
+To test the installation, from the `\modelica-json` directory, run the parser on Command Prompt:
 ```
 node app.js -f test\FromModelica\Modulation.mo
 ```
