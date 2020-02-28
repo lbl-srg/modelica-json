@@ -24,6 +24,9 @@ The first mode aims to parse Modelica packages and takes into input a directory 
 See the directory `test/FromModelica` from [Modelica-json](https://github.com/lbl-srg/modelica-json) for simple examples from Modelica and CDL to detailed and simplified JSON formats and HTML.
 
 ## 2. Installation and help
+
+### Linux
+
 First, set the MODELICAPATH environment variable by adding the following line to your ~/.bashrc file:
 ```
 export MODELICAPATH=${MODELICAPATH}:/usr/local/Modelica/Library/
@@ -55,7 +58,13 @@ To clean the current installation, run
 make clean-installation
 ```
 
-test
+### Windows
+
+First, create the MODELICAPATH environment variable and set the value as the path to modelica buildings library.
+
+Then, install [Java SE Development Kit, 64-bit version](https://www.oracle.com/java/technologies/javase-downloads.html), [Java Runtime Environment, 64-bit version](https://java.com/en/download/manual.jsp) and [Node.js](https://nodejs.org/en/download/).
+
+To install dependencies and compile the Java files, run batch file `InstallOnWindows.bat`.
 
 ## 3. How to use the parser
 
