@@ -1,15 +1,18 @@
 @echo off
 
 ::*******************************************************************
-:: Download and Install JDK and Node.js
+:: Download and Install JDK, JRE and Node.js
 ::*******************************************************************
-:: Before running following command, the JDK should be installed. Find it from following link:
-:: https://www.oracle.com/java/technologies/javase-downloads.html
+:: Before running following command, the JDK and JRE should be installed.
+:: Find JDK from: https://www.oracle.com/java/technologies/javase-downloads.html
+:: Find JRE from: https://java.com/en/download/manual.jsp. Download the version Windows Offline (64-bit).
 :: See the installation instruction from here: https://www3.ntu.edu.sg/home/ehchua/programming/howto/JDK_Howto.html
 :: Also need to check if your JRE has the same or higher version than JDK version. If you have installed multiple
 :: versions of JRE, add the higher version JRE path to the top of your "Path" environment
 
 :: Download and install Node.js: https://nodejs.org/en/download/
+
+:: set MODELICAPATH
 
 ::*******************************************************************
 :: Setup Maven
