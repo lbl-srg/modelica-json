@@ -60,11 +60,14 @@ make clean-installation
 
 ### Windows
 
-- First, create the MODELICAPATH environment variable and set the value as the path of Modelica Buildings Library.
+- First, make sure that both the `modelica-json` directory and the `Modelica Buildings Library` directory are in the folders that do not require adminstrator access. 
+  By saving the directories in driver other than `C:\` would typical avoid the adminstrator access issue.
 
-- Then, install [Java SE Development Kit (64-bit version)](https://www.oracle.com/java/technologies/javase-downloads.html), [Java Runtime Environment (64-bit version)](https://java.com/en/download/manual.jsp) and [Node.js](https://nodejs.org/en/download/).
+- Then, create the `MODELICAPATH` environment variable and set the value as the path of Modelica Buildings Library, like `E:\modelica-buildings` or `E:\modelica-buildings-master`.
 
-- To install dependencies and compile the Java files, run batch file `InstallOnWindows.bat`.
+- Install [Java SE Development Kit (64-bit version)](https://www.oracle.com/java/technologies/javase-downloads.html), [Java Runtime Environment (64-bit version)](https://java.com/en/download/manual.jsp) and [Node.js](https://nodejs.org/en/download/).
+
+- Finally, to install dependencies and compile the Java files, run batch file `InstallOnWindows.bat`.
 
 To test the installation, from the `\modelica-json` directory, run the parser on Command Prompt:
 ```
