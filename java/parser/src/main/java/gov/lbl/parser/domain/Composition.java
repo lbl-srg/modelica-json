@@ -415,9 +415,12 @@ public class Composition {
     	private Comment.Points origin;
     	private Double rotation;
     	private Comment.Color lineColor;
+		private Comment.DynamicColor dynLineColor;
     	private Comment.Color fillColor;
+		private Comment.DynamicColor dynFillColor;
     	private String pattern;
     	private String fillPattern;
+		private Comment.DynamicSelect dynFillPattern;
     	private Double lineThickness;
     	private Collection<Comment.Points> points;
     	private String smooth;
@@ -438,15 +441,39 @@ public class Composition {
 		    	} else if (name.contains("rotation")) {
 		    		this.rotation = Double.valueOf(value);
 		    	} else if (name.contains("lineColor")) {
-		    		Comment.Color lineColor = test.new Color();
-		    		lineColor.color(value);
-		    		this.lineColor = lineColor;
+					if (value.contains("DynamicSelect")) {
+						Comment.DynamicColor dynLinCol = test.new DynamicColor();
+						dynLinCol.dynamicColor(value);
+						this.dynLineColor = dynLinCol;
+						this.lineColor = null;
+					} else {
+						Comment.Color lineColor = test.new Color();
+		    			lineColor.color(value);
+		    			this.lineColor = lineColor;
+						this.dynLineColor = null;
+					}
 		    	} else if (name.contains("fillColor")) {
-		    		Comment.Color fillColor = test.new Color();
-		    		fillColor.color(value);
-		    		this.fillColor = fillColor;
+					if (value.contains("DynamicSelect")) {
+						Comment.DynamicColor dynFilCol = test.new DynamicColor();
+						dynFilCol.dynamicColor(value);
+						this.dynFillColor = dynFilCol;
+						this.fillColor = null;
+					} else {
+						Comment.Color fillColor = test.new Color();
+		    			fillColor.color(value);
+		    			this.fillColor = fillColor;
+						this.dynFillColor = null;
+					}
 		    	} else if (name.contains("fillPattern")) {
-		    		this.fillPattern = value;
+					if (value.contains("DynamicSelect")) {
+						Comment.DynamicSelect dynFilPat = test.new DynamicSelect();
+						dynFilPat.dynamicSelect(value);
+						this.fillPattern = null;
+						this.dynFillPattern = dynFilPat;
+					} else {
+						this.fillPattern = value;
+						this.dynFillPattern = null;
+					}
 		    	} else if (name.contains("pattern")) {
 		    		this.pattern = value;
 		    	} else if (name.contains("lineThickness")) {
@@ -478,12 +505,16 @@ public class Composition {
     	private Comment.Points origin;
     	private Double rotation;
     	private Comment.Color lineColor;
+		private Comment.DynamicColor dynLineColor;
     	private Comment.Color fillColor;
+		private Comment.DynamicColor dynFillColor;
     	private String pattern;
     	private String fillPattern;
+		private Comment.DynamicSelect dynFillPattern;
     	private Double lineThickness;
     	private String borderPattern;
     	private Collection<Comment.Points> extent;
+		private Comment.DynamicPoints dynExtent;
     	private Double radius;
     	private TemCla rectangle(String recStr) {
     		Comment test = new Comment("", null);
@@ -502,15 +533,39 @@ public class Composition {
 		    	} else if (name.contains("rotation")) {
 		    		this.rotation = Double.valueOf(value);
 		    	} else if (name.contains("lineColor")) {
-		    		Comment.Color lineColor = test.new Color();
-		    		lineColor.color(value);
-		    		this.lineColor = lineColor;
+					if (value.contains("DynamicSelect")) {
+						Comment.DynamicColor dynLinCol = test.new DynamicColor();
+						dynLinCol.dynamicColor(value);
+						this.dynLineColor = dynLinCol;
+						this.lineColor = null;
+					} else {
+						Comment.Color lineColor = test.new Color();
+		    			lineColor.color(value);
+		    			this.lineColor = lineColor;
+						this.dynLineColor = null;
+					}
 		    	} else if (name.contains("fillColor")) {
-		    		Comment.Color fillColor = test.new Color();
-		    		fillColor.color(value);
-		    		this.fillColor = fillColor;
+		    		if (value.contains("DynamicSelect")) {
+						Comment.DynamicColor dynFilCol = test.new DynamicColor();
+						dynFilCol.dynamicColor(value);
+						this.dynFillColor = dynFilCol;
+						this.fillColor = null;
+					} else {
+						Comment.Color fillColor = test.new Color();
+		    			fillColor.color(value);
+		    			this.fillColor = fillColor;
+						this.dynFillColor = null;
+					}
 		    	} else if (name.contains("fillPattern")) {
-		    		this.fillPattern = value;
+		    		if (value.contains("DynamicSelect")) {
+						Comment.DynamicSelect dynFilPat = test.new DynamicSelect();
+						dynFilPat.dynamicSelect(value);
+						this.fillPattern = null;
+						this.dynFillPattern = dynFilPat;
+					} else {
+						this.fillPattern = value;
+						this.dynFillPattern = null;
+					}
 		    	} else if (name.contains("pattern")) {
 		    		this.pattern = value;
 		    	} else if (name.contains("lineThickness")) {
@@ -520,21 +575,27 @@ public class Composition {
 		    	} else if (name.contains("radius")) {
 		    		this.radius = Double.valueOf(value);
 		    	} else if (name.contains("extent")) {
-		    		int indRB= value.indexOf('{');
-		    		String temp = value.substring(indRB+1, value.lastIndexOf('}')).trim();
-    				List<String> pointsSet = new ArrayList<String>();
-    				pointsSet.addAll(Comment.splitAtComma(temp));
-    				List<Comment.Points> extent = new ArrayList<Comment.Points>();
-    				for (String p : pointsSet) {
-
-    					Comment.Points point = test.new Points();
-    					point.points(p);
-    					extent.add(point);
-    				}
-    				this.extent = extent;
+					if (value.contains("DynamicSelect")) {
+						Comment.DynamicPoints dynExtPoi = test.new DynamicPoints();
+						dynExtPoi.dynamicPoints(value);
+						this.extent = null;
+						this.dynExtent = dynExtPoi;
+					} else {
+						int indRB= value.indexOf('{');
+		    			String temp = value.substring(indRB+1, value.lastIndexOf('}')).trim();
+    					List<String> pointsSet = new ArrayList<String>();
+    					pointsSet.addAll(Comment.splitAtComma(temp));
+    					List<Comment.Points> extent = new ArrayList<Comment.Points>();
+    					for (String p : pointsSet) {
+    						Comment.Points point = test.new Points();
+    						point.points(p);
+    						extent.add(point);
+    					}
+    					this.extent = extent;
+						this.dynExtent = null;
+					}
 		    	}
     		}
-
     		return new TemCla(recStr);
     	}
     }
@@ -545,12 +606,17 @@ public class Composition {
     	private Comment.Points origin;
     	private Double rotation;
     	private Comment.Color lineColor;
+		private Comment.DynamicColor dynLineColor;
     	private Comment.Color fillColor;
+		private Comment.DynamicColor dynFillColor;
     	private String pattern;
     	private String fillPattern;
+		private Comment.DynamicSelect dynFillPattern;
     	private Double lineThickness;
     	private Collection<Comment.Points> extent;
+		private Comment.DynamicPoints dynExtent;
     	private String textString;
+		private Comment.DynamicSelect dynTextString;
     	private Double fontSize;
     	private String fontName;
     	private String textStyle;
@@ -573,33 +639,73 @@ public class Composition {
 		    	} else if (name.contains("rotation")) {
 		    		this.rotation = Double.valueOf(value);
 		    	} else if (name.contains("lineColor")) {
-		    		Comment.Color lineColor = test.new Color();
-		    		lineColor.color(value);
-		    		this.lineColor = lineColor;
+		    		if (value.contains("DynamicSelect")) {
+						Comment.DynamicColor dynLinCol = test.new DynamicColor();
+						dynLinCol.dynamicColor(value);
+						this.dynLineColor = dynLinCol;
+						this.lineColor = null;
+					} else {
+						Comment.Color lineColor = test.new Color();
+		    			lineColor.color(value);
+		    			this.lineColor = lineColor;
+						this.dynLineColor = null;
+					}
 		    	} else if (name.contains("fillColor")) {
-		    		Comment.Color fillColor = test.new Color();
-		    		fillColor.color(value);
-		    		this.fillColor = fillColor;
+		    		if (value.contains("DynamicSelect")) {
+						Comment.DynamicColor dynFilCol = test.new DynamicColor();
+						dynFilCol.dynamicColor(value);
+						this.dynFillColor = dynFilCol;
+						this.fillColor = null;
+					} else {
+						Comment.Color fillColor = test.new Color();
+		    			fillColor.color(value);
+		    			this.fillColor = fillColor;
+						this.dynFillColor = null;
+					}
 		    	} else if (name.contains("fillPattern")) {
-		    		this.fillPattern = value;
+		    		if (value.contains("DynamicSelect")) {
+						Comment.DynamicSelect dynFilPat = test.new DynamicSelect();
+						dynFilPat.dynamicSelect(value);
+						this.fillPattern = null;
+						this.dynFillPattern = dynFilPat;
+					} else {
+						this.fillPattern = value;
+						this.dynFillPattern = null;
+					}
 		    	} else if (name.contains("pattern")) {
 		    		this.pattern = value;
 		    	} else if (name.contains("lineThickness")) {
 		    		this.lineThickness = Double.valueOf(value);
 		    	} else if (name.contains("extent")) {
-		    		int indRB= value.indexOf('{');
-		    		String temp = value.substring(indRB+1, value.lastIndexOf('}')).trim();
-    				List<String> pointsSet = new ArrayList<String>();
-    				pointsSet.addAll(Comment.splitAtComma(temp));
-    				List<Comment.Points> extent = new ArrayList<Comment.Points>();
-    				for (String p : pointsSet) {
-    					Comment.Points point = test.new Points();
-    					point.points(p);
-    					extent.add(point);
-    				}
-    				this.extent = extent;
+					if (value.contains("DynamicSelect")) {
+						Comment.DynamicPoints dynExtPoi = test.new DynamicPoints();
+						dynExtPoi.dynamicPoints(value);
+						this.extent = null;
+						this.dynExtent = dynExtPoi;
+					} else {
+						int indRB= value.indexOf('{');
+		    			String temp = value.substring(indRB+1, value.lastIndexOf('}')).trim();
+    					List<String> pointsSet = new ArrayList<String>();
+    					pointsSet.addAll(Comment.splitAtComma(temp));
+    					List<Comment.Points> extent = new ArrayList<Comment.Points>();
+    					for (String p : pointsSet) {
+    						Comment.Points point = test.new Points();
+    						point.points(p);
+    						extent.add(point);
+    					}
+    					this.extent = extent;
+						this.dynExtent = null;
+					}
 		    	} else if (name.contains("textString")) {
-		    		this.textString = value;
+					if (value.contains("DynamicSelect")) {
+						Comment.DynamicSelect dynTexStr = test.new DynamicSelect();
+						dynTexStr.dynamicSelect(value);
+						this.textString = null;
+						this.dynTextString = dynTexStr;
+					} else {
+						this.textString = value;
+						this.dynTextString = null;
+					}
 		    	} else if (name.contains("fontSize")) {
 		    		this.fontSize = Double.valueOf(value);
 		    	} else if (name.contains("fontName")) {
@@ -670,11 +776,15 @@ public class Composition {
     	private Comment.Points origin;
     	private Double rotation;
     	private Comment.Color lineColor;
+		private Comment.DynamicColor dynLineColor;
     	private Comment.Color fillColor;
+		private Comment.DynamicColor dynFillColor;
     	private String pattern;
     	private String fillPattern;
+		private Comment.DynamicSelect dynFillPattern;
     	private Double lineThickness;
     	private Collection<Comment.Points> extent;
+		private Comment.DynamicPoints dynExtent;
     	private Double startAngle;
     	private Double endAngle;
     	private String closure;
@@ -695,15 +805,39 @@ public class Composition {
 		    	} else if (name.contains("rotation")) {
 		    		this.rotation = Double.valueOf(value);
 		    	} else if (name.contains("lineColor")) {
-		    		Comment.Color lineColor = test.new Color();
-		    		lineColor.color(value);
-		    		this.lineColor = lineColor;
+		    		if (value.contains("DynamicSelect")) {
+						Comment.DynamicColor dynLinCol = test.new DynamicColor();
+						dynLinCol.dynamicColor(value);
+						this.dynLineColor = dynLinCol;
+						this.lineColor = null;
+					} else {
+						Comment.Color lineColor = test.new Color();
+		    			lineColor.color(value);
+		    			this.lineColor = lineColor;
+						this.dynLineColor = null;
+					}
 		    	} else if (name.contains("fillColor")) {
-		    		Comment.Color fillColor = test.new Color();
-		    		fillColor.color(value);
-		    		this.fillColor = fillColor;
+		    		if (value.contains("DynamicSelect")) {
+						Comment.DynamicColor dynFilCol = test.new DynamicColor();
+						dynFilCol.dynamicColor(value);
+						this.dynFillColor = dynFilCol;
+						this.fillColor = null;
+					} else {
+						Comment.Color fillColor = test.new Color();
+		    			fillColor.color(value);
+		    			this.fillColor = fillColor;
+						this.dynFillColor = null;
+					}
 		    	} else if (name.contains("fillPattern")) {
-		    		this.fillPattern = value;
+		    		if (value.contains("DynamicSelect")) {
+						Comment.DynamicSelect dynFilPat = test.new DynamicSelect();
+						dynFilPat.dynamicSelect(value);
+						this.fillPattern = null;
+						this.dynFillPattern = dynFilPat;
+					} else {
+						this.fillPattern = value;
+						this.dynFillPattern = null;
+					}
 		    	} else if (name.contains("pattern")) {
 		    		this.pattern = value;
 		    	} else if (name.contains("lineThickness")) {
@@ -715,17 +849,25 @@ public class Composition {
 		    	} else if (name.contains("endAngle")) {
 		    		this.endAngle = Double.valueOf(value);
 		    	} else if (name.contains("extent")) {
-		    		int indRB= value.indexOf('{');
-		    		String temp = value.substring(indRB+1, value.lastIndexOf('}')).trim();
-    				List<String> pointsSet = new ArrayList<String>();
-    				pointsSet.addAll(Comment.splitAtComma(temp));
-    				List<Comment.Points> extent = new ArrayList<Comment.Points>();
-    				for (String p : pointsSet) {
-    					Comment.Points point = test.new Points();
-    					point.points(p);
-    					extent.add(point);
-    				}
-    				this.extent = extent;
+		    		if (value.contains("DynamicSelect")) {
+						Comment.DynamicPoints dynExtPoi = test.new DynamicPoints();
+						dynExtPoi.dynamicPoints(value);
+						this.extent = null;
+						this.dynExtent = dynExtPoi;
+					} else {
+						int indRB= value.indexOf('{');
+		    			String temp = value.substring(indRB+1, value.lastIndexOf('}')).trim();
+    					List<String> pointsSet = new ArrayList<String>();
+    					pointsSet.addAll(Comment.splitAtComma(temp));
+    					List<Comment.Points> extent = new ArrayList<Comment.Points>();
+    					for (String p : pointsSet) {
+    						Comment.Points point = test.new Points();
+    						point.points(p);
+    						extent.add(point);
+    					}
+    					this.extent = extent;
+						this.dynExtent = null;
+					}
 		    	}
     		}
     		return new TemCla(ellStr);

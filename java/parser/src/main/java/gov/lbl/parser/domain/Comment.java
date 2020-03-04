@@ -412,7 +412,9 @@ public class Comment {
     	private Points origin;
     	private Double rotation;
     	private Collection<Points> points;
+		private DynamicPoints dynPoints;
     	private Color color;
+		private DynamicColor dynColor;
     	private String pattern;
     	private Double thickness;
     	private String arrow;
@@ -426,21 +428,37 @@ public class Comment {
 		    	String name = str.substring(0, indEq).trim();
 		    	String value = str.substring(indEq+1, str.length()).trim();
     			if (name.contains("points")) {
-    				int indRB= value.indexOf('{');
-    				String temp = value.substring(indRB+1, value.lastIndexOf('}')).trim();
-    				List<Points> linePoints = new ArrayList<Points>();
-    				List<String> pointsSet = new ArrayList<String>();
-    				pointsSet.addAll(splitAtComma(temp));
-    				for (String p : pointsSet) {
-    					Points point = new Points();
-    					point.points(p);
-    					linePoints.add(point);
-    				}
-    				this.points = linePoints;
+					if (value.contains("DynamicSelect")) {
+						DynamicPoints dynPoi = new DynamicPoints();
+						dynPoi.dynamicPoints(value);
+						this.dynPoints = dynPoi;
+						this.points = null;
+					} else {
+						int indRB= value.indexOf('{');
+    					String temp = value.substring(indRB+1, value.lastIndexOf('}')).trim();
+    					List<Points> linePoints = new ArrayList<Points>();
+    					List<String> pointsSet = new ArrayList<String>();
+    					pointsSet.addAll(splitAtComma(temp));
+    					for (String p : pointsSet) {
+    						Points point = new Points();
+    						point.points(p);
+    						linePoints.add(point);
+    					}
+						this.points = linePoints;
+						this.dynPoints = null;
+					}
     			} else if (name.contains("color")) {
-    				Color color = new Color();
-    				color.color(value);
-    				this.color = color;
+					if (value.contains("DynamicSelect")) {
+						DynamicColor dynCol = new DynamicColor();
+						dynCol.dynamicColor(value);
+						this.dynColor = dynCol;
+						this.color = null;
+					} else {
+						Color color = new Color();
+    					color.color(value);
+    					this.color = color;
+						this.dynColor = null;
+					}
     			} else if (name.contains("pattern")) {
     				this.pattern = value;
     			} else if (name.contains("thickness")) {
@@ -465,6 +483,20 @@ public class Comment {
     	}
     }
 
+	public class DynamicSelect{
+		private String firstOpt;
+		private String secondOpt;
+		public TemCla dynamicSelect(String optStr) {
+			int lefBra = optStr.indexOf('(');
+			int rigBra = optStr.lastIndexOf(')');
+			String temStr = optStr.substring(lefBra+1, rigBra).trim();
+			List<String> strSets = new ArrayList<String>();
+    		strSets.addAll(splitAtComma(temStr));
+    		this.firstOpt = strSets.get(0);
+    		this.secondOpt = strSets.get(1);
+    		return new TemCla(optStr);
+		}
+	}
 
     public class Points{
     	private Double x1;
@@ -480,6 +512,30 @@ public class Comment {
     		return new TemCla(pointStr);
     	}
     }
+
+	public class DynamicPoints{
+		private Collection<Points> points;
+		private String dynPoints;
+		public TemCla dynamicPoints(String poiStr) {
+			DynamicSelect poiOpts = new DynamicSelect();
+			poiOpts.dynamicSelect(poiStr);
+			String firstOpt = poiOpts.firstOpt;
+			int lefBra = firstOpt.indexOf('{');
+			int rigBra = firstOpt.lastIndexOf('}');
+			String temStr = firstOpt.substring(lefBra + 1, rigBra).trim();
+			List<Points> points = new ArrayList<Points>();
+    		List<String> pointsSet = new ArrayList<String>();
+    		pointsSet.addAll(splitAtComma(temStr));
+    		for (String p : pointsSet) {
+				Points point = new Points();
+    			point.points(p);
+    			points.add(point);
+    		}
+			this.points = points;
+			this.dynPoints = poiOpts.secondOpt;
+			return new TemCla(poiStr);
+		}
+	}
 
     public class Color{
     	private Double r;
@@ -498,6 +554,19 @@ public class Comment {
     	}
     }
 
+	public class DynamicColor{
+		private Color color;
+		private String dynColor;
+		public TemCla dynamicColor(String colStr) {
+			DynamicSelect colOpts = new DynamicSelect();
+			colOpts.dynamicSelect(colStr);
+			Color color = new Color();
+			color.color(colOpts.firstOpt);
+    		this.color = color;
+			this.dynColor = colOpts.secondOpt;
+			return new TemCla(colStr);
+		}
+	}
 
     /** access sub-string "subStr" in string "str" with syntax of "keyStr (subStr)" **/
     public static String findSubStr(String str, String keyStr) {
