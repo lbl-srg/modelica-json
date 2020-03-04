@@ -74,6 +74,7 @@ To test the installation, from the `\modelica-json` directory, run the parser on
 node app.js -f test\FromModelica\Modulation.mo
 ```
 
+Now the `\modelica-json` directory should have a new folder `html` and in the folder, there is a file `FromModelica.Modulation.html` and a sub-folder `img`. 
 
 ## 3. How to use the parser
 
