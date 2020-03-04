@@ -60,8 +60,8 @@ make clean-installation
 
 ### Windows
 
-- First, make sure that both the `modelica-json` directory and the `Modelica Buildings Library` directory are in the folders that do not require adminstrator access. 
-  By saving the directories in driver other than `C:\` would typical avoid the adminstrator access issue.
+- First, make sure that both the `modelica-json` directory and the `Modelica Buildings Library` directory are in the folders that do not require administrator access. 
+  By saving the directories in driver other than `C:\` would typical avoid the administrator access issue.
 
 - Then, create the `MODELICAPATH` environment variable and set the value as the path of Modelica Buildings Library, like `E:\modelica-buildings` or `E:\modelica-buildings-master`.
 
