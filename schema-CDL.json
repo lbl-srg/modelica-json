@@ -43,6 +43,27 @@
         }
       }
     },
+    "dynExtent": {
+      "description": "extents to be selected dynamically",
+      "type": "object",
+      "additionalItems": false,
+      "items": {
+        "type": "object",
+        "required": [
+          "points",
+          "dynPoints"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "points": {
+            "$ref": "#/definitions/coordinates"
+          },
+          "dynPoints": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "points": {
       "description": "points on a 2d plan",
       "type": "array",
@@ -60,6 +81,27 @@
           },
           "y1": {
             "type": "number"
+          }
+        }
+      }
+    },
+    "dynPoints": {
+      "description": "points to be selected dynamically",
+      "type": "object",
+      "additionalItems": false,
+      "items": {
+        "type": "object",
+        "required": [
+          "points",
+          "dynPoints"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "points": {
+            "$ref": "#/definitions/points"
+          },
+          "dynPoints": {
+            "type": "string"
           }
         }
       }
@@ -99,6 +141,48 @@
           "type": "number",
           "minimum": 0,
           "maximum": 255
+        }
+      }
+    },
+    "dynColor": {
+      "description": "colors to be selected dynamically",
+      "type": "object",
+      "additionalItems": false,
+      "items": {
+        "type": "object",
+        "required": [
+          "color",
+          "dynColor"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "color": {
+            "$ref": "#/definitions/color"
+          },
+          "dynColor": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "dynFillPattern": {
+      "description": "patterns to be selected dynamically",
+      "type": "object",
+      "additionalItems": false,
+      "items": {
+        "type": "object",
+        "required": [
+          "firstOpt",
+          "secondOpt"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "firstOpt": {
+            "type": "string"
+          },
+          "secondOpt": {
+            "type": "string"
+          }
         }
       }
     },
@@ -192,8 +276,6 @@
       "additionalItems": false,
       "required": [
         "lineColor",
-        "fillColor",
-        "fillPattern",
         "points"
       ],
       "items": {
@@ -217,18 +299,33 @@
           "lineColor": {
             "$ref": "#/definitions/color"
           },
+          "dynLineColor": {
+            "$ref": "#/definitions/dynColor"
+          },
           "fillColor": {
             "$ref": "#/definitions/color"
+          },
+          "dynFillColor": {
+            "$ref": "#/definitions/dynColor"
           },
           "fillPattern": {
             "type": "string",
             "pattern": "^([a-zA-Z0-9._*]*)$"
           },
+          "dynFillPattern": {
+            "$ref": "#/definitions/dynFillPattern"
+          },
           "extent": {
             "$ref": "#/definitions/coordinates"
           },
+          "dynExtent": {
+            "$ref": "#/definitions/dynExtent"
+          },
           "textString": {
             "type": "string"
+          },
+          "dynTextString": {
+            "$ref": "#/definitions/dynFillPattern"
           },
           "preserveAspectRatio": {
             "type": "boolean"
@@ -455,9 +552,6 @@
                 },
                 {
                   "required": [
-                    "lineColor",
-                    "fillColor",
-                    "fillPattern",
                     "points"
                   ]
                 }
@@ -471,7 +565,6 @@
                 {
                   "required": [
                     "points",
-                    "color",
                     "visible",
                     "origin",
                     "rotation",
@@ -493,11 +586,7 @@
                     "lineThickness",
                     "borderPattern",
                     "origin",
-                    "visible",
-                    "lineColor",
-                    "fillColor",
-                    "fillPattern",
-                    "extent"
+                    "visible"
                   ]
                 }
               ]
@@ -509,9 +598,6 @@
                 },
                 {
                   "required": [
-                    "lineColor",
-                    "textString",
-                    "extent",
                     "fontSize",
                     "horizontalAlignment"
                   ]
@@ -527,10 +613,6 @@
                   "required": [
                     "origin",
                     "visible",
-                    "lineColor",
-                    "fillColor",
-                    "fillPattern",
-                    "extent",
                     "pattern"
                   ]
                 }
