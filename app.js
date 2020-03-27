@@ -50,6 +50,22 @@ parser.addArgument(
     defaultValue: 'current'
   }
 )
+parser.addArgument(
+  ['-evaProPar', '--evaluatePropagatedParameters'],
+  {
+    help: "It might be needed only in cdl parsing mode: check if the parsing process should evaluate the propagated parameters. 'false' is the default.",
+    choices: ['true', 'false'],
+    defaultValue: 'false'
+  }
+)
+parser.addArgument(
+  ['-evaExp', '--evaluateExpressions'],
+  {
+    help: "It might be needed only in cdl parsing mode: check if the parsing process should evaluate the mathematical expressions. 'false' is the default.",
+    choices: ['true', 'false'],
+    defaultValue: 'false'
+  }
+)
 var args = parser.parseArgs()
 
 const logFile = 'modelica-json.log'
@@ -69,11 +85,14 @@ logger.cli()
 
 logger.level = args.log
 
+var evaProPar = args.evaluatePropagatedParameters
+var evaExp = args.evaluateExpressions
+
 // Get mo files array
 var moFiles = ut.getMoFiles(args.mode, args.file)
 
 // Parse the json representation for moFiles
-var json = pa.getJSON(moFiles, args.mode, args.output)
+var json = pa.getJSON(moFiles, args.mode, args.output, evaProPar, evaExp)
 
 // Get the name array of output files
 var outFile = ut.getOutFile(args.mode, args.file, args.output, args.directory, moFiles, json)
