@@ -1,0 +1,49 @@
+[
+  {
+    "within": [
+      "FromModelica"
+    ],
+    "class_definition": [
+      {
+        "class_prefixes": "block",
+        "class_specifier": {
+          "long_class_specifier": {
+            "name": "MisplacedInfoWithParameter",
+            "comment": "\"A block that places info section in parameter annotation\"",
+            "composition": {
+              "element_list": {
+                "element": [
+                  {
+                    "component_clause": {
+                      "type_prefix": "parameter",
+                      "type_specifier": "Real",
+                      "component_list": {
+                        "component_declaration": [
+                          {
+                            "declaration": {
+                              "name": "kP",
+                              "value": "1"
+                            },
+                            "comment": {
+                              "string_comment": "\"Some comment\"",
+                              "annotation": {
+                                "documentation": {
+                                  "info": "\"<html>\n<p>\nThis is the info section.\n</p>\n</html>\""
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    ],
+    "modelicaFile": "FromModelica/MisplacedInfoWithParameter.mo"
+  }
+]

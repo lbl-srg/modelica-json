@@ -1003,6 +1003,243 @@ test...test...test...test...test...
     <td></td>
     <td>Cross sectional area (assuming a round cross section area)</td>
     </tr>
+    </table><h2>FromModelica.MisplacedInfoWithComponent<a name="FromModelica.MisplacedInfoWithComponent"></a></h2>
+
+  <span class="ModelicaDescription">A block that places info section in component annotation</span><br>
+
+
+
+
+
+
+<h3>Blocks</h3>
+    <p>
+    It has the following blocks:
+    </p>
+    <table>
+    <tr>
+      <th class="type">Type</th>
+      <th>Name</th>
+      <th class="description">Description</th>
+      <th>Parameter Assignments</th>
+    </tr>
+    <tr>
+      <td class="type, text"><span>
+      <code>
+      <a href="FromModelica.html#Block1">Block1</a>
+      </code>
+      </span></td>
+      <td>
+      <code>
+      bloPub
+      </code>
+      <a name="FromModelica.MisplacedInfoWithComponent.bloPub"></a></td>
+      <td>A public block</td>
+      <td class="text"><span>
+      </span></td>
+      </tr>
+    </table><h2>FromModelica.MisplacedInfoWithEquation<a name="FromModelica.MisplacedInfoWithEquation"></a></h2>
+
+  <span class="ModelicaDescription">A block that places info section in equation section</span><br>
+
+
+
+<h3>Parameters</h3>
+    <p>
+    It has the following parameters:
+    </p>
+    <table>
+    <tr>
+    <th class="mode">Type        </th>
+    <th>Quantity  </th>
+    <th>Name    </th>
+    <th>Default    </th>
+    <th>Unit     </th>
+    <th>Display unit</th>
+    <th>min    </th>
+    <th>max    </th>
+    <th class="description">Description</th>
+    </tr>
+    <tr class="tab ModelicaParameterTab"><td colspan="9">General</td></tr>
+    <tr class="group ModelicaParameterGroup"><td colspan="9">Parameters</td></tr>
+    <tr>
+    <td class="type, text"><span>Real</span></td>
+    <td></td>
+    <td><code>k</code><a name="FromModelica.MisplacedInfoWithEquation.k"></a></td>
+    <td>2</td>
+    <td>1</td>
+    <td>1</td>
+    <td></td>
+    <td></td>
+    <td>Constant gain</td>
+    </tr>
+    </table>
+
+<h3>Inputs</h3>
+    <p>
+    It has the following inputs:
+    </p>
+    <table>
+    <tr>
+      <th class="type">Type        </th>
+      <th>Quantity  </th>
+      <th>Name    </th>
+      <th class="description">Description</th>
+      <th>min    </th>
+      <th>max    </th>
+      <th>Unit     </th>
+      <th>Display unit     </th>
+      </tr>
+    <tr>
+      <td>
+      <code>
+      Real
+      </code>
+      </td>
+      <td></td>
+      <td><code>u</code><a name="FromModelica.MisplacedInfoWithEquation.u"></a></td>
+      <td>Input signal</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+    </table>
+
+<h3>Outputs</h3>
+    <p>
+    It has the following outputs:
+    </p>
+    <table>
+    <tr>
+      <th class="type">Type        </th>
+      <th>Quantity  </th>
+      <th>Name    </th>
+      <th class="description">Description</th>
+      <th>min    </th>
+      <th>max    </th>
+      <th>Unit     </th>
+      <th>Display unit     </th>
+      </tr>
+    <tr>
+      <td>
+      <code>
+      Real
+      </code>
+      </td>
+      <td></td>
+      <td><code>y1</code><a name="FromModelica.MisplacedInfoWithEquation.y1"></a></td>
+      <td>Output signal</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+    <tr>
+      <td>
+      <code>
+      Real
+      </code>
+      </td>
+      <td></td>
+      <td><code>y2</code><a name="FromModelica.MisplacedInfoWithEquation.y2"></a></td>
+      <td>Output signal</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+    </table>
+
+<h3>Blocks</h3>
+    <p>
+    It has the following blocks:
+    </p>
+    <table>
+    <tr>
+      <th class="type">Type</th>
+      <th>Name</th>
+      <th class="description">Description</th>
+      <th>Parameter Assignments</th>
+    </tr>
+    <tr>
+      <td class="type, text"><span>
+      <code>
+      <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Gain">Buildings.Controls.OBC.CDL.Continuous.Gain</a>
+      </code>
+      </span></td>
+      <td>
+      <code>
+      gain
+      </code>
+      <a name="FromModelica.MisplacedInfoWithEquation.gain"></a></td>
+      <td>Constant gain</td>
+      <td class="text"><span>
+      <ul class="list-parameter-assignments">
+      <li>
+      <code>
+       final  k = k
+      </code>
+      </li>
+      </ul>
+      </span></td>
+      </tr>
+    </table>
+
+
+
+    <h3>Connections</h3>
+    <p>
+    The inputs of the internal blocks are connected to the following outputs:
+    </p>
+    <ol>
+    <li>
+    <code><a href="#FromModelica.MisplacedInfoWithEquation.u">u</a></code>
+    &rarr;
+    <code><a href="#FromModelica.MisplacedInfoWithEquation.gain">gain</a>.u
+    </code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.MisplacedInfoWithEquation.gain">gain</a>.y
+    </code>
+    &rarr;
+    <code><a href="#FromModelica.MisplacedInfoWithEquation.y">y</a></code>
+    </li>
+    </ol><h2>FromModelica.MisplacedInfoWithParameter<a name="FromModelica.MisplacedInfoWithParameter"></a></h2>
+
+  <span class="ModelicaDescription">A block that places info section in parameter annotation</span><br>
+
+
+
+<h3>Parameters</h3>
+    <p>
+    It has the following parameters:
+    </p>
+    <table>
+    <tr>
+    <th class="mode">Type        </th>
+    <th>Quantity  </th>
+    <th>Name    </th>
+    <th>Default    </th>
+    <th>Unit     </th>
+    <th>Display unit</th>
+    <th>min    </th>
+    <th>max    </th>
+    <th class="description">Description</th>
+    </tr>
+    <tr class="tab ModelicaParameterTab"><td colspan="9">General</td></tr>
+    <tr class="group ModelicaParameterGroup"><td colspan="9">Parameters</td></tr>
+    <tr>
+    <td class="type, text"><span>Real</span></td>
+    <td></td>
+    <td><code>kP</code><a name="FromModelica.MisplacedInfoWithParameter.kP"></a></td>
+    <td>1</td>
+    <td>1</td>
+    <td>1</td>
+    <td></td>
+    <td></td>
+    <td>Some comment</td>
+    </tr>
     </table><h2>FromModelica.Modulation<a name="FromModelica.Modulation"></a></h2>
 
   <span class="ModelicaDescription">Outdoor and return air damper position modulation sequence for multi zone VAV AHU</span><br>
