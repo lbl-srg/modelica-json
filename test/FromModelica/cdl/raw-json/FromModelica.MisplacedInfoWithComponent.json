@@ -8,24 +8,22 @@
         "class_prefixes": "block",
         "class_specifier": {
           "long_class_specifier": {
-            "name": "ParameterWithMisplacedInfo",
-            "comment": "\"Some class comment\"",
+            "name": "MisplacedInfoWithComponent",
+            "comment": "\"A block that places info section in component annotation\"",
             "composition": {
               "element_list": {
                 "element": [
                   {
                     "component_clause": {
-                      "type_prefix": "parameter",
-                      "type_specifier": "Real",
+                      "type_specifier": "Block1",
                       "component_list": {
                         "component_declaration": [
                           {
                             "declaration": {
-                              "name": "kP",
-                              "value": "1"
+                              "name": "bloPub"
                             },
                             "comment": {
-                              "string_comment": "\"Some comment\"",
+                              "string_comment": "\"A public block\"",
                               "annotation": {
                                 "documentation": {
                                   "info": "\"<html>\n<p>\nThis is the info section.\n</p>\n</html>\""
@@ -44,6 +42,6 @@
         }
       }
     ],
-    "modelicaFile": "FromModelica/ParameterWithMisplacedInfo.mo"
+    "modelicaFile": "./MisplacedInfoWithComponent.mo"
   }
 ]

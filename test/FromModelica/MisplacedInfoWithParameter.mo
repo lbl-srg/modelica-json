@@ -1,5 +1,5 @@
 within FromModelica;
-block ParameterWithMisplacedInfo "Some class comment"
+block MisplacedInfoWithParameter "A block that places info section in parameter annotation"
   parameter Real kP = 1 "Some comment"
 
   annotation (Documentation(info="<html>
@@ -7,4 +7,4 @@ block ParameterWithMisplacedInfo "Some class comment"
 This is the info section.
 </p>
 </html>"));
-end ParameterWithMisplacedInfo;
+end MisplacedInfoWithParameter;

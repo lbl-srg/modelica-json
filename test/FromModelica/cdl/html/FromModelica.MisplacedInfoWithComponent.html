@@ -54,42 +54,54 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
 </head>
 <body>
 
-<h2>FromModelica.ParameterWithMisplacedInfo<a name="FromModelica.ParameterWithMisplacedInfo"></a></h2>
+<h2>FromModelica.MisplacedInfoWithComponent<a name="FromModelica.MisplacedInfoWithComponent"></a></h2>
 
-  <span class="ModelicaDescription">Some class comment</span><br>
+  <span class="ModelicaDescription">A block that places info section in component annotation</span><br>
 
 
 
-<h3>Parameters</h3>
+
+
+
+<h3>Blocks</h3>
     <p>
-    It has the following parameters:
+    It has the following blocks:
     </p>
     <table>
     <tr>
-    <th class="mode">Type        </th>
-    <th>Quantity  </th>
-    <th>Name    </th>
-    <th>Default    </th>
-    <th>Unit     </th>
-    <th>Display unit</th>
-    <th>min    </th>
-    <th>max    </th>
-    <th class="description">Description</th>
+      <th class="type">Type</th>
+      <th>Name</th>
+      <th class="description">Description</th>
+      <th>Parameter Assignments</th>
     </tr>
-    <tr class="tab ModelicaParameterTab"><td colspan="9">General</td></tr>
-    <tr class="group ModelicaParameterGroup"><td colspan="9">Parameters</td></tr>
     <tr>
-    <td class="type, text"><span>Real</span></td>
-    <td></td>
-    <td><code>kP</code><a name="FromModelica.ParameterWithMisplacedInfo.kP"></a></td>
-    <td>1</td>
-    <td>1</td>
-    <td>1</td>
-    <td></td>
-    <td></td>
-    <td>Some comment</td>
-    </tr>
+      <td class="type, text"><span>
+      <code>
+      <a href="#Block1">Block1</a>
+      </code>
+      </span></td>
+      <td>
+      <code>
+      bloPub
+      </code>
+      <a name="FromModelica.MisplacedInfoWithComponent.bloPub"></a></td>
+      <td>A public block</td>
+      <td class="text"><span>
+      </span></td>
+      </tr>
     </table>
+
+
+
+
+  <p align="center">
+  <img alt="Diagram layer" src="img/FromModelica.MisplacedInfoWithComponent.svg">
+  </p><h2>FromModelica.Block1<a name="FromModelica.Block1"></a></h2>
+
+  <span class="ModelicaDescription">A block that instantiates nothing</span><br>
+
+
+
 
 
 
@@ -98,7 +110,7 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
 
 
   <p align="center">
-  <img alt="Diagram layer" src="img/FromModelica.ParameterWithMisplacedInfo.svg">
+  <img alt="Diagram layer" src="img/FromModelica.Block1.svg">
   </p>
 
 </body>
