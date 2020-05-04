@@ -154,5 +154,5 @@ if (args.mode === 'cdl') {
 }
 else{
   var outFile2 = ut.getOutFile(args.mode, args.file, args.output, args.directory, extendedMoFiles, extendedJsonOutput)
-  pa.exportJSON(extendedJsonOutput, outFile, args.output, args.mode, args.directory)
+  pa.exportJSON(extendedJsonOutput, outFile2, args.output, args.mode, args.directory)
 }
