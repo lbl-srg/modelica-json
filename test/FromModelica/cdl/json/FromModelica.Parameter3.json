@@ -1,16 +1,28 @@
 [
   {
-    "modelicaFile": "./Parameter1.mo",
+    "modelicaFile": "./Parameter3.mo",
     "within": "FromModelica",
-    "topClassName": "FromModelica.Parameter1",
+    "topClassName": "FromModelica.Parameter3",
     "comment": "Some class comment",
     "public": {
       "parameters": [
         {
           "className": "Real",
           "type": "Real",
-          "name": "kP",
+          "name": "myPar1",
           "value": "1",
+          "comment": "Some comment",
+          "annotation": {
+            "dialog": {
+              "tab": "General",
+              "group": "Parameters"
+            }
+          }
+        },
+        {
+          "className": "Modelica.SIunits.Temperature",
+          "type": "Real",
+          "name": "myParUnit",
           "comment": "Some comment",
           "annotation": {
             "dialog": {

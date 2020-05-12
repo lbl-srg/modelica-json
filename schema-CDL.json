@@ -770,19 +770,19 @@
         "additionalProperties": false,
         "properties": {
           "start": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-              "value": {
-                "type": "string"
-              }
-            }
+            "$ref": "#/definitions/value"
           },
           "basePrefix": {
             "type": "string",
             "pattern": "^([a-zA-Z0-9._*]*)$"
           },
           "unit": {
+            "$ref": "#/definitions/value"
+          },
+          "displayUnit": {
+            "$ref": "#/definitions/value"
+          },
+          "quantity": {
             "$ref": "#/definitions/value"
           },
           "max": {
@@ -951,21 +951,6 @@
                 "type": "boolean"
               }
             }
-          },
-          "displayUnit": {
-            "allOf": [
-              {
-                "$ref": "#/definitions/value"
-              },
-              {
-                "value": {
-                  "pattern": "^(\\\")[a-zA-Z0-9._*]*(\\\")$"
-                }
-              }
-            ]
-          },
-          "quantity": {
-            "$ref": "#/definitions/value"
           },
           "type": {
             "type": "string",
