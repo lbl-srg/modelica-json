@@ -13,32 +13,37 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "oneOf": [
-          {
-            "required": [
-              "x1",
-              "y1"
-            ]
-          },
-          {
-            "required": [
-              "x2",
-              "y2"
-            ]
-          }
+        "required": [
+          "x",
+          "y"
         ],
         "properties": {
-          "x1": {
+          "x": {
             "type": "number"
           },
-          "y1": {
+          "y": {
             "type": "number"
+          }
+        }
+      }
+    },
+    "dynExtent": {
+      "description": "extents to be selected dynamically",
+      "type": "object",
+      "additionalItems": false,
+      "items": {
+        "type": "object",
+        "required": [
+          "points",
+          "dynPoints"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "points": {
+            "$ref": "#/definitions/coordinates"
           },
-          "x2": {
-            "type": "number"
-          },
-          "y2": {
-            "type": "number"
+          "dynPoints": {
+            "type": "string"
           }
         }
       }
@@ -50,16 +55,37 @@
       "items": {
         "type": "object",
         "required": [
-          "x1",
-          "y1"
+          "x",
+          "y"
         ],
         "additionalProperties": false,
         "properties": {
-          "x1": {
+          "x": {
             "type": "number"
           },
-          "y1": {
+          "y": {
             "type": "number"
+          }
+        }
+      }
+    },
+    "dynPoints": {
+      "description": "points to be selected dynamically",
+      "type": "object",
+      "additionalItems": false,
+      "items": {
+        "type": "object",
+        "required": [
+          "points",
+          "dynPoints"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "points": {
+            "$ref": "#/definitions/points"
+          },
+          "dynPoints": {
+            "type": "string"
           }
         }
       }
@@ -99,6 +125,48 @@
           "type": "number",
           "minimum": 0,
           "maximum": 255
+        }
+      }
+    },
+    "dynColor": {
+      "description": "colors to be selected dynamically",
+      "type": "object",
+      "additionalItems": false,
+      "items": {
+        "type": "object",
+        "required": [
+          "color",
+          "dynColor"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "color": {
+            "$ref": "#/definitions/color"
+          },
+          "dynColor": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "dynFillPattern": {
+      "description": "patterns to be selected dynamically",
+      "type": "object",
+      "additionalItems": false,
+      "items": {
+        "type": "object",
+        "required": [
+          "firstOpt",
+          "secondOpt"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "firstOpt": {
+            "type": "string"
+          },
+          "secondOpt": {
+            "type": "string"
+          }
         }
       }
     },
@@ -204,7 +272,7 @@
             "$ref": "#/definitions/color"
           },
           "points": {
-            "$ref": "#/definitions/coordinates"
+            "$ref": "#/definitions/points"
           },
           "pattern": {
             "type": "string",
@@ -217,18 +285,33 @@
           "lineColor": {
             "$ref": "#/definitions/color"
           },
+          "dynLineColor": {
+            "$ref": "#/definitions/dynColor"
+          },
           "fillColor": {
             "$ref": "#/definitions/color"
+          },
+          "dynFillColor": {
+            "$ref": "#/definitions/dynColor"
           },
           "fillPattern": {
             "type": "string",
             "pattern": "^([a-zA-Z0-9._*]*)$"
           },
+          "dynFillPattern": {
+            "$ref": "#/definitions/dynFillPattern"
+          },
           "extent": {
             "$ref": "#/definitions/coordinates"
           },
+          "dynExtent": {
+            "$ref": "#/definitions/dynExtent"
+          },
           "textString": {
             "type": "string"
+          },
+          "dynTextString": {
+            "$ref": "#/definitions/dynFillPattern"
           },
           "preserveAspectRatio": {
             "type": "boolean"
@@ -248,10 +331,10 @@
             "type": "object",
             "additionalProperties": false,
             "properties": {
-              "x1": {
+              "x": {
                 "type": "number"
               },
-              "y1": {
+              "y": {
                 "type": "number"
               }
             }
@@ -710,6 +793,12 @@
           "unit": {
             "$ref": "#/definitions/value"
           },
+          "displayUnit": {
+            "$ref": "#/definitions/value"
+          },
+          "quantity": {
+            "$ref": "#/definitions/value"
+          },
           "max": {
             "$ref": "#/definitions/value"
           },
@@ -876,21 +965,6 @@
                 "type": "boolean"
               }
             }
-          },
-          "displayUnit": {
-            "allOf": [
-              {
-                "$ref": "#/definitions/value"
-              },
-              {
-                "value": {
-                  "pattern": "^(\\\")[a-zA-Z0-9._*]*(\\\")$"
-                }
-              }
-            ]
-          },
-          "quantity": {
-            "$ref": "#/definitions/value"
           },
           "type": {
             "type": "string",
