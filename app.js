@@ -98,6 +98,6 @@ if (args.mode === 'cdl') {
 
 setTimeout(function () { ut.jsonSchemaValidate(args.mode, outFile[0], args.output, schema) }, 100)
 
-if (args.strict === 'true' && logger.warn.length > 0) {
+if (args.strict === 'true' && pa.warnCounter > 0) {
   process.exit(1)
 }
