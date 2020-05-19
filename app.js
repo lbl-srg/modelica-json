@@ -51,6 +51,14 @@ parser.addArgument(
     defaultValue: 'current'
   }
 )
+parser.addArgument(
+  '--strict',
+  {
+    help: 'Exit with code 1 if there is any warning.',
+    defaultValue: 'false'
+  }
+)
+
 var args = parser.parseArgs()
 
 const logFile = 'modelica-json.log'
@@ -89,3 +97,7 @@ if (args.mode === 'cdl') {
 }
 
 setTimeout(function () { ut.jsonSchemaValidate(args.mode, outFile[0], args.output, schema) }, 100)
+
+if (args.strict === 'true' && logger.warn.length > 0) {
+  process.exit(1)
+}
