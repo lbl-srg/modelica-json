@@ -88,82 +88,82 @@ var jsonOp = pa.getJSON(moFiles, args.mode, args.output)
 var outFile = ut.getOutFile(args.mode, args.file, args.output, args.directory, moFiles, jsonOp)
 pa.exportJSON(jsonOp, outFile, args.output, args.mode, args.directory)
 
-if (args.mode === "cdl"){
-  json = [jsonOp]
-}
-else {
-  json = jsonOp
-}
+// if (args.mode === "cdl"){
+//   json = [jsonOp]
+// }
+// else {
+//   json = jsonOp
+// }
 
-var extendedMoFiles = []
-for (var jsonDataIndex in json) {
-  var jsonData = json[jsonDataIndex]
-  for (var singleJsonIndex in jsonData) {
-    var singleJsonData = jsonData[singleJsonIndex]
-    if ('class_definition' in singleJsonData) {
-      var classDefinitionArray = singleJsonData.class_definition
-      for (classDefinitionArrayIndex in classDefinitionArray) {
-        var classDefinitionObject = classDefinitionArray[classDefinitionArrayIndex]
-        if ('class_specifier' in classDefinitionObject) {
-          var classSpecifierObject = classDefinitionObject.class_specifier
-          if ('long_class_specifier' in classSpecifierObject) {
-            longClassSpecifierObject = classSpecifierObject.long_class_specifier
-            if ('composition' in longClassSpecifierObject) {
-              var compositionObject = longClassSpecifierObject.composition
-              if ('element_list' in compositionObject) {
-                var elementListObject = compositionObject.element_list
-                if ('element' in elementListObject) {
-                  var elementArray = elementListObject.element
-                  for (elementIndex in elementArray) {
-                    var elementObject = elementArray[elementIndex]
-                    if ('extends_clause' in elementObject){
-                      var extendsClauseObject = elementObject.extends_clause
-                      if ('name' in extendsClauseObject) {
-                        var name = extendsClauseObject.name
-                        if (name.startsWith("Buildings")){
-                          name = name.replace(/\./g,'/')
-                          name = name.substring(10)
-                          if (args.mode === "modelica") {
-                            name = name.substring(0, name.lastIndexOf('/'))
-                            extendedMoFiles = extendedMoFiles.concat(ut.getMoFiles(args.mode, name))
-                          }
-                          else {
-                            name = name+".mo"
-			    extendedMoFiles = extendedMoFiles.concat(ut.getMoFiles(args.mode, name))
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-console.log(extendedMoFiles)
-var extendedJsonOutput = []
-for (var extendedFileIndex in extendedMoFiles) {
-  var extendedFilename = extendedMoFiles[extendedFileIndex]
-  extendedJsonOutput.push(pa.getJsons(extendedFilename, args.mode, args.output))
-}
+// var extendedMoFiles = []
+// for (var jsonDataIndex in json) {
+//   var jsonData = json[jsonDataIndex]
+//   for (var singleJsonIndex in jsonData) {
+//     var singleJsonData = jsonData[singleJsonIndex]
+//     if ('class_definition' in singleJsonData) {
+//       var classDefinitionArray = singleJsonData.class_definition
+//       for (classDefinitionArrayIndex in classDefinitionArray) {
+//         var classDefinitionObject = classDefinitionArray[classDefinitionArrayIndex]
+//         if ('class_specifier' in classDefinitionObject) {
+//           var classSpecifierObject = classDefinitionObject.class_specifier
+//           if ('long_class_specifier' in classSpecifierObject) {
+//             longClassSpecifierObject = classSpecifierObject.long_class_specifier
+//             if ('composition' in longClassSpecifierObject) {
+//               var compositionObject = longClassSpecifierObject.composition
+//               if ('element_list' in compositionObject) {
+//                 var elementListObject = compositionObject.element_list
+//                 if ('element' in elementListObject) {
+//                   var elementArray = elementListObject.element
+//                   for (elementIndex in elementArray) {
+//                     var elementObject = elementArray[elementIndex]
+//                     if ('extends_clause' in elementObject){
+//                       var extendsClauseObject = elementObject.extends_clause
+//                       if ('name' in extendsClauseObject) {
+//                         var name = extendsClauseObject.name
+//                         if (name.startsWith("Buildings")){
+//                           name = name.replace(/\./g,'/')
+//                           name = name.substring(10)
+//                           if (args.mode === "modelica") {
+//                             name = name.substring(0, name.lastIndexOf('/'))
+//                             extendedMoFiles = extendedMoFiles.concat(ut.getMoFiles(args.mode, name))
+//                           }
+//                           else {
+//                             name = name+".mo"
+// 			    extendedMoFiles = extendedMoFiles.concat(ut.getMoFiles(args.mode, name))
+//                           }
+//                         }
+//                       }
+//                     }
+//                   }
+//                 }
+//               }
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
+// console.log(extendedMoFiles)
+// var extendedJsonOutput = []
+// for (var extendedFileIndex in extendedMoFiles) {
+//   var extendedFilename = extendedMoFiles[extendedFileIndex]
+//   extendedJsonOutput.push(pa.getJsons(extendedFilename, args.mode, args.output))
+// }
 
 
-if (args.mode === 'cdl') {
-  for (var singleExtendedJsonOutputIndex in extendedJsonOutput) { 
-    var singleExtendedMoFile = extendedMoFiles[singleExtendedJsonOutputIndex]
-    var singleExtendedJsonOutput = extendedJsonOutput[singleExtendedJsonOutputIndex]
-    var outFile2 = ut.getOutFile(args.mode, args.file, args.output, args.directory, singleExtendedMoFile, singleExtendedJsonOutput)
-    pa.exportJSON(singleExtendedJsonOutput, outFile2, args.output, args.mode, args.directory)
-  }
-}
-else{
-  var outFile2 = ut.getOutFile(args.mode, args.file, args.output, args.directory, extendedMoFiles, extendedJsonOutput)
-  pa.exportJSON(extendedJsonOutput, outFile2, args.output, args.mode, args.directory)
-}
+// if (args.mode === 'cdl') {
+//   for (var singleExtendedJsonOutputIndex in extendedJsonOutput) { 
+//     var singleExtendedMoFile = extendedMoFiles[singleExtendedJsonOutputIndex]
+//     var singleExtendedJsonOutput = extendedJsonOutput[singleExtendedJsonOutputIndex]
+//     var outFile2 = ut.getOutFile(args.mode, args.file, args.output, args.directory, singleExtendedMoFile, singleExtendedJsonOutput)
+//     pa.exportJSON(singleExtendedJsonOutput, outFile2, args.output, args.mode, args.directory)
+//   }
+// }
+// else{
+//   var outFile2 = ut.getOutFile(args.mode, args.file, args.output, args.directory, extendedMoFiles, extendedJsonOutput)
+//   pa.exportJSON(extendedJsonOutput, outFile2, args.output, args.mode, args.directory)
+// }
 
 var schema
 if (args.mode === 'cdl') {
