@@ -3,6 +3,7 @@ const pa = require('./lib/parser.js')
 const ut = require('./lib/util.js')
 
 const logger = require('winston')
+const path = require('path')
 
 const ArgumentParser = require('argparse').ArgumentParser
 /// ///////////////////////////////////////
@@ -50,6 +51,14 @@ parser.addArgument(
     defaultValue: 'current'
   }
 )
+parser.addArgument(
+  '--strict',
+  {
+    help: 'Exit with code 1 if there is any warning.',
+    defaultValue: 'false'
+  }
+)
+
 var args = parser.parseArgs()
 
 const logFile = 'modelica-json.log'
@@ -78,7 +87,6 @@ var jsonOp = pa.getJSON(moFiles, args.mode, args.output)
 // Get the name array of output files
 var outFile = ut.getOutFile(args.mode, args.file, args.output, args.directory, moFiles, jsonOp)
 pa.exportJSON(jsonOp, outFile, args.output, args.mode, args.directory)
-setTimeout(function () { ut.jsonSchemaValidate(args.mode, outFile[0], args.output) }, 100)
 
 if (args.mode === "cdl"){
   json = [jsonOp]
@@ -155,4 +163,17 @@ if (args.mode === 'cdl') {
 else{
   var outFile2 = ut.getOutFile(args.mode, args.file, args.output, args.directory, extendedMoFiles, extendedJsonOutput)
   pa.exportJSON(extendedJsonOutput, outFile2, args.output, args.mode, args.directory)
+}
+
+var schema
+if (args.mode === 'cdl') {
+  schema = path.join(`${__dirname}`, 'schema-CDL.json')
+} else {
+  schema = path.join(`${__dirname}`, 'schema-modelica.json')
+}
+
+setTimeout(function () { ut.jsonSchemaValidate(args.mode, outFile[0], args.output, schema) }, 100)
+
+if (args.strict === 'true' && pa.warnCounter > 0) {
+  process.exit(1)
 }
