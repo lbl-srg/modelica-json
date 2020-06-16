@@ -1,0 +1,113 @@
+<head>
+  <meta charset="utf-8">
+  <title></title>
+
+  <!-- Custom styles for this template -->
+  <style type="text/css">
+*       { font-size: 100%; font-family: Arial, sans-serif; }
+h4      { font-size: 100%; font-weight: bold; color: green; }
+h3      { font-size: 110%; font-weight: bold; color: green; }
+h2      { font-size: 130%; font-weight: bold; color: green; }
+address { font-weight: normal; }
+td      { padding: 2px; border: 1px solid #808080; vertical-align: top; max-width: 450; }
+td.text { max-width: 450; }
+td.text span { white-space: nowrap;
+               overflow: hidden;
+               text-overflow: ellipsis;
+               display: inline-block;
+               max-width: 100%;
+             }
+tr:hover { background-color: #ffff99; }
+td.text:hover span:not(.empty) { background-color: #BDE5F8;
+                                 overflow: visible;
+                                 white-space: normal;
+                                 height: auto;
+                                 position: absolute;
+                                }
+
+th      { padding: 2px; border: 1px solid #808080; vertical-align: top; font-weight: bold; max-width: 450; }
+table   { border: 1px solid #808080; border-collapse: collapse; }
+ul.list-parameter-assignments { list-style-type: none; margin-top: 0rem; margin-bottom: 0rem; padding: 2px; }
+pre, code {font-family: "Courier New", monospace;}
+pre {white-space: pre; overflow-x : hidden;}
+.ModelicaDescription {font-weight: bold;} /* For the description string of the class. */
+.ModelicaParameterTab { background-color: #c0c0c0; font-weight: bold; } /* The tab-heading in the table of parameters */
+.ModelicaParameterGroup { background-color: #e0e0e0; } /* The group-heading in the table of parameters */
+
+/* Counters for header */
+body {counter-reset: h2}
+h2 {counter-reset: h3}
+h3 {counter-reset: h4}
+h4 {counter-reset: h5}
+h5 {counter-reset: h6}
+
+h2:before {counter-increment: h2; content: counter(h2) ". "}
+h3:before {counter-increment: h3; content: counter(h2) "." counter(h3) ". "}
+h4:before {counter-increment: h4; content: counter(h2) "." counter(h3) "." counter(h4) ". "}
+h5:before {counter-increment: h5; content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) ". "}
+h6:before {counter-increment: h6; content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) "." counter(h6) ". "}
+
+h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.nocount:before
+  { content: ""; counter-increment: none }
+</style>
+
+</head>
+<body>
+
+<h2>FromModelica.MisplacedInfoWithParameter<a name="FromModelica.MisplacedInfoWithParameter"></a></h2>
+
+  <span class="ModelicaDescription">A block that places info section in parameter annotation</span><br>
+
+
+
+<h3>Parameters</h3>
+    <p>
+    It has the following parameters:
+    </p>
+    <table>
+    <tr>
+    <th class="mode">Type        </th>
+    <th>Quantity  </th>
+    <th>Name    </th>
+    <th>Default    </th>
+    <th>Unit     </th>
+    <th>Display unit</th>
+    <th>min    </th>
+    <th>max    </th>
+    <th class="description">Description</th>
+    </tr>
+    <tr class="tab ModelicaParameterTab"><td colspan="9">General</td></tr>
+    <tr class="group ModelicaParameterGroup"><td colspan="9">Parameters</td></tr>
+    <tr>
+    <td class="type, text"><span>Real</span></td>
+    <td></td>
+    <td><code>kP</code><a name="FromModelica.MisplacedInfoWithParameter.kP"></a></td>
+    <td>1</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>Some comment</td>
+    </tr>
+    </table>
+
+
+
+
+
+
+
+  <p align="center">
+  <img alt="Diagram layer" src="img/FromModelica.MisplacedInfoWithParameter.svg">
+  </p>
+
+</body>
+
+<footer>
+<div class="footer">
+<p>
+    Generated through CDL export of <a href="http://obc.lbl.gov">OpenBuildingControl</a>,
+    <a href="https://www.lbl.gov">Berkeley Lab</a>.
+</p>
+</div>
+</footer>

@@ -1,0 +1,180 @@
+[
+  {
+    "modelicaFile": "FromModelica/MisplacedInfoWithEquation.mo",
+    "within": "FromModelica",
+    "topClassName": "FromModelica.MisplacedInfoWithEquation",
+    "comment": "A block that places info section in equation section",
+    "public": {
+      "parameters": [
+        {
+          "className": "Real",
+          "type": "Real",
+          "name": "k",
+          "value": "2",
+          "comment": "Constant gain",
+          "annotation": {
+            "dialog": {
+              "tab": "General",
+              "group": "Parameters"
+            }
+          }
+        }
+      ],
+      "models": [
+        {
+          "className": "Buildings.Controls.OBC.CDL.Continuous.Gain",
+          "name": "gain",
+          "comment": "Constant gain",
+          "modifications": [
+            {
+              "name": "k",
+              "value": "k",
+              "isFinal": true
+            }
+          ],
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": 0,
+                  "y": -10
+                },
+                {
+                  "x": 20,
+                  "y": 10
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "inputs": [
+        {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+          "name": "u",
+          "comment": "Input signal",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": -140,
+                  "y": -20
+                },
+                {
+                  "x": -100,
+                  "y": 20
+                }
+              ]
+            },
+            "iconTransformation": {
+              "extent": [
+                {
+                  "x": -140,
+                  "y": 20
+                },
+                {
+                  "x": -100,
+                  "y": 60
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
+          "name": "y1",
+          "comment": "Output signal",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": 100,
+                  "y": -10
+                },
+                {
+                  "x": 120,
+                  "y": 10
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
+          "name": "y2",
+          "comment": "Output signal",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": 100,
+                  "y": -10
+                },
+                {
+                  "x": 120,
+                  "y": 10
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "connections": [
+      [
+        {
+          "instance": "u"
+        },
+        {
+          "instance": "gain",
+          "connector": "u"
+        },
+        {
+          "points": [
+            {
+              "x": -120,
+              "y": 0
+            },
+            {
+              "x": -2,
+              "y": 0
+            }
+          ],
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 127
+          }
+        }
+      ],
+      [
+        {
+          "instance": "gain",
+          "connector": "y"
+        },
+        {
+          "instance": "y"
+        },
+        {
+          "points": [
+            {
+              "x": 22,
+              "y": 0
+            },
+            {
+              "x": 110,
+              "y": 0
+            }
+          ],
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 127
+          }
+        }
+      ]
+    ]
+  }
+]
