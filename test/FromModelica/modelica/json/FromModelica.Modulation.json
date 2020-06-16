@@ -4,6 +4,7 @@
     "within": "FromModelica",
     "topClassName": "FromModelica.Modulation",
     "comment": "Outdoor and return air damper position modulation sequence for multi zone VAV AHU",
+    "defaultName": "\"mod\"",
     "public": {
       "parameters": [
         {
@@ -14,9 +15,6 @@
           "comment": "Lower limit of controller input when outdoor damper opens (see diagram)",
           "unit": {
             "prefix": "final",
-            "value": "\"1\""
-          },
-          "displayUnit": {
             "value": "\"1\""
           },
           "max": {
@@ -50,9 +48,6 @@
             "prefix": "final",
             "value": "\"1\""
           },
-          "displayUnit": {
-            "value": "\"1\""
-          },
           "min": {
             "prefix": "final",
             "value": "0"
@@ -82,9 +77,6 @@
           "comment": "Maximum loop signal for the OA damper to be fully open",
           "unit": {
             "prefix": "final",
-            "value": "\"1\""
-          },
-          "displayUnit": {
             "value": "\"1\""
           },
           "min": {
@@ -126,9 +118,6 @@
             "prefix": "final",
             "value": "\"1\""
           },
-          "displayUnit": {
-            "value": "\"1\""
-          },
           "min": {
             "prefix": "final",
             "value": "-1"
@@ -164,15 +153,6 @@
           "name": "samplePeriod",
           "value": "300",
           "comment": "Sample period of component, used to limit the rate of change of the dampers (to avoid quick opening that can result in frost)",
-          "unit": {
-            "value": "\"s\""
-          },
-          "displayUnit": {
-            "value": "\"s\""
-          },
-          "quantity": {
-            "value": "\"Time\""
-          },
           "annotation": {
             "dialog": {
               "tab": "General",
