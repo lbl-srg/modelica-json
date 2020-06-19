@@ -54,7 +54,7 @@ parser.addArgument(
 parser.addArgument(
   ['-evaProPar', '--evaluatePropagatedParameters'],
   {
-    help: "Needed only in cdl mode: check if the parsing process should evaluate the propagated parameters. 'false' is the default.",
+    help: "Evaluate the propagated parameters. It would be needed for exporting CDL sequences to product lines. 'false' is the default.",
     choices: ['true', 'false'],
     defaultValue: 'false'
   }
@@ -62,7 +62,7 @@ parser.addArgument(
 parser.addArgument(
   ['-evaExp', '--evaluateExpressions'],
   {
-    help: "Needed only in cdl mode: check if the parsing process should evaluate the mathematical expressions. 'false' is the default.",
+    help: "Evaluate the mathematical expressions. It would be needed for exporting CDL sequences to product lines. 'false' is the default.",
     choices: ['true', 'false'],
     defaultValue: 'false'
   }
