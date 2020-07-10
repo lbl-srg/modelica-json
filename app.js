@@ -94,8 +94,8 @@ logger.cli()
 
 logger.level = args.log
 
-var evaProPar = args.evaluatePropagatedParameters
-var evaExp = args.evaluateExpressions
+var evaProPar = (args.evaluatePropagatedParameters === 'true')
+var evaExp = (args.evaluateExpressions === 'true')
 
 // Get mo files array
 var moFiles = ut.getMoFiles(args.mode, args.file)
