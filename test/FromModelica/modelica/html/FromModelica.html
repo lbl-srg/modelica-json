@@ -273,7 +273,6 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
       <th>max    </th>
       <th>Unit     </th>
       <th>Display unit     </th>
-      <th>Enable    </th>
       </tr>
     <tr>
       <td>
@@ -288,7 +287,6 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
       <td></td>
       <td></td>
       <td></td>
-      <td>enaBlo</td>
       </tr>
     </table>
 
@@ -332,7 +330,6 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
       <th class="type">Type</th>
       <th>Name</th>
       <th class="description">Description</th>
-      <th>Enable    </th>
       <th>Parameter Assignments</th>
     </tr>
     <tr>
@@ -347,7 +344,6 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
       </code>
       <a name="FromModelica.ConditionalBlock.abs"></a></td>
       <td>Instance could be conditional disabled</td>
-      <td>not enaBlo</td>
       <td class="text"><span>
       </span></td>
       </tr>
@@ -1316,7 +1312,7 @@ Multi zone AHU economizer modulation control chart:
     <td>1</td>
     <td></td>
     <td></td>
-    <td>0 (adjustable)</td>
+    <td>0</td>
     <td>Lower limit of controller input when outdoor damper opens (see diagram)</td>
     </tr>
     <tr>
@@ -1326,7 +1322,7 @@ Multi zone AHU economizer modulation control chart:
     <td>+0.25</td>
     <td>1</td>
     <td></td>
-    <td>0 (adjustable)</td>
+    <td>0</td>
     <td></td>
     <td>Upper limit of controller input when return damper is closed (see diagram)</td>
     </tr>
@@ -1337,8 +1333,8 @@ Multi zone AHU economizer modulation control chart:
     <td>(uMin + uMax)&#x2F;2</td>
     <td>1</td>
     <td></td>
-    <td>-1 (adjustable)</td>
-    <td>1 (adjustable)</td>
+    <td>-1</td>
+    <td>1</td>
     <td>Maximum loop signal for the OA damper to be fully open</td>
     </tr>
     <tr>
@@ -1348,8 +1344,8 @@ Multi zone AHU economizer modulation control chart:
     <td>(uMin + uMax)&#x2F;2</td>
     <td>1</td>
     <td></td>
-    <td>-1 (adjustable)</td>
-    <td>1 (adjustable)</td>
+    <td>-1</td>
+    <td>1</td>
     <td>Minimum loop signal for the RA damper to be fully open</td>
     </tr>
     <tr class="tab ModelicaParameterTab"><td colspan="9">General</td></tr>
@@ -1405,8 +1401,8 @@ Multi zone AHU economizer modulation control chart:
       <td></td>
       <td><code>uOutDamPosMin</code><a name="FromModelica.Modulation.uOutDamPosMin"></a></td>
       <td>Minimum economizer damper position limit as returned by the damper position limits  sequence</td>
-      <td>0 (adjustable)</td>
-      <td>1 (adjustable)</td>
+      <td>0</td>
+      <td>1</td>
       <td>1</td>
       <td>1</td>
       </tr>
@@ -1420,8 +1416,8 @@ Multi zone AHU economizer modulation control chart:
       <td><code>uOutDamPosMax</code><a name="FromModelica.Modulation.uOutDamPosMax"></a></td>
       <td>Maximum economizer damper position limit as returned by the economizer enable-disable sequence.
     If the economizer is disabled, this value equals uOutDamPosMin</td>
-      <td>0 (adjustable)</td>
-      <td>1 (adjustable)</td>
+      <td>0</td>
+      <td>1</td>
       <td>1</td>
       <td>1</td>
       </tr>
@@ -1434,8 +1430,8 @@ Multi zone AHU economizer modulation control chart:
       <td></td>
       <td><code>uRetDamPosMin</code><a name="FromModelica.Modulation.uRetDamPosMin"></a></td>
       <td>Minimum return air damper position limit as returned by the economizer enable-disable sequence</td>
-      <td>0 (adjustable)</td>
-      <td>1 (adjustable)</td>
+      <td>0</td>
+      <td>1</td>
       <td>1</td>
       <td>1</td>
       </tr>
@@ -1448,8 +1444,8 @@ Multi zone AHU economizer modulation control chart:
       <td></td>
       <td><code>uRetDamPosMax</code><a name="FromModelica.Modulation.uRetDamPosMax"></a></td>
       <td>Maximum return air damper position limit as returned by the economizer enable-disable sequence</td>
-      <td>0 (adjustable)</td>
-      <td>1 (adjustable)</td>
+      <td>0</td>
+      <td>1</td>
       <td>1</td>
       <td>1</td>
       </tr>
@@ -1479,8 +1475,8 @@ Multi zone AHU economizer modulation control chart:
       <td></td>
       <td><code>yOutDamPos</code><a name="FromModelica.Modulation.yOutDamPos"></a></td>
       <td>Economizer damper position</td>
-      <td>0 (adjustable)</td>
-      <td>1 (adjustable)</td>
+      <td>0</td>
+      <td>1</td>
       <td>1</td>
       <td>1</td>
       </tr>
@@ -1493,8 +1489,8 @@ Multi zone AHU economizer modulation control chart:
       <td></td>
       <td><code>yRetDamPos</code><a name="FromModelica.Modulation.yRetDamPos"></a></td>
       <td>Return air damper position</td>
-      <td>0 (adjustable)</td>
-      <td>1 (adjustable)</td>
+      <td>0</td>
+      <td>1</td>
       <td>1</td>
       <td>1</td>
       </tr>
@@ -2218,7 +2214,542 @@ This is the info section.
     <td></td>
     <td>Some comment</td>
     </tr>
+    </table><h2>FromModelica.TestEvaluation_1<a name="FromModelica.TestEvaluation_1"></a></h2>
+
+  <span class="ModelicaDescription">Example for real parameter evaluation</span><br>
+
+
+
+<h3>Parameters</h3>
+    <p>
+    It has the following parameters:
+    </p>
+    <table>
+    <tr>
+    <th class="mode">Type        </th>
+    <th>Quantity  </th>
+    <th>Name    </th>
+    <th>Default    </th>
+    <th>Unit     </th>
+    <th>Display unit</th>
+    <th>min    </th>
+    <th>max    </th>
+    <th class="description">Description</th>
+    </tr>
+    <tr class="tab ModelicaParameterTab"><td colspan="9">General</td></tr>
+    <tr class="group ModelicaParameterGroup"><td colspan="9">Parameters</td></tr>
+    <tr>
+    <td class="type, text"><span>Real</span></td>
+    <td></td>
+    <td><code>k1</code><a name="FromModelica.TestEvaluation_1.k1"></a></td>
+    <td>1.0</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>Constant output value</td>
+    </tr>
     </table>
+
+
+
+<h3>Blocks</h3>
+    <p>
+    It has the following blocks:
+    </p>
+    <table>
+    <tr>
+      <th class="type">Type</th>
+      <th>Name</th>
+      <th class="description">Description</th>
+      <th>Parameter Assignments</th>
+    </tr>
+    <tr>
+      <td class="type, text"><span>
+      <code>
+      <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous_Sources.html#Buildings.Controls.OBC.CDL.Continuous.Sources.Constant">Buildings.Controls.OBC.CDL.Continuous.Sources.Constant</a>
+      </code>
+      </span></td>
+      <td>
+      <code>
+      con
+      </code>
+      <a name="FromModelica.TestEvaluation_1.con"></a></td>
+      <td>Example for real parameter evaluation</td>
+      <td class="text"><span>
+      <ul class="list-parameter-assignments">
+      <li>
+      <code>
+       final  k = k1
+      </code>
+      </li>
+      </ul>
+      </span></td>
+      </tr>
+    </table><h2>FromModelica.TestEvaluation_2<a name="FromModelica.TestEvaluation_2"></a></h2>
+
+  <span class="ModelicaDescription">Example for real parameter evaluation</span><br>
+
+
+
+<h3>Parameters</h3>
+    <p>
+    It has the following parameters:
+    </p>
+    <table>
+    <tr>
+    <th class="mode">Type        </th>
+    <th>Quantity  </th>
+    <th>Name    </th>
+    <th>Default    </th>
+    <th>Unit     </th>
+    <th>Display unit</th>
+    <th>min    </th>
+    <th>max    </th>
+    <th class="description">Description</th>
+    </tr>
+    <tr class="tab ModelicaParameterTab"><td colspan="9">General</td></tr>
+    <tr class="group ModelicaParameterGroup"><td colspan="9">Parameters</td></tr>
+    <tr>
+    <td class="type, text"><span>Real</span></td>
+    <td></td>
+    <td><code>uLow</code><a name="FromModelica.TestEvaluation_2.uLow"></a></td>
+    <td>0.5</td>
+    <td></td>
+    <td></td>
+    <td>0</td>
+    <td></td>
+    <td>if y&#x3D;true and u&lt;uLow, switch to y&#x3D;false</td>
+    </tr>
+    <tr>
+    <td class="type, text"><span>Real</span></td>
+    <td></td>
+    <td><code>uHigh</code><a name="FromModelica.TestEvaluation_2.uHigh"></a></td>
+    <td>2*uLow</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>if y&#x3D;false and u&gt;uHigh, switch to y&#x3D;true</td>
+    </tr>
+    </table>
+
+<h3>Inputs</h3>
+    <p>
+    It has the following inputs:
+    </p>
+    <table>
+    <tr>
+      <th class="type">Type        </th>
+      <th>Quantity  </th>
+      <th>Name    </th>
+      <th class="description">Description</th>
+      <th>min    </th>
+      <th>max    </th>
+      <th>Unit     </th>
+      <th>Display unit     </th>
+      </tr>
+    <tr>
+      <td>
+      <code>
+      Real
+      </code>
+      </td>
+      <td></td>
+      <td><code>u</code><a name="FromModelica.TestEvaluation_2.u"></a></td>
+      <td>Real input signal</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+    </table>
+
+<h3>Outputs</h3>
+    <p>
+    It has the following outputs:
+    </p>
+    <table>
+    <tr>
+      <th class="type">Type        </th>
+      <th>Quantity  </th>
+      <th>Name    </th>
+      <th class="description">Description</th>
+      <th>min    </th>
+      <th>max    </th>
+      <th>Unit     </th>
+      <th>Display unit     </th>
+      </tr>
+    <tr>
+      <td>
+      <code>
+      Boolean
+      </code>
+      </td>
+      <td></td>
+      <td><code>y</code><a name="FromModelica.TestEvaluation_2.y"></a></td>
+      <td>Boolean output signal</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+    </table>
+
+<h3>Blocks</h3>
+    <p>
+    It has the following blocks:
+    </p>
+    <table>
+    <tr>
+      <th class="type">Type</th>
+      <th>Name</th>
+      <th class="description">Description</th>
+      <th>Parameter Assignments</th>
+    </tr>
+    <tr>
+      <td class="type, text"><span>
+      <code>
+      <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Hysteresis">Buildings.Controls.OBC.CDL.Continuous.Hysteresis</a>
+      </code>
+      </span></td>
+      <td>
+      <code>
+      hys
+      </code>
+      <a name="FromModelica.TestEvaluation_2.hys"></a></td>
+      <td>Example for real parameter evaluation</td>
+      <td class="text"><span>
+      <ul class="list-parameter-assignments">
+      <li>
+      <code>
+       final  uLow = uLow
+      </code>
+      </li>
+      <li>
+      <code>
+       uHigh = uHigh
+      </code>
+      </li>
+      </ul>
+      </span></td>
+      </tr>
+    </table>
+
+
+
+    <h3>Connections</h3>
+    <p>
+    The inputs of the internal blocks are connected to the following outputs:
+    </p>
+    <ol>
+    <li>
+    <code><a href="#FromModelica.TestEvaluation_2.hys">hys</a>.u
+    </code>
+    &rarr;
+    <code><a href="#FromModelica.TestEvaluation_2.u">u</a></code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.TestEvaluation_2.hys">hys</a>.y
+    </code>
+    &rarr;
+    <code><a href="#FromModelica.TestEvaluation_2.y">y</a></code>
+    </li>
+    </ol><h2>FromModelica.TestEvaluation_3<a name="FromModelica.TestEvaluation_3"></a></h2>
+
+  <span class="ModelicaDescription">Example for boolean parameter evaluation</span><br>
+
+
+
+<h3>Parameters</h3>
+    <p>
+    It has the following parameters:
+    </p>
+    <table>
+    <tr>
+    <th class="mode">Type        </th>
+    <th>Quantity  </th>
+    <th>Name    </th>
+    <th>Default    </th>
+    <th>Unit     </th>
+    <th>Display unit</th>
+    <th>min    </th>
+    <th>max    </th>
+    <th class="description">Description</th>
+    </tr>
+    <tr class="tab ModelicaParameterTab"><td colspan="9">General</td></tr>
+    <tr class="group ModelicaParameterGroup"><td colspan="9">Parameters</td></tr>
+    <tr>
+    <td class="type, text"><span>Boolean</span></td>
+    <td></td>
+    <td><code>k1</code><a name="FromModelica.TestEvaluation_3.k1"></a></td>
+    <td>true</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>Constant output value</td>
+    </tr>
+    <tr>
+    <td class="type, text"><span>Boolean</span></td>
+    <td></td>
+    <td><code>k2</code><a name="FromModelica.TestEvaluation_3.k2"></a></td>
+    <td>not k1</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>Example for boolean parameter evaluation</td>
+    </tr>
+    </table>
+
+
+
+<h3>Blocks</h3>
+    <p>
+    It has the following blocks:
+    </p>
+    <table>
+    <tr>
+      <th class="type">Type</th>
+      <th>Name</th>
+      <th class="description">Description</th>
+      <th>Parameter Assignments</th>
+    </tr>
+    <tr>
+      <td class="type, text"><span>
+      <code>
+      <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Logical_Sources.html#Buildings.Controls.OBC.CDL.Logical.Sources.Constant">Buildings.Controls.OBC.CDL.Logical.Sources.Constant</a>
+      </code>
+      </span></td>
+      <td>
+      <code>
+      con
+      </code>
+      <a name="FromModelica.TestEvaluation_3.con"></a></td>
+      <td>Example for boolean parameter evaluation</td>
+      <td class="text"><span>
+      <ul class="list-parameter-assignments">
+      <li>
+      <code>
+       final  k = k2
+      </code>
+      </li>
+      </ul>
+      </span></td>
+      </tr>
+    <tr>
+      <td class="type, text"><span>
+      <code>
+      <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Logical_Sources.html#Buildings.Controls.OBC.CDL.Logical.Sources.Constant">Buildings.Controls.OBC.CDL.Logical.Sources.Constant</a>
+      </code>
+      </span></td>
+      <td>
+      <code>
+      con1
+      </code>
+      <a name="FromModelica.TestEvaluation_3.con1"></a></td>
+      <td>Example for boolean parameter evaluation</td>
+      <td class="text"><span>
+      <ul class="list-parameter-assignments">
+      <li>
+      <code>
+       final  k = k1
+      </code>
+      </li>
+      </ul>
+      </span></td>
+      </tr>
+    </table><h2>FromModelica.TestEvaluation_4<a name="FromModelica.TestEvaluation_4"></a></h2>
+
+  <span class="ModelicaDescription">Example for enumerate parameter evaluation</span><br>
+
+
+
+<h3>Parameters</h3>
+    <p>
+    It has the following parameters:
+    </p>
+    <table>
+    <tr>
+    <th class="mode">Type        </th>
+    <th>Quantity  </th>
+    <th>Name    </th>
+    <th>Default    </th>
+    <th>Unit     </th>
+    <th>Display unit</th>
+    <th>min    </th>
+    <th>max    </th>
+    <th class="description">Description</th>
+    </tr>
+    <tr class="tab ModelicaParameterTab"><td colspan="9">General</td></tr>
+    <tr class="group ModelicaParameterGroup"><td colspan="9">Parameters</td></tr>
+    <tr>
+    <td class="type, text"><span>Buildings.Controls.OBC.CDL.Types.SimpleController</span></td>
+    <td></td>
+    <td><code>controllerType</code><a name="FromModelica.TestEvaluation_4.controllerType"></a></td>
+    <td>Buildings.Controls.OBC.CDL.Types.SimpleController.PI</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>Type of controller</td>
+    </tr>
+    <tr>
+    <td class="type, text"><span>Real</span></td>
+    <td></td>
+    <td><code>k</code><a name="FromModelica.TestEvaluation_4.k"></a></td>
+    <td>0.1</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>Gain</td>
+    </tr>
+    </table>
+
+<h3>Inputs</h3>
+    <p>
+    It has the following inputs:
+    </p>
+    <table>
+    <tr>
+      <th class="type">Type        </th>
+      <th>Quantity  </th>
+      <th>Name    </th>
+      <th class="description">Description</th>
+      <th>min    </th>
+      <th>max    </th>
+      <th>Unit     </th>
+      <th>Display unit     </th>
+      </tr>
+    <tr>
+      <td>
+      <code>
+      Real
+      </code>
+      </td>
+      <td></td>
+      <td><code>TMix</code><a name="FromModelica.TestEvaluation_4.TMix"></a></td>
+      <td>Mixed air temperature measurement</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+    </table>
+
+<h3>Outputs</h3>
+    <p>
+    It has the following outputs:
+    </p>
+    <table>
+    <tr>
+      <th class="type">Type        </th>
+      <th>Quantity  </th>
+      <th>Name    </th>
+      <th class="description">Description</th>
+      <th>min    </th>
+      <th>max    </th>
+      <th>Unit     </th>
+      <th>Display unit     </th>
+      </tr>
+    <tr>
+      <td>
+      <code>
+      Real
+      </code>
+      </td>
+      <td></td>
+      <td><code>yFreProInv</code><a name="FromModelica.TestEvaluation_4.yFreProInv"></a></td>
+      <td>Inverse freeze protection control signal, 1 if no frost, 0 if TMix below TFreSet</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+    <tr>
+      <td>
+      <code>
+      Real
+      </code>
+      </td>
+      <td></td>
+      <td><code>yFrePro</code><a name="FromModelica.TestEvaluation_4.yFrePro"></a></td>
+      <td>Freeze protection control signal, 0 if no frost, 1 if TMix below TFreSet</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+    </table>
+
+<h3>Blocks</h3>
+    <p>
+    It has the following blocks:
+    </p>
+    <table>
+    <tr>
+      <th class="type">Type</th>
+      <th>Name</th>
+      <th class="description">Description</th>
+      <th>Parameter Assignments</th>
+    </tr>
+    <tr>
+      <td class="type, text"><span>
+      <code>
+      <a href="FromModelica.html#Buildings.Controls.OBC.ASHRAE.G36_PR1.Generic.FreezeProtectionMixedAir">Buildings.Controls.OBC.ASHRAE.G36_PR1.Generic.FreezeProtectionMixedAir</a>
+      </code>
+      </span></td>
+      <td>
+      <code>
+      freProTMix
+      </code>
+      <a name="FromModelica.TestEvaluation_4.freProTMix"></a></td>
+      <td>Example for enumerate parameter evaluation</td>
+      <td class="text"><span>
+      <ul class="list-parameter-assignments">
+      <li>
+      <code>
+       final  controllerType = controllerType
+      </code>
+      </li>
+      <li>
+      <code>
+       k = k
+      </code>
+      </li>
+      </ul>
+      </span></td>
+      </tr>
+    </table>
+
+
+
+    <h3>Connections</h3>
+    <p>
+    The inputs of the internal blocks are connected to the following outputs:
+    </p>
+    <ol>
+    <li>
+    <code><a href="#FromModelica.TestEvaluation_4.freProTMix">freProTMix</a>.<a href="#Buildings.Controls.OBC.ASHRAE.G36_PR1.Generic.FreezeProtectionMixedAir.TMix">TMix
+    </a></code>
+    &rarr;
+    <code><a href="#FromModelica.TestEvaluation_4.TMix">TMix</a></code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.TestEvaluation_4.freProTMix">freProTMix</a>.<a href="#Buildings.Controls.OBC.ASHRAE.G36_PR1.Generic.FreezeProtectionMixedAir.yFreProInv">yFreProInv
+    </a></code>
+    &rarr;
+    <code><a href="#FromModelica.TestEvaluation_4.yFreProInv">yFreProInv</a></code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.TestEvaluation_4.freProTMix">freProTMix</a>.<a href="#Buildings.Controls.OBC.ASHRAE.G36_PR1.Generic.FreezeProtectionMixedAir.yFrePro">yFrePro
+    </a></code>
+    &rarr;
+    <code><a href="#FromModelica.TestEvaluation_4.yFrePro">yFrePro</a></code>
+    </li>
+    </ol>
 
 </body>
 

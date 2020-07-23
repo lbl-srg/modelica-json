@@ -1,0 +1,276 @@
+[
+  {
+    "modelicaFile": "FromModelica/TestEvaluation_4.mo",
+    "within": "FromModelica",
+    "topClassName": "FromModelica.TestEvaluation_4",
+    "comment": "Example for enumerate parameter evaluation",
+    "public": {
+      "parameters": [
+        {
+          "className": "Buildings.Controls.OBC.CDL.Types.SimpleController",
+          "type": "Buildings.Controls.OBC.CDL.Types.SimpleController",
+          "name": "controllerType",
+          "value": "Buildings.Controls.OBC.CDL.Types.SimpleController.PI",
+          "comment": "Type of controller",
+          "annotation": {
+            "dialog": {
+              "tab": "General",
+              "group": "Parameters"
+            }
+          }
+        },
+        {
+          "className": "Real",
+          "type": "Real",
+          "name": "k",
+          "value": "0.1",
+          "comment": "Gain",
+          "annotation": {
+            "dialog": {
+              "tab": "General",
+              "group": "Parameters"
+            }
+          }
+        }
+      ],
+      "models": [
+        {
+          "className": "Buildings.Controls.OBC.ASHRAE.G36_PR1.Generic.FreezeProtectionMixedAir",
+          "name": "freProTMix",
+          "modifications": [
+            {
+              "name": "controllerType",
+              "value": "controllerType",
+              "isFinal": true
+            },
+            {
+              "name": "k",
+              "value": "k",
+              "isFinal": false
+            }
+          ],
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": -10,
+                  "y": -10
+                },
+                {
+                  "x": 10,
+                  "y": 10
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "inputs": [
+        {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+          "name": "TMix",
+          "comment": "Mixed air temperature measurement",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": -140,
+                  "y": -20
+                },
+                {
+                  "x": -100,
+                  "y": 20
+                }
+              ]
+            },
+            "iconTransformation": {
+              "extent": [
+                {
+                  "x": -124,
+                  "y": -20
+                },
+                {
+                  "x": -84,
+                  "y": 20
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
+          "name": "yFreProInv",
+          "comment": "Inverse freeze protection control signal, 1 if no frost, 0 if TMix below TFreSet",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": 100,
+                  "y": 0
+                },
+                {
+                  "x": 140,
+                  "y": 40
+                }
+              ]
+            },
+            "iconTransformation": {
+              "extent": [
+                {
+                  "x": 78,
+                  "y": 0
+                },
+                {
+                  "x": 118,
+                  "y": 40
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
+          "name": "yFrePro",
+          "comment": "Freeze protection control signal, 0 if no frost, 1 if TMix below TFreSet",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": 100,
+                  "y": -40
+                },
+                {
+                  "x": 140,
+                  "y": 0
+                }
+              ]
+            },
+            "iconTransformation": {
+              "extent": [
+                {
+                  "x": 78,
+                  "y": -40
+                },
+                {
+                  "x": 118,
+                  "y": 0
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "icon": {
+      "coordinateSystem": {
+        "preserveAspectRatio": false
+      }
+    },
+    "diagram": {
+      "coordinateSystem": {
+        "preserveAspectRatio": false
+      }
+    },
+    "connections": [
+      [
+        {
+          "instance": "freProTMix",
+          "connector": "TMix",
+          "portLinkTarget": "Buildings.Controls.OBC.ASHRAE.G36_PR1.Generic.FreezeProtectionMixedAir.TMix"
+        },
+        {
+          "instance": "TMix"
+        },
+        {
+          "points": [
+            {
+              "x": -12,
+              "y": 0
+            },
+            {
+              "x": -120,
+              "y": 0
+            }
+          ],
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 127
+          }
+        }
+      ],
+      [
+        {
+          "instance": "freProTMix",
+          "connector": "yFreProInv",
+          "portLinkTarget": "Buildings.Controls.OBC.ASHRAE.G36_PR1.Generic.FreezeProtectionMixedAir.yFreProInv"
+        },
+        {
+          "instance": "yFreProInv"
+        },
+        {
+          "points": [
+            {
+              "x": 12,
+              "y": 3
+            },
+            {
+              "x": 60,
+              "y": 3
+            },
+            {
+              "x": 60,
+              "y": 20
+            },
+            {
+              "x": 120,
+              "y": 20
+            }
+          ],
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 127
+          }
+        }
+      ],
+      [
+        {
+          "instance": "freProTMix",
+          "connector": "yFrePro",
+          "portLinkTarget": "Buildings.Controls.OBC.ASHRAE.G36_PR1.Generic.FreezeProtectionMixedAir.yFrePro"
+        },
+        {
+          "instance": "yFrePro"
+        },
+        {
+          "points": [
+            {
+              "x": 12,
+              "y": -3
+            },
+            {
+              "x": 60,
+              "y": -3
+            },
+            {
+              "x": 60,
+              "y": -20
+            },
+            {
+              "x": 120,
+              "y": -20
+            }
+          ],
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 127
+          }
+        }
+      ]
+    ]
+  }
+]

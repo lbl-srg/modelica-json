@@ -14,23 +14,13 @@
           "value": "-0.25",
           "comment": "Lower limit of controller input when outdoor damper opens (see diagram)",
           "unit": {
-            "prefix": "final",
-            "value": "\"1\""
+            "value": "\"1\"",
+            "isFinal": true
           },
           "max": {
-            "prefix": "final",
-            "value": "0"
+            "value": "0",
+            "isFinal": true
           },
-          "modifications": [
-            {
-              "value": "0",
-              "isFinal": true
-            },
-            {
-              "value": "\"1\"",
-              "isFinal": true
-            }
-          ],
           "annotation": {
             "dialog": {
               "tab": "Commissioning",
@@ -45,23 +35,13 @@
           "value": "+0.25",
           "comment": "Upper limit of controller input when return damper is closed (see diagram)",
           "unit": {
-            "prefix": "final",
-            "value": "\"1\""
+            "value": "\"1\"",
+            "isFinal": true
           },
           "min": {
-            "prefix": "final",
-            "value": "0"
+            "value": "0",
+            "isFinal": true
           },
-          "modifications": [
-            {
-              "value": "0",
-              "isFinal": true
-            },
-            {
-              "value": "\"1\"",
-              "isFinal": true
-            }
-          ],
           "annotation": {
             "dialog": {
               "tab": "Commissioning",
@@ -76,31 +56,17 @@
           "value": "(uMin + uMax)/2",
           "comment": "Maximum loop signal for the OA damper to be fully open",
           "unit": {
-            "prefix": "final",
-            "value": "\"1\""
+            "value": "\"1\"",
+            "isFinal": true
           },
           "min": {
-            "prefix": "final",
-            "value": "-1"
+            "value": "-1",
+            "isFinal": true
           },
           "max": {
-            "prefix": "final",
-            "value": "1"
+            "value": "1",
+            "isFinal": true
           },
-          "modifications": [
-            {
-              "value": "-1",
-              "isFinal": true
-            },
-            {
-              "value": "1",
-              "isFinal": true
-            },
-            {
-              "value": "\"1\"",
-              "isFinal": true
-            }
-          ],
           "annotation": {
             "dialog": {
               "tab": "Commissioning",
@@ -115,31 +81,17 @@
           "value": "(uMin + uMax)/2",
           "comment": "Minimum loop signal for the RA damper to be fully open",
           "unit": {
-            "prefix": "final",
-            "value": "\"1\""
+            "value": "\"1\"",
+            "isFinal": true
           },
           "min": {
-            "prefix": "final",
-            "value": "-1"
+            "value": "-1",
+            "isFinal": true
           },
           "max": {
-            "prefix": "final",
-            "value": "1"
+            "value": "1",
+            "isFinal": true
           },
-          "modifications": [
-            {
-              "value": "-1",
-              "isFinal": true
-            },
-            {
-              "value": "1",
-              "isFinal": true
-            },
-            {
-              "value": "\"1\"",
-              "isFinal": true
-            }
-          ],
           "annotation": {
             "dialog": {
               "tab": "Commissioning",
@@ -167,13 +119,13 @@
           "name": "uTSup",
           "comment": "Signal for supply air temperature control (T Sup Control Loop Signal in diagram)",
           "unit": {
-            "prefix": "final",
-            "value": "\"1\""
+            "value": "\"1\"",
+            "isFinal": true
           },
           "modifications": [
             {
               "value": "\"1\"",
-              "isFinal": true
+              "isFinal": false
             }
           ],
           "placement": {
@@ -208,29 +160,29 @@
           "name": "uOutDamPosMin",
           "comment": "Minimum economizer damper position limit as returned by the damper position limits  sequence",
           "unit": {
-            "prefix": "final",
-            "value": "\"1\""
+            "value": "\"1\"",
+            "isFinal": true
           },
           "min": {
-            "prefix": "final",
-            "value": "0"
+            "value": "0",
+            "isFinal": true
           },
           "max": {
-            "prefix": "final",
-            "value": "1"
+            "value": "1",
+            "isFinal": true
           },
           "modifications": [
             {
               "value": "0",
-              "isFinal": true
+              "isFinal": false
             },
             {
               "value": "1",
-              "isFinal": true
+              "isFinal": false
             },
             {
               "value": "\"1\"",
-              "isFinal": true
+              "isFinal": false
             }
           ],
           "placement": {
@@ -265,29 +217,29 @@
           "name": "uOutDamPosMax",
           "comment": "Maximum economizer damper position limit as returned by the economizer enable-disable sequence.\n    If the economizer is disabled, this value equals uOutDamPosMin",
           "unit": {
-            "prefix": "final",
-            "value": "\"1\""
+            "value": "\"1\"",
+            "isFinal": true
           },
           "min": {
-            "prefix": "final",
-            "value": "0"
+            "value": "0",
+            "isFinal": true
           },
           "max": {
-            "prefix": "final",
-            "value": "1"
+            "value": "1",
+            "isFinal": true
           },
           "modifications": [
             {
               "value": "0",
-              "isFinal": true
+              "isFinal": false
             },
             {
               "value": "1",
-              "isFinal": true
+              "isFinal": false
             },
             {
               "value": "\"1\"",
-              "isFinal": true
+              "isFinal": false
             }
           ],
           "placement": {
@@ -322,29 +274,29 @@
           "name": "uRetDamPosMin",
           "comment": "Minimum return air damper position limit as returned by the economizer enable-disable sequence",
           "unit": {
-            "prefix": "final",
-            "value": "\"1\""
+            "value": "\"1\"",
+            "isFinal": true
           },
           "min": {
-            "prefix": "final",
-            "value": "0"
+            "value": "0",
+            "isFinal": true
           },
           "max": {
-            "prefix": "final",
-            "value": "1"
+            "value": "1",
+            "isFinal": true
           },
           "modifications": [
             {
               "value": "0",
-              "isFinal": true
+              "isFinal": false
             },
             {
               "value": "1",
-              "isFinal": true
+              "isFinal": false
             },
             {
               "value": "\"1\"",
-              "isFinal": true
+              "isFinal": false
             }
           ],
           "placement": {
@@ -379,29 +331,29 @@
           "name": "uRetDamPosMax",
           "comment": "Maximum return air damper position limit as returned by the economizer enable-disable sequence",
           "unit": {
-            "prefix": "final",
-            "value": "\"1\""
+            "value": "\"1\"",
+            "isFinal": true
           },
           "min": {
-            "prefix": "final",
-            "value": "0"
+            "value": "0",
+            "isFinal": true
           },
           "max": {
-            "prefix": "final",
-            "value": "1"
+            "value": "1",
+            "isFinal": true
           },
           "modifications": [
             {
               "value": "0",
-              "isFinal": true
+              "isFinal": false
             },
             {
               "value": "1",
-              "isFinal": true
+              "isFinal": false
             },
             {
               "value": "\"1\"",
-              "isFinal": true
+              "isFinal": false
             }
           ],
           "placement": {
@@ -438,29 +390,29 @@
           "name": "yOutDamPos",
           "comment": "Economizer damper position",
           "unit": {
-            "prefix": "final",
-            "value": "\"1\""
+            "value": "\"1\"",
+            "isFinal": true
           },
           "min": {
-            "prefix": "final",
-            "value": "0"
+            "value": "0",
+            "isFinal": true
           },
           "max": {
-            "prefix": "final",
-            "value": "1"
+            "value": "1",
+            "isFinal": true
           },
           "modifications": [
             {
               "value": "0",
-              "isFinal": true
+              "isFinal": false
             },
             {
               "value": "1",
-              "isFinal": true
+              "isFinal": false
             },
             {
               "value": "\"1\"",
-              "isFinal": true
+              "isFinal": false
             }
           ],
           "placement": {
@@ -495,29 +447,29 @@
           "name": "yRetDamPos",
           "comment": "Return air damper position",
           "unit": {
-            "prefix": "final",
-            "value": "\"1\""
+            "value": "\"1\"",
+            "isFinal": true
           },
           "min": {
-            "prefix": "final",
-            "value": "0"
+            "value": "0",
+            "isFinal": true
           },
           "max": {
-            "prefix": "final",
-            "value": "1"
+            "value": "1",
+            "isFinal": true
           },
           "modifications": [
             {
               "value": "0",
-              "isFinal": true
+              "isFinal": false
             },
             {
               "value": "1",
-              "isFinal": true
+              "isFinal": false
             },
             {
               "value": "\"1\"",
-              "isFinal": true
+              "isFinal": false
             }
           ],
           "placement": {
@@ -6643,14 +6595,9 @@
           "name": "samplePeriod",
           "comment": "Sample period of component",
           "min": {
-            "value": "1E-3"
+            "value": "1E-3",
+            "isFinal": false
           },
-          "modifications": [
-            {
-              "value": "1E-3",
-              "isFinal": false
-            }
-          ],
           "annotation": {
             "dialog": {
               "tab": "General",
@@ -6709,13 +6656,6 @@
           "type": "Real",
           "name": "t0",
           "comment": "First sample time instant",
-          "modifications": [
-            {
-              "name": "fixed",
-              "value": "false",
-              "isFinal": false
-            }
-          ],
           "annotation": {
             "dialog": {
               "tab": "General",
@@ -6735,7 +6675,8 @@
           "name": "firstTrigger",
           "comment": "Rising edge signals first sample instant",
           "start": {
-            "value": "false"
+            "value": "false",
+            "isFinal": false
           },
           "modifications": [
             {
@@ -7207,7 +7148,7 @@
     "modelicaFile": "Buildings/Controls/OBC/CDL/Interfaces/RealInput.mo",
     "within": "Buildings.Controls.OBC.CDL.Interfaces",
     "topClassName": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
-    "comment": "'input Real' as connector",
+    "comment": "\"'input Real' as connector\"",
     "public": {
       "models": [
         {
@@ -7421,7 +7362,7 @@
     "modelicaFile": "Buildings/Controls/OBC/CDL/Interfaces/RealOutput.mo",
     "within": "Buildings.Controls.OBC.CDL.Interfaces",
     "topClassName": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
-    "comment": "'output Real' as connector",
+    "comment": "\"'output Real' as connector\"",
     "public": {
       "models": [
         {

@@ -46,7 +46,10 @@ generate-reference-output:
 		node ../../app.js -l warn -f $${ff} -o html -d ./cdl -m cdl; \
 		node ../../app.js -l warn -f $${ff} -o docx -d ./cdl -m cdl; \
 		done)
-
+	(cd test/FromModelica && \
+	for ff in `find . -name '*TestEvaluation*.mo'`; do \
+		node ../../app.js -l warn -f $${ff} -o json -d ./cdlEva -m cdl -p true -e true; \
+		done)
 	(cd test && \
 	node ../app.js -l warn -f FromModelica -o raw-json -d ./FromModelica/modelica -m modelica; \
 	node ../app.js -l warn -f FromModelica -o json -d ./FromModelica/modelica -m modelica; \
@@ -61,7 +64,6 @@ clean-maven:
 	rm -rf apache_maven
 
 clean-installation: clean-node-packages clean-maven
-
 
 run:
 	node app.js \
