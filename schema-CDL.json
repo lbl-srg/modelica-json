@@ -183,6 +183,9 @@
         },
         "value": {
           "type": "string"
+        },
+        "isFinal": {
+          "type": "boolean"
         }
       }
     },
@@ -812,7 +815,7 @@
             "description": "value of the block, if applicable",
             "type": "string"
           },
-          "enable": {
+          "instantiate": {
             "description": "Condition of enabling the block, if applicable",
             "type": "string"
           },
@@ -1105,6 +1108,10 @@
             }
           }
         }
+      },
+      "value_propagation": {
+        "description": "Info of parameters propagation",
+        "type": "object"
       },
       "info": {
         "oneOf": [
