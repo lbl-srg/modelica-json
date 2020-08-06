@@ -93,10 +93,18 @@
         "initialScale": 0.1
       }
     },
-    "value_propagation": {
-      "con.instantiate": "false",
-      "con1.k": "true"
-    },
+    "value_propagation": [
+      {
+        "name": "con.instantiate",
+        "value": "false",
+        "type": "Boolean"
+      },
+      {
+        "name": "con1.k",
+        "value": "true",
+        "type": "Boolean"
+      }
+    ],
     "svg": {
       "icon": {
         "items": {
@@ -592,7 +600,6 @@
       "parameters": [
         {
           "className": "Boolean",
-          "type": "Boolean",
           "name": "k",
           "comment": "Constant output value",
           "annotation": {

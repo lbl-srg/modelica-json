@@ -8,7 +8,6 @@
       "parameters": [
         {
           "className": "Buildings.Controls.OBC.CDL.Types.SimpleController",
-          "type": "Buildings.Controls.OBC.CDL.Types.SimpleController",
           "name": "controllerType",
           "value": "Buildings.Controls.OBC.CDL.Types.SimpleController.PI",
           "comment": "Type of controller",
@@ -21,7 +20,6 @@
         },
         {
           "className": "Real",
-          "type": "Real",
           "name": "k",
           "value": "0.1",
           "comment": "Gain",
@@ -554,7 +552,6 @@
       "parameters": [
         {
           "className": "Buildings.Controls.OBC.CDL.Types.SimpleController",
-          "type": "Buildings.Controls.OBC.CDL.Types.SimpleController",
           "name": "controllerType",
           "value": "Buildings.Controls.OBC.CDL.Types.SimpleController.PI",
           "comment": "Type of controller",
@@ -567,7 +564,6 @@
         },
         {
           "className": "Real",
-          "type": "Real",
           "name": "k",
           "value": "0.1",
           "comment": "Gain",
@@ -584,7 +580,6 @@
         },
         {
           "className": "Real",
-          "type": "Real",
           "name": "Ti",
           "value": "120",
           "comment": "Time constant of integrator block",
@@ -605,7 +600,6 @@
         },
         {
           "className": "Real",
-          "type": "Real",
           "name": "Td",
           "value": "0.1",
           "comment": "Time constant of derivative block",
@@ -627,7 +621,6 @@
         },
         {
           "className": "Real",
-          "type": "Real",
           "name": "TFreSet",
           "value": "279.15",
           "comment": "Lower limit for mixed air temperature for freeze protection",
@@ -2379,7 +2372,6 @@
       "parameters": [
         {
           "className": "Buildings.Controls.OBC.CDL.Types.SimpleController",
-          "type": "Buildings.Controls.OBC.CDL.Types.SimpleController",
           "name": "controllerType",
           "value": "Buildings.Controls.OBC.CDL.Types.SimpleController.PI",
           "comment": "Type of controller",
@@ -2392,7 +2384,6 @@
         },
         {
           "className": "Real",
-          "type": "Real",
           "name": "k",
           "value": "1",
           "comment": "Gain of controller",
@@ -2445,7 +2436,6 @@
         },
         {
           "className": "Real",
-          "type": "Real",
           "name": "yMax",
           "value": "1",
           "comment": "Upper limit of output",
@@ -2458,7 +2448,6 @@
         },
         {
           "className": "Real",
-          "type": "Real",
           "name": "yMin",
           "value": "0",
           "comment": "Lower limit of output",
@@ -2471,7 +2460,6 @@
         },
         {
           "className": "Real",
-          "type": "Real",
           "name": "wp",
           "value": "1",
           "comment": "Set-point weight for Proportional block (0..1)",
@@ -2488,7 +2476,6 @@
         },
         {
           "className": "Real",
-          "type": "Real",
           "name": "wd",
           "value": "0",
           "comment": "Set-point weight for Derivative block (0..1)",
@@ -2506,7 +2493,6 @@
         },
         {
           "className": "Real",
-          "type": "Real",
           "name": "Ni",
           "value": "0.9",
           "comment": "Ni*Ti is time constant of anti-windup compensation",
@@ -2524,7 +2510,6 @@
         },
         {
           "className": "Real",
-          "type": "Real",
           "name": "Nd",
           "value": "10",
           "comment": "The higher Nd, the more ideal the derivative block",
@@ -2542,7 +2527,6 @@
         },
         {
           "className": "Real",
-          "type": "Real",
           "name": "xi_start",
           "value": "0",
           "comment": "Initial value of integrator state",
@@ -2556,7 +2540,6 @@
         },
         {
           "className": "Real",
-          "type": "Real",
           "name": "yd_start",
           "value": "0",
           "comment": "Initial value of derivative output",
@@ -2570,7 +2553,6 @@
         },
         {
           "className": "Boolean",
-          "type": "Boolean",
           "name": "reverseActing",
           "value": "true",
           "comment": "Set to true for reverse acting, or false for direct acting control action",
@@ -2583,7 +2565,6 @@
         },
         {
           "className": "Buildings.Controls.OBC.CDL.Types.Reset",
-          "type": "Buildings.Controls.OBC.CDL.Types.Reset",
           "name": "reset",
           "value": "Buildings.Controls.OBC.CDL.Types.Reset.Disabled",
           "comment": "Type of controller output reset",
@@ -2597,7 +2578,6 @@
         },
         {
           "className": "Real",
-          "type": "Real",
           "name": "y_reset",
           "value": "xi_start",
           "comment": "Value to which the controller output is reset if the boolean trigger has a rising edge, used if reset == CDL.Types.Reset.Parameter",
@@ -3008,7 +2988,6 @@
       "parameters": [
         {
           "className": "Real",
-          "type": "Real",
           "name": "revAct",
           "value": "if reverseActing then 1 else -1",
           "comment": "Switch for sign for reverse or direct acting controller",
@@ -3021,7 +3000,6 @@
         },
         {
           "className": "Boolean",
-          "type": "Boolean",
           "name": "with_I",
           "value": "controllerType==Buildings.Controls.OBC.CDL.Types.SimpleController.PI or\n                                   controllerType==Buildings.Controls.OBC.CDL.Types.SimpleController.PID",
           "comment": "Boolean flag to enable integral action",
@@ -3034,7 +3012,6 @@
         },
         {
           "className": "Boolean",
-          "type": "Boolean",
           "name": "with_D",
           "value": "controllerType==Buildings.Controls.OBC.CDL.Types.SimpleController.PD or\n                                   controllerType==Buildings.Controls.OBC.CDL.Types.SimpleController.PID",
           "comment": "Boolean flag to enable derivative action",
@@ -5406,7 +5383,6 @@
       "parameters": [
         {
           "className": "Real",
-          "type": "Real",
           "name": "k",
           "comment": "Constant output value",
           "annotation": {
@@ -5919,7 +5895,6 @@
       "parameters": [
         {
           "className": "Real",
-          "type": "Real",
           "name": "p",
           "comment": "Value to be added",
           "annotation": {
@@ -5931,7 +5906,6 @@
         },
         {
           "className": "Real",
-          "type": "Real",
           "name": "k",
           "comment": "Gain of input",
           "annotation": {
@@ -7075,7 +7049,6 @@
       "parameters": [
         {
           "className": "Real",
-          "type": "Real",
           "name": "k",
           "value": "1",
           "comment": "Integrator gain",
@@ -7092,7 +7065,6 @@
         },
         {
           "className": "Real",
-          "type": "Real",
           "name": "y_start",
           "value": "0",
           "comment": "Initial or guess value of output (= state)",
@@ -7105,7 +7077,6 @@
         },
         {
           "className": "Buildings.Controls.OBC.CDL.Types.Reset",
-          "type": "Buildings.Controls.OBC.CDL.Types.Reset",
           "name": "reset",
           "value": "Buildings.Controls.OBC.CDL.Types.Reset.Disabled",
           "comment": "Type of integrator reset",
@@ -7118,7 +7089,6 @@
         },
         {
           "className": "Real",
-          "type": "Real",
           "name": "y_reset",
           "value": "0",
           "comment": "Value to which integrator is reset, used if reset = Types.Reset.Parameter",
@@ -7744,7 +7714,6 @@
       "parameters": [
         {
           "className": "Real",
-          "type": "Real",
           "name": "k",
           "value": "1",
           "comment": "Gains",
@@ -7778,7 +7747,6 @@
         },
         {
           "className": "Real",
-          "type": "Real",
           "name": "x_start",
           "value": "0",
           "comment": "Initial or guess value of state",
@@ -7791,7 +7759,6 @@
         },
         {
           "className": "Real",
-          "type": "Real",
           "name": "y_start",
           "value": "0",
           "comment": "Initial value of output (= state)",
@@ -7857,7 +7824,6 @@
       "parameters": [
         {
           "className": "Boolean",
-          "type": "Boolean",
           "name": "zeroGain",
           "value": "abs(k) < 1E-17",
           "comment": "= true, if gain equals to zero",
@@ -8418,7 +8384,6 @@
       "parameters": [
         {
           "className": "Real",
-          "type": "Real",
           "name": "uMax",
           "comment": "Upper limit of input signal",
           "annotation": {
@@ -8430,7 +8395,6 @@
         },
         {
           "className": "Real",
-          "type": "Real",
           "name": "uMin",
           "comment": "Lower limit of input signal",
           "annotation": {
@@ -9154,7 +9118,6 @@
       "parameters": [
         {
           "className": "Real",
-          "type": "Real",
           "name": "k",
           "comment": "Gain value multiplied with input signal",
           "annotation": {
@@ -9501,7 +9464,6 @@
       "parameters": [
         {
           "className": "Real",
-          "type": "Real",
           "name": "k1",
           "value": "+1",
           "comment": "Gain for input u1",
@@ -9514,7 +9476,6 @@
         },
         {
           "className": "Real",
-          "type": "Real",
           "name": "k2",
           "value": "+1",
           "comment": "Gain for input u2",
@@ -10153,7 +10114,6 @@
       "parameters": [
         {
           "className": "Boolean",
-          "type": "Boolean",
           "name": "k",
           "comment": "Constant output value",
           "annotation": {
@@ -10783,7 +10743,6 @@
       "parameters": [
         {
           "className": "String",
-          "type": "String",
           "name": "message",
           "comment": "Message written when u becomes false",
           "annotation": {

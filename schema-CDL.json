@@ -275,6 +275,9 @@
           "points": {
             "$ref": "#/definitions/points"
           },
+          "dynPoints": {
+            "$ref": "#/definitions/dynPoints"
+          },
           "pattern": {
             "type": "string",
             "pattern": "^([a-zA-Z0-9._*]*)$"
@@ -1111,7 +1114,26 @@
       },
       "value_propagation": {
         "description": "Info of parameters propagation",
-        "type": "object"
+        "type": "array",
+        "additionalItems": false,
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "name": {
+              "description": "Name of the block: no special characters or spaces",
+              "type": "string",
+              "pattern": "^([a-zA-Z0-9._*]*)$"
+            },
+            "value": {
+              "description": "value of the block, if applicable",
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            }
+          }
+        }
       },
       "info": {
         "oneOf": [

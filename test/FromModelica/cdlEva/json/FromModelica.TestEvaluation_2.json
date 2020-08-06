@@ -196,11 +196,23 @@
         }
       ]
     ],
-    "value_propagation": {
-      "hys.uLow": "0.5",
-      "hys.uHigh": "1",
-      "hys.pre_y_start": "false"
-    },
+    "value_propagation": [
+      {
+        "name": "hys.uLow",
+        "value": "0.5",
+        "type": "Real"
+      },
+      {
+        "name": "hys.uHigh",
+        "value": "1",
+        "type": "Real"
+      },
+      {
+        "name": "hys.pre_y_start",
+        "value": "false",
+        "type": "Boolean"
+      }
+    ],
     "svg": {
       "icon": {
         "items": {
@@ -684,7 +696,6 @@
       "parameters": [
         {
           "className": "Real",
-          "type": "Real",
           "name": "uLow",
           "comment": "if y=true and u<uLow, switch to y=false",
           "annotation": {
@@ -696,7 +707,6 @@
         },
         {
           "className": "Real",
-          "type": "Real",
           "name": "uHigh",
           "comment": "if y=false and u>uHigh, switch to y=true",
           "annotation": {
@@ -708,7 +718,6 @@
         },
         {
           "className": "Boolean",
-          "type": "Boolean",
           "name": "pre_y_start",
           "value": "false",
           "comment": "Value of pre(y) at initial time",

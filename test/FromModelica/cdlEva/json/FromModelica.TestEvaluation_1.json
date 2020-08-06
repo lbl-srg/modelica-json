@@ -66,9 +66,13 @@
         "initialScale": 0.1
       }
     },
-    "value_propagation": {
-      "con.k": "1"
-    },
+    "value_propagation": [
+      {
+        "name": "con.k",
+        "value": "1",
+        "type": "Real"
+      }
+    ],
     "svg": {
       "icon": {
         "items": {
@@ -225,7 +229,6 @@
       "parameters": [
         {
           "className": "Real",
-          "type": "Real",
           "name": "k",
           "comment": "Constant output value",
           "annotation": {

@@ -9,7 +9,6 @@
       "parameters": [
         {
           "className": "Real",
-          "type": "Real",
           "name": "uMin",
           "value": "-0.25",
           "comment": "Lower limit of controller input when outdoor damper opens (see diagram)",
@@ -30,7 +29,6 @@
         },
         {
           "className": "Real",
-          "type": "Real",
           "name": "uMax",
           "value": "+0.25",
           "comment": "Upper limit of controller input when return damper is closed (see diagram)",
@@ -51,7 +49,6 @@
         },
         {
           "className": "Real",
-          "type": "Real",
           "name": "uOutDamMax",
           "value": "(uMin + uMax)/2",
           "comment": "Maximum loop signal for the OA damper to be fully open",
@@ -76,7 +73,6 @@
         },
         {
           "className": "Real",
-          "type": "Real",
           "name": "uRetDamMin",
           "value": "(uMin + uMax)/2",
           "comment": "Minimum loop signal for the RA damper to be fully open",
