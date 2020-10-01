@@ -646,7 +646,7 @@
       ],
       "models": [
         {
-          "className": "Buildings.Controls.OBC.CDL.Continuous.LimPID",
+          "className": "Buildings.Controls.OBC.CDL.Continuous.PID",
           "name": "con",
           "comment": "Controller for mixed air to track freeze protection set point",
           "modifications": [
@@ -1499,22 +1499,6 @@
               "strokeWidth": 0.25
             },
             {
-              "points": "118,79 120,78 118,77",
-              "hasFill": true,
-              "fill": "rgb(0,0,127)",
-              "stroke": "rgb(0,0,127)",
-              "strokeDasharray": "1,0",
-              "strokeWidth": 0.25
-            },
-            {
-              "points": "126.00000734639671,83.9999926535763 123.9999926535898,80.0000000000135 122.0000073464237,84.00000734639671",
-              "hasFill": true,
-              "fill": "rgb(255,0,255)",
-              "stroke": "rgb(255,0,255)",
-              "strokeDasharray": "1,0",
-              "strokeWidth": 0.25
-            },
-            {
               "points": "140,71 142,70 140,69",
               "hasFill": true,
               "fill": "rgb(255,255,255)",
@@ -1918,7 +1902,7 @@
         },
         "initialScale": 0.1,
         "preserveAspectRatio": true,
-        "drawing": "<svg version=\"1.1\" baseProfile=\"full\" width=\"280mm\" height=\"200mm\"\n     viewBox=\"0 0 280 200\" xmlns=\"http://www.w3.org/2000/svg\">\n\n\n\n\n\n\n<polyline fill=\"none\" points=\"118,70 102,70\" stroke=\"rgb(255,255,255)\" stroke-dasharray=\"1,0\" stroke-width=\"1.25\" />\n<polyline fill=\"none\" points=\"118,70 102,70\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polyline fill=\"none\" points=\"222,70 260,70\" stroke=\"rgb(255,255,255)\" stroke-dasharray=\"1,0\" stroke-width=\"1.25\" />\n<polyline fill=\"none\" points=\"222,70 260,70\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polyline fill=\"none\" points=\"20,100 130,100 130,82\" stroke=\"rgb(255,255,255)\" stroke-dasharray=\"1,0\" stroke-width=\"1.25\" />\n<polyline fill=\"none\" points=\"20,100 130,100 130,82\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polyline fill=\"none\" points=\"142,70 170,70 170,130 260,130\" stroke=\"rgb(255,255,255)\" stroke-dasharray=\"1,0\" stroke-width=\"1.25\" />\n<polyline fill=\"none\" points=\"142,70 170,70 170,130 260,130\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polyline fill=\"none\" points=\"142,70 170,70 170,70 198,70\" stroke=\"rgb(255,255,255)\" stroke-dasharray=\"1,0\" stroke-width=\"1.25\" />\n<polyline fill=\"none\" points=\"142,70 170,70 170,70 198,70\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n\n<ellipse cx=\"170\" cy=\"70\" rx=\"1\" ry=\"1\"  fill=\"rgb(0,0,127)\"  />\n\n<polygon points=\"20,110 40,100 20,90 20,110\"  fill=\"rgb(0,0,127)\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polygon points=\"240,140 260,130 240,120\"  fill=\"rgb(255,255,255)\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polygon points=\"240,80 260,70 240,60\"  fill=\"rgb(255,255,255)\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n\n<rect x=\"120\" y=\"60\" width=\"20\" height=\"20\"  fill=\"rgb(255,255,255)\" stroke=\"rgb(0,0,127)\"  stroke-dasharray=\"1,0\" stroke-width=\"0.04\"  />\n<rect x=\"129.4\" y=\"72\" width=\"7.2\" height=\"4.6\"  fill=\"rgb(255,255,255)\" stroke=\"rgb(255,255,255)\"  stroke-dasharray=\"1,0\" stroke-width=\"0.12\"  />\n<rect x=\"138.4\" y=\"80\" width=\"1.6\" height=\"0\"  fill=\"rgb(175,175,175)\" stroke=\"rgb(0,0,0)\"  stroke-dasharray=\"\" stroke-width=\"0.19\"  />\n<rect x=\"80\" y=\"60\" width=\"20\" height=\"20\"  fill=\"rgb(255,255,255)\" stroke=\"rgb(0,0,127)\"  stroke-dasharray=\"1,0\" stroke-width=\"0.03\"  />\n<rect x=\"200\" y=\"60\" width=\"20\" height=\"20\"  fill=\"rgb(255,255,255)\" stroke=\"rgb(0,0,127)\"  stroke-dasharray=\"1,0\" stroke-width=\"0.05\"  />\n\n<ellipse cx=\"213.8\" cy=\"70.2\" rx=\"5\" ry=\"5\"  fill=\"rgb(255,255,255)\"  stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\"  />\n\n<polyline fill=\"none\" points=\"122,63.2 122,80\" stroke=\"rgb(192,192,192)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polyline fill=\"none\" points=\"121,78 137,78\" stroke=\"rgb(192,192,192)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polyline fill=\"none\" points=\"122,78 122,72.2\" stroke=\"rgb(0,0,0)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polyline fill=\"none\" points=\"122,72.2 130.6,64.4\" stroke=\"rgb(0,0,0)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polyline fill=\"none\" points=\"130.6,64.4 136.8,64.4\" stroke=\"rgb(0,0,0)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polyline fill=\"none\" points=\"82,63.2 82,78\" stroke=\"rgb(192,192,192)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polyline fill=\"none\" points=\"81,77 98.2,77\" stroke=\"rgb(192,192,192)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polyline fill=\"none\" points=\"82,70 98,70\" stroke=\"rgb(0,0,0)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polyline fill=\"none\" points=\"204.6,63.4 207.20000000000002,67 210.20000000000002,67\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polyline fill=\"none\" points=\"200,70 220,70\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n\n<polygon points=\"122,61.8 121.2,64 122.8,64 122,61.8\"  fill=\"rgb(192,192,192)\" stroke=\"rgb(192,192,192)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polygon points=\"137.4,78 135.2,77.2 135.2,78.8 137.4,78\"  fill=\"rgb(192,192,192)\" stroke=\"rgb(192,192,192)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polygon points=\"118,71 120,70 118,69\"  fill=\"rgb(0,0,127)\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polygon points=\"128.00002203935205,84.00002203910918 129.99997796076937,80.00000000012143 132.00002203910918,83.99997796064795\"  fill=\"rgb(0,0,127)\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polygon points=\"118,79 120,78 118,77\"  fill=\"rgb(0,0,127)\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polygon points=\"126.00000734639671,83.9999926535763 123.9999926535898,80.0000000000135 122.0000073464237,84.00000734639671\"  fill=\"rgb(255,0,255)\" stroke=\"rgb(255,0,255)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polygon points=\"140,71 142,70 140,69\"  fill=\"rgb(255,255,255)\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polygon points=\"82,61 81.2,63.2 82.8,63.2 82,61\"  fill=\"rgb(192,192,192)\" stroke=\"rgb(192,192,192)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polygon points=\"99,77 96.8,76.2 96.8,77.8 99,77\"  fill=\"rgb(192,192,192)\" stroke=\"rgb(192,192,192)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polygon points=\"100,71 102,70 100,69\"  fill=\"rgb(255,255,255)\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polygon points=\"201.4,73.6 201.4,66.4 206.60000000000002,70 201.4,73.6\"  fill=\"rgb(255,255,255)\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polygon points=\"198,71 200,70 198,69\"  fill=\"rgb(0,0,127)\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polygon points=\"220,71 222,70 220,69\"  fill=\"rgb(255,255,255)\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n\n<text font-family=\"helvetica\" font-size=\"3.25\" x=\"14.2625\" y=\"85.5\" fill=\"rgb(0,0,127)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"14.2625\" >TMix</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"6.5\" x=\"258.525\" y=\"113\" fill=\"rgb(0,0,127)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"258.525\" >yFrePro</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"6.5\" x=\"258.525\" y=\"53\" fill=\"rgb(0,0,127)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"258.525\" >yFreProInv</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"2.6\" x=\"131.8\" y=\"74.2\" fill=\"rgb(0,0,0)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"131.8\" >P</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"2.6\" x=\"132.4\" y=\"74.2\" fill=\"rgb(0,0,0)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"132.4\" >PI</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"2.6\" x=\"133.6\" y=\"74.2\" fill=\"rgb(0,0,0)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"133.6\" >P D</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"2.6\" x=\"133.6\" y=\"74.2\" fill=\"rgb(0,0,0)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"133.6\" >PID</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"2.6\" x=\"130\" y=\"57\" fill=\"rgb(0,0,255)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"130\" >con</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"2.6\" x=\"90\" y=\"57\" fill=\"rgb(0,0,255)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"90\" >setPoi</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"2.6\" x=\"90\" y=\"83\" fill=\"rgb(0,0,0)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"90\" >k&#x3D;TFreSet</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"3.25\" x=\"106.6\" y=\"66.5\" fill=\"rgb(0,0,0)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"106.6\" ></tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"2.6\" x=\"210\" y=\"57\" fill=\"rgb(0,0,255)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"210\" >yOut</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"2.6\" x=\"203.05\" y=\"62.2\" fill=\"rgb(0,0,0)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"203.05\" >1</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"2.6\" x=\"205.4\" y=\"76.4\" fill=\"rgb(0,0,0)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"205.4\" >k&#x3D;-1</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"4.42\" x=\"213.60000000000002\" y=\"68.8\" fill=\"rgb(0,0,0)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"213.60000000000002\" >+</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"3.25\" x=\"226.60000000000002\" y=\"66.5\" fill=\"rgb(0,0,0)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"226.60000000000002\" ></tspan>\n</text>\n\n</svg>"
+        "drawing": "<svg version=\"1.1\" baseProfile=\"full\" width=\"280mm\" height=\"200mm\"\n     viewBox=\"0 0 280 200\" xmlns=\"http://www.w3.org/2000/svg\">\n\n\n\n\n\n\n<polyline fill=\"none\" points=\"118,70 102,70\" stroke=\"rgb(255,255,255)\" stroke-dasharray=\"1,0\" stroke-width=\"1.25\" />\n<polyline fill=\"none\" points=\"118,70 102,70\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polyline fill=\"none\" points=\"222,70 260,70\" stroke=\"rgb(255,255,255)\" stroke-dasharray=\"1,0\" stroke-width=\"1.25\" />\n<polyline fill=\"none\" points=\"222,70 260,70\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polyline fill=\"none\" points=\"20,100 130,100 130,82\" stroke=\"rgb(255,255,255)\" stroke-dasharray=\"1,0\" stroke-width=\"1.25\" />\n<polyline fill=\"none\" points=\"20,100 130,100 130,82\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polyline fill=\"none\" points=\"142,70 170,70 170,130 260,130\" stroke=\"rgb(255,255,255)\" stroke-dasharray=\"1,0\" stroke-width=\"1.25\" />\n<polyline fill=\"none\" points=\"142,70 170,70 170,130 260,130\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polyline fill=\"none\" points=\"142,70 170,70 170,70 198,70\" stroke=\"rgb(255,255,255)\" stroke-dasharray=\"1,0\" stroke-width=\"1.25\" />\n<polyline fill=\"none\" points=\"142,70 170,70 170,70 198,70\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n\n<ellipse cx=\"170\" cy=\"70\" rx=\"1\" ry=\"1\"  fill=\"rgb(0,0,127)\"  />\n\n<polygon points=\"20,110 40,100 20,90 20,110\"  fill=\"rgb(0,0,127)\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polygon points=\"240,140 260,130 240,120\"  fill=\"rgb(255,255,255)\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polygon points=\"240,80 260,70 240,60\"  fill=\"rgb(255,255,255)\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n\n<rect x=\"120\" y=\"60\" width=\"20\" height=\"20\"  fill=\"rgb(255,255,255)\" stroke=\"rgb(0,0,127)\"  stroke-dasharray=\"1,0\" stroke-width=\"0.04\"  />\n<rect x=\"129.4\" y=\"72\" width=\"7.2\" height=\"4.6\"  fill=\"rgb(255,255,255)\" stroke=\"rgb(255,255,255)\"  stroke-dasharray=\"1,0\" stroke-width=\"0.12\"  />\n<rect x=\"138.4\" y=\"80\" width=\"1.6\" height=\"0\"  fill=\"rgb(175,175,175)\" stroke=\"rgb(0,0,0)\"  stroke-dasharray=\"\" stroke-width=\"0.19\"  />\n<rect x=\"80\" y=\"60\" width=\"20\" height=\"20\"  fill=\"rgb(255,255,255)\" stroke=\"rgb(0,0,127)\"  stroke-dasharray=\"1,0\" stroke-width=\"0.03\"  />\n<rect x=\"200\" y=\"60\" width=\"20\" height=\"20\"  fill=\"rgb(255,255,255)\" stroke=\"rgb(0,0,127)\"  stroke-dasharray=\"1,0\" stroke-width=\"0.05\"  />\n\n<ellipse cx=\"213.8\" cy=\"70.2\" rx=\"5\" ry=\"5\"  fill=\"rgb(255,255,255)\"  stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\"  />\n\n<polyline fill=\"none\" points=\"122,63.2 122,80\" stroke=\"rgb(192,192,192)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polyline fill=\"none\" points=\"121,78 137,78\" stroke=\"rgb(192,192,192)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polyline fill=\"none\" points=\"122,78 122,72.2\" stroke=\"rgb(0,0,0)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polyline fill=\"none\" points=\"122,72.2 130.6,64.4\" stroke=\"rgb(0,0,0)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polyline fill=\"none\" points=\"130.6,64.4 136.8,64.4\" stroke=\"rgb(0,0,0)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polyline fill=\"none\" points=\"82,63.2 82,78\" stroke=\"rgb(192,192,192)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polyline fill=\"none\" points=\"81,77 98.2,77\" stroke=\"rgb(192,192,192)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polyline fill=\"none\" points=\"82,70 98,70\" stroke=\"rgb(0,0,0)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polyline fill=\"none\" points=\"204.6,63.4 207.20000000000002,67 210.20000000000002,67\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polyline fill=\"none\" points=\"200,70 220,70\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n\n<polygon points=\"122,61.8 121.2,64 122.8,64 122,61.8\"  fill=\"rgb(192,192,192)\" stroke=\"rgb(192,192,192)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polygon points=\"137.4,78 135.2,77.2 135.2,78.8 137.4,78\"  fill=\"rgb(192,192,192)\" stroke=\"rgb(192,192,192)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polygon points=\"118,71 120,70 118,69\"  fill=\"rgb(0,0,127)\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polygon points=\"128.00002203935205,84.00002203910918 129.99997796076937,80.00000000012143 132.00002203910918,83.99997796064795\"  fill=\"rgb(0,0,127)\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polygon points=\"140,71 142,70 140,69\"  fill=\"rgb(255,255,255)\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polygon points=\"82,61 81.2,63.2 82.8,63.2 82,61\"  fill=\"rgb(192,192,192)\" stroke=\"rgb(192,192,192)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polygon points=\"99,77 96.8,76.2 96.8,77.8 99,77\"  fill=\"rgb(192,192,192)\" stroke=\"rgb(192,192,192)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polygon points=\"100,71 102,70 100,69\"  fill=\"rgb(255,255,255)\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polygon points=\"201.4,73.6 201.4,66.4 206.60000000000002,70 201.4,73.6\"  fill=\"rgb(255,255,255)\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polygon points=\"198,71 200,70 198,69\"  fill=\"rgb(0,0,127)\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polygon points=\"220,71 222,70 220,69\"  fill=\"rgb(255,255,255)\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n\n<text font-family=\"helvetica\" font-size=\"3.25\" x=\"14.2625\" y=\"85.5\" fill=\"rgb(0,0,127)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"14.2625\" >TMix</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"6.5\" x=\"258.525\" y=\"113\" fill=\"rgb(0,0,127)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"258.525\" >yFrePro</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"6.5\" x=\"258.525\" y=\"53\" fill=\"rgb(0,0,127)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"258.525\" >yFreProInv</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"2.6\" x=\"131.8\" y=\"74.2\" fill=\"rgb(0,0,0)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"131.8\" >P</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"2.6\" x=\"132.4\" y=\"74.2\" fill=\"rgb(0,0,0)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"132.4\" >PI</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"2.6\" x=\"133.6\" y=\"74.2\" fill=\"rgb(0,0,0)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"133.6\" >P D</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"2.6\" x=\"133.6\" y=\"74.2\" fill=\"rgb(0,0,0)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"133.6\" >PID</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"2.6\" x=\"130\" y=\"57\" fill=\"rgb(0,0,255)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"130\" >con</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"2.6\" x=\"90\" y=\"57\" fill=\"rgb(0,0,255)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"90\" >setPoi</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"2.6\" x=\"90\" y=\"83\" fill=\"rgb(0,0,0)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"90\" >k&#x3D;TFreSet</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"3.25\" x=\"106.6\" y=\"66.5\" fill=\"rgb(0,0,0)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"106.6\" ></tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"2.6\" x=\"210\" y=\"57\" fill=\"rgb(0,0,255)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"210\" >yOut</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"2.6\" x=\"203.05\" y=\"62.2\" fill=\"rgb(0,0,0)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"203.05\" >1</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"2.6\" x=\"205.4\" y=\"76.4\" fill=\"rgb(0,0,0)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"205.4\" >k&#x3D;-1</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"4.42\" x=\"213.60000000000002\" y=\"68.8\" fill=\"rgb(0,0,0)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"213.60000000000002\" >+</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"3.25\" x=\"226.60000000000002\" y=\"66.5\" fill=\"rgb(0,0,0)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"226.60000000000002\" ></tspan>\n</text>\n\n</svg>"
       }
     },
     "diagram": {
@@ -2363,9 +2347,9 @@
     }
   },
   {
-    "modelicaFile": "Buildings/Controls/OBC/CDL/Continuous/LimPID.mo",
+    "modelicaFile": "Buildings/Controls/OBC/CDL/Continuous/PID.mo",
     "within": "Buildings.Controls.OBC.CDL.Continuous",
-    "topClassName": "Buildings.Controls.OBC.CDL.Continuous.LimPID",
+    "topClassName": "Buildings.Controls.OBC.CDL.Continuous.PID",
     "comment": "P, PI, PD, and PID controller with limited output, anti-windup compensation and setpoint weighting",
     "defaultName": "\"conPID\"",
     "public": {
@@ -2562,32 +2546,6 @@
               "group": "Parameters"
             }
           }
-        },
-        {
-          "className": "Buildings.Controls.OBC.CDL.Types.Reset",
-          "name": "reset",
-          "value": "Buildings.Controls.OBC.CDL.Types.Reset.Disabled",
-          "comment": "Type of controller output reset",
-          "annotation": {
-            "dialog": {
-              "group": "Integrator reset",
-              "enable": "controllerType==CDL.Types.SimpleController.PI or\n               controllerType==CDL.Types.SimpleController.PID",
-              "tab": "General"
-            }
-          }
-        },
-        {
-          "className": "Real",
-          "name": "y_reset",
-          "value": "xi_start",
-          "comment": "Value to which the controller output is reset if the boolean trigger has a rising edge, used if reset == CDL.Types.Reset.Parameter",
-          "annotation": {
-            "dialog": {
-              "enable": "reset == CDL.Types.Reset.Parameter and\n      (controllerType==CDL.Types.SimpleController.PI or\n      controllerType==CDL.Types.SimpleController.PID)",
-              "group": "Integrator reset",
-              "tab": "General"
-            }
-          }
         }
       ],
       "models": [
@@ -2624,16 +2582,6 @@
               "name": "y_start",
               "value": "xi_start",
               "isFinal": true
-            },
-            {
-              "name": "reset",
-              "value": "if reset == Buildings.Controls.OBC.CDL.Types.Reset.Disabled then\n        Buildings.Controls.OBC.CDL.Types.Reset.Disabled\n      else\n        Buildings.Controls.OBC.CDL.Types.Reset.Input",
-              "isFinal": true
-            },
-            {
-              "name": "y_reset",
-              "value": "y_reset",
-              "isFinal": true
             }
           ],
           "instantiate": "with_I",
@@ -2653,7 +2601,7 @@
           }
         },
         {
-          "className": "Buildings.Controls.OBC.CDL.Continuous.Derivative",
+          "className": "Derivative",
           "name": "D",
           "comment": "Derivative term",
           "modifications": [
@@ -2798,6 +2746,87 @@
               ]
             }
           }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Continuous.Sources.Constant",
+          "name": "Izero",
+          "comment": "Zero input signal",
+          "modifications": [
+            {
+              "name": "k",
+              "value": "0",
+              "isFinal": true
+            }
+          ],
+          "instantiate": "not with_I",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": 0,
+                  "y": 30
+                },
+                {
+                  "x": 20,
+                  "y": 50
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Continuous.Sources.Constant",
+          "name": "con",
+          "comment": "Constant zero",
+          "modifications": [
+            {
+              "name": "k",
+              "value": "0",
+              "isFinal": true
+            }
+          ],
+          "instantiate": "with_I",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": -100,
+                  "y": -50
+                },
+                {
+                  "x": -80,
+                  "y": -30
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Logical.Sources.Constant",
+          "name": "con1",
+          "comment": "Constant false",
+          "modifications": [
+            {
+              "name": "k",
+              "value": "false",
+              "isFinal": true
+            }
+          ],
+          "instantiate": "with_I",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": -100,
+                  "y": -90
+                },
+                {
+                  "x": -80,
+                  "y": -70
+                }
+              ]
+            }
+          }
         }
       ],
       "inputs": [
@@ -2868,82 +2897,6 @@
               "rotation": 270,
               "origin": {
                 "x": 0,
-                "y": -120
-              }
-            }
-          }
-        },
-        {
-          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
-          "name": "y_reset_in",
-          "comment": "Input signal for state to which integrator is reset, enabled if reset = CDL.Types.Reset.Input",
-          "instantiate": "reset == Buildings.Controls.OBC.CDL.Types.Reset.Input",
-          "placement": {
-            "visible": false,
-            "transformation": {
-              "extent": [
-                {
-                  "x": -260,
-                  "y": -120
-                },
-                {
-                  "x": -220,
-                  "y": -80
-                }
-              ]
-            },
-            "iconTransformation": {
-              "extent": [
-                {
-                  "x": -140,
-                  "y": -100
-                },
-                {
-                  "x": -100,
-                  "y": -60
-                }
-              ]
-            }
-          }
-        },
-        {
-          "className": "Buildings.Controls.OBC.CDL.Interfaces.BooleanInput",
-          "name": "trigger",
-          "comment": "Resets the controller output when trigger becomes true",
-          "instantiate": "reset <> Buildings.Controls.OBC.CDL.Types.Reset.Disabled",
-          "placement": {
-            "visible": false,
-            "transformation": {
-              "extent": [
-                {
-                  "x": -20,
-                  "y": -20
-                },
-                {
-                  "x": 20,
-                  "y": 20
-                }
-              ],
-              "rotation": 90,
-              "origin": {
-                "x": -160,
-                "y": -200
-              }
-            },
-            "iconTransformation": {
-              "extent": [
-                {
-                  "x": -20,
-                  "y": -20
-                },
-                {
-                  "x": 20,
-                  "y": 20
-                }
-              ],
-              "rotation": 90,
-              "origin": {
-                "x": -60,
                 "y": -120
               }
             }
@@ -3046,33 +2999,6 @@
                 {
                   "x": -20,
                   "y": 110
-                }
-              ]
-            }
-          }
-        },
-        {
-          "className": "Buildings.Controls.OBC.CDL.Continuous.Sources.Constant",
-          "name": "Izero",
-          "comment": "Zero input signal",
-          "modifications": [
-            {
-              "name": "k",
-              "value": "0",
-              "isFinal": true
-            }
-          ],
-          "instantiate": "not with_I",
-          "placement": {
-            "transformation": {
-              "extent": [
-                {
-                  "x": -40,
-                  "y": 20
-                },
-                {
-                  "x": -20,
-                  "y": 41
                 }
               ]
             }
@@ -3319,80 +3245,6 @@
           }
         },
         {
-          "className": "Buildings.Controls.OBC.CDL.Continuous.Sources.Constant",
-          "name": "yResSig",
-          "comment": "Signal for y_reset",
-          "modifications": [
-            {
-              "name": "k",
-              "value": "y_reset",
-              "isFinal": true
-            }
-          ],
-          "instantiate": "reset == Buildings.Controls.OBC.CDL.Types.Reset.Parameter",
-          "placement": {
-            "transformation": {
-              "extent": [
-                {
-                  "x": -180,
-                  "y": -80
-                },
-                {
-                  "x": -160,
-                  "y": -60
-                }
-              ]
-            }
-          }
-        },
-        {
-          "className": "Buildings.Controls.OBC.CDL.Continuous.Gain",
-          "name": "divK",
-          "comment": "Division by k for integrator reset",
-          "modifications": [
-            {
-              "name": "k",
-              "value": "1/k",
-              "isFinal": true
-            }
-          ],
-          "instantiate": "reset <> Buildings.Controls.OBC.CDL.Types.Reset.Disabled",
-          "placement": {
-            "transformation": {
-              "extent": [
-                {
-                  "x": -120,
-                  "y": -80
-                },
-                {
-                  "x": -100,
-                  "y": -60
-                }
-              ]
-            }
-          }
-        },
-        {
-          "className": "Buildings.Controls.OBC.CDL.Continuous.Feedback",
-          "name": "addRes",
-          "comment": "Adder for integrator reset",
-          "instantiate": "reset <> Buildings.Controls.OBC.CDL.Types.Reset.Disabled",
-          "placement": {
-            "transformation": {
-              "extent": [
-                {
-                  "x": -80,
-                  "y": -80
-                },
-                {
-                  "x": -60,
-                  "y": -60
-                }
-              ]
-            }
-          }
-        },
-        {
           "className": "Buildings.Controls.OBC.CDL.Logical.Sources.Constant",
           "name": "cheYMinMax",
           "comment": "Check for values of yMin and yMax",
@@ -3446,7 +3298,7 @@
         }
       ]
     },
-    "info": "<html>\n<p>\nPID controller in the standard form\n</p>\n<p align=\"center\" style=\"font-style:italic;\">\ny = k &nbsp; ( e(t) + 1 &frasl; T<sub>i</sub> &nbsp; &int; e(s) ds + T<sub>d</sub> de(t)&frasl;dt ),\n</p>\n<p>\nwhere\n<i>y</i> is the control signal,\n<i>e(t) = u<sub>s</sub> - u<sub>m</sub></i> is the control error,\nwith <i>u<sub>s</sub></i> being the set point and <i>u<sub>m</sub></i> being\nthe measured quantity,\n<i>k</i> is the gain,\n<i>T<sub>i</sub></i> is the time constant of the integral term and\n<i>T<sub>d</sub></i> is the time constant of the derivative term.\n</p>\n<p>\nNote that the units of <i>k</i> are the inverse of the units of the control error,\nwhile the units of <i>T<sub>i</sub></i> and <i>T<sub>d</sub></i> are seconds.\n</p>\n<p>\nFor detailed treatment of integrator anti-windup, set-point weights and output limitation, see\n<a href=\"Modelica.Blocks.Continuous.LimPID\">Modelica.Blocks.Continuous.LimPID</a>.\n</p>\n<h4>Options</h4>\nThis controller can be configured as follows.\n<h5>P, PI, PD, or PID action</h5>\n<p>\nThrough the parameter <code>controllerType</code>, the controller can be configured\nas P, PI, PD or PID controller. The default configuration is PI.\n</p>\n<h5>Direct or reverse acting</h5>\n<p>\nThrough the parameter <code>reverseActing</code>, the controller can be configured to\nbe reverse or direct acting.\nThe above standard form is reverse acting, which is the default configuration.\nFor a reverse acting controller, for a constant set point,\nan increase in measurement signal <code>u_m</code> decreases the control output signal <code>y</code>\n(Montgomery and McDowall, 2008).\nThus,\n</p>\n<ul>\n  <li>\n  for a heating coil with a two-way valve, leave <code>reverseActing = true</code>, but\n  </li>\n  <li>\n  for a cooling coil with a two-way valve, set <code>reverseActing = false</code>.\n  </li>\n</ul>\n<h5>Reset of the controller output</h5>\n<p>\nThe controller can be configured to enable an input port that allows resetting the controller\noutput. The controller output can be reset as follows:\n</p>\n<ul>\n  <li>\n  If <code>reset = Buildings.Types.Reset.Disabled</code>, which is the default,\n  then the controller output is never reset.\n  </li>\n  <li>\n  If <code>reset = Buildings.Types.Reset.Parameter</code>, then a boolean\n  input signal <code>trigger</code> is enabled. Whenever the value of\n  this input changes from <code>false</code> to <code>true</code>,\n  the controller output is reset by setting <code>y</code>\n  to the value of the parameter <code>y_reset</code>.\n  </li>\n  <li>\n  If <code>reset = Buildings.Types.Reset.Input</code>, then a boolean\n  input signal <code>trigger</code> and a real input signal <code>y_reset_in</code>\n  are enabled. Whenever the value of\n  <code>trigger</code> changes from <code>false</code> to <code>true</code>,\n  the controller output is reset by setting the value of <code>y</code>\n  to <code>y_reset_in</code>.\n  </li>\n</ul>\n<p>\nNote that this controller implements an integrator anti-windup. Therefore,\nfor most applications, keeping the default setting of\n<code>reset = Buildings.Types.Reset.Disabled</code> is sufficient.\nHowever, if the controller is used in conjuction with equipment that is being\nswitched on, better control performance may be achieved by resetting the controller\noutput when the equipment is switched on.\nThis is in particular the case in situations\nwhere the equipment control input should continuously increase as the equipment is\nswitched on, such as a light dimmer that may slowly increase the luminance, or\na variable speed drive of a motor that should continuously increase the speed.\n</p>\n<h4>References</h4>\n<p>\nR. Montgomery and R. McDowall (2008).\n\"Fundamentals of HVAC Control Systems.\"\nAmerican Society of Heating Refrigerating and Air-Conditioning Engineers Inc. Atlanta, GA.\n</p>\n\n</html>",
+    "info": "<html>\n<p>\nPID controller in the standard form\n</p>\n<p align=\"center\" style=\"font-style:italic;\">\ny = k &nbsp; ( e(t) + 1 &frasl; T<sub>i</sub> &nbsp; &int; e(s) ds + T<sub>d</sub> de(t)&frasl;dt ),\n</p>\n<p>\nwhere\n<i>y</i> is the control signal,\n<i>e(t) = u<sub>s</sub> - u<sub>m</sub></i> is the control error,\nwith <i>u<sub>s</sub></i> being the set point and <i>u<sub>m</sub></i> being\nthe measured quantity,\n<i>k</i> is the gain,\n<i>T<sub>i</sub></i> is the time constant of the integral term and\n<i>T<sub>d</sub></i> is the time constant of the derivative term.\n</p>\n<p>\nNote that the units of <i>k</i> are the inverse of the units of the control error,\nwhile the units of <i>T<sub>i</sub></i> and <i>T<sub>d</sub></i> are seconds.\n</p>\n<p>\nFor detailed treatment of integrator anti-windup, set-point weights and output limitation, see\n<a href=\"Modelica.Blocks.Continuous.LimPID\">Modelica.Blocks.Continuous.LimPID</a>.\n</p>\n<h4>Options</h4>\nThis controller can be configured as follows.\n<h5>P, PI, PD, or PID action</h5>\n<p>\nThrough the parameter <code>controllerType</code>, the controller can be configured\nas P, PI, PD or PID controller. The default configuration is PI.\n</p>\n<h5>Direct or reverse acting</h5>\n<p>\nThrough the parameter <code>reverseActing</code>, the controller can be configured to\nbe reverse or direct acting.\nThe above standard form is reverse acting, which is the default configuration.\nFor a reverse acting controller, for a constant set point,\nan increase in measurement signal <code>u_m</code> decreases the control output signal <code>y</code>\n(Montgomery and McDowall, 2008).\nThus,\n</p>\n<ul>\n  <li>\n  for a heating coil with a two-way valve, leave <code>reverseActing = true</code>, but\n  </li>\n  <li>\n  for a cooling coil with a two-way valve, set <code>reverseActing = false</code>.\n  </li>\n</ul>\n<h5>Reset of the controller output</h5>\n<p>\nNote that this controller implements an integrator anti-windup. Therefore,\nfor most applications, the controller output does not need to be reset.\nHowever, if the controller is used in conjuction with equipment that is being\nswitched on, better control performance may be achieved by resetting the controller\noutput when the equipment is switched on. This is in particular the case in situations\nwhere the equipment control input should continuously increase as the equipment is\nswitched on, such as a light dimmer that may slowly increase the luminance, or\na variable speed drive of a motor that should continuously increase the speed. In\nthis case, the controller\n<a href=\"Buildings.Controls.OBC.CDL.Continuous.PIDWithReset\">\nBuildings.Controls.OBC.CDL.Continuous.PIDWithReset</a>\nthat can reset the output should be used.\n</p>\n<h4>References</h4>\n<p>\nR. Montgomery and R. McDowall (2008).\n\"Fundamentals of HVAC Control Systems.\"\nAmerican Society of Heating Refrigerating and Air-Conditioning Engineers Inc. Atlanta, GA.\n</p>\n</html>",
     "icon": {
       "coordinateSystem": {
         "extent": [
@@ -4001,40 +3853,6 @@
     "connections": [
       [
         {
-          "instance": "trigger"
-        },
-        {
-          "instance": "I",
-          "connector": "trigger"
-        },
-        {
-          "points": [
-            {
-              "x": -160,
-              "y": -200
-            },
-            {
-              "x": -160,
-              "y": -140
-            },
-            {
-              "x": -30,
-              "y": -140
-            },
-            {
-              "x": -30,
-              "y": -12
-            }
-          ],
-          "color": {
-            "r": 255,
-            "g": 0,
-            "b": 255
-          }
-        }
-      ],
-      [
-        {
           "instance": "u_s"
         },
         {
@@ -4310,7 +4128,8 @@
       [
         {
           "instance": "D",
-          "connector": "u"
+          "connector": "u",
+          "portLinkTarget": "Derivative.u"
         },
         {
           "instance": "errD",
@@ -4623,7 +4442,8 @@
       [
         {
           "instance": "D",
-          "connector": "y"
+          "connector": "y",
+          "portLinkTarget": "Derivative.y"
         },
         {
           "instance": "addPD",
@@ -4661,41 +4481,6 @@
           "connector": "u2"
         },
         {
-          "instance": "Izero",
-          "connector": "y"
-        },
-        {
-          "points": [
-            {
-              "x": 38,
-              "y": 84
-            },
-            {
-              "x": 34,
-              "y": 84
-            },
-            {
-              "x": 34,
-              "y": 30.5
-            },
-            {
-              "x": -18,
-              "y": 30.5
-            }
-          ],
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 127
-          }
-        }
-      ],
-      [
-        {
-          "instance": "addPID",
-          "connector": "u2"
-        },
-        {
           "instance": "I",
           "connector": "y"
         },
@@ -4716,168 +4501,6 @@
             {
               "x": -18,
               "y": 0
-            }
-          ],
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 127
-          }
-        }
-      ],
-      [
-        {
-          "instance": "divK",
-          "connector": "y"
-        },
-        {
-          "instance": "addRes",
-          "connector": "u1"
-        },
-        {
-          "points": [
-            {
-              "x": -98,
-              "y": -70
-            },
-            {
-              "x": -82,
-              "y": -70
-            }
-          ],
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 127
-          }
-        }
-      ],
-      [
-        {
-          "instance": "addRes",
-          "connector": "u2"
-        },
-        {
-          "instance": "addPD",
-          "connector": "y"
-        },
-        {
-          "points": [
-            {
-              "x": -70,
-              "y": -82
-            },
-            {
-              "x": -70,
-              "y": -108
-            },
-            {
-              "x": 28,
-              "y": -108
-            },
-            {
-              "x": 28,
-              "y": 114
-            },
-            {
-              "x": 22,
-              "y": 114
-            }
-          ],
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 127
-          }
-        }
-      ],
-      [
-        {
-          "instance": "addRes",
-          "connector": "y"
-        },
-        {
-          "instance": "I",
-          "connector": "y_reset_in"
-        },
-        {
-          "points": [
-            {
-              "x": -58,
-              "y": -70
-            },
-            {
-              "x": -52,
-              "y": -70
-            },
-            {
-              "x": -52,
-              "y": -8
-            },
-            {
-              "x": -42,
-              "y": -8
-            }
-          ],
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 127
-          }
-        }
-      ],
-      [
-        {
-          "instance": "divK",
-          "connector": "u"
-        },
-        {
-          "instance": "yResSig",
-          "connector": "y"
-        },
-        {
-          "points": [
-            {
-              "x": -122,
-              "y": -70
-            },
-            {
-              "x": -158,
-              "y": -70
-            }
-          ],
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 127
-          }
-        }
-      ],
-      [
-        {
-          "instance": "divK",
-          "connector": "u"
-        },
-        {
-          "instance": "y_reset_in"
-        },
-        {
-          "points": [
-            {
-              "x": -122,
-              "y": -70
-            },
-            {
-              "x": -140,
-              "y": -70
-            },
-            {
-              "x": -140,
-              "y": -100
-            },
-            {
-              "x": -240,
-              "y": -100
             }
           ],
           "color": {
@@ -5132,6 +4755,107 @@
             "b": 255
           }
         }
+      ],
+      [
+        {
+          "instance": "Izero",
+          "connector": "y"
+        },
+        {
+          "instance": "addPID",
+          "connector": "u2"
+        },
+        {
+          "points": [
+            {
+              "x": 22,
+              "y": 40
+            },
+            {
+              "x": 34,
+              "y": 40
+            },
+            {
+              "x": 34,
+              "y": 84
+            },
+            {
+              "x": 38,
+              "y": 84
+            }
+          ],
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 127
+          }
+        }
+      ],
+      [
+        {
+          "instance": "con",
+          "connector": "y"
+        },
+        {
+          "instance": "I",
+          "connector": "y_reset_in"
+        },
+        {
+          "points": [
+            {
+              "x": -78,
+              "y": -40
+            },
+            {
+              "x": -60,
+              "y": -40
+            },
+            {
+              "x": -60,
+              "y": -8
+            },
+            {
+              "x": -42,
+              "y": -8
+            }
+          ],
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 127
+          }
+        }
+      ],
+      [
+        {
+          "instance": "con1",
+          "connector": "y"
+        },
+        {
+          "instance": "I",
+          "connector": "trigger"
+        },
+        {
+          "points": [
+            {
+              "x": -78,
+              "y": -80
+            },
+            {
+              "x": -30,
+              "y": -80
+            },
+            {
+              "x": -30,
+              "y": -12
+            }
+          ],
+          "color": {
+            "r": 255,
+            "g": 0,
+            "b": 255
+          }
+        }
       ]
     ],
     "svg": {
@@ -5249,22 +4973,6 @@
               "strokeWidth": 0.25
             },
             {
-              "points": "30,240 50,230 30,220",
-              "hasFill": true,
-              "fill": "rgb(0,0,127)",
-              "stroke": "rgb(0,0,127)",
-              "strokeDasharray": "1,0",
-              "strokeWidth": 0.25
-            },
-            {
-              "points": "110.00007346396714,289.99992653576305 89.99992653589794,250.00000000013492 70.00007346423699,290.00007346396717",
-              "hasFill": true,
-              "fill": "rgb(255,0,255)",
-              "stroke": "rgb(255,0,255)",
-              "strokeDasharray": "1,0",
-              "strokeWidth": 0.25
-            },
-            {
               "points": "250,160 270,150 250,140",
               "hasFill": true,
               "fill": "rgb(255,255,255)",
@@ -5369,7 +5077,7 @@
         ],
         "initialScale": 0.1,
         "preserveAspectRatio": true,
-        "drawing": "<svg version=\"1.1\" baseProfile=\"full\" width=\"300mm\" height=\"290mm\"\n     viewBox=\"0 0 300 290\" xmlns=\"http://www.w3.org/2000/svg\">\n\n<rect x=\"50\" y=\"50\" width=\"200\" height=\"200\"  fill=\"rgb(255,255,255)\" stroke=\"rgb(0,0,127)\"  stroke-dasharray=\"1,0\" stroke-width=\"0.25\"  />\n<rect x=\"144\" y=\"170\" width=\"72\" height=\"46\"  fill=\"rgb(255,255,255)\" stroke=\"rgb(255,255,255)\"  stroke-dasharray=\"1,0\" stroke-width=\"0.25\"  />\n<rect x=\"234\" y=\"250\" width=\"16\" height=\"0\"  fill=\"rgb(175,175,175)\" stroke=\"rgb(0,0,0)\"  stroke-dasharray=\"\" stroke-width=\"0.25\"  />\n\n<polygon points=\"70,68 62,90 78,90 70,68\"  fill=\"rgb(192,192,192)\" stroke=\"rgb(192,192,192)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polygon points=\"224,230 202,222 202,238 224,230\"  fill=\"rgb(192,192,192)\" stroke=\"rgb(192,192,192)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n\n\n<polyline fill=\"none\" points=\"70,82 70,250\" stroke=\"rgb(192,192,192)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polyline fill=\"none\" points=\"60,230 220,230\" stroke=\"rgb(192,192,192)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polyline fill=\"none\" points=\"70,230 70,172\" stroke=\"rgb(0,0,0)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polyline fill=\"none\" points=\"70,172 156,94\" stroke=\"rgb(0,0,0)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polyline fill=\"none\" points=\"156,94 218,94\" stroke=\"rgb(0,0,0)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n\n<text font-family=\"helvetica\" font-size=\"26\" x=\"168\" y=\"192\" fill=\"rgb(0,0,0)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"168\" >P</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"26\" x=\"174\" y=\"192\" fill=\"rgb(0,0,0)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"174\" >PI</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"26\" x=\"186\" y=\"192\" fill=\"rgb(0,0,0)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"186\" >P D</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"26\" x=\"186\" y=\"192\" fill=\"rgb(0,0,0)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"186\" >PID</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"26\" x=\"150\" y=\"20\" fill=\"rgb(0,0,255)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"150\" >%name</tspan>\n</text>\n\n\n\n<polygon points=\"30,160 50,150 30,140\"  fill=\"rgb(0,0,127)\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polygon points=\"130.00022039352052,290.0002203910919 149.9997796076938,250.00000000121432 170.0002203910919,289.9997796064795\"  fill=\"rgb(0,0,127)\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polygon points=\"30,240 50,230 30,220\"  fill=\"rgb(0,0,127)\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polygon points=\"110.00007346396714,289.99992653576305 89.99992653589794,250.00000000013492 70.00007346423699,290.00007346396717\"  fill=\"rgb(255,0,255)\" stroke=\"rgb(255,0,255)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polygon points=\"250,160 270,150 250,140\"  fill=\"rgb(255,255,255)\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n\n\n\n\n\n\n</svg>"
+        "drawing": "<svg version=\"1.1\" baseProfile=\"full\" width=\"300mm\" height=\"290mm\"\n     viewBox=\"0 0 300 290\" xmlns=\"http://www.w3.org/2000/svg\">\n\n<rect x=\"50\" y=\"50\" width=\"200\" height=\"200\"  fill=\"rgb(255,255,255)\" stroke=\"rgb(0,0,127)\"  stroke-dasharray=\"1,0\" stroke-width=\"0.25\"  />\n<rect x=\"144\" y=\"170\" width=\"72\" height=\"46\"  fill=\"rgb(255,255,255)\" stroke=\"rgb(255,255,255)\"  stroke-dasharray=\"1,0\" stroke-width=\"0.25\"  />\n<rect x=\"234\" y=\"250\" width=\"16\" height=\"0\"  fill=\"rgb(175,175,175)\" stroke=\"rgb(0,0,0)\"  stroke-dasharray=\"\" stroke-width=\"0.25\"  />\n\n<polygon points=\"70,68 62,90 78,90 70,68\"  fill=\"rgb(192,192,192)\" stroke=\"rgb(192,192,192)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polygon points=\"224,230 202,222 202,238 224,230\"  fill=\"rgb(192,192,192)\" stroke=\"rgb(192,192,192)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n\n\n<polyline fill=\"none\" points=\"70,82 70,250\" stroke=\"rgb(192,192,192)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polyline fill=\"none\" points=\"60,230 220,230\" stroke=\"rgb(192,192,192)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polyline fill=\"none\" points=\"70,230 70,172\" stroke=\"rgb(0,0,0)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polyline fill=\"none\" points=\"70,172 156,94\" stroke=\"rgb(0,0,0)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polyline fill=\"none\" points=\"156,94 218,94\" stroke=\"rgb(0,0,0)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n\n<text font-family=\"helvetica\" font-size=\"26\" x=\"168\" y=\"192\" fill=\"rgb(0,0,0)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"168\" >P</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"26\" x=\"174\" y=\"192\" fill=\"rgb(0,0,0)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"174\" >PI</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"26\" x=\"186\" y=\"192\" fill=\"rgb(0,0,0)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"186\" >P D</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"26\" x=\"186\" y=\"192\" fill=\"rgb(0,0,0)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"186\" >PID</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"26\" x=\"150\" y=\"20\" fill=\"rgb(0,0,255)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"150\" >%name</tspan>\n</text>\n\n\n\n<polygon points=\"30,160 50,150 30,140\"  fill=\"rgb(0,0,127)\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polygon points=\"130.00022039352052,290.0002203910919 149.9997796076938,250.00000000121432 170.0002203910919,289.9997796064795\"  fill=\"rgb(0,0,127)\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polygon points=\"250,160 270,150 250,140\"  fill=\"rgb(255,255,255)\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n\n\n\n\n\n\n</svg>"
       }
     }
   },
@@ -7074,31 +6782,6 @@
               "tab": "General"
             }
           }
-        },
-        {
-          "className": "Buildings.Controls.OBC.CDL.Types.Reset",
-          "name": "reset",
-          "value": "Buildings.Controls.OBC.CDL.Types.Reset.Disabled",
-          "comment": "Type of integrator reset",
-          "annotation": {
-            "dialog": {
-              "tab": "General",
-              "group": "Parameters"
-            }
-          }
-        },
-        {
-          "className": "Real",
-          "name": "y_reset",
-          "value": "0",
-          "comment": "Value to which integrator is reset, used if reset = Types.Reset.Parameter",
-          "annotation": {
-            "dialog": {
-              "enable": "reset == Buildings.Controls.OBC.CDL.Types.Reset.Parameter",
-              "group": "Integrator reset",
-              "tab": "General"
-            }
-          }
         }
       ],
       "inputs": [
@@ -7124,10 +6807,8 @@
         {
           "className": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
           "name": "y_reset_in",
-          "comment": "Input signal for state to which integrator is reset, enabled if reset = Types.Reset.Input",
-          "instantiate": "reset == Buildings.Controls.OBC.CDL.Types.Reset.Input",
+          "comment": "Input signal for state to which integrator is reset",
           "placement": {
-            "visible": false,
             "transformation": {
               "extent": [
                 {
@@ -7146,9 +6827,7 @@
           "className": "Buildings.Controls.OBC.CDL.Interfaces.BooleanInput",
           "name": "trigger",
           "comment": "Resets the integrator output when trigger becomes true",
-          "instantiate": "reset <> Buildings.Controls.OBC.CDL.Types.Reset.Disabled",
           "placement": {
-            "visible": false,
             "transformation": {
               "extent": [
                 {
@@ -7208,21 +6887,7 @@
         }
       ]
     },
-    "protected": {
-      "inputs": [
-        {
-          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
-          "name": "y_reset_internal",
-          "comment": "Internal connector for integrator reset"
-        },
-        {
-          "className": "Buildings.Controls.OBC.CDL.Interfaces.BooleanInput",
-          "name": "trigger_internal",
-          "comment": "Needed to use conditional connector trigger"
-        }
-      ]
-    },
-    "info": "<html>\n<p>\nThis model is similar to\n<a href=\"Modelica.Blocks.Continuous.Integrator\">\nModelica.Blocks.Continuous.Integrator</a>\nexcept that it optionally allows to reset the output <code>y</code>\nof the integrator.\n</p>\n<p>\nThe output of the integrator can be reset as follows:\n</p>\n<ul>\n<li>\nIf <code>reset = Types.Reset.Disabled</code>, which is the default,\nthen the integrator is never reset.\n</li>\n<li>\nIf <code>reset = Types.Reset.Parameter</code>, then a boolean\ninput signal <code>trigger</code> is enabled. Whenever the value of\nthis input changes from <code>false</code> to <code>true</code>,\nthe integrator is reset by setting <code>y</code>\nto the value of the parameter <code>y_reset</code>.\n</li>\n<li>\nIf <code>reset = Types.Reset.Input</code>, then a boolean\ninput signal <code>trigger</code> is enabled. Whenever the value of\nthis input changes from <code>false</code> to <code>true</code>,\nthe integrator is reset by setting <code>y</code>\nto the value of the input signal <code>y_reset_in</code>.\n</li>\n</ul>\n<h4>Implementation</h4>\n<p>\nTo adjust the icon layer, the code of\n<a href=\"Modelica.Blocks.Continuous.Integrator\">\nModelica.Blocks.Continuous.Integrator</a>\nhas been copied into this model rather than extended.\n</p>\n</html>",
+    "info": "<html>\n<p>\nThis model is similar to\n<a href=\"Modelica.Blocks.Continuous.Integrator\">\nModelica.Blocks.Continuous.Integrator</a>\nexcept that it allows to reset the output <code>y</code>\nof the integrator.\n</p>\n<p>\nThe output of the integrator can be reset as follows:\n</p>\n<ul>\n<li>\nWhenever the input signal <code>trigger</code> changes from <code>false</code>\nto <code>true</code>,\nthe integrator is reset by setting <code>y</code>\nto the value of the input signal <code>y_reset_in</code>.\n</li>\n</ul>\n<h4>Implementation</h4>\n<p>\nTo adjust the icon layer, the code of\n<a href=\"Modelica.Blocks.Continuous.Integrator\">\nModelica.Blocks.Continuous.Integrator</a>\nhas been copied into this model rather than extended.\n</p>\n</html>",
     "icon": {
       "coordinateSystem": {
         "extent": [
@@ -7701,676 +7366,6 @@
         "initialScale": 0.1,
         "preserveAspectRatio": true,
         "drawing": "<svg version=\"1.1\" baseProfile=\"full\" width=\"520mm\" height=\"290mm\"\n     viewBox=\"0 0 520 290\" xmlns=\"http://www.w3.org/2000/svg\">\n\n<rect x=\"50\" y=\"50\" width=\"200\" height=\"200\"  fill=\"rgb(255,255,255)\" stroke=\"rgb(0,0,127)\"  stroke-dasharray=\"1,0\" stroke-width=\"0.25\"  />\n\n\n\n\n<text font-family=\"helvetica\" font-size=\"26\" x=\"62\" y=\"224\" fill=\"rgb(0,0,0)\" text-anchor=\"start\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"62\" >y_reset_in</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"23.4\" x=\"62\" y=\"76\" fill=\"rgb(0,0,0)\" text-anchor=\"start\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"62\" >k&#x3D;%k</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"26\" x=\"58\" y=\"142\" fill=\"rgb(0,0,0)\" text-anchor=\"start\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"58\" >u</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"26\" x=\"220\" y=\"144\" fill=\"rgb(0,0,0)\" text-anchor=\"start\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"220\" >y</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"26\" x=\"150\" y=\"20\" fill=\"rgb(0,0,255)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"150\" >%name</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"32.5\" x=\"316\" y=\"115\" fill=\"rgb(0,0,0)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"316\" ></tspan>\n</text>\n\n\n\n<polygon points=\"30,160 50,150 30,140\"  fill=\"rgb(0,0,127)\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polygon points=\"30,240 50,230 30,220\"  fill=\"rgb(0,0,127)\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polygon points=\"170.00007346396714,289.99992653576305 149.99992653589794,250.00000000013492 130.00007346423698,290.00007346396717\"  fill=\"rgb(255,0,255)\" stroke=\"rgb(255,0,255)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polygon points=\"250,160 270,150 250,140\"  fill=\"rgb(255,255,255)\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n\n\n\n\n\n\n</svg>"
-      }
-    }
-  },
-  {
-    "modelicaFile": "Buildings/Controls/OBC/CDL/Continuous/Derivative.mo",
-    "within": "Buildings.Controls.OBC.CDL.Continuous",
-    "topClassName": "Buildings.Controls.OBC.CDL.Continuous.Derivative",
-    "comment": "Block that approximates the derivative of the input",
-    "defaultName": "\"der\"",
-    "public": {
-      "parameters": [
-        {
-          "className": "Real",
-          "name": "k",
-          "value": "1",
-          "comment": "Gains",
-          "unit": {
-            "value": "\"1\"",
-            "isFinal": false
-          },
-          "annotation": {
-            "dialog": {
-              "tab": "General",
-              "group": "Parameters"
-            }
-          }
-        },
-        {
-          "className": "Modelica.SIunits.Time",
-          "type": "Real",
-          "name": "T",
-          "value": "0.01",
-          "comment": "Time constant (T>0 required)",
-          "min": {
-            "value": "1E-60",
-            "isFinal": false
-          },
-          "annotation": {
-            "dialog": {
-              "tab": "General",
-              "group": "Parameters"
-            }
-          }
-        },
-        {
-          "className": "Real",
-          "name": "x_start",
-          "value": "0",
-          "comment": "Initial or guess value of state",
-          "annotation": {
-            "dialog": {
-              "group": "Initialization",
-              "tab": "General"
-            }
-          }
-        },
-        {
-          "className": "Real",
-          "name": "y_start",
-          "value": "0",
-          "comment": "Initial value of output (= state)",
-          "annotation": {
-            "dialog": {
-              "group": "Initialization",
-              "tab": "General"
-            }
-          }
-        }
-      ],
-      "models": [
-        {
-          "className": "Real",
-          "name": "x",
-          "comment": "State of block"
-        }
-      ],
-      "inputs": [
-        {
-          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
-          "name": "u",
-          "comment": "Connector of Real input signal",
-          "placement": {
-            "transformation": {
-              "extent": [
-                {
-                  "x": -140,
-                  "y": -20
-                },
-                {
-                  "x": -100,
-                  "y": 20
-                }
-              ]
-            }
-          }
-        }
-      ],
-      "outputs": [
-        {
-          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
-          "name": "y",
-          "comment": "Connector of Real output signal",
-          "placement": {
-            "transformation": {
-              "extent": [
-                {
-                  "x": 100,
-                  "y": -20
-                },
-                {
-                  "x": 140,
-                  "y": 20
-                }
-              ]
-            }
-          }
-        }
-      ]
-    },
-    "protected": {
-      "parameters": [
-        {
-          "className": "Boolean",
-          "name": "zeroGain",
-          "value": "abs(k) < 1E-17",
-          "comment": "= true, if gain equals to zero",
-          "annotation": {
-            "dialog": {
-              "tab": "General",
-              "group": "Parameters"
-            }
-          }
-        }
-      ]
-    },
-    "info": "<html>\n<p>\nThis blocks defines the transfer function between the\ninput <code>u</code> and the output <code>y</code>\nas <i>approximated derivative</i>:\n</p>\n<pre>\n             k * s\n     y = ------------ * u\n            T * s + 1\n</pre>\n<p>\nIf <code>k=0</code>, the block reduces to <code>y=0</code>.\n</p>\n</html>",
-    "icon": {
-      "coordinateSystem": {
-        "extent": [
-          {
-            "x": -100,
-            "y": -100
-          },
-          {
-            "x": 100,
-            "y": 100
-          }
-        ],
-        "preserveAspectRatio": true,
-        "initialScale": 0.1
-      },
-      "graphics": {
-        "line": [
-          {
-            "points": [
-              {
-                "x": -80,
-                "y": 78
-              },
-              {
-                "x": -80,
-                "y": -90
-              }
-            ],
-            "color": {
-              "r": 192,
-              "g": 192,
-              "b": 192
-            },
-            "visible": true,
-            "origin": {
-              "x": 0,
-              "y": 0
-            },
-            "rotation": 0,
-            "pattern": "LinePattern.Solid",
-            "thickness": 0.25
-          },
-          {
-            "points": [
-              {
-                "x": -90,
-                "y": -80
-              },
-              {
-                "x": 82,
-                "y": -80
-              }
-            ],
-            "color": {
-              "r": 192,
-              "g": 192,
-              "b": 192
-            },
-            "visible": true,
-            "origin": {
-              "x": 0,
-              "y": 0
-            },
-            "rotation": 0,
-            "pattern": "LinePattern.Solid",
-            "thickness": 0.25
-          },
-          {
-            "origin": {
-              "x": -24.667,
-              "y": -27.333
-            },
-            "points": [
-              {
-                "x": -55.333,
-                "y": 87.333
-              },
-              {
-                "x": -19.333,
-                "y": -40.667
-              },
-              {
-                "x": 86.667,
-                "y": -52.667
-              }
-            ],
-            "color": {
-              "r": 0,
-              "g": 0,
-              "b": 127
-            },
-            "smooth": "Smooth.Bezier",
-            "visible": true,
-            "rotation": 0,
-            "pattern": "LinePattern.Solid",
-            "thickness": 0.25
-          }
-        ],
-        "polygon": [
-          {
-            "lineColor": {
-              "r": 192,
-              "g": 192,
-              "b": 192
-            },
-            "fillColor": {
-              "r": 192,
-              "g": 192,
-              "b": 192
-            },
-            "fillPattern": "FillPattern.Solid",
-            "points": [
-              {
-                "x": -80,
-                "y": 90
-              },
-              {
-                "x": -88,
-                "y": 68
-              },
-              {
-                "x": -72,
-                "y": 68
-              },
-              {
-                "x": -80,
-                "y": 90
-              }
-            ],
-            "visible": true,
-            "origin": {
-              "x": 0,
-              "y": 0
-            },
-            "rotation": 0,
-            "pattern": "LinePattern.Solid",
-            "lineThickness": 0.25
-          },
-          {
-            "lineColor": {
-              "r": 192,
-              "g": 192,
-              "b": 192
-            },
-            "fillColor": {
-              "r": 192,
-              "g": 192,
-              "b": 192
-            },
-            "fillPattern": "FillPattern.Solid",
-            "points": [
-              {
-                "x": 90,
-                "y": -80
-              },
-              {
-                "x": 68,
-                "y": -72
-              },
-              {
-                "x": 68,
-                "y": -88
-              },
-              {
-                "x": 90,
-                "y": -80
-              }
-            ],
-            "visible": true,
-            "origin": {
-              "x": 0,
-              "y": 0
-            },
-            "rotation": 0,
-            "pattern": "LinePattern.Solid",
-            "lineThickness": 0.25
-          }
-        ],
-        "rectangle": [
-          {
-            "lineColor": {
-              "r": 0,
-              "g": 0,
-              "b": 127
-            },
-            "fillColor": {
-              "r": 255,
-              "g": 255,
-              "b": 255
-            },
-            "fillPattern": "FillPattern.Solid",
-            "extent": [
-              {
-                "x": -100,
-                "y": -100
-              },
-              {
-                "x": 100,
-                "y": 100
-              }
-            ],
-            "visible": true,
-            "origin": {
-              "x": 0,
-              "y": 0
-            },
-            "rotation": 0,
-            "pattern": "LinePattern.Solid",
-            "lineThickness": 0.25,
-            "borderPattern": "BorderPattern.None"
-          }
-        ],
-        "text": [
-          {
-            "lineColor": {
-              "r": 192,
-              "g": 192,
-              "b": 192
-            },
-            "extent": [
-              {
-                "x": -30,
-                "y": 14
-              },
-              {
-                "x": 86,
-                "y": 60
-              }
-            ],
-            "textString": "\"DT1\"",
-            "visible": true,
-            "origin": {
-              "x": 0,
-              "y": 0
-            },
-            "rotation": 0,
-            "fillColor": {
-              "r": 0,
-              "g": 0,
-              "b": 0
-            },
-            "pattern": "LinePattern.Solid",
-            "lineThickness": 0.25,
-            "fontSize": 0,
-            "fontName": "Arial",
-            "textColor": {
-              "r": 192,
-              "g": 192,
-              "b": 192
-            },
-            "horizontalAlignment": "TextAlignment.Center"
-          },
-          {
-            "extent": [
-              {
-                "x": -150,
-                "y": -150
-              },
-              {
-                "x": 150,
-                "y": -110
-              }
-            ],
-            "textString": "\"k=%k\"",
-            "visible": true,
-            "origin": {
-              "x": 0,
-              "y": 0
-            },
-            "rotation": 0,
-            "lineColor": {
-              "r": 0,
-              "g": 0,
-              "b": 0
-            },
-            "fillColor": {
-              "r": 0,
-              "g": 0,
-              "b": 0
-            },
-            "pattern": "LinePattern.Solid",
-            "lineThickness": 0.25,
-            "fontSize": 0,
-            "fontName": "Arial",
-            "textColor": {
-              "r": 0,
-              "g": 0,
-              "b": 0
-            },
-            "horizontalAlignment": "TextAlignment.Center"
-          },
-          {
-            "lineColor": {
-              "r": 0,
-              "g": 0,
-              "b": 255
-            },
-            "extent": [
-              {
-                "x": -150,
-                "y": 150
-              },
-              {
-                "x": 150,
-                "y": 110
-              }
-            ],
-            "textString": "\"%name\"",
-            "visible": true,
-            "origin": {
-              "x": 0,
-              "y": 0
-            },
-            "rotation": 0,
-            "fillColor": {
-              "r": 0,
-              "g": 0,
-              "b": 0
-            },
-            "pattern": "LinePattern.Solid",
-            "lineThickness": 0.25,
-            "fontSize": 0,
-            "fontName": "Arial",
-            "textColor": {
-              "r": 0,
-              "g": 0,
-              "b": 255
-            },
-            "horizontalAlignment": "TextAlignment.Center"
-          },
-          {
-            "lineColor": {
-              "r": 0,
-              "g": 0,
-              "b": 0
-            },
-            "extent": [
-              {
-                "x": 226,
-                "y": 60
-              },
-              {
-                "x": 106,
-                "y": 10
-              }
-            ],
-            "dynTextString": {
-              "firstOpt": "\"\"",
-              "secondOpt": "String(y, leftjustified=false, significantDigits=3)"
-            },
-            "visible": true,
-            "origin": {
-              "x": 0,
-              "y": 0
-            },
-            "rotation": 0,
-            "fillColor": {
-              "r": 0,
-              "g": 0,
-              "b": 0
-            },
-            "pattern": "LinePattern.Solid",
-            "lineThickness": 0.25,
-            "fontSize": 0,
-            "fontName": "Arial",
-            "textColor": {
-              "r": 0,
-              "g": 0,
-              "b": 0
-            },
-            "horizontalAlignment": "TextAlignment.Center"
-          }
-        ]
-      }
-    },
-    "svg": {
-      "icon": {
-        "items": {
-          "width": 376,
-          "height": 300,
-          "layerRectangles": [
-            {
-              "x": 50,
-              "y": 50,
-              "width": 200,
-              "height": 200,
-              "hasFill": true,
-              "fill": "rgb(255,255,255)",
-              "stroke": "rgb(0,0,127)",
-              "hasStroke": true,
-              "strokeDasharray": "1,0",
-              "strokeWidth": 0.25
-            }
-          ],
-          "layerPolygons": [
-            {
-              "points": "70,60 62,82 78,82 70,60",
-              "hasFill": true,
-              "fill": "rgb(192,192,192)",
-              "stroke": "rgb(192,192,192)",
-              "strokeDasharray": "1,0",
-              "strokeWidth": 0.25
-            },
-            {
-              "points": "240,230 218,222 218,238 240,230",
-              "hasFill": true,
-              "fill": "rgb(192,192,192)",
-              "stroke": "rgb(192,192,192)",
-              "strokeDasharray": "1,0",
-              "strokeWidth": 0.25
-            }
-          ],
-          "layerPolylines": [
-            {
-              "points": "70,72 70,240",
-              "fill": "none",
-              "stroke": "rgb(192,192,192)",
-              "strokeDasharray": "1,0",
-              "strokeWidth": 0.25
-            },
-            {
-              "points": "60,230 232,230",
-              "fill": "none",
-              "stroke": "rgb(192,192,192)",
-              "strokeDasharray": "1,0",
-              "strokeWidth": 0.25
-            },
-            {
-              "points": "94.667,62.667 130.667,190.667 236.667,202.667",
-              "fill": "none",
-              "stroke": "rgb(0,0,127)",
-              "strokeDasharray": "1,0",
-              "strokeWidth": 0.25
-            }
-          ],
-          "intPolygons": [
-            {
-              "points": "30,160 50,150 30,140",
-              "hasFill": true,
-              "fill": "rgb(0,0,127)",
-              "stroke": "rgb(0,0,127)",
-              "strokeDasharray": "1,0",
-              "strokeWidth": 0.25
-            },
-            {
-              "points": "250,160 270,150 250,140",
-              "hasFill": true,
-              "fill": "rgb(255,255,255)",
-              "stroke": "rgb(0,0,127)",
-              "strokeDasharray": "1,0",
-              "strokeWidth": 0.25
-            }
-          ],
-          "hasDots": false,
-          "layerTexts": [
-            {
-              "font": "helvetica",
-              "fontSize": 29.9,
-              "xStart": 178,
-              "yStart": 113,
-              "textAnchor": "middle",
-              "fill": "rgb(192,192,192)",
-              "moreLines": false,
-              "tSpan": [
-                {
-                  "xSpan": 178,
-                  "dy": 0,
-                  "textString": "DT1"
-                }
-              ]
-            },
-            {
-              "font": "helvetica",
-              "fontSize": 26,
-              "xStart": 150,
-              "yStart": 280,
-              "textAnchor": "middle",
-              "fill": "rgb(0,0,0)",
-              "moreLines": false,
-              "tSpan": [
-                {
-                  "xSpan": 150,
-                  "dy": 0,
-                  "textString": "k=%k"
-                }
-              ]
-            },
-            {
-              "font": "helvetica",
-              "fontSize": 26,
-              "xStart": 150,
-              "yStart": 20,
-              "textAnchor": "middle",
-              "fill": "rgb(0,0,255)",
-              "moreLines": false,
-              "tSpan": [
-                {
-                  "xSpan": 150,
-                  "dy": 0,
-                  "textString": "%name"
-                }
-              ]
-            },
-            {
-              "font": "helvetica",
-              "fontSize": 32.5,
-              "xStart": 316,
-              "yStart": 115,
-              "textAnchor": "middle",
-              "fill": "rgb(0,0,0)",
-              "moreLines": false,
-              "tSpan": [
-                {
-                  "xSpan": 316,
-                  "dy": 0,
-                  "textString": ""
-                }
-              ]
-            }
-          ]
-        },
-        "coordinate": [
-          {
-            "x": 50,
-            "y": 250
-          },
-          {
-            "x": 250,
-            "y": 50
-          }
-        ],
-        "initialScale": 0.1,
-        "preserveAspectRatio": true,
-        "drawing": "<svg version=\"1.1\" baseProfile=\"full\" width=\"376mm\" height=\"300mm\"\n     viewBox=\"0 0 376 300\" xmlns=\"http://www.w3.org/2000/svg\">\n\n<rect x=\"50\" y=\"50\" width=\"200\" height=\"200\"  fill=\"rgb(255,255,255)\" stroke=\"rgb(0,0,127)\"  stroke-dasharray=\"1,0\" stroke-width=\"0.25\"  />\n\n<polygon points=\"70,60 62,82 78,82 70,60\"  fill=\"rgb(192,192,192)\" stroke=\"rgb(192,192,192)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polygon points=\"240,230 218,222 218,238 240,230\"  fill=\"rgb(192,192,192)\" stroke=\"rgb(192,192,192)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n\n\n<polyline fill=\"none\" points=\"70,72 70,240\" stroke=\"rgb(192,192,192)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polyline fill=\"none\" points=\"60,230 232,230\" stroke=\"rgb(192,192,192)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polyline fill=\"none\" points=\"94.667,62.667 130.667,190.667 236.667,202.667\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n\n<text font-family=\"helvetica\" font-size=\"29.9\" x=\"178\" y=\"113\" fill=\"rgb(192,192,192)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"178\" >DT1</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"26\" x=\"150\" y=\"280\" fill=\"rgb(0,0,0)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"150\" >k&#x3D;%k</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"26\" x=\"150\" y=\"20\" fill=\"rgb(0,0,255)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"150\" >%name</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"32.5\" x=\"316\" y=\"115\" fill=\"rgb(0,0,0)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"316\" ></tspan>\n</text>\n\n\n\n<polygon points=\"30,160 50,150 30,140\"  fill=\"rgb(0,0,127)\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polygon points=\"250,160 270,150 250,140\"  fill=\"rgb(255,255,255)\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n\n\n\n\n\n\n</svg>"
       }
     }
   },
@@ -9105,6 +8100,635 @@
         "initialScale": 0.1,
         "preserveAspectRatio": true,
         "drawing": "<svg version=\"1.1\" baseProfile=\"full\" width=\"376mm\" height=\"250mm\"\n     viewBox=\"0 0 376 250\" xmlns=\"http://www.w3.org/2000/svg\">\n\n<rect x=\"50\" y=\"50\" width=\"200\" height=\"200\"  fill=\"rgb(255,255,255)\" stroke=\"rgb(0,0,127)\"  stroke-dasharray=\"1,0\" stroke-width=\"0.25\"  />\n\n<polygon points=\"150,60 142,82 158,82 150,60\"  fill=\"rgb(192,192,192)\" stroke=\"rgb(192,192,192)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polygon points=\"240,150 218,158 218,142 240,150\"  fill=\"rgb(192,192,192)\" stroke=\"rgb(192,192,192)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n\n\n<polyline fill=\"none\" points=\"150,240 150,82\" stroke=\"rgb(192,192,192)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polyline fill=\"none\" points=\"60,150 218,150\" stroke=\"rgb(192,192,192)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polyline fill=\"none\" points=\"70,220 100,220 200,80 230,80\" stroke=\"rgb(0,0,0)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polyline fill=\"none\" points=\"200,80 230,80\" stroke=\"rgb(0,0,0)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polyline fill=\"none\" points=\"70,220 100,220\" stroke=\"rgb(0,0,0)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n\n<text font-family=\"helvetica\" font-size=\"26\" x=\"150\" y=\"20\" fill=\"rgb(0,0,255)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"150\" >%name</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"26\" x=\"150\" y=\"20\" fill=\"rgb(0,0,255)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"150\" >%name</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"16.9\" x=\"203\" y=\"65\" fill=\"rgb(0,0,0)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"203\" >%uMax</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"16.9\" x=\"91\" y=\"235\" fill=\"rgb(0,0,0)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"91\" >%uMin</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"32.5\" x=\"316\" y=\"115\" fill=\"rgb(0,0,0)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"316\" ></tspan>\n</text>\n\n\n\n<polygon points=\"30,160 50,150 30,140\"  fill=\"rgb(0,0,127)\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polygon points=\"250,160 270,150 250,140\"  fill=\"rgb(255,255,255)\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n\n\n\n\n\n\n</svg>"
+      }
+    }
+  },
+  {
+    "modelicaFile": "Buildings/Controls/OBC/CDL/Logical/Sources/Constant.mo",
+    "within": "Buildings.Controls.OBC.CDL.Logical.Sources",
+    "topClassName": "Buildings.Controls.OBC.CDL.Logical.Sources.Constant",
+    "comment": "Output constant signal of type Boolean",
+    "defaultName": "\"con\"",
+    "public": {
+      "parameters": [
+        {
+          "className": "Boolean",
+          "name": "k",
+          "comment": "Constant output value",
+          "annotation": {
+            "dialog": {
+              "tab": "General",
+              "group": "Parameters"
+            }
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.BooleanOutput",
+          "name": "y",
+          "comment": "Connector of Boolean output signal",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": 100,
+                  "y": -20
+                },
+                {
+                  "x": 140,
+                  "y": 20
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "info": "<html>\n<p>\nBlock that outputs a constant signal <code>y = k</code>,\nwhere <code>k</code> is a Boolean-valued parameter.\n</p>\n\n<p align=\"center\">\n<img src=\"Buildings/Resources/Images/Controls/OBC/CDL/Logical/Constant.png\"\n     alt=\"Constant.png\" />\n</p>\n</html>",
+    "icon": {
+      "coordinateSystem": {
+        "extent": [
+          {
+            "x": -100,
+            "y": -100
+          },
+          {
+            "x": 100,
+            "y": 100
+          }
+        ],
+        "preserveAspectRatio": true,
+        "initialScale": 0.1
+      },
+      "graphics": {
+        "line": [
+          {
+            "points": [
+              {
+                "x": -90,
+                "y": -70
+              },
+              {
+                "x": 72,
+                "y": -70
+              }
+            ],
+            "color": {
+              "r": 255,
+              "g": 0,
+              "b": 255
+            },
+            "visible": true,
+            "origin": {
+              "x": 0,
+              "y": 0
+            },
+            "rotation": 0,
+            "pattern": "LinePattern.Solid",
+            "thickness": 0.25
+          },
+          {
+            "points": [
+              {
+                "x": -80,
+                "y": 66
+              },
+              {
+                "x": -80,
+                "y": -82
+              }
+            ],
+            "color": {
+              "r": 255,
+              "g": 0,
+              "b": 255
+            },
+            "visible": true,
+            "origin": {
+              "x": 0,
+              "y": 0
+            },
+            "rotation": 0,
+            "pattern": "LinePattern.Solid",
+            "thickness": 0.25
+          },
+          {
+            "points": [
+              {
+                "x": -80,
+                "y": 0
+              },
+              {
+                "x": 64,
+                "y": 0
+              }
+            ],
+            "visible": true,
+            "origin": {
+              "x": 0,
+              "y": 0
+            },
+            "rotation": 0,
+            "color": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
+            "pattern": "LinePattern.Solid",
+            "thickness": 0.25
+          }
+        ],
+        "polygon": [
+          {
+            "lineColor": {
+              "r": 255,
+              "g": 0,
+              "b": 255
+            },
+            "fillColor": {
+              "r": 255,
+              "g": 0,
+              "b": 255
+            },
+            "fillPattern": "FillPattern.Solid",
+            "points": [
+              {
+                "x": 90,
+                "y": -70
+              },
+              {
+                "x": 68,
+                "y": -62
+              },
+              {
+                "x": 68,
+                "y": -78
+              },
+              {
+                "x": 90,
+                "y": -70
+              }
+            ],
+            "visible": true,
+            "origin": {
+              "x": 0,
+              "y": 0
+            },
+            "rotation": 0,
+            "pattern": "LinePattern.Solid",
+            "lineThickness": 0.25
+          },
+          {
+            "lineColor": {
+              "r": 255,
+              "g": 0,
+              "b": 255
+            },
+            "fillColor": {
+              "r": 255,
+              "g": 0,
+              "b": 255
+            },
+            "fillPattern": "FillPattern.Solid",
+            "points": [
+              {
+                "x": -80,
+                "y": 88
+              },
+              {
+                "x": -88,
+                "y": 66
+              },
+              {
+                "x": -72,
+                "y": 66
+              },
+              {
+                "x": -80,
+                "y": 88
+              }
+            ],
+            "visible": true,
+            "origin": {
+              "x": 0,
+              "y": 0
+            },
+            "rotation": 0,
+            "pattern": "LinePattern.Solid",
+            "lineThickness": 0.25
+          }
+        ],
+        "rectangle": [
+          {
+            "fillColor": {
+              "r": 210,
+              "g": 210,
+              "b": 210
+            },
+            "fillPattern": "FillPattern.Solid",
+            "lineThickness": 5,
+            "borderPattern": "BorderPattern.Raised",
+            "extent": [
+              {
+                "x": -100,
+                "y": 100
+              },
+              {
+                "x": 100,
+                "y": -100
+              }
+            ],
+            "visible": true,
+            "origin": {
+              "x": 0,
+              "y": 0
+            },
+            "rotation": 0,
+            "lineColor": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
+            "pattern": "LinePattern.Solid"
+          }
+        ],
+        "ellipse": [
+          {
+            "dynLineColor": {
+              "color": {
+                "r": 235,
+                "g": 235,
+                "b": 235
+              },
+              "dynColor": "if y then {0,255,0}\n               else {235,235,235}"
+            },
+            "dynFillColor": {
+              "color": {
+                "r": 235,
+                "g": 235,
+                "b": 235
+              },
+              "dynColor": "if y then {0,255,0}\n               else {235,235,235}"
+            },
+            "fillPattern": "FillPattern.Solid",
+            "extent": [
+              {
+                "x": 71,
+                "y": 7
+              },
+              {
+                "x": 85,
+                "y": -7
+              }
+            ],
+            "visible": true,
+            "origin": {
+              "x": 0,
+              "y": 0
+            },
+            "rotation": 0,
+            "pattern": "LinePattern.Solid",
+            "lineThickness": 0.25,
+            "startAngle": 0,
+            "endAngle": 360
+          }
+        ],
+        "text": [
+          {
+            "lineColor": {
+              "r": 0,
+              "g": 0,
+              "b": 255
+            },
+            "extent": [
+              {
+                "x": -150,
+                "y": 150
+              },
+              {
+                "x": 150,
+                "y": 110
+              }
+            ],
+            "textString": "\"%name\"",
+            "visible": true,
+            "origin": {
+              "x": 0,
+              "y": 0
+            },
+            "rotation": 0,
+            "fillColor": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
+            "pattern": "LinePattern.Solid",
+            "lineThickness": 0.25,
+            "fontSize": 0,
+            "fontName": "Arial",
+            "textColor": {
+              "r": 0,
+              "g": 0,
+              "b": 255
+            },
+            "horizontalAlignment": "TextAlignment.Center"
+          },
+          {
+            "lineColor": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
+            "extent": [
+              {
+                "x": -150,
+                "y": -140
+              },
+              {
+                "x": 150,
+                "y": -110
+              }
+            ],
+            "textString": "\"%k\"",
+            "visible": true,
+            "origin": {
+              "x": 0,
+              "y": 0
+            },
+            "rotation": 0,
+            "fillColor": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
+            "pattern": "LinePattern.Solid",
+            "lineThickness": 0.25,
+            "fontSize": 0,
+            "fontName": "Arial",
+            "textColor": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
+            "horizontalAlignment": "TextAlignment.Center"
+          }
+        ]
+      }
+    },
+    "svg": {
+      "icon": {
+        "items": {
+          "width": 300,
+          "height": 290,
+          "layerRectangles": [
+            {
+              "x": 50,
+              "y": 50,
+              "width": 200,
+              "height": 200,
+              "hasFill": true,
+              "fill": "rgb(210,210,210)",
+              "stroke": "rgb(0,0,0)",
+              "hasStroke": true,
+              "strokeDasharray": "1,0",
+              "strokeWidth": 0.25
+            },
+            {
+              "x": 49.08,
+              "y": 49.08,
+              "width": 0.92,
+              "height": 200.92,
+              "hasFill": true,
+              "fill": "rgb(172,168,153)",
+              "stroke": "none",
+              "hasStroke": false,
+              "strokeDasharray": "1,0",
+              "strokeWidth": 0.25
+            },
+            {
+              "x": 49.08,
+              "y": 250,
+              "width": 200.92,
+              "height": 0.92,
+              "hasFill": true,
+              "fill": "rgb(172,168,153)",
+              "stroke": "none",
+              "hasStroke": false,
+              "strokeDasharray": "1,0",
+              "strokeWidth": 0.25
+            },
+            {
+              "x": 250,
+              "y": 50,
+              "width": 0.92,
+              "height": 200.92,
+              "hasFill": true,
+              "fill": "rgb(172,168,153)",
+              "stroke": "none",
+              "hasStroke": false,
+              "strokeDasharray": "1,0",
+              "strokeWidth": 0.25
+            },
+            {
+              "x": 50,
+              "y": 49.08,
+              "width": 200.92,
+              "height": 0.92,
+              "hasFill": true,
+              "fill": "rgb(172,168,153)",
+              "stroke": "none",
+              "hasStroke": false,
+              "strokeDasharray": "1,0",
+              "strokeWidth": 0.25
+            },
+            {
+              "x": 50,
+              "y": 50,
+              "width": 1.38,
+              "height": 200,
+              "hasFill": true,
+              "fill": "rgb(255,255,255)",
+              "stroke": "none",
+              "hasStroke": false,
+              "strokeDasharray": "1,0",
+              "strokeWidth": 0.25
+            },
+            {
+              "x": 50,
+              "y": 50,
+              "width": 200,
+              "height": 1.38,
+              "hasFill": true,
+              "fill": "rgb(255,255,255)",
+              "stroke": "none",
+              "hasStroke": false,
+              "strokeDasharray": "1,0",
+              "strokeWidth": 0.25
+            },
+            {
+              "x": 249.08,
+              "y": 50,
+              "width": 0.92,
+              "height": 200,
+              "hasFill": true,
+              "fill": "rgb(113,111,100)",
+              "stroke": "none",
+              "hasStroke": false,
+              "strokeDasharray": "1,0",
+              "strokeWidth": 0.25
+            },
+            {
+              "x": 50,
+              "y": 249.08,
+              "width": 200,
+              "height": 0.92,
+              "hasFill": true,
+              "fill": "rgb(113,111,100)",
+              "stroke": "none",
+              "hasStroke": false,
+              "strokeDasharray": "1,0",
+              "strokeWidth": 0.25
+            },
+            {
+              "x": 248.16000000000003,
+              "y": 50.92,
+              "width": 0.92,
+              "height": 198.16,
+              "hasFill": true,
+              "fill": "rgb(172,168,153)",
+              "stroke": "none",
+              "hasStroke": false,
+              "strokeDasharray": "1,0",
+              "strokeWidth": 0.25
+            },
+            {
+              "x": 50.92,
+              "y": 248.16000000000003,
+              "width": 198.16,
+              "height": 0.92,
+              "hasFill": true,
+              "fill": "rgb(172,168,153)",
+              "stroke": "none",
+              "hasStroke": false,
+              "strokeDasharray": "1,0",
+              "strokeWidth": 0.25
+            }
+          ],
+          "layerPolygons": [
+            {
+              "points": "240,220 218,212 218,228 240,220",
+              "hasFill": true,
+              "fill": "rgb(255,0,255)",
+              "stroke": "rgb(255,0,255)",
+              "strokeDasharray": "1,0",
+              "strokeWidth": 0.25
+            },
+            {
+              "points": "70,62 62,84 78,84 70,62",
+              "hasFill": true,
+              "fill": "rgb(255,0,255)",
+              "stroke": "rgb(255,0,255)",
+              "strokeDasharray": "1,0",
+              "strokeWidth": 0.25
+            }
+          ],
+          "layerEllipses": [
+            {
+              "cx": 228,
+              "cy": 150,
+              "rx": 7,
+              "ry": 7,
+              "hasFill": true,
+              "fill": "rgb(235,235,235)",
+              "hasPattern": true,
+              "stroke": "rgb(235,235,235)",
+              "strokeDasharray": "1,0",
+              "strokeWidth": 0.25
+            }
+          ],
+          "layerPolylines": [
+            {
+              "points": "60,220 222,220",
+              "fill": "none",
+              "stroke": "rgb(255,0,255)",
+              "strokeDasharray": "1,0",
+              "strokeWidth": 0.25
+            },
+            {
+              "points": "70,84 70,232",
+              "fill": "none",
+              "stroke": "rgb(255,0,255)",
+              "strokeDasharray": "1,0",
+              "strokeWidth": 0.25
+            },
+            {
+              "points": "70,150 214,150",
+              "fill": "none",
+              "stroke": "rgb(0,0,0)",
+              "strokeDasharray": "1,0",
+              "strokeWidth": 0.25
+            }
+          ],
+          "intPolygons": [
+            {
+              "points": "250,160 270,150 250,140",
+              "hasFill": true,
+              "fill": "rgb(255,255,255)",
+              "stroke": "rgb(255,0,255)",
+              "strokeDasharray": "1,0",
+              "strokeWidth": 0.25
+            }
+          ],
+          "hasDots": false,
+          "layerTexts": [
+            {
+              "font": "helvetica",
+              "fontSize": 26,
+              "xStart": 150,
+              "yStart": 20,
+              "textAnchor": "middle",
+              "fill": "rgb(0,0,255)",
+              "moreLines": false,
+              "tSpan": [
+                {
+                  "xSpan": 150,
+                  "dy": 0,
+                  "textString": "%name"
+                }
+              ]
+            },
+            {
+              "font": "helvetica",
+              "fontSize": 19.5,
+              "xStart": 150,
+              "yStart": 275,
+              "textAnchor": "middle",
+              "fill": "rgb(0,0,0)",
+              "moreLines": false,
+              "tSpan": [
+                {
+                  "xSpan": 150,
+                  "dy": 0,
+                  "textString": "%k"
+                }
+              ]
+            }
+          ]
+        },
+        "coordinate": [
+          {
+            "x": 50,
+            "y": 250
+          },
+          {
+            "x": 250,
+            "y": 50
+          }
+        ],
+        "initialScale": 0.1,
+        "preserveAspectRatio": true,
+        "drawing": "<svg version=\"1.1\" baseProfile=\"full\" width=\"300mm\" height=\"290mm\"\n     viewBox=\"0 0 300 290\" xmlns=\"http://www.w3.org/2000/svg\">\n\n<rect x=\"50\" y=\"50\" width=\"200\" height=\"200\"  fill=\"rgb(210,210,210)\" stroke=\"rgb(0,0,0)\"  stroke-dasharray=\"1,0\" stroke-width=\"0.25\"  />\n<rect x=\"49.08\" y=\"49.08\" width=\"0.92\" height=\"200.92\"  fill=\"rgb(172,168,153)\" stroke=\"none\"  />\n<rect x=\"49.08\" y=\"250\" width=\"200.92\" height=\"0.92\"  fill=\"rgb(172,168,153)\" stroke=\"none\"  />\n<rect x=\"250\" y=\"50\" width=\"0.92\" height=\"200.92\"  fill=\"rgb(172,168,153)\" stroke=\"none\"  />\n<rect x=\"50\" y=\"49.08\" width=\"200.92\" height=\"0.92\"  fill=\"rgb(172,168,153)\" stroke=\"none\"  />\n<rect x=\"50\" y=\"50\" width=\"1.38\" height=\"200\"  fill=\"rgb(255,255,255)\" stroke=\"none\"  />\n<rect x=\"50\" y=\"50\" width=\"200\" height=\"1.38\"  fill=\"rgb(255,255,255)\" stroke=\"none\"  />\n<rect x=\"249.08\" y=\"50\" width=\"0.92\" height=\"200\"  fill=\"rgb(113,111,100)\" stroke=\"none\"  />\n<rect x=\"50\" y=\"249.08\" width=\"200\" height=\"0.92\"  fill=\"rgb(113,111,100)\" stroke=\"none\"  />\n<rect x=\"248.16000000000003\" y=\"50.92\" width=\"0.92\" height=\"198.16\"  fill=\"rgb(172,168,153)\" stroke=\"none\"  />\n<rect x=\"50.92\" y=\"248.16000000000003\" width=\"198.16\" height=\"0.92\"  fill=\"rgb(172,168,153)\" stroke=\"none\"  />\n\n<polygon points=\"240,220 218,212 218,228 240,220\"  fill=\"rgb(255,0,255)\" stroke=\"rgb(255,0,255)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polygon points=\"70,62 62,84 78,84 70,62\"  fill=\"rgb(255,0,255)\" stroke=\"rgb(255,0,255)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n\n<ellipse cx=\"228\" cy=\"150\" rx=\"7\" ry=\"7\"  fill=\"rgb(235,235,235)\"  stroke=\"rgb(235,235,235)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\"  />\n\n<polyline fill=\"none\" points=\"60,220 222,220\" stroke=\"rgb(255,0,255)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polyline fill=\"none\" points=\"70,84 70,232\" stroke=\"rgb(255,0,255)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polyline fill=\"none\" points=\"70,150 214,150\" stroke=\"rgb(0,0,0)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n\n<text font-family=\"helvetica\" font-size=\"26\" x=\"150\" y=\"20\" fill=\"rgb(0,0,255)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"150\" >%name</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"19.5\" x=\"150\" y=\"275\" fill=\"rgb(0,0,0)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"150\" >%k</tspan>\n</text>\n\n\n\n<polygon points=\"250,160 270,150 250,140\"  fill=\"rgb(255,255,255)\" stroke=\"rgb(255,0,255)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n\n\n\n\n\n\n</svg>"
       }
     }
   },
@@ -10101,635 +9725,6 @@
         "initialScale": 0.1,
         "preserveAspectRatio": true,
         "drawing": "<svg version=\"1.1\" baseProfile=\"full\" width=\"376mm\" height=\"250mm\"\n     viewBox=\"0 0 376 250\" xmlns=\"http://www.w3.org/2000/svg\">\n\n<rect x=\"50\" y=\"50\" width=\"200\" height=\"200\"  fill=\"rgb(255,255,255)\" stroke=\"rgb(0,0,127)\"  stroke-dasharray=\"1,0\" stroke-width=\"0.25\"  />\n\n\n<ellipse cx=\"150\" cy=\"150\" rx=\"50\" ry=\"50\"  fill=\"rgb(255,255,255)\"  stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\"  />\n\n<polyline fill=\"none\" points=\"50,90 76,126 106,126\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polyline fill=\"none\" points=\"50,210 76,178 108,178\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polyline fill=\"none\" points=\"200,150 250,150\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n\n<text font-family=\"helvetica\" font-size=\"26\" x=\"150\" y=\"20\" fill=\"rgb(0,0,255)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"150\" >%name</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"44.2\" x=\"148\" y=\"138\" fill=\"rgb(0,0,0)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"148\" >+</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"26\" x=\"102.5\" y=\"78\" fill=\"rgb(0,0,0)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"102.5\" >%k1</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"26\" x=\"102.5\" y=\"222\" fill=\"rgb(0,0,0)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"102.5\" >%k2</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"32.5\" x=\"316\" y=\"115\" fill=\"rgb(0,0,0)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"316\" ></tspan>\n</text>\n\n\n\n<polygon points=\"30,100 50,90 30,80\"  fill=\"rgb(0,0,127)\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polygon points=\"30,220 50,210 30,200\"  fill=\"rgb(0,0,127)\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polygon points=\"250,160 270,150 250,140\"  fill=\"rgb(255,255,255)\" stroke=\"rgb(0,0,127)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n\n\n\n\n\n\n</svg>"
-      }
-    }
-  },
-  {
-    "modelicaFile": "Buildings/Controls/OBC/CDL/Logical/Sources/Constant.mo",
-    "within": "Buildings.Controls.OBC.CDL.Logical.Sources",
-    "topClassName": "Buildings.Controls.OBC.CDL.Logical.Sources.Constant",
-    "comment": "Output constant signal of type Boolean",
-    "defaultName": "\"con\"",
-    "public": {
-      "parameters": [
-        {
-          "className": "Boolean",
-          "name": "k",
-          "comment": "Constant output value",
-          "annotation": {
-            "dialog": {
-              "tab": "General",
-              "group": "Parameters"
-            }
-          }
-        }
-      ],
-      "outputs": [
-        {
-          "className": "Buildings.Controls.OBC.CDL.Interfaces.BooleanOutput",
-          "name": "y",
-          "comment": "Connector of Boolean output signal",
-          "placement": {
-            "transformation": {
-              "extent": [
-                {
-                  "x": 100,
-                  "y": -20
-                },
-                {
-                  "x": 140,
-                  "y": 20
-                }
-              ]
-            }
-          }
-        }
-      ]
-    },
-    "info": "<html>\n<p>\nBlock that outputs a constant signal <code>y = k</code>,\nwhere <code>k</code> is a Boolean-valued parameter.\n</p>\n\n<p align=\"center\">\n<img src=\"Buildings/Resources/Images/Controls/OBC/CDL/Logical/Constant.png\"\n     alt=\"Constant.png\" />\n</p>\n</html>",
-    "icon": {
-      "coordinateSystem": {
-        "extent": [
-          {
-            "x": -100,
-            "y": -100
-          },
-          {
-            "x": 100,
-            "y": 100
-          }
-        ],
-        "preserveAspectRatio": true,
-        "initialScale": 0.1
-      },
-      "graphics": {
-        "line": [
-          {
-            "points": [
-              {
-                "x": -90,
-                "y": -70
-              },
-              {
-                "x": 72,
-                "y": -70
-              }
-            ],
-            "color": {
-              "r": 255,
-              "g": 0,
-              "b": 255
-            },
-            "visible": true,
-            "origin": {
-              "x": 0,
-              "y": 0
-            },
-            "rotation": 0,
-            "pattern": "LinePattern.Solid",
-            "thickness": 0.25
-          },
-          {
-            "points": [
-              {
-                "x": -80,
-                "y": 66
-              },
-              {
-                "x": -80,
-                "y": -82
-              }
-            ],
-            "color": {
-              "r": 255,
-              "g": 0,
-              "b": 255
-            },
-            "visible": true,
-            "origin": {
-              "x": 0,
-              "y": 0
-            },
-            "rotation": 0,
-            "pattern": "LinePattern.Solid",
-            "thickness": 0.25
-          },
-          {
-            "points": [
-              {
-                "x": -80,
-                "y": 0
-              },
-              {
-                "x": 64,
-                "y": 0
-              }
-            ],
-            "visible": true,
-            "origin": {
-              "x": 0,
-              "y": 0
-            },
-            "rotation": 0,
-            "color": {
-              "r": 0,
-              "g": 0,
-              "b": 0
-            },
-            "pattern": "LinePattern.Solid",
-            "thickness": 0.25
-          }
-        ],
-        "polygon": [
-          {
-            "lineColor": {
-              "r": 255,
-              "g": 0,
-              "b": 255
-            },
-            "fillColor": {
-              "r": 255,
-              "g": 0,
-              "b": 255
-            },
-            "fillPattern": "FillPattern.Solid",
-            "points": [
-              {
-                "x": 90,
-                "y": -70
-              },
-              {
-                "x": 68,
-                "y": -62
-              },
-              {
-                "x": 68,
-                "y": -78
-              },
-              {
-                "x": 90,
-                "y": -70
-              }
-            ],
-            "visible": true,
-            "origin": {
-              "x": 0,
-              "y": 0
-            },
-            "rotation": 0,
-            "pattern": "LinePattern.Solid",
-            "lineThickness": 0.25
-          },
-          {
-            "lineColor": {
-              "r": 255,
-              "g": 0,
-              "b": 255
-            },
-            "fillColor": {
-              "r": 255,
-              "g": 0,
-              "b": 255
-            },
-            "fillPattern": "FillPattern.Solid",
-            "points": [
-              {
-                "x": -80,
-                "y": 88
-              },
-              {
-                "x": -88,
-                "y": 66
-              },
-              {
-                "x": -72,
-                "y": 66
-              },
-              {
-                "x": -80,
-                "y": 88
-              }
-            ],
-            "visible": true,
-            "origin": {
-              "x": 0,
-              "y": 0
-            },
-            "rotation": 0,
-            "pattern": "LinePattern.Solid",
-            "lineThickness": 0.25
-          }
-        ],
-        "rectangle": [
-          {
-            "fillColor": {
-              "r": 210,
-              "g": 210,
-              "b": 210
-            },
-            "fillPattern": "FillPattern.Solid",
-            "lineThickness": 5,
-            "borderPattern": "BorderPattern.Raised",
-            "extent": [
-              {
-                "x": -100,
-                "y": 100
-              },
-              {
-                "x": 100,
-                "y": -100
-              }
-            ],
-            "visible": true,
-            "origin": {
-              "x": 0,
-              "y": 0
-            },
-            "rotation": 0,
-            "lineColor": {
-              "r": 0,
-              "g": 0,
-              "b": 0
-            },
-            "pattern": "LinePattern.Solid"
-          }
-        ],
-        "ellipse": [
-          {
-            "dynLineColor": {
-              "color": {
-                "r": 235,
-                "g": 235,
-                "b": 235
-              },
-              "dynColor": "if y then {0,255,0}\n               else {235,235,235}"
-            },
-            "dynFillColor": {
-              "color": {
-                "r": 235,
-                "g": 235,
-                "b": 235
-              },
-              "dynColor": "if y then {0,255,0}\n               else {235,235,235}"
-            },
-            "fillPattern": "FillPattern.Solid",
-            "extent": [
-              {
-                "x": 71,
-                "y": 7
-              },
-              {
-                "x": 85,
-                "y": -7
-              }
-            ],
-            "visible": true,
-            "origin": {
-              "x": 0,
-              "y": 0
-            },
-            "rotation": 0,
-            "pattern": "LinePattern.Solid",
-            "lineThickness": 0.25,
-            "startAngle": 0,
-            "endAngle": 360
-          }
-        ],
-        "text": [
-          {
-            "lineColor": {
-              "r": 0,
-              "g": 0,
-              "b": 255
-            },
-            "extent": [
-              {
-                "x": -150,
-                "y": 150
-              },
-              {
-                "x": 150,
-                "y": 110
-              }
-            ],
-            "textString": "\"%name\"",
-            "visible": true,
-            "origin": {
-              "x": 0,
-              "y": 0
-            },
-            "rotation": 0,
-            "fillColor": {
-              "r": 0,
-              "g": 0,
-              "b": 0
-            },
-            "pattern": "LinePattern.Solid",
-            "lineThickness": 0.25,
-            "fontSize": 0,
-            "fontName": "Arial",
-            "textColor": {
-              "r": 0,
-              "g": 0,
-              "b": 255
-            },
-            "horizontalAlignment": "TextAlignment.Center"
-          },
-          {
-            "lineColor": {
-              "r": 0,
-              "g": 0,
-              "b": 0
-            },
-            "extent": [
-              {
-                "x": -150,
-                "y": -140
-              },
-              {
-                "x": 150,
-                "y": -110
-              }
-            ],
-            "textString": "\"%k\"",
-            "visible": true,
-            "origin": {
-              "x": 0,
-              "y": 0
-            },
-            "rotation": 0,
-            "fillColor": {
-              "r": 0,
-              "g": 0,
-              "b": 0
-            },
-            "pattern": "LinePattern.Solid",
-            "lineThickness": 0.25,
-            "fontSize": 0,
-            "fontName": "Arial",
-            "textColor": {
-              "r": 0,
-              "g": 0,
-              "b": 0
-            },
-            "horizontalAlignment": "TextAlignment.Center"
-          }
-        ]
-      }
-    },
-    "svg": {
-      "icon": {
-        "items": {
-          "width": 300,
-          "height": 290,
-          "layerRectangles": [
-            {
-              "x": 50,
-              "y": 50,
-              "width": 200,
-              "height": 200,
-              "hasFill": true,
-              "fill": "rgb(210,210,210)",
-              "stroke": "rgb(0,0,0)",
-              "hasStroke": true,
-              "strokeDasharray": "1,0",
-              "strokeWidth": 0.25
-            },
-            {
-              "x": 49.08,
-              "y": 49.08,
-              "width": 0.92,
-              "height": 200.92,
-              "hasFill": true,
-              "fill": "rgb(172,168,153)",
-              "stroke": "none",
-              "hasStroke": false,
-              "strokeDasharray": "1,0",
-              "strokeWidth": 0.25
-            },
-            {
-              "x": 49.08,
-              "y": 250,
-              "width": 200.92,
-              "height": 0.92,
-              "hasFill": true,
-              "fill": "rgb(172,168,153)",
-              "stroke": "none",
-              "hasStroke": false,
-              "strokeDasharray": "1,0",
-              "strokeWidth": 0.25
-            },
-            {
-              "x": 250,
-              "y": 50,
-              "width": 0.92,
-              "height": 200.92,
-              "hasFill": true,
-              "fill": "rgb(172,168,153)",
-              "stroke": "none",
-              "hasStroke": false,
-              "strokeDasharray": "1,0",
-              "strokeWidth": 0.25
-            },
-            {
-              "x": 50,
-              "y": 49.08,
-              "width": 200.92,
-              "height": 0.92,
-              "hasFill": true,
-              "fill": "rgb(172,168,153)",
-              "stroke": "none",
-              "hasStroke": false,
-              "strokeDasharray": "1,0",
-              "strokeWidth": 0.25
-            },
-            {
-              "x": 50,
-              "y": 50,
-              "width": 1.38,
-              "height": 200,
-              "hasFill": true,
-              "fill": "rgb(255,255,255)",
-              "stroke": "none",
-              "hasStroke": false,
-              "strokeDasharray": "1,0",
-              "strokeWidth": 0.25
-            },
-            {
-              "x": 50,
-              "y": 50,
-              "width": 200,
-              "height": 1.38,
-              "hasFill": true,
-              "fill": "rgb(255,255,255)",
-              "stroke": "none",
-              "hasStroke": false,
-              "strokeDasharray": "1,0",
-              "strokeWidth": 0.25
-            },
-            {
-              "x": 249.08,
-              "y": 50,
-              "width": 0.92,
-              "height": 200,
-              "hasFill": true,
-              "fill": "rgb(113,111,100)",
-              "stroke": "none",
-              "hasStroke": false,
-              "strokeDasharray": "1,0",
-              "strokeWidth": 0.25
-            },
-            {
-              "x": 50,
-              "y": 249.08,
-              "width": 200,
-              "height": 0.92,
-              "hasFill": true,
-              "fill": "rgb(113,111,100)",
-              "stroke": "none",
-              "hasStroke": false,
-              "strokeDasharray": "1,0",
-              "strokeWidth": 0.25
-            },
-            {
-              "x": 248.16000000000003,
-              "y": 50.92,
-              "width": 0.92,
-              "height": 198.16,
-              "hasFill": true,
-              "fill": "rgb(172,168,153)",
-              "stroke": "none",
-              "hasStroke": false,
-              "strokeDasharray": "1,0",
-              "strokeWidth": 0.25
-            },
-            {
-              "x": 50.92,
-              "y": 248.16000000000003,
-              "width": 198.16,
-              "height": 0.92,
-              "hasFill": true,
-              "fill": "rgb(172,168,153)",
-              "stroke": "none",
-              "hasStroke": false,
-              "strokeDasharray": "1,0",
-              "strokeWidth": 0.25
-            }
-          ],
-          "layerPolygons": [
-            {
-              "points": "240,220 218,212 218,228 240,220",
-              "hasFill": true,
-              "fill": "rgb(255,0,255)",
-              "stroke": "rgb(255,0,255)",
-              "strokeDasharray": "1,0",
-              "strokeWidth": 0.25
-            },
-            {
-              "points": "70,62 62,84 78,84 70,62",
-              "hasFill": true,
-              "fill": "rgb(255,0,255)",
-              "stroke": "rgb(255,0,255)",
-              "strokeDasharray": "1,0",
-              "strokeWidth": 0.25
-            }
-          ],
-          "layerEllipses": [
-            {
-              "cx": 228,
-              "cy": 150,
-              "rx": 7,
-              "ry": 7,
-              "hasFill": true,
-              "fill": "rgb(235,235,235)",
-              "hasPattern": true,
-              "stroke": "rgb(235,235,235)",
-              "strokeDasharray": "1,0",
-              "strokeWidth": 0.25
-            }
-          ],
-          "layerPolylines": [
-            {
-              "points": "60,220 222,220",
-              "fill": "none",
-              "stroke": "rgb(255,0,255)",
-              "strokeDasharray": "1,0",
-              "strokeWidth": 0.25
-            },
-            {
-              "points": "70,84 70,232",
-              "fill": "none",
-              "stroke": "rgb(255,0,255)",
-              "strokeDasharray": "1,0",
-              "strokeWidth": 0.25
-            },
-            {
-              "points": "70,150 214,150",
-              "fill": "none",
-              "stroke": "rgb(0,0,0)",
-              "strokeDasharray": "1,0",
-              "strokeWidth": 0.25
-            }
-          ],
-          "intPolygons": [
-            {
-              "points": "250,160 270,150 250,140",
-              "hasFill": true,
-              "fill": "rgb(255,255,255)",
-              "stroke": "rgb(255,0,255)",
-              "strokeDasharray": "1,0",
-              "strokeWidth": 0.25
-            }
-          ],
-          "hasDots": false,
-          "layerTexts": [
-            {
-              "font": "helvetica",
-              "fontSize": 26,
-              "xStart": 150,
-              "yStart": 20,
-              "textAnchor": "middle",
-              "fill": "rgb(0,0,255)",
-              "moreLines": false,
-              "tSpan": [
-                {
-                  "xSpan": 150,
-                  "dy": 0,
-                  "textString": "%name"
-                }
-              ]
-            },
-            {
-              "font": "helvetica",
-              "fontSize": 19.5,
-              "xStart": 150,
-              "yStart": 275,
-              "textAnchor": "middle",
-              "fill": "rgb(0,0,0)",
-              "moreLines": false,
-              "tSpan": [
-                {
-                  "xSpan": 150,
-                  "dy": 0,
-                  "textString": "%k"
-                }
-              ]
-            }
-          ]
-        },
-        "coordinate": [
-          {
-            "x": 50,
-            "y": 250
-          },
-          {
-            "x": 250,
-            "y": 50
-          }
-        ],
-        "initialScale": 0.1,
-        "preserveAspectRatio": true,
-        "drawing": "<svg version=\"1.1\" baseProfile=\"full\" width=\"300mm\" height=\"290mm\"\n     viewBox=\"0 0 300 290\" xmlns=\"http://www.w3.org/2000/svg\">\n\n<rect x=\"50\" y=\"50\" width=\"200\" height=\"200\"  fill=\"rgb(210,210,210)\" stroke=\"rgb(0,0,0)\"  stroke-dasharray=\"1,0\" stroke-width=\"0.25\"  />\n<rect x=\"49.08\" y=\"49.08\" width=\"0.92\" height=\"200.92\"  fill=\"rgb(172,168,153)\" stroke=\"none\"  />\n<rect x=\"49.08\" y=\"250\" width=\"200.92\" height=\"0.92\"  fill=\"rgb(172,168,153)\" stroke=\"none\"  />\n<rect x=\"250\" y=\"50\" width=\"0.92\" height=\"200.92\"  fill=\"rgb(172,168,153)\" stroke=\"none\"  />\n<rect x=\"50\" y=\"49.08\" width=\"200.92\" height=\"0.92\"  fill=\"rgb(172,168,153)\" stroke=\"none\"  />\n<rect x=\"50\" y=\"50\" width=\"1.38\" height=\"200\"  fill=\"rgb(255,255,255)\" stroke=\"none\"  />\n<rect x=\"50\" y=\"50\" width=\"200\" height=\"1.38\"  fill=\"rgb(255,255,255)\" stroke=\"none\"  />\n<rect x=\"249.08\" y=\"50\" width=\"0.92\" height=\"200\"  fill=\"rgb(113,111,100)\" stroke=\"none\"  />\n<rect x=\"50\" y=\"249.08\" width=\"200\" height=\"0.92\"  fill=\"rgb(113,111,100)\" stroke=\"none\"  />\n<rect x=\"248.16000000000003\" y=\"50.92\" width=\"0.92\" height=\"198.16\"  fill=\"rgb(172,168,153)\" stroke=\"none\"  />\n<rect x=\"50.92\" y=\"248.16000000000003\" width=\"198.16\" height=\"0.92\"  fill=\"rgb(172,168,153)\" stroke=\"none\"  />\n\n<polygon points=\"240,220 218,212 218,228 240,220\"  fill=\"rgb(255,0,255)\" stroke=\"rgb(255,0,255)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polygon points=\"70,62 62,84 78,84 70,62\"  fill=\"rgb(255,0,255)\" stroke=\"rgb(255,0,255)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n\n<ellipse cx=\"228\" cy=\"150\" rx=\"7\" ry=\"7\"  fill=\"rgb(235,235,235)\"  stroke=\"rgb(235,235,235)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\"  />\n\n<polyline fill=\"none\" points=\"60,220 222,220\" stroke=\"rgb(255,0,255)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polyline fill=\"none\" points=\"70,84 70,232\" stroke=\"rgb(255,0,255)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n<polyline fill=\"none\" points=\"70,150 214,150\" stroke=\"rgb(0,0,0)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n\n<text font-family=\"helvetica\" font-size=\"26\" x=\"150\" y=\"20\" fill=\"rgb(0,0,255)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"150\" >%name</tspan>\n</text>\n<text font-family=\"helvetica\" font-size=\"19.5\" x=\"150\" y=\"275\" fill=\"rgb(0,0,0)\" text-anchor=\"middle\" dominant-baseline=\"central\" alignment-baseline=\"middle\">\n<tspan x=\"150\" >%k</tspan>\n</text>\n\n\n\n<polygon points=\"250,160 270,150 250,140\"  fill=\"rgb(255,255,255)\" stroke=\"rgb(255,0,255)\" stroke-dasharray=\"1,0\" stroke-width=\"0.25\" />\n\n\n\n\n\n\n</svg>"
       }
     }
   },
