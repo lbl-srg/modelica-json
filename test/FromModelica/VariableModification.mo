@@ -7,7 +7,7 @@ block VariableModification "Block with instantiated class that the connector att
       iconTransformation(extent={{-140,-40},{-100,0}})));
 
   Buildings.Controls.OBC.CDL.Interfaces.RealInput TOut(
-    unit="K",
+    final unit="K",
     quantity="ThermodynamicTemperature")
     "Temperature input"
     annotation (Placement(transformation(extent={{-140,20},{-100,60}}),
