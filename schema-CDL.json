@@ -894,6 +894,44 @@
               }
             }
           },
+          "variable_modification": {
+            "type": "array",
+            "additionalItems": false,
+            "items": {
+              "type": "object",
+              "required": [
+                "name",
+                "modifications"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "name": {
+                  "description": "Name of the variable: no special characters or spaces",
+                  "type": "string",
+                  "pattern": "^([a-zA-Z0-9._*]*)$"
+                },
+                "modifications": {
+                  "type": "array",
+                  "additionalItems": false,
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "prefix": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
           "modifications": {
             "oneOf": [
               {
