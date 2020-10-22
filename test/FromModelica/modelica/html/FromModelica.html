@@ -2222,9 +2222,15 @@ This is the info section.
     <td></td>
     <td>Some comment</td>
     </tr>
+<<<<<<< HEAD
     </table><h2>FromModelica.TestEvaluation_1<a name="FromModelica.TestEvaluation_1"></a></h2>
 
   <span class="ModelicaDescription">Example for real parameter evaluation</span><br>
+=======
+    </table><h2>FromModelica.RemovableInputs<a name="FromModelica.RemovableInputs"></a></h2>
+
+  <span class="ModelicaDescription">A block with a flag for disabling instances</span><br>
+>>>>>>> issue144_avoidCDLLoop
 
 
 
@@ -2249,6 +2255,7 @@ This is the info section.
     <tr>
     <td class="type, text"><span></span></td>
     <td></td>
+<<<<<<< HEAD
     <td><code>k1</code><a name="FromModelica.TestEvaluation_1.k1"></a></td>
     <td>1.0</td>
     <td></td>
@@ -2260,6 +2267,163 @@ This is the info section.
     </table>
 
 
+=======
+    <td><code>enaBlo</code><a name="FromModelica.RemovableInputs.enaBlo"></a></td>
+    <td>true</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>Flag for enabling instance</td>
+    </tr>
+    <tr>
+    <td class="type, text"><span></span></td>
+    <td></td>
+    <td><code>have_winSen</code><a name="FromModelica.RemovableInputs.have_winSen"></a></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>True: there is window status sensor</td>
+    </tr>
+    <tr>
+    <td class="type, text"><span></span></td>
+    <td></td>
+    <td><code>have_occSen</code><a name="FromModelica.RemovableInputs.have_occSen"></a></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>True: there is occupancy sensor</td>
+    </tr>
+    </table>
+
+<h3>Inputs</h3>
+    <p>
+    It has the following inputs:
+    </p>
+    <table>
+    <tr>
+      <th class="type">Type        </th>
+      <th>Quantity  </th>
+      <th>Name    </th>
+      <th class="description">Description</th>
+      <th>min    </th>
+      <th>max    </th>
+      <th>Unit     </th>
+      <th>Display unit     </th>
+      <th>Enable    </th>
+      </tr>
+    <tr>
+      <td>
+      <code>
+      Real
+      </code>
+      </td>
+      <td></td>
+      <td><code>u</code><a name="FromModelica.RemovableInputs.u"></a></td>
+      <td>Input connector</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>enaBlo</td>
+      </tr>
+    <tr>
+      <td>
+      <code>
+      Real
+      </code>
+      </td>
+      <td>ThermodynamicTemperature</td>
+      <td><code>TOut</code><a name="FromModelica.RemovableInputs.TOut"></a></td>
+      <td>Temperature input</td>
+      <td></td>
+      <td></td>
+      <td>K</td>
+      <td>F</td>
+      <td>enaBlo</td>
+      </tr>
+    <tr>
+      <td>
+      <code>
+      Real
+      </code>
+      </td>
+      <td>ThermodynamicTemperature</td>
+      <td><code>TOutWitDef</code><a name="FromModelica.RemovableInputs.TOutWitDef"></a></td>
+      <td>Temperature input with specified default value</td>
+      <td></td>
+      <td></td>
+      <td>K</td>
+      <td>F</td>
+      <td>enaBlo</td>
+      </tr>
+    <tr>
+      <td>
+      <code>
+      Boolean
+      </code>
+      </td>
+      <td></td>
+      <td><code>uWin</code><a name="FromModelica.RemovableInputs.uWin"></a></td>
+      <td>Window opening status</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>have_winSen</td>
+      </tr>
+    <tr>
+      <td>
+      <code>
+      Integer
+      </code>
+      </td>
+      <td></td>
+      <td><code>nOcc</code><a name="FromModelica.RemovableInputs.nOcc"></a></td>
+      <td>Occupancy</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>have_occSen</td>
+      </tr>
+    </table>
+
+<h3>Outputs</h3>
+    <p>
+    It has the following outputs:
+    </p>
+    <table>
+    <tr>
+      <th class="type">Type        </th>
+      <th>Quantity  </th>
+      <th>Name    </th>
+      <th class="description">Description</th>
+      <th>min    </th>
+      <th>max    </th>
+      <th>Unit     </th>
+      <th>Display unit     </th>
+      </tr>
+    <tr>
+      <td>
+      <code>
+      Real
+      </code>
+      </td>
+      <td></td>
+      <td><code>y</code><a name="FromModelica.RemovableInputs.y"></a></td>
+      <td>Output connector</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+    </table>
+>>>>>>> issue144_avoidCDLLoop
 
 <h3>Blocks</h3>
     <p>
@@ -2270,16 +2434,25 @@ This is the info section.
       <th class="type">Type</th>
       <th>Name</th>
       <th class="description">Description</th>
+<<<<<<< HEAD
+=======
+      <th>Enable    </th>
+>>>>>>> issue144_avoidCDLLoop
       <th>Parameter Assignments</th>
     </tr>
     <tr>
       <td class="type, text"><span>
       <code>
+<<<<<<< HEAD
       <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous_Sources.html#Buildings.Controls.OBC.CDL.Continuous.Sources.Constant">Buildings.Controls.OBC.CDL.Continuous.Sources.Constant</a>
+=======
+      <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Abs">Buildings.Controls.OBC.CDL.Continuous.Abs</a>
+>>>>>>> issue144_avoidCDLLoop
       </code>
       </span></td>
       <td>
       <code>
+<<<<<<< HEAD
       con
       </code>
       <a name="FromModelica.TestEvaluation_1.con"></a></td>
@@ -2341,6 +2514,22 @@ This is the info section.
     <td>if y&#x3D;false and u&gt;uHigh, switch to y&#x3D;true</td>
     </tr>
     </table>
+=======
+      abs
+      </code>
+      <a name="FromModelica.RemovableInputs.abs"></a></td>
+      <td>Instance could be conditional disabled</td>
+      <td>not enaBlo</td>
+      <td class="text"><span>
+      </span></td>
+      </tr>
+    </table><h2>FromModelica.WithCDLElementary<a name="FromModelica.WithCDLElementary"></a></h2>
+
+  <span class="ModelicaDescription">Block that instantiates CDL elementary block that there is inside class</span><br>
+
+
+
+>>>>>>> issue144_avoidCDLLoop
 
 <h3>Inputs</h3>
     <p>
@@ -2364,8 +2553,13 @@ This is the info section.
       </code>
       </td>
       <td></td>
+<<<<<<< HEAD
       <td><code>u</code><a name="FromModelica.TestEvaluation_2.u"></a></td>
       <td>Real input signal</td>
+=======
+      <td><code>u</code><a name="FromModelica.WithCDLElementary.u"></a></td>
+      <td>Real input</td>
+>>>>>>> issue144_avoidCDLLoop
       <td></td>
       <td></td>
       <td></td>
@@ -2391,12 +2585,21 @@ This is the info section.
     <tr>
       <td>
       <code>
+<<<<<<< HEAD
       Boolean
       </code>
       </td>
       <td></td>
       <td><code>y</code><a name="FromModelica.TestEvaluation_2.y"></a></td>
       <td>Boolean output signal</td>
+=======
+      Real
+      </code>
+      </td>
+      <td></td>
+      <td><code>y</code><a name="FromModelica.WithCDLElementary.y"></a></td>
+      <td>Real output</td>
+>>>>>>> issue144_avoidCDLLoop
       <td></td>
       <td></td>
       <td></td>
@@ -2418,11 +2621,16 @@ This is the info section.
     <tr>
       <td class="type, text"><span>
       <code>
+<<<<<<< HEAD
       <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Hysteresis">Buildings.Controls.OBC.CDL.Continuous.Hysteresis</a>
+=======
+      <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Greater">Buildings.Controls.OBC.CDL.Continuous.Greater</a>
+>>>>>>> issue144_avoidCDLLoop
       </code>
       </span></td>
       <td>
       <code>
+<<<<<<< HEAD
       hys
       </code>
       <a name="FromModelica.TestEvaluation_2.hys"></a></td>
@@ -2509,6 +2717,15 @@ This is the info section.
     <td></td>
     <td>Example for boolean parameter evaluation</td>
     </tr>
+=======
+      gre
+      </code>
+      <a name="FromModelica.WithCDLElementary.gre"></a></td>
+      <td>CDL elementary block with inside class</td>
+      <td class="text"><span>
+      </span></td>
+      </tr>
+>>>>>>> issue144_avoidCDLLoop
     </table>
 
 
