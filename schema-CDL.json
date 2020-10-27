@@ -797,8 +797,14 @@
           "min": {
             "$ref": "#/definitions/value"
           },
-          "prefix": {
-            "type": "string"
+          "fixed": {
+            "$ref": "#/definitions/value"
+          },
+          "nominal": {
+            "$ref": "#/definitions/value"
+          },
+          "stateSelect": {
+            "$ref": "#/definitions/value"
           },
           "className": {
             "description": "Name of the class: no special characters or spaces",
@@ -892,6 +898,44 @@
                   "file": {
                     "type": "string",
                     "pattern": "^([a-zA-Z0-9._ \"\\:/]*)$"
+                  }
+                }
+              }
+            }
+          },
+          "variable_modification": {
+            "type": "array",
+            "additionalItems": false,
+            "items": {
+              "type": "object",
+              "required": [
+                "name",
+                "modifications"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "name": {
+                  "description": "Name of the variable: no special characters or spaces",
+                  "type": "string",
+                  "pattern": "^([a-zA-Z0-9._*]*)$"
+                },
+                "modifications": {
+                  "type": "array",
+                  "additionalItems": false,
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "prefix": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      }
+                    }
                   }
                 }
               }
@@ -1124,23 +1168,68 @@
       },
       "value_propagation": {
         "description": "Info of parameters propagation",
-        "type": "array",
-        "additionalItems": false,
-        "items": {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "name": {
-              "description": "Name of the block: no special characters or spaces",
-              "type": "string",
-              "pattern": "^([a-zA-Z0-9._*]*)$"
-            },
-            "value": {
-              "description": "value of the block, if applicable",
-              "type": "string"
-            },
-            "type": {
-              "type": "string"
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "Real": {
+            "description": "Info of real parameters",
+            "type": "array",
+            "additionalItems": false,
+            "items": {
+              "type": "object",
+              "additionalProperties": true,
+              "properties": {
+                "name": {
+                  "description": "Name of the real parameter",
+                  "type": "string"
+                },
+                "value": {
+                  "description": "value of the parameter",
+                  "type": "number"
+                }
+              }
+            }
+          },
+          "Enumeration": {
+            "description": "Info of boolean parameters",
+            "type": "array",
+            "additionalItems": false,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "name": {
+                  "description": "Name of the enumeration parameter",
+                  "type": "string"
+                },
+                "type": {
+                  "description": "Type of the enumeration parameter",
+                  "type": "string"
+                },
+                "value": {
+                  "description": "value of the parameter",
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "Boolean": {
+            "description": "Info of boolean parameters",
+            "type": "array",
+            "additionalItems": false,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "name": {
+                  "description": "Name of the boolean parameter",
+                  "type": "string"
+                },
+                "value": {
+                  "description": "value of the parameter",
+                  "type": "string"
+                }
+              }
             }
           }
         }
