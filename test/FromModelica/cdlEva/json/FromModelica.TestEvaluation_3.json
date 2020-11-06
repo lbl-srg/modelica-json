@@ -93,18 +93,18 @@
         "initialScale": 0.1
       }
     },
-    "value_propagation": [
-      {
-        "name": "con.instantiate",
-        "value": "false",
-        "type": "Boolean"
-      },
-      {
-        "name": "con1.k",
-        "value": "true",
-        "type": "Boolean"
-      }
-    ],
+    "value_propagation": {
+      "Boolean": [
+        {
+          "name": "con.instantiate",
+          "value": "false"
+        },
+        {
+          "name": "con1.k",
+          "value": "true"
+        }
+      ]
+    },
     "svg": {
       "icon": {
         "items": {
@@ -1223,7 +1223,7 @@
     "modelicaFile": "Buildings/Controls/OBC/CDL/Interfaces/BooleanOutput.mo",
     "within": "Buildings.Controls.OBC.CDL.Interfaces",
     "topClassName": "Buildings.Controls.OBC.CDL.Interfaces.BooleanOutput",
-    "comment": "\"'output Boolean' as connector\"",
+    "comment": "'output Boolean' as connector",
     "public": {
       "models": [
         {

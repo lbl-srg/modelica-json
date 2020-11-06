@@ -66,13 +66,14 @@
         "initialScale": 0.1
       }
     },
-    "value_propagation": [
-      {
-        "name": "con.k",
-        "value": "1",
-        "type": "Real"
-      }
-    ],
+    "value_propagation": {
+      "Real": [
+        {
+          "name": "con.k",
+          "value": 1
+        }
+      ]
+    },
     "svg": {
       "icon": {
         "items": {
@@ -735,7 +736,7 @@
     "modelicaFile": "Buildings/Controls/OBC/CDL/Interfaces/RealOutput.mo",
     "within": "Buildings.Controls.OBC.CDL.Interfaces",
     "topClassName": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
-    "comment": "\"'output Real' as connector\"",
+    "comment": "'output Real' as connector",
     "public": {
       "models": [
         {

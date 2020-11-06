@@ -1186,12 +1186,82 @@
                 "value": {
                   "description": "value of the parameter",
                   "type": "number"
+                },
+                "min": {
+                  "description": "min value of the parameter",
+                  "type": "number"
+                },
+                "max": {
+                  "description": "max value of the parameter",
+                  "type": "number"
+                },
+                "unit": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "value": {
+                      "type": "string"
+                    },
+                    "isFinal": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "displayUnit": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "value": {
+                      "type": "string"
+                    },
+                    "isFinal": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "quantity": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "value": {
+                      "type": "string"
+                    },
+                    "isFinal": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Integer": {
+            "description": "Info of integer parameters",
+            "type": "array",
+            "additionalItems": false,
+            "items": {
+              "type": "object",
+              "additionalProperties": true,
+              "properties": {
+                "name": {
+                  "description": "Name of the real parameter",
+                  "type": "string"
+                },
+                "value": {
+                  "description": "value of the parameter"
+                },
+                "min": {
+                  "description": "min value of the parameter",
+                  "type": "number"
+                },
+                "max": {
+                  "description": "max value of the parameter",
+                  "type": "number"
                 }
               }
             }
           },
           "Enumeration": {
-            "description": "Info of boolean parameters",
+            "description": "Info of enumeration parameters",
             "type": "array",
             "additionalItems": false,
             "items": {
@@ -1204,6 +1274,29 @@
                 },
                 "type": {
                   "description": "Type of the enumeration parameter",
+                  "type": "string"
+                },
+                "value": {
+                  "description": "value of the parameter",
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "String": {
+            "description": "Info of string parameters",
+            "type": "array",
+            "additionalItems": false,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "name": {
+                  "description": "Name of the string parameter",
+                  "type": "string"
+                },
+                "type": {
+                  "description": "Type of the string parameter",
                   "type": "string"
                 },
                 "value": {
