@@ -591,7 +591,7 @@ public class Comment {
     					}
     				}
     			}
-    			subStr = str.substring(beginInd+1, endInd-1);
+				subStr = str.substring(beginInd+1, endInd);
     		} else {
     			subStr = null;
     		}
