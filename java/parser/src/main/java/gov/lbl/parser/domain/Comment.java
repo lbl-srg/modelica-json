@@ -184,8 +184,10 @@ public class Comment {
     		}
     		if (venAnnStr != null) {
     			StringBuilder temStr = new StringBuilder();
+				int venAnnStrEndInd = annStr.indexOf(venAnnStr) + venAnnStr.length();
+				String endBra = annStr.substring(venAnnStrEndInd, annStr.indexOf(")", venAnnStrEndInd)+1);
     			strListToBeRem.add(temStr.append(venAnnName).append("(")
-				                         .append(venAnnStr).append(" )")
+				                         .append(venAnnStr).append(endBra)
     					                 .toString());
     		}
 
