@@ -143,7 +143,7 @@ public class Composition {
 				int venAnnStrEndInd = annStr.indexOf(venAnnStr) + venAnnStr.length();
 				String endBra = annStr.substring(venAnnStrEndInd, annStr.indexOf(")", venAnnStrEndInd)+1);
     			strListToBeRem.add(temStr.append(venAnnName).append("(")
-						         .append(venAnnStr).append(endBra)
+						                 .append(venAnnStr).append(endBra)
     					                 .toString());
     		}
 
