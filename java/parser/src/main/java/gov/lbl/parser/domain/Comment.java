@@ -185,7 +185,7 @@ public class Comment {
     		if (venAnnStr != null) {
     			StringBuilder temStr = new StringBuilder();
     			strListToBeRem.add(temStr.append(venAnnName).append("(")
-    					                 .append(venAnnStr).append(" )")
+				                         .append(venAnnStr).append(")")
     					                 .toString());
     		}
 
@@ -406,7 +406,6 @@ public class Comment {
 
     }
 
-
     public class LineBlock{
     	private Boolean visible;
     	private Points origin;
@@ -591,7 +590,7 @@ public class Comment {
     					}
     				}
     			}
-				subStr = str.substring(beginInd+1, endInd);
+				subStr = str.substring(beginInd+1, endInd).trim();
     		} else {
     			subStr = null;
     		}
