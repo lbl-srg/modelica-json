@@ -185,7 +185,7 @@ public class Comment {
     		if (venAnnStr != null) {
     			StringBuilder temStr = new StringBuilder();
     			strListToBeRem.add(temStr.append(venAnnName).append("(")
-				                         .append(venAnnStr).append(")")
+				                         .append(venAnnStr).append(" )")
     					                 .toString());
     		}
 
