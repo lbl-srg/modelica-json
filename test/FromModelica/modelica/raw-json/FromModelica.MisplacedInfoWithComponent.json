@@ -1,0 +1,47 @@
+[
+  {
+    "within": [
+      "FromModelica"
+    ],
+    "class_definition": [
+      {
+        "class_prefixes": "block",
+        "class_specifier": {
+          "long_class_specifier": {
+            "name": "MisplacedInfoWithComponent",
+            "comment": "\"A block that places info section in component annotation\"",
+            "composition": {
+              "element_list": {
+                "element": [
+                  {
+                    "component_clause": {
+                      "type_specifier": "Block1",
+                      "component_list": {
+                        "component_declaration": [
+                          {
+                            "declaration": {
+                              "name": "bloPub"
+                            },
+                            "comment": {
+                              "string_comment": "\"A public block\"",
+                              "annotation": {
+                                "documentation": {
+                                  "info": "\"<html>\n<p>\nThis is the info section.\n</p>\n</html>\""
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    ],
+    "modelicaFile": "FromModelica/MisplacedInfoWithComponent.mo"
+  }
+]
