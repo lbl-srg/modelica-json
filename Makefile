@@ -39,8 +39,7 @@ test-moParser:
 # This only needs to be run when the output format changes,
 # or when new tests are added.
 generate-reference-output:
-	(cp schema-CDL.json test/FromModelica && \
-	cd test/FromModelica && \
+	(cd test/FromModelica && \
 	for ff in `find . -name '*.mo'`; do \
 		node ../../app.js -l warn -f $${ff} -o raw-json -d ./cdl -m cdl; \
 		node ../../app.js -l warn -f $${ff} -o json -d ./cdl -m cdl; \
@@ -48,15 +47,12 @@ generate-reference-output:
 		node ../../app.js -l warn -f $${ff} -o docx -d ./cdl -m cdl; \
 		done)
 
-	(cp schema-modelica.json test && \
-	cd test && \
+	(cd test && \
 	node ../app.js -l warn -f FromModelica -o raw-json -d ./FromModelica/modelica -m modelica; \
 	node ../app.js -l warn -f FromModelica -o json -d ./FromModelica/modelica -m modelica; \
 	node ../app.js -l warn -f FromModelica -o html -d ./FromModelica/modelica -m modelica; \
 	node ../app.js -l warn -f FromModelica -o docx -d ./FromModelica/modelica -m modelica)
 	rm -f test/modelica-json.log test/FromModelica/modelica-json.log
-	rm -rf test/schema-modelica.json
-	rm -rf test/FromModelica/schema-CDL.json
 
 clean-node-packages:
 	rm -rf node-modules

@@ -1,0 +1,107 @@
+[
+  {
+    "modelicaFile": "FromModelica/WithCDLElementary.mo",
+    "within": "FromModelica",
+    "topClassName": "FromModelica.WithCDLElementary",
+    "comment": "Block that instantiates CDL elementary block that there is inside class",
+    "public": {
+      "models": [
+        {
+          "className": "Buildings.Controls.OBC.CDL.Continuous.Greater",
+          "name": "gre",
+          "comment": "CDL elementary block with inside class",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": -8,
+                  "y": -10
+                },
+                {
+                  "x": 12,
+                  "y": 10
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "inputs": [
+        {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+          "name": "u",
+          "comment": "Real input",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": -140,
+                  "y": -20
+                },
+                {
+                  "x": -100,
+                  "y": 20
+                }
+              ]
+            },
+            "iconTransformation": {
+              "extent": [
+                {
+                  "x": -212,
+                  "y": -12
+                },
+                {
+                  "x": -172,
+                  "y": 28
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
+          "name": "y",
+          "comment": "Real output",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": 100,
+                  "y": -20
+                },
+                {
+                  "x": 140,
+                  "y": 20
+                }
+              ]
+            },
+            "iconTransformation": {
+              "extent": [
+                {
+                  "x": -184,
+                  "y": -4
+                },
+                {
+                  "x": -144,
+                  "y": 36
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "icon": {
+      "coordinateSystem": {
+        "preserveAspectRatio": false
+      }
+    },
+    "diagram": {
+      "coordinateSystem": {
+        "preserveAspectRatio": false
+      }
+    }
+  }
+]
