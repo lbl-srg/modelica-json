@@ -79,13 +79,19 @@ logger.cli()
 logger.level = args.log
 
 // Get mo files array
-var moFiles = ut.getMoFiles(args.mode, args.file)
+if (args.file.endsWith("/")) {
+  file = args.file.slice(0, -1)
+}
+else { 
+  file = args.file
+}
+var moFiles = ut.getMoFiles(args.mode, file)
 
 // Parse the json representation for moFiles
 var json = pa.getJSON(moFiles, args.mode, args.output)
 
 // Get the name array of output files
-var outFile = ut.getOutFile(args.mode, args.file, args.output, args.directory, moFiles, json)
+var outFile = ut.getOutFile(args.mode, file, args.output, args.directory, moFiles, json)
 
 pa.exportJSON(json, outFile, args.output, args.mode, args.directory)
 
