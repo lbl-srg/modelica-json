@@ -184,8 +184,10 @@ public class Comment {
     		}
     		if (venAnnStr != null) {
     			StringBuilder temStr = new StringBuilder();
+				int venAnnStrEndInd = annStr.indexOf(venAnnStr) + venAnnStr.length();
+				String endBra = annStr.substring(venAnnStrEndInd, annStr.indexOf(")", venAnnStrEndInd)+1);
     			strListToBeRem.add(temStr.append(venAnnName).append("(")
-    					                 .append(venAnnStr).append(" )")
+				                         .append(venAnnStr).append(endBra)
     					                 .toString());
     		}
 
@@ -406,7 +408,6 @@ public class Comment {
 
     }
 
-
     public class LineBlock{
     	private Boolean visible;
     	private Points origin;
@@ -591,7 +592,7 @@ public class Comment {
     					}
     				}
     			}
-    			subStr = str.substring(beginInd+1, endInd-1);
+				subStr = str.substring(beginInd+1, endInd).trim();
     		} else {
     			subStr = null;
     		}
