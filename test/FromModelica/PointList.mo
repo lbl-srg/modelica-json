@@ -52,6 +52,5 @@ annotation (defaultComponentName="poiLis",
           lineColor={0,0,255},
           extent={{-100,100},{100,140}},
           textString="%name")}),
-    Diagram(coordinateSystem(preserveAspectRatio=false)),
-    uses(Buildings(version="8.0.0")));
+    Diagram(coordinateSystem(preserveAspectRatio=false)));
 end PointList;
