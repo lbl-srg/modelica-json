@@ -586,7 +586,7 @@ test...test...test...test...test...
     <tr>
       <td class="type, text"><span>
       <code>
-      <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.LimPID">Buildings.Controls.OBC.CDL.Continuous.LimPID</a>
+      <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.PID">Buildings.Controls.OBC.CDL.Continuous.PID</a>
       </code>
       </span></td>
       <td class="text"><span>
@@ -724,7 +724,7 @@ test...test...test...test...test...
     <tr>
       <td class="type, text"><span>
       <code>
-      <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.LimPID">Buildings.Controls.OBC.CDL.Continuous.LimPID</a>
+      <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.PID">Buildings.Controls.OBC.CDL.Continuous.PID</a>
       </code>
       </span></td>
       <td class="text"><span>
@@ -1860,6 +1860,184 @@ Multi zone AHU economizer modulation control chart:
     &rarr;
     <code><a href="#FromModelica.Modulation.yRetDamPos">yRetDamPos</a></code>
     </li>
+    </ol><h2>FromModelica.MyController<a name="FromModelica.MyController"></a></h2>
+
+  <span class="ModelicaDescription">My controller</span><br>
+
+
+
+
+<h3>Inputs</h3>
+    <p>
+    It has the following inputs:
+    </p>
+    <table>
+    <tr>
+      <th class="type">Type        </th>
+      <th>Quantity  </th>
+      <th>Name    </th>
+      <th class="description">Description</th>
+      <th>min    </th>
+      <th>max    </th>
+      <th>Unit     </th>
+      <th>Display unit     </th>
+      </tr>
+    <tr>
+      <td>
+      <code>
+      Real
+      </code>
+      </td>
+      <td></td>
+      <td><code>u1</code><a name="FromModelica.MyController.u1"></a></td>
+      <td>Real input 1</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+    <tr>
+      <td>
+      <code>
+      Real
+      </code>
+      </td>
+      <td></td>
+      <td><code>u2</code><a name="FromModelica.MyController.u2"></a></td>
+      <td>Real input 2</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+    </table>
+
+<h3>Outputs</h3>
+    <p>
+    It has the following outputs:
+    </p>
+    <table>
+    <tr>
+      <th class="type">Type        </th>
+      <th>Quantity  </th>
+      <th>Name    </th>
+      <th class="description">Description</th>
+      <th>min    </th>
+      <th>max    </th>
+      <th>Unit     </th>
+      <th>Display unit     </th>
+      </tr>
+    <tr>
+      <td>
+      <code>
+      Real
+      </code>
+      </td>
+      <td></td>
+      <td><code>y</code><a name="FromModelica.MyController.y"></a></td>
+      <td>Real output</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+    </table>
+
+<h3>Blocks</h3>
+    <p>
+    It has the following blocks:
+    </p>
+    <table>
+    <tr>
+      <th class="type">Type</th>
+      <th>Name</th>
+      <th class="description">Description</th>
+      <th>Parameter Assignments</th>
+    </tr>
+    <tr>
+      <td class="type, text"><span>
+      <code>
+      <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Add">Buildings.Controls.OBC.CDL.Continuous.Add</a>
+      </code>
+      </span></td>
+      <td>
+      <code>
+      add2
+      </code>
+      <a name="FromModelica.MyController.add2"></a></td>
+      <td>Add two real inputs</td>
+      <td class="text"><span>
+      </span></td>
+      </tr>
+    <tr>
+      <td class="type, text"><span>
+      <code>
+      <a href="FromModelica.html#SubController">SubController</a>
+      </code>
+      </span></td>
+      <td>
+      <code>
+      subCon1
+      </code>
+      <a name="FromModelica.MyController.subCon1"></a></td>
+      <td>Sub controller</td>
+      <td class="text"><span>
+      </span></td>
+      </tr>
+    <tr>
+      <td class="type, text"><span>
+      <code>
+      <a href="FromModelica.html#SubController">SubController</a>
+      </code>
+      </span></td>
+      <td>
+      <code>
+      subCon2
+      </code>
+      <a name="FromModelica.MyController.subCon2"></a></td>
+      <td>Sub controller</td>
+      <td class="text"><span>
+      </span></td>
+      </tr>
+    </table>
+
+
+
+    <h3>Connections</h3>
+    <p>
+    The inputs of the internal blocks are connected to the following outputs:
+    </p>
+    <ol>
+    <li>
+    <code><a href="#FromModelica.MyController.u1">u1</a></code>
+    &rarr;
+    <code><a href="#FromModelica.MyController.add2">add2</a>.u1
+    </code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.MyController.u2">u2</a></code>
+    &rarr;
+    <code><a href="#FromModelica.MyController.add2">add2</a>.u2
+    </code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.MyController.add2">add2</a>.y
+    </code>
+    &rarr;
+    <code><a href="#FromModelica.MyController.y">y</a></code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.MyController.u2">u2</a></code>
+    &rarr;
+    <code><a href="#FromModelica.MyController.subCon1">subCon1</a>.<a href="#SubController.u">u
+    </a></code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.MyController.u2">u2</a></code>
+    &rarr;
+    <code><a href="#FromModelica.MyController.subCon2">subCon2</a>.<a href="#SubController.u">u
+    </a></code>
+    </li>
     </ol><h2>FromModelica.NoClassComment<a name="FromModelica.NoClassComment"></a></h2>
 
   <span class="ModelicaDescription"></span><br>
@@ -2261,7 +2439,190 @@ This is the info section.
     <td></td>
     <td>Some comment</td>
     </tr>
-    </table><h2>FromModelica.RemovableInputs<a name="FromModelica.RemovableInputs"></a></h2>
+    </table><h2>FromModelica.PointList<a name="FromModelica.PointList"></a></h2>
+
+  <span class="ModelicaDescription">Block demonstrating point list generation</span><br>
+
+
+
+
+<h3>Inputs</h3>
+    <p>
+    It has the following inputs:
+    </p>
+    <table>
+    <tr>
+      <th class="type">Type        </th>
+      <th>Quantity  </th>
+      <th>Name    </th>
+      <th class="description">Description</th>
+      <th>min    </th>
+      <th>max    </th>
+      <th>Unit     </th>
+      <th>Display unit     </th>
+      </tr>
+    <tr>
+      <td>
+      <code>
+      Real
+      </code>
+      </td>
+      <td></td>
+      <td><code>u1</code><a name="FromModelica.PointList.u1"></a></td>
+      <td>Input one</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+    <tr>
+      <td>
+      <code>
+      Real
+      </code>
+      </td>
+      <td></td>
+      <td><code>u2</code><a name="FromModelica.PointList.u2"></a></td>
+      <td>Input two</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+    </table>
+
+<h3>Outputs</h3>
+    <p>
+    It has the following outputs:
+    </p>
+    <table>
+    <tr>
+      <th class="type">Type        </th>
+      <th>Quantity  </th>
+      <th>Name    </th>
+      <th class="description">Description</th>
+      <th>min    </th>
+      <th>max    </th>
+      <th>Unit     </th>
+      <th>Display unit     </th>
+      </tr>
+    <tr>
+      <td>
+      <code>
+      Real
+      </code>
+      </td>
+      <td></td>
+      <td><code>y1</code><a name="FromModelica.PointList.y1"></a></td>
+      <td>Output one</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+    <tr>
+      <td>
+      <code>
+      Real
+      </code>
+      </td>
+      <td></td>
+      <td><code>y2</code><a name="FromModelica.PointList.y2"></a></td>
+      <td>Output two</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+    </table>
+
+<h3>Blocks</h3>
+    <p>
+    It has the following blocks:
+    </p>
+    <table>
+    <tr>
+      <th class="type">Type</th>
+      <th>Name</th>
+      <th class="description">Description</th>
+      <th>Parameter Assignments</th>
+    </tr>
+    <tr>
+      <td class="type, text"><span>
+      <code>
+      <a href="FromModelica.html#MyController">MyController</a>
+      </code>
+      </span></td>
+      <td>
+      <code>
+      con1
+      </code>
+      <a name="FromModelica.PointList.con1"></a></td>
+      <td>Subcontroller one</td>
+      <td class="text"><span>
+      </span></td>
+      </tr>
+    <tr>
+      <td class="type, text"><span>
+      <code>
+      <a href="FromModelica.html#MyController">MyController</a>
+      </code>
+      </span></td>
+      <td>
+      <code>
+      con2
+      </code>
+      <a name="FromModelica.PointList.con2"></a></td>
+      <td>Subcontroller two</td>
+      <td class="text"><span>
+      </span></td>
+      </tr>
+    </table>
+
+
+
+    <h3>Connections</h3>
+    <p>
+    The inputs of the internal blocks are connected to the following outputs:
+    </p>
+    <ol>
+    <li>
+    <code><a href="#FromModelica.PointList.u1">u1</a></code>
+    &rarr;
+    <code><a href="#FromModelica.PointList.con1">con1</a>.<a href="#MyController.u1">u1
+    </a></code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.PointList.u1">u1</a></code>
+    &rarr;
+    <code><a href="#FromModelica.PointList.con2">con2</a>.<a href="#MyController.u1">u1
+    </a></code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.PointList.u2">u2</a></code>
+    &rarr;
+    <code><a href="#FromModelica.PointList.con1">con1</a>.<a href="#MyController.u2">u2
+    </a></code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.PointList.u2">u2</a></code>
+    &rarr;
+    <code><a href="#FromModelica.PointList.con2">con2</a>.<a href="#MyController.u2">u2
+    </a></code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.PointList.con1">con1</a>.<a href="#MyController.y">y
+    </a></code>
+    &rarr;
+    <code><a href="#FromModelica.PointList.y2">y2</a></code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.PointList.con2">con2</a>.<a href="#MyController.y">y
+    </a></code>
+    &rarr;
+    <code><a href="#FromModelica.PointList.y1">y1</a></code>
+    </li>
+    </ol><h2>FromModelica.RemovableInputs<a name="FromModelica.RemovableInputs"></a></h2>
 
   <span class="ModelicaDescription">A block with a flag for disabling instances</span><br>
 
@@ -2471,6 +2832,73 @@ This is the info section.
       <td>not enaBlo</td>
       <td class="text"><span>
       </span></td>
+      </tr>
+    </table><h2>FromModelica.SubController<a name="FromModelica.SubController"></a></h2>
+
+  <span class="ModelicaDescription">Subsequence</span><br>
+
+
+
+
+<h3>Inputs</h3>
+    <p>
+    It has the following inputs:
+    </p>
+    <table>
+    <tr>
+      <th class="type">Type        </th>
+      <th>Quantity  </th>
+      <th>Name    </th>
+      <th class="description">Description</th>
+      <th>min    </th>
+      <th>max    </th>
+      <th>Unit     </th>
+      <th>Display unit     </th>
+      </tr>
+    <tr>
+      <td>
+      <code>
+      Real
+      </code>
+      </td>
+      <td></td>
+      <td><code>u</code><a name="FromModelica.SubController.u"></a></td>
+      <td>Real input</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+    </table>
+
+<h3>Outputs</h3>
+    <p>
+    It has the following outputs:
+    </p>
+    <table>
+    <tr>
+      <th class="type">Type        </th>
+      <th>Quantity  </th>
+      <th>Name    </th>
+      <th class="description">Description</th>
+      <th>min    </th>
+      <th>max    </th>
+      <th>Unit     </th>
+      <th>Display unit     </th>
+      </tr>
+    <tr>
+      <td>
+      <code>
+      Real
+      </code>
+      </td>
+      <td></td>
+      <td><code>y</code><a name="FromModelica.SubController.y"></a></td>
+      <td>Real output</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
       </tr>
     </table><h2>FromModelica.VariableModification<a name="FromModelica.VariableModification"></a></h2>
 
