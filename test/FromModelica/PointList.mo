@@ -4,28 +4,38 @@ block PointList "Block demonstrating point list generation"
   Buildings.Controls.OBC.CDL.Interfaces.RealInput u1
     "Input one"
     annotation (Placement(transformation(extent={{-140,40},{-100,80}}),
-        iconTransformation(extent={{-140,40},{-100,80}})));
+        iconTransformation(extent={{-140,40},{-100,80}})),
+        __cdl(connection(hardwired=true), trend(interval=60, enable=true)));
 
   Buildings.Controls.OBC.CDL.Interfaces.RealInput u2
     "Input two"
     annotation (Placement(transformation(extent={{-140,-80},{-100,-40}}),
-        iconTransformation(extent={{-140,-80},{-100,-40}})));
+        iconTransformation(extent={{-140,-80},{-100,-40}})),
+        __cdl(connection(hardwired=false), trend(interval=120, enable=true),
+        propagate(instance="con1", connection(hardwired=false), trend(interval=120, enable=true))));
 
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput y1
     "Output one"
     annotation (Placement(transformation(extent={{100,-80},{140,-40}}),
-      iconTransformation(extent={{100,40},{140,80}})));
+      iconTransformation(extent={{100,40},{140,80}})),
+      __cdl(connection(hardwired=true), trend(interval=60, enable=true)));
 
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput y2
     "Output two"
     annotation (Placement(transformation(extent={{100,40},{140,80}}),
-        iconTransformation(extent={{100,-80},{140,-40}})));
+        iconTransformation(extent={{100,-80},{140,-40}})),
+        __cdl(connection(hardwired=false), trend(interval=60, enable=true)));
 
-  SubController con1
+  MyController con1
     "Subcontroller one"
-    annotation (Placement(transformation(extent={{-10,50},{10,70}})));
-  SubController con2 "Subcontroller two"
-    annotation (Placement(transformation(extent={{-10,-70},{10,-50}})));
+    annotation (__cdl(propagate(instance="subCon1", generatePointlist=true),
+                      propagate(instance="subCon2", generatePointlist=true)),
+                Placement(transformation(extent={{-10,50},{10,70}})));
+
+  MyController con2
+   "Subcontroller two"
+    annotation (__cdl(generatePointlist=true),
+                Placement(transformation(extent={{-10,-70},{10,-50}})));
 
 equation
   connect(u1, con1.u1) annotation (Line(points={{-120,60},{-80,60},{-80,66},{-12,
@@ -41,8 +51,10 @@ equation
   connect(con2.y, y1)
     annotation (Line(points={{12,-60},{120,-60}}, color={0,0,127}));
 
-annotation (defaultComponentName="poiLis",
-    Icon(coordinateSystem(preserveAspectRatio=false), graphics={
+annotation (
+  __cdl(generatePointlist=true, controlledDevice="Test device"),
+  defaultComponentName="poiLis",
+  Icon(coordinateSystem(preserveAspectRatio=false), graphics={
         Rectangle(
         extent={{-100,-100},{100,100}},
         lineColor={0,0,127},

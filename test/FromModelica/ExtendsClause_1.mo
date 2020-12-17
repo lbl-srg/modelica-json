@@ -1,6 +1,6 @@
 within FromModelica;
 block ExtendsClause_1 "model with extends clause"
-  extends Buildings.Controls.OBC.CDL.Continuous.LimPID(
+  extends Buildings.Controls.OBC.CDL.Continuous.PID(
     k=2,
     Ti=2);
 
