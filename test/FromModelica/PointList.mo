@@ -11,8 +11,7 @@ block PointList "Block demonstrating point list generation"
     "Input two"
     annotation (Placement(transformation(extent={{-140,-80},{-100,-40}}),
         iconTransformation(extent={{-140,-80},{-100,-40}})),
-        __cdl(connection(hardwired=false), trend(interval=120, enable=true),
-        propagate(instance="con1", connection(hardwired=false), trend(interval=120, enable=true))));
+        __cdl(connection(hardwired=false), trend(interval=120, enable=true)));
 
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput y1
     "Output one"
@@ -29,7 +28,8 @@ block PointList "Block demonstrating point list generation"
   MyController con1
     "Subcontroller one"
     annotation (__cdl(propagate(instance="subCon1", generatePointlist=true),
-                      propagate(instance="subCon2", generatePointlist=true)),
+                      propagate(instance="subCon2", generatePointlist=true),
+                      propagate(instance="subCon2.u", connection(hardwired=true), trend(interval=120, enable=true))),
                 Placement(transformation(extent={{-10,50},{10,70}})));
 
   MyController con2
