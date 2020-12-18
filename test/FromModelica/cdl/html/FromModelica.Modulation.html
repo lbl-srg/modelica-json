@@ -545,6 +545,78 @@ Multi zone AHU economizer modulation control chart:
       </tr>
     </table>
 
+    <h3>Point list</h3>
+    <p>
+    It has the following IO points:
+    </p>
+    <table>
+    <tr>
+    <th class="type">System/Equipment   </th>
+    <th>Name  </th>
+    <th>Type    </th>
+    <th>Hardwired?   </th>
+    <th>Trend [s] </th>
+    <th class="description">Description</th>
+    </tr>
+    <tr>
+    <td>Not_specified</td>
+    <td>uTSup</td>
+    <td>AI</td>
+    <td>No</td>
+    <td>n&#x2F;a</td>
+    <td>Signal for supply air temperature control (T Sup Control Loop Signal in diagram)</td>
+    </tr>
+    <tr>
+    <td>Not_specified</td>
+    <td>uOutDamPosMin</td>
+    <td>AI</td>
+    <td>No</td>
+    <td>n&#x2F;a</td>
+    <td>Minimum economizer damper position limit as returned by the damper position limits  sequence</td>
+    </tr>
+    <tr>
+    <td>Not_specified</td>
+    <td>uOutDamPosMax</td>
+    <td>AI</td>
+    <td>No</td>
+    <td>n&#x2F;a</td>
+    <td>Maximum economizer damper position limit as returned by the economizer enable-disable sequence.
+    If the economizer is disabled, this value equals uOutDamPosMin</td>
+    </tr>
+    <tr>
+    <td>Not_specified</td>
+    <td>uRetDamPosMin</td>
+    <td>AI</td>
+    <td>No</td>
+    <td>n&#x2F;a</td>
+    <td>Minimum return air damper position limit as returned by the economizer enable-disable sequence</td>
+    </tr>
+    <tr>
+    <td>Not_specified</td>
+    <td>uRetDamPosMax</td>
+    <td>AI</td>
+    <td>No</td>
+    <td>n&#x2F;a</td>
+    <td>Maximum return air damper position limit as returned by the economizer enable-disable sequence</td>
+    </tr>
+    <tr>
+    <td>Not_specified</td>
+    <td>yOutDamPos</td>
+    <td>AO</td>
+    <td>No</td>
+    <td>n&#x2F;a</td>
+    <td>Economizer damper position</td>
+    </tr>
+    <tr>
+    <td>Not_specified</td>
+    <td>yRetDamPos</td>
+    <td>AO</td>
+    <td>No</td>
+    <td>n&#x2F;a</td>
+    <td>Return air damper position</td>
+    </tr>
+    </table>
+
     <h3>Connections</h3>
     <p>
     The inputs of the internal blocks are connected to the following outputs:
