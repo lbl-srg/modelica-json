@@ -43,6 +43,7 @@ generate-reference-output:
 	for ff in `find . -name '*.mo'`; do \
 		node ../../app.js -l warn -f $${ff} -o raw-json -d ./cdl -m cdl; \
 		node ../../app.js -l warn -f $${ff} -o json -d ./cdl -m cdl; \
+		node ../../app.js -l warn -f $${ff} -o svg -d ./cdl -m cdl; \
 		node ../../app.js -l warn -f $${ff} -o html -d ./cdl -m cdl; \
 		node ../../app.js -l warn -f $${ff} -o docx -d ./cdl -m cdl; \
 		done)
