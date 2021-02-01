@@ -1,0 +1,50 @@
+[
+  {
+    "within": [
+      "FromModelica"
+    ],
+    "class_definition": [
+      {
+        "class_prefixes": "block",
+        "class_specifier": {
+          "long_class_specifier": {
+            "name": "ParameterWithDefaultName",
+            "comment": "\"Some class comment\"",
+            "composition": {
+              "element_list": {
+                "element": [
+                  {
+                    "component_clause": {
+                      "type_prefix": "parameter",
+                      "type_specifier": "Real",
+                      "component_list": {
+                        "component_declaration": [
+                          {
+                            "declaration": {
+                              "name": "kP",
+                              "value": "1"
+                            },
+                            "comment": {
+                              "string_comment": "\"Some comment\""
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              },
+              "comp_annotation": {
+                "defaultName": "\"testName\"",
+                "documentation": {
+                  "info": "\"<html>\n<p>\nThis is the info section.\n</p>\n</html>\""
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "modelicaFile": "./ParameterWithDefaultName.mo"
+  }
+]

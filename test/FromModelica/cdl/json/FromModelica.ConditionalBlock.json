@@ -8,16 +8,9 @@
       "parameters": [
         {
           "className": "Boolean",
-          "type": "Boolean",
           "name": "enaBlo",
           "value": "true",
           "comment": "Flag for enabling instance",
-          "unit": {
-            "value": "\"1\""
-          },
-          "displayUnit": {
-            "value": "\"1\""
-          },
           "annotation": {
             "dialog": {
               "tab": "General",
@@ -54,6 +47,9 @@
           "name": "u",
           "comment": "Input connector",
           "enable": "enaBlo",
+          "__cdl": {
+            "default": "0"
+          },
           "placement": {
             "transformation": {
               "extent": [
@@ -363,6 +359,7 @@
     "within": "Buildings.Controls.OBC.CDL.Continuous",
     "topClassName": "Buildings.Controls.OBC.CDL.Continuous.Abs",
     "comment": "Output the absolute value of the input",
+    "defaultName": "\"abs\"",
     "public": {
       "inputs": [
         {

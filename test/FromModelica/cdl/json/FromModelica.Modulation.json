@@ -4,11 +4,11 @@
     "within": "FromModelica",
     "topClassName": "FromModelica.Modulation",
     "comment": "Outdoor and return air damper position modulation sequence for multi zone VAV AHU",
+    "defaultName": "\"mod\"",
     "public": {
       "parameters": [
         {
           "className": "Real",
-          "type": "Real",
           "name": "uMin",
           "value": "-0.25",
           "comment": "Lower limit of controller input when outdoor damper opens (see diagram)",
@@ -16,23 +16,10 @@
             "prefix": "final",
             "value": "\"1\""
           },
-          "displayUnit": {
-            "value": "\"1\""
-          },
           "max": {
             "prefix": "final",
             "value": "0"
           },
-          "modifications": [
-            {
-              "value": "0",
-              "isFinal": true
-            },
-            {
-              "value": "\"1\"",
-              "isFinal": true
-            }
-          ],
           "annotation": {
             "dialog": {
               "tab": "Commissioning",
@@ -42,7 +29,6 @@
         },
         {
           "className": "Real",
-          "type": "Real",
           "name": "uMax",
           "value": "+0.25",
           "comment": "Upper limit of controller input when return damper is closed (see diagram)",
@@ -50,23 +36,10 @@
             "prefix": "final",
             "value": "\"1\""
           },
-          "displayUnit": {
-            "value": "\"1\""
-          },
           "min": {
             "prefix": "final",
             "value": "0"
           },
-          "modifications": [
-            {
-              "value": "0",
-              "isFinal": true
-            },
-            {
-              "value": "\"1\"",
-              "isFinal": true
-            }
-          ],
           "annotation": {
             "dialog": {
               "tab": "Commissioning",
@@ -76,7 +49,6 @@
         },
         {
           "className": "Real",
-          "type": "Real",
           "name": "uOutDamMax",
           "value": "(uMin + uMax)/2",
           "comment": "Maximum loop signal for the OA damper to be fully open",
@@ -84,9 +56,6 @@
             "prefix": "final",
             "value": "\"1\""
           },
-          "displayUnit": {
-            "value": "\"1\""
-          },
           "min": {
             "prefix": "final",
             "value": "-1"
@@ -95,20 +64,6 @@
             "prefix": "final",
             "value": "1"
           },
-          "modifications": [
-            {
-              "value": "-1",
-              "isFinal": true
-            },
-            {
-              "value": "1",
-              "isFinal": true
-            },
-            {
-              "value": "\"1\"",
-              "isFinal": true
-            }
-          ],
           "annotation": {
             "dialog": {
               "tab": "Commissioning",
@@ -118,15 +73,11 @@
         },
         {
           "className": "Real",
-          "type": "Real",
           "name": "uRetDamMin",
           "value": "(uMin + uMax)/2",
           "comment": "Minimum loop signal for the RA damper to be fully open",
           "unit": {
             "prefix": "final",
-            "value": "\"1\""
-          },
-          "displayUnit": {
             "value": "\"1\""
           },
           "min": {
@@ -137,20 +88,6 @@
             "prefix": "final",
             "value": "1"
           },
-          "modifications": [
-            {
-              "value": "-1",
-              "isFinal": true
-            },
-            {
-              "value": "1",
-              "isFinal": true
-            },
-            {
-              "value": "\"1\"",
-              "isFinal": true
-            }
-          ],
           "annotation": {
             "dialog": {
               "tab": "Commissioning",
@@ -164,15 +101,6 @@
           "name": "samplePeriod",
           "value": "300",
           "comment": "Sample period of component, used to limit the rate of change of the dampers (to avoid quick opening that can result in frost)",
-          "unit": {
-            "value": "\"s\""
-          },
-          "displayUnit": {
-            "value": "\"s\""
-          },
-          "quantity": {
-            "value": "\"Time\""
-          },
           "annotation": {
             "dialog": {
               "tab": "General",
@@ -190,12 +118,6 @@
             "prefix": "final",
             "value": "\"1\""
           },
-          "modifications": [
-            {
-              "value": "\"1\"",
-              "isFinal": true
-            }
-          ],
           "placement": {
             "transformation": {
               "extent": [
@@ -239,20 +161,6 @@
             "prefix": "final",
             "value": "1"
           },
-          "modifications": [
-            {
-              "value": "0",
-              "isFinal": true
-            },
-            {
-              "value": "1",
-              "isFinal": true
-            },
-            {
-              "value": "\"1\"",
-              "isFinal": true
-            }
-          ],
           "placement": {
             "transformation": {
               "extent": [
@@ -296,20 +204,6 @@
             "prefix": "final",
             "value": "1"
           },
-          "modifications": [
-            {
-              "value": "0",
-              "isFinal": true
-            },
-            {
-              "value": "1",
-              "isFinal": true
-            },
-            {
-              "value": "\"1\"",
-              "isFinal": true
-            }
-          ],
           "placement": {
             "transformation": {
               "extent": [
@@ -353,20 +247,6 @@
             "prefix": "final",
             "value": "1"
           },
-          "modifications": [
-            {
-              "value": "0",
-              "isFinal": true
-            },
-            {
-              "value": "1",
-              "isFinal": true
-            },
-            {
-              "value": "\"1\"",
-              "isFinal": true
-            }
-          ],
           "placement": {
             "transformation": {
               "extent": [
@@ -410,20 +290,6 @@
             "prefix": "final",
             "value": "1"
           },
-          "modifications": [
-            {
-              "value": "0",
-              "isFinal": true
-            },
-            {
-              "value": "1",
-              "isFinal": true
-            },
-            {
-              "value": "\"1\"",
-              "isFinal": true
-            }
-          ],
           "placement": {
             "transformation": {
               "extent": [
@@ -469,20 +335,6 @@
             "prefix": "final",
             "value": "1"
           },
-          "modifications": [
-            {
-              "value": "0",
-              "isFinal": true
-            },
-            {
-              "value": "1",
-              "isFinal": true
-            },
-            {
-              "value": "\"1\"",
-              "isFinal": true
-            }
-          ],
           "placement": {
             "transformation": {
               "extent": [
@@ -526,20 +378,6 @@
             "prefix": "final",
             "value": "1"
           },
-          "modifications": [
-            {
-              "value": "0",
-              "isFinal": true
-            },
-            {
-              "value": "1",
-              "isFinal": true
-            },
-            {
-              "value": "\"1\"",
-              "isFinal": true
-            }
-          ],
           "placement": {
             "transformation": {
               "extent": [
@@ -4136,19 +3974,13 @@
     "within": "Buildings.Controls.OBC.CDL.Continuous.Sources",
     "topClassName": "Buildings.Controls.OBC.CDL.Continuous.Sources.Constant",
     "comment": "Output constant signal of type Real",
+    "defaultName": "\"con\"",
     "public": {
       "parameters": [
         {
           "className": "Real",
-          "type": "Real",
           "name": "k",
           "comment": "Constant output value",
-          "unit": {
-            "value": "\"1\""
-          },
-          "displayUnit": {
-            "value": "\"1\""
-          },
           "annotation": {
             "dialog": {
               "tab": "General",
@@ -4654,20 +4486,14 @@
     "within": "Buildings.Controls.OBC.CDL.Continuous",
     "topClassName": "Buildings.Controls.OBC.CDL.Continuous.Line",
     "comment": "Output the value of the input x along a line specified by two points",
+    "defaultName": "\"lin\"",
     "public": {
       "parameters": [
         {
           "className": "Boolean",
-          "type": "Boolean",
           "name": "limitBelow",
           "value": "true",
           "comment": "If true, limit input u to be no smaller than x1",
-          "unit": {
-            "value": "\"1\""
-          },
-          "displayUnit": {
-            "value": "\"1\""
-          },
           "annotation": {
             "dialog": {
               "tab": "General",
@@ -4677,16 +4503,9 @@
         },
         {
           "className": "Boolean",
-          "type": "Boolean",
           "name": "limitAbove",
           "value": "true",
           "comment": "If true, limit input u to be no larger than x2",
-          "unit": {
-            "value": "\"1\""
-          },
-          "displayUnit": {
-            "value": "\"1\""
-          },
           "annotation": {
             "dialog": {
               "tab": "General",
@@ -5956,6 +5775,7 @@
     "within": "Buildings.Controls.OBC.CDL.Continuous",
     "topClassName": "Buildings.Controls.OBC.CDL.Continuous.Min",
     "comment": "Pass through the smallest signal",
+    "defaultName": "\"min\"",
     "public": {
       "inputs": [
         {
@@ -6312,6 +6132,7 @@
     "within": "Buildings.Controls.OBC.CDL.Continuous",
     "topClassName": "Buildings.Controls.OBC.CDL.Continuous.Max",
     "comment": "Pass through the largest signal",
+    "defaultName": "\"max\"",
     "public": {
       "inputs": [
         {
@@ -6668,6 +6489,7 @@
     "within": "Buildings.Controls.OBC.CDL.Discrete",
     "topClassName": "Buildings.Controls.OBC.CDL.Discrete.FirstOrderHold",
     "comment": "First order hold of a sampled-data system",
+    "defaultName": "\"firOrdHol\"",
     "public": {
       "parameters": [
         {
@@ -6675,24 +6497,9 @@
           "type": "Real",
           "name": "samplePeriod",
           "comment": "Sample period of component",
-          "unit": {
-            "value": "\"s\""
-          },
-          "displayUnit": {
-            "value": "\"s\""
-          },
-          "quantity": {
-            "value": "\"Time\""
-          },
           "min": {
             "value": "1E-3"
           },
-          "modifications": [
-            {
-              "value": "1E-3",
-              "isFinal": false
-            }
-          ],
           "annotation": {
             "dialog": {
               "tab": "General",
@@ -6751,22 +6558,6 @@
           "type": "Real",
           "name": "t0",
           "comment": "First sample time instant",
-          "unit": {
-            "value": "\"s\""
-          },
-          "displayUnit": {
-            "value": "\"s\""
-          },
-          "quantity": {
-            "value": "\"Time\""
-          },
-          "modifications": [
-            {
-              "name": "fixed",
-              "value": "false",
-              "isFinal": false
-            }
-          ],
           "annotation": {
             "dialog": {
               "tab": "General",
@@ -6787,18 +6578,7 @@
           "comment": "Rising edge signals first sample instant",
           "start": {
             "value": "false"
-          },
-          "modifications": [
-            {
-              "value": "false",
-              "isFinal": false
-            },
-            {
-              "name": "fixed",
-              "value": "true",
-              "isFinal": false
-            }
-          ]
+          }
         },
         {
           "className": "Real",

@@ -272,6 +272,9 @@
           "points": {
             "$ref": "#/definitions/points"
           },
+          "dynPoints": {
+            "$ref": "#/definitions/dynPoints"
+          },
           "pattern": {
             "type": "string",
             "pattern": "^([a-zA-Z0-9._*]*)$"
@@ -770,19 +773,19 @@
         "additionalProperties": false,
         "properties": {
           "start": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-              "value": {
-                "type": "string"
-              }
-            }
+            "$ref": "#/definitions/value"
           },
           "basePrefix": {
             "type": "string",
             "pattern": "^([a-zA-Z0-9._*]*)$"
           },
           "unit": {
+            "$ref": "#/definitions/value"
+          },
+          "displayUnit": {
+            "$ref": "#/definitions/value"
+          },
+          "quantity": {
             "$ref": "#/definitions/value"
           },
           "max": {
@@ -815,6 +818,16 @@
           "enable": {
             "description": "Condition of enabling the block, if applicable",
             "type": "string"
+          },
+          "__cdl": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+              "default": {
+                "description": "default value of removable input",
+                "type": "string"
+              }
+            }
           },
           "annotation": {
             "type": "object",
@@ -876,6 +889,44 @@
                   "file": {
                     "type": "string",
                     "pattern": "^([a-zA-Z0-9._ \"\\:/]*)$"
+                  }
+                }
+              }
+            }
+          },
+          "variable_modification": {
+            "type": "array",
+            "additionalItems": false,
+            "items": {
+              "type": "object",
+              "required": [
+                "name",
+                "modifications"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "name": {
+                  "description": "Name of the variable: no special characters or spaces",
+                  "type": "string",
+                  "pattern": "^([a-zA-Z0-9._*]*)$"
+                },
+                "modifications": {
+                  "type": "array",
+                  "additionalItems": false,
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "prefix": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      }
+                    }
                   }
                 }
               }
@@ -952,21 +1003,6 @@
               }
             }
           },
-          "displayUnit": {
-            "allOf": [
-              {
-                "$ref": "#/definitions/value"
-              },
-              {
-                "value": {
-                  "pattern": "^(\\\")[a-zA-Z0-9._*]*(\\\")$"
-                }
-              }
-            ]
-          },
-          "quantity": {
-            "$ref": "#/definitions/value"
-          },
           "type": {
             "type": "string",
             "oneOf": [
@@ -1015,6 +1051,10 @@
       },
       "comment": {
         "description": "Comment on the model",
+        "type": "string"
+      },
+      "defaultName": {
+        "description": "Default model name",
         "type": "string"
       },
       "public": {
