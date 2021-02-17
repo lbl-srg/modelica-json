@@ -6493,17 +6493,10 @@
     "public": {
       "parameters": [
         {
-          "className": "Real",
+          "className": "Modelica.SIunits.Time",
+          "type": "Real",
           "name": "samplePeriod",
           "comment": "Sample period of component",
-          "unit": {
-            "prefix": "final",
-            "value": "\"s\""
-          },
-          "quantity": {
-            "prefix": "final",
-            "value": "\"Time\""
-          },
           "min": {
             "value": "1E-3"
           },
@@ -6561,17 +6554,10 @@
     "protected": {
       "parameters": [
         {
-          "className": "Real",
+          "className": "Modelica.SIunits.Time",
+          "type": "Real",
           "name": "t0",
           "comment": "First sample time instant",
-          "unit": {
-            "prefix": "final",
-            "value": "\"s\""
-          },
-          "quantity": {
-            "prefix": "final",
-            "value": "\"Time\""
-          },
           "annotation": {
             "dialog": {
               "tab": "General",
@@ -6592,19 +6578,6 @@
           "comment": "Rising edge signals first sample instant",
           "start": {
             "value": "false"
-          }
-        },
-        {
-          "className": "Real",
-          "name": "tSample",
-          "comment": "Time of sample",
-          "unit": {
-            "prefix": "final",
-            "value": "\"s\""
-          },
-          "quantity": {
-            "prefix": "final",
-            "value": "\"Time\""
           }
         },
         {
