@@ -157,7 +157,7 @@ public class Composition {
     		} else {
     			otherAnnStr = annStr;
     		}
-    		this.othAnns = otherAnnStr.replaceAll(" ,", "").isEmpty() ? null : otherAnnStr;
+    		this.othAnns = otherAnnStr.isEmpty() ? null : otherAnnStr.replaceAll(" ,", "");
 
     		if (docStr == null) {
     			this.documentation = null;
