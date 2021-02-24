@@ -12,7 +12,30 @@
           "name": "con1",
           "comment": "Subcontroller one",
           "__cdl": {
-            "propagate (instance": "\"subCon2.u\" ,connection (hardwired =true ) ,trend (interval =120 ,enable =true ) )"
+            "propagate": [
+              {
+                "instance": "\"subCon1\"",
+                "generatePointlist": "true"
+              },
+              {
+                "instance": "\"subCon2\"",
+                "generatePointlist": "true"
+              },
+              {
+                "instance": "\"subCon2.u\"",
+                "connection": [
+                  {
+                    "hardwired": "true"
+                  }
+                ],
+                "trend": [
+                  {
+                    "interval": "120",
+                    "enable": "true"
+                  }
+                ]
+              }
+            ]
           },
           "placement": {
             "transformation": {
@@ -58,8 +81,17 @@
           "name": "u1",
           "comment": "Input one",
           "__cdl": {
-            "connection (hardwired": "true )",
-            "trend (interval": "60 ,enable =true )"
+            "connection": [
+              {
+                "hardwired": "true"
+              }
+            ],
+            "trend": [
+              {
+                "interval": "60",
+                "enable": "true"
+              }
+            ]
           },
           "placement": {
             "transformation": {
@@ -93,8 +125,17 @@
           "name": "u2",
           "comment": "Input two",
           "__cdl": {
-            "connection (hardwired": "false )",
-            "trend (interval": "120 ,enable =true )"
+            "connection": [
+              {
+                "hardwired": "false"
+              }
+            ],
+            "trend": [
+              {
+                "interval": "120",
+                "enable": "true"
+              }
+            ]
           },
           "placement": {
             "transformation": {
@@ -130,8 +171,17 @@
           "name": "y1",
           "comment": "Output one",
           "__cdl": {
-            "connection (hardwired": "true )",
-            "trend (interval": "60 ,enable =true )"
+            "connection": [
+              {
+                "hardwired": "true"
+              }
+            ],
+            "trend": [
+              {
+                "interval": "60",
+                "enable": "true"
+              }
+            ]
           },
           "placement": {
             "transformation": {
@@ -165,8 +215,17 @@
           "name": "y2",
           "comment": "Output two",
           "__cdl": {
-            "connection (hardwired": "false )",
-            "trend (interval": "60 ,enable =true )"
+            "connection": [
+              {
+                "hardwired": "false"
+              }
+            ],
+            "trend": [
+              {
+                "interval": "60",
+                "enable": "true"
+              }
+            ]
           },
           "placement": {
             "transformation": {

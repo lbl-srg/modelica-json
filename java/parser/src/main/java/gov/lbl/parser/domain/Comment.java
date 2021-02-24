@@ -300,12 +300,12 @@ public class Comment {
 
     private class VendorAnnotation{
     	private String name;
-		private Collection<VendorAnnotation> intAnn;
+    	private Collection<VendorAnnotation> intAnn;
     	private Collection<StrPair> annotation;
     	private TemCla vendorAnnotation(String venAnnName, String venAnnStr) {
     		this.name = venAnnName.replaceAll("\\s+", "");
     		List<StrPair> venAnnEle = new ArrayList<StrPair>();
-			List<VendorAnnotation> inAnn = new ArrayList<VendorAnnotation>();
+    		List<VendorAnnotation> inAnn = new ArrayList<VendorAnnotation>();
     		if (venAnnStr == null || !venAnnStr.contains("=")) {
     			this.annotation = null;
     		} else {
@@ -319,8 +319,8 @@ public class Comment {
     					venSet.add(venSetTemp.get(i));
     				}
     			}
-				// venSet could be {"name1=value1", "name2=value2"}
-				// it could also be like {"name1=value1", "group(name2=value2)", "group(name3=value3)"}
+    			// venSet could be {"name1=value1", "name2=value2"}
+    			// it could also be like {"name1=value1", "group(name2=value2)", "group(name3=value3)"}
     			for (int i=0; i<venSet.size(); i++) {
 					String ithEle = venSet.get(i);
     				int equInd = ithEle.indexOf("=");
