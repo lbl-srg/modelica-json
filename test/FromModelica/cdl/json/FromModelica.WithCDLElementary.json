@@ -699,7 +699,7 @@
         }
       ]
     },
-    "info": "<html>\n<p>\nBlock that outputs <code>true</code> if the Real input <code>u1</code>\nis greater than the Real input <code>u2</code>, optionally within a hysteresis <code>h</code>.\n</p>\n<p>\nThe parameter <code>h</code> is used to specify a hysteresis.\nIf <i>h &gt; 0</i>, then the output switches to <code>true</code> if <i>u<sub>1</sub> &gt; u<sub>2</sub></i>,\nand it switches to <code>false</code> if <i>u<sub>1</sub> &gt; u<sub>2</sub>-h</i>.\n</p>\n<p>\nEnabling hysteresis can avoid frequent switching.\nAdding hysteresis is recommended in real controllers to guard against sensor noise, and\nin simulation to guard against numerical noise. Numerical noise can be present if\nan input depends on a state variable or a quantity that requires an iterative solution, such as\na temperature or a mass flow rate of an HVAC system.\nTo disable hysteresis, set <code>h=0</code>.\n</p>\n</html>",
+    "info": "<html>\n<p>\nBlock that outputs <code>true</code> if the Real input <code>u1</code>\nis greater than the Real input <code>u2</code>, optionally within a hysteresis <code>h</code>.\n</p>\n<p>\nThe parameter <code>h &ge; 0</code> is used to specify a hysteresis.\nIf <i>h &ne; 0</i>, then the output switches to <code>true</code> if <i>u<sub>1</sub> &gt; u<sub>2</sub></i>,\nand it switches to <code>false</code> if <i>u<sub>1</sub> &lt; u<sub>2</sub> - h</i>.\nIf <i>h = 0</i>, the output is <i>y=u<sub>1</sub> &gt; u<sub>2</sub></i>.\n</p>\n<p>\nEnabling hysteresis can avoid frequent switching.\nAdding hysteresis is recommended in real controllers to guard against sensor noise, and\nin simulation to guard against numerical noise. Numerical noise can be present if\nan input depends on a state variable or a quantity that requires an iterative solution, such as\na temperature or a mass flow rate of an HVAC system.\nTo disable hysteresis, set <code>h=0</code>.\n</p>\n</html>",
     "icon": {
       "coordinateSystem": {
         "extent": [
@@ -818,7 +818,7 @@
                 "g": 235,
                 "b": 235
               },
-              "dynColor": "if y then {0,255,0}\n               else {235,235,235}"
+              "dynColor": "if y then\n              {0,255,0}\n            else\n              {235,235,235}"
             },
             "dynFillColor": {
               "color": {
@@ -826,7 +826,7 @@
                 "g": 235,
                 "b": 235
               },
-              "dynColor": "if y then {0,255,0}\n               else {235,235,235}"
+              "dynColor": "if y then\n              {0,255,0}\n            else\n              {235,235,235}"
             },
             "fillPattern": "FillPattern.Solid",
             "extent": [
@@ -948,7 +948,7 @@
             ],
             "dynTextString": {
               "firstOpt": "\"\"",
-              "secondOpt": "String(u1, leftjustified=false, significantDigits=3)"
+              "secondOpt": "String(u1,\n            leftjustified=false,\n            significantDigits=3)"
             },
             "visible": true,
             "origin": {
@@ -990,7 +990,7 @@
             ],
             "dynTextString": {
               "firstOpt": "\"\"",
-              "secondOpt": "String(u2, leftjustified=false, significantDigits=3)"
+              "secondOpt": "String(u2,\n            leftjustified=false,\n            significantDigits=3)"
             },
             "visible": true,
             "origin": {
@@ -1022,7 +1022,7 @@
                 "g": 235,
                 "b": 235
               },
-              "dynColor": "if y then {135,135,135} else {0,0,0}"
+              "dynColor": "if y then\n              {135,135,135}\n            else\n              {0,0,0}"
             },
             "extent": [
               {
@@ -1036,7 +1036,7 @@
             ],
             "dynTextString": {
               "firstOpt": "\"\"",
-              "secondOpt": "String(u2, leftjustified=false, significantDigits=3)"
+              "secondOpt": "String(u2,\n            leftjustified=false,\n            significantDigits=3)"
             },
             "origin": {
               "x": 0,
@@ -1067,7 +1067,7 @@
                 "g": 235,
                 "b": 235
               },
-              "dynColor": "if y then {135,135,135} else {0,0,0}"
+              "dynColor": "if y then\n              {135,135,135}\n            else\n              {0,0,0}"
             },
             "extent": [
               {
@@ -1081,7 +1081,7 @@
             ],
             "dynTextString": {
               "firstOpt": "\"\"",
-              "secondOpt": "String(u2, leftjustified=false, significantDigits=3)"
+              "secondOpt": "String(u2,\n            leftjustified=false,\n            significantDigits=3)"
             },
             "origin": {
               "x": 0,
@@ -1112,7 +1112,7 @@
                 "g": 235,
                 "b": 235
               },
-              "dynColor": "if not y then {135,135,135} else {0,0,0}"
+              "dynColor": "if not y then\n              {135,135,135}\n            else\n              {0,0,0}"
             },
             "extent": [
               {
@@ -1126,7 +1126,7 @@
             ],
             "dynTextString": {
               "firstOpt": "\"\"",
-              "secondOpt": "String(u2-h, leftjustified=false, significantDigits=3)"
+              "secondOpt": "String(u2-h,\n            leftjustified=false,\n            significantDigits=3)"
             },
             "origin": {
               "x": 0,

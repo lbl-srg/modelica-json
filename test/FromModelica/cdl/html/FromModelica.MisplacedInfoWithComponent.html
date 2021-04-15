@@ -17,6 +17,13 @@ td.text span { white-space: nowrap;
                display: inline-block;
                max-width: 100%;
              }
+td.assignment { max-width: 550 }
+td.assignment span { white-space: nowrap;
+                     overflow: hidden;
+                     text-overflow: ellipsis;
+                     display: inline-block;
+                     max-width: 100%;
+                   }
 tr:hover { background-color: #ffff99; }
 td.text:hover span:not(.empty) { background-color: #BDE5F8;
                                  overflow: visible;
@@ -26,7 +33,7 @@ td.text:hover span:not(.empty) { background-color: #BDE5F8;
                                 }
 
 th      { padding: 2px; border: 1px solid #808080; vertical-align: top; font-weight: bold; max-width: 450; }
-table   { border: 1px solid #808080; border-collapse: collapse; }
+table   { border: 1px solid #808080; border-collapse: collapse; max-width: 1000}
 ul.list-parameter-assignments { list-style-type: none; margin-top: 0rem; margin-bottom: 0rem; padding: 2px; }
 pre, code {font-family: "Courier New", monospace;}
 pre {white-space: pre; overflow-x : hidden;}
@@ -75,18 +82,10 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
       <th>Parameter Assignments</th>
     </tr>
     <tr>
-      <td class="type, text"><span>
-      <code>
-      <a href="#Block1">Block1</a>
-      </code>
-      </span></td>
-      <td>
-      <code>
-      bloPub
-      </code>
-      <a name="FromModelica.MisplacedInfoWithComponent.bloPub"></a></td>
-      <td>A public block</td>
-      <td class="text"><span>
+      <td class="type, text"><span><code><a href="#Block1">Block1</a></code></span></td>
+      <td><code>bloPub</code><a name="FromModelica.MisplacedInfoWithComponent.bloPub"></a></td>
+      <td class="type, text"><span>A public block</span></td>
+      <td class="assignment"><span>
       </span></td>
       </tr>
     </table>
@@ -95,7 +94,7 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
 
 
   <p align="center">
-  <img alt="Diagram layer" src="img/FromModelica.MisplacedInfoWithComponent.svg">
+  <img alt="Diagram layer" src="img/FromModelica.MisplacedInfoWithComponent.svg" width="70%" height="auto">
   </p><h2>FromModelica.Block1<a name="FromModelica.Block1"></a></h2>
 
   <span class="ModelicaDescription">A block that instantiates nothing</span><br>
@@ -110,7 +109,7 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
 
 
   <p align="center">
-  <img alt="Diagram layer" src="img/FromModelica.Block1.svg">
+  <img alt="Diagram layer" src="img/FromModelica.Block1.svg" width="70%" height="auto">
   </p>
 
 </body>
