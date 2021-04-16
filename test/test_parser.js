@@ -240,7 +240,7 @@ var getHtml = function (files, mode) {
     })
   })
   ht.copyImages(imgfiles, imgDir)
-  const html = ht.getHtmlPage(outFile, imgDir, nonCDLJson, mode)
+  const html = ht.getHtmlPage(outFile, imgDir, nonCDLJson, mode, 'html')
   return html
 }
 
