@@ -17,6 +17,13 @@ td.text span { white-space: nowrap;
                display: inline-block;
                max-width: 100%;
              }
+td.assignment { max-width: 550 }
+td.assignment span { white-space: nowrap;
+                     overflow: hidden;
+                     text-overflow: ellipsis;
+                     display: inline-block;
+                     max-width: 100%;
+                   }
 tr:hover { background-color: #ffff99; }
 td.text:hover span:not(.empty) { background-color: #BDE5F8;
                                  overflow: visible;
@@ -26,7 +33,7 @@ td.text:hover span:not(.empty) { background-color: #BDE5F8;
                                 }
 
 th      { padding: 2px; border: 1px solid #808080; vertical-align: top; font-weight: bold; max-width: 450; }
-table   { border: 1px solid #808080; border-collapse: collapse; }
+table   { border: 1px solid #808080; border-collapse: collapse; max-width: 1000}
 ul.list-parameter-assignments { list-style-type: none; margin-top: 0rem; margin-bottom: 0rem; padding: 2px; }
 pre, code {font-family: "Courier New", monospace;}
 pre {white-space: pre; overflow-x : hidden;}
@@ -67,14 +74,9 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
     </p>
     <table>
     <tr>
-      <th class="type">Type        </th>
-      <th>Quantity  </th>
-      <th>Name    </th>
+      <th class="type">Type</th>
+      <th>Name</th>
       <th class="description">Description</th>
-      <th>min    </th>
-      <th>max    </th>
-      <th>Unit     </th>
-      <th>Display unit     </th>
       </tr>
     <tr>
       <td>
@@ -82,13 +84,8 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
       Real
       </code>
       </td>
-      <td></td>
-      <td><code>u1</code><a name="FromModelica.MyController.u1"></a></td>
-      <td>Real input 1</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td class="type, text"><span><code>u1</code><a name="FromModelica.MyController.u1"></a></span></td>
+      <td class="type, text">Real input 1 </td>
       </tr>
     <tr>
       <td>
@@ -96,13 +93,8 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
       Real
       </code>
       </td>
-      <td></td>
-      <td><code>u2</code><a name="FromModelica.MyController.u2"></a></td>
-      <td>Real input 2</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td class="type, text"><span><code>u2</code><a name="FromModelica.MyController.u2"></a></span></td>
+      <td class="type, text">Real input 2 </td>
       </tr>
     </table>
 
@@ -112,28 +104,14 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
     </p>
     <table>
     <tr>
-      <th class="type">Type        </th>
-      <th>Quantity  </th>
-      <th>Name    </th>
+      <th class="type">Type</th>
+      <th>Name</th>
       <th class="description">Description</th>
-      <th>min    </th>
-      <th>max    </th>
-      <th>Unit     </th>
-      <th>Display unit     </th>
       </tr>
     <tr>
-      <td>
-      <code>
-      Real
-      </code>
-      </td>
-      <td></td>
-      <td><code>y</code><a name="FromModelica.MyController.y"></a></td>
-      <td>Real output</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td><code>Real</code></td>
+      <td class="type, text"><span><code>y</code><a name="FromModelica.MyController.y"></a></span></td>
+      <td class="type, text">Real output </td>
       </tr>
     </table>
 
@@ -149,48 +127,24 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
       <th>Parameter Assignments</th>
     </tr>
     <tr>
-      <td class="type, text"><span>
-      <code>
-      <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Add">Buildings.Controls.OBC.CDL.Continuous.Add</a>
-      </code>
-      </span></td>
-      <td>
-      <code>
-      add2
-      </code>
-      <a name="FromModelica.MyController.add2"></a></td>
-      <td>Add two real inputs</td>
-      <td class="text"><span>
+      <td class="type, text"><span><code><a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Add">Buildings.Controls.OBC.CDL.Continuous.Add</a></code></span></td>
+      <td><code>add2</code><a name="FromModelica.MyController.add2"></a></td>
+      <td class="type, text"><span>Add two real inputs</span></td>
+      <td class="assignment"><span>
       </span></td>
       </tr>
     <tr>
-      <td class="type, text"><span>
-      <code>
-      <a href="#SubController">SubController</a>
-      </code>
-      </span></td>
-      <td>
-      <code>
-      subCon1
-      </code>
-      <a name="FromModelica.MyController.subCon1"></a></td>
-      <td>Sub controller</td>
-      <td class="text"><span>
+      <td class="type, text"><span><code><a href="#SubController">SubController</a></code></span></td>
+      <td><code>subCon1</code><a name="FromModelica.MyController.subCon1"></a></td>
+      <td class="type, text"><span>Sub controller</span></td>
+      <td class="assignment"><span>
       </span></td>
       </tr>
     <tr>
-      <td class="type, text"><span>
-      <code>
-      <a href="#SubController">SubController</a>
-      </code>
-      </span></td>
-      <td>
-      <code>
-      subCon2
-      </code>
-      <a name="FromModelica.MyController.subCon2"></a></td>
-      <td>Sub controller</td>
-      <td class="text"><span>
+      <td class="type, text"><span><code><a href="#SubController">SubController</a></code></span></td>
+      <td><code>subCon2</code><a name="FromModelica.MyController.subCon2"></a></td>
+      <td class="type, text"><span>Sub controller</span></td>
+      <td class="assignment"><span>
       </span></td>
       </tr>
     </table>
@@ -274,7 +228,7 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
     </ol>
 
   <p align="center">
-  <img alt="Diagram layer" src="img/FromModelica.MyController.svg">
+  <img alt="Diagram layer" src="img/FromModelica.MyController.svg" width="70%" height="auto">
   </p><h2>FromModelica.SubController<a name="FromModelica.SubController"></a></h2>
 
   <span class="ModelicaDescription">Subsequence</span><br>
@@ -288,14 +242,9 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
     </p>
     <table>
     <tr>
-      <th class="type">Type        </th>
-      <th>Quantity  </th>
-      <th>Name    </th>
+      <th class="type">Type</th>
+      <th>Name</th>
       <th class="description">Description</th>
-      <th>min    </th>
-      <th>max    </th>
-      <th>Unit     </th>
-      <th>Display unit     </th>
       </tr>
     <tr>
       <td>
@@ -303,13 +252,8 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
       Real
       </code>
       </td>
-      <td></td>
-      <td><code>u</code><a name="FromModelica.SubController.u"></a></td>
-      <td>Real input</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td class="type, text"><span><code>u</code><a name="FromModelica.SubController.u"></a></span></td>
+      <td class="type, text">Real input </td>
       </tr>
     </table>
 
@@ -319,28 +263,14 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
     </p>
     <table>
     <tr>
-      <th class="type">Type        </th>
-      <th>Quantity  </th>
-      <th>Name    </th>
+      <th class="type">Type</th>
+      <th>Name</th>
       <th class="description">Description</th>
-      <th>min    </th>
-      <th>max    </th>
-      <th>Unit     </th>
-      <th>Display unit     </th>
       </tr>
     <tr>
-      <td>
-      <code>
-      Real
-      </code>
-      </td>
-      <td></td>
-      <td><code>y</code><a name="FromModelica.SubController.y"></a></td>
-      <td>Real output</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td><code>Real</code></td>
+      <td class="type, text"><span><code>y</code><a name="FromModelica.SubController.y"></a></span></td>
+      <td class="type, text">Real output </td>
       </tr>
     </table>
 
@@ -350,7 +280,7 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
 
 
   <p align="center">
-  <img alt="Diagram layer" src="img/FromModelica.SubController.svg">
+  <img alt="Diagram layer" src="img/FromModelica.SubController.svg" width="70%" height="auto">
   </p>
 
 </body>

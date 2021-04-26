@@ -1,6 +1,6 @@
 <head>
   <meta charset="utf-8">
-  <title></title>
+  <title>{{ page.title }}</title>
 
   <!-- Custom styles for this template -->
   <style type="text/css">
@@ -9,8 +9,8 @@ h4      { font-size: 100%; font-weight: bold; color: green; }
 h3      { font-size: 110%; font-weight: bold; color: green; }
 h2      { font-size: 130%; font-weight: bold; color: green; }
 address { font-weight: normal; }
-td      { padding: 2px; border: 1px solid #808080; vertical-align: top; max-width: 450; }
-td.text { max-width: 450; }
+td      { padding: 2px; border: 1px solid #808080; vertical-align: top; max-width: 150; }
+td.text { max-width: 150; }
 td.text span { white-space: nowrap;
                overflow: hidden;
                text-overflow: ellipsis;
@@ -32,8 +32,8 @@ td.text:hover span:not(.empty) { background-color: #BDE5F8;
                                  position: absolute;
                                 }
 
-th      { padding: 2px; border: 1px solid #808080; vertical-align: top; font-weight: bold; max-width: 450; }
-table   { border: 1px solid #808080; border-collapse: collapse; max-width: 1000}
+th      { padding: 2px; border: 1px solid #808080; vertical-align: top; font-weight: bold; max-width: 150; }
+table   { border: 1px solid #808080; border-collapse: collapse; max-width: 600}
 ul.list-parameter-assignments { list-style-type: none; margin-top: 0rem; margin-bottom: 0rem; padding: 2px; }
 pre, code {font-family: "Courier New", monospace;}
 pre {white-space: pre; overflow-x : hidden;}
@@ -61,89 +61,7 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
 </head>
 <body>
 
-<h2>FromModelica.SubController<a name="FromModelica.SubController"></a></h2>
-
-  <span class="ModelicaDescription">Subsequence</span><br>
-
-
-
-
-<h3>Inputs</h3>
-    <p>
-    It has the following inputs:
-    </p>
-    <table>
-    <tr>
-      <th class="type">Type</th>
-      <th>Name</th>
-      <th class="description">Description</th>
-      </tr>
-    <tr>
-      <td>
-      <code>
-      Real
-      </code>
-      </td>
-      <td class="type, text"><span><code>u</code><a name="FromModelica.SubController.u"></a></span></td>
-      <td class="type, text">Real input </td>
-      </tr>
-    </table>
-
-<h3>Outputs</h3>
-    <p>
-    It has the following outputs:
-    </p>
-    <table>
-    <tr>
-      <th class="type">Type</th>
-      <th>Name</th>
-      <th class="description">Description</th>
-      </tr>
-    <tr>
-      <td><code>Real</code></td>
-      <td class="type, text"><span><code>y</code><a name="FromModelica.SubController.y"></a></span></td>
-      <td class="type, text">Real output </td>
-      </tr>
-    </table>
-
-
-
-
-    <h3>Point list</h3>
-    <p>
-    It has the following IO points:
-    </p>
-    <table>
-    <tr>
-    <th class="type">System/Equipment   </th>
-    <th>Name  </th>
-    <th>Type    </th>
-    <th>Hardwired?   </th>
-    <th>Trend [s] </th>
-    <th class="description">Description</th>
-    </tr>
-    <tr>
-    <td>Sub Device</td>
-    <td>u</td>
-    <td>AI</td>
-    <td>Yes</td>
-    <td>60</td>
-    <td>Real input</td>
-    </tr>
-    <tr>
-    <td>Sub Device</td>
-    <td>y</td>
-    <td>AO</td>
-    <td>Yes</td>
-    <td>60</td>
-    <td>Real output</td>
-    </tr>
-    </table>
-
-
-  <p align="center">
-  <img alt="Diagram layer" src="img/FromModelica.SubController.svg" width="70%" height="auto">
-  </p>
+{{{body}}}
 
 </body>
 
