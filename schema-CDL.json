@@ -798,12 +798,12 @@
             "type": "string"
           },
           "className": {
-            "description": "Name of the class: no special characters or spaces",
+            "description": "name of the class: no special characters or spaces",
             "type": "string",
             "pattern": "^([a-zA-Z0-9._*]*)$"
           },
           "name": {
-            "description": "Name of the block: no special characters or spaces",
+            "description": "name of the block: no special characters or spaces",
             "type": "string",
             "pattern": "^([a-zA-Z0-9._*]*)$"
           },
@@ -816,7 +816,7 @@
             "type": "string"
           },
           "enable": {
-            "description": "Condition of enabling the block, if applicable",
+            "description": "condition of enabling the block, if applicable",
             "type": "string"
           },
           "__cdl": {
@@ -826,6 +826,61 @@
               "default": {
                 "description": "default value of removable input",
                 "type": "string"
+              },
+              "generatePointlist": {
+                "type": "string",
+                "description": "flag if should generate point list for the instance"
+              },
+              "propagate": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "instance"
+                  ],
+                  "properties": {
+                    "instance": {
+                      "description": "name of the instance",
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "connection": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "hardwired"
+                  ],
+                  "properties": {
+                    "hardwired": {
+                      "description": "flag to define if it is hardwired point",
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "trend": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "interval"
+                  ],
+                  "properties": {
+                    "interval": {
+                      "description": "time interval to trend the data",
+                      "type": "string"
+                    },
+                    "enable": {
+                      "description": "flag if the data point should be trended",
+                      "type": "string"
+                    }
+                  }
+                }
               }
             }
           },
@@ -880,6 +935,14 @@
                   },
                   "point": {
                     "type": "string"
+                  },
+                  "generatePointlist": {
+                    "type": "string",
+                    "description": "flag if should generate point list for the instance"
+                  },
+                  "controlledDevice": {
+                    "type": "string",
+                    "description": "name of the controlled device"
                   }
                 }
               },

@@ -1,0 +1,427 @@
+[
+  {
+    "modelicaFile": "FromModelica/MyController.mo",
+    "within": "FromModelica",
+    "topClassName": "FromModelica.MyController",
+    "comment": "My controller",
+    "defaultName": "\"myCon\"",
+    "public": {
+      "models": [
+        {
+          "className": "Buildings.Controls.OBC.CDL.Continuous.Add",
+          "name": "add2",
+          "comment": "Add two real inputs",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": -10,
+                  "y": -10
+                },
+                {
+                  "x": 10,
+                  "y": 10
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "SubController",
+          "name": "subCon1",
+          "comment": "Sub controller",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": -10,
+                  "y": -50
+                },
+                {
+                  "x": 10,
+                  "y": -30
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "SubController",
+          "name": "subCon2",
+          "comment": "Sub controller",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": -10,
+                  "y": -90
+                },
+                {
+                  "x": 10,
+                  "y": -70
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "inputs": [
+        {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+          "name": "u1",
+          "comment": "Real input 1",
+          "__cdl": {
+            "connection": [
+              {
+                "hardwired": "true"
+              }
+            ],
+            "trend": [
+              {
+                "interval": "60",
+                "enable": "true"
+              }
+            ]
+          },
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": -140,
+                  "y": 20
+                },
+                {
+                  "x": -100,
+                  "y": 60
+                }
+              ]
+            },
+            "iconTransformation": {
+              "extent": [
+                {
+                  "x": -140,
+                  "y": 40
+                },
+                {
+                  "x": -100,
+                  "y": 80
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+          "name": "u2",
+          "comment": "Real input 2",
+          "__cdl": {
+            "connection": [
+              {
+                "hardwired": "true"
+              }
+            ],
+            "trend": [
+              {
+                "interval": "60",
+                "enable": "true"
+              }
+            ]
+          },
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": -140,
+                  "y": -60
+                },
+                {
+                  "x": -100,
+                  "y": -20
+                }
+              ]
+            },
+            "iconTransformation": {
+              "extent": [
+                {
+                  "x": -140,
+                  "y": -80
+                },
+                {
+                  "x": -100,
+                  "y": -40
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
+          "name": "y",
+          "comment": "Real output",
+          "__cdl": {
+            "connection": [
+              {
+                "hardwired": "true"
+              }
+            ],
+            "trend": [
+              {
+                "interval": "60",
+                "enable": "true"
+              }
+            ]
+          },
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": 100,
+                  "y": -20
+                },
+                {
+                  "x": 140,
+                  "y": 20
+                }
+              ]
+            },
+            "iconTransformation": {
+              "extent": [
+                {
+                  "x": 100,
+                  "y": -20
+                },
+                {
+                  "x": 140,
+                  "y": 20
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "vendorAnnotation": {
+      "__cdl": {
+        "generatePointlist": "true",
+        "controlledDevice": "\"My Device\""
+      }
+    },
+    "icon": {
+      "coordinateSystem": {
+        "preserveAspectRatio": false
+      },
+      "graphics": {
+        "rectangle": [
+          {
+            "lineColor": {
+              "r": 0,
+              "g": 0,
+              "b": 127
+            },
+            "fillColor": {
+              "r": 255,
+              "g": 255,
+              "b": 255
+            },
+            "fillPattern": "FillPattern.Solid",
+            "extent": [
+              {
+                "x": -100,
+                "y": -100
+              },
+              {
+                "x": 100,
+                "y": 100
+              }
+            ]
+          }
+        ],
+        "text": [
+          {
+            "lineColor": {
+              "r": 0,
+              "g": 0,
+              "b": 255
+            },
+            "extent": [
+              {
+                "x": -100,
+                "y": 100
+              },
+              {
+                "x": 100,
+                "y": 140
+              }
+            ],
+            "textString": "\"%name\""
+          }
+        ]
+      }
+    },
+    "diagram": {
+      "coordinateSystem": {
+        "preserveAspectRatio": false
+      }
+    },
+    "connections": [
+      [
+        {
+          "instance": "u1"
+        },
+        {
+          "instance": "add2",
+          "connector": "u1"
+        },
+        {
+          "points": [
+            {
+              "x": -120,
+              "y": 40
+            },
+            {
+              "x": -60,
+              "y": 40
+            },
+            {
+              "x": -60,
+              "y": 6
+            },
+            {
+              "x": -12,
+              "y": 6
+            }
+          ],
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 127
+          }
+        }
+      ],
+      [
+        {
+          "instance": "u2"
+        },
+        {
+          "instance": "add2",
+          "connector": "u2"
+        },
+        {
+          "points": [
+            {
+              "x": -120,
+              "y": -40
+            },
+            {
+              "x": -60,
+              "y": -40
+            },
+            {
+              "x": -60,
+              "y": -6
+            },
+            {
+              "x": -12,
+              "y": -6
+            }
+          ],
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 127
+          }
+        }
+      ],
+      [
+        {
+          "instance": "add2",
+          "connector": "y"
+        },
+        {
+          "instance": "y"
+        },
+        {
+          "points": [
+            {
+              "x": 12,
+              "y": 0
+            },
+            {
+              "x": 120,
+              "y": 0
+            }
+          ],
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 127
+          }
+        }
+      ],
+      [
+        {
+          "instance": "u2"
+        },
+        {
+          "instance": "subCon1",
+          "connector": "u",
+          "portLinkTarget": "SubController.u"
+        },
+        {
+          "points": [
+            {
+              "x": -120,
+              "y": -40
+            },
+            {
+              "x": -12,
+              "y": -40
+            }
+          ],
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 127
+          }
+        }
+      ],
+      [
+        {
+          "instance": "u2"
+        },
+        {
+          "instance": "subCon2",
+          "connector": "u",
+          "portLinkTarget": "SubController.u"
+        },
+        {
+          "points": [
+            {
+              "x": -120,
+              "y": -40
+            },
+            {
+              "x": -60,
+              "y": -40
+            },
+            {
+              "x": -60,
+              "y": -80
+            },
+            {
+              "x": -12,
+              "y": -80
+            }
+          ],
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 127
+          }
+        }
+      ]
+    ]
+  }
+]

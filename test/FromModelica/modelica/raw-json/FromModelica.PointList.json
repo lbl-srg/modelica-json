@@ -1,0 +1,756 @@
+[
+  {
+    "within": [
+      "FromModelica"
+    ],
+    "class_definition": [
+      {
+        "class_prefixes": "block",
+        "class_specifier": {
+          "long_class_specifier": {
+            "name": "PointList",
+            "comment": "\"Block demonstrating point list generation\"",
+            "composition": {
+              "element_list": {
+                "element": [
+                  {
+                    "component_clause": {
+                      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+                      "component_list": {
+                        "component_declaration": [
+                          {
+                            "declaration": {
+                              "name": "u1"
+                            },
+                            "comment": {
+                              "string_comment": "\"Input one\"",
+                              "annotation": {
+                                "placement": {
+                                  "transformation": {
+                                    "extent": [
+                                      {
+                                        "x": -140,
+                                        "y": 40
+                                      },
+                                      {
+                                        "x": -100,
+                                        "y": 80
+                                      }
+                                    ]
+                                  },
+                                  "iconTransformation": {
+                                    "extent": [
+                                      {
+                                        "x": -140,
+                                        "y": 40
+                                      },
+                                      {
+                                        "x": -100,
+                                        "y": 80
+                                      }
+                                    ]
+                                  }
+                                },
+                                "vendor_annotation": {
+                                  "name": "__cdl",
+                                  "intAnn": [
+                                    {
+                                      "name": "connection",
+                                      "annotation": [
+                                        {
+                                          "name": "hardwired",
+                                          "value": "true"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "name": "trend",
+                                      "annotation": [
+                                        {
+                                          "name": "interval",
+                                          "value": "60"
+                                        },
+                                        {
+                                          "name": "enable",
+                                          "value": "true"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "component_clause": {
+                      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+                      "component_list": {
+                        "component_declaration": [
+                          {
+                            "declaration": {
+                              "name": "u2"
+                            },
+                            "comment": {
+                              "string_comment": "\"Input two\"",
+                              "annotation": {
+                                "placement": {
+                                  "transformation": {
+                                    "extent": [
+                                      {
+                                        "x": -140,
+                                        "y": -80
+                                      },
+                                      {
+                                        "x": -100,
+                                        "y": -40
+                                      }
+                                    ]
+                                  },
+                                  "iconTransformation": {
+                                    "extent": [
+                                      {
+                                        "x": -140,
+                                        "y": -80
+                                      },
+                                      {
+                                        "x": -100,
+                                        "y": -40
+                                      }
+                                    ]
+                                  }
+                                },
+                                "vendor_annotation": {
+                                  "name": "__cdl",
+                                  "intAnn": [
+                                    {
+                                      "name": "connection",
+                                      "annotation": [
+                                        {
+                                          "name": "hardwired",
+                                          "value": "false"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "name": "trend",
+                                      "annotation": [
+                                        {
+                                          "name": "interval",
+                                          "value": "120"
+                                        },
+                                        {
+                                          "name": "enable",
+                                          "value": "true"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "component_clause": {
+                      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
+                      "component_list": {
+                        "component_declaration": [
+                          {
+                            "declaration": {
+                              "name": "y1"
+                            },
+                            "comment": {
+                              "string_comment": "\"Output one\"",
+                              "annotation": {
+                                "placement": {
+                                  "transformation": {
+                                    "extent": [
+                                      {
+                                        "x": 100,
+                                        "y": -80
+                                      },
+                                      {
+                                        "x": 140,
+                                        "y": -40
+                                      }
+                                    ]
+                                  },
+                                  "iconTransformation": {
+                                    "extent": [
+                                      {
+                                        "x": 100,
+                                        "y": 40
+                                      },
+                                      {
+                                        "x": 140,
+                                        "y": 80
+                                      }
+                                    ]
+                                  }
+                                },
+                                "vendor_annotation": {
+                                  "name": "__cdl",
+                                  "intAnn": [
+                                    {
+                                      "name": "connection",
+                                      "annotation": [
+                                        {
+                                          "name": "hardwired",
+                                          "value": "true"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "name": "trend",
+                                      "annotation": [
+                                        {
+                                          "name": "interval",
+                                          "value": "60"
+                                        },
+                                        {
+                                          "name": "enable",
+                                          "value": "true"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "component_clause": {
+                      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
+                      "component_list": {
+                        "component_declaration": [
+                          {
+                            "declaration": {
+                              "name": "y2"
+                            },
+                            "comment": {
+                              "string_comment": "\"Output two\"",
+                              "annotation": {
+                                "placement": {
+                                  "transformation": {
+                                    "extent": [
+                                      {
+                                        "x": 100,
+                                        "y": 40
+                                      },
+                                      {
+                                        "x": 140,
+                                        "y": 80
+                                      }
+                                    ]
+                                  },
+                                  "iconTransformation": {
+                                    "extent": [
+                                      {
+                                        "x": 100,
+                                        "y": -80
+                                      },
+                                      {
+                                        "x": 140,
+                                        "y": -40
+                                      }
+                                    ]
+                                  }
+                                },
+                                "vendor_annotation": {
+                                  "name": "__cdl",
+                                  "intAnn": [
+                                    {
+                                      "name": "connection",
+                                      "annotation": [
+                                        {
+                                          "name": "hardwired",
+                                          "value": "false"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "name": "trend",
+                                      "annotation": [
+                                        {
+                                          "name": "interval",
+                                          "value": "60"
+                                        },
+                                        {
+                                          "name": "enable",
+                                          "value": "true"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "component_clause": {
+                      "type_specifier": "MyController",
+                      "component_list": {
+                        "component_declaration": [
+                          {
+                            "declaration": {
+                              "name": "con1"
+                            },
+                            "comment": {
+                              "string_comment": "\"Subcontroller one\"",
+                              "annotation": {
+                                "placement": {
+                                  "transformation": {
+                                    "extent": [
+                                      {
+                                        "x": -10,
+                                        "y": 50
+                                      },
+                                      {
+                                        "x": 10,
+                                        "y": 70
+                                      }
+                                    ]
+                                  }
+                                },
+                                "vendor_annotation": {
+                                  "name": "__cdl",
+                                  "intAnn": [
+                                    {
+                                      "name": "propagate",
+                                      "annotation": [
+                                        {
+                                          "name": "instance",
+                                          "value": "\"subCon1\""
+                                        },
+                                        {
+                                          "name": "generatePointlist",
+                                          "value": "true"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "name": "propagate",
+                                      "annotation": [
+                                        {
+                                          "name": "instance",
+                                          "value": "\"subCon2\""
+                                        },
+                                        {
+                                          "name": "generatePointlist",
+                                          "value": "true"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "name": "propagate",
+                                      "intAnn": [
+                                        {
+                                          "name": "connection",
+                                          "annotation": [
+                                            {
+                                              "name": "hardwired",
+                                              "value": "true"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "name": "trend",
+                                          "annotation": [
+                                            {
+                                              "name": "interval",
+                                              "value": "120"
+                                            },
+                                            {
+                                              "name": "enable",
+                                              "value": "true"
+                                            }
+                                          ]
+                                        }
+                                      ],
+                                      "annotation": [
+                                        {
+                                          "name": "instance",
+                                          "value": "\"subCon2.u\""
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "component_clause": {
+                      "type_specifier": "MyController",
+                      "component_list": {
+                        "component_declaration": [
+                          {
+                            "declaration": {
+                              "name": "con2"
+                            },
+                            "comment": {
+                              "string_comment": "\"Subcontroller two\"",
+                              "annotation": {
+                                "placement": {
+                                  "transformation": {
+                                    "extent": [
+                                      {
+                                        "x": -10,
+                                        "y": -70
+                                      },
+                                      {
+                                        "x": 10,
+                                        "y": -50
+                                      }
+                                    ]
+                                  }
+                                },
+                                "vendor_annotation": {
+                                  "name": "__cdl",
+                                  "annotation": [
+                                    {
+                                      "name": "generatePointlist",
+                                      "value": "true"
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              },
+              "equation_section": [
+                {
+                  "prefix": "equation",
+                  "equation": [
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "u1"
+                        ],
+                        "component2": [
+                          "con1",
+                          "u1"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x": -120,
+                                "y": 60
+                              },
+                              {
+                                "x": -80,
+                                "y": 60
+                              },
+                              {
+                                "x": -80,
+                                "y": 66
+                              },
+                              {
+                                "x": -12,
+                                "y": 66
+                              }
+                            ],
+                            "color": {
+                              "r": 0,
+                              "g": 0,
+                              "b": 127
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "u1"
+                        ],
+                        "component2": [
+                          "con2",
+                          "u1"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x": -120,
+                                "y": 60
+                              },
+                              {
+                                "x": -80,
+                                "y": 60
+                              },
+                              {
+                                "x": -80,
+                                "y": -54
+                              },
+                              {
+                                "x": -12,
+                                "y": -54
+                              }
+                            ],
+                            "color": {
+                              "r": 0,
+                              "g": 0,
+                              "b": 127
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "u2"
+                        ],
+                        "component2": [
+                          "con1",
+                          "u2"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x": -120,
+                                "y": -60
+                              },
+                              {
+                                "x": -60,
+                                "y": -60
+                              },
+                              {
+                                "x": -60,
+                                "y": 54
+                              },
+                              {
+                                "x": -12,
+                                "y": 54
+                              }
+                            ],
+                            "color": {
+                              "r": 0,
+                              "g": 0,
+                              "b": 127
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "u2"
+                        ],
+                        "component2": [
+                          "con2",
+                          "u2"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x": -120,
+                                "y": -60
+                              },
+                              {
+                                "x": -60,
+                                "y": -60
+                              },
+                              {
+                                "x": -60,
+                                "y": -66
+                              },
+                              {
+                                "x": -12,
+                                "y": -66
+                              }
+                            ],
+                            "color": {
+                              "r": 0,
+                              "g": 0,
+                              "b": 127
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "con1",
+                          "y"
+                        ],
+                        "component2": [
+                          "y2"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x": 12,
+                                "y": 60
+                              },
+                              {
+                                "x": 120,
+                                "y": 60
+                              }
+                            ],
+                            "color": {
+                              "r": 0,
+                              "g": 0,
+                              "b": 127
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "con2",
+                          "y"
+                        ],
+                        "component2": [
+                          "y1"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x": 12,
+                                "y": -60
+                              },
+                              {
+                                "x": 120,
+                                "y": -60
+                              }
+                            ],
+                            "color": {
+                              "r": 0,
+                              "g": 0,
+                              "b": 127
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              ],
+              "comp_annotation": {
+                "defaultName": "\"poiLis\"",
+                "diagram": {
+                  "coordinateSystem": {
+                    "preserveAspectRatio": false
+                  }
+                },
+                "icon": {
+                  "coordinateSystem": {
+                    "preserveAspectRatio": false
+                  },
+                  "graphics": {
+                    "rectangle": [
+                      {
+                        "lineColor": {
+                          "r": 0,
+                          "g": 0,
+                          "b": 127
+                        },
+                        "fillColor": {
+                          "r": 255,
+                          "g": 255,
+                          "b": 255
+                        },
+                        "fillPattern": "FillPattern.Solid",
+                        "extent": [
+                          {
+                            "x": -100,
+                            "y": -100
+                          },
+                          {
+                            "x": 100,
+                            "y": 100
+                          }
+                        ]
+                      }
+                    ],
+                    "text": [
+                      {
+                        "lineColor": {
+                          "r": 0,
+                          "g": 0,
+                          "b": 255
+                        },
+                        "extent": [
+                          {
+                            "x": -100,
+                            "y": 100
+                          },
+                          {
+                            "x": 100,
+                            "y": 140
+                          }
+                        ],
+                        "textString": "\"%name\""
+                      }
+                    ]
+                  }
+                },
+                "vendor_annotation": {
+                  "name": "__cdl",
+                  "annotation": [
+                    {
+                      "name": "generatePointlist",
+                      "value": "true"
+                    },
+                    {
+                      "name": "controlledDevice",
+                      "value": "\"Test device\""
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "modelicaFile": "FromModelica/PointList.mo"
+  }
+]

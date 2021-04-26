@@ -1,0 +1,166 @@
+[
+  {
+    "modelicaFile": "FromModelica/SubController.mo",
+    "within": "FromModelica",
+    "topClassName": "FromModelica.SubController",
+    "comment": "Subsequence",
+    "defaultName": "\"subCon\"",
+    "public": {
+      "inputs": [
+        {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+          "name": "u",
+          "comment": "Real input",
+          "__cdl": {
+            "connection": [
+              {
+                "hardwired": "true"
+              }
+            ],
+            "trend": [
+              {
+                "interval": "60",
+                "enable": "true"
+              }
+            ]
+          },
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": -140,
+                  "y": -20
+                },
+                {
+                  "x": -100,
+                  "y": 20
+                }
+              ]
+            },
+            "iconTransformation": {
+              "extent": [
+                {
+                  "x": -140,
+                  "y": -20
+                },
+                {
+                  "x": -100,
+                  "y": 20
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
+          "name": "y",
+          "comment": "Real output",
+          "__cdl": {
+            "connection": [
+              {
+                "hardwired": "true"
+              }
+            ],
+            "trend": [
+              {
+                "interval": "60",
+                "enable": "true"
+              }
+            ]
+          },
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": 100,
+                  "y": -20
+                },
+                {
+                  "x": 140,
+                  "y": 20
+                }
+              ]
+            },
+            "iconTransformation": {
+              "extent": [
+                {
+                  "x": 100,
+                  "y": -20
+                },
+                {
+                  "x": 140,
+                  "y": 20
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "vendorAnnotation": {
+      "__cdl": {
+        "generatePointlist": "true",
+        "controlledDevice": "\"Sub Device\""
+      }
+    },
+    "icon": {
+      "coordinateSystem": {
+        "preserveAspectRatio": false
+      },
+      "graphics": {
+        "rectangle": [
+          {
+            "lineColor": {
+              "r": 0,
+              "g": 0,
+              "b": 127
+            },
+            "fillColor": {
+              "r": 255,
+              "g": 255,
+              "b": 255
+            },
+            "fillPattern": "FillPattern.Solid",
+            "extent": [
+              {
+                "x": -100,
+                "y": -100
+              },
+              {
+                "x": 100,
+                "y": 100
+              }
+            ]
+          }
+        ],
+        "text": [
+          {
+            "lineColor": {
+              "r": 0,
+              "g": 0,
+              "b": 255
+            },
+            "extent": [
+              {
+                "x": -100,
+                "y": 100
+              },
+              {
+                "x": 100,
+                "y": 140
+              }
+            ],
+            "textString": "\"%name\""
+          }
+        ]
+      }
+    },
+    "diagram": {
+      "coordinateSystem": {
+        "preserveAspectRatio": false
+      }
+    }
+  }
+]
