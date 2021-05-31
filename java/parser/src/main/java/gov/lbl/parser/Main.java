@@ -1,3 +1,5 @@
+//java -Xmx2048m  -Xms512m  -jar java/moParser.jar --mo test/FromModelica/Modulation.mo
+
 package gov.lbl.parser;
 
 import com.google.gson.Gson;

@@ -3,9 +3,9 @@ package gov.lbl.parser.domain;
 import java.util.Collection;
 
 public class Element_list {
-    private Collection<Element> element;
+    private Collection<Element> elements;
     
-    public Element_list(Collection<Element> element) {
-        this.element = element.size() > 0 ? element : null;
+    public Element_list(Collection<Element> elements) {
+        this.elements = elements.size() > 0 ? elements : null;
     }
 }

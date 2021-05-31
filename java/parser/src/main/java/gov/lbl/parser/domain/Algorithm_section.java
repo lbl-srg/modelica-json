@@ -4,10 +4,10 @@ import java.util.Collection;
 
 public class Algorithm_section {
     private Boolean initial;
-    private Collection<Statement> statement;
+    private Collection<Statement> statements;
 
-    public Algorithm_section(Boolean initial, Collection<Statement> statement) {
+    public Algorithm_section(Boolean initial, Collection<Statement> statements) {
         this.initial = initial;
-        this.statement = statement;
+        this.statements = statements;
     }
 }

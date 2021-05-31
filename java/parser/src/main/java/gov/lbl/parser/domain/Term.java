@@ -3,11 +3,11 @@ package gov.lbl.parser.domain;
 import java.util.Collection;
 
 public class Term {
-    private Factor initial_factor;
-    private Collection<Remaining_factor> remaining_factors;
+    private Collection<Factor> factors;
+    private Collection<String> mul_ops;
 
-    public Term(Factor initial_factor, Collection<Remaining_factor> remaining_factors) {
-        this.initial_factor = initial_factor;
-        this.remaining_factors = remaining_factors;
+    public Term(Collection<Factor> factors, Collection<String> mul_ops) {
+        this.factors = factors;
+        this.mul_ops = mul_ops;
     }
 }

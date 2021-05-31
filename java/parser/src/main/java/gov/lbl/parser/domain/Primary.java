@@ -4,7 +4,7 @@ import java.util.Collection;
 
 public class Primary {
     private Double unsigned_number;
-    private String string;
+    private String primary_string;
     private Boolean is_false;
     private Boolean is_true;
     private Function_call_primary function_call_primary;
@@ -13,10 +13,10 @@ public class Primary {
     private Collection<Expression_list> expression_lists;
     private Function_arguments function_arguments;
 
-    public Primary(Double unsigned_number, String string, Boolean is_false, Boolean is_true, Function_call_primary function_call_primary, Component_reference component_reference,
+    public Primary(Double unsigned_number, String primary_string, Boolean is_false, Boolean is_true, Function_call_primary function_call_primary, Component_reference component_reference,
                     Output_expression_list output_expression_list, Collection<Expression_list> expression_lists, Function_arguments function_arguments){
         this.unsigned_number = unsigned_number;
-        this.string = string;
+        this.primary_string = primary_string;
         this.is_false = is_false;
         this.is_true = is_true;
         this.function_call_primary = function_call_primary;

@@ -1,7 +1,7 @@
 package gov.lbl.parser.domain;
 
-import java.beans.Expression;
 import java.util.Collection;
+import java.util.List;
 
 public class While_statement {
     private Expression expression;   
