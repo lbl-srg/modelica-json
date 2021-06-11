@@ -10,4 +10,12 @@ public class If_elseif_equation {
         this.condition = condition;
         this.then = then;
     }
+
+    public Collection<Equation> getThen() {
+        return this.then;
+    }
+
+    public Expression getCondition() {
+        return this.condition;
+    }
 }

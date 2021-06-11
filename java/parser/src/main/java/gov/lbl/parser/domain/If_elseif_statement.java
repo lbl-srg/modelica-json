@@ -10,4 +10,12 @@ public class If_elseif_statement {
         this.condition = condition;
         this.then = then;
     }
+
+    public Expression getCondition() {
+        return this.condition;
+    }
+
+    public Collection<Statement> getThen() {
+        return this.then;
+    }
 }

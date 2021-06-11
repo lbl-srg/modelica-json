@@ -31,7 +31,7 @@ public class Arithmetic_expressionVisitor extends modelicaBaseVisitor<Arithmetic
             arithmetic_term_list.add(new Arithmetic_term(null, terms.get(0)));
         }
         for (int i=0; i<add_ops.size(); i++ ) {
-            arithmetic_term_list.add(new Arithmetic_term(add_ops.get(i), terms.get(i+1)));
+            arithmetic_term_list.add(new Arithmetic_term(add_ops.get(i), terms.get(i)));
         }
         return new Arithmetic_expression(arithmetic_term_list);
     }

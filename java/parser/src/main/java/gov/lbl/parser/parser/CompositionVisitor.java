@@ -14,9 +14,25 @@ import gov.lbl.parser.domain.External_function_call;
 
 import static java.util.stream.Collectors.toList;
 
+import java.util.ArrayList;
+
 public class CompositionVisitor extends modelicaBaseVisitor<Composition> {
     @Override
     public Composition visitComposition(modelicaParser.CompositionContext ctx) {
+        List<String> element_lists_types = new ArrayList<String>();
+        element_lists_types.add("None");
+
+        for (int i=1; i<ctx.getRuleIndex(); i++) {
+            if (ctx.getChild(i).getClass() == modelicaParser.Element_listContext.class) {
+                String public_protected_type = ctx.getChild(i-1).getText();
+                if (public_protected_type.equals("protected")) {
+                    element_lists_types.add("protected");
+                }
+                else if (public_protected_type.equals("public")) {
+                    element_lists_types.add("public");
+                }
+            }
+        }
 
         Element_listVisitor element_listVisitor = new Element_listVisitor();
         Equation_sectionVisitor equation_sectionVisitor = new Equation_sectionVisitor();
@@ -38,10 +54,20 @@ public class CompositionVisitor extends modelicaBaseVisitor<Composition> {
             .stream()
             .map(PROTECTED -> PROTECTED.getText())
             .collect(toList());
+        
+        List<Element_list> public_element_lists = public_dec.size() == 0 ? null : new ArrayList<Element_list>();
+        List<Element_list> protected_element_lists = protected_dec.size() == 0 ? null : new ArrayList<Element_list>();
+        
+        for(int i=1; i<element_lists.size(); i++) {
+            if (element_lists_types.get(i) == "public") {
+                public_element_lists.add(element_lists.get(i));
+            }
 
-        List<Element_list> public_element_lists = public_dec.size() == 0 ? null : element_lists.subList(1, public_dec.size());
-        List<Element_list> protected_element_lists = protected_dec.size() == 0 ? null : element_lists.subList(1+public_dec.size(),
-                                                                                1+public_dec.size()+protected_dec.size());
+            if (element_lists_types.get(i) == "protected") {
+                protected_element_lists.add(element_lists.get(i));
+            }            
+        }
+
         List<Equation_section> equation_sections = ctx.equation_section() == null ? null : ctx.equation_section()
                                                                                 .stream()
                                                                                 .map(equation_section -> equation_section.accept(equation_sectionVisitor))
