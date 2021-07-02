@@ -21,9 +21,11 @@ public class FactorVisitor extends modelicaBaseVisitor<Factor> {
         String op = 
                 ctx.SYMBOL_CARET()==null ? ( ctx.SYMBOL_DOTCARET() == null ? "" : ctx.SYMBOL_DOTCARET().getText())
                                          : ctx.SYMBOL_CARET().getText();        
-        Primary primary1 = primarys.get(0);
-        Primary primary2 = primarys.size() == 2 ? primarys.get(1) : null;
-        
-        return new Factor(primary1, op, primary2);
+        if (primarys != null) {
+            Primary primary1 = primarys.get(0);
+            Primary primary2 = primarys.size() == 2 ? primarys.get(1) : null;
+            return new Factor(primary1, op, primary2);
+        }
+        return new Factor(null, op, null);
     }
 }

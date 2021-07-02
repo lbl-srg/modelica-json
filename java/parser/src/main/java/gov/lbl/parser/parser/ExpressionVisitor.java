@@ -27,16 +27,21 @@ public class ExpressionVisitor extends modelicaBaseVisitor<Expression> {
         If_expression if_expression = null;
 
         List<If_elseif_expression> if_elseif = new ArrayList<If_elseif_expression>();
-        for (int i = 0; i<expressions.size() - 1; i+=2) {
-            Expression condition = expressions.get(i);
-            Expression then = expressions.get(i+1);
-            if_elseif.add(new If_elseif_expression(condition, then));
-        }
-        if (expressions.size() > 2) {
-            // expressions always have else? 
-            Expression else_expression = expressions.get(expressions.size()-1);
-
-            if_expression = new If_expression(if_elseif, else_expression);
+        if (expressions != null) {
+            for (int i = 0; i<expressions.size() - 1; i+=2) {
+                Expression condition = expressions.get(i);
+                Expression then = expressions.get(i+1);
+                if_elseif.add(new If_elseif_expression(condition, then));
+            }
+            if (expressions.size() > 2) {
+                // expressions always have else? 
+                Expression else_expression = expressions.get(expressions.size()-1);
+    
+                if_expression = new If_expression(if_elseif, else_expression);
+            }
+            else {
+                if_expression = new If_expression(if_elseif, null);
+            }
         }
         
         return new Expression(simple_expression, if_expression);

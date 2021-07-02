@@ -14,11 +14,11 @@ import static java.util.stream.Collectors.toList;
 public class Der_class_specifierVisitor extends modelicaBaseVisitor<Der_class_specifier> {
     @Override
     public Der_class_specifier visitDer_class_specifier(modelicaParser.Der_class_specifierContext ctx) {
-        List<String> idents = ctx.IDENT()
-            .stream()
-            .map(IDENT -> IDENT.getText())
-            .collect(toList());
-        String identifier = idents.get(0);
+        List<String> idents = ctx.IDENT() == null ? null : ctx.IDENT()
+                                                                .stream()
+                                                                .map(IDENT -> IDENT.getText())
+                                                                .collect(toList());
+        String identifier = idents == null? "" : idents.get(0);
 
         List<String> identifiers = idents.subList(1, idents.size());
         NameVisitor nameVisitor = new NameVisitor();

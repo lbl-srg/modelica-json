@@ -13,15 +13,17 @@ public class String_commentVisitor extends modelicaBaseVisitor<String> {
             .map(STRING -> STRING.getText())
             .collect(toList());
         String strCom = "";
-        if (str_dec.size() == 1) {
-            strCom = str_dec.get(0);
-        } else if (str_dec.size() > 1) {       	
-            StringBuilder temStr = new StringBuilder();
-            temStr.append(str_dec.get(0));
-            for (int i=1; i<str_dec.size(); i++) {
-                temStr.append("+").append(str_dec.get(i));
+        if (str_dec != null) {
+            if (str_dec.size() == 1) {
+                strCom = str_dec.get(0);
+            } else if (str_dec.size() > 1) {       	
+                StringBuilder temStr = new StringBuilder();
+                temStr.append(str_dec.get(0));
+                for (int i=1; i<str_dec.size(); i++) {
+                    temStr.append("+").append(str_dec.get(i));
+                }
+                strCom = temStr.toString();
             }
-            strCom = temStr.toString();
         }
         return strCom;
     }

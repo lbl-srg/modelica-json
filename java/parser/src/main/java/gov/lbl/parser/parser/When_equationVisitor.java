@@ -27,11 +27,13 @@ public class When_equationVisitor extends modelicaBaseVisitor<When_equation> {
                                                                         .map(eqn -> eqn.accept(equationVisitor))
                                                                         .collect(toList());
         
-        List<When_elsewhen_equation> when_elsewhen = new ArrayList<When_elsewhen_equation>();    
-        for (int i = 0; i< expressions.size(); i++) {
+        List<When_elsewhen_equation> when_elsewhen = new ArrayList<When_elsewhen_equation>();
+        if (expressions != null) {
+            for (int i = 0; i< expressions.size(); i++) {
 
-            //check? 
-            when_elsewhen.add(new When_elsewhen_equation(expressions.get(i), equations.subList(i, i+1)));
+                //check? 
+                when_elsewhen.add(new When_elsewhen_equation(expressions.get(i), equations.subList(i, i+1)));
+            }
         }
 
         return new When_equation(when_elsewhen);

@@ -25,8 +25,10 @@ public class Stored_definitionVisitor extends modelicaBaseVisitor<Stored_definit
             .collect(toList());
     
     Boolean is_final = false;
-    if (final_dec.size() > 0) {
-      is_final = true;
+    if (final_dec != null) {
+      if (final_dec.size() > 0) {
+        is_final = true;
+      }
     }
     
     Class_definitionVisitor class_definitionVisitor = new Class_definitionVisitor();

@@ -27,13 +27,14 @@ public class When_statementVisitor extends modelicaBaseVisitor<When_statement> {
                                                                         .map(stmt -> stmt.accept(statementVisitor))
                                                                         .collect(toList());
         
-        List<When_elsewhen_statement> when_elsewhen = new ArrayList<When_elsewhen_statement>();    
-        for (int i = 0; i< expressions.size(); i++) {
+        List<When_elsewhen_statement> when_elsewhen = new ArrayList<When_elsewhen_statement>();   
+        if (expressions != null) {
+            for (int i = 0; i< expressions.size(); i++) {
 
-            //check? 
-            when_elsewhen.add(new When_elsewhen_statement(expressions.get(i), statements.subList(i, i+1)));
+                //check? 
+                when_elsewhen.add(new When_elsewhen_statement(expressions.get(i), statements.subList(i, i+1)));
+            }    
         }
-
         return new When_statement(when_elsewhen);
     }
 }

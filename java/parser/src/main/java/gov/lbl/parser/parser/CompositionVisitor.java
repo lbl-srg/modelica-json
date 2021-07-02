@@ -90,7 +90,7 @@ public class CompositionVisitor extends modelicaBaseVisitor<Composition> {
                                                                             .collect(toList());;
         Annotation external_annotation = null; 
         Annotation annotation = null; 
-        if (annotations != null) {
+        if (annotations != null && annotations.size() > 0) {
             if (annotations.size() == 2) {
                 external_annotation = annotations.get(0);
                 annotation = annotations.get(1);
