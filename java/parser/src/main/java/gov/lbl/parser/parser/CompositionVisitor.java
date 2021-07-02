@@ -22,7 +22,7 @@ public class CompositionVisitor extends modelicaBaseVisitor<Composition> {
         List<String> element_lists_types = new ArrayList<String>();
         element_lists_types.add("None");
 
-        for (int i=1; i<ctx.getRuleIndex(); i++) {
+        for (int i=1; i<ctx.getChildCount(); i++) {
             if (ctx.getChild(i).getClass() == modelicaParser.Element_listContext.class) {
                 String public_protected_type = ctx.getChild(i-1).getText();
                 if (public_protected_type.equals("protected")) {
@@ -55,8 +55,8 @@ public class CompositionVisitor extends modelicaBaseVisitor<Composition> {
             .map(PROTECTED -> PROTECTED.getText())
             .collect(toList());
         
-        List<Element_list> public_element_lists = public_dec.size() == 0 ? null : new ArrayList<Element_list>();
-        List<Element_list> protected_element_lists = protected_dec.size() == 0 ? null : new ArrayList<Element_list>();
+        List<Element_list> public_element_lists = public_dec == null ? null : new ArrayList<Element_list>();
+        List<Element_list> protected_element_lists = protected_dec == null ? null : new ArrayList<Element_list>();
         
         for(int i=1; i<element_lists.size(); i++) {
             if (element_lists_types.get(i) == "public") {
