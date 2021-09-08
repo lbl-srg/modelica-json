@@ -55,6 +55,24 @@ generate-reference-output:
 	node ../app.js -l warn -f FromModelica -o docx -d ./FromModelica/modelica -m modelica)
 	rm -f test/modelica-json.log test/FromModelica/modelica-json.log
 
+generate-cdl-documentation:
+	mkdir temp_mbl
+	(cd temp_mbl && \
+	git clone https://github.com/lbl-srg/modelica-buildings.git)
+	(cd temp_mbl/modelica-buildings && \
+	git checkout bbee276)
+	(node app.js \
+	-f temp_mbl/modelica-buildings/Buildings/Controls/OBC/CDL \
+	-m modelica \
+	-d cdlDoc \
+	-o html)
+	(node app.js \
+	-f temp_mbl/modelica-buildings/Buildings/Controls/OBC/CDL \
+	-m modelica \
+	-d cdlDoc \
+	-o docx)
+	rm -r temp_mbl
+
 clean-node-packages:
 	rm -rf node-modules
 
