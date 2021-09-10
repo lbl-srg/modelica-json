@@ -82,11 +82,15 @@ if (args.mode === 'modelica' && args.output === 'svg') {
   throw new Error('svg output option has not been enabled in modelica mode.')
 }
 
+// Check if the parsing is to generate cdl documents in docx format
+const cdlPath = path.join('OBC', 'CDL')
+var cdlDoc = (args.mode === 'modelica' && args.output === 'docx' && args.file.includes(cdlPath))
+
 // Get mo files array
-var moFiles = ut.getMoFiles(args.mode, args.file)
+var moFiles = ut.getMoFiles(args.mode, args.file, args.output)
 
 // Parse the json representation for moFiles
-var json = pa.getJSON(moFiles, args.mode, args.output)
+var json = pa.getJSON(moFiles, args.mode, args.output, cdlDoc)
 
 // Get the name array of output files
 var outFile = ut.getOutFile(args.mode, args.file, args.output, args.directory, moFiles, json)
