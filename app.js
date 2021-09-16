@@ -95,7 +95,7 @@ var json = pa.getJSON(moFiles, args.mode, args.output, cdlDoc)
 // Get the name array of output files
 var outFile = ut.getOutFile(args.mode, args.file, args.output, args.directory, moFiles, json)
 
-pa.exportJSON(json, outFile, args.output, args.mode, args.directory)
+pa.exportJSON(json, outFile, args.output, args.mode, args.directory, cdlDoc)
 
 var schema
 if (args.mode === 'cdl') {
