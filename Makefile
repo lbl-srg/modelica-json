@@ -18,10 +18,17 @@ install-maven:
 	tar xzf apache-maven.tar.gz -C apache_maven --strip-components 1
 	rm -rf apache-maven.tar.gz
 
+install-pandoc:
+	@echo "Installing pandoc"
+	wget https://github.com/jgm/pandoc/releases/download/2.14.2/pandoc-2.14.2-linux-amd64.tar.gz
+	mv pandoc-2.14.2-linux-amd64.tar.gz pandoc.tar.gz
+	tar xvzf pandoc.tar.gz --strip-components 1 -C ~/.local
+	rm -rf pandoc.tar.gz
+
 install-node-packages:
 	npm install --save
 
-install: install-maven install-node-packages
+install: install-maven install-pandoc install-node-packages
 
 compile:
 	@echo "Compiling java to produce jar"
