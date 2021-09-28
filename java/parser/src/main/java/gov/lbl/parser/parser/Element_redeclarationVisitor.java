@@ -20,7 +20,7 @@ public class Element_redeclarationVisitor extends modelicaBaseVisitor<Element_re
         Component_clause1 component_clause1 = ctx.component_clause1() == null ? null : ctx.component_clause1().accept(component_clause1Visitor);
 
         Element_replaceableVisitor element_replaceableVisitor = new Element_replaceableVisitor();
-        Element_replaceable element_replaceable = ctx.element_replaceable().accept(element_replaceableVisitor);
+        Element_replaceable element_replaceable = ctx.element_replaceable() == null ? null : ctx.element_replaceable().accept(element_replaceableVisitor);
 
         return new Element_redeclaration(each, is_final, short_class_definition, component_clause1, element_replaceable);
     }
