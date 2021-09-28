@@ -84,7 +84,7 @@ if (args.mode === 'modelica' && args.output === 'svg') {
 
 // Check if the parsing is to generate cdl documents in docx format
 const cdlPath = path.join('OBC', 'CDL')
-var cdlDoc = (args.mode === 'modelica' && args.output === 'docx' && args.file.includes(cdlPath))
+var cdlDoc = (args.mode === 'modelica' && (args.output === 'docx' || args.output === 'html') && args.file.includes(cdlPath))
 
 // Get mo files array
 var moFiles = ut.getMoFiles(args.mode, args.file, args.output)

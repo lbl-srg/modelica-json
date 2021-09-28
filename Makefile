@@ -18,17 +18,10 @@ install-maven:
 	tar xzf apache-maven.tar.gz -C apache_maven --strip-components 1
 	rm -rf apache-maven.tar.gz
 
-install-pandoc:
-	@echo "Installing pandoc"
-	wget https://github.com/jgm/pandoc/releases/download/2.14.2/pandoc-2.14.2-linux-amd64.tar.gz
-	mv pandoc-2.14.2-linux-amd64.tar.gz pandoc.tar.gz
-	tar xvzf pandoc.tar.gz --strip-components 1 -C ~/.local
-	rm -rf pandoc.tar.gz
-
 install-node-packages:
 	npm install --save
 
-install: install-maven install-pandoc install-node-packages
+install: install-maven install-node-packages
 
 compile:
 	@echo "Compiling java to produce jar"
@@ -62,8 +55,10 @@ generate-reference-output:
 	node ../app.js -l warn -f FromModelica -o docx -d ./FromModelica/modelica -m modelica)
 	rm -f test/modelica-json.log test/FromModelica/modelica-json.log
 
+b := ".docx"
+
 generate-cdl-documentation:
-	mkdir temp_mbl
+	rm -rf temp_mbl; mkdir temp_mbl
 	(cd temp_mbl && \
 	git clone https://github.com/lbl-srg/modelica-buildings.git)
 	(cd temp_mbl/modelica-buildings && \
@@ -73,12 +68,19 @@ generate-cdl-documentation:
 	-m modelica \
 	-d cdlDoc \
 	-o html)
-	(node app.js \
-	-f temp_mbl/modelica-buildings/Buildings/Controls/OBC/CDL \
-	-m modelica \
-	-d cdlDoc \
-	-o docx)
-	rm -r temp_mbl
+	(cd cdlDoc && \
+	rm -rf docx; mkdir docx)
+	(cd cdlDoc/html && \
+	for ff in `find . -name '*.html'`; do \
+		$(eval name = $$$${ff}) \
+		$(eval test = $(basename $(value name))) \
+		pandoc $${ff} -o "${test}$b"; \
+		done)
+	(cd cdlDoc/html && \
+	for ff in `find . -name '*.docx'`; do \
+		mv $${ff} "./docx/$${ff}"; \
+		done)
+	rm -rf temp_mbl
 
 clean-node-packages:
 	rm -rf node-modules
