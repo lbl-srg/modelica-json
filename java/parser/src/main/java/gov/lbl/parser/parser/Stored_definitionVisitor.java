@@ -14,9 +14,7 @@ public class Stored_definitionVisitor extends modelicaBaseVisitor<Stored_definit
   @Override
   public Stored_definition visitStored_definition(modelicaParser.Stored_definitionContext ctx) {
     NameVisitor nameVisitor = new NameVisitor();
-    List<Name> names = ctx.name().stream().map(name -> nameVisitor.visitName(name)).collect(toList());
-
-    Name name = names.get(0);
+    Name name = ctx.name() == null ? null : ctx.name().accept(nameVisitor);
     String within = name.getName();
 
     List<String> final_dec = ctx.FINAL() == null ? null : ctx.FINAL()

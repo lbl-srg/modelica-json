@@ -129,7 +129,7 @@ public class Main {
     	    	runLog.add(e.getMessage());
     	    	throw new Exception(e);
     	    }
-    	    Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
+    	    Gson gson = new GsonBuilder().disableHtmlEscaping().create();
     	    //Gson gson = new Gson();
     	    jsonOut = gson.toJson(antlrParseOut);
     	    if (args.length>2) {

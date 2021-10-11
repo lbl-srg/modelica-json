@@ -11,6 +11,12 @@ public class Composition {
     private External_composition external_composition; 
     private Annotation annotation;
 
+    // composition: list(composition_obj)
+    // composition_obj {
+    //     type: element_list/public_ele/proto... 
+    //     json: {}
+    // }
+
     public Composition(Element_list element_list, Collection<Element_list> public_element_lists, Collection<Element_list> protected_element_lists, Collection<Equation_section> equation_sections, 
                         Collection<Algorithm_section> algorithm_sections, External_composition external_composition, Annotation annotation) {
         this.element_list = element_list;
