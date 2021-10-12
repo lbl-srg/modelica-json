@@ -30,7 +30,6 @@ public class CompositionVisitor extends modelicaBaseVisitor<Composition> {
         List<Element_section> element_sections = new ArrayList<Element_section>();
 
         Element_listVisitor element_listVisitor = new Element_listVisitor();
-        ElementVisitor element_visitor = new ElementVisitor();
         Equation_sectionVisitor equation_sectionVisitor = new Equation_sectionVisitor();
         EquationVisitor equationVisitor = new EquationVisitor();
         Algorithm_sectionVisitor algorithm_sectionVisitor = new Algorithm_sectionVisitor();

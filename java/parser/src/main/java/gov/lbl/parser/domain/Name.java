@@ -15,12 +15,15 @@ public class Name {
 
     public String getName() {
         StringBuilder name = new StringBuilder();
-        for (int j=0; j<name_parts.size(); j++) {
-            if (name_parts.get(j).get_dot_op()) {
-                name.append(".");
+        if (this.name_parts != null) {
+            for (int j=0; j<this.name_parts.size(); j++) {
+                if (name_parts.get(j).get_dot_op()) {
+                    name.append(".");
+                }
+                name.append(name_parts.get(j).get_identifier());
             }
-            name.append(name_parts.get(j).get_identifier());
+            return name.toString();
         }
-        return name.toString();
+        return "";
     }
 }
