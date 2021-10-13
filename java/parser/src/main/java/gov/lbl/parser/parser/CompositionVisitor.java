@@ -35,7 +35,6 @@ public class CompositionVisitor extends modelicaBaseVisitor<Composition> {
         Algorithm_sectionVisitor algorithm_sectionVisitor = new Algorithm_sectionVisitor();
 
         List<ParseTree> children = ctx.children;
-        List<TerminalNode> tokens = null;
         String previous_element_list_modifier = null;
 
         for (ParseTree o : children) {            

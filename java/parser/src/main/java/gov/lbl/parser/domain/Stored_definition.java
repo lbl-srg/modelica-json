@@ -4,13 +4,10 @@ import java.util.Collection;
 
 public class Stored_definition {
     private String within;
-    private Boolean is_final;
-    private Collection<Class_definition> class_definition;
+    private Collection<Final_class_definition> final_class_definitions;
 
-    public Stored_definition(String within, Boolean is_final, 
-                             Collection<Class_definition> class_definition) {
+    public Stored_definition(String within, Collection<Final_class_definition> final_class_definitions) {
       this.within = within;
-      this.is_final = is_final;
-      this.class_definition = (class_definition.size() > 0 ? class_definition : null);
+      this.final_class_definitions = final_class_definitions;
     }
 }

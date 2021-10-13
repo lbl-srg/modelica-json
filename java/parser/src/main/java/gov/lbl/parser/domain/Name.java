@@ -17,10 +17,10 @@ public class Name {
         StringBuilder name = new StringBuilder();
         if (this.name_parts != null) {
             for (int j=0; j<this.name_parts.size(); j++) {
-                if (name_parts.get(j).get_dot_op()) {
+                if (this.name_parts.get(j).get_dot_op()) {
                     name.append(".");
                 }
-                name.append(name_parts.get(j).get_identifier());
+                name.append(this.name_parts.get(j).get_identifier());
             }
             return name.toString();
         }
