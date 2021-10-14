@@ -67,20 +67,16 @@ public class CompositionVisitor extends modelicaBaseVisitor<Composition> {
                 //nothing here
             }
         }
-
-        Boolean external = ctx.EXTERNAL() == null ? false : true;
-        String language_specification = ctx.language_specification() == null ? "" : ctx.language_specification().getText();
-        
-        External_function_callVisitor external_function_callVisitor = new External_function_callVisitor();
-        External_function_call external_function_call = ctx.external_function_call() == null ? null : ctx.external_function_call().accept(external_function_callVisitor);
-        
         AnnotationVisitor annotationVisitor = new AnnotationVisitor();
         List<Annotation> annotations = ctx.annotation() == null ? null : ctx.annotation()
                                                                             .stream()
                                                                             .map(single_annotation -> single_annotation.accept(annotationVisitor))
                                                                             .collect(toList());;
+        Boolean external = ctx.EXTERNAL() == null ? false : true;
+
         Annotation external_annotation = null; 
         Annotation annotation = null; 
+        
         if (annotations != null && annotations.size() > 0) {
             if (annotations.size() == 2) {
                 external_annotation = annotations.get(0);
@@ -95,7 +91,14 @@ public class CompositionVisitor extends modelicaBaseVisitor<Composition> {
                 }
             }
         }
-        External_composition external_composition = new External_composition(language_specification, external_function_call, external_annotation);
+
+        External_composition external_composition = null;
+        if (external) {
+            String language_specification = ctx.language_specification() == null ? "" : ctx.language_specification().getText();
+            External_function_callVisitor external_function_callVisitor = new External_function_callVisitor();
+            External_function_call external_function_call = ctx.external_function_call() == null ? null : ctx.external_function_call().accept(external_function_callVisitor);
+            external_composition = new External_composition(language_specification, external_function_call, external_annotation);
+        }
         
         return new Composition(element_list, element_sections, external_composition, annotation);
     }
