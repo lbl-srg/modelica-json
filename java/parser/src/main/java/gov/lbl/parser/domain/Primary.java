@@ -12,9 +12,10 @@ public class Primary {
     private Output_expression_list output_expression_list;
     private Collection<Expression_list> expression_lists;
     private Function_arguments function_arguments;
+    private Boolean end;
 
     public Primary(Double unsigned_number, String primary_string, Boolean is_false, Boolean is_true, Function_call_primary function_call_primary, Component_reference component_reference,
-                    Output_expression_list output_expression_list, Collection<Expression_list> expression_lists, Function_arguments function_arguments){
+                    Output_expression_list output_expression_list, Collection<Expression_list> expression_lists, Function_arguments function_arguments, Boolean end){
         this.unsigned_number = unsigned_number;
         this.primary_string = primary_string;
         this.is_false = is_false;
@@ -24,5 +25,6 @@ public class Primary {
         this.output_expression_list = output_expression_list;
         this.expression_lists = expression_lists;
         this.function_arguments = function_arguments;
+        this.end = end;
     }
 }

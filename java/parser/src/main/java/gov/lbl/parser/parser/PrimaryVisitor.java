@@ -46,7 +46,9 @@ public class PrimaryVisitor  extends modelicaBaseVisitor<Primary> {
         
         Function_argumentsVisitor function_argumentsVisitor = new Function_argumentsVisitor();
         Function_arguments function_arguments = ctx.function_arguments() == null ? null : ctx.function_arguments().accept(function_argumentsVisitor);
+
+        Boolean end = ctx.END() == null ? false : true;
         
-        return new Primary(unsigned_number, primary_string, is_false, is_true, function_call_primary, component_reference, output_expression_list, expression_lists, function_arguments);
+        return new Primary(unsigned_number, primary_string, is_false, is_true, function_call_primary, component_reference, output_expression_list, expression_lists, function_arguments, end);
     }
 }
