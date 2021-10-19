@@ -67,7 +67,9 @@ make clean-installation
 
 - Install [Java SE Development Kit (64-bit version)](https://www.oracle.com/java/technologies/javase-downloads.html), [Java Runtime Environment (64-bit version)](https://java.com/en/download/manual.jsp) and [Node.js](https://nodejs.org/en/download/).
 
-- Finally, to install dependencies and compile the Java files, run batch file `InstallOnWindows.bat`.
+- In batch file `InstallOnWindows.bat`, update `JAVA_HOME` path in line `set JAVA_HOME=path\to\your\jdk`.
+
+- Finally, to install dependencies and compile the Java files, run `InstallOnWindows.bat`.
 
 To test the installation, from the `\modelica-json` directory, run the parser on Command Prompt:
 ```
