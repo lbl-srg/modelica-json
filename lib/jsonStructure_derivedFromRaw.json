@@ -1,0 +1,451 @@
+{
+  "within": string,
+  "class_definition": [
+    {
+      "final": boolean,
+      "encapsulated": boolean,
+      "class_prefixes": string,                                    //(PARTIAL)? (CLASS | MODEL | (OPERATOR)? RECORD | BLOCK | (EXPANDABLE)? CONNECTOR | TYPE | PACKAGE | ((PURE | IMPURE))? (OPERATOR)? FUNCTION | OPERATOR)
+      "class_specifier": {
+        "long_class_specifier": {
+          "identifier": string,
+          "description_string": string,
+          "composition": {                          // note that in this object, we grouped the protected section (and public, equation, algorithm) in one object, which may not keep the order as shown in modelica file. We will refactor the session. But for now, it would be sufficient for Devetry
+            "element_list": element_list,                          // same as element in the "protected_element_list"
+            "element_sections": [
+              {
+                "public_element_list": element_list,                   // same as element in the "protected_element_list"
+                "protected_element_list": [
+                  {
+                    "import_clause": {
+                      "identifier": string,
+                      "name": string,
+                      "dot_star": boolean,
+                      "import_list": string,
+                      "description": {
+                        "description-string": string,
+                        "annotation": class_modification               // same as "class_modification" defined below
+                      }
+                    },
+                    "extends_clause": {
+                      "name": string,
+                      "class_modification": class_modification,        // same as "class_modification" defined below
+                      "annotation": class_modification                 // same as "class_modification" defined below
+                    },
+                    "redeclare": boolean,
+                    "final": boolean,
+                    "inner": boolean,
+                    "outer": boolean,
+                    "replaceable": boolean,
+                    "constraining_clause": {
+                      "name": string,
+                      "class_modification": class_modification,        // same as "class_modification" defined below
+                    },
+                    "class_definition": class_definition,              // same as "class_definition"
+                    "component_clause": {
+                      "type_prefix": string,                           // [ flow | stream ] [ discrete | parameter | constant ] [ input | output ] 
+                      "type_specifier": string,
+                      "array_subscripts": [
+                        {
+                          "expression": {
+                            "simple_expression": simple_expression,    // string
+                            "if_expression": {
+                              "if_elseif": [
+                                {
+                                  "condition": expression,             // same as "expression"
+                                  "then": expression                   // same as "expression"
+                                }
+                              ],
+                              "else_expression": expression            // same as "expression" object
+                            }
+                          },
+                          "colon_op": boolean                          // ":"
+                        }
+                      ],
+                      "component_list": [
+                        {
+                          "declaration": {
+                            "identifier": string,
+                            "array_subscripts": array_subscripts,      // same as "array_subscripts" defined above
+                            "modification": {
+                              "class_modification": [
+                                {
+                                  "element_modification_or_replaceable": {
+                                    "each": boolean,
+                                    "final": boolean,
+                                    "element_modification": {
+                                      "name": string,
+                                      "modification": modification,    // same as "modification" object
+                                      "description-string": string
+                                    },
+                                    "element_replaceable": {
+                                      "short_class_definition": {
+                                        "class_prefixes": string,      //(PARTIAL)? (CLASS | MODEL | (OPERATOR)? RECORD | BLOCK | (EXPANDABLE)? CONNECTOR | TYPE | PACKAGE | ((PURE | IMPURE))? (OPERATOR)? FUNCTION | OPERATOR),
+                                        "short_class_specifier": short_class_specifier     // same as "short_class_specifier"
+                                      },
+                                      "component_clause1": {
+                                        "type_prefix": string,
+                                        "type_specifier": string,
+                                        "component_declaration1": {
+                                          "declaration": declaration,  // same as "declaration"
+                                          "description": description   // same as "description" above
+                                        }
+                                      },
+                                      "constraining_clause": constraining_clause      // same as "constraining_clause"
+                                    }
+                                  },
+                                  "element_redeclaration": {
+                                    "each": boolean,
+                                    "final": boolean,
+                                    "short_class_definition": short_class_definition, // same as "short_class_definition"
+                                    "component_clause1": component_clause1,           // same as "component_clause1"
+                                    "element_replaceable": element_replaceable        // same as "element_replaceable"
+                                  }
+                                }
+                              ],
+                              "equal": boolean,
+                              "colon_equal": boolean,
+                              "expression": expression                 // same as "expression"
+                            }
+                          },
+                          "condition_attribute": {
+                            "expression": expression                   // same as "expression"
+                          },
+                          "description": description                           // same as "description"
+                        }
+                      ]
+                    },
+                    "description": description                                 // same as "description"
+                  }
+                ],
+                "equation_section": [
+                  {
+                    "initial": boolean,
+                    "equation": [
+                      {
+                        "assigment_equation": {
+                          "lhs": simple_expression,                    // string
+                          "rhs": expression                            // same as "expression"
+                        }, 
+                        "if_equation": {
+                          "if_elseif": [
+                            {
+                              "condition": expression,                 // same as "expression"
+                              "then": [
+                                equation                // same as "equation"
+                              ]
+                            }
+                          ], 
+                          "else_equation": [
+                            equation                     // same as "equation"
+                          ]
+                        },
+                        "for_equation": {
+                          "for_indices": [
+                            {
+                              "identifier": string,
+                              "expression": expression                 // same as "expression"
+                            }
+                          ], 
+                          "loop_equations": [
+                            equation                     // same as "equation"
+                          ]
+                        },
+                        "connect_clause": {
+                          "from": component_reference,                 // same as "component_reference"
+                          "to": component_reference                    // same as "component_reference"
+                        },
+                        "when_equation": [
+                          {
+                            "condition": expression,                   // same as "expression" object
+                            "then": [
+                              equation                   // same as "equation"
+                            ]
+                          }
+                        ],
+                        "function_call_equation": {
+                          "function_name": string,
+                          "function_call_args": {
+                            "named_arguments": [
+                              {
+                                "identifier": string,
+                                "value": function_argument             // same as "function_argument"
+                              }
+                            ],
+                            "function_argument": {
+                              "function_name": name,
+                              "named_arguments": [
+                                {
+                                  "identifier": string,
+                                  "value": function_argument           // same as "function_argument"
+                                }
+                              ],
+                              "expression": expression                 // same as "expression"
+                            },
+                            "for_indices": for_indices,                // same as "for_indices"
+                            "function_arguments": {
+                              "named_arguments": named_arguments,      // same as "named_arguments"
+                              "function_argument": function_argument,  // same as "function_argument"
+                              "for_indices": for_indices,              // same as "for_indices"
+                              "function_arguments": function_arguments // same as "function_arguments"
+                            }
+                          }
+                        },
+                        "description": description                     // same as "description"
+                      }
+                    ]
+                  }
+                ], 
+                "algorithm_section": [
+                  {
+                    "initial": boolean,
+                    "statement": [
+                      {
+                        "assignment_statement": {
+                          "identifier": component_reference,           // same as "component_reference"
+                          "value": expression                          // same as "expression"
+                        },
+                        "Function_call_statement": {
+                          "function_name": component_reference,        // same as "component_reference"
+                          "function_call_args": function_call_args     // same as "function_call_args"
+                        }, 
+                        "assignment_with_function_call_statement": {
+                          "output_expression_list": [
+                            expression                 // same as "expression"
+                          ], 
+                          "function_name": component_reference,        // same as "component_reference"
+                          "function_call_args": function_call_args     // same as "function_call_args"
+                        },
+                        "break": boolean,
+                        "return": boolean,
+                        "if_statement": {
+                          "if_elseif": [
+                            {
+                              "condition": expression,                     // same as "expression"
+                              "then": [
+                                statement                   // same as "statement"
+                              ]
+                            }
+                          ], 
+                          "else_statement": [
+                            statement                       // same as "statement"
+                          ]
+                        },
+                        "for_statement": {
+                          "for_indices": for_indices,                      // same as "for_indices"
+                          "loop_statements": [
+                            statement                       // same as "statement"
+                          ]
+                        },
+                        "while_statement": {
+                          "condition": expression,                         // same as "expression"
+                          "loop_statements": [
+                            statement                       // same as "statement"
+                          ]
+                        },
+                        "when_statement": [
+                          {
+                            "condition": expression,                       // same as "expression"
+                            "then": [
+                              statement                     // same as "statement"
+                            ]
+                          }
+                        ],
+                        "description": description                         // same as "description"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ], 
+            "external_composition": {
+              "language_specification": string, 
+              "external_function_call": {
+                "component_reference": [
+                  {
+                    "dot_op": boolean,
+                    "identifier": string,
+                    "array_subscripts": array_subscripts           // same as "array_subscripts"
+                  }
+                ],
+                "identifier": string,
+                "expression_list": [
+                  {
+                    "simple_expression": simple_expression,       // string
+                    "if_expression": {
+                      "if_elseif": [
+                        {
+                          "condition": expression,                 // same as "expression"
+                          "then": expression                       // same as "expression"
+                        }
+                      ],
+                      "else_expression": expression                // same as "expression"
+                    }
+                  }
+                ]
+              },
+              "external_annotation": class_modification            // same as "class_modification"
+            },
+            "annotation": class_modification                       // same as "class_modification"
+          },
+          "extends": boolean,
+          "class_modification": class_modification,                // same as "class_modification"
+        },
+        "short_class_specifier": {
+          "identifier": string,
+          "short_class_specifier_value": {
+            "base_prefix": string,                                 //(FLOW | STREAM)? (DISCRETE | PARAMETER | CONSTANT)? (INPUT | OUTPUT)?,
+            "name": string,
+            "array_subscripts": array_subscripts,                  // same as "array_subscripts"
+            "class_modification": class_modification,              // same as "class_modification"
+            "description": description,                                    // same as "description"
+            "enum_list": [
+              {
+                "identifier": string,
+                "description": description                                 // same as "description"
+              }
+            ]
+          }
+        },
+        "der_class_specifier": {
+          "identifier": string,
+          "der_class_specifier_value": {
+            "type_specifier": string,
+            "identifier": list(string),
+            "description": description                                     // same as "description"
+          }
+        }
+      }
+    }
+  ]
+}
+
+
+
+
+
+
+// ---------------- "simple_expression" grammar: https://github.com/antlr/grammars-v4/blob/master/modelica/modelica.g4 -----------------
+
+// "simple_expression": {        // different from grammar
+//    "logical_expression1": logical_expression,
+//    "logical_expression2": logical_expression,
+//    "logical_expression3": logical_expression
+// }
+
+// "logical_expression": {
+//    "logical_term_list": list(logical_term)    //not nullable
+// }
+
+// "logical_term": {
+//    "logical_factor_list": list(logical_factor)    //not nullable
+// }
+
+// "logical_factor": {
+//    "not": bool,
+//    "relation": relation
+// }
+
+// "relation": {
+//    "arithmetic_expression1": arithmetic_expression,    //not in grammar
+//    "rel_op": str,       // '<' | '<=' | '>' | '>=' | '==' | '<>'
+//    "arithmetic_expression2": arithmetic_expression
+// }
+
+// "arithmetic_expression": {
+//    "arithmetic_term_list": list(arithmetic_term)
+// }
+
+// "arithmetic_term": {
+//    "add_op": str,        //'+' | '-' | '.+' | '.-'
+//    "term": term,
+// }
+
+// "term": {
+//    "Factors": list(factor),
+//    "mul_ops": list(str) // '*' | '/' | '.*' | './'
+// }
+
+// "factor": {
+//    "primary1": primary, //not i
+//    "op":  str,         // '^' | '.^'
+//    "primary2": primary
+// }
+
+// "primary": {
+//    "unsigned_number": float, //does modelica have float?
+//    "primary_string": str,
+//    "is_false": bool,
+//    "is_true": bool,
+//    "function_call_primary": function_call_primary,
+//    "component_reference": component_reference,
+//    "output_expression_list": output_expression_list,
+//    "expression_lists": list(expression_list),
+//    "function_arguments": function_arguments
+// }
+
+// "function_call_primary": {
+//    "function_name": name,
+//    "der": bool,
+//    "initial": bool,
+//    "function_call_args": function_call_args
+// }
+
+// "component_reference": {
+//    "component_reference_parts": list(component_reference_part)
+// }
+// "component_reference_part": {
+//    "dot_op": bool,
+//    "identifier": str,
+//    "array_subscripts": array_subscripts
+// }
+
+// "function_call_args": {
+//    "function_arguments": function_arguments
+// }
+
+// "function_arguments": {
+//    "named_arguments": named_arguments,
+//    "function_argument": function_argument,
+//    "for_indices": for_indices,
+//    "function_arguments": function_arguments
+// }
+
+// "named_arguments": list(named_argument)
+
+// "named_argument" {
+//    "identifier": str,
+//    "value": function_argument
+// }
+
+// "function_argument": {
+//    "function_name": name,
+//    "named_arguments": list(named_argument),
+//    "expression": expression
+// }
+
+// "output_expression_list": {
+//    "output_expressions": list(expression)
+// }
+
+// "expression_list": {
+//    "expressions": list(expression)
+// }
+
+// "description": {
+//    "description-string": str,
+//    "annotation": annotation
+// }
+
+// "annotation": {
+//    "class_modification": class_modification
+// }
+
+// "type_prefix": str //(FLOW | STREAM)? (DISCRETE | PARAMETER | CONSTANT)? (INPUT | OUTPUT)?
+// "IDENT": str //NONDIGIT (DIGIT | NONDIGIT)* | Q_IDENT ---------------
+// "description-string": str
+// "language_specification": str
+
+
+
+
+
