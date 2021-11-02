@@ -1,12 +1,11 @@
 package gov.lbl.parser.domain;
 
 public class Enumeration_literal {
-    private String name;
+    private String identifier;
     private Comment comment;
 
-    public Enumeration_literal(String ident,
-                               Comment comment) {
-      this.name = ident;
-      this.comment = comment;
+    public Enumeration_literal(String identifier, Comment comment) {
+        this.identifier = identifier;
+        this.comment = comment;
     }
 }
