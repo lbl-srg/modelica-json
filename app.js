@@ -86,22 +86,22 @@ if (args.mode === 'modelica' && args.output === 'svg') {
 var moFiles = ut.getMoFiles(args.mode, args.file)
 
 // Parse the json representation for moFiles
-var json = pa.getJSON(moFiles, args.mode, args.output)
+var json = pa.getJsons(moFiles, args.mode, args.output)
 
-// Get the name array of output files
-var outFile = ut.getOutFile(args.mode, args.file, args.output, args.directory, moFiles, json)
+// // Get the name array of output files
+// var outFile = ut.getOutFile(args.mode, args.file, args.output, args.directory, moFiles, json)
 
-pa.exportJSON(json, outFile, args.output, args.mode, args.directory)
+// pa.exportJSON(json, outFile, args.output, args.mode, args.directory)
 
-var schema
-if (args.mode === 'cdl') {
-  schema = path.join(`${__dirname}`, 'schema-CDL.json')
-} else {
-  schema = path.join(`${__dirname}`, 'schema-modelica.json')
-}
+// var schema
+// if (args.mode === 'cdl') {
+//   schema = path.join(`${__dirname}`, 'schema-CDL.json')
+// } else {
+//   schema = path.join(`${__dirname}`, 'schema-modelica.json')
+// }
 
-setTimeout(function () { ut.jsonSchemaValidate(args.mode, outFile[0], args.output, schema) }, 100)
+// setTimeout(function () { ut.jsonSchemaValidate(args.mode, outFile[0], args.output, schema) }, 100)
 
-if (args.strict === 'true' && pa.warnCounter > 0) {
-  process.exit(1)
-}
+// if (args.strict === 'true' && pa.warnCounter > 0) {
+//   process.exit(1)
+// }
