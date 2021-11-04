@@ -83,10 +83,10 @@ if (args.mode === 'modelica' && args.output === 'svg') {
 }
 
 // Get mo files array
-var moFiles = ut.getMoFiles(args.mode, args.file)
+var moFiles = ut.getMoFiles(args.file)
 
 // Parse the json representation for moFiles
-var json = pa.getJsons(moFiles, args.mode, args.output)
+var json = pa.getJsons(moFiles, args.mode, args.output, args.directory)
 
 // // Get the name array of output files
 // var outFile = ut.getOutFile(args.mode, args.file, args.output, args.directory, moFiles, json)

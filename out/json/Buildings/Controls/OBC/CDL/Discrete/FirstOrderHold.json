@@ -1,0 +1,688 @@
+{
+  "within": "Buildings.Controls.OBC.CDL.Discrete",
+  "class_definition": [
+    {
+      "final": false,
+      "encapsulated": false,
+      "class_prefixes": "block",
+      "class_specifier": {
+        "long_class_specifier": {
+          "identifier": "FirstOrderHold",
+          "description_string": "\"First order hold of a sampled-data system\"",
+          "composition": {
+            "element_list": [
+              {
+                "redeclare": false,
+                "final": false,
+                "innner": false,
+                "outer": false,
+                "replaceable": false,
+                "component_clause": {
+                  "type_prefix": "parameter",
+                  "type_specifier": "Real",
+                  "component_list": [
+                    {
+                      "declaration": {
+                        "identifier": "samplePeriod",
+                        "modification": {
+                          "class_modification": [
+                            {
+                              "element_modification_or_replaceable": {
+                                "each": false,
+                                "final": true,
+                                "element_modification": {
+                                  "name": "quantity",
+                                  "modification": {
+                                    "equal": true,
+                                    "colon_equal": false,
+                                    "expression": {
+                                      "simple_expression": "\"Time\""
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "element_modification_or_replaceable": {
+                                "each": false,
+                                "final": true,
+                                "element_modification": {
+                                  "name": "unit",
+                                  "modification": {
+                                    "equal": true,
+                                    "colon_equal": false,
+                                    "expression": {
+                                      "simple_expression": "\"s\""
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "element_modification_or_replaceable": {
+                                "each": false,
+                                "final": false,
+                                "element_modification": {
+                                  "name": "min",
+                                  "modification": {
+                                    "equal": true,
+                                    "colon_equal": false,
+                                    "expression": {
+                                      "simple_expression": "0.001"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ],
+                          "equal": false,
+                          "colon_equal": false
+                        }
+                      },
+                      "description": {
+                        "description_string": "\"Sample period of component\""
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "redeclare": false,
+                "final": false,
+                "innner": false,
+                "outer": false,
+                "replaceable": false,
+                "component_clause": {
+                  "type_specifier": "Interfaces.RealInput",
+                  "component_list": [
+                    {
+                      "declaration": {
+                        "identifier": "u"
+                      },
+                      "description": {
+                        "description_string": "\"Continuous input signal\"",
+                        "annotation": [
+                          {
+                            "element_modification_or_replaceable": {
+                              "each": false,
+                              "final": false,
+                              "element_modification": {
+                                "name": "Placement",
+                                "modification": {
+                                  "class_modification": [
+                                    {
+                                      "element_modification_or_replaceable": {
+                                        "each": false,
+                                        "final": false,
+                                        "element_modification": {
+                                          "name": "transformation",
+                                          "modification": {
+                                            "class_modification": [
+                                              {
+                                                "element_modification_or_replaceable": {
+                                                  "each": false,
+                                                  "final": false,
+                                                  "element_modification": {
+                                                    "name": "extent",
+                                                    "modification": {
+                                                      "equal": true,
+                                                      "colon_equal": false,
+                                                      "expression": {
+                                                        "simple_expression": "{{- 140,- 20},{- 100,20}}"
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            ],
+                                            "equal": false,
+                                            "colon_equal": false
+                                          }
+                                        }
+                                      }
+                                    }
+                                  ],
+                                  "equal": false,
+                                  "colon_equal": false
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "redeclare": false,
+                "final": false,
+                "innner": false,
+                "outer": false,
+                "replaceable": false,
+                "component_clause": {
+                  "type_specifier": "Interfaces.RealOutput",
+                  "component_list": [
+                    {
+                      "declaration": {
+                        "identifier": "y"
+                      },
+                      "description": {
+                        "description_string": "\"Continuous output signal\"",
+                        "annotation": [
+                          {
+                            "element_modification_or_replaceable": {
+                              "each": false,
+                              "final": false,
+                              "element_modification": {
+                                "name": "Placement",
+                                "modification": {
+                                  "class_modification": [
+                                    {
+                                      "element_modification_or_replaceable": {
+                                        "each": false,
+                                        "final": false,
+                                        "element_modification": {
+                                          "name": "transformation",
+                                          "modification": {
+                                            "class_modification": [
+                                              {
+                                                "element_modification_or_replaceable": {
+                                                  "each": false,
+                                                  "final": false,
+                                                  "element_modification": {
+                                                    "name": "extent",
+                                                    "modification": {
+                                                      "equal": true,
+                                                      "colon_equal": false,
+                                                      "expression": {
+                                                        "simple_expression": "{{100,- 20},{140,20}}"
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            ],
+                                            "equal": false,
+                                            "colon_equal": false
+                                          }
+                                        }
+                                      }
+                                    }
+                                  ],
+                                  "equal": false,
+                                  "colon_equal": false
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ],
+            "element_sections": [
+              {
+                "protected_element_list": [
+                  {
+                    "redeclare": false,
+                    "final": false,
+                    "innner": false,
+                    "outer": false,
+                    "replaceable": false,
+                    "component_clause": {
+                      "type_prefix": "parameter",
+                      "type_specifier": "Real",
+                      "component_list": [
+                        {
+                          "declaration": {
+                            "identifier": "t0",
+                            "modification": {
+                              "class_modification": [
+                                {
+                                  "element_modification_or_replaceable": {
+                                    "each": false,
+                                    "final": true,
+                                    "element_modification": {
+                                      "name": "quantity",
+                                      "modification": {
+                                        "equal": true,
+                                        "colon_equal": false,
+                                        "expression": {
+                                          "simple_expression": "\"Time\""
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                {
+                                  "element_modification_or_replaceable": {
+                                    "each": false,
+                                    "final": true,
+                                    "element_modification": {
+                                      "name": "unit",
+                                      "modification": {
+                                        "equal": true,
+                                        "colon_equal": false,
+                                        "expression": {
+                                          "simple_expression": "\"s\""
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                {
+                                  "element_modification_or_replaceable": {
+                                    "each": false,
+                                    "final": false,
+                                    "element_modification": {
+                                      "name": "fixed",
+                                      "modification": {
+                                        "equal": true,
+                                        "colon_equal": false,
+                                        "expression": {
+                                          "simple_expression": "false"
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              ],
+                              "equal": false,
+                              "colon_equal": false
+                            }
+                          },
+                          "description": {
+                            "description_string": "\"First sample time instant\""
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "redeclare": false,
+                    "final": false,
+                    "innner": false,
+                    "outer": false,
+                    "replaceable": false,
+                    "component_clause": {
+                      "type_prefix": "output",
+                      "type_specifier": "Boolean",
+                      "component_list": [
+                        {
+                          "declaration": {
+                            "identifier": "sampleTrigger"
+                          },
+                          "description": {
+                            "description_string": "\"True, if sample time instant\""
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "redeclare": false,
+                    "final": false,
+                    "innner": false,
+                    "outer": false,
+                    "replaceable": false,
+                    "component_clause": {
+                      "type_prefix": "output",
+                      "type_specifier": "Boolean",
+                      "component_list": [
+                        {
+                          "declaration": {
+                            "identifier": "firstTrigger",
+                            "modification": {
+                              "class_modification": [
+                                {
+                                  "element_modification_or_replaceable": {
+                                    "each": false,
+                                    "final": false,
+                                    "element_modification": {
+                                      "name": "start",
+                                      "modification": {
+                                        "equal": true,
+                                        "colon_equal": false,
+                                        "expression": {
+                                          "simple_expression": "false"
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                {
+                                  "element_modification_or_replaceable": {
+                                    "each": false,
+                                    "final": false,
+                                    "element_modification": {
+                                      "name": "fixed",
+                                      "modification": {
+                                        "equal": true,
+                                        "colon_equal": false,
+                                        "expression": {
+                                          "simple_expression": "true"
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              ],
+                              "equal": false,
+                              "colon_equal": false
+                            }
+                          },
+                          "description": {
+                            "description_string": "\"Rising edge signals first sample instant\""
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "redeclare": false,
+                    "final": false,
+                    "innner": false,
+                    "outer": false,
+                    "replaceable": false,
+                    "component_clause": {
+                      "type_specifier": "Real",
+                      "component_list": [
+                        {
+                          "declaration": {
+                            "identifier": "tSample",
+                            "modification": {
+                              "class_modification": [
+                                {
+                                  "element_modification_or_replaceable": {
+                                    "each": false,
+                                    "final": true,
+                                    "element_modification": {
+                                      "name": "quantity",
+                                      "modification": {
+                                        "equal": true,
+                                        "colon_equal": false,
+                                        "expression": {
+                                          "simple_expression": "\"Time\""
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                {
+                                  "element_modification_or_replaceable": {
+                                    "each": false,
+                                    "final": true,
+                                    "element_modification": {
+                                      "name": "unit",
+                                      "modification": {
+                                        "equal": true,
+                                        "colon_equal": false,
+                                        "expression": {
+                                          "simple_expression": "\"s\""
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              ],
+                              "equal": false,
+                              "colon_equal": false
+                            }
+                          },
+                          "description": {
+                            "description_string": "\"Time of sample\""
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "redeclare": false,
+                    "final": false,
+                    "innner": false,
+                    "outer": false,
+                    "replaceable": false,
+                    "component_clause": {
+                      "type_specifier": "Real",
+                      "component_list": [
+                        {
+                          "declaration": {
+                            "identifier": "uSample"
+                          },
+                          "description": {
+                            "description_string": "\"Value of sample\""
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "redeclare": false,
+                    "final": false,
+                    "innner": false,
+                    "outer": false,
+                    "replaceable": false,
+                    "component_clause": {
+                      "type_specifier": "Real",
+                      "component_list": [
+                        {
+                          "declaration": {
+                            "identifier": "pre_uSample"
+                          },
+                          "description": {
+                            "description_string": "\"Value of previous sample\""
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "redeclare": false,
+                    "final": false,
+                    "innner": false,
+                    "outer": false,
+                    "replaceable": false,
+                    "component_clause": {
+                      "type_specifier": "Real",
+                      "component_list": [
+                        {
+                          "declaration": {
+                            "identifier": "c"
+                          },
+                          "description": {
+                            "description_string": "\"Slope\""
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              {
+                "equation_section": {
+                  "initial": true,
+                  "equation": [
+                    {},
+                    {},
+                    {},
+                    {},
+                    {}
+                  ]
+                }
+              },
+              {
+                "equation_section": {
+                  "initial": false,
+                  "equation": [
+                    {},
+                    {
+                      "when_equation": [
+                        {
+                          "condition": {
+                            "simple_expression": "sampleTrigger"
+                          },
+                          "then": [
+                            {}
+                          ]
+                        }
+                      ]
+                    },
+                    {}
+                  ]
+                }
+              }
+            ],
+            "annotation": [
+              {
+                "element_modification_or_replaceable": {
+                  "each": false,
+                  "final": false,
+                  "element_modification": {
+                    "name": "defaultComponentName",
+                    "modification": {
+                      "equal": true,
+                      "colon_equal": false,
+                      "expression": {
+                        "simple_expression": "\"firOrdHol\""
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "element_modification_or_replaceable": {
+                  "each": false,
+                  "final": false,
+                  "element_modification": {
+                    "name": "Icon",
+                    "modification": {
+                      "class_modification": [
+                        {
+                          "element_modification_or_replaceable": {
+                            "each": false,
+                            "final": false,
+                            "element_modification": {
+                              "name": "coordinateSystem",
+                              "modification": {
+                                "class_modification": [
+                                  {
+                                    "element_modification_or_replaceable": {
+                                      "each": false,
+                                      "final": false,
+                                      "element_modification": {
+                                        "name": "preserveAspectRatio",
+                                        "modification": {
+                                          "equal": true,
+                                          "colon_equal": false,
+                                          "expression": {
+                                            "simple_expression": "true"
+                                          }
+                                        }
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "element_modification_or_replaceable": {
+                                      "each": false,
+                                      "final": false,
+                                      "element_modification": {
+                                        "name": "extent",
+                                        "modification": {
+                                          "equal": true,
+                                          "colon_equal": false,
+                                          "expression": {
+                                            "simple_expression": "{{- 100,- 100},{100,100}}"
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                ],
+                                "equal": false,
+                                "colon_equal": false
+                              }
+                            }
+                          }
+                        },
+                        {
+                          "element_modification_or_replaceable": {
+                            "each": false,
+                            "final": false,
+                            "element_modification": {
+                              "name": "graphics",
+                              "modification": {
+                                "equal": true,
+                                "colon_equal": false,
+                                "expression": {
+                                  "simple_expression": "{Rectangle (extent={{- 100,- 100},{100,100}},lineColor={0,0,127},fillColor={223,211,169},lineThickness=5,borderPattern=BorderPattern.Raised,fillPattern=FillPattern.Solid),Text (extent={{- 150,150},{150,110}},textString=\"%name\",lineColor={0,0,255}),Line (points={{- 79,- 41},{- 59,- 33},{- 40,1},{- 20,9},{0,63},{21,20},{41,10},{60,20}},color={0,0,127}),Line (points={{60,20},{81,10}},color={0,0,127}),Text (extent={{226,60},{106,10}},lineColor={0,0,0},textString=DynamicSelect (\"\",String (y,leftJustified=false,significantDigits=3)))}"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      ],
+                      "equal": false,
+                      "colon_equal": false
+                    }
+                  }
+                }
+              },
+              {
+                "element_modification_or_replaceable": {
+                  "each": false,
+                  "final": false,
+                  "element_modification": {
+                    "name": "Documentation",
+                    "modification": {
+                      "class_modification": [
+                        {
+                          "element_modification_or_replaceable": {
+                            "each": false,
+                            "final": false,
+                            "element_modification": {
+                              "name": "info",
+                              "modification": {
+                                "equal": true,
+                                "colon_equal": false,
+                                "expression": {
+                                  "simple_expression": "\"<html>\n<p>\nBlock that outputs the extrapolation through the\nvalues of the last two sampled input signals.\n</p>\n</html>\""
+                                }
+                              }
+                            }
+                          }
+                        },
+                        {
+                          "element_modification_or_replaceable": {
+                            "each": false,
+                            "final": false,
+                            "element_modification": {
+                              "name": "revisions",
+                              "modification": {
+                                "equal": true,
+                                "colon_equal": false,
+                                "expression": {
+                                  "simple_expression": "\"<html>\n<ul>\n<li>\nNovember 12, 2020, by Michael Wetter:<br/>\nReformulated to remove dependency to <code>Modelica.SIunits</code>.<br/>\nThis is for\n<a href=\\\"https://github.com/lbl-srg/modelica-buildings/issues/2243\\\">issue 2243</a>.\n</li>\n<li>\nOctober 19, 2020, by Michael Wetter:<br/>\nRefactored implementation.<br/>\nThis is for\n<a href=\\\"https://github.com/lbl-srg/modelica-buildings/issues/2170\\\">#2170</a>.\n</li>\n<li>\nMarch 2, 2020, by Michael Wetter:<br/>\nChanged icon to display dynamically the output value.\n</li>\n<li>\nSeptember 14, 2017, by Michael Wetter:<br/>\nRemoved parameter <code>startTime</code> to allow model to work\nalso for negative start time without having to change the value of this\nparameters.<br/>\nThis is for <a href=\\\"https://github.com/lbl-srg/modelica-buildings/issues/938\\\">issue 938</a>.\n</li>\n<li>\nJanuary 3, 2017, by Michael Wetter:<br/>\nFirst implementation, based on the implementation of the\nModelica Standard Library.\n</li>\n</ul>\n</html>\""
+                                }
+                              }
+                            }
+                          }
+                        }
+                      ],
+                      "equal": false,
+                      "colon_equal": false
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          "extends": false
+        }
+      }
+    }
+  ],
+  "modelicaFile": "Buildings/Controls/OBC/CDL/Discrete/FirstOrderHold.mo"
+}
