@@ -1,4 +1,4 @@
-function parse(content) {
+function parse(content, rawJson=false) {
     const long_class_specifierParser = require('./long_class_specifierParser');
     const short_class_specifierParser = require('./short_class_specifierParser');
     const der_class_specifierParser = require('./der_class_specifierParser');
@@ -10,15 +10,15 @@ function parse(content) {
     var moOutput = "";
 
     if (long_class_specifier != null) {
-        moOutput+=long_class_specifierParser.parse(long_class_specifier);
+        moOutput+=long_class_specifierParser.parse(long_class_specifier, rawJson);
     }
-
+    
     if (short_class_specifier != null) {
-        moOutput+=short_class_specifierParser.parse(short_class_specifier);
+        moOutput+=short_class_specifierParser.parse(short_class_specifier, rawJson);
     }
 
     if (der_class_specifier != null) {
-        moOutput+=der_class_specifierParser.parse(der_class_specifier);
+        moOutput+=der_class_specifierParser.parse(der_class_specifier, rawJson);
     }
 
     return moOutput;

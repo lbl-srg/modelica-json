@@ -1,4 +1,4 @@
-function parse(content) {
+function parse(content, rawJson=false) {
     const util = require('util');
     
     var moOutput = "";

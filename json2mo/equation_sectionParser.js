@@ -1,4 +1,4 @@
-function parse(content) {
+function parse(content, rawJson=false) {
     const util = require('util');
     const equationParser = require('./equationParser');
 
@@ -12,8 +12,7 @@ function parse(content) {
     var equations = content.equations;
     if (equations != null) { 
         equations.forEach(equation => {
-            moOutput+=equationParser.parse(equation);
-            moOutput+=equation;
+            moOutput+=equationParser.parse(equation, rawJson);
             moOutput+=";\n"
         });
     }

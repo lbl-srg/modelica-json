@@ -1,4 +1,4 @@
-function parse(content) {
+function parse(content, rawJson=false) {
     const util = require('util');
     const der_class_specifier_valueParser = require('./der_class_specifier_valueParser');
     
@@ -10,7 +10,7 @@ function parse(content) {
     }
 
     if (content.der_class_specifier_value != null) {
-        moOutput+=der_class_specifier_valueParser.parse(content.der_class_specifier_value);
+        moOutput+=der_class_specifier_valueParser.parse(content.der_class_specifier_value, rawJson);
     }    
     return moOutput;
 }

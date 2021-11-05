@@ -1,4 +1,4 @@
-function parse(content) {
+function parse(content, rawJson=false) {
     const util = require('util');
     const class_specifierParser = require('./class_specifierParser');
     var encapsulated = content.encapsulated;
@@ -14,8 +14,7 @@ function parse(content) {
     if (class_prefixes != null) {
         moOutput += util.format("%s ", class_prefixes);
     }
-    
-    moOutput+=class_specifierParser.parse(content.class_specifier);
+    moOutput+=class_specifierParser.parse(content.class_specifier, rawJson);
     return moOutput;
 }
 

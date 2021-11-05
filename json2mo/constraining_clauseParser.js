@@ -1,4 +1,4 @@
-function parse(content) {
+function parse(content, rawJson=false) {
     const nameParser = require('./nameParser');
     const class_modificationParser = require('./class_modificationParser');
     
@@ -7,11 +7,11 @@ function parse(content) {
 
     var name=""; 
     if (content.name != null) {
-        moOutput+= nameParser.parse(content.name);
+        moOutput+= nameParser.parse(content.name, rawJson);
     }
 
     if (content.class_modification != null) {
-        moOutput+=class_modificationParser.parse(content.class_modification);
+        moOutput+=class_modificationParser.parse(content.class_modification, rawJson);
     }
     return moOutput;
 }

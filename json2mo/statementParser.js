@@ -1,4 +1,4 @@
-function parse(content) {
+function parse(content, rawJson) {
     const util = require('util');
     const assignment_statementParser = require('./assignment_statementParser');
     const function_call_statementParser = require('./function_call_statementParser');
@@ -11,11 +11,11 @@ function parse(content) {
 
     var moOutput = "";
     if (content.assignment_statement != null) {
-        moOutput+=assignment_statementParser.parse(content.assignment_statement);
+        moOutput+=assignment_statementParser.parse(content.assignment_statement, rawJson);
     } else if (content.function_call_statement != null) {
-        moOutput+=function_call_statementParser.parse(content.function_call_statement);
+        moOutput+=function_call_statementParser.parse(content.function_call_statement, rawJson);
     } else if (content.assignment_with_function_call_statement != null) {
-        moOutput+=assignment_with_function_call_statementParser.parse(content.assignment_with_function_call_statement);
+        moOutput+=assignment_with_function_call_statementParser.parse(content.assignment_with_function_call_statement, rawJson);
     } else if (content.is_break != null) {
         if (content.is_break) {
             moOutput+="break\n";
@@ -25,19 +25,24 @@ function parse(content) {
             moOutput+="return\n";
         }
     } else if (content.if_statement != null) {
-        moOutput+=if_statementParser.parse(content.if_statement);
+        moOutput+=if_statementParser.parse(content.if_statement, rawJson);
     } else if (content.for_statement != null) {
-        moOutput+=for_statementParser.parse(content.for_statement);
+        moOutput+=for_statementParser.parse(content.for_statement, rawJson);
     } else if (content.while_statement != null) {
-        moOutput+=while_statementParser.parse(content.while_statement);
+        moOutput+=while_statementParser.parse(content.while_statement, rawJson);
     } else if (content.when_statement != null) {
-        moOutput+=when_statementParser.parse(content.when_statement);
+        moOutput+=when_statementParser.parse(content.when_statement, rawJson);
     }
 
-    if (content.comment != null) {
-        moOutput+=commentParser.parse(content.comment);
+    if (rawJson) { 
+        if (content.comment != null) {
+            moOutput+=commentParser.parse(content.comment, rawJson);
+        }   
+    } else {
+        if (content.description != null) {
+            moOutput+=commentParser.parse(content.description, rawJson)
+        }
     }
-
     return moOutput;
 }
 

@@ -1,4 +1,4 @@
-function parse(content) {
+function parse(content, rawJson=false) {
     const util = require('util');
     const assignment_equationParser = require('./assignment_equationParser');
     const if_equationParser = require('./if_equationParser');
@@ -10,22 +10,29 @@ function parse(content) {
     
     var moOutput = "";
     if (content.assignment_equation != null) {
-        moOutput+=assignment_equationParser.parse(content.assignment_equation);
+        moOutput+=assignment_equationParser.parse(content.assignment_equation, rawJson);
     } else if (content.if_equation != null) {
-        moOutput+=if_equationParser.parse(content.if_equation);
+        moOutput+=if_equationParser.parse(content.if_equation, rawJson);
     } else if (content.for_equation != null) {
-        moOutput+=for_equationParser.parse(content.for_equation);
+        moOutput+=for_equationParser.parse(content.for_equation, rawJson);
     } else if (content.connect_clause != null) {
-        moOutput+=connect_clauseParser.parse(content.connect_clause);
+        moOutput+=connect_clauseParser.parse(content.connect_clause, rawJson);
     } else if (content.when_equation != null) {
-        moOutput+=when_equationParser.parse(content.when_equation);
+        moOutput+=when_equationParser.parse(content.when_equation, rawJson);
     } else if (content.function_call_equation != null) {
-        moOutput+=function_call_equationParser.parse(content.function_call_equation);
+        moOutput+=function_call_equationParser.parse(content.function_call_equation, rawJson);
     } 
 
-    if (content.comment != null) {
-        moOutput+=commentParser.parse(content.comment);
+    if (rawJson) {
+        if (content.comment != null) {
+            moOutput+=commentParser.parse(content.comment, rawJson);
+        }
+    } else {
+        if (content.description != null) {
+            moOutput+=commentParser.parse(content.description, rawJson);
+        }
     }
+    
 
     return moOutput;
 }

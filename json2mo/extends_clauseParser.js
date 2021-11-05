@@ -1,4 +1,4 @@
-function parse(content) {
+function parse(content, rawJson=false) {
     const nameParser = require('./nameParser');
     const class_modificationParser = require('./class_modificationParser');
     const annotationParser = require('./annotationParser');
@@ -7,13 +7,13 @@ function parse(content) {
     moOutput+="extends ";
 
     if (content.name != null) {
-        moOutput+=nameParser.parse(content.name);
+        moOutput+=nameParser.parse(content.name, rawJson);
     }
     if (content.class_modification != null) {
-        moOutput+=class_modificationParser.parse(content.class_modification);
+        moOutput+=class_modificationParser.parse(content.class_modification, rawJson);
     }
     if (content.annotation != null) {
-        moOutput+=annotationParser.parse(content.annotation);
+        moOutput+=annotationParser.parse(content.annotation, rawJson);
     }
     return moOutput;
 }

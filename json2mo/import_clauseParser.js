@@ -1,4 +1,4 @@
-function parse(content) {
+function parse(content, rawJson=false) {
     const util = require('util');
     const nameParser = require('./nameParser');
     const commentParser = require('./commentParser');
@@ -9,7 +9,7 @@ function parse(content) {
 
     var name=""; 
     if (content.name != null) {
-        name = nameParser.parse(content.name);
+        name = nameParser.parse(content.name, rawJson);
     }
     
     if (content.identifier != null) { 
@@ -19,14 +19,25 @@ function parse(content) {
             moOutput=util.format("%s", name) + ".* ";
         }
     } else if (content.import_list != null) {
-        moOutput+=util.format("%s", name)+".{"+import_listParser.parse(content.import_list)+"} "
+        if (rawJson) {
+            moOutput+=util.format("%s", name)+".{"+import_listParser.parse(content.import_list, rawJson)+"} ";
+        }  else {
+            moOutput+=util.format("%s", name)+util.format(".{%s} ", content.import_list);
+        }
     } else {
         moOutput+=util.format("%s ", name);
     }
      
-    if (content.comment != null) {
-        moOutput+=commentParser.parse(content.comment);
+    if (description) {
+        if (content.comment != null) {
+            moOutput+=commentParser.parse(content.comment);
+        }
+    } else {
+        if (content.description != null) {
+            moOutput+=commentParser.parse(content.description);
+        }
     }
+    
     return moOutput;
 }
 module.exports = {parse};

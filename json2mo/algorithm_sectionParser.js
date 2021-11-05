@@ -1,4 +1,4 @@
-function parse(content) {
+function parse(content, rawJson=false) {
     const statementParser = require('./statementParser');
 
     var moOutput = "";
@@ -11,7 +11,7 @@ function parse(content) {
     var statements = content.statements;
     if (statements != null) { 
         statements.forEach(statement => {
-            moOutput+=statementParser.parse(statement);
+            moOutput+=statementParser.parse(statement, rawJson);
             moOutput+=";\n"
         });
     }
