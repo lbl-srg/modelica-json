@@ -25,7 +25,10 @@ public class EquationVisitor extends modelicaBaseVisitor<Equation> {
         ExpressionVisitor expressionVisitor = new ExpressionVisitor();
         Expression rhs = ctx.expression() == null ? null : ctx.expression().accept(expressionVisitor);
 
-        Assignment_equation assignment_equation = new Assignment_equation(lhs, rhs);
+        Assignment_equation assignment_equation = null;
+        if (lhs != null && rhs != null) {
+            assignment_equation = new Assignment_equation(lhs, rhs);
+        }
 
         If_equationVisitor if_equationVisitor = new If_equationVisitor();
         If_equation if_equation = ctx.if_equation() == null ? null : ctx.if_equation().accept(if_equationVisitor);
@@ -45,7 +48,10 @@ public class EquationVisitor extends modelicaBaseVisitor<Equation> {
         Function_call_argsVisitor function_call_argsVisitor = new Function_call_argsVisitor();
         Function_call_args function_call_args = ctx.function_call_args() == null ? null : ctx.function_call_args().accept(function_call_argsVisitor);
 
-        Function_call_equation function_call_equation = new Function_call_equation(function_name, function_call_args);
+        Function_call_equation function_call_equation = null;
+        if (function_name != null && function_call_args != null) {
+            function_call_equation = new Function_call_equation(function_name, function_call_args);
+        }        
         
         CommentVisitor commentVisitor = new CommentVisitor();
         Comment comment = ctx.comment() == null ? null : ctx.comment().accept(commentVisitor);

@@ -60,7 +60,7 @@ public class StatementVisitor extends modelicaBaseVisitor<Statement> {
         When_statement when_statement = ctx.when_statement() == null ? null : ctx.when_statement().accept(when_statementVisitor);
         
         CommentVisitor commentVisitor = new CommentVisitor();
-        Comment comment = ctx.comment().accept(commentVisitor);
+        Comment comment = ctx.comment() == null ? null : ctx.comment().accept(commentVisitor);
         
         return new Statement(assignment_statement, function_call_statement, assignment_with_function_call_statement, is_break, is_return, if_statement, for_statement, while_statement, when_statement, comment);
     }
