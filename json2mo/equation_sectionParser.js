@@ -9,7 +9,12 @@ function parse(content, rawJson=false) {
         }
     }
     moOutput+="equation \n"
-    var equations = content.equations;
+    var equations;
+    if (rawJson) {
+        equations = content.equations; 
+    } else {
+        equations = content.equation;
+    }
     if (equations != null) { 
         equations.forEach(equation => {
             moOutput+=equationParser.parse(equation, rawJson);

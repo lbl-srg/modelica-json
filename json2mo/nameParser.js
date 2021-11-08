@@ -10,6 +10,7 @@ function parse(content, rawJson=false) {
                 moOutput+=name_partParser.parse(name_part, rawJson);
             });
         }
+        moOutput+=" ";
     } else {
         moOutput+=util.format("%s ", content);
     }    

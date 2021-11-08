@@ -10,7 +10,6 @@ function parse(content, rawJson=false) {
         if (content.annotation != null) {
             moOutput+=annotationParser.parse(content.annotation, rawJson);
         }
-        moOutput+="\n";
     } else {
         if (content.description_string != null) {
             moOutput+=util.format("%s ", content.description_string);
@@ -18,7 +17,6 @@ function parse(content, rawJson=false) {
         if (content.annotation != null) {
             moOutput+=annotationParser.parse(content.annotation, rawJson);
         }
-        moOutput+="\n";
     }
 
     return moOutput;
