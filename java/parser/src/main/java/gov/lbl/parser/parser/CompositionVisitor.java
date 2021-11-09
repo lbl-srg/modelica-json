@@ -2,7 +2,6 @@ package gov.lbl.parser.parser;
 
 import java.util.List;
 
-import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
@@ -11,10 +10,8 @@ import gov.lbl.antlr4.visitor.modelicaParser;
 import gov.lbl.parser.domain.Algorithm_section;
 import gov.lbl.parser.domain.Annotation;
 import gov.lbl.parser.domain.Composition;
-import gov.lbl.parser.domain.Element;
 import gov.lbl.parser.domain.Element_list;
 import gov.lbl.parser.domain.Element_section;
-import gov.lbl.parser.domain.Equation;
 import gov.lbl.parser.domain.Equation_section;
 import gov.lbl.parser.domain.External_composition;
 import gov.lbl.parser.domain.External_function_call;
@@ -31,7 +28,6 @@ public class CompositionVisitor extends modelicaBaseVisitor<Composition> {
 
         Element_listVisitor element_listVisitor = new Element_listVisitor();
         Equation_sectionVisitor equation_sectionVisitor = new Equation_sectionVisitor();
-        EquationVisitor equationVisitor = new EquationVisitor();
         Algorithm_sectionVisitor algorithm_sectionVisitor = new Algorithm_sectionVisitor();
 
         List<ParseTree> children = ctx.children;
