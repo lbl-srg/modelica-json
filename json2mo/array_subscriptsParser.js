@@ -10,7 +10,7 @@ function parse(content, rawJson=false) {
         if (subscripts != null) {
             subscripts.forEach(subscript => {
                 moOutput+=subscriptParser.parse(subscript, rawJson);
-                moOutput+=", "
+                moOutput+=","
             });
             moOutput = moOutput.slice(0, -2);
         }

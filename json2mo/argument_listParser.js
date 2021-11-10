@@ -8,7 +8,7 @@ function parse(content, rawJson=false) {
         if (arguments != null) {
             arguments.forEach(argument => {
                 moOutput+=argumentParser.parse(argument, rawJson);
-                moOutput+=", ";
+                moOutput+=",";
             });
             moOutput = moOutput.slice(0, -2);
         }

@@ -5,7 +5,7 @@ function parse(content, rawJson=false) {
     
     var moOutput = "";
     if (content.type_prefix != null) {
-        moOutput+=util.format("%s ", content.type_prefix, rawJson);
+        moOutput+=util.format("%s", content.type_prefix, rawJson);
     }
     if (content.type_specifier != null) {
         moOutput+=type_specifierParser.parse(content.type_specifier, rawJson);

@@ -3,7 +3,7 @@ function parse(content, rawJson=false) {
     const class_modificationParser = require('./class_modificationParser');
 
     var moOutput = "";
-    moOutput+="annotation ";
+    moOutput+="\tannotation ";
     if (rawJson) {
         if (content.class_modification != null) {
             moOutput+=class_modificationParser.parse(content.class_modification, rawJson);
@@ -12,7 +12,7 @@ function parse(content, rawJson=false) {
         var class_modification = content;
         moOutput+=class_modificationParser.parse(class_modification, rawJson);
     }
-    
+    moOutput+="\n"
     return moOutput;
 }
 
