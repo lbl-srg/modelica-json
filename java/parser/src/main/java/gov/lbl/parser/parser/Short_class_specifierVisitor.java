@@ -21,7 +21,7 @@ public class Short_class_specifierVisitor extends modelicaBaseVisitor<Short_clas
         Array_subscriptsVisitor array_subscriptsVisitor = new Array_subscriptsVisitor();
         Array_subscripts array_subscripts = ctx.array_subscripts() == null ? null : ctx.array_subscripts().accept(array_subscriptsVisitor);
         NameVisitor nameVisitor = new NameVisitor();
-        Name name = ctx.name().accept(nameVisitor);
+        Name name = ctx.name() == null ? null : ctx.name().accept(nameVisitor);
         Class_modificationVisitor class_modificationVisitor = new Class_modificationVisitor();
         Class_modification class_modification = ctx.class_modification() == null ? null : ctx.class_modification().accept(class_modificationVisitor);
         CommentVisitor commentVisitor = new CommentVisitor();
