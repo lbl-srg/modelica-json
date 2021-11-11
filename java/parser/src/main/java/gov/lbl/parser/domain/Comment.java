@@ -318,10 +318,12 @@ public class Comment {
     				}
     			}
     			for (int i=0; i<venSet.size(); i++) {
-    				int equInd = venSet.get(i).indexOf("=");
-    				name = venSet.get(i).substring(0, equInd).trim();
-    				value = venSet.get(i).substring(equInd+1, venSet.get(i).length()).trim();
-    				venAnnEle.add(new StrPair(name,value));
+					if (venSet.get(i).contains("=")) {
+						int equInd = venSet.get(i).indexOf("=");
+    					name = venSet.get(i).substring(0, equInd).trim();
+    					value = venSet.get(i).substring(equInd+1, venSet.get(i).length()).trim();
+    					venAnnEle.add(new StrPair(name,value));
+					}
     			}
     			this.annotation = venAnnEle;
     		}
@@ -573,7 +575,8 @@ public class Comment {
     public static String findSubStr(String str, String keyStr) {
     	String subStr;
     	if (!ifEnclosed(str, "(", ")", str.indexOf(keyStr))
-    			|| !ifEnclosed(str, "\"", "\"", str.indexOf(keyStr))) {
+    		|| !ifEnclosed(str, "\"", "\"", str.indexOf(keyStr))
+			|| (!str.contains("(") && !str.contains("\""))) {
     		subStr = null;
     	} else {
     		if (str.contains(keyStr)) {
