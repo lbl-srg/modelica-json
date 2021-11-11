@@ -9,11 +9,11 @@ function parse(content, rawJson=false) {
 
     if (content.equal != null) {
         if (content.equal) {
-            moOutput+= "= ";
+            moOutput+= "=";
         }
     } else if (content.colon_equal != null) { 
         if (content.colon_equal) {
-            moOutput+= ":= ";
+            moOutput+= ":=";
         }
     }
     if (content.expression != null) {

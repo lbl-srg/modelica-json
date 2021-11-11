@@ -6,11 +6,11 @@ function parse(content, rawJson=false) {
     var moOutput = "";
 
     if (content.component_reference != null) {
-        moOutput+=component_referenceParser.parse(contnnt.component_reference, rawJson);
+        moOutput+=component_referenceParser.parse(content.component_reference, rawJson);
         moOutput+="= ";
     }
     if (content.identifier != null) {
-        moOutput+="identifier ("
+        moOutput+=util.format("%s (", content.identifier);
     }
     if (content.expression_list != null) {
         moOutput+=expression_listParser.parse(content.expression_list, rawJson);

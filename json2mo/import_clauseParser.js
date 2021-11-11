@@ -28,13 +28,13 @@ function parse(content, rawJson=false) {
         moOutput+=util.format("%s ", name);
     }
      
-    if (description) {
+    if (rawJson) {
         if (content.comment != null) {
-            moOutput+=commentParser.parse(content.comment);
+            moOutput+=commentParser.parse(content.comment, rawJson);
         }
     } else {
         if (content.description != null) {
-            moOutput+=commentParser.parse(content.description);
+            moOutput+=commentParser.parse(content.description, rawJson);
         }
     }
     

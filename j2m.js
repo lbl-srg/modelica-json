@@ -17,4 +17,4 @@ function convertToModelica(jsonFile, rawJson=false) {
 
 // console.log(convertToModeica('raw-json/FromModelica.ExtendsClause_1.json'));
 // console.log(convertToModelica('raw-json/FromModelica.Modulation.json', rawJson=true));
-console.log(convertToModelica('json/Modulation.json', rawJson=false));
+console.log(convertToModelica('json/Modulation_2.json', rawJson=false));

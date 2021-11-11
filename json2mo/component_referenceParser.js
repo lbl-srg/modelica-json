@@ -5,7 +5,14 @@ function parse(content, rawJson=false) {
 
     var moOutput = "";
     
-    if (!rawJson) {
+    if (rawJson) {
+        var component_reference_parts = content.component_reference_parts
+        if (component_reference_parts != null) {
+            component_reference_parts.forEach(component_reference_part => {
+                moOutput+=component_reference_partParser.parse(component_reference_part, rawJson)
+            });
+        }
+    } else {
         var component_reference_parts = content; 
         component_reference_parts.forEach(component_reference_part => {
             if (component_reference_part.dot_op != null) { 
@@ -20,17 +27,8 @@ function parse(content, rawJson=false) {
                 moOutput+=array_subscriptsParser.parse(component_reference_part.array_subscripts, rawJson);
             }
         });
-        return moOutput;
-    } else {
-        var component_reference_parts = content.component_reference_parts
-        if (component_reference_parts != null) {
-            component_reference_parts.forEach(component_reference_part => {
-                moOutput+=component_reference_partParser.parse(component_reference_part, rawJson)
-            });
-        }
-        return moOutput;
     }
-    
+    return moOutput;
 }
 
 module.exports = {parse};

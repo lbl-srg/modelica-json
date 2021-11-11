@@ -17,11 +17,20 @@ function parse(content, rawJson=false) {
                 moOutput+="redeclare "
             }
         }
-        if (content.is_final != null) {
-            if (content.is_final) {
-                moOutput+="final "
+        if (rawJson) {
+            if (content.is_final != null) {
+                if (content.is_final) {
+                    moOutput+="final "
+                }
+            }
+        } else {
+            if (content.final != null) {
+                if (content.final) {
+                    moOutput+="final "
+                }
             }
         }
+        
         if (content.inner != null) {
             if (content.inner) {
                 moOutput+="inner "
@@ -46,9 +55,16 @@ function parse(content, rawJson=false) {
                     moOutput+=constraining_clauseParser.parse(content.constraining_clause, rawJson);
                 }
 
-                if (content.comment != null) {
-                    moOutput+=commentParser.parse(content.comment, rawJson);
+                if (rawJson) {
+                    if (content.comment != null) {
+                        moOutput+=commentParser.parse(content.comment, rawJson);
+                    }
+                } else {
+                    if (content.description != null) {
+                        moOutput+=commentParser.parse(content.description, rawJson);
+                    }
                 }
+                
             } else {
                 if (content.class_definition != null) {
                     moOutput+=class_definitionParser.parse(content.class_definition, rawJson);

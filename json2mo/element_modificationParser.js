@@ -6,6 +6,7 @@ function parse(content, rawJson=false) {
     var moOutput = "";
     if (content.name != null) {
         moOutput+=nameParser.parse(content.name, rawJson);
+        moOutput = moOutput.slice(0, -1);
     }
     if (content.modification != null) {
         moOutput+=modificationParser.parse(content.modification, rawJson);

@@ -9,9 +9,17 @@ function parse(content, rawJson=false) {
         moOutput+=util.format("%s= ", identifier);
     }
 
-    if (content.der_class_specifier_value != null) {
-        moOutput+=der_class_specifier_valueParser.parse(content.der_class_specifier_value, rawJson);
-    }    
+    if (rawJson) {
+        if (content.der_class_specifier_value != null) {
+            moOutput+=der_class_specifier_valueParser.parse(content.der_class_specifier_value, rawJson);
+        }
+    } else {
+        if (content.value != null) {
+            moOutput+=der_class_specifier_valueParser.parse(content.value, rawJson);
+        }
+    }
+
+        
     return moOutput;
 }
 

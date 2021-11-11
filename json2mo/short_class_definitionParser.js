@@ -1,4 +1,4 @@
-function parse(content) {
+function parse(content, rawJson=false) {
     const util = require('util');
     const short_class_specifierParser = require('./short_class_specifierParser');
 
@@ -7,7 +7,7 @@ function parse(content) {
         moOutput+=util.format("%s ", class_prefixes);
     }
     if (content.short_class_specifier != null) {
-        moOutput+=short_class_specifierParser.parse(content.short_class_specifier);
+        moOutput+=short_class_specifierParser.parse(content.short_class_specifier, rawJson);
     }
     return moOutput;
 }

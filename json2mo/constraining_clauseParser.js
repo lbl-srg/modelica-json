@@ -5,7 +5,6 @@ function parse(content, rawJson=false) {
     var moOutput = "";
     moOutput+="constraintedby ";
 
-    var name=""; 
     if (content.name != null) {
         moOutput+= nameParser.parse(content.name, rawJson);
     }

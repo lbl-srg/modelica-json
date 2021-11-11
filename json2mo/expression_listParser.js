@@ -3,7 +3,12 @@ function parse(content, rawJson=false) {
     const expressionParser = require('./expressionParser');
     
     var moOutput = "";
-    var expression_list = content;
+    var expression_list = null;
+    if (rawJson){
+        expression_list = content.expressions;
+    } else {
+        expression_list = content;
+    }    
     if (expression_list != null) {
         expression_list.forEach(expression => {
             moOutput+=expressionParser.parse(expression, rawJson);

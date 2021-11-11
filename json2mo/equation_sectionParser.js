@@ -18,6 +18,7 @@ function parse(content, rawJson=false) {
     if (equations != null) { 
         equations.forEach(equation => {
             moOutput+=equationParser.parse(equation, rawJson);
+            moOutput=moOutput.slice(0,-1); //to remove last new line and to add semicolon
             moOutput+=";\n"
         });
     }

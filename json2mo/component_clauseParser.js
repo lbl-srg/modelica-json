@@ -9,9 +9,16 @@ function parse(content, rawJson=false) {
     if (content.type_prefix != null) {
         moOutput+=util.format("%s ", content.type_prefix);
     }
-    if (content.type_specifier != null) {
-        moOutput+=type_specifierParser.parse(content.type_specifier, rawJson);
+    if (rawJson) {
+        if (content.type_specifier != null) {
+            moOutput+=type_specifierParser.parse(content.type_specifier, rawJson);
+        }
+    } else {
+        if (content.type_specifier != null) {
+            moOutput+=util.format("%s ", content.type_specifier);
+        }
     }
+    
     if (content.array_subscripts != null) {
         moOutput+=array_subscriptsParser.parse(content.array_subscripts, rawJson);
     }

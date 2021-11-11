@@ -8,7 +8,13 @@ function parse(content, rawJson=false) {
         }
     }
     moOutput+="algorithm \n"
-    var statements = content.statements;
+    var statements = null;
+    if (rawJson) {
+        statements = content.statements;
+    } else {
+        statements = content.statement;
+    }
+    
     if (statements != null) { 
         statements.forEach(statement => {
             moOutput+=statementParser.parse(statement, rawJson);

@@ -7,8 +7,12 @@ function parse(content, rawJson=false) {
     if (content.type_specifier != null) {
         moOutput+=nameParser.parse(content.type_specifier, rawJson);
     }   
-
-    var identifiers = content.identifiers;
+    var identifiers = null;
+    if (rawJson) {
+        identifiers = content.identifiers;
+    } else {
+        identifiers = content.identifier;
+    }
     if (identifiers != null) {
         identifiers.forEach(identifier => {
             moOutput+=util.format("%s, ", identifier)

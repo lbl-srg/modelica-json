@@ -6,7 +6,7 @@ function parse(content, rawJson=false) {
     
     if (content.if_expression != null) { 
         moOutput+=if_expressionParser.parse(content.if_expression, rawJson);
-    } else if (content.simple_expression != null) {
+    } else if (content.simple_expression != null) {        
         moOutput+=simple_expressionParser.parse(content.simple_expression, rawJson);
     }
 

@@ -1,5 +1,4 @@
 function parse(content, rawJson) {
-    const util = require('util');
     const assignment_statementParser = require('./assignment_statementParser');
     const function_call_statementParser = require('./function_call_statementParser');
     const assignment_with_function_call_statementParser = require('./assignment_with_function_call_statementParser');
