@@ -1,0 +1,523 @@
+"stored_definition": {
+    "within": str,
+    "final_class_definitions": list(final_class_definition)
+ }
+ 
+ "final_class_definiton": {
+     "is_final": bool,
+     "class_definition": class_definiton
+ }
+ "class_definition": {
+    "encapsulated": bool,
+    "class_prefixes": str, //(PARTIAL)? (CLASS | MODEL | (OPERATOR)? RECORD | BLOCK | (EXPANDABLE)? CONNECTOR | TYPE | PACKAGE | ((PURE | IMPURE))? (OPERATOR)? FUNCTION | OPERATOR)
+    "class_specifier": class_specifier
+ }
+ 
+ "class_specifier": {
+ //    "type": str, //long_class_specifier | short_class_specifier | der_class_specifier,
+    "long_class_specifier": long_class_specifier,
+    "short_class_specifier": short_class_specifier,
+    "der_class_specifier": der_class_specifier
+ }
+ 
+ 
+ 
+ "long_class_specifier": {
+     "identifier": str,
+     "string_comment": str,
+     "composition": composition,
+     "is_extends": bool,
+     "class_modification": class_modification
+ }
+ 
+ "short_class_specifier": {
+     "identifier": str,
+     "short_class_specifier_value": short_class_specifier_value
+ }
+ 
+ "short_class_specifier_value": {
+         "base_prefix": base_prefix,
+         "name": name,
+         "array_subscripts": array_subscripts,
+         "class_modification": class_modification,
+         "comment": comment,
+         "enum_list": enum_list
+     }
+ 
+ "der_class_specifier": {
+     "identifier": str,
+     "der_class_specifier_value": der_class_specifier_value
+ }
+ 
+ "der_class_specifier_value": {
+     "type_specifier": name,
+     "identifiers": list(str), //not nullable
+     "comment": comment
+ }
+ 
+ "base_prefix": {
+     "type_prefix": str
+ }
+ 
+ "enum_list": list(enumeration_literal)
+ 
+ "enumeration_literal": {
+     "identifier": str,
+     "comment": comment
+ }
+ 
+ "composition": {
+     "element_list": element_list, //not nullable
+     "element_sections": list(element_section),
+       "external_composition": external_composition,
+     "annotation": annotation
+ }
+ 
+ “element_section": {
+     "public_element_list": element_list, 
+     "protected_element_list": element_list, 
+     "equation_section": equation_section, 
+     "algorithm_section": algorithm_section, 
+ }
+     
+ 
+ 
+ 
+ "external_composition": {
+     "language_specification": str, 
+     "external_function_call": external_function_call,
+     "external_annotation": annotation
+ },
+ 
+ "external_function_call": {
+     "component_reference": component_reference,
+     "identifier": str,
+     "expression_list": expression_list
+ }
+ 
+ "element_list": {
+     "elements": list(element) //nullable
+ }
+ 
+ "element": {
+     "import_clause": import_clause,
+     "extends_clause": extends_clause,
+     "redeclare": bool,
+     "is_final": bool,
+     "inner": bool,
+     "outer": bool,
+     "replaceable": bool,
+     "constraining_clause": constraining_clause,
+     "class_definition": class_definition,
+     "component_clause": component_clause,
+     "comment": comment
+ }
+ 
+ "import_clause": {
+     "identifier": str,
+     "name": name,
+     "dot_star": bool,
+     "import_list": import_list,
+     "comment": comment
+ }
+ 
+ "import_list": { 
+     "identifier_list":list(str) //not nullable
+ }
+ 
+ "extends_clause": {
+     "name": name,
+     "class_modification": class_modification, //nullable
+     "annotation": annotation //nullable
+ }
+ 
+ "constraining_clause": {
+     "name": name,
+     "class_modification": class_modification, //nullable
+ }
+    
+ "component_clause": {
+     "type_prefix": str,
+     "type_specifier": type_specifier,
+     "array_subscripts": array_subscripts, //nullable
+     "component_list": component_list
+ }
+ 
+ "type_specifier": {
+     "name": name
+ }
+ 
+ "component_list": {
+     "component_declaration_list": list(component_declaration) //not nullable
+ }
+ 
+ "component_declaration": {
+     "declaration": declaration,
+     "condition_attribute": condition_attribute,
+     "comment": comment
+ }
+    
+ "condition_attribute": {
+     "expression": expression
+ }
+ 
+ "declaration": {
+     "identifier": str,
+     "array_subscripts": array_subscripts, //nullable
+     "modification": modification //nullable
+ }
+ 
+ "modification": {
+     "class_modification": class_modification,
+     "equal": bool,
+     "colon_equal": bool,
+     "expression": expression
+ }
+ 
+ "class_modification": {
+     "argument_list": argument_list
+ }
+ 
+ "argument_list": {
+     "arguments": list(argument)
+ }
+ 
+ "argument": {
+     "element_modification_or_replaceable": element_modification_or_replaceable,
+     "element_redeclaration": element_redeclaration
+ }
+ 
+ "element_modification_or_replaceable": {
+     "each": bool,
+     "is_final": bool,
+     "element_modification": element_modification,
+     "element_replaceable": element_replaceable
+ }
+ 
+ "element_modification": {
+     "name": name,
+     "modification": modification,
+     "string_comment": str
+ }
+ 
+ "element_redeclaration": {
+     "each": bool,
+     "is_final": bool,
+     "short_class_definition": short_class_definition,
+     "component_clause1": component_clause1,
+     "element_replaceable": element_replaceable
+ }
+ 
+ "element_replaceable": {
+     "short_class_definition": short_class_definition,
+     "component_clause1": component_clause1,
+     "constraining_clause": constraining_clause
+ }
+ 
+ "component_clause1": {
+     "type_prefix": str,
+     "type_specifier": type_specifier,
+     "component_declaration1": component_declaration1
+ }
+ 
+ "component_declaration1": {
+     "declaration": declaration,
+     "comment": comment
+ }
+ 
+ "short_class_definition": {
+     "class_prefixes": str, //(PARTIAL)? (CLASS | MODEL | (OPERATOR)? RECORD | BLOCK | (EXPANDABLE)? CONNECTOR | TYPE | PACKAGE | ((PURE | IMPURE))? (OPERATOR)? FUNCTION | OPERATOR)
+ ,
+     "short_class_specifier": short_class_specifier
+ }
+ 
+ "equation_section": {
+     "initial": bool,
+     "equations": list(equation)
+ }
+ 
+ "algorithm_section": {
+     "initial": bool,
+     "statements": list(statement)
+ }
+ 
+ "equation": {
+     "assigment_equation": assignment_equation, 
+     "if_equation": if_equation,
+     "for_equation": for_equation,
+     "connect_clause": connect_clause,
+     "when_equation": when_equation,
+     "function_call_equation": function_call_equation, 
+     "comment": comment
+ }
+ "assigment_equation": { //not in grammar
+     "lhs": simple_expression,
+     "rhs": expression
+ }
+ "function_call_equation": { //not in grammar
+     "function_name": name,
+     "function_call_args": function_call_args
+ },
+ 
+ 
+ "statement": {
+     "assignment_statement": assignment_statement,
+     "Function_call_statement": function_call_statement, 
+     "assignment_with_function_call_statement
+ ": assignment_with_function_call_statement,
+     "is_break": bool,
+     "is_return": bool,
+     "if_statement": if_statement,
+     "for_statement": for_statement,
+     "while_statement": while_statement,
+     "when_statement": when_statement,
+     "comment": comment
+ }
+ 
+ assignment_statement": {
+     "identifier": component_reference,
+     "value": expression
+ }
+ 
+ "function_call_statement":{
+     "function_name": component_reference,
+     "function_call_args": function_call_args
+ 
+ 
+ }
+ "assignment_with_function_call_statement": {
+     "output_expression_list": output_expression_list, 
+     "function_name": component_reference,
+     "function_call_args": function_call_args
+ }
+ "if_equation": { //different from grammar, list of dictionaries
+     "if_elseif": list(if_elseif_equation), 
+     "else_equation": list(equation)
+ }
+ 
+ "if_elseif_equation"{     //not in grammar
+     "condition": expression,
+     "then": list(equation) //not in grammar
+ }
+ 
+ "if_statement": { //different from grammar, list of dictionaries
+     "if_elseif": list(if_elseif_statement), 
+     "else_statement": list(statement)
+ }
+ 
+ "if_elseif_statement:" {
+     "condition": expression,
+     "then": list(statement) //not in grammar
+ }
+ 
+ "for_equation": {
+     "for_indices": for_indices, 
+     "loop_equations": list(equation) //not in grammar
+ }
+ 
+ "for_statement": {
+     "for_indices": for_indices,
+     "loop_statements": list(statement) //not in grammar
+ }
+ 
+ "for_indices": {
+     "indices": list(for_index) //not nullable
+ }
+ 
+ "for_index": {
+     "identifier": str,
+     "expression": expression
+ }
+ 
+ "while_statement": {
+     "expression": expression,
+     "loop_statements": list(statement)
+ }
+ 
+ "when_equation": {
+     "when_elsewhen"    : list(when_elsewhen_equation)
+ }
+ 
+ "when_elsewhen_equation": {    //not in grammar
+     "condition": expression,
+     "then": list(equation)
+ }
+ 
+ "when_statement": {
+     "when-elsewhen"    : list(when_elsewhen_statement)}
+ 
+ "when_elsewhen_statement": {    //not in grammar
+     "condition": expression,
+     "then": list(statement)
+ }
+ 
+ 
+ "connect_clause": {
+     "from": component_reference,    //not in grammar
+     "to": component_reference        //not in grammar
+ }
+ 
+ "expression": {
+     "simple_expression": simple_expression,
+     "if_expression": if_expression
+ }
+ 
+ "if_expression": {    //not in grammar
+     "if_elseif": list(if_elseif_expression),
+     "else_expression": expression
+ }
+ 
+ "if_elseif_expression": {    //not in grammar
+     "condition": expression,
+     "then": expression
+ }
+ 
+ 
+ "simple_expression": {        // different from grammar
+     "logical_expression1": logical_expression,
+     "logical_expression2": logical_expression,
+     "logical_expression3": logical_expression
+ }
+ 
+ "logical_expression": {
+     "logical_term_list": list(logical_term)    //not nullable
+ }
+ 
+ "logical_term": {
+     "logical_factor_list": list(logical_factor)    //not nullable
+ }
+ 
+ "logical_factor": {
+     "not": bool,
+     "relation": relation
+ }
+ 
+ "relation": {
+     "arithmetic_expression1": arithmetic_expression,    //not in grammar
+     "rel_op": str,       // '<' | '<=' | '>' | '>=' | '==' | '<>'
+     "arithmetic_expression2": arithmetic_expression
+ }
+ 
+ "arithmetic_expression": {
+     "arithmetic_term_list": list(arithmetic_term)
+ }
+ 
+ "arithmetic_term": {
+     "add_op": str,        //'+' | '-' | '.+' | '.-'
+     "term": term,
+ }
+ 
+ "term": {
+     "Factors": list(factor),
+     "mul_ops": list(str) // '*' | '/' | '.*' | './'
+ }
+ :D}
+ 
+ "factor": {
+     "primary1": primary, //not i
+     "op":  str,         // '^' | '.^'
+     "primary2": primary
+ }
+ 
+ "primary": {
+     "unsigned_number": float, //does modelica have float?
+     "primary_string": str,
+     "is_false": bool,
+     "is_true": bool,
+     "function_call_primary": function_call_primary,
+     "component_reference": component_reference,
+     "output_expression_list": output_expression_list,
+     "expression_lists": list(expression_list),
+     "function_arguments": function_arguments,
+     "end": bool,
+ }
+ 
+ "function_call_primary": {
+     "function_name": name,
+     "der": bool,
+     "initial": bool,
+     "function_call_args": function_call_args
+ }
+ "name": {
+     "name_parts": list(name_part)
+ }
+ 
+ "name_part":{
+     "dot_op": bool,
+     "identifier": str
+ } //(SYMBOL_DOT)? IDENT (SYMBOL_DOT IDENT)*
+ 
+ 
+ 
+ "component_reference": {
+     "component_reference_parts": list(component_reference_part)
+ }
+ "component_reference_part": {
+     "dot_op": bool,
+     "identifier": str,
+     "array_subscripts": array_subscripts
+ }
+ 
+ "function_call_args": {
+     "function_arguments": function_arguments
+ }
+ 
+ "function_arguments": {
+     "named_arguments": named_arguments,
+     "function_argument": function_argument,
+     "for_indices": for_indices,
+     "function_arguments": function_arguments
+ }
+ 
+ "named_arguments": {
+     "named_argument": named_argument,
+     "named_arguments": named_arguments,
+ }
+ 
+ "named_argument" {
+     "identifier": str,
+     "value": function_argument
+ }
+ 
+ "function_argument": {
+     "function_name": name,
+     "named_arguments": list(named_argument),
+     "expression": expression
+ }
+ 
+ "output_expression_list": {
+     "output_expressions": list(expression)
+ }
+ 
+ "expression_list": {
+     "expressions": list(expression)
+ }
+ 
+ "array_subscripts": {
+     "subscripts": list(subscript)
+ }
+ 
+ "subscript": {                 //different from grammar"
+     "expression": expression,
+     "colon_op": bool
+ }
+ 
+ "comment": {
+     "string_comment": str,
+     "annotation": annotation
+ }
+ 
+ "annotation": {
+     "class_modification": class_modification
+ }
+ 
+ "type_prefix": str //(FLOW | STREAM)? (DISCRETE | PARAMETER | CONSTANT)? (INPUT | OUTPUT)?
+ "IDENT": str //NONDIGIT (DIGIT | NONDIGIT)* | Q_IDENT ---------------
+ "string_comment": str
+ "language_specification": str
+ "import_list": list(str)
+ 
+ 
+ 
+ 
+ 

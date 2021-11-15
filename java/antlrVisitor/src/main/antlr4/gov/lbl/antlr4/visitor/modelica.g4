@@ -27,7 +27,7 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 grammar modelica;
 
 stored_definition
-   : (WITHIN (name)? SYMBOL_SEMICOLON)* ((FINAL)? class_definition SYMBOL_SEMICOLON)*
+   : (WITHIN (name)? SYMBOL_SEMICOLON)? ((FINAL)? class_definition SYMBOL_SEMICOLON)*
    ;
 
 class_definition
