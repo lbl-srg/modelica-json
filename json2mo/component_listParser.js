@@ -18,7 +18,7 @@ function parse(content, rawJson=false) {
                 moOutput+=declarationParser.parse(component_declaration.declaration, rawJson);
             }
             if (component_declaration.condition_attribute != null) {
-                moOutput+=condition_attributeParser.parser(component_declaration.condition_attribute, rawJson);
+                moOutput+=condition_attributeParser.parse(component_declaration.condition_attribute, rawJson);
             }
             if (component_declaration.description != null) {
                 moOutput+=commentParser.parse(component_declaration.description, rawJson);

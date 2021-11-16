@@ -6,7 +6,7 @@ function parse(content, rawJson=false) {
     var identifier = content.identifier;
 
     if (identifier != null) {
-        moOutput+=util.format("%s= ", identifier);
+        moOutput+=util.format("%s=", identifier);
     }
     if (rawJson) {
         if (content.short_class_specifier_value != null)  {

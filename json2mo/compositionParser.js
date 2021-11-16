@@ -19,7 +19,7 @@ function parse(content, rawJson=false) {
     }
     if (content.annotation != null) {
         moOutput+=annotationParser.parse(content.annotation, rawJson);
-        moOutput+="\n";
+        moOutput+=";\n"
     }
     return moOutput;
 }

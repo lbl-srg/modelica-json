@@ -9,6 +9,7 @@ function parse(content, rawJson=false) {
     } 
     
     var then_equations = content.then;
+    var thenOutput = "";
     if (then_equations != null) {
         thenOutput= "";
         then_equations.forEach(then_equation => {
@@ -16,7 +17,7 @@ function parse(content, rawJson=false) {
             thenOutput+=";\n"
         });
         if (thenOutput != "") {
-            moOutput+="then \n";
+            moOutput+=" then \n";
             moOutput+=thenOutput
         }
     }

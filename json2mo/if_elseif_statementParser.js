@@ -9,6 +9,7 @@ function parse(content, rawJson=false) {
     } 
     
     var then_statements = content.then;
+    var thenOutput = "";
     if (then_statements != null) {
         thenOutput= "";
         then_statements.forEach(then_statement => {
@@ -16,7 +17,7 @@ function parse(content, rawJson=false) {
             thenOutput+=";\n"
         });
         if (thenOutput != "") {
-            moOutput+="then \n";
+            moOutput+=" then \n";
             moOutput+=thenOutput;
         }
     }

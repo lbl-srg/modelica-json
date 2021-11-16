@@ -11,7 +11,7 @@ function parse(content, rawJson=false) {
         moOutput+=", "
         moOutput+=component_referenceParser.parse(content.to, rawJson);
     }
-    moOutput+=")";
+    moOutput+=")"
     return moOutput;
 }
 

@@ -6,11 +6,11 @@ function parse(content, rawJson=false) {
     if (content.condition != null) {
         moOutput+=expressionParser.parse(content.condition, rawJson);
     } 
-    moOutput+="then \n";
+    moOutput+=" then \n";
     
     if (content.then != null) {
-        moOutput+=expressionParser.parser(content.then, rawJson);
-        thenOutput+=";\n"
+        moOutput+=expressionParser.parse(content.then, rawJson);
+        moOutput+=";\n"
     }
     return moOutput;
 }

@@ -34,7 +34,7 @@ function parse(content, rawJson=false) {
     } else {
         var description_string = content.description_string;
         if (description_string != null) {
-            moOutput+=util.format("\n%s\n", description_string);
+            moOutput+=util.format("\n\"%s\"\n", description_string);
         }
     }
 

@@ -8,7 +8,7 @@ function parse(content, rawJson=false) {
 
     var moOutput = "";
     
-    if (content.base_prefix == null) {
+    if (content.name == null) {
         moOutput+="enumeration (";
         if (content.enum_list != null) {
             moOutput+=enum_listParser.parse(content.enum_list, rawJson)

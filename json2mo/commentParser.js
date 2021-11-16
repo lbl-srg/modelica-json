@@ -3,17 +3,16 @@ function parse(content, rawJson=false) {
     const annotationParser = require('./annotationParser');
 
     var moOutput = "";
-    moOutput+="\n"
     if (rawJson) {
         if (content.string_comment != null) {
-            moOutput+=util.format("\"\t%s\"", content.string_comment);
+            moOutput+=util.format("\n\"\t%s\"", content.string_comment);
         }
         if (content.annotation != null) {
             moOutput+=annotationParser.parse(content.annotation, rawJson);
         }
     } else {
         if (content.description_string != null) {
-            moOutput+=util.format("\t\"%s\"\n", content.description_string);
+            moOutput+=util.format("\n\t\"%s\"", content.description_string);
         }
         if (content.annotation != null) {
             moOutput+=annotationParser.parse(content.annotation, rawJson);

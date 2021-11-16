@@ -8,11 +8,20 @@ function parse(content, rawJson=false) {
             moOutput+="each ";
         }
     }
-    if (content.is_final != null) {
-        if (content.is_final){
-            moOutput+="final ";
+    if (rawJson) {
+        if (content.is_final != null) {
+            if (content.is_final){
+                moOutput+="final ";
+            }
+        }
+    } else {
+        if (content.final != null) {
+            if (content.final){
+                moOutput+="final ";
+            }
         }
     }
+    
     if (content.element_modification != null) {
         moOutput+=element_modificationParser.parse(content.element_modification, rawJson);
     } else if (content.element_replaceable != null) {

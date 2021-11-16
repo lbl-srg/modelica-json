@@ -9,8 +9,10 @@ function parse(content, rawJson=false) {
     var moOutput = "";
     if (content.import_clause != null) {
         moOutput+=import_clauseParser.parse(content.import_clause, rawJson);
+        moOutput+=";\n"
     } else if (content.extends_clause != null) {
         moOutput+=extends_clauseParser.parse(content.extends_clause, rawJson);
+        moOutput+=";\n"
     } else {
         if (content.redeclare != null) {
             if (content.redeclare) {
@@ -64,6 +66,7 @@ function parse(content, rawJson=false) {
                         moOutput+=commentParser.parse(content.description, rawJson);
                     }
                 }
+                moOutput+=";\n"
                 
             } else {
                 if (content.class_definition != null) {
@@ -78,6 +81,7 @@ function parse(content, rawJson=false) {
             } else if (content.component_clause != null) {
                 moOutput+=component_clauseParser.parse(content.component_clause, rawJson);
             }
+            moOutput+=";\n"
         }
     }
     return moOutput;
