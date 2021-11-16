@@ -18,7 +18,6 @@ import gov.lbl.parser.domain.When_equation;
 public class EquationVisitor extends modelicaBaseVisitor<Equation> {
     @Override
     public Equation visitEquation(modelicaParser.EquationContext ctx) {
-        
         Simple_expressionVisitor simple_expressionVisitor = new Simple_expressionVisitor();
         Simple_expression lhs = ctx.simple_expression() == null ? null : ctx.simple_expression().accept(simple_expressionVisitor); 
 
@@ -35,7 +34,6 @@ public class EquationVisitor extends modelicaBaseVisitor<Equation> {
 
         For_equationVisitor for_equationVisitor = new For_equationVisitor();
         For_equation for_equation = ctx.for_equation() == null ? null : ctx.for_equation().accept(for_equationVisitor);
-        
         Connect_clauseVisitor connect_clauseVisitor = new Connect_clauseVisitor();
         Connect_clause connect_clause = ctx.connect_clause() == null ? null : ctx.connect_clause().accept(connect_clauseVisitor);
 
@@ -51,11 +49,11 @@ public class EquationVisitor extends modelicaBaseVisitor<Equation> {
         Function_call_equation function_call_equation = null;
         if (function_name != null && function_call_args != null) {
             function_call_equation = new Function_call_equation(function_name, function_call_args);
-        }        
-        
+        }
+
         CommentVisitor commentVisitor = new CommentVisitor();
         Comment comment = ctx.comment() == null ? null : ctx.comment().accept(commentVisitor);
-        
+
         return new Equation(assignment_equation, if_equation, for_equation, connect_clause, when_equation, function_call_equation, comment);
     }
 }

@@ -22,7 +22,11 @@ public class Stored_definitionVisitor extends modelicaBaseVisitor<Stored_definit
     Class_definitionVisitor class_definitionVisitor = new Class_definitionVisitor();
 
     Name name = ctx.name() == null ? null : ctx.name().accept(nameVisitor);
-    String within = name.getName();
+    String within = null;
+    if (name != null) {
+      within = name.getName();
+    }
+    
     List<Final_class_definition> final_class_definitions = new ArrayList<>();
 
     List<ParseTree> children = ctx.children;

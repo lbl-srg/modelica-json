@@ -16,7 +16,7 @@ public class String_commentVisitor extends modelicaBaseVisitor<String> {
         if (str_dec != null) {
             if (str_dec.size() == 1) {
                 strCom = str_dec.get(0);
-            } else if (str_dec.size() > 1) {       	
+            } else if (str_dec.size() > 1) {
                 StringBuilder temStr = new StringBuilder();
                 temStr.append(str_dec.get(0));
                 for (int i=1; i<str_dec.size(); i++) {
