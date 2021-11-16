@@ -17,8 +17,8 @@ parser.addArgument(
   [ '-o', '--output' ],
   {
     help: 'Specify output format.',
-    choices: ['html', 'raw-json', 'json', 'docx', 'svg'],
-    defaultValue: 'html'
+    choices: ['raw-json', 'json'],
+    defaultValue: 'json'
   }
 )
 parser.addArgument(
@@ -34,7 +34,7 @@ parser.addArgument(
   {
     help: "Parsing mode, CDL model or a package of the Modelica Buildings library, 'cdl' is the default.",
     choices: ['cdl', 'modelica'],
-    defaultValue: 'cdl'
+    defaultValue: 'modelica'
   }
 )
 parser.addArgument(
@@ -78,30 +78,8 @@ logger.cli()
 
 logger.level = args.log
 
-if (args.mode === 'modelica' && args.output === 'svg') {
-  throw new Error('svg output option has not been enabled in modelica mode.')
-}
-
 // Get mo files array
 var moFiles = ut.getMoFiles(args.file)
 
 // Parse the json representation for moFiles
 var json = pa.getJsons(moFiles, args.mode, args.output, args.directory)
-
-// // Get the name array of output files
-// var outFile = ut.getOutFile(args.mode, args.file, args.output, args.directory, moFiles, json)
-
-// pa.exportJSON(json, outFile, args.output, args.mode, args.directory)
-
-// var schema
-// if (args.mode === 'cdl') {
-//   schema = path.join(`${__dirname}`, 'schema-CDL.json')
-// } else {
-//   schema = path.join(`${__dirname}`, 'schema-modelica.json')
-// }
-
-// setTimeout(function () { ut.jsonSchemaValidate(args.mode, outFile[0], args.output, schema) }, 100)
-
-// if (args.strict === 'true' && pa.warnCounter > 0) {
-//   process.exit(1)
-// }
