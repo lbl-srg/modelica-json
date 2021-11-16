@@ -18,6 +18,7 @@ function parse(content, rawJson=false) {
     if (equations != null) { 
         equations.forEach(equation => {
             moOutput+=equationParser.parse(equation, rawJson);
+            moOutput+=";";
         });
     }
     return moOutput;

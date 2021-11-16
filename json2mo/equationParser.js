@@ -38,7 +38,6 @@ function parse(content, rawJson=false) {
             moOutput+=commentParser.parse(content.description, rawJson);
         }
     }
-    
 
     return moOutput;
 }

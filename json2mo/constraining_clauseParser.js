@@ -3,7 +3,7 @@ function parse(content, rawJson=false) {
     const class_modificationParser = require('./class_modificationParser');
     
     var moOutput = "";
-    moOutput+="constraintedby ";
+    moOutput+="constrainedby ";
 
     if (content.name != null) {
         moOutput+= nameParser.parse(content.name, rawJson);

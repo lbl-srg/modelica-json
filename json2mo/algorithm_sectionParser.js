@@ -7,7 +7,7 @@ function parse(content, rawJson=false) {
             moOutput+="initial "
         }
     }
-    moOutput+="algorithm \n"
+    moOutput+="algorithm"
     var statements = null;
     if (rawJson) {
         statements = content.statements;
@@ -18,7 +18,7 @@ function parse(content, rawJson=false) {
     if (statements != null) { 
         statements.forEach(statement => {
             moOutput+=statementParser.parse(statement, rawJson);
-            moOutput+=";\n"
+            moOutput+=";"
         });
     }
     return moOutput;

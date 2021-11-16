@@ -10,7 +10,6 @@ function parse(content, rawJson=false) {
     
     if (content.then != null) {
         moOutput+=expressionParser.parse(content.then, rawJson);
-        moOutput+=";\n"
     }
     return moOutput;
 }

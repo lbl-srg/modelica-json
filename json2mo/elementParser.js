@@ -32,7 +32,6 @@ function parse(content, rawJson=false) {
                 }
             }
         }
-        
         if (content.inner != null) {
             if (content.inner) {
                 moOutput+="inner "

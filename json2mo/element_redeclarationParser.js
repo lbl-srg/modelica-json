@@ -11,9 +11,17 @@ function parse(content, rawJson) {
             moOutput+="each ";
         }
     }
-    if (content.is_final != null) {
-        if (content.is_final){
-            moOutput+="final ";
+    if (rawJson) {
+        if (content.is_final != null) {
+            if (content.is_final){
+                moOutput+="final ";
+            }
+        }
+    } else {
+        if (content.final != null) {
+            if (content.final){
+                moOutput+="final ";
+            }
         }
     }
     if (content.element_replaceable != null) {
