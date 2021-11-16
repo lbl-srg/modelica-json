@@ -1,3 +1,5 @@
+//java -Xmx2048m  -Xms512m  -jar java/moParser.jar --mo test/FromModelica/Modulation.mo
+
 package gov.lbl.parser;
 
 import com.google.gson.Gson;
@@ -12,8 +14,6 @@ import java.nio.file.Paths;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Main {
 	List<String> sumResults;
@@ -129,7 +129,7 @@ public class Main {
     	    	runLog.add(e.getMessage());
     	    	throw new Exception(e);
     	    }
-    	    Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
+    	    Gson gson = new GsonBuilder().disableHtmlEscaping().create();
     	    //Gson gson = new Gson();
     	    jsonOut = gson.toJson(antlrParseOut);
     	    if (args.length>2) {

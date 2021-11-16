@@ -1,22 +1,17 @@
 package gov.lbl.parser.domain;
 
 public class Long_class_specifier {
-    private String prefix;
-    private String name;
-    private String class_modification;
-    private String comment;
-    private Composition composition;
+    private String identifier;
+	private String string_comment;
+	private Composition composition;
+	private Boolean is_extends;
+	private Class_modification class_modification;
 
-
-    public Long_class_specifier(String extends_dec,
-                                String ident,
-                                String string_comment,
-                                Composition composition,
-                                String class_modification) {
-      this.prefix = extends_dec;
-      this.name = ident;
-      this.class_modification = (class_modification == null ? null : class_modification);
-      this.comment = string_comment;
-      this.composition = composition;
+    public Long_class_specifier(String identifier, String string_comment, Composition composition, Boolean is_extends, Class_modification class_modification) {
+        this.identifier = identifier;
+        this.string_comment = string_comment;
+        this.composition = composition;
+        this.is_extends = is_extends;
+        this.class_modification = class_modification;
     }
 }
