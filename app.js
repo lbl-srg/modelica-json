@@ -17,7 +17,7 @@ parser.addArgument(
   [ '-o', '--output' ],
   {
     help: 'Specify output format.',
-    choices: ['raw-json', 'json'],
+    choices: ['raw-json', 'json', 'modelica'],
     defaultValue: 'json'
   }
 )
@@ -40,7 +40,7 @@ parser.addArgument(
 parser.addArgument(
   [ '-f', '--file' ],
   {
-    help: 'Filename or packagename that contains the top-level Modelica class.',
+    help: "Filename or packagename that contains the top-level Modelica class, or a json file when the output format is 'modelica'.",
     required: true
   }
 )
@@ -49,13 +49,6 @@ parser.addArgument(
   {
     help: 'Specify output directory, with the default being the current.',
     defaultValue: 'current'
-  }
-)
-parser.addArgument(
-  '--strict',
-  {
-    help: 'Exit with code 1 if there is any warning.',
-    defaultValue: 'false'
   }
 )
 
@@ -78,8 +71,20 @@ logger.cli()
 
 logger.level = args.log
 
-// Get mo files array
-var moFiles = ut.getMoFiles(args.file)
+if (args.output === 'modelica' && !args.file.endsWith('.json')) {
+  throw new Error('Modelica output requires the input file (-f) to be a json file.')
+}
 
-// Parse the json representation for moFiles
-var json = pa.getJsons(moFiles, args.mode, args.output, args.directory)
+if (args.output !== 'modelica' && args.file.endsWith('.json')) {
+  throw new Error("The json input file required only when the output format (-o) is 'modelica'.")
+}
+
+if (args.output === 'modelica') {
+  var moContent = pa.convertToModelica(args.file, args.directory, false)
+} else {
+  // Get mo files array
+  var moFiles = ut.getMoFiles(args.file)
+  // Parse the json representation for moFiles
+  var json = pa.getJsons(moFiles, args.mode, args.output, args.directory)
+}
+
