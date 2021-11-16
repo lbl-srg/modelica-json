@@ -17,7 +17,7 @@ parser.addArgument(
   [ '-o', '--output' ],
   {
     help: 'Specify output format.',
-    choices: ['html', 'raw-json', 'json', 'docx', 'svg'],
+    choices: ['html', 'raw-json', 'json', 'docx', 'svg', 'modelica'],
     defaultValue: 'html'
   }
 )
@@ -40,7 +40,7 @@ parser.addArgument(
 parser.addArgument(
   [ '-f', '--file' ],
   {
-    help: 'Filename or packagename that contains the top-level Modelica class.',
+    help: 'Filename or packagename that contains the top-level Modelica class or a json file (for generating .mo file)',
     required: true
   }
 )
@@ -82,26 +82,38 @@ if (args.mode === 'modelica' && args.output === 'svg') {
   throw new Error('svg output option has not been enabled in modelica mode.')
 }
 
-// Get mo files array
-var moFiles = ut.getMoFiles(args.file)
+if (args.output === 'modelica' && !args.file.endsWith(".json")) {
+  throw new Error('modelica output requires a input file (-f) to be a json file')
+}
 
-// Parse the json representation for moFiles
-var json = pa.getJsons(moFiles, args.mode, args.output, args.directory)
+if (args.output != 'modelica' && args.file.endsWith(".json")) {
+  throw new Error('modelica output (-o) is required for an json input file')
+}
 
-// // Get the name array of output files
-// var outFile = ut.getOutFile(args.mode, args.file, args.output, args.directory, moFiles, json)
+if (args.output === 'modelica') {
+  var moContent = pa.convertToModelica(args.file, args.directory, false);
+} else { 
+  // Get mo files array
+  var moFiles = ut.getMoFiles(args.file)
 
-// pa.exportJSON(json, outFile, args.output, args.mode, args.directory)
+  // Parse the json representation for moFiles
+  var json = pa.getJsons(moFiles, args.mode, args.output, args.directory)
 
-// var schema
-// if (args.mode === 'cdl') {
-//   schema = path.join(`${__dirname}`, 'schema-CDL.json')
-// } else {
-//   schema = path.join(`${__dirname}`, 'schema-modelica.json')
-// }
+  // // Get the name array of output files
+  // var outFile = ut.getOutFile(args.mode, args.file, args.output, args.directory, moFiles, json)
 
-// setTimeout(function () { ut.jsonSchemaValidate(args.mode, outFile[0], args.output, schema) }, 100)
+  // pa.exportJSON(json, outFile, args.output, args.mode, args.directory)
 
-// if (args.strict === 'true' && pa.warnCounter > 0) {
-//   process.exit(1)
-// }
+  // var schema
+  // if (args.mode === 'cdl') {
+  //   schema = path.join(`${__dirname}`, 'schema-CDL.json')
+  // } else {
+  //   schema = path.join(`${__dirname}`, 'schema-modelica.json')
+  // }
+
+  // setTimeout(function () { ut.jsonSchemaValidate(args.mode, outFile[0], args.output, schema) }, 100)
+
+  // if (args.strict === 'true' && pa.warnCounter > 0) {
+  //   process.exit(1)
+  // }
+}
