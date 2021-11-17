@@ -51,6 +51,14 @@ parser.addArgument(
   }
 )
 
+parser.addArgument(
+  [ '-p', '--prettyPrint' ],
+  {
+    help: 'Pretty print JSON output.',
+    defaultValue: 'false'
+  }
+)
+
 var args = parser.parseArgs()
 
 const logFile = 'modelica-json.log'
@@ -84,5 +92,5 @@ if (args.output === 'modelica') {
   // Get mo files array
   var moFiles = ut.getMoFiles(args.file)
   // Parse the json representation for moFiles
-  pa.getJsons(moFiles, args.mode, args.output, args.directory)
+  pa.getJsons(moFiles, args.mode, args.output, args.directory, args.prettyPrint)
 }
