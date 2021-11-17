@@ -3,7 +3,6 @@ const pa = require('./lib/parser.js')
 const ut = require('./lib/util.js')
 
 const logger = require('winston')
-const path = require('path')
 
 const ArgumentParser = require('argparse').ArgumentParser
 /// ///////////////////////////////////////
@@ -80,11 +79,10 @@ if (args.output !== 'modelica' && args.file.endsWith('.json')) {
 }
 
 if (args.output === 'modelica') {
-  var moContent = pa.convertToModelica(args.file, args.directory, false)
+  pa.convertToModelica(args.file, args.directory, false)
 } else {
   // Get mo files array
   var moFiles = ut.getMoFiles(args.file)
   // Parse the json representation for moFiles
-  var json = pa.getJsons(moFiles, args.mode, args.output, args.directory)
+  pa.getJsons(moFiles, args.mode, args.output, args.directory)
 }
-
