@@ -1,4 +1,4 @@
-// Generated from modelica.g4 by ANTLR 4.5.3
+// Generated from modelica.g4 by ANTLR 4.7.2
 // jshint ignore: start
 var antlr4 = require('antlr4/index');
 var modelicaListener = require('./modelicaListener').modelicaListener;
@@ -6,7 +6,8 @@ var modelicaVisitor = require('./modelicaVisitor').modelicaVisitor;
 
 var grammarFileName = "modelica.g4";
 
-var serializedATN = ["\u0003\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd",
+
+var serializedATN = ["\u0003\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964",
     "\u0003`\u0408\u0004\u0002\t\u0002\u0004\u0003\t\u0003\u0004\u0004\t",
     "\u0004\u0004\u0005\t\u0005\u0004\u0006\t\u0006\u0004\u0007\t\u0007\u0004",
     "\b\t\b\u0004\t\t\t\u0004\n\t\n\u0004\u000b\t\u000b\u0004\f\t\f\u0004",
@@ -141,121 +142,121 @@ var serializedATN = ["\u0003\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd",
     "fhjlnprtvxz|~\u0080\u0082\u0084\u0086\u0088\u008a\u008c\u008e\u0090",
     "\u0092\u0094\u0096\u0098\u009a\u009c\u0002\n\u0004\u0002-->>\u0004\u0002",
     "((CC\u0005\u0002\u0017\u0017\u001a\u001a::\u0004\u00021188\u0003\u0002",
-    "\u0003\b\u0004\u0002\t\u000bZZ\u0004\u0002\f\u000eNN\u0003\u0002WX\u045f",
-    "\u0002\u00a3\u0003\u0002\u0002\u0002\u0004\u00b1\u0003\u0002\u0002\u0002",
-    "\u0006\u00b9\u0003\u0002\u0002\u0002\b\u00bc\u0003\u0002\u0002\u0002",
-    "\n\u00e5\u0003\u0002\u0002\u0002\f\u00ff\u0003\u0002\u0002\u0002\u000e",
-    "\u0101\u0003\u0002\u0002\u0002\u0010\u0112\u0003\u0002\u0002\u0002\u0012",
-    "\u0114\u0003\u0002\u0002\u0002\u0014\u011c\u0003\u0002\u0002\u0002\u0016",
-    "\u011f\u0003\u0002\u0002\u0002\u0018\u013d\u0003\u0002\u0002\u0002\u001a",
-    "\u0142\u0003\u0002\u0002\u0002\u001c\u0150\u0003\u0002\u0002\u0002\u001e",
-    "\u0171\u0003\u0002\u0002\u0002 \u0173\u0003\u0002\u0002\u0002\"\u0184",
-    "\u0003\u0002\u0002\u0002$\u018c\u0003\u0002\u0002\u0002&\u0194\u0003",
-    "\u0002\u0002\u0002(\u0199\u0003\u0002\u0002\u0002*\u01a1\u0003\u0002",
-    "\u0002\u0002,\u01a9\u0003\u0002\u0002\u0002.\u01ab\u0003\u0002\u0002",
-    "\u00020\u01b3\u0003\u0002\u0002\u00022\u01b9\u0003\u0002\u0002\u0002",
-    "4\u01bc\u0003\u0002\u0002\u00026\u01cc\u0003\u0002\u0002\u00028\u01ce",
-    "\u0003\u0002\u0002\u0002:\u01d4\u0003\u0002\u0002\u0002<\u01de\u0003",
-    "\u0002\u0002\u0002>\u01e1\u0003\u0002\u0002\u0002@\u01ea\u0003\u0002",
-    "\u0002\u0002B\u01f0\u0003\u0002\u0002\u0002D\u01fe\u0003\u0002\u0002",
-    "\u0002F\u0206\u0003\u0002\u0002\u0002H\u020a\u0003\u0002\u0002\u0002",
-    "J\u020d\u0003\u0002\u0002\u0002L\u0211\u0003\u0002\u0002\u0002N\u021d",
-    "\u0003\u0002\u0002\u0002P\u0233\u0003\u0002\u0002\u0002R\u024a\u0003",
-    "\u0002\u0002\u0002T\u024e\u0003\u0002\u0002\u0002V\u0277\u0003\u0002",
-    "\u0002\u0002X\u02a0\u0003\u0002\u0002\u0002Z\u02ae\u0003\u0002\u0002",
-    "\u0002\\\u02bc\u0003\u0002\u0002\u0002^\u02c4\u0003\u0002\u0002\u0002",
-    "`\u02c9\u0003\u0002\u0002\u0002b\u02d7\u0003\u0002\u0002\u0002d\u02f5",
-    "\u0003\u0002\u0002\u0002f\u0313\u0003\u0002\u0002\u0002h\u032c\u0003",
-    "\u0002\u0002\u0002j\u032e\u0003\u0002\u0002\u0002l\u0337\u0003\u0002",
-    "\u0002\u0002n\u033f\u0003\u0002\u0002\u0002p\u0348\u0003\u0002\u0002",
-    "\u0002r\u034c\u0003\u0002\u0002\u0002t\u0352\u0003\u0002\u0002\u0002",
-    "v\u0355\u0003\u0002\u0002\u0002x\u0360\u0003\u0002\u0002\u0002z\u0362",
-    "\u0003\u0002\u0002\u0002|\u036b\u0003\u0002\u0002\u0002~\u036d\u0003",
-    "\u0002\u0002\u0002\u0080\u0391\u0003\u0002\u0002\u0002\u0082\u0394\u0003",
-    "\u0002\u0002\u0002\u0084\u039f\u0003\u0002\u0002\u0002\u0086\u03af\u0003",
-    "\u0002\u0002\u0002\u0088\u03bd\u0003\u0002\u0002\u0002\u008a\u03bf\u0003",
-    "\u0002\u0002\u0002\u008c\u03c4\u0003\u0002\u0002\u0002\u008e\u03d1\u0003",
-    "\u0002\u0002\u0002\u0090\u03d4\u0003\u0002\u0002\u0002\u0092\u03df\u0003",
-    "\u0002\u0002\u0002\u0094\u03e7\u0003\u0002\u0002\u0002\u0096\u03f4\u0003",
-    "\u0002\u0002\u0002\u0098\u03f6\u0003\u0002\u0002\u0002\u009a\u0402\u0003",
-    "\u0002\u0002\u0002\u009c\u0404\u0003\u0002\u0002\u0002\u009e\u00a0\u0007",
-    "I\u0002\u0002\u009f\u00a1\u0005\u0082B\u0002\u00a0\u009f\u0003\u0002",
-    "\u0002\u0002\u00a0\u00a1\u0003\u0002\u0002\u0002\u00a1\u00a2\u0003\u0002",
-    "\u0002\u0002\u00a2\u00a4\u0007J\u0002\u0002\u00a3\u009e\u0003\u0002",
-    "\u0002\u0002\u00a3\u00a4\u0003\u0002\u0002\u0002\u00a4\u00ad\u0003\u0002",
-    "\u0002\u0002\u00a5\u00a7\u0007\'\u0002\u0002\u00a6\u00a5\u0003\u0002",
-    "\u0002\u0002\u00a6\u00a7\u0003\u0002\u0002\u0002\u00a7\u00a8\u0003\u0002",
-    "\u0002\u0002\u00a8\u00a9\u0005\u0004\u0003\u0002\u00a9\u00aa\u0007J",
-    "\u0002\u0002\u00aa\u00ac\u0003\u0002\u0002\u0002\u00ab\u00a6\u0003\u0002",
-    "\u0002\u0002\u00ac\u00af\u0003\u0002\u0002\u0002\u00ad\u00ab\u0003\u0002",
-    "\u0002\u0002\u00ad\u00ae\u0003\u0002\u0002\u0002\u00ae\u0003\u0003\u0002",
-    "\u0002\u0002\u00af\u00ad\u0003\u0002\u0002\u0002\u00b0\u00b2\u0007\u001f",
-    "\u0002\u0002\u00b1\u00b0\u0003\u0002\u0002\u0002\u00b1\u00b2\u0003\u0002",
-    "\u0002\u0002\u00b2\u00b3\u0003\u0002\u0002\u0002\u00b3\u00b4\u0005\b",
-    "\u0005\u0002\u00b4\u00b5\u0005\u0006\u0004\u0002\u00b5\u0005\u0003\u0002",
-    "\u0002\u0002\u00b6\u00ba\u0005\n\u0006\u0002\u00b7\u00ba\u0005\f\u0007",
-    "\u0002\u00b8\u00ba\u0005\u000e\b\u0002\u00b9\u00b6\u0003\u0002\u0002",
-    "\u0002\u00b9\u00b7\u0003\u0002\u0002\u0002\u00b9\u00b8\u0003\u0002\u0002",
-    "\u0002\u00ba\u0007\u0003\u0002\u0002\u0002\u00bb\u00bd\u0007;\u0002",
-    "\u0002\u00bc\u00bb\u0003\u0002\u0002\u0002\u00bc\u00bd\u0003\u0002\u0002",
-    "\u0002\u00bd\u00d3\u0003\u0002\u0002\u0002\u00be\u00d4\u0007\u0014\u0002",
-    "\u0002\u00bf\u00d4\u00073\u0002\u0002\u00c0\u00c2\u00075\u0002\u0002",
-    "\u00c1\u00c0\u0003\u0002\u0002\u0002\u00c1\u00c2\u0003\u0002\u0002\u0002",
-    "\u00c2\u00c3\u0003\u0002\u0002\u0002\u00c3\u00d4\u0007?\u0002\u0002",
-    "\u00c4\u00d4\u0007\u0012\u0002\u0002\u00c5\u00c7\u0007#\u0002\u0002",
-    "\u00c6\u00c5\u0003\u0002\u0002\u0002\u00c6\u00c7\u0003\u0002\u0002\u0002",
-    "\u00c7\u00c8\u0003\u0002\u0002\u0002\u00c8\u00d4\u0007\u0016\u0002\u0002",
-    "\u00c9\u00d4\u0007F\u0002\u0002\u00ca\u00d4\u00079\u0002\u0002\u00cb",
-    "\u00cd\t\u0002\u0002\u0002\u00cc\u00cb\u0003\u0002\u0002\u0002\u00cc",
-    "\u00cd\u0003\u0002\u0002\u0002\u00cd\u00cf\u0003\u0002\u0002\u0002\u00ce",
-    "\u00d0\u00075\u0002\u0002\u00cf\u00ce\u0003\u0002\u0002\u0002\u00cf",
-    "\u00d0\u0003\u0002\u0002\u0002\u00d0\u00d1\u0003\u0002\u0002\u0002\u00d1",
-    "\u00d4\u0007*\u0002\u0002\u00d2\u00d4\u00075\u0002\u0002\u00d3\u00be",
-    "\u0003\u0002\u0002\u0002\u00d3\u00bf\u0003\u0002\u0002\u0002\u00d3\u00c1",
-    "\u0003\u0002\u0002\u0002\u00d3\u00c4\u0003\u0002\u0002\u0002\u00d3\u00c6",
-    "\u0003\u0002\u0002\u0002\u00d3\u00c9\u0003\u0002\u0002\u0002\u00d3\u00ca",
-    "\u0003\u0002\u0002\u0002\u00d3\u00cc\u0003\u0002\u0002\u0002\u00d3\u00d2",
-    "\u0003\u0002\u0002\u0002\u00d4\t\u0003\u0002\u0002\u0002\u00d5\u00d6",
-    "\u0007[\u0002\u0002\u00d6\u00d7\u0005\u009aN\u0002\u00d7\u00d8\u0005",
-    "\u0016\f\u0002\u00d8\u00d9\u0007 \u0002\u0002\u00d9\u00da\u0007[\u0002",
-    "\u0002\u00da\u00e6\u0003\u0002\u0002\u0002\u00db\u00dc\u0007$\u0002",
-    "\u0002\u00dc\u00de\u0007[\u0002\u0002\u00dd\u00df\u00058\u001d\u0002",
-    "\u00de\u00dd\u0003\u0002\u0002\u0002\u00de\u00df\u0003\u0002\u0002\u0002",
-    "\u00df\u00e0\u0003\u0002\u0002\u0002\u00e0\u00e1\u0005\u009aN\u0002",
-    "\u00e1\u00e2\u0005\u0016\f\u0002\u00e2\u00e3\u0007 \u0002\u0002\u00e3",
-    "\u00e4\u0007[\u0002\u0002\u00e4\u00e6\u0003\u0002\u0002\u0002\u00e5",
-    "\u00d5\u0003\u0002\u0002\u0002\u00e5\u00db\u0003\u0002\u0002\u0002\u00e6",
-    "\u000b\u0003\u0002\u0002\u0002\u00e7\u00e8\u0007[\u0002\u0002\u00e8",
-    "\u00e9\u0007K\u0002\u0002\u00e9\u00ea\u0005\u0010\t\u0002\u00ea\u00ec",
-    "\u0005\u0082B\u0002\u00eb\u00ed\u0005\u0094K\u0002\u00ec\u00eb\u0003",
-    "\u0002\u0002\u0002\u00ec\u00ed\u0003\u0002\u0002\u0002\u00ed\u00ef\u0003",
-    "\u0002\u0002\u0002\u00ee\u00f0\u00058\u001d\u0002\u00ef\u00ee\u0003",
-    "\u0002\u0002\u0002\u00ef\u00f0\u0003\u0002\u0002\u0002\u00f0\u00f1\u0003",
-    "\u0002\u0002\u0002\u00f1\u00f2\u0005\u0098M\u0002\u00f2\u0100\u0003",
-    "\u0002\u0002\u0002\u00f3\u00f4\u0007[\u0002\u0002\u00f4\u00f5\u0007",
-    "K\u0002\u0002\u00f5\u00f6\u0007!\u0002\u0002\u00f6\u00fb\u0007O\u0002",
-    "\u0002\u00f7\u00f9\u0005\u0012\n\u0002\u00f8\u00f7\u0003\u0002\u0002",
-    "\u0002\u00f8\u00f9\u0003\u0002\u0002\u0002\u00f9\u00fc\u0003\u0002\u0002",
-    "\u0002\u00fa\u00fc\u0007L\u0002\u0002\u00fb\u00f8\u0003\u0002\u0002",
-    "\u0002\u00fb\u00fa\u0003\u0002\u0002\u0002\u00fc\u00fd\u0003\u0002\u0002",
-    "\u0002\u00fd\u00fe\u0007P\u0002\u0002\u00fe\u0100\u0005\u0098M\u0002",
-    "\u00ff\u00e7\u0003\u0002\u0002\u0002\u00ff\u00f3\u0003\u0002\u0002\u0002",
-    "\u0100\r\u0003\u0002\u0002\u0002\u0101\u0102\u0007[\u0002\u0002\u0102",
-    "\u0103\u0007K\u0002\u0002\u0103\u0104\u0007\u0019\u0002\u0002\u0104",
-    "\u0105\u0007O\u0002\u0002\u0105\u0106\u0005\u0082B\u0002\u0106\u0107",
-    "\u0007M\u0002\u0002\u0107\u010c\u0007[\u0002\u0002\u0108\u0109\u0007",
-    "M\u0002\u0002\u0109\u010b\u0007[\u0002\u0002\u010a\u0108\u0003\u0002",
-    "\u0002\u0002\u010b\u010e\u0003\u0002\u0002\u0002\u010c\u010a\u0003\u0002",
-    "\u0002\u0002\u010c\u010d\u0003\u0002\u0002\u0002\u010d\u010f\u0003\u0002",
-    "\u0002\u0002\u010e\u010c\u0003\u0002\u0002\u0002\u010f\u0110\u0007O",
-    "\u0002\u0002\u0110\u0111\u0005\u0098M\u0002\u0111\u000f\u0003\u0002",
-    "\u0002\u0002\u0112\u0113\u0005*\u0016\u0002\u0113\u0011\u0003\u0002",
-    "\u0002\u0002\u0114\u0119\u0005\u0014\u000b\u0002\u0115\u0116\u0007M",
-    "\u0002\u0002\u0116\u0118\u0005\u0014\u000b\u0002\u0117\u0115\u0003\u0002",
-    "\u0002\u0002\u0118\u011b\u0003\u0002\u0002\u0002\u0119\u0117\u0003\u0002",
-    "\u0002\u0002\u0119\u011a\u0003\u0002\u0002\u0002\u011a\u0013\u0003\u0002",
-    "\u0002\u0002\u011b\u0119\u0003\u0002\u0002\u0002\u011c\u011d\u0007[",
-    "\u0002\u0002\u011d\u011e\u0005\u0098M\u0002\u011e\u0015\u0003\u0002",
+    "\u0003\b\u0004\u0002\t\u000bZZ\u0004\u0002\f\u000eNN\u0003\u0002WX\u0002",
+    "\u045f\u0002\u00a3\u0003\u0002\u0002\u0002\u0004\u00b1\u0003\u0002\u0002",
+    "\u0002\u0006\u00b9\u0003\u0002\u0002\u0002\b\u00bc\u0003\u0002\u0002",
+    "\u0002\n\u00e5\u0003\u0002\u0002\u0002\f\u00ff\u0003\u0002\u0002\u0002",
+    "\u000e\u0101\u0003\u0002\u0002\u0002\u0010\u0112\u0003\u0002\u0002\u0002",
+    "\u0012\u0114\u0003\u0002\u0002\u0002\u0014\u011c\u0003\u0002\u0002\u0002",
+    "\u0016\u011f\u0003\u0002\u0002\u0002\u0018\u013d\u0003\u0002\u0002\u0002",
+    "\u001a\u0142\u0003\u0002\u0002\u0002\u001c\u0150\u0003\u0002\u0002\u0002",
+    "\u001e\u0171\u0003\u0002\u0002\u0002 \u0173\u0003\u0002\u0002\u0002",
+    "\"\u0184\u0003\u0002\u0002\u0002$\u018c\u0003\u0002\u0002\u0002&\u0194",
+    "\u0003\u0002\u0002\u0002(\u0199\u0003\u0002\u0002\u0002*\u01a1\u0003",
+    "\u0002\u0002\u0002,\u01a9\u0003\u0002\u0002\u0002.\u01ab\u0003\u0002",
+    "\u0002\u00020\u01b3\u0003\u0002\u0002\u00022\u01b9\u0003\u0002\u0002",
+    "\u00024\u01bc\u0003\u0002\u0002\u00026\u01cc\u0003\u0002\u0002\u0002",
+    "8\u01ce\u0003\u0002\u0002\u0002:\u01d4\u0003\u0002\u0002\u0002<\u01de",
+    "\u0003\u0002\u0002\u0002>\u01e1\u0003\u0002\u0002\u0002@\u01ea\u0003",
+    "\u0002\u0002\u0002B\u01f0\u0003\u0002\u0002\u0002D\u01fe\u0003\u0002",
+    "\u0002\u0002F\u0206\u0003\u0002\u0002\u0002H\u020a\u0003\u0002\u0002",
+    "\u0002J\u020d\u0003\u0002\u0002\u0002L\u0211\u0003\u0002\u0002\u0002",
+    "N\u021d\u0003\u0002\u0002\u0002P\u0233\u0003\u0002\u0002\u0002R\u024a",
+    "\u0003\u0002\u0002\u0002T\u024e\u0003\u0002\u0002\u0002V\u0277\u0003",
+    "\u0002\u0002\u0002X\u02a0\u0003\u0002\u0002\u0002Z\u02ae\u0003\u0002",
+    "\u0002\u0002\\\u02bc\u0003\u0002\u0002\u0002^\u02c4\u0003\u0002\u0002",
+    "\u0002`\u02c9\u0003\u0002\u0002\u0002b\u02d7\u0003\u0002\u0002\u0002",
+    "d\u02f5\u0003\u0002\u0002\u0002f\u0313\u0003\u0002\u0002\u0002h\u032c",
+    "\u0003\u0002\u0002\u0002j\u032e\u0003\u0002\u0002\u0002l\u0337\u0003",
+    "\u0002\u0002\u0002n\u033f\u0003\u0002\u0002\u0002p\u0348\u0003\u0002",
+    "\u0002\u0002r\u034c\u0003\u0002\u0002\u0002t\u0352\u0003\u0002\u0002",
+    "\u0002v\u0355\u0003\u0002\u0002\u0002x\u0360\u0003\u0002\u0002\u0002",
+    "z\u0362\u0003\u0002\u0002\u0002|\u036b\u0003\u0002\u0002\u0002~\u036d",
+    "\u0003\u0002\u0002\u0002\u0080\u0391\u0003\u0002\u0002\u0002\u0082\u0394",
+    "\u0003\u0002\u0002\u0002\u0084\u039f\u0003\u0002\u0002\u0002\u0086\u03af",
+    "\u0003\u0002\u0002\u0002\u0088\u03bd\u0003\u0002\u0002\u0002\u008a\u03bf",
+    "\u0003\u0002\u0002\u0002\u008c\u03c4\u0003\u0002\u0002\u0002\u008e\u03d1",
+    "\u0003\u0002\u0002\u0002\u0090\u03d4\u0003\u0002\u0002\u0002\u0092\u03df",
+    "\u0003\u0002\u0002\u0002\u0094\u03e7\u0003\u0002\u0002\u0002\u0096\u03f4",
+    "\u0003\u0002\u0002\u0002\u0098\u03f6\u0003\u0002\u0002\u0002\u009a\u0402",
+    "\u0003\u0002\u0002\u0002\u009c\u0404\u0003\u0002\u0002\u0002\u009e\u00a0",
+    "\u0007I\u0002\u0002\u009f\u00a1\u0005\u0082B\u0002\u00a0\u009f\u0003",
+    "\u0002\u0002\u0002\u00a0\u00a1\u0003\u0002\u0002\u0002\u00a1\u00a2\u0003",
+    "\u0002\u0002\u0002\u00a2\u00a4\u0007J\u0002\u0002\u00a3\u009e\u0003",
+    "\u0002\u0002\u0002\u00a3\u00a4\u0003\u0002\u0002\u0002\u00a4\u00ad\u0003",
+    "\u0002\u0002\u0002\u00a5\u00a7\u0007\'\u0002\u0002\u00a6\u00a5\u0003",
+    "\u0002\u0002\u0002\u00a6\u00a7\u0003\u0002\u0002\u0002\u00a7\u00a8\u0003",
+    "\u0002\u0002\u0002\u00a8\u00a9\u0005\u0004\u0003\u0002\u00a9\u00aa\u0007",
+    "J\u0002\u0002\u00aa\u00ac\u0003\u0002\u0002\u0002\u00ab\u00a6\u0003",
+    "\u0002\u0002\u0002\u00ac\u00af\u0003\u0002\u0002\u0002\u00ad\u00ab\u0003",
+    "\u0002\u0002\u0002\u00ad\u00ae\u0003\u0002\u0002\u0002\u00ae\u0003\u0003",
+    "\u0002\u0002\u0002\u00af\u00ad\u0003\u0002\u0002\u0002\u00b0\u00b2\u0007",
+    "\u001f\u0002\u0002\u00b1\u00b0\u0003\u0002\u0002\u0002\u00b1\u00b2\u0003",
+    "\u0002\u0002\u0002\u00b2\u00b3\u0003\u0002\u0002\u0002\u00b3\u00b4\u0005",
+    "\b\u0005\u0002\u00b4\u00b5\u0005\u0006\u0004\u0002\u00b5\u0005\u0003",
+    "\u0002\u0002\u0002\u00b6\u00ba\u0005\n\u0006\u0002\u00b7\u00ba\u0005",
+    "\f\u0007\u0002\u00b8\u00ba\u0005\u000e\b\u0002\u00b9\u00b6\u0003\u0002",
+    "\u0002\u0002\u00b9\u00b7\u0003\u0002\u0002\u0002\u00b9\u00b8\u0003\u0002",
+    "\u0002\u0002\u00ba\u0007\u0003\u0002\u0002\u0002\u00bb\u00bd\u0007;",
+    "\u0002\u0002\u00bc\u00bb\u0003\u0002\u0002\u0002\u00bc\u00bd\u0003\u0002",
+    "\u0002\u0002\u00bd\u00d3\u0003\u0002\u0002\u0002\u00be\u00d4\u0007\u0014",
+    "\u0002\u0002\u00bf\u00d4\u00073\u0002\u0002\u00c0\u00c2\u00075\u0002",
+    "\u0002\u00c1\u00c0\u0003\u0002\u0002\u0002\u00c1\u00c2\u0003\u0002\u0002",
+    "\u0002\u00c2\u00c3\u0003\u0002\u0002\u0002\u00c3\u00d4\u0007?\u0002",
+    "\u0002\u00c4\u00d4\u0007\u0012\u0002\u0002\u00c5\u00c7\u0007#\u0002",
+    "\u0002\u00c6\u00c5\u0003\u0002\u0002\u0002\u00c6\u00c7\u0003\u0002\u0002",
+    "\u0002\u00c7\u00c8\u0003\u0002\u0002\u0002\u00c8\u00d4\u0007\u0016\u0002",
+    "\u0002\u00c9\u00d4\u0007F\u0002\u0002\u00ca\u00d4\u00079\u0002\u0002",
+    "\u00cb\u00cd\t\u0002\u0002\u0002\u00cc\u00cb\u0003\u0002\u0002\u0002",
+    "\u00cc\u00cd\u0003\u0002\u0002\u0002\u00cd\u00cf\u0003\u0002\u0002\u0002",
+    "\u00ce\u00d0\u00075\u0002\u0002\u00cf\u00ce\u0003\u0002\u0002\u0002",
+    "\u00cf\u00d0\u0003\u0002\u0002\u0002\u00d0\u00d1\u0003\u0002\u0002\u0002",
+    "\u00d1\u00d4\u0007*\u0002\u0002\u00d2\u00d4\u00075\u0002\u0002\u00d3",
+    "\u00be\u0003\u0002\u0002\u0002\u00d3\u00bf\u0003\u0002\u0002\u0002\u00d3",
+    "\u00c1\u0003\u0002\u0002\u0002\u00d3\u00c4\u0003\u0002\u0002\u0002\u00d3",
+    "\u00c6\u0003\u0002\u0002\u0002\u00d3\u00c9\u0003\u0002\u0002\u0002\u00d3",
+    "\u00ca\u0003\u0002\u0002\u0002\u00d3\u00cc\u0003\u0002\u0002\u0002\u00d3",
+    "\u00d2\u0003\u0002\u0002\u0002\u00d4\t\u0003\u0002\u0002\u0002\u00d5",
+    "\u00d6\u0007[\u0002\u0002\u00d6\u00d7\u0005\u009aN\u0002\u00d7\u00d8",
+    "\u0005\u0016\f\u0002\u00d8\u00d9\u0007 \u0002\u0002\u00d9\u00da\u0007",
+    "[\u0002\u0002\u00da\u00e6\u0003\u0002\u0002\u0002\u00db\u00dc\u0007",
+    "$\u0002\u0002\u00dc\u00de\u0007[\u0002\u0002\u00dd\u00df\u00058\u001d",
+    "\u0002\u00de\u00dd\u0003\u0002\u0002\u0002\u00de\u00df\u0003\u0002\u0002",
+    "\u0002\u00df\u00e0\u0003\u0002\u0002\u0002\u00e0\u00e1\u0005\u009aN",
+    "\u0002\u00e1\u00e2\u0005\u0016\f\u0002\u00e2\u00e3\u0007 \u0002\u0002",
+    "\u00e3\u00e4\u0007[\u0002\u0002\u00e4\u00e6\u0003\u0002\u0002\u0002",
+    "\u00e5\u00d5\u0003\u0002\u0002\u0002\u00e5\u00db\u0003\u0002\u0002\u0002",
+    "\u00e6\u000b\u0003\u0002\u0002\u0002\u00e7\u00e8\u0007[\u0002\u0002",
+    "\u00e8\u00e9\u0007K\u0002\u0002\u00e9\u00ea\u0005\u0010\t\u0002\u00ea",
+    "\u00ec\u0005\u0082B\u0002\u00eb\u00ed\u0005\u0094K\u0002\u00ec\u00eb",
+    "\u0003\u0002\u0002\u0002\u00ec\u00ed\u0003\u0002\u0002\u0002\u00ed\u00ef",
+    "\u0003\u0002\u0002\u0002\u00ee\u00f0\u00058\u001d\u0002\u00ef\u00ee",
+    "\u0003\u0002\u0002\u0002\u00ef\u00f0\u0003\u0002\u0002\u0002\u00f0\u00f1",
+    "\u0003\u0002\u0002\u0002\u00f1\u00f2\u0005\u0098M\u0002\u00f2\u0100",
+    "\u0003\u0002\u0002\u0002\u00f3\u00f4\u0007[\u0002\u0002\u00f4\u00f5",
+    "\u0007K\u0002\u0002\u00f5\u00f6\u0007!\u0002\u0002\u00f6\u00fb\u0007",
+    "O\u0002\u0002\u00f7\u00f9\u0005\u0012\n\u0002\u00f8\u00f7\u0003\u0002",
+    "\u0002\u0002\u00f8\u00f9\u0003\u0002\u0002\u0002\u00f9\u00fc\u0003\u0002",
+    "\u0002\u0002\u00fa\u00fc\u0007L\u0002\u0002\u00fb\u00f8\u0003\u0002",
+    "\u0002\u0002\u00fb\u00fa\u0003\u0002\u0002\u0002\u00fc\u00fd\u0003\u0002",
+    "\u0002\u0002\u00fd\u00fe\u0007P\u0002\u0002\u00fe\u0100\u0005\u0098",
+    "M\u0002\u00ff\u00e7\u0003\u0002\u0002\u0002\u00ff\u00f3\u0003\u0002",
+    "\u0002\u0002\u0100\r\u0003\u0002\u0002\u0002\u0101\u0102\u0007[\u0002",
+    "\u0002\u0102\u0103\u0007K\u0002\u0002\u0103\u0104\u0007\u0019\u0002",
+    "\u0002\u0104\u0105\u0007O\u0002\u0002\u0105\u0106\u0005\u0082B\u0002",
+    "\u0106\u0107\u0007M\u0002\u0002\u0107\u010c\u0007[\u0002\u0002\u0108",
+    "\u0109\u0007M\u0002\u0002\u0109\u010b\u0007[\u0002\u0002\u010a\u0108",
+    "\u0003\u0002\u0002\u0002\u010b\u010e\u0003\u0002\u0002\u0002\u010c\u010a",
+    "\u0003\u0002\u0002\u0002\u010c\u010d\u0003\u0002\u0002\u0002\u010d\u010f",
+    "\u0003\u0002\u0002\u0002\u010e\u010c\u0003\u0002\u0002\u0002\u010f\u0110",
+    "\u0007O\u0002\u0002\u0110\u0111\u0005\u0098M\u0002\u0111\u000f\u0003",
+    "\u0002\u0002\u0002\u0112\u0113\u0005*\u0016\u0002\u0113\u0011\u0003",
+    "\u0002\u0002\u0002\u0114\u0119\u0005\u0014\u000b\u0002\u0115\u0116\u0007",
+    "M\u0002\u0002\u0116\u0118\u0005\u0014\u000b\u0002\u0117\u0115\u0003",
+    "\u0002\u0002\u0002\u0118\u011b\u0003\u0002\u0002\u0002\u0119\u0117\u0003",
+    "\u0002\u0002\u0002\u0119\u011a\u0003\u0002\u0002\u0002\u011a\u0013\u0003",
+    "\u0002\u0002\u0002\u011b\u0119\u0003\u0002\u0002\u0002\u011c\u011d\u0007",
+    "[\u0002\u0002\u011d\u011e\u0005\u0098M\u0002\u011e\u0015\u0003\u0002",
     "\u0002\u0002\u011f\u0128\u0005\u001c\u000f\u0002\u0120\u0121\u0007=",
     "\u0002\u0002\u0121\u0127\u0005\u001c\u000f\u0002\u0122\u0123\u0007<",
     "\u0002\u0002\u0123\u0127\u0005\u001c\u000f\u0002\u0124\u0127\u0005L",
@@ -953,6 +954,7 @@ modelicaParser.RULE_comment = 75;
 modelicaParser.RULE_string_comment = 76;
 modelicaParser.RULE_annotation = 77;
 
+
 function Stored_definitionContext(parser, parent, invokingState) {
 	if(parent===undefined) {
 	    parent = null;
@@ -1045,11 +1047,13 @@ modelicaParser.prototype.stored_definition = function() {
     try {
         this.enterOuterAlt(localctx, 1);
         this.state = 161;
+        this._errHandler.sync(this);
         _la = this._input.LA(1);
         if(_la===modelicaParser.WITHIN) {
             this.state = 156;
             this.match(modelicaParser.WITHIN);
             this.state = 158;
+            this._errHandler.sync(this);
             _la = this._input.LA(1);
             if(_la===modelicaParser.SYMBOL_DOT || _la===modelicaParser.IDENT) {
                 this.state = 157;
@@ -1065,6 +1069,7 @@ modelicaParser.prototype.stored_definition = function() {
         _la = this._input.LA(1);
         while(((((_la - 16)) & ~0x1f) == 0 && ((1 << (_la - 16)) & ((1 << (modelicaParser.BLOCK - 16)) | (1 << (modelicaParser.CLASS - 16)) | (1 << (modelicaParser.CONNECTOR - 16)) | (1 << (modelicaParser.ENCAPSULATED - 16)) | (1 << (modelicaParser.EXPANDABLE - 16)) | (1 << (modelicaParser.FINAL - 16)) | (1 << (modelicaParser.FUNCTION - 16)) | (1 << (modelicaParser.IMPURE - 16)))) !== 0) || ((((_la - 49)) & ~0x1f) == 0 && ((1 << (_la - 49)) & ((1 << (modelicaParser.MODEL - 49)) | (1 << (modelicaParser.OPERATOR - 49)) | (1 << (modelicaParser.PACKAGE - 49)) | (1 << (modelicaParser.PARTIAL - 49)) | (1 << (modelicaParser.PURE - 49)) | (1 << (modelicaParser.RECORD - 49)) | (1 << (modelicaParser.TYPE - 49)))) !== 0)) {
             this.state = 164;
+            this._errHandler.sync(this);
             _la = this._input.LA(1);
             if(_la===modelicaParser.FINAL) {
                 this.state = 163;
@@ -1092,6 +1097,7 @@ modelicaParser.prototype.stored_definition = function() {
     }
     return localctx;
 };
+
 
 function Class_definitionContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -1154,6 +1160,7 @@ modelicaParser.prototype.class_definition = function() {
     try {
         this.enterOuterAlt(localctx, 1);
         this.state = 175;
+        this._errHandler.sync(this);
         _la = this._input.LA(1);
         if(_la===modelicaParser.ENCAPSULATED) {
             this.state = 174;
@@ -1177,6 +1184,7 @@ modelicaParser.prototype.class_definition = function() {
     }
     return localctx;
 };
+
 
 function Class_specifierContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -1272,6 +1280,7 @@ modelicaParser.prototype.class_specifier = function() {
     }
     return localctx;
 };
+
 
 function Class_prefixesContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -1374,6 +1383,7 @@ modelicaParser.prototype.class_prefixes = function() {
     try {
         this.enterOuterAlt(localctx, 1);
         this.state = 186;
+        this._errHandler.sync(this);
         _la = this._input.LA(1);
         if(_la===modelicaParser.PARTIAL) {
             this.state = 185;
@@ -1396,6 +1406,7 @@ modelicaParser.prototype.class_prefixes = function() {
 
         case 3:
             this.state = 191;
+            this._errHandler.sync(this);
             _la = this._input.LA(1);
             if(_la===modelicaParser.OPERATOR) {
                 this.state = 190;
@@ -1413,6 +1424,7 @@ modelicaParser.prototype.class_prefixes = function() {
 
         case 5:
             this.state = 196;
+            this._errHandler.sync(this);
             _la = this._input.LA(1);
             if(_la===modelicaParser.EXPANDABLE) {
                 this.state = 195;
@@ -1435,6 +1447,7 @@ modelicaParser.prototype.class_prefixes = function() {
 
         case 8:
             this.state = 202;
+            this._errHandler.sync(this);
             _la = this._input.LA(1);
             if(_la===modelicaParser.IMPURE || _la===modelicaParser.PURE) {
                 this.state = 201;
@@ -1443,11 +1456,13 @@ modelicaParser.prototype.class_prefixes = function() {
                 this._errHandler.recoverInline(this);
                 }
                 else {
+                	this._errHandler.reportMatch(this);
                     this.consume();
                 }
             }
 
             this.state = 205;
+            this._errHandler.sync(this);
             _la = this._input.LA(1);
             if(_la===modelicaParser.OPERATOR) {
                 this.state = 204;
@@ -1477,6 +1492,7 @@ modelicaParser.prototype.class_prefixes = function() {
     }
     return localctx;
 };
+
 
 function Long_class_specifierContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -1558,6 +1574,7 @@ modelicaParser.prototype.long_class_specifier = function() {
     var _la = 0; // Token type
     try {
         this.state = 227;
+        this._errHandler.sync(this);
         switch(this._input.LA(1)) {
         case modelicaParser.IDENT:
             this.enterOuterAlt(localctx, 1);
@@ -1579,6 +1596,7 @@ modelicaParser.prototype.long_class_specifier = function() {
             this.state = 218;
             this.match(modelicaParser.IDENT);
             this.state = 220;
+            this._errHandler.sync(this);
             _la = this._input.LA(1);
             if(_la===modelicaParser.SYMBOL_LRBRACKET) {
                 this.state = 219;
@@ -1610,6 +1628,7 @@ modelicaParser.prototype.long_class_specifier = function() {
     }
     return localctx;
 };
+
 
 function Short_class_specifierContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -1721,6 +1740,7 @@ modelicaParser.prototype.short_class_specifier = function() {
             this.state = 232;
             this.name();
             this.state = 234;
+            this._errHandler.sync(this);
             _la = this._input.LA(1);
             if(_la===modelicaParser.SYMBOL_LSBRACKET) {
                 this.state = 233;
@@ -1728,6 +1748,7 @@ modelicaParser.prototype.short_class_specifier = function() {
             }
 
             this.state = 237;
+            this._errHandler.sync(this);
             _la = this._input.LA(1);
             if(_la===modelicaParser.SYMBOL_LRBRACKET) {
                 this.state = 236;
@@ -1749,10 +1770,12 @@ modelicaParser.prototype.short_class_specifier = function() {
             this.state = 244;
             this.match(modelicaParser.SYMBOL_LRBRACKET);
             this.state = 249;
+            this._errHandler.sync(this);
             switch(this._input.LA(1)) {
             case modelicaParser.SYMBOL_RRBRACKET:
             case modelicaParser.IDENT:
                 this.state = 246;
+                this._errHandler.sync(this);
                 _la = this._input.LA(1);
                 if(_la===modelicaParser.IDENT) {
                     this.state = 245;
@@ -1787,6 +1810,7 @@ modelicaParser.prototype.short_class_specifier = function() {
     }
     return localctx;
 };
+
 
 function Der_class_specifierContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -1932,6 +1956,7 @@ modelicaParser.prototype.der_class_specifier = function() {
     return localctx;
 };
 
+
 function Base_prefixContext(parser, parent, invokingState) {
 	if(parent===undefined) {
 	    parent = null;
@@ -1998,6 +2023,7 @@ modelicaParser.prototype.base_prefix = function() {
     }
     return localctx;
 };
+
 
 function Enum_listContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -2098,6 +2124,7 @@ modelicaParser.prototype.enum_list = function() {
     return localctx;
 };
 
+
 function Enumeration_literalContext(parser, parent, invokingState) {
 	if(parent===undefined) {
 	    parent = null;
@@ -2170,6 +2197,7 @@ modelicaParser.prototype.enumeration_literal = function() {
     }
     return localctx;
 };
+
 
 function CompositionContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -2351,11 +2379,13 @@ modelicaParser.prototype.composition = function() {
             _la = this._input.LA(1);
         }
         this.state = 308;
+        this._errHandler.sync(this);
         _la = this._input.LA(1);
         if(_la===modelicaParser.EXTERNAL) {
             this.state = 297;
             this.match(modelicaParser.EXTERNAL);
             this.state = 299;
+            this._errHandler.sync(this);
             _la = this._input.LA(1);
             if(_la===modelicaParser.STRING) {
                 this.state = 298;
@@ -2363,6 +2393,7 @@ modelicaParser.prototype.composition = function() {
             }
 
             this.state = 302;
+            this._errHandler.sync(this);
             _la = this._input.LA(1);
             if(_la===modelicaParser.SYMBOL_DOT || _la===modelicaParser.IDENT) {
                 this.state = 301;
@@ -2370,6 +2401,7 @@ modelicaParser.prototype.composition = function() {
             }
 
             this.state = 305;
+            this._errHandler.sync(this);
             _la = this._input.LA(1);
             if(_la===modelicaParser.ANNOTATION) {
                 this.state = 304;
@@ -2381,6 +2413,7 @@ modelicaParser.prototype.composition = function() {
         }
 
         this.state = 313;
+        this._errHandler.sync(this);
         _la = this._input.LA(1);
         if(_la===modelicaParser.ANNOTATION) {
             this.state = 310;
@@ -2402,6 +2435,7 @@ modelicaParser.prototype.composition = function() {
     }
     return localctx;
 };
+
 
 function Language_specificationContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -2469,6 +2503,7 @@ modelicaParser.prototype.language_specification = function() {
     }
     return localctx;
 };
+
 
 function External_function_callContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -2557,6 +2592,7 @@ modelicaParser.prototype.external_function_call = function() {
         this.state = 323;
         this.match(modelicaParser.SYMBOL_LRBRACKET);
         this.state = 325;
+        this._errHandler.sync(this);
         _la = this._input.LA(1);
         if((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << modelicaParser.T__6) | (1 << modelicaParser.T__7) | (1 << modelicaParser.T__8) | (1 << modelicaParser.DER) | (1 << modelicaParser.END))) !== 0) || ((((_la - 36)) & ~0x1f) == 0 && ((1 << (_la - 36)) & ((1 << (modelicaParser.FALSE - 36)) | (1 << (modelicaParser.IF - 36)) | (1 << (modelicaParser.INITIAL - 36)) | (1 << (modelicaParser.NOT - 36)) | (1 << (modelicaParser.TRUE - 36)))) !== 0) || ((((_la - 77)) & ~0x1f) == 0 && ((1 << (_la - 77)) & ((1 << (modelicaParser.SYMBOL_LRBRACKET - 77)) | (1 << (modelicaParser.SYMBOL_LCBRACKET - 77)) | (1 << (modelicaParser.SYMBOL_LSBRACKET - 77)) | (1 << (modelicaParser.SYMBOL_DOT - 77)) | (1 << (modelicaParser.SYMBOL_PLUS - 77)) | (1 << (modelicaParser.IDENT - 77)) | (1 << (modelicaParser.STRING - 77)) | (1 << (modelicaParser.UNSIGNED_NUMBER - 77)))) !== 0)) {
             this.state = 324;
@@ -2578,6 +2614,7 @@ modelicaParser.prototype.external_function_call = function() {
     }
     return localctx;
 };
+
 
 function Element_listContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -2676,6 +2713,7 @@ modelicaParser.prototype.element_list = function() {
     return localctx;
 };
 
+
 function ElementContext(parser, parent, invokingState) {
 	if(parent===undefined) {
 	    parent = null;
@@ -2768,6 +2806,7 @@ modelicaParser.prototype.element = function() {
     var _la = 0; // Token type
     try {
         this.state = 367;
+        this._errHandler.sync(this);
         switch(this._input.LA(1)) {
         case modelicaParser.IMPORT:
             this.enterOuterAlt(localctx, 1);
@@ -2809,6 +2848,7 @@ modelicaParser.prototype.element = function() {
         case modelicaParser.IDENT:
             this.enterOuterAlt(localctx, 3);
             this.state = 340;
+            this._errHandler.sync(this);
             _la = this._input.LA(1);
             if(_la===modelicaParser.REDECLARE) {
                 this.state = 339;
@@ -2816,6 +2856,7 @@ modelicaParser.prototype.element = function() {
             }
 
             this.state = 343;
+            this._errHandler.sync(this);
             _la = this._input.LA(1);
             if(_la===modelicaParser.FINAL) {
                 this.state = 342;
@@ -2823,6 +2864,7 @@ modelicaParser.prototype.element = function() {
             }
 
             this.state = 346;
+            this._errHandler.sync(this);
             _la = this._input.LA(1);
             if(_la===modelicaParser.INNER) {
                 this.state = 345;
@@ -2830,6 +2872,7 @@ modelicaParser.prototype.element = function() {
             }
 
             this.state = 349;
+            this._errHandler.sync(this);
             _la = this._input.LA(1);
             if(_la===modelicaParser.OUTER) {
                 this.state = 348;
@@ -2837,6 +2880,7 @@ modelicaParser.prototype.element = function() {
             }
 
             this.state = 365;
+            this._errHandler.sync(this);
             switch(this._input.LA(1)) {
             case modelicaParser.BLOCK:
             case modelicaParser.CLASS:
@@ -2862,6 +2906,7 @@ modelicaParser.prototype.element = function() {
             case modelicaParser.SYMBOL_DOT:
             case modelicaParser.IDENT:
                 this.state = 353;
+                this._errHandler.sync(this);
                 switch(this._input.LA(1)) {
                 case modelicaParser.BLOCK:
                 case modelicaParser.CLASS:
@@ -2900,6 +2945,7 @@ modelicaParser.prototype.element = function() {
                 this.state = 355;
                 this.match(modelicaParser.REPLACEABLE);
                 this.state = 358;
+                this._errHandler.sync(this);
                 switch(this._input.LA(1)) {
                 case modelicaParser.BLOCK:
                 case modelicaParser.CLASS:
@@ -2934,6 +2980,7 @@ modelicaParser.prototype.element = function() {
                     throw new antlr4.error.NoViableAltException(this);
                 }
                 this.state = 363;
+                this._errHandler.sync(this);
                 _la = this._input.LA(1);
                 if(_la===modelicaParser.CONSTRAINEDBY) {
                     this.state = 360;
@@ -2963,6 +3010,7 @@ modelicaParser.prototype.element = function() {
     }
     return localctx;
 };
+
 
 function Import_clauseContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -3102,6 +3150,7 @@ modelicaParser.prototype.import_clause = function() {
     return localctx;
 };
 
+
 function Import_listContext(parser, parent, invokingState) {
 	if(parent===undefined) {
 	    parent = null;
@@ -3202,6 +3251,7 @@ modelicaParser.prototype.import_list = function() {
     return localctx;
 };
 
+
 function Extends_clauseContext(parser, parent, invokingState) {
 	if(parent===undefined) {
 	    parent = null;
@@ -3271,6 +3321,7 @@ modelicaParser.prototype.extends_clause = function() {
         this.state = 395;
         this.name();
         this.state = 397;
+        this._errHandler.sync(this);
         _la = this._input.LA(1);
         if(_la===modelicaParser.SYMBOL_LRBRACKET) {
             this.state = 396;
@@ -3278,6 +3329,7 @@ modelicaParser.prototype.extends_clause = function() {
         }
 
         this.state = 400;
+        this._errHandler.sync(this);
         _la = this._input.LA(1);
         if(_la===modelicaParser.ANNOTATION) {
             this.state = 399;
@@ -3297,6 +3349,7 @@ modelicaParser.prototype.extends_clause = function() {
     }
     return localctx;
 };
+
 
 function Constraining_clauseContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -3363,6 +3416,7 @@ modelicaParser.prototype.constraining_clause = function() {
         this.state = 403;
         this.name();
         this.state = 405;
+        this._errHandler.sync(this);
         _la = this._input.LA(1);
         if(_la===modelicaParser.SYMBOL_LRBRACKET) {
             this.state = 404;
@@ -3382,6 +3436,7 @@ modelicaParser.prototype.constraining_clause = function() {
     }
     return localctx;
 };
+
 
 function Component_clauseContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -3452,6 +3507,7 @@ modelicaParser.prototype.component_clause = function() {
         this.state = 408;
         this.type_specifier();
         this.state = 410;
+        this._errHandler.sync(this);
         _la = this._input.LA(1);
         if(_la===modelicaParser.SYMBOL_LSBRACKET) {
             this.state = 409;
@@ -3473,6 +3529,7 @@ modelicaParser.prototype.component_clause = function() {
     }
     return localctx;
 };
+
 
 function Type_prefixContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -3551,6 +3608,7 @@ modelicaParser.prototype.type_prefix = function() {
     try {
         this.enterOuterAlt(localctx, 1);
         this.state = 415;
+        this._errHandler.sync(this);
         _la = this._input.LA(1);
         if(_la===modelicaParser.FLOW || _la===modelicaParser.STREAM) {
             this.state = 414;
@@ -3559,11 +3617,13 @@ modelicaParser.prototype.type_prefix = function() {
             this._errHandler.recoverInline(this);
             }
             else {
+            	this._errHandler.reportMatch(this);
                 this.consume();
             }
         }
 
         this.state = 418;
+        this._errHandler.sync(this);
         _la = this._input.LA(1);
         if(_la===modelicaParser.CONSTANT || _la===modelicaParser.DISCRETE || _la===modelicaParser.PARAMETER) {
             this.state = 417;
@@ -3572,11 +3632,13 @@ modelicaParser.prototype.type_prefix = function() {
             this._errHandler.recoverInline(this);
             }
             else {
+            	this._errHandler.reportMatch(this);
                 this.consume();
             }
         }
 
         this.state = 421;
+        this._errHandler.sync(this);
         _la = this._input.LA(1);
         if(_la===modelicaParser.INPUT || _la===modelicaParser.OUTPUT) {
             this.state = 420;
@@ -3585,6 +3647,7 @@ modelicaParser.prototype.type_prefix = function() {
             this._errHandler.recoverInline(this);
             }
             else {
+            	this._errHandler.reportMatch(this);
                 this.consume();
             }
         }
@@ -3602,6 +3665,7 @@ modelicaParser.prototype.type_prefix = function() {
     }
     return localctx;
 };
+
 
 function Type_specifierContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -3669,6 +3733,7 @@ modelicaParser.prototype.type_specifier = function() {
     }
     return localctx;
 };
+
 
 function Component_listContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -3769,6 +3834,7 @@ modelicaParser.prototype.component_list = function() {
     return localctx;
 };
 
+
 function Component_declarationContext(parser, parent, invokingState) {
 	if(parent===undefined) {
 	    parent = null;
@@ -3832,6 +3898,7 @@ modelicaParser.prototype.component_declaration = function() {
         this.state = 433;
         this.declaration();
         this.state = 435;
+        this._errHandler.sync(this);
         _la = this._input.LA(1);
         if(_la===modelicaParser.IF) {
             this.state = 434;
@@ -3853,6 +3920,7 @@ modelicaParser.prototype.component_declaration = function() {
     }
     return localctx;
 };
+
 
 function Condition_attributeContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -3927,6 +3995,7 @@ modelicaParser.prototype.condition_attribute = function() {
     return localctx;
 };
 
+
 function DeclarationContext(parser, parent, invokingState) {
 	if(parent===undefined) {
 	    parent = null;
@@ -3990,6 +4059,7 @@ modelicaParser.prototype.declaration = function() {
         this.state = 442;
         this.match(modelicaParser.IDENT);
         this.state = 444;
+        this._errHandler.sync(this);
         _la = this._input.LA(1);
         if(_la===modelicaParser.SYMBOL_LSBRACKET) {
             this.state = 443;
@@ -3997,6 +4067,7 @@ modelicaParser.prototype.declaration = function() {
         }
 
         this.state = 447;
+        this._errHandler.sync(this);
         _la = this._input.LA(1);
         if(((((_la - 73)) & ~0x1f) == 0 && ((1 << (_la - 73)) & ((1 << (modelicaParser.SYMBOL_EQUAL - 73)) | (1 << (modelicaParser.SYMBOL_LRBRACKET - 73)) | (1 << (modelicaParser.SYMBOL_COLONEQUAL - 73)))) !== 0)) {
             this.state = 446;
@@ -4016,6 +4087,7 @@ modelicaParser.prototype.declaration = function() {
     }
     return localctx;
 };
+
 
 function ModificationContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -4081,12 +4153,14 @@ modelicaParser.prototype.modification = function() {
     var _la = 0; // Token type
     try {
         this.state = 458;
+        this._errHandler.sync(this);
         switch(this._input.LA(1)) {
         case modelicaParser.SYMBOL_LRBRACKET:
             this.enterOuterAlt(localctx, 1);
             this.state = 449;
             this.class_modification();
             this.state = 452;
+            this._errHandler.sync(this);
             _la = this._input.LA(1);
             if(_la===modelicaParser.SYMBOL_EQUAL) {
                 this.state = 450;
@@ -4126,6 +4200,7 @@ modelicaParser.prototype.modification = function() {
     }
     return localctx;
 };
+
 
 function Class_modificationContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -4190,6 +4265,7 @@ modelicaParser.prototype.class_modification = function() {
         this.state = 460;
         this.match(modelicaParser.SYMBOL_LRBRACKET);
         this.state = 462;
+        this._errHandler.sync(this);
         _la = this._input.LA(1);
         if(_la===modelicaParser.EACH || _la===modelicaParser.FINAL || ((((_la - 62)) & ~0x1f) == 0 && ((1 << (_la - 62)) & ((1 << (modelicaParser.REDECLARE - 62)) | (1 << (modelicaParser.REPLACEABLE - 62)) | (1 << (modelicaParser.SYMBOL_DOT - 62)) | (1 << (modelicaParser.IDENT - 62)))) !== 0)) {
             this.state = 461;
@@ -4211,6 +4287,7 @@ modelicaParser.prototype.class_modification = function() {
     }
     return localctx;
 };
+
 
 function Argument_listContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -4311,6 +4388,7 @@ modelicaParser.prototype.argument_list = function() {
     return localctx;
 };
 
+
 function ArgumentContext(parser, parent, invokingState) {
 	if(parent===undefined) {
 	    parent = null;
@@ -4366,6 +4444,7 @@ modelicaParser.prototype.argument = function() {
     this.enterRule(localctx, 58, modelicaParser.RULE_argument);
     try {
         this.state = 476;
+        this._errHandler.sync(this);
         switch(this._input.LA(1)) {
         case modelicaParser.EACH:
         case modelicaParser.FINAL:
@@ -4397,6 +4476,7 @@ modelicaParser.prototype.argument = function() {
     }
     return localctx;
 };
+
 
 function Element_modification_or_replaceableContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -4463,6 +4543,7 @@ modelicaParser.prototype.element_modification_or_replaceable = function() {
     try {
         this.enterOuterAlt(localctx, 1);
         this.state = 479;
+        this._errHandler.sync(this);
         _la = this._input.LA(1);
         if(_la===modelicaParser.EACH) {
             this.state = 478;
@@ -4470,6 +4551,7 @@ modelicaParser.prototype.element_modification_or_replaceable = function() {
         }
 
         this.state = 482;
+        this._errHandler.sync(this);
         _la = this._input.LA(1);
         if(_la===modelicaParser.FINAL) {
             this.state = 481;
@@ -4477,6 +4559,7 @@ modelicaParser.prototype.element_modification_or_replaceable = function() {
         }
 
         this.state = 486;
+        this._errHandler.sync(this);
         switch(this._input.LA(1)) {
         case modelicaParser.SYMBOL_DOT:
         case modelicaParser.IDENT:
@@ -4503,6 +4586,7 @@ modelicaParser.prototype.element_modification_or_replaceable = function() {
     }
     return localctx;
 };
+
 
 function Element_modificationContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -4567,6 +4651,7 @@ modelicaParser.prototype.element_modification = function() {
         this.state = 488;
         this.name();
         this.state = 490;
+        this._errHandler.sync(this);
         _la = this._input.LA(1);
         if(((((_la - 73)) & ~0x1f) == 0 && ((1 << (_la - 73)) & ((1 << (modelicaParser.SYMBOL_EQUAL - 73)) | (1 << (modelicaParser.SYMBOL_LRBRACKET - 73)) | (1 << (modelicaParser.SYMBOL_COLONEQUAL - 73)))) !== 0)) {
             this.state = 489;
@@ -4588,6 +4673,7 @@ modelicaParser.prototype.element_modification = function() {
     }
     return localctx;
 };
+
 
 function Element_redeclarationContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -4664,6 +4750,7 @@ modelicaParser.prototype.element_redeclaration = function() {
         this.state = 494;
         this.match(modelicaParser.REDECLARE);
         this.state = 496;
+        this._errHandler.sync(this);
         _la = this._input.LA(1);
         if(_la===modelicaParser.EACH) {
             this.state = 495;
@@ -4671,6 +4758,7 @@ modelicaParser.prototype.element_redeclaration = function() {
         }
 
         this.state = 499;
+        this._errHandler.sync(this);
         _la = this._input.LA(1);
         if(_la===modelicaParser.FINAL) {
             this.state = 498;
@@ -4678,6 +4766,7 @@ modelicaParser.prototype.element_redeclaration = function() {
         }
 
         this.state = 506;
+        this._errHandler.sync(this);
         switch(this._input.LA(1)) {
         case modelicaParser.BLOCK:
         case modelicaParser.CLASS:
@@ -4702,6 +4791,7 @@ modelicaParser.prototype.element_redeclaration = function() {
         case modelicaParser.SYMBOL_DOT:
         case modelicaParser.IDENT:
             this.state = 503;
+            this._errHandler.sync(this);
             switch(this._input.LA(1)) {
             case modelicaParser.BLOCK:
             case modelicaParser.CLASS:
@@ -4755,6 +4845,7 @@ modelicaParser.prototype.element_redeclaration = function() {
     }
     return localctx;
 };
+
 
 function Element_replaceableContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -4823,6 +4914,7 @@ modelicaParser.prototype.element_replaceable = function() {
         this.state = 508;
         this.match(modelicaParser.REPLACEABLE);
         this.state = 511;
+        this._errHandler.sync(this);
         switch(this._input.LA(1)) {
         case modelicaParser.BLOCK:
         case modelicaParser.CLASS:
@@ -4856,6 +4948,7 @@ modelicaParser.prototype.element_replaceable = function() {
             throw new antlr4.error.NoViableAltException(this);
         }
         this.state = 514;
+        this._errHandler.sync(this);
         _la = this._input.LA(1);
         if(_la===modelicaParser.CONSTRAINEDBY) {
             this.state = 513;
@@ -4875,6 +4968,7 @@ modelicaParser.prototype.element_replaceable = function() {
     }
     return localctx;
 };
+
 
 function Component_clause1Context(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -4955,6 +5049,7 @@ modelicaParser.prototype.component_clause1 = function() {
     return localctx;
 };
 
+
 function Component_declaration1Context(parser, parent, invokingState) {
 	if(parent===undefined) {
 	    parent = null;
@@ -5028,6 +5123,7 @@ modelicaParser.prototype.component_declaration1 = function() {
     return localctx;
 };
 
+
 function Short_class_definitionContext(parser, parent, invokingState) {
 	if(parent===undefined) {
 	    parent = null;
@@ -5100,6 +5196,7 @@ modelicaParser.prototype.short_class_definition = function() {
     }
     return localctx;
 };
+
 
 function Equation_sectionContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -5181,6 +5278,7 @@ modelicaParser.prototype.equation_section = function() {
     try {
         this.enterOuterAlt(localctx, 1);
         this.state = 527;
+        this._errHandler.sync(this);
         _la = this._input.LA(1);
         if(_la===modelicaParser.INITIAL) {
             this.state = 526;
@@ -5217,6 +5315,7 @@ modelicaParser.prototype.equation_section = function() {
     }
     return localctx;
 };
+
 
 function Algorithm_sectionContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -5298,6 +5397,7 @@ modelicaParser.prototype.algorithm_section = function() {
     try {
         this.enterOuterAlt(localctx, 1);
         this.state = 539;
+        this._errHandler.sync(this);
         _la = this._input.LA(1);
         if(_la===modelicaParser.INITIAL) {
             this.state = 538;
@@ -5331,6 +5431,7 @@ modelicaParser.prototype.algorithm_section = function() {
     }
     return localctx;
 };
+
 
 function EquationContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -5476,6 +5577,7 @@ modelicaParser.prototype.equation = function() {
     return localctx;
 };
 
+
 function StatementContext(parser, parent, invokingState) {
 	if(parent===undefined) {
 	    parent = null;
@@ -5580,12 +5682,14 @@ modelicaParser.prototype.statement = function() {
     try {
         this.enterOuterAlt(localctx, 1);
         this.state = 584;
+        this._errHandler.sync(this);
         switch(this._input.LA(1)) {
         case modelicaParser.SYMBOL_DOT:
         case modelicaParser.IDENT:
             this.state = 565;
             this.component_reference();
             this.state = 569;
+            this._errHandler.sync(this);
             switch(this._input.LA(1)) {
             case modelicaParser.SYMBOL_COLONEQUAL:
                 this.state = 566;
@@ -5657,6 +5761,7 @@ modelicaParser.prototype.statement = function() {
     }
     return localctx;
 };
+
 
 function If_equationContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -5835,6 +5940,7 @@ modelicaParser.prototype.if_equation = function() {
             _la = this._input.LA(1);
         }
         this.state = 624;
+        this._errHandler.sync(this);
         _la = this._input.LA(1);
         if(_la===modelicaParser.ELSE) {
             this.state = 615;
@@ -5873,6 +5979,7 @@ modelicaParser.prototype.if_equation = function() {
     }
     return localctx;
 };
+
 
 function If_statementContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -6045,6 +6152,7 @@ modelicaParser.prototype.if_statement = function() {
             _la = this._input.LA(1);
         }
         this.state = 665;
+        this._errHandler.sync(this);
         _la = this._input.LA(1);
         if(_la===modelicaParser.ELSE) {
             this.state = 656;
@@ -6080,6 +6188,7 @@ modelicaParser.prototype.if_statement = function() {
     }
     return localctx;
 };
+
 
 function For_equationContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -6214,6 +6323,7 @@ modelicaParser.prototype.for_equation = function() {
     return localctx;
 };
 
+
 function For_statementContext(parser, parent, invokingState) {
 	if(parent===undefined) {
 	    parent = null;
@@ -6345,6 +6455,7 @@ modelicaParser.prototype.for_statement = function() {
     return localctx;
 };
 
+
 function For_indicesContext(parser, parent, invokingState) {
 	if(parent===undefined) {
 	    parent = null;
@@ -6444,6 +6555,7 @@ modelicaParser.prototype.for_indices = function() {
     return localctx;
 };
 
+
 function For_indexContext(parser, parent, invokingState) {
 	if(parent===undefined) {
 	    parent = null;
@@ -6507,6 +6619,7 @@ modelicaParser.prototype.for_index = function() {
         this.state = 706;
         this.match(modelicaParser.IDENT);
         this.state = 709;
+        this._errHandler.sync(this);
         _la = this._input.LA(1);
         if(_la===modelicaParser.IN) {
             this.state = 707;
@@ -6528,6 +6641,7 @@ modelicaParser.prototype.for_index = function() {
     }
     return localctx;
 };
+
 
 function While_statementContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -6659,6 +6773,7 @@ modelicaParser.prototype.while_statement = function() {
     }
     return localctx;
 };
+
 
 function When_equationContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -6850,6 +6965,7 @@ modelicaParser.prototype.when_equation = function() {
     return localctx;
 };
 
+
 function When_statementContext(parser, parent, invokingState) {
 	if(parent===undefined) {
 	    parent = null;
@@ -7034,6 +7150,7 @@ modelicaParser.prototype.when_statement = function() {
     return localctx;
 };
 
+
 function Connect_clauseContext(parser, parent, invokingState) {
 	if(parent===undefined) {
 	    parent = null;
@@ -7134,6 +7251,7 @@ modelicaParser.prototype.connect_clause = function() {
     return localctx;
 };
 
+
 function ExpressionContext(parser, parent, invokingState) {
 	if(parent===undefined) {
 	    parent = null;
@@ -7229,6 +7347,7 @@ modelicaParser.prototype.expression = function() {
     var _la = 0; // Token type
     try {
         this.state = 810;
+        this._errHandler.sync(this);
         switch(this._input.LA(1)) {
         case modelicaParser.T__6:
         case modelicaParser.T__7:
@@ -7298,6 +7417,7 @@ modelicaParser.prototype.expression = function() {
     }
     return localctx;
 };
+
 
 function Simple_expressionContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -7373,6 +7493,7 @@ modelicaParser.prototype.simple_expression = function() {
         this.state = 812;
         this.logical_expression();
         this.state = 819;
+        this._errHandler.sync(this);
         _la = this._input.LA(1);
         if(_la===modelicaParser.SYMBOL_COLON) {
             this.state = 813;
@@ -7380,6 +7501,7 @@ modelicaParser.prototype.simple_expression = function() {
             this.state = 814;
             this.logical_expression();
             this.state = 817;
+            this._errHandler.sync(this);
             _la = this._input.LA(1);
             if(_la===modelicaParser.SYMBOL_COLON) {
                 this.state = 815;
@@ -7403,6 +7525,7 @@ modelicaParser.prototype.simple_expression = function() {
     }
     return localctx;
 };
+
 
 function Logical_expressionContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -7503,6 +7626,7 @@ modelicaParser.prototype.logical_expression = function() {
     return localctx;
 };
 
+
 function Logical_termContext(parser, parent, invokingState) {
 	if(parent===undefined) {
 	    parent = null;
@@ -7602,6 +7726,7 @@ modelicaParser.prototype.logical_term = function() {
     return localctx;
 };
 
+
 function Logical_factorContext(parser, parent, invokingState) {
 	if(parent===undefined) {
 	    parent = null;
@@ -7659,6 +7784,7 @@ modelicaParser.prototype.logical_factor = function() {
     try {
         this.enterOuterAlt(localctx, 1);
         this.state = 838;
+        this._errHandler.sync(this);
         _la = this._input.LA(1);
         if(_la===modelicaParser.NOT) {
             this.state = 837;
@@ -7680,6 +7806,7 @@ modelicaParser.prototype.logical_factor = function() {
     }
     return localctx;
 };
+
 
 function RelationContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -7747,6 +7874,7 @@ modelicaParser.prototype.relation = function() {
         this.state = 842;
         this.arithmetic_expression();
         this.state = 846;
+        this._errHandler.sync(this);
         _la = this._input.LA(1);
         if((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << modelicaParser.T__0) | (1 << modelicaParser.T__1) | (1 << modelicaParser.T__2) | (1 << modelicaParser.T__3) | (1 << modelicaParser.T__4) | (1 << modelicaParser.T__5))) !== 0)) {
             this.state = 843;
@@ -7768,6 +7896,7 @@ modelicaParser.prototype.relation = function() {
     }
     return localctx;
 };
+
 
 function Rel_opContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -7824,6 +7953,7 @@ modelicaParser.prototype.rel_op = function() {
         this._errHandler.recoverInline(this);
         }
         else {
+        	this._errHandler.reportMatch(this);
             this.consume();
         }
     } catch (re) {
@@ -7839,6 +7969,7 @@ modelicaParser.prototype.rel_op = function() {
     }
     return localctx;
 };
+
 
 function Arithmetic_expressionContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -7911,6 +8042,7 @@ modelicaParser.prototype.arithmetic_expression = function() {
     try {
         this.enterOuterAlt(localctx, 1);
         this.state = 851;
+        this._errHandler.sync(this);
         _la = this._input.LA(1);
         if((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << modelicaParser.T__6) | (1 << modelicaParser.T__7) | (1 << modelicaParser.T__8))) !== 0) || _la===modelicaParser.SYMBOL_PLUS) {
             this.state = 850;
@@ -7945,6 +8077,7 @@ modelicaParser.prototype.arithmetic_expression = function() {
     return localctx;
 };
 
+
 function Add_opContext(parser, parent, invokingState) {
 	if(parent===undefined) {
 	    parent = null;
@@ -7961,6 +8094,9 @@ function Add_opContext(parser, parent, invokingState) {
 Add_opContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 Add_opContext.prototype.constructor = Add_opContext;
 
+Add_opContext.prototype.SYMBOL_PLUS = function() {
+    return this.getToken(modelicaParser.SYMBOL_PLUS, 0);
+};
 
 Add_opContext.prototype.enterRule = function(listener) {
     if(listener instanceof modelicaListener ) {
@@ -8000,6 +8136,7 @@ modelicaParser.prototype.add_op = function() {
         this._errHandler.recoverInline(this);
         }
         else {
+        	this._errHandler.reportMatch(this);
             this.consume();
         }
     } catch (re) {
@@ -8015,6 +8152,7 @@ modelicaParser.prototype.add_op = function() {
     }
     return localctx;
 };
+
 
 function TermContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -8114,6 +8252,7 @@ modelicaParser.prototype.term = function() {
     return localctx;
 };
 
+
 function Mul_opContext(parser, parent, invokingState) {
 	if(parent===undefined) {
 	    parent = null;
@@ -8130,6 +8269,9 @@ function Mul_opContext(parser, parent, invokingState) {
 Mul_opContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
 Mul_opContext.prototype.constructor = Mul_opContext;
 
+Mul_opContext.prototype.SYMBOL_DOTSTAR = function() {
+    return this.getToken(modelicaParser.SYMBOL_DOTSTAR, 0);
+};
 
 Mul_opContext.prototype.enterRule = function(listener) {
     if(listener instanceof modelicaListener ) {
@@ -8169,6 +8311,7 @@ modelicaParser.prototype.mul_op = function() {
         this._errHandler.recoverInline(this);
         }
         else {
+        	this._errHandler.reportMatch(this);
             this.consume();
         }
     } catch (re) {
@@ -8184,6 +8327,7 @@ modelicaParser.prototype.mul_op = function() {
     }
     return localctx;
 };
+
 
 function FactorContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -8255,6 +8399,7 @@ modelicaParser.prototype.factor = function() {
         this.state = 875;
         this.primary();
         this.state = 878;
+        this._errHandler.sync(this);
         _la = this._input.LA(1);
         if(_la===modelicaParser.SYMBOL_CARET || _la===modelicaParser.SYMBOL_DOTCARET) {
             this.state = 876;
@@ -8263,6 +8408,7 @@ modelicaParser.prototype.factor = function() {
             this._errHandler.recoverInline(this);
             }
             else {
+            	this._errHandler.reportMatch(this);
                 this.consume();
             }
             this.state = 877;
@@ -8282,6 +8428,7 @@ modelicaParser.prototype.factor = function() {
     }
     return localctx;
 };
+
 
 function PrimaryContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -8456,6 +8603,7 @@ modelicaParser.prototype.primary = function() {
         case 5:
             this.enterOuterAlt(localctx, 5);
             this.state = 887;
+            this._errHandler.sync(this);
             switch(this._input.LA(1)) {
             case modelicaParser.SYMBOL_DOT:
             case modelicaParser.IDENT:
@@ -8546,6 +8694,7 @@ modelicaParser.prototype.primary = function() {
     return localctx;
 };
 
+
 function NameContext(parser, parent, invokingState) {
 	if(parent===undefined) {
 	    parent = null;
@@ -8619,6 +8768,7 @@ modelicaParser.prototype.name = function() {
     try {
         this.enterOuterAlt(localctx, 1);
         this.state = 914;
+        this._errHandler.sync(this);
         _la = this._input.LA(1);
         if(_la===modelicaParser.SYMBOL_DOT) {
             this.state = 913;
@@ -8652,6 +8802,7 @@ modelicaParser.prototype.name = function() {
     }
     return localctx;
 };
+
 
 function Component_referenceContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -8737,6 +8888,7 @@ modelicaParser.prototype.component_reference = function() {
     try {
         this.enterOuterAlt(localctx, 1);
         this.state = 925;
+        this._errHandler.sync(this);
         _la = this._input.LA(1);
         if(_la===modelicaParser.SYMBOL_DOT) {
             this.state = 924;
@@ -8746,6 +8898,7 @@ modelicaParser.prototype.component_reference = function() {
         this.state = 927;
         this.match(modelicaParser.IDENT);
         this.state = 929;
+        this._errHandler.sync(this);
         _la = this._input.LA(1);
         if(_la===modelicaParser.SYMBOL_LSBRACKET) {
             this.state = 928;
@@ -8761,6 +8914,7 @@ modelicaParser.prototype.component_reference = function() {
             this.state = 932;
             this.match(modelicaParser.IDENT);
             this.state = 934;
+            this._errHandler.sync(this);
             _la = this._input.LA(1);
             if(_la===modelicaParser.SYMBOL_LSBRACKET) {
                 this.state = 933;
@@ -8784,6 +8938,7 @@ modelicaParser.prototype.component_reference = function() {
     }
     return localctx;
 };
+
 
 function Function_call_argsContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -8848,6 +9003,7 @@ modelicaParser.prototype.function_call_args = function() {
         this.state = 941;
         this.match(modelicaParser.SYMBOL_LRBRACKET);
         this.state = 943;
+        this._errHandler.sync(this);
         _la = this._input.LA(1);
         if((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << modelicaParser.T__6) | (1 << modelicaParser.T__7) | (1 << modelicaParser.T__8) | (1 << modelicaParser.DER) | (1 << modelicaParser.END))) !== 0) || ((((_la - 36)) & ~0x1f) == 0 && ((1 << (_la - 36)) & ((1 << (modelicaParser.FALSE - 36)) | (1 << (modelicaParser.FUNCTION - 36)) | (1 << (modelicaParser.IF - 36)) | (1 << (modelicaParser.INITIAL - 36)) | (1 << (modelicaParser.NOT - 36)) | (1 << (modelicaParser.TRUE - 36)))) !== 0) || ((((_la - 77)) & ~0x1f) == 0 && ((1 << (_la - 77)) & ((1 << (modelicaParser.SYMBOL_LRBRACKET - 77)) | (1 << (modelicaParser.SYMBOL_LCBRACKET - 77)) | (1 << (modelicaParser.SYMBOL_LSBRACKET - 77)) | (1 << (modelicaParser.SYMBOL_DOT - 77)) | (1 << (modelicaParser.SYMBOL_PLUS - 77)) | (1 << (modelicaParser.IDENT - 77)) | (1 << (modelicaParser.STRING - 77)) | (1 << (modelicaParser.UNSIGNED_NUMBER - 77)))) !== 0)) {
             this.state = 942;
@@ -8869,6 +9025,7 @@ modelicaParser.prototype.function_call_args = function() {
     }
     return localctx;
 };
+
 
 function Function_argumentsContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -8949,6 +9106,7 @@ modelicaParser.prototype.function_arguments = function() {
             this.state = 947;
             this.function_argument();
             this.state = 952;
+            this._errHandler.sync(this);
             switch (this._input.LA(1)) {
             case modelicaParser.SYMBOL_COMMA:
             	this.state = 948;
@@ -8966,7 +9124,7 @@ modelicaParser.prototype.function_arguments = function() {
             case modelicaParser.SYMBOL_RCBRACKET:
             	break;
             default:
-            	throw new antlr4.error.NoViableAltException(this);
+            	break;
             }
             break;
 
@@ -8990,6 +9148,7 @@ modelicaParser.prototype.function_arguments = function() {
     }
     return localctx;
 };
+
 
 function Named_argumentsContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -9054,6 +9213,7 @@ modelicaParser.prototype.named_arguments = function() {
         this.state = 957;
         this.named_argument();
         this.state = 960;
+        this._errHandler.sync(this);
         _la = this._input.LA(1);
         if(_la===modelicaParser.SYMBOL_COMMA) {
             this.state = 958;
@@ -9075,6 +9235,7 @@ modelicaParser.prototype.named_arguments = function() {
     }
     return localctx;
 };
+
 
 function Named_argumentContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -9155,6 +9316,7 @@ modelicaParser.prototype.named_argument = function() {
     return localctx;
 };
 
+
 function Function_argumentContext(parser, parent, invokingState) {
 	if(parent===undefined) {
 	    parent = null;
@@ -9227,6 +9389,7 @@ modelicaParser.prototype.function_argument = function() {
     var _la = 0; // Token type
     try {
         this.state = 975;
+        this._errHandler.sync(this);
         switch(this._input.LA(1)) {
         case modelicaParser.FUNCTION:
             this.enterOuterAlt(localctx, 1);
@@ -9237,6 +9400,7 @@ modelicaParser.prototype.function_argument = function() {
             this.state = 968;
             this.match(modelicaParser.SYMBOL_LRBRACKET);
             this.state = 970;
+            this._errHandler.sync(this);
             _la = this._input.LA(1);
             if(_la===modelicaParser.IDENT) {
                 this.state = 969;
@@ -9284,6 +9448,7 @@ modelicaParser.prototype.function_argument = function() {
     }
     return localctx;
 };
+
 
 function Output_expression_listContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -9357,6 +9522,7 @@ modelicaParser.prototype.output_expression_list = function() {
     try {
         this.enterOuterAlt(localctx, 1);
         this.state = 978;
+        this._errHandler.sync(this);
         _la = this._input.LA(1);
         if((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << modelicaParser.T__6) | (1 << modelicaParser.T__7) | (1 << modelicaParser.T__8) | (1 << modelicaParser.DER) | (1 << modelicaParser.END))) !== 0) || ((((_la - 36)) & ~0x1f) == 0 && ((1 << (_la - 36)) & ((1 << (modelicaParser.FALSE - 36)) | (1 << (modelicaParser.IF - 36)) | (1 << (modelicaParser.INITIAL - 36)) | (1 << (modelicaParser.NOT - 36)) | (1 << (modelicaParser.TRUE - 36)))) !== 0) || ((((_la - 77)) & ~0x1f) == 0 && ((1 << (_la - 77)) & ((1 << (modelicaParser.SYMBOL_LRBRACKET - 77)) | (1 << (modelicaParser.SYMBOL_LCBRACKET - 77)) | (1 << (modelicaParser.SYMBOL_LSBRACKET - 77)) | (1 << (modelicaParser.SYMBOL_DOT - 77)) | (1 << (modelicaParser.SYMBOL_PLUS - 77)) | (1 << (modelicaParser.IDENT - 77)) | (1 << (modelicaParser.STRING - 77)) | (1 << (modelicaParser.UNSIGNED_NUMBER - 77)))) !== 0)) {
             this.state = 977;
@@ -9370,6 +9536,7 @@ modelicaParser.prototype.output_expression_list = function() {
             this.state = 980;
             this.match(modelicaParser.SYMBOL_COMMA);
             this.state = 982;
+            this._errHandler.sync(this);
             _la = this._input.LA(1);
             if((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << modelicaParser.T__6) | (1 << modelicaParser.T__7) | (1 << modelicaParser.T__8) | (1 << modelicaParser.DER) | (1 << modelicaParser.END))) !== 0) || ((((_la - 36)) & ~0x1f) == 0 && ((1 << (_la - 36)) & ((1 << (modelicaParser.FALSE - 36)) | (1 << (modelicaParser.IF - 36)) | (1 << (modelicaParser.INITIAL - 36)) | (1 << (modelicaParser.NOT - 36)) | (1 << (modelicaParser.TRUE - 36)))) !== 0) || ((((_la - 77)) & ~0x1f) == 0 && ((1 << (_la - 77)) & ((1 << (modelicaParser.SYMBOL_LRBRACKET - 77)) | (1 << (modelicaParser.SYMBOL_LCBRACKET - 77)) | (1 << (modelicaParser.SYMBOL_LSBRACKET - 77)) | (1 << (modelicaParser.SYMBOL_DOT - 77)) | (1 << (modelicaParser.SYMBOL_PLUS - 77)) | (1 << (modelicaParser.IDENT - 77)) | (1 << (modelicaParser.STRING - 77)) | (1 << (modelicaParser.UNSIGNED_NUMBER - 77)))) !== 0)) {
                 this.state = 981;
@@ -9393,6 +9560,7 @@ modelicaParser.prototype.output_expression_list = function() {
     }
     return localctx;
 };
+
 
 function Expression_listContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -9492,6 +9660,7 @@ modelicaParser.prototype.expression_list = function() {
     }
     return localctx;
 };
+
 
 function Array_subscriptsContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -9604,6 +9773,7 @@ modelicaParser.prototype.array_subscripts = function() {
     return localctx;
 };
 
+
 function SubscriptContext(parser, parent, invokingState) {
 	if(parent===undefined) {
 	    parent = null;
@@ -9659,6 +9829,7 @@ modelicaParser.prototype.subscript = function() {
     this.enterRule(localctx, 148, modelicaParser.RULE_subscript);
     try {
         this.state = 1010;
+        this._errHandler.sync(this);
         switch(this._input.LA(1)) {
         case modelicaParser.SYMBOL_COLON:
             this.enterOuterAlt(localctx, 1);
@@ -9703,6 +9874,7 @@ modelicaParser.prototype.subscript = function() {
     }
     return localctx;
 };
+
 
 function CommentContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -9763,6 +9935,7 @@ modelicaParser.prototype.comment = function() {
         this.state = 1012;
         this.string_comment();
         this.state = 1014;
+        this._errHandler.sync(this);
         _la = this._input.LA(1);
         if(_la===modelicaParser.ANNOTATION) {
             this.state = 1013;
@@ -9782,6 +9955,7 @@ modelicaParser.prototype.comment = function() {
     }
     return localctx;
 };
+
 
 function String_commentContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -9856,6 +10030,7 @@ modelicaParser.prototype.string_comment = function() {
     try {
         this.enterOuterAlt(localctx, 1);
         this.state = 1024;
+        this._errHandler.sync(this);
         _la = this._input.LA(1);
         if(_la===modelicaParser.STRING) {
             this.state = 1016;
@@ -9887,6 +10062,7 @@ modelicaParser.prototype.string_comment = function() {
     }
     return localctx;
 };
+
 
 function AnnotationContext(parser, parent, invokingState) {
 	if(parent===undefined) {
