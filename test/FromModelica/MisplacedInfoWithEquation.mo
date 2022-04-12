@@ -14,7 +14,7 @@ block MisplacedInfoWithEquation
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput y2 "Output signal"
     annotation (Placement(transformation(extent={{100,-10},{120,10}})));
 
-  Buildings.Controls.OBC.CDL.Continuous.Gain gain(final k=k) "Constant gain"
+  Buildings.Controls.OBC.CDL.Continuous.MultiplyByParameter gain(final k=k) "Constant gain"
     annotation (Placement(transformation(extent={{0,-10},{20,10}})));
 
 equation
