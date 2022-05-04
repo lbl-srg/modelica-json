@@ -125,7 +125,7 @@ Two schemas are available (links to the raw files) :
 
 Graphical viewers are available (please use right click + open in a new tab or refresh the page if necessary - this is not optimized for Firefox) :
 - [CDL Schema viewer](CDL.html)
-- [Modelica Schema viewer](modelica.html)
+- [Modelica Schema viewer](modelica_20220503.html)
 
 When parsing a file using `app.js`, the schema is chosen according to the mode.
 
