@@ -8,11 +8,11 @@ permalink: /index.html
 # [Modelica to JSON parser](https://github.com/lbl-srg/modelica-json)
 
 ## Content
-1. [General Description](#1.-general-escription)
-2. [Installation and help](#2.-installation-and-help)
-3. [How to use the parser](#3.-how-to-use-the-parser)
-4. [JSON Schemas](#4.-json-schemas)
-5. [Useful Links](#5.-useful-links)
+1. [General Description](##1.-general-escription)
+2. [Installation and help](##2.-installation-and-help)
+3. [How to use the parser](##3.-how-to-use-the-parser)
+4. [JSON Schemas](##4.-json-schemas)
+5. [Useful Links](##5.-useful-links)
 
 [![Build Status](https://travis-ci.org/lbl-srg/modelica-json.svg?branch=master)](https://travis-ci.org/lbl-srg/modelica-json)
 
