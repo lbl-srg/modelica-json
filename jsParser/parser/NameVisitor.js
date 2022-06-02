@@ -1,5 +1,4 @@
 const modelicaVisitor = require('../antlrFiles/modelicaVisitor').modelicaVisitor;
-const e = require('express');
 const Name = require('../domain/Name');
 const Name_part = require('../domain/Name_part');
 
@@ -33,7 +32,7 @@ class NameVisitor {
             name_parts.push(new Name_part.Name_part(dots[i-1] == ".", idents[i]));
         }
         
-        return new Name.Name(null);
+        return new Name.Name(name_parts);
     }
 };
 

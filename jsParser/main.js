@@ -16,5 +16,6 @@ const commonTokenStream = new antlr4.CommonTokenStream(lexer);
 const parser = new modelicaParser.modelicaParser(commonTokenStream);
 const visitor = new Stored_definitionVisitor.Stored_definitionVisitor();
 const parseTree = parser.stored_definition()
-visitor.visitStored_definition(parseTree);
+op = visitor.visitStored_definition(parseTree);
 
+console.log(op);
