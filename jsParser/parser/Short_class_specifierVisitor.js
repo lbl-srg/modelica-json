@@ -2,12 +2,12 @@ const modelicaVisitor = require('../antlrFiles/modelicaVisitor').modelicaVisitor
 const Short_class_specifier = require('../domain/Short_class_specifier');
 const Short_class_specifier_value = require('../domain/Short_class_specifier_value');
 
-// const Base_prefixVisitor = require('./Base_prefixVisitor');
+const Base_prefixVisitor = require('./Base_prefixVisitor');
 const NameVisitor = require('./NameVisitor');
-// const Array_subscriptsVisitor = require('./Array_subscriptsVisitor');
-// const Class_modificationVisitor = require('./Class_modificationVisitor');
-// const CommentVisitor = require('./CommentVisitor');
-// const Enum_listVisitor = require('./Enum_listVisitor');
+const Array_subscriptsVisitor = require('./Array_subscriptsVisitor');
+const Class_modificationVisitor = require('./Class_modificationVisitor');
+const CommentVisitor = require('./CommentVisitor');
+const Enum_listVisitor = require('./Enum_listVisitor');
 
 class Short_class_specifierVisitor {
     constructor() {
