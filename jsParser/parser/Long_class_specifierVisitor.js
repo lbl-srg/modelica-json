@@ -1,6 +1,7 @@
 const modelicaVisitor = require('../antlrFiles/modelicaVisitor').modelicaVisitor;
 const Long_class_specifier = require('../domain/Long_class_specifier');
 
+const String_commentVisitor = require('./String_commentVisitor');
 const CompositionVisitor = require('./CompositionVisitor');
 const Class_modificationVisitor = require('./Class_modificationVisitor');
 
@@ -11,7 +12,7 @@ class Long_class_specifierVisitor {
     }
     visitLong_class_specifier(ctx) {
         var identifier = "";
-        var string_comment = "";
+        var string_comment = null;
         var composition = null;
         var is_extends = false;
         var class_modification = null;
@@ -21,7 +22,8 @@ class Long_class_specifierVisitor {
         }
 
         if (ctx.string_comment()) {
-            string_comment = ctx.string_comment().getText();
+            var string_commentVisitor = new String_commentVisitor.String_commentVisitor();
+            string_comment = string_commentVisitor.visitString_comment(ctx.string_comment());
         }
 
         if (ctx.composition()) {

@@ -19,7 +19,7 @@ class Component_clauseVisitor {
 
         if (ctx.type_prefix()) {
             var type_prefixVisitor = new Type_prefixVisitor.Type_prefixVisitor();
-            base_prefix = type_prefixVisitor.visitType_prefix(ctx.type_prefix());
+            type_prefix = type_prefixVisitor.visitType_prefix(ctx.type_prefix());
         }
         if (ctx.type_specifier()) {    
             const type_specifierVisitor = new Type_specifierVisitor.Type_specifierVisitor();
