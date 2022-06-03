@@ -41,7 +41,7 @@ class CompositionVisitor {
                 var equation_section = equation_sectionVisitor.visitEquation_section(child);
                 element_sections.push(new Element_section.Element_section(null, null, equation_section, null));
             } else if (child instanceof modelicaParser.Algorithm_sectionContext) {
-                var Algorithm_sectionVisitor = Algorithm_sectionVisitor.Algorithm_sectionVisitor();
+                var algorithm_sectionVisitor = Algorithm_sectionVisitor.Algorithm_sectionVisitor();
                 var algorithm_section = algorithm_sectionVisitor.visitAlgorithm_section(child);
                 element_sections.push(new Element_section.Element_section(null, null, null, algorithm_section));
             } else if (child instanceof modelicaParser.AnnotationContext) {
