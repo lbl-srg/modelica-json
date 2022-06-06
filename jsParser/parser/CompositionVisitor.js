@@ -9,6 +9,7 @@ const Algorithm_sectionVisitor = require('./Algorithm_sectionVisitor');
 const AnnotationVisitor = require('./AnnotationVisitor');
 const External_function_callVisitor = require('./External_function_callVisitor');
 const { TerminalNode } = require('antlr4/tree/Tree');
+const { modelicaParser } = require('../antlrFiles/modelicaParser');
 
 class CompositionVisitor {
     constructor() {
@@ -37,11 +38,11 @@ class CompositionVisitor {
                     element_sections.push(new Element_section.Element_section(public_element_list, null, null, null));
                 }
             } else if (child instanceof modelicaParser.Equation_sectionContext) {
-                var equation_sectionVisitor = Equation_sectionVisitor.Equation_sectionVisitor();
+                var equation_sectionVisitor = new Equation_sectionVisitor.Equation_sectionVisitor();
                 var equation_section = equation_sectionVisitor.visitEquation_section(child);
                 element_sections.push(new Element_section.Element_section(null, null, equation_section, null));
             } else if (child instanceof modelicaParser.Algorithm_sectionContext) {
-                var algorithm_sectionVisitor = Algorithm_sectionVisitor.Algorithm_sectionVisitor();
+                var algorithm_sectionVisitor = new Algorithm_sectionVisitor.Algorithm_sectionVisitor();
                 var algorithm_section = algorithm_sectionVisitor.visitAlgorithm_section(child);
                 element_sections.push(new Element_section.Element_section(null, null, null, algorithm_section));
             } else if (child instanceof modelicaParser.AnnotationContext) {

@@ -78,7 +78,7 @@ class EquationVisitor {
     }
 };
 
-Equation_sectionVisitor.prototype = Object.create(modelicaVisitor.prototype);
+EquationVisitor.prototype = Object.create(modelicaVisitor.prototype);
 
 exports.visitEquation = this.visitEquation;
 exports.EquationVisitor = EquationVisitor;

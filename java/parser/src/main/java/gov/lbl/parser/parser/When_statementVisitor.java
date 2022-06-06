@@ -27,13 +27,32 @@ public class When_statementVisitor extends modelicaBaseVisitor<When_statement> {
                                                                         .map(stmt -> stmt.accept(statementVisitor))
                                                                         .collect(toList());
         
+        int i=0;
+        int expression_idx = 0;
+        int statement_idx = 0;
         List<When_elsewhen_statement> when_elsewhen = new ArrayList<When_elsewhen_statement>();   
-        if (expressions != null) {
-            for (int i = 0; i< expressions.size(); i++) {
-
-                //check? 
-                when_elsewhen.add(new When_elsewhen_statement(expressions.get(i), statements.subList(i, i+1)));
-            }    
+        while (i<ctx.getChildCount() && !ctx.getChild(i).getText().equalsIgnoreCase("end")) {
+            if (ctx.getChild(i).getText().equals("when") || ctx.getChild(i).getText().equals("elsewhen")) {
+                
+                Expression condition = expressions.get(expression_idx);
+                expression_idx+=1;
+                int start_idx = i+3;
+                int end_idx = start_idx;
+                for (int j=start_idx; j<ctx.getChildCount(); j++) {
+                    if (!ctx.getChild(j).getText().equals(";") && ctx.getChild(j).getClass() != modelicaParser.StatementContext.class) {
+                        end_idx = j;
+                        break;
+                    }
+                }
+                
+                List<Statement> then = statements.subList(statement_idx, statement_idx + (end_idx-start_idx)/2);
+                when_elsewhen.add(new When_elsewhen_statement(condition, then));
+                statement_idx = statement_idx + (end_idx-start_idx)/2;
+                i=end_idx;
+            }
+            else {
+                i+=1;
+            }
         }
         return new When_statement(when_elsewhen);
     }

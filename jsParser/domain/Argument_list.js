@@ -1,6 +1,6 @@
 class Argument_list {
-	constructor(arguments) {
-		this.arguments = arguments;
+	constructor(args) {
+		this.args = args;
 	}
 }
 exports.Argument_list = Argument_list

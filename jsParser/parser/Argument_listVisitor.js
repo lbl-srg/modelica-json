@@ -9,16 +9,16 @@ class Argument_listVisitor {
         return this;
     }
     visitArgument_list(ctx) {
-        var arguments = []; //strict JS does not allow use of this keyword; leave as is for now.
+        var args = []; //strict JS does not allow use of this keyword; leave as is for now.
 
         if (ctx.arugment()) {
             var argumentVisitor = new ArgumentVisitor.ArgumentVisitor();
             ctx.arugment().forEach(arg => {
-                arguments.push(argumentVisitor.visitArgument(arg));
+                args.push(argumentVisitor.visitArgument(arg));
             });
         }
         
-        return new Argument_list.Argument_list(arguments);
+        return new Argument_list.Argument_list(args);
     }
 };
 

@@ -27,12 +27,32 @@ public class When_equationVisitor extends modelicaBaseVisitor<When_equation> {
                                                                         .map(eqn -> eqn.accept(equationVisitor))
                                                                         .collect(toList());
         
-        List<When_elsewhen_equation> when_elsewhen = new ArrayList<When_elsewhen_equation>();
-        if (expressions != null) {
-            for (int i = 0; i< expressions.size(); i++) {
+        
 
-                //check? 
-                when_elsewhen.add(new When_elsewhen_equation(expressions.get(i), equations.subList(i, i+1)));
+        int i=0;
+        int expression_idx = 0;
+        int equation_idx = 0;
+        List<When_elsewhen_equation> when_elsewhen = new ArrayList<When_elsewhen_equation>();
+        while (i<ctx.getChildCount() && !ctx.getChild(i).getText().equalsIgnoreCase("end")) {
+            if (ctx.getChild(i).getText().equals("when") || ctx.getChild(i).getText().equals("elsewhen")) {
+                Expression condition = expressions.get(expression_idx);
+                expression_idx+=1;
+                int start_idx = i+3;
+                int end_idx = start_idx;
+                for (int j=start_idx; j<ctx.getChildCount(); j++) {
+                    if (!ctx.getChild(j).getText().equals(";") && ctx.getChild(j).getClass() != modelicaParser.EquationContext.class) {
+                        end_idx = j;
+                        break;
+                    }
+                }
+                
+                List<Equation> then = equations.subList(equation_idx, equation_idx + (end_idx-start_idx)/2);
+                when_elsewhen.add(new When_elsewhen_equation(condition, then));
+                equation_idx = equation_idx + (end_idx-start_idx)/2;
+                i=end_idx;
+            }
+            else {
+                i+=1;
             }
         }
 
