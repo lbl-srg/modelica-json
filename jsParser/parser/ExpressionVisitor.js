@@ -22,7 +22,7 @@ class ExpressionVisitor {
         }
 
         if (ctx.expression()) {
-            var expressionVisitor = new ExpressionVisitor.ExpressionVisitor();
+            var expressionVisitor = new ExpressionVisitor();
             ctx.expression().forEach(expr => {
                 expressions.push(expressionVisitor.visitExpression(expr));
             });
