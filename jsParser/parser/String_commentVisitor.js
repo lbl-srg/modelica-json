@@ -11,7 +11,7 @@ class String_commentVisitor {
 
         if (ctx.STRING()) {
             ctx.STRING().forEach(s => {
-                str_list.push(ctx.STRING().getText());
+                str_list.push(s.getText());
             });
         }
 

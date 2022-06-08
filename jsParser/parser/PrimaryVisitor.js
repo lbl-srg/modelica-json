@@ -15,7 +15,7 @@ class PrimaryVisitor {
         return this;
     }
     visitPrimary(ctx) {
-        var unsigned_number = ctx.UNSIGNED_NUMBER()? parseFloat(ctx.UNSIGNED_NUMBER.getText()): null;
+        var unsigned_number = ctx.UNSIGNED_NUMBER()? parseFloat(ctx.UNSIGNED_NUMBER().getText()): null;
         var primary_string = ctx.STRING()? ctx.STRING().getText(): "";
         var is_false = ctx.FALSE()? true: false;
         var is_true = ctx.TRUE()? true: false;

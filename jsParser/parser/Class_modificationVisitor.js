@@ -9,14 +9,14 @@ class Class_modificationVisitor {
         return this;
     }
     visitClass_modification(ctx) {
-        var arugment_list = null;
+        var argument_list = null;
 
-        if (ctx.arugment_list()) {
+        if (ctx.argument_list()) {
             var argument_listVisitor = new Argument_listVisitor.Argument_listVisitor();
-            arugment_list = argument_listVisitor.visitArgument_list(ctx.arugment_list());
+            argument_list = argument_listVisitor.visitArgument_list(ctx.argument_list());
         }
         
-        return new Class_modification.Class_modification(arugment_list);
+        return new Class_modification.Class_modification(argument_list);
     }
 };
 

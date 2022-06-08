@@ -10,6 +10,7 @@ const For_equationVisitor = require('./For_equationVisitor');
 const Connect_clauseVisitor = require('./Connect_clauseVisitor');
 const When_equationVisitor = require('./When_equationVisitor');
 const NameVisitor = require('./NameVisitor');
+const CommentVisitor = require('./CommentVisitor');
 const Function_call_argsVisitor = require('./Function_call_argsVisitor');
 
 class EquationVisitor {

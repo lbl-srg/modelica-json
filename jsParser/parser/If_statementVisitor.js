@@ -2,7 +2,6 @@ const modelicaVisitor = require('../antlrFiles/modelicaVisitor').modelicaVisitor
 const { TerminalNode } = require('antlr4/tree/Tree');
 const If_statement = require('../domain/If_statement');
 const If_elseif_statement = require('../domain/If_elseif_statement');
-const StatementVisitor = require('../domain/StatementVisitor');
 
 const StatementVisitor = require('./StatementVisitor');
 const ExpressionVisitor = require('./ExpressionVisitor');

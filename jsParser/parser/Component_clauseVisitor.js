@@ -31,7 +31,7 @@ class Component_clauseVisitor {
         }
         if (ctx.component_list()) {
             var component_listVisitor = new Component_listVisitor.Component_listVisitor();
-            component_list = component_listVisitor.visitComponent_listVisitor(ctx.component_list());
+            component_list = component_listVisitor.visitComponent_list(ctx.component_list());
         }
         return new Component_clause.Component_clause(type_prefix, type_specifier, 
             array_subscripts, component_list);

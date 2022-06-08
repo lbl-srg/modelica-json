@@ -1,7 +1,7 @@
 const modelicaVisitor = require('../antlrFiles/modelicaVisitor').modelicaVisitor;
 const Relation = require('../domain/Relation');
 
-const Arithmetic_expressionVisitor = require('./Arithmetic_exressionVisitor');
+const Arithmetic_expressionVisitor = require('./Arithmetic_expressionVisitor');
 const Rel_opVisitor = require('./Rel_opVisitor');
 
 class RelationVisitor {

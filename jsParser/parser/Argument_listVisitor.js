@@ -11,9 +11,9 @@ class Argument_listVisitor {
     visitArgument_list(ctx) {
         var args = []; //strict JS does not allow use of this keyword; leave as is for now.
 
-        if (ctx.arugment()) {
+        if (ctx.argument()) {
             var argumentVisitor = new ArgumentVisitor.ArgumentVisitor();
-            ctx.arugment().forEach(arg => {
+            ctx.argument().forEach(arg => {
                 args.push(argumentVisitor.visitArgument(arg));
             });
         }

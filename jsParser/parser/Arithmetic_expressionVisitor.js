@@ -29,7 +29,7 @@ class Arithmetic_expressionVisitor {
         if (terms.length > 0) {
             var extra_term = 0;
             if (add_ops.length == (terms.length -1)) {
-                arithmetic_term_list.push(new Arithmetic_term.Arithmetic_term(null, terms[i]));
+                arithmetic_term_list.push(new Arithmetic_term.Arithmetic_term(null, terms[0]));
                 extra_term = 1;
             }
             for (let i = 0; i<add_ops.length; i++) {

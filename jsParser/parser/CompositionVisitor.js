@@ -58,7 +58,7 @@ class CompositionVisitor {
             }
         });
 
-        var annotationVisitor = AnnotationVisitor.AnnotationVisitor();
+        var annotationVisitor = new AnnotationVisitor.AnnotationVisitor();
         var annotations = []
         if (ctx.annotation()) { 
             ctx.annotation().forEach(ann => {

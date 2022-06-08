@@ -13,10 +13,6 @@ class Named_argumentVisitor {
         var value = null;
 
         if (ctx.function_argument()) {
-            var named_argumentsVisitor = new Named_argumentsVisitor();
-            named_arguments = named_argumentsVisitor.visitNamed_arguments(ctx.named_arguments());
-        }
-        if (ctx.function_argument()) {
             var function_argumentVisitor = new Function_argumentVisitor.Function_argumentVisitor();
             value = function_argumentVisitor.visitFunction_argument(ctx.function_argument());
         }

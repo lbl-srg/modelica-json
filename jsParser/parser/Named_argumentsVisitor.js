@@ -13,11 +13,10 @@ class Named_argumentsVisitor {
         var named_arguments = null;
 
         if (ctx.named_arguments()) {
-            var named_argumentsVisitor = new Named_argumentsVisitor();
-            named_arguments = named_argumentsVisitor.visitNamed_arguments(ctx.named_arguments());
+            named_arguments = this.visitNamed_arguments(ctx.named_arguments());
         }
         if (ctx.named_argument()) {
-            var named_argumentVisitor = new Named_argumentVisitor();
+            var named_argumentVisitor = new Named_argumentVisitor.Named_argumentVisitor();
             named_argument = named_argumentVisitor.visitNamed_argument(ctx.named_argument());
         }
 
