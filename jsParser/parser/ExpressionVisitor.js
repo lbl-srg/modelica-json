@@ -33,7 +33,7 @@ class ExpressionVisitor {
                 var then = expressions[i+1];
                 if_elseif.push(new If_elseif_expression.If_elseif_expression(condition, then));
             }
-            if (expressions.size() > 2) {
+            if (expressions.length > 2) {
                 var else_expression = expressions[expressions.length-1]
                 if_expression = new If_expression.If_expression(if_elseif, else_expression);
             } else {

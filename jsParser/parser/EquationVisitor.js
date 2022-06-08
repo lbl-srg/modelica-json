@@ -57,7 +57,7 @@ class EquationVisitor {
         }
         if (ctx.when_equation()) {
             var when_equationVisitor = new When_equationVisitor.When_equationVisitor();
-            when_equation = when_equationVisitor.visitWhen_equationVisitor(ctx.when_equation());
+            when_equation = when_equationVisitor.visitWhen_equation(ctx.when_equation());
         }
         if (ctx.name()) {
             var nameVisitor = new NameVisitor.NameVisitor();

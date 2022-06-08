@@ -24,7 +24,7 @@ class When_statementVisitor {
         if (ctx.statement()) {
             var statementVisitor = new statementVisitor.statementVisitor();
             ctx.statement().forEach(eqn => {
-                statements.push(statementVisitor.visitExpression(eqn));
+                statements.push(statementVisitor.visitStatement(eqn));
             });
         }
 

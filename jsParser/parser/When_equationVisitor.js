@@ -24,7 +24,7 @@ class When_equationVisitor {
         if (ctx.equation()) {
             var equationVisitor = new EquationVisitor.EquationVisitor();
             ctx.equation().forEach(eqn => {
-                equations.push(equationVisitor.visitExpression(eqn));
+                equations.push(equationVisitor.visitEquation(eqn));
             });
         }
 
