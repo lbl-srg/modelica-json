@@ -10,7 +10,7 @@ class SubscriptVisitor {
     }
     visitSubscript(ctx) {
         var expression = null;
-        var color_op = cts.SYMBOL_COLON()? true: false;
+        var color_op = ctx.SYMBOL_COLON()? true: false;
 
         if (ctx.expression()) {
             var expressionVisitor = new ExpressionVisitor.ExpressionVisitor();
