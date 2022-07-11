@@ -12,10 +12,10 @@ class Algorithm_sectionVisitor {
         var initial = ctx.INITIAL()? true: false;
         var statements = [];
 
-        if (ctx.equation()) {
+        if (ctx.statement()) {
             var statementVisitor = new StatementVisitor.StatementVisitor();
-            ctx.equation().forEach(eqn => {
-                statements.push(statementVisitor.visitEquation(eqn));
+            ctx.statement().forEach(stmt => {
+                statements.push(statementVisitor.visitStatement(stmt));
             });
         }
 

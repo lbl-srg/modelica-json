@@ -34,7 +34,7 @@ class CompositionVisitor {
                     var protected_element_list = element_listVisitor.visitElement_list(child);
                     element_sections.push(new Element_section.Element_section(null, protected_element_list, null, null));
                 } else if (previous_element_list_modifier == "public") {
-                    var public_element_list = element_listVisitor.accept(child);
+                    var public_element_list = element_listVisitor.visitElement_list(child);
                     element_sections.push(new Element_section.Element_section(public_element_list, null, null, null));
                 }
             } else if (child instanceof modelicaParser.Equation_sectionContext) {

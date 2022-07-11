@@ -20,7 +20,7 @@ class Short_class_definitionVisitor {
 
         if (ctx.short_class_specifier()) {
             var short_class_specifierVisitor = new Short_class_specifierVisitor.Short_class_specifierVisitor();
-            class_specifier = short_class_specifierVisitor.visitShort_class_specifier(ctx.short_class_specifier());
+            short_class_specifier = short_class_specifierVisitor.visitShort_class_specifier(ctx.short_class_specifier());
         }
         return new Short_class_definition.Short_class_definition(class_prefixes, short_class_specifier);
     }

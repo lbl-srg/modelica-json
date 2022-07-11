@@ -27,7 +27,7 @@ class Element_redeclarationVisitor {
         }
         if (ctx.element_replaceable()) {
             var element_replaceableVisitor = new Element_replaceableVisitor.Element_replaceableVisitor();
-            element_redeclaration = element_replaceableVisitor.visitElement_replaceable(ctx.element_replaceable());
+            element_replaceable = element_replaceableVisitor.visitElement_replaceable(ctx.element_replaceable());
         }
         
         return new Element_redeclaration.Element_redeclaration(each, is_final, short_class_definition, component_clause1, element_replaceable);

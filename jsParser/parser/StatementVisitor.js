@@ -31,8 +31,9 @@ class StatementVisitor {
         var if_statement = null;
         var for_statement = null;
         var while_statement = null;
-        var when_statement = nulll        
+        var when_statement = null;        
         var comment = null;
+        var output_expression_list = null;
         
         if (ctx.component_reference()) {
             var component_referenceVisitor = new Component_referenceVisitor.Component_referenceVisitor();
@@ -47,18 +48,18 @@ class StatementVisitor {
             function_call_args = function_call_argsVisitor.visitFunction_call_args(ctx.function_call_args());
         }
         if (ctx.output_expression_list()) {
-            var output_expression_listVisitor = Output_expression_listVisitor.Output_expression_listVisitor();
+            var output_expression_listVisitor = new Output_expression_listVisitor.Output_expression_listVisitor();
             output_expression_list = output_expression_listVisitor.visitOutput_expression_list(ctx.output_expression_list());
         }
 
         if (component_reference != null && value != null) {
-            assignment_statement = new Assignment_statement(component_reference, value);
+            assignment_statement = new Assignment_statement.Assignment_statement(component_reference, value);
         }
         else if (component_reference != null && function_call_args != null && output_expression_list != null) {
-            assignment_with_function_call_statement = new Assignment_with_function_call_statement(output_expression_list, component_reference, function_call_args);
+            assignment_with_function_call_statement = new Assignment_with_function_call_statement.Assignment_with_function_call_statement(output_expression_list, component_reference, function_call_args);
         }
         else if (component_reference != null && function_call_args != null) {
-            function_call_statement = new Function_call_statement(component_reference, function_call_args);
+            function_call_statement = new Function_call_statement.Function_call_statement(component_reference, function_call_args);
         }
         if (ctx.if_statement()) {
             var if_statementVisitor = new If_statementVisitor.If_statementVisitor();
@@ -68,13 +69,13 @@ class StatementVisitor {
             var for_statementVisitor = new For_statementVisitor.For_statementVisitor();
             for_statement = for_statementVisitor.visitFor_statement(ctx.for_statement());
         }
-        if (ctx.while_equation()) {
+        if (ctx.while_statement()) {
             var while_statementVisitor = new While_statementVisitor.While_statementVisitor();
-            while_equation = while_statementVisitor.visitWhile_statement(ctx.while_equation());
+            while_equation = while_statementVisitor.visitWhile_statement(ctx.while_statement());
         }
-        if (ctx.when_equation()) {
+        if (ctx.when_statement()) {
             var when_statementVisitor = new When_statementVisitor.When_statementVisitor();
-            when_equation = when_statementVisitor.visitWhen_statement(ctx.when_equation());
+            when_equation = when_statementVisitor.visitWhen_statement(ctx.when_statement());
         }
         if (ctx.comment()) {
             var commentVisitor = new CommentVisitor.CommentVisitor();

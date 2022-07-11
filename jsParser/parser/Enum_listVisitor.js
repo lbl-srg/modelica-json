@@ -12,7 +12,7 @@ class Enum_listVisitor {
         var enum_list = []
 
         if (ctx.enumeration_literal()) {
-            var enumeration_literalVisitor = Enumeration_literalVisitor.Enumeration_literalVisitor();
+            var enumeration_literalVisitor = new Enumeration_literalVisitor.Enumeration_literalVisitor();
             ctx.enumeration_literal().forEach(enumeration_literal => {
                 enum_list.push(enumeration_literalVisitor.visitEnumeration_literal(enumeration_literal));
             });
