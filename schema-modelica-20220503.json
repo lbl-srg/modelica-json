@@ -406,7 +406,7 @@
         "additionalProperties": false,
         "properties": {
           "simple_expression": {
-            "type": "string"
+            "$ref": "#/definitions/simpleExpression"
           },
           "if_expression": {
             "$ref": "#/definitions/ifExpression"
@@ -423,10 +423,223 @@
         "additionalProperties": false,
         "properties": {
           "simple_expression": {
-            "type": "string"
+            "$ref": "#/definitions/simpleExpression"
           },
           "if_expression": {
             "$ref": "#/definitions/ifExpression"
+          }
+        }
+      }
+    },
+    "simpleExpression": {
+      "description": "Simple expression",
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "function_call": {
+              "$ref": "#/definitions/functionCallObj"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "for_loop": {
+              "$ref": "#/definitions/forLoopObj"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "logical_expression": {
+              "$ref": "#/definitions/logicalExpressionObj"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "if_expression": {
+              "$ref": "#/definitions/ifExpressionObj"
+            }
+          }
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "functionCallObj": {
+      "description": "Function call object",
+      "type": "object",
+      "additionalItems": false,
+      "items": {
+        "type": "object",
+        "additionalItems": false,
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "arguments": {
+            "$ref": "#/definitions/funArgsObj"
+          }
+        }
+      }
+    },
+    "funArgsObj": {
+      "description": "Function arguments",
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "name": {
+              "type": "string"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalItems": false,
+          "properties": {
+            "expression": {
+              "$ref": "#/definitions/simpleExpression"
+            },
+            "for_loop": {
+              "$ref": "#/definitions/forLoopIndices"
+            }
+          }
+        }
+      ]
+    },
+    "forLoopObj": {
+      "description": "For loop object",
+      "type": "object",
+      "additionalItems": false,
+      "items": {
+        "type": "object",
+        "additionalItems": false,
+        "properties": {
+          "expression": {
+            "$ref": "#/definitions/simpleExpression"
+          },
+          "for_loop": {
+            "$ref": "#/definitions/forLoopIndices"
+          }
+        }
+      }
+    },
+    "forLoopIndices": {
+      "description": "For loop indices",
+      "type": "array",
+      "additionalItems": false,
+      "items": {
+        "type": "object",
+        "additionalItems": false,
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "range": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "logicalExpressionObj": {
+      "description": "Logical expression",
+      "type": "object",
+      "additionalItems": false,
+      "items": {
+        "type": "object",
+        "additionalItems": false,
+        "properties": {
+          "logical_or": {
+            "$ref": "#/definitions/OrArray"
+          }
+        }
+      }
+    },
+    "OrArray": {
+      "description": "Or array",
+      "type": "array",
+      "additionalItems": false,
+      "items": {
+        "type": "object",
+        "additionalItems": false,
+        "properties": {
+          "logical_and": {
+            "$ref": "#/definitions/AndArray"
+          }
+        }
+      }
+    },
+    "AndArray": {
+      "description": "And array",
+      "type": "array",
+      "additionalItems": false,
+      "items": {
+        "type": "object",
+        "additionalItems": false,
+        "properties": {
+          "not": {
+            "type": "string"
+          },
+          "arithmetic_expressions": {
+            "type": "array",
+            "additionalItems": false,
+            "items": {
+              "type": "object",
+              "additionalItems": false,
+              "properties": {
+                "name": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "relation_operator": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "ifExpressionObj": {
+      "description": "If-else expression array",
+      "type": "array",
+      "additionalItems": false,
+      "items": {
+        "type": "object",
+        "additionalItems": false,
+        "properties": {
+          "if_elseif": {
+            "$ref": "#/definitions/if_elseIfArray"
+          },
+          "else": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "if_elseIfArray": {
+      "description": "If-else array",
+      "type": "array",
+      "additionalItems": false,
+      "items": {
+        "type": "object",
+        "additionalItems": false,
+        "properties": {
+          "condition": {
+            "type": "string"
+          },
+          "then": {
+            "type": "string"
           }
         }
       }
