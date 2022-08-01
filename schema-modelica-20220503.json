@@ -31,40 +31,47 @@
     },
     "class_specifier": {
       "description": "Class specifier",
-      "type": "object",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "oneOf": [
-          {
-            "required": [
-              "long_class_specifier"
-            ]
-          },
-          {
-            "required": [
-              "short_class_specifier"
-            ]
-          },
-          {
-            "required": [
-              "der_class_specifier"
-            ]
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalItems": false,
+          "items": {
+            "type": "object",
+            "additionalItems": false,
+            "properties": {
+              "long_class_specifier": {
+                "$ref": "#/definitions/long_class_specifier"
+              }
+            }
           }
-        ],
-        "properties": {
-          "long_class_specifier": {
-            "$ref": "#/definitions/long_class_specifier"
-          },
-          "short_class_specifier": {
-            "$ref": "#/definitions/short_class_specifier"
-          },
-          "der_class_specifier": {
-            "$ref": "#/definitions/der_class_specifier"
+        },
+        {
+          "type": "object",
+          "additionalItems": false,
+          "items": {
+            "type": "object",
+            "additionalItems": false,
+            "properties": {
+              "short_class_specifier": {
+                "$ref": "#/definitions/short_class_specifier"
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalItems": false,
+          "items": {
+            "type": "object",
+            "additionalItems": false,
+            "properties": {
+              "der_class_specifier": {
+                "$ref": "#/definitions/der_class_specifier"
+              }
+            }
           }
         }
-      }
+      ]
     },
     "external_function_call": {
       "description": "External function call",
