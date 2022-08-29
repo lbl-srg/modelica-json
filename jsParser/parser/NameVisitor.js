@@ -2,8 +2,6 @@ const modelicaVisitor = require('../antlrFiles/modelicaVisitor').modelicaVisitor
 const Name = require('../domain/Name');
 const Name_part = require('../domain/Name_part');
 
-const Name_partVisitor = require('./NameVisitor');
-
 class NameVisitor {
     constructor() {
         modelicaVisitor.call(this);
