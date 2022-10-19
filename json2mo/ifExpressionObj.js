@@ -1,6 +1,5 @@
 function parse (content, rawJson = false) {
   const util = require('util')
-  
   var moOutput = ''
   for (var i = 0; i < content.length; i++) {
     var ithCon = content[i]
