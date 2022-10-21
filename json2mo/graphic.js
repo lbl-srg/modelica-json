@@ -31,164 +31,101 @@ function parse (content, rawJson = false) {
 }
 
 function lineParse (obj) {
-  var points = obj.points
-  var color = obj.color
-  var pattern = obj.pattern
-  var thickness = obj.thickness
-  var arrowSize = obj.arrowSize
-  var smooth = obj.smooth
-  var visible = obj.visible
-  var strArr = []
-  if (points != null) {
-    strArr.push('points=' + pointsParse(points))
-  }
-  if (color != null) {
-    strArr.push('color=' + colorParse(color))
-  }
-  if (pattern != null) {
-    strArr.push('pattern=' + util.format("%s", pattern))
-  }
-  if (thickness != null) {
-    strArr.push('thickness=' + util.format("%s", thickness))
-  }
-  if (arrowSize != null) {
-    strArr.push('arrowSize=' + util.format("%s", arrowSize))
-  }
-  if (smooth != null) {
-    strArr.push('smooth=' + util.format("%s", smooth))
-  }
-  if (visible != null) {
-    strArr.push('visible=' + util.format("%s", visible))
-  }
-  return 'Line(' + strArr.join(', ') + ')'
+  var graComIte = commonGraphicItems(obj)
+  return 'Line(' + graComIte.join(',') + ')'
 }
 
 function textParse (obj) {
-  var extent = obj.extent
-  var textString = obj.textString
-  var fontSize = obj.fontSize
-  var fontName = obj.fontName
-  var textColor = obj.textColor
-  var horizontalAlignment = obj.horizontalAlignment
-  var string = obj.string
-  var index = obj.index
-  var visible = obj.visible
-  var origin = obj.origin
-  var rotation = obj.rotation
-  var lineColor = obj.lineColor
-  var fillColor = obj.fillColor
-  var pattern = obj.pattern
-  var fillPattern = obj.fillPattern
-  var lineThickness = obj.lineThickness
-  var strArr = []
-  if (extent != null) {
-    strArr.push('extent=' + pointsParse(extent))
-  }
-  if (textString != null) {
-    strArr.push('textString=' + util.format("%s", textString))
-  }
-  if (fontSize != null) {
-    strArr.push('fontSize=' + util.format("%s", fontSize))
-  }
-  if (fontName != null) {
-    strArr.push('fontName=' + util.format("%s", fontName))
-  }
-  if (fontSize != null) {
-    strArr.push('fontSize=' + util.format("%s", fontSize))
-  }
-  if (textColor != null) {
-    strArr.push('textColor=' + colorParse(extent))
-  }
-  if (horizontalAlignment != null) {
-    strArr.push('horizontalAlignment=' + util.format("%s", horizontalAlignment))
-  }
-  if (string != null) {
-    strArr.push('string=' + util.format("%s", string))
-  }
-  if (index != null) {
-    strArr.push('index=' + util.format("%s", index))
-  }
-  var graComIte = commonGraphicItems(visible, origin, rotation, lineColor, fillColor, pattern, fillPattern, lineThickness)
-  var fullArr = strArr.concat(graComIte)
-  return 'Text(' + fullArr.join(', ') + ')'
+  var graComIte = commonGraphicItems(obj)
+  return 'Text(' + graComIte.join(',') + ')'
 }
 
 function rectangleParse (obj) {
-  var extent = obj.extent
-  var radius = obj.radius
-  var borderPattern = obj.borderPattern
+  var graComIte = commonGraphicItems(obj)
+  return 'Rectangle(' + graComIte.join(',') + ')'
+}
+
+function polygonParse (obj) {
+  var graComIte = commonGraphicItems(obj)
+  return 'Polygon(' + graComIte.join(',') + ')'
+}
+
+function ellipseParse (obj) {
+  var graComIte = commonGraphicItems(obj)
+  return 'Ellipse(' + graComIte.join(',') + ')'
+}
+
+function bitmapParse (obj) {
+  var graComIte = commonGraphicItems(obj)
+  return 'Bitmap(' + graComIte.join(',') + ')'
+}
+
+function placementParse (obj) {
   var visible = obj.visible
-  var origin = obj.origin
-  var rotation = obj.rotation
-  var lineColor = obj.lineColor
-  var fillColor = obj.fillColor
-  var pattern = obj.pattern
-  var fillPattern = obj.fillPattern
-  var lineThickness = obj.lineThickness
+  var iconVisible = obj.iconVisible
+  var transformation = obj.transformation
+  var iconTransformation = obj.iconTransformation
+  var strArr = []
+  if (visible != null) {
+    strArr.push('visible=' + util.format("%s", visible))
+  }
+  if (iconVisible != null) {
+    strArr.push('iconVisible=' + util.format("%s", iconVisible))
+  }
+  if (transformation != null) {
+    strArr.push('transformation' + transformationParse(transformation) + ')')
+  }
+  if (iconTransformation != null) {
+    strArr.push('iconTransformation' + transformationParse(iconTransformation) + ')')
+  }
+  return 'Placement(' + strArr.join(',') + ')'
+}
+
+function coordinateSystemParse (obj) {
+  var extent = obj.extent
+  var preserveAspectRatio = obj.preserveAspectRatio
+  var initialScale = obj.initialScale
   var strArr = []
   if (extent != null) {
     strArr.push('extent=' + pointsParse(extent))
   }
-  if (radius != null) {
-    strArr.push('radius=' + util.format("%s", radius))
+  if (preserveAspectRatio != null) {
+    strArr.push('preserveAspectRatio=' + util.format("%s", preserveAspectRatio))
   }
-  if (fontSize != null) {
-    strArr.push('borderPattern=' + util.format("%s", borderPattern))
+  if (initialScale != null) {
+    strArr.push('initialScale=' + util.format("%s", initialScale))
   }
-  var graComIte = commonGraphicItems(visible, origin, rotation, lineColor, fillColor, pattern, fillPattern, lineThickness)
-  var fullArr = strArr.concat(graComIte)
-  return 'Rectangle(' + fullArr.join(', ') + ')'
+  return 'coordinateSystem(' + strArr.join(',') + ')'
 }
-
-
-function polygonParse (obj) {
-  var points = obj.points
-  var smooth = obj.smooth
-  var visible = obj.visible
-  var origin = obj.origin
-  var rotation = obj.rotation
-  var lineColor = obj.lineColor
-  var fillColor = obj.fillColor
-  var pattern = obj.pattern
-  var fillPattern = obj.fillPattern
-  var lineThickness = obj.lineThickness
-  var strArr = []
-  if (points != null) {
-    strArr.push('points=' + pointsParse(points))
-  }
-  if (smooth != null) {
-    strArr.push('smooth=' + util.format("%s", smooth))
-  }
-  var graComIte = commonGraphicItems(visible, origin, rotation, lineColor, fillColor, pattern, fillPattern, lineThickness)
-  var fullArr = strArr.concat(graComIte)
-  return 'Polygon(' + fullArr.join(', ') + ')'
-}
-
-
-function ellipseParse (obj) {
-  
-}
-
-
-function bitmapParse (obj) {
-  
-}
-
-
-function placementParse (obj) {
-  
-}
-
-
-function coordinateSystemParse (obj) {
-  
-}
-
 
 function graphicsParse (obj) {
-  
+  var strArr = []
+  for (var i = 0; i < obj.length; i++) {
+    var ithEle = obj[i]
+    var name = ithEle.name
+    var attibutes = ithEle.attribute
+    var graComIte = commonGraphicItems(attibutes)
+    strArr.push(name + '(' + graComIte.join(',') + ')')
+  }
+  return 'graphics=' + '{' + strArr.join(',') + '}'
 }
 
+function transformationParse (obj) {
+  var origin = obj.origin
+  var extent = obj.extent
+  var rotation = obj.rotation
+  var strArr = []
+  if (origin != null) {
+    strArr.push('origin=' + originParse(origin))
+  }
+  if (extent != null) {
+    strArr.push('extent=' + pointsParse(extent))
+  }
+  if (rotation != null) {
+    strArr.push('rotation=' + util.format("%s", rotation))
+  }
+  return '(' + strArr.join(',') + ')'
+}
 
 
 function pointsParse (obj) {
@@ -225,13 +162,104 @@ function originParse (obj) {
   return ori
 }
 
-function commonGraphicItems (visible, origin, rotation, lineColor, fillColor, pattern, fillPattern, lineThickness) {
+function commonGraphicItems (obj) {
+  var color = obj.color
+  var thickness = obj.thickness
+  var arrowSize = obj.arrowSize
+  var extent = obj.extent
+  var textString = obj.textString
+  var fontSize = obj.fontSize
+  var fontName = obj.fontName
+  var textColor = obj.textColor
+  var horizontalAlignment = obj.horizontalAlignment
+  var string = obj.string
+  var index = obj.index
+  var radius = obj.radius
+  var borderPattern = obj.borderPattern
+  var points = obj.points
+  var smooth = obj.smooth
+  var startAngle = obj.startAngle
+  var endAngle = obj.endAngle
+  var closure = obj.closure
+  var fileName = obj.fileName
+  var imageSource = obj.imageSource
+  var visible = obj.visible
+  var origin = obj.origin
+  var rotation = obj.rotation
+  var lineColor = obj.lineColor
+  var fillColor = obj.fillColor
+  var pattern = obj.pattern
+  var fillPattern = obj.fillPattern
+  var lineThickness = obj.lineThickness
   var strArr = []
+  if (fileName != null) {
+    strArr.push('fileName=' + util.format("%s", fileName))
+  }
+  if (imageSource != null) {
+    strArr.push('imageSource=' + util.format("%s", imageSource))
+  }
+  if (startAngle != null) {
+    strArr.push('startAngle=' + util.format("%s", startAngle))
+  }
+  if (endAngle != null) {
+    strArr.push('endAngle=' + util.format("%s", endAngle))
+  }
+  if (closure != null) {
+    strArr.push('closure=' + util.format("%s", closure))
+  }
+  if (color != null) {
+    strArr.push('color=' + colorParse(color))
+  }
+  if (thickness != null) {
+    strArr.push('thickness=' + util.format("%s", thickness))
+  }
+  if (arrowSize != null) {
+    strArr.push('arrowSize=' + util.format("%s", arrowSize))
+  }
+  if (textString != null) {
+    strArr.push('textString=' + util.format("%s", textString))
+  }
+  if (fontSize != null) {
+    strArr.push('fontSize=' + util.format("%s", fontSize))
+  }
+  if (fontName != null) {
+    strArr.push('fontName=' + util.format("%s", fontName))
+  }
+  if (fontSize != null) {
+    strArr.push('fontSize=' + util.format("%s", fontSize))
+  }
+  if (textColor != null) {
+    strArr.push('textColor=' + colorParse(extent))
+  }
+  if (horizontalAlignment != null) {
+    strArr.push('horizontalAlignment=' + util.format("%s", horizontalAlignment))
+  }
+  if (string != null) {
+    strArr.push('string=' + util.format("%s", string))
+  }
+  if (index != null) {
+    strArr.push('index=' + util.format("%s", index))
+  }
+  if (extent != null) {
+    strArr.push('extent=' + pointsParse(extent))
+  }
+  if (radius != null) {
+    strArr.push('radius=' + util.format("%s", radius))
+  }
+  if (borderPattern != null) {
+    strArr.push('borderPattern=' + util.format("%s", borderPattern))
+  }
+  if (points != null) {
+    strArr.push('points=' + pointsParse(points))
+  }
+  if (smooth != null) {
+    strArr.push('smooth=' + util.format("%s", smooth))
+  }
   if (visible != null) {
     strArr.push('visible=' + util.format("%s", visible))
   }
   if (origin != null) {
-    strArr.push('origin=' + originParse(extent))
+    strArr.push('origin=' + originParse(origin))
   }
   if (rotation != null) {
     strArr.push('rotation=' + util.format("%s", rotation))
