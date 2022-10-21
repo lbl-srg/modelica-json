@@ -11,13 +11,13 @@ function parse (content, rawJson = false) {
       moOutput += util.format('%s', JSON.stringify(content))
     } else {
       if (content.function_call) {
-        moOutput += functionCallParser.parser(content.function_call, rawJson)
+        moOutput += functionCallParser.parse(content.function_call, rawJson)
       } else if (content.for_loop) {
-        moOutput += forLoopParser.parser(content.for_loop, rawJson)
+        moOutput += forLoopParser.parse(content.for_loop, rawJson)
       } else if (content.logical_expression) {
-        moOutput += logicalExpressionParser.parser(content.for_loop, rawJson)
+        moOutput += logicalExpressionParser.parse(content.logical_expression, rawJson)
       } else if (content.if_expression) {
-        moOutput += ifExpressionParser.parser(content.if_expression, rawJson)
+        moOutput += ifExpressionParser.parse(content.if_expression, rawJson)
       } else {
         moOutput += util.format('%s', content)
       }

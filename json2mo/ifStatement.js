@@ -16,7 +16,7 @@ function parse (content, rawJson = false) {
   if (elseStatements != null) {
     var elseOutput = ''
     elseStatements.forEach(ele => {
-      elseOutput += statementParser.parser(ele, rawJson)
+      elseOutput += statementParser.parse(ele, rawJson)
       elseOutput += ';\n'
     })
     if (elseOutput !== '') {

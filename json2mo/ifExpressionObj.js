@@ -6,12 +6,12 @@ function parse (content, rawJson = false) {
     var ithElseIf = ithCon.if_elseif
     moOutput += 'if ('
     moOutput += util.format('%s', ithElseIf[0].condition)
-    moOutput += ') then \n'
+    moOutput += ') then '
     moOutput += util.format('%s', ithElseIf[0].then)
     for (var j = 1; j < ithElseIf.length; j++) {
       moOutput += ' elseif ('
       moOutput += util.format('%s', ithElseIf[j].condition)
-      moOutput += ') then \n'
+      moOutput += ') then '
       moOutput += util.format('%s', ithElseIf[j].then)
     }
     moOutput += ' else '

@@ -4,9 +4,11 @@ function parse (content, rawJson = false) {
 
   var moOutput = ''
   if (content != null) {
+    moOutput += '{'
     moOutput += expressionParser.parse(content.expression, rawJson)
     moOutput += ' for '
-    moOutput += forIndiceObjParser.parser(content[0].for_loop, rawJson)
+    moOutput += forIndiceObjParser.parse(content.for_loop, rawJson)
+    moOutput += '}'
   }
   return moOutput
 }

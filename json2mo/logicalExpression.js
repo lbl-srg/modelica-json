@@ -3,11 +3,11 @@ function parse (content, rawJson = false) {
 
   var logicalOr = content.logical_or
   var moOutput = ''
+  moOutput += logicalAndParser.parse(logicalOr[0].logical_and, rawJson)
   if (logicalOr.length > 1) {
-    moOutput += logicalAndParser.parser(logicalOr[0].logical_and, rawJson)
     for (var i = 1; i < logicalOr.length; i++) {
       moOutput += ' or '
-      moOutput += logicalAndParser.parser(logicalOr[i].logical_and, rawJson)
+      moOutput += logicalAndParser.parse(logicalOr[i].logical_and, rawJson)
     }
   }
   return moOutput

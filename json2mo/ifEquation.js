@@ -16,7 +16,7 @@ function parse (content, rawJson = false) {
   if (elseEquations != null) {
     var elseOutput = ''
     elseEquations.forEach(ele => {
-      elseOutput += equationParser.parser(ele, rawJson)
+      elseOutput += equationParser.parse(ele, rawJson)
       elseOutput += ';\n'
     })
     if (elseOutput !== '') {

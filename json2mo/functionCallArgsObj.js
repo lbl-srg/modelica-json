@@ -5,9 +5,9 @@ function parse (content, rawJson = false) {
 
   var moOutput = ''
   if (content[0].expression != null) {
-    moOutput += expressionParser.parser(content[0].expressoin, rawJson)
+    moOutput += expressionParser.parse(content[0].expressoin, rawJson)
     moOutput += ' for '
-    moOutput += forIndiceObjParser.parser(content[0].for_loop, rawJson)
+    moOutput += forIndiceObjParser.parse(content[0].for_loop, rawJson)
   } else {
     if  (content.length > 1) {
       moOutput += util.format('%s', content[0].name)

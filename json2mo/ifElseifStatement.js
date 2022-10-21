@@ -13,7 +13,7 @@ function parse (content, rawJson = false) {
   if (thenStatements != null) {
     thenOutput = ''
     thenStatements.forEach(ele => {
-      thenOutput += statementParser.parser(ele, rawJson)
+      thenOutput += statementParser.parse(ele, rawJson)
       thenOutput += ';\n'
     })
     if (thenOutput !== '') {

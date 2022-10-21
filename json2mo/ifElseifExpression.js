@@ -6,7 +6,7 @@ function parse (content, rawJson = false) {
   if (content.condition != null) {
     moOutput += expressionParser.parse(content.condition, rawJson)
   }
-  moOutput += ' then \n'
+  moOutput += ' then '
 
   if (content.then != null) {
     moOutput += expressionParser.parse(content.then, rawJson)

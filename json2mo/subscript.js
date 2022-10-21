@@ -9,7 +9,7 @@ function parse (content, rawJson = false) {
     if (content.colon_op != null) {
       moOutput += ':'
     } else if (content.expression != null) {
-      moOutput += expressionParser.parser(content.expression, rawJson)
+      moOutput += expressionParser.parse(content.expression, rawJson)
     }
   }
   return moOutput

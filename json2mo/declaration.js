@@ -5,7 +5,7 @@ function parse (content, rawJson = false) {
 
   var moOutput = ''
   if (content.identifier != null) {
-    moOutput += util.format('%s ', content.identifier)
+    moOutput += util.format('%s', content.identifier)
   }
   if (content.array_subscripts != null) {
     moOutput += arraySubscriptsParser.parse(content.array_subscripts, rawJson)

@@ -8,7 +8,7 @@ function parse (content, rawJson = false) {
   }
   if (content.arguments != null) {
     moOutput += '('
-    moOutput += functionCallArgsObjParser.parser(content.arguments, rawJson)
+    moOutput += functionCallArgsObjParser.parse(content.arguments, rawJson)
     moOutput += ')'
   }
   return moOutput

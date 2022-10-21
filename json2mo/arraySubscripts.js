@@ -28,7 +28,7 @@ function parse (content, rawJson = false) {
         } else if (ele.expression != null) {
           moOutput += expressionParser.parse(ele.expression, rawJson)
         }
-        moOutput += ', '
+        moOutput += ','
       })
       moOutput = moOutput.slice(0, -2)
     }

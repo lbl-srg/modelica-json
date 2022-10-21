@@ -13,7 +13,7 @@ function parse (content, rawJson = false) {
   if (thenEquations != null) {
     thenOutput = ''
     thenEquations.forEach(ele => {
-      thenOutput += equationParser.parser(ele, rawJson)
+      thenOutput += equationParser.parse(ele, rawJson)
       thenOutput += ';\n'
     })
     if (thenOutput !== '') {

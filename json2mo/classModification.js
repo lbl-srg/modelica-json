@@ -4,21 +4,21 @@ function parse (content, rawJson = false) {
 
   var moOutput = ''
   if (rawJson) {
-    moOutput += '('
+    moOutput += '(\n\t'
     if (content.argument_list != null) {
       moOutput += argumentListParser.parse(content.argument_list, rawJson)
     }
-    moOutput += ')'
+    moOutput += ')\n\t'
   } else {
     var argumentList = content
-    moOutput += '('
+    moOutput += '(\n\t'
 
     argumentList.forEach(argument => {
       moOutput += argumentParser.parse(argument, rawJson)
-      moOutput += ', '
+      moOutput += ',\n\t'
     })
 
-    moOutput = moOutput.slice(0, -2)
+    moOutput = moOutput.slice(0, moOutput.lastIndexOf(','))
     moOutput += ')'
   }
   return moOutput

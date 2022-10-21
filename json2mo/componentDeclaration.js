@@ -8,7 +8,7 @@ function parse (content, rawJson = false) {
     moOutput += declarationParser.parse(content.declaration, rawJson)
   }
   if (content.condition_attribute != null) {
-    moOutput += conditionAttributeParser.parser(content.condition_attribute, rawJson)
+    moOutput += conditionAttributeParser.parse(content.condition_attribute, rawJson)
   }
   if (content.comment != null) {
     moOutput += commentParser.parse(content.comment, rawJson)

@@ -1,6 +1,5 @@
 function parse (content, rawJson = false) {
   const util = require('util')
-  const arithmeticExpressionParser = require('./arithmeticExpression')
 
   var moOutput = ''
   if (content.not != null) {

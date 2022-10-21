@@ -26,7 +26,7 @@ function parse (content, rawJson = false) {
 
     moOutput += ') '
   } else if (content.expression != null) {
-    moOutput += expressionParser.parser(content.expression, rawJson)
+    moOutput += expressionParser.parse(content.expression, rawJson)
   }
 
   return moOutput
