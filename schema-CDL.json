@@ -12,17 +12,80 @@
       "additionalItems": false,
       "items": {
         "type": "object",
+        "additionalProperties": false,
         "required": [
-          "x1",
-          "x2"
+          "x",
+          "y"
+        ],
+        "properties": {
+          "x": {
+            "type": "number"
+          },
+          "y": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "dynExtent": {
+      "description": "extents to be selected dynamically",
+      "type": "object",
+      "additionalItems": false,
+      "items": {
+        "type": "object",
+        "required": [
+          "points",
+          "dynPoints"
         ],
         "additionalProperties": false,
         "properties": {
-          "x1": {
+          "points": {
+            "$ref": "#/definitions/coordinates"
+          },
+          "dynPoints": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "points": {
+      "description": "points on a 2d plan",
+      "type": "array",
+      "additionalItems": false,
+      "items": {
+        "type": "object",
+        "required": [
+          "x",
+          "y"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "x": {
             "type": "number"
           },
-          "x2": {
+          "y": {
             "type": "number"
+          }
+        }
+      }
+    },
+    "dynPoints": {
+      "description": "points to be selected dynamically",
+      "type": "object",
+      "additionalItems": false,
+      "items": {
+        "type": "object",
+        "required": [
+          "points",
+          "dynPoints"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "points": {
+            "$ref": "#/definitions/points"
+          },
+          "dynPoints": {
+            "type": "string"
           }
         }
       }
@@ -62,6 +125,48 @@
           "type": "number",
           "minimum": 0,
           "maximum": 255
+        }
+      }
+    },
+    "dynColor": {
+      "description": "colors to be selected dynamically",
+      "type": "object",
+      "additionalItems": false,
+      "items": {
+        "type": "object",
+        "required": [
+          "color",
+          "dynColor"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "color": {
+            "$ref": "#/definitions/color"
+          },
+          "dynColor": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "dynFillPattern": {
+      "description": "patterns to be selected dynamically",
+      "type": "object",
+      "additionalItems": false,
+      "items": {
+        "type": "object",
+        "required": [
+          "firstOpt",
+          "secondOpt"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "firstOpt": {
+            "type": "string"
+          },
+          "secondOpt": {
+            "type": "string"
+          }
         }
       }
     },
@@ -114,6 +219,14 @@
           "yStart": {
             "type": "number"
           },
+          "textAnchor": {
+            "type": "string",
+            "enum": [
+              "middle",
+              "start",
+              "end"
+            ]
+          },
           "fill": {
             "$ref": "#/definitions/rgbcolors"
           },
@@ -147,8 +260,6 @@
       "additionalItems": false,
       "required": [
         "lineColor",
-        "fillColor",
-        "fillPattern",
         "points"
       ],
       "items": {
@@ -159,7 +270,10 @@
             "$ref": "#/definitions/color"
           },
           "points": {
-            "$ref": "#/definitions/coordinates"
+            "$ref": "#/definitions/points"
+          },
+          "dynPoints": {
+            "$ref": "#/definitions/dynPoints"
           },
           "pattern": {
             "type": "string",
@@ -172,18 +286,33 @@
           "lineColor": {
             "$ref": "#/definitions/color"
           },
+          "dynLineColor": {
+            "$ref": "#/definitions/dynColor"
+          },
           "fillColor": {
             "$ref": "#/definitions/color"
+          },
+          "dynFillColor": {
+            "$ref": "#/definitions/dynColor"
           },
           "fillPattern": {
             "type": "string",
             "pattern": "^([a-zA-Z0-9._*]*)$"
           },
+          "dynFillPattern": {
+            "$ref": "#/definitions/dynFillPattern"
+          },
           "extent": {
             "$ref": "#/definitions/coordinates"
           },
+          "dynExtent": {
+            "$ref": "#/definitions/dynExtent"
+          },
           "textString": {
             "type": "string"
+          },
+          "dynTextString": {
+            "$ref": "#/definitions/dynFillPattern"
           },
           "preserveAspectRatio": {
             "type": "boolean"
@@ -203,10 +332,10 @@
             "type": "object",
             "additionalProperties": false,
             "properties": {
-              "x1": {
+              "x": {
                 "type": "number"
               },
-              "x2": {
+              "y": {
                 "type": "number"
               }
             }
@@ -410,9 +539,6 @@
                 },
                 {
                   "required": [
-                    "lineColor",
-                    "fillColor",
-                    "fillPattern",
                     "points"
                   ]
                 }
@@ -426,7 +552,6 @@
                 {
                   "required": [
                     "points",
-                    "color",
                     "visible",
                     "origin",
                     "rotation",
@@ -448,11 +573,7 @@
                     "lineThickness",
                     "borderPattern",
                     "origin",
-                    "visible",
-                    "lineColor",
-                    "fillColor",
-                    "fillPattern",
-                    "extent"
+                    "visible"
                   ]
                 }
               ]
@@ -464,9 +585,6 @@
                 },
                 {
                   "required": [
-                    "lineColor",
-                    "textString",
-                    "extent",
                     "fontSize",
                     "horizontalAlignment"
                   ]
@@ -482,10 +600,6 @@
                   "required": [
                     "origin",
                     "visible",
-                    "lineColor",
-                    "fillColor",
-                    "fillPattern",
-                    "extent",
                     "pattern"
                   ]
                 }
@@ -521,10 +635,6 @@
         "coordinateSystem": {
           "type": "object",
           "additionalProperties": false,
-          "required": [
-            "extent",
-            "preserveAspectRatio"
-          ],
           "properties": {
             "extent": {
               "$ref": "#/definitions/graphicalElement/items/properties/extent"
@@ -663,19 +773,19 @@
         "additionalProperties": false,
         "properties": {
           "start": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-              "value": {
-                "type": "string"
-              }
-            }
+            "$ref": "#/definitions/value"
           },
           "basePrefix": {
             "type": "string",
             "pattern": "^([a-zA-Z0-9._*]*)$"
           },
           "unit": {
+            "$ref": "#/definitions/value"
+          },
+          "displayUnit": {
+            "$ref": "#/definitions/value"
+          },
+          "quantity": {
             "$ref": "#/definitions/value"
           },
           "max": {
@@ -704,6 +814,20 @@
           "value": {
             "description": "value of the block, if applicable",
             "type": "string"
+          },
+          "enable": {
+            "description": "Condition of enabling the block, if applicable",
+            "type": "string"
+          },
+          "__cdl": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+              "default": {
+                "description": "default value of removable input",
+                "type": "string"
+              }
+            }
           },
           "annotation": {
             "type": "object",
@@ -765,6 +889,44 @@
                   "file": {
                     "type": "string",
                     "pattern": "^([a-zA-Z0-9._ \"\\:/]*)$"
+                  }
+                }
+              }
+            }
+          },
+          "variable_modification": {
+            "type": "array",
+            "additionalItems": false,
+            "items": {
+              "type": "object",
+              "required": [
+                "name",
+                "modifications"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "name": {
+                  "description": "Name of the variable: no special characters or spaces",
+                  "type": "string",
+                  "pattern": "^([a-zA-Z0-9._*]*)$"
+                },
+                "modifications": {
+                  "type": "array",
+                  "additionalItems": false,
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "prefix": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      }
+                    }
                   }
                 }
               }
@@ -841,20 +1003,21 @@
               }
             }
           },
-          "displayUnit": {
-            "allOf": [
+          "type": {
+            "type": "string",
+            "oneOf": [
               {
-                "$ref": "#/definitions/value"
+                "enum": [
+                  "Real",
+                  "Boolean",
+                  "Integer",
+                  "String"
+                ]
               },
               {
-                "value": {
-                  "pattern": "^(\\\")[a-zA-Z0-9._*]*(\\\")$"
-                }
+                "pattern": "(.*)CDL.Types.(.*)"
               }
             ]
-          },
-          "quantity": {
-            "$ref": "#/definitions/value"
           }
         }
       }
@@ -864,7 +1027,7 @@
   "items": {
     "type": "object",
     "required": [
-      "modelicaFile",
+      "within",
       "topClassName",
       "icon",
       "svg"
@@ -877,7 +1040,7 @@
         "pattern": ".*.(mo|MO)"
       },
       "within": {
-        "description": "Within statement from the Modelica file : no special characters or spaces",
+        "description": "Within statement from the Modelica file : no special characters or spaces. If empty string, it may be a package file",
         "type": "string",
         "pattern": "^([a-zA-Z0-9._*]*)$"
       },
@@ -888,6 +1051,10 @@
       },
       "comment": {
         "description": "Comment on the model",
+        "type": "string"
+      },
+      "defaultName": {
+        "description": "Default model name",
         "type": "string"
       },
       "public": {
@@ -969,7 +1136,7 @@
                 "type": "string"
               },
               "points": {
-                "$ref": "#/definitions/coordinates"
+                "$ref": "#/definitions/points"
               },
               "color": {
                 "$ref": "#/definitions/color"

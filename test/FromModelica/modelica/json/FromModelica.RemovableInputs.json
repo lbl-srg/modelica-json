@@ -1,0 +1,266 @@
+[
+  {
+    "modelicaFile": "FromModelica/RemovableInputs.mo",
+    "within": "FromModelica",
+    "topClassName": "FromModelica.RemovableInputs",
+    "comment": "A block with a flag for disabling instances",
+    "public": {
+      "parameters": [
+        {
+          "className": "Boolean",
+          "name": "enaBlo",
+          "value": "true",
+          "comment": "Flag for enabling instance",
+          "annotation": {
+            "dialog": {
+              "tab": "General",
+              "group": "Parameters"
+            }
+          }
+        },
+        {
+          "className": "Boolean",
+          "name": "have_winSen",
+          "comment": "True: there is window status sensor",
+          "annotation": {
+            "dialog": {
+              "tab": "General",
+              "group": "Parameters"
+            }
+          }
+        },
+        {
+          "className": "Boolean",
+          "name": "have_occSen",
+          "comment": "True: there is occupancy sensor",
+          "annotation": {
+            "dialog": {
+              "tab": "General",
+              "group": "Parameters"
+            }
+          }
+        }
+      ],
+      "models": [
+        {
+          "className": "Buildings.Controls.OBC.CDL.Continuous.Abs",
+          "name": "abs",
+          "comment": "Instance could be conditional disabled",
+          "enable": "not enaBlo",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": -8,
+                  "y": -10
+                },
+                {
+                  "x": 12,
+                  "y": 10
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "inputs": [
+        {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+          "name": "u",
+          "comment": "Input connector",
+          "enable": "enaBlo",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": -140,
+                  "y": -20
+                },
+                {
+                  "x": -100,
+                  "y": 20
+                }
+              ]
+            },
+            "iconTransformation": {
+              "extent": [
+                {
+                  "x": -140,
+                  "y": -40
+                },
+                {
+                  "x": -100,
+                  "y": 0
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+          "name": "TOut",
+          "comment": "Temperature input",
+          "unit": {
+            "value": "\"K\""
+          },
+          "quantity": {
+            "value": "\"ThermodynamicTemperature\""
+          },
+          "enable": "enaBlo",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": -140,
+                  "y": 20
+                },
+                {
+                  "x": -100,
+                  "y": 60
+                }
+              ]
+            },
+            "iconTransformation": {
+              "extent": [
+                {
+                  "x": -140,
+                  "y": 20
+                },
+                {
+                  "x": -100,
+                  "y": 60
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+          "name": "TOutWitDef",
+          "comment": "Temperature input with specified default value",
+          "unit": {
+            "value": "\"K\""
+          },
+          "quantity": {
+            "value": "\"ThermodynamicTemperature\""
+          },
+          "enable": "enaBlo",
+          "__cdl": {
+            "default": "300.15"
+          },
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": -140,
+                  "y": -70
+                },
+                {
+                  "x": -100,
+                  "y": -30
+                }
+              ]
+            },
+            "iconTransformation": {
+              "extent": [
+                {
+                  "x": -140,
+                  "y": -80
+                },
+                {
+                  "x": -100,
+                  "y": -40
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.BooleanInput",
+          "name": "uWin",
+          "comment": "Window opening status",
+          "enable": "have_winSen",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": -140,
+                  "y": -100
+                },
+                {
+                  "x": -100,
+                  "y": -60
+                }
+              ]
+            },
+            "iconTransformation": {
+              "extent": [
+                {
+                  "x": -140,
+                  "y": -110
+                },
+                {
+                  "x": -100,
+                  "y": -70
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.IntegerInput",
+          "name": "nOcc",
+          "comment": "Occupancy",
+          "enable": "have_occSen",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": -140,
+                  "y": 60
+                },
+                {
+                  "x": -100,
+                  "y": 100
+                }
+              ]
+            },
+            "iconTransformation": {
+              "extent": [
+                {
+                  "x": -140,
+                  "y": 60
+                },
+                {
+                  "x": -100,
+                  "y": 100
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
+          "name": "y",
+          "comment": "Output connector",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": 100,
+                  "y": -10
+                },
+                {
+                  "x": 120,
+                  "y": 10
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  }
+]

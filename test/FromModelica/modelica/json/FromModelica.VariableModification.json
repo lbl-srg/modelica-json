@@ -1,0 +1,131 @@
+[
+  {
+    "modelicaFile": "FromModelica/VariableModification.mo",
+    "within": "FromModelica",
+    "topClassName": "FromModelica.VariableModification",
+    "comment": "Block with instantiated class that the connector attribute being specified",
+    "public": {
+      "models": [
+        {
+          "className": "Buildings.Controls.OBC.CDL.Continuous.Abs",
+          "name": "abs",
+          "comment": "Instance with modified input and output attributes",
+          "variable_modification": [
+            {
+              "name": "u",
+              "modifications": [
+                {
+                  "prefix": "final",
+                  "name": "unit",
+                  "value": "\"K\""
+                },
+                {
+                  "name": "displayUnit",
+                  "value": "\"degC\""
+                }
+              ]
+            },
+            {
+              "name": "y",
+              "modifications": [
+                {
+                  "name": "unit",
+                  "value": "\"K\""
+                },
+                {
+                  "name": "displayUnit",
+                  "value": "\"degC\""
+                }
+              ]
+            }
+          ],
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": -8,
+                  "y": -10
+                },
+                {
+                  "x": 12,
+                  "y": 10
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "inputs": [
+        {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+          "name": "u",
+          "comment": "Input connector",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": -140,
+                  "y": -20
+                },
+                {
+                  "x": -100,
+                  "y": 20
+                }
+              ]
+            },
+            "iconTransformation": {
+              "extent": [
+                {
+                  "x": -140,
+                  "y": -40
+                },
+                {
+                  "x": -100,
+                  "y": 0
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+          "name": "TOut",
+          "comment": "Temperature input",
+          "unit": {
+            "prefix": "final",
+            "value": "\"K\""
+          },
+          "quantity": {
+            "value": "\"ThermodynamicTemperature\""
+          },
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": -140,
+                  "y": 20
+                },
+                {
+                  "x": -100,
+                  "y": 60
+                }
+              ]
+            },
+            "iconTransformation": {
+              "extent": [
+                {
+                  "x": -140,
+                  "y": 20
+                },
+                {
+                  "x": -100,
+                  "y": 60
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  }
+]

@@ -3,6 +3,7 @@ const pa = require('./lib/parser.js')
 const ut = require('./lib/util.js')
 
 const logger = require('winston')
+const path = require('path')
 
 const ArgumentParser = require('argparse').ArgumentParser
 /// ///////////////////////////////////////
@@ -16,7 +17,7 @@ parser.addArgument(
   [ '-o', '--output' ],
   {
     help: 'Specify output format.',
-    choices: ['html', 'raw-json', 'json', 'docx'],
+    choices: ['html', 'raw-json', 'json', 'docx', 'svg'],
     defaultValue: 'html'
   }
 )
@@ -50,6 +51,14 @@ parser.addArgument(
     defaultValue: 'current'
   }
 )
+parser.addArgument(
+  '--strict',
+  {
+    help: 'Exit with code 1 if there is any warning.',
+    defaultValue: 'false'
+  }
+)
+
 var args = parser.parseArgs()
 
 const logFile = 'modelica-json.log'
@@ -69,6 +78,10 @@ logger.cli()
 
 logger.level = args.log
 
+if (args.mode === 'modelica' && args.output === 'svg') {
+  throw new Error('svg output option has not been enabled in modelica mode.')
+}
+
 // Get mo files array
 var moFiles = ut.getMoFiles(args.mode, args.file)
 
@@ -78,6 +91,17 @@ var json = pa.getJSON(moFiles, args.mode, args.output)
 // Get the name array of output files
 var outFile = ut.getOutFile(args.mode, args.file, args.output, args.directory, moFiles, json)
 
-pa.exportJSON(json, outFile, args.output, args.mode)
+pa.exportJSON(json, outFile, args.output, args.mode, args.directory)
 
-setTimeout(function () { ut.jsonSchemaValidate(args.mode, outFile[0], args.output) }, 100)
+var schema
+if (args.mode === 'cdl') {
+  schema = path.join(`${__dirname}`, 'schema-CDL.json')
+} else {
+  schema = path.join(`${__dirname}`, 'schema-modelica.json')
+}
+
+setTimeout(function () { ut.jsonSchemaValidate(args.mode, outFile[0], args.output, schema) }, 100)
+
+if (args.strict === 'true' && pa.warnCounter > 0) {
+  process.exit(1)
+}

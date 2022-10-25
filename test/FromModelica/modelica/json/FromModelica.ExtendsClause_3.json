@@ -4,19 +4,13 @@
     "within": "FromModelica",
     "topClassName": "FromModelica.ExtendsClause_3",
     "comment": "model with extends clause",
+    "defaultName": "\"res\"",
     "public": {
       "parameters": [
         {
           "className": "Modelica.SIunits.Length",
-          "type": "Modelica.SIunits.Length",
           "name": "length",
           "comment": "Length of the pipe",
-          "unit": {
-            "value": "\"1\""
-          },
-          "displayUnit": {
-            "value": "\"1\""
-          },
           "annotation": {
             "dialog": {
               "tab": "General",
@@ -27,7 +21,7 @@
       ],
       "models": [
         {
-          "className": "Buildings.Controls.OBC.CDL.Continuous.Gain",
+          "className": "Buildings.Controls.OBC.CDL.Continuous.MultiplyByParameter",
           "name": "gain",
           "comment": "Constant gain",
           "modifications": [
@@ -41,12 +35,12 @@
             "transformation": {
               "extent": [
                 {
-                  "x1": -60,
-                  "x2": -50
+                  "x": -60,
+                  "y": -50
                 },
                 {
-                  "x1": -40,
-                  "x2": -30
+                  "x": -40,
+                  "y": -30
                 }
               ]
             }
@@ -62,15 +56,6 @@
           "name": "ARound",
           "value": "dh^2*Modelica.Constants.pi/4",
           "comment": "Cross sectional area (assuming a round cross section area)",
-          "unit": {
-            "value": "\"m2\""
-          },
-          "displayUnit": {
-            "value": "\"ft2\""
-          },
-          "quantity": {
-            "value": "\"Area\""
-          },
           "annotation": {
             "dialog": {
               "tab": "General",

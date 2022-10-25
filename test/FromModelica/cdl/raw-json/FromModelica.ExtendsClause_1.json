@@ -15,7 +15,7 @@
                 "element": [
                   {
                     "extends_clause": {
-                      "name": "Buildings.Controls.OBC.CDL.Continuous.LimPID",
+                      "name": "Buildings.Controls.OBC.CDL.Continuous.PID",
                       "class_modification": {
                         "modifications": [
                           {
@@ -32,7 +32,7 @@
                   },
                   {
                     "component_clause": {
-                      "type_specifier": "Buildings.Controls.OBC.CDL.Continuous.Gain",
+                      "type_specifier": "Buildings.Controls.OBC.CDL.Continuous.MultiplyByParameter",
                       "component_list": {
                         "component_declaration": [
                           {
@@ -55,12 +55,12 @@
                                   "transformation": {
                                     "extent": [
                                       {
-                                        "x1": -60,
-                                        "x2": -50
+                                        "x": -60,
+                                        "y": -50
                                       },
                                       {
-                                        "x1": -40,
-                                        "x2": -30
+                                        "x": -40,
+                                        "y": -30
                                       }
                                     ]
                                   }

@@ -4,11 +4,11 @@
     "within": "FromModelica",
     "topClassName": "FromModelica.Modulation",
     "comment": "Outdoor and return air damper position modulation sequence for multi zone VAV AHU",
+    "defaultName": "\"mod\"",
     "public": {
       "parameters": [
         {
           "className": "Real",
-          "type": "Real",
           "name": "uMin",
           "value": "-0.25",
           "comment": "Lower limit of controller input when outdoor damper opens (see diagram)",
@@ -16,23 +16,10 @@
             "prefix": "final",
             "value": "\"1\""
           },
-          "displayUnit": {
-            "value": "\"1\""
-          },
           "max": {
             "prefix": "final",
             "value": "0"
           },
-          "modifications": [
-            {
-              "value": "0",
-              "isFinal": true
-            },
-            {
-              "value": "\"1\"",
-              "isFinal": true
-            }
-          ],
           "annotation": {
             "dialog": {
               "tab": "Commissioning",
@@ -42,7 +29,6 @@
         },
         {
           "className": "Real",
-          "type": "Real",
           "name": "uMax",
           "value": "+0.25",
           "comment": "Upper limit of controller input when return damper is closed (see diagram)",
@@ -50,23 +36,10 @@
             "prefix": "final",
             "value": "\"1\""
           },
-          "displayUnit": {
-            "value": "\"1\""
-          },
           "min": {
             "prefix": "final",
             "value": "0"
           },
-          "modifications": [
-            {
-              "value": "0",
-              "isFinal": true
-            },
-            {
-              "value": "\"1\"",
-              "isFinal": true
-            }
-          ],
           "annotation": {
             "dialog": {
               "tab": "Commissioning",
@@ -76,7 +49,6 @@
         },
         {
           "className": "Real",
-          "type": "Real",
           "name": "uOutDamMax",
           "value": "(uMin + uMax)/2",
           "comment": "Maximum loop signal for the OA damper to be fully open",
@@ -84,9 +56,6 @@
             "prefix": "final",
             "value": "\"1\""
           },
-          "displayUnit": {
-            "value": "\"1\""
-          },
           "min": {
             "prefix": "final",
             "value": "-1"
@@ -95,20 +64,6 @@
             "prefix": "final",
             "value": "1"
           },
-          "modifications": [
-            {
-              "value": "-1",
-              "isFinal": true
-            },
-            {
-              "value": "1",
-              "isFinal": true
-            },
-            {
-              "value": "\"1\"",
-              "isFinal": true
-            }
-          ],
           "annotation": {
             "dialog": {
               "tab": "Commissioning",
@@ -118,15 +73,11 @@
         },
         {
           "className": "Real",
-          "type": "Real",
           "name": "uRetDamMin",
           "value": "(uMin + uMax)/2",
           "comment": "Minimum loop signal for the RA damper to be fully open",
           "unit": {
             "prefix": "final",
-            "value": "\"1\""
-          },
-          "displayUnit": {
             "value": "\"1\""
           },
           "min": {
@@ -137,20 +88,6 @@
             "prefix": "final",
             "value": "1"
           },
-          "modifications": [
-            {
-              "value": "-1",
-              "isFinal": true
-            },
-            {
-              "value": "1",
-              "isFinal": true
-            },
-            {
-              "value": "\"1\"",
-              "isFinal": true
-            }
-          ],
           "annotation": {
             "dialog": {
               "tab": "Commissioning",
@@ -164,15 +101,6 @@
           "name": "samplePeriod",
           "value": "300",
           "comment": "Sample period of component, used to limit the rate of change of the dampers (to avoid quick opening that can result in frost)",
-          "unit": {
-            "value": "\"s\""
-          },
-          "displayUnit": {
-            "value": "\"s\""
-          },
-          "quantity": {
-            "value": "\"Time\""
-          },
           "annotation": {
             "dialog": {
               "tab": "General",
@@ -190,34 +118,28 @@
             "prefix": "final",
             "value": "\"1\""
           },
-          "modifications": [
-            {
-              "value": "\"1\"",
-              "isFinal": true
-            }
-          ],
           "placement": {
             "transformation": {
               "extent": [
                 {
-                  "x1": -160,
-                  "x2": -20
+                  "x": -160,
+                  "y": -20
                 },
                 {
-                  "x1": -120,
-                  "x2": 20
+                  "x": -120,
+                  "y": 20
                 }
               ]
             },
             "iconTransformation": {
               "extent": [
                 {
-                  "x1": -120,
-                  "x2": -10
+                  "x": -120,
+                  "y": -10
                 },
                 {
-                  "x1": -100,
-                  "x2": 10
+                  "x": -100,
+                  "y": 10
                 }
               ]
             }
@@ -239,42 +161,28 @@
             "prefix": "final",
             "value": "1"
           },
-          "modifications": [
-            {
-              "value": "0",
-              "isFinal": true
-            },
-            {
-              "value": "1",
-              "isFinal": true
-            },
-            {
-              "value": "\"1\"",
-              "isFinal": true
-            }
-          ],
           "placement": {
             "transformation": {
               "extent": [
                 {
-                  "x1": -160,
-                  "x2": -120
+                  "x": -160,
+                  "y": -120
                 },
                 {
-                  "x1": -120,
-                  "x2": -80
+                  "x": -120,
+                  "y": -80
                 }
               ]
             },
             "iconTransformation": {
               "extent": [
                 {
-                  "x1": -120,
-                  "x2": -90
+                  "x": -120,
+                  "y": -90
                 },
                 {
-                  "x1": -100,
-                  "x2": -70
+                  "x": -100,
+                  "y": -70
                 }
               ]
             }
@@ -296,42 +204,28 @@
             "prefix": "final",
             "value": "1"
           },
-          "modifications": [
-            {
-              "value": "0",
-              "isFinal": true
-            },
-            {
-              "value": "1",
-              "isFinal": true
-            },
-            {
-              "value": "\"1\"",
-              "isFinal": true
-            }
-          ],
           "placement": {
             "transformation": {
               "extent": [
                 {
-                  "x1": -160,
-                  "x2": -70
+                  "x": -160,
+                  "y": -70
                 },
                 {
-                  "x1": -120,
-                  "x2": -30
+                  "x": -120,
+                  "y": -30
                 }
               ]
             },
             "iconTransformation": {
               "extent": [
                 {
-                  "x1": -120,
-                  "x2": -50
+                  "x": -120,
+                  "y": -50
                 },
                 {
-                  "x1": -100,
-                  "x2": -30
+                  "x": -100,
+                  "y": -30
                 }
               ]
             }
@@ -353,42 +247,28 @@
             "prefix": "final",
             "value": "1"
           },
-          "modifications": [
-            {
-              "value": "0",
-              "isFinal": true
-            },
-            {
-              "value": "1",
-              "isFinal": true
-            },
-            {
-              "value": "\"1\"",
-              "isFinal": true
-            }
-          ],
           "placement": {
             "transformation": {
               "extent": [
                 {
-                  "x1": -160,
-                  "x2": 30
+                  "x": -160,
+                  "y": 30
                 },
                 {
-                  "x1": -120,
-                  "x2": 70
+                  "x": -120,
+                  "y": 70
                 }
               ]
             },
             "iconTransformation": {
               "extent": [
                 {
-                  "x1": -120,
-                  "x2": 30
+                  "x": -120,
+                  "y": 30
                 },
                 {
-                  "x1": -100,
-                  "x2": 50
+                  "x": -100,
+                  "y": 50
                 }
               ]
             }
@@ -410,42 +290,28 @@
             "prefix": "final",
             "value": "1"
           },
-          "modifications": [
-            {
-              "value": "0",
-              "isFinal": true
-            },
-            {
-              "value": "1",
-              "isFinal": true
-            },
-            {
-              "value": "\"1\"",
-              "isFinal": true
-            }
-          ],
           "placement": {
             "transformation": {
               "extent": [
                 {
-                  "x1": -160,
-                  "x2": 80
+                  "x": -160,
+                  "y": 80
                 },
                 {
-                  "x1": -120,
-                  "x2": 120
+                  "x": -120,
+                  "y": 120
                 }
               ]
             },
             "iconTransformation": {
               "extent": [
                 {
-                  "x1": -120,
-                  "x2": 70
+                  "x": -120,
+                  "y": 70
                 },
                 {
-                  "x1": -100,
-                  "x2": 90
+                  "x": -100,
+                  "y": 90
                 }
               ]
             }
@@ -469,42 +335,28 @@
             "prefix": "final",
             "value": "1"
           },
-          "modifications": [
-            {
-              "value": "0",
-              "isFinal": true
-            },
-            {
-              "value": "1",
-              "isFinal": true
-            },
-            {
-              "value": "\"1\"",
-              "isFinal": true
-            }
-          ],
           "placement": {
             "transformation": {
               "extent": [
                 {
-                  "x1": 120,
-                  "x2": -70
+                  "x": 120,
+                  "y": -70
                 },
                 {
-                  "x1": 140,
-                  "x2": -50
+                  "x": 140,
+                  "y": -50
                 }
               ]
             },
             "iconTransformation": {
               "extent": [
                 {
-                  "x1": 100,
-                  "x2": -30
+                  "x": 100,
+                  "y": -30
                 },
                 {
-                  "x1": 120,
-                  "x2": -10
+                  "x": 120,
+                  "y": -10
                 }
               ]
             }
@@ -526,42 +378,28 @@
             "prefix": "final",
             "value": "1"
           },
-          "modifications": [
-            {
-              "value": "0",
-              "isFinal": true
-            },
-            {
-              "value": "1",
-              "isFinal": true
-            },
-            {
-              "value": "\"1\"",
-              "isFinal": true
-            }
-          ],
           "placement": {
             "transformation": {
               "extent": [
                 {
-                  "x1": 120,
-                  "x2": 50
+                  "x": 120,
+                  "y": 50
                 },
                 {
-                  "x1": 140,
-                  "x2": 70
+                  "x": 140,
+                  "y": 70
                 }
               ]
             },
             "iconTransformation": {
               "extent": [
                 {
-                  "x1": 100,
-                  "x2": 10
+                  "x": 100,
+                  "y": 10
                 },
                 {
-                  "x1": 120,
-                  "x2": 30
+                  "x": 120,
+                  "y": 30
                 }
               ]
             }
@@ -586,12 +424,12 @@
             "transformation": {
               "extent": [
                 {
-                  "x1": -60,
-                  "x2": -32
+                  "x": -60,
+                  "y": -32
                 },
                 {
-                  "x1": -40,
-                  "x2": -12
+                  "x": -40,
+                  "y": -12
                 }
               ]
             }
@@ -612,12 +450,12 @@
             "transformation": {
               "extent": [
                 {
-                  "x1": -100,
-                  "x2": -60
+                  "x": -100,
+                  "y": -60
                 },
                 {
-                  "x1": -80,
-                  "x2": -40
+                  "x": -80,
+                  "y": -40
                 }
               ]
             }
@@ -638,12 +476,12 @@
             "transformation": {
               "extent": [
                 {
-                  "x1": -80,
-                  "x2": 68
+                  "x": -80,
+                  "y": 68
                 },
                 {
-                  "x1": -60,
-                  "x2": 88
+                  "x": -60,
+                  "y": 88
                 }
               ]
             }
@@ -664,12 +502,12 @@
             "transformation": {
               "extent": [
                 {
-                  "x1": -60,
-                  "x2": 10
+                  "x": -60,
+                  "y": 10
                 },
                 {
-                  "x1": -40,
-                  "x2": 30
+                  "x": -40,
+                  "y": 30
                 }
               ]
             }
@@ -695,12 +533,12 @@
             "transformation": {
               "extent": [
                 {
-                  "x1": 0,
-                  "x2": -40
+                  "x": 0,
+                  "y": -40
                 },
                 {
-                  "x1": 20,
-                  "x2": -20
+                  "x": 20,
+                  "y": -20
                 }
               ]
             }
@@ -726,12 +564,12 @@
             "transformation": {
               "extent": [
                 {
-                  "x1": 0,
-                  "x2": 60
+                  "x": 0,
+                  "y": 60
                 },
                 {
-                  "x1": 20,
-                  "x2": 80
+                  "x": 20,
+                  "y": 80
                 }
               ]
             }
@@ -745,12 +583,12 @@
             "transformation": {
               "extent": [
                 {
-                  "x1": 60,
-                  "x2": -70
+                  "x": 60,
+                  "y": -70
                 },
                 {
-                  "x1": 80,
-                  "x2": -50
+                  "x": 80,
+                  "y": -50
                 }
               ]
             }
@@ -764,12 +602,12 @@
             "transformation": {
               "extent": [
                 {
-                  "x1": 60,
-                  "x2": 50
+                  "x": 60,
+                  "y": 50
                 },
                 {
-                  "x1": 80,
-                  "x2": 70
+                  "x": 80,
+                  "y": 70
                 }
               ]
             }
@@ -790,12 +628,12 @@
             "transformation": {
               "extent": [
                 {
-                  "x1": 92,
-                  "x2": -70
+                  "x": 92,
+                  "y": -70
                 },
                 {
-                  "x1": 112,
-                  "x2": -50
+                  "x": 112,
+                  "y": -50
                 }
               ]
             }
@@ -816,12 +654,12 @@
             "transformation": {
               "extent": [
                 {
-                  "x1": 90,
-                  "x2": 50
+                  "x": 90,
+                  "y": 50
                 },
                 {
-                  "x1": 110,
-                  "x2": 70
+                  "x": 110,
+                  "y": 70
                 }
               ]
             }
@@ -829,15 +667,15 @@
         }
       ]
     },
-    "info": "<html>\n<p>\nThis is a multi zone VAV AHU economizer modulation block. It calculates\nthe outdoor and return air damper positions based on the supply air temperature\ncontrol loop signal. The implementation is in line with ASHRAE\nGuidline 36 (G36), PART5.N.2.c. Damper positions are linearly mapped to\nthe supply air control loop signal. This is a final sequence in the\ncomposite multi zone VAV AHU economizer control sequence. Damper position\nlimits, which are the inputs to the sequence, are the outputs of\n<a href=\"Buildings.Controls.OBC.ASHRAE.G36_PR1.AHUs.MultiZone.VAV.Economizers.Subsequences.Limits\">\nBuildings.Controls.OBC.ASHRAE.G36_PR1.AHUs.MultiZone.VAV.Economizers.Subsequences.Limits</a> and\n<a href=\"Buildings.Controls.OBC.ASHRAE.G36_PR1.AHUs.MultiZone.VAV.Economizers.Subsequences.Enable\">\nBuildings.Controls.OBC.ASHRAE.G36_PR1.AHUs.MultiZone.VAV.Economizers.Subsequences.Enable</a>\nsequences.\n</p>\n<p>\nWhen the economizer is enabled, the PI controller modulates the damper\npositions. Return and outdoor damper are not interlocked. When the economizer is disabled,\nthe damper positions are set to the minimum outdoor air damper position limits.\n</p>\n<p>\nThe time rate of change of the damper signals is limited by a first order hold,\nusing the sample time <code>samplePeriod</code>.\nThis prevents a quick opening of the outdoor air damper, for example when the\noutdoor airflow setpoint has a step change.\nSlowing down the opening of the outdoor air damper allows the freeze protection\nto componensate with its dynamics that is faster than the opening of the outdoor air damper.\nTo avoid that all dampers are closed, the return air damper has the same\ntime rate of change limitation.\n</p>\n<p>\nThe control charts below show the input-output structure and an economizer damper\nmodulation sequence assuming a well configured controller. Control diagram:\n</p>\n<p align=\"center\">\n<img alt=\"Image of the multi zone AHU modulation sequence control diagram\"\nsrc=\"Buildings/Resources/Images/Controls/OBC/ASHRAE/G36_PR1/AHUs/EconModulationControlDiagramMultiZone.png\"/>\n</p>\n<p>\nMulti zone AHU economizer modulation control chart:\n<br/>\n</p>\n<p align=\"center\">\n<img alt=\"Image of the multi zone AHU modulation sequence expected performance\"\nsrc=\"Buildings/Resources/Images/Controls/OBC/ASHRAE/G36_PR1/AHUs/EconModulationControlChartMultiZone.png\"/>\n</p>\n</html>",
+    "info": "<html>\n<p>\nThis is a multi zone VAV AHU economizer modulation block. It calculates\nthe outdoor and return air damper positions based on the supply air temperature\ncontrol loop signal. The implementation is in line with ASHRAE\nGuidline 36 (G36), PART5.N.2.c. Damper positions are linearly mapped to\nthe supply air control loop signal. This is a final sequence in the\ncomposite multi zone VAV AHU economizer control sequence. Damper position\nlimits, which are the inputs to the sequence, are the outputs of\n<a href=\"Buildings.Controls.OBC.ASHRAE.G36_PR1.AHUs.MultiZone.VAV.Economizers.Subsequences.Limits\">\nBuildings.Controls.OBC.ASHRAE.G36_PR1.AHUs.MultiZone.VAV.Economizers.Subsequences.Limits</a> and\n<a href=\"Buildings.Controls.OBC.ASHRAE.G36_PR1.AHUs.MultiZone.VAV.Economizers.Subsequences.Enable\">\nBuildings.Controls.OBC.ASHRAE.G36_PR1.AHUs.MultiZone.VAV.Economizers.Subsequences.Enable</a>\nsequences.\n</p>\n<p>\nWhen the economizer is enabled, the PI controller modulates the damper\npositions. Return and outdoor damper are not interlocked. When the economizer is disabled,\nthe damper positions are set to the minimum outdoor air damper position limits.\n</p>\n<p>\nThe time rate of change of the damper signals is limited by a first order hold,\nusing the sample time <code>samplePeriod</code>.\nThis prevents a quick opening of the outdoor air damper, for example when the\noutdoor airflow setpoint has a step change.\nSlowing down the opening of the outdoor air damper allows the freeze protection\nto componensate with its dynamics that is faster than the opening of the outdoor air damper.\nTo avoid that all dampers are closed, the return air damper has the same\ntime rate of change limitation.\n</p>\n<p>\nThe control charts below show the input-output structure and an economizer damper\nmodulation sequence assuming a well configured controller. Control diagram:\n</p>\n<p align=\"center\">\n<img alt=\"Image of the multi zone AHU modulation sequence control diagram\"\nsrc=\"Buildings/Resources/Images/Controls/OBC/ASHRAE/G36_PR1/AHUs/MultiZone/EconModulationControlDiagram.png\"/>\n</p>\n<p>\nMulti zone AHU economizer modulation control chart:\n<br/>\n</p>\n<p align=\"center\">\n<img alt=\"Image of the multi zone AHU modulation sequence expected performance\"\nsrc=\"Buildings/Resources/Images/Controls/OBC/ASHRAE/G36_PR1/AHUs/MultiZone/EconModulationControlChart.png\"/>\n</p>\n</html>",
     "icon": {
       "graphics": {
         "line": [
           {
             "points": [
               {
-                "x1": 20,
-                "x2": 58
+                "x": 20,
+                "y": 58
               }
             ],
             "color": {
@@ -849,20 +687,20 @@
           {
             "points": [
               {
-                "x1": -92,
-                "x2": -84
+                "x": -92,
+                "y": -84
               },
               {
-                "x1": -50,
-                "x2": -84
+                "x": -50,
+                "y": -84
               },
               {
-                "x1": 12,
-                "x2": 70
+                "x": 12,
+                "y": 70
               },
               {
-                "x1": 82,
-                "x2": 70
+                "x": 82,
+                "y": 70
               }
             ],
             "color": {
@@ -875,20 +713,20 @@
           {
             "points": [
               {
-                "x1": -66,
-                "x2": 58
+                "x": -66,
+                "y": 58
               },
               {
-                "x1": 12,
-                "x2": 58
+                "x": 12,
+                "y": 58
               },
               {
-                "x1": 50,
-                "x2": -76
+                "x": 50,
+                "y": -76
               },
               {
-                "x1": 100,
-                "x2": -76
+                "x": 100,
+                "y": -76
               }
             ],
             "color": {
@@ -915,12 +753,12 @@
             "fillPattern": "FillPattern.Solid",
             "extent": [
               {
-                "x1": -100,
-                "x2": -100
+                "x": -100,
+                "y": -100
               },
               {
-                "x1": 100,
-                "x2": 100
+                "x": 100,
+                "y": 100
               }
             ]
           }
@@ -934,12 +772,12 @@
             },
             "extent": [
               {
-                "x1": -108,
-                "x2": 138
+                "x": -108,
+                "y": 138
               },
               {
-                "x1": 102,
-                "x2": 110
+                "x": 102,
+                "y": 110
               }
             ],
             "textString": "\"%name\""
@@ -951,12 +789,12 @@
       "coordinateSystem": {
         "extent": [
           {
-            "x1": -120,
-            "x2": -120
+            "x": -120,
+            "y": -120
           },
           {
-            "x1": 120,
-            "x2": 120
+            "x": 120,
+            "y": 120
           }
         ],
         "preserveAspectRatio": false
@@ -977,12 +815,12 @@
             "fillPattern": "FillPattern.Solid",
             "extent": [
               {
-                "x1": -26,
-                "x2": 118
+                "x": -26,
+                "y": 118
               },
               {
-                "x1": 46,
-                "x2": -118
+                "x": 46,
+                "y": -118
               }
             ]
           },
@@ -1000,12 +838,12 @@
             "fillPattern": "FillPattern.Solid",
             "extent": [
               {
-                "x1": -118,
-                "x2": 118
+                "x": -118,
+                "y": 118
               },
               {
-                "x1": -34,
-                "x2": -118
+                "x": -34,
+                "y": -118
               }
             ]
           },
@@ -1023,12 +861,12 @@
             "fillPattern": "FillPattern.Solid",
             "extent": [
               {
-                "x1": 52,
-                "x2": 118
+                "x": 52,
+                "y": 118
               },
               {
-                "x1": 118,
-                "x2": -118
+                "x": 118,
+                "y": -118
               }
             ]
           }
@@ -1042,12 +880,12 @@
             },
             "extent": [
               {
-                "x1": -80,
-                "x2": 128
+                "x": -80,
+                "y": 128
               },
               {
-                "x1": -36,
-                "x2": 88
+                "x": -36,
+                "y": 88
               }
             ],
             "textString": "\"Damper position\nsupply air temperature\ncontrol loop\"",
@@ -1062,12 +900,12 @@
             },
             "extent": [
               {
-                "x1": -20,
-                "x2": 128
+                "x": -20,
+                "y": 128
               },
               {
-                "x1": 24,
-                "x2": 88
+                "x": 24,
+                "y": 88
               }
             ],
             "textString": "\"Damper position\nassignments\"",
@@ -1082,12 +920,12 @@
             },
             "extent": [
               {
-                "x1": 58,
-                "x2": 124
+                "x": 58,
+                "y": 124
               },
               {
-                "x1": 102,
-                "x2": 84
+                "x": 102,
+                "y": 84
               }
             ],
             "textString": "\"Overwrite if the freeze protection\nthat tracks TFre at the measured\nmixed air temperature limits the\ndamper position\"",
@@ -1110,20 +948,20 @@
         {
           "points": [
             {
-              "x1": -2,
-              "x2": -34
+              "x": -2,
+              "y": -34
             },
             {
-              "x1": -30,
-              "x2": -34
+              "x": -30,
+              "y": -34
             },
             {
-              "x1": -30,
-              "x2": -50
+              "x": -30,
+              "y": -50
             },
             {
-              "x1": -79,
-              "x2": -50
+              "x": -79,
+              "y": -50
             }
           ],
           "color": {
@@ -1145,12 +983,12 @@
         {
           "points": [
             {
-              "x1": -2,
-              "x2": -22
+              "x": -2,
+              "y": -22
             },
             {
-              "x1": -39,
-              "x2": -22
+              "x": -39,
+              "y": -22
             }
           ],
           "color": {
@@ -1171,20 +1009,20 @@
         {
           "points": [
             {
-              "x1": -2,
-              "x2": -26
+              "x": -2,
+              "y": -26
             },
             {
-              "x1": -24,
-              "x2": -26
+              "x": -24,
+              "y": -26
             },
             {
-              "x1": -24,
-              "x2": -100
+              "x": -24,
+              "y": -100
             },
             {
-              "x1": -140,
-              "x2": -100
+              "x": -140,
+              "y": -100
             }
           ],
           "color": {
@@ -1205,28 +1043,28 @@
         {
           "points": [
             {
-              "x1": -2,
-              "x2": -38
+              "x": -2,
+              "y": -38
             },
             {
-              "x1": -20,
-              "x2": -38
+              "x": -20,
+              "y": -38
             },
             {
-              "x1": -20,
-              "x2": -66
+              "x": -20,
+              "y": -66
             },
             {
-              "x1": -108,
-              "x2": -66
+              "x": -108,
+              "y": -66
             },
             {
-              "x1": -108,
-              "x2": -50
+              "x": -108,
+              "y": -50
             },
             {
-              "x1": -140,
-              "x2": -50
+              "x": -140,
+              "y": -50
             }
           ],
           "color": {
@@ -1248,20 +1086,20 @@
         {
           "points": [
             {
-              "x1": -2,
-              "x2": 66
+              "x": -2,
+              "y": 66
             },
             {
-              "x1": -28,
-              "x2": 66
+              "x": -28,
+              "y": 66
             },
             {
-              "x1": -28,
-              "x2": 20
+              "x": -28,
+              "y": 20
             },
             {
-              "x1": -39,
-              "x2": 20
+              "x": -39,
+              "y": 20
             }
           ],
           "color": {
@@ -1283,12 +1121,12 @@
         {
           "points": [
             {
-              "x1": -2,
-              "x2": 78
+              "x": -2,
+              "y": 78
             },
             {
-              "x1": -59,
-              "x2": 78
+              "x": -59,
+              "y": 78
             }
           ],
           "color": {
@@ -1309,20 +1147,20 @@
         {
           "points": [
             {
-              "x1": -2,
-              "x2": 74
+              "x": -2,
+              "y": 74
             },
             {
-              "x1": -48,
-              "x2": 74
+              "x": -48,
+              "y": 74
             },
             {
-              "x1": -48,
-              "x2": 100
+              "x": -48,
+              "y": 100
             },
             {
-              "x1": -140,
-              "x2": 100
+              "x": -140,
+              "y": 100
             }
           ],
           "color": {
@@ -1343,20 +1181,20 @@
         {
           "points": [
             {
-              "x1": -2,
-              "x2": 62
+              "x": -2,
+              "y": 62
             },
             {
-              "x1": -12,
-              "x2": 62
+              "x": -12,
+              "y": 62
             },
             {
-              "x1": -12,
-              "x2": 50
+              "x": -12,
+              "y": 50
             },
             {
-              "x1": -140,
-              "x2": 50
+              "x": -140,
+              "y": 50
             }
           ],
           "color": {
@@ -1377,20 +1215,20 @@
         {
           "points": [
             {
-              "x1": 58,
-              "x2": -66
+              "x": 58,
+              "y": -66
             },
             {
-              "x1": -108,
-              "x2": -66
+              "x": -108,
+              "y": -66
             },
             {
-              "x1": -108,
-              "x2": -50
+              "x": -108,
+              "y": -50
             },
             {
-              "x1": -140,
-              "x2": -50
+              "x": -140,
+              "y": -50
             }
           ],
           "color": {
@@ -1412,20 +1250,20 @@
         {
           "points": [
             {
-              "x1": 58,
-              "x2": -54
+              "x": 58,
+              "y": -54
             },
             {
-              "x1": 28,
-              "x2": -54
+              "x": 28,
+              "y": -54
             },
             {
-              "x1": 28,
-              "x2": -30
+              "x": 28,
+              "y": -30
             },
             {
-              "x1": 21,
-              "x2": -30
+              "x": 21,
+              "y": -30
             }
           ],
           "color": {
@@ -1447,20 +1285,20 @@
         {
           "points": [
             {
-              "x1": 58,
-              "x2": 66
+              "x": 58,
+              "y": 66
             },
             {
-              "x1": 30,
-              "x2": 66
+              "x": 30,
+              "y": 66
             },
             {
-              "x1": 30,
-              "x2": 70
+              "x": 30,
+              "y": 70
             },
             {
-              "x1": 21,
-              "x2": 70
+              "x": 21,
+              "y": 70
             }
           ],
           "color": {
@@ -1481,20 +1319,20 @@
         {
           "points": [
             {
-              "x1": -140,
-              "x2": 50
+              "x": -140,
+              "y": 50
             },
             {
-              "x1": -12,
-              "x2": 50
+              "x": -12,
+              "y": 50
             },
             {
-              "x1": -12,
-              "x2": 54
+              "x": -12,
+              "y": 54
             },
             {
-              "x1": 58,
-              "x2": 54
+              "x": 58,
+              "y": 54
             }
           ],
           "color": {
@@ -1516,12 +1354,12 @@
         {
           "points": [
             {
-              "x1": 81,
-              "x2": -60
+              "x": 81,
+              "y": -60
             },
             {
-              "x1": 90,
-              "x2": -60
+              "x": 90,
+              "y": -60
             }
           ],
           "color": {
@@ -1542,12 +1380,12 @@
         {
           "points": [
             {
-              "x1": 113,
-              "x2": -60
+              "x": 113,
+              "y": -60
             },
             {
-              "x1": 130,
-              "x2": -60
+              "x": 130,
+              "y": -60
             }
           ],
           "color": {
@@ -1568,20 +1406,20 @@
         {
           "points": [
             {
-              "x1": -140,
-              "x2": 0
+              "x": -140,
+              "y": 0
             },
             {
-              "x1": -22,
-              "x2": 0
+              "x": -22,
+              "y": 0
             },
             {
-              "x1": -22,
-              "x2": 70
+              "x": -22,
+              "y": 70
             },
             {
-              "x1": -2,
-              "x2": 70
+              "x": -2,
+              "y": 70
             }
           ],
           "color": {
@@ -1602,20 +1440,20 @@
         {
           "points": [
             {
-              "x1": -140,
-              "x2": 0
+              "x": -140,
+              "y": 0
             },
             {
-              "x1": -22,
-              "x2": 0
+              "x": -22,
+              "y": 0
             },
             {
-              "x1": -22,
-              "x2": -30
+              "x": -22,
+              "y": -30
             },
             {
-              "x1": -2,
-              "x2": -30
+              "x": -2,
+              "y": -30
             }
           ],
           "color": {
@@ -1637,12 +1475,12 @@
         {
           "points": [
             {
-              "x1": 81,
-              "x2": 60
+              "x": 81,
+              "y": 60
             },
             {
-              "x1": 88,
-              "x2": 60
+              "x": 88,
+              "y": 60
             }
           ],
           "color": {
@@ -1663,12 +1501,12 @@
         {
           "points": [
             {
-              "x1": 111,
-              "x2": 60
+              "x": 111,
+              "y": 60
             },
             {
-              "x1": 130,
-              "x2": 60
+              "x": 130,
+              "y": 60
             }
           ],
           "color": {
