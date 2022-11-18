@@ -21,7 +21,7 @@
       ],
       "models": [
         {
-          "className": "Buildings.Controls.OBC.CDL.Continuous.Gain",
+          "className": "Buildings.Controls.OBC.CDL.Continuous.MultiplyByParameter",
           "name": "gain",
           "comment": "Constant gain",
           "modifications": [
@@ -67,7 +67,7 @@
     },
     "extends": [
       {
-        "className": "Buildings.Controls.OBC.CDL.Continuous.LimPID",
+        "className": "Buildings.Controls.OBC.CDL.Continuous.PID",
         "modifications": [
           {
             "name": "k",
