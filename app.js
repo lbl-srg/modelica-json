@@ -3,7 +3,6 @@ const pa = require('./lib/parser.js')
 const ut = require('./lib/util.js')
 
 const logger = require('winston')
-const path = require('path')
 
 const ArgumentParser = require('argparse').ArgumentParser
 /// ///////////////////////////////////////
@@ -17,8 +16,8 @@ parser.addArgument(
   [ '-o', '--output' ],
   {
     help: 'Specify output format.',
-    choices: ['html', 'raw-json', 'json', 'docx', 'svg'],
-    defaultValue: 'html'
+    choices: ['raw-json', 'json', 'modelica'],
+    defaultValue: 'json'
   }
 )
 parser.addArgument(
@@ -34,13 +33,13 @@ parser.addArgument(
   {
     help: "Parsing mode, CDL model or a package of the Modelica Buildings library, 'cdl' is the default.",
     choices: ['cdl', 'modelica'],
-    defaultValue: 'cdl'
+    defaultValue: 'modelica'
   }
 )
 parser.addArgument(
   [ '-f', '--file' ],
   {
-    help: 'Filename or packagename that contains the top-level Modelica class.',
+    help: "Filename or packagename that contains the top-level Modelica class, or a json file when the output format is 'modelica'.",
     required: true
   }
 )
@@ -51,10 +50,11 @@ parser.addArgument(
     defaultValue: 'current'
   }
 )
+
 parser.addArgument(
-  '--strict',
+  [ '-p', '--prettyPrint' ],
   {
-    help: 'Exit with code 1 if there is any warning.',
+    help: 'Pretty print JSON output.',
     defaultValue: 'false'
   }
 )
@@ -78,30 +78,19 @@ logger.cli()
 
 logger.level = args.log
 
-if (args.mode === 'modelica' && args.output === 'svg') {
-  throw new Error('svg output option has not been enabled in modelica mode.')
+if (args.output === 'modelica' && !args.file.endsWith('.json')) {
+  throw new Error('Modelica output requires the input file (-f) to be a json file.')
 }
 
-// Get mo files array
-var moFiles = ut.getMoFiles(args.mode, args.file)
+if (args.output !== 'modelica' && args.file.endsWith('.json')) {
+  throw new Error("The json input file required only when the output format (-o) is 'modelica'.")
+}
 
-// Parse the json representation for moFiles
-var json = pa.getJSON(moFiles, args.mode, args.output)
-
-// Get the name array of output files
-var outFile = ut.getOutFile(args.mode, args.file, args.output, args.directory, moFiles, json)
-
-pa.exportJSON(json, outFile, args.output, args.mode, args.directory)
-
-var schema
-if (args.mode === 'cdl') {
-  schema = path.join(`${__dirname}`, 'schema-CDL.json')
+if (args.output === 'modelica') {
+  pa.convertToModelica(args.file, args.directory, false)
 } else {
-  schema = path.join(`${__dirname}`, 'schema-modelica.json')
-}
-
-setTimeout(function () { ut.jsonSchemaValidate(args.mode, outFile[0], args.output, schema) }, 100)
-
-if (args.strict === 'true' && pa.warnCounter > 0) {
-  process.exit(1)
+  // Get mo files array
+  var moFiles = ut.getMoFiles(args.file)
+  // Parse the json representation for moFiles
+  pa.getJsons(moFiles, args.mode, args.output, args.directory, args.prettyPrint)
 }
