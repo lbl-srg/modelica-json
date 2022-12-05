@@ -123,7 +123,7 @@ JSON Schemas describe the data format and file structure to ensure the quality o
 
 Two schemas are available (links to the raw files) :
 - [Schema-CDL.json](https://raw.githubusercontent.com/lbl-srg/modelica-json/master/schema-CDL.json) validates the JSON files parsed from CDL
-- [Schema-modelica.json](schema-modelica-20221202.json) validates the JSON files parsed from Modelica models
+- [Schema-modelica.json](schema-modelica-20221205.json) validates the JSON files parsed from Modelica models
 
 Graphical viewers are available (please use right click + open in a new tab or refresh the page if necessary - this is not optimized for Firefox) :
 - [CDL Schema viewer](CDL.html)
