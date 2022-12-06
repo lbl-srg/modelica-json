@@ -37,7 +37,7 @@
       "oneOf": [
         {
           "type": "object",
-          "additionalItems": false,
+          "additionalProperties": false,
           "properties": {
             "long_class_specifier": {
               "$ref": "#/definitions/long_class_specifier"
@@ -46,7 +46,7 @@
         },
         {
           "type": "object",
-          "additionalItems": false,
+          "additionalProperties": false,
           "properties": {
             "short_class_specifier": {
               "$ref": "#/definitions/short_class_specifier"
@@ -55,7 +55,7 @@
         },
         {
           "type": "object",
-          "additionalItems": false,
+          "additionalProperties": false,
           "properties": {
             "der_class_specifier": {
               "$ref": "#/definitions/der_class_specifier"
@@ -327,10 +327,6 @@
       "oneOf": [
         {
           "type": "object",
-          "required": [
-            "name",
-            "description_string"
-          ],
           "additionalProperties": false,
           "properties": {
             "name": {
@@ -346,7 +342,7 @@
         },
         {
           "type": "object",
-          "additionalItems": false,
+          "additionalProperties": false,
           "properties": {
             "Line": {
               "$ref": "#/definitions/Line"
@@ -355,7 +351,7 @@
         },
         {
           "type": "object",
-          "additionalItems": false,
+          "additionalProperties": false,
           "properties": {
             "Text": {
               "$ref": "#/definitions/Text"
@@ -364,7 +360,7 @@
         },
         {
           "type": "object",
-          "additionalItems": false,
+          "additionalProperties": false,
           "properties": {
             "Rectangle": {
               "$ref": "#/definitions/Rectangle"
@@ -373,7 +369,7 @@
         },
         {
           "type": "object",
-          "additionalItems": false,
+          "additionalProperties": false,
           "properties": {
             "Polygon": {
               "$ref": "#/definitions/Polygon"
@@ -382,7 +378,7 @@
         },
         {
           "type": "object",
-          "additionalItems": false,
+          "additionalProperties": false,
           "properties": {
             "Ellipse": {
               "$ref": "#/definitions/Ellipse"
@@ -391,7 +387,7 @@
         },
         {
           "type": "object",
-          "additionalItems": false,
+          "additionalProperties": false,
           "properties": {
             "Bitmap": {
               "$ref": "#/definitions/Bitmap"
@@ -400,7 +396,7 @@
         },
         {
           "type": "object",
-          "additionalItems": false,
+          "additionalProperties": false,
           "properties": {
             "Placement": {
               "$ref": "#/definitions/Placement"
@@ -409,7 +405,7 @@
         },
         {
           "type": "object",
-          "additionalItems": false,
+          "additionalProperties": false,
           "properties": {
             "coordinateSystem": {
               "$ref": "#/definitions/coordinateSystem"
@@ -418,7 +414,7 @@
         },
         {
           "type": "object",
-          "additionalItems": false,
+          "additionalProperties": false,
           "properties": {
             "graphics": {
               "$ref": "#/definitions/graphics"
@@ -1273,6 +1269,9 @@
     "descriptionSchema": {
       "description": "Description",
       "type": "object",
+      "required": [
+        "description_string"
+      ],
       "additionalProperties": false,
       "properties": {
         "description_string": {
