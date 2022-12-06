@@ -37,12 +37,8 @@
       "description": "Class specifier",
       "oneOf": [
         {
-          "type": "object",
-          "additionalItems": false,
-          "properties": {
-            "long_class_specifier": {
-              "$ref": "#/definitions/long_class_specifier"
-            }
+          "long_class_specifier": {
+            "$ref": "#/definitions/long_class_specifier"
           }
         },
         {
@@ -951,35 +947,41 @@
       "description": "Function arguments",
       "oneOf": [
         {
-          "type": "array",
-          "additionalItems": false,
-          "items": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-              "name": {
-                "type": "string"
-              }
-            }
-          }
+          "$ref": "#/definitions/funArgsObjName"
         },
         {
-          "type": "array",
-          "additionalItems": false,
-          "items": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-              "expression": {
-                "$ref": "#/definitions/simpleExpression"
-              },
-              "for_loop": {
-                "$ref": "#/definitions/forLoopIndices"
-              }
-            }
-          }
+          "$ref": "#/definitions/funArgsObjExp"
         }
       ]
+    },
+    "funArgsObjName": {
+      "type": "array",
+      "additionalItems": false,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "funArgsObjExp": {
+      "type": "array",
+      "additionalItems": false,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "expression": {
+            "$ref": "#/definitions/simpleExpression"
+          },
+          "for_loop": {
+            "$ref": "#/definitions/forLoopIndices"
+          }
+        }
+      }
     },
     "forLoopObj": {
       "description": "For loop object",
