@@ -37,8 +37,12 @@
       "description": "Class specifier",
       "oneOf": [
         {
-          "long_class_specifier": {
-            "$ref": "#/definitions/long_class_specifier"
+          "type": "object",
+          "additionalItems": false,
+          "properties": {
+            "long_class_specifier": {
+              "$ref": "#/definitions/long_class_specifier"
+            }
           }
         },
         {

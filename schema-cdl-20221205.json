@@ -53,51 +53,43 @@
     "long_class_specifier": {
       "description": "Long class specifier",
       "type": "object",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "required": [
-          "identifier",
-          "composition",
-          "description_string"
-        ],
-        "additionalProperties": false,
-        "properties": {
-          "identifier": {
-            "type": "string"
-          },
-          "description_string": {
-            "type": "string"
-          },
-          "composition": {
-            "$ref": "#/definitions/composition"
-          },
-          "class_modification": {
-            "$ref": "#/definitions/class_modification"
-          }
+      "required": [
+        "identifier",
+        "composition",
+        "description_string"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "identifier": {
+          "type": "string"
+        },
+        "description_string": {
+          "type": "string"
+        },
+        "composition": {
+          "$ref": "#/definitions/composition"
+        },
+        "class_modification": {
+          "$ref": "#/definitions/class_modification"
         }
       }
     },
     "composition": {
       "description": "Composition",
       "type": "object",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "required": [
-          "annotation"
-        ],
-        "additionalProperties": false,
-        "properties": {
-          "element_list": {
-            "$ref": "#/definitions/element_list"
-          },
-          "element_sections": {
-            "$ref": "#/definitions/element_sections"
-          },
-          "annotation": {
-            "$ref": "#/definitions/class_modification"
-          }
+      "required": [
+        "annotation"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "element_list": {
+          "$ref": "#/definitions/element_list"
+        },
+        "element_sections": {
+          "$ref": "#/definitions/element_sections"
+        },
+        "annotation": {
+          "$ref": "#/definitions/class_modification"
         }
       }
     },
@@ -132,7 +124,8 @@
       "items": {
         "type": "object",
         "required": [
-          "component_clause"
+          "component_clause",
+          "description"
         ],
         "additionalProperties": false,
         "properties": {
@@ -223,14 +216,10 @@
     "condition_attribute": {
       "description": "Condition attribute",
       "type": "object",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "expression": {
-            "$ref": "#/definitions/expression"
-          }
+      "additionalProperties": false,
+      "properties": {
+        "expression": {
+          "$ref": "#/definitions/expression"
         }
       }
     },
@@ -733,40 +722,32 @@
     "element_modification_or_replaceable": {
       "description": "Element modification and replaceable",
       "type": "object",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "required": [
-          "element_modification"
-        ],
-        "additionalProperties": false,
-        "properties": {
-          "each": {
-            "type": "boolean"
-          },
-          "final": {
-            "type": "boolean"
-          },
-          "element_modification": {
-            "$ref": "#/definitions/element_modification"
-          }
+      "required": [
+        "element_modification"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "each": {
+          "type": "boolean"
+        },
+        "final": {
+          "type": "boolean"
+        },
+        "element_modification": {
+          "$ref": "#/definitions/element_modification"
         }
       }
     },
     "expression": {
       "description": "Expression",
       "type": "object",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "simple_expression": {
-            "$ref": "#/definitions/simpleExpression"
-          },
-          "if_expression": {
-            "$ref": "#/definitions/ifExpression"
-          }
+      "additionalProperties": false,
+      "properties": {
+        "simple_expression": {
+          "$ref": "#/definitions/simpleExpression"
+        },
+        "if_expression": {
+          "$ref": "#/definitions/ifExpression"
         }
       }
     },
@@ -809,16 +790,12 @@
       "description": "For loop object",
       "type": "object",
       "additionalItems": false,
-      "items": {
-        "type": "object",
-        "additionalItems": false,
-        "properties": {
-          "expression": {
-            "$ref": "#/definitions/simpleExpression"
-          },
-          "for_loop": {
-            "$ref": "#/definitions/forLoopIndices"
-          }
+      "properties": {
+        "expression": {
+          "$ref": "#/definitions/simpleExpression"
+        },
+        "for_loop": {
+          "$ref": "#/definitions/forLoopIndices"
         }
       }
     },
@@ -846,13 +823,9 @@
       "description": "Logical expression",
       "type": "object",
       "additionalItems": false,
-      "items": {
-        "type": "object",
-        "additionalItems": false,
-        "properties": {
-          "logical_or": {
-            "$ref": "#/definitions/OrArray"
-          }
+      "properties": {
+        "logical_or": {
+          "$ref": "#/definitions/OrArray"
         }
       }
     },
@@ -937,17 +910,13 @@
     "ifExpression": {
       "description": "If expression",
       "type": "object",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "if_elseif": {
-            "$ref": "#/definitions/if_elseIfExpression"
-          },
-          "else_expression": {
-            "$ref": "#/definitions/expression"
-          }
+      "additionalProperties": false,
+      "properties": {
+        "if_elseif": {
+          "$ref": "#/definitions/if_elseIfExpression"
+        },
+        "else_expression": {
+          "$ref": "#/definitions/expression"
         }
       }
     },
@@ -988,66 +957,54 @@
     "modification": {
       "description": "Modification",
       "type": "object",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "class_modification": {
-            "$ref": "#/definitions/class_modification"
-          },
-          "equal": {
-            "type": "boolean"
-          },
-          "expression": {
-            "$ref": "#/definitions/expression"
-          }
+      "additionalProperties": false,
+      "properties": {
+        "class_modification": {
+          "$ref": "#/definitions/class_modification"
+        },
+        "equal": {
+          "type": "boolean"
+        },
+        "expression": {
+          "$ref": "#/definitions/expression"
         }
       }
     },
     "short_class_specifier": {
       "description": "Short class specifier",
       "type": "object",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "identifier": {
-            "type": "string"
-          },
-          "value": {
-            "$ref": "#/definitions/short_class_specifier_value"
-          }
+      "additionalProperties": false,
+      "properties": {
+        "identifier": {
+          "type": "string"
+        },
+        "value": {
+          "$ref": "#/definitions/short_class_specifier_value"
         }
       }
     },
     "short_class_specifier_value": {
       "description": "Short class specifier value",
       "type": "object",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "base_prefix": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "array_subscripts": {
-            "$ref": "#/definitions/array_subscripts"
-          },
-          "class_modification": {
-            "$ref": "#/definitions/class_modification"
-          },
-          "description": {
-            "$ref": "#/definitions/descriptionSchema"
-          },
-          "enum_list": {
-            "$ref": "#/definitions/enum_list"
-          }
+      "additionalProperties": false,
+      "properties": {
+        "base_prefix": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "array_subscripts": {
+          "$ref": "#/definitions/array_subscripts"
+        },
+        "class_modification": {
+          "$ref": "#/definitions/class_modification"
+        },
+        "description": {
+          "$ref": "#/definitions/descriptionSchema"
+        },
+        "enum_list": {
+          "$ref": "#/definitions/enum_list"
         }
       }
     },
@@ -1071,93 +1028,73 @@
     "declaration": {
       "description": "Declaration",
       "type": "object",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "identifier": {
-            "type": "string"
-          },
-          "array_subscripts": {
-            "$ref": "#/definitions/array_subscripts"
-          },
-          "modification": {
-            "$ref": "#/definitions/modification"
-          }
+      "additionalProperties": false,
+      "properties": {
+        "identifier": {
+          "type": "string"
+        },
+        "array_subscripts": {
+          "$ref": "#/definitions/array_subscripts"
+        },
+        "modification": {
+          "$ref": "#/definitions/modification"
         }
       }
     },
     "descriptionSchema": {
       "description": "Description",
       "type": "object",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "required": [
-          "description_string",
-          "annotation"
-        ],
-        "additionalProperties": false,
-        "properties": {
-          "description_string": {
-            "type": "string"
-          },
-          "annotation": {
-            "$ref": "#/definitions/class_modification"
-          }
+      "required": [
+        "description_string",
+        "annotation"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "description_string": {
+          "type": "string"
+        },
+        "annotation": {
+          "$ref": "#/definitions/class_modification"
         }
       }
     },
     "short_class_definition": {
       "description": "Short class definition",
       "type": "object",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "required": [
-          "class_prefixes",
-          "short_class_specifier"
-        ],
-        "additionalProperties": false,
-        "properties": {
-          "class_prefixes": {
-            "type": "string"
-          },
-          "short_class_specifier": {
-            "$ref": "#/definitions/short_class_specifier"
-          }
+      "required": [
+        "class_prefixes",
+        "short_class_specifier"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "class_prefixes": {
+          "type": "string"
+        },
+        "short_class_specifier": {
+          "$ref": "#/definitions/short_class_specifier"
         }
       }
     },
     "equation_section": {
       "description": "Equation section",
       "type": "object",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "equation": {
-            "$ref": "#/definitions/equation"
-          }
+      "additionalProperties": false,
+      "properties": {
+        "equation": {
+          "$ref": "#/definitions/equation"
         }
       }
     },
     "connect_clause": {
       "description": "Connect clause",
       "type": "object",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "from": {
-            "$ref": "#/definitions/component_reference"
-          },
-          "to": {
-            "$ref": "#/definitions/component_reference"
-          }
+      "additionalProperties": false,
+      "properties": {
+        "from": {
+          "$ref": "#/definitions/component_reference"
+        },
+        "to": {
+          "$ref": "#/definitions/component_reference"
         }
       }
     },
