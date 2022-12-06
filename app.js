@@ -3,6 +3,7 @@ const pa = require('./lib/parser.js')
 const ut = require('./lib/util.js')
 
 const logger = require('winston')
+const path = require('path')
 
 const ArgumentParser = require('argparse').ArgumentParser
 /// ///////////////////////////////////////
@@ -94,3 +95,23 @@ if (args.output === 'modelica') {
   // Parse the json representation for moFiles
   pa.getJsons(moFiles, args.mode, args.output, args.directory, args.prettyPrint)
 }
+
+if (args.output === 'json') {
+  var schema
+  if (args.mode === 'cdl') {
+    schema = path.join(`${__dirname}`, 'schema-cdl-20221205.json')
+  } else {
+    schema = path.join(`${__dirname}`, 'schema-modelica.json')
+  }
+  var jsonFiles = ut.findFilesInDir(path.join(args.directory, 'json'), '.json')
+  // exclude CDL folder and possibly Modelica folder
+  var pathSep = path.sep
+  var cdlPath = path.join(pathSep, 'CDL', pathSep)
+  var modelicaPath = path.join('Modelica', pathSep)
+  jsonFiles = jsonFiles.filter(filePath => filePath.includes(cdlPath) || filePath.includes(modelicaPath))
+  // validate json schema
+  for (var i = 0; i < jsonFiles.length; i++) {
+    setTimeout(function () { ut.jsonSchemaValidation(args.mode, jsonFiles[i], 'json', schema) }, 100)
+  }
+}
+
