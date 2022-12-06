@@ -1,7 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "schema-modelica.json",
-  "type": "array",
   "title": "JSON parsed Modelica file",
   "description": "Json representation of a Modelica model",
   "$comment": "Version 2, 12/05/2022",
@@ -1876,35 +1875,32 @@
       }
     }
   },
-  "additionalItems": false,
-  "items": {
-    "type": "object",
-    "required": [
-      "within",
-      "class_definition"
-    ],
-    "additionalProperties": false,
-    "properties": {
-      "within": {
-        "description": "Within statement from the Modelica file : no special characters or spaces. If empty string, it may be a package file.",
-        "type": "string",
-        "pattern": "^([a-zA-Z0-9._*]*)$"
-      },
-      "class_definition": {
-        "$ref": "#/definitions/class_definition"
-      },
-      "modelicaFile": {
-        "description": "Relative modelica file path.",
-        "type": "string"
-      },
-      "fullMoFilePath": {
-        "description": "Absolute modelica file path.",
-        "type": "string"
-      },
-      "checkSum": {
-        "description": "Checksum record of the modelica file",
-        "type": "string"
-      }
+  "type": "object",
+  "required": [
+    "within",
+    "class_definition"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "within": {
+      "description": "Within statement from the Modelica file : no special characters or spaces. If empty string, it may be a package file.",
+      "type": "string",
+      "pattern": "^([a-zA-Z0-9._*]*)$"
+    },
+    "class_definition": {
+      "$ref": "#/definitions/class_definition"
+    },
+    "modelicaFile": {
+      "description": "Relative modelica file path.",
+      "type": "string"
+    },
+    "fullMoFilePath": {
+      "description": "Absolute modelica file path.",
+      "type": "string"
+    },
+    "checksum": {
+      "description": "Checksum record of the modelica file",
+      "type": "string"
     }
   }
 }
