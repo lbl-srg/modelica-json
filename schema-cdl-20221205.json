@@ -6,37 +6,6 @@
   "description": "Json representation of a Modelica model",
   "$comment": "Version 2, 12/05/2022",
   "definitions": {
-    "additionalItems": false,
-    "items": {
-      "type": "object",
-      "required": [
-        "within",
-        "class_definition"
-      ],
-      "additionalProperties": false,
-      "properties": {
-        "within": {
-          "description": "Within statement from the Modelica file : no special characters or spaces. If empty string, it may be a package file.",
-          "type": "string",
-          "pattern": "^([a-zA-Z0-9._*]*)$"
-        },
-        "class_definition": {
-          "$ref": "#/definitions/class_definition"
-        },
-        "modelicaFile": {
-          "description": "Relative modelica file path.",
-          "type": "string"
-        },
-        "fullMoFilePath": {
-          "description": "Absolute modelica file path.",
-          "type": "string"
-        },
-        "checkSum": {
-          "description": "Checksum record of the modelica file",
-          "type": "string"
-        }
-      }
-    },
     "class_definition": {
       "description": "Class definition",
       "type": "array",
@@ -1271,6 +1240,37 @@
             "$ref": "#/definitions/array_subscripts"
           }
         }
+      }
+    }
+  },
+  "additionalItems": false,
+  "items": {
+    "type": "object",
+    "required": [
+      "within",
+      "class_definition"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "within": {
+        "description": "Within statement from the Modelica file : no special characters or spaces. If empty string, it may be a package file.",
+        "type": "string",
+        "pattern": "^([a-zA-Z0-9._*]*)$"
+      },
+      "class_definition": {
+        "$ref": "#/definitions/class_definition"
+      },
+      "modelicaFile": {
+        "description": "Relative modelica file path.",
+        "type": "string"
+      },
+      "fullMoFilePath": {
+        "description": "Absolute modelica file path.",
+        "type": "string"
+      },
+      "checkSum": {
+        "description": "Checksum record of the modelica file",
+        "type": "string"
       }
     }
   }
