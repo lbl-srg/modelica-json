@@ -769,7 +769,7 @@
           "name",
           "attribute"
         ],
-        "additionalItems": false,
+        "additionalProperties": false,
         "properties": {
           "name": {
             "type": "string"
@@ -827,44 +827,36 @@
     "transformation": {
       "description": "transformation object",
       "type": "object",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "required": [
-          "extent"
-        ],
-        "additionalItems": false,
-        "properties": {
-          "origin": {
-            "$ref": "#/definitions/origin"
-          },
-          "extent": {
-            "$ref": "#/definitions/points"
-          },
-          "rotation": {
-            "type": "number"
-          }
+      "required": [
+        "extent"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "origin": {
+          "$ref": "#/definitions/origin"
+        },
+        "extent": {
+          "$ref": "#/definitions/points"
+        },
+        "rotation": {
+          "type": "number"
         }
       }
     },
     "origin": {
       "description": "origin point",
       "type": "object",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "required": [
-          "x",
-          "y"
-        ],
-        "additionalProperties": false,
-        "properties": {
-          "x": {
-            "type": "number"
-          },
-          "y": {
-            "type": "number"
-          }
+      "required": [
+        "x",
+        "y"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "x": {
+          "type": "number"
+        },
+        "y": {
+          "type": "number"
         }
       }
     },
