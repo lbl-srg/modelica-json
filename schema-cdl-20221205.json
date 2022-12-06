@@ -239,24 +239,20 @@
       "oneOf": [
         {
           "type": "object",
-          "additionalItems": false,
-          "items": {
-            "type": "object",
-            "required": [
-              "name",
-              "description_string"
-            ],
-            "additionalProperties": false,
-            "properties": {
-              "name": {
-                "type": "string"
-              },
-              "modification": {
-                "$ref": "#/definitions/modification"
-              },
-              "description_string": {
-                "type": "string"
-              }
+          "required": [
+            "name",
+            "description_string"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "modification": {
+              "$ref": "#/definitions/modification"
+            },
+            "description_string": {
+              "type": "string"
             }
           }
         },
@@ -346,295 +342,263 @@
     "Line": {
       "description": "Line object",
       "type": "object",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "additionalItems": false,
-        "properties": {
-          "points": {
-            "$ref": "#/definitions/points"
-          },
-          "color": {
-            "$ref": "#/definitions/color"
-          },
-          "pattern": {
-            "type": "string"
-          },
-          "thickness": {
-            "type": "number"
-          },
-          "arrowSize": {
-            "type": "number"
-          },
-          "smooth": {
-            "type": "string"
-          },
-          "visible": {
-            "type": "string"
-          }
+      "additionalProperties": false,
+      "properties": {
+        "points": {
+          "$ref": "#/definitions/points"
+        },
+        "color": {
+          "$ref": "#/definitions/color"
+        },
+        "pattern": {
+          "type": "string"
+        },
+        "thickness": {
+          "type": "number"
+        },
+        "arrowSize": {
+          "type": "number"
+        },
+        "smooth": {
+          "type": "string"
+        },
+        "visible": {
+          "type": "string"
         }
       }
     },
     "Text": {
       "description": "Text object",
       "type": "object",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "additionalItems": false,
-        "properties": {
-          "extent": {
-            "$ref": "#/definitions/points"
-          },
-          "textString": {
-            "type": "string"
-          },
-          "fontSize": {
-            "type": "number"
-          },
-          "fontName": {
-            "type": "string"
-          },
-          "textColor": {
-            "$ref": "#/definitions/color"
-          },
-          "horizontalAlignment": {
-            "type": "string"
-          },
-          "string": {
-            "type": "string"
-          },
-          "index": {
-            "type": "number"
-          },
-          "lineColor": {
-            "$ref": "#/definitions/color"
-          },
-          "fillColor": {
-            "$ref": "#/definitions/color"
-          },
-          "pattern": {
-            "type": "string"
-          },
-          "fillPattern": {
-            "type": "string"
-          },
-          "lineThickness": {
-            "type": "number"
-          },
-          "visible": {
-            "type": "string"
-          },
-          "origin": {
-            "$ref": "#/definitions/origin"
-          },
-          "rotation": {
-            "type": "number"
-          }
+      "additionalProperties": false,
+      "properties": {
+        "extent": {
+          "$ref": "#/definitions/points"
+        },
+        "textString": {
+          "type": "string"
+        },
+        "fontSize": {
+          "type": "number"
+        },
+        "fontName": {
+          "type": "string"
+        },
+        "textColor": {
+          "$ref": "#/definitions/color"
+        },
+        "horizontalAlignment": {
+          "type": "string"
+        },
+        "string": {
+          "type": "string"
+        },
+        "index": {
+          "type": "number"
+        },
+        "lineColor": {
+          "$ref": "#/definitions/color"
+        },
+        "fillColor": {
+          "$ref": "#/definitions/color"
+        },
+        "pattern": {
+          "type": "string"
+        },
+        "fillPattern": {
+          "type": "string"
+        },
+        "lineThickness": {
+          "type": "number"
+        },
+        "visible": {
+          "type": "string"
+        },
+        "origin": {
+          "$ref": "#/definitions/origin"
+        },
+        "rotation": {
+          "type": "number"
         }
       }
     },
     "Rectangle": {
       "description": "Rectangle object",
       "type": "object",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "additionalItems": false,
-        "properties": {
-          "extent": {
-            "$ref": "#/definitions/points"
-          },
-          "radius": {
-            "type": "number"
-          },
-          "borderPattern": {
-            "type": "string"
-          },
-          "lineColor": {
-            "$ref": "#/definitions/color"
-          },
-          "fillColor": {
-            "$ref": "#/definitions/color"
-          },
-          "pattern": {
-            "type": "string"
-          },
-          "fillPattern": {
-            "type": "string"
-          },
-          "lineThickness": {
-            "type": "number"
-          },
-          "visible": {
-            "type": "string"
-          },
-          "origin": {
-            "$ref": "#/definitions/origin"
-          },
-          "rotation": {
-            "type": "number"
-          }
+      "additionalProperties": false,
+      "properties": {
+        "extent": {
+          "$ref": "#/definitions/points"
+        },
+        "radius": {
+          "type": "number"
+        },
+        "borderPattern": {
+          "type": "string"
+        },
+        "lineColor": {
+          "$ref": "#/definitions/color"
+        },
+        "fillColor": {
+          "$ref": "#/definitions/color"
+        },
+        "pattern": {
+          "type": "string"
+        },
+        "fillPattern": {
+          "type": "string"
+        },
+        "lineThickness": {
+          "type": "number"
+        },
+        "visible": {
+          "type": "string"
+        },
+        "origin": {
+          "$ref": "#/definitions/origin"
+        },
+        "rotation": {
+          "type": "number"
         }
       }
     },
     "Polygon": {
       "description": "Polygon object",
       "type": "object",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "additionalItems": false,
-        "properties": {
-          "points": {
-            "$ref": "#/definitions/points"
-          },
-          "smooth": {
-            "type": "string"
-          },
-          "lineColor": {
-            "$ref": "#/definitions/color"
-          },
-          "fillColor": {
-            "$ref": "#/definitions/color"
-          },
-          "pattern": {
-            "type": "string"
-          },
-          "fillPattern": {
-            "type": "string"
-          },
-          "lineThickness": {
-            "type": "number"
-          },
-          "visible": {
-            "type": "string"
-          },
-          "origin": {
-            "$ref": "#/definitions/origin"
-          },
-          "rotation": {
-            "type": "number"
-          }
+      "additionalProperties": false,
+      "properties": {
+        "points": {
+          "$ref": "#/definitions/points"
+        },
+        "smooth": {
+          "type": "string"
+        },
+        "lineColor": {
+          "$ref": "#/definitions/color"
+        },
+        "fillColor": {
+          "$ref": "#/definitions/color"
+        },
+        "pattern": {
+          "type": "string"
+        },
+        "fillPattern": {
+          "type": "string"
+        },
+        "lineThickness": {
+          "type": "number"
+        },
+        "visible": {
+          "type": "string"
+        },
+        "origin": {
+          "$ref": "#/definitions/origin"
+        },
+        "rotation": {
+          "type": "number"
         }
       }
     },
     "Ellipse": {
       "description": "Ellipse object",
       "type": "object",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "additionalItems": false,
-        "properties": {
-          "extent": {
-            "$ref": "#/definitions/points"
-          },
-          "startAngle": {
-            "type": "number"
-          },
-          "endAngle": {
-            "type": "number"
-          },
-          "closure": {
-            "type": "string"
-          },
-          "lineColor": {
-            "$ref": "#/definitions/color"
-          },
-          "fillColor": {
-            "$ref": "#/definitions/color"
-          },
-          "pattern": {
-            "type": "string"
-          },
-          "fillPattern": {
-            "type": "string"
-          },
-          "lineThickness": {
-            "type": "number"
-          },
-          "visible": {
-            "type": "string"
-          },
-          "origin": {
-            "$ref": "#/definitions/origin"
-          },
-          "rotation": {
-            "type": "number"
-          }
+      "additionalProperties": false,
+      "properties": {
+        "extent": {
+          "$ref": "#/definitions/points"
+        },
+        "startAngle": {
+          "type": "number"
+        },
+        "endAngle": {
+          "type": "number"
+        },
+        "closure": {
+          "type": "string"
+        },
+        "lineColor": {
+          "$ref": "#/definitions/color"
+        },
+        "fillColor": {
+          "$ref": "#/definitions/color"
+        },
+        "pattern": {
+          "type": "string"
+        },
+        "fillPattern": {
+          "type": "string"
+        },
+        "lineThickness": {
+          "type": "number"
+        },
+        "visible": {
+          "type": "string"
+        },
+        "origin": {
+          "$ref": "#/definitions/origin"
+        },
+        "rotation": {
+          "type": "number"
         }
       }
     },
     "Bitmap": {
       "description": "Bitmap object",
       "type": "object",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "additionalItems": false,
-        "properties": {
-          "extent": {
-            "$ref": "#/definitions/points"
-          },
-          "fileName": {
-            "type": "string"
-          },
-          "imageSource": {
-            "type": "string"
-          },
-          "visible": {
-            "type": "string"
-          },
-          "origin": {
-            "$ref": "#/definitions/origin"
-          },
-          "rotation": {
-            "type": "number"
-          }
+      "additionalProperties": false,
+      "properties": {
+        "extent": {
+          "$ref": "#/definitions/points"
+        },
+        "fileName": {
+          "type": "string"
+        },
+        "imageSource": {
+          "type": "string"
+        },
+        "visible": {
+          "type": "string"
+        },
+        "origin": {
+          "$ref": "#/definitions/origin"
+        },
+        "rotation": {
+          "type": "number"
         }
       }
     },
     "Placement": {
       "description": "Placement object",
       "type": "object",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "additionalItems": false,
-        "properties": {
-          "visible": {
-            "type": "string"
-          },
-          "iconVisible": {
-            "type": "string"
-          },
-          "transformation": {
-            "$ref": "#/definitions/transformation"
-          },
-          "iconTransformation": {
-            "$ref": "#/definitions/transformation"
-          }
+      "additionalProperties": false,
+      "properties": {
+        "visible": {
+          "type": "string"
+        },
+        "iconVisible": {
+          "type": "string"
+        },
+        "transformation": {
+          "$ref": "#/definitions/transformation"
+        },
+        "iconTransformation": {
+          "$ref": "#/definitions/transformation"
         }
       }
     },
     "coordinateSystem": {
       "description": "coordinateSystem object",
       "type": "object",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "additionalItems": false,
-        "properties": {
-          "extent": {
-            "$ref": "#/definitions/points"
-          },
-          "preserveAspectRatio": {
-            "type": "string"
-          },
-          "initialScale": {
-            "type": "number"
-          }
+      "additionalProperties": false,
+      "properties": {
+        "extent": {
+          "$ref": "#/definitions/points"
+        },
+        "preserveAspectRatio": {
+          "type": "string"
+        },
+        "initialScale": {
+          "type": "number"
         }
       }
     },
