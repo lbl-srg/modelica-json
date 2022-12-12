@@ -1,4 +1,4 @@
-function parse (content, rawJson = false) { 
+function parse (content, rawJson = false) {
   const logicalAndParser = require('./logicalAnd')
 
   var logicalOr = content.logical_or

@@ -115,4 +115,3 @@ if (args.output === 'json') {
     setTimeout(function () { ut.jsonSchemaValidation(args.mode, eachFile, 'json', schema) }, 100)
   }
 }
-

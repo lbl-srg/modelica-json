@@ -1,7 +1,7 @@
 const util = require('util')
 
 function parse (content, rawJson = false) {
-  // "keys" will be a one element array, could be 
+  // "keys" will be a one element array, could be
   // ['Line', 'Text', 'Rectangle', 'Polygon', 'Ellipse', 'Bitmap', 'Placement', 'coordinateSystem', 'graphics']
   var graKeys = Object.keys(content)
   var graKey = graKeys[0]
@@ -67,10 +67,10 @@ function placementParse (obj) {
   var iconTransformation = obj.iconTransformation
   var strArr = []
   if (visible != null) {
-    strArr.push('visible=' + util.format("%s", visible))
+    strArr.push('visible=' + util.format('%s', visible))
   }
   if (iconVisible != null) {
-    strArr.push('iconVisible=' + util.format("%s", iconVisible))
+    strArr.push('iconVisible=' + util.format('%s', iconVisible))
   }
   if (transformation != null) {
     strArr.push('transformation' + transformationParse(transformation) + ')')
@@ -90,10 +90,10 @@ function coordinateSystemParse (obj) {
     strArr.push('extent=' + pointsParse(extent))
   }
   if (preserveAspectRatio != null) {
-    strArr.push('preserveAspectRatio=' + util.format("%s", preserveAspectRatio))
+    strArr.push('preserveAspectRatio=' + util.format('%s', preserveAspectRatio))
   }
   if (initialScale != null) {
-    strArr.push('initialScale=' + util.format("%s", initialScale))
+    strArr.push('initialScale=' + util.format('%s', initialScale))
   }
   return 'coordinateSystem(' + strArr.join(',') + ')'
 }
@@ -122,20 +122,19 @@ function transformationParse (obj) {
     strArr.push('extent=' + pointsParse(extent))
   }
   if (rotation != null) {
-    strArr.push('rotation=' + util.format("%s", rotation))
+    strArr.push('rotation=' + util.format('%s', rotation))
   }
   return '(' + strArr.join(',') + ')'
 }
-
 
 function pointsParse (obj) {
   var pointsArr = []
   for (var i = 0; i < obj.length; i++) {
     var ithPoint = obj[i]
     var pointStr = '{'
-    pointStr += util.format("%s", ithPoint.x)
+    pointStr += util.format('%s', ithPoint.x)
     pointStr += ','
-    pointStr += util.format("%s", ithPoint.y)
+    pointStr += util.format('%s', ithPoint.y)
     pointStr += '}'
     pointsArr.push(pointStr)
   }
@@ -144,20 +143,20 @@ function pointsParse (obj) {
 
 function colorParse (obj) {
   var colEle = '{'
-  colEle += util.format("%s", obj.r)
+  colEle += util.format('%s', obj.r)
   colEle += ','
-  colEle += util.format("%s", obj.g)
+  colEle += util.format('%s', obj.g)
   colEle += ','
-  colEle += util.format("%s", obj.b)
+  colEle += util.format('%s', obj.b)
   colEle += '}'
   return colEle
 }
 
 function originParse (obj) {
   var ori = '{'
-  ori += util.format("%s", obj.x)
+  ori += util.format('%s', obj.x)
   ori += ','
-  ori += util.format("%s", obj.y)
+  ori += util.format('%s', obj.y)
   ori += '}'
   return ori
 }
@@ -193,76 +192,76 @@ function commonGraphicItems (obj) {
   var lineThickness = obj.lineThickness
   var strArr = []
   if (fileName != null) {
-    strArr.push('fileName=' + util.format("%s", fileName))
+    strArr.push('fileName=' + util.format('%s', fileName))
   }
   if (imageSource != null) {
-    strArr.push('imageSource=' + util.format("%s", imageSource))
+    strArr.push('imageSource=' + util.format('%s', imageSource))
   }
   if (startAngle != null) {
-    strArr.push('startAngle=' + util.format("%s", startAngle))
+    strArr.push('startAngle=' + util.format('%s', startAngle))
   }
   if (endAngle != null) {
-    strArr.push('endAngle=' + util.format("%s", endAngle))
+    strArr.push('endAngle=' + util.format('%s', endAngle))
   }
   if (closure != null) {
-    strArr.push('closure=' + util.format("%s", closure))
+    strArr.push('closure=' + util.format('%s', closure))
   }
   if (color != null) {
     strArr.push('color=' + colorParse(color))
   }
   if (thickness != null) {
-    strArr.push('thickness=' + util.format("%s", thickness))
+    strArr.push('thickness=' + util.format('%s', thickness))
   }
   if (arrowSize != null) {
-    strArr.push('arrowSize=' + util.format("%s", arrowSize))
+    strArr.push('arrowSize=' + util.format('%s', arrowSize))
   }
   if (textString != null) {
-    strArr.push('textString=' + util.format("%s", textString))
+    strArr.push('textString=' + util.format('%s', textString))
   }
   if (fontSize != null) {
-    strArr.push('fontSize=' + util.format("%s", fontSize))
+    strArr.push('fontSize=' + util.format('%s', fontSize))
   }
   if (fontName != null) {
-    strArr.push('fontName=' + util.format("%s", fontName))
+    strArr.push('fontName=' + util.format('%s', fontName))
   }
   if (fontSize != null) {
-    strArr.push('fontSize=' + util.format("%s", fontSize))
+    strArr.push('fontSize=' + util.format('%s', fontSize))
   }
   if (textColor != null) {
     strArr.push('textColor=' + colorParse(extent))
   }
   if (horizontalAlignment != null) {
-    strArr.push('horizontalAlignment=' + util.format("%s", horizontalAlignment))
+    strArr.push('horizontalAlignment=' + util.format('%s', horizontalAlignment))
   }
   if (string != null) {
-    strArr.push('string=' + util.format("%s", string))
+    strArr.push('string=' + util.format('%s', string))
   }
   if (index != null) {
-    strArr.push('index=' + util.format("%s", index))
+    strArr.push('index=' + util.format('%s', index))
   }
   if (extent != null) {
     strArr.push('extent=' + pointsParse(extent))
   }
   if (radius != null) {
-    strArr.push('radius=' + util.format("%s", radius))
+    strArr.push('radius=' + util.format('%s', radius))
   }
   if (borderPattern != null) {
-    strArr.push('borderPattern=' + util.format("%s", borderPattern))
+    strArr.push('borderPattern=' + util.format('%s', borderPattern))
   }
   if (points != null) {
     strArr.push('points=' + pointsParse(points))
   }
   if (smooth != null) {
-    strArr.push('smooth=' + util.format("%s", smooth))
+    strArr.push('smooth=' + util.format('%s', smooth))
   }
   if (visible != null) {
-    strArr.push('visible=' + util.format("%s", visible))
+    strArr.push('visible=' + util.format('%s', visible))
   }
   if (origin != null) {
     strArr.push('origin=' + originParse(origin))
   }
   if (rotation != null) {
-    strArr.push('rotation=' + util.format("%s", rotation))
+    strArr.push('rotation=' + util.format('%s', rotation))
   }
   if (lineColor != null) {
     strArr.push('lineColor=' + colorParse(lineColor))
@@ -271,16 +270,15 @@ function commonGraphicItems (obj) {
     strArr.push('fillColor=' + colorParse(fillColor))
   }
   if (pattern != null) {
-    strArr.push('pattern=' + util.format("%s", pattern))
+    strArr.push('pattern=' + util.format('%s', pattern))
   }
   if (fillPattern != null) {
-    strArr.push('fillPattern=' + util.format("%s", fillPattern))
+    strArr.push('fillPattern=' + util.format('%s', fillPattern))
   }
   if (lineThickness != null) {
-    strArr.push('lineThickness=' + util.format("%s", lineThickness))
+    strArr.push('lineThickness=' + util.format('%s', lineThickness))
   }
   return strArr
 }
-
 
 module.exports = {parse}

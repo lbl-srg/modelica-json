@@ -9,8 +9,8 @@ function parse (content, rawJson = false) {
   var keys = Object.keys(content)
   var isGraPri = false
   // check if it is a graphical primitive
-  isGraPri = keys.some(function(ele) {
-    return graPri.isGraphicAnnotation(ele) 
+  isGraPri = keys.some(function (ele) {
+    return graPri.isGraphicAnnotation(ele)
   })
 
   var moOutput = ''
