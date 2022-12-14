@@ -4,27 +4,34 @@ const jq = require('../lib/jsonquery.js')
 const sinon = require('sinon')
 
 function equalObjects (dict, reference) {
-  if (!dict && !reference) {
+  if (dict === undefined && reference === undefined) {
+    return true
+  } else if ((dict === undefined) || (reference === undefined)) {
+    return false
+  }
+  if (typeof (dict) !== typeof (reference)) {
     return false
   }
   if (dict.constructor === Object && reference.constructor === Object) {
     if (Object.keys(dict).length !== Object.keys(reference).length) {
       return false
     }
-    Object.keys(dict).sort().forEach(idx => {
+    var keys = Object.keys(dict).sort()
+    for (var i = 0; i < keys.length; i++) {
+      var idx = keys[i]
       if (!(idx in reference)) {
         return false
       } else {
         return equalObjects(dict[idx], reference[idx])
       }
-    })
+    }
     return true
-  } else if ((dict.constructor === Array || reference.constructor === Array)) {
+  } else if ((dict.constructor === Array && reference.constructor === Array)) {
     if (dict.length !== reference.length) {
       return false
     } else {
-      for (var i = 0; i < dict.length; i++) {
-        if (!(equalObjects(dict[i], reference[i]))) {
+      for (var j = 0; j < dict.length; j++) {
+        if (!(equalObjects(dict[j], reference[j]))) {
           return false
         }
       }
@@ -54,7 +61,7 @@ mo.describe('jsonquery.js', function () {
         'class_specifier': 'mocked class_specifier',
         'encapsulated': true
       }
-      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true)
+      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
     })
   })
   mo.describe('testing classSpecifier', function () {
@@ -68,7 +75,7 @@ mo.describe('jsonquery.js', function () {
       }
     })
     mo.it('checking with long_class_specifier', function () {
-      sinon.stub(jq, 'longClassSpecifier').returns({'long_class_specifier': 'mocked long_class_specifier'})
+      sinon.stub(jq, 'longClassSpecifier').returns('mocked long_class_specifier')
       var rawJson = {
         'long_class_specifier': 'test long_class_specifier'
       }
@@ -76,10 +83,10 @@ mo.describe('jsonquery.js', function () {
       var referenceJsonOutput = {
         'long_class_specifier': 'mocked long_class_specifier'
       }
-      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true)
+      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
     })
     mo.it('checking with short_class_specifier', function () {
-      sinon.stub(jq, 'shortClassSpecifier').returns({'short_class_specifier': 'mocked short_class_specifier'})
+      sinon.stub(jq, 'shortClassSpecifier').returns('mocked short_class_specifier')
       var rawJson = {
         'short_class_specifier': 'test short_class_specifier'
       }
@@ -87,10 +94,10 @@ mo.describe('jsonquery.js', function () {
       var referenceJsonOutput = {
         'short_class_specifier': 'mocked short_class_specifier'
       }
-      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true)
+      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
     })
     mo.it('checking with der_class_specifier', function () {
-      sinon.stub(jq, 'derClassSpecifier').returns({'der_class_specifier': 'mocked der_class_specifier'})
+      sinon.stub(jq, 'derClassSpecifier').returns('mocked der_class_specifier')
       var rawJson = {
         'der_class_specifier': 'test der_class_specifier'
       }
@@ -98,14 +105,14 @@ mo.describe('jsonquery.js', function () {
       var referenceJsonOutput = {
         'der_class_specifier': 'mocked der_class_specifier'
       }
-      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true)
+      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
     })
   })
 
   mo.describe('testing longClassSpecifier', function () {
     mo.it('testing structure', function () {
-      sinon.stub(jq, 'composition').returns({'composition': 'mocked composition'})
-      sinon.stub(jq, 'classModification').returns({'class_modification': 'mocked class_modification'})
+      sinon.stub(jq, 'composition').returns('mocked composition')
+      sinon.stub(jq, 'classModification').returns('mocked class_modification')
       var rawJson = {
         'identifier': 'test.identifier.a',
         'string_comment': 'string comment',
@@ -121,11 +128,11 @@ mo.describe('jsonquery.js', function () {
         'composition': 'mocked composition',
         'class_modification': 'mocked class_modification'
       }
-      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true)
+      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
     })
     mo.it('testing missing identifier', function () {
-      sinon.stub(jq, 'composition').returns({'composition': 'mocked composition'})
-      sinon.stub(jq, 'classModification').returns({'class_modification': 'mocked class_modification'})
+      sinon.stub(jq, 'composition').returns('mocked composition')
+      sinon.stub(jq, 'classModification').returns('mocked class_modification')
       var rawJson = {
         'string_comment': 'string comment',
         'is_extends': false,
@@ -158,10 +165,10 @@ mo.describe('jsonquery.js', function () {
   })
   mo.describe('testing composition', function () {
     mo.it('testing structure', function () {
-      sinon.stub(jq, 'elementList').returns({'element_list': 'mocked element_list'})
+      sinon.stub(jq, 'elementList').returns('mocked element_list')
       sinon.stub(jq, 'elementSections').returns(['mocked element_section1', 'mocked element_section2'])
-      sinon.stub(jq, 'classModification').returns({'class_modification': 'mocked class_modification'})
-      sinon.stub(jq, 'externalComposition').returns({'external_composition': 'mocked external_omposition'})
+      sinon.stub(jq, 'classModification').returns('mocked class_modification')
+      sinon.stub(jq, 'externalComposition').returns('mocked external_omposition')
       var rawJson = {
         'element_list': 'test element_list',
         'element_sections': ['test element_section1', 'test element_section2'],
@@ -177,7 +184,7 @@ mo.describe('jsonquery.js', function () {
         'annotation': 'mocked class_modification',
         'external_composition': 'mocked external_composition'
       }
-      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true)
+      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
     })
     mo.it('testing missing element_list', function () {
       sinon.stub(jq, 'elementList').returns({'element_list': 'mocked element_list'})
@@ -224,7 +231,7 @@ mo.describe('jsonquery.js', function () {
           'element_redeclaration': 'mocked element_redeclaration'
         }
       ]
-      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true)
+      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
     })
     mo.it('testing empty arguments', function () {
       sinon.stub(jq, 'elementRedeclaration').returns({'element_redeclaration': 'mocked element_redeclaration'})
@@ -232,7 +239,7 @@ mo.describe('jsonquery.js', function () {
       var rawJson = {}
       var jsonOutput = jq.classModification(rawJson)
       var referenceJsonOutput = '()'
-      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true)
+      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
     })
   })
   mo.describe('testing elementList', function () {
@@ -329,7 +336,7 @@ mo.describe('jsonquery.js', function () {
           'description': undefined
         }
       ]
-      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true)
+      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
     })
     mo.it('testing constraining_clause without replaceable', function () {
       sinon.stub(jq, 'importClause').returns('mocked import_clause')
@@ -406,7 +413,54 @@ mo.describe('jsonquery.js', function () {
           'equation_section': 'mocked equation_section'
         }
       ]
-      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true)
+      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
+    })
+  })
+  mo.describe('testing external_function_call', function () {
+    mo.it('testing structure', function () {
+      sinon.stub(jq, 'componentReference').returns('mocked component_reference')
+      sinon.stub(jq, 'expression').withArgs('test expression1').returns('mocked expression1').withArgs('test expression2').returns('mocked expression2')
+
+      var rawJson = {
+        'component_reference': 'test component_reference',
+        'identifier': 'test.identifier.a',
+        'expression_list': {
+          'expressions': [
+            'test expression1',
+            'test expression2'
+          ]
+        }
+      }
+      var jsonOutput = jq.externalFunctionCall(rawJson)
+      var referenceJsonOutput = {
+        'component_reference': 'mocked component_reference',
+        'identifier': 'test.identifier.a',
+        'expression_list': [
+          'mocked expression1',
+          'mocked expression2'
+        ]
+      }
+      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
+    })
+  })
+  mo.describe('testing external_composition', function () {
+    mo.it('testing structure', function () {
+      sinon.stub(jq, 'externalFunctionCall').withArgs('test external_function_call').returns('mocked external_function_call')
+      sinon.stub(jq, 'classModification').withArgs('test class_modification').returns('mocked class_modification')
+      var rawJson = {
+        'language_specification': 'test language_specification',
+        'external_function_call': 'test external_function_call',
+        'external_annotation': {
+          'class_modification': 'test class_modification'
+        }
+      }
+      var jsonOutput = jq.externalComposition(rawJson)
+      var referenceJsonOutput = {
+        'language_specification': 'test language_specification',
+        'external_function_call': 'mocked external_function_call',
+        'external_annotation': 'mocked class_modification'
+      }
+      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
     })
   })
 })

@@ -73,14 +73,11 @@ var checkCdlJSON = function (outFormat, extension, message) {
 
       // Update the path to be relative to the project home.
       // This is needed for the regression tests to be portable.
-      // TODO: check withn jianjun
-      // if (neCDL.modelicaFile) {
-      //   neCDL['modelicaFile'] = neCDL['modelicaFile'].replace(path.join(__dirname, 'FromModelica'), '.')
-      // }
-
-      // TODO: check withn jianjun
       if (oldCDL.modelicaFile) {
-        oldCDL['modelicaFile'] = neCDL['modelicaFile']
+        oldCDL['fullMoFilePath'] = oldCDL['modelicaFile'].split('modelica-json/')[1]
+      }
+      if (neCDL.modelicaFile) {
+        neCDL['fullMoFilePath'] = neCDL['modelicaFile'].split('modelica-json/')[1]
       }
       const tempOld = JSON.stringify(oldCDL)
       const tempNew = JSON.stringify(neCDL)
@@ -118,8 +115,14 @@ var checkModJSON = function (outFormat, extension, message) {
       // Read the old json
       const jsonOldMOD = JSON.parse(fs.readFileSync(oldFileMOD, 'utf8'))
 
+      if (jsonOldMOD.modelicaFile) {
+        jsonOldMOD['fullMoFilePath'] = jsonOldMOD['modelicaFile'].split('modelica-json/')[1]
+      }
       const jsonNewMOD = path.join(expectedOutputPath, subPackName, 'test', 'FromModelica', fileNameMOD)
       var neMOD = JSON.parse(fs.readFileSync(jsonNewMOD, 'utf8'))
+      if (neMOD.modelicaFile) {
+        neMOD['fullMoFilePath'] = neMOD['modelicaFile'].split('modelica-json/')[1]
+      }
 
       const tempOld = JSON.stringify(jsonOldMOD)
       const tempNew = JSON.stringify(neMOD)
