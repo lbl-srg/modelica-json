@@ -93,6 +93,9 @@
     "composition": {
       "description": "Composition",
       "type": "object",
+      "required": [
+        "element_list"
+      ],
       "additionalProperties": false,
       "properties": {
         "element_list": {
@@ -203,6 +206,9 @@
     "external_function_call": {
       "description": "External function call",
       "type": "object",
+      "required": [
+        "identifier"
+      ],
       "additionalProperties": false,
       "properties": {
         "component_reference": {

@@ -463,4 +463,95 @@ mo.describe('jsonquery.js', function () {
       as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
     })
   })
+  mo.describe('testing component_clause', function () {
+    mo.it('testing structure', function () {
+      sinon.stub(jq, 'typeSpecifier').withArgs('test type_specifier').returns('mocked type_specifier')
+      sinon.stub(jq, 'arraySubscripts').withArgs('test array_subscripts').returns('mocked array_subscripts')
+      sinon.stub(jq, 'componentList').withArgs('test component_list').returns('mocked component_list')
+      var rawJson = {
+        'type_prefix': 'test type_prefix',
+        'type_specifier': 'test type_specifier',
+        'array_subscripts': 'test array_subscripts',
+        'component_list': 'test component_list'
+      }
+      var jsonOutput = jq.componentClause(rawJson)
+      var referenceJsonOutput = {
+        'type_prefix': 'test type_prefix',
+        'type_specifier': 'mocked type_specifier',
+        'array_subscripts': 'mocked array_subscripts',
+        'component_list': 'mocked component_list'
+      }
+      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
+    })
+  })
+  mo.describe('testing extends_clause', function () {
+    mo.it('testing structure', function () {
+      sinon.stub(jq, 'nameString').withArgs('test name').returns('mocked name')
+      sinon.stub(jq, 'classModification').withArgs('test class_modification').returns('mocked class_modification').withArgs('test annotation.class_modification').returns('mocked annotation.class_modification')
+      var rawJson = {
+        'name': 'test name',
+        'class_modification': 'test class_modification',
+        'annotation': {
+          'class_modification': 'test annotation.class_modification'
+        }
+      }
+      var jsonOutput = jq.extendsClause(rawJson)
+      var referenceJsonOutput = {
+        'name': 'mocked name',
+        'class_modification': 'mocked class_modification',
+        'annotation': 'mocked annotation.class_modification'
+      }
+      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
+    })
+  })
+  mo.describe('testing import_clause', function () {
+    mo.it('testing structure', function () {
+      sinon.stub(jq, 'nameString').withArgs('test name').returns('mocked name')
+      sinon.stub(jq, 'importList').withArgs('test import_list').returns('mocked import_list')
+      sinon.stub(jq, 'description').withArgs('test comment').returns('mocked comment').withArgs('test comment').returns('mocked comment')
+      var rawJson = {
+        'identifier': 'test identifier',
+        'name': 'test name',
+        'dot_star': true,
+        'import_list': 'test import_list',
+        'comment': 'test comment'
+      }
+      var jsonOutput = jq.importClause(rawJson)
+      var referenceJsonOutput = {
+        'identifier': 'test identifier',
+        'name': 'mocked name',
+        'dot_star': '.*',
+        'import_list': 'mocked import_list',
+        'description': 'mocked comment'
+      }
+      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
+    })
+  })
+  mo.describe('testing component_list', function () {
+    mo.it('testing structure', function () {
+      sinon.stub(jq, 'declaration').withArgs('test declaration').returns('mocked declaration')
+      sinon.stub(jq, 'expression').withArgs('test condition_attribute.expression').returns('mocked condition_attribute.expression')
+      sinon.stub(jq, 'description').withArgs('test comment').returns('mocked comment').withArgs('test comment').returns('mocked comment')
+      var rawJson = {
+        'component_declaration_list': [
+          {
+            'declaration': 'test declaration',
+            'condition_attribute': {
+              'expression': 'test condition_attribute.expression'
+            },
+            'comment': 'test comment'
+          }
+        ]
+      }
+      var jsonOutput = jq.componentList(rawJson)
+      var referenceJsonOutput = [{
+        'declaration': 'mocked declaration',
+        'condition_attribute': {
+          'expression': 'mocked condition_attribute.expression'
+        },
+        'description': 'mocked comment'
+      }]
+      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
+    })
+  })
 })
