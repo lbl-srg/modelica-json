@@ -39,6 +39,7 @@ test-moParser:
 # This only needs to be run when the output format changes,
 # or when new tests are added.
 generate-reference-output:
+	rm -rf ./test/reference; \
 	(for ff in `find . -name '*.mo'`; do \
 		node app.js -l warn -f $${ff} -o raw-json -d ./test/reference; \
 		node app.js -l warn -f $${ff} -o json -d ./test/reference; \

@@ -324,7 +324,9 @@
                             }
                           },
                           "condition_attribute": {
-                            "simple_expression": "have_hysteresis"
+                            "expression": {
+                              "simple_expression": "have_hysteresis"
+                            }
                           },
                           "description": {
                             "description_string": "Block with hysteresis",
@@ -364,7 +366,9 @@
                             "identifier": "greNoHys"
                           },
                           "condition_attribute": {
-                            "simple_expression": "not have_hysteresis"
+                            "expression": {
+                              "simple_expression": "not have_hysteresis"
+                            }
                           },
                           "description": {
                             "description_string": "Block without hysteresis",
