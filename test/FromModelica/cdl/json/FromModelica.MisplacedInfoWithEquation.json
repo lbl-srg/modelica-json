@@ -21,7 +21,7 @@
       ],
       "models": [
         {
-          "className": "Buildings.Controls.OBC.CDL.Continuous.Gain",
+          "className": "Buildings.Controls.OBC.CDL.Continuous.MultiplyByParameter",
           "name": "gain",
           "comment": "Constant gain",
           "modifications": [
@@ -451,9 +451,9 @@
     }
   },
   {
-    "modelicaFile": "Buildings/Controls/OBC/CDL/Continuous/Gain.mo",
+    "modelicaFile": "Buildings/Controls/OBC/CDL/Continuous/MultiplyByParameter.mo",
     "within": "Buildings.Controls.OBC.CDL.Continuous",
-    "topClassName": "Buildings.Controls.OBC.CDL.Continuous.Gain",
+    "topClassName": "Buildings.Controls.OBC.CDL.Continuous.MultiplyByParameter",
     "comment": "Output the product of a gain value with the input signal",
     "defaultName": "\"gai\"",
     "public": {
@@ -573,11 +573,6 @@
         ],
         "text": [
           {
-            "lineColor": {
-              "r": 0,
-              "g": 0,
-              "b": 0
-            },
             "extent": [
               {
                 "x": -150,
@@ -589,12 +584,22 @@
               }
             ],
             "textString": "\"k=%k\"",
+            "textColor": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
             "visible": true,
             "origin": {
               "x": 0,
               "y": 0
             },
             "rotation": 0,
+            "lineColor": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
             "fillColor": {
               "r": 0,
               "g": 0,
@@ -604,19 +609,9 @@
             "lineThickness": 0.25,
             "fontSize": 0,
             "fontName": "Arial",
-            "textColor": {
-              "r": 0,
-              "g": 0,
-              "b": 0
-            },
             "horizontalAlignment": "TextAlignment.Center"
           },
           {
-            "lineColor": {
-              "r": 0,
-              "g": 0,
-              "b": 255
-            },
             "extent": [
               {
                 "x": -150,
@@ -628,12 +623,22 @@
               }
             ],
             "textString": "\"%name\"",
+            "textColor": {
+              "r": 0,
+              "g": 0,
+              "b": 255
+            },
             "visible": true,
             "origin": {
               "x": 0,
               "y": 0
             },
             "rotation": 0,
+            "lineColor": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
             "fillColor": {
               "r": 0,
               "g": 0,
@@ -643,19 +648,9 @@
             "lineThickness": 0.25,
             "fontSize": 0,
             "fontName": "Arial",
-            "textColor": {
-              "r": 0,
-              "g": 0,
-              "b": 255
-            },
             "horizontalAlignment": "TextAlignment.Center"
           },
           {
-            "lineColor": {
-              "r": 0,
-              "g": 0,
-              "b": 0
-            },
             "extent": [
               {
                 "x": 226,
@@ -668,7 +663,12 @@
             ],
             "dynTextString": {
               "firstOpt": "\"\"",
-              "secondOpt": "String(y, leftjustified=false, significantDigits=3)"
+              "secondOpt": "String(y,\n            leftJustified=false,\n            significantDigits=3)"
+            },
+            "textColor": {
+              "r": 0,
+              "g": 0,
+              "b": 0
             },
             "visible": true,
             "origin": {
@@ -676,6 +676,11 @@
               "y": 0
             },
             "rotation": 0,
+            "lineColor": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
             "fillColor": {
               "r": 0,
               "g": 0,
@@ -685,11 +690,6 @@
             "lineThickness": 0.25,
             "fontSize": 0,
             "fontName": "Arial",
-            "textColor": {
-              "r": 0,
-              "g": 0,
-              "b": 0
-            },
             "horizontalAlignment": "TextAlignment.Center"
           }
         ]
@@ -800,14 +800,14 @@
     "modelicaFile": "Buildings/Controls/OBC/CDL/Interfaces/RealInput.mo",
     "within": "Buildings.Controls.OBC.CDL.Interfaces",
     "topClassName": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
-    "comment": "'input Real' as connector",
+    "comment": "Real input connector",
     "public": {
       "models": [
         {
           "className": "RealInput",
           "basePrefix": "input",
           "name": "Real",
-          "comment": "'input Real' as connector"
+          "comment": "Real input connector"
         }
       ]
     },
@@ -910,11 +910,6 @@
         ],
         "text": [
           {
-            "lineColor": {
-              "r": 0,
-              "g": 0,
-              "b": 127
-            },
             "extent": [
               {
                 "x": -10,
@@ -926,12 +921,22 @@
               }
             ],
             "textString": "\"%name\"",
+            "textColor": {
+              "r": 0,
+              "g": 0,
+              "b": 127
+            },
             "visible": true,
             "origin": {
               "x": 0,
               "y": 0
             },
             "rotation": 0,
+            "lineColor": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
             "fillColor": {
               "r": 0,
               "g": 0,
@@ -941,11 +946,6 @@
             "lineThickness": 0.25,
             "fontSize": 0,
             "fontName": "Arial",
-            "textColor": {
-              "r": 0,
-              "g": 0,
-              "b": 127
-            },
             "horizontalAlignment": "TextAlignment.Center"
           }
         ]
@@ -1014,14 +1014,14 @@
     "modelicaFile": "Buildings/Controls/OBC/CDL/Interfaces/RealOutput.mo",
     "within": "Buildings.Controls.OBC.CDL.Interfaces",
     "topClassName": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
-    "comment": "'output Real' as connector",
+    "comment": "Real output connector",
     "public": {
       "models": [
         {
           "className": "RealOutput",
           "basePrefix": "output",
           "name": "Real",
-          "comment": "'output Real' as connector"
+          "comment": "Real output connector"
         }
       ]
     },
@@ -1120,11 +1120,6 @@
         ],
         "text": [
           {
-            "lineColor": {
-              "r": 0,
-              "g": 0,
-              "b": 127
-            },
             "extent": [
               {
                 "x": 30,
@@ -1136,12 +1131,22 @@
               }
             ],
             "textString": "\"%name\"",
+            "textColor": {
+              "r": 0,
+              "g": 0,
+              "b": 127
+            },
             "visible": true,
             "origin": {
               "x": 0,
               "y": 0
             },
             "rotation": 0,
+            "lineColor": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
             "fillColor": {
               "r": 0,
               "g": 0,
@@ -1151,11 +1156,6 @@
             "lineThickness": 0.25,
             "fontSize": 0,
             "fontName": "Arial",
-            "textColor": {
-              "r": 0,
-              "g": 0,
-              "b": 127
-            },
             "horizontalAlignment": "TextAlignment.Center"
           }
         ]

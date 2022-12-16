@@ -17,6 +17,13 @@ td.text span { white-space: nowrap;
                display: inline-block;
                max-width: 100%;
              }
+td.assignment { max-width: 550 }
+td.assignment span { white-space: nowrap;
+                     overflow: hidden;
+                     text-overflow: ellipsis;
+                     display: inline-block;
+                     max-width: 100%;
+                   }
 tr:hover { background-color: #ffff99; }
 td.text:hover span:not(.empty) { background-color: #BDE5F8;
                                  overflow: visible;
@@ -26,7 +33,7 @@ td.text:hover span:not(.empty) { background-color: #BDE5F8;
                                 }
 
 th      { padding: 2px; border: 1px solid #808080; vertical-align: top; font-weight: bold; max-width: 450; }
-table   { border: 1px solid #808080; border-collapse: collapse; }
+table   { border: 1px solid #808080; border-collapse: collapse; max-width: 1000}
 ul.list-parameter-assignments { list-style-type: none; margin-top: 0rem; margin-bottom: 0rem; padding: 2px; }
 pre, code {font-family: "Courier New", monospace;}
 pre {white-space: pre; overflow-x : hidden;}
@@ -67,14 +74,9 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
     </p>
     <table>
     <tr>
-      <th class="type">Type        </th>
-      <th>Quantity  </th>
-      <th>Name    </th>
+      <th class="type">Type</th>
+      <th>Name</th>
       <th class="description">Description</th>
-      <th>min    </th>
-      <th>max    </th>
-      <th>Unit     </th>
-      <th>Display unit     </th>
       </tr>
     <tr>
       <td>
@@ -82,13 +84,8 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
       Real
       </code>
       </td>
-      <td></td>
-      <td><code>u</code><a name="FromModelica.VariableModification.u"></a></td>
-      <td>Input connector</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td class="type, text"><span><code>u</code><a name="FromModelica.VariableModification.u"></a></span></td>
+      <td class="type, text">Input connector </td>
       </tr>
     <tr>
       <td>
@@ -96,13 +93,8 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
       Real
       </code>
       </td>
-      <td>ThermodynamicTemperature</td>
-      <td><code>TOut</code><a name="FromModelica.VariableModification.TOut"></a></td>
-      <td>Temperature input</td>
-      <td></td>
-      <td></td>
-      <td>K</td>
-      <td>F</td>
+      <td class="type, text"><span><code>TOut</code><a name="FromModelica.VariableModification.TOut"></a></span></td>
+      <td class="type, text">Temperature input [K ]</td>
       </tr>
     </table>
 
@@ -119,27 +111,50 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
       <th>Parameter Assignments</th>
     </tr>
     <tr>
-      <td class="type, text"><span>
-      <code>
-      <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Abs">Buildings.Controls.OBC.CDL.Continuous.Abs</a>
-      </code>
-      </span></td>
-      <td>
-      <code>
-      abs
-      </code>
-      <a name="FromModelica.VariableModification.abs"></a></td>
-      <td>Instance with modified input and output attributes</td>
-      <td class="text"><span>
+      <td class="type, text"><span><code><a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Abs">Buildings.Controls.OBC.CDL.Continuous.Abs</a></code></span></td>
+      <td><code>abs</code><a name="FromModelica.VariableModification.abs"></a></td>
+      <td class="type, text"><span>Instance with modified input and output attributes</span></td>
+      <td class="assignment"><span>
       </span></td>
       </tr>
     </table>
 
 
 
+    <h3>Point list</h3>
+    <p>
+    It has the following IO points:
+    </p>
+    <table>
+    <tr>
+    <th class="type">System/Equipment   </th>
+    <th>Name  </th>
+    <th>Type    </th>
+    <th>Hardwired?   </th>
+    <th>Trend [s] </th>
+    <th class="description">Description</th>
+    </tr>
+    <tr>
+    <td>Not_specified</td>
+    <td>u</td>
+    <td>AI</td>
+    <td>No</td>
+    <td>n&#x2F;a</td>
+    <td>Input connector</td>
+    </tr>
+    <tr>
+    <td>Not_specified</td>
+    <td>TOut</td>
+    <td>AI</td>
+    <td>No</td>
+    <td>n&#x2F;a</td>
+    <td>Temperature input</td>
+    </tr>
+    </table>
+
 
   <p align="center">
-  <img alt="Diagram layer" src="img/FromModelica.VariableModification.svg">
+  <img alt="Diagram layer" src="img/FromModelica.VariableModification.svg" width="70%" height="auto">
   </p>
 
 </body>

@@ -1,0 +1,3104 @@
+[
+  {
+    "modelicaFile": "FromModelica/Enable.mo",
+    "within": "Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.Economizers.Subsequences",
+    "topClassName": "Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.Economizers.Subsequences.Enable",
+    "comment": "Multi zone VAV AHU economizer enable/disable switch",
+    "defaultName": "\"enaDis\"",
+    "public": {
+      "parameters": [
+        {
+          "className": "Boolean",
+          "name": "use_enthalpy",
+          "value": "true",
+          "comment": "Set to true to evaluate outdoor air (OA) enthalpy in addition to temperature",
+          "annotation": {
+            "dialog": {
+              "group": "Conditional",
+              "tab": "General"
+            }
+          }
+        },
+        {
+          "className": "Real",
+          "name": "delTOutHis",
+          "value": "1",
+          "comment": "Delta between the temperature hysteresis high and low limit",
+          "unit": {
+            "prefix": "final",
+            "value": "\"K\""
+          },
+          "displayUnit": {
+            "prefix": "final",
+            "value": "\"K\""
+          },
+          "quantity": {
+            "prefix": "final",
+            "value": "\"TemperatureDifference\""
+          },
+          "annotation": {
+            "dialog": {
+              "tab": "Advanced",
+              "group": "Hysteresis"
+            }
+          }
+        },
+        {
+          "className": "Real",
+          "name": "delEntHis",
+          "value": "1000",
+          "comment": "Delta between the enthalpy hysteresis high and low limits",
+          "unit": {
+            "prefix": "final",
+            "value": "\"J/kg\""
+          },
+          "quantity": {
+            "prefix": "final",
+            "value": "\"SpecificEnergy\""
+          },
+          "annotation": {
+            "dialog": {
+              "tab": "Advanced",
+              "group": "Hysteresis",
+              "enable": "use_enthalpy"
+            }
+          }
+        },
+        {
+          "className": "Real",
+          "name": "retDamFulOpeTim",
+          "value": "180",
+          "comment": "Time period to keep RA damper fully open before releasing it for minimum outdoor airflow control\n    at disable to avoid pressure fluctuations",
+          "unit": {
+            "prefix": "final",
+            "value": "\"s\""
+          },
+          "quantity": {
+            "prefix": "final",
+            "value": "\"Time\""
+          },
+          "annotation": {
+            "dialog": {
+              "tab": "Advanced",
+              "group": "Delays at disable"
+            }
+          }
+        },
+        {
+          "className": "Real",
+          "name": "disDel",
+          "value": "15",
+          "comment": "Short time delay before closing the OA damper at disable to avoid pressure fluctuations",
+          "unit": {
+            "prefix": "final",
+            "value": "\"s\""
+          },
+          "quantity": {
+            "prefix": "final",
+            "value": "\"Time\""
+          },
+          "annotation": {
+            "dialog": {
+              "tab": "Advanced",
+              "group": "Delays at disable"
+            }
+          }
+        }
+      ],
+      "models": [
+        {
+          "className": "Buildings.Controls.OBC.CDL.Logical.TrueFalseHold",
+          "name": "truFalHol",
+          "comment": "Economizer should not be enabled or disabled within 10 minutes of change",
+          "modifications": [
+            {
+              "name": "trueHoldDuration",
+              "value": "600",
+              "isFinal": true
+            }
+          ],
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": 20,
+                  "y": 182
+                },
+                {
+                  "x": 40,
+                  "y": 202
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Logical.And",
+          "name": "andEnaDis",
+          "comment": "Check freeze protection stage and zone state",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": 60,
+                  "y": 12
+                },
+                {
+                  "x": 80,
+                  "y": 32
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "inputs": [
+        {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+          "name": "TOut",
+          "comment": "Outdoor air temperature",
+          "unit": {
+            "prefix": "final",
+            "value": "\"K\""
+          },
+          "displayUnit": {
+            "prefix": "final",
+            "value": "\"degC\""
+          },
+          "quantity": {
+            "prefix": "final",
+            "value": "\"ThermodynamicTemperature\""
+          },
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": -300,
+                  "y": 232
+                },
+                {
+                  "x": -260,
+                  "y": 272
+                }
+              ]
+            },
+            "iconTransformation": {
+              "extent": [
+                {
+                  "x": -140,
+                  "y": 110
+                },
+                {
+                  "x": -100,
+                  "y": 150
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+          "name": "hOut",
+          "comment": "Outdoor air enthalpy",
+          "unit": {
+            "prefix": "final",
+            "value": "\"J/kg\""
+          },
+          "quantity": {
+            "prefix": "final",
+            "value": "\"SpecificEnergy\""
+          },
+          "enable": "use_enthalpy",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": -300,
+                  "y": 152
+                },
+                {
+                  "x": -260,
+                  "y": 192
+                }
+              ]
+            },
+            "iconTransformation": {
+              "extent": [
+                {
+                  "x": -140,
+                  "y": 60
+                },
+                {
+                  "x": -100,
+                  "y": 100
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+          "name": "TOutCut",
+          "comment": "OA temperature high limit cutoff. For differential dry bulb temperature condition use return air temperature measurement",
+          "unit": {
+            "prefix": "final",
+            "value": "\"K\""
+          },
+          "displayUnit": {
+            "prefix": "final",
+            "value": "\"degC\""
+          },
+          "quantity": {
+            "prefix": "final",
+            "value": "\"ThermodynamicTemperature\""
+          },
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": -300,
+                  "y": 192
+                },
+                {
+                  "x": -260,
+                  "y": 232
+                }
+              ]
+            },
+            "iconTransformation": {
+              "extent": [
+                {
+                  "x": -140,
+                  "y": 90
+                },
+                {
+                  "x": -100,
+                  "y": 130
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+          "name": "hOutCut",
+          "comment": "OA enthalpy high limit cutoff. For differential enthalpy use return air enthalpy measurement",
+          "unit": {
+            "prefix": "final",
+            "value": "\"J/kg\""
+          },
+          "quantity": {
+            "prefix": "final",
+            "value": "\"SpecificEnergy\""
+          },
+          "enable": "use_enthalpy",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": -300,
+                  "y": 112
+                },
+                {
+                  "x": -260,
+                  "y": 152
+                }
+              ]
+            },
+            "iconTransformation": {
+              "extent": [
+                {
+                  "x": -140,
+                  "y": 40
+                },
+                {
+                  "x": -100,
+                  "y": 80
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+          "name": "uOutDam_min",
+          "comment": "Minimum outdoor air damper position, output from damper position limits sequence",
+          "unit": {
+            "prefix": "final",
+            "value": "\"1\""
+          },
+          "min": {
+            "prefix": "final",
+            "value": "0"
+          },
+          "max": {
+            "prefix": "final",
+            "value": "1"
+          },
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": -300,
+                  "y": -98
+                },
+                {
+                  "x": -260,
+                  "y": -58
+                }
+              ]
+            },
+            "iconTransformation": {
+              "extent": [
+                {
+                  "x": -140,
+                  "y": -60
+                },
+                {
+                  "x": -100,
+                  "y": -20
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+          "name": "uOutDam_max",
+          "comment": "Maximum outdoor air damper position, output from damper position limits sequence",
+          "unit": {
+            "prefix": "final",
+            "value": "\"1\""
+          },
+          "min": {
+            "prefix": "final",
+            "value": "0"
+          },
+          "max": {
+            "prefix": "final",
+            "value": "1"
+          },
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": -300,
+                  "y": -58
+                },
+                {
+                  "x": -260,
+                  "y": -18
+                }
+              ]
+            },
+            "iconTransformation": {
+              "extent": [
+                {
+                  "x": -140,
+                  "y": -40
+                },
+                {
+                  "x": -100,
+                  "y": 0
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+          "name": "uRetDam_max",
+          "comment": "Maximum return air damper position, output from damper position limits sequence",
+          "unit": {
+            "prefix": "final",
+            "value": "\"1\""
+          },
+          "min": {
+            "prefix": "final",
+            "value": "0"
+          },
+          "max": {
+            "prefix": "final",
+            "value": "1"
+          },
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": -300,
+                  "y": -178
+                },
+                {
+                  "x": -260,
+                  "y": -138
+                }
+              ]
+            },
+            "iconTransformation": {
+              "extent": [
+                {
+                  "x": -140,
+                  "y": -130
+                },
+                {
+                  "x": -100,
+                  "y": -90
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+          "name": "uRetDam_min",
+          "comment": "Minimum return air damper position, output from damper position limits sequence",
+          "unit": {
+            "prefix": "final",
+            "value": "\"1\""
+          },
+          "min": {
+            "prefix": "final",
+            "value": "0"
+          },
+          "max": {
+            "prefix": "final",
+            "value": "1"
+          },
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": -300,
+                  "y": -218
+                },
+                {
+                  "x": -260,
+                  "y": -178
+                }
+              ]
+            },
+            "iconTransformation": {
+              "extent": [
+                {
+                  "x": -140,
+                  "y": -150
+                },
+                {
+                  "x": -100,
+                  "y": -110
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+          "name": "uRetDamPhy_max",
+          "comment": "Physical maximum return air damper position, output from damper position limits sequence",
+          "unit": {
+            "prefix": "final",
+            "value": "\"1\""
+          },
+          "min": {
+            "prefix": "final",
+            "value": "0"
+          },
+          "max": {
+            "prefix": "final",
+            "value": "1"
+          },
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": -300,
+                  "y": -138
+                },
+                {
+                  "x": -260,
+                  "y": -98
+                }
+              ]
+            },
+            "iconTransformation": {
+              "extent": [
+                {
+                  "x": -140,
+                  "y": -110
+                },
+                {
+                  "x": -100,
+                  "y": -70
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.BooleanInput",
+          "name": "u1SupFan",
+          "comment": "Supply fan proven on",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": -300,
+                  "y": 62
+                },
+                {
+                  "x": -260,
+                  "y": 102
+                }
+              ]
+            },
+            "iconTransformation": {
+              "extent": [
+                {
+                  "x": -140,
+                  "y": 10
+                },
+                {
+                  "x": -100,
+                  "y": 50
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.IntegerInput",
+          "name": "uFreProSta",
+          "comment": "Freeze protection stage status signal",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": -300,
+                  "y": 22
+                },
+                {
+                  "x": -260,
+                  "y": 62
+                }
+              ]
+            },
+            "iconTransformation": {
+              "extent": [
+                {
+                  "x": -140,
+                  "y": -10
+                },
+                {
+                  "x": -100,
+                  "y": 30
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
+          "name": "yOutDam_max",
+          "comment": "Maximum outdoor air damper position",
+          "unit": {
+            "prefix": "final",
+            "value": "\"1\""
+          },
+          "min": {
+            "prefix": "final",
+            "value": "0"
+          },
+          "max": {
+            "prefix": "final",
+            "value": "1"
+          },
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": 240,
+                  "y": 22
+                },
+                {
+                  "x": 280,
+                  "y": 62
+                }
+              ]
+            },
+            "iconTransformation": {
+              "extent": [
+                {
+                  "x": 100,
+                  "y": 80
+                },
+                {
+                  "x": 140,
+                  "y": 120
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
+          "name": "yRetDam_min",
+          "comment": "Minimum return air damper position",
+          "unit": {
+            "prefix": "final",
+            "value": "\"1\""
+          },
+          "min": {
+            "prefix": "final",
+            "value": "0"
+          },
+          "max": {
+            "prefix": "final",
+            "value": "1"
+          },
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": 240,
+                  "y": -98
+                },
+                {
+                  "x": 280,
+                  "y": -58
+                }
+              ]
+            },
+            "iconTransformation": {
+              "extent": [
+                {
+                  "x": 100,
+                  "y": -120
+                },
+                {
+                  "x": 140,
+                  "y": -80
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
+          "name": "yRetDam_max",
+          "comment": "Maximum return air damper position",
+          "unit": {
+            "prefix": "final",
+            "value": "\"1\""
+          },
+          "min": {
+            "prefix": "final",
+            "value": "0"
+          },
+          "max": {
+            "prefix": "final",
+            "value": "1"
+          },
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": 240,
+                  "y": -38
+                },
+                {
+                  "x": 280,
+                  "y": 2
+                }
+              ]
+            },
+            "iconTransformation": {
+              "extent": [
+                {
+                  "x": 100,
+                  "y": -20
+                },
+                {
+                  "x": 140,
+                  "y": 20
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "protected": {
+      "parameters": [
+        {
+          "className": "Real",
+          "name": "TOutHigLimCutHig",
+          "value": "0",
+          "comment": "Hysteresis high limit cutoff",
+          "unit": {
+            "prefix": "final",
+            "value": "\"K\""
+          },
+          "displayUnit": {
+            "prefix": "final",
+            "value": "\"K\""
+          },
+          "quantity": {
+            "prefix": "final",
+            "value": "\"TemperatureDifference\""
+          },
+          "annotation": {
+            "dialog": {
+              "tab": "General",
+              "group": "Parameters"
+            }
+          }
+        },
+        {
+          "className": "Real",
+          "name": "TOutHigLimCutLow",
+          "value": "TOutHigLimCutHig - delTOutHis",
+          "comment": "Hysteresis low limit cutoff",
+          "annotation": {
+            "dialog": {
+              "tab": "General",
+              "group": "Parameters"
+            }
+          }
+        },
+        {
+          "className": "Real",
+          "name": "hOutHigLimCutHig",
+          "value": "0",
+          "comment": "Hysteresis block high limit cutoff",
+          "unit": {
+            "prefix": "final",
+            "value": "\"J/kg\""
+          },
+          "quantity": {
+            "prefix": "final",
+            "value": "\"SpecificEnergy\""
+          },
+          "annotation": {
+            "dialog": {
+              "tab": "General",
+              "group": "Parameters"
+            }
+          }
+        },
+        {
+          "className": "Real",
+          "name": "hOutHigLimCutLow",
+          "value": "hOutHigLimCutHig - delEntHis",
+          "comment": "Hysteresis block low limit cutoff",
+          "annotation": {
+            "dialog": {
+              "tab": "General",
+              "group": "Parameters"
+            }
+          }
+        }
+      ],
+      "models": [
+        {
+          "className": "Buildings.Controls.OBC.CDL.Continuous.Subtract",
+          "name": "sub2",
+          "comment": "Add block determines difference between hOut and hOutCut",
+          "enable": "use_enthalpy",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": -200,
+                  "y": 140
+                },
+                {
+                  "x": -180,
+                  "y": 160
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Continuous.Subtract",
+          "name": "sub1",
+          "comment": "Add block determines difference between TOut and TOutCut",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": -200,
+                  "y": 220
+                },
+                {
+                  "x": -180,
+                  "y": 240
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Continuous.Hysteresis",
+          "name": "hysOutTem",
+          "comment": "Outdoor air temperature hysteresis for both fixed and differential dry bulb temperature cutoff conditions",
+          "modifications": [
+            {
+              "name": "uLow",
+              "value": "TOutHigLimCutLow",
+              "isFinal": true
+            },
+            {
+              "name": "uHigh",
+              "value": "TOutHigLimCutHig",
+              "isFinal": true
+            }
+          ],
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": -160,
+                  "y": 220
+                },
+                {
+                  "x": -140,
+                  "y": 240
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Continuous.Hysteresis",
+          "name": "hysOutEnt",
+          "comment": "Outdoor air enthalpy hysteresis for both fixed and differential enthalpy cutoff conditions",
+          "modifications": [
+            {
+              "name": "uLow",
+              "value": "hOutHigLimCutLow",
+              "isFinal": true
+            },
+            {
+              "name": "uHigh",
+              "value": "hOutHigLimCutHig",
+              "isFinal": true
+            }
+          ],
+          "enable": "use_enthalpy",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": -160,
+                  "y": 140
+                },
+                {
+                  "x": -140,
+                  "y": 160
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Continuous.Switch",
+          "name": "outDamSwitch",
+          "comment": "Set maximum OA damper position to minimum at disable (after a given time delay)",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": 82,
+                  "y": -78
+                },
+                {
+                  "x": 102,
+                  "y": -58
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Continuous.Switch",
+          "name": "retDamSwitch",
+          "comment": "Set minimum RA damper position to maximum at disable",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": -20,
+                  "y": -176
+                },
+                {
+                  "x": 0,
+                  "y": -156
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Continuous.Switch",
+          "name": "maxRetDamSwitch",
+          "comment": "Keep maximum RA damper position at physical maximum for a short time period after disable signal",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": 60,
+                  "y": -136
+                },
+                {
+                  "x": 80,
+                  "y": -116
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Continuous.Switch",
+          "name": "minRetDamSwitch",
+          "comment": "Keep minimum RA damper position at physical maximum for a short time period after disable",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": 60,
+                  "y": -178
+                },
+                {
+                  "x": 80,
+                  "y": -158
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Logical.Not",
+          "name": "not2",
+          "comment": "Logical not that starts the timer at disable signal ",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": -60,
+                  "y": -58
+                },
+                {
+                  "x": -40,
+                  "y": -38
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Logical.And",
+          "name": "and2",
+          "comment": "Logical and",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": 160,
+                  "y": -100
+                },
+                {
+                  "x": 180,
+                  "y": -80
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Logical.And",
+          "name": "and1",
+          "comment": "Check supply fan status",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": 20,
+                  "y": 80
+                },
+                {
+                  "x": 40,
+                  "y": 100
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Logical.And",
+          "name": "and3",
+          "comment": "Check if delay time has been passed after economizer being disabled",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": 40,
+                  "y": -54
+                },
+                {
+                  "x": 60,
+                  "y": -34
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Integers.Equal",
+          "name": "intEqu",
+          "comment": "Logical block to check if the freeze protection is deactivated",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": -78,
+                  "y": 32
+                },
+                {
+                  "x": -58,
+                  "y": 52
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Logical.TrueDelay",
+          "name": "delOutDamOsc",
+          "comment": "Small delay before closing the outdoor air damper to avoid pressure fluctuations",
+          "modifications": [
+            {
+              "name": "delayTime",
+              "value": "disDel",
+              "isFinal": true
+            }
+          ],
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": -20,
+                  "y": -58
+                },
+                {
+                  "x": 0,
+                  "y": -38
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Logical.TrueDelay",
+          "name": "delRetDam",
+          "comment": "Keep return damper open to its physical maximum for a short period of time before closing the outdoor air damper and resuming the maximum return air damper position, per G36 Part N7",
+          "modifications": [
+            {
+              "name": "delayTime",
+              "value": "retDamFulOpeTim",
+              "isFinal": true
+            }
+          ],
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": -20,
+                  "y": -108
+                },
+                {
+                  "x": 0,
+                  "y": -88
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Logical.Not",
+          "name": "not1",
+          "comment": "Logical not",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": 20,
+                  "y": -108
+                },
+                {
+                  "x": 40,
+                  "y": -88
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Integers.Sources.Constant",
+          "name": "conInt",
+          "comment": "Integer constant, stage 0",
+          "modifications": [
+            {
+              "name": "k",
+              "value": "Buildings.Controls.OBC.ASHRAE.G36.Types.FreezeProtectionStages.stage0",
+              "isFinal": true
+            }
+          ],
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": -118,
+                  "y": 12
+                },
+                {
+                  "x": -98,
+                  "y": 32
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Logical.Sources.Constant",
+          "name": "entSubst1",
+          "comment": "Deactivates outdoor air enthalpy condition if there is no enthalpy sensor",
+          "modifications": [
+            {
+              "name": "k",
+              "value": "false",
+              "isFinal": true
+            }
+          ],
+          "enable": "not use_enthalpy",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": -160,
+                  "y": 180
+                },
+                {
+                  "x": -140,
+                  "y": 200
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Logical.Or",
+          "name": "or2",
+          "comment": "Check if either the temperature or the enthalpy condition is satisfied",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": -60,
+                  "y": 182
+                },
+                {
+                  "x": -40,
+                  "y": 202
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "info": "<html>\n<p>\nThis is a multi zone VAV AHU economizer enable/disable sequence\nbased on the Section 5.16.7 of the ASHRAE Guideline 36, May 2020. Additional\nconditions included in the sequence are: freeze protection (freeze protection\nstage 0-3, see Section 5.16.12), supply fan status (on or off, see Section 5.16.5).\n</p>\n<p>\nThe economizer is disabled whenever the outdoor air conditions\nexceed the economizer high limit setpoint.\nThis sequence allows for all device types listed in\nASHRAE 90.1-2013 and Title 24-2013.\n</p>\n<p>\nIn addition, the economizer gets disabled without a delay whenever any of the\nfollowing is <code>true</code>:\n</p>\n<ul>\n<li>\nThe supply fan is off (<code>u1SupFan = false</code>),\n</li>\n<li>\nthe freeze protection stage\n<a href=\"Buildings.Controls.OBC.ASHRAE.G36.Types.FreezeProtectionStages\">\nBuildings.Controls.OBC.ASHRAE.G36.Types.FreezeProtectionStages</a>\nis not <code>stage0</code>.\n</li>\n</ul>\n<p>\nThe following state machine chart illustrates the transitions between enabling and disabling:\n</p>\n<p align=\"center\">\n<img alt=\"Image of economizer enable-disable state machine chart\"\nsrc=\"Buildings/Resources/Images/Controls/OBC/ASHRAE/G36/AHUs/MultiZone/VAV/Economizers/Subsequences/EconEnableDisableStateMachineChart.png\"/>\n</p>\n<p>\nAfter the disable signal is activated, the following procedure is applied, in order to\nprevent pressure fluctuations in the HVAC system:\n</p>\n<ul>\n<li>\nThe return damper gets fully opened (<code>yRetDam_max = uRetDamPhy_max</code> and\n<code>yRetDam_min = uRetDamPhy_max</code>) for <code>retDamFulOpeTim</code>\ntime period, after which the return damper gets released to its minimum outdoor airflow control position\n(<code>yRetDam_max = uRetDam_max</code> and <code>yRetDam_min = uRetDam_max</code>).\n</li>\n<li>\nThe outdoor air damper is closed to its minimum outoor airflow control limit (<code>yOutDam_max = uOutDam_min</code>)\nafter a <code>disDel</code> time delay.\n</li>\n</ul>\n</html>",
+    "icon": {
+      "coordinateSystem": {
+        "extent": [
+          {
+            "x": -100,
+            "y": -140
+          },
+          {
+            "x": 100,
+            "y": 140
+          }
+        ]
+      },
+      "graphics": {
+        "line": [
+          {
+            "points": [
+              {
+                "x": 0,
+                "y": 60
+              },
+              {
+                "x": 80,
+                "y": 60
+              }
+            ],
+            "color": {
+              "r": 0,
+              "g": 0,
+              "b": 127
+            },
+            "thickness": 0.5
+          },
+          {
+            "points": [
+              {
+                "x": -80,
+                "y": -60
+              },
+              {
+                "x": 0,
+                "y": -60
+              },
+              {
+                "x": 0,
+                "y": 60
+              }
+            ],
+            "color": {
+              "r": 0,
+              "g": 0,
+              "b": 127
+            },
+            "thickness": 0.5
+          }
+        ],
+        "rectangle": [
+          {
+            "lineColor": {
+              "r": 0,
+              "g": 0,
+              "b": 127
+            },
+            "fillColor": {
+              "r": 255,
+              "g": 255,
+              "b": 255
+            },
+            "fillPattern": "FillPattern.Solid",
+            "extent": [
+              {
+                "x": -100,
+                "y": -140
+              },
+              {
+                "x": 100,
+                "y": 140
+              }
+            ]
+          }
+        ],
+        "text": [
+          {
+            "extent": [
+              {
+                "x": -100,
+                "y": 180
+              },
+              {
+                "x": 100,
+                "y": 140
+              }
+            ],
+            "textString": "\"%name\"",
+            "textColor": {
+              "r": 0,
+              "g": 0,
+              "b": 255
+            }
+          },
+          {
+            "pattern": "LinePattern.Dash",
+            "extent": [
+              {
+                "x": -98,
+                "y": 38
+              },
+              {
+                "x": -56,
+                "y": 24
+              }
+            ],
+            "textString": "\"u1SupFan\"",
+            "textColor": {
+              "r": 255,
+              "g": 0,
+              "b": 255
+            }
+          },
+          {
+            "pattern": "LinePattern.Dash",
+            "extent": [
+              {
+                "x": -100,
+                "y": 18
+              },
+              {
+                "x": -44,
+                "y": 4
+              }
+            ],
+            "textString": "\"uFreProSta\"",
+            "textColor": {
+              "r": 255,
+              "g": 127,
+              "b": 0
+            }
+          },
+          {
+            "visible": false,
+            "pattern": "LinePattern.Dash",
+            "extent": [
+              {
+                "x": -100,
+                "y": 68
+              },
+              {
+                "x": -56,
+                "y": 54
+              }
+            ],
+            "textString": "\"hOutCut\"",
+            "textColor": {
+              "r": 0,
+              "g": 0,
+              "b": 127
+            }
+          },
+          {
+            "visible": false,
+            "pattern": "LinePattern.Dash",
+            "extent": [
+              {
+                "x": -100,
+                "y": 86
+              },
+              {
+                "x": -70,
+                "y": 72
+              }
+            ],
+            "textString": "\"hOut\"",
+            "textColor": {
+              "r": 0,
+              "g": 0,
+              "b": 127
+            }
+          },
+          {
+            "pattern": "LinePattern.Dash",
+            "extent": [
+              {
+                "x": -100,
+                "y": 116
+              },
+              {
+                "x": -56,
+                "y": 102
+              }
+            ],
+            "textString": "\"TOutCut\"",
+            "textColor": {
+              "r": 0,
+              "g": 0,
+              "b": 127
+            }
+          },
+          {
+            "pattern": "LinePattern.Dash",
+            "extent": [
+              {
+                "x": -100,
+                "y": 138
+              },
+              {
+                "x": -72,
+                "y": 124
+              }
+            ],
+            "textString": "\"TOut\"",
+            "textColor": {
+              "r": 0,
+              "g": 0,
+              "b": 127
+            }
+          },
+          {
+            "pattern": "LinePattern.Dash",
+            "extent": [
+              {
+                "x": -96,
+                "y": -100
+              },
+              {
+                "x": -32,
+                "y": -118
+              }
+            ],
+            "textString": "\"uRetDam_max\"",
+            "textColor": {
+              "r": 0,
+              "g": 0,
+              "b": 127
+            }
+          },
+          {
+            "pattern": "LinePattern.Dash",
+            "extent": [
+              {
+                "x": -96,
+                "y": -10
+              },
+              {
+                "x": -28,
+                "y": -28
+              }
+            ],
+            "textString": "\"uOutDam_max\"",
+            "textColor": {
+              "r": 0,
+              "g": 0,
+              "b": 127
+            }
+          },
+          {
+            "pattern": "LinePattern.Dash",
+            "extent": [
+              {
+                "x": -96,
+                "y": -30
+              },
+              {
+                "x": -28,
+                "y": -48
+              }
+            ],
+            "textString": "\"uOutDam_min\"",
+            "textColor": {
+              "r": 0,
+              "g": 0,
+              "b": 127
+            }
+          },
+          {
+            "pattern": "LinePattern.Dash",
+            "extent": [
+              {
+                "x": -96,
+                "y": -80
+              },
+              {
+                "x": -12,
+                "y": -98
+              }
+            ],
+            "textString": "\"uRetDamPhy_max\"",
+            "textColor": {
+              "r": 0,
+              "g": 0,
+              "b": 127
+            }
+          },
+          {
+            "pattern": "LinePattern.Dash",
+            "extent": [
+              {
+                "x": -96,
+                "y": -120
+              },
+              {
+                "x": -32,
+                "y": -138
+              }
+            ],
+            "textString": "\"uRetDam_min\"",
+            "textColor": {
+              "r": 0,
+              "g": 0,
+              "b": 127
+            }
+          },
+          {
+            "pattern": "LinePattern.Dash",
+            "extent": [
+              {
+                "x": 36,
+                "y": 110
+              },
+              {
+                "x": 96,
+                "y": 92
+              }
+            ],
+            "textString": "\"yOutDam_max\"",
+            "textColor": {
+              "r": 0,
+              "g": 0,
+              "b": 127
+            }
+          },
+          {
+            "pattern": "LinePattern.Dash",
+            "extent": [
+              {
+                "x": 36,
+                "y": 12
+              },
+              {
+                "x": 96,
+                "y": -6
+              }
+            ],
+            "textString": "\"yRetDam_max\"",
+            "textColor": {
+              "r": 0,
+              "g": 0,
+              "b": 127
+            }
+          },
+          {
+            "pattern": "LinePattern.Dash",
+            "extent": [
+              {
+                "x": 36,
+                "y": -88
+              },
+              {
+                "x": 96,
+                "y": -106
+              }
+            ],
+            "textString": "\"yRetDam_min\"",
+            "textColor": {
+              "r": 0,
+              "g": 0,
+              "b": 127
+            }
+          }
+        ]
+      }
+    },
+    "diagram": {
+      "coordinateSystem": {
+        "extent": [
+          {
+            "x": -260,
+            "y": -280
+          },
+          {
+            "x": 240,
+            "y": 280
+          }
+        ],
+        "preserveAspectRatio": false,
+        "initialScale": 0.05
+      },
+      "graphics": {
+        "rectangle": [
+          {
+            "lineColor": {
+              "r": 215,
+              "g": 215,
+              "b": 215
+            },
+            "fillColor": {
+              "r": 215,
+              "g": 215,
+              "b": 215
+            },
+            "fillPattern": "FillPattern.Solid",
+            "extent": [
+              {
+                "x": -240,
+                "y": -2
+              },
+              {
+                "x": 220,
+                "y": -250
+              }
+            ]
+          },
+          {
+            "lineColor": {
+              "r": 215,
+              "g": 215,
+              "b": 215
+            },
+            "fillColor": {
+              "r": 215,
+              "g": 215,
+              "b": 215
+            },
+            "fillPattern": "FillPattern.Solid",
+            "extent": [
+              {
+                "x": -240,
+                "y": 58
+              },
+              {
+                "x": 220,
+                "y": 6
+              }
+            ]
+          },
+          {
+            "lineColor": {
+              "r": 215,
+              "g": 215,
+              "b": 215
+            },
+            "fillColor": {
+              "r": 215,
+              "g": 215,
+              "b": 215
+            },
+            "fillPattern": "FillPattern.Solid",
+            "extent": [
+              {
+                "x": -240,
+                "y": 118
+              },
+              {
+                "x": 220,
+                "y": 66
+              }
+            ]
+          },
+          {
+            "lineColor": {
+              "r": 215,
+              "g": 215,
+              "b": 215
+            },
+            "fillColor": {
+              "r": 215,
+              "g": 215,
+              "b": 215
+            },
+            "fillPattern": "FillPattern.Solid",
+            "extent": [
+              {
+                "x": -240,
+                "y": 258
+              },
+              {
+                "x": 220,
+                "y": 130
+              }
+            ]
+          }
+        ],
+        "text": [
+          {
+            "extent": [
+              {
+                "x": 120,
+                "y": 158
+              },
+              {
+                "x": 204,
+                "y": 138
+              }
+            ],
+            "textString": "\"Outdoor air\nconditions\"",
+            "textColor": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
+            "horizontalAlignment": "TextAlignment.Left"
+          },
+          {
+            "extent": [
+              {
+                "x": 120,
+                "y": 52
+              },
+              {
+                "x": 298,
+                "y": 18
+              }
+            ],
+            "textString": "\"Freeze protection -\ndisable if stage1\nand above\"",
+            "textColor": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
+            "horizontalAlignment": "TextAlignment.Left"
+          },
+          {
+            "extent": [
+              {
+                "x": 120,
+                "y": -198
+              },
+              {
+                "x": 288,
+                "y": -246
+              }
+            ],
+            "textString": "\"Damper position\nlimit assignments\nwith delays\"",
+            "textColor": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
+            "horizontalAlignment": "TextAlignment.Left"
+          },
+          {
+            "extent": [
+              {
+                "x": 120,
+                "y": 84
+              },
+              {
+                "x": 214,
+                "y": 74
+              }
+            ],
+            "textString": "\"Supply fan status\"",
+            "textColor": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
+            "horizontalAlignment": "TextAlignment.Left"
+          }
+        ]
+      }
+    },
+    "connections": [
+      [
+        {
+          "instance": "TOut"
+        },
+        {
+          "instance": "sub1",
+          "connector": "u1"
+        },
+        {
+          "points": [
+            {
+              "x": -280,
+              "y": 252
+            },
+            {
+              "x": -240,
+              "y": 252
+            },
+            {
+              "x": -240,
+              "y": 236
+            },
+            {
+              "x": -202,
+              "y": 236
+            }
+          ],
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 127
+          }
+        }
+      ],
+      [
+        {
+          "instance": "TOutCut"
+        },
+        {
+          "instance": "sub1",
+          "connector": "u2"
+        },
+        {
+          "points": [
+            {
+              "x": -280,
+              "y": 212
+            },
+            {
+              "x": -240,
+              "y": 212
+            },
+            {
+              "x": -240,
+              "y": 224
+            },
+            {
+              "x": -202,
+              "y": 224
+            }
+          ],
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 127
+          }
+        }
+      ],
+      [
+        {
+          "instance": "sub1",
+          "connector": "y"
+        },
+        {
+          "instance": "hysOutTem",
+          "connector": "u"
+        },
+        {
+          "points": [
+            {
+              "x": -178,
+              "y": 230
+            },
+            {
+              "x": -162,
+              "y": 230
+            }
+          ],
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 127
+          }
+        }
+      ],
+      [
+        {
+          "instance": "hOut"
+        },
+        {
+          "instance": "sub2",
+          "connector": "u1"
+        },
+        {
+          "points": [
+            {
+              "x": -280,
+              "y": 172
+            },
+            {
+              "x": -240,
+              "y": 172
+            },
+            {
+              "x": -240,
+              "y": 156
+            },
+            {
+              "x": -202,
+              "y": 156
+            }
+          ],
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 127
+          }
+        }
+      ],
+      [
+        {
+          "instance": "hOutCut"
+        },
+        {
+          "instance": "sub2",
+          "connector": "u2"
+        },
+        {
+          "points": [
+            {
+              "x": -280,
+              "y": 132
+            },
+            {
+              "x": -240,
+              "y": 132
+            },
+            {
+              "x": -240,
+              "y": 144
+            },
+            {
+              "x": -202,
+              "y": 144
+            }
+          ],
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 127
+          }
+        }
+      ],
+      [
+        {
+          "instance": "sub2",
+          "connector": "y"
+        },
+        {
+          "instance": "hysOutEnt",
+          "connector": "u"
+        },
+        {
+          "points": [
+            {
+              "x": -178,
+              "y": 150
+            },
+            {
+              "x": -162,
+              "y": 150
+            }
+          ],
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 127
+          }
+        }
+      ],
+      [
+        {
+          "instance": "uOutDam_min"
+        },
+        {
+          "instance": "outDamSwitch",
+          "connector": "u1"
+        },
+        {
+          "points": [
+            {
+              "x": -280,
+              "y": -78
+            },
+            {
+              "x": 10,
+              "y": -78
+            },
+            {
+              "x": 10,
+              "y": -60
+            },
+            {
+              "x": 80,
+              "y": -60
+            }
+          ],
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 127
+          }
+        }
+      ],
+      [
+        {
+          "instance": "uOutDam_max"
+        },
+        {
+          "instance": "outDamSwitch",
+          "connector": "u3"
+        },
+        {
+          "points": [
+            {
+              "x": -280,
+              "y": -38
+            },
+            {
+              "x": -220,
+              "y": -38
+            },
+            {
+              "x": -220,
+              "y": -76
+            },
+            {
+              "x": 80,
+              "y": -76
+            }
+          ],
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 127
+          }
+        }
+      ],
+      [
+        {
+          "instance": "uRetDamPhy_max"
+        },
+        {
+          "instance": "maxRetDamSwitch",
+          "connector": "u1"
+        },
+        {
+          "points": [
+            {
+              "x": -280,
+              "y": -118
+            },
+            {
+              "x": 58,
+              "y": -118
+            }
+          ],
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 127
+          }
+        }
+      ],
+      [
+        {
+          "instance": "uRetDam_max"
+        },
+        {
+          "instance": "maxRetDamSwitch",
+          "connector": "u3"
+        },
+        {
+          "points": [
+            {
+              "x": -280,
+              "y": -158
+            },
+            {
+              "x": -158,
+              "y": -158
+            },
+            {
+              "x": -158,
+              "y": -134
+            },
+            {
+              "x": 58,
+              "y": -134
+            }
+          ],
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 127
+          }
+        }
+      ],
+      [
+        {
+          "instance": "andEnaDis",
+          "connector": "y"
+        },
+        {
+          "instance": "not2",
+          "connector": "u"
+        },
+        {
+          "points": [
+            {
+              "x": 82,
+              "y": 22
+            },
+            {
+              "x": 92,
+              "y": 22
+            },
+            {
+              "x": 92,
+              "y": -8
+            },
+            {
+              "x": -80,
+              "y": -8
+            },
+            {
+              "x": -80,
+              "y": -48
+            },
+            {
+              "x": -62,
+              "y": -48
+            }
+          ],
+          "color": {
+            "r": 255,
+            "g": 0,
+            "b": 255
+          }
+        }
+      ],
+      [
+        {
+          "instance": "maxRetDamSwitch",
+          "connector": "y"
+        },
+        {
+          "instance": "yRetDam_max"
+        },
+        {
+          "points": [
+            {
+              "x": 82,
+              "y": -126
+            },
+            {
+              "x": 200,
+              "y": -126
+            },
+            {
+              "x": 200,
+              "y": -18
+            },
+            {
+              "x": 260,
+              "y": -18
+            }
+          ],
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 127
+          }
+        }
+      ],
+      [
+        {
+          "instance": "and2",
+          "connector": "y"
+        },
+        {
+          "instance": "maxRetDamSwitch",
+          "connector": "u2"
+        },
+        {
+          "points": [
+            {
+              "x": 182,
+              "y": -90
+            },
+            {
+              "x": 190,
+              "y": -90
+            },
+            {
+              "x": 190,
+              "y": -148
+            },
+            {
+              "x": 40,
+              "y": -148
+            },
+            {
+              "x": 40,
+              "y": -126
+            },
+            {
+              "x": 58,
+              "y": -126
+            }
+          ],
+          "color": {
+            "r": 255,
+            "g": 0,
+            "b": 255
+          }
+        }
+      ],
+      [
+        {
+          "instance": "and2",
+          "connector": "y"
+        },
+        {
+          "instance": "minRetDamSwitch",
+          "connector": "u2"
+        },
+        {
+          "points": [
+            {
+              "x": 182,
+              "y": -90
+            },
+            {
+              "x": 190,
+              "y": -90
+            },
+            {
+              "x": 190,
+              "y": -148
+            },
+            {
+              "x": 40,
+              "y": -148
+            },
+            {
+              "x": 40,
+              "y": -168
+            },
+            {
+              "x": 58,
+              "y": -168
+            }
+          ],
+          "color": {
+            "r": 255,
+            "g": 0,
+            "b": 255
+          }
+        }
+      ],
+      [
+        {
+          "instance": "not2",
+          "connector": "y"
+        },
+        {
+          "instance": "retDamSwitch",
+          "connector": "u2"
+        },
+        {
+          "points": [
+            {
+              "x": -38,
+              "y": -48
+            },
+            {
+              "x": -30,
+              "y": -48
+            },
+            {
+              "x": -30,
+              "y": -166
+            },
+            {
+              "x": -22,
+              "y": -166
+            }
+          ],
+          "color": {
+            "r": 255,
+            "g": 0,
+            "b": 255
+          }
+        }
+      ],
+      [
+        {
+          "instance": "uRetDam_max"
+        },
+        {
+          "instance": "retDamSwitch",
+          "connector": "u1"
+        },
+        {
+          "points": [
+            {
+              "x": -280,
+              "y": -158
+            },
+            {
+              "x": -22,
+              "y": -158
+            }
+          ],
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 127
+          }
+        }
+      ],
+      [
+        {
+          "instance": "uRetDam_min"
+        },
+        {
+          "instance": "retDamSwitch",
+          "connector": "u3"
+        },
+        {
+          "points": [
+            {
+              "x": -280,
+              "y": -198
+            },
+            {
+              "x": -152,
+              "y": -198
+            },
+            {
+              "x": -152,
+              "y": -174
+            },
+            {
+              "x": -22,
+              "y": -174
+            }
+          ],
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 127
+          }
+        }
+      ],
+      [
+        {
+          "instance": "retDamSwitch",
+          "connector": "y"
+        },
+        {
+          "instance": "minRetDamSwitch",
+          "connector": "u3"
+        },
+        {
+          "points": [
+            {
+              "x": 2,
+              "y": -166
+            },
+            {
+              "x": 20,
+              "y": -166
+            },
+            {
+              "x": 20,
+              "y": -176
+            },
+            {
+              "x": 58,
+              "y": -176
+            }
+          ],
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 127
+          }
+        }
+      ],
+      [
+        {
+          "instance": "uRetDamPhy_max"
+        },
+        {
+          "instance": "minRetDamSwitch",
+          "connector": "u1"
+        },
+        {
+          "points": [
+            {
+              "x": -280,
+              "y": -118
+            },
+            {
+              "x": 20,
+              "y": -118
+            },
+            {
+              "x": 20,
+              "y": -160
+            },
+            {
+              "x": 58,
+              "y": -160
+            }
+          ],
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 127
+          }
+        }
+      ],
+      [
+        {
+          "instance": "truFalHol",
+          "connector": "y"
+        },
+        {
+          "instance": "and1",
+          "connector": "u1"
+        },
+        {
+          "points": [
+            {
+              "x": 42,
+              "y": 192
+            },
+            {
+              "x": 50,
+              "y": 192
+            },
+            {
+              "x": 50,
+              "y": 112
+            },
+            {
+              "x": 10,
+              "y": 112
+            },
+            {
+              "x": 10,
+              "y": 90
+            },
+            {
+              "x": 18,
+              "y": 90
+            }
+          ],
+          "color": {
+            "r": 255,
+            "g": 0,
+            "b": 255
+          }
+        }
+      ],
+      [
+        {
+          "instance": "and1",
+          "connector": "y"
+        },
+        {
+          "instance": "andEnaDis",
+          "connector": "u1"
+        },
+        {
+          "points": [
+            {
+              "x": 42,
+              "y": 90
+            },
+            {
+              "x": 50,
+              "y": 90
+            },
+            {
+              "x": 50,
+              "y": 22
+            },
+            {
+              "x": 58,
+              "y": 22
+            }
+          ],
+          "color": {
+            "r": 255,
+            "g": 0,
+            "b": 255
+          }
+        }
+      ],
+      [
+        {
+          "instance": "u1SupFan"
+        },
+        {
+          "instance": "and1",
+          "connector": "u2"
+        },
+        {
+          "points": [
+            {
+              "x": -280,
+              "y": 82
+            },
+            {
+              "x": 18,
+              "y": 82
+            }
+          ],
+          "color": {
+            "r": 255,
+            "g": 0,
+            "b": 255
+          }
+        }
+      ],
+      [
+        {
+          "instance": "outDamSwitch",
+          "connector": "u2"
+        },
+        {
+          "instance": "and3",
+          "connector": "y"
+        },
+        {
+          "points": [
+            {
+              "x": 80,
+              "y": -68
+            },
+            {
+              "x": 70,
+              "y": -68
+            },
+            {
+              "x": 70,
+              "y": -44
+            },
+            {
+              "x": 62,
+              "y": -44
+            }
+          ],
+          "color": {
+            "r": 255,
+            "g": 0,
+            "b": 255
+          }
+        }
+      ],
+      [
+        {
+          "instance": "not2",
+          "connector": "y"
+        },
+        {
+          "instance": "and3",
+          "connector": "u1"
+        },
+        {
+          "points": [
+            {
+              "x": -38,
+              "y": -48
+            },
+            {
+              "x": -30,
+              "y": -48
+            },
+            {
+              "x": -30,
+              "y": -22
+            },
+            {
+              "x": 28,
+              "y": -22
+            },
+            {
+              "x": 28,
+              "y": -44
+            },
+            {
+              "x": 38,
+              "y": -44
+            }
+          ],
+          "color": {
+            "r": 255,
+            "g": 0,
+            "b": 255
+          }
+        }
+      ],
+      [
+        {
+          "instance": "and2",
+          "connector": "u1"
+        },
+        {
+          "instance": "not2",
+          "connector": "y"
+        },
+        {
+          "points": [
+            {
+              "x": 158,
+              "y": -90
+            },
+            {
+              "x": 126,
+              "y": -90
+            },
+            {
+              "x": 126,
+              "y": -22
+            },
+            {
+              "x": -30,
+              "y": -22
+            },
+            {
+              "x": -30,
+              "y": -48
+            },
+            {
+              "x": -38,
+              "y": -48
+            }
+          ],
+          "color": {
+            "r": 255,
+            "g": 0,
+            "b": 255
+          }
+        }
+      ],
+      [
+        {
+          "instance": "and3",
+          "connector": "u2"
+        },
+        {
+          "instance": "delOutDamOsc",
+          "connector": "y"
+        },
+        {
+          "points": [
+            {
+              "x": 38,
+              "y": -52
+            },
+            {
+              "x": 20,
+              "y": -52
+            },
+            {
+              "x": 20,
+              "y": -48
+            },
+            {
+              "x": 2,
+              "y": -48
+            }
+          ],
+          "color": {
+            "r": 255,
+            "g": 0,
+            "b": 255
+          }
+        }
+      ],
+      [
+        {
+          "instance": "delOutDamOsc",
+          "connector": "u"
+        },
+        {
+          "instance": "not2",
+          "connector": "y"
+        },
+        {
+          "points": [
+            {
+              "x": -22,
+              "y": -48
+            },
+            {
+              "x": -38,
+              "y": -48
+            }
+          ],
+          "color": {
+            "r": 255,
+            "g": 0,
+            "b": 255
+          }
+        }
+      ],
+      [
+        {
+          "instance": "not2",
+          "connector": "y"
+        },
+        {
+          "instance": "delRetDam",
+          "connector": "u"
+        },
+        {
+          "points": [
+            {
+              "x": -38,
+              "y": -48
+            },
+            {
+              "x": -30,
+              "y": -48
+            },
+            {
+              "x": -30,
+              "y": -98
+            },
+            {
+              "x": -22,
+              "y": -98
+            }
+          ],
+          "color": {
+            "r": 255,
+            "g": 0,
+            "b": 255
+          }
+        }
+      ],
+      [
+        {
+          "instance": "delRetDam",
+          "connector": "y"
+        },
+        {
+          "instance": "not1",
+          "connector": "u"
+        },
+        {
+          "points": [
+            {
+              "x": 2,
+              "y": -98
+            },
+            {
+              "x": 18,
+              "y": -98
+            }
+          ],
+          "color": {
+            "r": 255,
+            "g": 0,
+            "b": 255
+          }
+        }
+      ],
+      [
+        {
+          "instance": "not1",
+          "connector": "y"
+        },
+        {
+          "instance": "and2",
+          "connector": "u2"
+        },
+        {
+          "points": [
+            {
+              "x": 42,
+              "y": -98
+            },
+            {
+              "x": 158,
+              "y": -98
+            }
+          ],
+          "color": {
+            "r": 255,
+            "g": 0,
+            "b": 255
+          }
+        }
+      ],
+      [
+        {
+          "instance": "uFreProSta"
+        },
+        {
+          "instance": "intEqu",
+          "connector": "u1"
+        },
+        {
+          "points": [
+            {
+              "x": -280,
+              "y": 42
+            },
+            {
+              "x": -80,
+              "y": 42
+            }
+          ],
+          "color": {
+            "r": 255,
+            "g": 127,
+            "b": 0
+          }
+        }
+      ],
+      [
+        {
+          "instance": "conInt",
+          "connector": "y"
+        },
+        {
+          "instance": "intEqu",
+          "connector": "u2"
+        },
+        {
+          "points": [
+            {
+              "x": -96,
+              "y": 22
+            },
+            {
+              "x": -90,
+              "y": 22
+            },
+            {
+              "x": -90,
+              "y": 34
+            },
+            {
+              "x": -80,
+              "y": 34
+            }
+          ],
+          "color": {
+            "r": 255,
+            "g": 127,
+            "b": 0
+          }
+        }
+      ],
+      [
+        {
+          "instance": "intEqu",
+          "connector": "y"
+        },
+        {
+          "instance": "andEnaDis",
+          "connector": "u2"
+        },
+        {
+          "points": [
+            {
+              "x": -56,
+              "y": 42
+            },
+            {
+              "x": 40,
+              "y": 42
+            },
+            {
+              "x": 40,
+              "y": 14
+            },
+            {
+              "x": 58,
+              "y": 14
+            }
+          ],
+          "color": {
+            "r": 255,
+            "g": 0,
+            "b": 255
+          }
+        }
+      ],
+      [
+        {
+          "instance": "outDamSwitch",
+          "connector": "y"
+        },
+        {
+          "instance": "yOutDam_max"
+        },
+        {
+          "points": [
+            {
+              "x": 104,
+              "y": -68
+            },
+            {
+              "x": 190,
+              "y": -68
+            },
+            {
+              "x": 190,
+              "y": 42
+            },
+            {
+              "x": 260,
+              "y": 42
+            }
+          ],
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 127
+          }
+        }
+      ],
+      [
+        {
+          "instance": "minRetDamSwitch",
+          "connector": "y"
+        },
+        {
+          "instance": "yRetDam_min"
+        },
+        {
+          "points": [
+            {
+              "x": 82,
+              "y": -168
+            },
+            {
+              "x": 210,
+              "y": -168
+            },
+            {
+              "x": 210,
+              "y": -78
+            },
+            {
+              "x": 260,
+              "y": -78
+            }
+          ],
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 127
+          }
+        }
+      ],
+      [
+        {
+          "instance": "or2",
+          "connector": "y"
+        },
+        {
+          "instance": "truFalHol",
+          "connector": "u"
+        },
+        {
+          "points": [
+            {
+              "x": -38,
+              "y": 192
+            },
+            {
+              "x": 18,
+              "y": 192
+            }
+          ],
+          "color": {
+            "r": 255,
+            "g": 0,
+            "b": 255
+          }
+        }
+      ],
+      [
+        {
+          "instance": "hysOutTem",
+          "connector": "y"
+        },
+        {
+          "instance": "or2",
+          "connector": "u1"
+        },
+        {
+          "points": [
+            {
+              "x": -138,
+              "y": 230
+            },
+            {
+              "x": -80,
+              "y": 230
+            },
+            {
+              "x": -80,
+              "y": 192
+            },
+            {
+              "x": -62,
+              "y": 192
+            }
+          ],
+          "color": {
+            "r": 255,
+            "g": 0,
+            "b": 255
+          }
+        }
+      ],
+      [
+        {
+          "instance": "hysOutEnt",
+          "connector": "y"
+        },
+        {
+          "instance": "or2",
+          "connector": "u2"
+        },
+        {
+          "points": [
+            {
+              "x": -138,
+              "y": 150
+            },
+            {
+              "x": -100,
+              "y": 150
+            },
+            {
+              "x": -100,
+              "y": 184
+            },
+            {
+              "x": -62,
+              "y": 184
+            }
+          ],
+          "color": {
+            "r": 255,
+            "g": 0,
+            "b": 255
+          }
+        }
+      ],
+      [
+        {
+          "instance": "entSubst1",
+          "connector": "y"
+        },
+        {
+          "instance": "or2",
+          "connector": "u2"
+        },
+        {
+          "points": [
+            {
+              "x": -138,
+              "y": 190
+            },
+            {
+              "x": -100,
+              "y": 190
+            },
+            {
+              "x": -100,
+              "y": 184
+            },
+            {
+              "x": -62,
+              "y": 184
+            }
+          ],
+          "color": {
+            "r": 255,
+            "g": 0,
+            "b": 255
+          }
+        }
+      ]
+    ]
+  }
+]

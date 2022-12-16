@@ -240,7 +240,7 @@ var getHtml = function (files, mode) {
     })
   })
   ht.copyImages(imgfiles, imgDir)
-  const html = ht.getHtmlPage(outFile, imgDir, nonCDLJson, mode)
+  const html = ht.getHtmlPage(outFile, imgDir, nonCDLJson, mode, 'html')
   return html
 }
 
@@ -280,7 +280,7 @@ var getDocx = function (files, mode) {
       return result
     })
   } else {
-    const htmldoc = getHtml(files, mode)[0]
+    const htmldoc = getHtml(files, mode)
     const docxBlob = HtmlDocx.asBlob(htmldoc)
     const rawDocx = docxBlob.toString()
     const rawDocxText = rawDocx.replace(/<img[^>]+>/gm, '')

@@ -17,6 +17,13 @@ td.text span { white-space: nowrap;
                display: inline-block;
                max-width: 100%;
              }
+td.assignment { max-width: 550 }
+td.assignment span { white-space: nowrap;
+                     overflow: hidden;
+                     text-overflow: ellipsis;
+                     display: inline-block;
+                     max-width: 100%;
+                   }
 tr:hover { background-color: #ffff99; }
 td.text:hover span:not(.empty) { background-color: #BDE5F8;
                                  overflow: visible;
@@ -26,7 +33,7 @@ td.text:hover span:not(.empty) { background-color: #BDE5F8;
                                 }
 
 th      { padding: 2px; border: 1px solid #808080; vertical-align: top; font-weight: bold; max-width: 450; }
-table   { border: 1px solid #808080; border-collapse: collapse; }
+table   { border: 1px solid #808080; border-collapse: collapse; max-width: 1000}
 ul.list-parameter-assignments { list-style-type: none; margin-top: 0rem; margin-bottom: 0rem; padding: 2px; }
 pre, code {font-family: "Courier New", monospace;}
 pre {white-space: pre; overflow-x : hidden;}
@@ -61,7 +68,7 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
 <h3>Info</h3>
   
 <p>
-Block that outputs <code>y = min(yMax, k*e)</code>,
+Block that outputs <code><a href="#FromModelica.CustomPWithLimiter.y">y</a> = min(<a href="#FromModelica.CustomPWithLimiter.yMax">yMax</a>, <a href="#FromModelica.CustomPWithLimiter.k">k</a>*<a href="#FromModelica.CustomPWithLimiter.e">e</a>)</code>,
 where
 <code><a href="#FromModelica.CustomPWithLimiter.yMax">yMax</a></code> and <code><a href="#FromModelica.CustomPWithLimiter.e">e</a></code> are real-valued input signals and
 <code><a href="#FromModelica.CustomPWithLimiter.k">k</a></code> is a parameter.
@@ -75,28 +82,18 @@ where
     </p>
     <table>
     <tr>
-    <th class="mode">Type        </th>
-    <th>Quantity  </th>
-    <th>Name    </th>
-    <th>Default    </th>
-    <th>Unit     </th>
-    <th>Display unit</th>
-    <th>min    </th>
-    <th>max    </th>
+    <th class="mode">Type</th>
+    <th>Name</th>
+    <th>Default</th>
     <th class="description">Description</th>
     </tr>
-    <tr class="tab ModelicaParameterTab"><td colspan="9">General</td></tr>
-    <tr class="group ModelicaParameterGroup"><td colspan="9">Parameters</td></tr>
+    <tr class="tab ModelicaParameterTab"><td colspan="4">General</td></tr>
+    <tr class="group ModelicaParameterGroup"><td colspan="4">Parameters</td></tr>
     <tr>
     <td class="type, text"><span>Real</span></td>
-    <td></td>
-    <td><code>k</code><a name="FromModelica.CustomPWithLimiter.k"></a></td>
-    <td>2</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td>Constant gain</td>
+    <td class="type, text"><span><code>k</code><a name="FromModelica.CustomPWithLimiter.k"></a></span></td>
+    <td class="type, text"><span>2</span></td>
+    <td class="type, text">Constant gain </td>
     </tr>
     </table>
 
@@ -106,14 +103,9 @@ where
     </p>
     <table>
     <tr>
-      <th class="type">Type        </th>
-      <th>Quantity  </th>
-      <th>Name    </th>
+      <th class="type">Type</th>
+      <th>Name</th>
       <th class="description">Description</th>
-      <th>min    </th>
-      <th>max    </th>
-      <th>Unit     </th>
-      <th>Display unit     </th>
       </tr>
     <tr>
       <td>
@@ -121,13 +113,8 @@ where
       Real
       </code>
       </td>
-      <td></td>
-      <td><code>yMax</code><a name="FromModelica.CustomPWithLimiter.yMax"></a></td>
-      <td>Maximum value of output signal</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td class="type, text"><span><code>yMax</code><a name="FromModelica.CustomPWithLimiter.yMax"></a></span></td>
+      <td class="type, text">Maximum value of output signal </td>
       </tr>
     <tr>
       <td>
@@ -135,13 +122,8 @@ where
       Real
       </code>
       </td>
-      <td></td>
-      <td><code>e</code><a name="FromModelica.CustomPWithLimiter.e"></a></td>
-      <td>Control error</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td class="type, text"><span><code>e</code><a name="FromModelica.CustomPWithLimiter.e"></a></span></td>
+      <td class="type, text">Control error </td>
       </tr>
     </table>
 
@@ -151,28 +133,14 @@ where
     </p>
     <table>
     <tr>
-      <th class="type">Type        </th>
-      <th>Quantity  </th>
-      <th>Name    </th>
+      <th class="type">Type</th>
+      <th>Name</th>
       <th class="description">Description</th>
-      <th>min    </th>
-      <th>max    </th>
-      <th>Unit     </th>
-      <th>Display unit     </th>
       </tr>
     <tr>
-      <td>
-      <code>
-      Real
-      </code>
-      </td>
-      <td></td>
-      <td><code>y</code><a name="FromModelica.CustomPWithLimiter.y"></a></td>
-      <td>Control signal</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td><code>Real</code></td>
+      <td class="type, text"><span><code>y</code><a name="FromModelica.CustomPWithLimiter.y"></a></span></td>
+      <td class="type, text">Control signal </td>
       </tr>
     </table>
 
@@ -188,18 +156,10 @@ where
       <th>Parameter Assignments</th>
     </tr>
     <tr>
-      <td class="type, text"><span>
-      <code>
-      <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Gain">Buildings.Controls.OBC.CDL.Continuous.Gain</a>
-      </code>
-      </span></td>
-      <td>
-      <code>
-      gain
-      </code>
-      <a name="FromModelica.CustomPWithLimiter.gain"></a></td>
-      <td>Constant gain</td>
-      <td class="text"><span>
+      <td class="type, text"><span><code><a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.MultiplyByParameter">Buildings.Controls.OBC.CDL.Continuous.MultiplyByParameter</a></code></span></td>
+      <td><code>gain</code><a name="FromModelica.CustomPWithLimiter.gain"></a></td>
+      <td class="type, text"><span>Constant gain</span></td>
+      <td class="assignment"><span>
       <ul class="list-parameter-assignments">
       <li>
       <code>
@@ -210,23 +170,54 @@ where
       </span></td>
       </tr>
     <tr>
-      <td class="type, text"><span>
-      <code>
-      <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Min">Buildings.Controls.OBC.CDL.Continuous.Min</a>
-      </code>
-      </span></td>
-      <td>
-      <code>
-      minValue
-      </code>
-      <a name="FromModelica.CustomPWithLimiter.minValue"></a></td>
-      <td>Outputs the minimum of its inputs</td>
-      <td class="text"><span>
+      <td class="type, text"><span><code><a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Min">Buildings.Controls.OBC.CDL.Continuous.Min</a></code></span></td>
+      <td><code>minValue</code><a name="FromModelica.CustomPWithLimiter.minValue"></a></td>
+      <td class="type, text"><span>Outputs the minimum of its inputs</span></td>
+      <td class="assignment"><span>
       </span></td>
       </tr>
     </table>
 
 
+
+    <h3>Point list</h3>
+    <p>
+    It has the following IO points:
+    </p>
+    <table>
+    <tr>
+    <th class="type">System/Equipment   </th>
+    <th>Name  </th>
+    <th>Type    </th>
+    <th>Hardwired?   </th>
+    <th>Trend [s] </th>
+    <th class="description">Description</th>
+    </tr>
+    <tr>
+    <td>Not_specified</td>
+    <td>yMax</td>
+    <td>AI</td>
+    <td>No</td>
+    <td>n&#x2F;a</td>
+    <td>Maximum value of output signal</td>
+    </tr>
+    <tr>
+    <td>Not_specified</td>
+    <td>e</td>
+    <td>AI</td>
+    <td>No</td>
+    <td>n&#x2F;a</td>
+    <td>Control error</td>
+    </tr>
+    <tr>
+    <td>Not_specified</td>
+    <td>y</td>
+    <td>AO</td>
+    <td>No</td>
+    <td>n&#x2F;a</td>
+    <td>Control signal</td>
+    </tr>
+    </table>
 
     <h3>Connections</h3>
     <p>
@@ -261,7 +252,7 @@ where
     </ol>
 
   <p align="center">
-  <img alt="Diagram layer" src="img/FromModelica.CustomPWithLimiter.svg">
+  <img alt="Diagram layer" src="img/FromModelica.CustomPWithLimiter.svg" width="70%" height="auto">
   </p>
 
 </body>
