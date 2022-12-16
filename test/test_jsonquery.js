@@ -1,6 +1,7 @@
 const as = require('assert')
 const mo = require('mocha')
 const jq = require('../lib/jsonquery.js')
+const graPri = require('../lib/graphicalPrimitives.js')
 const sinon = require('sinon')
 
 function equalObjects (dict, reference) {
@@ -551,6 +552,129 @@ mo.describe('jsonquery.js', function () {
         },
         'description': 'mocked comment'
       }]
+      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
+    })
+  })
+  mo.describe('testing declaration', function () {
+    mo.it('testing structure', function () {
+      sinon.stub(jq, 'arraySubscripts').withArgs('test array_subscripts').returns('mocked array_subscripts')
+      sinon.stub(jq, 'modification').withArgs('test modification').returns('mocked modification')
+      var rawJson = {
+        'identifier': 'test.identifier.a',
+        'array_subscripts': 'test array_subscripts',
+        'modification': 'test modification'
+      }
+      var jsonOutput = jq.declaration(rawJson)
+      var referenceJsonOutput = {
+        'identifier': 'test.identifier.a',
+        'array_subscripts': 'mocked array_subscripts',
+        'modification': 'mocked modification'
+      }
+      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
+    })
+  })
+  mo.describe('testing element_modification', function () {
+    mo.it('testing structure: element_modification', function () {
+      sinon.stub(jq, 'nameString').withArgs('test name').returns('mocked name')
+      sinon.stub(jq, 'modification').withArgs('test modification').returns('mocked modification')
+      sinon.stub(graPri, 'graphicAnnotationObj').withArgs('test name', 'test modification').returns('mocked graphicAnnotationObj')
+      var rawJson = {
+        'name': 'test name',
+        'string_comment': 'test string_comment',
+        'modification': 'test modification'
+      }
+      var jsonOutput = jq.elementModification(rawJson)
+      var referenceJsonOutput = {
+        'name': 'mocked name',
+        'description_string': 'test string_comment',
+        'modification': 'mocked modification'
+      }
+      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
+    })
+    mo.it('testing structure: graphicAnnotationObj', function () {
+      sinon.stub(jq, 'nameString').withArgs('Line').returns('Line')
+      sinon.stub(jq, 'modification').withArgs('test modification').returns('mocked modification')
+      sinon.stub(graPri, 'graphicAnnotationObj').withArgs('Line', 'mocked modification').returns('mocked graphicAnnotationObj')
+      var rawJson = {
+        'name': 'Line',
+        'string_comment': 'test string_comment',
+        'modification': 'test modification'
+      }
+      var jsonOutput = jq.elementModification(rawJson)
+      var referenceJsonOutput = {
+        'Line': 'mocked graphicAnnotationObj'
+      }
+      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
+    })
+  })
+  mo.describe('testing element_modification_or_replaceable', function () {
+    mo.it('testing structure', function () {
+      sinon.stub(jq, 'elementModification').withArgs('test element_modification').returns('mocked element_modification')
+      sinon.stub(jq, 'elementReplaceable').withArgs('test element_replaceable').returns('mocked element_replaceable')
+      var rawJson = {
+        'each': true,
+        'is_final': true,
+        'element_modification': 'test element_modification',
+        'element_replaceable': 'test element_replaceable'
+      }
+      var jsonOutput = jq.elementModificationReplaceable(rawJson)
+      var referenceJsonOutput = {
+        'each': true,
+        'final': true,
+        'element_modification': 'mocked element_modification',
+        'element_replaceable': 'mocked element_replaceable'
+      }
+      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
+    })
+  })
+  mo.describe('testing element_redeclaration', function () {
+    mo.it('testing structure', function () {
+      sinon.stub(jq, 'shortClassDefinition').withArgs('test short_class_definition').returns('mocked short_class_definition')
+      sinon.stub(jq, 'componentClause1').withArgs('test component_clause1').returns('mocked component_clause1')
+      sinon.stub(jq, 'elementReplaceable').withArgs('test element_replaceable').returns('mocked element_replaceable')
+      var rawJson = {
+        'each': true,
+        'is_final': true,
+        'short_class_definition': 'test short_class_definition',
+        'component_clause1': 'test component_clause1',
+        'element_replaceable': 'test element_replaceable'
+      }
+      var jsonOutput = jq.elementRedeclaration(rawJson)
+      var referenceJsonOutput = {
+        'each': true,
+        'final': true,
+        'short_class_definition': 'mocked short_class_definition',
+        'component_clause1': 'mocked component_clause1',
+        'element_replaceable': 'mocked element_replaceable'
+      }
+      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
+    })
+  })
+  mo.describe('testing epxression_list', function () {
+    mo.it('testing structure', function () {
+      sinon.stub(jq, 'simpleExpression').withArgs('test simple_expression1').returns('mocked simple_expression1').withArgs('test simple_expression2').returns('mocked simple_expression2')
+      sinon.stub(jq, 'ifExpString').withArgs('test if_expression1').returns('mocked if_expression1').withArgs('test if_expression2').returns('mocked if_expression2')
+      var rawJson = [
+        {
+          'expressions': [
+            {
+              'simple_expression': 'test simple_expression1'
+            }, {
+              'if_expression': 'test if_expression1'
+            }
+          ]
+        }, {
+          'expressions': [
+            {
+              'simple_expression': 'test simple_expression2'
+            }, {
+              'if_expression': 'test if_expression2'
+            }
+          ]
+        }
+      ]
+      var jsonOutput = jq.expLisString(rawJson)
+      var referenceJsonOutput = 'mocked simple_expression1,mocked if_expression1;mocked simple_expression2,mocked if_expression2'
       as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
     })
   })
