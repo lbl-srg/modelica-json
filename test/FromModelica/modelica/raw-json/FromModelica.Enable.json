@@ -1,0 +1,4108 @@
+[
+  {
+    "within": [
+      "FromModelica"
+    ],
+    "class_definition": [
+      {
+        "class_prefixes": "block",
+        "class_specifier": {
+          "long_class_specifier": {
+            "name": "Enable",
+            "comment": "\"Multi zone VAV AHU economizer enable/disable switch\"",
+            "composition": {
+              "element_list": {
+                "element": [
+                  {
+                    "component_clause": {
+                      "type_prefix": "parameter",
+                      "type_specifier": "Boolean",
+                      "component_list": {
+                        "component_declaration": [
+                          {
+                            "declaration": {
+                              "name": "use_enthalpy",
+                              "value": "true"
+                            },
+                            "comment": {
+                              "string_comment": "\"Set to true to evaluate outdoor air (OA) enthalpy in addition to temperature\"",
+                              "annotation": {
+                                "dialog": [
+                                  {
+                                    "name": "group",
+                                    "value": "\"Conditional\""
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "component_clause": {
+                      "type_prefix": "parameter",
+                      "type_specifier": "Real",
+                      "component_list": {
+                        "component_declaration": [
+                          {
+                            "declaration": {
+                              "name": "delTOutHis",
+                              "class_modification": {
+                                "modifications": [
+                                  {
+                                    "prefix": "final",
+                                    "name": "unit",
+                                    "value": "\"K\""
+                                  },
+                                  {
+                                    "prefix": "final",
+                                    "name": "displayUnit",
+                                    "value": "\"K\""
+                                  },
+                                  {
+                                    "prefix": "final",
+                                    "name": "quantity",
+                                    "value": "\"TemperatureDifference\""
+                                  }
+                                ]
+                              },
+                              "value": "1"
+                            },
+                            "comment": {
+                              "string_comment": "\"Delta between the temperature hysteresis high and low limit\"",
+                              "annotation": {
+                                "dialog": [
+                                  {
+                                    "name": "tab",
+                                    "value": "\"Advanced\""
+                                  },
+                                  {
+                                    "name": "group",
+                                    "value": "\"Hysteresis\""
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "component_clause": {
+                      "type_prefix": "parameter",
+                      "type_specifier": "Real",
+                      "component_list": {
+                        "component_declaration": [
+                          {
+                            "declaration": {
+                              "name": "delEntHis",
+                              "class_modification": {
+                                "modifications": [
+                                  {
+                                    "prefix": "final",
+                                    "name": "unit",
+                                    "value": "\"J/kg\""
+                                  },
+                                  {
+                                    "prefix": "final",
+                                    "name": "quantity",
+                                    "value": "\"SpecificEnergy\""
+                                  }
+                                ]
+                              },
+                              "value": "1000"
+                            },
+                            "comment": {
+                              "string_comment": "\"Delta between the enthalpy hysteresis high and low limits\"",
+                              "annotation": {
+                                "dialog": [
+                                  {
+                                    "name": "tab",
+                                    "value": "\"Advanced\""
+                                  },
+                                  {
+                                    "name": "group",
+                                    "value": "\"Hysteresis\""
+                                  },
+                                  {
+                                    "name": "enable",
+                                    "value": "use_enthalpy"
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "component_clause": {
+                      "type_prefix": "parameter",
+                      "type_specifier": "Real",
+                      "component_list": {
+                        "component_declaration": [
+                          {
+                            "declaration": {
+                              "name": "retDamFulOpeTim",
+                              "class_modification": {
+                                "modifications": [
+                                  {
+                                    "prefix": "final",
+                                    "name": "unit",
+                                    "value": "\"s\""
+                                  },
+                                  {
+                                    "prefix": "final",
+                                    "name": "quantity",
+                                    "value": "\"Time\""
+                                  }
+                                ]
+                              },
+                              "value": "180"
+                            },
+                            "comment": {
+                              "string_comment": "\"Time period to keep RA damper fully open before releasing it for minimum outdoor airflow control\n    at disable to avoid pressure fluctuations\"",
+                              "annotation": {
+                                "dialog": [
+                                  {
+                                    "name": "tab",
+                                    "value": "\"Advanced\""
+                                  },
+                                  {
+                                    "name": "group",
+                                    "value": "\"Delays at disable\""
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "component_clause": {
+                      "type_prefix": "parameter",
+                      "type_specifier": "Real",
+                      "component_list": {
+                        "component_declaration": [
+                          {
+                            "declaration": {
+                              "name": "disDel",
+                              "class_modification": {
+                                "modifications": [
+                                  {
+                                    "prefix": "final",
+                                    "name": "unit",
+                                    "value": "\"s\""
+                                  },
+                                  {
+                                    "prefix": "final",
+                                    "name": "quantity",
+                                    "value": "\"Time\""
+                                  }
+                                ]
+                              },
+                              "value": "15"
+                            },
+                            "comment": {
+                              "string_comment": "\"Short time delay before closing the OA damper at disable to avoid pressure fluctuations\"",
+                              "annotation": {
+                                "dialog": [
+                                  {
+                                    "name": "tab",
+                                    "value": "\"Advanced\""
+                                  },
+                                  {
+                                    "name": "group",
+                                    "value": "\"Delays at disable\""
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "component_clause": {
+                      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+                      "component_list": {
+                        "component_declaration": [
+                          {
+                            "declaration": {
+                              "name": "TOut",
+                              "class_modification": {
+                                "modifications": [
+                                  {
+                                    "prefix": "final",
+                                    "name": "unit",
+                                    "value": "\"K\""
+                                  },
+                                  {
+                                    "prefix": "final",
+                                    "name": "displayUnit",
+                                    "value": "\"degC\""
+                                  },
+                                  {
+                                    "prefix": "final",
+                                    "name": "quantity",
+                                    "value": "\"ThermodynamicTemperature\""
+                                  }
+                                ]
+                              }
+                            },
+                            "comment": {
+                              "string_comment": "\"Outdoor air temperature\"",
+                              "annotation": {
+                                "placement": {
+                                  "transformation": {
+                                    "extent": [
+                                      {
+                                        "x": -300,
+                                        "y": 232
+                                      },
+                                      {
+                                        "x": -260,
+                                        "y": 272
+                                      }
+                                    ]
+                                  },
+                                  "iconTransformation": {
+                                    "extent": [
+                                      {
+                                        "x": -140,
+                                        "y": 110
+                                      },
+                                      {
+                                        "x": -100,
+                                        "y": 150
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "component_clause": {
+                      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+                      "component_list": {
+                        "component_declaration": [
+                          {
+                            "declaration": {
+                              "name": "hOut",
+                              "class_modification": {
+                                "modifications": [
+                                  {
+                                    "prefix": "final",
+                                    "name": "unit",
+                                    "value": "\"J/kg\""
+                                  },
+                                  {
+                                    "prefix": "final",
+                                    "name": "quantity",
+                                    "value": "\"SpecificEnergy\""
+                                  }
+                                ]
+                              }
+                            },
+                            "condition_attribute": "if use_enthalpy",
+                            "comment": {
+                              "string_comment": "\"Outdoor air enthalpy\"",
+                              "annotation": {
+                                "placement": {
+                                  "transformation": {
+                                    "extent": [
+                                      {
+                                        "x": -300,
+                                        "y": 152
+                                      },
+                                      {
+                                        "x": -260,
+                                        "y": 192
+                                      }
+                                    ]
+                                  },
+                                  "iconTransformation": {
+                                    "extent": [
+                                      {
+                                        "x": -140,
+                                        "y": 60
+                                      },
+                                      {
+                                        "x": -100,
+                                        "y": 100
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "component_clause": {
+                      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+                      "component_list": {
+                        "component_declaration": [
+                          {
+                            "declaration": {
+                              "name": "TOutCut",
+                              "class_modification": {
+                                "modifications": [
+                                  {
+                                    "prefix": "final",
+                                    "name": "unit",
+                                    "value": "\"K\""
+                                  },
+                                  {
+                                    "prefix": "final",
+                                    "name": "displayUnit",
+                                    "value": "\"degC\""
+                                  },
+                                  {
+                                    "prefix": "final",
+                                    "name": "quantity",
+                                    "value": "\"ThermodynamicTemperature\""
+                                  }
+                                ]
+                              }
+                            },
+                            "comment": {
+                              "string_comment": "\"OA temperature high limit cutoff. For differential dry bulb temperature condition use return air temperature measurement\"",
+                              "annotation": {
+                                "placement": {
+                                  "transformation": {
+                                    "extent": [
+                                      {
+                                        "x": -300,
+                                        "y": 192
+                                      },
+                                      {
+                                        "x": -260,
+                                        "y": 232
+                                      }
+                                    ]
+                                  },
+                                  "iconTransformation": {
+                                    "extent": [
+                                      {
+                                        "x": -140,
+                                        "y": 90
+                                      },
+                                      {
+                                        "x": -100,
+                                        "y": 130
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "component_clause": {
+                      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+                      "component_list": {
+                        "component_declaration": [
+                          {
+                            "declaration": {
+                              "name": "hOutCut",
+                              "class_modification": {
+                                "modifications": [
+                                  {
+                                    "prefix": "final",
+                                    "name": "unit",
+                                    "value": "\"J/kg\""
+                                  },
+                                  {
+                                    "prefix": "final",
+                                    "name": "quantity",
+                                    "value": "\"SpecificEnergy\""
+                                  }
+                                ]
+                              }
+                            },
+                            "condition_attribute": "if use_enthalpy",
+                            "comment": {
+                              "string_comment": "\"OA enthalpy high limit cutoff. For differential enthalpy use return air enthalpy measurement\"",
+                              "annotation": {
+                                "placement": {
+                                  "transformation": {
+                                    "extent": [
+                                      {
+                                        "x": -300,
+                                        "y": 112
+                                      },
+                                      {
+                                        "x": -260,
+                                        "y": 152
+                                      }
+                                    ]
+                                  },
+                                  "iconTransformation": {
+                                    "extent": [
+                                      {
+                                        "x": -140,
+                                        "y": 40
+                                      },
+                                      {
+                                        "x": -100,
+                                        "y": 80
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "component_clause": {
+                      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+                      "component_list": {
+                        "component_declaration": [
+                          {
+                            "declaration": {
+                              "name": "uOutDam_min",
+                              "class_modification": {
+                                "modifications": [
+                                  {
+                                    "prefix": "final",
+                                    "name": "unit",
+                                    "value": "\"1\""
+                                  },
+                                  {
+                                    "prefix": "final",
+                                    "name": "min",
+                                    "value": "0"
+                                  },
+                                  {
+                                    "prefix": "final",
+                                    "name": "max",
+                                    "value": "1"
+                                  }
+                                ]
+                              }
+                            },
+                            "comment": {
+                              "string_comment": "\"Minimum outdoor air damper position, output from damper position limits sequence\"",
+                              "annotation": {
+                                "placement": {
+                                  "transformation": {
+                                    "extent": [
+                                      {
+                                        "x": -300,
+                                        "y": -98
+                                      },
+                                      {
+                                        "x": -260,
+                                        "y": -58
+                                      }
+                                    ]
+                                  },
+                                  "iconTransformation": {
+                                    "extent": [
+                                      {
+                                        "x": -140,
+                                        "y": -60
+                                      },
+                                      {
+                                        "x": -100,
+                                        "y": -20
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "component_clause": {
+                      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+                      "component_list": {
+                        "component_declaration": [
+                          {
+                            "declaration": {
+                              "name": "uOutDam_max",
+                              "class_modification": {
+                                "modifications": [
+                                  {
+                                    "prefix": "final",
+                                    "name": "unit",
+                                    "value": "\"1\""
+                                  },
+                                  {
+                                    "prefix": "final",
+                                    "name": "min",
+                                    "value": "0"
+                                  },
+                                  {
+                                    "prefix": "final",
+                                    "name": "max",
+                                    "value": "1"
+                                  }
+                                ]
+                              }
+                            },
+                            "comment": {
+                              "string_comment": "\"Maximum outdoor air damper position, output from damper position limits sequence\"",
+                              "annotation": {
+                                "placement": {
+                                  "transformation": {
+                                    "extent": [
+                                      {
+                                        "x": -300,
+                                        "y": -58
+                                      },
+                                      {
+                                        "x": -260,
+                                        "y": -18
+                                      }
+                                    ]
+                                  },
+                                  "iconTransformation": {
+                                    "extent": [
+                                      {
+                                        "x": -140,
+                                        "y": -40
+                                      },
+                                      {
+                                        "x": -100,
+                                        "y": 0
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "component_clause": {
+                      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+                      "component_list": {
+                        "component_declaration": [
+                          {
+                            "declaration": {
+                              "name": "uRetDam_max",
+                              "class_modification": {
+                                "modifications": [
+                                  {
+                                    "prefix": "final",
+                                    "name": "unit",
+                                    "value": "\"1\""
+                                  },
+                                  {
+                                    "prefix": "final",
+                                    "name": "min",
+                                    "value": "0"
+                                  },
+                                  {
+                                    "prefix": "final",
+                                    "name": "max",
+                                    "value": "1"
+                                  }
+                                ]
+                              }
+                            },
+                            "comment": {
+                              "string_comment": "\"Maximum return air damper position, output from damper position limits sequence\"",
+                              "annotation": {
+                                "placement": {
+                                  "transformation": {
+                                    "extent": [
+                                      {
+                                        "x": -300,
+                                        "y": -178
+                                      },
+                                      {
+                                        "x": -260,
+                                        "y": -138
+                                      }
+                                    ]
+                                  },
+                                  "iconTransformation": {
+                                    "extent": [
+                                      {
+                                        "x": -140,
+                                        "y": -130
+                                      },
+                                      {
+                                        "x": -100,
+                                        "y": -90
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "component_clause": {
+                      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+                      "component_list": {
+                        "component_declaration": [
+                          {
+                            "declaration": {
+                              "name": "uRetDam_min",
+                              "class_modification": {
+                                "modifications": [
+                                  {
+                                    "prefix": "final",
+                                    "name": "unit",
+                                    "value": "\"1\""
+                                  },
+                                  {
+                                    "prefix": "final",
+                                    "name": "min",
+                                    "value": "0"
+                                  },
+                                  {
+                                    "prefix": "final",
+                                    "name": "max",
+                                    "value": "1"
+                                  }
+                                ]
+                              }
+                            },
+                            "comment": {
+                              "string_comment": "\"Minimum return air damper position, output from damper position limits sequence\"",
+                              "annotation": {
+                                "placement": {
+                                  "transformation": {
+                                    "extent": [
+                                      {
+                                        "x": -300,
+                                        "y": -218
+                                      },
+                                      {
+                                        "x": -260,
+                                        "y": -178
+                                      }
+                                    ]
+                                  },
+                                  "iconTransformation": {
+                                    "extent": [
+                                      {
+                                        "x": -140,
+                                        "y": -150
+                                      },
+                                      {
+                                        "x": -100,
+                                        "y": -110
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "component_clause": {
+                      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+                      "component_list": {
+                        "component_declaration": [
+                          {
+                            "declaration": {
+                              "name": "uRetDamPhy_max",
+                              "class_modification": {
+                                "modifications": [
+                                  {
+                                    "prefix": "final",
+                                    "name": "unit",
+                                    "value": "\"1\""
+                                  },
+                                  {
+                                    "prefix": "final",
+                                    "name": "min",
+                                    "value": "0"
+                                  },
+                                  {
+                                    "prefix": "final",
+                                    "name": "max",
+                                    "value": "1"
+                                  }
+                                ]
+                              }
+                            },
+                            "comment": {
+                              "string_comment": "\"Physical maximum return air damper position, output from damper position limits sequence\"",
+                              "annotation": {
+                                "placement": {
+                                  "transformation": {
+                                    "extent": [
+                                      {
+                                        "x": -300,
+                                        "y": -138
+                                      },
+                                      {
+                                        "x": -260,
+                                        "y": -98
+                                      }
+                                    ]
+                                  },
+                                  "iconTransformation": {
+                                    "extent": [
+                                      {
+                                        "x": -140,
+                                        "y": -110
+                                      },
+                                      {
+                                        "x": -100,
+                                        "y": -70
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "component_clause": {
+                      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.BooleanInput",
+                      "component_list": {
+                        "component_declaration": [
+                          {
+                            "declaration": {
+                              "name": "u1SupFan"
+                            },
+                            "comment": {
+                              "string_comment": "\"Supply fan proven on\"",
+                              "annotation": {
+                                "placement": {
+                                  "transformation": {
+                                    "extent": [
+                                      {
+                                        "x": -300,
+                                        "y": 62
+                                      },
+                                      {
+                                        "x": -260,
+                                        "y": 102
+                                      }
+                                    ]
+                                  },
+                                  "iconTransformation": {
+                                    "extent": [
+                                      {
+                                        "x": -140,
+                                        "y": 10
+                                      },
+                                      {
+                                        "x": -100,
+                                        "y": 50
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "component_clause": {
+                      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.IntegerInput",
+                      "component_list": {
+                        "component_declaration": [
+                          {
+                            "declaration": {
+                              "name": "uFreProSta"
+                            },
+                            "comment": {
+                              "string_comment": "\"Freeze protection stage status signal\"",
+                              "annotation": {
+                                "placement": {
+                                  "transformation": {
+                                    "extent": [
+                                      {
+                                        "x": -300,
+                                        "y": 22
+                                      },
+                                      {
+                                        "x": -260,
+                                        "y": 62
+                                      }
+                                    ]
+                                  },
+                                  "iconTransformation": {
+                                    "extent": [
+                                      {
+                                        "x": -140,
+                                        "y": -10
+                                      },
+                                      {
+                                        "x": -100,
+                                        "y": 30
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "component_clause": {
+                      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
+                      "component_list": {
+                        "component_declaration": [
+                          {
+                            "declaration": {
+                              "name": "yOutDam_max",
+                              "class_modification": {
+                                "modifications": [
+                                  {
+                                    "prefix": "final",
+                                    "name": "unit",
+                                    "value": "\"1\""
+                                  },
+                                  {
+                                    "prefix": "final",
+                                    "name": "min",
+                                    "value": "0"
+                                  },
+                                  {
+                                    "prefix": "final",
+                                    "name": "max",
+                                    "value": "1"
+                                  }
+                                ]
+                              }
+                            },
+                            "comment": {
+                              "string_comment": "\"Maximum outdoor air damper position\"",
+                              "annotation": {
+                                "placement": {
+                                  "transformation": {
+                                    "extent": [
+                                      {
+                                        "x": 240,
+                                        "y": 22
+                                      },
+                                      {
+                                        "x": 280,
+                                        "y": 62
+                                      }
+                                    ]
+                                  },
+                                  "iconTransformation": {
+                                    "extent": [
+                                      {
+                                        "x": 100,
+                                        "y": 80
+                                      },
+                                      {
+                                        "x": 140,
+                                        "y": 120
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "component_clause": {
+                      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
+                      "component_list": {
+                        "component_declaration": [
+                          {
+                            "declaration": {
+                              "name": "yRetDam_min",
+                              "class_modification": {
+                                "modifications": [
+                                  {
+                                    "prefix": "final",
+                                    "name": "unit",
+                                    "value": "\"1\""
+                                  },
+                                  {
+                                    "prefix": "final",
+                                    "name": "min",
+                                    "value": "0"
+                                  },
+                                  {
+                                    "prefix": "final",
+                                    "name": "max",
+                                    "value": "1"
+                                  }
+                                ]
+                              }
+                            },
+                            "comment": {
+                              "string_comment": "\"Minimum return air damper position\"",
+                              "annotation": {
+                                "placement": {
+                                  "transformation": {
+                                    "extent": [
+                                      {
+                                        "x": 240,
+                                        "y": -98
+                                      },
+                                      {
+                                        "x": 280,
+                                        "y": -58
+                                      }
+                                    ]
+                                  },
+                                  "iconTransformation": {
+                                    "extent": [
+                                      {
+                                        "x": 100,
+                                        "y": -120
+                                      },
+                                      {
+                                        "x": 140,
+                                        "y": -80
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "component_clause": {
+                      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
+                      "component_list": {
+                        "component_declaration": [
+                          {
+                            "declaration": {
+                              "name": "yRetDam_max",
+                              "class_modification": {
+                                "modifications": [
+                                  {
+                                    "prefix": "final",
+                                    "name": "unit",
+                                    "value": "\"1\""
+                                  },
+                                  {
+                                    "prefix": "final",
+                                    "name": "min",
+                                    "value": "0"
+                                  },
+                                  {
+                                    "prefix": "final",
+                                    "name": "max",
+                                    "value": "1"
+                                  }
+                                ]
+                              }
+                            },
+                            "comment": {
+                              "string_comment": "\"Maximum return air damper position\"",
+                              "annotation": {
+                                "placement": {
+                                  "transformation": {
+                                    "extent": [
+                                      {
+                                        "x": 240,
+                                        "y": -38
+                                      },
+                                      {
+                                        "x": 280,
+                                        "y": 2
+                                      }
+                                    ]
+                                  },
+                                  "iconTransformation": {
+                                    "extent": [
+                                      {
+                                        "x": 100,
+                                        "y": -20
+                                      },
+                                      {
+                                        "x": 140,
+                                        "y": 20
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "component_clause": {
+                      "type_specifier": "Buildings.Controls.OBC.CDL.Logical.TrueFalseHold",
+                      "component_list": {
+                        "component_declaration": [
+                          {
+                            "declaration": {
+                              "name": "truFalHol",
+                              "class_modification": {
+                                "modifications": [
+                                  {
+                                    "prefix": "final",
+                                    "name": "trueHoldDuration",
+                                    "value": "600"
+                                  }
+                                ]
+                              }
+                            },
+                            "comment": {
+                              "string_comment": "\"Economizer should not be enabled or disabled within 10 minutes of change\"",
+                              "annotation": {
+                                "placement": {
+                                  "transformation": {
+                                    "extent": [
+                                      {
+                                        "x": 20,
+                                        "y": 182
+                                      },
+                                      {
+                                        "x": 40,
+                                        "y": 202
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "component_clause": {
+                      "type_specifier": "Buildings.Controls.OBC.CDL.Logical.And",
+                      "component_list": {
+                        "component_declaration": [
+                          {
+                            "declaration": {
+                              "name": "andEnaDis"
+                            },
+                            "comment": {
+                              "string_comment": "\"Check freeze protection stage and zone state\"",
+                              "annotation": {
+                                "placement": {
+                                  "transformation": {
+                                    "extent": [
+                                      {
+                                        "x": 60,
+                                        "y": 12
+                                      },
+                                      {
+                                        "x": 80,
+                                        "y": 32
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              },
+              "prefix_protect": [
+                "protected"
+              ],
+              "prefixed_element": [
+                {
+                  "element": [
+                    {
+                      "prefix": "final ",
+                      "component_clause": {
+                        "type_prefix": "parameter",
+                        "type_specifier": "Real",
+                        "component_list": {
+                          "component_declaration": [
+                            {
+                              "declaration": {
+                                "name": "TOutHigLimCutHig",
+                                "class_modification": {
+                                  "modifications": [
+                                    {
+                                      "prefix": "final",
+                                      "name": "unit",
+                                      "value": "\"K\""
+                                    },
+                                    {
+                                      "prefix": "final",
+                                      "name": "displayUnit",
+                                      "value": "\"K\""
+                                    },
+                                    {
+                                      "prefix": "final",
+                                      "name": "quantity",
+                                      "value": "\"TemperatureDifference\""
+                                    }
+                                  ]
+                                },
+                                "value": "0"
+                              },
+                              "comment": {
+                                "string_comment": "\"Hysteresis high limit cutoff\""
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "prefix": "final ",
+                      "component_clause": {
+                        "type_prefix": "parameter",
+                        "type_specifier": "Real",
+                        "component_list": {
+                          "component_declaration": [
+                            {
+                              "declaration": {
+                                "name": "TOutHigLimCutLow",
+                                "value": "TOutHigLimCutHig - delTOutHis"
+                              },
+                              "comment": {
+                                "string_comment": "\"Hysteresis low limit cutoff\""
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "prefix": "final ",
+                      "component_clause": {
+                        "type_prefix": "parameter",
+                        "type_specifier": "Real",
+                        "component_list": {
+                          "component_declaration": [
+                            {
+                              "declaration": {
+                                "name": "hOutHigLimCutHig",
+                                "class_modification": {
+                                  "modifications": [
+                                    {
+                                      "prefix": "final",
+                                      "name": "unit",
+                                      "value": "\"J/kg\""
+                                    },
+                                    {
+                                      "prefix": "final",
+                                      "name": "quantity",
+                                      "value": "\"SpecificEnergy\""
+                                    }
+                                  ]
+                                },
+                                "value": "0"
+                              },
+                              "comment": {
+                                "string_comment": "\"Hysteresis block high limit cutoff\""
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "prefix": "final ",
+                      "component_clause": {
+                        "type_prefix": "parameter",
+                        "type_specifier": "Real",
+                        "component_list": {
+                          "component_declaration": [
+                            {
+                              "declaration": {
+                                "name": "hOutHigLimCutLow",
+                                "value": "hOutHigLimCutHig - delEntHis"
+                              },
+                              "comment": {
+                                "string_comment": "\"Hysteresis block low limit cutoff\""
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "component_clause": {
+                        "type_specifier": "Buildings.Controls.OBC.CDL.Continuous.Subtract",
+                        "component_list": {
+                          "component_declaration": [
+                            {
+                              "declaration": {
+                                "name": "sub2"
+                              },
+                              "condition_attribute": "if use_enthalpy",
+                              "comment": {
+                                "string_comment": "\"Add block determines difference between hOut and hOutCut\"",
+                                "annotation": {
+                                  "placement": {
+                                    "transformation": {
+                                      "extent": [
+                                        {
+                                          "x": -200,
+                                          "y": 140
+                                        },
+                                        {
+                                          "x": -180,
+                                          "y": 160
+                                        }
+                                      ]
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "component_clause": {
+                        "type_specifier": "Buildings.Controls.OBC.CDL.Continuous.Subtract",
+                        "component_list": {
+                          "component_declaration": [
+                            {
+                              "declaration": {
+                                "name": "sub1"
+                              },
+                              "comment": {
+                                "string_comment": "\"Add block determines difference between TOut and TOutCut\"",
+                                "annotation": {
+                                  "placement": {
+                                    "transformation": {
+                                      "extent": [
+                                        {
+                                          "x": -200,
+                                          "y": 220
+                                        },
+                                        {
+                                          "x": -180,
+                                          "y": 240
+                                        }
+                                      ]
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "component_clause": {
+                        "type_specifier": "Buildings.Controls.OBC.CDL.Continuous.Hysteresis",
+                        "component_list": {
+                          "component_declaration": [
+                            {
+                              "declaration": {
+                                "name": "hysOutTem",
+                                "class_modification": {
+                                  "modifications": [
+                                    {
+                                      "prefix": "final",
+                                      "name": "uLow",
+                                      "value": "TOutHigLimCutLow"
+                                    },
+                                    {
+                                      "prefix": "final",
+                                      "name": "uHigh",
+                                      "value": "TOutHigLimCutHig"
+                                    }
+                                  ]
+                                }
+                              },
+                              "comment": {
+                                "string_comment": "\"Outdoor air temperature hysteresis for both fixed and differential dry bulb temperature cutoff conditions\"",
+                                "annotation": {
+                                  "placement": {
+                                    "transformation": {
+                                      "extent": [
+                                        {
+                                          "x": -160,
+                                          "y": 220
+                                        },
+                                        {
+                                          "x": -140,
+                                          "y": 240
+                                        }
+                                      ]
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "component_clause": {
+                        "type_specifier": "Buildings.Controls.OBC.CDL.Continuous.Hysteresis",
+                        "component_list": {
+                          "component_declaration": [
+                            {
+                              "declaration": {
+                                "name": "hysOutEnt",
+                                "class_modification": {
+                                  "modifications": [
+                                    {
+                                      "prefix": "final",
+                                      "name": "uLow",
+                                      "value": "hOutHigLimCutLow"
+                                    },
+                                    {
+                                      "prefix": "final",
+                                      "name": "uHigh",
+                                      "value": "hOutHigLimCutHig"
+                                    }
+                                  ]
+                                }
+                              },
+                              "condition_attribute": "if use_enthalpy",
+                              "comment": {
+                                "string_comment": "\"Outdoor air enthalpy hysteresis for both fixed and differential enthalpy cutoff conditions\"",
+                                "annotation": {
+                                  "placement": {
+                                    "transformation": {
+                                      "extent": [
+                                        {
+                                          "x": -160,
+                                          "y": 140
+                                        },
+                                        {
+                                          "x": -140,
+                                          "y": 160
+                                        }
+                                      ]
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "component_clause": {
+                        "type_specifier": "Buildings.Controls.OBC.CDL.Continuous.Switch",
+                        "component_list": {
+                          "component_declaration": [
+                            {
+                              "declaration": {
+                                "name": "outDamSwitch"
+                              },
+                              "comment": {
+                                "string_comment": "\"Set maximum OA damper position to minimum at disable (after a given time delay)\"",
+                                "annotation": {
+                                  "placement": {
+                                    "transformation": {
+                                      "extent": [
+                                        {
+                                          "x": 82,
+                                          "y": -78
+                                        },
+                                        {
+                                          "x": 102,
+                                          "y": -58
+                                        }
+                                      ]
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "component_clause": {
+                        "type_specifier": "Buildings.Controls.OBC.CDL.Continuous.Switch",
+                        "component_list": {
+                          "component_declaration": [
+                            {
+                              "declaration": {
+                                "name": "retDamSwitch"
+                              },
+                              "comment": {
+                                "string_comment": "\"Set minimum RA damper position to maximum at disable\"",
+                                "annotation": {
+                                  "placement": {
+                                    "transformation": {
+                                      "extent": [
+                                        {
+                                          "x": -20,
+                                          "y": -176
+                                        },
+                                        {
+                                          "x": 0,
+                                          "y": -156
+                                        }
+                                      ]
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "component_clause": {
+                        "type_specifier": "Buildings.Controls.OBC.CDL.Continuous.Switch",
+                        "component_list": {
+                          "component_declaration": [
+                            {
+                              "declaration": {
+                                "name": "maxRetDamSwitch"
+                              },
+                              "comment": {
+                                "string_comment": "\"Keep maximum RA damper position at physical maximum for a short time period after disable signal\"",
+                                "annotation": {
+                                  "placement": {
+                                    "transformation": {
+                                      "extent": [
+                                        {
+                                          "x": 60,
+                                          "y": -136
+                                        },
+                                        {
+                                          "x": 80,
+                                          "y": -116
+                                        }
+                                      ]
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "component_clause": {
+                        "type_specifier": "Buildings.Controls.OBC.CDL.Continuous.Switch",
+                        "component_list": {
+                          "component_declaration": [
+                            {
+                              "declaration": {
+                                "name": "minRetDamSwitch"
+                              },
+                              "comment": {
+                                "string_comment": "\"Keep minimum RA damper position at physical maximum for a short time period after disable\"",
+                                "annotation": {
+                                  "placement": {
+                                    "transformation": {
+                                      "extent": [
+                                        {
+                                          "x": 60,
+                                          "y": -178
+                                        },
+                                        {
+                                          "x": 80,
+                                          "y": -158
+                                        }
+                                      ]
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "component_clause": {
+                        "type_specifier": "Buildings.Controls.OBC.CDL.Logical.Not",
+                        "component_list": {
+                          "component_declaration": [
+                            {
+                              "declaration": {
+                                "name": "not2"
+                              },
+                              "comment": {
+                                "string_comment": "\"Logical not that starts the timer at disable signal \"",
+                                "annotation": {
+                                  "placement": {
+                                    "transformation": {
+                                      "extent": [
+                                        {
+                                          "x": -60,
+                                          "y": -58
+                                        },
+                                        {
+                                          "x": -40,
+                                          "y": -38
+                                        }
+                                      ]
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "component_clause": {
+                        "type_specifier": "Buildings.Controls.OBC.CDL.Logical.And",
+                        "component_list": {
+                          "component_declaration": [
+                            {
+                              "declaration": {
+                                "name": "and2"
+                              },
+                              "comment": {
+                                "string_comment": "\"Logical and\"",
+                                "annotation": {
+                                  "placement": {
+                                    "transformation": {
+                                      "extent": [
+                                        {
+                                          "x": 160,
+                                          "y": -100
+                                        },
+                                        {
+                                          "x": 180,
+                                          "y": -80
+                                        }
+                                      ]
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "component_clause": {
+                        "type_specifier": "Buildings.Controls.OBC.CDL.Logical.And",
+                        "component_list": {
+                          "component_declaration": [
+                            {
+                              "declaration": {
+                                "name": "and1"
+                              },
+                              "comment": {
+                                "string_comment": "\"Check supply fan status\"",
+                                "annotation": {
+                                  "placement": {
+                                    "transformation": {
+                                      "extent": [
+                                        {
+                                          "x": 20,
+                                          "y": 80
+                                        },
+                                        {
+                                          "x": 40,
+                                          "y": 100
+                                        }
+                                      ]
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "component_clause": {
+                        "type_specifier": "Buildings.Controls.OBC.CDL.Logical.And",
+                        "component_list": {
+                          "component_declaration": [
+                            {
+                              "declaration": {
+                                "name": "and3"
+                              },
+                              "comment": {
+                                "string_comment": "\"Check if delay time has been passed after economizer being disabled\"",
+                                "annotation": {
+                                  "placement": {
+                                    "transformation": {
+                                      "extent": [
+                                        {
+                                          "x": 40,
+                                          "y": -54
+                                        },
+                                        {
+                                          "x": 60,
+                                          "y": -34
+                                        }
+                                      ]
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "component_clause": {
+                        "type_specifier": "Buildings.Controls.OBC.CDL.Integers.Equal",
+                        "component_list": {
+                          "component_declaration": [
+                            {
+                              "declaration": {
+                                "name": "intEqu"
+                              },
+                              "comment": {
+                                "string_comment": "\"Logical block to check if the freeze protection is deactivated\"",
+                                "annotation": {
+                                  "placement": {
+                                    "transformation": {
+                                      "extent": [
+                                        {
+                                          "x": -78,
+                                          "y": 32
+                                        },
+                                        {
+                                          "x": -58,
+                                          "y": 52
+                                        }
+                                      ]
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "component_clause": {
+                        "type_specifier": "Buildings.Controls.OBC.CDL.Logical.TrueDelay",
+                        "component_list": {
+                          "component_declaration": [
+                            {
+                              "declaration": {
+                                "name": "delOutDamOsc",
+                                "class_modification": {
+                                  "modifications": [
+                                    {
+                                      "prefix": "final",
+                                      "name": "delayTime",
+                                      "value": "disDel"
+                                    }
+                                  ]
+                                }
+                              },
+                              "comment": {
+                                "string_comment": "\"Small delay before closing the outdoor air damper to avoid pressure fluctuations\"",
+                                "annotation": {
+                                  "placement": {
+                                    "transformation": {
+                                      "extent": [
+                                        {
+                                          "x": -20,
+                                          "y": -58
+                                        },
+                                        {
+                                          "x": 0,
+                                          "y": -38
+                                        }
+                                      ]
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "component_clause": {
+                        "type_specifier": "Buildings.Controls.OBC.CDL.Logical.TrueDelay",
+                        "component_list": {
+                          "component_declaration": [
+                            {
+                              "declaration": {
+                                "name": "delRetDam",
+                                "class_modification": {
+                                  "modifications": [
+                                    {
+                                      "prefix": "final",
+                                      "name": "delayTime",
+                                      "value": "retDamFulOpeTim"
+                                    }
+                                  ]
+                                }
+                              },
+                              "comment": {
+                                "string_comment": "\"Keep return damper open to its physical maximum for a short period of time before closing the outdoor air damper and resuming the maximum return air damper position, per G36 Part N7\"",
+                                "annotation": {
+                                  "placement": {
+                                    "transformation": {
+                                      "extent": [
+                                        {
+                                          "x": -20,
+                                          "y": -108
+                                        },
+                                        {
+                                          "x": 0,
+                                          "y": -88
+                                        }
+                                      ]
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "component_clause": {
+                        "type_specifier": "Buildings.Controls.OBC.CDL.Logical.Not",
+                        "component_list": {
+                          "component_declaration": [
+                            {
+                              "declaration": {
+                                "name": "not1"
+                              },
+                              "comment": {
+                                "string_comment": "\"Logical not\"",
+                                "annotation": {
+                                  "placement": {
+                                    "transformation": {
+                                      "extent": [
+                                        {
+                                          "x": 20,
+                                          "y": -108
+                                        },
+                                        {
+                                          "x": 40,
+                                          "y": -88
+                                        }
+                                      ]
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "component_clause": {
+                        "type_specifier": "Buildings.Controls.OBC.CDL.Integers.Sources.Constant",
+                        "component_list": {
+                          "component_declaration": [
+                            {
+                              "declaration": {
+                                "name": "conInt",
+                                "class_modification": {
+                                  "modifications": [
+                                    {
+                                      "prefix": "final",
+                                      "name": "k",
+                                      "value": "Buildings.Controls.OBC.ASHRAE.G36.Types.FreezeProtectionStages.stage0"
+                                    }
+                                  ]
+                                }
+                              },
+                              "comment": {
+                                "string_comment": "\"Integer constant, stage 0\"",
+                                "annotation": {
+                                  "placement": {
+                                    "transformation": {
+                                      "extent": [
+                                        {
+                                          "x": -118,
+                                          "y": 12
+                                        },
+                                        {
+                                          "x": -98,
+                                          "y": 32
+                                        }
+                                      ]
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "component_clause": {
+                        "type_specifier": "Buildings.Controls.OBC.CDL.Logical.Sources.Constant",
+                        "component_list": {
+                          "component_declaration": [
+                            {
+                              "declaration": {
+                                "name": "entSubst1",
+                                "class_modification": {
+                                  "modifications": [
+                                    {
+                                      "prefix": "final",
+                                      "name": "k",
+                                      "value": "false"
+                                    }
+                                  ]
+                                }
+                              },
+                              "condition_attribute": "if not use_enthalpy",
+                              "comment": {
+                                "string_comment": "\"Deactivates outdoor air enthalpy condition if there is no enthalpy sensor\"",
+                                "annotation": {
+                                  "placement": {
+                                    "transformation": {
+                                      "extent": [
+                                        {
+                                          "x": -160,
+                                          "y": 180
+                                        },
+                                        {
+                                          "x": -140,
+                                          "y": 200
+                                        }
+                                      ]
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "component_clause": {
+                        "type_specifier": "Buildings.Controls.OBC.CDL.Logical.Or",
+                        "component_list": {
+                          "component_declaration": [
+                            {
+                              "declaration": {
+                                "name": "or2"
+                              },
+                              "comment": {
+                                "string_comment": "\"Check if either the temperature or the enthalpy condition is satisfied\"",
+                                "annotation": {
+                                  "placement": {
+                                    "transformation": {
+                                      "extent": [
+                                        {
+                                          "x": -60,
+                                          "y": 182
+                                        },
+                                        {
+                                          "x": -40,
+                                          "y": 202
+                                        }
+                                      ]
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              ],
+              "equation_section": [
+                {
+                  "prefix": "equation",
+                  "equation": [
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "TOut"
+                        ],
+                        "component2": [
+                          "sub1",
+                          "u1"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x": -280,
+                                "y": 252
+                              },
+                              {
+                                "x": -240,
+                                "y": 252
+                              },
+                              {
+                                "x": -240,
+                                "y": 236
+                              },
+                              {
+                                "x": -202,
+                                "y": 236
+                              }
+                            ],
+                            "color": {
+                              "r": 0,
+                              "g": 0,
+                              "b": 127
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "TOutCut"
+                        ],
+                        "component2": [
+                          "sub1",
+                          "u2"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x": -280,
+                                "y": 212
+                              },
+                              {
+                                "x": -240,
+                                "y": 212
+                              },
+                              {
+                                "x": -240,
+                                "y": 224
+                              },
+                              {
+                                "x": -202,
+                                "y": 224
+                              }
+                            ],
+                            "color": {
+                              "r": 0,
+                              "g": 0,
+                              "b": 127
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "sub1",
+                          "y"
+                        ],
+                        "component2": [
+                          "hysOutTem",
+                          "u"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x": -178,
+                                "y": 230
+                              },
+                              {
+                                "x": -162,
+                                "y": 230
+                              }
+                            ],
+                            "color": {
+                              "r": 0,
+                              "g": 0,
+                              "b": 127
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "hOut"
+                        ],
+                        "component2": [
+                          "sub2",
+                          "u1"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x": -280,
+                                "y": 172
+                              },
+                              {
+                                "x": -240,
+                                "y": 172
+                              },
+                              {
+                                "x": -240,
+                                "y": 156
+                              },
+                              {
+                                "x": -202,
+                                "y": 156
+                              }
+                            ],
+                            "color": {
+                              "r": 0,
+                              "g": 0,
+                              "b": 127
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "hOutCut"
+                        ],
+                        "component2": [
+                          "sub2",
+                          "u2"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x": -280,
+                                "y": 132
+                              },
+                              {
+                                "x": -240,
+                                "y": 132
+                              },
+                              {
+                                "x": -240,
+                                "y": 144
+                              },
+                              {
+                                "x": -202,
+                                "y": 144
+                              }
+                            ],
+                            "color": {
+                              "r": 0,
+                              "g": 0,
+                              "b": 127
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "sub2",
+                          "y"
+                        ],
+                        "component2": [
+                          "hysOutEnt",
+                          "u"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x": -178,
+                                "y": 150
+                              },
+                              {
+                                "x": -162,
+                                "y": 150
+                              }
+                            ],
+                            "color": {
+                              "r": 0,
+                              "g": 0,
+                              "b": 127
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "uOutDam_min"
+                        ],
+                        "component2": [
+                          "outDamSwitch",
+                          "u1"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x": -280,
+                                "y": -78
+                              },
+                              {
+                                "x": 10,
+                                "y": -78
+                              },
+                              {
+                                "x": 10,
+                                "y": -60
+                              },
+                              {
+                                "x": 80,
+                                "y": -60
+                              }
+                            ],
+                            "color": {
+                              "r": 0,
+                              "g": 0,
+                              "b": 127
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "uOutDam_max"
+                        ],
+                        "component2": [
+                          "outDamSwitch",
+                          "u3"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x": -280,
+                                "y": -38
+                              },
+                              {
+                                "x": -220,
+                                "y": -38
+                              },
+                              {
+                                "x": -220,
+                                "y": -76
+                              },
+                              {
+                                "x": 80,
+                                "y": -76
+                              }
+                            ],
+                            "color": {
+                              "r": 0,
+                              "g": 0,
+                              "b": 127
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "uRetDamPhy_max"
+                        ],
+                        "component2": [
+                          "maxRetDamSwitch",
+                          "u1"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x": -280,
+                                "y": -118
+                              },
+                              {
+                                "x": 58,
+                                "y": -118
+                              }
+                            ],
+                            "color": {
+                              "r": 0,
+                              "g": 0,
+                              "b": 127
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "uRetDam_max"
+                        ],
+                        "component2": [
+                          "maxRetDamSwitch",
+                          "u3"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x": -280,
+                                "y": -158
+                              },
+                              {
+                                "x": -158,
+                                "y": -158
+                              },
+                              {
+                                "x": -158,
+                                "y": -134
+                              },
+                              {
+                                "x": 58,
+                                "y": -134
+                              }
+                            ],
+                            "color": {
+                              "r": 0,
+                              "g": 0,
+                              "b": 127
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "andEnaDis",
+                          "y"
+                        ],
+                        "component2": [
+                          "not2",
+                          "u"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x": 82,
+                                "y": 22
+                              },
+                              {
+                                "x": 92,
+                                "y": 22
+                              },
+                              {
+                                "x": 92,
+                                "y": -8
+                              },
+                              {
+                                "x": -80,
+                                "y": -8
+                              },
+                              {
+                                "x": -80,
+                                "y": -48
+                              },
+                              {
+                                "x": -62,
+                                "y": -48
+                              }
+                            ],
+                            "color": {
+                              "r": 255,
+                              "g": 0,
+                              "b": 255
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "maxRetDamSwitch",
+                          "y"
+                        ],
+                        "component2": [
+                          "yRetDam_max"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x": 82,
+                                "y": -126
+                              },
+                              {
+                                "x": 200,
+                                "y": -126
+                              },
+                              {
+                                "x": 200,
+                                "y": -18
+                              },
+                              {
+                                "x": 260,
+                                "y": -18
+                              }
+                            ],
+                            "color": {
+                              "r": 0,
+                              "g": 0,
+                              "b": 127
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "and2",
+                          "y"
+                        ],
+                        "component2": [
+                          "maxRetDamSwitch",
+                          "u2"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x": 182,
+                                "y": -90
+                              },
+                              {
+                                "x": 190,
+                                "y": -90
+                              },
+                              {
+                                "x": 190,
+                                "y": -148
+                              },
+                              {
+                                "x": 40,
+                                "y": -148
+                              },
+                              {
+                                "x": 40,
+                                "y": -126
+                              },
+                              {
+                                "x": 58,
+                                "y": -126
+                              }
+                            ],
+                            "color": {
+                              "r": 255,
+                              "g": 0,
+                              "b": 255
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "and2",
+                          "y"
+                        ],
+                        "component2": [
+                          "minRetDamSwitch",
+                          "u2"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x": 182,
+                                "y": -90
+                              },
+                              {
+                                "x": 190,
+                                "y": -90
+                              },
+                              {
+                                "x": 190,
+                                "y": -148
+                              },
+                              {
+                                "x": 40,
+                                "y": -148
+                              },
+                              {
+                                "x": 40,
+                                "y": -168
+                              },
+                              {
+                                "x": 58,
+                                "y": -168
+                              }
+                            ],
+                            "color": {
+                              "r": 255,
+                              "g": 0,
+                              "b": 255
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "not2",
+                          "y"
+                        ],
+                        "component2": [
+                          "retDamSwitch",
+                          "u2"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x": -38,
+                                "y": -48
+                              },
+                              {
+                                "x": -30,
+                                "y": -48
+                              },
+                              {
+                                "x": -30,
+                                "y": -166
+                              },
+                              {
+                                "x": -22,
+                                "y": -166
+                              }
+                            ],
+                            "color": {
+                              "r": 255,
+                              "g": 0,
+                              "b": 255
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "uRetDam_max"
+                        ],
+                        "component2": [
+                          "retDamSwitch",
+                          "u1"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x": -280,
+                                "y": -158
+                              },
+                              {
+                                "x": -22,
+                                "y": -158
+                              }
+                            ],
+                            "color": {
+                              "r": 0,
+                              "g": 0,
+                              "b": 127
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "uRetDam_min"
+                        ],
+                        "component2": [
+                          "retDamSwitch",
+                          "u3"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x": -280,
+                                "y": -198
+                              },
+                              {
+                                "x": -152,
+                                "y": -198
+                              },
+                              {
+                                "x": -152,
+                                "y": -174
+                              },
+                              {
+                                "x": -22,
+                                "y": -174
+                              }
+                            ],
+                            "color": {
+                              "r": 0,
+                              "g": 0,
+                              "b": 127
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "retDamSwitch",
+                          "y"
+                        ],
+                        "component2": [
+                          "minRetDamSwitch",
+                          "u3"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x": 2,
+                                "y": -166
+                              },
+                              {
+                                "x": 20,
+                                "y": -166
+                              },
+                              {
+                                "x": 20,
+                                "y": -176
+                              },
+                              {
+                                "x": 58,
+                                "y": -176
+                              }
+                            ],
+                            "color": {
+                              "r": 0,
+                              "g": 0,
+                              "b": 127
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "uRetDamPhy_max"
+                        ],
+                        "component2": [
+                          "minRetDamSwitch",
+                          "u1"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x": -280,
+                                "y": -118
+                              },
+                              {
+                                "x": 20,
+                                "y": -118
+                              },
+                              {
+                                "x": 20,
+                                "y": -160
+                              },
+                              {
+                                "x": 58,
+                                "y": -160
+                              }
+                            ],
+                            "color": {
+                              "r": 0,
+                              "g": 0,
+                              "b": 127
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "truFalHol",
+                          "y"
+                        ],
+                        "component2": [
+                          "and1",
+                          "u1"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x": 42,
+                                "y": 192
+                              },
+                              {
+                                "x": 50,
+                                "y": 192
+                              },
+                              {
+                                "x": 50,
+                                "y": 112
+                              },
+                              {
+                                "x": 10,
+                                "y": 112
+                              },
+                              {
+                                "x": 10,
+                                "y": 90
+                              },
+                              {
+                                "x": 18,
+                                "y": 90
+                              }
+                            ],
+                            "color": {
+                              "r": 255,
+                              "g": 0,
+                              "b": 255
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "and1",
+                          "y"
+                        ],
+                        "component2": [
+                          "andEnaDis",
+                          "u1"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x": 42,
+                                "y": 90
+                              },
+                              {
+                                "x": 50,
+                                "y": 90
+                              },
+                              {
+                                "x": 50,
+                                "y": 22
+                              },
+                              {
+                                "x": 58,
+                                "y": 22
+                              }
+                            ],
+                            "color": {
+                              "r": 255,
+                              "g": 0,
+                              "b": 255
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "u1SupFan"
+                        ],
+                        "component2": [
+                          "and1",
+                          "u2"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x": -280,
+                                "y": 82
+                              },
+                              {
+                                "x": 18,
+                                "y": 82
+                              }
+                            ],
+                            "color": {
+                              "r": 255,
+                              "g": 0,
+                              "b": 255
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "outDamSwitch",
+                          "u2"
+                        ],
+                        "component2": [
+                          "and3",
+                          "y"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x": 80,
+                                "y": -68
+                              },
+                              {
+                                "x": 70,
+                                "y": -68
+                              },
+                              {
+                                "x": 70,
+                                "y": -44
+                              },
+                              {
+                                "x": 62,
+                                "y": -44
+                              }
+                            ],
+                            "color": {
+                              "r": 255,
+                              "g": 0,
+                              "b": 255
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "not2",
+                          "y"
+                        ],
+                        "component2": [
+                          "and3",
+                          "u1"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x": -38,
+                                "y": -48
+                              },
+                              {
+                                "x": -30,
+                                "y": -48
+                              },
+                              {
+                                "x": -30,
+                                "y": -22
+                              },
+                              {
+                                "x": 28,
+                                "y": -22
+                              },
+                              {
+                                "x": 28,
+                                "y": -44
+                              },
+                              {
+                                "x": 38,
+                                "y": -44
+                              }
+                            ],
+                            "color": {
+                              "r": 255,
+                              "g": 0,
+                              "b": 255
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "and2",
+                          "u1"
+                        ],
+                        "component2": [
+                          "not2",
+                          "y"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x": 158,
+                                "y": -90
+                              },
+                              {
+                                "x": 126,
+                                "y": -90
+                              },
+                              {
+                                "x": 126,
+                                "y": -22
+                              },
+                              {
+                                "x": -30,
+                                "y": -22
+                              },
+                              {
+                                "x": -30,
+                                "y": -48
+                              },
+                              {
+                                "x": -38,
+                                "y": -48
+                              }
+                            ],
+                            "color": {
+                              "r": 255,
+                              "g": 0,
+                              "b": 255
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "and3",
+                          "u2"
+                        ],
+                        "component2": [
+                          "delOutDamOsc",
+                          "y"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x": 38,
+                                "y": -52
+                              },
+                              {
+                                "x": 20,
+                                "y": -52
+                              },
+                              {
+                                "x": 20,
+                                "y": -48
+                              },
+                              {
+                                "x": 2,
+                                "y": -48
+                              }
+                            ],
+                            "color": {
+                              "r": 255,
+                              "g": 0,
+                              "b": 255
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "delOutDamOsc",
+                          "u"
+                        ],
+                        "component2": [
+                          "not2",
+                          "y"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x": -22,
+                                "y": -48
+                              },
+                              {
+                                "x": -38,
+                                "y": -48
+                              }
+                            ],
+                            "color": {
+                              "r": 255,
+                              "g": 0,
+                              "b": 255
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "not2",
+                          "y"
+                        ],
+                        "component2": [
+                          "delRetDam",
+                          "u"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x": -38,
+                                "y": -48
+                              },
+                              {
+                                "x": -30,
+                                "y": -48
+                              },
+                              {
+                                "x": -30,
+                                "y": -98
+                              },
+                              {
+                                "x": -22,
+                                "y": -98
+                              }
+                            ],
+                            "color": {
+                              "r": 255,
+                              "g": 0,
+                              "b": 255
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "delRetDam",
+                          "y"
+                        ],
+                        "component2": [
+                          "not1",
+                          "u"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x": 2,
+                                "y": -98
+                              },
+                              {
+                                "x": 18,
+                                "y": -98
+                              }
+                            ],
+                            "color": {
+                              "r": 255,
+                              "g": 0,
+                              "b": 255
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "not1",
+                          "y"
+                        ],
+                        "component2": [
+                          "and2",
+                          "u2"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x": 42,
+                                "y": -98
+                              },
+                              {
+                                "x": 158,
+                                "y": -98
+                              }
+                            ],
+                            "color": {
+                              "r": 255,
+                              "g": 0,
+                              "b": 255
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "uFreProSta"
+                        ],
+                        "component2": [
+                          "intEqu",
+                          "u1"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x": -280,
+                                "y": 42
+                              },
+                              {
+                                "x": -80,
+                                "y": 42
+                              }
+                            ],
+                            "color": {
+                              "r": 255,
+                              "g": 127,
+                              "b": 0
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "conInt",
+                          "y"
+                        ],
+                        "component2": [
+                          "intEqu",
+                          "u2"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x": -96,
+                                "y": 22
+                              },
+                              {
+                                "x": -90,
+                                "y": 22
+                              },
+                              {
+                                "x": -90,
+                                "y": 34
+                              },
+                              {
+                                "x": -80,
+                                "y": 34
+                              }
+                            ],
+                            "color": {
+                              "r": 255,
+                              "g": 127,
+                              "b": 0
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "intEqu",
+                          "y"
+                        ],
+                        "component2": [
+                          "andEnaDis",
+                          "u2"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x": -56,
+                                "y": 42
+                              },
+                              {
+                                "x": 40,
+                                "y": 42
+                              },
+                              {
+                                "x": 40,
+                                "y": 14
+                              },
+                              {
+                                "x": 58,
+                                "y": 14
+                              }
+                            ],
+                            "color": {
+                              "r": 255,
+                              "g": 0,
+                              "b": 255
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "outDamSwitch",
+                          "y"
+                        ],
+                        "component2": [
+                          "yOutDam_max"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x": 104,
+                                "y": -68
+                              },
+                              {
+                                "x": 190,
+                                "y": -68
+                              },
+                              {
+                                "x": 190,
+                                "y": 42
+                              },
+                              {
+                                "x": 260,
+                                "y": 42
+                              }
+                            ],
+                            "color": {
+                              "r": 0,
+                              "g": 0,
+                              "b": 127
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "minRetDamSwitch",
+                          "y"
+                        ],
+                        "component2": [
+                          "yRetDam_min"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x": 82,
+                                "y": -168
+                              },
+                              {
+                                "x": 210,
+                                "y": -168
+                              },
+                              {
+                                "x": 210,
+                                "y": -78
+                              },
+                              {
+                                "x": 260,
+                                "y": -78
+                              }
+                            ],
+                            "color": {
+                              "r": 0,
+                              "g": 0,
+                              "b": 127
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "or2",
+                          "y"
+                        ],
+                        "component2": [
+                          "truFalHol",
+                          "u"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x": -38,
+                                "y": 192
+                              },
+                              {
+                                "x": 18,
+                                "y": 192
+                              }
+                            ],
+                            "color": {
+                              "r": 255,
+                              "g": 0,
+                              "b": 255
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "hysOutTem",
+                          "y"
+                        ],
+                        "component2": [
+                          "or2",
+                          "u1"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x": -138,
+                                "y": 230
+                              },
+                              {
+                                "x": -80,
+                                "y": 230
+                              },
+                              {
+                                "x": -80,
+                                "y": 192
+                              },
+                              {
+                                "x": -62,
+                                "y": 192
+                              }
+                            ],
+                            "color": {
+                              "r": 255,
+                              "g": 0,
+                              "b": 255
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "hysOutEnt",
+                          "y"
+                        ],
+                        "component2": [
+                          "or2",
+                          "u2"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x": -138,
+                                "y": 150
+                              },
+                              {
+                                "x": -100,
+                                "y": 150
+                              },
+                              {
+                                "x": -100,
+                                "y": 184
+                              },
+                              {
+                                "x": -62,
+                                "y": 184
+                              }
+                            ],
+                            "color": {
+                              "r": 255,
+                              "g": 0,
+                              "b": 255
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "entSubst1",
+                          "y"
+                        ],
+                        "component2": [
+                          "or2",
+                          "u2"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x": -138,
+                                "y": 190
+                              },
+                              {
+                                "x": -100,
+                                "y": 190
+                              },
+                              {
+                                "x": -100,
+                                "y": 184
+                              },
+                              {
+                                "x": -62,
+                                "y": 184
+                              }
+                            ],
+                            "color": {
+                              "r": 255,
+                              "g": 0,
+                              "b": 255
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              ],
+              "comp_annotation": {
+                "defaultName": "\"enaDis\"",
+                "diagram": {
+                  "coordinateSystem": {
+                    "extent": [
+                      {
+                        "x": -260,
+                        "y": -280
+                      },
+                      {
+                        "x": 240,
+                        "y": 280
+                      }
+                    ],
+                    "preserveAspectRatio": false,
+                    "initialScale": 0.05
+                  },
+                  "graphics": {
+                    "rectangle": [
+                      {
+                        "lineColor": {
+                          "r": 215,
+                          "g": 215,
+                          "b": 215
+                        },
+                        "fillColor": {
+                          "r": 215,
+                          "g": 215,
+                          "b": 215
+                        },
+                        "fillPattern": "FillPattern.Solid",
+                        "extent": [
+                          {
+                            "x": -240,
+                            "y": -2
+                          },
+                          {
+                            "x": 220,
+                            "y": -250
+                          }
+                        ]
+                      },
+                      {
+                        "lineColor": {
+                          "r": 215,
+                          "g": 215,
+                          "b": 215
+                        },
+                        "fillColor": {
+                          "r": 215,
+                          "g": 215,
+                          "b": 215
+                        },
+                        "fillPattern": "FillPattern.Solid",
+                        "extent": [
+                          {
+                            "x": -240,
+                            "y": 58
+                          },
+                          {
+                            "x": 220,
+                            "y": 6
+                          }
+                        ]
+                      },
+                      {
+                        "lineColor": {
+                          "r": 215,
+                          "g": 215,
+                          "b": 215
+                        },
+                        "fillColor": {
+                          "r": 215,
+                          "g": 215,
+                          "b": 215
+                        },
+                        "fillPattern": "FillPattern.Solid",
+                        "extent": [
+                          {
+                            "x": -240,
+                            "y": 118
+                          },
+                          {
+                            "x": 220,
+                            "y": 66
+                          }
+                        ]
+                      },
+                      {
+                        "lineColor": {
+                          "r": 215,
+                          "g": 215,
+                          "b": 215
+                        },
+                        "fillColor": {
+                          "r": 215,
+                          "g": 215,
+                          "b": 215
+                        },
+                        "fillPattern": "FillPattern.Solid",
+                        "extent": [
+                          {
+                            "x": -240,
+                            "y": 258
+                          },
+                          {
+                            "x": 220,
+                            "y": 130
+                          }
+                        ]
+                      }
+                    ],
+                    "text": [
+                      {
+                        "extent": [
+                          {
+                            "x": 120,
+                            "y": 158
+                          },
+                          {
+                            "x": 204,
+                            "y": 138
+                          }
+                        ],
+                        "textString": "\"Outdoor air\nconditions\"",
+                        "textColor": {
+                          "r": 0,
+                          "g": 0,
+                          "b": 0
+                        },
+                        "horizontalAlignment": "TextAlignment.Left"
+                      },
+                      {
+                        "extent": [
+                          {
+                            "x": 120,
+                            "y": 52
+                          },
+                          {
+                            "x": 298,
+                            "y": 18
+                          }
+                        ],
+                        "textString": "\"Freeze protection -\ndisable if stage1\nand above\"",
+                        "textColor": {
+                          "r": 0,
+                          "g": 0,
+                          "b": 0
+                        },
+                        "horizontalAlignment": "TextAlignment.Left"
+                      },
+                      {
+                        "extent": [
+                          {
+                            "x": 120,
+                            "y": -198
+                          },
+                          {
+                            "x": 288,
+                            "y": -246
+                          }
+                        ],
+                        "textString": "\"Damper position\nlimit assignments\nwith delays\"",
+                        "textColor": {
+                          "r": 0,
+                          "g": 0,
+                          "b": 0
+                        },
+                        "horizontalAlignment": "TextAlignment.Left"
+                      },
+                      {
+                        "extent": [
+                          {
+                            "x": 120,
+                            "y": 84
+                          },
+                          {
+                            "x": 214,
+                            "y": 74
+                          }
+                        ],
+                        "textString": "\"Supply fan status\"",
+                        "textColor": {
+                          "r": 0,
+                          "g": 0,
+                          "b": 0
+                        },
+                        "horizontalAlignment": "TextAlignment.Left"
+                      }
+                    ]
+                  }
+                },
+                "icon": {
+                  "coordinateSystem": {
+                    "extent": [
+                      {
+                        "x": -100,
+                        "y": -140
+                      },
+                      {
+                        "x": 100,
+                        "y": 140
+                      }
+                    ]
+                  },
+                  "graphics": {
+                    "line": [
+                      {
+                        "points": [
+                          {
+                            "x": 0,
+                            "y": 60
+                          },
+                          {
+                            "x": 80,
+                            "y": 60
+                          }
+                        ],
+                        "color": {
+                          "r": 0,
+                          "g": 0,
+                          "b": 127
+                        },
+                        "thickness": 0.5
+                      },
+                      {
+                        "points": [
+                          {
+                            "x": -80,
+                            "y": -60
+                          },
+                          {
+                            "x": 0,
+                            "y": -60
+                          },
+                          {
+                            "x": 0,
+                            "y": 60
+                          }
+                        ],
+                        "color": {
+                          "r": 0,
+                          "g": 0,
+                          "b": 127
+                        },
+                        "thickness": 0.5
+                      }
+                    ],
+                    "rectangle": [
+                      {
+                        "lineColor": {
+                          "r": 0,
+                          "g": 0,
+                          "b": 127
+                        },
+                        "fillColor": {
+                          "r": 255,
+                          "g": 255,
+                          "b": 255
+                        },
+                        "fillPattern": "FillPattern.Solid",
+                        "extent": [
+                          {
+                            "x": -100,
+                            "y": -140
+                          },
+                          {
+                            "x": 100,
+                            "y": 140
+                          }
+                        ]
+                      }
+                    ],
+                    "text": [
+                      {
+                        "extent": [
+                          {
+                            "x": -100,
+                            "y": 180
+                          },
+                          {
+                            "x": 100,
+                            "y": 140
+                          }
+                        ],
+                        "textString": "\"%name\"",
+                        "textColor": {
+                          "r": 0,
+                          "g": 0,
+                          "b": 255
+                        }
+                      },
+                      {
+                        "pattern": "LinePattern.Dash",
+                        "extent": [
+                          {
+                            "x": -98,
+                            "y": 38
+                          },
+                          {
+                            "x": -56,
+                            "y": 24
+                          }
+                        ],
+                        "textString": "\"u1SupFan\"",
+                        "textColor": {
+                          "r": 255,
+                          "g": 0,
+                          "b": 255
+                        }
+                      },
+                      {
+                        "pattern": "LinePattern.Dash",
+                        "extent": [
+                          {
+                            "x": -100,
+                            "y": 18
+                          },
+                          {
+                            "x": -44,
+                            "y": 4
+                          }
+                        ],
+                        "textString": "\"uFreProSta\"",
+                        "textColor": {
+                          "r": 255,
+                          "g": 127,
+                          "b": 0
+                        }
+                      },
+                      {
+                        "visible": false,
+                        "pattern": "LinePattern.Dash",
+                        "extent": [
+                          {
+                            "x": -100,
+                            "y": 68
+                          },
+                          {
+                            "x": -56,
+                            "y": 54
+                          }
+                        ],
+                        "textString": "\"hOutCut\"",
+                        "textColor": {
+                          "r": 0,
+                          "g": 0,
+                          "b": 127
+                        }
+                      },
+                      {
+                        "visible": false,
+                        "pattern": "LinePattern.Dash",
+                        "extent": [
+                          {
+                            "x": -100,
+                            "y": 86
+                          },
+                          {
+                            "x": -70,
+                            "y": 72
+                          }
+                        ],
+                        "textString": "\"hOut\"",
+                        "textColor": {
+                          "r": 0,
+                          "g": 0,
+                          "b": 127
+                        }
+                      },
+                      {
+                        "pattern": "LinePattern.Dash",
+                        "extent": [
+                          {
+                            "x": -100,
+                            "y": 116
+                          },
+                          {
+                            "x": -56,
+                            "y": 102
+                          }
+                        ],
+                        "textString": "\"TOutCut\"",
+                        "textColor": {
+                          "r": 0,
+                          "g": 0,
+                          "b": 127
+                        }
+                      },
+                      {
+                        "pattern": "LinePattern.Dash",
+                        "extent": [
+                          {
+                            "x": -100,
+                            "y": 138
+                          },
+                          {
+                            "x": -72,
+                            "y": 124
+                          }
+                        ],
+                        "textString": "\"TOut\"",
+                        "textColor": {
+                          "r": 0,
+                          "g": 0,
+                          "b": 127
+                        }
+                      },
+                      {
+                        "pattern": "LinePattern.Dash",
+                        "extent": [
+                          {
+                            "x": -96,
+                            "y": -100
+                          },
+                          {
+                            "x": -32,
+                            "y": -118
+                          }
+                        ],
+                        "textString": "\"uRetDam_max\"",
+                        "textColor": {
+                          "r": 0,
+                          "g": 0,
+                          "b": 127
+                        }
+                      },
+                      {
+                        "pattern": "LinePattern.Dash",
+                        "extent": [
+                          {
+                            "x": -96,
+                            "y": -10
+                          },
+                          {
+                            "x": -28,
+                            "y": -28
+                          }
+                        ],
+                        "textString": "\"uOutDam_max\"",
+                        "textColor": {
+                          "r": 0,
+                          "g": 0,
+                          "b": 127
+                        }
+                      },
+                      {
+                        "pattern": "LinePattern.Dash",
+                        "extent": [
+                          {
+                            "x": -96,
+                            "y": -30
+                          },
+                          {
+                            "x": -28,
+                            "y": -48
+                          }
+                        ],
+                        "textString": "\"uOutDam_min\"",
+                        "textColor": {
+                          "r": 0,
+                          "g": 0,
+                          "b": 127
+                        }
+                      },
+                      {
+                        "pattern": "LinePattern.Dash",
+                        "extent": [
+                          {
+                            "x": -96,
+                            "y": -80
+                          },
+                          {
+                            "x": -12,
+                            "y": -98
+                          }
+                        ],
+                        "textString": "\"uRetDamPhy_max\"",
+                        "textColor": {
+                          "r": 0,
+                          "g": 0,
+                          "b": 127
+                        }
+                      },
+                      {
+                        "pattern": "LinePattern.Dash",
+                        "extent": [
+                          {
+                            "x": -96,
+                            "y": -120
+                          },
+                          {
+                            "x": -32,
+                            "y": -138
+                          }
+                        ],
+                        "textString": "\"uRetDam_min\"",
+                        "textColor": {
+                          "r": 0,
+                          "g": 0,
+                          "b": 127
+                        }
+                      },
+                      {
+                        "pattern": "LinePattern.Dash",
+                        "extent": [
+                          {
+                            "x": 36,
+                            "y": 110
+                          },
+                          {
+                            "x": 96,
+                            "y": 92
+                          }
+                        ],
+                        "textString": "\"yOutDam_max\"",
+                        "textColor": {
+                          "r": 0,
+                          "g": 0,
+                          "b": 127
+                        }
+                      },
+                      {
+                        "pattern": "LinePattern.Dash",
+                        "extent": [
+                          {
+                            "x": 36,
+                            "y": 12
+                          },
+                          {
+                            "x": 96,
+                            "y": -6
+                          }
+                        ],
+                        "textString": "\"yRetDam_max\"",
+                        "textColor": {
+                          "r": 0,
+                          "g": 0,
+                          "b": 127
+                        }
+                      },
+                      {
+                        "pattern": "LinePattern.Dash",
+                        "extent": [
+                          {
+                            "x": 36,
+                            "y": -88
+                          },
+                          {
+                            "x": 96,
+                            "y": -106
+                          }
+                        ],
+                        "textString": "\"yRetDam_min\"",
+                        "textColor": {
+                          "r": 0,
+                          "g": 0,
+                          "b": 127
+                        }
+                      }
+                    ]
+                  }
+                },
+                "documentation": {
+                  "info": "\"<html>\n<p>\nThis is a multi zone VAV AHU economizer enable/disable sequence\nbased on the Section 5.16.7 of the ASHRAE Guideline 36, May 2020. Additional\nconditions included in the sequence are: freeze protection (freeze protection\nstage 0-3, see Section 5.16.12), supply fan status (on or off, see Section 5.16.5).\n</p>\n<p>\nThe economizer is disabled whenever the outdoor air conditions\nexceed the economizer high limit setpoint.\nThis sequence allows for all device types listed in\nASHRAE 90.1-2013 and Title 24-2013.\n</p>\n<p>\nIn addition, the economizer gets disabled without a delay whenever any of the\nfollowing is <code>true</code>:\n</p>\n<ul>\n<li>\nThe supply fan is off (<code>u1SupFan = false</code>),\n</li>\n<li>\nthe freeze protection stage\n<a href=\\\"modelica://Buildings.Controls.OBC.ASHRAE.G36.Types.FreezeProtectionStages\\\">\nBuildings.Controls.OBC.ASHRAE.G36.Types.FreezeProtectionStages</a>\nis not <code>stage0</code>.\n</li>\n</ul>\n<p>\nThe following state machine chart illustrates the transitions between enabling and disabling:\n</p>\n<p align=\\\"center\\\">\n<img alt=\\\"Image of economizer enable-disable state machine chart\\\"\nsrc=\\\"modelica://Buildings/Resources/Images/Controls/OBC/ASHRAE/G36/AHUs/MultiZone/VAV/Economizers/Subsequences/EconEnableDisableStateMachineChart.png\\\"/>\n</p>\n<p>\nAfter the disable signal is activated, the following procedure is applied, in order to\nprevent pressure fluctuations in the HVAC system:\n</p>\n<ul>\n<li>\nThe return damper gets fully opened (<code>yRetDam_max = uRetDamPhy_max</code> and\n<code>yRetDam_min = uRetDamPhy_max</code>) for <code>retDamFulOpeTim</code>\ntime period, after which the return damper gets released to its minimum outdoor airflow control position\n(<code>yRetDam_max = uRetDam_max</code> and <code>yRetDam_min = uRetDam_max</code>).\n</li>\n<li>\nThe outdoor air damper is closed to its minimum outoor airflow control limit (<code>yOutDam_max = uOutDam_min</code>)\nafter a <code>disDel</code> time delay.\n</li>\n</ul>\n</html>\"",
+                  "revisions": "\"<html>\n<ul>\n<li>\nOctober 13, 2017, by Michael Wetter:<br/>\nAdded freeze protection that tracks mixed air temperature.\n</li>\n<li>\nAugust 3, 2017, by Michael Wetter:<br/>\nRemoved unrequired input into block <code>and2</code> as this input\nwas always <code>true</code> if <code>and2.u2 = true</code>.\n</li>\n<li>\nJune 27, 2017, by Milica Grahovac:<br/>\nFirst implementation.\n</li>\n</ul>\n</html>\""
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "modelicaFile": "FromModelica/Enable.mo"
+  }
+]
