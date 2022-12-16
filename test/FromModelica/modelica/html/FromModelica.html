@@ -275,7 +275,7 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
 <h3>Info</h3>
   
 <p>
-Block that outputs <code>y = min(yMax, k*e)</code>,
+Block that outputs <code><a href="#FromModelica.CustomPWithLimiter.y">y</a> = min(<a href="#FromModelica.CustomPWithLimiter.yMax">yMax</a>, <a href="#FromModelica.CustomPWithLimiter.k">k</a>*<a href="#FromModelica.CustomPWithLimiter.e">e</a>)</code>,
 where
 <code><a href="#FromModelica.CustomPWithLimiter.yMax">yMax</a></code> and <code><a href="#FromModelica.CustomPWithLimiter.e">e</a></code> are real-valued input signals and
 <code><a href="#FromModelica.CustomPWithLimiter.k">k</a></code> is a parameter.
@@ -363,7 +363,7 @@ where
       <th>Parameter Assignments</th>
     </tr>
     <tr>
-      <td class="type, text"><span><code><a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Gain">Buildings.Controls.OBC.CDL.Continuous.Gain</a></code></span></td>
+      <td class="type, text"><span><code><a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.MultiplyByParameter">Buildings.Controls.OBC.CDL.Continuous.MultiplyByParameter</a></code></span></td>
       <td><code>gain</code><a name="FromModelica.CustomPWithLimiter.gain"></a></td>
       <td class="type, text"><span>Constant gain</span></td>
       <td class="assignment"><span>
@@ -384,6 +384,7 @@ where
       </span></td>
       </tr>
     </table>
+
 
 
 
@@ -427,7 +428,817 @@ where
 This is the info section.
 </p><h2>FromModelica.EmptyEquation<a name="FromModelica.EmptyEquation"></a></h2>
 
-  <span class="ModelicaDescription">A block that instantiates nothing</span><br><h2>FromModelica.ExtendsClause_1<a name="FromModelica.ExtendsClause_1"></a></h2>
+  <span class="ModelicaDescription">A block that instantiates nothing</span><br><h2>FromModelica.Enable<a name="FromModelica.Enable"></a></h2>
+
+  <span class="ModelicaDescription">Multi zone VAV AHU economizer enable&#x2F;disable switch</span><br>
+
+<h3>Info</h3>
+  
+<p>
+This is a multi zone VAV AHU economizer enable/disable sequence
+based on the Section 5.16.7 of the ASHRAE Guideline 36, May 2020. Additional
+conditions included in the sequence are: freeze protection (freeze protection
+stage 0-3, see Section 5.16.12), supply fan status (on or off, see Section 5.16.5).
+</p>
+<p>
+The economizer is disabled whenever the outdoor air conditions
+exceed the economizer high limit setpoint.
+This sequence allows for all device types listed in
+ASHRAE 90.1-2013 and Title 24-2013.
+</p>
+<p>
+In addition, the economizer gets disabled without a delay whenever any of the
+following is <code>true</code>:
+</p>
+<ul>
+<li>
+The supply fan is off (<code><a href="#FromModelica.Enable.u1SupFan">u1SupFan</a> = false</code>),
+</li>
+<li>
+the freeze protection stage
+<code>Buildings.Controls.OBC.ASHRAE.G36.Types.FreezeProtectionStages</code>
+is not <code>stage0</code>.
+</li>
+</ul>
+<p>
+The following state machine chart illustrates the transitions between enabling and disabling:
+</p>
+<p align="center">
+<img alt="Image of economizer enable-disable state machine chart" src="img/EconEnableDisableStateMachineChart.png">
+</p>
+<p>
+After the disable signal is activated, the following procedure is applied, in order to
+prevent pressure fluctuations in the HVAC system:
+</p>
+<ul>
+<li>
+The return damper gets fully opened (<code><a href="#FromModelica.Enable.yRetDam_max">yRetDam_max</a> = <a href="#FromModelica.Enable.uRetDamPhy_max">uRetDamPhy_max</a></code> and
+<code><a href="#FromModelica.Enable.yRetDam_min">yRetDam_min</a> = <a href="#FromModelica.Enable.uRetDamPhy_max">uRetDamPhy_max</a></code>) for <code><a href="#FromModelica.Enable.retDamFulOpeTim">retDamFulOpeTim</a></code>
+time period, after which the return damper gets released to its minimum outdoor airflow control position
+(<code><a href="#FromModelica.Enable.yRetDam_max">yRetDam_max</a> = <a href="#FromModelica.Enable.uRetDam_max">uRetDam_max</a></code> and <code><a href="#FromModelica.Enable.yRetDam_min">yRetDam_min</a> = <a href="#FromModelica.Enable.uRetDam_max">uRetDam_max</a></code>).
+</li>
+<li>
+The outdoor air damper is closed to its minimum outoor airflow control limit (<code><a href="#FromModelica.Enable.yOutDam_max">yOutDam_max</a> = <a href="#FromModelica.Enable.uOutDam_min">uOutDam_min</a></code>)
+after a <code><a href="#FromModelica.Enable.disDel">disDel</a></code> time delay.
+</li>
+</ul>
+
+
+
+<h3>Parameters</h3>
+    <p>
+    It has the following parameters:
+    </p>
+    <table>
+    <tr>
+    <th class="mode">Type</th>
+    <th>Name</th>
+    <th>Default</th>
+    <th class="description">Description</th>
+    </tr>
+    <tr class="tab ModelicaParameterTab"><td colspan="4">General</td></tr>
+    <tr class="group ModelicaParameterGroup"><td colspan="4">Conditional</td></tr>
+    <tr>
+    <td class="type, text"><span>Boolean</span></td>
+    <td class="type, text"><span><code>use_enthalpy</code><a name="FromModelica.Enable.use_enthalpy"></a></span></td>
+    <td class="type, text"><span>true</span></td>
+    <td class="type, text">Set to true to evaluate outdoor air (OA) enthalpy in addition to temperature </td>
+    </tr>
+    <tr class="tab ModelicaParameterTab"><td colspan="4">Advanced</td></tr>
+    <tr class="group ModelicaParameterGroup"><td colspan="4">Hysteresis</td></tr>
+    <tr>
+    <td class="type, text"><span>Real</span></td>
+    <td class="type, text"><span><code>delTOutHis</code><a name="FromModelica.Enable.delTOutHis"></a></span></td>
+    <td class="type, text"><span>1</span></td>
+    <td class="type, text">Delta between the temperature hysteresis high and low limit [K ]</td>
+    </tr>
+    <tr>
+    <td class="type, text"><span>Real</span></td>
+    <td class="type, text"><span><code>delEntHis</code><a name="FromModelica.Enable.delEntHis"></a></span></td>
+    <td class="type, text"><span>1000</span></td>
+    <td class="type, text">Delta between the enthalpy hysteresis high and low limits [J&#x2F;kg ]</td>
+    </tr>
+    <tr class="group ModelicaParameterGroup"><td colspan="4">Delays at disable</td></tr>
+    <tr>
+    <td class="type, text"><span>Real</span></td>
+    <td class="type, text"><span><code>retDamFulOpeTim</code><a name="FromModelica.Enable.retDamFulOpeTim"></a></span></td>
+    <td class="type, text"><span>180</span></td>
+    <td class="type, text">Time period to keep RA damper fully open before releasing it for minimum outdoor airflow control
+    at disable to avoid pressure fluctuations [s ]</td>
+    </tr>
+    <tr>
+    <td class="type, text"><span>Real</span></td>
+    <td class="type, text"><span><code>disDel</code><a name="FromModelica.Enable.disDel"></a></span></td>
+    <td class="type, text"><span>15</span></td>
+    <td class="type, text">Short time delay before closing the OA damper at disable to avoid pressure fluctuations [s ]</td>
+    </tr>
+    </table>
+
+<h3>Inputs</h3>
+    <p>
+    It has the following inputs:
+    </p>
+    <table>
+    <tr>
+      <th class="type">Type</th>
+      <th>Name</th>
+      <th class="description">Description</th>
+      <th>Enable</th>
+      </tr>
+    <tr>
+      <td>
+      <code>
+      Real
+      </code>
+      </td>
+      <td class="type, text"><span><code>TOut</code><a name="FromModelica.Enable.TOut"></a></span></td>
+      <td class="type, text">Outdoor air temperature [K ]</td>
+      <td class="type, text"><span></span></td>
+      </tr>
+    <tr>
+      <td>
+      <code>
+      Real
+      </code>
+      </td>
+      <td class="type, text"><span><code>hOut</code><a name="FromModelica.Enable.hOut"></a></span></td>
+      <td class="type, text">Outdoor air enthalpy [J&#x2F;kg Enable = se_enthalp]</td>
+      <td class="type, text"><span>use_enthalpy</span></td>
+      </tr>
+    <tr>
+      <td>
+      <code>
+      Real
+      </code>
+      </td>
+      <td class="type, text"><span><code>TOutCut</code><a name="FromModelica.Enable.TOutCut"></a></span></td>
+      <td class="type, text">OA temperature high limit cutoff. For differential dry bulb temperature condition use return air temperature measurement [K ]</td>
+      <td class="type, text"><span></span></td>
+      </tr>
+    <tr>
+      <td>
+      <code>
+      Real
+      </code>
+      </td>
+      <td class="type, text"><span><code>hOutCut</code><a name="FromModelica.Enable.hOutCut"></a></span></td>
+      <td class="type, text">OA enthalpy high limit cutoff. For differential enthalpy use return air enthalpy measurement [J&#x2F;kg Enable = se_enthalp]</td>
+      <td class="type, text"><span>use_enthalpy</span></td>
+      </tr>
+    <tr>
+      <td>
+      <code>
+      Real
+      </code>
+      </td>
+      <td class="type, text"><span><code>uOutDam_min</code><a name="FromModelica.Enable.uOutDam_min"></a></span></td>
+      <td class="type, text">Minimum outdoor air damper position, output from damper position limits sequence [1 Min = 0 (adjustable) Max = 1 (adjustable) ]</td>
+      <td class="type, text"><span></span></td>
+      </tr>
+    <tr>
+      <td>
+      <code>
+      Real
+      </code>
+      </td>
+      <td class="type, text"><span><code>uOutDam_max</code><a name="FromModelica.Enable.uOutDam_max"></a></span></td>
+      <td class="type, text">Maximum outdoor air damper position, output from damper position limits sequence [1 Min = 0 (adjustable) Max = 1 (adjustable) ]</td>
+      <td class="type, text"><span></span></td>
+      </tr>
+    <tr>
+      <td>
+      <code>
+      Real
+      </code>
+      </td>
+      <td class="type, text"><span><code>uRetDam_max</code><a name="FromModelica.Enable.uRetDam_max"></a></span></td>
+      <td class="type, text">Maximum return air damper position, output from damper position limits sequence [1 Min = 0 (adjustable) Max = 1 (adjustable) ]</td>
+      <td class="type, text"><span></span></td>
+      </tr>
+    <tr>
+      <td>
+      <code>
+      Real
+      </code>
+      </td>
+      <td class="type, text"><span><code>uRetDam_min</code><a name="FromModelica.Enable.uRetDam_min"></a></span></td>
+      <td class="type, text">Minimum return air damper position, output from damper position limits sequence [1 Min = 0 (adjustable) Max = 1 (adjustable) ]</td>
+      <td class="type, text"><span></span></td>
+      </tr>
+    <tr>
+      <td>
+      <code>
+      Real
+      </code>
+      </td>
+      <td class="type, text"><span><code>uRetDamPhy_max</code><a name="FromModelica.Enable.uRetDamPhy_max"></a></span></td>
+      <td class="type, text">Physical maximum return air damper position, output from damper position limits sequence [1 Min = 0 (adjustable) Max = 1 (adjustable) ]</td>
+      <td class="type, text"><span></span></td>
+      </tr>
+    <tr>
+      <td>
+      <code>
+      Boolean
+      </code>
+      </td>
+      <td class="type, text"><span><code>u1SupFan</code><a name="FromModelica.Enable.u1SupFan"></a></span></td>
+      <td class="type, text">Supply fan proven on </td>
+      <td class="type, text"><span></span></td>
+      </tr>
+    <tr>
+      <td>
+      <code>
+      Integer
+      </code>
+      </td>
+      <td class="type, text"><span><code>uFreProSta</code><a name="FromModelica.Enable.uFreProSta"></a></span></td>
+      <td class="type, text">Freeze protection stage status signal </td>
+      <td class="type, text"><span></span></td>
+      </tr>
+    </table>
+
+<h3>Outputs</h3>
+    <p>
+    It has the following outputs:
+    </p>
+    <table>
+    <tr>
+      <th class="type">Type</th>
+      <th>Name</th>
+      <th class="description">Description</th>
+      </tr>
+    <tr>
+      <td><code>Real</code></td>
+      <td class="type, text"><span><code>yOutDam_max</code><a name="FromModelica.Enable.yOutDam_max"></a></span></td>
+      <td class="type, text">Maximum outdoor air damper position [1 Min = 0 (adjustable) Max = 1 (adjustable) ]</td>
+      </tr>
+    <tr>
+      <td><code>Real</code></td>
+      <td class="type, text"><span><code>yRetDam_min</code><a name="FromModelica.Enable.yRetDam_min"></a></span></td>
+      <td class="type, text">Minimum return air damper position [1 Min = 0 (adjustable) Max = 1 (adjustable) ]</td>
+      </tr>
+    <tr>
+      <td><code>Real</code></td>
+      <td class="type, text"><span><code>yRetDam_max</code><a name="FromModelica.Enable.yRetDam_max"></a></span></td>
+      <td class="type, text">Maximum return air damper position [1 Min = 0 (adjustable) Max = 1 (adjustable) ]</td>
+      </tr>
+    </table>
+
+<h3>Blocks</h3>
+    <p>
+    It has the following blocks:
+    </p>
+    <table>
+    <tr>
+      <th class="type">Type</th>
+      <th>Name</th>
+      <th class="description">Description</th>
+      <th>Parameter Assignments</th>
+    </tr>
+    <tr>
+      <td class="type, text"><span><code><a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Logical.html#Buildings.Controls.OBC.CDL.Logical.TrueFalseHold">Buildings.Controls.OBC.CDL.Logical.TrueFalseHold</a></code></span></td>
+      <td><code>truFalHol</code><a name="FromModelica.Enable.truFalHol"></a></td>
+      <td class="type, text"><span>Economizer should not be enabled or disabled within 10 minutes of change</span></td>
+      <td class="assignment"><span>
+      <ul class="list-parameter-assignments">
+      <li>
+      <code>
+       final  trueHoldDuration = 600
+      </code>
+      </li>
+      </ul>
+      </span></td>
+      </tr>
+    <tr>
+      <td class="type, text"><span><code><a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Logical.html#Buildings.Controls.OBC.CDL.Logical.And">Buildings.Controls.OBC.CDL.Logical.And</a></code></span></td>
+      <td><code>andEnaDis</code><a name="FromModelica.Enable.andEnaDis"></a></td>
+      <td class="type, text"><span>Check freeze protection stage and zone state</span></td>
+      <td class="assignment"><span>
+      </span></td>
+      </tr>
+    </table>
+
+<h3>Protected Parameters</h3>
+    <p>
+    It has the following protected parameters:
+    </p>
+    <table>
+    <tr>
+    <th class="type">Type</th>
+    <th>Name</th>
+    <th>Default</th>
+    <th class="description">Description</th>
+    </tr>
+    <tr class="tab ModelicaParameterTab"><td colspan="4">General</td></tr>
+    <tr class="group ModelicaParameterGroup"><td colspan="4">Parameters</td></tr>
+    <tr>
+    <td class="type, text"><span>Real</span></td>
+    <td class="type, text"><span><code>TOutHigLimCutHig</code><a name="FromModelica.Enable.TOutHigLimCutHig"></a></span></td>
+    <td class="type, text"><span>0</span></td>
+    <td class="type, text">Hysteresis high limit cutoff [K ]</td>
+    </tr>
+    <tr>
+    <td class="type, text"><span>Real</span></td>
+    <td class="type, text"><span><code>TOutHigLimCutLow</code><a name="FromModelica.Enable.TOutHigLimCutLow"></a></span></td>
+    <td class="type, text"><span>TOutHigLimCutHig - delTOutHis</span></td>
+    <td class="type, text">Hysteresis low limit cutoff </td>
+    </tr>
+    <tr>
+    <td class="type, text"><span>Real</span></td>
+    <td class="type, text"><span><code>hOutHigLimCutHig</code><a name="FromModelica.Enable.hOutHigLimCutHig"></a></span></td>
+    <td class="type, text"><span>0</span></td>
+    <td class="type, text">Hysteresis block high limit cutoff [J&#x2F;kg ]</td>
+    </tr>
+    <tr>
+    <td class="type, text"><span>Real</span></td>
+    <td class="type, text"><span><code>hOutHigLimCutLow</code><a name="FromModelica.Enable.hOutHigLimCutLow"></a></span></td>
+    <td class="type, text"><span>hOutHigLimCutHig - delEntHis</span></td>
+    <td class="type, text">Hysteresis block low limit cutoff </td>
+    </tr>
+    </table>
+
+<h3>Protected Blocks</h3>
+    <p>
+    It has the following protected blocks:
+    </p>
+    <table>
+    <tr>
+      <th class="type">Type</th>
+      <th>Name</th>
+      <th class="description">Description</th>
+      <th>Enable</th>
+      <th>Parameter Assignments</th>
+    </tr>
+    <tr>
+      <td class="type, text"><span><code><a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Subtract">Buildings.Controls.OBC.CDL.Continuous.Subtract</a></code></span></td>
+      <td><code>sub2</code><a name="FromModelica.Enable.sub2"></a></td>
+      <td class="type, text"><span>Add block determines difference between hOut and hOutCut</span></td>
+      <td>use_enthalpy</td>
+      <td class="assignment"><span>
+      </span></td>
+      </tr>
+    <tr>
+      <td class="type, text"><span><code><a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Subtract">Buildings.Controls.OBC.CDL.Continuous.Subtract</a></code></span></td>
+      <td><code>sub1</code><a name="FromModelica.Enable.sub1"></a></td>
+      <td class="type, text"><span>Add block determines difference between TOut and TOutCut</span></td>
+      <td></td>
+      <td class="assignment"><span>
+      </span></td>
+      </tr>
+    <tr>
+      <td class="type, text"><span><code><a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Hysteresis">Buildings.Controls.OBC.CDL.Continuous.Hysteresis</a></code></span></td>
+      <td><code>hysOutTem</code><a name="FromModelica.Enable.hysOutTem"></a></td>
+      <td class="type, text"><span>Outdoor air temperature hysteresis for both fixed and differential dry bulb temperature cutoff conditions</span></td>
+      <td></td>
+      <td class="assignment"><span>
+      <ul class="list-parameter-assignments">
+      <li>
+      <code>
+       final  uLow = TOutHigLimCutLow
+      </code>
+      </li>
+      <li>
+      <code>
+       final  uHigh = TOutHigLimCutHig
+      </code>
+      </li>
+      </ul>
+      </span></td>
+      </tr>
+    <tr>
+      <td class="type, text"><span><code><a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Hysteresis">Buildings.Controls.OBC.CDL.Continuous.Hysteresis</a></code></span></td>
+      <td><code>hysOutEnt</code><a name="FromModelica.Enable.hysOutEnt"></a></td>
+      <td class="type, text"><span>Outdoor air enthalpy hysteresis for both fixed and differential enthalpy cutoff conditions</span></td>
+      <td>use_enthalpy</td>
+      <td class="assignment"><span>
+      <ul class="list-parameter-assignments">
+      <li>
+      <code>
+       final  uLow = hOutHigLimCutLow
+      </code>
+      </li>
+      <li>
+      <code>
+       final  uHigh = hOutHigLimCutHig
+      </code>
+      </li>
+      </ul>
+      </span></td>
+      </tr>
+    <tr>
+      <td class="type, text"><span><code><a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Switch">Buildings.Controls.OBC.CDL.Continuous.Switch</a></code></span></td>
+      <td><code>outDamSwitch</code><a name="FromModelica.Enable.outDamSwitch"></a></td>
+      <td class="type, text"><span>Set maximum OA damper position to minimum at disable (after a given time delay)</span></td>
+      <td></td>
+      <td class="assignment"><span>
+      </span></td>
+      </tr>
+    <tr>
+      <td class="type, text"><span><code><a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Switch">Buildings.Controls.OBC.CDL.Continuous.Switch</a></code></span></td>
+      <td><code>retDamSwitch</code><a name="FromModelica.Enable.retDamSwitch"></a></td>
+      <td class="type, text"><span>Set minimum RA damper position to maximum at disable</span></td>
+      <td></td>
+      <td class="assignment"><span>
+      </span></td>
+      </tr>
+    <tr>
+      <td class="type, text"><span><code><a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Switch">Buildings.Controls.OBC.CDL.Continuous.Switch</a></code></span></td>
+      <td><code>maxRetDamSwitch</code><a name="FromModelica.Enable.maxRetDamSwitch"></a></td>
+      <td class="type, text"><span>Keep maximum RA damper position at physical maximum for a short time period after disable signal</span></td>
+      <td></td>
+      <td class="assignment"><span>
+      </span></td>
+      </tr>
+    <tr>
+      <td class="type, text"><span><code><a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Switch">Buildings.Controls.OBC.CDL.Continuous.Switch</a></code></span></td>
+      <td><code>minRetDamSwitch</code><a name="FromModelica.Enable.minRetDamSwitch"></a></td>
+      <td class="type, text"><span>Keep minimum RA damper position at physical maximum for a short time period after disable</span></td>
+      <td></td>
+      <td class="assignment"><span>
+      </span></td>
+      </tr>
+    <tr>
+      <td class="type, text"><span><code><a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Logical.html#Buildings.Controls.OBC.CDL.Logical.Not">Buildings.Controls.OBC.CDL.Logical.Not</a></code></span></td>
+      <td><code>not2</code><a name="FromModelica.Enable.not2"></a></td>
+      <td class="type, text"><span>Logical not that starts the timer at disable signal </span></td>
+      <td></td>
+      <td class="assignment"><span>
+      </span></td>
+      </tr>
+    <tr>
+      <td class="type, text"><span><code><a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Logical.html#Buildings.Controls.OBC.CDL.Logical.And">Buildings.Controls.OBC.CDL.Logical.And</a></code></span></td>
+      <td><code>and2</code><a name="FromModelica.Enable.and2"></a></td>
+      <td class="type, text"><span>Logical and</span></td>
+      <td></td>
+      <td class="assignment"><span>
+      </span></td>
+      </tr>
+    <tr>
+      <td class="type, text"><span><code><a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Logical.html#Buildings.Controls.OBC.CDL.Logical.And">Buildings.Controls.OBC.CDL.Logical.And</a></code></span></td>
+      <td><code>and1</code><a name="FromModelica.Enable.and1"></a></td>
+      <td class="type, text"><span>Check supply fan status</span></td>
+      <td></td>
+      <td class="assignment"><span>
+      </span></td>
+      </tr>
+    <tr>
+      <td class="type, text"><span><code><a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Logical.html#Buildings.Controls.OBC.CDL.Logical.And">Buildings.Controls.OBC.CDL.Logical.And</a></code></span></td>
+      <td><code>and3</code><a name="FromModelica.Enable.and3"></a></td>
+      <td class="type, text"><span>Check if delay time has been passed after economizer being disabled</span></td>
+      <td></td>
+      <td class="assignment"><span>
+      </span></td>
+      </tr>
+    <tr>
+      <td class="type, text"><span><code><a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Integers.html#Buildings.Controls.OBC.CDL.Integers.Equal">Buildings.Controls.OBC.CDL.Integers.Equal</a></code></span></td>
+      <td><code>intEqu</code><a name="FromModelica.Enable.intEqu"></a></td>
+      <td class="type, text"><span>Logical block to check if the freeze protection is deactivated</span></td>
+      <td></td>
+      <td class="assignment"><span>
+      </span></td>
+      </tr>
+    <tr>
+      <td class="type, text"><span><code><a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Logical.html#Buildings.Controls.OBC.CDL.Logical.TrueDelay">Buildings.Controls.OBC.CDL.Logical.TrueDelay</a></code></span></td>
+      <td><code>delOutDamOsc</code><a name="FromModelica.Enable.delOutDamOsc"></a></td>
+      <td class="type, text"><span>Small delay before closing the outdoor air damper to avoid pressure fluctuations</span></td>
+      <td></td>
+      <td class="assignment"><span>
+      <ul class="list-parameter-assignments">
+      <li>
+      <code>
+       final  delayTime = disDel
+      </code>
+      </li>
+      </ul>
+      </span></td>
+      </tr>
+    <tr>
+      <td class="type, text"><span><code><a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Logical.html#Buildings.Controls.OBC.CDL.Logical.TrueDelay">Buildings.Controls.OBC.CDL.Logical.TrueDelay</a></code></span></td>
+      <td><code>delRetDam</code><a name="FromModelica.Enable.delRetDam"></a></td>
+      <td class="type, text"><span>Keep return damper open to its physical maximum for a short period of time before closing the outdoor air damper and resuming the maximum return air damper position, per G36 Part N7</span></td>
+      <td></td>
+      <td class="assignment"><span>
+      <ul class="list-parameter-assignments">
+      <li>
+      <code>
+       final  delayTime = retDamFulOpeTim
+      </code>
+      </li>
+      </ul>
+      </span></td>
+      </tr>
+    <tr>
+      <td class="type, text"><span><code><a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Logical.html#Buildings.Controls.OBC.CDL.Logical.Not">Buildings.Controls.OBC.CDL.Logical.Not</a></code></span></td>
+      <td><code>not1</code><a name="FromModelica.Enable.not1"></a></td>
+      <td class="type, text"><span>Logical not</span></td>
+      <td></td>
+      <td class="assignment"><span>
+      </span></td>
+      </tr>
+    <tr>
+      <td class="type, text"><span><code><a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Integers_Sources.html#Buildings.Controls.OBC.CDL.Integers.Sources.Constant">Buildings.Controls.OBC.CDL.Integers.Sources.Constant</a></code></span></td>
+      <td><code>conInt</code><a name="FromModelica.Enable.conInt"></a></td>
+      <td class="type, text"><span>Integer constant, stage 0</span></td>
+      <td></td>
+      <td class="assignment"><span>
+      <ul class="list-parameter-assignments">
+      <li>
+      <code>
+       final  k = Buildings.Controls.OBC.ASHRAE.G36.Types.FreezeProtectionStages.stage0
+      </code>
+      </li>
+      </ul>
+      </span></td>
+      </tr>
+    <tr>
+      <td class="type, text"><span><code><a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Logical_Sources.html#Buildings.Controls.OBC.CDL.Logical.Sources.Constant">Buildings.Controls.OBC.CDL.Logical.Sources.Constant</a></code></span></td>
+      <td><code>entSubst1</code><a name="FromModelica.Enable.entSubst1"></a></td>
+      <td class="type, text"><span>Deactivates outdoor air enthalpy condition if there is no enthalpy sensor</span></td>
+      <td>not use_enthalpy</td>
+      <td class="assignment"><span>
+      <ul class="list-parameter-assignments">
+      <li>
+      <code>
+       final  k = false
+      </code>
+      </li>
+      </ul>
+      </span></td>
+      </tr>
+    <tr>
+      <td class="type, text"><span><code><a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Logical.html#Buildings.Controls.OBC.CDL.Logical.Or">Buildings.Controls.OBC.CDL.Logical.Or</a></code></span></td>
+      <td><code>or2</code><a name="FromModelica.Enable.or2"></a></td>
+      <td class="type, text"><span>Check if either the temperature or the enthalpy condition is satisfied</span></td>
+      <td></td>
+      <td class="assignment"><span>
+      </span></td>
+      </tr>
+    </table>
+
+
+    <h3>Connections</h3>
+    <p>
+    The inputs of the internal blocks are connected to the following outputs:
+    </p>
+    <ol>
+    <li>
+    <code><a href="#FromModelica.Enable.TOut">TOut</a></code>
+    &rarr;
+    <code><a href="#FromModelica.Enable.sub1">sub1</a>.u1
+    </code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Enable.TOutCut">TOutCut</a></code>
+    &rarr;
+    <code><a href="#FromModelica.Enable.sub1">sub1</a>.u2
+    </code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Enable.sub1">sub1</a>.y
+    </code>
+    &rarr;
+    <code><a href="#FromModelica.Enable.hysOutTem">hysOutTem</a>.u
+    </code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Enable.hOut">hOut</a></code>
+    &rarr;
+    <code><a href="#FromModelica.Enable.sub2">sub2</a>.u1
+    </code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Enable.hOutCut">hOutCut</a></code>
+    &rarr;
+    <code><a href="#FromModelica.Enable.sub2">sub2</a>.u2
+    </code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Enable.sub2">sub2</a>.y
+    </code>
+    &rarr;
+    <code><a href="#FromModelica.Enable.hysOutEnt">hysOutEnt</a>.u
+    </code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Enable.uOutDam_min">uOutDam_min</a></code>
+    &rarr;
+    <code><a href="#FromModelica.Enable.outDamSwitch">outDamSwitch</a>.u1
+    </code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Enable.uOutDam_max">uOutDam_max</a></code>
+    &rarr;
+    <code><a href="#FromModelica.Enable.outDamSwitch">outDamSwitch</a>.u3
+    </code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Enable.uRetDamPhy_max">uRetDamPhy_max</a></code>
+    &rarr;
+    <code><a href="#FromModelica.Enable.maxRetDamSwitch">maxRetDamSwitch</a>.u1
+    </code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Enable.uRetDam_max">uRetDam_max</a></code>
+    &rarr;
+    <code><a href="#FromModelica.Enable.maxRetDamSwitch">maxRetDamSwitch</a>.u3
+    </code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Enable.andEnaDis">andEnaDis</a>.y
+    </code>
+    &rarr;
+    <code><a href="#FromModelica.Enable.not2">not2</a>.u
+    </code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Enable.maxRetDamSwitch">maxRetDamSwitch</a>.y
+    </code>
+    &rarr;
+    <code><a href="#FromModelica.Enable.yRetDam_max">yRetDam_max</a></code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Enable.and2">and2</a>.y
+    </code>
+    &rarr;
+    <code><a href="#FromModelica.Enable.maxRetDamSwitch">maxRetDamSwitch</a>.u2
+    </code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Enable.and2">and2</a>.y
+    </code>
+    &rarr;
+    <code><a href="#FromModelica.Enable.minRetDamSwitch">minRetDamSwitch</a>.u2
+    </code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Enable.not2">not2</a>.y
+    </code>
+    &rarr;
+    <code><a href="#FromModelica.Enable.retDamSwitch">retDamSwitch</a>.u2
+    </code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Enable.uRetDam_max">uRetDam_max</a></code>
+    &rarr;
+    <code><a href="#FromModelica.Enable.retDamSwitch">retDamSwitch</a>.u1
+    </code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Enable.uRetDam_min">uRetDam_min</a></code>
+    &rarr;
+    <code><a href="#FromModelica.Enable.retDamSwitch">retDamSwitch</a>.u3
+    </code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Enable.retDamSwitch">retDamSwitch</a>.y
+    </code>
+    &rarr;
+    <code><a href="#FromModelica.Enable.minRetDamSwitch">minRetDamSwitch</a>.u3
+    </code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Enable.uRetDamPhy_max">uRetDamPhy_max</a></code>
+    &rarr;
+    <code><a href="#FromModelica.Enable.minRetDamSwitch">minRetDamSwitch</a>.u1
+    </code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Enable.truFalHol">truFalHol</a>.y
+    </code>
+    &rarr;
+    <code><a href="#FromModelica.Enable.and1">and1</a>.u1
+    </code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Enable.and1">and1</a>.y
+    </code>
+    &rarr;
+    <code><a href="#FromModelica.Enable.andEnaDis">andEnaDis</a>.u1
+    </code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Enable.u1SupFan">u1SupFan</a></code>
+    &rarr;
+    <code><a href="#FromModelica.Enable.and1">and1</a>.u2
+    </code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Enable.outDamSwitch">outDamSwitch</a>.u2
+    </code>
+    &rarr;
+    <code><a href="#FromModelica.Enable.and3">and3</a>.y
+    </code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Enable.not2">not2</a>.y
+    </code>
+    &rarr;
+    <code><a href="#FromModelica.Enable.and3">and3</a>.u1
+    </code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Enable.and2">and2</a>.u1
+    </code>
+    &rarr;
+    <code><a href="#FromModelica.Enable.not2">not2</a>.y
+    </code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Enable.and3">and3</a>.u2
+    </code>
+    &rarr;
+    <code><a href="#FromModelica.Enable.delOutDamOsc">delOutDamOsc</a>.y
+    </code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Enable.delOutDamOsc">delOutDamOsc</a>.u
+    </code>
+    &rarr;
+    <code><a href="#FromModelica.Enable.not2">not2</a>.y
+    </code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Enable.not2">not2</a>.y
+    </code>
+    &rarr;
+    <code><a href="#FromModelica.Enable.delRetDam">delRetDam</a>.u
+    </code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Enable.delRetDam">delRetDam</a>.y
+    </code>
+    &rarr;
+    <code><a href="#FromModelica.Enable.not1">not1</a>.u
+    </code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Enable.not1">not1</a>.y
+    </code>
+    &rarr;
+    <code><a href="#FromModelica.Enable.and2">and2</a>.u2
+    </code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Enable.uFreProSta">uFreProSta</a></code>
+    &rarr;
+    <code><a href="#FromModelica.Enable.intEqu">intEqu</a>.u1
+    </code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Enable.conInt">conInt</a>.y
+    </code>
+    &rarr;
+    <code><a href="#FromModelica.Enable.intEqu">intEqu</a>.u2
+    </code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Enable.intEqu">intEqu</a>.y
+    </code>
+    &rarr;
+    <code><a href="#FromModelica.Enable.andEnaDis">andEnaDis</a>.u2
+    </code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Enable.outDamSwitch">outDamSwitch</a>.y
+    </code>
+    &rarr;
+    <code><a href="#FromModelica.Enable.yOutDam_max">yOutDam_max</a></code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Enable.minRetDamSwitch">minRetDamSwitch</a>.y
+    </code>
+    &rarr;
+    <code><a href="#FromModelica.Enable.yRetDam_min">yRetDam_min</a></code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Enable.or2">or2</a>.y
+    </code>
+    &rarr;
+    <code><a href="#FromModelica.Enable.truFalHol">truFalHol</a>.u
+    </code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Enable.hysOutTem">hysOutTem</a>.y
+    </code>
+    &rarr;
+    <code><a href="#FromModelica.Enable.or2">or2</a>.u1
+    </code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Enable.hysOutEnt">hysOutEnt</a>.y
+    </code>
+    &rarr;
+    <code><a href="#FromModelica.Enable.or2">or2</a>.u2
+    </code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.Enable.entSubst1">entSubst1</a>.y
+    </code>
+    &rarr;
+    <code><a href="#FromModelica.Enable.or2">or2</a>.u2
+    </code>
+    </li>
+    </ol><h2>FromModelica.ExtendsClause_1<a name="FromModelica.ExtendsClause_1"></a></h2>
 
   <span class="ModelicaDescription">model with extends clause</span><br>
 
@@ -448,7 +1259,7 @@ test...test...test...test...test...
     <tr>
       <td class="type, text"><span>
       <code>
-      <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.LimPID">Buildings.Controls.OBC.CDL.Continuous.LimPID</a>
+      <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.PID">Buildings.Controls.OBC.CDL.Continuous.PID</a>
       </code>
       </span></td>
       <td class="text"><span>
@@ -503,7 +1314,7 @@ test...test...test...test...test...
       <th>Parameter Assignments</th>
     </tr>
     <tr>
-      <td class="type, text"><span><code><a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Gain">Buildings.Controls.OBC.CDL.Continuous.Gain</a></code></span></td>
+      <td class="type, text"><span><code><a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.MultiplyByParameter">Buildings.Controls.OBC.CDL.Continuous.MultiplyByParameter</a></code></span></td>
       <td><code>gain</code><a name="FromModelica.ExtendsClause_1.gain"></a></td>
       <td class="type, text"><span>Constant gain</span></td>
       <td class="assignment"><span>
@@ -558,7 +1369,7 @@ test...test...test...test...test...
     <tr>
       <td class="type, text"><span>
       <code>
-      <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.LimPID">Buildings.Controls.OBC.CDL.Continuous.LimPID</a>
+      <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.PID">Buildings.Controls.OBC.CDL.Continuous.PID</a>
       </code>
       </span></td>
       <td class="text"><span>
@@ -641,7 +1452,7 @@ test...test...test...test...test...
       <th>Parameter Assignments</th>
     </tr>
     <tr>
-      <td class="type, text"><span><code><a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Gain">Buildings.Controls.OBC.CDL.Continuous.Gain</a></code></span></td>
+      <td class="type, text"><span><code><a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.MultiplyByParameter">Buildings.Controls.OBC.CDL.Continuous.MultiplyByParameter</a></code></span></td>
       <td><code>gain</code><a name="FromModelica.ExtendsClause_2.gain"></a></td>
       <td class="type, text"><span>Constant gain</span></td>
       <td class="assignment"><span>
@@ -755,7 +1566,7 @@ test...test...test...test...test...
       <th>Parameter Assignments</th>
     </tr>
     <tr>
-      <td class="type, text"><span><code><a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Gain">Buildings.Controls.OBC.CDL.Continuous.Gain</a></code></span></td>
+      <td class="type, text"><span><code><a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.MultiplyByParameter">Buildings.Controls.OBC.CDL.Continuous.MultiplyByParameter</a></code></span></td>
       <td><code>gain</code><a name="FromModelica.ExtendsClause_3.gain"></a></td>
       <td class="type, text"><span>Constant gain</span></td>
       <td class="assignment"><span>
@@ -898,7 +1709,7 @@ test...test...test...test...test...
       <th>Parameter Assignments</th>
     </tr>
     <tr>
-      <td class="type, text"><span><code><a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Gain">Buildings.Controls.OBC.CDL.Continuous.Gain</a></code></span></td>
+      <td class="type, text"><span><code><a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.MultiplyByParameter">Buildings.Controls.OBC.CDL.Continuous.MultiplyByParameter</a></code></span></td>
       <td><code>gain</code><a name="FromModelica.MisplacedInfoWithEquation.gain"></a></td>
       <td class="type, text"><span>Constant gain</span></td>
       <td class="assignment"><span>
@@ -912,6 +1723,7 @@ test...test...test...test...test...
       </span></td>
       </tr>
     </table>
+
 
 
 
@@ -957,102 +1769,12 @@ test...test...test...test...test...
     <td class="type, text"><span>1</span></td>
     <td class="type, text">Some comment </td>
     </tr>
-    </table><h2>FromModelica.Modulation<a name="FromModelica.Modulation"></a></h2>
+    </table><h2>FromModelica.MyController<a name="FromModelica.MyController"></a></h2>
 
-  <span class="ModelicaDescription">Outdoor and return air damper position modulation sequence for multi zone VAV AHU</span><br>
-
-<h3>Info</h3>
-  
-<p>
-This is a multi zone VAV AHU economizer modulation block. It calculates
-the outdoor and return air damper positions based on the supply air temperature
-control loop signal. The implementation is in line with ASHRAE
-Guidline 36 (G36), PART5.N.2.c. Damper positions are linearly mapped to
-the supply air control loop signal. This is a final sequence in the
-composite multi zone VAV AHU economizer control sequence. Damper position
-limits, which are the inputs to the sequence, are the outputs of
-<code>Buildings.Controls.OBC.ASHRAE.G36_PR1.AHUs.MultiZone.VAV.Economizers.Subsequences.Limits</code> and
-<code>Buildings.Controls.OBC.ASHRAE.G36_PR1.AHUs.MultiZone.VAV.Economizers.Subsequences.Enable</code>
-sequences.
-</p>
-<p>
-When the economizer is enabled, the PI controller modulates the damper
-positions. Return and outdoor damper are not interlocked. When the economizer is disabled,
-the damper positions are set to the minimum outdoor air damper position limits.
-</p>
-<p>
-The time rate of change of the damper signals is limited by a first order hold,
-using the sample time <code><a href="#FromModelica.Modulation.samplePeriod">samplePeriod</a></code>.
-This prevents a quick opening of the outdoor air damper, for example when the
-outdoor airflow setpoint has a step change.
-Slowing down the opening of the outdoor air damper allows the freeze protection
-to componensate with its dynamics that is faster than the opening of the outdoor air damper.
-To avoid that all dampers are closed, the return air damper has the same
-time rate of change limitation.
-</p>
-<p>
-The control charts below show the input-output structure and an economizer damper
-modulation sequence assuming a well configured controller. Control diagram:
-</p>
-<p align="center">
-<img alt="Image of the multi zone AHU modulation sequence control diagram" src="img/EconModulationControlDiagram.png">
-</p>
-<p>
-Multi zone AHU economizer modulation control chart:
-<br>
-</p>
-<p align="center">
-<img alt="Image of the multi zone AHU modulation sequence expected performance" src="img/EconModulationControlChart.png">
-</p>
+  <span class="ModelicaDescription">My controller</span><br>
 
 
 
-<h3>Parameters</h3>
-    <p>
-    It has the following parameters:
-    </p>
-    <table>
-    <tr>
-    <th class="mode">Type</th>
-    <th>Name</th>
-    <th>Default</th>
-    <th class="description">Description</th>
-    </tr>
-    <tr class="tab ModelicaParameterTab"><td colspan="4">Commissioning</td></tr>
-    <tr class="group ModelicaParameterGroup"><td colspan="4">Controller</td></tr>
-    <tr>
-    <td class="type, text"><span>Real</span></td>
-    <td class="type, text"><span><code>uMin</code><a name="FromModelica.Modulation.uMin"></a></span></td>
-    <td class="type, text"><span>-0.25</span></td>
-    <td class="type, text">Lower limit of controller input when outdoor damper opens (see diagram) [1 Max = 0 (adjustable)]</td>
-    </tr>
-    <tr>
-    <td class="type, text"><span>Real</span></td>
-    <td class="type, text"><span><code>uMax</code><a name="FromModelica.Modulation.uMax"></a></span></td>
-    <td class="type, text"><span>+0.25</span></td>
-    <td class="type, text">Upper limit of controller input when return damper is closed (see diagram) [1 Min = 0 (adjustable) ]</td>
-    </tr>
-    <tr>
-    <td class="type, text"><span>Real</span></td>
-    <td class="type, text"><span><code>uOutDamMax</code><a name="FromModelica.Modulation.uOutDamMax"></a></span></td>
-    <td class="type, text"><span>(uMin + uMax)&#x2F;2</span></td>
-    <td class="type, text">Maximum loop signal for the OA damper to be fully open [1 Min = -1 (adjustable) Max = 1 (adjustable)]</td>
-    </tr>
-    <tr>
-    <td class="type, text"><span>Real</span></td>
-    <td class="type, text"><span><code>uRetDamMin</code><a name="FromModelica.Modulation.uRetDamMin"></a></span></td>
-    <td class="type, text"><span>(uMin + uMax)&#x2F;2</span></td>
-    <td class="type, text">Minimum loop signal for the RA damper to be fully open [1 Min = -1 (adjustable) Max = 1 (adjustable)]</td>
-    </tr>
-    <tr class="tab ModelicaParameterTab"><td colspan="4">General</td></tr>
-    <tr class="group ModelicaParameterGroup"><td colspan="4">Parameters</td></tr>
-    <tr>
-    <td class="type, text"><span>Time</span></td>
-    <td class="type, text"><span><code>samplePeriod</code><a name="FromModelica.Modulation.samplePeriod"></a></span></td>
-    <td class="type, text"><span>300</span></td>
-    <td class="type, text">Sample period of component, used to limit the rate of change of the dampers (to avoid quick opening that can result in frost) </td>
-    </tr>
-    </table>
 
 <h3>Inputs</h3>
     <p>
@@ -1070,8 +1792,8 @@ Multi zone AHU economizer modulation control chart:
       Real
       </code>
       </td>
-      <td class="type, text"><span><code>uTSup</code><a name="FromModelica.Modulation.uTSup"></a></span></td>
-      <td class="type, text">Signal for supply air temperature control (T Sup Control Loop Signal in diagram) [1 ]</td>
+      <td class="type, text"><span><code>u1</code><a name="FromModelica.MyController.u1"></a></span></td>
+      <td class="type, text">Real input 1 </td>
       </tr>
     <tr>
       <td>
@@ -1079,36 +1801,8 @@ Multi zone AHU economizer modulation control chart:
       Real
       </code>
       </td>
-      <td class="type, text"><span><code>uOutDamPosMin</code><a name="FromModelica.Modulation.uOutDamPosMin"></a></span></td>
-      <td class="type, text">Minimum economizer damper position limit as returned by the damper position limits  sequence [1 Min = 0 (adjustable) Max = 1 (adjustable) ]</td>
-      </tr>
-    <tr>
-      <td>
-      <code>
-      Real
-      </code>
-      </td>
-      <td class="type, text"><span><code>uOutDamPosMax</code><a name="FromModelica.Modulation.uOutDamPosMax"></a></span></td>
-      <td class="type, text">Maximum economizer damper position limit as returned by the economizer enable-disable sequence.
-    If the economizer is disabled, this value equals uOutDamPosMin [1 Min = 0 (adjustable) Max = 1 (adjustable) ]</td>
-      </tr>
-    <tr>
-      <td>
-      <code>
-      Real
-      </code>
-      </td>
-      <td class="type, text"><span><code>uRetDamPosMin</code><a name="FromModelica.Modulation.uRetDamPosMin"></a></span></td>
-      <td class="type, text">Minimum return air damper position limit as returned by the economizer enable-disable sequence [1 Min = 0 (adjustable) Max = 1 (adjustable) ]</td>
-      </tr>
-    <tr>
-      <td>
-      <code>
-      Real
-      </code>
-      </td>
-      <td class="type, text"><span><code>uRetDamPosMax</code><a name="FromModelica.Modulation.uRetDamPosMax"></a></span></td>
-      <td class="type, text">Maximum return air damper position limit as returned by the economizer enable-disable sequence [1 Min = 0 (adjustable) Max = 1 (adjustable) ]</td>
+      <td class="type, text"><span><code>u2</code><a name="FromModelica.MyController.u2"></a></span></td>
+      <td class="type, text">Real input 2 </td>
       </tr>
     </table>
 
@@ -1124,21 +1818,14 @@ Multi zone AHU economizer modulation control chart:
       </tr>
     <tr>
       <td><code>Real</code></td>
-      <td class="type, text"><span><code>yOutDamPos</code><a name="FromModelica.Modulation.yOutDamPos"></a></span></td>
-      <td class="type, text">Economizer damper position [1 Min = 0 (adjustable) Max = 1 (adjustable) ]</td>
-      </tr>
-    <tr>
-      <td><code>Real</code></td>
-      <td class="type, text"><span><code>yRetDamPos</code><a name="FromModelica.Modulation.yRetDamPos"></a></span></td>
-      <td class="type, text">Return air damper position [1 Min = 0 (adjustable) Max = 1 (adjustable) ]</td>
+      <td class="type, text"><span><code>y</code><a name="FromModelica.MyController.y"></a></span></td>
+      <td class="type, text">Real output </td>
       </tr>
     </table>
 
-
-
-<h3>Protected Blocks</h3>
+<h3>Blocks</h3>
     <p>
-    It has the following protected blocks:
+    It has the following blocks:
     </p>
     <table>
     <tr>
@@ -1148,142 +1835,30 @@ Multi zone AHU economizer modulation control chart:
       <th>Parameter Assignments</th>
     </tr>
     <tr>
-      <td class="type, text"><span><code><a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous_Sources.html#Buildings.Controls.OBC.CDL.Continuous.Sources.Constant">Buildings.Controls.OBC.CDL.Continuous.Sources.Constant</a></code></span></td>
-      <td><code>outDamMinLimSig</code><a name="FromModelica.Modulation.outDamMinLimSig"></a></td>
-      <td class="type, text"><span>Minimal control loop signal for the outdoor air damper</span></td>
-      <td class="assignment"><span>
-      <ul class="list-parameter-assignments">
-      <li>
-      <code>
-       final  k = uMin
-      </code>
-      </li>
-      </ul>
-      </span></td>
-      </tr>
-    <tr>
-      <td class="type, text"><span><code><a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous_Sources.html#Buildings.Controls.OBC.CDL.Continuous.Sources.Constant">Buildings.Controls.OBC.CDL.Continuous.Sources.Constant</a></code></span></td>
-      <td><code>outDamMaxLimSig</code><a name="FromModelica.Modulation.outDamMaxLimSig"></a></td>
-      <td class="type, text"><span>Maximum control loop signal for the outdoor air damper</span></td>
-      <td class="assignment"><span>
-      <ul class="list-parameter-assignments">
-      <li>
-      <code>
-       final  k = uOutDamMax
-      </code>
-      </li>
-      </ul>
-      </span></td>
-      </tr>
-    <tr>
-      <td class="type, text"><span><code><a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous_Sources.html#Buildings.Controls.OBC.CDL.Continuous.Sources.Constant">Buildings.Controls.OBC.CDL.Continuous.Sources.Constant</a></code></span></td>
-      <td><code>retDamConMinLimSig</code><a name="FromModelica.Modulation.retDamConMinLimSig"></a></td>
-      <td class="type, text"><span>Minimal control loop signal for the return air damper</span></td>
-      <td class="assignment"><span>
-      <ul class="list-parameter-assignments">
-      <li>
-      <code>
-       final  k = uRetDamMin
-      </code>
-      </li>
-      </ul>
-      </span></td>
-      </tr>
-    <tr>
-      <td class="type, text"><span><code><a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous_Sources.html#Buildings.Controls.OBC.CDL.Continuous.Sources.Constant">Buildings.Controls.OBC.CDL.Continuous.Sources.Constant</a></code></span></td>
-      <td><code>retDamMaxLimSig</code><a name="FromModelica.Modulation.retDamMaxLimSig"></a></td>
-      <td class="type, text"><span>Maximal control loop signal for the return air damper</span></td>
-      <td class="assignment"><span>
-      <ul class="list-parameter-assignments">
-      <li>
-      <code>
-       final  k = uMax
-      </code>
-      </li>
-      </ul>
-      </span></td>
-      </tr>
-    <tr>
-      <td class="type, text"><span><code><a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Line">Buildings.Controls.OBC.CDL.Continuous.Line</a></code></span></td>
-      <td><code>outDamPos</code><a name="FromModelica.Modulation.outDamPos"></a></td>
-      <td class="type, text"><span>Damper position is linearly proportional to the control signal between signal limits</span></td>
-      <td class="assignment"><span>
-      <ul class="list-parameter-assignments">
-      <li>
-      <code>
-       final  limitBelow = true
-      </code>
-      </li>
-      <li>
-      <code>
-       final  limitAbove = true
-      </code>
-      </li>
-      </ul>
-      </span></td>
-      </tr>
-    <tr>
-      <td class="type, text"><span><code><a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Line">Buildings.Controls.OBC.CDL.Continuous.Line</a></code></span></td>
-      <td><code>retDamPos</code><a name="FromModelica.Modulation.retDamPos"></a></td>
-      <td class="type, text"><span>Damper position is linearly proportional to the control signal between signal limits</span></td>
-      <td class="assignment"><span>
-      <ul class="list-parameter-assignments">
-      <li>
-      <code>
-       final  limitBelow = true
-      </code>
-      </li>
-      <li>
-      <code>
-       final  limitAbove = true
-      </code>
-      </li>
-      </ul>
-      </span></td>
-      </tr>
-    <tr>
-      <td class="type, text"><span><code><a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Min">Buildings.Controls.OBC.CDL.Continuous.Min</a></code></span></td>
-      <td><code>min</code><a name="FromModelica.Modulation.min"></a></td>
-      <td class="type, text"><span>Overwrite due to freeze protection</span></td>
+      <td class="type, text"><span><code><a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Add">Buildings.Controls.OBC.CDL.Continuous.Add</a></code></span></td>
+      <td><code>add2</code><a name="FromModelica.MyController.add2"></a></td>
+      <td class="type, text"><span>Add two real inputs</span></td>
       <td class="assignment"><span>
       </span></td>
       </tr>
     <tr>
-      <td class="type, text"><span><code><a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Max">Buildings.Controls.OBC.CDL.Continuous.Max</a></code></span></td>
-      <td><code>max</code><a name="FromModelica.Modulation.max"></a></td>
-      <td class="type, text"><span>Overwrite due to freeze protection</span></td>
+      <td class="type, text"><span><code><a href="FromModelica.html#SubController">SubController</a></code></span></td>
+      <td><code>subCon1</code><a name="FromModelica.MyController.subCon1"></a></td>
+      <td class="type, text"><span>Sub controller</span></td>
       <td class="assignment"><span>
       </span></td>
       </tr>
     <tr>
-      <td class="type, text"><span><code><a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Discrete.html#Buildings.Controls.OBC.CDL.Discrete.FirstOrderHold">Buildings.Controls.OBC.CDL.Discrete.FirstOrderHold</a></code></span></td>
-      <td><code>firOrdHolOutDam</code><a name="FromModelica.Modulation.firOrdHolOutDam"></a></td>
-      <td class="type, text"><span>First order hold to avoid too fast opening&#x2F;closing of damper (which may cause freeze protection to be too slow to compensate)</span></td>
+      <td class="type, text"><span><code><a href="FromModelica.html#SubController">SubController</a></code></span></td>
+      <td><code>subCon2</code><a name="FromModelica.MyController.subCon2"></a></td>
+      <td class="type, text"><span>Sub controller</span></td>
       <td class="assignment"><span>
-      <ul class="list-parameter-assignments">
-      <li>
-      <code>
-       final  samplePeriod = samplePeriod
-      </code>
-      </li>
-      </ul>
-      </span></td>
-      </tr>
-    <tr>
-      <td class="type, text"><span><code><a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Discrete.html#Buildings.Controls.OBC.CDL.Discrete.FirstOrderHold">Buildings.Controls.OBC.CDL.Discrete.FirstOrderHold</a></code></span></td>
-      <td><code>firOrdHolRetDam</code><a name="FromModelica.Modulation.firOrdHolRetDam"></a></td>
-      <td class="type, text"><span>First order hold to avoid too fast opening&#x2F;closing of damper (which may cause freeze protection to be too slow to compensate)</span></td>
-      <td class="assignment"><span>
-      <ul class="list-parameter-assignments">
-      <li>
-      <code>
-       final  samplePeriod = samplePeriod
-      </code>
-      </li>
-      </ul>
       </span></td>
       </tr>
     </table>
+
+
+
 
     <h3>Connections</h3>
     <p>
@@ -1291,120 +1866,34 @@ Multi zone AHU economizer modulation control chart:
     </p>
     <ol>
     <li>
-    <code><a href="#FromModelica.Modulation.outDamPos">outDamPos</a>.x2
-    </code>
+    <code><a href="#FromModelica.MyController.u1">u1</a></code>
     &rarr;
-    <code><a href="#FromModelica.Modulation.outDamMaxLimSig">outDamMaxLimSig</a>.y
+    <code><a href="#FromModelica.MyController.add2">add2</a>.u1
     </code>
     </li>
     <li>
-    <code><a href="#FromModelica.Modulation.outDamPos">outDamPos</a>.x1
-    </code>
+    <code><a href="#FromModelica.MyController.u2">u2</a></code>
     &rarr;
-    <code><a href="#FromModelica.Modulation.outDamMinLimSig">outDamMinLimSig</a>.y
+    <code><a href="#FromModelica.MyController.add2">add2</a>.u2
     </code>
     </li>
     <li>
-    <code><a href="#FromModelica.Modulation.outDamPos">outDamPos</a>.f1
+    <code><a href="#FromModelica.MyController.add2">add2</a>.y
     </code>
     &rarr;
-    <code><a href="#FromModelica.Modulation.uOutDamPosMin">uOutDamPosMin</a></code>
+    <code><a href="#FromModelica.MyController.y">y</a></code>
     </li>
     <li>
-    <code><a href="#FromModelica.Modulation.outDamPos">outDamPos</a>.f2
-    </code>
+    <code><a href="#FromModelica.MyController.u2">u2</a></code>
     &rarr;
-    <code><a href="#FromModelica.Modulation.uOutDamPosMax">uOutDamPosMax</a></code>
+    <code><a href="#FromModelica.MyController.subCon1">subCon1</a>.<a href="#SubController.u">u
+    </a></code>
     </li>
     <li>
-    <code><a href="#FromModelica.Modulation.retDamPos">retDamPos</a>.x2
-    </code>
+    <code><a href="#FromModelica.MyController.u2">u2</a></code>
     &rarr;
-    <code><a href="#FromModelica.Modulation.retDamMaxLimSig">retDamMaxLimSig</a>.y
-    </code>
-    </li>
-    <li>
-    <code><a href="#FromModelica.Modulation.retDamPos">retDamPos</a>.x1
-    </code>
-    &rarr;
-    <code><a href="#FromModelica.Modulation.retDamConMinLimSig">retDamConMinLimSig</a>.y
-    </code>
-    </li>
-    <li>
-    <code><a href="#FromModelica.Modulation.retDamPos">retDamPos</a>.f1
-    </code>
-    &rarr;
-    <code><a href="#FromModelica.Modulation.uRetDamPosMax">uRetDamPosMax</a></code>
-    </li>
-    <li>
-    <code><a href="#FromModelica.Modulation.retDamPos">retDamPos</a>.f2
-    </code>
-    &rarr;
-    <code><a href="#FromModelica.Modulation.uRetDamPosMin">uRetDamPosMin</a></code>
-    </li>
-    <li>
-    <code><a href="#FromModelica.Modulation.min">min</a>.u2
-    </code>
-    &rarr;
-    <code><a href="#FromModelica.Modulation.uOutDamPosMax">uOutDamPosMax</a></code>
-    </li>
-    <li>
-    <code><a href="#FromModelica.Modulation.min">min</a>.u1
-    </code>
-    &rarr;
-    <code><a href="#FromModelica.Modulation.outDamPos">outDamPos</a>.y
-    </code>
-    </li>
-    <li>
-    <code><a href="#FromModelica.Modulation.max">max</a>.u1
-    </code>
-    &rarr;
-    <code><a href="#FromModelica.Modulation.retDamPos">retDamPos</a>.y
-    </code>
-    </li>
-    <li>
-    <code><a href="#FromModelica.Modulation.uRetDamPosMin">uRetDamPosMin</a></code>
-    &rarr;
-    <code><a href="#FromModelica.Modulation.max">max</a>.u2
-    </code>
-    </li>
-    <li>
-    <code><a href="#FromModelica.Modulation.min">min</a>.y
-    </code>
-    &rarr;
-    <code><a href="#FromModelica.Modulation.firOrdHolOutDam">firOrdHolOutDam</a>.u
-    </code>
-    </li>
-    <li>
-    <code><a href="#FromModelica.Modulation.firOrdHolOutDam">firOrdHolOutDam</a>.y
-    </code>
-    &rarr;
-    <code><a href="#FromModelica.Modulation.yOutDamPos">yOutDamPos</a></code>
-    </li>
-    <li>
-    <code><a href="#FromModelica.Modulation.uTSup">uTSup</a></code>
-    &rarr;
-    <code><a href="#FromModelica.Modulation.retDamPos">retDamPos</a>.u
-    </code>
-    </li>
-    <li>
-    <code><a href="#FromModelica.Modulation.uTSup">uTSup</a></code>
-    &rarr;
-    <code><a href="#FromModelica.Modulation.outDamPos">outDamPos</a>.u
-    </code>
-    </li>
-    <li>
-    <code><a href="#FromModelica.Modulation.max">max</a>.y
-    </code>
-    &rarr;
-    <code><a href="#FromModelica.Modulation.firOrdHolRetDam">firOrdHolRetDam</a>.u
-    </code>
-    </li>
-    <li>
-    <code><a href="#FromModelica.Modulation.firOrdHolRetDam">firOrdHolRetDam</a>.y
-    </code>
-    &rarr;
-    <code><a href="#FromModelica.Modulation.yRetDamPos">yRetDamPos</a></code>
+    <code><a href="#FromModelica.MyController.subCon2">subCon2</a>.<a href="#SubController.u">u
+    </a></code>
     </li>
     </ol><h2>FromModelica.NoClassComment<a name="FromModelica.NoClassComment"></a></h2>
 
@@ -1682,7 +2171,137 @@ This is the info section.
     <td class="type, text"><span>1</span></td>
     <td class="type, text">Some comment </td>
     </tr>
-    </table><h2>FromModelica.RemovableInputs<a name="FromModelica.RemovableInputs"></a></h2>
+    </table><h2>FromModelica.PointList<a name="FromModelica.PointList"></a></h2>
+
+  <span class="ModelicaDescription">Block demonstrating point list generation</span><br>
+
+
+
+
+<h3>Inputs</h3>
+    <p>
+    It has the following inputs:
+    </p>
+    <table>
+    <tr>
+      <th class="type">Type</th>
+      <th>Name</th>
+      <th class="description">Description</th>
+      </tr>
+    <tr>
+      <td>
+      <code>
+      Real
+      </code>
+      </td>
+      <td class="type, text"><span><code>u1</code><a name="FromModelica.PointList.u1"></a></span></td>
+      <td class="type, text">Input one </td>
+      </tr>
+    <tr>
+      <td>
+      <code>
+      Real
+      </code>
+      </td>
+      <td class="type, text"><span><code>u2</code><a name="FromModelica.PointList.u2"></a></span></td>
+      <td class="type, text">Input two </td>
+      </tr>
+    </table>
+
+<h3>Outputs</h3>
+    <p>
+    It has the following outputs:
+    </p>
+    <table>
+    <tr>
+      <th class="type">Type</th>
+      <th>Name</th>
+      <th class="description">Description</th>
+      </tr>
+    <tr>
+      <td><code>Real</code></td>
+      <td class="type, text"><span><code>y1</code><a name="FromModelica.PointList.y1"></a></span></td>
+      <td class="type, text">Output one </td>
+      </tr>
+    <tr>
+      <td><code>Real</code></td>
+      <td class="type, text"><span><code>y2</code><a name="FromModelica.PointList.y2"></a></span></td>
+      <td class="type, text">Output two </td>
+      </tr>
+    </table>
+
+<h3>Blocks</h3>
+    <p>
+    It has the following blocks:
+    </p>
+    <table>
+    <tr>
+      <th class="type">Type</th>
+      <th>Name</th>
+      <th class="description">Description</th>
+      <th>Parameter Assignments</th>
+    </tr>
+    <tr>
+      <td class="type, text"><span><code><a href="FromModelica.html#MyController">MyController</a></code></span></td>
+      <td><code>con1</code><a name="FromModelica.PointList.con1"></a></td>
+      <td class="type, text"><span>Subcontroller one</span></td>
+      <td class="assignment"><span>
+      </span></td>
+      </tr>
+    <tr>
+      <td class="type, text"><span><code><a href="FromModelica.html#MyController">MyController</a></code></span></td>
+      <td><code>con2</code><a name="FromModelica.PointList.con2"></a></td>
+      <td class="type, text"><span>Subcontroller two</span></td>
+      <td class="assignment"><span>
+      </span></td>
+      </tr>
+    </table>
+
+
+
+
+    <h3>Connections</h3>
+    <p>
+    The inputs of the internal blocks are connected to the following outputs:
+    </p>
+    <ol>
+    <li>
+    <code><a href="#FromModelica.PointList.u1">u1</a></code>
+    &rarr;
+    <code><a href="#FromModelica.PointList.con1">con1</a>.<a href="#MyController.u1">u1
+    </a></code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.PointList.u1">u1</a></code>
+    &rarr;
+    <code><a href="#FromModelica.PointList.con2">con2</a>.<a href="#MyController.u1">u1
+    </a></code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.PointList.u2">u2</a></code>
+    &rarr;
+    <code><a href="#FromModelica.PointList.con1">con1</a>.<a href="#MyController.u2">u2
+    </a></code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.PointList.u2">u2</a></code>
+    &rarr;
+    <code><a href="#FromModelica.PointList.con2">con2</a>.<a href="#MyController.u2">u2
+    </a></code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.PointList.con1">con1</a>.<a href="#MyController.y">y
+    </a></code>
+    &rarr;
+    <code><a href="#FromModelica.PointList.y2">y2</a></code>
+    </li>
+    <li>
+    <code><a href="#FromModelica.PointList.con2">con2</a>.<a href="#MyController.y">y
+    </a></code>
+    &rarr;
+    <code><a href="#FromModelica.PointList.y1">y1</a></code>
+    </li>
+    </ol><h2>FromModelica.RemovableInputs<a name="FromModelica.RemovableInputs"></a></h2>
 
   <span class="ModelicaDescription">A block with a flag for disabling instances</span><br>
 
@@ -1820,6 +2439,49 @@ This is the info section.
       <td>not enaBlo</td>
       <td class="assignment"><span>
       </span></td>
+      </tr>
+    </table><h2>FromModelica.SubController<a name="FromModelica.SubController"></a></h2>
+
+  <span class="ModelicaDescription">Subsequence</span><br>
+
+
+
+
+<h3>Inputs</h3>
+    <p>
+    It has the following inputs:
+    </p>
+    <table>
+    <tr>
+      <th class="type">Type</th>
+      <th>Name</th>
+      <th class="description">Description</th>
+      </tr>
+    <tr>
+      <td>
+      <code>
+      Real
+      </code>
+      </td>
+      <td class="type, text"><span><code>u</code><a name="FromModelica.SubController.u"></a></span></td>
+      <td class="type, text">Real input </td>
+      </tr>
+    </table>
+
+<h3>Outputs</h3>
+    <p>
+    It has the following outputs:
+    </p>
+    <table>
+    <tr>
+      <th class="type">Type</th>
+      <th>Name</th>
+      <th class="description">Description</th>
+      </tr>
+    <tr>
+      <td><code>Real</code></td>
+      <td class="type, text"><span><code>y</code><a name="FromModelica.SubController.y"></a></span></td>
+      <td class="type, text">Real output </td>
       </tr>
     </table><h2>FromModelica.VariableModification<a name="FromModelica.VariableModification"></a></h2>
 

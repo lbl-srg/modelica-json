@@ -68,7 +68,7 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
 <h3>Info</h3>
   
 <p>
-Block that outputs <code>y = min(yMax, k*e)</code>,
+Block that outputs <code><a href="#FromModelica.CustomPWithLimiter.y">y</a> = min(<a href="#FromModelica.CustomPWithLimiter.yMax">yMax</a>, <a href="#FromModelica.CustomPWithLimiter.k">k</a>*<a href="#FromModelica.CustomPWithLimiter.e">e</a>)</code>,
 where
 <code><a href="#FromModelica.CustomPWithLimiter.yMax">yMax</a></code> and <code><a href="#FromModelica.CustomPWithLimiter.e">e</a></code> are real-valued input signals and
 <code><a href="#FromModelica.CustomPWithLimiter.k">k</a></code> is a parameter.
@@ -156,7 +156,7 @@ where
       <th>Parameter Assignments</th>
     </tr>
     <tr>
-      <td class="type, text"><span><code><a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Gain">Buildings.Controls.OBC.CDL.Continuous.Gain</a></code></span></td>
+      <td class="type, text"><span><code><a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.MultiplyByParameter">Buildings.Controls.OBC.CDL.Continuous.MultiplyByParameter</a></code></span></td>
       <td><code>gain</code><a name="FromModelica.CustomPWithLimiter.gain"></a></td>
       <td class="type, text"><span>Constant gain</span></td>
       <td class="assignment"><span>
@@ -179,6 +179,45 @@ where
     </table>
 
 
+
+    <h3>Point list</h3>
+    <p>
+    It has the following IO points:
+    </p>
+    <table>
+    <tr>
+    <th class="type">System/Equipment   </th>
+    <th>Name  </th>
+    <th>Type    </th>
+    <th>Hardwired?   </th>
+    <th>Trend [s] </th>
+    <th class="description">Description</th>
+    </tr>
+    <tr>
+    <td>Not_specified</td>
+    <td>yMax</td>
+    <td>AI</td>
+    <td>No</td>
+    <td>n&#x2F;a</td>
+    <td>Maximum value of output signal</td>
+    </tr>
+    <tr>
+    <td>Not_specified</td>
+    <td>e</td>
+    <td>AI</td>
+    <td>No</td>
+    <td>n&#x2F;a</td>
+    <td>Control error</td>
+    </tr>
+    <tr>
+    <td>Not_specified</td>
+    <td>y</td>
+    <td>AO</td>
+    <td>No</td>
+    <td>n&#x2F;a</td>
+    <td>Control signal</td>
+    </tr>
+    </table>
 
     <h3>Connections</h3>
     <p>

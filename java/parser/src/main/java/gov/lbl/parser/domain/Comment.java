@@ -300,10 +300,12 @@ public class Comment {
 
     private class VendorAnnotation{
     	private String name;
+    	private Collection<VendorAnnotation> intAnn;
     	private Collection<StrPair> annotation;
     	private TemCla vendorAnnotation(String venAnnName, String venAnnStr) {
     		this.name = venAnnName.replaceAll("\\s+", "");
     		List<StrPair> venAnnEle = new ArrayList<StrPair>();
+    		List<VendorAnnotation> inAnn = new ArrayList<VendorAnnotation>();
     		if (venAnnStr == null || !venAnnStr.contains("=")) {
     			this.annotation = null;
     		} else {
@@ -317,15 +319,28 @@ public class Comment {
     					venSet.add(venSetTemp.get(i));
     				}
     			}
+    			// venSet could be {"name1=value1", "name2=value2"}
+    			// it could also be like {"name1=value1", "group(name2=value2)", "group(name3=value3)"}
     			for (int i=0; i<venSet.size(); i++) {
-					if (venSet.get(i).contains("=")) {
-						int equInd = venSet.get(i).indexOf("=");
-    					name = venSet.get(i).substring(0, equInd).trim();
-    					value = venSet.get(i).substring(equInd+1, venSet.get(i).length()).trim();
+					String ithEle = venSet.get(i);
+    				int equInd = ithEle.indexOf("=");
+					int rightBraInd = ithEle.indexOf("(");
+					if (rightBraInd > 0 && rightBraInd < equInd) {
+						String inAnnNam = ithEle.substring(0, rightBraInd).trim();
+						int lastLefBraInd = ithEle.lastIndexOf(")");
+						String inAnnStr = ithEle.substring(rightBraInd+1, lastLefBraInd);
+						VendorAnnotation temVenAno = new VendorAnnotation();
+    					temVenAno.vendorAnnotation(inAnnNam,inAnnStr);
+						inAnn.add(temVenAno);
+					} else {
+						// inAnn = null;
+						name = ithEle.substring(0, equInd).trim();
+    					value = ithEle.substring(equInd+1, ithEle.length()).trim();
     					venAnnEle.add(new StrPair(name,value));
 					}
     			}
-    			this.annotation = venAnnEle;
+    			this.annotation = venAnnEle.isEmpty() ? null : venAnnEle;
+				this.intAnn = inAnn.isEmpty() ? null : inAnn;
     		}
     		return new TemCla(venAnnStr);
     	}
