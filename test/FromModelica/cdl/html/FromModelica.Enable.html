@@ -85,7 +85,7 @@ following is <code>true</code>:
 </p>
 <ul>
 <li>
-The supply fan is off (<code>u1SupFan = false</code>),
+The supply fan is off (<code><a href="#FromModelica.Enable.u1SupFan">u1SupFan</a> = false</code>),
 </li>
 <li>
 the freeze protection stage
@@ -105,13 +105,13 @@ prevent pressure fluctuations in the HVAC system:
 </p>
 <ul>
 <li>
-The return damper gets fully opened (<code>yRetDam_max = uRetDamPhy_max</code> and
-<code>yRetDam_min = uRetDamPhy_max</code>) for <code><a href="#FromModelica.Enable.retDamFulOpeTim">retDamFulOpeTim</a></code>
+The return damper gets fully opened (<code><a href="#FromModelica.Enable.yRetDam_max">yRetDam_max</a> = <a href="#FromModelica.Enable.uRetDamPhy_max">uRetDamPhy_max</a></code> and
+<code><a href="#FromModelica.Enable.yRetDam_min">yRetDam_min</a> = <a href="#FromModelica.Enable.uRetDamPhy_max">uRetDamPhy_max</a></code>) for <code><a href="#FromModelica.Enable.retDamFulOpeTim">retDamFulOpeTim</a></code>
 time period, after which the return damper gets released to its minimum outdoor airflow control position
-(<code>yRetDam_max = uRetDam_max</code> and <code>yRetDam_min = uRetDam_max</code>).
+(<code><a href="#FromModelica.Enable.yRetDam_max">yRetDam_max</a> = <a href="#FromModelica.Enable.uRetDam_max">uRetDam_max</a></code> and <code><a href="#FromModelica.Enable.yRetDam_min">yRetDam_min</a> = <a href="#FromModelica.Enable.uRetDam_max">uRetDam_max</a></code>).
 </li>
 <li>
-The outdoor air damper is closed to its minimum outoor airflow control limit (<code>yOutDam_max = uOutDam_min</code>)
+The outdoor air damper is closed to its minimum outoor airflow control limit (<code><a href="#FromModelica.Enable.yOutDam_max">yOutDam_max</a> = <a href="#FromModelica.Enable.uOutDam_min">uOutDam_min</a></code>)
 after a <code><a href="#FromModelica.Enable.disDel">disDel</a></code> time delay.
 </li>
 </ul>
