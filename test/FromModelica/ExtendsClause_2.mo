@@ -1,6 +1,6 @@
 within FromModelica;
 block ExtendsClause_2 "model with extends clause"
-  extends Buildings.Controls.OBC.CDL.Continuous.LimPID(
+  extends Buildings.Controls.OBC.CDL.Continuous.PID(
     k=2,
     Ti=2);
   extends Buildings.Controls.OBC.CDL.Logical.TrueHoldWithReset(
@@ -8,7 +8,7 @@ block ExtendsClause_2 "model with extends clause"
       final delayTime=duration),
     final duration = 300);
 
-  Buildings.Controls.OBC.CDL.Continuous.Gain gain(final k=k) "Constant gain"
+  Buildings.Controls.OBC.CDL.Continuous.MultiplyByParameter gain(final k=k) "Constant gain"
     annotation (Placement(transformation(extent={{-60,-50},{-40,-30}})));
   parameter Modelica.SIunits.Length length "Length of the pipe";
 

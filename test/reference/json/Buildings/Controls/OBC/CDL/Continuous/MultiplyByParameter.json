@@ -5,42 +5,21 @@
       "class_prefixes": "block",
       "class_specifier": {
         "long_class_specifier": {
-          "identifier": "Max",
-          "description_string": "Pass through the largest signal",
+          "identifier": "MultiplyByParameter",
+          "description_string": "Output the product of a gain value with the input signal",
           "composition": {
             "element_list": [
               {
                 "component_clause": {
-                  "type_specifier": "Interfaces.RealInput",
+                  "type_prefix": "parameter",
+                  "type_specifier": "Real",
                   "component_list": [
                     {
                       "declaration": {
-                        "identifier": "u1"
+                        "identifier": "k"
                       },
                       "description": {
-                        "description_string": "Connector of Real input signal 1",
-                        "annotation": [
-                          {
-                            "element_modification_or_replaceable": {
-                              "element_modification": {
-                                "Placement": {
-                                  "transformation": {
-                                    "extent": [
-                                      {
-                                        "x": -140,
-                                        "y": 40
-                                      },
-                                      {
-                                        "x": -100,
-                                        "y": 80
-                                      }
-                                    ]
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        ]
+                        "description_string": "Gain value multiplied with input signal"
                       }
                     }
                   ]
@@ -52,10 +31,10 @@
                   "component_list": [
                     {
                       "declaration": {
-                        "identifier": "u2"
+                        "identifier": "u"
                       },
                       "description": {
-                        "description_string": "Connector of Real input signal 2",
+                        "description_string": "Input signal connector",
                         "annotation": [
                           {
                             "element_modification_or_replaceable": {
@@ -65,11 +44,11 @@
                                     "extent": [
                                       {
                                         "x": -140,
-                                        "y": -80
+                                        "y": -20
                                       },
                                       {
                                         "x": -100,
-                                        "y": -40
+                                        "y": 20
                                       }
                                     ]
                                   }
@@ -92,7 +71,7 @@
                         "identifier": "y"
                       },
                       "description": {
-                        "description_string": "Connector of Real output signal",
+                        "description_string": "Output signal connector",
                         "annotation": [
                           {
                             "element_modification_or_replaceable": {
@@ -129,19 +108,7 @@
                       "assignment_equation": {
                         "lhs": "y",
                         "rhs": {
-                          "simple_expression": {
-                            "function_call": {
-                              "name": "max",
-                              "arguments": [
-                                {
-                                  "name": "u1"
-                                },
-                                {
-                                  "name": "u2"
-                                }
-                              ]
-                            }
-                          }
+                          "simple_expression": "k*u"
                         }
                       }
                     }
@@ -157,7 +124,7 @@
                     "modification": {
                       "equal": true,
                       "expression": {
-                        "simple_expression": "\"max\""
+                        "simple_expression": "\"gai\""
                       }
                     }
                   }
@@ -176,7 +143,7 @@
                               "modification": {
                                 "equal": true,
                                 "expression": {
-                                  "simple_expression": "\"<html>\n<p>\nBlock that outputs <code>y = max(u1, u2)</code>,\nwhere\n<code>u1</code> and <code>u2</code> are inputs.\n</p>\n</html>\""
+                                  "simple_expression": "\"<html>\n<p>\nBlock that outputs <code>y = k * u</code>,\nwhere\n<code>k</code> is a parameter and\n<code>u</code> is an input.\n</p>\n</html>\""
                                 }
                               }
                             }
@@ -189,7 +156,7 @@
                               "modification": {
                                 "equal": true,
                                 "expression": {
-                                  "simple_expression": "\"<html>\n<ul>\n<li>\nMarch 2, 2020, by Michael Wetter:<br/>\nChanged icon to display dynamically the output value.\n</li>\n<li>\nJanuary 3, 2017, by Michael Wetter:<br/>\nFirst implementation, based on the implementation of the\nModelica Standard Library.\n</li>\n</ul>\n</html>\""
+                                  "simple_expression": "\"<html>\n<ul>\n<li>\nJanuary 27, 2022, by Jianjun Hu:<br/>\nRenamed the block name from Gain to MultiplyByParameter.<br/>\nThis is for <a href=\\\"https://github.com/lbl-srg/modelica-buildings/issues/2865\\\">issue 2865</a>.\n</li>\n<li>\nMarch 2, 2020, by Michael Wetter:<br/>\nChanged icon to display dynamically the output value.\n</li>\n<li>\nJanuary 3, 2017, by Michael Wetter:<br/>\nFirst implementation, based on the implementation of the\nModelica Standard Library.\n</li>\n</ul>\n</html>\""
                                 }
                               }
                             }
@@ -230,16 +197,24 @@
                             "element_modification": {
                               "graphics": [
                                 {
-                                  "name": "Rectangle",
+                                  "name": "Polygon",
                                   "attribute": {
-                                    "extent": [
+                                    "points": [
                                       {
                                         "x": -100,
                                         "y": -100
                                       },
                                       {
-                                        "x": 100,
+                                        "x": -100,
                                         "y": 100
+                                      },
+                                      {
+                                        "x": 100,
+                                        "y": 0
+                                      },
+                                      {
+                                        "x": -100,
+                                        "y": -100
                                       }
                                     ],
                                     "lineColor": {
@@ -261,18 +236,18 @@
                                     "extent": [
                                       {
                                         "x": -150,
-                                        "y": 150
+                                        "y": -140
                                       },
                                       {
                                         "x": 150,
-                                        "y": 110
+                                        "y": -100
                                       }
                                     ],
-                                    "textString": "\"%name\"",
+                                    "textString": ",textString=",
                                     "textColor": {
                                       "r": 0,
                                       "g": 0,
-                                      "b": 255
+                                      "b": 0
                                     }
                                   }
                                 },
@@ -281,19 +256,19 @@
                                   "attribute": {
                                     "extent": [
                                       {
-                                        "x": -90,
-                                        "y": 36
+                                        "x": -150,
+                                        "y": 144
                                       },
                                       {
-                                        "x": 90,
-                                        "y": -36
+                                        "x": 150,
+                                        "y": 104
                                       }
                                     ],
-                                    "textString": "\"max()\"",
+                                    "textString": "\"%name\"",
                                     "textColor": {
-                                      "r": 160,
-                                      "g": 160,
-                                      "b": 164
+                                      "r": 0,
+                                      "g": 0,
+                                      "b": 255
                                     }
                                   }
                                 },
@@ -333,7 +308,7 @@
       }
     }
   ],
-  "modelicaFile": "Buildings/Controls/OBC/CDL/Continuous/Max.mo",
-  "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Continuous/Max.mo",
-  "checksum": "c445827035f1cbfb7e78b8d1205fd74b"
+  "modelicaFile": "Buildings/Controls/OBC/CDL/Continuous/MultiplyByParameter.mo",
+  "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Continuous/MultiplyByParameter.mo",
+  "checksum": "acfd19b67d5d6de2a573fc864d420d79"
 }
