@@ -590,7 +590,8 @@ public class Comment {
     public static String findSubStr(String str, String keyStr) {
     	String subStr;
     	if (!ifEnclosed(str, "(", ")", str.indexOf(keyStr))
-    			|| !ifEnclosed(str, "\"", "\"", str.indexOf(keyStr))) {
+    		|| !ifEnclosed(str, "\"", "\"", str.indexOf(keyStr))
+			|| (!str.contains("(") && !str.contains("\""))) {
     		subStr = null;
     	} else {
     		if (str.contains(keyStr)) {
