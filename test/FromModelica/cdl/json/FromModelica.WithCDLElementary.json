@@ -699,7 +699,7 @@
         }
       ]
     },
-    "info": "<html>\n<p>\nBlock that outputs <code>true</code> if the Real input <code>u1</code>\nis greater than the Real input <code>u2</code>, optionally within a hysteresis <code>h</code>.\n</p>\n<p>\nThe parameter <code>h &ge; 0</code> is used to specify a hysteresis.\nIf <i>h &ne; 0</i>, then the output switches to <code>true</code> if <i>u<sub>1</sub> &gt; u<sub>2</sub></i>,\nand it switches to <code>false</code> if <i>u<sub>1</sub> &lt; u<sub>2</sub> - h</i>.\nIf <i>h = 0</i>, the output is <i>y=u<sub>1</sub> &gt; u<sub>2</sub></i>.\n</p>\n<p>\nEnabling hysteresis can avoid frequent switching.\nAdding hysteresis is recommended in real controllers to guard against sensor noise, and\nin simulation to guard against numerical noise. Numerical noise can be present if\nan input depends on a state variable or a quantity that requires an iterative solution, such as\na temperature or a mass flow rate of an HVAC system.\nTo disable hysteresis, set <code>h=0</code>.\n</p>\n</html>",
+    "info": "<html>\n<p>\nBlock that outputs <code>true</code> if the Real input <code>u1</code>\nis greater than the Real input <code>u2</code>, optionally within a hysteresis <code>h</code>.\n</p>\n<p>\nThe parameter <code>h &ge; 0</code> is used to specify a hysteresis.\nFor any <i>h &ge; 0</i>, the output switches to <code>true</code> if <i>u<sub>1</sub> &gt; u<sub>2</sub></i>,\nand it switches to <code>false</code> if <i>u<sub>1</sub> &le; u<sub>2</sub> - h</i>.\nNote that in the special case of <i>h = 0</i>, this produces the output <i>y=u<sub>1</sub> &gt; u<sub>2</sub></i>.\n</p>\n<p>\nTo disable hysteresis, set <code>h=0</code>.\n</p>\n<h4>Usage</h4>\n<p>\nEnabling hysteresis can avoid frequent switching.<br/>\nIn simulation, adding hysteresis is recommended to guard against numerical noise.\nOtherwise, numerical noise from a nonlinear solver or from an\nimplicit time integration algorithm may cause the simulation to stall.\nNumerical noise can be present if an input depends\non a state variable or a quantity that requires an iterative solution,\nsuch as a temperature or a mass flow rate of an HVAC system.<br/>\nIn real controllers, adding hysteresis is recommended to guard against measurement noise.\nOtherwise, measurement noise may cause the output to change frequently.\n</p>\n</html>",
     "icon": {
       "coordinateSystem": {
         "extent": [
@@ -818,7 +818,7 @@
                 "g": 235,
                 "b": 235
               },
-              "dynColor": "if y then {0,255,0}\n               else {235,235,235}"
+              "dynColor": "if y then\n              {0,255,0}\n            else\n              {235,235,235}"
             },
             "dynFillColor": {
               "color": {
@@ -826,7 +826,7 @@
                 "g": 235,
                 "b": 235
               },
-              "dynColor": "if y then {0,255,0}\n               else {235,235,235}"
+              "dynColor": "if y then\n              {0,255,0}\n            else\n              {235,235,235}"
             },
             "fillPattern": "FillPattern.Solid",
             "extent": [
@@ -853,11 +853,6 @@
         ],
         "text": [
           {
-            "lineColor": {
-              "r": 0,
-              "g": 0,
-              "b": 255
-            },
             "extent": [
               {
                 "x": -150,
@@ -869,12 +864,22 @@
               }
             ],
             "textString": "\"%name\"",
+            "textColor": {
+              "r": 0,
+              "g": 0,
+              "b": 255
+            },
             "visible": true,
             "origin": {
               "x": 0,
               "y": 0
             },
             "rotation": 0,
+            "lineColor": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
             "fillColor": {
               "r": 0,
               "g": 0,
@@ -884,19 +889,9 @@
             "lineThickness": 0.25,
             "fontSize": 0,
             "fontName": "Arial",
-            "textColor": {
-              "r": 0,
-              "g": 0,
-              "b": 255
-            },
             "horizontalAlignment": "TextAlignment.Center"
           },
           {
-            "lineColor": {
-              "r": 0,
-              "g": 0,
-              "b": 0
-            },
             "extent": [
               {
                 "x": -64,
@@ -908,12 +903,22 @@
               }
             ],
             "textString": "\"h=%h\"",
+            "textColor": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
             "visible": true,
             "origin": {
               "x": 0,
               "y": 0
             },
             "rotation": 0,
+            "lineColor": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
             "fillColor": {
               "r": 0,
               "g": 0,
@@ -923,19 +928,9 @@
             "lineThickness": 0.25,
             "fontSize": 0,
             "fontName": "Arial",
-            "textColor": {
-              "r": 0,
-              "g": 0,
-              "b": 0
-            },
             "horizontalAlignment": "TextAlignment.Center"
           },
           {
-            "lineColor": {
-              "r": 0,
-              "g": 0,
-              "b": 0
-            },
             "extent": [
               {
                 "x": -88,
@@ -948,7 +943,12 @@
             ],
             "dynTextString": {
               "firstOpt": "\"\"",
-              "secondOpt": "String(u1, leftjustified=false, significantDigits=3)"
+              "secondOpt": "String(u1,\n            leftJustified=false,\n            significantDigits=3)"
+            },
+            "textColor": {
+              "r": 0,
+              "g": 0,
+              "b": 0
             },
             "visible": true,
             "origin": {
@@ -956,6 +956,11 @@
               "y": 0
             },
             "rotation": 0,
+            "lineColor": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
             "fillColor": {
               "r": 0,
               "g": 0,
@@ -965,19 +970,9 @@
             "lineThickness": 0.25,
             "fontSize": 0,
             "fontName": "Arial",
-            "textColor": {
-              "r": 0,
-              "g": 0,
-              "b": 0
-            },
             "horizontalAlignment": "TextAlignment.Center"
           },
           {
-            "lineColor": {
-              "r": 0,
-              "g": 0,
-              "b": 0
-            },
             "extent": [
               {
                 "x": -86,
@@ -990,7 +985,12 @@
             ],
             "dynTextString": {
               "firstOpt": "\"\"",
-              "secondOpt": "String(u2, leftjustified=false, significantDigits=3)"
+              "secondOpt": "String(u2,\n            leftJustified=false,\n            significantDigits=3)"
+            },
+            "textColor": {
+              "r": 0,
+              "g": 0,
+              "b": 0
             },
             "visible": true,
             "origin": {
@@ -998,6 +998,11 @@
               "y": 0
             },
             "rotation": 0,
+            "lineColor": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
             "fillColor": {
               "r": 0,
               "g": 0,
@@ -1007,23 +1012,10 @@
             "lineThickness": 0.25,
             "fontSize": 0,
             "fontName": "Arial",
-            "textColor": {
-              "r": 0,
-              "g": 0,
-              "b": 0
-            },
             "horizontalAlignment": "TextAlignment.Center"
           },
           {
             "visible": false,
-            "dynLineColor": {
-              "color": {
-                "r": 235,
-                "g": 235,
-                "b": 235
-              },
-              "dynColor": "if y then {135,135,135} else {0,0,0}"
-            },
             "extent": [
               {
                 "x": 22,
@@ -1036,13 +1028,23 @@
             ],
             "dynTextString": {
               "firstOpt": "\"\"",
-              "secondOpt": "String(u2, leftjustified=false, significantDigits=3)"
+              "secondOpt": "String(u2,\n            leftJustified=false,\n            significantDigits=3)"
+            },
+            "textColor": {
+              "r": 235,
+              "g": 235,
+              "b": 235
             },
             "origin": {
               "x": 0,
               "y": 0
             },
             "rotation": 0,
+            "lineColor": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
             "fillColor": {
               "r": 0,
               "g": 0,
@@ -1052,23 +1054,10 @@
             "lineThickness": 0.25,
             "fontSize": 0,
             "fontName": "Arial",
-            "textColor": {
-              "r": 235,
-              "g": 235,
-              "b": 235
-            },
             "horizontalAlignment": "TextAlignment.Center"
           },
           {
             "visible": false,
-            "dynLineColor": {
-              "color": {
-                "r": 235,
-                "g": 235,
-                "b": 235
-              },
-              "dynColor": "if y then {135,135,135} else {0,0,0}"
-            },
             "extent": [
               {
                 "x": 22,
@@ -1081,13 +1070,23 @@
             ],
             "dynTextString": {
               "firstOpt": "\"\"",
-              "secondOpt": "String(u2, leftjustified=false, significantDigits=3)"
+              "secondOpt": "String(u2,\n            leftJustified=false,\n            significantDigits=3)"
+            },
+            "textColor": {
+              "r": 235,
+              "g": 235,
+              "b": 235
             },
             "origin": {
               "x": 0,
               "y": 0
             },
             "rotation": 0,
+            "lineColor": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
             "fillColor": {
               "r": 0,
               "g": 0,
@@ -1097,23 +1096,10 @@
             "lineThickness": 0.25,
             "fontSize": 0,
             "fontName": "Arial",
-            "textColor": {
-              "r": 235,
-              "g": 235,
-              "b": 235
-            },
             "horizontalAlignment": "TextAlignment.Center"
           },
           {
             "visible": false,
-            "dynLineColor": {
-              "color": {
-                "r": 235,
-                "g": 235,
-                "b": 235
-              },
-              "dynColor": "if not y then {135,135,135} else {0,0,0}"
-            },
             "extent": [
               {
                 "x": 20,
@@ -1126,13 +1112,23 @@
             ],
             "dynTextString": {
               "firstOpt": "\"\"",
-              "secondOpt": "String(u2-h, leftjustified=false, significantDigits=3)"
+              "secondOpt": "String(u2-h,\n            leftJustified=false,\n            significantDigits=3)"
+            },
+            "textColor": {
+              "r": 235,
+              "g": 235,
+              "b": 235
             },
             "origin": {
               "x": 0,
               "y": 0
             },
             "rotation": 0,
+            "lineColor": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
             "fillColor": {
               "r": 0,
               "g": 0,
@@ -1142,11 +1138,6 @@
             "lineThickness": 0.25,
             "fontSize": 0,
             "fontName": "Arial",
-            "textColor": {
-              "r": 235,
-              "g": 235,
-              "b": 235
-            },
             "horizontalAlignment": "TextAlignment.Center"
           }
         ]
@@ -1695,14 +1686,14 @@
     "modelicaFile": "Buildings/Controls/OBC/CDL/Interfaces/RealInput.mo",
     "within": "Buildings.Controls.OBC.CDL.Interfaces",
     "topClassName": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
-    "comment": "'input Real' as connector",
+    "comment": "Real input connector",
     "public": {
       "models": [
         {
           "className": "RealInput",
           "basePrefix": "input",
           "name": "Real",
-          "comment": "'input Real' as connector"
+          "comment": "Real input connector"
         }
       ]
     },
@@ -1805,11 +1796,6 @@
         ],
         "text": [
           {
-            "lineColor": {
-              "r": 0,
-              "g": 0,
-              "b": 127
-            },
             "extent": [
               {
                 "x": -10,
@@ -1821,12 +1807,22 @@
               }
             ],
             "textString": "\"%name\"",
+            "textColor": {
+              "r": 0,
+              "g": 0,
+              "b": 127
+            },
             "visible": true,
             "origin": {
               "x": 0,
               "y": 0
             },
             "rotation": 0,
+            "lineColor": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
             "fillColor": {
               "r": 0,
               "g": 0,
@@ -1836,11 +1832,6 @@
             "lineThickness": 0.25,
             "fontSize": 0,
             "fontName": "Arial",
-            "textColor": {
-              "r": 0,
-              "g": 0,
-              "b": 127
-            },
             "horizontalAlignment": "TextAlignment.Center"
           }
         ]
@@ -1909,14 +1900,14 @@
     "modelicaFile": "Buildings/Controls/OBC/CDL/Interfaces/RealOutput.mo",
     "within": "Buildings.Controls.OBC.CDL.Interfaces",
     "topClassName": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
-    "comment": "'output Real' as connector",
+    "comment": "Real output connector",
     "public": {
       "models": [
         {
           "className": "RealOutput",
           "basePrefix": "output",
           "name": "Real",
-          "comment": "'output Real' as connector"
+          "comment": "Real output connector"
         }
       ]
     },
@@ -2015,11 +2006,6 @@
         ],
         "text": [
           {
-            "lineColor": {
-              "r": 0,
-              "g": 0,
-              "b": 127
-            },
             "extent": [
               {
                 "x": 30,
@@ -2031,12 +2017,22 @@
               }
             ],
             "textString": "\"%name\"",
+            "textColor": {
+              "r": 0,
+              "g": 0,
+              "b": 127
+            },
             "visible": true,
             "origin": {
               "x": 0,
               "y": 0
             },
             "rotation": 0,
+            "lineColor": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
             "fillColor": {
               "r": 0,
               "g": 0,
@@ -2046,11 +2042,6 @@
             "lineThickness": 0.25,
             "fontSize": 0,
             "fontName": "Arial",
-            "textColor": {
-              "r": 0,
-              "g": 0,
-              "b": 127
-            },
             "horizontalAlignment": "TextAlignment.Center"
           }
         ]
@@ -2119,14 +2110,14 @@
     "modelicaFile": "Buildings/Controls/OBC/CDL/Interfaces/BooleanOutput.mo",
     "within": "Buildings.Controls.OBC.CDL.Interfaces",
     "topClassName": "Buildings.Controls.OBC.CDL.Interfaces.BooleanOutput",
-    "comment": "'output Boolean' as connector",
+    "comment": "Boolean output connector",
     "public": {
       "models": [
         {
           "className": "BooleanOutput",
           "basePrefix": "output",
           "name": "Boolean",
-          "comment": "'output Boolean' as connector"
+          "comment": "Boolean output connector"
         }
       ]
     },
@@ -2229,11 +2220,6 @@
         ],
         "text": [
           {
-            "lineColor": {
-              "r": 255,
-              "g": 0,
-              "b": 255
-            },
             "extent": [
               {
                 "x": 30,
@@ -2245,12 +2231,22 @@
               }
             ],
             "textString": "\"%name\"",
+            "textColor": {
+              "r": 255,
+              "g": 0,
+              "b": 255
+            },
             "visible": true,
             "origin": {
               "x": 0,
               "y": 0
             },
             "rotation": 0,
+            "lineColor": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
             "fillColor": {
               "r": 0,
               "g": 0,
@@ -2260,11 +2256,6 @@
             "lineThickness": 0.25,
             "fontSize": 0,
             "fontName": "Arial",
-            "textColor": {
-              "r": 255,
-              "g": 0,
-              "b": 255
-            },
             "horizontalAlignment": "TextAlignment.Center"
           }
         ]

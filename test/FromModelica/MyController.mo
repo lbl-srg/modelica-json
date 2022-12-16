@@ -24,7 +24,8 @@ block MyController "My controller"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
 
   SubController subCon1 "Sub controller"
-    annotation (Placement(transformation(extent={{-10,-50},{10,-30}})));
+    annotation (Placement(transformation(extent={{-10,-50},{10,-30}})),
+        __cdl(generatePointlist=true));
 
   SubController subCon2 "Sub controller"
     annotation (Placement(transformation(extent={{-10,-90},{10,-70}})));
