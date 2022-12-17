@@ -184,8 +184,10 @@ public class Comment {
     		}
     		if (venAnnStr != null) {
     			StringBuilder temStr = new StringBuilder();
+				int venAnnStrEndInd = annStr.indexOf(venAnnStr) + venAnnStr.length();
+				String endBra = annStr.substring(venAnnStrEndInd, annStr.indexOf(")", venAnnStrEndInd)+1);
     			strListToBeRem.add(temStr.append(venAnnName).append("(")
-    					                 .append(venAnnStr).append(" )")
+				                         .append(venAnnStr).append(endBra)
     					                 .toString());
     		}
 
@@ -298,10 +300,12 @@ public class Comment {
 
     private class VendorAnnotation{
     	private String name;
+    	private Collection<VendorAnnotation> intAnn;
     	private Collection<StrPair> annotation;
     	private TemCla vendorAnnotation(String venAnnName, String venAnnStr) {
     		this.name = venAnnName.replaceAll("\\s+", "");
     		List<StrPair> venAnnEle = new ArrayList<StrPair>();
+    		List<VendorAnnotation> inAnn = new ArrayList<VendorAnnotation>();
     		if (venAnnStr == null || !venAnnStr.contains("=")) {
     			this.annotation = null;
     		} else {
@@ -315,13 +319,28 @@ public class Comment {
     					venSet.add(venSetTemp.get(i));
     				}
     			}
+    			// venSet could be {"name1=value1", "name2=value2"}
+    			// it could also be like {"name1=value1", "group(name2=value2)", "group(name3=value3)"}
     			for (int i=0; i<venSet.size(); i++) {
-    				int equInd = venSet.get(i).indexOf("=");
-    				name = venSet.get(i).substring(0, equInd).trim();
-    				value = venSet.get(i).substring(equInd+1, venSet.get(i).length()).trim();
-    				venAnnEle.add(new StrPair(name,value));
+					String ithEle = venSet.get(i);
+    				int equInd = ithEle.indexOf("=");
+					int rightBraInd = ithEle.indexOf("(");
+					if (rightBraInd > 0 && rightBraInd < equInd) {
+						String inAnnNam = ithEle.substring(0, rightBraInd).trim();
+						int lastLefBraInd = ithEle.lastIndexOf(")");
+						String inAnnStr = ithEle.substring(rightBraInd+1, lastLefBraInd);
+						VendorAnnotation temVenAno = new VendorAnnotation();
+    					temVenAno.vendorAnnotation(inAnnNam,inAnnStr);
+						inAnn.add(temVenAno);
+					} else {
+						// inAnn = null;
+						name = ithEle.substring(0, equInd).trim();
+    					value = ithEle.substring(equInd+1, ithEle.length()).trim();
+    					venAnnEle.add(new StrPair(name,value));
+					}
     			}
-    			this.annotation = venAnnEle;
+    			this.annotation = venAnnEle.isEmpty() ? null : venAnnEle;
+				this.intAnn = inAnn.isEmpty() ? null : inAnn;
     		}
     		return new TemCla(venAnnStr);
     	}
@@ -405,7 +424,6 @@ public class Comment {
     	}
 
     }
-
 
     public class LineBlock{
     	private Boolean visible;
@@ -572,7 +590,8 @@ public class Comment {
     public static String findSubStr(String str, String keyStr) {
     	String subStr;
     	if (!ifEnclosed(str, "(", ")", str.indexOf(keyStr))
-    			|| !ifEnclosed(str, "\"", "\"", str.indexOf(keyStr))) {
+    		|| !ifEnclosed(str, "\"", "\"", str.indexOf(keyStr))
+			|| (!str.contains("(") && !str.contains("\""))) {
     		subStr = null;
     	} else {
     		if (str.contains(keyStr)) {
@@ -591,7 +610,7 @@ public class Comment {
     					}
     				}
     			}
-    			subStr = str.substring(beginInd+1, endInd-1);
+				subStr = str.substring(beginInd+1, endInd).trim();
     		} else {
     			subStr = null;
     		}

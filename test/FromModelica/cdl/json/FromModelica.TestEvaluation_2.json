@@ -1302,7 +1302,7 @@
                 "g": 235,
                 "b": 235
               },
-              "dynColor": "if y then {0,255,0}\n               else {235,235,235}"
+              "dynColor": "if y then\n              {0,255,0}\n            else\n              {235,235,235}"
             },
             "dynFillColor": {
               "color": {
@@ -1310,7 +1310,7 @@
                 "g": 235,
                 "b": 235
               },
-              "dynColor": "if y then {0,255,0}\n               else {235,235,235}"
+              "dynColor": "if y then\n              {0,255,0}\n            else\n              {235,235,235}"
             },
             "fillPattern": "FillPattern.Solid",
             "extent": [
@@ -1337,11 +1337,6 @@
         ],
         "text": [
           {
-            "lineColor": {
-              "r": 192,
-              "g": 192,
-              "b": 192
-            },
             "extent": [
               {
                 "x": -92,
@@ -1353,12 +1348,22 @@
               }
             ],
             "textString": "\"%uLow\"",
+            "textColor": {
+              "r": 192,
+              "g": 192,
+              "b": 192
+            },
             "visible": true,
             "origin": {
               "x": 0,
               "y": 0
             },
             "rotation": 0,
+            "lineColor": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
             "fillColor": {
               "r": 0,
               "g": 0,
@@ -1368,19 +1373,9 @@
             "lineThickness": 0.25,
             "fontSize": 0,
             "fontName": "Arial",
-            "textColor": {
-              "r": 192,
-              "g": 192,
-              "b": 192
-            },
             "horizontalAlignment": "TextAlignment.Center"
           },
           {
-            "lineColor": {
-              "r": 192,
-              "g": 192,
-              "b": 192
-            },
             "extent": [
               {
                 "x": 2,
@@ -1392,12 +1387,22 @@
               }
             ],
             "textString": "\"%uHigh\"",
+            "textColor": {
+              "r": 192,
+              "g": 192,
+              "b": 192
+            },
             "visible": true,
             "origin": {
               "x": 0,
               "y": 0
             },
             "rotation": 0,
+            "lineColor": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
             "fillColor": {
               "r": 0,
               "g": 0,
@@ -1407,19 +1412,9 @@
             "lineThickness": 0.25,
             "fontSize": 0,
             "fontName": "Arial",
-            "textColor": {
-              "r": 192,
-              "g": 192,
-              "b": 192
-            },
             "horizontalAlignment": "TextAlignment.Center"
           },
           {
-            "lineColor": {
-              "r": 0,
-              "g": 0,
-              "b": 255
-            },
             "extent": [
               {
                 "x": -150,
@@ -1431,12 +1426,22 @@
               }
             ],
             "textString": "\"%name\"",
+            "textColor": {
+              "r": 0,
+              "g": 0,
+              "b": 255
+            },
             "visible": true,
             "origin": {
               "x": 0,
               "y": 0
             },
             "rotation": 0,
+            "lineColor": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
             "fillColor": {
               "r": 0,
               "g": 0,
@@ -1446,11 +1451,6 @@
             "lineThickness": 0.25,
             "fontSize": 0,
             "fontName": "Arial",
-            "textColor": {
-              "r": 0,
-              "g": 0,
-              "b": 255
-            },
             "horizontalAlignment": "TextAlignment.Center"
           }
         ]
@@ -1827,14 +1827,14 @@
     "modelicaFile": "Buildings/Controls/OBC/CDL/Interfaces/RealInput.mo",
     "within": "Buildings.Controls.OBC.CDL.Interfaces",
     "topClassName": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
-    "comment": "'input Real' as connector",
+    "comment": "Real input connector",
     "public": {
       "models": [
         {
           "className": "RealInput",
           "basePrefix": "input",
           "name": "Real",
-          "comment": "'input Real' as connector"
+          "comment": "Real input connector"
         }
       ]
     },
@@ -1937,11 +1937,6 @@
         ],
         "text": [
           {
-            "lineColor": {
-              "r": 0,
-              "g": 0,
-              "b": 127
-            },
             "extent": [
               {
                 "x": -10,
@@ -1953,12 +1948,22 @@
               }
             ],
             "textString": "\"%name\"",
+            "textColor": {
+              "r": 0,
+              "g": 0,
+              "b": 127
+            },
             "visible": true,
             "origin": {
               "x": 0,
               "y": 0
             },
             "rotation": 0,
+            "lineColor": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
             "fillColor": {
               "r": 0,
               "g": 0,
@@ -1968,11 +1973,6 @@
             "lineThickness": 0.25,
             "fontSize": 0,
             "fontName": "Arial",
-            "textColor": {
-              "r": 0,
-              "g": 0,
-              "b": 127
-            },
             "horizontalAlignment": "TextAlignment.Center"
           }
         ]
@@ -2041,14 +2041,14 @@
     "modelicaFile": "Buildings/Controls/OBC/CDL/Interfaces/BooleanOutput.mo",
     "within": "Buildings.Controls.OBC.CDL.Interfaces",
     "topClassName": "Buildings.Controls.OBC.CDL.Interfaces.BooleanOutput",
-    "comment": "'output Boolean' as connector",
+    "comment": "Boolean output connector",
     "public": {
       "models": [
         {
           "className": "BooleanOutput",
           "basePrefix": "output",
           "name": "Boolean",
-          "comment": "'output Boolean' as connector"
+          "comment": "Boolean output connector"
         }
       ]
     },
@@ -2151,11 +2151,6 @@
         ],
         "text": [
           {
-            "lineColor": {
-              "r": 255,
-              "g": 0,
-              "b": 255
-            },
             "extent": [
               {
                 "x": 30,
@@ -2167,12 +2162,22 @@
               }
             ],
             "textString": "\"%name\"",
+            "textColor": {
+              "r": 255,
+              "g": 0,
+              "b": 255
+            },
             "visible": true,
             "origin": {
               "x": 0,
               "y": 0
             },
             "rotation": 0,
+            "lineColor": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
             "fillColor": {
               "r": 0,
               "g": 0,
@@ -2182,11 +2187,6 @@
             "lineThickness": 0.25,
             "fontSize": 0,
             "fontName": "Arial",
-            "textColor": {
-              "r": 255,
-              "g": 0,
-              "b": 255
-            },
             "horizontalAlignment": "TextAlignment.Center"
           }
         ]

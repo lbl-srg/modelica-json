@@ -8,7 +8,7 @@
       "parameters": [
         {
           "className": "Buildings.Controls.OBC.CDL.Types.SimpleController",
-          "name": "controllerType",
+          "name": "controllerTypeCooCoi",
           "value": "Buildings.Controls.OBC.CDL.Types.SimpleController.PI",
           "comment": "Type of controller",
           "annotation": {
@@ -20,9 +20,21 @@
         },
         {
           "className": "Real",
-          "name": "k",
+          "name": "kCooCoi",
           "value": "0.1",
-          "comment": "Gain",
+          "comment": "Gain for cooling coil control loop signal",
+          "annotation": {
+            "dialog": {
+              "tab": "General",
+              "group": "Parameters"
+            }
+          }
+        },
+        {
+          "className": "Real",
+          "name": "TiCooCoi",
+          "value": "900",
+          "comment": "Time constant of integrator block for cooling coil control loop signal",
           "annotation": {
             "dialog": {
               "tab": "General",
@@ -33,17 +45,23 @@
       ],
       "models": [
         {
-          "className": "Buildings.Controls.OBC.ASHRAE.G36_PR1.Generic.FreezeProtectionMixedAir",
-          "name": "freProTMix",
+          "className": "Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil",
+          "name": "cooCoi",
+          "comment": "Cooling coil control",
           "modifications": [
             {
-              "name": "controllerType",
-              "value": "controllerType",
-              "isFinal": true
+              "name": "controllerTypeCooCoi",
+              "value": "controllerTypeCooCoi",
+              "isFinal": false
             },
             {
-              "name": "k",
-              "value": "k",
+              "name": "kCooCoi",
+              "value": "kCooCoi",
+              "isFinal": false
+            },
+            {
+              "name": "TiCooCoi",
+              "value": "TiCooCoi",
               "isFinal": false
             }
           ],
@@ -66,30 +84,123 @@
       "inputs": [
         {
           "className": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
-          "name": "TMix",
-          "comment": "Mixed air temperature measurement",
+          "name": "TSupCooSet",
+          "comment": "Cooling supply air temperature setpoint",
           "placement": {
             "transformation": {
               "extent": [
                 {
                   "x": -140,
-                  "y": -20
+                  "y": 40
                 },
                 {
                   "x": -100,
-                  "y": 20
+                  "y": 80
                 }
               ]
             },
             "iconTransformation": {
               "extent": [
                 {
-                  "x": -124,
-                  "y": -20
+                  "x": -140,
+                  "y": 60
                 },
                 {
-                  "x": -84,
+                  "x": -100,
+                  "y": 100
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+          "name": "TAirSup",
+          "comment": "Supply air temperature measurement",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": -140,
+                  "y": 0
+                },
+                {
+                  "x": -100,
+                  "y": 40
+                }
+              ]
+            },
+            "iconTransformation": {
+              "extent": [
+                {
+                  "x": -140,
                   "y": 20
+                },
+                {
+                  "x": -100,
+                  "y": 60
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.IntegerInput",
+          "name": "uZonSta",
+          "comment": "Zone state",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": -140,
+                  "y": -40
+                },
+                {
+                  "x": -100,
+                  "y": 0
+                }
+              ]
+            },
+            "iconTransformation": {
+              "extent": [
+                {
+                  "x": -140,
+                  "y": -60
+                },
+                {
+                  "x": -100,
+                  "y": -20
+                }
+              ]
+            }
+          }
+        },
+        {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.BooleanInput",
+          "name": "u1SupFan",
+          "comment": "Supply fan proven on",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": -140,
+                  "y": -80
+                },
+                {
+                  "x": -100,
+                  "y": -40
+                }
+              ]
+            },
+            "iconTransformation": {
+              "extent": [
+                {
+                  "x": -140,
+                  "y": -98
+                },
+                {
+                  "x": -100,
+                  "y": -58
                 }
               ]
             }
@@ -99,61 +210,30 @@
       "outputs": [
         {
           "className": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
-          "name": "yFreProInv",
-          "comment": "Inverse freeze protection control signal, 1 if no frost, 0 if TMix below TFreSet",
+          "name": "yCooCoi",
+          "comment": "Cooling coil position",
           "placement": {
             "transformation": {
               "extent": [
                 {
                   "x": 100,
-                  "y": 0
+                  "y": -20
                 },
                 {
                   "x": 140,
-                  "y": 40
+                  "y": 20
                 }
               ]
             },
             "iconTransformation": {
               "extent": [
                 {
-                  "x": 78,
-                  "y": 0
-                },
-                {
-                  "x": 118,
-                  "y": 40
-                }
-              ]
-            }
-          }
-        },
-        {
-          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
-          "name": "yFrePro",
-          "comment": "Freeze protection control signal, 0 if no frost, 1 if TMix below TFreSet",
-          "placement": {
-            "transformation": {
-              "extent": [
-                {
                   "x": 100,
-                  "y": -40
+                  "y": -20
                 },
                 {
                   "x": 140,
-                  "y": 0
-                }
-              ]
-            },
-            "iconTransformation": {
-              "extent": [
-                {
-                  "x": 78,
-                  "y": -40
-                },
-                {
-                  "x": 118,
-                  "y": 0
+                  "y": 20
                 }
               ]
             }
@@ -174,92 +254,170 @@
     "connections": [
       [
         {
-          "instance": "freProTMix",
-          "connector": "TMix",
-          "portLinkTarget": "Buildings.Controls.OBC.ASHRAE.G36_PR1.Generic.FreezeProtectionMixedAir.TMix"
+          "instance": "cooCoi",
+          "connector": "TSupCooSet",
+          "portLinkTarget": "Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.TSupCooSet"
         },
         {
-          "instance": "TMix"
+          "instance": "TSupCooSet"
         },
         {
           "points": [
             {
               "x": -12,
-              "y": 0
+              "y": 8
+            },
+            {
+              "x": -40,
+              "y": 8
+            },
+            {
+              "x": -40,
+              "y": 60
             },
             {
               "x": -120,
+              "y": 60
+            }
+          ],
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 127
+          }
+        }
+      ],
+      [
+        {
+          "instance": "cooCoi",
+          "connector": "TAirSup",
+          "portLinkTarget": "Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.TAirSup"
+        },
+        {
+          "instance": "TAirSup"
+        },
+        {
+          "points": [
+            {
+              "x": -12,
+              "y": 4
+            },
+            {
+              "x": -60,
+              "y": 4
+            },
+            {
+              "x": -60,
+              "y": 20
+            },
+            {
+              "x": -120,
+              "y": 20
+            }
+          ],
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 127
+          }
+        }
+      ],
+      [
+        {
+          "instance": "cooCoi",
+          "connector": "uZonSta",
+          "portLinkTarget": "Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.uZonSta"
+        },
+        {
+          "instance": "uZonSta"
+        },
+        {
+          "points": [
+            {
+              "x": -12,
+              "y": -4
+            },
+            {
+              "x": -60,
+              "y": -4
+            },
+            {
+              "x": -60,
+              "y": -20
+            },
+            {
+              "x": -120,
+              "y": -20
+            }
+          ],
+          "color": {
+            "r": 255,
+            "g": 127,
+            "b": 0
+          }
+        }
+      ],
+      [
+        {
+          "instance": "cooCoi",
+          "connector": "u1SupFan",
+          "portLinkTarget": "Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.u1SupFan"
+        },
+        {
+          "instance": "u1SupFan"
+        },
+        {
+          "points": [
+            {
+              "x": -12,
+              "y": -8
+            },
+            {
+              "x": -40,
+              "y": -8
+            },
+            {
+              "x": -40,
+              "y": -60
+            },
+            {
+              "x": -120,
+              "y": -60
+            }
+          ],
+          "color": {
+            "r": 255,
+            "g": 0,
+            "b": 255
+          }
+        }
+      ],
+      [
+        {
+          "instance": "cooCoi",
+          "connector": "yCooCoi",
+          "portLinkTarget": "Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.yCooCoi"
+        },
+        {
+          "instance": "yCooCoi"
+        },
+        {
+          "points": [
+            {
+              "x": 12,
               "y": 0
-            }
-          ],
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 127
-          }
-        }
-      ],
-      [
-        {
-          "instance": "freProTMix",
-          "connector": "yFreProInv",
-          "portLinkTarget": "Buildings.Controls.OBC.ASHRAE.G36_PR1.Generic.FreezeProtectionMixedAir.yFreProInv"
-        },
-        {
-          "instance": "yFreProInv"
-        },
-        {
-          "points": [
-            {
-              "x": 12,
-              "y": 3
             },
             {
-              "x": 60,
-              "y": 3
+              "x": 58,
+              "y": 0
             },
             {
-              "x": 60,
-              "y": 20
+              "x": 58,
+              "y": 0
             },
             {
               "x": 120,
-              "y": 20
-            }
-          ],
-          "color": {
-            "r": 0,
-            "g": 0,
-            "b": 127
-          }
-        }
-      ],
-      [
-        {
-          "instance": "freProTMix",
-          "connector": "yFrePro",
-          "portLinkTarget": "Buildings.Controls.OBC.ASHRAE.G36_PR1.Generic.FreezeProtectionMixedAir.yFrePro"
-        },
-        {
-          "instance": "yFrePro"
-        },
-        {
-          "points": [
-            {
-              "x": 12,
-              "y": -3
-            },
-            {
-              "x": 60,
-              "y": -3
-            },
-            {
-              "x": 60,
-              "y": -20
-            },
-            {
-              "x": 120,
-              "y": -20
+              "y": 0
             }
           ],
           "color": {

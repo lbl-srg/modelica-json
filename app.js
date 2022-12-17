@@ -17,7 +17,7 @@ parser.addArgument(
   [ '-o', '--output' ],
   {
     help: 'Specify output format.',
-    choices: ['html', 'raw-json', 'json', 'docx'],
+    choices: ['html', 'raw-json', 'json', 'docx', 'svg'],
     defaultValue: 'html'
   }
 )
@@ -96,6 +96,10 @@ logger.level = args.log
 
 var evaProPar = (args.evaluatePropagatedParameters === 'true')
 var evaExp = (args.evaluateExpressions === 'true')
+
+if (args.mode === 'modelica' && args.output === 'svg') {
+  throw new Error('svg output option has not been enabled in modelica mode.')
+}
 
 // Get mo files array
 var moFiles = ut.getMoFiles(args.mode, args.file)

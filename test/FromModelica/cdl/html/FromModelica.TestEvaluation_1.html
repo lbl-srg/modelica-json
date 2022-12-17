@@ -17,6 +17,13 @@ td.text span { white-space: nowrap;
                display: inline-block;
                max-width: 100%;
              }
+td.assignment { max-width: 550 }
+td.assignment span { white-space: nowrap;
+                     overflow: hidden;
+                     text-overflow: ellipsis;
+                     display: inline-block;
+                     max-width: 100%;
+                   }
 tr:hover { background-color: #ffff99; }
 td.text:hover span:not(.empty) { background-color: #BDE5F8;
                                  overflow: visible;
@@ -26,7 +33,7 @@ td.text:hover span:not(.empty) { background-color: #BDE5F8;
                                 }
 
 th      { padding: 2px; border: 1px solid #808080; vertical-align: top; font-weight: bold; max-width: 450; }
-table   { border: 1px solid #808080; border-collapse: collapse; }
+table   { border: 1px solid #808080; border-collapse: collapse; max-width: 1000}
 ul.list-parameter-assignments { list-style-type: none; margin-top: 0rem; margin-bottom: 0rem; padding: 2px; }
 pre, code {font-family: "Courier New", monospace;}
 pre {white-space: pre; overflow-x : hidden;}
@@ -66,28 +73,18 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
     </p>
     <table>
     <tr>
-    <th class="mode">Type        </th>
-    <th>Quantity  </th>
-    <th>Name    </th>
-    <th>Default    </th>
-    <th>Unit     </th>
-    <th>Display unit</th>
-    <th>min    </th>
-    <th>max    </th>
+    <th class="mode">Type</th>
+    <th>Name</th>
+    <th>Default</th>
     <th class="description">Description</th>
     </tr>
-    <tr class="tab ModelicaParameterTab"><td colspan="9">General</td></tr>
-    <tr class="group ModelicaParameterGroup"><td colspan="9">Parameters</td></tr>
+    <tr class="tab ModelicaParameterTab"><td colspan="4">General</td></tr>
+    <tr class="group ModelicaParameterGroup"><td colspan="4">Parameters</td></tr>
     <tr>
     <td class="type, text"><span>Real</span></td>
-    <td></td>
-    <td><code>k1</code><a name="FromModelica.TestEvaluation_1.k1"></a></td>
-    <td>1.0</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td>Constant output value</td>
+    <td class="type, text"><span><code>k1</code><a name="FromModelica.TestEvaluation_1.k1"></a></span></td>
+    <td class="type, text"><span>1.0</span></td>
+    <td class="type, text">Constant output value </td>
     </tr>
     </table>
 
@@ -105,18 +102,10 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
       <th>Parameter Assignments</th>
     </tr>
     <tr>
-      <td class="type, text"><span>
-      <code>
-      <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous_Sources.html#Buildings.Controls.OBC.CDL.Continuous.Sources.Constant">Buildings.Controls.OBC.CDL.Continuous.Sources.Constant</a>
-      </code>
-      </span></td>
-      <td>
-      <code>
-      con
-      </code>
-      <a name="FromModelica.TestEvaluation_1.con"></a></td>
-      <td>Example for real parameter evaluation</td>
-      <td class="text"><span>
+      <td class="type, text"><span><code><a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous_Sources.html#Buildings.Controls.OBC.CDL.Continuous.Sources.Constant">Buildings.Controls.OBC.CDL.Continuous.Sources.Constant</a></code></span></td>
+      <td><code>con</code><a name="FromModelica.TestEvaluation_1.con"></a></td>
+      <td class="type, text"><span>Example for real parameter evaluation</span></td>
+      <td class="assignment"><span>
       <ul class="list-parameter-assignments">
       <li>
       <code>
@@ -131,8 +120,9 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
 
 
 
+
   <p align="center">
-  <img alt="Diagram layer" src="img/FromModelica.TestEvaluation_1.svg">
+  <img alt="Diagram layer" src="img/FromModelica.TestEvaluation_1.svg" width="70%" height="auto">
   </p>
 
 </body>

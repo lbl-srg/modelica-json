@@ -17,6 +17,13 @@ td.text span { white-space: nowrap;
                display: inline-block;
                max-width: 100%;
              }
+td.assignment { max-width: 550 }
+td.assignment span { white-space: nowrap;
+                     overflow: hidden;
+                     text-overflow: ellipsis;
+                     display: inline-block;
+                     max-width: 100%;
+                   }
 tr:hover { background-color: #ffff99; }
 td.text:hover span:not(.empty) { background-color: #BDE5F8;
                                  overflow: visible;
@@ -26,7 +33,7 @@ td.text:hover span:not(.empty) { background-color: #BDE5F8;
                                 }
 
 th      { padding: 2px; border: 1px solid #808080; vertical-align: top; font-weight: bold; max-width: 450; }
-table   { border: 1px solid #808080; border-collapse: collapse; }
+table   { border: 1px solid #808080; border-collapse: collapse; max-width: 1000}
 ul.list-parameter-assignments { list-style-type: none; margin-top: 0rem; margin-bottom: 0rem; padding: 2px; }
 pre, code {font-family: "Courier New", monospace;}
 pre {white-space: pre; overflow-x : hidden;}
@@ -66,50 +73,30 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
     </p>
     <table>
     <tr>
-    <th class="mode">Type        </th>
-    <th>Quantity  </th>
-    <th>Name    </th>
-    <th>Default    </th>
-    <th>Unit     </th>
-    <th>Display unit</th>
-    <th>min    </th>
-    <th>max    </th>
+    <th class="mode">Type</th>
+    <th>Name</th>
+    <th>Default</th>
     <th class="description">Description</th>
     </tr>
-    <tr class="tab ModelicaParameterTab"><td colspan="9">General</td></tr>
-    <tr class="group ModelicaParameterGroup"><td colspan="9">Parameters</td></tr>
+    <tr class="tab ModelicaParameterTab"><td colspan="4">General</td></tr>
+    <tr class="group ModelicaParameterGroup"><td colspan="4">Parameters</td></tr>
     <tr>
     <td class="type, text"><span>Boolean</span></td>
-    <td></td>
-    <td><code>enaBlo</code><a name="FromModelica.RemovableInputs.enaBlo"></a></td>
-    <td>true</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td>Flag for enabling instance</td>
+    <td class="type, text"><span><code>enaBlo</code><a name="FromModelica.RemovableInputs.enaBlo"></a></span></td>
+    <td class="type, text"><span>true</span></td>
+    <td class="type, text">Flag for enabling instance </td>
     </tr>
     <tr>
     <td class="type, text"><span>Boolean</span></td>
-    <td></td>
-    <td><code>have_winSen</code><a name="FromModelica.RemovableInputs.have_winSen"></a></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td>True: there is window status sensor</td>
+    <td class="type, text"><span><code>have_winSen</code><a name="FromModelica.RemovableInputs.have_winSen"></a></span></td>
+    <td class="type, text"><span></span></td>
+    <td class="type, text">True: there is window status sensor </td>
     </tr>
     <tr>
     <td class="type, text"><span>Boolean</span></td>
-    <td></td>
-    <td><code>have_occSen</code><a name="FromModelica.RemovableInputs.have_occSen"></a></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td>True: there is occupancy sensor</td>
+    <td class="type, text"><span><code>have_occSen</code><a name="FromModelica.RemovableInputs.have_occSen"></a></span></td>
+    <td class="type, text"><span></span></td>
+    <td class="type, text">True: there is occupancy sensor </td>
     </tr>
     </table>
 
@@ -119,14 +106,9 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
     </p>
     <table>
     <tr>
-      <th class="type">Type        </th>
-      <th>Quantity  </th>
-      <th>Name    </th>
+      <th class="type">Type</th>
+      <th>Name</th>
       <th class="description">Description</th>
-      <th>min    </th>
-      <th>max    </th>
-      <th>Unit     </th>
-      <th>Display unit     </th>
       </tr>
     <tr>
       <td>
@@ -134,13 +116,8 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
       Real
       </code>
       </td>
-      <td></td>
-      <td><code>u</code><a name="FromModelica.RemovableInputs.u"></a></td>
-      <td>Input connector</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td class="type, text"><span><code>u</code><a name="FromModelica.RemovableInputs.u"></a></span></td>
+      <td class="type, text">Input connector </td>
       </tr>
     <tr>
       <td>
@@ -148,13 +125,8 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
       Real
       </code>
       </td>
-      <td>ThermodynamicTemperature</td>
-      <td><code>TOut</code><a name="FromModelica.RemovableInputs.TOut"></a></td>
-      <td>Temperature input</td>
-      <td></td>
-      <td></td>
-      <td>K</td>
-      <td>F</td>
+      <td class="type, text"><span><code>TOut</code><a name="FromModelica.RemovableInputs.TOut"></a></span></td>
+      <td class="type, text">Temperature input [K ]</td>
       </tr>
     <tr>
       <td>
@@ -162,13 +134,8 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
       Real
       </code>
       </td>
-      <td>ThermodynamicTemperature</td>
-      <td><code>TOutWitDef</code><a name="FromModelica.RemovableInputs.TOutWitDef"></a></td>
-      <td>Temperature input with specified default value</td>
-      <td></td>
-      <td></td>
-      <td>K</td>
-      <td>F</td>
+      <td class="type, text"><span><code>TOutWitDef</code><a name="FromModelica.RemovableInputs.TOutWitDef"></a></span></td>
+      <td class="type, text">Temperature input with specified default value [K ]</td>
       </tr>
     <tr>
       <td>
@@ -176,13 +143,8 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
       Boolean
       </code>
       </td>
-      <td></td>
-      <td><code>uWin</code><a name="FromModelica.RemovableInputs.uWin"></a></td>
-      <td>Window opening status</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td class="type, text"><span><code>uWin</code><a name="FromModelica.RemovableInputs.uWin"></a></span></td>
+      <td class="type, text">Window opening status </td>
       </tr>
     <tr>
       <td>
@@ -190,13 +152,8 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
       Integer
       </code>
       </td>
-      <td></td>
-      <td><code>nOcc</code><a name="FromModelica.RemovableInputs.nOcc"></a></td>
-      <td>Occupancy</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td class="type, text"><span><code>nOcc</code><a name="FromModelica.RemovableInputs.nOcc"></a></span></td>
+      <td class="type, text">Occupancy </td>
       </tr>
     </table>
 
@@ -206,28 +163,14 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
     </p>
     <table>
     <tr>
-      <th class="type">Type        </th>
-      <th>Quantity  </th>
-      <th>Name    </th>
+      <th class="type">Type</th>
+      <th>Name</th>
       <th class="description">Description</th>
-      <th>min    </th>
-      <th>max    </th>
-      <th>Unit     </th>
-      <th>Display unit     </th>
       </tr>
     <tr>
-      <td>
-      <code>
-      Real
-      </code>
-      </td>
-      <td></td>
-      <td><code>y</code><a name="FromModelica.RemovableInputs.y"></a></td>
-      <td>Output connector</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td><code>Real</code></td>
+      <td class="type, text"><span><code>y</code><a name="FromModelica.RemovableInputs.y"></a></span></td>
+      <td class="type, text">Output connector </td>
       </tr>
     </table>
 
@@ -243,27 +186,82 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
       <th>Parameter Assignments</th>
     </tr>
     <tr>
-      <td class="type, text"><span>
-      <code>
-      <a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Abs">Buildings.Controls.OBC.CDL.Continuous.Abs</a>
-      </code>
-      </span></td>
-      <td>
-      <code>
-      abs
-      </code>
-      <a name="FromModelica.RemovableInputs.abs"></a></td>
-      <td>Instance could be conditional disabled</td>
-      <td class="text"><span>
+      <td class="type, text"><span><code><a href="http:&#x2F;&#x2F;simulationresearch.lbl.gov&#x2F;modelica&#x2F;releases&#x2F;v5.0.1&#x2F;help&#x2F;Buildings_Controls_OBC_CDL_Continuous.html#Buildings.Controls.OBC.CDL.Continuous.Abs">Buildings.Controls.OBC.CDL.Continuous.Abs</a></code></span></td>
+      <td><code>abs</code><a name="FromModelica.RemovableInputs.abs"></a></td>
+      <td class="type, text"><span>Instance could be conditional disabled</span></td>
+      <td class="assignment"><span>
       </span></td>
       </tr>
     </table>
 
 
 
+    <h3>Point list</h3>
+    <p>
+    It has the following IO points:
+    </p>
+    <table>
+    <tr>
+    <th class="type">System/Equipment   </th>
+    <th>Name  </th>
+    <th>Type    </th>
+    <th>Hardwired?   </th>
+    <th>Trend [s] </th>
+    <th class="description">Description</th>
+    </tr>
+    <tr>
+    <td>Not_specified</td>
+    <td>u</td>
+    <td>AI</td>
+    <td>No</td>
+    <td>n&#x2F;a</td>
+    <td>Input connector</td>
+    </tr>
+    <tr>
+    <td>Not_specified</td>
+    <td>TOut</td>
+    <td>AI</td>
+    <td>No</td>
+    <td>n&#x2F;a</td>
+    <td>Temperature input</td>
+    </tr>
+    <tr>
+    <td>Not_specified</td>
+    <td>TOutWitDef</td>
+    <td>AI</td>
+    <td>No</td>
+    <td>n&#x2F;a</td>
+    <td>Temperature input with specified default value</td>
+    </tr>
+    <tr>
+    <td>Not_specified</td>
+    <td>uWin</td>
+    <td>BI</td>
+    <td>No</td>
+    <td>n&#x2F;a</td>
+    <td>Window opening status</td>
+    </tr>
+    <tr>
+    <td>Not_specified</td>
+    <td>nOcc</td>
+    <td>AI</td>
+    <td>No</td>
+    <td>n&#x2F;a</td>
+    <td>Occupancy</td>
+    </tr>
+    <tr>
+    <td>Not_specified</td>
+    <td>y</td>
+    <td>AO</td>
+    <td>No</td>
+    <td>n&#x2F;a</td>
+    <td>Output connector</td>
+    </tr>
+    </table>
+
 
   <p align="center">
-  <img alt="Diagram layer" src="img/FromModelica.RemovableInputs.svg">
+  <img alt="Diagram layer" src="img/FromModelica.RemovableInputs.svg" width="70%" height="auto">
   </p>
 
 </body>
