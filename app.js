@@ -82,11 +82,11 @@ if (args.mode === 'modelica' && args.output === 'svg') {
   throw new Error('svg output option has not been enabled in modelica mode.')
 }
 
+var file
 // Get mo files array
-if (args.file.endsWith("/")) {
+if (args.file.endsWith('/')) {
   file = args.file.slice(0, -1)
-}
-else { 
+} else {
   file = args.file
 }
 var moFiles = ut.getMoFiles(args.mode, file)
