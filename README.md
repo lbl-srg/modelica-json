@@ -103,7 +103,7 @@ We offer two different modes of translation that can be chosen with the argument
 
 ##### --log / -l
 
-Logging level. The choices are 'error', 'warn', 'info' (default), 'verbose', 'debug'.
+Logging level. The choices are `error`, `warn`, `info` (default), `verbose`, `debug`.
 
 ##### --directory / -d
 
@@ -111,15 +111,15 @@ Specify the output directory. The default option is the current directory.
 
 ##### --evaluatePropagatedParameters / -p
 
-Evaluate the propagated parameters. It would be needed for exporting CDL sequences to product lines. 'false' is the default.
+Evaluate the propagated parameters. It would be needed for exporting CDL sequences to product lines. `false` is the default.
 
 ##### --evaluateExpressions / -e
 
-Evaluate the mathematical expressions used in parameter assignment and class instantiation. It would be needed for exporting CDL sequences to product lines. 'false' is the default.
+Evaluate the mathematical expressions used in parameter assignment and class instantiation. It would be needed for exporting CDL sequences to product lines. `false` is the default.
 
 ##### --strict
 
-Exit with code 1 if there is any warning. 'false' is the default.
+Exit with code 1 if there is any warning. `false` is the default.
 
 ## 4. JSON Schemas
 
