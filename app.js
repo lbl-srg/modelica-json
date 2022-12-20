@@ -97,6 +97,10 @@ logger.level = args.log
 var evaProPar = (args.evaluatePropagatedParameters === 'true')
 var evaExp = (args.evaluateExpressions === 'true')
 
+if ((evaProPar || evaExp) && args.mode === 'modelica') {
+  throw new Error('parameters or expressions evaluation has not been enabled in modelica mode.')
+}
+
 if (args.mode === 'modelica' && args.output === 'svg') {
   throw new Error('svg output option has not been enabled in modelica mode.')
 }
