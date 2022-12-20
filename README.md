@@ -1,10 +1,3 @@
----
-layout: page
-title: Modelica JSON
-permalink: /index.html
----
-
-
 # [Modelica to JSON parser](https://github.com/lbl-srg/modelica-json)
 
 ## Content
