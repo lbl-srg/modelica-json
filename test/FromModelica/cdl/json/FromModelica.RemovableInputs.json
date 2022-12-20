@@ -46,7 +46,7 @@
           "className": "Buildings.Controls.OBC.CDL.Continuous.Abs",
           "name": "abs",
           "comment": "Instance could be conditional disabled",
-          "enable": "not enaBlo",
+          "instantiate": "not enaBlo",
           "placement": {
             "transformation": {
               "extent": [
@@ -68,10 +68,7 @@
           "className": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
           "name": "u",
           "comment": "Input connector",
-          "enable": "enaBlo",
-          "__cdl": {
-            "default": "0"
-          },
+          "instantiate": "enaBlo",
           "placement": {
             "transformation": {
               "extent": [
@@ -104,15 +101,14 @@
           "name": "TOut",
           "comment": "Temperature input",
           "unit": {
-            "value": "\"K\""
+            "value": "\"K\"",
+            "isFinal": false
           },
           "quantity": {
-            "value": "\"ThermodynamicTemperature\""
+            "value": "\"ThermodynamicTemperature\"",
+            "isFinal": false
           },
-          "enable": "enaBlo",
-          "__cdl": {
-            "default": "293.15"
-          },
+          "instantiate": "enaBlo",
           "placement": {
             "transformation": {
               "extent": [
@@ -145,12 +141,14 @@
           "name": "TOutWitDef",
           "comment": "Temperature input with specified default value",
           "unit": {
-            "value": "\"K\""
+            "value": "\"K\"",
+            "isFinal": false
           },
           "quantity": {
-            "value": "\"ThermodynamicTemperature\""
+            "value": "\"ThermodynamicTemperature\"",
+            "isFinal": false
           },
-          "enable": "enaBlo",
+          "instantiate": "enaBlo",
           "__cdl": {
             "default": "300.15"
           },
@@ -185,10 +183,7 @@
           "className": "Buildings.Controls.OBC.CDL.Interfaces.BooleanInput",
           "name": "uWin",
           "comment": "Window opening status",
-          "enable": "have_winSen",
-          "__cdl": {
-            "default": "false"
-          },
+          "instantiate": "have_winSen",
           "placement": {
             "transformation": {
               "extent": [
@@ -220,10 +215,7 @@
           "className": "Buildings.Controls.OBC.CDL.Interfaces.IntegerInput",
           "name": "nOcc",
           "comment": "Occupancy",
-          "enable": "have_occSen",
-          "__cdl": {
-            "default": "0"
-          },
+          "instantiate": "have_occSen",
           "placement": {
             "transformation": {
               "extent": [

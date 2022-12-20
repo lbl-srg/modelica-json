@@ -183,6 +183,9 @@
         },
         "value": {
           "type": "string"
+        },
+        "isFinal": {
+          "type": "boolean"
         }
       }
     },
@@ -794,8 +797,14 @@
           "min": {
             "$ref": "#/definitions/value"
           },
-          "prefix": {
-            "type": "string"
+          "fixed": {
+            "$ref": "#/definitions/value"
+          },
+          "nominal": {
+            "$ref": "#/definitions/value"
+          },
+          "stateSelect": {
+            "$ref": "#/definitions/value"
           },
           "className": {
             "description": "name of the class: no special characters or spaces",
@@ -815,8 +824,8 @@
             "description": "value of the block, if applicable",
             "type": "string"
           },
-          "enable": {
-            "description": "condition of enabling the block, if applicable",
+          "instantiate": {
+            "description": "Condition of enabling the block, if applicable",
             "type": "string"
           },
           "__cdl": {
@@ -1215,6 +1224,167 @@
               "portLinkTarget": {
                 "type": "string",
                 "pattern": "^([a-zA-Z0-9. _[]*]*)$"
+              }
+            }
+          }
+        }
+      },
+      "value_propagation": {
+        "description": "Info of parameters propagation",
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "Real": {
+            "description": "Info of real parameters",
+            "type": "array",
+            "additionalItems": false,
+            "items": {
+              "type": "object",
+              "additionalProperties": true,
+              "properties": {
+                "name": {
+                  "description": "Name of the real parameter",
+                  "type": "string"
+                },
+                "value": {
+                  "description": "value of the parameter",
+                  "type": "number"
+                },
+                "min": {
+                  "description": "min value of the parameter",
+                  "type": "number"
+                },
+                "max": {
+                  "description": "max value of the parameter",
+                  "type": "number"
+                },
+                "unit": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "value": {
+                      "type": "string"
+                    },
+                    "isFinal": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "displayUnit": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "value": {
+                      "type": "string"
+                    },
+                    "isFinal": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "quantity": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "value": {
+                      "type": "string"
+                    },
+                    "isFinal": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Integer": {
+            "description": "Info of integer parameters",
+            "type": "array",
+            "additionalItems": false,
+            "items": {
+              "type": "object",
+              "additionalProperties": true,
+              "properties": {
+                "name": {
+                  "description": "Name of the real parameter",
+                  "type": "string"
+                },
+                "value": {
+                  "description": "value of the parameter"
+                },
+                "min": {
+                  "description": "min value of the parameter",
+                  "type": "number"
+                },
+                "max": {
+                  "description": "max value of the parameter",
+                  "type": "number"
+                }
+              }
+            }
+          },
+          "Enumeration": {
+            "description": "Info of enumeration parameters",
+            "type": "array",
+            "additionalItems": false,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "name": {
+                  "description": "Name of the enumeration parameter",
+                  "type": "string"
+                },
+                "type": {
+                  "description": "Type of the enumeration parameter",
+                  "type": "string"
+                },
+                "value": {
+                  "description": "value of the parameter",
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "String": {
+            "description": "Info of string parameters",
+            "type": "array",
+            "additionalItems": false,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "name": {
+                  "description": "Name of the string parameter",
+                  "type": "string"
+                },
+                "type": {
+                  "description": "Type of the string parameter",
+                  "type": "string"
+                },
+                "value": {
+                  "description": "value of the parameter",
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "Boolean": {
+            "description": "Info of boolean parameters",
+            "type": "array",
+            "additionalItems": false,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "name": {
+                  "description": "Name of the boolean parameter",
+                  "type": "string"
+                },
+                "value": {
+                  "description": "value of the parameter",
+                  "type": "string"
+                }
               }
             }
           }

@@ -1,0 +1,61 @@
+[
+  {
+    "modelicaFile": "FromModelica/TestEvaluation_1.mo",
+    "within": "FromModelica",
+    "topClassName": "FromModelica.TestEvaluation_1",
+    "comment": "Example for real parameter evaluation",
+    "public": {
+      "parameters": [
+        {
+          "className": "Real",
+          "name": "k1",
+          "value": "1.0",
+          "comment": "Constant output value",
+          "annotation": {
+            "dialog": {
+              "tab": "General",
+              "group": "Parameters"
+            }
+          }
+        }
+      ],
+      "models": [
+        {
+          "className": "Buildings.Controls.OBC.CDL.Continuous.Sources.Constant",
+          "name": "con",
+          "modifications": [
+            {
+              "name": "k",
+              "value": "k1",
+              "isFinal": true
+            }
+          ],
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": -20,
+                  "y": 10
+                },
+                {
+                  "x": 0,
+                  "y": 30
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "icon": {
+      "coordinateSystem": {
+        "preserveAspectRatio": false
+      }
+    },
+    "diagram": {
+      "coordinateSystem": {
+        "preserveAspectRatio": false
+      }
+    }
+  }
+]

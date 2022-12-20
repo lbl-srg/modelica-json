@@ -1,0 +1,98 @@
+[
+  {
+    "within": [
+      "FromModelica"
+    ],
+    "class_definition": [
+      {
+        "class_prefixes": "block",
+        "class_specifier": {
+          "long_class_specifier": {
+            "name": "TestEvaluation_1",
+            "comment": "\"Example for real parameter evaluation\"",
+            "composition": {
+              "element_list": {
+                "element": [
+                  {
+                    "component_clause": {
+                      "type_prefix": "parameter",
+                      "type_specifier": "Real",
+                      "component_list": {
+                        "component_declaration": [
+                          {
+                            "declaration": {
+                              "name": "k1",
+                              "value": "1.0"
+                            },
+                            "comment": {
+                              "string_comment": "\"Constant output value\""
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "component_clause": {
+                      "type_specifier": "Buildings.Controls.OBC.CDL.Continuous.Sources.Constant",
+                      "component_list": {
+                        "component_declaration": [
+                          {
+                            "declaration": {
+                              "name": "con",
+                              "class_modification": {
+                                "modifications": [
+                                  {
+                                    "prefix": "final",
+                                    "name": "k",
+                                    "value": "k1"
+                                  }
+                                ]
+                              }
+                            },
+                            "comment": {
+                              "annotation": {
+                                "placement": {
+                                  "transformation": {
+                                    "extent": [
+                                      {
+                                        "x": -20,
+                                        "y": 10
+                                      },
+                                      {
+                                        "x": 0,
+                                        "y": 30
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              },
+              "comp_annotation": {
+                "diagram": {
+                  "coordinateSystem": {
+                    "preserveAspectRatio": false
+                  }
+                },
+                "icon": {
+                  "coordinateSystem": {
+                    "preserveAspectRatio": false
+                  }
+                },
+                "othAnns": "uses (Buildings (version =\"8.0.0\" ) )"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "modelicaFile": "./TestEvaluation_1.mo"
+  }
+]

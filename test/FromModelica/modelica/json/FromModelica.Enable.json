@@ -25,16 +25,16 @@
           "value": "1",
           "comment": "Delta between the temperature hysteresis high and low limit",
           "unit": {
-            "prefix": "final",
-            "value": "\"K\""
+            "value": "\"K\"",
+            "isFinal": true
           },
           "displayUnit": {
-            "prefix": "final",
-            "value": "\"K\""
+            "value": "\"K\"",
+            "isFinal": true
           },
           "quantity": {
-            "prefix": "final",
-            "value": "\"TemperatureDifference\""
+            "value": "\"TemperatureDifference\"",
+            "isFinal": true
           },
           "annotation": {
             "dialog": {
@@ -49,12 +49,12 @@
           "value": "1000",
           "comment": "Delta between the enthalpy hysteresis high and low limits",
           "unit": {
-            "prefix": "final",
-            "value": "\"J/kg\""
+            "value": "\"J/kg\"",
+            "isFinal": true
           },
           "quantity": {
-            "prefix": "final",
-            "value": "\"SpecificEnergy\""
+            "value": "\"SpecificEnergy\"",
+            "isFinal": true
           },
           "annotation": {
             "dialog": {
@@ -70,12 +70,12 @@
           "value": "180",
           "comment": "Time period to keep RA damper fully open before releasing it for minimum outdoor airflow control\n    at disable to avoid pressure fluctuations",
           "unit": {
-            "prefix": "final",
-            "value": "\"s\""
+            "value": "\"s\"",
+            "isFinal": true
           },
           "quantity": {
-            "prefix": "final",
-            "value": "\"Time\""
+            "value": "\"Time\"",
+            "isFinal": true
           },
           "annotation": {
             "dialog": {
@@ -90,12 +90,12 @@
           "value": "15",
           "comment": "Short time delay before closing the OA damper at disable to avoid pressure fluctuations",
           "unit": {
-            "prefix": "final",
-            "value": "\"s\""
+            "value": "\"s\"",
+            "isFinal": true
           },
           "quantity": {
-            "prefix": "final",
-            "value": "\"Time\""
+            "value": "\"Time\"",
+            "isFinal": true
           },
           "annotation": {
             "dialog": {
@@ -158,16 +158,16 @@
           "name": "TOut",
           "comment": "Outdoor air temperature",
           "unit": {
-            "prefix": "final",
-            "value": "\"K\""
+            "value": "\"K\"",
+            "isFinal": true
           },
           "displayUnit": {
-            "prefix": "final",
-            "value": "\"degC\""
+            "value": "\"degC\"",
+            "isFinal": true
           },
           "quantity": {
-            "prefix": "final",
-            "value": "\"ThermodynamicTemperature\""
+            "value": "\"ThermodynamicTemperature\"",
+            "isFinal": true
           },
           "placement": {
             "transformation": {
@@ -201,14 +201,14 @@
           "name": "hOut",
           "comment": "Outdoor air enthalpy",
           "unit": {
-            "prefix": "final",
-            "value": "\"J/kg\""
+            "value": "\"J/kg\"",
+            "isFinal": true
           },
           "quantity": {
-            "prefix": "final",
-            "value": "\"SpecificEnergy\""
+            "value": "\"SpecificEnergy\"",
+            "isFinal": true
           },
-          "enable": "use_enthalpy",
+          "instantiate": "use_enthalpy",
           "placement": {
             "transformation": {
               "extent": [
@@ -241,16 +241,16 @@
           "name": "TOutCut",
           "comment": "OA temperature high limit cutoff. For differential dry bulb temperature condition use return air temperature measurement",
           "unit": {
-            "prefix": "final",
-            "value": "\"K\""
+            "value": "\"K\"",
+            "isFinal": true
           },
           "displayUnit": {
-            "prefix": "final",
-            "value": "\"degC\""
+            "value": "\"degC\"",
+            "isFinal": true
           },
           "quantity": {
-            "prefix": "final",
-            "value": "\"ThermodynamicTemperature\""
+            "value": "\"ThermodynamicTemperature\"",
+            "isFinal": true
           },
           "placement": {
             "transformation": {
@@ -284,14 +284,14 @@
           "name": "hOutCut",
           "comment": "OA enthalpy high limit cutoff. For differential enthalpy use return air enthalpy measurement",
           "unit": {
-            "prefix": "final",
-            "value": "\"J/kg\""
+            "value": "\"J/kg\"",
+            "isFinal": true
           },
           "quantity": {
-            "prefix": "final",
-            "value": "\"SpecificEnergy\""
+            "value": "\"SpecificEnergy\"",
+            "isFinal": true
           },
-          "enable": "use_enthalpy",
+          "instantiate": "use_enthalpy",
           "placement": {
             "transformation": {
               "extent": [
@@ -324,16 +324,16 @@
           "name": "uOutDam_min",
           "comment": "Minimum outdoor air damper position, output from damper position limits sequence",
           "unit": {
-            "prefix": "final",
-            "value": "\"1\""
+            "value": "\"1\"",
+            "isFinal": true
           },
           "min": {
-            "prefix": "final",
-            "value": "0"
+            "value": "0",
+            "isFinal": true
           },
           "max": {
-            "prefix": "final",
-            "value": "1"
+            "value": "1",
+            "isFinal": true
           },
           "placement": {
             "transformation": {
@@ -367,16 +367,16 @@
           "name": "uOutDam_max",
           "comment": "Maximum outdoor air damper position, output from damper position limits sequence",
           "unit": {
-            "prefix": "final",
-            "value": "\"1\""
+            "value": "\"1\"",
+            "isFinal": true
           },
           "min": {
-            "prefix": "final",
-            "value": "0"
+            "value": "0",
+            "isFinal": true
           },
           "max": {
-            "prefix": "final",
-            "value": "1"
+            "value": "1",
+            "isFinal": true
           },
           "placement": {
             "transformation": {
@@ -410,16 +410,16 @@
           "name": "uRetDam_max",
           "comment": "Maximum return air damper position, output from damper position limits sequence",
           "unit": {
-            "prefix": "final",
-            "value": "\"1\""
+            "value": "\"1\"",
+            "isFinal": true
           },
           "min": {
-            "prefix": "final",
-            "value": "0"
+            "value": "0",
+            "isFinal": true
           },
           "max": {
-            "prefix": "final",
-            "value": "1"
+            "value": "1",
+            "isFinal": true
           },
           "placement": {
             "transformation": {
@@ -453,16 +453,16 @@
           "name": "uRetDam_min",
           "comment": "Minimum return air damper position, output from damper position limits sequence",
           "unit": {
-            "prefix": "final",
-            "value": "\"1\""
+            "value": "\"1\"",
+            "isFinal": true
           },
           "min": {
-            "prefix": "final",
-            "value": "0"
+            "value": "0",
+            "isFinal": true
           },
           "max": {
-            "prefix": "final",
-            "value": "1"
+            "value": "1",
+            "isFinal": true
           },
           "placement": {
             "transformation": {
@@ -496,16 +496,16 @@
           "name": "uRetDamPhy_max",
           "comment": "Physical maximum return air damper position, output from damper position limits sequence",
           "unit": {
-            "prefix": "final",
-            "value": "\"1\""
+            "value": "\"1\"",
+            "isFinal": true
           },
           "min": {
-            "prefix": "final",
-            "value": "0"
+            "value": "0",
+            "isFinal": true
           },
           "max": {
-            "prefix": "final",
-            "value": "1"
+            "value": "1",
+            "isFinal": true
           },
           "placement": {
             "transformation": {
@@ -603,16 +603,16 @@
           "name": "yOutDam_max",
           "comment": "Maximum outdoor air damper position",
           "unit": {
-            "prefix": "final",
-            "value": "\"1\""
+            "value": "\"1\"",
+            "isFinal": true
           },
           "min": {
-            "prefix": "final",
-            "value": "0"
+            "value": "0",
+            "isFinal": true
           },
           "max": {
-            "prefix": "final",
-            "value": "1"
+            "value": "1",
+            "isFinal": true
           },
           "placement": {
             "transformation": {
@@ -646,16 +646,16 @@
           "name": "yRetDam_min",
           "comment": "Minimum return air damper position",
           "unit": {
-            "prefix": "final",
-            "value": "\"1\""
+            "value": "\"1\"",
+            "isFinal": true
           },
           "min": {
-            "prefix": "final",
-            "value": "0"
+            "value": "0",
+            "isFinal": true
           },
           "max": {
-            "prefix": "final",
-            "value": "1"
+            "value": "1",
+            "isFinal": true
           },
           "placement": {
             "transformation": {
@@ -689,16 +689,16 @@
           "name": "yRetDam_max",
           "comment": "Maximum return air damper position",
           "unit": {
-            "prefix": "final",
-            "value": "\"1\""
+            "value": "\"1\"",
+            "isFinal": true
           },
           "min": {
-            "prefix": "final",
-            "value": "0"
+            "value": "0",
+            "isFinal": true
           },
           "max": {
-            "prefix": "final",
-            "value": "1"
+            "value": "1",
+            "isFinal": true
           },
           "placement": {
             "transformation": {
@@ -737,16 +737,16 @@
           "value": "0",
           "comment": "Hysteresis high limit cutoff",
           "unit": {
-            "prefix": "final",
-            "value": "\"K\""
+            "value": "\"K\"",
+            "isFinal": true
           },
           "displayUnit": {
-            "prefix": "final",
-            "value": "\"K\""
+            "value": "\"K\"",
+            "isFinal": true
           },
           "quantity": {
-            "prefix": "final",
-            "value": "\"TemperatureDifference\""
+            "value": "\"TemperatureDifference\"",
+            "isFinal": true
           },
           "annotation": {
             "dialog": {
@@ -773,12 +773,12 @@
           "value": "0",
           "comment": "Hysteresis block high limit cutoff",
           "unit": {
-            "prefix": "final",
-            "value": "\"J/kg\""
+            "value": "\"J/kg\"",
+            "isFinal": true
           },
           "quantity": {
-            "prefix": "final",
-            "value": "\"SpecificEnergy\""
+            "value": "\"SpecificEnergy\"",
+            "isFinal": true
           },
           "annotation": {
             "dialog": {
@@ -805,7 +805,7 @@
           "className": "Buildings.Controls.OBC.CDL.Continuous.Subtract",
           "name": "sub2",
           "comment": "Add block determines difference between hOut and hOutCut",
-          "enable": "use_enthalpy",
+          "instantiate": "use_enthalpy",
           "placement": {
             "transformation": {
               "extent": [
@@ -887,7 +887,7 @@
               "isFinal": true
             }
           ],
-          "enable": "use_enthalpy",
+          "instantiate": "use_enthalpy",
           "placement": {
             "transformation": {
               "extent": [
@@ -1182,7 +1182,7 @@
               "isFinal": true
             }
           ],
-          "enable": "not use_enthalpy",
+          "instantiate": "not use_enthalpy",
           "placement": {
             "transformation": {
               "extent": [
