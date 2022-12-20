@@ -53,6 +53,7 @@ parser.addArgument(
 )
 
 parser.addArgument(
+
   [ '-p', '--prettyPrint' ],
   {
     help: 'Pretty print JSON output.',

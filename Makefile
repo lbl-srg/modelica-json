@@ -53,11 +53,10 @@ clean-maven:
 
 clean-installation: clean-node-packages clean-maven
 
-
 run:
 	node app.js \
 	--log warn \
-	-f Buildings/Controls/OBC/ASHRAE/G36_PR1/AHUs/MultiZone/VAV/Economizers/Controller.mo \
+	-f Buildings/Controls/OBC/ASHRAE/G36/AHUs/MultiZone/VAV/Economizers/Controller.mo \
 	-o html
 
 ibpsa-library:
