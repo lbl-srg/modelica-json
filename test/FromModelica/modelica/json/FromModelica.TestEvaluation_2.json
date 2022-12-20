@@ -1,0 +1,202 @@
+[
+  {
+    "modelicaFile": "FromModelica/TestEvaluation_2.mo",
+    "within": "FromModelica",
+    "topClassName": "FromModelica.TestEvaluation_2",
+    "comment": "Example for real parameter evaluation",
+    "public": {
+      "parameters": [
+        {
+          "className": "Real",
+          "name": "uLow",
+          "value": "0.5",
+          "comment": "if y=true and u<uLow, switch to y=false",
+          "min": {
+            "value": "0",
+            "isFinal": false
+          },
+          "annotation": {
+            "dialog": {
+              "tab": "General",
+              "group": "Parameters"
+            }
+          }
+        },
+        {
+          "className": "Real",
+          "name": "uHigh",
+          "value": "2*uLow",
+          "comment": "if y=false and u>uHigh, switch to y=true",
+          "annotation": {
+            "dialog": {
+              "tab": "General",
+              "group": "Parameters"
+            }
+          }
+        }
+      ],
+      "models": [
+        {
+          "className": "Buildings.Controls.OBC.CDL.Continuous.Hysteresis",
+          "name": "hys",
+          "modifications": [
+            {
+              "name": "uLow",
+              "value": "uLow",
+              "isFinal": true
+            },
+            {
+              "name": "uHigh",
+              "value": "uHigh",
+              "isFinal": false
+            }
+          ],
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": -10,
+                  "y": -10
+                },
+                {
+                  "x": 10,
+                  "y": 10
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "inputs": [
+        {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+          "name": "u",
+          "comment": "Real input signal",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": -140,
+                  "y": -20
+                },
+                {
+                  "x": -100,
+                  "y": 20
+                }
+              ]
+            },
+            "iconTransformation": {
+              "extent": [
+                {
+                  "x": -118,
+                  "y": -20
+                },
+                {
+                  "x": -78,
+                  "y": 20
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "className": "Buildings.Controls.OBC.CDL.Interfaces.BooleanOutput",
+          "name": "y",
+          "comment": "Boolean output signal",
+          "placement": {
+            "transformation": {
+              "extent": [
+                {
+                  "x": 100,
+                  "y": -20
+                },
+                {
+                  "x": 140,
+                  "y": 20
+                }
+              ]
+            },
+            "iconTransformation": {
+              "extent": [
+                {
+                  "x": 80,
+                  "y": -20
+                },
+                {
+                  "x": 120,
+                  "y": 20
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "icon": {
+      "coordinateSystem": {
+        "preserveAspectRatio": false
+      }
+    },
+    "diagram": {
+      "coordinateSystem": {
+        "preserveAspectRatio": false
+      }
+    },
+    "connections": [
+      [
+        {
+          "instance": "hys",
+          "connector": "u"
+        },
+        {
+          "instance": "u"
+        },
+        {
+          "points": [
+            {
+              "x": -12,
+              "y": 0
+            },
+            {
+              "x": -120,
+              "y": 0
+            }
+          ],
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 127
+          }
+        }
+      ],
+      [
+        {
+          "instance": "hys",
+          "connector": "y"
+        },
+        {
+          "instance": "y"
+        },
+        {
+          "points": [
+            {
+              "x": 12,
+              "y": 0
+            },
+            {
+              "x": 120,
+              "y": 0
+            }
+          ],
+          "color": {
+            "r": 255,
+            "g": 0,
+            "b": 255
+          }
+        }
+      ]
+    ]
+  }
+]

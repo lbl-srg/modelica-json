@@ -1,0 +1,576 @@
+[
+  {
+    "within": [
+      "FromModelica"
+    ],
+    "class_definition": [
+      {
+        "class_prefixes": "block",
+        "class_specifier": {
+          "long_class_specifier": {
+            "name": "TestEvaluation_4",
+            "comment": "\"Example for enumerate parameter evaluation\"",
+            "composition": {
+              "element_list": {
+                "element": [
+                  {
+                    "component_clause": {
+                      "type_prefix": "parameter",
+                      "type_specifier": "Buildings.Controls.OBC.CDL.Types.SimpleController",
+                      "component_list": {
+                        "component_declaration": [
+                          {
+                            "declaration": {
+                              "name": "controllerTypeCooCoi",
+                              "value": "Buildings.Controls.OBC.CDL.Types.SimpleController.PI"
+                            },
+                            "comment": {
+                              "string_comment": "\"Type of controller\""
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "component_clause": {
+                      "type_prefix": "parameter",
+                      "type_specifier": "Real",
+                      "component_list": {
+                        "component_declaration": [
+                          {
+                            "declaration": {
+                              "name": "kCooCoi",
+                              "value": "0.1"
+                            },
+                            "comment": {
+                              "string_comment": "\"Gain for cooling coil control loop signal\""
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "component_clause": {
+                      "type_prefix": "parameter",
+                      "type_specifier": "Real",
+                      "component_list": {
+                        "component_declaration": [
+                          {
+                            "declaration": {
+                              "name": "TiCooCoi",
+                              "value": "900"
+                            },
+                            "comment": {
+                              "string_comment": "\"Time constant of integrator block for cooling coil control loop signal\""
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "component_clause": {
+                      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+                      "component_list": {
+                        "component_declaration": [
+                          {
+                            "declaration": {
+                              "name": "TSupCooSet"
+                            },
+                            "comment": {
+                              "string_comment": "\"Cooling supply air temperature setpoint\"",
+                              "annotation": {
+                                "placement": {
+                                  "transformation": {
+                                    "extent": [
+                                      {
+                                        "x": -140,
+                                        "y": 40
+                                      },
+                                      {
+                                        "x": -100,
+                                        "y": 80
+                                      }
+                                    ]
+                                  },
+                                  "iconTransformation": {
+                                    "extent": [
+                                      {
+                                        "x": -140,
+                                        "y": 60
+                                      },
+                                      {
+                                        "x": -100,
+                                        "y": 100
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "component_clause": {
+                      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+                      "component_list": {
+                        "component_declaration": [
+                          {
+                            "declaration": {
+                              "name": "TAirSup"
+                            },
+                            "comment": {
+                              "string_comment": "\"Supply air temperature measurement\"",
+                              "annotation": {
+                                "placement": {
+                                  "transformation": {
+                                    "extent": [
+                                      {
+                                        "x": -140,
+                                        "y": 0
+                                      },
+                                      {
+                                        "x": -100,
+                                        "y": 40
+                                      }
+                                    ]
+                                  },
+                                  "iconTransformation": {
+                                    "extent": [
+                                      {
+                                        "x": -140,
+                                        "y": 20
+                                      },
+                                      {
+                                        "x": -100,
+                                        "y": 60
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "component_clause": {
+                      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.IntegerInput",
+                      "component_list": {
+                        "component_declaration": [
+                          {
+                            "declaration": {
+                              "name": "uZonSta"
+                            },
+                            "comment": {
+                              "string_comment": "\"Zone state\"",
+                              "annotation": {
+                                "placement": {
+                                  "transformation": {
+                                    "extent": [
+                                      {
+                                        "x": -140,
+                                        "y": -40
+                                      },
+                                      {
+                                        "x": -100,
+                                        "y": 0
+                                      }
+                                    ]
+                                  },
+                                  "iconTransformation": {
+                                    "extent": [
+                                      {
+                                        "x": -140,
+                                        "y": -60
+                                      },
+                                      {
+                                        "x": -100,
+                                        "y": -20
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "component_clause": {
+                      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.BooleanInput",
+                      "component_list": {
+                        "component_declaration": [
+                          {
+                            "declaration": {
+                              "name": "u1SupFan"
+                            },
+                            "comment": {
+                              "string_comment": "\"Supply fan proven on\"",
+                              "annotation": {
+                                "placement": {
+                                  "transformation": {
+                                    "extent": [
+                                      {
+                                        "x": -140,
+                                        "y": -80
+                                      },
+                                      {
+                                        "x": -100,
+                                        "y": -40
+                                      }
+                                    ]
+                                  },
+                                  "iconTransformation": {
+                                    "extent": [
+                                      {
+                                        "x": -140,
+                                        "y": -98
+                                      },
+                                      {
+                                        "x": -100,
+                                        "y": -58
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "component_clause": {
+                      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
+                      "component_list": {
+                        "component_declaration": [
+                          {
+                            "declaration": {
+                              "name": "yCooCoi"
+                            },
+                            "comment": {
+                              "string_comment": "\"Cooling coil position\"",
+                              "annotation": {
+                                "placement": {
+                                  "transformation": {
+                                    "extent": [
+                                      {
+                                        "x": 100,
+                                        "y": -20
+                                      },
+                                      {
+                                        "x": 140,
+                                        "y": 20
+                                      }
+                                    ]
+                                  },
+                                  "iconTransformation": {
+                                    "extent": [
+                                      {
+                                        "x": 100,
+                                        "y": -20
+                                      },
+                                      {
+                                        "x": 140,
+                                        "y": 20
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "component_clause": {
+                      "type_specifier": "Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil",
+                      "component_list": {
+                        "component_declaration": [
+                          {
+                            "declaration": {
+                              "name": "cooCoi",
+                              "class_modification": {
+                                "modifications": [
+                                  {
+                                    "name": "controllerTypeCooCoi",
+                                    "value": "controllerTypeCooCoi"
+                                  },
+                                  {
+                                    "name": "kCooCoi",
+                                    "value": "kCooCoi"
+                                  },
+                                  {
+                                    "name": "TiCooCoi",
+                                    "value": "TiCooCoi"
+                                  }
+                                ]
+                              }
+                            },
+                            "comment": {
+                              "string_comment": "\"Cooling coil control\"",
+                              "annotation": {
+                                "placement": {
+                                  "transformation": {
+                                    "extent": [
+                                      {
+                                        "x": -10,
+                                        "y": -10
+                                      },
+                                      {
+                                        "x": 10,
+                                        "y": 10
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              },
+              "equation_section": [
+                {
+                  "prefix": "equation",
+                  "equation": [
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "cooCoi",
+                          "TSupCooSet"
+                        ],
+                        "component2": [
+                          "TSupCooSet"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x": -12,
+                                "y": 8
+                              },
+                              {
+                                "x": -40,
+                                "y": 8
+                              },
+                              {
+                                "x": -40,
+                                "y": 60
+                              },
+                              {
+                                "x": -120,
+                                "y": 60
+                              }
+                            ],
+                            "color": {
+                              "r": 0,
+                              "g": 0,
+                              "b": 127
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "cooCoi",
+                          "TAirSup"
+                        ],
+                        "component2": [
+                          "TAirSup"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x": -12,
+                                "y": 4
+                              },
+                              {
+                                "x": -60,
+                                "y": 4
+                              },
+                              {
+                                "x": -60,
+                                "y": 20
+                              },
+                              {
+                                "x": -120,
+                                "y": 20
+                              }
+                            ],
+                            "color": {
+                              "r": 0,
+                              "g": 0,
+                              "b": 127
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "cooCoi",
+                          "uZonSta"
+                        ],
+                        "component2": [
+                          "uZonSta"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x": -12,
+                                "y": -4
+                              },
+                              {
+                                "x": -60,
+                                "y": -4
+                              },
+                              {
+                                "x": -60,
+                                "y": -20
+                              },
+                              {
+                                "x": -120,
+                                "y": -20
+                              }
+                            ],
+                            "color": {
+                              "r": 255,
+                              "g": 127,
+                              "b": 0
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "cooCoi",
+                          "u1SupFan"
+                        ],
+                        "component2": [
+                          "u1SupFan"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x": -12,
+                                "y": -8
+                              },
+                              {
+                                "x": -40,
+                                "y": -8
+                              },
+                              {
+                                "x": -40,
+                                "y": -60
+                              },
+                              {
+                                "x": -120,
+                                "y": -60
+                              }
+                            ],
+                            "color": {
+                              "r": 255,
+                              "g": 0,
+                              "b": 255
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "connect_clause": {
+                        "component1": [
+                          "cooCoi",
+                          "yCooCoi"
+                        ],
+                        "component2": [
+                          "yCooCoi"
+                        ]
+                      },
+                      "comment": {
+                        "annotation": {
+                          "line": {
+                            "points": [
+                              {
+                                "x": 12,
+                                "y": 0
+                              },
+                              {
+                                "x": 58,
+                                "y": 0
+                              },
+                              {
+                                "x": 58,
+                                "y": 0
+                              },
+                              {
+                                "x": 120,
+                                "y": 0
+                              }
+                            ],
+                            "color": {
+                              "r": 0,
+                              "g": 0,
+                              "b": 127
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              ],
+              "comp_annotation": {
+                "diagram": {
+                  "coordinateSystem": {
+                    "preserveAspectRatio": false
+                  }
+                },
+                "icon": {
+                  "coordinateSystem": {
+                    "preserveAspectRatio": false
+                  }
+                },
+                "othAnns": ""
+              }
+            }
+          }
+        }
+      }
+    ],
+    "modelicaFile": "FromModelica/TestEvaluation_4.mo"
+  }
+]

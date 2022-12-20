@@ -47,7 +47,10 @@ generate-reference-output:
 		node ../../app.js -l warn -f $${ff} -o html -d ./cdl -m cdl; \
 		node ../../app.js -l warn -f $${ff} -o docx -d ./cdl -m cdl; \
 		done)
-
+	(cd test/FromModelica && \
+	for ff in `find . -name '*TestEvaluation*.mo'`; do \
+		node ../../app.js -l warn -f $${ff} -o json -d ./cdlEva -m cdl -p true -e true; \
+		done)
 	(cd test && \
 	node ../app.js -l warn -f FromModelica -o raw-json -d ./FromModelica/modelica -m modelica; \
 	node ../app.js -l warn -f FromModelica -o json -d ./FromModelica/modelica -m modelica; \
@@ -63,11 +66,10 @@ clean-maven:
 
 clean-installation: clean-node-packages clean-maven
 
-
 run:
 	node app.js \
 	--log warn \
-	-f Buildings/Controls/OBC/ASHRAE/G36_PR1/AHUs/MultiZone/VAV/Economizers/Controller.mo \
+	-f Buildings/Controls/OBC/ASHRAE/G36/AHUs/MultiZone/VAV/Economizers/Controller.mo \
 	-o html
 
 ibpsa-library:

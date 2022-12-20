@@ -544,8 +544,8 @@
           "value": "0",
           "comment": "Hysteresis",
           "min": {
-            "prefix": "final",
-            "value": "0"
+            "value": "0",
+            "isFinal": true
           },
           "annotation": {
             "dialog": {
@@ -661,7 +661,7 @@
               "isFinal": true
             }
           ],
-          "enable": "have_hysteresis",
+          "instantiate": "have_hysteresis",
           "placement": {
             "transformation": {
               "extent": [
@@ -681,7 +681,7 @@
           "className": "GreaterNoHysteresis",
           "name": "greNoHys",
           "comment": "Block without hysteresis",
-          "enable": "not have_hysteresis",
+          "instantiate": "not have_hysteresis",
           "placement": {
             "transformation": {
               "extent": [

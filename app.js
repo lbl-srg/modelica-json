@@ -52,6 +52,22 @@ parser.addArgument(
   }
 )
 parser.addArgument(
+  ['-p', '--evaluatePropagatedParameters'],
+  {
+    help: "Evaluate the propagated parameters. It would be needed for exporting CDL sequences to product lines. 'false' is the default.",
+    choices: ['true', 'false'],
+    defaultValue: 'false'
+  }
+)
+parser.addArgument(
+  ['-e', '--evaluateExpressions'],
+  {
+    help: "Evaluate the mathematical expressions. It would be needed for exporting CDL sequences to product lines. 'false' is the default.",
+    choices: ['true', 'false'],
+    defaultValue: 'false'
+  }
+)
+parser.addArgument(
   '--strict',
   {
     help: 'Exit with code 1 if there is any warning.',
@@ -78,18 +94,27 @@ logger.cli()
 
 logger.level = args.log
 
+var evaProPar = (args.evaluatePropagatedParameters === 'true')
+var evaExp = (args.evaluateExpressions === 'true')
+
 if (args.mode === 'modelica' && args.output === 'svg') {
   throw new Error('svg output option has not been enabled in modelica mode.')
 }
 
+var file
 // Get mo files array
-var moFiles = ut.getMoFiles(args.mode, args.file)
+if (args.file.endsWith('/')) {
+  file = args.file.slice(0, -1)
+} else {
+  file = args.file
+}
+var moFiles = ut.getMoFiles(args.mode, file)
 
 // Parse the json representation for moFiles
-var json = pa.getJSON(moFiles, args.mode, args.output)
+var json = pa.getJSON(moFiles, args.mode, args.output, evaProPar, evaExp)
 
 // Get the name array of output files
-var outFile = ut.getOutFile(args.mode, args.file, args.output, args.directory, moFiles, json)
+var outFile = ut.getOutFile(args.mode, file, args.output, args.directory, moFiles, json)
 
 pa.exportJSON(json, outFile, args.output, args.mode, args.directory)
 
