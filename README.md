@@ -7,7 +7,7 @@
 4. [JSON Schemas](##4.-json-schemas)
 5. [Useful Links](##5.-useful-links)
 
-[![Build Status](https://api.travis-ci.com/lbl-srg/modelica-json.svg?branch=master)](https://app.travis-ci.com/github/lbl-srg/modelica-json)
+[![Build Status](https://api.travis-ci.com/lbl-srg/modelica-json.svg?branch=issue150_mblLink)](https://app.travis-ci.com/github/lbl-srg/modelica-json)
 
 
 ## 1. General Description
@@ -67,10 +67,10 @@ make clean-installation
 
 To test the installation, from the `\modelica-json` directory, run the parser on Command Prompt:
 ```
-node app.js -f test\FromModelica\Modulation.mo
+node app.js -f test\FromModelica\Enable.mo
 ```
 
-Now the `\modelica-json` directory should have a new folder `html` and in the folder, there is a file `FromModelica.Modulation.html` and a sub-folder `img`. 
+Now the `\modelica-json` directory should have a new folder `html` and in the folder, there is a file `FromModelica.Enable.html` and a sub-folder `img`. 
 
 ## 3. How to use the parser
 
@@ -89,9 +89,10 @@ The only required input is the path of the file or package to be parsed.
 This parser takes a .mo file in input and has three possible outputs, that can be specified with the argument -o :
 
 - **raw-json** : detailed transcription of a Modelica file in JSON
-- **json**: simplified JSON format, easier to read an interpret
+- **json**: simplified JSON format, easier to read and interpret
 - **html** (default): transcription from json with links for documentation
 - **docx** : transcription of the HTML documentation to an editable format
+- **svg** : SVG diagram of the control sequence model in cdl model
 
 ##### --mode / -m
 
@@ -102,12 +103,23 @@ We offer two different modes of translation that can be chosen with the argument
 
 ##### --log / -l
 
-Logging level. The choices are 'error', 'warn', 'info' (default), 'verbose', 'debug'.
+Logging level. The choices are `error`, `warn`, `info` (default), `verbose`, `debug`.
 
 ##### --directory / -d
 
 Specify the output directory. The default option is the current directory.
 
+##### --evaluatePropagatedParameters / -p
+
+Evaluate the propagated parameters. It would be needed for exporting CDL sequences to product lines. `false` is the default.
+
+##### --evaluateExpressions / -e
+
+Evaluate the mathematical expressions used in parameter assignment and class instantiation. It would be needed for exporting CDL sequences to product lines. `false` is the default.
+
+##### --strict
+
+Exit with code 1 if there is any warning. `false` is the default.
 
 ## 4. JSON Schemas
 
