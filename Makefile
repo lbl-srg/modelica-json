@@ -39,24 +39,11 @@ test-moParser:
 # This only needs to be run when the output format changes,
 # or when new tests are added.
 generate-reference-output:
-	(cd test/FromModelica && \
-	for ff in `find . -name '*.mo'`; do \
-		node ../../app.js -l warn -f $${ff} -o raw-json -d ./cdl -m cdl; \
-		node ../../app.js -l warn -f $${ff} -o json -d ./cdl -m cdl; \
-		node ../../app.js -l warn -f $${ff} -o svg -d ./cdl -m cdl; \
-		node ../../app.js -l warn -f $${ff} -o html -d ./cdl -m cdl; \
-		node ../../app.js -l warn -f $${ff} -o docx -d ./cdl -m cdl; \
+	rm -rf ./test/reference; \
+	(for ff in `find . -name '*.mo'`; do \
+		node app.js -l warn -f $${ff} -o raw-json -d ./test/reference; \
+		node app.js -l warn -f $${ff} -o json -d ./test/reference; \
 		done)
-	(cd test/FromModelica && \
-	for ff in `find . -name '*TestEvaluation*.mo'`; do \
-		node ../../app.js -l warn -f $${ff} -o json -d ./cdlEva -m cdl -p true -e true; \
-		done)
-	(cd test && \
-	node ../app.js -l warn -f FromModelica -o raw-json -d ./FromModelica/modelica -m modelica; \
-	node ../app.js -l warn -f FromModelica -o json -d ./FromModelica/modelica -m modelica; \
-	node ../app.js -l warn -f FromModelica -o html -d ./FromModelica/modelica -m modelica; \
-	node ../app.js -l warn -f FromModelica -o docx -d ./FromModelica/modelica -m modelica)
-	rm -f test/modelica-json.log test/FromModelica/modelica-json.log
 
 clean-node-packages:
 	rm -rf node-modules

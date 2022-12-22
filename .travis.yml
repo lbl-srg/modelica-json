@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - "8"
+  - "14"
 
 env:
   - MODELICAPATH="./.tmp/"
@@ -10,6 +10,7 @@ before_install:
 
 install:
   - git clone --branch=master https://github.com/lbl-srg/modelica-buildings .tmp
+  - make clean-installation
   - make install
   - make compile
   - make test-moParser

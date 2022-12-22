@@ -17,8 +17,8 @@ parser.addArgument(
   [ '-o', '--output' ],
   {
     help: 'Specify output format.',
-    choices: ['html', 'raw-json', 'json', 'docx', 'svg'],
-    defaultValue: 'html'
+    choices: ['raw-json', 'json', 'modelica'],
+    defaultValue: 'json'
   }
 )
 parser.addArgument(
@@ -34,13 +34,13 @@ parser.addArgument(
   {
     help: "Parsing mode, CDL model or a package of the Modelica Buildings library, 'cdl' is the default.",
     choices: ['cdl', 'modelica'],
-    defaultValue: 'cdl'
+    defaultValue: 'modelica'
   }
 )
 parser.addArgument(
   [ '-f', '--file' ],
   {
-    help: 'Filename or packagename that contains the top-level Modelica class.',
+    help: "Filename or packagename that contains the top-level Modelica class, or a json file when the output format is 'modelica'.",
     required: true
   }
 )
@@ -51,26 +51,12 @@ parser.addArgument(
     defaultValue: 'current'
   }
 )
+
 parser.addArgument(
-  ['-p', '--evaluatePropagatedParameters'],
+
+  [ '-p', '--prettyPrint' ],
   {
-    help: "Evaluate the propagated parameters. It would be needed for exporting CDL sequences to product lines. 'false' is the default.",
-    choices: ['true', 'false'],
-    defaultValue: 'false'
-  }
-)
-parser.addArgument(
-  ['-e', '--evaluateExpressions'],
-  {
-    help: "Evaluate the mathematical expressions. It would be needed for exporting CDL sequences to product lines. 'false' is the default.",
-    choices: ['true', 'false'],
-    defaultValue: 'false'
-  }
-)
-parser.addArgument(
-  '--strict',
-  {
-    help: 'Exit with code 1 if there is any warning.',
+    help: 'Pretty print JSON output.',
     defaultValue: 'false'
   }
 )
@@ -94,43 +80,39 @@ logger.cli()
 
 logger.level = args.log
 
-var evaProPar = (args.evaluatePropagatedParameters === 'true')
-var evaExp = (args.evaluateExpressions === 'true')
-
-if ((evaProPar || evaExp) && args.mode === 'modelica') {
-  throw new Error('parameters or expressions evaluation has not been enabled in modelica mode.')
+if (args.output === 'modelica' && !args.file.endsWith('.json')) {
+  throw new Error('Modelica output requires the input file (-f) to be a json file.')
 }
 
-if (args.mode === 'modelica' && args.output === 'svg') {
-  throw new Error('svg output option has not been enabled in modelica mode.')
+if (args.output !== 'modelica' && args.file.endsWith('.json')) {
+  throw new Error("The json input file required only when the output format (-o) is 'modelica'.")
 }
 
-var file
-// Get mo files array
-if (args.file.endsWith('/')) {
-  file = args.file.slice(0, -1)
+if (args.output === 'modelica') {
+  pa.convertToModelica(args.file, args.directory, false)
 } else {
-  file = args.file
-}
-var moFiles = ut.getMoFiles(args.mode, file)
-
-// Parse the json representation for moFiles
-var json = pa.getJSON(moFiles, args.mode, args.output, evaProPar, evaExp)
-
-// Get the name array of output files
-var outFile = ut.getOutFile(args.mode, file, args.output, args.directory, moFiles, json)
-
-pa.exportJSON(json, outFile, args.output, args.mode, args.directory)
-
-var schema
-if (args.mode === 'cdl') {
-  schema = path.join(`${__dirname}`, 'schema-CDL.json')
-} else {
-  schema = path.join(`${__dirname}`, 'schema-modelica.json')
+  // Get mo files array
+  var moFiles = ut.getMoFiles(args.file)
+  // Parse the json representation for moFiles
+  pa.getJsons(moFiles, args.mode, args.output, args.directory, args.prettyPrint)
 }
 
-setTimeout(function () { ut.jsonSchemaValidate(args.mode, outFile[0], args.output, schema) }, 100)
-
-if (args.strict === 'true' && pa.warnCounter > 0) {
-  process.exit(1)
+if (args.output === 'json') {
+  var schema
+  if (args.mode === 'cdl') {
+    schema = path.join(`${__dirname}`, 'schema-cdl.json')
+  } else {
+    schema = path.join(`${__dirname}`, 'schema-modelica.json')
+  }
+  var jsonFiles = ut.findFilesInDir(path.join(args.directory, 'json'), '.json')
+  // exclude CDL folder and possibly Modelica folder
+  var pathSep = path.sep
+  var cdlPath = path.join(pathSep, 'CDL', pathSep)
+  var modelicaPath = path.join('Modelica', pathSep)
+  jsonFiles = jsonFiles.filter(obj => !(obj.includes(cdlPath) || obj.includes(modelicaPath)))
+  // validate json schema
+  for (var i = 0; i < jsonFiles.length; i++) {
+    var eachFile = jsonFiles[i]
+    setTimeout(function () { ut.jsonSchemaValidation(args.mode, eachFile, 'json', schema) }, 100)
+  }
 }
