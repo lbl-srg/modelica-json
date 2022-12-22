@@ -74,7 +74,7 @@ Now the `\modelica-json` directory should have a new folder `html` and in the fo
 
 ## 3. How to use the parser
 
-The parser can be run with the app.js file as follows:
+The parser can be run with the `app.js` file as follows:
 ```
 node app.js -f <path of the file to parse>
 ```
@@ -86,17 +86,17 @@ The only required input is the path of the file or package to be parsed.
 
 ##### --output / -o
 
-This parser takes a .mo file in input and has three possible outputs, that can be specified with the argument -o :
+This parser takes a `.mo` file in input and has three possible outputs, that can be specified with the argument `-o` :
 
 - **raw-json** : detailed transcription of a Modelica file in JSON
 - **json**: simplified JSON format, easier to read and interpret
 - **html** (default): transcription from json with links for documentation
 - **docx** : transcription of the HTML documentation to an editable format
-- **svg** : SVG diagram of the control sequence model in cdl model
+- **svg** : SVG diagram of the control sequence model in `cdl` model
 
 ##### --mode / -m
 
-We offer two different modes of translation that can be chosen with the argument -m :
+We offer two different modes of translation that can be chosen with the argument `-m` :
 
 - **modelica** : Parses a Modelica package (must be a directory)
 - **cdl** (default) : Parses a CDL file.
@@ -111,11 +111,11 @@ Specify the output directory. The default option is the current directory.
 
 ##### --evaluatePropagatedParameters / -p
 
-Evaluate the propagated parameters. It would be needed for exporting CDL sequences to product lines. `false` is the default.
+In `cdl` parsing mode, evaluate the propagated parameters. It would be needed for exporting CDL sequences to product lines. `false` is the default.
 
 ##### --evaluateExpressions / -e
 
-Evaluate the mathematical expressions used in parameter assignment and class instantiation. It would be needed for exporting CDL sequences to product lines. `false` is the default.
+In `cdl` parsing mode, evaluate the mathematical expressions used in parameter assignment and class instantiation. It would be needed for exporting CDL sequences to product lines. `false` is the default.
 
 ##### --strict
 
