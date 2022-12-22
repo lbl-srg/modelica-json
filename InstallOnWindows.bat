@@ -19,7 +19,7 @@
 ::*******************************************************************
 :: Download maven
 echo ----------- Downloading Apache Maven ----------- 
-set MVNLink=http://mirrors.ibiblio.org/apache/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.zip
+set MVNLink=https://dlcdn.apache.org/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.zip
 set MVNZip=%CD%\apache_maven.zip
 bitsadmin /transfer "Downloading MVN" %MVNLink% %MVNZip%
 
