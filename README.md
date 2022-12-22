@@ -119,7 +119,7 @@ Two schemas are available (links to the raw files) :
 Graphical viewers are available (please use right click + open in a new tab or refresh the page if necessary - this is not optimized for Firefox) :
 - [CDL Schema viewer](cdl-viz.html)
 - [Modelica Schema viewer](modelica-viz.html)
-H
+
 When parsing a file using `app.js`, the schema is chosen according to the mode.
 
 To validate an existing JSON file against the schema, run
