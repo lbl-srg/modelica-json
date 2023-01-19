@@ -650,7 +650,7 @@ mo.describe('jsonquery.js', function () {
       as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
     })
   })
-  mo.describe('testing epxression_list', function () {
+  mo.describe('testing expression_list', function () {
     mo.it('testing structure', function () {
       sinon.stub(jq, 'simpleExpression').withArgs('test simple_expression1').returns('mocked simple_expression1').withArgs('test simple_expression2').returns('mocked simple_expression2')
       sinon.stub(jq, 'ifExpString').withArgs('test if_expression1').returns('mocked if_expression1').withArgs('test if_expression2').returns('mocked if_expression2')
@@ -675,6 +675,139 @@ mo.describe('jsonquery.js', function () {
       ]
       var jsonOutput = jq.expLisString(rawJson)
       var referenceJsonOutput = 'mocked simple_expression1,mocked if_expression1;mocked simple_expression2,mocked if_expression2'
+      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
+    })
+  })
+  mo.describe('testing expression', function () {
+    mo.it('testing only simple_expression structure', function () {
+      sinon.stub(jq, 'simpleExpression').withArgs('test simple_expression1').returns('mocked simple_expression1')
+      sinon.stub(jq, 'ifExpString').withArgs('test if_expression1').returns('mocked if_expression1').withArgs('test if_expression2').returns('mocked if_expression2')
+      var rawJson = {
+        'simple_expression': 'test simple_expression1'
+      }
+      var jsonOutput = jq.expressionString(rawJson)
+      var referenceJsonOutput = 'mocked simple_expression1'
+      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
+    })
+    mo.it('testing only if_expression structure', function () {
+      sinon.stub(jq, 'simpleExpression').withArgs('test simple_expression1').returns('mocked simple_expression1')
+      sinon.stub(jq, 'ifExpString').withArgs('test if_expression1').returns('mocked if_expression1').withArgs('test if_expression2').returns('mocked if_expression2')
+      var rawJson = {
+        'if_expression': 'test if_expression1'
+      }
+      var jsonOutput = jq.expressionString(rawJson)
+      var referenceJsonOutput = 'mocked if_expression1'
+      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
+    })
+    mo.it('testing only simple_expression structure', function () {
+      sinon.stub(jq, 'simpleExpression').withArgs('test simple_expression1').returns('mocked simple_expression1')
+      sinon.stub(jq, 'ifExpString').withArgs('test if_expression1').returns('mocked if_expression1').withArgs('test if_expression2').returns('mocked if_expression2')
+      var rawJson = {
+        'simple_expression': 'test simple_expression1',
+        'if_expression': 'test if_expression1'
+      }
+      var jsonOutput = jq.expressionString(rawJson)
+      var referenceJsonOutput = 'mocked simple_expression1'
+      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
+    })
+  })
+  mo.describe('testing simple_expression', function () {
+    mo.it('testing structure', function () {
+      sinon.stub(jq, 'logicalExpression').withArgs('test logical_expression1').returns('mocked logical_expression1').withArgs('test logical_expression2')
+              .returns('mocked logical_expression2').withArgs('test logical_expression3').returns('mocked logical_expression3')
+      var rawJson = {
+        'logical_expression1': 'test logical_expression1',
+        'logical_expression2': 'test logical_expression2',
+        'logical_expression3': 'test logical_expression3'
+      }
+      var jsonOutput = jq.simpleExpression(rawJson)
+      var referenceJsonOutput = 'mocked logical_expression1:mocked logical_expression2:mocked logical_expression3'
+      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
+    })
+    mo.it('testing null logical_expression1', function () {
+      var rawJson = {
+        'logical_expression2': 'test logical_expression2'
+      }
+      try {
+        jq.simpleExpression(rawJson)
+        as.fail('no error raised for missing logical_expression1')
+      } catch (e) {
+        as.equal(e.message, 'simple_expression must contain logical_expression1')
+      }
+    })
+    mo.it('testing function call logical_expression1', function () {
+      sinon.stub(jq, 'logicalExpression').withArgs('test logical_expression1').returns('mocked logical_expression1').withArgs(undefined).returns(undefined)
+      sinon.stub(jq, 'checkPri').withArgs('test logical_expression1').returns('mocked primary')
+      sinon.stub(jq, 'functionCallObj').withArgs('mocked primary').returns('mocked function_call_primary')
+      sinon.stub(jq, 'forLoopObj').withArgs('mocked primary').returns(undefined)
+      sinon.stub(jq, 'ifExpressionObj').withArgs('mocked primary').returns(undefined)
+      sinon.stub(jq, 'logicalExpressionObj').withArgs('test logical_expression1').returns(undefined)
+
+      var rawJson = {
+        'logical_expression1': 'test logical_expression1'
+      }
+      var jsonOutput = jq.simpleExpression(rawJson)
+      console.log(jsonOutput)
+      var referenceJsonOutput = {'function_call': 'mocked function_call_primary', 'for_loop': undefined, 'logical_expression': undefined, 'if_expression': undefined}
+      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
+    })
+    mo.it('testing for_loop logical_expression1', function () {
+      sinon.stub(jq, 'logicalExpression').withArgs('test logical_expression1').returns('mocked logical_expression1').withArgs(undefined).returns(undefined)
+      sinon.stub(jq, 'checkPri').withArgs('test logical_expression1').returns('mocked primary')
+      sinon.stub(jq, 'functionCallObj').withArgs('mocked primary').returns(undefined)
+      sinon.stub(jq, 'forLoopObj').withArgs('mocked primary').returns('mocked for_loop')
+      sinon.stub(jq, 'ifExpressionObj').withArgs('mocked primary').returns(undefined)
+      sinon.stub(jq, 'logicalExpressionObj').withArgs('test logical_expression1').returns(undefined)
+
+      var rawJson = {
+        'logical_expression1': 'test logical_expression1'
+      }
+      var jsonOutput = jq.simpleExpression(rawJson)
+      console.log(jsonOutput)
+      var referenceJsonOutput = {'function_call': undefined, 'for_loop': 'mocked for_loop', 'logical_expression': undefined, 'if_expression': undefined}
+      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
+    })
+    mo.it('testing ifExpressionObj logical_expression1', function () {
+      sinon.stub(jq, 'logicalExpression').withArgs('test logical_expression1').returns('mocked logical_expression1').withArgs(undefined).returns(undefined)
+      sinon.stub(jq, 'checkPri').withArgs('test logical_expression1').returns('mocked primary')
+      sinon.stub(jq, 'functionCallObj').withArgs('mocked primary').returns(undefined)
+      sinon.stub(jq, 'forLoopObj').withArgs('mocked primary').returns(undefined)
+      sinon.stub(jq, 'ifExpressionObj').withArgs('mocked primary').returns('mocked if_expression')
+      sinon.stub(jq, 'logicalExpressionObj').withArgs('test logical_expression1').returns(undefined)
+
+      var rawJson = {
+        'logical_expression1': 'test logical_expression1'
+      }
+      var jsonOutput = jq.simpleExpression(rawJson)
+      console.log(jsonOutput)
+      var referenceJsonOutput = {'function_call': undefined, 'for_loop': undefined, 'logical_expression': undefined, 'if_expression': 'mocked if_expression'}
+      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
+    })
+    mo.it('testing logical_expression logical_expression1', function () {
+      sinon.stub(jq, 'logicalExpression').withArgs('test logical_expression1').returns('mocked logical_expression1').withArgs(undefined).returns(undefined)
+      sinon.stub(jq, 'checkPri').withArgs('test logical_expression1').returns(undefined)
+      sinon.stub(jq, 'logicalExpressionObj').withArgs('test logical_expression1').returns('mocked logical_expression')
+
+      var rawJson = {
+        'logical_expression1': 'test logical_expression1'
+      }
+      var jsonOutput = jq.simpleExpression(rawJson)
+      console.log(jsonOutput)
+      var referenceJsonOutput = {'function_call': undefined, 'for_loop': undefined, 'logical_expression': 'mocked logical_expression', 'if_expression': undefined}
+      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
+    })
+  })
+  mo.describe('testing if_expression', function () {
+    mo.it('testing structure', function () {
+      sinon.stub(jq, 'logicalExpression').withArgs('test logical_expression1').returns('mocked logical_expression1').withArgs('test logical_expression2')
+              .returns('mocked logical_expression2').withArgs('test logical_expression3').returns('mocked logical_expression3')
+      var rawJson = {
+        'logical_expression1': 'test logical_expression1',
+        'logical_expression2': 'test logical_expression2',
+        'logical_expression3': 'test logical_expression3'
+      }
+      var jsonOutput = jq.simpleExpression(rawJson)
+      var referenceJsonOutput = 'mocked logical_expression1:mocked logical_expression2:mocked logical_expression3'
       as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
     })
   })
