@@ -13,7 +13,7 @@ endif
 # download maven source file to current directory and change its name
 install-maven:
 	@echo "Installing maven"
-	curl https://dlcdn.apache.org/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.tar.gz > apache-maven.tar.gz
+	curl https://archive.apache.org/dist/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.tar.gz > apache-maven.tar.gz
 	mkdir -p apache_maven
 	tar xzf apache-maven.tar.gz -C apache_maven --strip-components 1
 	rm -rf apache-maven.tar.gz
