@@ -7,7 +7,7 @@ const ut = require('../lib/util')
 const Promise = require('bluebird')
 const fs = Promise.promisifyAll(require('fs'))
 const glob = require('glob-promise')
-var logger = require('winston')
+const logger = require('winston')
 // const cheerio = require('cheerio')
 
 logger.configure({
@@ -24,8 +24,8 @@ logger.level = 'error'
 
 /** Function to get all the Modelica files to be tested
   */
-var getIntFiles = function (mode) {
-  var pattern
+const getIntFiles = function (mode) {
+  let pattern
   if (mode === 'cdl') {
     pattern = path.join(__dirname, 'FromModelica', '*.mo')
     return glob.sync(pattern)
@@ -36,8 +36,8 @@ var getIntFiles = function (mode) {
 
 /** Function that checks parsing from Modelica to JSON, in 'cdl' parsing mode
   */
-var checkCdlJSON = function (outFormat, extension, message) {
-  var mode = 'cdl'
+const checkCdlJSON = function (outFormat, extension, message) {
+  const mode = 'cdl'
   // process.env.MODELICAPATH = __dirname
   mo.it(message, () => {
     // mo files array to be tested.
@@ -46,17 +46,17 @@ var checkCdlJSON = function (outFormat, extension, message) {
       return !obj.includes('Extends')
     })
     // Name of subpackage to store json output files
-    var subPackName = (outFormat === 'raw-json' ? 'raw-json' : 'json')
+    const subPackName = (outFormat === 'raw-json' ? 'raw-json' : 'json')
     // When parsing mode is 'cdl', the moFiles should feed into parser one-by-one
 
-    var expectedOutputPath = path.join(process.cwd(), 'test', 'reference')
+    const expectedOutputPath = path.join(process.cwd(), 'test', 'reference')
 
     testMoFiles.map(fil => {
       // 'fil.split()' changes string 'fil' to be string array with single element
       // 'fil' is like '../test/FromModelica/***.mo'
       // const jsonNewCDL = pa.getJSON(fil.split(), mode, outFormat)
       pa.getJsons([fil], mode, outFormat, 'current', 'false')
-      var idx = fil.lastIndexOf(path.sep)
+      const idx = fil.lastIndexOf(path.sep)
       const jsonNewCDLFile = path.join(process.cwd(), subPackName, 'test', 'FromModelica', fil.slice(idx + 1, -3) + extension)
 
       // Read the stored json representation from disk
@@ -74,10 +74,10 @@ var checkCdlJSON = function (outFormat, extension, message) {
       // Update the path to be relative to the project home.
       // This is needed for the regression tests to be portable.
       if (oldCDL.modelicaFile) {
-        oldCDL['fullMoFilePath'] = oldCDL['modelicaFile'].split('modelica-json/')[1]
+        oldCDL.fullMoFilePath = oldCDL.modelicaFile.split('modelica-json/')[1]
       }
       if (neCDL.modelicaFile) {
-        neCDL['fullMoFilePath'] = neCDL['modelicaFile'].split('modelica-json/')[1]
+        neCDL.fullMoFilePath = neCDL.modelicaFile.split('modelica-json/')[1]
       }
       const tempOld = JSON.stringify(oldCDL)
       const tempNew = JSON.stringify(neCDL)
@@ -90,9 +90,9 @@ var checkCdlJSON = function (outFormat, extension, message) {
 
 /** Function that checks parsing from Modelica to JSON, in 'modelica' parsing mode
   */
- // TODO: modify this
-var checkModJSON = function (outFormat, extension, message) {
-  var mode = 'modelica'
+// TODO: modify this
+const checkModJSON = function (outFormat, extension, message) {
+  const mode = 'modelica'
   // process.env.MODELICAPATH = __dirname
   mo.it(message, () => {
     // mo files package to be tested
@@ -100,28 +100,28 @@ var checkModJSON = function (outFormat, extension, message) {
     const testMoFiles = ut.getMoFiles(testMoFilesTemp)
 
     // Name of subpackage to store json output files
-    var subPackName = (outFormat === 'raw-json' ? 'raw-json' : 'json')
+    const subPackName = (outFormat === 'raw-json' ? 'raw-json' : 'json')
     // When parsing mode is 'modelica', the moFiles should feed into parser in package
     // const jsonNewMOD = pa.getJSON(testMoFiles, mode, outFormat)
     pa.getJsons(testMoFiles, mode, outFormat, 'current', 'false')
-    var pattern = path.join('test', 'FromModelica', '*.mo')
-    var files = glob.sync(pattern)
-    var expectedOutputPath = path.join(process.cwd(), 'test', 'reference')
+    const pattern = path.join('test', 'FromModelica', '*.mo')
+    const files = glob.sync(pattern)
+    const expectedOutputPath = path.join(process.cwd(), 'test', 'reference')
 
-    for (var i = 0; i < files.length; i++) {
-      var idx2 = files[i].lastIndexOf(path.sep)
+    for (let i = 0; i < files.length; i++) {
+      const idx2 = files[i].lastIndexOf(path.sep)
       const fileNameMOD = files[i].slice(idx2 + 1, -3) + extension
       const oldFileMOD = path.join(expectedOutputPath, subPackName, 'test', 'FromModelica', fileNameMOD)
       // Read the old json
       const jsonOldMOD = JSON.parse(fs.readFileSync(oldFileMOD, 'utf8'))
 
       if (jsonOldMOD.modelicaFile) {
-        jsonOldMOD['fullMoFilePath'] = jsonOldMOD['modelicaFile'].split('modelica-json/')[1]
+        jsonOldMOD.fullMoFilePath = jsonOldMOD.modelicaFile.split('modelica-json/')[1]
       }
       const jsonNewMOD = path.join(expectedOutputPath, subPackName, 'test', 'FromModelica', fileNameMOD)
-      var neMOD = JSON.parse(fs.readFileSync(jsonNewMOD, 'utf8'))
+      const neMOD = JSON.parse(fs.readFileSync(jsonNewMOD, 'utf8'))
       if (neMOD.modelicaFile) {
-        neMOD['fullMoFilePath'] = neMOD['modelicaFile'].split('modelica-json/')[1]
+        neMOD.fullMoFilePath = neMOD.modelicaFile.split('modelica-json/')[1]
       }
 
       const tempOld = JSON.stringify(jsonOldMOD)

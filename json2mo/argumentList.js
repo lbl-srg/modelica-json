@@ -1,8 +1,8 @@
 function parse (content, rawJson = false) {
   const argumentParser = require('./argument')
-  var moOutput = ''
+  let moOutput = ''
   if (rawJson) {
-    var argumentStr = content.arguments
+    const argumentStr = content.arguments
 
     if (argumentStr != null) {
       argumentStr.forEach(argument => {
@@ -15,4 +15,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

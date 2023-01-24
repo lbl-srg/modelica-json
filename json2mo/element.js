@@ -6,7 +6,7 @@ function parse (content, rawJson = false) {
   const constrainingClauseParser = require('./constrainingClause')
   const commentParser = require('./comment')
 
-  var moOutput = ''
+  let moOutput = ''
   if (content.import_clause != null) {
     moOutput += importClauseParser.parse(content.import_clause, rawJson)
     moOutput += ';\n'
@@ -84,4 +84,4 @@ function parse (content, rawJson = false) {
   }
   return moOutput
 }
-module.exports = {parse}
+module.exports = { parse }

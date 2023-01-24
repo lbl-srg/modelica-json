@@ -1,14 +1,14 @@
 function parse (content, rawJson = false) {
   const statementParser = require('./statement')
 
-  var moOutput = ''
+  let moOutput = ''
   if (content.initial != null) {
     if (content.initial) {
       moOutput += 'initial '
     }
   }
   moOutput += 'algorithm'
-  var statements = null
+  let statements = null
   if (rawJson) {
     statements = content.statements
   } else {
@@ -24,4 +24,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

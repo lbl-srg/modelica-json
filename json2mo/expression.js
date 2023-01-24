@@ -1,7 +1,7 @@
 function parse (content, rawJson = false) {
   const simpleExpressionParser = require('./simpleExpression')
   const ifExpressionParser = require('./ifExpression')
-  var moOutput = ''
+  let moOutput = ''
 
   if (content.if_expression != null) {
     moOutput += ifExpressionParser.parse(content.if_expression, rawJson)
@@ -12,4 +12,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

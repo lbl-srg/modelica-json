@@ -2,7 +2,7 @@ function parse (content, rawJson = false) {
   const util = require('util')
   const functionCallArgsObjParser = require('./functionCallArgsObj')
 
-  var moOutput = ''
+  let moOutput = ''
   if (content.name != null) {
     moOutput += util.format('%s', content.name)
   }
@@ -14,4 +14,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

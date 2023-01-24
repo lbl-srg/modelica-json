@@ -3,7 +3,7 @@ function parse (content, rawJson = false) {
   const functionArgumentParser = require('./functionArgument')
   const functionArgumentsParser = require('./functionArguments')
   const forIndicesParser = require('./forIndices')
-  var moOutput = ''
+  let moOutput = ''
   moOutput += '('
 
   if (rawJson) {
@@ -11,7 +11,7 @@ function parse (content, rawJson = false) {
       moOutput += functionArgumentsParser.parse(content.function_arguments, rawJson)
     }
   } else {
-    var namedArguments = content.named_arguments // only in simplified-json
+    const namedArguments = content.named_arguments // only in simplified-json
 
     if (namedArguments != null) {
       namedArguments.forEach(ele => {
@@ -38,4 +38,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

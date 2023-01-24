@@ -1,9 +1,9 @@
 function parse (content, rawJson = false) {
   const classModificationParser = require('./classModification')
   const expressionParser = require('./expression')
-  var moOutput = ''
+  let moOutput = ''
 
-  var haveClaMod = content.class_modification != null
+  const haveClaMod = content.class_modification != null
   if (haveClaMod) {
     moOutput += classModificationParser.parse(content.class_modification, rawJson)
   }
@@ -25,4 +25,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

@@ -2,7 +2,7 @@ function parse (content, rawJson = false) {
   const nameParser = require('./name')
   const classModificationParser = require('./classModification')
 
-  var moOutput = ''
+  let moOutput = ''
   moOutput += 'constrainedby '
 
   if (content.name != null) {
@@ -14,4 +14,4 @@ function parse (content, rawJson = false) {
   }
   return moOutput
 }
-module.exports = {parse}
+module.exports = { parse }

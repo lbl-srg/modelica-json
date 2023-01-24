@@ -8,7 +8,7 @@ function parse (content, rawJson) {
   const whenStatementParser = require('./whenStatement')
   const commentParser = require('./comment')
 
-  var moOutput = ''
+  let moOutput = ''
   if (content.assignment_statement != null) {
     moOutput += '\n'
     moOutput += assignmentStatementParser.parse(content.assignment_statement, rawJson)
@@ -52,4 +52,4 @@ function parse (content, rawJson) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }
