@@ -1967,7 +1967,24 @@
                           },
                           "condition_attribute": {
                             "expression": {
-                              "simple_expression": "not with_D"
+                              "simple_expression": {
+                                "logical_expression": {
+                                  "logical_or": [
+                                    {
+                                      "logical_and": [
+                                        {
+                                          "not": true,
+                                          "arithmetic_expressions": [
+                                            {
+                                              "name": "with_D"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              }
                             }
                           },
                           "description": {
@@ -2467,7 +2484,24 @@
                           },
                           "condition_attribute": {
                             "expression": {
-                              "simple_expression": "not with_I"
+                              "simple_expression": {
+                                "logical_expression": {
+                                  "logical_or": [
+                                    {
+                                      "logical_and": [
+                                        {
+                                          "not": true,
+                                          "arithmetic_expressions": [
+                                            {
+                                              "name": "with_I"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              }
                             }
                           },
                           "description": {
@@ -4653,113 +4687,25 @@
                                 {
                                   "name": "Text",
                                   "attribute": {
-                                    "extent": [
-                                      {
-                                        "x": -32,
-                                        "y": -22
-                                      },
-                                      {
-                                        "x": 68,
-                                        "y": -62
-                                      }
-                                    ],
-                                    "textString": "\"P\"",
-                                    "visible": "([object Object])",
-                                    "lineColor": {
-                                      "r": 0,
-                                      "g": 0,
-                                      "b": 0
-                                    },
-                                    "fillColor": {
-                                      "r": 175,
-                                      "g": 175,
-                                      "b": 175
-                                    },
-                                    "fillPattern": "FillPattern.Solid"
+                                    "visible": "(controllerType == Buildings.Controls.OBC.CDL.Types.SimpleController.P)"
                                   }
                                 },
                                 {
                                   "name": "Text",
                                   "attribute": {
-                                    "extent": [
-                                      {
-                                        "x": -26,
-                                        "y": -22
-                                      },
-                                      {
-                                        "x": 74,
-                                        "y": -62
-                                      }
-                                    ],
-                                    "textString": "\"PI\"",
-                                    "visible": "([object Object])",
-                                    "lineColor": {
-                                      "r": 0,
-                                      "g": 0,
-                                      "b": 0
-                                    },
-                                    "fillColor": {
-                                      "r": 175,
-                                      "g": 175,
-                                      "b": 175
-                                    },
-                                    "fillPattern": "FillPattern.Solid"
+                                    "visible": "(controllerType == Buildings.Controls.OBC.CDL.Types.SimpleController.PI)"
                                   }
                                 },
                                 {
                                   "name": "Text",
                                   "attribute": {
-                                    "extent": [
-                                      {
-                                        "x": -16,
-                                        "y": -22
-                                      },
-                                      {
-                                        "x": 88,
-                                        "y": -62
-                                      }
-                                    ],
-                                    "textString": "\"P D\"",
-                                    "visible": "([object Object])",
-                                    "lineColor": {
-                                      "r": 0,
-                                      "g": 0,
-                                      "b": 0
-                                    },
-                                    "fillColor": {
-                                      "r": 175,
-                                      "g": 175,
-                                      "b": 175
-                                    },
-                                    "fillPattern": "FillPattern.Solid"
+                                    "visible": "(controllerType == Buildings.Controls.OBC.CDL.Types.SimpleController.PD)"
                                   }
                                 },
                                 {
                                   "name": "Text",
                                   "attribute": {
-                                    "extent": [
-                                      {
-                                        "x": -14,
-                                        "y": -22
-                                      },
-                                      {
-                                        "x": 86,
-                                        "y": -62
-                                      }
-                                    ],
-                                    "textString": "\"PID\"",
-                                    "visible": "([object Object])",
-                                    "lineColor": {
-                                      "r": 0,
-                                      "g": 0,
-                                      "b": 0
-                                    },
-                                    "fillColor": {
-                                      "r": 175,
-                                      "g": 175,
-                                      "b": 175
-                                    },
-                                    "fillPattern": "FillPattern.Solid"
+                                    "visible": "(controllerType == Buildings.Controls.OBC.CDL.Types.SimpleController.PID)"
                                   }
                                 },
                                 {
@@ -5130,6 +5076,6 @@
     }
   ],
   "modelicaFile": "Buildings/Controls/OBC/CDL/Continuous/PID.mo",
-  "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Continuous/PID.mo",
+  "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Continuous/PID.mo",
   "checksum": "9df8c5f870bd4830e859773213e59dcb"
 }

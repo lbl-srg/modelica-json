@@ -129,7 +129,30 @@
                       "assignment_equation": {
                         "lhs": "y",
                         "rhs": {
-                          "simple_expression": "u1 and u2"
+                          "simple_expression": {
+                            "logical_expression": {
+                              "logical_or": [
+                                {
+                                  "logical_and": [
+                                    {
+                                      "arithmetic_expressions": [
+                                        {
+                                          "name": "u1"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "arithmetic_expressions": [
+                                        {
+                                          "name": "u2"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          }
                         }
                       }
                     }
@@ -376,6 +399,6 @@
     }
   ],
   "modelicaFile": "Buildings/Controls/OBC/CDL/Logical/And.mo",
-  "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/And.mo",
+  "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/And.mo",
   "checksum": "abb4a9c072fed007645ee9127a8371e1"
 }

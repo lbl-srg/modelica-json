@@ -175,7 +175,7 @@
                               "name": "homotopy",
                               "arguments": [
                                 {
-                                  "name": "actual=smooth(0,noEvent(if [object Object] then uMax else if [object Object] then uMin else u)),simplified=u"
+                                  "name": "actual=smooth(0,noEvent(if u > uMax then uMax else if u < uMin then uMin else u)),simplified=u"
                                 }
                               ]
                             }
@@ -556,6 +556,6 @@
     }
   ],
   "modelicaFile": "Buildings/Controls/OBC/CDL/Continuous/Limiter.mo",
-  "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Continuous/Limiter.mo",
+  "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Continuous/Limiter.mo",
   "checksum": "a9cbb98cfe8949e478e93ac296c2d928"
 }

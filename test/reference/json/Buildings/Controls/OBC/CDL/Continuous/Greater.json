@@ -367,7 +367,24 @@
                           },
                           "condition_attribute": {
                             "expression": {
-                              "simple_expression": "not have_hysteresis"
+                              "simple_expression": {
+                                "logical_expression": {
+                                  "logical_or": [
+                                    {
+                                      "logical_and": [
+                                        {
+                                          "not": true,
+                                          "arithmetic_expressions": [
+                                            {
+                                              "name": "have_hysteresis"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              }
                             }
                           },
                           "description": {
@@ -400,633 +417,637 @@
                     }
                   },
                   {
-                    "class_definition": {
-                      "class_prefixes": "block",
-                      "class_specifier": {
-                        "long_class_specifier": {
-                          "identifier": "GreaterNoHysteresis",
-                          "description_string": "Greater block without hysteresis",
-                          "composition": {
-                            "element_list": [
-                              {
-                                "component_clause": {
-                                  "type_specifier": "Interfaces.RealInput",
-                                  "component_list": [
-                                    {
-                                      "declaration": {
-                                        "identifier": "u1"
-                                      },
-                                      "description": {
-                                        "description_string": "Input u1",
-                                        "annotation": [
-                                          {
-                                            "element_modification_or_replaceable": {
-                                              "element_modification": {
-                                                "Placement": {
-                                                  "transformation": {
-                                                    "extent": [
-                                                      {
-                                                        "x": -140,
-                                                        "y": -20
-                                                      },
-                                                      {
-                                                        "x": -100,
-                                                        "y": 20
-                                                      }
-                                                    ]
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        ]
-                                      }
-                                    }
-                                  ]
-                                }
-                              },
-                              {
-                                "component_clause": {
-                                  "type_specifier": "Interfaces.RealInput",
-                                  "component_list": [
-                                    {
-                                      "declaration": {
-                                        "identifier": "u2"
-                                      },
-                                      "description": {
-                                        "description_string": "Input u2",
-                                        "annotation": [
-                                          {
-                                            "element_modification_or_replaceable": {
-                                              "element_modification": {
-                                                "Placement": {
-                                                  "transformation": {
-                                                    "extent": [
-                                                      {
-                                                        "x": -140,
-                                                        "y": -100
-                                                      },
-                                                      {
-                                                        "x": -100,
-                                                        "y": -60
-                                                      }
-                                                    ]
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        ]
-                                      }
-                                    }
-                                  ]
-                                }
-                              },
-                              {
-                                "component_clause": {
-                                  "type_specifier": "Interfaces.BooleanOutput",
-                                  "component_list": [
-                                    {
-                                      "declaration": {
-                                        "identifier": "y"
-                                      },
-                                      "description": {
-                                        "description_string": "Output y",
-                                        "annotation": [
-                                          {
-                                            "element_modification_or_replaceable": {
-                                              "element_modification": {
-                                                "Placement": {
-                                                  "transformation": {
-                                                    "extent": [
-                                                      {
-                                                        "x": 100,
-                                                        "y": -20
-                                                      },
-                                                      {
-                                                        "x": 140,
-                                                        "y": 20
-                                                      }
-                                                    ]
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        ]
-                                      }
-                                    }
-                                  ]
-                                }
-                              }
-                            ],
-                            "element_sections": [
-                              {
-                                "equation_section": {
-                                  "equation": [
-                                    {
-                                      "assignment_equation": {
-                                        "lhs": "y",
-                                        "rhs": {
-                                          "simple_expression": {
-                                            "logical_expression": {
-                                              "logical_or": [
-                                                {
-                                                  "logical_and": [
-                                                    {
-                                                      "arithmetic_expressions": [
+                    "class_definition": [
+                      {
+                        "class_prefixes": "block",
+                        "class_specifier": {
+                          "long_class_specifier": {
+                            "identifier": "GreaterNoHysteresis",
+                            "description_string": "Greater block without hysteresis",
+                            "composition": {
+                              "element_list": [
+                                {
+                                  "component_clause": {
+                                    "type_specifier": "Interfaces.RealInput",
+                                    "component_list": [
+                                      {
+                                        "declaration": {
+                                          "identifier": "u1"
+                                        },
+                                        "description": {
+                                          "description_string": "Input u1",
+                                          "annotation": [
+                                            {
+                                              "element_modification_or_replaceable": {
+                                                "element_modification": {
+                                                  "Placement": {
+                                                    "transformation": {
+                                                      "extent": [
                                                         {
-                                                          "name": "u1"
+                                                          "x": -140,
+                                                          "y": -20
                                                         },
                                                         {
-                                                          "name": "u2"
+                                                          "x": -100,
+                                                          "y": 20
                                                         }
-                                                      ],
-                                                      "relation_operator": ">"
+                                                      ]
                                                     }
-                                                  ]
+                                                  }
                                                 }
-                                              ]
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      }
+                                    ]
+                                  }
+                                },
+                                {
+                                  "component_clause": {
+                                    "type_specifier": "Interfaces.RealInput",
+                                    "component_list": [
+                                      {
+                                        "declaration": {
+                                          "identifier": "u2"
+                                        },
+                                        "description": {
+                                          "description_string": "Input u2",
+                                          "annotation": [
+                                            {
+                                              "element_modification_or_replaceable": {
+                                                "element_modification": {
+                                                  "Placement": {
+                                                    "transformation": {
+                                                      "extent": [
+                                                        {
+                                                          "x": -140,
+                                                          "y": -100
+                                                        },
+                                                        {
+                                                          "x": -100,
+                                                          "y": -60
+                                                        }
+                                                      ]
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      }
+                                    ]
+                                  }
+                                },
+                                {
+                                  "component_clause": {
+                                    "type_specifier": "Interfaces.BooleanOutput",
+                                    "component_list": [
+                                      {
+                                        "declaration": {
+                                          "identifier": "y"
+                                        },
+                                        "description": {
+                                          "description_string": "Output y",
+                                          "annotation": [
+                                            {
+                                              "element_modification_or_replaceable": {
+                                                "element_modification": {
+                                                  "Placement": {
+                                                    "transformation": {
+                                                      "extent": [
+                                                        {
+                                                          "x": 100,
+                                                          "y": -20
+                                                        },
+                                                        {
+                                                          "x": 140,
+                                                          "y": 20
+                                                        }
+                                                      ]
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      }
+                                    ]
+                                  }
+                                }
+                              ],
+                              "element_sections": [
+                                {
+                                  "equation_section": {
+                                    "equation": [
+                                      {
+                                        "assignment_equation": {
+                                          "lhs": "y",
+                                          "rhs": {
+                                            "simple_expression": {
+                                              "logical_expression": {
+                                                "logical_or": [
+                                                  {
+                                                    "logical_and": [
+                                                      {
+                                                        "arithmetic_expressions": [
+                                                          {
+                                                            "name": "u1"
+                                                          },
+                                                          {
+                                                            "name": "u2"
+                                                          }
+                                                        ],
+                                                        "relation_operator": ">"
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
                                             }
                                           }
                                         }
                                       }
-                                    }
-                                  ]
+                                    ]
+                                  }
                                 }
-                              }
-                            ],
-                            "annotation": [
-                              {
-                                "element_modification_or_replaceable": {
-                                  "element_modification": {
-                                    "name": "Icon",
-                                    "modification": {
-                                      "class_modification": [
-                                        {
-                                          "element_modification_or_replaceable": {
-                                            "element_modification": {
-                                              "graphics": [
-                                                {
-                                                  "name": "Rectangle",
-                                                  "attribute": {
-                                                    "extent": [
-                                                      {
-                                                        "x": -100,
-                                                        "y": 100
+                              ],
+                              "annotation": [
+                                {
+                                  "element_modification_or_replaceable": {
+                                    "element_modification": {
+                                      "name": "Icon",
+                                      "modification": {
+                                        "class_modification": [
+                                          {
+                                            "element_modification_or_replaceable": {
+                                              "element_modification": {
+                                                "graphics": [
+                                                  {
+                                                    "name": "Rectangle",
+                                                    "attribute": {
+                                                      "extent": [
+                                                        {
+                                                          "x": -100,
+                                                          "y": 100
+                                                        },
+                                                        {
+                                                          "x": 100,
+                                                          "y": -100
+                                                        }
+                                                      ],
+                                                      "borderPattern": "BorderPattern.Raised",
+                                                      "lineColor": {
+                                                        "r": 0,
+                                                        "g": 0,
+                                                        "b": 0
                                                       },
-                                                      {
-                                                        "x": 100,
-                                                        "y": -100
-                                                      }
-                                                    ],
-                                                    "borderPattern": "BorderPattern.Raised",
-                                                    "lineColor": {
-                                                      "r": 0,
-                                                      "g": 0,
-                                                      "b": 0
-                                                    },
-                                                    "fillColor": {
-                                                      "r": 210,
-                                                      "g": 210,
-                                                      "b": 210
-                                                    },
-                                                    "fillPattern": "FillPattern.Solid",
-                                                    "lineThickness": 5
-                                                  }
-                                                },
-                                                {
-                                                  "name": "Text",
-                                                  "attribute": {
-                                                    "extent": [
-                                                      {
-                                                        "x": -150,
-                                                        "y": 150
+                                                      "fillColor": {
+                                                        "r": 210,
+                                                        "g": 210,
+                                                        "b": 210
                                                       },
-                                                      {
-                                                        "x": 150,
-                                                        "y": 110
+                                                      "fillPattern": "FillPattern.Solid",
+                                                      "lineThickness": 5
+                                                    }
+                                                  },
+                                                  {
+                                                    "name": "Text",
+                                                    "attribute": {
+                                                      "extent": [
+                                                        {
+                                                          "x": -150,
+                                                          "y": 150
+                                                        },
+                                                        {
+                                                          "x": 150,
+                                                          "y": 110
+                                                        }
+                                                      ],
+                                                      "textString": "\"%name\"",
+                                                      "textColor": {
+                                                        "r": 0,
+                                                        "g": 0,
+                                                        "b": 255
                                                       }
-                                                    ],
-                                                    "textString": "\"%name\"",
-                                                    "textColor": {
-                                                      "r": 0,
-                                                      "g": 0,
-                                                      "b": 255
                                                     }
                                                   }
-                                                }
-                                              ]
+                                                ]
+                                              }
                                             }
                                           }
-                                        }
-                                      ]
+                                        ]
+                                      }
                                     }
                                   }
                                 }
-                              }
-                            ]
+                              ]
+                            }
                           }
                         }
                       }
-                    }
+                    ]
                   },
                   {
-                    "class_definition": {
-                      "class_prefixes": "block",
-                      "class_specifier": {
-                        "long_class_specifier": {
-                          "identifier": "GreaterWithHysteresis",
-                          "description_string": "Greater block without hysteresis",
-                          "composition": {
-                            "element_list": [
-                              {
-                                "component_clause": {
-                                  "type_prefix": "parameter",
-                                  "type_specifier": "Real",
-                                  "component_list": [
-                                    {
-                                      "declaration": {
-                                        "identifier": "h",
-                                        "modification": {
-                                          "class_modification": [
+                    "class_definition": [
+                      {
+                        "class_prefixes": "block",
+                        "class_specifier": {
+                          "long_class_specifier": {
+                            "identifier": "GreaterWithHysteresis",
+                            "description_string": "Greater block without hysteresis",
+                            "composition": {
+                              "element_list": [
+                                {
+                                  "component_clause": {
+                                    "type_prefix": "parameter",
+                                    "type_specifier": "Real",
+                                    "component_list": [
+                                      {
+                                        "declaration": {
+                                          "identifier": "h",
+                                          "modification": {
+                                            "class_modification": [
+                                              {
+                                                "element_modification_or_replaceable": {
+                                                  "final": true,
+                                                  "element_modification": {
+                                                    "name": "min",
+                                                    "modification": {
+                                                      "equal": true,
+                                                      "expression": {
+                                                        "simple_expression": "0"
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            ],
+                                            "equal": true,
+                                            "expression": {
+                                              "simple_expression": "0"
+                                            }
+                                          }
+                                        },
+                                        "description": {
+                                          "description_string": "Hysteresis",
+                                          "annotation": [
                                             {
                                               "element_modification_or_replaceable": {
-                                                "final": true,
                                                 "element_modification": {
-                                                  "name": "min",
+                                                  "name": "Evaluate",
                                                   "modification": {
                                                     "equal": true,
                                                     "expression": {
-                                                      "simple_expression": "0"
+                                                      "simple_expression": "true"
                                                     }
                                                   }
                                                 }
                                               }
                                             }
-                                          ],
-                                          "equal": true,
-                                          "expression": {
-                                            "simple_expression": "0"
-                                          }
+                                          ]
                                         }
-                                      },
-                                      "description": {
-                                        "description_string": "Hysteresis",
-                                        "annotation": [
-                                          {
-                                            "element_modification_or_replaceable": {
-                                              "element_modification": {
-                                                "name": "Evaluate",
-                                                "modification": {
-                                                  "equal": true,
-                                                  "expression": {
-                                                    "simple_expression": "true"
-                                                  }
-                                                }
-                                              }
+                                      }
+                                    ]
+                                  }
+                                },
+                                {
+                                  "component_clause": {
+                                    "type_prefix": "parameter",
+                                    "type_specifier": "Boolean",
+                                    "component_list": [
+                                      {
+                                        "declaration": {
+                                          "identifier": "pre_y_start",
+                                          "modification": {
+                                            "equal": true,
+                                            "expression": {
+                                              "simple_expression": "false"
                                             }
                                           }
-                                        ]
-                                      }
-                                    }
-                                  ]
-                                }
-                              },
-                              {
-                                "component_clause": {
-                                  "type_prefix": "parameter",
-                                  "type_specifier": "Boolean",
-                                  "component_list": [
-                                    {
-                                      "declaration": {
-                                        "identifier": "pre_y_start",
-                                        "modification": {
-                                          "equal": true,
-                                          "expression": {
-                                            "simple_expression": "false"
-                                          }
-                                        }
-                                      },
-                                      "description": {
-                                        "description_string": "Value of pre(y) at initial time",
-                                        "annotation": [
-                                          {
-                                            "element_modification_or_replaceable": {
-                                              "element_modification": {
-                                                "name": "Dialog",
-                                                "modification": {
-                                                  "class_modification": [
-                                                    {
-                                                      "element_modification_or_replaceable": {
-                                                        "element_modification": {
-                                                          "name": "tab",
-                                                          "modification": {
-                                                            "equal": true,
-                                                            "expression": {
-                                                              "simple_expression": "\"Advanced\""
+                                        },
+                                        "description": {
+                                          "description_string": "Value of pre(y) at initial time",
+                                          "annotation": [
+                                            {
+                                              "element_modification_or_replaceable": {
+                                                "element_modification": {
+                                                  "name": "Dialog",
+                                                  "modification": {
+                                                    "class_modification": [
+                                                      {
+                                                        "element_modification_or_replaceable": {
+                                                          "element_modification": {
+                                                            "name": "tab",
+                                                            "modification": {
+                                                              "equal": true,
+                                                              "expression": {
+                                                                "simple_expression": "\"Advanced\""
+                                                              }
                                                             }
                                                           }
                                                         }
                                                       }
-                                                    }
-                                                  ]
-                                                }
-                                              }
-                                            }
-                                          }
-                                        ]
-                                      }
-                                    }
-                                  ]
-                                }
-                              },
-                              {
-                                "component_clause": {
-                                  "type_specifier": "Interfaces.RealInput",
-                                  "component_list": [
-                                    {
-                                      "declaration": {
-                                        "identifier": "u1"
-                                      },
-                                      "description": {
-                                        "description_string": "Input u1",
-                                        "annotation": [
-                                          {
-                                            "element_modification_or_replaceable": {
-                                              "element_modification": {
-                                                "Placement": {
-                                                  "transformation": {
-                                                    "extent": [
-                                                      {
-                                                        "x": -140,
-                                                        "y": -20
-                                                      },
-                                                      {
-                                                        "x": -100,
-                                                        "y": 20
-                                                      }
                                                     ]
                                                   }
                                                 }
                                               }
                                             }
-                                          }
-                                        ]
+                                          ]
+                                        }
                                       }
-                                    }
-                                  ]
-                                }
-                              },
-                              {
-                                "component_clause": {
-                                  "type_specifier": "Interfaces.RealInput",
-                                  "component_list": [
-                                    {
-                                      "declaration": {
-                                        "identifier": "u2"
-                                      },
-                                      "description": {
-                                        "description_string": "Input u2",
-                                        "annotation": [
-                                          {
-                                            "element_modification_or_replaceable": {
-                                              "element_modification": {
-                                                "Placement": {
-                                                  "transformation": {
-                                                    "extent": [
-                                                      {
-                                                        "x": -140,
-                                                        "y": -100
-                                                      },
-                                                      {
-                                                        "x": -100,
-                                                        "y": -60
-                                                      }
-                                                    ]
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        ]
-                                      }
-                                    }
-                                  ]
-                                }
-                              },
-                              {
-                                "component_clause": {
-                                  "type_specifier": "Interfaces.BooleanOutput",
-                                  "component_list": [
-                                    {
-                                      "declaration": {
-                                        "identifier": "y"
-                                      },
-                                      "description": {
-                                        "description_string": "Output y",
-                                        "annotation": [
-                                          {
-                                            "element_modification_or_replaceable": {
-                                              "element_modification": {
-                                                "Placement": {
-                                                  "transformation": {
-                                                    "extent": [
-                                                      {
-                                                        "x": 100,
-                                                        "y": -20
-                                                      },
-                                                      {
-                                                        "x": 140,
-                                                        "y": 20
-                                                      }
-                                                    ]
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        ]
-                                      }
-                                    }
-                                  ]
-                                }
-                              }
-                            ],
-                            "element_sections": [
-                              {
-                                "equation_section": {
-                                  "initial": true,
-                                  "equation": [
-                                    {
-                                      "function_call_equation": {
-                                        "function_name": "assert",
-                                        "function_call_args": {
-                                          "function_argument": {
-                                            "expression": {
-                                              "simple_expression": {
-                                                "logical_expression": {
-                                                  "logical_or": [
-                                                    {
-                                                      "logical_and": [
+                                    ]
+                                  }
+                                },
+                                {
+                                  "component_clause": {
+                                    "type_specifier": "Interfaces.RealInput",
+                                    "component_list": [
+                                      {
+                                        "declaration": {
+                                          "identifier": "u1"
+                                        },
+                                        "description": {
+                                          "description_string": "Input u1",
+                                          "annotation": [
+                                            {
+                                              "element_modification_or_replaceable": {
+                                                "element_modification": {
+                                                  "Placement": {
+                                                    "transformation": {
+                                                      "extent": [
                                                         {
-                                                          "arithmetic_expressions": [
-                                                            {
-                                                              "name": "h"
-                                                            },
-                                                            {
-                                                              "name": "0"
-                                                            }
-                                                          ],
-                                                          "relation_operator": ">="
+                                                          "x": -140,
+                                                          "y": -20
+                                                        },
+                                                        {
+                                                          "x": -100,
+                                                          "y": 20
                                                         }
                                                       ]
                                                     }
-                                                  ]
+                                                  }
                                                 }
                                               }
                                             }
-                                          },
-                                          "function_arguments": {
+                                          ]
+                                        }
+                                      }
+                                    ]
+                                  }
+                                },
+                                {
+                                  "component_clause": {
+                                    "type_specifier": "Interfaces.RealInput",
+                                    "component_list": [
+                                      {
+                                        "declaration": {
+                                          "identifier": "u2"
+                                        },
+                                        "description": {
+                                          "description_string": "Input u2",
+                                          "annotation": [
+                                            {
+                                              "element_modification_or_replaceable": {
+                                                "element_modification": {
+                                                  "Placement": {
+                                                    "transformation": {
+                                                      "extent": [
+                                                        {
+                                                          "x": -140,
+                                                          "y": -100
+                                                        },
+                                                        {
+                                                          "x": -100,
+                                                          "y": -60
+                                                        }
+                                                      ]
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      }
+                                    ]
+                                  }
+                                },
+                                {
+                                  "component_clause": {
+                                    "type_specifier": "Interfaces.BooleanOutput",
+                                    "component_list": [
+                                      {
+                                        "declaration": {
+                                          "identifier": "y"
+                                        },
+                                        "description": {
+                                          "description_string": "Output y",
+                                          "annotation": [
+                                            {
+                                              "element_modification_or_replaceable": {
+                                                "element_modification": {
+                                                  "Placement": {
+                                                    "transformation": {
+                                                      "extent": [
+                                                        {
+                                                          "x": 100,
+                                                          "y": -20
+                                                        },
+                                                        {
+                                                          "x": 140,
+                                                          "y": 20
+                                                        }
+                                                      ]
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      }
+                                    ]
+                                  }
+                                }
+                              ],
+                              "element_sections": [
+                                {
+                                  "equation_section": {
+                                    "initial": true,
+                                    "equation": [
+                                      {
+                                        "function_call_equation": {
+                                          "function_name": "assert",
+                                          "function_call_args": {
                                             "function_argument": {
                                               "expression": {
-                                                "simple_expression": "\"Hysteresis must not be negative\""
+                                                "simple_expression": {
+                                                  "logical_expression": {
+                                                    "logical_or": [
+                                                      {
+                                                        "logical_and": [
+                                                          {
+                                                            "arithmetic_expressions": [
+                                                              {
+                                                                "name": "h"
+                                                              },
+                                                              {
+                                                                "name": "0"
+                                                              }
+                                                            ],
+                                                            "relation_operator": ">="
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            "function_arguments": {
+                                              "function_argument": {
+                                                "expression": {
+                                                  "simple_expression": "\"Hysteresis must not be negative\""
+                                                }
                                               }
                                             }
                                           }
                                         }
-                                      }
-                                    },
-                                    {
-                                      "assignment_equation": {
-                                        "lhs": {
-                                          "function_call": {
-                                            "name": "pre",
-                                            "arguments": [
-                                              {
-                                                "name": "y"
-                                              }
-                                            ]
-                                          }
-                                        },
-                                        "rhs": {
-                                          "simple_expression": "pre_y_start"
-                                        }
-                                      }
-                                    }
-                                  ]
-                                }
-                              },
-                              {
-                                "equation_section": {
-                                  "equation": [
-                                    {
-                                      "assignment_equation": {
-                                        "lhs": "y",
-                                        "rhs": {
-                                          "simple_expression": "([object Object])"
-                                        }
-                                      }
-                                    }
-                                  ]
-                                }
-                              }
-                            ],
-                            "annotation": [
-                              {
-                                "element_modification_or_replaceable": {
-                                  "element_modification": {
-                                    "name": "Icon",
-                                    "modification": {
-                                      "class_modification": [
-                                        {
-                                          "element_modification_or_replaceable": {
-                                            "element_modification": {
-                                              "graphics": [
+                                      },
+                                      {
+                                        "assignment_equation": {
+                                          "lhs": {
+                                            "function_call": {
+                                              "name": "pre",
+                                              "arguments": [
                                                 {
-                                                  "name": "Rectangle",
-                                                  "attribute": {
-                                                    "extent": [
-                                                      {
-                                                        "x": -100,
-                                                        "y": 100
-                                                      },
-                                                      {
-                                                        "x": 100,
-                                                        "y": -100
-                                                      }
-                                                    ],
-                                                    "borderPattern": "BorderPattern.Raised",
-                                                    "lineColor": {
-                                                      "r": 0,
-                                                      "g": 0,
-                                                      "b": 0
-                                                    },
-                                                    "fillColor": {
-                                                      "r": 210,
-                                                      "g": 210,
-                                                      "b": 210
-                                                    },
-                                                    "fillPattern": "FillPattern.Solid",
-                                                    "lineThickness": 5
-                                                  }
-                                                },
-                                                {
-                                                  "name": "Text",
-                                                  "attribute": {
-                                                    "extent": [
-                                                      {
-                                                        "x": -150,
-                                                        "y": 150
-                                                      },
-                                                      {
-                                                        "x": 150,
-                                                        "y": 110
-                                                      }
-                                                    ],
-                                                    "textString": "\"%name\"",
-                                                    "textColor": {
-                                                      "r": 0,
-                                                      "g": 0,
-                                                      "b": 255
-                                                    }
-                                                  }
-                                                },
-                                                {
-                                                  "name": "Text",
-                                                  "attribute": {
-                                                    "extent": [
-                                                      {
-                                                        "x": -64,
-                                                        "y": 62
-                                                      },
-                                                      {
-                                                        "x": 62,
-                                                        "y": 92
-                                                      }
-                                                    ],
-                                                    "textString": ",textString=",
-                                                    "textColor": {
-                                                      "r": 0,
-                                                      "g": 0,
-                                                      "b": 0
-                                                    }
-                                                  }
+                                                  "name": "y"
                                                 }
                                               ]
                                             }
+                                          },
+                                          "rhs": {
+                                            "simple_expression": "pre_y_start"
                                           }
                                         }
-                                      ]
+                                      }
+                                    ]
+                                  }
+                                },
+                                {
+                                  "equation_section": {
+                                    "equation": [
+                                      {
+                                        "assignment_equation": {
+                                          "lhs": "y",
+                                          "rhs": {
+                                            "simple_expression": "(not pre(y) and u1 > u2 or pre(y) and u1 > u2 -h)"
+                                          }
+                                        }
+                                      }
+                                    ]
+                                  }
+                                }
+                              ],
+                              "annotation": [
+                                {
+                                  "element_modification_or_replaceable": {
+                                    "element_modification": {
+                                      "name": "Icon",
+                                      "modification": {
+                                        "class_modification": [
+                                          {
+                                            "element_modification_or_replaceable": {
+                                              "element_modification": {
+                                                "graphics": [
+                                                  {
+                                                    "name": "Rectangle",
+                                                    "attribute": {
+                                                      "extent": [
+                                                        {
+                                                          "x": -100,
+                                                          "y": 100
+                                                        },
+                                                        {
+                                                          "x": 100,
+                                                          "y": -100
+                                                        }
+                                                      ],
+                                                      "borderPattern": "BorderPattern.Raised",
+                                                      "lineColor": {
+                                                        "r": 0,
+                                                        "g": 0,
+                                                        "b": 0
+                                                      },
+                                                      "fillColor": {
+                                                        "r": 210,
+                                                        "g": 210,
+                                                        "b": 210
+                                                      },
+                                                      "fillPattern": "FillPattern.Solid",
+                                                      "lineThickness": 5
+                                                    }
+                                                  },
+                                                  {
+                                                    "name": "Text",
+                                                    "attribute": {
+                                                      "extent": [
+                                                        {
+                                                          "x": -150,
+                                                          "y": 150
+                                                        },
+                                                        {
+                                                          "x": 150,
+                                                          "y": 110
+                                                        }
+                                                      ],
+                                                      "textString": "\"%name\"",
+                                                      "textColor": {
+                                                        "r": 0,
+                                                        "g": 0,
+                                                        "b": 255
+                                                      }
+                                                    }
+                                                  },
+                                                  {
+                                                    "name": "Text",
+                                                    "attribute": {
+                                                      "extent": [
+                                                        {
+                                                          "x": -64,
+                                                          "y": 62
+                                                        },
+                                                        {
+                                                          "x": 62,
+                                                          "y": 92
+                                                        }
+                                                      ],
+                                                      "textString": ",textString=",
+                                                      "textColor": {
+                                                        "r": 0,
+                                                        "g": 0,
+                                                        "b": 0
+                                                      }
+                                                    }
+                                                  }
+                                                ]
+                                              }
+                                            }
+                                          }
+                                        ]
+                                      }
                                     }
                                   }
                                 }
-                              }
-                            ]
+                              ]
+                            }
                           }
                         }
                       }
-                    }
+                    ]
                   }
                 ]
               },
@@ -1729,6 +1750,6 @@
     }
   ],
   "modelicaFile": "Buildings/Controls/OBC/CDL/Continuous/Greater.mo",
-  "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Continuous/Greater.mo",
+  "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Continuous/Greater.mo",
   "checksum": "323c778e971495a461755b36e08d76d6"
 }
