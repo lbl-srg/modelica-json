@@ -2,7 +2,7 @@ function parse (content, rawJson = false) {
   const util = require('util')
 
   var moOutput = ''
-  moOutput += util.format('%s', content[0].name) 
+  moOutput += util.format('%s', content[0].name)
   moOutput += ' in '
   moOutput += util.format('%s', content[0].range)
   if (content.length > 1) {

@@ -3,18 +3,18 @@ function parse (content, rawJson = false) {
   const expressionParser = require('./expression')
   var moOutput = ''
 
-  var have_claMod = content.class_modification != null
-  if (have_claMod) {
+  var haveClaMod = content.class_modification != null
+  if (haveClaMod) {
     moOutput += classModificationParser.parse(content.class_modification, rawJson)
   }
 
   if (content.equal != null) {
-    if (have_claMod) { moOutput += '\t' }
+    if (haveClaMod) { moOutput += '\t' }
     if (content.equal) {
       moOutput += '='
     }
   } else if (content.colon_equal != null) {
-    if (have_claMod) { moOutput += '\t' }
+    if (haveClaMod) { moOutput += '\t' }
     if (content.colon_equal) {
       moOutput += ':='
     }

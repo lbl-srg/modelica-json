@@ -9,7 +9,7 @@ function parse (content, rawJson = false) {
     moOutput += ' for '
     moOutput += forIndiceObjParser.parse(content[0].for_loop, rawJson)
   } else {
-    if  (content.length > 1) {
+    if (content.length > 1) {
       moOutput += util.format('%s', content[0].name)
       moOutput += ','
       moOutput += util.format('%s', content[1].name)

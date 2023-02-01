@@ -1,6 +1,6 @@
 function parse (content, rawJson = false) {
   const expressionParser = require('./expression')
-  const forIndiceObjParser = require('./forIndicesObj') 
+  const forIndiceObjParser = require('./forIndicesObj')
 
   var moOutput = ''
   if (content != null) {
