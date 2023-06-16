@@ -3,7 +3,7 @@ function parse (content, rawJson = false) {
   const componentReferenceParser = require('./componentReference')
   const expressionListParser = require('./expressionList')
 
-  var moOutput = ''
+  let moOutput = ''
 
   if (content.component_reference != null) {
     moOutput += componentReferenceParser.parse(content.component_reference, rawJson)
@@ -19,4 +19,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

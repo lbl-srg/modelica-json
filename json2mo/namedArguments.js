@@ -1,7 +1,7 @@
 function parse (content, rawJson = false) {
   const namedArgumentParser = require('./namedArgument')
 
-  var moOutput = ''
+  let moOutput = ''
 
   if (rawJson) {
     if (content.named_argument != null) {
@@ -16,4 +16,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

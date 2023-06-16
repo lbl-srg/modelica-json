@@ -1,5 +1,5 @@
 function parse (content, rawJson = false) {
-  var moOutput = ''
+  let moOutput = ''
   if (rawJson) {
     if (content.dot_op != null) {
       if (content.dot_op) {
@@ -14,4 +14,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

@@ -4,12 +4,12 @@ function parse (content, rawJson = false) {
   const externalCompositionParser = require('./externalComposition')
   const annotationParser = require('./annotation')
 
-  var moOutput = ''
+  let moOutput = ''
   if (content.element_list != null) {
     moOutput += elementListParser.parse(content.element_list, rawJson)
   }
   if (content.element_sections != null) {
-    var elementSections = content.element_sections
+    const elementSections = content.element_sections
     elementSections.forEach(ele => {
       moOutput += elementSectionParser.parse(ele, rawJson)
     })
@@ -24,4 +24,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

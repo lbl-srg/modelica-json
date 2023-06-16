@@ -3,7 +3,7 @@ function parse (content, rawJson) {
   const componentClause1Parser = require('./componentClause1')
   const elementReplaceableParser = require('./elementReplaceable')
 
-  var moOutput = ''
+  let moOutput = ''
   moOutput += 'redeclare '
 
   if (content.each != null) {
@@ -36,4 +36,4 @@ function parse (content, rawJson) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

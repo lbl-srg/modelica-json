@@ -3,7 +3,7 @@ function parse (content, rawJson = false) {
   const equationSectionParser = require('./equationSection')
   const algorithmSectionParser = require('./algorithmSection')
 
-  var moOutput = ''
+  let moOutput = ''
 
   if (content.public_element_list != null) {
     moOutput += 'public\n'
@@ -19,4 +19,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

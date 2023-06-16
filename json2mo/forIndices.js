@@ -3,8 +3,8 @@ function parse (content, rawJson = false) {
   const expressionParser = require('./expression')
   const forIndexParser = require('./forIndex') // only for raw-json
 
-  var moOutput = ''
-  var indices
+  let moOutput = ''
+  let indices
   if (rawJson) {
     indices = content.indices
     if (indices != null) {
@@ -33,4 +33,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

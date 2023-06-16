@@ -1,8 +1,8 @@
 function parse (content, rawJson = false) {
   const expressionParser = require('./expression')
 
-  var moOutput = ''
-  var expressionList = null
+  let moOutput = ''
+  let expressionList = null
   if (rawJson) {
     expressionList = content.expressions
   } else {
@@ -18,4 +18,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

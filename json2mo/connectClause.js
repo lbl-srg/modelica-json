@@ -1,7 +1,7 @@
 function parse (content, rawJson = false) {
   const componentReferenceParser = require('./componentReference')
 
-  var moOutput = ''
+  let moOutput = ''
   moOutput += 'connect('
   if (content.from != null) {
     moOutput += componentReferenceParser.parse(content.from, rawJson)
@@ -14,4 +14,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

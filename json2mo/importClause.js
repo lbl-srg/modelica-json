@@ -4,10 +4,10 @@ function parse (content, rawJson = false) {
   const commentParser = require('./comment')
   const importListParser = require('./importList')
 
-  var moOutput = ''
+  let moOutput = ''
   moOutput += 'import '
 
-  var name = ''
+  let name = ''
   if (content.name != null) {
     name = nameParser.parse(content.name, rawJson)
   }
@@ -40,4 +40,4 @@ function parse (content, rawJson = false) {
 
   return moOutput
 }
-module.exports = {parse}
+module.exports = { parse }

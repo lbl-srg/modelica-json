@@ -3,7 +3,7 @@ function parse (content, rawJson = false) {
   const classModificationParser = require('./classModification')
   const annotationParser = require('./annotation')
 
-  var moOutput = ''
+  let moOutput = ''
   moOutput += 'extends '
 
   if (content.name != null) {
@@ -18,4 +18,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

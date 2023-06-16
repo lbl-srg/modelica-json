@@ -1,7 +1,7 @@
 function parse (content, rawJson = false) {
   const util = require('util')
 
-  var moOutput = ''
+  let moOutput = ''
   if (content.not != null) {
     moOutput += 'not '
   }
@@ -15,4 +15,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

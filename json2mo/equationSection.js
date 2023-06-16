@@ -1,14 +1,14 @@
 function parse (content, rawJson = false) {
   const equationParser = require('./equation')
 
-  var moOutput = ''
+  let moOutput = ''
   if (content.initial != null) {
     if (content.initial) {
       moOutput += 'initial '
     }
   }
   moOutput += 'equation'
-  var equations
+  let equations
   if (rawJson) {
     equations = content.equations
   } else {
@@ -23,4 +23,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

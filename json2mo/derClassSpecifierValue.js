@@ -3,11 +3,11 @@ function parse (content, rawJson = false) {
   const nameParser = require('./name')
   const commentParser = require('./comment')
 
-  var moOutput = 'der('
+  let moOutput = 'der('
   if (content.type_specifier != null) {
     moOutput += nameParser.parse(content.type_specifier, rawJson)
   }
-  var identifiers = null
+  let identifiers = null
   if (rawJson) {
     identifiers = content.identifiers
   } else {
@@ -33,4 +33,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

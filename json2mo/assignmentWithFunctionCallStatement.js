@@ -3,7 +3,7 @@ function parse (content, rawJson = false) {
   const outputExpressionListParser = require('./outputExpressionList')
   const functionCallArgsParser = require('./functionCallArgs')
 
-  var moOutput = ''
+  let moOutput = ''
   moOutput += '('
   if (content.output_expression_list != null) {
     moOutput += outputExpressionListParser.parse(content.output_expression_list, rawJson)
@@ -19,4 +19,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

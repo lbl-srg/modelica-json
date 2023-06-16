@@ -2,7 +2,7 @@ function parse (content, rawJson) {
   const declarationParser = require('./declaration')
   const commentParser = require('./comment')
 
-  var moOutput = ''
+  let moOutput = ''
   if (content.declaration != null) {
     moOutput += declarationParser.parse(content.declaration, rawJson)
   }
@@ -18,4 +18,4 @@ function parse (content, rawJson) {
 
   return moOutput
 }
-module.exports = {parse}
+module.exports = { parse }

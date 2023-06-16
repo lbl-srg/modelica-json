@@ -3,7 +3,7 @@ function parse (content, rawJson = false) {
   const typeSpecifierParser = require('./typeSpecifier')
   const componentDeclaration1Parser = require('./componentDeclaration1')
 
-  var moOutput = ''
+  let moOutput = ''
   if (rawJson) {
     if (content.type_prefix != null) {
       moOutput += util.format('%s ', content.type_prefix)
@@ -29,4 +29,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

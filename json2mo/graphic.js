@@ -3,10 +3,10 @@ const util = require('util')
 function parse (content, rawJson = false) {
   // "keys" will be a one element array, could be
   // ['Line', 'Text', 'Rectangle', 'Polygon', 'Ellipse', 'Bitmap', 'Placement', 'coordinateSystem', 'graphics']
-  var graKeys = Object.keys(content)
-  var graKey = graKeys[0]
+  const graKeys = Object.keys(content)
+  const graKey = graKeys[0]
 
-  var moOutput = ''
+  let moOutput = ''
   if (graKey === 'Line') {
     moOutput += lineParse(content.Line)
   } else if (graKey === 'Text') {
@@ -31,41 +31,41 @@ function parse (content, rawJson = false) {
 }
 
 function lineParse (obj) {
-  var graComIte = commonGraphicItems(obj)
+  const graComIte = commonGraphicItems(obj)
   return 'Line(' + graComIte.join(',') + ')'
 }
 
 function textParse (obj) {
-  var graComIte = commonGraphicItems(obj)
+  const graComIte = commonGraphicItems(obj)
   return 'Text(' + graComIte.join(',') + ')'
 }
 
 function rectangleParse (obj) {
-  var graComIte = commonGraphicItems(obj)
+  const graComIte = commonGraphicItems(obj)
   return 'Rectangle(' + graComIte.join(',') + ')'
 }
 
 function polygonParse (obj) {
-  var graComIte = commonGraphicItems(obj)
+  const graComIte = commonGraphicItems(obj)
   return 'Polygon(' + graComIte.join(',') + ')'
 }
 
 function ellipseParse (obj) {
-  var graComIte = commonGraphicItems(obj)
+  const graComIte = commonGraphicItems(obj)
   return 'Ellipse(' + graComIte.join(',') + ')'
 }
 
 function bitmapParse (obj) {
-  var graComIte = commonGraphicItems(obj)
+  const graComIte = commonGraphicItems(obj)
   return 'Bitmap(' + graComIte.join(',') + ')'
 }
 
 function placementParse (obj) {
-  var visible = obj.visible
-  var iconVisible = obj.iconVisible
-  var transformation = obj.transformation
-  var iconTransformation = obj.iconTransformation
-  var strArr = []
+  const visible = obj.visible
+  const iconVisible = obj.iconVisible
+  const transformation = obj.transformation
+  const iconTransformation = obj.iconTransformation
+  const strArr = []
   if (visible != null) {
     strArr.push('visible=' + util.format('%s', visible))
   }
@@ -82,10 +82,10 @@ function placementParse (obj) {
 }
 
 function coordinateSystemParse (obj) {
-  var extent = obj.extent
-  var preserveAspectRatio = obj.preserveAspectRatio
-  var initialScale = obj.initialScale
-  var strArr = []
+  const extent = obj.extent
+  const preserveAspectRatio = obj.preserveAspectRatio
+  const initialScale = obj.initialScale
+  const strArr = []
   if (extent != null) {
     strArr.push('extent=' + pointsParse(extent))
   }
@@ -99,22 +99,22 @@ function coordinateSystemParse (obj) {
 }
 
 function graphicsParse (obj) {
-  var strArr = []
-  for (var i = 0; i < obj.length; i++) {
-    var ithEle = obj[i]
-    var name = ithEle.name
-    var attibutes = ithEle.attribute
-    var graComIte = commonGraphicItems(attibutes)
+  const strArr = []
+  for (let i = 0; i < obj.length; i++) {
+    const ithEle = obj[i]
+    const name = ithEle.name
+    const attibutes = ithEle.attribute
+    const graComIte = commonGraphicItems(attibutes)
     strArr.push(name + '(' + graComIte.join(',') + ')')
   }
   return 'graphics=' + '{' + strArr.join(',') + '}'
 }
 
 function transformationParse (obj) {
-  var origin = obj.origin
-  var extent = obj.extent
-  var rotation = obj.rotation
-  var strArr = []
+  const origin = obj.origin
+  const extent = obj.extent
+  const rotation = obj.rotation
+  const strArr = []
   if (origin != null) {
     strArr.push('origin=' + originParse(origin))
   }
@@ -128,10 +128,10 @@ function transformationParse (obj) {
 }
 
 function pointsParse (obj) {
-  var pointsArr = []
-  for (var i = 0; i < obj.length; i++) {
-    var ithPoint = obj[i]
-    var pointStr = '{'
+  const pointsArr = []
+  for (let i = 0; i < obj.length; i++) {
+    const ithPoint = obj[i]
+    let pointStr = '{'
     pointStr += util.format('%s', ithPoint.x)
     pointStr += ','
     pointStr += util.format('%s', ithPoint.y)
@@ -142,7 +142,7 @@ function pointsParse (obj) {
 }
 
 function colorParse (obj) {
-  var colEle = '{'
+  let colEle = '{'
   colEle += util.format('%s', obj.r)
   colEle += ','
   colEle += util.format('%s', obj.g)
@@ -153,7 +153,7 @@ function colorParse (obj) {
 }
 
 function originParse (obj) {
-  var ori = '{'
+  let ori = '{'
   ori += util.format('%s', obj.x)
   ori += ','
   ori += util.format('%s', obj.y)
@@ -162,35 +162,35 @@ function originParse (obj) {
 }
 
 function commonGraphicItems (obj) {
-  var color = obj.color
-  var thickness = obj.thickness
-  var arrowSize = obj.arrowSize
-  var extent = obj.extent
-  var textString = obj.textString
-  var fontSize = obj.fontSize
-  var fontName = obj.fontName
-  var textColor = obj.textColor
-  var horizontalAlignment = obj.horizontalAlignment
-  var string = obj.string
-  var index = obj.index
-  var radius = obj.radius
-  var borderPattern = obj.borderPattern
-  var points = obj.points
-  var smooth = obj.smooth
-  var startAngle = obj.startAngle
-  var endAngle = obj.endAngle
-  var closure = obj.closure
-  var fileName = obj.fileName
-  var imageSource = obj.imageSource
-  var visible = obj.visible
-  var origin = obj.origin
-  var rotation = obj.rotation
-  var lineColor = obj.lineColor
-  var fillColor = obj.fillColor
-  var pattern = obj.pattern
-  var fillPattern = obj.fillPattern
-  var lineThickness = obj.lineThickness
-  var strArr = []
+  const color = obj.color
+  const thickness = obj.thickness
+  const arrowSize = obj.arrowSize
+  const extent = obj.extent
+  const textString = obj.textString
+  const fontSize = obj.fontSize
+  const fontName = obj.fontName
+  const textColor = obj.textColor
+  const horizontalAlignment = obj.horizontalAlignment
+  const string = obj.string
+  const index = obj.index
+  const radius = obj.radius
+  const borderPattern = obj.borderPattern
+  const points = obj.points
+  const smooth = obj.smooth
+  const startAngle = obj.startAngle
+  const endAngle = obj.endAngle
+  const closure = obj.closure
+  const fileName = obj.fileName
+  const imageSource = obj.imageSource
+  const visible = obj.visible
+  const origin = obj.origin
+  const rotation = obj.rotation
+  const lineColor = obj.lineColor
+  const fillColor = obj.fillColor
+  const pattern = obj.pattern
+  const fillPattern = obj.fillPattern
+  const lineThickness = obj.lineThickness
+  const strArr = []
   if (fileName != null) {
     strArr.push('fileName=' + util.format('%s', fileName))
   }
@@ -281,4 +281,4 @@ function commonGraphicItems (obj) {
   return strArr
 }
 
-module.exports = {parse}
+module.exports = { parse }

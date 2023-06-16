@@ -2,7 +2,7 @@ function parse (content, rawJson = false) {
   const util = require('util')
   const shortClassSpecifierParser = require('./shortClassSpecifier')
 
-  var moOutput = ''
+  let moOutput = ''
   if (content.class_prefixes != null) {
     moOutput += util.format('%s ', content.class_prefixes)
   }
@@ -12,4 +12,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

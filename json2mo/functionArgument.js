@@ -4,7 +4,7 @@ function parse (content, rawJson = false) {
   const namedArgumentParser = require('./namedArgument')
   const expressionParser = require('./expression')
 
-  var moOutput = ''
+  let moOutput = ''
 
   if (content.function_name != null) {
     moOutput += 'function '
@@ -16,7 +16,7 @@ function parse (content, rawJson = false) {
         moOutput += namedArgumentsParser.parse(content.named_arguments, rawJson)
       }
     } else {
-      var namedArguments = content.named_arguments
+      const namedArguments = content.named_arguments
       if (namedArguments != null) {
         namedArguments.forEach(ele => {
           moOutput += namedArgumentParser.parse(ele, rawJson)
@@ -32,4 +32,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

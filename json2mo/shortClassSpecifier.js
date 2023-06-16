@@ -2,8 +2,8 @@ function parse (content, rawJson = false) {
   const util = require('util')
   const shortClassSpecifierValueParser = require('./shortClassSpecifierValue')
 
-  var moOutput = ''
-  var identifier = content.identifier
+  let moOutput = ''
+  const identifier = content.identifier
 
   if (identifier != null) {
     moOutput += util.format('%s=', identifier)
@@ -21,4 +21,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

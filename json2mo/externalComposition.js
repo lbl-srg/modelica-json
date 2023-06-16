@@ -3,7 +3,7 @@ function parse (content, rawJson = false) {
   const externalFunctionCallParser = require('./externalFunctionCall')
   const annotationParser = require('./annotation')
 
-  var moOutput = ''
+  let moOutput = ''
   moOutput += 'external '
   if (content.language_specification != null) {
     moOutput += util.format('%s ', content.language_specification)
@@ -18,4 +18,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

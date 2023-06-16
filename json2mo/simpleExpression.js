@@ -5,7 +5,7 @@ function parse (content, rawJson = false) {
   const logicalExpressionParser = require('./logicalExpression')
   const ifExpressionParser = require('./ifExpressionObj')
 
-  var moOutput = ''
+  let moOutput = ''
   if (content != null) {
     if (rawJson) {
       moOutput += util.format('%s', JSON.stringify(content))
@@ -26,4 +26,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

@@ -2,7 +2,7 @@ function parse (content, rawJson = false) {
   const argumentListParser = require('./argumentList')
   const argumentParser = require('./argument')
 
-  var moOutput = ''
+  let moOutput = ''
   if (rawJson) {
     moOutput += '(\n\t'
     if (content.argument_list != null) {
@@ -10,7 +10,7 @@ function parse (content, rawJson = false) {
     }
     moOutput += ')\n\t'
   } else {
-    var argumentList = content
+    const argumentList = content
     moOutput += '(\n\t'
 
     argumentList.forEach(argument => {
@@ -24,4 +24,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

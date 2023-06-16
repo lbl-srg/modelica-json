@@ -3,8 +3,8 @@ function parse (content, rawJson = false) {
   const arraySubscriptsParser = require('./arraySubscripts')
   const componentReferencePartParser = require('./componentReferencePart')
 
-  var moOutput = ''
-  var componentReferenceParts
+  let moOutput = ''
+  let componentReferenceParts
   if (rawJson) {
     componentReferenceParts = content.component_reference_parts
     if (componentReferenceParts != null) {
@@ -31,4 +31,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

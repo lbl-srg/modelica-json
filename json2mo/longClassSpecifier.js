@@ -3,10 +3,10 @@ function parse (content, rawJson = false) {
   const compositionParser = require('./composition')
   const classModificationParser = require('./classModification')
 
-  var identifier = content.identifier
-  var isExtends = content.is_extends
+  const identifier = content.identifier
+  const isExtends = content.is_extends
 
-  var moOutput = ''
+  let moOutput = ''
 
   if (isExtends != null) {
     if (isExtends) {
@@ -27,12 +27,12 @@ function parse (content, rawJson = false) {
   }
 
   if (rawJson) {
-    var stringComment = content.string_comment
+    const stringComment = content.string_comment
     if (stringComment != null) {
       moOutput += util.format('\n%s\n', stringComment)
     }
   } else {
-    var descriptionString = content.description_string
+    const descriptionString = content.description_string
     if (descriptionString != null) {
       moOutput += util.format('\n"%s"\n', descriptionString)
     }
@@ -46,4 +46,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

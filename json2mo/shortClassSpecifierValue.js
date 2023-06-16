@@ -6,7 +6,7 @@ function parse (content, rawJson = false) {
   const commentParser = require('./comment')
   const enumListParser = require('./enumList')
 
-  var moOutput = ''
+  let moOutput = ''
 
   if (content.name == null) {
     moOutput += 'enumeration ('
@@ -41,4 +41,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

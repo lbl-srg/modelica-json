@@ -2,7 +2,7 @@ function parse (content, rawJson = false) {
   const util = require('util')
   const annotationParser = require('./annotation')
 
-  var moOutput = ''
+  let moOutput = ''
   if (rawJson) {
     if (content.string_comment != null) {
       moOutput += util.format('\n"\t%s"', content.string_comment)
@@ -22,4 +22,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

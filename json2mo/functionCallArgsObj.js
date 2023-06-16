@@ -3,7 +3,7 @@ function parse (content, rawJson = false) {
   const expressionParser = require('./expression')
   const forIndiceObjParser = require('./forIndicesObj')
 
-  var moOutput = ''
+  let moOutput = ''
   if (content[0].expression != null) {
     moOutput += expressionParser.parse(content[0].expressoin, rawJson)
     moOutput += ' for '
@@ -20,4 +20,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

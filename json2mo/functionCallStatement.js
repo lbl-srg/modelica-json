@@ -2,7 +2,7 @@ function parse (content, rawJson = false) {
   const componentReferenceParser = require('./componentReference')
   const functionCallArgsParser = require('./functionCallArgs')
 
-  var moOutput = ''
+  let moOutput = ''
   if (content.function_name != null) {
     moOutput += componentReferenceParser.parse(content.function_name, rawJson)
   }
@@ -12,4 +12,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

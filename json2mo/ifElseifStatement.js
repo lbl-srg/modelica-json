@@ -2,14 +2,14 @@ function parse (content, rawJson = false) {
   const expressionParser = require('./expression')
   const statementParser = require('./statement')
 
-  var moOutput = ''
+  let moOutput = ''
 
   if (content.condition != null) {
     moOutput += expressionParser.parse(content.condition, rawJson)
   }
 
-  var thenStatements = content.then
-  var thenOutput = ''
+  const thenStatements = content.then
+  let thenOutput = ''
   if (thenStatements != null) {
     thenOutput = ''
     thenStatements.forEach(ele => {
@@ -24,4 +24,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }
