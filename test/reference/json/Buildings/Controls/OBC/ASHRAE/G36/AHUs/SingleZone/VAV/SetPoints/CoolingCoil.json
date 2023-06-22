@@ -30,6 +30,30 @@
                           {
                             "element_modification_or_replaceable": {
                               "element_modification": {
+                                "name": "__cdl",
+                                "modification": {
+                                  "class_modification": [
+                                    {
+                                      "element_modification_or_replaceable": {
+                                        "element_modification": {
+                                          "name": "ValueInReference",
+                                          "modification": {
+                                            "equal": true,
+                                            "expression": {
+                                              "simple_expression": "false"
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "element_modification_or_replaceable": {
+                              "element_modification": {
                                 "name": "Dialog",
                                 "modification": {
                                   "class_modification": [
@@ -94,6 +118,30 @@
                           {
                             "element_modification_or_replaceable": {
                               "element_modification": {
+                                "name": "__cdl",
+                                "modification": {
+                                  "class_modification": [
+                                    {
+                                      "element_modification_or_replaceable": {
+                                        "element_modification": {
+                                          "name": "ValueInReference",
+                                          "modification": {
+                                            "equal": true,
+                                            "expression": {
+                                              "simple_expression": "false"
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "element_modification_or_replaceable": {
+                              "element_modification": {
                                 "name": "Dialog",
                                 "modification": {
                                   "class_modification": [
@@ -155,6 +203,30 @@
                       "description": {
                         "description_string": "Time constant of integrator block for cooling coil control loop signal",
                         "annotation": [
+                          {
+                            "element_modification_or_replaceable": {
+                              "element_modification": {
+                                "name": "__cdl",
+                                "modification": {
+                                  "class_modification": [
+                                    {
+                                      "element_modification_or_replaceable": {
+                                        "element_modification": {
+                                          "name": "ValueInReference",
+                                          "modification": {
+                                            "equal": true,
+                                            "expression": {
+                                              "simple_expression": "false"
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          },
                           {
                             "element_modification_or_replaceable": {
                               "element_modification": {
@@ -267,6 +339,30 @@
                       "description": {
                         "description_string": "Time constant of derivative block for cooling coil control loop signal",
                         "annotation": [
+                          {
+                            "element_modification_or_replaceable": {
+                              "element_modification": {
+                                "name": "__cdl",
+                                "modification": {
+                                  "class_modification": [
+                                    {
+                                      "element_modification_or_replaceable": {
+                                        "element_modification": {
+                                          "name": "ValueInReference",
+                                          "modification": {
+                                            "equal": true,
+                                            "expression": {
+                                              "simple_expression": "false"
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          },
                           {
                             "element_modification_or_replaceable": {
                               "element_modification": {
@@ -645,6 +741,117 @@
                     }
                   ]
                 }
+              },
+              {
+                "component_clause": {
+                  "type_specifier": "Buildings.Controls.OBC.CDL.Continuous.PIDWithReset",
+                  "component_list": [
+                    {
+                      "declaration": {
+                        "identifier": "conCoi",
+                        "modification": {
+                          "class_modification": [
+                            {
+                              "element_modification_or_replaceable": {
+                                "final": true,
+                                "element_modification": {
+                                  "name": "controllerType",
+                                  "modification": {
+                                    "equal": true,
+                                    "expression": {
+                                      "simple_expression": "controllerTypeCooCoi"
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "element_modification_or_replaceable": {
+                                "final": true,
+                                "element_modification": {
+                                  "name": "k",
+                                  "modification": {
+                                    "equal": true,
+                                    "expression": {
+                                      "simple_expression": "kCooCoi"
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "element_modification_or_replaceable": {
+                                "final": true,
+                                "element_modification": {
+                                  "name": "Ti",
+                                  "modification": {
+                                    "equal": true,
+                                    "expression": {
+                                      "simple_expression": "TiCooCoi"
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "element_modification_or_replaceable": {
+                                "final": true,
+                                "element_modification": {
+                                  "name": "Td",
+                                  "modification": {
+                                    "equal": true,
+                                    "expression": {
+                                      "simple_expression": "TdCooCoi"
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "element_modification_or_replaceable": {
+                                "final": true,
+                                "element_modification": {
+                                  "name": "reverseActing",
+                                  "modification": {
+                                    "equal": true,
+                                    "expression": {
+                                      "simple_expression": "false"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      "description": {
+                        "description_string": "Cooling coil control signal",
+                        "annotation": [
+                          {
+                            "element_modification_or_replaceable": {
+                              "element_modification": {
+                                "Placement": {
+                                  "transformation": {
+                                    "extent": [
+                                      {
+                                        "x": -10,
+                                        "y": 70
+                                      },
+                                      {
+                                        "x": 10,
+                                        "y": 90
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
               }
             ],
             "element_sections": [
@@ -729,117 +936,6 @@
                                           {
                                             "x": -60,
                                             "y": 10
-                                          }
-                                        ]
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            ]
-                          }
-                        }
-                      ]
-                    }
-                  },
-                  {
-                    "component_clause": {
-                      "type_specifier": "Buildings.Controls.OBC.CDL.Continuous.PIDWithReset",
-                      "component_list": [
-                        {
-                          "declaration": {
-                            "identifier": "cooCoiPI",
-                            "modification": {
-                              "class_modification": [
-                                {
-                                  "element_modification_or_replaceable": {
-                                    "final": true,
-                                    "element_modification": {
-                                      "name": "controllerType",
-                                      "modification": {
-                                        "equal": true,
-                                        "expression": {
-                                          "simple_expression": "controllerTypeCooCoi"
-                                        }
-                                      }
-                                    }
-                                  }
-                                },
-                                {
-                                  "element_modification_or_replaceable": {
-                                    "final": true,
-                                    "element_modification": {
-                                      "name": "k",
-                                      "modification": {
-                                        "equal": true,
-                                        "expression": {
-                                          "simple_expression": "kCooCoi"
-                                        }
-                                      }
-                                    }
-                                  }
-                                },
-                                {
-                                  "element_modification_or_replaceable": {
-                                    "final": true,
-                                    "element_modification": {
-                                      "name": "Ti",
-                                      "modification": {
-                                        "equal": true,
-                                        "expression": {
-                                          "simple_expression": "TiCooCoi"
-                                        }
-                                      }
-                                    }
-                                  }
-                                },
-                                {
-                                  "element_modification_or_replaceable": {
-                                    "final": true,
-                                    "element_modification": {
-                                      "name": "Td",
-                                      "modification": {
-                                        "equal": true,
-                                        "expression": {
-                                          "simple_expression": "TdCooCoi"
-                                        }
-                                      }
-                                    }
-                                  }
-                                },
-                                {
-                                  "element_modification_or_replaceable": {
-                                    "final": true,
-                                    "element_modification": {
-                                      "name": "reverseActing",
-                                      "modification": {
-                                        "equal": true,
-                                        "expression": {
-                                          "simple_expression": "false"
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              ]
-                            }
-                          },
-                          "description": {
-                            "description_string": "Cooling coil control signal",
-                            "annotation": [
-                              {
-                                "element_modification_or_replaceable": {
-                                  "element_modification": {
-                                    "Placement": {
-                                      "transformation": {
-                                        "extent": [
-                                          {
-                                            "x": -10,
-                                            "y": 70
-                                          },
-                                          {
-                                            "x": 10,
-                                            "y": 90
                                           }
                                         ]
                                       }
@@ -1056,7 +1152,7 @@
                         "from": [
                           {
                             "dot_op": false,
-                            "identifier": "cooCoiPI"
+                            "identifier": "conCoi"
                           },
                           {
                             "dot_op": true
@@ -1110,7 +1206,7 @@
                         "from": [
                           {
                             "dot_op": false,
-                            "identifier": "cooCoiPI"
+                            "identifier": "conCoi"
                           },
                           {
                             "dot_op": true
@@ -1160,7 +1256,7 @@
                         "from": [
                           {
                             "dot_op": false,
-                            "identifier": "cooCoiPI"
+                            "identifier": "conCoi"
                           },
                           {
                             "dot_op": true
@@ -1551,7 +1647,7 @@
                         "from": [
                           {
                             "dot_op": false,
-                            "identifier": "cooCoiPI"
+                            "identifier": "conCoi"
                           },
                           {
                             "dot_op": true
@@ -1769,5 +1865,5 @@
   ],
   "modelicaFile": "Buildings/Controls/OBC/ASHRAE/G36/AHUs/SingleZone/VAV/SetPoints/CoolingCoil.mo",
   "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/ASHRAE/G36/AHUs/SingleZone/VAV/SetPoints/CoolingCoil.mo",
-  "checksum": "ad2ef000ee93f6f1c9ec354dafeab300"
+  "checksum": "96564bd331e6f1fb2549fc3ec8f20ffe"
 }
