@@ -811,4 +811,18 @@ mo.describe('jsonquery.js', function () {
       as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
     })
   })
+
+  mo.describe('ifExpString', function () {
+    mo.it('testing structure', function () {
+      sinon.stub(jq, 'ifExpression').withArgs('test if_elseif').returns('mocked if_elseif').withArgs('test else_expression')
+                                                   .returns('mocked else_expression')
+      var rawJson = {
+        'if_elseif': 'test if_elseif',
+        'else_expression': 'test else_expression'
+      }
+      var jsonOutput = jq.ifExpString(rawJson)
+      var referenceJsonOutput = 'if mocked if_elseif then mocked else_expression'
+      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
+    })
+  })
 })
