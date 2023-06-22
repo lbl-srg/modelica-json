@@ -812,7 +812,31 @@ mo.describe('jsonquery.js', function () {
     })
   })
 
-  mo.describe('ifExpString', function () {
+  mo.describe('if_expression_string', function () {
+      mo.it('checking with simple_expression', function () {
+        sinon.stub(jq, 'simExp').returns('mocked simple_expression')
+        var rawJson = {
+          'simple_expression': 'test simple_expression'
+        }
+        var jsonOutput = jq.expressionString(rawJson)
+        var referenceJsonOutput = {
+          'simple_expression': 'mocked simple_expression'
+        }
+        as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
+      })
+      mo.it('checking with if_expression', function () {
+        sinon.stub(jq, 'ifExp').returns('mocked if_expression')
+          var rawJson = {
+            'if_expression': 'test if_expression'
+          }
+          var jsonOutput = jq.expressionString(rawJson)
+          var referenceJsonOutput = {
+            'if_expression': 'mocked if_expression'
+          }
+          as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
+        })
+      })
+  mo.describe('if_exp_string', function () {
     mo.it('testing structure', function () {
       sinon.stub(jq, 'ifExpression').withArgs('test if_elseif').returns('mocked if_elseif').withArgs('test else_expression')
                                                    .returns('mocked else_expression')
