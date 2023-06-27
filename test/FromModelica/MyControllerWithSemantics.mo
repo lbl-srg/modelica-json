@@ -1,5 +1,5 @@
 within FromModelica;
-block MyController
+block MyControllerWithSemantics
   "My controller with semantics"
 
   Buildings.Controls.OBC.CDL.Interfaces.RealInput u1
@@ -60,4 +60,4 @@ annotation (
           extent={{-100,100},{100,140}},
           textString="%name")}),
     Diagram(coordinateSystem(preserveAspectRatio=false)));
-end MyController;
+end MyControllerWithSemantics;

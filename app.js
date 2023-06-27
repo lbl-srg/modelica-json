@@ -1,6 +1,7 @@
 const fs = require('fs')
 const pa = require('./lib/parser.js')
 const ut = require('./lib/util.js')
+const se = require('./lib/semanticExtractor.js')
 
 const logger = require('winston')
 const path = require('path')
@@ -17,7 +18,7 @@ parser.addArgument(
   [ '-o', '--output' ],
   {
     help: 'Specify output format.',
-    choices: ['raw-json', 'json', 'modelica'],
+    choices: ['raw-json', 'json', 'modelica', 'semantic'],
     defaultValue: 'json'
   }
 )
@@ -95,6 +96,10 @@ if (args.output === 'modelica') {
   var moFiles = ut.getMoFiles(args.file)
   // Parse the json representation for moFiles
   pa.getJsons(moFiles, args.mode, args.output, args.directory, args.prettyPrint)
+
+  if (args.output === 'semantic') {
+    se.getSemanticInformation(args.file, args.directory)
+  }
 }
 
 if (args.output === 'json') {
