@@ -162,15 +162,23 @@ var checkObjectsJSON = function (outFormat, extension, message) {
       const oldFileMOD = path.join(expectedOutputPath, fileNameMOD)
       // Read the old json
       const jsonOldMOD = JSON.parse(fs.readFileSync(oldFileMOD, 'utf8'))
-
-      if (jsonOldMOD.modelicaFile) {
-        jsonOldMOD['fullMoFilePath'] = jsonOldMOD['modelicaFile'].split('modelica-json/')[1]
+      var oldInstances = jsonOldMOD.instances
+      for (var oldInstanceId in oldInstances) {
+        if ('fullMoFilePath' in oldInstances[oldInstanceId] && oldInstances[oldInstanceId].fullMoFilePath !== undefined) {
+          oldInstances[oldInstanceId]['fullMoFilePath'] = 'samMoFile'
+        }
       }
+      jsonOldMOD['instances'] = oldInstances
+
       const jsonNewMOD = path.join(actualOutputPath, fileNameMOD)
       var neMOD = JSON.parse(fs.readFileSync(jsonNewMOD, 'utf8'))
-      if (neMOD.modelicaFile) {
-        neMOD['fullMoFilePath'] = neMOD['modelicaFile'].split('modelica-json/')[1]
+      var newInstances = neMOD.instances
+      for (var newInstanceId in newInstances) {
+        if ('fullMoFilePath' in newInstances[newInstanceId] && newInstances[newInstanceId].fullMoFilePath !== undefined) {
+          newInstances[newInstanceId]['fullMoFilePath'] = 'samMoFile'
+        }
       }
+      neMOD['instances'] = newInstances
 
       const tempOld = JSON.stringify(jsonOldMOD)
       const tempNew = JSON.stringify(neMOD)
