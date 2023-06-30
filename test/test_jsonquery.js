@@ -747,7 +747,6 @@ mo.describe('jsonquery.js', function () {
         'logical_expression1': 'test logical_expression1'
       }
       var jsonOutput = jq.simpleExpression(rawJson)
-      console.log(jsonOutput)
       var referenceJsonOutput = {'function_call': 'mocked function_call_primary', 'for_loop': undefined, 'logical_expression': undefined, 'if_expression': undefined}
       as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
     })
@@ -763,7 +762,6 @@ mo.describe('jsonquery.js', function () {
         'logical_expression1': 'test logical_expression1'
       }
       var jsonOutput = jq.simpleExpression(rawJson)
-      console.log(jsonOutput)
       var referenceJsonOutput = {'function_call': undefined, 'for_loop': 'mocked for_loop', 'logical_expression': undefined, 'if_expression': undefined}
       as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
     })
@@ -779,7 +777,6 @@ mo.describe('jsonquery.js', function () {
         'logical_expression1': 'test logical_expression1'
       }
       var jsonOutput = jq.simpleExpression(rawJson)
-      console.log(jsonOutput)
       var referenceJsonOutput = {'function_call': undefined, 'for_loop': undefined, 'logical_expression': undefined, 'if_expression': 'mocked if_expression'}
       as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
     })
@@ -792,7 +789,6 @@ mo.describe('jsonquery.js', function () {
         'logical_expression1': 'test logical_expression1'
       }
       var jsonOutput = jq.simpleExpression(rawJson)
-      console.log(jsonOutput)
       var referenceJsonOutput = {'function_call': undefined, 'for_loop': undefined, 'logical_expression': 'mocked logical_expression', 'if_expression': undefined}
       as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
     })
