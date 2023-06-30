@@ -548,7 +548,7 @@
                               "modification": {
                                 "equal": true,
                                 "expression": {
-                                  "simple_expression": "\"<html>\n<p>\nThis model is similar to\n<a href=\\\"modelica://Modelica.Blocks.Continuous.Integrator\\\">\nModelica.Blocks.Continuous.Integrator</a>\nexcept that it allows to reset the output <code>y</code>\nof the integrator.\n</p>\n<p>\nThe output of the integrator can be reset as follows:\n</p>\n<ul>\n<li>\nWhenever the input signal <code>trigger</code> changes from <code>false</code>\nto <code>true</code>,\nthe integrator is reset by setting <code>y</code>\nto the value of the input signal <code>y_reset_in</code>.\n</li>\n</ul>\n<h4>Implementation</h4>\n<p>\nTo adjust the icon layer, the code of\n<a href=\\\"modelica://Modelica.Blocks.Continuous.Integrator\\\">\nModelica.Blocks.Continuous.Integrator</a>\nhas been copied into this model rather than extended.\n</p>\n</html>\""
+                                  "simple_expression": "\"<html>\n<p>\nBlock that outputs\n</p>\n<p align=\\\"center\\\" style=\\\"font-style:italic;\\\">\ny(t) = y<sub>start</sub> + &int;<sub>t<sub>0</sub></sub><sup>t</sup> u(s) ds.\n</p>\n<p>\nWhenever the input signal <code>trigger</code> changes from <code>false</code>\nto <code>true</code>,\nthe integrator is reset by setting <i>y<sub>start</sub></i>\nto the value of the input signal <code>y_reset_in</code>.\n</p>\n</html>\""
                                 }
                               }
                             }
@@ -561,7 +561,7 @@
                               "modification": {
                                 "equal": true,
                                 "expression": {
-                                  "simple_expression": "\"<html>\n<ul>\n<li>\nFebruary 2, 2022, by Michael Wetter:<br/>\nRemoved <code>unit=\\\"1\\\"</code> declaration for gain <code>k</code>.\nThis is to avoid the warning observed in\n<a href=\\\"https://github.com/lbl-srg/modelica-buildings/pull/2872\\\">#2872</a>.\n</li>\n<li>\nOctober 21, 2021, by Michael Wetter:<br/>\nRemoved errorneous <code>visible</code> attribute in icon.\n</li>\n<li>\nAugust 3, 2020, by Jianjun:<br/>\nFixed the input <code>y_reset_in</code>.\n<br/>\nThis is for\n<a href=\\\"https://github.com/lbl-srg/modelica-buildings/issues/2056\\\">issue 2056</a>.\n</li>\n<li>\nApril 21, 2020, by Michael Wetter:<br/>\nRemoved parameter <code>initType</code>.\n<br/>\nThis is for\n<a href=\\\"https://github.com/lbl-srg/modelica-buildings/issues/1887\\\">issue 1887</a>.\n</li>\n<li>\nMarch 2, 2020, by Michael Wetter:<br/>\nChanged icon to display dynamically the output value.\n</li>\n<li>\nNovember 6, 2017, by Michael Wetter:<br/>\nExplicitly declared types from CDL.\n</li>\n<li>\nMarch 23, 2017, by Jianjun Hu:<br/>\nFirst implementation, based on the implementation of\n<a href=\\\"modelica://Buildings.Utilities.Math.IntegratorWithReset\\\">\nBuildings.Utilities.Math.IntegratorWithReset</a>.\n</li>\n</ul>\n</html>\""
+                                  "simple_expression": "\"<html>\n<ul>\n<li>\nJune 8, 2023, by Michael Wetter:<br/>\nUpdated documentation.\n</li>\n<li>\nFebruary 2, 2022, by Michael Wetter:<br/>\nRemoved <code>unit=\\\"1\\\"</code> declaration for gain <code>k</code>.\nThis is to avoid the warning observed in\n<a href=\\\"https://github.com/lbl-srg/modelica-buildings/pull/2872\\\">#2872</a>.\n</li>\n<li>\nOctober 21, 2021, by Michael Wetter:<br/>\nRemoved errorneous <code>visible</code> attribute in icon.\n</li>\n<li>\nAugust 3, 2020, by Jianjun:<br/>\nFixed the input <code>y_reset_in</code>.\n<br/>\nThis is for\n<a href=\\\"https://github.com/lbl-srg/modelica-buildings/issues/2056\\\">issue 2056</a>.\n</li>\n<li>\nApril 21, 2020, by Michael Wetter:<br/>\nRemoved parameter <code>initType</code>.\n<br/>\nThis is for\n<a href=\\\"https://github.com/lbl-srg/modelica-buildings/issues/1887\\\">issue 1887</a>.\n</li>\n<li>\nMarch 2, 2020, by Michael Wetter:<br/>\nChanged icon to display dynamically the output value.\n</li>\n<li>\nNovember 6, 2017, by Michael Wetter:<br/>\nExplicitly declared types from CDL.\n</li>\n<li>\nMarch 23, 2017, by Jianjun Hu:<br/>\nFirst implementation, based on the implementation of\n<a href=\\\"modelica://Buildings.Utilities.Math.IntegratorWithReset\\\">\nBuildings.Utilities.Math.IntegratorWithReset</a>.\n</li>\n</ul>\n</html>\""
                                 }
                               }
                             }
@@ -580,5 +580,5 @@
   ],
   "modelicaFile": "Buildings/Controls/OBC/CDL/Continuous/IntegratorWithReset.mo",
   "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Continuous/IntegratorWithReset.mo",
-  "checksum": "f33b07e1ddd42d601725f9eede990735"
+  "checksum": "ab5f92089f8433dde642004a10b9f593"
 }
