@@ -93,13 +93,20 @@ if (args.output === 'modelica') {
   pa.convertToModelica(args.file, args.directory, false)
 } else {
   // Get mo files array
-  var moFiles = ut.getMoFiles(args.file)
-  // Parse the json representation for moFiles
-  pa.getJsons(moFiles, args.mode, args.output, args.directory, args.prettyPrint)
 
-  if (args.output === 'semantic') {
-    se.getSemanticInformation(args.file, args.directory)
-  }
+  var completedJsonGeneration = new Promise(
+    function (resolve, reject) {
+      var moFiles = ut.getMoFiles(args.file)
+      // Parse the json representation for moFiles
+      pa.getJsons(moFiles, args.mode, args.output, args.directory, args.prettyPrint)
+      resolve(0)
+    }
+  )
+  completedJsonGeneration.then(function () {
+    if (args.output === 'semantic') {
+      se.getSemanticInformation(args.file, args.directory)
+    }
+  })
 }
 
 if (args.output === 'json') {

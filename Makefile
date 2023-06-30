@@ -43,6 +43,7 @@ generate-reference-output:
 	(for ff in `find . -name '*.mo'`; do \
 		node app.js -l warn -f $${ff} -o raw-json -d ./test/reference; \
 		node app.js -l warn -f $${ff} -o json -d ./test/reference; \
+		node app.js -l warn -f $${ff} -o semantic -d ./test/reference; \
 		done)
 
 clean-node-packages:

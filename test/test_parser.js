@@ -8,6 +8,7 @@ const Promise = require('bluebird')
 const fs = Promise.promisifyAll(require('fs'))
 const glob = require('glob-promise')
 var logger = require('winston')
+const se = require('../lib/semanticExtractor.js')
 // const cheerio = require('cheerio')
 
 logger.configure({
@@ -90,7 +91,6 @@ var checkCdlJSON = function (outFormat, extension, message) {
 
 /** Function that checks parsing from Modelica to JSON, in 'modelica' parsing mode
   */
- // TODO: modify this
 var checkModJSON = function (outFormat, extension, message) {
   var mode = 'modelica'
   // process.env.MODELICAPATH = __dirname
@@ -118,7 +118,7 @@ var checkModJSON = function (outFormat, extension, message) {
       if (jsonOldMOD.modelicaFile) {
         jsonOldMOD['fullMoFilePath'] = jsonOldMOD['modelicaFile'].split('modelica-json/')[1]
       }
-      const jsonNewMOD = path.join(expectedOutputPath, subPackName, 'test', 'FromModelica', fileNameMOD)
+      const jsonNewMOD = path.join(process.cwd(), subPackName, 'test', 'FromModelica', fileNameMOD)
       var neMOD = JSON.parse(fs.readFileSync(jsonNewMOD, 'utf8'))
       if (neMOD.modelicaFile) {
         neMOD['fullMoFilePath'] = neMOD['modelicaFile'].split('modelica-json/')[1]
@@ -128,6 +128,75 @@ var checkModJSON = function (outFormat, extension, message) {
       const tempNew = JSON.stringify(neMOD)
       as.notEqual(tempOld, undefined, 'JSON is undefined')
       as.deepEqual(tempNew, tempOld, 'JSON result differs for ' + oldFileMOD)
+    }
+  })
+}
+
+/** Function that checks parsing from Modelica to JSON, in 'modelica' parsing mode
+  */
+var checkObjectsJSON = function (outFormat, extension, message) {
+  var mode = 'modelica'
+  // process.env.MODELICAPATH = __dirname
+  mo.it(message, () => {
+    // mo files package to be tested
+    const testMoFilesTemp = getIntFiles(mode)
+    const testMoFiles = ut.getMoFiles(testMoFilesTemp)
+
+    // Name of subpackage to store json output files
+    var subPackName = 'objects'
+    // When parsing mode is 'modelica', the moFiles should feed into parser in package
+    // const jsonNewMOD = pa.getJSON(testMoFiles, mode, outFormat)
+    pa.getJsons(testMoFiles, mode, outFormat, 'current', 'false')
+    var pattern = path.join('test', 'FromModelica', '*.mo')
+    var files = glob.sync(pattern)
+    var expectedOutputPath = path.join(process.cwd(), 'test', 'reference', subPackName, 'test', 'FromModelica')
+    var actualOutputPath = path.join(process.cwd(), subPackName, 'test', 'FromModelica')
+
+    for (var i = 0; i < files.length; i++) {
+      if (outFormat === 'semantic') {
+        se.getSemanticInformation(files[i], process.cwd())
+      }
+
+      var idx2 = files[i].lastIndexOf(path.sep)
+      const fileNameMOD = files[i].slice(idx2 + 1, -3) + extension
+      const oldFileMOD = path.join(expectedOutputPath, fileNameMOD)
+      // Read the old json
+      const jsonOldMOD = JSON.parse(fs.readFileSync(oldFileMOD, 'utf8'))
+
+      if (jsonOldMOD.modelicaFile) {
+        jsonOldMOD['fullMoFilePath'] = jsonOldMOD['modelicaFile'].split('modelica-json/')[1]
+      }
+      const jsonNewMOD = path.join(actualOutputPath, fileNameMOD)
+      var neMOD = JSON.parse(fs.readFileSync(jsonNewMOD, 'utf8'))
+      if (neMOD.modelicaFile) {
+        neMOD['fullMoFilePath'] = neMOD['modelicaFile'].split('modelica-json/')[1]
+      }
+
+      const tempOld = JSON.stringify(jsonOldMOD)
+      const tempNew = JSON.stringify(neMOD)
+      as.notEqual(tempOld, undefined, 'JSON is undefined')
+      as.deepEqual(tempNew, tempOld, 'JSON result differs for ' + oldFileMOD)
+    }
+
+    // This has been hardcoded
+    var expectedSemanticOutputPath = path.join(process.cwd(), 'test', 'reference', subPackName)
+    var expectedBrickPath = path.join(expectedSemanticOutputPath, 'Brick', '1.3', 'test', 'FromModelica')
+    var expectedEnPath = path.join(expectedSemanticOutputPath, 'en', 'test', 'FromModelica')
+
+    var actualSemanticOutputPath = path.join(process.cwd(), subPackName)
+    var actualBrickPath = path.join(actualSemanticOutputPath, 'Brick', '1.3', 'test', 'FromModelica')
+    var actualEnPath = path.join(actualSemanticOutputPath, 'en', 'test', 'FromModelica')
+
+    var semanticFiles = {}
+    // semanticFiles[path.join(expectedBrickPath, 'MyControllerWithSemantics.ttl')] = path.join(actualBrickPath, 'MyControllerWithSemantics.ttl')
+    semanticFiles[path.join(expectedBrickPath, 'SubControllerWithSemantics.ttl')] = path.join(actualBrickPath, 'SubControllerWithSemantics.ttl')
+    semanticFiles[path.join(expectedEnPath, 'MyControllerWithSemantics.txt')] = path.join(actualEnPath, 'MyControllerWithSemantics.txt')
+
+    for (var expectedFileName in semanticFiles) {
+      var actualFileName = semanticFiles[expectedFileName]
+      var expectedFile = fs.readFileSync(expectedFileName, 'utf8')
+      var actualFile = fs.readFileSync(actualFileName, 'utf8')
+      as.deepEqual(actualFile, expectedFile, 'Semantic File result differs for ' + actualFileName)
     }
   })
 }
@@ -144,5 +213,8 @@ mo.describe('parser.js', function () {
   })
   mo.describe('Testing parse from Modelica to Json, in "modelica" parsing mode', function () {
     checkModJSON('json', '.json', 'Testing json for equality, "modelica" mode')
+  })
+  mo.describe('Testing parse from Modelica to Objects Json, in "cdl" parsing mode', function () {
+    checkObjectsJSON('semantic', '.json', 'Testing json for equality, "cdl" mode')
   })
 })
