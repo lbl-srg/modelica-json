@@ -1,0 +1,212 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "object",
+    "definitions": {
+      "input": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "datatype": {
+            "type": "string"
+          },
+          "accessSpecifier": {
+            "type": "string"
+          },
+          "graphics": {
+            "$ref": "#/definitions/graphicalElement"
+          },
+          "label": {
+            "type": "string"
+          },
+          "value": {
+            "type": "number"
+          },
+          "min": {
+            "type": "number"
+          },
+          "max": {
+            "type": "number"
+          },
+          "unit": {
+            "type": "string"
+          },
+          "displayUnit": {
+            "type": "string"
+          },
+          "inputOf": {
+            "$ref": "#/definitions/block"
+          }
+        }
+      },
+      "output": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "datatype": {
+            "type": "string"
+          },
+          "accessSpecifier": {
+            "type": "string"
+          },
+          "graphics": {
+            "$ref": "#/definitions/graphicalElement"
+          },
+          "label": {
+            "type": "string"
+          },
+          "value": {
+            "type": "number"
+          },
+          "min": {
+            "type": "number"
+          },
+          "max": {
+            "type": "number"
+          },
+          "unit": {
+            "type": "string"
+          },
+          "displayUnit": {
+            "type": "string"
+          },
+          "outputOf": {
+            "$ref": "#/definitions/block"
+          }
+        }
+      },
+      "block": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "graphicalElement": {
+        "type": "string"
+      },
+      "parameter": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "datatype": {
+            "type": "string"
+          },
+          "accessSpecifier": {
+            "type": "string"
+          },
+          "graphics": {
+            "$ref": "#/definitions/graphicalElement"
+          },
+          "label": {
+            "type": "string"
+          },
+          "value": {
+            "type": "number"
+          },
+          "default": {
+            "type": "object"
+          },
+          "min": {
+            "type": "number"
+          },
+          "max": {
+            "type": "number"
+          },
+          "unit": {
+            "type": "string"
+          },
+          "displayUnit": {
+            "type": "string"
+          },
+          "parameterOf": {
+            "$ref": "#/definitions/block"
+          },
+          "lineNumStart": {
+            "type": "number"
+          },
+          "lineNumEnd": {
+            "type": "number"
+          }
+        }
+      },
+      "constant": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "datatype": {
+            "type": "string"
+          },
+          "accessSpecifier": {
+            "type": "string"
+          },
+          "graphics": {
+            "$ref": "#/definitions/graphicalElement"
+          },
+          "label": {
+            "type": "string"
+          },
+          "value": {
+            "type": "number"
+          },
+          "unit": {
+            "type": "string"
+          },
+          "displayUnit": {
+            "type": "string"
+          },
+          "constantOf": {
+            "$ref": "#/definitions/block"
+          },
+          "lineNumStart": {
+            "type": "number"
+          },
+          "lineNumEnd": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "properties": {
+      "instances": {
+        "oneOf": [
+          {
+            "$ref": "#/definitions/input"
+          },
+          {
+            "$ref": "#/definitions/output"
+          },
+          {
+            "$ref": "#/definitions/parameter"
+          },
+          {
+            "$ref": "#/definitions/constant"
+          },
+          {
+            "$ref": "#/definitions/block"
+          }
+        ]
+      },
+      "connections": {}
+    }
+  }
