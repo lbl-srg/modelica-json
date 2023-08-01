@@ -108,17 +108,17 @@ Specify the output directory. The default option is the current directory.
 
 ## 4. JSON Schemas
 
-The JSON representation of Modelica and CDL models must be compliant with the corresponding JSON Schema. This is applicable for the JSON output, not for the raw-json one.
+The JSON representation of Modelica and CXF models must be compliant with the corresponding JSON Schema. This is applicable for the JSON and CXF output respectively.
 
 JSON Schemas describe the data format and file structure to ensure the quality of the JSON files.
 
 Two schemas are available (links to the raw files) :
-- [schema-cdl.json](schema-cdl.json) validates the JSON files parsed from CDL
+- [schema-cxf.json](schema-cxf.json) validates the JSON files parsed from CDL classes to form CXF representations
 - [schema-modelica.json](schema-modelica.json) validates the JSON files parsed from Modelica models
 
 Graphical viewers are available (please use right click + open in a new tab or refresh the page if necessary - this is not optimized for Firefox) :
-- [CDL Schema viewer](cdl-viz.html)
-- [Modelica Schema viewer](modelica-viz.html)
+- [CXF Schema viewer](https://htmlpreview.github.io/?https://github.com/lbl-srg/modelica-json/blob/issue214_cxf/cxf-viz.html)
+- [Modelica Schema viewer](https://htmlpreview.github.io/?https://github.com/lbl-srg/modelica-json/blob/master/modelica-viz.html)
 
 When parsing a file using `app.js`, the schema is chosen according to the mode.
 
