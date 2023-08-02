@@ -1,276 +1,395 @@
 {
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "$id": "schema-cxf.json",
-    "title": "Control Exchange Format (CXF) schema",
-    "description": "Control Exchange Format (CXF) Specification of a CDL class",
-    "type": "object",
-    "definitions": {
-      "input": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "pattern": "^[a-zA-Z_$]([\\.a-zA-Z_0-9])*$"
-          },
-          "description": {
-            "type": "string"
-          },
-          "datatype": {
-            "type": "string"
-          },
-          "accessSpecifier": {
-            "type": "string"
-          },
-          "graphics": {
-            "$ref": "#/definitions/graphicalElement"
-          },
-          "label": {
-            "type": "string",
-            "pattern": "^[a-zA-Z_$]([\\.a-zA-Z_0-9])*$"
-          },
-          "value": {
-            "type": "number"
-          },
-          "min": {
-            "type": "number"
-          },
-          "max": {
-            "type": "number"
-          },
-          "unit": {
-            "type": "string"
-          },
-          "displayUnit": {
-            "type": "string"
-          },
-          "inputOf": {
-            "$ref": "#/definitions/block"
-          },
-          "lineNumStart": {
-            "type": "number"
-          },
-          "lineNumEnd": {
-            "type": "number"
-          }
-        }
-      },
-      "output": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "pattern": "^[a-zA-Z_$]([\\.a-zA-Z_0-9])*$"
-          },
-          "description": {
-            "type": "string"
-          },
-          "datatype": {
-            "type": "string"
-          },
-          "accessSpecifier": {
-            "type": "string"
-          },
-          "graphics": {
-            "$ref": "#/definitions/graphicalElement"
-          },
-          "label": {
-            "type": "string",
-            "pattern": "^[a-zA-Z_$]([\\.a-zA-Z_0-9])*$"
-          },
-          "value": {
-            "type": "number"
-          },
-          "min": {
-            "type": "number"
-          },
-          "max": {
-            "type": "number"
-          },
-          "unit": {
-            "type": "string"
-          },
-          "displayUnit": {
-            "type": "string"
-          },
-          "outputOf": {
-            "$ref": "#/definitions/block"
-          },
-          "lineNumStart": {
-            "type": "number"
-          },
-          "lineNumEnd": {
-            "type": "number"
-          }
-        }
-      },
-      "block": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "pattern": "^[a-zA-Z_$]([\\.a-zA-Z_0-9])*$"
-          }
-        }
-      },
-      "graphicalElement": {
-        "type": "string",
-        "pattern": "^[a-zA-Z_$]([\\.a-zA-Z_0-9])*$"
-      },
-      "parameter": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "pattern": "^[a-zA-Z_$]([\\.a-zA-Z_0-9])*$"
-          },
-          "description": {
-            "type": "string"
-          },
-          "datatype": {
-            "type": "string"
-          },
-          "accessSpecifier": {
-            "type": "string"
-          },
-          "graphics": {
-            "$ref": "#/definitions/graphicalElement"
-          },
-          "label": {
-            "type": "string",
-            "pattern": "^[a-zA-Z_$]([\\.a-zA-Z_0-9])*$"
-          },
-          "value": {
-            "type": "number"
-          },
-          "default": {
-            "type": "object"
-          },
-          "min": {
-            "type": "number"
-          },
-          "max": {
-            "type": "number"
-          },
-          "unit": {
-            "type": "string"
-          },
-          "displayUnit": {
-            "type": "string"
-          },
-          "lineNumStart": {
-            "type": "number"
-          },
-          "lineNumEnd": {
-            "type": "number"
-          }
-        }
-      },
-      "constant": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "pattern": "^[a-zA-Z_$]([\\.a-zA-Z_0-9])*$"
-          },
-          "description": {
-            "type": "string"
-          },
-          "datatype": {
-            "type": "string"
-          },
-          "accessSpecifier": {
-            "type": "string"
-          },
-          "graphics": {
-            "$ref": "#/definitions/graphicalElement"
-          },
-          "label": {
-            "type": "string",
-            "pattern": "^[a-zA-Z_$]([\\.a-zA-Z_0-9])*$"
-          },
-          "value": {
-            "type": "number"
-          },
-          "unit": {
-            "type": "string"
-          },
-          "displayUnit": {
-            "type": "string"
-          },
-          "lineNumStart": {
-            "type": "number"
-          },
-          "lineNumEnd": {
-            "type": "number"
-          }
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "$id": "schema-cxf.json",
+  "title": "Control Exchange Format (CXF) schema",
+  "description": "Control Exchange Format (CXF) Specification of a CDL class",
+  "type": "object",
+  "definitions": {
+    "graphicalElement": {
+      "type": "string",
+      "pattern": "^[a-zA-Z_$]([\\.a-zA-Z_0-9])*$"
+    },
+    "input": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[a-zA-Z_$]([\\.a-zA-Z_0-9])*$"
+        },
+        "description": {
+          "type": "string"
+        },
+        "datatype": {
+          "type": "string"
+        },
+        "accessSpecifier": {
+          "type": "string"
+        },
+        "graphics": {
+          "$ref": "#/definitions/graphicalElement"
+        },
+        "label": {
+          "type": "string",
+          "pattern": "^[a-zA-Z_$]([\\.a-zA-Z_0-9])*$"
+        },
+        "value": {
+          "oneOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "boolean"
+            }
+          ]
+        },
+        "start": {
+          "oneOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "boolean"
+            }
+          ]
+        },
+        "nominal": {
+          "oneOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "boolean"
+            }
+          ]
+        },
+        "quantity": {
+          "type": "string"
+        },
+        "fixed": {
+          "type": "boolean"
+        },
+        "instantiate": {
+          "type": "boolean"
+        },
+        "min": {
+          "type": "number"
+        },
+        "max": {
+          "type": "number"
+        },
+        "unit": {
+          "type": "string"
+        },
+        "displayUnit": {
+          "type": "string"
+        },
+        "lineNumStart": {
+          "type": "number"
+        },
+        "lineNumEnd": {
+          "type": "number"
         }
       }
     },
-    "properties": {
-      "inputs": {
-        "type": "array",
-        "items:": {
-            "type": "object",
-            "properties": {
-                "$ref": "#/definitions/input"
-            }
-        }
-      },
-      "outputs": {
-        "type": "array",
-        "items:": {
-            "type": "object",
-            "properties": {
-                "$ref": "#/definitions/output"
-            }
-        }
-      },
-      "parameters": {
-        "type": "array",
-        "items:": {
-            "type": "object",
-            "properties": {
-                "$ref": "#/definitions/parameter"
-            }
-        }
-      },
-      "constants": {
-        "type": "array",
-        "items:": {
-            "type": "object",
-            "properties": {
-                "$ref": "#/definitions/constant"
-            }
-        }
-      },
-      "blocks": {
-        "type": "array",
-        "items:": {
-            "type": "object",
-            "properties": {
-                "$ref": "#/definitions/block"
-            }
-        }
-      },
-      "connections": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "from": {
-              "type": "string",
-              "pattern": "^[a-zA-Z_$]([\\.a-zA-Z_0-9])*$"
+    "output": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[a-zA-Z_$]([\\.a-zA-Z_0-9])*$"
+        },
+        "description": {
+          "type": "string"
+        },
+        "datatype": {
+          "type": "string"
+        },
+        "accessSpecifier": {
+          "type": "string"
+        },
+        "graphics": {
+          "$ref": "#/definitions/graphicalElement"
+        },
+        "label": {
+          "type": "string",
+          "pattern": "^[a-zA-Z_$]([\\.a-zA-Z_0-9])*$"
+        },
+        "value": {
+          "oneOf": [
+            {
+              "type": "number"
             },
-            "to": {
-              "type": "string",
-              "pattern": "^[a-zA-Z_$]([\\.a-zA-Z_0-9])*$"
+            {
+              "type": "string"
+            },
+            {
+              "type": "boolean"
             }
-          },
-          "required": [
-            "from",
-            "to"
           ]
+        },
+        "start": {
+          "oneOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "boolean"
+            }
+          ]
+        },
+        "nominal": {
+          "oneOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "boolean"
+            }
+          ]
+        },
+        "quantity": {
+          "type": "string"
+        },
+        "fixed": {
+          "type": "boolean"
+        },
+        "instantiate": {
+          "type": "boolean"
+        },
+        "min": {
+          "type": "number"
+        },
+        "max": {
+          "type": "number"
+        },
+        "unit": {
+          "type": "string"
+        },
+        "displayUnit": {
+          "type": "string"
+        },
+        "lineNumStart": {
+          "type": "number"
+        },
+        "lineNumEnd": {
+          "type": "number"
+        }
+      }
+    },
+    "parameter": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[a-zA-Z_$]([\\.a-zA-Z_0-9])*$"
+        },
+        "description": {
+          "type": "string"
+        },
+        "datatype": {
+          "type": "string"
+        },
+        "accessSpecifier": {
+          "type": "string"
+        },
+        "graphics": {
+          "$ref": "#/definitions/graphicalElement"
+        },
+        "label": {
+          "type": "string",
+          "pattern": "^[a-zA-Z_$]([\\.a-zA-Z_0-9])*$"
+        },
+        "value": {
+          "oneOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "boolean"
+            }
+          ]
+        },
+        "start": {
+          "oneOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "boolean"
+            }
+          ]
+        },
+        "nominal": {
+          "oneOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "boolean"
+            }
+          ]
+        },
+        "quantity": {
+          "type": "string"
+        },
+        "fixed": {
+          "type": "boolean"
+        },
+        "default": {
+          "type": "object"
+        },
+        "min": {
+          "type": "number"
+        },
+        "max": {
+          "type": "number"
+        },
+        "unit": {
+          "type": "string"
+        },
+        "displayUnit": {
+          "type": "string"
+        },
+        "lineNumStart": {
+          "type": "number"
+        },
+        "lineNumEnd": {
+          "type": "number"
+        }
+      }
+    },
+    "constant": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[a-zA-Z_$]([\\.a-zA-Z_0-9])*$"
+        },
+        "description": {
+          "type": "string"
+        },
+        "datatype": {
+          "type": "string"
+        },
+        "accessSpecifier": {
+          "type": "string"
+        },
+        "graphics": {
+          "$ref": "#/definitions/graphicalElement"
+        },
+        "label": {
+          "type": "string",
+          "pattern": "^[a-zA-Z_$]([\\.a-zA-Z_0-9])*$"
+        },
+        "value": {
+          "oneOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "boolean"
+            }
+          ]
+        },
+        "quantity": {
+          "type": "string"
+        },
+        "fixed": {
+          "type": "boolean"
+        },
+        "unit": {
+          "type": "string"
+        },
+        "displayUnit": {
+          "type": "string"
+        },
+        "lineNumStart": {
+          "type": "number"
+        },
+        "lineNumEnd": {
+          "type": "number"
+        }
+      }
+    },
+    "block": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[a-zA-Z_$]([\\.a-zA-Z_0-9])*$"
         }
       }
     }
+  },
+  "properties": {
+    "instances": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/definitions/input"
+          },
+          {
+            "$ref": "#/definitions/output"
+          },
+          {
+            "$ref": "#/definitions/parameter"
+          },
+          {
+            "$ref": "#/definitions/constant"
+          },
+          {
+            "$ref": "#/definitions/block"
+          }
+        ]
+      }
+    },
+    "connections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "from": {
+            "type": "string",
+            "pattern": "^[a-zA-Z_$]([\\.a-zA-Z_0-9])*$"
+          },
+          "to": {
+            "type": "string",
+            "pattern": "^[a-zA-Z_$]([\\.a-zA-Z_0-9])*$"
+          }
+        },
+        "required": [
+          "from",
+          "to"
+        ]
+      }
+    }
   }
+}
