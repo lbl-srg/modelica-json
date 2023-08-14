@@ -873,6 +873,75 @@ mo.describe('jsonquery.js', function () {
       as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
     })
   })
+  mo.describe('testing description', function () {
+    mo.it('testing structure', function () {
+      sinon.stub(jq, 'trimDesString').returns('mocked string_comment')
+      sinon.stub(jq, 'classModification').returns('mocked class_modification')
+      var rawJson = {
+        'string_comment': 'test string_comment',
+        'annotation': {
+          'class_modification': 'test class_modification'
+        }
+      }
+      var jsonOutput = jq.description(rawJson)
+      var referenceJsonOutput = {
+        'description_string': 'mocked string_comment',
+        'annotation': 'mocked class_modification'
+      }
+      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
+    })
+    mo.it('testing () annotation', function () {
+      sinon.stub(jq, 'trimDesString').returns('mocked string_comment')
+      sinon.stub(jq, 'classModification').returns('()')
+      var rawJson = {
+        'string_comment': 'test string_comment',
+        'annotation': {
+          'class_modification': 'test class_modification'
+        }
+      }
+      var jsonOutput = jq.description(rawJson)
+      var referenceJsonOutput = {
+        'description_string': 'mocked string_comment',
+        'annotation': undefined
+      }
+      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
+    })
+    mo.it('testing no annotation', function () {
+      sinon.stub(jq, 'trimDesString').returns('mocked string_comment')
+      sinon.stub(jq, 'classModification').returns('()')
+      var rawJson = {
+        'string_comment': 'test string_comment',
+      }
+      var jsonOutput = jq.description(rawJson)
+      var referenceJsonOutput = {
+        'description_string': 'mocked string_comment',
+        'annotation': undefined
+      }
+      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
+    })
+  })
+  mo.describe('testing trim_des_string', function () {
+    mo.it('testing empty string', function () {
+      var rawJson = ''
+      var jsonOutput = jq.trimDesString(rawJson)
+      var referenceJsonOutput = undefined
+      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
+    })
+    mo.it('testing nested string', function () {
+      sinon.stub(jq, 'nameString').returns('mocked name')
+      var rawJson = '"'
+      var jsonOutput = jq.trimDesString(rawJson)
+      var referenceJsonOutput = ''
+      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
+    })
+    mo.it('testing non-empty string', function () {
+      sinon.stub(jq, 'nameString').returns('mocked name')
+      var rawJson = '   test   '
+      var jsonOutput = jq.trimDesString(rawJson)
+      var referenceJsonOutput = 'test'
+      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
+    })
+  })
   mo.describe('testing constraining_clause', function () {
     mo.it('testing structure', function () {
       sinon.stub(jq, 'nameString').returns('mocked name')
