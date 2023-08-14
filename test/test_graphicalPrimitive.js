@@ -48,7 +48,7 @@ mo.afterEach(() => {
 })
 
 mo.describe('graphicalPrimitives.js', function () {
-	mo.describe('testing is_graphic_annotation', function () {
+  mo.describe('testing is_graphic_annotation', function () {
     mo.it('testing is a graphical annotation', function () {
       var rawJson = 'Line'
       var jsonOutput = gp.isGraphicAnnotation(rawJson)
@@ -137,8 +137,8 @@ mo.describe('graphicalPrimitives.js', function () {
 	    var referenceJsonOutput = ['names', 'values']
 	    as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
 	  })
-	})
-	mo.describe('testing text_obj', function () {
+  })
+  mo.describe('testing text_obj', function () {
     mo.it('testing structure', function () {
       sinon.stub(gp, 'textAttribute').returns(['names', 'values'])
       var rawJson = {
@@ -209,39 +209,39 @@ mo.describe('graphicalPrimitives.js', function () {
             }
           }
         }, {
-           'element_modification_or_replaceable': {
-             'element_modification': {
-               'name': 'iconVisible',
-               'modification': {
-                 'expression': {
-                   'simple_expression': 'test expression2'
-                 }
-               }
-             }
-           }
-         }, {
-            'element_modification_or_replaceable': {
-              'element_modification': {
-                'name': 'transformation',
-                'modification': {
-                  'expression': {
-                    'simple_expression': 'test expression3'
-                  }
+          'element_modification_or_replaceable': {
+            'element_modification': {
+              'name': 'iconVisible',
+              'modification': {
+                'expression': {
+                  'simple_expression': 'test expression2'
                 }
               }
             }
-          }, {
-           'element_modification_or_replaceable': {
-             'element_modification': {
-               'name': 'iconTransformation',
-               'modification': {
-                 'expression': {
-                   'simple_expression': 'test expression4'
-                 }
-               }
-             }
-           }
-         }
+          }
+        }, {
+          'element_modification_or_replaceable': {
+            'element_modification': {
+              'name': 'transformation',
+              'modification': {
+                'expression': {
+                  'simple_expression': 'test expression3'
+                }
+              }
+            }
+          }
+        }, {
+          'element_modification_or_replaceable': {
+            'element_modification': {
+              'name': 'iconTransformation',
+              'modification': {
+                'expression': {
+                  'simple_expression': 'test expression4'
+                }
+              }
+            }
+          }
+        }
         ]
       }
       var jsonOutput = gp.placementObj(rawJson)
@@ -270,28 +270,28 @@ mo.describe('graphicalPrimitives.js', function () {
             }
           }
         }, {
-           'element_modification_or_replaceable': {
-             'element_modification': {
-               'name': 'preserveAspectRatio',
-               'modification': {
-                 'expression': {
-                   'simple_expression': 'test expression2'
-                 }
-               }
-             }
-           }
-         }, {
-            'element_modification_or_replaceable': {
-              'element_modification': {
-                'name': 'initialScale',
-                'modification': {
-                  'expression': {
-                    'simple_expression': 'test expression3'
-                  }
+          'element_modification_or_replaceable': {
+            'element_modification': {
+              'name': 'preserveAspectRatio',
+              'modification': {
+                'expression': {
+                  'simple_expression': 'test expression2'
                 }
               }
             }
           }
+        }, {
+          'element_modification_or_replaceable': {
+            'element_modification': {
+              'name': 'initialScale',
+              'modification': {
+                'expression': {
+                  'simple_expression': 'test expression3'
+                }
+              }
+            }
+          }
+        }
         ]
       }
       var jsonOutput = gp.coordinateSystemObj(rawJson)
@@ -320,28 +320,28 @@ mo.describe('graphicalPrimitives.js', function () {
             }
           }
         }, {
-           'element_modification_or_replaceable': {
-             'element_modification': {
-               'name': 'extent',
-               'modification': {
-                 'expression': {
-                   'simple_expression': 'test expression2'
-                 }
-               }
-             }
-           }
-         }, {
-            'element_modification_or_replaceable': {
-              'element_modification': {
-                'name': 'rotation',
-                'modification': {
-                  'expression': {
-                    'simple_expression': 3
-                  }
+          'element_modification_or_replaceable': {
+            'element_modification': {
+              'name': 'extent',
+              'modification': {
+                'expression': {
+                  'simple_expression': 'test expression2'
                 }
               }
             }
           }
+        }, {
+          'element_modification_or_replaceable': {
+            'element_modification': {
+              'name': 'rotation',
+              'modification': {
+                'expression': {
+                  'simple_expression': 3
+                }
+              }
+            }
+          }
+        }
         ]
       }
       var jsonOutput = gp.transformationObj(rawJson)
@@ -371,7 +371,7 @@ mo.describe('graphicalPrimitives.js', function () {
   })
   mo.describe('testing origin_obj', function () {
     mo.it('testing with expression string', function () {
-      var rawJson = "{0, 0}"
+      var rawJson = '{0, 0}'
       var jsonOutput = gp.originObj(rawJson)
       var referenceJsonOutput = {
         'x': 0,
@@ -380,7 +380,7 @@ mo.describe('graphicalPrimitives.js', function () {
       as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
     })
   })
-	mo.describe('testing filled_shape_obj', function () {
+  mo.describe('testing filled_shape_obj', function () {
 	  mo.it('testing structure', function () {
 	    sinon.stub(gp, 'colorObj').withArgs('expression1').returns('mocked line_color')
 	                              .withArgs('expression2').returns('mocked fill_color')
@@ -398,8 +398,8 @@ mo.describe('graphicalPrimitives.js', function () {
 	    }
 	    as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
 	  })
-	})
-	mo.describe('testing gra_ite_fil_sha_objs', function () {
+  })
+  mo.describe('testing gra_ite_fil_sha_objs', function () {
     mo.it('testing structure', function () {
       sinon.stub(gp, 'graphicItemsObj').returns('mocked graphic_items_obj')
       sinon.stub(gp, 'filledShapeObj').returns('mocked filled_shape_obj')
@@ -415,24 +415,24 @@ mo.describe('graphicalPrimitives.js', function () {
       as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
     })
   })
-	mo.describe('testing points_obj', function () {
+  mo.describe('testing points_obj', function () {
 	  mo.it('testing structure', function () {
 	    sinon.stub(gp, 'colorObj').withArgs('locations').returns([0, 10, 20, 30])
 	                              .withArgs('locations').returns([9, 19, 29, 37])
-	    var rawJson = "{{100,-280},{100,-268},{85,-268},{85,-210}}"
+	    var rawJson = '{{100,-280},{100,-268},{85,-268},{85,-210}}'
 	    var jsonOutput = gp.pointsObj(rawJson)
 	    var referenceJsonOutput = [
-	      {"x": 100, "y": -280},
-	      {"x": 100, "y": -268},
-	      {"x": 85, "y": -268},
-	      {"x": 85, "y": -210}
-      ]
+	      {'x': 100, 'y': -280},
+	      {'x': 100, 'y': -268},
+	      {'x': 85, 'y': -268},
+	      {'x': 85, 'y': -210}
+    ]
 	    as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
 	  })
-	})
-	mo.describe('testing color_obj', function () {
+  })
+  mo.describe('testing color_obj', function () {
 	  mo.it('testing structure', function () {
-	    var rawJson = "{0,127,255}"
+	    var rawJson = '{0,127,255}'
 	    var jsonOutput = gp.colorObj(rawJson)
 	    var referenceJsonOutput = {
 	      'r': 0,
@@ -441,8 +441,8 @@ mo.describe('graphicalPrimitives.js', function () {
 	    }
 	    as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
 	  })
-	})
-	mo.describe('testing graphic_attribute_obj', function () {
+  })
+  mo.describe('testing graphic_attribute_obj', function () {
 	  mo.it('testing if key_nam is line', function () {
 	    sinon.stub(gp, 'lineAttributeObj').returns('mocked attribute')
 	    var keyNam = 'Line'
@@ -491,8 +491,8 @@ mo.describe('graphicalPrimitives.js', function () {
 	    var referenceJsonOutput = 'mocked attribute'
 	    as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
 	  })
-	})
-	mo.describe('testing line_attribute_obj', function () {
+  })
+  mo.describe('testing line_attribute_obj', function () {
     mo.it('testing structure', function () {
       sinon.stub(gp, 'nameAttributePair').returns('mocked name_attribute')
       sinon.stub(gp, 'lineAttribute').returns('mocked line_attribute')
@@ -505,7 +505,7 @@ mo.describe('graphicalPrimitives.js', function () {
       as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
     })
   })
-	mo.describe('testing text_attribute_obj', function () {
+  mo.describe('testing text_attribute_obj', function () {
     mo.it('testing structure', function () {
       sinon.stub(gp, 'nameAttributePair').returns('mocked name_attribute')
       sinon.stub(gp, 'textAttribute').returns('mocked text_attribute')
@@ -518,7 +518,7 @@ mo.describe('graphicalPrimitives.js', function () {
       as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
     })
   })
-	mo.describe('testing rectangle_attribute_obj', function () {
+  mo.describe('testing rectangle_attribute_obj', function () {
     mo.it('testing structure', function () {
       sinon.stub(gp, 'nameAttributePair').returns('mocked name_attribute')
       sinon.stub(gp, 'rectangleAttribute').returns('mocked rectangle_attribute')
@@ -531,7 +531,7 @@ mo.describe('graphicalPrimitives.js', function () {
       as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
     })
   })
-	mo.describe('testing polygon_attribute_obj', function () {
+  mo.describe('testing polygon_attribute_obj', function () {
     mo.it('testing structure', function () {
       sinon.stub(gp, 'nameAttributePair').returns('mocked name_attribute')
       sinon.stub(gp, 'polygonAttribute').returns('mocked polygon_attribute')
@@ -544,7 +544,7 @@ mo.describe('graphicalPrimitives.js', function () {
       as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
     })
   })
-	mo.describe('testing ellipse_attribute_obj', function () {
+  mo.describe('testing ellipse_attribute_obj', function () {
     mo.it('testing structure', function () {
       sinon.stub(gp, 'nameAttributePair').returns('mocked name_attribute')
       sinon.stub(gp, 'ellipseAttribute').returns('mocked ellipse_attribute')
@@ -557,7 +557,7 @@ mo.describe('graphicalPrimitives.js', function () {
       as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
     })
   })
-	mo.describe('testing bitmap_attribute_obj', function () {
+  mo.describe('testing bitmap_attribute_obj', function () {
     mo.it('testing structure', function () {
       sinon.stub(gp, 'nameAttributePair').returns('mocked name_attribute')
       sinon.stub(gp, 'bitmapAttribute').returns('mocked bitmap_attribute')
@@ -570,7 +570,7 @@ mo.describe('graphicalPrimitives.js', function () {
       as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
     })
   })
-	mo.describe('testing line_attribute', function () {
+  mo.describe('testing line_attribute', function () {
     mo.it('testing structure', function () {
       sinon.stub(gp, 'pointsObj').returns('mocked points')
       sinon.stub(gp, 'colorObj').returns('mocked color')
@@ -589,7 +589,7 @@ mo.describe('graphicalPrimitives.js', function () {
       as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
     })
   })
-	mo.describe('testing text_attribute', function () {
+  mo.describe('testing text_attribute', function () {
     mo.it('testing structure', function () {
       sinon.stub(gp, 'pointsObj').returns('mocked points')
       sinon.stub(gp, 'colorObj').returns('mocked color')
@@ -610,7 +610,7 @@ mo.describe('graphicalPrimitives.js', function () {
       as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
     })
   })
-	mo.describe('testing rectangle_attribute', function () {
+  mo.describe('testing rectangle_attribute', function () {
     mo.it('testing structure', function () {
       sinon.stub(gp, 'pointsObj').returns('mocked points')
       sinon.stub(gp, 'graIteFilShaObjs').returns('mocked gra_ite_fil_sha_obj')
@@ -625,7 +625,7 @@ mo.describe('graphicalPrimitives.js', function () {
       as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
     })
   })
-	mo.describe('testing polygon_attribute', function () {
+  mo.describe('testing polygon_attribute', function () {
     mo.it('testing structure', function () {
       sinon.stub(gp, 'pointsObj').returns('mocked points')
       sinon.stub(gp, 'graIteFilShaObjs').returns('mocked gra_ite_fil_sha_obj')
@@ -639,7 +639,7 @@ mo.describe('graphicalPrimitives.js', function () {
       as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
     })
   })
-	mo.describe('testing ellipse_attribute', function () {
+  mo.describe('testing ellipse_attribute', function () {
     mo.it('testing structure', function () {
       sinon.stub(gp, 'pointsObj').returns('mocked points')
       sinon.stub(gp, 'graIteFilShaObjs').returns('mocked gra_ite_fil_sha_obj')
@@ -655,7 +655,7 @@ mo.describe('graphicalPrimitives.js', function () {
       as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
     })
   })
-	mo.describe('testing bitmap_attribute', function () {
+  mo.describe('testing bitmap_attribute', function () {
     mo.it('testing structure', function () {
       sinon.stub(gp, 'pointsObj').returns('mocked points')
       sinon.stub(gp, 'graIteFilShaObjs').returns('mocked gra_ite_fil_sha_obj')
@@ -670,7 +670,7 @@ mo.describe('graphicalPrimitives.js', function () {
       as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
     })
   })
-	mo.describe('testing name_attribute_pair', function () {
+  mo.describe('testing name_attribute_pair', function () {
     mo.it('testing structure', function () {
       sinon.stub(gp, 'locations').returns([5, 18, 31])
       sinon.stub(gp, 'ellipseAttribute').returns('mocked ellipse_attribute')
@@ -683,7 +683,7 @@ mo.describe('graphicalPrimitives.js', function () {
       as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
     })
   })
-	mo.describe('testing locations', function () {
+  mo.describe('testing locations', function () {
     mo.it('testing structure', function () {
       var substr = '='
       var str = 'name1=value1,name2=value2,name3=value3'
