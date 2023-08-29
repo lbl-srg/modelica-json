@@ -1,8 +1,8 @@
 function parse (content, rawJson = false) {
   const classDefinitionParser = require('./classDefinition')
 
-  var moOutput = ''
-  var isFinal = false
+  let moOutput = ''
+  let isFinal = false
 
   if (rawJson) {
     isFinal = content.is_final
@@ -20,11 +20,11 @@ function parse (content, rawJson = false) {
       moOutput += classDefinitionParser.parse(content.class_definition, rawJson)
     }
   } else {
-    var classDefinition = content
+    const classDefinition = content
     moOutput += classDefinitionParser.parse(classDefinition, rawJson)
   }
 
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

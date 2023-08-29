@@ -6,14 +6,14 @@ function parse (content, rawJson = false) {
   const graPri = require('../lib/graphicalPrimitives.js')
 
   // Get all the keys in the json object. It may be graphical primitive.
-  var keys = Object.keys(content)
-  var isGraPri = false
+  const keys = Object.keys(content)
+  let isGraPri = false
   // check if it is a graphical primitive
   isGraPri = keys.some(function (ele) {
     return graPri.isGraphicAnnotation(ele)
   })
 
-  var moOutput = ''
+  let moOutput = ''
   if (isGraPri) {
     moOutput += graphicParser.parse(content, rawJson)
   } else {
@@ -31,4 +31,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

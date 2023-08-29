@@ -2,9 +2,9 @@ function parse (content, rawJson = false) {
   const util = require('util')
   const namePartParser = require('./namePart')
 
-  var moOutput = ''
+  let moOutput = ''
   if (rawJson) {
-    var nameParts = content.name_parts
+    const nameParts = content.name_parts
     if (nameParts != null) {
       nameParts.forEach(ele => {
         moOutput += namePartParser.parse(ele, rawJson)
@@ -17,4 +17,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

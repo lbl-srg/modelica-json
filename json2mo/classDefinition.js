@@ -1,9 +1,9 @@
 function parse (content, rawJson = false) {
   const util = require('util')
   const classSpecifier = require('./classSpecifier')
-  var encapsulated = content.encapsulated
-  var classPrefixes = content.class_prefixes
-  var moOutput = ''
+  const encapsulated = content.encapsulated
+  const classPrefixes = content.class_prefixes
+  let moOutput = ''
 
   if (encapsulated != null) {
     if (encapsulated) {
@@ -18,4 +18,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

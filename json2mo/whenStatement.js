@@ -2,8 +2,8 @@ function parse (content, rawJson = false) {
   const expressionParser = require('./expression')
   const statementParser = require('./statement')
 
-  var moOutput = ''
-  var whenElsewhens = null
+  let moOutput = ''
+  let whenElsewhens = null
   if (rawJson) {
     whenElsewhens = content.when_elsewhen
   } else {
@@ -17,8 +17,8 @@ function parse (content, rawJson = false) {
         moOutput += expressionParser.parse(ele.condition, rawJson)
       }
       moOutput += '\n'
-      var thenStatements = ele.then
-      var thenOutput = ''
+      const thenStatements = ele.then
+      let thenOutput = ''
       if (thenStatements != null) {
         thenStatements.forEach(thenSta => {
           thenOutput += statementParser.parse(thenSta, rawJson)
@@ -37,4 +37,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

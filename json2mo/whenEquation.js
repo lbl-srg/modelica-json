@@ -2,8 +2,8 @@ function parse (content, rawJson = false) {
   const expressionParser = require('./expression')
   const equationParser = require('./equation')
 
-  var moOutput = ''
-  var whenElsewhens = null
+  let moOutput = ''
+  let whenElsewhens = null
   if (rawJson) {
     whenElsewhens = content.when_elsewhen
   } else {
@@ -17,8 +17,8 @@ function parse (content, rawJson = false) {
         moOutput += expressionParser.parse(ele.condition, rawJson)
       }
       moOutput += '\n'
-      var thenEquations = ele.then
-      var thenOutput = ''
+      const thenEquations = ele.then
+      let thenOutput = ''
       if (thenEquations != null) {
         thenEquations.forEach(thenEqu => {
           thenOutput += equationParser.parse(thenEqu, rawJson)
@@ -37,4 +37,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

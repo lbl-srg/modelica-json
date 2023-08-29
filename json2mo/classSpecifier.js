@@ -3,11 +3,11 @@ function parse (content, rawJson = false) {
   const shortClassSpecifierParser = require('./shortClassSpecifier')
   const derClassSpecifierParser = require('./derClassSpecifier')
 
-  var longClassSpecifier = content.long_class_specifier
-  var shortClassSpecifier = content.short_class_specifier
-  var derClassSpecifier = content.der_class_specifier
+  const longClassSpecifier = content.long_class_specifier
+  const shortClassSpecifier = content.short_class_specifier
+  const derClassSpecifier = content.der_class_specifier
 
-  var moOutput = ''
+  let moOutput = ''
 
   if (longClassSpecifier != null) {
     moOutput += longClassSpecifierParser.parse(longClassSpecifier, rawJson)
@@ -24,4 +24,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }
