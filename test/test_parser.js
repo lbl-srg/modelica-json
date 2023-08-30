@@ -52,7 +52,7 @@ const checkCdlJSON = function (outFormat, extension, message) {
 
     const expectedOutputPath = path.join(process.cwd(), 'test', 'reference')
 
-    testMoFiles.map(fil => {
+    testMoFiles.forEach(fil => {
       // 'fil.split()' changes string 'fil' to be string array with single element
       // 'fil' is like '../test/FromModelica/***.mo'
       // const jsonNewCDL = pa.getJSON(fil.split(), mode, outFormat)

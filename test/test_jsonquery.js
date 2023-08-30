@@ -22,10 +22,15 @@ function equalObjects (dict, reference) {
       const idx = keys[i]
       if (!(idx in reference)) {
         return false
-      } else {
+      }
+    }
+    for (let i = 0; i < keys.length; i++) {
+      const idx = keys[i]
+      if (idx in reference) {
         return equalObjects(dict[idx], reference[idx])
       }
     }
+
     return true
   } else if ((dict.constructor === Array && reference.constructor === Array)) {
     if (dict.length !== reference.length) {
