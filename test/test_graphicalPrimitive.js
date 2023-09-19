@@ -308,8 +308,8 @@ mo.describe('graphicalPrimitives.js', function () {
   })
   mo.describe('transformation_obj', function () {
     mo.it('testing structure', function () {
-      sinon.stub(gp, 'originObj').returns('mocked transformation')
-      sinon.stub(gp, 'pointsObj').returns('mocked transformation')
+      sinon.stub(gp, 'originObj').returns('mocked origin transformation')
+      sinon.stub(gp, 'pointsObj').returns('mocked points transformation')
       const rawJson = {
         class_modification: [{
           element_modification_or_replaceable: {
@@ -349,8 +349,8 @@ mo.describe('graphicalPrimitives.js', function () {
       }
       const jsonOutput = gp.transformationObj(rawJson)
       const referenceJsonOutput = {
-        origin: 'mocked transformation',
-        extent: 'mocked transformation',
+        origin: 'mocked origin transformation',
+        extent: 'mocked points transformation',
         rotation: 3
       }
       as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))

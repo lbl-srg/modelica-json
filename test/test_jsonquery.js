@@ -9,6 +9,8 @@ function equalObjects (dict, reference) {
     return true
   } else if ((dict === undefined) || (reference === undefined)) {
     return false
+  } else if ((dict === {} && reference === {})) {
+    return true
   }
   if (typeof (dict) !== typeof (reference)) {
     return false
@@ -856,7 +858,7 @@ mo.describe('jsonquery.js', function () {
         identifier: 'test identifier',
         description_string: 'mocked string_comment',
         composition: 'mocked composition',
-        is_extends: true,
+        extends: true,
         class_modification: 'mocked class_modification'
       }
       as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
@@ -1523,8 +1525,8 @@ mo.describe('jsonquery.js', function () {
         assignment_statement: undefined,
         Function_call_statement: undefined,
         assignment_with_function_call_statement: undefined,
-        is_break: undefined,
-        is_return: undefined,
+        break: undefined,
+        return: undefined,
         if_statement: undefined,
         for_statement: undefined,
         while_statement: undefined,
@@ -1559,8 +1561,8 @@ mo.describe('jsonquery.js', function () {
         assignment_statement: 'mocked assignment_statement',
         Function_call_statement: 'mocked Function_call_statement',
         assignment_with_function_call_statement: 'mocked assignment_with_function_call_statement',
-        is_break: true,
-        is_return: true,
+        break: true,
+        return: true,
         if_statement: 'mocked if_statement',
         for_statement: 'mocked for_statement',
         while_statement: 'mocked while_statement',
