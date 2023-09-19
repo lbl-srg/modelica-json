@@ -1,14 +1,14 @@
 function parse (content, rawJson = false) {
   const expressionParser = require('./expression')
 
-  var moOutput = ''
+  let moOutput = ''
   moOutput += '\n\tif '
   if (rawJson) {
     if (content.expression != null) {
       moOutput += expressionParser.parse(content.expression, rawJson)
     }
   } else {
-    var expression = content
+    const expression = content
     if (expression != null) {
       moOutput += expressionParser.parse(expression, rawJson)
     }
@@ -16,4 +16,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

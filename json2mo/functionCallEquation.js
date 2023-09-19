@@ -2,7 +2,7 @@ function parse (content, rawJson = false) {
   const nameParser = require('./name')
   const functionCallArgsParser = require('./functionCallArgs')
 
-  var moOutput = ''
+  let moOutput = ''
 
   if (content.function_name != null) {
     moOutput += nameParser.parse(content.function_name, rawJson)
@@ -14,4 +14,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

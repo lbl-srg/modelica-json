@@ -1,8 +1,8 @@
 function parse (content, rawJson = false) {
   const util = require('util')
 
-  var moOutput = ''
-  var identifierList = content.identifier_list
+  let moOutput = ''
+  const identifierList = content.identifier_list
   if (identifierList != null) {
     identifierList.forEach(identifier => {
       moOutput += util.format('%s, ', identifier)
@@ -12,4 +12,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

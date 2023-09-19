@@ -2,8 +2,8 @@ function parse (content, rawJson = false) {
   const ifElseifExpressionParser = require('./ifElseifExpression')
   const expressionParser = require('./expression')
 
-  var moOutput = ''
-  var ifElseifs = content.if_elseif
+  let moOutput = ''
+  const ifElseifs = content.if_elseif
   if (ifElseifs != null) {
     ifElseifs.forEach(ele => {
       moOutput += ' elseif '
@@ -19,4 +19,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

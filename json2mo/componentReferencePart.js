@@ -2,7 +2,7 @@ function parse (content, rawJson = false) {
   const util = require('util')
   const arraySubscriptsParser = require('./arraySubscripts')
 
-  var moOutput = ''
+  let moOutput = ''
 
   if (rawJson) {
     if (content.dot_op != null) {
@@ -20,4 +20,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

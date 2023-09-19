@@ -1,8 +1,8 @@
 function parse (content, rawJson = false) {
   const enumerationLiteralParser = require('./enumerationLiteral')
 
-  var moOutput = ''
-  var enumerationLiterals
+  let moOutput = ''
+  let enumerationLiterals
   if (rawJson) {
     enumerationLiterals = content.enumeration_literal
   } else {
@@ -19,4 +19,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

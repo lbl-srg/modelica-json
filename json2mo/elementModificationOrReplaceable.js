@@ -2,7 +2,7 @@ function parse (content, rawJson = false) {
   const elementModificationParser = require('./elementModification')
   const elementReplaceableParser = require('./elementReplaceable')
 
-  var moOutput = ''
+  let moOutput = ''
   if (content.each != null) {
     if (content.each) {
       moOutput += 'each '
@@ -30,4 +30,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

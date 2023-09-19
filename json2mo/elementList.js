@@ -1,8 +1,8 @@
 function parse (content, rawJson = false) {
   const elementParser = require('./element')
 
-  var moOutput = ''
-  var elements
+  let moOutput = ''
+  let elements
   if (rawJson) {
     elements = content.elements
     if (elements != null) {
@@ -22,4 +22,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }
