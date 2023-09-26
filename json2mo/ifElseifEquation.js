@@ -2,18 +2,18 @@ function parse (content, rawJson = false) {
   const expressionParser = require('./expression')
   const equationParser = require('./equation')
 
-  var moOutput = ''
+  let moOutput = ''
 
   if (content.condition != null) {
     moOutput += expressionParser.parse(content.condition, rawJson)
   }
 
-  var thenEquations = content.then
-  var thenOutput = ''
+  const thenEquations = content.then
+  let thenOutput = ''
   if (thenEquations != null) {
     thenOutput = ''
     thenEquations.forEach(ele => {
-      thenOutput += equationParser.parser(ele, rawJson)
+      thenOutput += equationParser.parse(ele, rawJson)
       thenOutput += ';\n'
     })
     if (thenOutput !== '') {
@@ -24,4 +24,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

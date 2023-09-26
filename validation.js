@@ -5,14 +5,14 @@ const fs = require('fs')
 const ArgumentParser = require('argparse').ArgumentParser
 /// ///////////////////////////////////////
 
-var validation = new ArgumentParser({
+const validation = new ArgumentParser({
   version: '0.0.1',
   addHelp: true,
   description: 'Json file validation against schema'
 })
 
 validation.addArgument(
-  [ '-m', '--mode' ],
+  ['-m', '--mode'],
   {
     help: "Parsing mode, single CDL model or buildings modelica library package, 'cdl' is the default.",
     choices: ['cdl', 'modelica'],
@@ -21,14 +21,14 @@ validation.addArgument(
 )
 
 validation.addArgument(
-  [ '-f', '--file' ],
+  ['-f', '--file'],
   {
     help: 'JSON file to test against schema',
     required: true
   }
 )
 
-var args = validation.parseArgs()
+const args = validation.parseArgs()
 
 const logFile = 'validation.log'
 try {

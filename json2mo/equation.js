@@ -7,7 +7,7 @@ function parse (content, rawJson = false) {
   const functionCallEquationParser = require('./functionCallEquation')
   const commentParser = require('./comment')
 
-  var moOutput = ''
+  let moOutput = ''
   if (content.assignment_equation != null) {
     moOutput += '\n'
     moOutput += assignmentEquationParser.parse(content.assignment_equation, rawJson)
@@ -41,4 +41,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

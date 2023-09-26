@@ -3,9 +3,9 @@ function parse (content, rawJson = false) {
   const arraySubscriptsParser = require('./arraySubscripts')
   const modificationParser = require('./modification')
 
-  var moOutput = ''
+  let moOutput = ''
   if (content.identifier != null) {
-    moOutput += util.format('%s ', content.identifier)
+    moOutput += util.format('%s', content.identifier)
   }
   if (content.array_subscripts != null) {
     moOutput += arraySubscriptsParser.parse(content.array_subscripts, rawJson)
@@ -16,4 +16,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

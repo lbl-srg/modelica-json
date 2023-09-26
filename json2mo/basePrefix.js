@@ -1,12 +1,12 @@
 function parse (content, rawJson = false) {
   const util = require('util')
-  var moOutput = ''
+  let moOutput = ''
   if (rawJson) {
     if (content.type_prefix != null) {
       moOutput += util.format('%s ', content.type_prefix)
     }
   } else {
-    var basePrefix = content
+    const basePrefix = content
     if (basePrefix != null) {
       moOutput += util.format('%s ', basePrefix)
     }
@@ -15,4 +15,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

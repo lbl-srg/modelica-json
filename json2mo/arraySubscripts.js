@@ -2,11 +2,11 @@ function parse (content, rawJson = false) {
   const expressionParser = require('./expression')
   const subscriptParser = require('./subscript')
 
-  var moOutput = ''
+  let moOutput = ''
 
   if (rawJson) {
     moOutput += '['
-    var subscripts = content.subscripts
+    const subscripts = content.subscripts
     if (subscripts != null) {
       subscripts.forEach(subscript => {
         moOutput += subscriptParser.parse(subscript, rawJson)
@@ -16,7 +16,7 @@ function parse (content, rawJson = false) {
     }
     moOutput += '] '
   } else {
-    var arraySubscripts = content
+    const arraySubscripts = content
     moOutput += '['
 
     if (arraySubscripts != null) {
@@ -28,7 +28,7 @@ function parse (content, rawJson = false) {
         } else if (ele.expression != null) {
           moOutput += expressionParser.parse(ele.expression, rawJson)
         }
-        moOutput += ', '
+        moOutput += ','
       })
       moOutput = moOutput.slice(0, -2)
     }
@@ -37,4 +37,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

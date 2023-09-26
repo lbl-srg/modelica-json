@@ -2,26 +2,26 @@ function parse (content, rawJson = false) {
   const argumentListParser = require('./argumentList')
   const argumentParser = require('./argument')
 
-  var moOutput = ''
+  let moOutput = ''
   if (rawJson) {
-    moOutput += '('
+    moOutput += '(\n\t'
     if (content.argument_list != null) {
       moOutput += argumentListParser.parse(content.argument_list, rawJson)
     }
-    moOutput += ')'
+    moOutput += ')\n\t'
   } else {
-    var argumentList = content
-    moOutput += '('
+    const argumentList = content
+    moOutput += '(\n\t'
 
     argumentList.forEach(argument => {
       moOutput += argumentParser.parse(argument, rawJson)
-      moOutput += ', '
+      moOutput += ',\n\t'
     })
 
-    moOutput = moOutput.slice(0, -2)
+    moOutput = moOutput.slice(0, moOutput.lastIndexOf(','))
     moOutput += ')'
   }
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

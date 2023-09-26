@@ -4,8 +4,8 @@ function parse (content, rawJson = false) {
   const conditionAttributeParser = require('./conditionAttribute')
   const commentParser = require('./comment')
 
-  var moOutput = ''
-  var componentDeclarationList
+  let moOutput = ''
+  let componentDeclarationList
   if (rawJson) {
     componentDeclarationList = content.component_declaration_list
 
@@ -30,4 +30,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

@@ -2,9 +2,9 @@ function parse (content, rawJson = false) {
   const util = require('util')
   const finalClassDefinitionParser = require('./finalClassDefinition')
 
-  var within = content.within
+  const within = content.within
 
-  var moOutput = ''
+  let moOutput = ''
   if (within != null) {
     moOutput += util.format('within %s;\n', within)
   }
@@ -27,4 +27,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

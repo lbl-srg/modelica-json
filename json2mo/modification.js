@@ -1,17 +1,20 @@
 function parse (content, rawJson = false) {
   const classModificationParser = require('./classModification')
   const expressionParser = require('./expression')
-  var moOutput = ''
+  let moOutput = ''
 
-  if (content.class_modification != null) {
+  const haveClaMod = content.class_modification != null
+  if (haveClaMod) {
     moOutput += classModificationParser.parse(content.class_modification, rawJson)
   }
 
   if (content.equal != null) {
+    if (haveClaMod) { moOutput += '\t' }
     if (content.equal) {
       moOutput += '='
     }
   } else if (content.colon_equal != null) {
+    if (haveClaMod) { moOutput += '\t' }
     if (content.colon_equal) {
       moOutput += ':='
     }
@@ -22,4 +25,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }
