@@ -25,6 +25,8 @@ public class NameVisitor extends modelicaBaseVisitor<Name> {
         if (dots != null && identifiers != null) {
             if (identifiers.size() == dots.size()+1) {
                 name_parts.add(new Name_part(false, identifiers.get(0)));
+            } else if (identifiers.size() == dots.size()) {
+                name_parts.add(new Name_part(true, identifiers.get(0)));
             }
             for (int i=1; i<identifiers.size(); i++) {
                 name_parts.add(new Name_part(dots.get(i-1).equals("."), identifiers.get(i)));

@@ -28,11 +28,13 @@ public class Arithmetic_expressionVisitor extends modelicaBaseVisitor<Arithmetic
         
         List<Arithmetic_term> arithmetic_term_list = new ArrayList<Arithmetic_term>();
         if (terms != null && add_ops != null) {
+            int extra_term = 0;
             if (add_ops.size() == (terms.size() - 1)) {
                 arithmetic_term_list.add(new Arithmetic_term(null, terms.get(0)));
+                extra_term = 1;
             }
             for (int i=0; i<add_ops.size(); i++ ) {
-                arithmetic_term_list.add(new Arithmetic_term(add_ops.get(i), terms.get(i)));
+                arithmetic_term_list.add(new Arithmetic_term(add_ops.get(i), terms.get(extra_term+i)));
             }
         }
         return new Arithmetic_expression(arithmetic_term_list);

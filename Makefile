@@ -13,7 +13,7 @@ endif
 # download maven source file to current directory and change its name
 install-maven:
 	@echo "Installing maven"
-	curl http://apache.mirrors.lucidnetworks.net/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz > apache-maven.tar.gz
+	curl https://archive.apache.org/dist/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.tar.gz > apache-maven.tar.gz
 	mkdir -p apache_maven
 	tar xzf apache-maven.tar.gz -C apache_maven --strip-components 1
 	rm -rf apache-maven.tar.gz
@@ -39,21 +39,21 @@ test-moParser:
 # This only needs to be run when the output format changes,
 # or when new tests are added.
 generate-reference-output:
-	(cd test/FromModelica && \
-	for ff in `find . -name '*.mo'`; do \
-		node ../../app.js -l warn -f $${ff} -o raw-json -d ./cdl -m cdl; \
-		node ../../app.js -l warn -f $${ff} -o json -d ./cdl -m cdl; \
-		node ../../app.js -l warn -f $${ff} -o svg -d ./cdl -m cdl; \
-		node ../../app.js -l warn -f $${ff} -o html -d ./cdl -m cdl; \
-		node ../../app.js -l warn -f $${ff} -o docx -d ./cdl -m cdl; \
+	rm -rf ./test/reference; \
+	(for ff in `find . -name '*.mo'`; do \
+		node app.js -l warn -f $${ff} -o raw-json -d ./test/reference; \
+		node app.js -l warn -f $${ff} -o json -d ./test/reference; \
+		node app.js -l warn -f $${ff} -o semantic -d ./test/reference; \
 		done)
-
-	(cd test && \
-	node ../app.js -l warn -f FromModelica -o raw-json -d ./FromModelica/modelica -m modelica; \
-	node ../app.js -l warn -f FromModelica -o json -d ./FromModelica/modelica -m modelica; \
-	node ../app.js -l warn -f FromModelica -o html -d ./FromModelica/modelica -m modelica; \
-	node ../app.js -l warn -f FromModelica -o docx -d ./FromModelica/modelica -m modelica)
-	rm -f test/modelica-json.log test/FromModelica/modelica-json.log
+	cd test/reference/json && \
+	(for ff in `find ./test/FromModelica -name '*.json'`; do \
+	  node ../../../app.js -l warn -f $${ff} -o modelica -d ../../../test/reference/reverse; \
+	done)  
+	cd test/reference/reverse/modelica && \
+	(for ff in `find . -name '*.mo'`; do \
+	  node ../../../../app.js -l warn -f $${ff} -o json -d .. ; \
+	done)
+	
 
 clean-node-packages:
 	rm -rf node-modules
@@ -63,11 +63,10 @@ clean-maven:
 
 clean-installation: clean-node-packages clean-maven
 
-
 run:
 	node app.js \
 	--log warn \
-	-f Buildings/Controls/OBC/ASHRAE/G36_PR1/AHUs/MultiZone/VAV/Economizers/Controller.mo \
+	-f Buildings/Controls/OBC/ASHRAE/G36/AHUs/MultiZone/VAV/Economizers/Controller.mo \
 	-o html
 
 ibpsa-library:

@@ -1,0 +1,423 @@
+{
+  "instances": {
+    "Equal": {
+      "within": "Buildings.Controls.OBC.CDL.Integers",
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Integers/Equal.mo",
+      "type": "long_class_specifier",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "defaultComponentName",
+              "modification": {
+                "equal": true,
+                "expression": {
+                  "simple_expression": "\"intEqu\""
+                }
+              }
+            }
+          }
+        },
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Icon",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "coordinateSystem": {
+                          "extent": [
+                            {
+                              "x": -100,
+                              "y": -100
+                            },
+                            {
+                              "x": 100,
+                              "y": 100
+                            }
+                          ],
+                          "preserveAspectRatio": "false"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "graphics": [
+                          {
+                            "name": "Rectangle",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -100,
+                                  "y": 100
+                                },
+                                {
+                                  "x": 100,
+                                  "y": -100
+                                }
+                              ],
+                              "borderPattern": "BorderPattern.Raised",
+                              "lineColor": {
+                                "r": 0,
+                                "g": 0,
+                                "b": 0
+                              },
+                              "fillColor": {
+                                "r": 210,
+                                "g": 210,
+                                "b": 210
+                              },
+                              "fillPattern": "FillPattern.Solid",
+                              "lineThickness": 5
+                            }
+                          },
+                          {
+                            "name": "Ellipse",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": 73,
+                                  "y": 7
+                                },
+                                {
+                                  "x": 87,
+                                  "y": -7
+                                }
+                              ],
+                              "lineColor": {
+                                "r": 235,
+                                "g": 235,
+                                "b": null
+                              },
+                              "fillColor": {
+                                "r": 235,
+                                "g": 235,
+                                "b": null
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          },
+                          {
+                            "name": "Ellipse",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": 32,
+                                  "y": 10
+                                },
+                                {
+                                  "x": 52,
+                                  "y": -10
+                                }
+                              ],
+                              "lineColor": {
+                                "r": 255,
+                                "g": 127,
+                                "b": 0
+                              }
+                            }
+                          },
+                          {
+                            "name": "Line",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": -100,
+                                  "y": -80
+                                },
+                                {
+                                  "x": 42,
+                                  "y": -80
+                                },
+                                {
+                                  "x": 42,
+                                  "y": 0
+                                }
+                              ],
+                              "color": {
+                                "r": 255,
+                                "g": 127,
+                                "b": 0
+                              }
+                            }
+                          },
+                          {
+                            "name": "Text",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -150,
+                                  "y": 150
+                                },
+                                {
+                                  "x": 150,
+                                  "y": 110
+                                }
+                              ],
+                              "textString": "\"%name\"",
+                              "textColor": {
+                                "r": 0,
+                                "g": 0,
+                                "b": 255
+                              }
+                            }
+                          },
+                          {
+                            "name": "Text",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -76,
+                                  "y": -36
+                                },
+                                {
+                                  "x": 20,
+                                  "y": 54
+                                }
+                              ],
+                              "textString": ",textString=",
+                              "textColor": {
+                                "r": 255,
+                                "g": 127,
+                                "b": 0
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Documentation",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "info",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<p>\nBlock that outputs <code>true</code> if the Integer input <code>u1</code>\nis equal to the Integer input <code>u2</code>.\nOtherwise the output is <code>false</code>.\n</p>\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "revisions",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<ul>\n<li>\nAugust 30, 2017, by Jianjun Hu:<br/>\nFirst implementation, based on the implementation of the\nModelica Standard Library.\n</li>\n</ul>\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {}
+    },
+    "u1": {
+      "type_specifier": "Interfaces.IntegerInput",
+      "type": "element",
+      "long_class_specifier_identifier": "Equal",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "u1"
+        },
+        "description": {
+          "description_string": "Connector of first Integer input signal",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": -140,
+                          "y": -20
+                        },
+                        {
+                          "x": -100,
+                          "y": 20
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": -140,
+                      "y": -20
+                    },
+                    {
+                      "x": -100,
+                      "y": 20
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "within": "Buildings.Controls.OBC.CDL.Integers",
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Integers/Equal.mo"
+    },
+    "u2": {
+      "type_specifier": "Interfaces.IntegerInput",
+      "type": "element",
+      "long_class_specifier_identifier": "Equal",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "u2"
+        },
+        "description": {
+          "description_string": "Connector of second Integer input signal",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": -140,
+                          "y": -100
+                        },
+                        {
+                          "x": -100,
+                          "y": -60
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": -140,
+                      "y": -100
+                    },
+                    {
+                      "x": -100,
+                      "y": -60
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "within": "Buildings.Controls.OBC.CDL.Integers",
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Integers/Equal.mo"
+    },
+    "y": {
+      "type_specifier": "Interfaces.BooleanOutput",
+      "type": "element",
+      "long_class_specifier_identifier": "Equal",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "y"
+        },
+        "description": {
+          "description_string": "Connector of Boolean output signal",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": 100,
+                          "y": -20
+                        },
+                        {
+                          "x": 140,
+                          "y": 20
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": 100,
+                      "y": -20
+                    },
+                    {
+                      "x": 140,
+                      "y": 20
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "within": "Buildings.Controls.OBC.CDL.Integers",
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Integers/Equal.mo"
+    }
+  },
+  "requiredReferences": {
+    "connections": {}
+  }
+}
