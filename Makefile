@@ -45,15 +45,6 @@ generate-reference-output:
 		node app.js -l warn -f $${ff} -o json -d ./test/reference; \
 		node app.js -l warn -f $${ff} -o semantic -d ./test/reference; \
 		done)
-	cd test/reference/json && \
-	(for ff in `find ./test/FromModelica -name '*.json'`; do \
-	  node ../../../app.js -l warn -f $${ff} -o modelica -d ../../../test/reference/reverse; \
-	done)  
-	cd test/reference/reverse/modelica && \
-	(for ff in `find . -name '*.mo'`; do \
-	  node ../../../../app.js -l warn -f $${ff} -o json -d .. ; \
-	done)
-	
 
 clean-node-packages:
 	rm -rf node-modules
