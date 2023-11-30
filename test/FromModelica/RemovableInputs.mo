@@ -36,7 +36,7 @@ block RemovableInputs "A block with a flag for disabling instances"
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput y "Output connector"
     annotation (Placement(transformation(extent={{100,-10},{120,10}})));
 
-  Buildings.Controls.OBC.CDL.Continuous.Abs abs if not enaBlo
+  Buildings.Controls.OBC.CDL.Reals.Abs abs if not enaBlo
     "Instance could be conditional disabled"
     annotation (Placement(transformation(extent={{-8,-10},{12,10}})));
 end RemovableInputs;

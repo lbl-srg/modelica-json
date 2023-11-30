@@ -13,10 +13,10 @@ block CustomPWithLimiter
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput y "Control signal"
     annotation (Placement(transformation(extent={{100,-10},{120,10}})));
 
-  Buildings.Controls.OBC.CDL.Continuous.MultiplyByParameter gain(final k=k) "Constant gain"
+  Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter gain(final k=k) "Constant gain"
     annotation (Placement(transformation(extent={{-60,-50},{-40,-30}})));
 
-  Buildings.Controls.OBC.CDL.Continuous.Min minValue "Outputs the minimum of its inputs"
+  Buildings.Controls.OBC.CDL.Reals.Min minValue "Outputs the minimum of its inputs"
     annotation (Placement(transformation(extent={{20,-10},{40,10}})));
 equation
   connect(yMax, minValue.u1) annotation (
