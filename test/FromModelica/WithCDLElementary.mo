@@ -1,7 +1,7 @@
 within FromModelica;
 block WithCDLElementary
   "Block that instantiates CDL elementary block that there is inside class"
-  Buildings.Controls.OBC.CDL.Continuous.Greater gre
+  Buildings.Controls.OBC.CDL.Reals.Greater gre
     "CDL elementary block with inside class"
     annotation (Placement(transformation(extent={{-8,-10},{12,10}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealInput u "Real input"
