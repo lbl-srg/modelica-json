@@ -19,7 +19,7 @@ block MyController "My controller"
         iconTransformation(extent={{100,-20},{140,20}})),
         __cdl(connection(hardwired=true), trend(interval=60, enable=true)));
 
-  Buildings.Controls.OBC.CDL.Continuous.Add add2
+  Buildings.Controls.OBC.CDL.Reals.Add add2
     "Add two real inputs"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
 

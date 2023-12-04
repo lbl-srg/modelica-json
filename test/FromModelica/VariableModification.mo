@@ -13,7 +13,7 @@ block VariableModification "Block with instantiated class that the connector att
     annotation (Placement(transformation(extent={{-140,20},{-100,60}}),
       iconTransformation(extent={{-140,20},{-100,60}})));
 
-  Buildings.Controls.OBC.CDL.Continuous.Abs abs(
+  Buildings.Controls.OBC.CDL.Reals.Abs abs(
     u(final unit="K", displayUnit="degC"),
     y(unit="K", displayUnit="degC"))
     "Instance with modified input and output attributes"
