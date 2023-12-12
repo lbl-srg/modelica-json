@@ -123,8 +123,8 @@ if (args.output === 'json') {
   const modelicaPath = path.join('Modelica', pathSep)
   jsonFiles = jsonFiles.filter(obj => !(obj.includes(cdlPath) || obj.includes(modelicaPath)))
   // validate json schema
-  //for (let i = 0; i < jsonFiles.length; i++) {
-  //  const eachFile = jsonFiles[i]
-  //  setTimeout(function () { ut.jsonSchemaValidation(args.mode, eachFile, 'json', schema) }, 100)
-  //}
+  for (let i = 0; i < jsonFiles.length; i++) {
+   const eachFile = jsonFiles[i]
+   setTimeout(function () { ut.jsonSchemaValidation(args.mode, eachFile, 'json', schema) }, 100)
+  }
 }
