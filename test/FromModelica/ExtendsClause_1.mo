@@ -1,10 +1,10 @@
 within FromModelica;
 block ExtendsClause_1 "model with extends clause"
-  extends Buildings.Controls.OBC.CDL.Continuous.PID(
+  extends Buildings.Controls.OBC.CDL.Reals.PID(
     k=2,
     Ti=2);
 
-  Buildings.Controls.OBC.CDL.Continuous.MultiplyByParameter gain(final k=k) "Constant gain"
+  Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter gain(final k=k) "Constant gain"
     annotation (Placement(transformation(extent={{-60,-50},{-40,-30}})));
   parameter Modelica.SIunits.Length length "Length of the pipe";
 
