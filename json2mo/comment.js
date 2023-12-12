@@ -5,7 +5,7 @@ function parse (content, rawJson = false) {
   let moOutput = ''
   if (rawJson) {
     if (content.string_comment != null) {
-      moOutput += util.format('\n"\t%s"', content.string_comment)
+      moOutput += util.format('\n\t"%s"', content.string_comment)
     }
     if (content.annotation != null) {
       moOutput += annotationParser.parse(content.annotation, rawJson)
