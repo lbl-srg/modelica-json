@@ -108,6 +108,11 @@ Logging level. The choices are `error`, `warn`, `info` (default), `verbose`, `de
 
 Specify the output directory. The default option is the current directory.
 
+##### --prettyPrint / -p
+
+Boolean flag to specify if prettyprint the JSON output. The default option is `false`.
+
+
 ## 4. JSON Schemas
 
 The JSON representation of Modelica and CDL models must be compliant with the corresponding JSON Schema. This is applicable for the JSON output, not for the raw-json one.
