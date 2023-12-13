@@ -42,7 +42,7 @@ equation
           -6}}, color={0,0,127}));
   connect(add2.y, y)
     annotation (Line(points={{12,0},{120,0}}, color={0,0,127}));
-  connect(u2, subCon1.u)
+  connect(u2, heaCoi.u)
     annotation (Line(points={{-120,-40},{-12,-40}}, color={0,0,127}));
   connect(u2, subCon2.u) annotation (Line(points={{-120,-40},{-60,-40},{-60,-80},
           {-12,-80}}, color={0,0,127}));
