@@ -11,6 +11,7 @@
 :: versions of JRE, add the higher version JRE path to the top of your "Path" environment
 
 :: Download and install Node.js: https://nodejs.org/en/download/
+:: Add nodejs folder to your "Path" environment
 
 :: set MODELICAPATH
 
@@ -19,7 +20,7 @@
 ::*******************************************************************
 :: Download maven
 echo ----------- Downloading Apache Maven ----------- 
-set MVNLink=https://dlcdn.apache.org/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.zip
+set MVNLink=https://archive.apache.org/dist/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.zip
 set MVNZip=%CD%\apache_maven.zip
 bitsadmin /transfer "Downloading MVN" %MVNLink% %MVNZip%
 

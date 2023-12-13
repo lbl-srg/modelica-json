@@ -116,7 +116,8 @@ if (args.output === 'json') {
   } else {
     schema = path.join(`${__dirname}`, 'schema-modelica.json')
   }
-  let jsonFiles = ut.findFilesInDir(path.join(args.directory, 'json'), '.json')
+  const jsonDir = (args.directory === 'current') ? process.cwd() : args.directory
+  let jsonFiles = ut.findFilesInDir(path.join(jsonDir, 'json'), '.json')
   // exclude CDL folder and possibly Modelica folder
   const pathSep = path.sep
   const cdlPath = path.join(pathSep, 'CDL', pathSep)
