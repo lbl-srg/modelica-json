@@ -92,6 +92,7 @@ This parser takes a .mo file in input and has three possible outputs, that can b
 
 - **raw-json** : detailed transcription of a Modelica file in JSON
 - **json**: simplified JSON format, easier to read an interpret
+- **semantic**: generate semantic model from semantic information included within `annotation` in the Modelica file
 
 ##### --mode / -m
 
