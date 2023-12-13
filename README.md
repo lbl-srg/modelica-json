@@ -61,6 +61,8 @@ make clean-installation
 
 - Install [Java SE Development Kit (64-bit version)](https://www.oracle.com/java/technologies/javase-downloads.html), [Java Runtime Environment (64-bit version)](https://java.com/en/download/manual.jsp) and [Node.js](https://nodejs.org/en/download/).
 
+- Add `path\to\your\nodejs` to the `Path` environment.
+
 - In batch file `InstallOnWindows.bat`, update `JAVA_HOME` path in line `set JAVA_HOME=path\to\your\jdk`.
 
 - Finally, to install dependencies and compile the Java files, run `InstallOnWindows.bat`.
@@ -90,6 +92,7 @@ This parser takes a .mo file in input and has three possible outputs, that can b
 
 - **raw-json** : detailed transcription of a Modelica file in JSON
 - **json**: simplified JSON format, easier to read an interpret
+- **semantic**: generate semantic model from semantic information included within `annotation` in the Modelica file
 
 ##### --mode / -m
 
@@ -105,6 +108,11 @@ Logging level. The choices are `error`, `warn`, `info` (default), `verbose`, `de
 ##### --directory / -d
 
 Specify the output directory. The default option is the current directory.
+
+##### --prettyPrint / -p
+
+Boolean flag to specify if prettyprint the JSON output. The default option is `false`.
+
 
 ## 4. JSON Schemas
 
