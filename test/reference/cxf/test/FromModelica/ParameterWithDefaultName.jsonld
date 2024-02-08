@@ -1,1 +1,24 @@
-{"@context":{"S231P":"https://data.ashrae.org/S231P#"},"@graph":[{"@id":"seq:ParameterWithDefaultName","@type":"S231P:Block","S231P:hasParameter":{"@id":"seq:ParameterWithDefaultName#kP"}},{"@id":"seq:ParameterWithDefaultName#kP","S231P:isOfDataType":{"@id":"S231P:Real"}}]}
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#"
+  },
+  "@graph": [
+    {
+      "@id": "seq:ParameterWithDefaultName",
+      "@type": "S231P:Block",
+      "S231P:hasParameter": {
+        "@id": "seq:ParameterWithDefaultName#kP"
+      }
+    },
+    {
+      "@id": "seq:ParameterWithDefaultName#kP",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Some comment",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "kP",
+      "S231P:value": 1
+    }
+  ]
+}

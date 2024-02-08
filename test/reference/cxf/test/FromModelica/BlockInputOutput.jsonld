@@ -1,1 +1,33 @@
-{"@context":{"S231P":"https://data.ashrae.org/S231P#"},"@graph":[{"@id":"seq:BlockInputOutput","@type":"S231P:Block","S231P:hasInput":{"@id":"seq:BlockInputOutput#u"},"S231P:hasOutput":{"@id":"seq:BlockInputOutput#y"}},{"@id":"seq:BlockInputOutput#u","@type":"S231P:RealInput"},{"@id":"seq:BlockInputOutput#y","@type":"S231P:RealOutput"}]}
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#"
+  },
+  "@graph": [
+    {
+      "@id": "seq:BlockInputOutput",
+      "@type": "S231P:Block",
+      "S231P:hasInput": {
+        "@id": "seq:BlockInputOutput#u"
+      },
+      "S231P:hasOutput": {
+        "@id": "seq:BlockInputOutput#y"
+      }
+    },
+    {
+      "@id": "seq:BlockInputOutput#u",
+      "@type": "S231P:RealInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Input connector",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
+      "S231P:label": "u"
+    },
+    {
+      "@id": "seq:BlockInputOutput#y",
+      "@type": "S231P:RealOutput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Output connector",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-10},{\"x\":120,\"y\":10}]}}}",
+      "S231P:label": "y"
+    }
+  ]
+}

@@ -1,1 +1,145 @@
-{"@context":{"S231P":"https://data.ashrae.org/S231P#"},"@graph":[{"@id":"seq:RemovableInputs","@type":"S231P:Block","S231P:containsBlock":{"@id":"seq:RemovableInputs#abs"},"S231P:hasInput":[{"@id":"seq:RemovableInputs#nOcc"},{"@id":"seq:RemovableInputs#TOut"},{"@id":"seq:RemovableInputs#TOutWitDef"},{"@id":"seq:RemovableInputs#u"},{"@id":"seq:RemovableInputs#uWin"}],"S231P:hasOutput":{"@id":"seq:RemovableInputs#y"},"S231P:hasParameter":[{"@id":"seq:RemovableInputs#enaBlo"},{"@id":"seq:RemovableInputs#have_occSen"},{"@id":"seq:RemovableInputs#have_winSen"}]},{"@id":"seq:RemovableInputs#abs","@type":"https://data.ashrae.org/S231P#CXF.Reals.Abs"},{"@id":"seq:RemovableInputs#enaBlo","S231P:isOfDataType":{"@id":"S231P:Boolean"}},{"@id":"seq:RemovableInputs#have_occSen","S231P:isOfDataType":{"@id":"S231P:Boolean"}},{"@id":"seq:RemovableInputs#have_winSen","S231P:isOfDataType":{"@id":"S231P:Boolean"}},{"@id":"seq:RemovableInputs#nOcc","@type":"S231P:IntegerInput"},{"@id":"seq:RemovableInputs#TOut","@type":"S231P:RealInput"},{"@id":"seq:RemovableInputs#TOutWitDef","@type":"S231P:RealInput"},{"@id":"seq:RemovableInputs#u","@type":"S231P:RealInput"},{"@id":"seq:RemovableInputs#uWin","@type":"S231P:BooleanInput"},{"@id":"seq:RemovableInputs#y","@type":"S231P:RealOutput"}]}
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#",
+    "qudt": "http://qudt.org/schema/qudt#"
+  },
+  "@graph": [
+    {
+      "@id": "seq:RemovableInputs",
+      "@type": "S231P:Block",
+      "S231P:containsBlock": {
+        "@id": "seq:RemovableInputs#abs"
+      },
+      "S231P:hasInput": [
+        {
+          "@id": "seq:RemovableInputs#nOcc"
+        },
+        {
+          "@id": "seq:RemovableInputs#TOut"
+        },
+        {
+          "@id": "seq:RemovableInputs#TOutWitDef"
+        },
+        {
+          "@id": "seq:RemovableInputs#u"
+        },
+        {
+          "@id": "seq:RemovableInputs#uWin"
+        }
+      ],
+      "S231P:hasOutput": {
+        "@id": "seq:RemovableInputs#y"
+      },
+      "S231P:hasParameter": [
+        {
+          "@id": "seq:RemovableInputs#enaBlo"
+        },
+        {
+          "@id": "seq:RemovableInputs#have_occSen"
+        },
+        {
+          "@id": "seq:RemovableInputs#have_winSen"
+        }
+      ]
+    },
+    {
+      "@id": "seq:RemovableInputs#abs",
+      "@type": "https://data.ashrae.org/S231P#CXF.Reals.Abs",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Instance could be conditional disabled",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-8,\"y\":-10},{\"x\":12,\"y\":10}]}}}",
+      "S231P:label": "abs"
+    },
+    {
+      "@id": "seq:RemovableInputs#enaBlo",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Flag for enabling instance",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Boolean"
+      },
+      "S231P:label": "enaBlo",
+      "S231P:value": true
+    },
+    {
+      "@id": "seq:RemovableInputs#have_occSen",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "True: there is occupancy sensor",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Boolean"
+      },
+      "S231P:label": "have_occSen"
+    },
+    {
+      "@id": "seq:RemovableInputs#have_winSen",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "True: there is window status sensor",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Boolean"
+      },
+      "S231P:label": "have_winSen"
+    },
+    {
+      "@id": "seq:RemovableInputs#nOcc",
+      "@type": "S231P:IntegerInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Occupancy",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":60},{\"x\":-100,\"y\":100}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":60},{\"x\":-100,\"y\":100}]}}}",
+      "S231P:label": "nOcc"
+    },
+    {
+      "@id": "seq:RemovableInputs#TOut",
+      "@type": "S231P:RealInput",
+      "qudt:hasQuantityKind": {
+        "@id": "qudt:ThermodynamicTemperature"
+      },
+      "qudt:hasUnit": {
+        "@id": "qudt:K"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Temperature input",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":20},{\"x\":-100,\"y\":60}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":20},{\"x\":-100,\"y\":60}]}}}",
+      "S231P:label": "TOut"
+    },
+    {
+      "@id": "seq:RemovableInputs#TOutWitDef",
+      "@type": "S231P:RealInput",
+      "qudt:hasQuantityKind": {
+        "@id": "qudt:ThermodynamicTemperature"
+      },
+      "qudt:hasUnit": {
+        "@id": "qudt:K"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Temperature input with specified default value",
+      "S231P:graphics": [
+        "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-70},{\"x\":-100,\"y\":-30}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":-80},{\"x\":-100,\"y\":-40}]}}}",
+        "{\"name\":\"__cdl\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"default\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"300.15\"}}}}}]}}"
+      ],
+      "S231P:label": "TOutWitDef"
+    },
+    {
+      "@id": "seq:RemovableInputs#u",
+      "@type": "S231P:RealInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Input connector",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":-40},{\"x\":-100,\"y\":0}]}}}",
+      "S231P:label": "u"
+    },
+    {
+      "@id": "seq:RemovableInputs#uWin",
+      "@type": "S231P:BooleanInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Window opening status",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-100},{\"x\":-100,\"y\":-60}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":-110},{\"x\":-100,\"y\":-70}]}}}",
+      "S231P:label": "uWin"
+    },
+    {
+      "@id": "seq:RemovableInputs#y",
+      "@type": "S231P:RealOutput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Output connector",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-10},{\"x\":120,\"y\":10}]}}}",
+      "S231P:label": "y"
+    }
+  ]
+}

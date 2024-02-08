@@ -1,1 +1,44 @@
-{"@context":{"S231P":"https://data.ashrae.org/S231P#"},"@graph":[{"@id":"seq:WithCDLElementary","@type":"S231P:Block","S231P:containsBlock":{"@id":"seq:WithCDLElementary#gre"},"S231P:hasInput":{"@id":"seq:WithCDLElementary#u"},"S231P:hasOutput":{"@id":"seq:WithCDLElementary#y"}},{"@id":"seq:WithCDLElementary#gre","@type":"https://data.ashrae.org/S231P#CXF.Reals.Greater"},{"@id":"seq:WithCDLElementary#u","@type":"S231P:RealInput"},{"@id":"seq:WithCDLElementary#y","@type":"S231P:RealOutput"}]}
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#"
+  },
+  "@graph": [
+    {
+      "@id": "seq:WithCDLElementary",
+      "@type": "S231P:Block",
+      "S231P:containsBlock": {
+        "@id": "seq:WithCDLElementary#gre"
+      },
+      "S231P:hasInput": {
+        "@id": "seq:WithCDLElementary#u"
+      },
+      "S231P:hasOutput": {
+        "@id": "seq:WithCDLElementary#y"
+      }
+    },
+    {
+      "@id": "seq:WithCDLElementary#gre",
+      "@type": "https://data.ashrae.org/S231P#CXF.Reals.Greater",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "CDL elementary block with inside class",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-8,\"y\":-10},{\"x\":12,\"y\":10}]}}}",
+      "S231P:label": "gre"
+    },
+    {
+      "@id": "seq:WithCDLElementary#u",
+      "@type": "S231P:RealInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Real input",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]},\"iconTransformation\":{\"extent\":[{\"x\":-212,\"y\":-12},{\"x\":-172,\"y\":28}]}}}",
+      "S231P:label": "u"
+    },
+    {
+      "@id": "seq:WithCDLElementary#y",
+      "@type": "S231P:RealOutput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Real output",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]},\"iconTransformation\":{\"extent\":[{\"x\":-184,\"y\":-4},{\"x\":-144,\"y\":36}]}}}",
+      "S231P:label": "y"
+    }
+  ]
+}

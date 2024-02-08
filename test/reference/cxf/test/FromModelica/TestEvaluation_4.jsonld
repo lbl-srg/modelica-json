@@ -1,1 +1,150 @@
-{"@context":{"S231P":"https://data.ashrae.org/S231P#"},"@graph":[{"@id":"seq:TestEvaluation_4","@type":"S231P:Block","S231P:containsBlock":{"@id":"seq:TestEvaluation_4#cooCoi"},"S231P:hasInput":[{"@id":"seq:TestEvaluation_4#TAirSup"},{"@id":"seq:TestEvaluation_4#TSupCooSet"},{"@id":"seq:TestEvaluation_4#u1SupFan"},{"@id":"seq:TestEvaluation_4#uZonSta"}],"S231P:hasOutput":{"@id":"seq:TestEvaluation_4#yCooCoi"},"S231P:hasParameter":[{"@id":"seq:TestEvaluation_4#controllerTypeCooCoi"},{"@id":"seq:TestEvaluation_4#kCooCoi"},{"@id":"seq:TestEvaluation_4#TiCooCoi"}]},{"@id":"seq:TestEvaluation_4#cooCoi","@type":"seq:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil"},{"@id":"seq:TestEvaluation_4#cooCoi.TAirSup","S231P:isConnectedTo":{"@id":"seq:TestEvaluation_4#TAirSup"}},{"@id":"seq:TestEvaluation_4#cooCoi.TSupCooSet","S231P:isConnectedTo":{"@id":"seq:TestEvaluation_4#TSupCooSet"}},{"@id":"seq:TestEvaluation_4#cooCoi.u1SupFan","S231P:isConnectedTo":{"@id":"seq:TestEvaluation_4#u1SupFan"}},{"@id":"seq:TestEvaluation_4#cooCoi.uZonSta","S231P:isConnectedTo":{"@id":"seq:TestEvaluation_4#uZonSta"}},{"@id":"seq:TestEvaluation_4#cooCoi.yCooCoi","S231P:isConnectedTo":{"@id":"seq:TestEvaluation_4#yCooCoi"}},{"@id":"seq:TestEvaluation_4#kCooCoi","S231P:isOfDataType":{"@id":"S231P:Real"}},{"@id":"seq:TestEvaluation_4#TAirSup","@type":"S231P:RealInput"},{"@id":"seq:TestEvaluation_4#TiCooCoi","S231P:isOfDataType":{"@id":"S231P:Real"}},{"@id":"seq:TestEvaluation_4#TSupCooSet","@type":"S231P:RealInput"},{"@id":"seq:TestEvaluation_4#u1SupFan","@type":"S231P:BooleanInput"},{"@id":"seq:TestEvaluation_4#uZonSta","@type":"S231P:IntegerInput"},{"@id":"seq:TestEvaluation_4#yCooCoi","@type":"S231P:RealOutput"}]}
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#"
+  },
+  "@graph": [
+    {
+      "@id": "seq:TestEvaluation_4",
+      "@type": "S231P:Block",
+      "S231P:containsBlock": {
+        "@id": "seq:TestEvaluation_4#cooCoi"
+      },
+      "S231P:hasInput": [
+        {
+          "@id": "seq:TestEvaluation_4#TAirSup"
+        },
+        {
+          "@id": "seq:TestEvaluation_4#TSupCooSet"
+        },
+        {
+          "@id": "seq:TestEvaluation_4#u1SupFan"
+        },
+        {
+          "@id": "seq:TestEvaluation_4#uZonSta"
+        }
+      ],
+      "S231P:hasOutput": {
+        "@id": "seq:TestEvaluation_4#yCooCoi"
+      },
+      "S231P:hasParameter": [
+        {
+          "@id": "seq:TestEvaluation_4#controllerTypeCooCoi"
+        },
+        {
+          "@id": "seq:TestEvaluation_4#kCooCoi"
+        },
+        {
+          "@id": "seq:TestEvaluation_4#TiCooCoi"
+        }
+      ]
+    },
+    {
+      "@id": "seq:TestEvaluation_4#controllerTypeCooCoi",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Type of controller",
+      "S231P:label": "controllerTypeCooCoi",
+      "S231P:value": "Buildings.Controls.OBC.CDL.Types.SimpleController.PI"
+    },
+    {
+      "@id": "seq:TestEvaluation_4#cooCoi",
+      "@type": "seq:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Cooling coil control",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-10,\"y\":-10},{\"x\":10,\"y\":10}]}}}",
+      "S231P:label": "cooCoi"
+    },
+    {
+      "@id": "seq:TestEvaluation_4#cooCoi.TAirSup",
+      "S231P:isConnectedTo": {
+        "@id": "seq:TestEvaluation_4#TAirSup"
+      }
+    },
+    {
+      "@id": "seq:TestEvaluation_4#cooCoi.TSupCooSet",
+      "S231P:isConnectedTo": {
+        "@id": "seq:TestEvaluation_4#TSupCooSet"
+      }
+    },
+    {
+      "@id": "seq:TestEvaluation_4#cooCoi.u1SupFan",
+      "S231P:isConnectedTo": {
+        "@id": "seq:TestEvaluation_4#u1SupFan"
+      }
+    },
+    {
+      "@id": "seq:TestEvaluation_4#cooCoi.uZonSta",
+      "S231P:isConnectedTo": {
+        "@id": "seq:TestEvaluation_4#uZonSta"
+      }
+    },
+    {
+      "@id": "seq:TestEvaluation_4#cooCoi.yCooCoi",
+      "S231P:isConnectedTo": {
+        "@id": "seq:TestEvaluation_4#yCooCoi"
+      }
+    },
+    {
+      "@id": "seq:TestEvaluation_4#kCooCoi",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Gain for cooling coil control loop signal",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "kCooCoi",
+      "S231P:value": {
+        "@value": "0.1",
+        "@type": "http://www.w3.org/2001/XMLSchema#decimal"
+      }
+    },
+    {
+      "@id": "seq:TestEvaluation_4#TAirSup",
+      "@type": "S231P:RealInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Supply air temperature measurement",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":0},{\"x\":-100,\"y\":40}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":20},{\"x\":-100,\"y\":60}]}}}",
+      "S231P:label": "TAirSup"
+    },
+    {
+      "@id": "seq:TestEvaluation_4#TiCooCoi",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Time constant of integrator block for cooling coil control loop signal",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "TiCooCoi",
+      "S231P:value": 900
+    },
+    {
+      "@id": "seq:TestEvaluation_4#TSupCooSet",
+      "@type": "S231P:RealInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Cooling supply air temperature setpoint",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":40},{\"x\":-100,\"y\":80}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":60},{\"x\":-100,\"y\":100}]}}}",
+      "S231P:label": "TSupCooSet"
+    },
+    {
+      "@id": "seq:TestEvaluation_4#u1SupFan",
+      "@type": "S231P:BooleanInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Supply fan proven on",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-80},{\"x\":-100,\"y\":-40}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":-98},{\"x\":-100,\"y\":-58}]}}}",
+      "S231P:label": "u1SupFan"
+    },
+    {
+      "@id": "seq:TestEvaluation_4#uZonSta",
+      "@type": "S231P:IntegerInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Zone state",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-40},{\"x\":-100,\"y\":0}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":-60},{\"x\":-100,\"y\":-20}]}}}",
+      "S231P:label": "uZonSta"
+    },
+    {
+      "@id": "seq:TestEvaluation_4#yCooCoi",
+      "@type": "S231P:RealOutput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Cooling coil position",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]},\"iconTransformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
+      "S231P:label": "yCooCoi"
+    }
+  ]
+}

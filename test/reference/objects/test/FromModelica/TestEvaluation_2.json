@@ -1,1 +1,429 @@
-{"instances":{"TestEvaluation_2":{"within":"FromModelica","fullMoFilePath":"/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/TestEvaluation_2.mo","type":"long_class_specifier","annotation":[{"element_modification_or_replaceable":{"element_modification":{"name":"Icon","modification":{"class_modification":[{"element_modification_or_replaceable":{"element_modification":{"coordinateSystem":{"preserveAspectRatio":"false"}}}}]}}}},{"element_modification_or_replaceable":{"element_modification":{"name":"Diagram","modification":{"class_modification":[{"element_modification_or_replaceable":{"element_modification":{"coordinateSystem":{"preserveAspectRatio":"false"}}}}]}}}},{"element_modification_or_replaceable":{"element_modification":{"name":"uses","modification":{"class_modification":[{"element_modification_or_replaceable":{"element_modification":{"name":"Buildings","modification":{"class_modification":[{"element_modification_or_replaceable":{"element_modification":{"name":"version","modification":{"equal":true,"expression":{"simple_expression":"\"8.0.0\""}}}}}]}}}}]}}}}],"semantics":{},"cdl_annotations":{}},"uLow":{"type_prefix":"parameter","type_specifier":"Real","type":"element","compositionSpecifier":"public","long_class_specifier_identifier":"TestEvaluation_2","single_component_list":{"declaration":{"identifier":"uLow","modification":{"class_modification":[{"element_modification_or_replaceable":{"element_modification":{"name":"min","modification":{"equal":true,"expression":{"simple_expression":"0"}}}}}],"equal":true,"expression":{"simple_expression":"0.5"}}},"description":{"description_string":"if y=true and u<uLow, switch to y=false"}},"annotation":null,"semantics":{},"cdl_annotations":{},"within":"FromModelica","fullMoFilePath":"/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/TestEvaluation_2.mo"},"uHigh":{"type_prefix":"parameter","type_specifier":"Real","type":"element","compositionSpecifier":"public","long_class_specifier_identifier":"TestEvaluation_2","single_component_list":{"declaration":{"identifier":"uHigh","modification":{"equal":true,"expression":{"simple_expression":"2*uLow"}}},"description":{"description_string":"if y=false and u>uHigh, switch to y=true"}},"annotation":null,"semantics":{},"cdl_annotations":{},"within":"FromModelica","fullMoFilePath":"/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/TestEvaluation_2.mo"},"u":{"type_specifier":"Buildings.Controls.OBC.CDL.Interfaces.RealInput","type":"element","compositionSpecifier":"public","long_class_specifier_identifier":"TestEvaluation_2","single_component_list":{"declaration":{"identifier":"u"},"description":{"description_string":"Real input signal","annotation":[{"element_modification_or_replaceable":{"element_modification":{"Placement":{"transformation":{"extent":[{"x":-140,"y":-20},{"x":-100,"y":20}]},"iconTransformation":{"extent":[{"x":-118,"y":-20},{"x":-78,"y":20}]}}}}}]}},"annotation":[{"element_modification_or_replaceable":{"element_modification":{"Placement":{"transformation":{"extent":[{"x":-140,"y":-20},{"x":-100,"y":20}]},"iconTransformation":{"extent":[{"x":-118,"y":-20},{"x":-78,"y":20}]}}}}}],"semantics":{},"cdl_annotations":{},"within":"FromModelica","fullMoFilePath":"/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/TestEvaluation_2.mo"},"y":{"type_specifier":"Buildings.Controls.OBC.CDL.Interfaces.BooleanOutput","type":"element","compositionSpecifier":"public","long_class_specifier_identifier":"TestEvaluation_2","single_component_list":{"declaration":{"identifier":"y"},"description":{"description_string":"Boolean output signal","annotation":[{"element_modification_or_replaceable":{"element_modification":{"Placement":{"transformation":{"extent":[{"x":100,"y":-20},{"x":140,"y":20}]},"iconTransformation":{"extent":[{"x":80,"y":-20},{"x":120,"y":20}]}}}}}]}},"annotation":[{"element_modification_or_replaceable":{"element_modification":{"Placement":{"transformation":{"extent":[{"x":100,"y":-20},{"x":140,"y":20}]},"iconTransformation":{"extent":[{"x":80,"y":-20},{"x":120,"y":20}]}}}}}],"semantics":{},"cdl_annotations":{},"within":"FromModelica","fullMoFilePath":"/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/TestEvaluation_2.mo"},"hys":{"type_specifier":"Buildings.Controls.OBC.CDL.Reals.Hysteresis","type":"element","compositionSpecifier":"public","long_class_specifier_identifier":"TestEvaluation_2","single_component_list":{"declaration":{"identifier":"hys","modification":{"class_modification":[{"element_modification_or_replaceable":{"final":true,"element_modification":{"name":"uLow","modification":{"equal":true,"expression":{"simple_expression":"uLow"}}}}},{"element_modification_or_replaceable":{"element_modification":{"name":"uHigh","modification":{"equal":true,"expression":{"simple_expression":"uHigh"}}}}}]}},"description":{"annotation":[{"element_modification_or_replaceable":{"element_modification":{"Placement":{"transformation":{"extent":[{"x":-10,"y":-10},{"x":10,"y":10}]}}}}}]}},"annotation":[{"element_modification_or_replaceable":{"element_modification":{"Placement":{"transformation":{"extent":[{"x":-10,"y":-10},{"x":10,"y":10}]}}}}}],"semantics":{},"cdl_annotations":{},"within":"FromModelica","fullMoFilePath":"/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/TestEvaluation_2.mo"}},"requiredReferences":{"connections":{"hys.u":["u"],"hys.y":["y"]}}}
+{
+  "instances": {
+    "TestEvaluation_2": {
+      "within": "FromModelica",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/TestEvaluation_2.mo",
+      "type": "long_class_specifier",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Icon",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "coordinateSystem": {
+                          "preserveAspectRatio": "false"
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Diagram",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "coordinateSystem": {
+                          "preserveAspectRatio": "false"
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "uses",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "Buildings",
+                        "modification": {
+                          "class_modification": [
+                            {
+                              "element_modification_or_replaceable": {
+                                "element_modification": {
+                                  "name": "version",
+                                  "modification": {
+                                    "equal": true,
+                                    "expression": {
+                                      "simple_expression": "\"8.0.0\""
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    },
+    "uLow": {
+      "type_prefix": "parameter",
+      "type_specifier": "Real",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "TestEvaluation_2",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "uLow",
+          "modification": {
+            "class_modification": [
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "min",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "0"
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "equal": true,
+            "expression": {
+              "simple_expression": "0.5"
+            }
+          }
+        },
+        "description": {
+          "description_string": "if y=true and u<uLow, switch to y=false"
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "within": "FromModelica",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/TestEvaluation_2.mo"
+    },
+    "uHigh": {
+      "type_prefix": "parameter",
+      "type_specifier": "Real",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "TestEvaluation_2",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "uHigh",
+          "modification": {
+            "equal": true,
+            "expression": {
+              "simple_expression": "2*uLow"
+            }
+          }
+        },
+        "description": {
+          "description_string": "if y=false and u>uHigh, switch to y=true"
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "within": "FromModelica",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/TestEvaluation_2.mo"
+    },
+    "u": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "TestEvaluation_2",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "u"
+        },
+        "description": {
+          "description_string": "Real input signal",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": -140,
+                          "y": -20
+                        },
+                        {
+                          "x": -100,
+                          "y": 20
+                        }
+                      ]
+                    },
+                    "iconTransformation": {
+                      "extent": [
+                        {
+                          "x": -118,
+                          "y": -20
+                        },
+                        {
+                          "x": -78,
+                          "y": 20
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": -140,
+                      "y": -20
+                    },
+                    {
+                      "x": -100,
+                      "y": 20
+                    }
+                  ]
+                },
+                "iconTransformation": {
+                  "extent": [
+                    {
+                      "x": -118,
+                      "y": -20
+                    },
+                    {
+                      "x": -78,
+                      "y": 20
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "within": "FromModelica",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/TestEvaluation_2.mo"
+    },
+    "y": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.BooleanOutput",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "TestEvaluation_2",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "y"
+        },
+        "description": {
+          "description_string": "Boolean output signal",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": 100,
+                          "y": -20
+                        },
+                        {
+                          "x": 140,
+                          "y": 20
+                        }
+                      ]
+                    },
+                    "iconTransformation": {
+                      "extent": [
+                        {
+                          "x": 80,
+                          "y": -20
+                        },
+                        {
+                          "x": 120,
+                          "y": 20
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": 100,
+                      "y": -20
+                    },
+                    {
+                      "x": 140,
+                      "y": 20
+                    }
+                  ]
+                },
+                "iconTransformation": {
+                  "extent": [
+                    {
+                      "x": 80,
+                      "y": -20
+                    },
+                    {
+                      "x": 120,
+                      "y": 20
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "within": "FromModelica",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/TestEvaluation_2.mo"
+    },
+    "hys": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Reals.Hysteresis",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "TestEvaluation_2",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "hys",
+          "modification": {
+            "class_modification": [
+              {
+                "element_modification_or_replaceable": {
+                  "final": true,
+                  "element_modification": {
+                    "name": "uLow",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "uLow"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "uHigh",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "uHigh"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "description": {
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": -10,
+                          "y": -10
+                        },
+                        {
+                          "x": 10,
+                          "y": 10
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": -10,
+                      "y": -10
+                    },
+                    {
+                      "x": 10,
+                      "y": 10
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "within": "FromModelica",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/TestEvaluation_2.mo"
+    }
+  },
+  "requiredReferences": {
+    "connections": {
+      "hys.u": [
+        "u"
+      ],
+      "hys.y": [
+        "y"
+      ]
+    }
+  }
+}

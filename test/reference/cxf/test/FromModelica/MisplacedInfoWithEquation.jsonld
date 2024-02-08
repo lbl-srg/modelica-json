@@ -1,1 +1,79 @@
-{"@context":{"S231P":"https://data.ashrae.org/S231P#"},"@graph":[{"@id":"seq:MisplacedInfoWithEquation","@type":"S231P:Block","S231P:containsBlock":{"@id":"seq:MisplacedInfoWithEquation#gain"},"S231P:hasInput":{"@id":"seq:MisplacedInfoWithEquation#u"},"S231P:hasOutput":[{"@id":"seq:MisplacedInfoWithEquation#y1"},{"@id":"seq:MisplacedInfoWithEquation#y2"}],"S231P:hasParameter":{"@id":"seq:MisplacedInfoWithEquation#k"}},{"@id":"seq:MisplacedInfoWithEquation#gain","@type":"https://data.ashrae.org/S231P#CXF.Reals.MultiplyByParameter"},{"@id":"seq:MisplacedInfoWithEquation#gain.y","S231P:isConnectedTo":{"@id":"seq:MisplacedInfoWithEquation#y1"}},{"@id":"seq:MisplacedInfoWithEquation#k","S231P:isOfDataType":{"@id":"S231P:Real"}},{"@id":"seq:MisplacedInfoWithEquation#u","@type":"S231P:RealInput","S231P:isConnectedTo":{"@id":"seq:MisplacedInfoWithEquation#gain.u"}},{"@id":"seq:MisplacedInfoWithEquation#y1","@type":"S231P:RealOutput"},{"@id":"seq:MisplacedInfoWithEquation#y2","@type":"S231P:RealOutput"}]}
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#"
+  },
+  "@graph": [
+    {
+      "@id": "seq:MisplacedInfoWithEquation",
+      "@type": "S231P:Block",
+      "S231P:containsBlock": {
+        "@id": "seq:MisplacedInfoWithEquation#gain"
+      },
+      "S231P:hasInput": {
+        "@id": "seq:MisplacedInfoWithEquation#u"
+      },
+      "S231P:hasOutput": [
+        {
+          "@id": "seq:MisplacedInfoWithEquation#y1"
+        },
+        {
+          "@id": "seq:MisplacedInfoWithEquation#y2"
+        }
+      ],
+      "S231P:hasParameter": {
+        "@id": "seq:MisplacedInfoWithEquation#k"
+      }
+    },
+    {
+      "@id": "seq:MisplacedInfoWithEquation#gain",
+      "@type": "https://data.ashrae.org/S231P#CXF.Reals.MultiplyByParameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Constant gain",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":0,\"y\":-10},{\"x\":20,\"y\":10}]}}}",
+      "S231P:label": "gain"
+    },
+    {
+      "@id": "seq:MisplacedInfoWithEquation#gain.y",
+      "S231P:isConnectedTo": {
+        "@id": "seq:MisplacedInfoWithEquation#y1"
+      }
+    },
+    {
+      "@id": "seq:MisplacedInfoWithEquation#k",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Constant gain",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "k",
+      "S231P:value": 2
+    },
+    {
+      "@id": "seq:MisplacedInfoWithEquation#u",
+      "@type": "S231P:RealInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Input signal",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":20},{\"x\":-100,\"y\":60}]}}}",
+      "S231P:isConnectedTo": {
+        "@id": "seq:MisplacedInfoWithEquation#gain.u"
+      },
+      "S231P:label": "u"
+    },
+    {
+      "@id": "seq:MisplacedInfoWithEquation#y1",
+      "@type": "S231P:RealOutput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Output signal",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-10},{\"x\":120,\"y\":10}]}}}",
+      "S231P:label": "y1"
+    },
+    {
+      "@id": "seq:MisplacedInfoWithEquation#y2",
+      "@type": "S231P:RealOutput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Output signal",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-10},{\"x\":120,\"y\":10}]}}}",
+      "S231P:label": "y2"
+    }
+  ]
+}

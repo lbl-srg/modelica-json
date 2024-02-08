@@ -1,1 +1,60 @@
-{"@context":{"S231P":"https://data.ashrae.org/S231P#"},"@graph":[{"@id":"seq:TestEvaluation_3","@type":"S231P:Block","S231P:containsBlock":[{"@id":"seq:TestEvaluation_3#con"},{"@id":"seq:TestEvaluation_3#con1"}],"S231P:hasParameter":[{"@id":"seq:TestEvaluation_3#k1"},{"@id":"seq:TestEvaluation_3#k2"}]},{"@id":"seq:TestEvaluation_3#con","@type":"seq:Buildings.Controls.OBC.CDL.Logical.Sources.Constant"},{"@id":"seq:TestEvaluation_3#con1","@type":"seq:Buildings.Controls.OBC.CDL.Logical.Sources.Constant"},{"@id":"seq:TestEvaluation_3#k1","S231P:isOfDataType":{"@id":"S231P:Boolean"}},{"@id":"seq:TestEvaluation_3#k2","S231P:isOfDataType":{"@id":"S231P:Boolean"}}]}
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#"
+  },
+  "@graph": [
+    {
+      "@id": "seq:TestEvaluation_3",
+      "@type": "S231P:Block",
+      "S231P:containsBlock": [
+        {
+          "@id": "seq:TestEvaluation_3#con"
+        },
+        {
+          "@id": "seq:TestEvaluation_3#con1"
+        }
+      ],
+      "S231P:hasParameter": [
+        {
+          "@id": "seq:TestEvaluation_3#k1"
+        },
+        {
+          "@id": "seq:TestEvaluation_3#k2"
+        }
+      ]
+    },
+    {
+      "@id": "seq:TestEvaluation_3#con",
+      "@type": "seq:Buildings.Controls.OBC.CDL.Logical.Sources.Constant",
+      "S231P:accessSpecifier": "public",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-10,\"y\":10},{\"x\":10,\"y\":30}]}}}",
+      "S231P:label": "con"
+    },
+    {
+      "@id": "seq:TestEvaluation_3#con1",
+      "@type": "seq:Buildings.Controls.OBC.CDL.Logical.Sources.Constant",
+      "S231P:accessSpecifier": "public",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-8,\"y\":-30},{\"x\":12,\"y\":-10}]}}}",
+      "S231P:label": "con1"
+    },
+    {
+      "@id": "seq:TestEvaluation_3#k1",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Constant output value",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Boolean"
+      },
+      "S231P:label": "k1",
+      "S231P:value": true
+    },
+    {
+      "@id": "seq:TestEvaluation_3#k2",
+      "S231P:accessSpecifier": "public",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Boolean"
+      },
+      "S231P:label": "k2",
+      "S231P:value": "not k1"
+    }
+  ]
+}

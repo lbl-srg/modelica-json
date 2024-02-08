@@ -1,1 +1,25 @@
-{"@context":{"S231P":"https://data.ashrae.org/S231P#"},"@graph":[{"@id":"seq:MisplacedInfoWithParameter","@type":"S231P:Block","S231P:hasParameter":{"@id":"seq:MisplacedInfoWithParameter#kP"}},{"@id":"seq:MisplacedInfoWithParameter#kP","S231P:isOfDataType":{"@id":"S231P:Real"}}]}
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#"
+  },
+  "@graph": [
+    {
+      "@id": "seq:MisplacedInfoWithParameter",
+      "@type": "S231P:Block",
+      "S231P:hasParameter": {
+        "@id": "seq:MisplacedInfoWithParameter#kP"
+      }
+    },
+    {
+      "@id": "seq:MisplacedInfoWithParameter#kP",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Some comment",
+      "S231P:graphics": "{\"name\":\"Documentation\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"info\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"\\\"<html>\\n<p>\\nThis is the info section.\\n</p>\\n</html>\\\"\"}}}}}]}}",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "kP",
+      "S231P:value": 1
+    }
+  ]
+}

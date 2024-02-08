@@ -1,1 +1,22 @@
-{"@context":{"S231P":"https://data.ashrae.org/S231P#"},"@graph":[{"@id":"seq:MisplacedInfoWithComponent","@type":"S231P:Block","S231P:containsBlock":{"@id":"seq:MisplacedInfoWithComponent#bloPub"}},{"@id":"seq:MisplacedInfoWithComponent#bloPub","@type":"seq:Block1"}]}
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#"
+  },
+  "@graph": [
+    {
+      "@id": "seq:MisplacedInfoWithComponent",
+      "@type": "S231P:Block",
+      "S231P:containsBlock": {
+        "@id": "seq:MisplacedInfoWithComponent#bloPub"
+      }
+    },
+    {
+      "@id": "seq:MisplacedInfoWithComponent#bloPub",
+      "@type": "seq:Block1",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "A public block",
+      "S231P:graphics": "{\"name\":\"Documentation\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"info\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"\\\"<html>\\n<p>\\nThis is the info section.\\n</p>\\n</html>\\\"\"}}}}}]}}",
+      "S231P:label": "bloPub"
+    }
+  ]
+}
