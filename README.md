@@ -112,7 +112,7 @@ Specify the output directory. The default option is the current directory.
 
 ##### --prettyPrint / -p
 
-Boolean flag to specify if prettyprint the JSON output. The default option is `false`.
+If `-p` flag is specified, the JSON output conforms to prettyprint. The default option is `false`.
 
 
 ## 4. JSON Schemas
