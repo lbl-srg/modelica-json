@@ -224,6 +224,11 @@
       "S231P:label": "conInt"
     },
     {
+      "@id": "seq:Enable#conInt.k",
+      "S231P:isFinal": true,
+      "S231P:value": "Buildings.Controls.OBC.ASHRAE.G36.Types.FreezeProtectionStages.stage0"
+    },
+    {
       "@id": "seq:Enable#conInt.y",
       "S231P:isConnectedTo": {
         "@id": "seq:Enable#intEqu.u2"
@@ -255,6 +260,11 @@
       "S231P:label": "delOutDamOsc"
     },
     {
+      "@id": "seq:Enable#delOutDamOsc.delayTime",
+      "S231P:isFinal": true,
+      "S231P:value": "disDel"
+    },
+    {
       "@id": "seq:Enable#delOutDamOsc.u",
       "S231P:isConnectedTo": {
         "@id": "seq:Enable#not2.y"
@@ -267,6 +277,11 @@
       "S231P:description": "Keep return damper open to its physical maximum for a short period of time before closing the outdoor air damper and resuming the maximum return air damper position, per G36 Part N7",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-20,\"y\":-108},{\"x\":0,\"y\":-88}]}}}",
       "S231P:label": "delRetDam"
+    },
+    {
+      "@id": "seq:Enable#delRetDam.delayTime",
+      "S231P:isFinal": true,
+      "S231P:value": "retDamFulOpeTim"
     },
     {
       "@id": "seq:Enable#delRetDam.y",
@@ -292,6 +307,11 @@
       "S231P:value": 1
     },
     {
+      "@id": "seq:Enable#delTOutHis.displayUnit",
+      "S231P:isFinal": true,
+      "S231P:value": "K"
+    },
+    {
       "@id": "seq:Enable#disDel",
       "qudt:hasQuantityKind": {
         "@id": "qudt:Time"
@@ -315,6 +335,11 @@
       "S231P:description": "Deactivates outdoor air enthalpy condition if there is no enthalpy sensor",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-160,\"y\":180},{\"x\":-140,\"y\":200}]}}}",
       "S231P:label": "entSubst1"
+    },
+    {
+      "@id": "seq:Enable#entSubst1.k",
+      "S231P:isFinal": true,
+      "S231P:value": false
     },
     {
       "@id": "seq:Enable#entSubst1.y",
@@ -391,6 +416,16 @@
       "S231P:label": "hysOutEnt"
     },
     {
+      "@id": "seq:Enable#hysOutEnt.uHigh",
+      "S231P:isFinal": true,
+      "S231P:value": "hOutHigLimCutHig"
+    },
+    {
+      "@id": "seq:Enable#hysOutEnt.uLow",
+      "S231P:isFinal": true,
+      "S231P:value": "hOutHigLimCutLow"
+    },
+    {
       "@id": "seq:Enable#hysOutEnt.y",
       "S231P:isConnectedTo": {
         "@id": "seq:Enable#or2.u2"
@@ -403,6 +438,16 @@
       "S231P:description": "Outdoor air temperature hysteresis for both fixed and differential dry bulb temperature cutoff conditions",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-160,\"y\":220},{\"x\":-140,\"y\":240}]}}}",
       "S231P:label": "hysOutTem"
+    },
+    {
+      "@id": "seq:Enable#hysOutTem.uHigh",
+      "S231P:isFinal": true,
+      "S231P:value": "TOutHigLimCutHig"
+    },
+    {
+      "@id": "seq:Enable#hysOutTem.uLow",
+      "S231P:isFinal": true,
+      "S231P:value": "TOutHigLimCutLow"
     },
     {
       "@id": "seq:Enable#hysOutTem.y",
@@ -599,6 +644,11 @@
       "S231P:label": "TOut"
     },
     {
+      "@id": "seq:Enable#TOut.displayUnit",
+      "S231P:isFinal": true,
+      "S231P:value": "degC"
+    },
+    {
       "@id": "seq:Enable#TOutCut",
       "@type": "S231P:RealInput",
       "qudt:hasQuantityKind": {
@@ -614,6 +664,11 @@
         "@id": "seq:Enable#sub1.u2"
       },
       "S231P:label": "TOutCut"
+    },
+    {
+      "@id": "seq:Enable#TOutCut.displayUnit",
+      "S231P:isFinal": true,
+      "S231P:value": "degC"
     },
     {
       "@id": "seq:Enable#TOutHigLimCutHig",
@@ -632,6 +687,11 @@
       "S231P:value": 0
     },
     {
+      "@id": "seq:Enable#TOutHigLimCutHig.displayUnit",
+      "S231P:isFinal": true,
+      "S231P:value": "K"
+    },
+    {
       "@id": "seq:Enable#TOutHigLimCutLow",
       "S231P:accessSpecifier": "protected",
       "S231P:description": "Hysteresis low limit cutoff",
@@ -648,6 +708,11 @@
       "S231P:description": "Economizer should not be enabled or disabled within 10 minutes of change",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":20,\"y\":182},{\"x\":40,\"y\":202}]}}}",
       "S231P:label": "truFalHol"
+    },
+    {
+      "@id": "seq:Enable#truFalHol.trueHoldDuration",
+      "S231P:isFinal": true,
+      "S231P:value": 600
     },
     {
       "@id": "seq:Enable#truFalHol.y",
