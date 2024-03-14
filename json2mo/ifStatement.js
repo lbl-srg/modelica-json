@@ -2,8 +2,8 @@ function parse (content, rawJson = false) {
   const ifElseifStatementParser = require('./ifElseifStatement')
   const statementParser = require('./statement')
 
-  var moOutput = ''
-  var ifElseifs = content.if_elseif
+  let moOutput = ''
+  const ifElseifs = content.if_elseif
   if (ifElseifs != null) {
     ifElseifs.forEach(ele => {
       moOutput += 'elseif '
@@ -12,9 +12,9 @@ function parse (content, rawJson = false) {
   }
   moOutput = moOutput.slice(4, moOutput.length) // to remove 1st else of elseif so that we get "if"
 
-  var elseStatements = content.else_statement
+  const elseStatements = content.else_statement
   if (elseStatements != null) {
-    var elseOutput = ''
+    let elseOutput = ''
     elseStatements.forEach(ele => {
       elseOutput += statementParser.parse(ele, rawJson)
       elseOutput += ';\n'
@@ -28,4 +28,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }

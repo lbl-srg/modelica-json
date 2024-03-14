@@ -1562,18 +1562,18 @@
   },
   "requiredReferences": {
     "connections": {
-      "outputTrue.outPort": [
+      "outputTrue.outPort[1]": [
         "toFalse.inPort"
       ],
       "outputTrue.active": [
         "y",
         "onDel2.u"
       ],
-      "outputFalse.outPort": [
+      "outputFalse.outPort[1]": [
         "toTrue.inPort"
       ],
       "toFalse.outPort": [
-        "outputFalse.inPort"
+        "outputFalse.inPort[1]"
       ],
       "notU.y": [
         "and2.u2",
@@ -1593,16 +1593,18 @@
         "toTrue.condition"
       ],
       "toTrue1.outPort": [
-        "outputTrue.inPort"
+        "outputTrue.inPort[1]"
       ],
       "toTrue.outPort": [
-        "outputTrue.inPort"
+        "outputTrue.inPort[2]"
       ],
       "toFalse1.outPort": [
-        "outputFalse.inPort"
+        "outputFalse.inPort[2]"
       ],
-      "initialStep.outPort": [
-        "toTrue1.inPort",
+      "initialStep.outPort[1]": [
+        "toTrue1.inPort"
+      ],
+      "initialStep.outPort[2]": [
         "toFalse1.inPort"
       ],
       "notU.u": [

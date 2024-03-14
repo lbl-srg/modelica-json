@@ -3,7 +3,7 @@ function parse (content, rawJson = false) {
   const componentClause1Parser = require('./componentClause1')
   const constrainingClauseParser = require('./constrainingClause')
 
-  var moOutput = ''
+  let moOutput = ''
   moOutput += 'replaceable '
   if (content.short_class_definition != null) {
     moOutput += shortClassDefinitionParser.parse(content.short_class_definition, rawJson)
@@ -16,4 +16,4 @@ function parse (content, rawJson = false) {
   return moOutput
 }
 
-module.exports = {parse}
+module.exports = { parse }
