@@ -236,6 +236,7 @@
     },
     {
       "@id": "seq:Enable#delEntHis",
+      "@type": "S231P:Parameter",
       "qudt:hasQuantityKind": {
         "@id": "qudt:SpecificEnergy"
       },
@@ -291,6 +292,10 @@
     },
     {
       "@id": "seq:Enable#delTOutHis",
+      "@type": "S231P:Parameter",
+      "qudt:hasDisplayUnit": {
+        "@id": "qudt:K"
+      },
       "qudt:hasQuantityKind": {
         "@id": "qudt:TemperatureDifference"
       },
@@ -307,12 +312,8 @@
       "S231P:value": 1
     },
     {
-      "@id": "seq:Enable#delTOutHis.displayUnit",
-      "S231P:isFinal": true,
-      "S231P:value": "K"
-    },
-    {
       "@id": "seq:Enable#disDel",
+      "@type": "S231P:Parameter",
       "qudt:hasQuantityKind": {
         "@id": "qudt:Time"
       },
@@ -383,6 +384,7 @@
     },
     {
       "@id": "seq:Enable#hOutHigLimCutHig",
+      "@type": "S231P:Parameter",
       "qudt:hasQuantityKind": {
         "@id": "qudt:SpecificEnergy"
       },
@@ -399,6 +401,7 @@
     },
     {
       "@id": "seq:Enable#hOutHigLimCutLow",
+      "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "protected",
       "S231P:description": "Hysteresis block low limit cutoff",
       "S231P:isOfDataType": {
@@ -569,6 +572,7 @@
     },
     {
       "@id": "seq:Enable#retDamFulOpeTim",
+      "@type": "S231P:Parameter",
       "qudt:hasQuantityKind": {
         "@id": "qudt:Time"
       },
@@ -629,6 +633,9 @@
     {
       "@id": "seq:Enable#TOut",
       "@type": "S231P:RealInput",
+      "qudt:hasDisplayUnit": {
+        "@id": "qudt:degC"
+      },
       "qudt:hasQuantityKind": {
         "@id": "qudt:ThermodynamicTemperature"
       },
@@ -644,13 +651,11 @@
       "S231P:label": "TOut"
     },
     {
-      "@id": "seq:Enable#TOut.displayUnit",
-      "S231P:isFinal": true,
-      "S231P:value": "degC"
-    },
-    {
       "@id": "seq:Enable#TOutCut",
       "@type": "S231P:RealInput",
+      "qudt:hasDisplayUnit": {
+        "@id": "qudt:degC"
+      },
       "qudt:hasQuantityKind": {
         "@id": "qudt:ThermodynamicTemperature"
       },
@@ -666,12 +671,11 @@
       "S231P:label": "TOutCut"
     },
     {
-      "@id": "seq:Enable#TOutCut.displayUnit",
-      "S231P:isFinal": true,
-      "S231P:value": "degC"
-    },
-    {
       "@id": "seq:Enable#TOutHigLimCutHig",
+      "@type": "S231P:Parameter",
+      "qudt:hasDisplayUnit": {
+        "@id": "qudt:K"
+      },
       "qudt:hasQuantityKind": {
         "@id": "qudt:TemperatureDifference"
       },
@@ -687,12 +691,8 @@
       "S231P:value": 0
     },
     {
-      "@id": "seq:Enable#TOutHigLimCutHig.displayUnit",
-      "S231P:isFinal": true,
-      "S231P:value": "K"
-    },
-    {
       "@id": "seq:Enable#TOutHigLimCutLow",
+      "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "protected",
       "S231P:description": "Hysteresis low limit cutoff",
       "S231P:isOfDataType": {
@@ -834,6 +834,7 @@
     },
     {
       "@id": "seq:Enable#use_enthalpy",
+      "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Set to true to evaluate outdoor air (OA) enthalpy in addition to temperature",
       "S231P:graphics": "{\"name\":\"Dialog\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"group\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"\\\"Conditional\\\"\"}}}}}]}}",

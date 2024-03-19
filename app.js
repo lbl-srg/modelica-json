@@ -102,11 +102,11 @@ if (args.output === 'modelica') {
   pa.convertToModelica(args.file, args.directory, false)
 } else {
   // Get mo files array
-  if (args.cxfCore) {
-    if (!args.file.endsWith("CDL") || !args.output === "cxf") {
-      throw new Error("In order to generate CXF-core.jsonld, the -f/--file should point to the CDL package (e.g.: Buildings.Controls.OBC.CDL) and -o/--output should be cxf")
-    }
-  }
+  // if (args.cxfCore) {
+  //   if (!args.file.endsWith("CDL") || !args.output === "cxf") {
+  //     throw new Error("In order to generate CXF-core.jsonld, the -f/--file should point to the CDL package (e.g.: Buildings.Controls.OBC.CDL) and -o/--output should be cxf")
+  //   }
+  // }
   const completedJsonGeneration = new Promise(
     function (resolve, reject) {
       const moFiles = ut.getMoFiles(args.file)
@@ -116,7 +116,7 @@ if (args.output === 'modelica') {
     }
   )
   completedJsonGeneration.then(function () {
-      if (args.output === 'semantic') {
+    if (args.output === 'semantic') {
       se.getSemanticInformation(args.file, args.directory)
     }
   })
