@@ -114,6 +114,9 @@ Specify the output directory. The default option is the current directory.
 
 If `-p` flag is specified, the JSON output conforms to prettyprint. The default option is `false`.
 
+##### --elementary
+
+If `--elementary` flag is specified, the CXF (jsonld) files for the elementary blocks are also generated. Else, they are ignored. The default option is `false`.
 
 ## 4. JSON Schemas
 
