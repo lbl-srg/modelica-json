@@ -24,8 +24,8 @@ function parse (content, rawJson = false) {
     if (content.modification != null) {
       moOutput += modificationParser.parse(content.modification, rawJson)
     }
-    if (content.string_comment != null) {
-      moOutput += util.format('%s', content.string_comment, rawJson)
+    if (content.description_string != null) {
+      moOutput += util.format(' "%s" ', content.description_string)
     }
   }
   return moOutput

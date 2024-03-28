@@ -10,7 +10,7 @@ function parse (content, rawJson = false) {
     if (subscripts != null) {
       subscripts.forEach(subscript => {
         moOutput += subscriptParser.parse(subscript, rawJson)
-        moOutput += ','
+        moOutput += ', '
       })
       moOutput = moOutput.slice(0, -2)
     }
@@ -23,12 +23,13 @@ function parse (content, rawJson = false) {
       arraySubscripts.forEach(ele => {
         if (ele.colon_op != null) {
           if (ele.colon_op) {
-            moOutput += ':'
+            moOutput = moOutput.slice(0, -2)
+            moOutput += ': '
           }
         } else if (ele.expression != null) {
           moOutput += expressionParser.parse(ele.expression, rawJson)
+          moOutput += ', '
         }
-        moOutput += ','
       })
       moOutput = moOutput.slice(0, -2)
     }

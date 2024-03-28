@@ -25,16 +25,17 @@ function parse (content, rawJson = false) {
       }
     }
   }
+  moOutput += '\n'
 
   if (rawJson) {
     const stringComment = content.string_comment
     if (stringComment != null) {
-      moOutput += util.format('\n%s\n', stringComment)
+      moOutput += util.format('%s\n', stringComment)
     }
   } else {
     const descriptionString = content.description_string
     if (descriptionString != null) {
-      moOutput += util.format('\n"%s"\n', descriptionString)
+      moOutput += util.format('"%s"\n', descriptionString)
     }
   }
 

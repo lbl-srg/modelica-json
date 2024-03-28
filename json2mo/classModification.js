@@ -8,7 +8,7 @@ function parse (content, rawJson = false) {
     if (content.argument_list != null) {
       moOutput += argumentListParser.parse(content.argument_list, rawJson)
     }
-    moOutput += ')\n\t'
+    moOutput += ')\n'
   } else {
     const argumentList = content
     moOutput += '(\n\t'
@@ -19,7 +19,7 @@ function parse (content, rawJson = false) {
     })
 
     moOutput = moOutput.slice(0, moOutput.lastIndexOf(','))
-    moOutput += ')'
+    moOutput += ')\n'
   }
   return moOutput
 }
