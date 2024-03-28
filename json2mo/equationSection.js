@@ -7,7 +7,7 @@ function parse (content, rawJson = false) {
       moOutput += 'initial '
     }
   }
-  moOutput += 'equation'
+  moOutput += 'equation\n'
   let equations
   if (rawJson) {
     equations = content.equations

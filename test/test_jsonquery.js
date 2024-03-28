@@ -9,7 +9,7 @@ function equalObjects (dict, reference) {
     return true
   } else if ((dict === undefined) || (reference === undefined)) {
     return false
-  } else if ((dict === {} && reference === {})) {
+  } else if ((dict.length === 0 && reference.length === 0)) {
     return true
   }
   if (typeof (dict) !== typeof (reference)) {

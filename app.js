@@ -85,6 +85,10 @@ if (args.output === 'modelica' && !args.file.endsWith('.json')) {
   throw new Error('Modelica output requires the input file (-f) to be a json file.')
 }
 
+if (args.output === 'modelica' && !args.file.endsWith('.json')) {
+  throw new Error('modelica output requires a input file (-f) to be a json file')
+}
+
 if (args.output !== 'modelica' && args.file.endsWith('.json')) {
   throw new Error("The json input file required only when the output format (-o) is 'modelica'.")
 }
@@ -116,16 +120,21 @@ if (args.output === 'json') {
   } else {
     schema = path.join(`${__dirname}`, 'schema-modelica.json')
   }
+<<<<<<< HEAD
   const jsonDir = (args.directory === 'current') ? process.cwd() : args.directory
   let jsonFiles = ut.findFilesInDir(path.join(jsonDir, 'json'), '.json')
+=======
+  console.log('parsing mode: ', schema)
+  // let jsonFiles = ut.findFilesInDir(path.join(args.directory, 'json'), '.json')
+>>>>>>> ae0dee5722f82ce552a298c4e11fb05b1d90f5d9
   // exclude CDL folder and possibly Modelica folder
-  const pathSep = path.sep
-  const cdlPath = path.join(pathSep, 'CDL', pathSep)
-  const modelicaPath = path.join('Modelica', pathSep)
-  jsonFiles = jsonFiles.filter(obj => !(obj.includes(cdlPath) || obj.includes(modelicaPath)))
-  // validate json schema
-  for (let i = 0; i < jsonFiles.length; i++) {
-    const eachFile = jsonFiles[i]
-    setTimeout(function () { ut.jsonSchemaValidation(args.mode, eachFile, 'json', schema) }, 100)
-  }
+  // const pathSep = path.sep
+  // const cdlPath = path.join(pathSep, 'CDL', pathSep)
+  // const modelicaPath = path.join('Modelica', pathSep)
+  // jsonFiles = jsonFiles.filter(obj => !(obj.includes(cdlPath) || obj.includes(modelicaPath)))
+  // // validate json schema
+  // for (let i = 0; i < jsonFiles.length; i++) {
+  //   const eachFile = jsonFiles[i]
+  //   setTimeout(function () { ut.jsonSchemaValidation(args.mode, eachFile, 'json', schema) }, 100)
+  // }
 }

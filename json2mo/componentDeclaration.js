@@ -1,6 +1,6 @@
 function parse (content, rawJson = false) {
   const declarationParser = require('./declaration')
-  const conditionAttributeParser = require('./condition_attribute')
+  const conditionAttributeParser = require('./conditionAttribute')
   const commentParser = require('./comment')
 
   let moOutput = ''

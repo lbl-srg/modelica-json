@@ -19,6 +19,9 @@ See the directory `test/FromModelica` from __modelica-json__ for simple examples
 
 ## 2. Installation and help
 
+__modelica-json__ requires both Java and Node.js. 
+This pacakged has been tested with Java (JDK 21, JRE 8u391 and Node.js 18). 
+
 ### Linux
 
 First, set the MODELICAPATH environment variable by adding the following line to your ~/.bashrc file:
@@ -67,18 +70,18 @@ make clean-installation
 
 - Finally, to install dependencies and compile the Java files, run `InstallOnWindows.bat`.
 
-To test the installation, from the `\modelica-json` directory, run the parser on Command Prompt:
+To test the installation, from the `path\to\modelica-json` directory, run the parser on Command Prompt:
 ```
 node app.js -f test\FromModelica\Enable.mo
 ```
 
-Now the `\modelica-json` directory should have a new folder `json` and in the folder, there should be a file in the path `test\FromModelica\Enable.json`.
+Now the `path\to\modelica-json` directory should have a new folder `json` and in the folder, there should be a file in the path `test\FromModelica\Enable.json`.
 
 ## 3. How to use the parser
 
 The parser can be run with the app.js file as follows:
 ```
-node app.js -f <path of the file to parse>
+node app.js -f <path of the file to parse> -o <output format> -m <parser mode> -l <log level> -d <output directory>
 ```
 
 #### Arguments :
@@ -88,11 +91,20 @@ The only required input is the path of the file or package to be parsed.
 
 ##### --output / -o
 
-This parser takes a .mo file in input and has three possible outputs, that can be specified with the argument -o :
+This parser can take a .mo file in input and produce three possible outputs, that can be specified with the argument -o :
 
+<<<<<<< HEAD
 - **raw-json** : detailed transcription of a Modelica file in JSON
 - **json**: simplified JSON format, easier to read an interpret
 - **semantic**: generate semantic model from semantic information included within `annotation` in the Modelica file
+=======
+- **raw-json** : intermediate JSON output, aligning closely with the Modelica syntax
+- **json**: simplified JSON format, to be used by all applications
+- **semantic**: generate a semantic model from the Modelica model, if annotations containing semantic information are present in the Modelica model
+
+This parser can also take a .json file as an input and if it aligns with the simplified JSON output format, a corresponding Modelica or CDL model can be generated using the followed argument in the output format (-o):
+- **modelica**: Generate a Modelica/CDL file (.mo) from a JSON file that conforms to the simplified JSON schema. 
+>>>>>>> ae0dee5722f82ce552a298c4e11fb05b1d90f5d9
 
 ##### --mode / -m
 

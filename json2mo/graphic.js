@@ -73,10 +73,10 @@ function placementParse (obj) {
     strArr.push('iconVisible=' + util.format('%s', iconVisible))
   }
   if (transformation != null) {
-    strArr.push('transformation' + transformationParse(transformation) + ')')
+    strArr.push('transformation' + transformationParse(transformation))
   }
   if (iconTransformation != null) {
-    strArr.push('iconTransformation' + transformationParse(iconTransformation) + ')')
+    strArr.push('iconTransformation' + transformationParse(iconTransformation))
   }
   return 'Placement(' + strArr.join(',') + ')'
 }
@@ -103,8 +103,8 @@ function graphicsParse (obj) {
   for (let i = 0; i < obj.length; i++) {
     const ithEle = obj[i]
     const name = ithEle.name
-    const attibutes = ithEle.attribute
-    const graComIte = commonGraphicItems(attibutes)
+    const attributes = ithEle.attribute
+    const graComIte = commonGraphicItems(attributes)
     strArr.push(name + '(' + graComIte.join(',') + ')')
   }
   return 'graphics=' + '{' + strArr.join(',') + '}'
@@ -228,7 +228,7 @@ function commonGraphicItems (obj) {
     strArr.push('fontSize=' + util.format('%s', fontSize))
   }
   if (textColor != null) {
-    strArr.push('textColor=' + colorParse(extent))
+    strArr.push('textColor=' + colorParse(textColor))
   }
   if (horizontalAlignment != null) {
     strArr.push('horizontalAlignment=' + util.format('%s', horizontalAlignment))

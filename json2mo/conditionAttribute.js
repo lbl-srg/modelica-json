@@ -8,7 +8,7 @@ function parse (content, rawJson = false) {
       moOutput += expressionParser.parse(content.expression, rawJson)
     }
   } else {
-    const expression = content
+    const expression = content.expression
     if (expression != null) {
       moOutput += expressionParser.parse(expression, rawJson)
     }
