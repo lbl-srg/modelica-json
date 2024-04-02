@@ -93,6 +93,7 @@ const functionArguments = require('../json2mo/functionArguments.js')
 const whenEquation = require('../json2mo/whenEquation.js')
 const ifEquation = require('../json2mo/ifEquation.js')
 const forIndex = require('../json2mo/forIndex.js')
+const graPri = require('../lib/graphicalPrimitives.js')
 
 mo.afterEach(() => {
   sinon.restore()
@@ -945,7 +946,7 @@ mo.describe('testing individual json2mo parsers', function() {
       sinon.stub(name, 'parse').returns('mocked name')
       sinon.stub(modification, 'parse').returns('mocked modification')
       sinon.stub(graphic, 'parse').returns('mocked graphic')
-      sinon.stub(graPri, 'parse').returns('mocked graPri')
+      sinon.stub(graPri, 'isGraphicAnnotation').returns(true)
 
       const json = {
         'name': 'test name',
@@ -954,7 +955,7 @@ mo.describe('testing individual json2mo parsers', function() {
       }   
       const moOutput = elementModification.parse(json, false)
 
-      const referenceMoOutput = 'mocked name mocked modification "%s" test description_string'
+      const referenceMoOutput = 'mocked graphic'
       as.deepEqual(referenceMoOutput, moOutput)
     })
   })
