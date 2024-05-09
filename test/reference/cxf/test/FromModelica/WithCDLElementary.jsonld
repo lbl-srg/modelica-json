@@ -4,20 +4,20 @@
   },
   "@graph": [
     {
-      "@id": "seq:WithCDLElementary",
+      "@id": "http://example.org#FromModelica.WithCDLElementary",
       "@type": "S231P:Block",
       "S231P:containsBlock": {
-        "@id": "seq:WithCDLElementary#gre"
+        "@id": "http://example.org#FromModelica.WithCDLElementary.gre"
       },
       "S231P:hasInput": {
-        "@id": "seq:WithCDLElementary#u"
+        "@id": "http://example.org#FromModelica.WithCDLElementary.u"
       },
       "S231P:hasOutput": {
-        "@id": "seq:WithCDLElementary#y"
+        "@id": "http://example.org#FromModelica.WithCDLElementary.y"
       }
     },
     {
-      "@id": "seq:WithCDLElementary#gre",
+      "@id": "http://example.org#FromModelica.WithCDLElementary.gre",
       "@type": "https://data.ashrae.org/S231P#CXF.Reals.Greater",
       "S231P:accessSpecifier": "public",
       "S231P:description": "CDL elementary block with inside class",
@@ -25,7 +25,7 @@
       "S231P:label": "gre"
     },
     {
-      "@id": "seq:WithCDLElementary#u",
+      "@id": "http://example.org#FromModelica.WithCDLElementary.u",
       "@type": "S231P:RealInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Real input",
@@ -33,7 +33,7 @@
       "S231P:label": "u"
     },
     {
-      "@id": "seq:WithCDLElementary#y",
+      "@id": "http://example.org#FromModelica.WithCDLElementary.y",
       "@type": "S231P:RealOutput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Real output",

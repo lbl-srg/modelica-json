@@ -5,45 +5,45 @@
   },
   "@graph": [
     {
-      "@id": "seq:RemovableInputs",
+      "@id": "http://example.org#FromModelica.RemovableInputs",
       "@type": "S231P:Block",
       "S231P:containsBlock": {
-        "@id": "seq:RemovableInputs#abs"
+        "@id": "http://example.org#FromModelica.RemovableInputs.abs"
       },
       "S231P:hasInput": [
         {
-          "@id": "seq:RemovableInputs#nOcc"
+          "@id": "http://example.org#FromModelica.RemovableInputs.nOcc"
         },
         {
-          "@id": "seq:RemovableInputs#TOut"
+          "@id": "http://example.org#FromModelica.RemovableInputs.TOut"
         },
         {
-          "@id": "seq:RemovableInputs#TOutWitDef"
+          "@id": "http://example.org#FromModelica.RemovableInputs.TOutWitDef"
         },
         {
-          "@id": "seq:RemovableInputs#u"
+          "@id": "http://example.org#FromModelica.RemovableInputs.u"
         },
         {
-          "@id": "seq:RemovableInputs#uWin"
+          "@id": "http://example.org#FromModelica.RemovableInputs.uWin"
         }
       ],
       "S231P:hasOutput": {
-        "@id": "seq:RemovableInputs#y"
+        "@id": "http://example.org#FromModelica.RemovableInputs.y"
       },
       "S231P:hasParameter": [
         {
-          "@id": "seq:RemovableInputs#enaBlo"
+          "@id": "http://example.org#FromModelica.RemovableInputs.enaBlo"
         },
         {
-          "@id": "seq:RemovableInputs#have_occSen"
+          "@id": "http://example.org#FromModelica.RemovableInputs.have_occSen"
         },
         {
-          "@id": "seq:RemovableInputs#have_winSen"
+          "@id": "http://example.org#FromModelica.RemovableInputs.have_winSen"
         }
       ]
     },
     {
-      "@id": "seq:RemovableInputs#abs",
+      "@id": "http://example.org#FromModelica.RemovableInputs.abs",
       "@type": "https://data.ashrae.org/S231P#CXF.Reals.Abs",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Instance could be conditional disabled",
@@ -51,7 +51,7 @@
       "S231P:label": "abs"
     },
     {
-      "@id": "seq:RemovableInputs#enaBlo",
+      "@id": "http://example.org#FromModelica.RemovableInputs.enaBlo",
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Flag for enabling instance",
@@ -62,7 +62,7 @@
       "S231P:value": true
     },
     {
-      "@id": "seq:RemovableInputs#have_occSen",
+      "@id": "http://example.org#FromModelica.RemovableInputs.have_occSen",
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "True: there is occupancy sensor",
@@ -72,7 +72,7 @@
       "S231P:label": "have_occSen"
     },
     {
-      "@id": "seq:RemovableInputs#have_winSen",
+      "@id": "http://example.org#FromModelica.RemovableInputs.have_winSen",
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "True: there is window status sensor",
@@ -82,7 +82,7 @@
       "S231P:label": "have_winSen"
     },
     {
-      "@id": "seq:RemovableInputs#nOcc",
+      "@id": "http://example.org#FromModelica.RemovableInputs.nOcc",
       "@type": "S231P:IntegerInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Occupancy",
@@ -90,13 +90,13 @@
       "S231P:label": "nOcc"
     },
     {
-      "@id": "seq:RemovableInputs#TOut",
+      "@id": "http://example.org#FromModelica.RemovableInputs.TOut",
       "@type": "S231P:RealInput",
       "qudt:hasQuantityKind": {
-        "@id": "qudt:ThermodynamicTemperature"
+        "@id": "S231P:ThermodynamicTemperature"
       },
       "qudt:hasUnit": {
-        "@id": "qudt:K"
+        "@id": "S231P:K"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Temperature input",
@@ -104,13 +104,13 @@
       "S231P:label": "TOut"
     },
     {
-      "@id": "seq:RemovableInputs#TOutWitDef",
+      "@id": "http://example.org#FromModelica.RemovableInputs.TOutWitDef",
       "@type": "S231P:RealInput",
       "qudt:hasQuantityKind": {
-        "@id": "qudt:ThermodynamicTemperature"
+        "@id": "S231P:ThermodynamicTemperature"
       },
       "qudt:hasUnit": {
-        "@id": "qudt:K"
+        "@id": "S231P:K"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Temperature input with specified default value",
@@ -121,7 +121,7 @@
       "S231P:label": "TOutWitDef"
     },
     {
-      "@id": "seq:RemovableInputs#u",
+      "@id": "http://example.org#FromModelica.RemovableInputs.u",
       "@type": "S231P:RealInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Input connector",
@@ -129,7 +129,7 @@
       "S231P:label": "u"
     },
     {
-      "@id": "seq:RemovableInputs#uWin",
+      "@id": "http://example.org#FromModelica.RemovableInputs.uWin",
       "@type": "S231P:BooleanInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Window opening status",
@@ -137,7 +137,7 @@
       "S231P:label": "uWin"
     },
     {
-      "@id": "seq:RemovableInputs#y",
+      "@id": "http://example.org#FromModelica.RemovableInputs.y",
       "@type": "S231P:RealOutput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Output connector",

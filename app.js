@@ -66,7 +66,16 @@ parser.addArgument(
 
   ['--elementary'],
   {
-    help: 'If this flag is present, generate CXF of elementary blocks. -o/--output should be cxf',
+    help: 'If this flag is present, generate CXF of elementary blocks in addition to composite blocks. -o/--output should be cxf.',
+    action: 'storeTrue'
+  }
+)
+
+parser.addArgument(
+
+  ['--cxfCore'],
+  {
+    help: 'If this flag is present, generate CXF-core.jsonld. -o/--output should be cxf, -f/--file should be path/to/CDL and --elementary flag must be used.',
     action: 'storeTrue'
   }
 )
@@ -102,16 +111,24 @@ if (args.output === 'modelica') {
   pa.convertToModelica(args.file, args.directory, false)
 } else {
   // Get mo files array
-  if (args.elementary) {
+  if (args.elementary || args.cxfCore) {
     if (!args.output === 'cxf') {
-      throw new Error('In order to generate CXF (jsonld) of elementary blocks, -o/--output should be cxf')
+      throw new Error('In order to generate CXF (jsonld) of elementary blocks, -o/--output should be cxf.')
+    }
+  }
+  if (args.cxfCore) {
+    if (!args.file.endsWith('CDL') && !args.file.endsWith('cdl')) {
+      throw new Error('In order to generate CXF-core.jsonld containing all elementary blocks, -f/--file should be path/to/CDL.')
+    }
+    if (!args.elementary) {
+      throw new Error('In order to generate CXF-core.jsonld containing all elementary blocks, --elementary flag must be used.')
     }
   }
   const completedJsonGeneration = new Promise(
     function (resolve, reject) {
       const moFiles = ut.getMoFiles(args.file)
       // Parse the json representation for moFiles
-      pa.getJsons(moFiles, args.mode, args.output, args.directory, args.prettyPrint, args.cxfCore)
+      pa.getJsons(moFiles, args.mode, args.output, args.directory, args.prettyPrint, args.elementary, args.cxfCore)
       resolve(0)
     }
   )

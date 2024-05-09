@@ -1,247 +1,259 @@
 {
   "@context": {
     "S231P": "https://data.ashrae.org/S231P#",
-    "qudt": "http://qudt.org/schema/qudt#"
+    "qudt": "http://qudt.org/schema/qudt#",
+    "unit": "http://qudt.org/vocab/unit#"
   },
   "@graph": [
     {
-      "@id": "seq:Enable",
+      "@id": "http://example.org#FromModelica.Enable",
       "@type": "S231P:Block",
       "S231P:containsBlock": [
         {
-          "@id": "seq:Enable#and1"
+          "@id": "http://example.org#FromModelica.Enable.and1"
         },
         {
-          "@id": "seq:Enable#and2"
+          "@id": "http://example.org#FromModelica.Enable.and2"
         },
         {
-          "@id": "seq:Enable#and3"
+          "@id": "http://example.org#FromModelica.Enable.and3"
         },
         {
-          "@id": "seq:Enable#andEnaDis"
+          "@id": "http://example.org#FromModelica.Enable.andEnaDis"
         },
         {
-          "@id": "seq:Enable#conInt"
+          "@id": "http://example.org#FromModelica.Enable.conInt"
         },
         {
-          "@id": "seq:Enable#delOutDamOsc"
+          "@id": "http://example.org#FromModelica.Enable.delOutDamOsc"
         },
         {
-          "@id": "seq:Enable#delRetDam"
+          "@id": "http://example.org#FromModelica.Enable.delRetDam"
         },
         {
-          "@id": "seq:Enable#entSubst1"
+          "@id": "http://example.org#FromModelica.Enable.entSubst1"
         },
         {
-          "@id": "seq:Enable#hysOutEnt"
+          "@id": "http://example.org#FromModelica.Enable.hysOutEnt"
         },
         {
-          "@id": "seq:Enable#hysOutTem"
+          "@id": "http://example.org#FromModelica.Enable.hysOutTem"
         },
         {
-          "@id": "seq:Enable#intEqu"
+          "@id": "http://example.org#FromModelica.Enable.intEqu"
         },
         {
-          "@id": "seq:Enable#maxRetDamSwitch"
+          "@id": "http://example.org#FromModelica.Enable.maxRetDamSwitch"
         },
         {
-          "@id": "seq:Enable#minRetDamSwitch"
+          "@id": "http://example.org#FromModelica.Enable.minRetDamSwitch"
         },
         {
-          "@id": "seq:Enable#not1"
+          "@id": "http://example.org#FromModelica.Enable.not1"
         },
         {
-          "@id": "seq:Enable#not2"
+          "@id": "http://example.org#FromModelica.Enable.not2"
         },
         {
-          "@id": "seq:Enable#or2"
+          "@id": "http://example.org#FromModelica.Enable.or2"
         },
         {
-          "@id": "seq:Enable#outDamSwitch"
+          "@id": "http://example.org#FromModelica.Enable.outDamSwitch"
         },
         {
-          "@id": "seq:Enable#retDamSwitch"
+          "@id": "http://example.org#FromModelica.Enable.retDamSwitch"
         },
         {
-          "@id": "seq:Enable#sub1"
+          "@id": "http://example.org#FromModelica.Enable.sub1"
         },
         {
-          "@id": "seq:Enable#sub2"
+          "@id": "http://example.org#FromModelica.Enable.sub2"
         },
         {
-          "@id": "seq:Enable#truFalHol"
+          "@id": "http://example.org#FromModelica.Enable.truFalHol"
         }
       ],
       "S231P:hasInput": [
         {
-          "@id": "seq:Enable#hOut"
+          "@id": "http://example.org#FromModelica.Enable.hOut"
         },
         {
-          "@id": "seq:Enable#hOutCut"
+          "@id": "http://example.org#FromModelica.Enable.hOutCut"
         },
         {
-          "@id": "seq:Enable#TOut"
+          "@id": "http://example.org#FromModelica.Enable.TOut"
         },
         {
-          "@id": "seq:Enable#TOutCut"
+          "@id": "http://example.org#FromModelica.Enable.TOutCut"
         },
         {
-          "@id": "seq:Enable#u1SupFan"
+          "@id": "http://example.org#FromModelica.Enable.u1SupFan"
         },
         {
-          "@id": "seq:Enable#uFreProSta"
+          "@id": "http://example.org#FromModelica.Enable.uFreProSta"
         },
         {
-          "@id": "seq:Enable#uOutDam_max"
+          "@id": "http://example.org#FromModelica.Enable.uOutDam_max"
         },
         {
-          "@id": "seq:Enable#uOutDam_min"
+          "@id": "http://example.org#FromModelica.Enable.uOutDam_min"
         },
         {
-          "@id": "seq:Enable#uRetDam_max"
+          "@id": "http://example.org#FromModelica.Enable.uRetDam_max"
         },
         {
-          "@id": "seq:Enable#uRetDam_min"
+          "@id": "http://example.org#FromModelica.Enable.uRetDam_min"
         },
         {
-          "@id": "seq:Enable#uRetDamPhy_max"
+          "@id": "http://example.org#FromModelica.Enable.uRetDamPhy_max"
         }
       ],
       "S231P:hasOutput": [
         {
-          "@id": "seq:Enable#yOutDam_max"
+          "@id": "http://example.org#FromModelica.Enable.yOutDam_max"
         },
         {
-          "@id": "seq:Enable#yRetDam_max"
+          "@id": "http://example.org#FromModelica.Enable.yRetDam_max"
         },
         {
-          "@id": "seq:Enable#yRetDam_min"
+          "@id": "http://example.org#FromModelica.Enable.yRetDam_min"
         }
       ],
       "S231P:hasParameter": [
         {
-          "@id": "seq:Enable#delEntHis"
+          "@id": "http://example.org#FromModelica.Enable.delEntHis"
         },
         {
-          "@id": "seq:Enable#delTOutHis"
+          "@id": "http://example.org#FromModelica.Enable.delTOutHis"
         },
         {
-          "@id": "seq:Enable#disDel"
+          "@id": "http://example.org#FromModelica.Enable.disDel"
         },
         {
-          "@id": "seq:Enable#hOutHigLimCutHig"
+          "@id": "http://example.org#FromModelica.Enable.hOutHigLimCutHig"
         },
         {
-          "@id": "seq:Enable#hOutHigLimCutLow"
+          "@id": "http://example.org#FromModelica.Enable.hOutHigLimCutLow"
         },
         {
-          "@id": "seq:Enable#retDamFulOpeTim"
+          "@id": "http://example.org#FromModelica.Enable.retDamFulOpeTim"
         },
         {
-          "@id": "seq:Enable#TOutHigLimCutHig"
+          "@id": "http://example.org#FromModelica.Enable.TOutHigLimCutHig"
         },
         {
-          "@id": "seq:Enable#TOutHigLimCutLow"
+          "@id": "http://example.org#FromModelica.Enable.TOutHigLimCutLow"
         },
         {
-          "@id": "seq:Enable#use_enthalpy"
+          "@id": "http://example.org#FromModelica.Enable.use_enthalpy"
         }
       ]
     },
     {
-      "@id": "seq:Enable#and1",
+      "@id": "http://example.org#FromModelica.Enable.and1",
       "@type": "https://data.ashrae.org/S231P#CXF.Logical.And",
       "S231P:accessSpecifier": "protected",
       "S231P:description": "Check supply fan status",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":20,\"y\":80},{\"x\":40,\"y\":100}]}}}",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.and1.u1"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.and1.u2"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.and1.y"
+        }
+      ],
       "S231P:label": "and1"
     },
     {
-      "@id": "seq:Enable#and1.y",
-      "S231P:isConnectedTo": {
-        "@id": "seq:Enable#andEnaDis.u1"
-      }
-    },
-    {
-      "@id": "seq:Enable#and2",
+      "@id": "http://example.org#FromModelica.Enable.and2",
       "@type": "https://data.ashrae.org/S231P#CXF.Logical.And",
       "S231P:accessSpecifier": "protected",
       "S231P:description": "Logical and",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":160,\"y\":-100},{\"x\":180,\"y\":-80}]}}}",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.and2.u1"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.and2.u2"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.and2.y"
+        }
+      ],
       "S231P:label": "and2"
     },
     {
-      "@id": "seq:Enable#and2.u1",
-      "S231P:isConnectedTo": {
-        "@id": "seq:Enable#not2.y"
-      }
-    },
-    {
-      "@id": "seq:Enable#and2.y",
-      "S231P:isConnectedTo": [
-        {
-          "@id": "seq:Enable#maxRetDamSwitch.u2"
-        },
-        {
-          "@id": "seq:Enable#minRetDamSwitch.u2"
-        }
-      ]
-    },
-    {
-      "@id": "seq:Enable#and3",
+      "@id": "http://example.org#FromModelica.Enable.and3",
       "@type": "https://data.ashrae.org/S231P#CXF.Logical.And",
       "S231P:accessSpecifier": "protected",
       "S231P:description": "Check if delay time has been passed after economizer being disabled",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":40,\"y\":-54},{\"x\":60,\"y\":-34}]}}}",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.and3.u1"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.and3.u2"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.and3.y"
+        }
+      ],
       "S231P:label": "and3"
     },
     {
-      "@id": "seq:Enable#and3.u2",
-      "S231P:isConnectedTo": {
-        "@id": "seq:Enable#delOutDamOsc.y"
-      }
-    },
-    {
-      "@id": "seq:Enable#andEnaDis",
+      "@id": "http://example.org#FromModelica.Enable.andEnaDis",
       "@type": "https://data.ashrae.org/S231P#CXF.Logical.And",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Check freeze protection stage and zone state",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":60,\"y\":12},{\"x\":80,\"y\":32}]}}}",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.andEnaDis.u1"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.andEnaDis.u2"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.andEnaDis.y"
+        }
+      ],
       "S231P:label": "andEnaDis"
     },
     {
-      "@id": "seq:Enable#andEnaDis.y",
-      "S231P:isConnectedTo": {
-        "@id": "seq:Enable#not2.u"
-      }
-    },
-    {
-      "@id": "seq:Enable#conInt",
-      "@type": "seq:Buildings.Controls.OBC.CDL.Integers.Sources.Constant",
+      "@id": "http://example.org#FromModelica.Enable.conInt",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Integers.Sources.Constant",
       "S231P:accessSpecifier": "protected",
       "S231P:description": "Integer constant, stage 0",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-118,\"y\":12},{\"x\":-98,\"y\":32}]}}}",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#FromModelica.Enable.conInt.k"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.conInt.y"
+        }
+      ],
       "S231P:label": "conInt"
     },
     {
-      "@id": "seq:Enable#conInt.k",
+      "@id": "http://example.org#FromModelica.Enable.conInt.k",
       "S231P:isFinal": true,
       "S231P:value": "Buildings.Controls.OBC.ASHRAE.G36.Types.FreezeProtectionStages.stage0"
     },
     {
-      "@id": "seq:Enable#conInt.y",
-      "S231P:isConnectedTo": {
-        "@id": "seq:Enable#intEqu.u2"
-      }
-    },
-    {
-      "@id": "seq:Enable#delEntHis",
+      "@id": "http://example.org#FromModelica.Enable.delEntHis",
       "@type": "S231P:Parameter",
       "qudt:hasQuantityKind": {
-        "@id": "qudt:SpecificEnergy"
+        "@id": "S231P:SpecificEnergy"
       },
       "qudt:hasUnit": {
-        "@id": "http://qudt.org/schema/qudt#J/kg"
+        "@id": "https://data.ashrae.org/S231P#J/kg"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Delta between the enthalpy hysteresis high and low limits",
@@ -253,54 +265,64 @@
       "S231P:value": 1000
     },
     {
-      "@id": "seq:Enable#delOutDamOsc",
+      "@id": "http://example.org#FromModelica.Enable.delOutDamOsc",
       "@type": "https://data.ashrae.org/S231P#CXF.Logical.TrueDelay",
       "S231P:accessSpecifier": "protected",
       "S231P:description": "Small delay before closing the outdoor air damper to avoid pressure fluctuations",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-20,\"y\":-58},{\"x\":0,\"y\":-38}]}}}",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#FromModelica.Enable.delOutDamOsc.delayTime"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.delOutDamOsc.u"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.delOutDamOsc.y"
+        }
+      ],
       "S231P:label": "delOutDamOsc"
     },
     {
-      "@id": "seq:Enable#delOutDamOsc.delayTime",
+      "@id": "http://example.org#FromModelica.Enable.delOutDamOsc.delayTime",
       "S231P:isFinal": true,
       "S231P:value": "disDel"
     },
     {
-      "@id": "seq:Enable#delOutDamOsc.u",
-      "S231P:isConnectedTo": {
-        "@id": "seq:Enable#not2.y"
-      }
-    },
-    {
-      "@id": "seq:Enable#delRetDam",
+      "@id": "http://example.org#FromModelica.Enable.delRetDam",
       "@type": "https://data.ashrae.org/S231P#CXF.Logical.TrueDelay",
       "S231P:accessSpecifier": "protected",
       "S231P:description": "Keep return damper open to its physical maximum for a short period of time before closing the outdoor air damper and resuming the maximum return air damper position, per G36 Part N7",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-20,\"y\":-108},{\"x\":0,\"y\":-88}]}}}",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#FromModelica.Enable.delRetDam.delayTime"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.delRetDam.u"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.delRetDam.y"
+        }
+      ],
       "S231P:label": "delRetDam"
     },
     {
-      "@id": "seq:Enable#delRetDam.delayTime",
+      "@id": "http://example.org#FromModelica.Enable.delRetDam.delayTime",
       "S231P:isFinal": true,
       "S231P:value": "retDamFulOpeTim"
     },
     {
-      "@id": "seq:Enable#delRetDam.y",
-      "S231P:isConnectedTo": {
-        "@id": "seq:Enable#not1.u"
-      }
-    },
-    {
-      "@id": "seq:Enable#delTOutHis",
+      "@id": "http://example.org#FromModelica.Enable.delTOutHis",
       "@type": "S231P:Parameter",
       "qudt:hasDisplayUnit": {
-        "@id": "qudt:K"
+        "@id": "S231P:K"
       },
       "qudt:hasQuantityKind": {
-        "@id": "qudt:TemperatureDifference"
+        "@id": "S231P:TemperatureDifference"
       },
       "qudt:hasUnit": {
-        "@id": "qudt:K"
+        "@id": "S231P:K"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Delta between the temperature hysteresis high and low limit",
@@ -312,13 +334,13 @@
       "S231P:value": 1
     },
     {
-      "@id": "seq:Enable#disDel",
+      "@id": "http://example.org#FromModelica.Enable.disDel",
       "@type": "S231P:Parameter",
       "qudt:hasQuantityKind": {
-        "@id": "qudt:Time"
+        "@id": "S231P:Time"
       },
       "qudt:hasUnit": {
-        "@id": "qudt:s"
+        "@id": "S231P:s"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Short time delay before closing the OA damper at disable to avoid pressure fluctuations",
@@ -330,66 +352,68 @@
       "S231P:value": 15
     },
     {
-      "@id": "seq:Enable#entSubst1",
-      "@type": "seq:Buildings.Controls.OBC.CDL.Logical.Sources.Constant",
+      "@id": "http://example.org#FromModelica.Enable.entSubst1",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Sources.Constant",
       "S231P:accessSpecifier": "protected",
       "S231P:description": "Deactivates outdoor air enthalpy condition if there is no enthalpy sensor",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-160,\"y\":180},{\"x\":-140,\"y\":200}]}}}",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#FromModelica.Enable.entSubst1.k"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.entSubst1.y"
+        }
+      ],
       "S231P:label": "entSubst1"
     },
     {
-      "@id": "seq:Enable#entSubst1.k",
+      "@id": "http://example.org#FromModelica.Enable.entSubst1.k",
       "S231P:isFinal": true,
       "S231P:value": false
     },
     {
-      "@id": "seq:Enable#entSubst1.y",
-      "S231P:isConnectedTo": {
-        "@id": "seq:Enable#or2.u2"
-      }
-    },
-    {
-      "@id": "seq:Enable#hOut",
+      "@id": "http://example.org#FromModelica.Enable.hOut",
       "@type": "S231P:RealInput",
       "qudt:hasQuantityKind": {
-        "@id": "qudt:SpecificEnergy"
+        "@id": "S231P:SpecificEnergy"
       },
       "qudt:hasUnit": {
-        "@id": "http://qudt.org/schema/qudt#J/kg"
+        "@id": "https://data.ashrae.org/S231P#J/kg"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Outdoor air enthalpy",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-300,\"y\":152},{\"x\":-260,\"y\":192}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":60},{\"x\":-100,\"y\":100}]}}}",
       "S231P:isConnectedTo": {
-        "@id": "seq:Enable#sub2.u1"
+        "@id": "http://example.org#http://example.org#FromModelica.Enable.sub2.u1"
       },
       "S231P:label": "hOut"
     },
     {
-      "@id": "seq:Enable#hOutCut",
+      "@id": "http://example.org#FromModelica.Enable.hOutCut",
       "@type": "S231P:RealInput",
       "qudt:hasQuantityKind": {
-        "@id": "qudt:SpecificEnergy"
+        "@id": "S231P:SpecificEnergy"
       },
       "qudt:hasUnit": {
-        "@id": "http://qudt.org/schema/qudt#J/kg"
+        "@id": "https://data.ashrae.org/S231P#J/kg"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "OA enthalpy high limit cutoff. For differential enthalpy use return air enthalpy measurement",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-300,\"y\":112},{\"x\":-260,\"y\":152}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":40},{\"x\":-100,\"y\":80}]}}}",
       "S231P:isConnectedTo": {
-        "@id": "seq:Enable#sub2.u2"
+        "@id": "http://example.org#http://example.org#FromModelica.Enable.sub2.u2"
       },
       "S231P:label": "hOutCut"
     },
     {
-      "@id": "seq:Enable#hOutHigLimCutHig",
+      "@id": "http://example.org#FromModelica.Enable.hOutHigLimCutHig",
       "@type": "S231P:Parameter",
       "qudt:hasQuantityKind": {
-        "@id": "qudt:SpecificEnergy"
+        "@id": "S231P:SpecificEnergy"
       },
       "qudt:hasUnit": {
-        "@id": "http://qudt.org/schema/qudt#J/kg"
+        "@id": "https://data.ashrae.org/S231P#J/kg"
       },
       "S231P:accessSpecifier": "protected",
       "S231P:description": "Hysteresis block high limit cutoff",
@@ -400,7 +424,7 @@
       "S231P:value": 0
     },
     {
-      "@id": "seq:Enable#hOutHigLimCutLow",
+      "@id": "http://example.org#FromModelica.Enable.hOutHigLimCutLow",
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "protected",
       "S231P:description": "Hysteresis block low limit cutoff",
@@ -411,173 +435,213 @@
       "S231P:value": "hOutHigLimCutHig -delEntHis"
     },
     {
-      "@id": "seq:Enable#hysOutEnt",
+      "@id": "http://example.org#FromModelica.Enable.hysOutEnt",
       "@type": "https://data.ashrae.org/S231P#CXF.Reals.Hysteresis",
       "S231P:accessSpecifier": "protected",
       "S231P:description": "Outdoor air enthalpy hysteresis for both fixed and differential enthalpy cutoff conditions",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-160,\"y\":140},{\"x\":-140,\"y\":160}]}}}",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#FromModelica.Enable.hysOutEnt.uHigh"
+        },
+        {
+          "@id": "http://example.org#FromModelica.Enable.hysOutEnt.uLow"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.hysOutEnt.u"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.hysOutEnt.y"
+        }
+      ],
       "S231P:label": "hysOutEnt"
     },
     {
-      "@id": "seq:Enable#hysOutEnt.uHigh",
+      "@id": "http://example.org#FromModelica.Enable.hysOutEnt.uHigh",
       "S231P:isFinal": true,
       "S231P:value": "hOutHigLimCutHig"
     },
     {
-      "@id": "seq:Enable#hysOutEnt.uLow",
+      "@id": "http://example.org#FromModelica.Enable.hysOutEnt.uLow",
       "S231P:isFinal": true,
       "S231P:value": "hOutHigLimCutLow"
     },
     {
-      "@id": "seq:Enable#hysOutEnt.y",
-      "S231P:isConnectedTo": {
-        "@id": "seq:Enable#or2.u2"
-      }
-    },
-    {
-      "@id": "seq:Enable#hysOutTem",
+      "@id": "http://example.org#FromModelica.Enable.hysOutTem",
       "@type": "https://data.ashrae.org/S231P#CXF.Reals.Hysteresis",
       "S231P:accessSpecifier": "protected",
       "S231P:description": "Outdoor air temperature hysteresis for both fixed and differential dry bulb temperature cutoff conditions",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-160,\"y\":220},{\"x\":-140,\"y\":240}]}}}",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#FromModelica.Enable.hysOutTem.uHigh"
+        },
+        {
+          "@id": "http://example.org#FromModelica.Enable.hysOutTem.uLow"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.hysOutTem.u"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.hysOutTem.y"
+        }
+      ],
       "S231P:label": "hysOutTem"
     },
     {
-      "@id": "seq:Enable#hysOutTem.uHigh",
+      "@id": "http://example.org#FromModelica.Enable.hysOutTem.uHigh",
       "S231P:isFinal": true,
       "S231P:value": "TOutHigLimCutHig"
     },
     {
-      "@id": "seq:Enable#hysOutTem.uLow",
+      "@id": "http://example.org#FromModelica.Enable.hysOutTem.uLow",
       "S231P:isFinal": true,
       "S231P:value": "TOutHigLimCutLow"
     },
     {
-      "@id": "seq:Enable#hysOutTem.y",
-      "S231P:isConnectedTo": {
-        "@id": "seq:Enable#or2.u1"
-      }
-    },
-    {
-      "@id": "seq:Enable#intEqu",
+      "@id": "http://example.org#FromModelica.Enable.intEqu",
       "@type": "https://data.ashrae.org/S231P#CXF.Integers.Equal",
       "S231P:accessSpecifier": "protected",
       "S231P:description": "Logical block to check if the freeze protection is deactivated",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-78,\"y\":32},{\"x\":-58,\"y\":52}]}}}",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.intEqu.u1"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.intEqu.u2"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.intEqu.y"
+        }
+      ],
       "S231P:label": "intEqu"
     },
     {
-      "@id": "seq:Enable#intEqu.y",
-      "S231P:isConnectedTo": {
-        "@id": "seq:Enable#andEnaDis.u2"
-      }
-    },
-    {
-      "@id": "seq:Enable#maxRetDamSwitch",
+      "@id": "http://example.org#FromModelica.Enable.maxRetDamSwitch",
       "@type": "https://data.ashrae.org/S231P#CXF.Reals.Switch",
       "S231P:accessSpecifier": "protected",
       "S231P:description": "Keep maximum RA damper position at physical maximum for a short time period after disable signal",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":60,\"y\":-136},{\"x\":80,\"y\":-116}]}}}",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.maxRetDamSwitch.u1"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.maxRetDamSwitch.u2"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.maxRetDamSwitch.u3"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.maxRetDamSwitch.y"
+        }
+      ],
       "S231P:label": "maxRetDamSwitch"
     },
     {
-      "@id": "seq:Enable#maxRetDamSwitch.y",
-      "S231P:isConnectedTo": {
-        "@id": "seq:Enable#yRetDam_max"
-      }
-    },
-    {
-      "@id": "seq:Enable#minRetDamSwitch",
+      "@id": "http://example.org#FromModelica.Enable.minRetDamSwitch",
       "@type": "https://data.ashrae.org/S231P#CXF.Reals.Switch",
       "S231P:accessSpecifier": "protected",
       "S231P:description": "Keep minimum RA damper position at physical maximum for a short time period after disable",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":60,\"y\":-178},{\"x\":80,\"y\":-158}]}}}",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.minRetDamSwitch.u1"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.minRetDamSwitch.u2"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.minRetDamSwitch.u3"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.minRetDamSwitch.y"
+        }
+      ],
       "S231P:label": "minRetDamSwitch"
     },
     {
-      "@id": "seq:Enable#minRetDamSwitch.y",
-      "S231P:isConnectedTo": {
-        "@id": "seq:Enable#yRetDam_min"
-      }
-    },
-    {
-      "@id": "seq:Enable#not1",
+      "@id": "http://example.org#FromModelica.Enable.not1",
       "@type": "https://data.ashrae.org/S231P#CXF.Logical.Not",
       "S231P:accessSpecifier": "protected",
       "S231P:description": "Logical not",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":20,\"y\":-108},{\"x\":40,\"y\":-88}]}}}",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.not1.u"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.not1.y"
+        }
+      ],
       "S231P:label": "not1"
     },
     {
-      "@id": "seq:Enable#not1.y",
-      "S231P:isConnectedTo": {
-        "@id": "seq:Enable#and2.u2"
-      }
-    },
-    {
-      "@id": "seq:Enable#not2",
+      "@id": "http://example.org#FromModelica.Enable.not2",
       "@type": "https://data.ashrae.org/S231P#CXF.Logical.Not",
       "S231P:accessSpecifier": "protected",
       "S231P:description": "Logical not that starts the timer at disable signal ",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-60,\"y\":-58},{\"x\":-40,\"y\":-38}]}}}",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.not2.u"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.not2.y"
+        }
+      ],
       "S231P:label": "not2"
     },
     {
-      "@id": "seq:Enable#not2.y",
-      "S231P:isConnectedTo": [
-        {
-          "@id": "seq:Enable#and3.u1"
-        },
-        {
-          "@id": "seq:Enable#delRetDam.u"
-        },
-        {
-          "@id": "seq:Enable#retDamSwitch.u2"
-        }
-      ]
-    },
-    {
-      "@id": "seq:Enable#or2",
+      "@id": "http://example.org#FromModelica.Enable.or2",
       "@type": "https://data.ashrae.org/S231P#CXF.Logical.Or",
       "S231P:accessSpecifier": "protected",
       "S231P:description": "Check if either the temperature or the enthalpy condition is satisfied",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-60,\"y\":182},{\"x\":-40,\"y\":202}]}}}",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.or2.u1"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.or2.u2"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.or2.y"
+        }
+      ],
       "S231P:label": "or2"
     },
     {
-      "@id": "seq:Enable#or2.y",
-      "S231P:isConnectedTo": {
-        "@id": "seq:Enable#truFalHol.u"
-      }
-    },
-    {
-      "@id": "seq:Enable#outDamSwitch",
+      "@id": "http://example.org#FromModelica.Enable.outDamSwitch",
       "@type": "https://data.ashrae.org/S231P#CXF.Reals.Switch",
       "S231P:accessSpecifier": "protected",
       "S231P:description": "Set maximum OA damper position to minimum at disable (after a given time delay)",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":82,\"y\":-78},{\"x\":102,\"y\":-58}]}}}",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.outDamSwitch.u1"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.outDamSwitch.u2"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.outDamSwitch.u3"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.outDamSwitch.y"
+        }
+      ],
       "S231P:label": "outDamSwitch"
     },
     {
-      "@id": "seq:Enable#outDamSwitch.u2",
-      "S231P:isConnectedTo": {
-        "@id": "seq:Enable#and3.y"
-      }
-    },
-    {
-      "@id": "seq:Enable#outDamSwitch.y",
-      "S231P:isConnectedTo": {
-        "@id": "seq:Enable#yOutDam_max"
-      }
-    },
-    {
-      "@id": "seq:Enable#retDamFulOpeTim",
+      "@id": "http://example.org#FromModelica.Enable.retDamFulOpeTim",
       "@type": "S231P:Parameter",
       "qudt:hasQuantityKind": {
-        "@id": "qudt:Time"
+        "@id": "S231P:Time"
       },
       "qudt:hasUnit": {
-        "@id": "qudt:s"
+        "@id": "S231P:s"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Time period to keep RA damper fully open before releasing it for minimum outdoor airflow control\n    at disable to avoid pressure fluctuations",
@@ -589,98 +653,116 @@
       "S231P:value": 180
     },
     {
-      "@id": "seq:Enable#retDamSwitch",
+      "@id": "http://example.org#FromModelica.Enable.retDamSwitch",
       "@type": "https://data.ashrae.org/S231P#CXF.Reals.Switch",
       "S231P:accessSpecifier": "protected",
       "S231P:description": "Set minimum RA damper position to maximum at disable",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-20,\"y\":-176},{\"x\":0,\"y\":-156}]}}}",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.retDamSwitch.u1"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.retDamSwitch.u2"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.retDamSwitch.u3"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.retDamSwitch.y"
+        }
+      ],
       "S231P:label": "retDamSwitch"
     },
     {
-      "@id": "seq:Enable#retDamSwitch.y",
-      "S231P:isConnectedTo": {
-        "@id": "seq:Enable#minRetDamSwitch.u3"
-      }
-    },
-    {
-      "@id": "seq:Enable#sub1",
+      "@id": "http://example.org#FromModelica.Enable.sub1",
       "@type": "https://data.ashrae.org/S231P#CXF.Reals.Subtract",
       "S231P:accessSpecifier": "protected",
       "S231P:description": "Add block determines difference between TOut and TOutCut",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-200,\"y\":220},{\"x\":-180,\"y\":240}]}}}",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.sub1.u1"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.sub1.u2"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.sub1.y"
+        }
+      ],
       "S231P:label": "sub1"
     },
     {
-      "@id": "seq:Enable#sub1.y",
-      "S231P:isConnectedTo": {
-        "@id": "seq:Enable#hysOutTem.u"
-      }
-    },
-    {
-      "@id": "seq:Enable#sub2",
+      "@id": "http://example.org#FromModelica.Enable.sub2",
       "@type": "https://data.ashrae.org/S231P#CXF.Reals.Subtract",
       "S231P:accessSpecifier": "protected",
       "S231P:description": "Add block determines difference between hOut and hOutCut",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-200,\"y\":140},{\"x\":-180,\"y\":160}]}}}",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.sub2.u1"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.sub2.u2"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.sub2.y"
+        }
+      ],
       "S231P:label": "sub2"
     },
     {
-      "@id": "seq:Enable#sub2.y",
-      "S231P:isConnectedTo": {
-        "@id": "seq:Enable#hysOutEnt.u"
-      }
-    },
-    {
-      "@id": "seq:Enable#TOut",
+      "@id": "http://example.org#FromModelica.Enable.TOut",
       "@type": "S231P:RealInput",
       "qudt:hasDisplayUnit": {
-        "@id": "qudt:degC"
+        "@id": "unit:DEG_C"
       },
       "qudt:hasQuantityKind": {
-        "@id": "qudt:ThermodynamicTemperature"
+        "@id": "S231P:ThermodynamicTemperature"
       },
       "qudt:hasUnit": {
-        "@id": "qudt:K"
+        "@id": "S231P:K"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Outdoor air temperature",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-300,\"y\":232},{\"x\":-260,\"y\":272}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":110},{\"x\":-100,\"y\":150}]}}}",
       "S231P:isConnectedTo": {
-        "@id": "seq:Enable#sub1.u1"
+        "@id": "http://example.org#http://example.org#FromModelica.Enable.sub1.u1"
       },
       "S231P:label": "TOut"
     },
     {
-      "@id": "seq:Enable#TOutCut",
+      "@id": "http://example.org#FromModelica.Enable.TOutCut",
       "@type": "S231P:RealInput",
       "qudt:hasDisplayUnit": {
-        "@id": "qudt:degC"
+        "@id": "unit:DEG_C"
       },
       "qudt:hasQuantityKind": {
-        "@id": "qudt:ThermodynamicTemperature"
+        "@id": "S231P:ThermodynamicTemperature"
       },
       "qudt:hasUnit": {
-        "@id": "qudt:K"
+        "@id": "S231P:K"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "OA temperature high limit cutoff. For differential dry bulb temperature condition use return air temperature measurement",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-300,\"y\":192},{\"x\":-260,\"y\":232}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":90},{\"x\":-100,\"y\":130}]}}}",
       "S231P:isConnectedTo": {
-        "@id": "seq:Enable#sub1.u2"
+        "@id": "http://example.org#http://example.org#FromModelica.Enable.sub1.u2"
       },
       "S231P:label": "TOutCut"
     },
     {
-      "@id": "seq:Enable#TOutHigLimCutHig",
+      "@id": "http://example.org#FromModelica.Enable.TOutHigLimCutHig",
       "@type": "S231P:Parameter",
       "qudt:hasDisplayUnit": {
-        "@id": "qudt:K"
+        "@id": "S231P:K"
       },
       "qudt:hasQuantityKind": {
-        "@id": "qudt:TemperatureDifference"
+        "@id": "S231P:TemperatureDifference"
       },
       "qudt:hasUnit": {
-        "@id": "qudt:K"
+        "@id": "S231P:K"
       },
       "S231P:accessSpecifier": "protected",
       "S231P:description": "Hysteresis high limit cutoff",
@@ -691,7 +773,7 @@
       "S231P:value": 0
     },
     {
-      "@id": "seq:Enable#TOutHigLimCutLow",
+      "@id": "http://example.org#FromModelica.Enable.TOutHigLimCutLow",
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "protected",
       "S231P:description": "Hysteresis low limit cutoff",
@@ -702,93 +784,98 @@
       "S231P:value": "TOutHigLimCutHig -delTOutHis"
     },
     {
-      "@id": "seq:Enable#truFalHol",
+      "@id": "http://example.org#FromModelica.Enable.truFalHol",
       "@type": "https://data.ashrae.org/S231P#CXF.Logical.TrueFalseHold",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Economizer should not be enabled or disabled within 10 minutes of change",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":20,\"y\":182},{\"x\":40,\"y\":202}]}}}",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#FromModelica.Enable.truFalHol.trueHoldDuration"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.truFalHol.u"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.truFalHol.y"
+        }
+      ],
       "S231P:label": "truFalHol"
     },
     {
-      "@id": "seq:Enable#truFalHol.trueHoldDuration",
+      "@id": "http://example.org#FromModelica.Enable.truFalHol.trueHoldDuration",
       "S231P:isFinal": true,
       "S231P:value": 600
     },
     {
-      "@id": "seq:Enable#truFalHol.y",
-      "S231P:isConnectedTo": {
-        "@id": "seq:Enable#and1.u1"
-      }
-    },
-    {
-      "@id": "seq:Enable#u1SupFan",
+      "@id": "http://example.org#FromModelica.Enable.u1SupFan",
       "@type": "S231P:BooleanInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Supply fan proven on",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-300,\"y\":62},{\"x\":-260,\"y\":102}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":10},{\"x\":-100,\"y\":50}]}}}",
       "S231P:isConnectedTo": {
-        "@id": "seq:Enable#and1.u2"
+        "@id": "http://example.org#http://example.org#FromModelica.Enable.and1.u2"
       },
       "S231P:label": "u1SupFan"
     },
     {
-      "@id": "seq:Enable#uFreProSta",
+      "@id": "http://example.org#FromModelica.Enable.uFreProSta",
       "@type": "S231P:IntegerInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Freeze protection stage status signal",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-300,\"y\":22},{\"x\":-260,\"y\":62}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":-10},{\"x\":-100,\"y\":30}]}}}",
       "S231P:isConnectedTo": {
-        "@id": "seq:Enable#intEqu.u1"
+        "@id": "http://example.org#http://example.org#FromModelica.Enable.intEqu.u1"
       },
       "S231P:label": "uFreProSta"
     },
     {
-      "@id": "seq:Enable#uOutDam_max",
+      "@id": "http://example.org#FromModelica.Enable.uOutDam_max",
       "@type": "S231P:RealInput",
       "qudt:hasUnit": {
-        "@id": "qudt:1"
+        "@id": "S231P:1"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Maximum outdoor air damper position, output from damper position limits sequence",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-300,\"y\":-58},{\"x\":-260,\"y\":-18}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":-40},{\"x\":-100,\"y\":0}]}}}",
       "S231P:isConnectedTo": {
-        "@id": "seq:Enable#outDamSwitch.u3"
+        "@id": "http://example.org#http://example.org#FromModelica.Enable.outDamSwitch.u3"
       },
       "S231P:label": "uOutDam_max",
       "S231P:max": 1,
       "S231P:min": 0
     },
     {
-      "@id": "seq:Enable#uOutDam_min",
+      "@id": "http://example.org#FromModelica.Enable.uOutDam_min",
       "@type": "S231P:RealInput",
       "qudt:hasUnit": {
-        "@id": "qudt:1"
+        "@id": "S231P:1"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Minimum outdoor air damper position, output from damper position limits sequence",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-300,\"y\":-98},{\"x\":-260,\"y\":-58}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":-60},{\"x\":-100,\"y\":-20}]}}}",
       "S231P:isConnectedTo": {
-        "@id": "seq:Enable#outDamSwitch.u1"
+        "@id": "http://example.org#http://example.org#FromModelica.Enable.outDamSwitch.u1"
       },
       "S231P:label": "uOutDam_min",
       "S231P:max": 1,
       "S231P:min": 0
     },
     {
-      "@id": "seq:Enable#uRetDam_max",
+      "@id": "http://example.org#FromModelica.Enable.uRetDam_max",
       "@type": "S231P:RealInput",
       "qudt:hasUnit": {
-        "@id": "qudt:1"
+        "@id": "S231P:1"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Maximum return air damper position, output from damper position limits sequence",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-300,\"y\":-178},{\"x\":-260,\"y\":-138}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":-130},{\"x\":-100,\"y\":-90}]}}}",
       "S231P:isConnectedTo": [
         {
-          "@id": "seq:Enable#maxRetDamSwitch.u3"
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.maxRetDamSwitch.u3"
         },
         {
-          "@id": "seq:Enable#retDamSwitch.u1"
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.retDamSwitch.u1"
         }
       ],
       "S231P:label": "uRetDam_max",
@@ -796,36 +883,36 @@
       "S231P:min": 0
     },
     {
-      "@id": "seq:Enable#uRetDam_min",
+      "@id": "http://example.org#FromModelica.Enable.uRetDam_min",
       "@type": "S231P:RealInput",
       "qudt:hasUnit": {
-        "@id": "qudt:1"
+        "@id": "S231P:1"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Minimum return air damper position, output from damper position limits sequence",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-300,\"y\":-218},{\"x\":-260,\"y\":-178}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":-150},{\"x\":-100,\"y\":-110}]}}}",
       "S231P:isConnectedTo": {
-        "@id": "seq:Enable#retDamSwitch.u3"
+        "@id": "http://example.org#http://example.org#FromModelica.Enable.retDamSwitch.u3"
       },
       "S231P:label": "uRetDam_min",
       "S231P:max": 1,
       "S231P:min": 0
     },
     {
-      "@id": "seq:Enable#uRetDamPhy_max",
+      "@id": "http://example.org#FromModelica.Enable.uRetDamPhy_max",
       "@type": "S231P:RealInput",
       "qudt:hasUnit": {
-        "@id": "qudt:1"
+        "@id": "S231P:1"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Physical maximum return air damper position, output from damper position limits sequence",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-300,\"y\":-138},{\"x\":-260,\"y\":-98}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":-110},{\"x\":-100,\"y\":-70}]}}}",
       "S231P:isConnectedTo": [
         {
-          "@id": "seq:Enable#maxRetDamSwitch.u1"
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.maxRetDamSwitch.u1"
         },
         {
-          "@id": "seq:Enable#minRetDamSwitch.u1"
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.minRetDamSwitch.u1"
         }
       ],
       "S231P:label": "uRetDamPhy_max",
@@ -833,7 +920,7 @@
       "S231P:min": 0
     },
     {
-      "@id": "seq:Enable#use_enthalpy",
+      "@id": "http://example.org#FromModelica.Enable.use_enthalpy",
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Set to true to evaluate outdoor air (OA) enthalpy in addition to temperature",
@@ -845,10 +932,10 @@
       "S231P:value": true
     },
     {
-      "@id": "seq:Enable#yOutDam_max",
+      "@id": "http://example.org#FromModelica.Enable.yOutDam_max",
       "@type": "S231P:RealOutput",
       "qudt:hasUnit": {
-        "@id": "qudt:1"
+        "@id": "S231P:1"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Maximum outdoor air damper position",
@@ -858,10 +945,10 @@
       "S231P:min": 0
     },
     {
-      "@id": "seq:Enable#yRetDam_max",
+      "@id": "http://example.org#FromModelica.Enable.yRetDam_max",
       "@type": "S231P:RealOutput",
       "qudt:hasUnit": {
-        "@id": "qudt:1"
+        "@id": "S231P:1"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Maximum return air damper position",
@@ -871,10 +958,10 @@
       "S231P:min": 0
     },
     {
-      "@id": "seq:Enable#yRetDam_min",
+      "@id": "http://example.org#FromModelica.Enable.yRetDam_min",
       "@type": "S231P:RealOutput",
       "qudt:hasUnit": {
-        "@id": "qudt:1"
+        "@id": "S231P:1"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Minimum return air damper position",
@@ -882,6 +969,157 @@
       "S231P:label": "yRetDam_min",
       "S231P:max": 1,
       "S231P:min": 0
+    },
+    {
+      "@id": "http://example.org#http://example.org#FromModelica.Enable.and1.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#http://example.org#FromModelica.Enable.andEnaDis.u1"
+      }
+    },
+    {
+      "@id": "http://example.org#http://example.org#FromModelica.Enable.and2.u1",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#http://example.org#FromModelica.Enable.not2.y"
+      }
+    },
+    {
+      "@id": "http://example.org#http://example.org#FromModelica.Enable.and2.y",
+      "S231P:isConnectedTo": [
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.maxRetDamSwitch.u2"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.minRetDamSwitch.u2"
+        }
+      ]
+    },
+    {
+      "@id": "http://example.org#http://example.org#FromModelica.Enable.and3.u2",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#http://example.org#FromModelica.Enable.delOutDamOsc.y"
+      }
+    },
+    {
+      "@id": "http://example.org#http://example.org#FromModelica.Enable.andEnaDis.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#http://example.org#FromModelica.Enable.not2.u"
+      }
+    },
+    {
+      "@id": "http://example.org#http://example.org#FromModelica.Enable.conInt.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#http://example.org#FromModelica.Enable.intEqu.u2"
+      }
+    },
+    {
+      "@id": "http://example.org#http://example.org#FromModelica.Enable.delOutDamOsc.u",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#http://example.org#FromModelica.Enable.not2.y"
+      }
+    },
+    {
+      "@id": "http://example.org#http://example.org#FromModelica.Enable.delRetDam.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#http://example.org#FromModelica.Enable.not1.u"
+      }
+    },
+    {
+      "@id": "http://example.org#http://example.org#FromModelica.Enable.entSubst1.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#http://example.org#FromModelica.Enable.or2.u2"
+      }
+    },
+    {
+      "@id": "http://example.org#http://example.org#FromModelica.Enable.hysOutEnt.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#http://example.org#FromModelica.Enable.or2.u2"
+      }
+    },
+    {
+      "@id": "http://example.org#http://example.org#FromModelica.Enable.hysOutTem.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#http://example.org#FromModelica.Enable.or2.u1"
+      }
+    },
+    {
+      "@id": "http://example.org#http://example.org#FromModelica.Enable.intEqu.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#http://example.org#FromModelica.Enable.andEnaDis.u2"
+      }
+    },
+    {
+      "@id": "http://example.org#http://example.org#FromModelica.Enable.maxRetDamSwitch.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#FromModelica.Enable.yRetDam_max"
+      }
+    },
+    {
+      "@id": "http://example.org#http://example.org#FromModelica.Enable.minRetDamSwitch.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#FromModelica.Enable.yRetDam_min"
+      }
+    },
+    {
+      "@id": "http://example.org#http://example.org#FromModelica.Enable.not1.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#http://example.org#FromModelica.Enable.and2.u2"
+      }
+    },
+    {
+      "@id": "http://example.org#http://example.org#FromModelica.Enable.not2.y",
+      "S231P:isConnectedTo": [
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.and3.u1"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.delRetDam.u"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.Enable.retDamSwitch.u2"
+        }
+      ]
+    },
+    {
+      "@id": "http://example.org#http://example.org#FromModelica.Enable.or2.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#http://example.org#FromModelica.Enable.truFalHol.u"
+      }
+    },
+    {
+      "@id": "http://example.org#http://example.org#FromModelica.Enable.outDamSwitch.u2",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#http://example.org#FromModelica.Enable.and3.y"
+      }
+    },
+    {
+      "@id": "http://example.org#http://example.org#FromModelica.Enable.outDamSwitch.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#FromModelica.Enable.yOutDam_max"
+      }
+    },
+    {
+      "@id": "http://example.org#http://example.org#FromModelica.Enable.retDamSwitch.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#http://example.org#FromModelica.Enable.minRetDamSwitch.u3"
+      }
+    },
+    {
+      "@id": "http://example.org#http://example.org#FromModelica.Enable.sub1.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#http://example.org#FromModelica.Enable.hysOutTem.u"
+      }
+    },
+    {
+      "@id": "http://example.org#http://example.org#FromModelica.Enable.sub2.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#http://example.org#FromModelica.Enable.hysOutEnt.u"
+      }
+    },
+    {
+      "@id": "http://example.org#http://example.org#FromModelica.Enable.truFalHol.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#http://example.org#FromModelica.Enable.and1.u1"
+      }
     }
   ]
 }

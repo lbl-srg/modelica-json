@@ -116,7 +116,13 @@ If `-p` flag is specified, the JSON output conforms to prettyprint. The default 
 
 ##### --elementary
 
-If `--elementary` flag is specified, the CXF (jsonld) files for the elementary blocks are also generated. Else, they are ignored. The default option is `false`.
+If `--elementary` flag is specified, the CXF (jsonld) files for the elementary blocks are also generated. Else, they are ignored. The default option is `false`. 
+`-o`/`--output` should be `cxf`.
+
+##### --cxfCore
+
+If `--cxfCore` flag is specified, generate the  CXF-core.jsonld files for all the elementary blocks. The default option is `false`.  
+`-o`/`--output` should be `cxf`, `-f`/`--file` should be `path/to/CDL` and `--elementary` flag must be used.
 
 ## 4. JSON Schemas
 

@@ -4,51 +4,57 @@
   },
   "@graph": [
     {
-      "@id": "seq:TestEvaluation_3",
+      "@id": "http://example.org#FromModelica.TestEvaluation_3",
       "@type": "S231P:Block",
       "S231P:containsBlock": [
         {
-          "@id": "seq:TestEvaluation_3#con"
+          "@id": "http://example.org#FromModelica.TestEvaluation_3.con"
         },
         {
-          "@id": "seq:TestEvaluation_3#con1"
+          "@id": "http://example.org#FromModelica.TestEvaluation_3.con1"
         }
       ],
       "S231P:hasParameter": [
         {
-          "@id": "seq:TestEvaluation_3#k1"
+          "@id": "http://example.org#FromModelica.TestEvaluation_3.k1"
         },
         {
-          "@id": "seq:TestEvaluation_3#k2"
+          "@id": "http://example.org#FromModelica.TestEvaluation_3.k2"
         }
       ]
     },
     {
-      "@id": "seq:TestEvaluation_3#con",
-      "@type": "seq:Buildings.Controls.OBC.CDL.Logical.Sources.Constant",
+      "@id": "http://example.org#FromModelica.TestEvaluation_3.con",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Sources.Constant",
       "S231P:accessSpecifier": "public",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-10,\"y\":10},{\"x\":10,\"y\":30}]}}}",
+      "S231P:hasInstance": {
+        "@id": "http://example.org#FromModelica.TestEvaluation_3.con.k"
+      },
       "S231P:label": "con"
     },
     {
-      "@id": "seq:TestEvaluation_3#con.k",
+      "@id": "http://example.org#FromModelica.TestEvaluation_3.con.k",
       "S231P:isFinal": true,
       "S231P:value": "k2"
     },
     {
-      "@id": "seq:TestEvaluation_3#con1",
-      "@type": "seq:Buildings.Controls.OBC.CDL.Logical.Sources.Constant",
+      "@id": "http://example.org#FromModelica.TestEvaluation_3.con1",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Sources.Constant",
       "S231P:accessSpecifier": "public",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-8,\"y\":-30},{\"x\":12,\"y\":-10}]}}}",
+      "S231P:hasInstance": {
+        "@id": "http://example.org#FromModelica.TestEvaluation_3.con1.k"
+      },
       "S231P:label": "con1"
     },
     {
-      "@id": "seq:TestEvaluation_3#con1.k",
+      "@id": "http://example.org#FromModelica.TestEvaluation_3.con1.k",
       "S231P:isFinal": true,
       "S231P:value": "k1"
     },
     {
-      "@id": "seq:TestEvaluation_3#k1",
+      "@id": "http://example.org#FromModelica.TestEvaluation_3.k1",
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Constant output value",
@@ -59,7 +65,7 @@
       "S231P:value": true
     },
     {
-      "@id": "seq:TestEvaluation_3#k2",
+      "@id": "http://example.org#FromModelica.TestEvaluation_3.k2",
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
       "S231P:isOfDataType": {

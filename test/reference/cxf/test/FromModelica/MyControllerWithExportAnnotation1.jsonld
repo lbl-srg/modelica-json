@@ -1,69 +1,81 @@
 {
   "@context": {
-    "S231P": "https://data.ashrae.org/S231P#"
+    "S231P": "https://data.ashrae.org/S231P#",
+    "ex": "http://example.org#"
   },
   "@graph": [
     {
-      "@id": "seq:MyControllerWithExportAnnotation1",
+      "@id": "http://example.org#FromModelica.MyControllerWithExportAnnotation1",
       "@type": "S231P:Block",
       "S231P:containsBlock": [
         {
-          "@id": "seq:MyControllerWithExportAnnotation1#add2"
+          "@id": "http://example.org#FromModelica.MyControllerWithExportAnnotation1.add2"
         },
         {
-          "@id": "seq:MyControllerWithExportAnnotation1#subCon1"
+          "@id": "http://example.org#FromModelica.MyControllerWithExportAnnotation1.subCon1"
         },
         {
-          "@id": "seq:MyControllerWithExportAnnotation1#subCon2"
+          "@id": "http://example.org#FromModelica.MyControllerWithExportAnnotation1.subCon2"
         }
       ],
       "S231P:hasInput": [
         {
-          "@id": "seq:MyControllerWithExportAnnotation1#u1"
+          "@id": "http://example.org#FromModelica.MyControllerWithExportAnnotation1.u1"
         },
         {
-          "@id": "seq:MyControllerWithExportAnnotation1#u2"
+          "@id": "http://example.org#FromModelica.MyControllerWithExportAnnotation1.u2"
         }
       ],
       "S231P:hasOutput": {
-        "@id": "seq:MyControllerWithExportAnnotation1#y"
+        "@id": "http://example.org#FromModelica.MyControllerWithExportAnnotation1.y"
       }
     },
     {
-      "@id": "seq:MyControllerWithExportAnnotation1#add2",
+      "@id": "http://example.org#FromModelica.MyControllerWithExportAnnotation1.add2",
       "@type": "https://data.ashrae.org/S231P#CXF.Reals.Add",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Add two real inputs",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-10,\"y\":-10},{\"x\":10,\"y\":10}]}}}",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.MyControllerWithExportAnnotation1.add2.u1"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.MyControllerWithExportAnnotation1.add2.u2"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.MyControllerWithExportAnnotation1.add2.y"
+        }
+      ],
       "S231P:label": "add2"
     },
     {
-      "@id": "seq:MyControllerWithExportAnnotation1#add2.y",
-      "S231P:isConnectedTo": {
-        "@id": "seq:MyControllerWithExportAnnotation1#y"
-      }
-    },
-    {
-      "@id": "seq:MyControllerWithExportAnnotation1#subCon1",
-      "@type": "seq:SubController",
+      "@id": "http://example.org#FromModelica.MyControllerWithExportAnnotation1.subCon1",
+      "@type": "ex:SubController",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Sub controller",
       "S231P:graphics": [
         "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-10,\"y\":-50},{\"x\":10,\"y\":-30}]}}}",
         "{\"name\":\"__cdl\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"generatePointlist\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"true\"}}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"export\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"true\"}}}}}]}}"
       ],
+      "S231P:hasInstance": {
+        "@id": "http://example.org#http://example.org#FromModelica.MyControllerWithExportAnnotation1.subCon1.u"
+      },
       "S231P:label": "subCon1"
     },
     {
-      "@id": "seq:MyControllerWithExportAnnotation1#subCon2",
-      "@type": "seq:SubController",
+      "@id": "http://example.org#FromModelica.MyControllerWithExportAnnotation1.subCon2",
+      "@type": "ex:SubController",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Sub controller",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-10,\"y\":-90},{\"x\":10,\"y\":-70}]}}}",
+      "S231P:hasInstance": {
+        "@id": "http://example.org#http://example.org#FromModelica.MyControllerWithExportAnnotation1.subCon2.u"
+      },
       "S231P:label": "subCon2"
     },
     {
-      "@id": "seq:MyControllerWithExportAnnotation1#u1",
+      "@id": "http://example.org#FromModelica.MyControllerWithExportAnnotation1.u1",
       "@type": "S231P:RealInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Real input 1",
@@ -72,12 +84,12 @@
         "{\"name\":\"__cdl\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"connection\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"hardwired\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"true\"}}}}}]}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"trend\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"interval\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"60\"}}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"enable\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"true\"}}}}}]}}}}]}}"
       ],
       "S231P:isConnectedTo": {
-        "@id": "seq:MyControllerWithExportAnnotation1#add2.u1"
+        "@id": "http://example.org#http://example.org#FromModelica.MyControllerWithExportAnnotation1.add2.u1"
       },
       "S231P:label": "u1"
     },
     {
-      "@id": "seq:MyControllerWithExportAnnotation1#u2",
+      "@id": "http://example.org#FromModelica.MyControllerWithExportAnnotation1.u2",
       "@type": "S231P:RealInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Real input 2",
@@ -87,19 +99,19 @@
       ],
       "S231P:isConnectedTo": [
         {
-          "@id": "seq:MyControllerWithExportAnnotation1#add2.u2"
+          "@id": "http://example.org#http://example.org#FromModelica.MyControllerWithExportAnnotation1.add2.u2"
         },
         {
-          "@id": "seq:MyControllerWithExportAnnotation1#subCon1.u"
+          "@id": "http://example.org#http://example.org#FromModelica.MyControllerWithExportAnnotation1.subCon1.u"
         },
         {
-          "@id": "seq:MyControllerWithExportAnnotation1#subCon2.u"
+          "@id": "http://example.org#http://example.org#FromModelica.MyControllerWithExportAnnotation1.subCon2.u"
         }
       ],
       "S231P:label": "u2"
     },
     {
-      "@id": "seq:MyControllerWithExportAnnotation1#y",
+      "@id": "http://example.org#FromModelica.MyControllerWithExportAnnotation1.y",
       "@type": "S231P:RealOutput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Real output",
@@ -108,6 +120,12 @@
         "{\"name\":\"__cdl\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"connection\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"hardwired\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"true\"}}}}}]}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"trend\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"interval\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"60\"}}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"enable\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"true\"}}}}}]}}}}]}}"
       ],
       "S231P:label": "y"
+    },
+    {
+      "@id": "http://example.org#http://example.org#FromModelica.MyControllerWithExportAnnotation1.add2.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#FromModelica.MyControllerWithExportAnnotation1.y"
+      }
     }
   ]
 }

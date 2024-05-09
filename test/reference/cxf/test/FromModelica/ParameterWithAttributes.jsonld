@@ -5,24 +5,27 @@
   },
   "@graph": [
     {
-      "@id": "seq:ParameterWithAttributes",
+      "@id": "http://example.org#FromModelica.ParameterWithAttributes",
       "@type": "S231P:Block",
       "S231P:hasParameter": {
-        "@id": "seq:ParameterWithAttributes#kP"
+        "@id": "http://example.org#FromModelica.ParameterWithAttributes.kP"
       }
     },
     {
-      "@id": "seq:ParameterWithAttributes#kP",
+      "@id": "http://example.org#FromModelica.ParameterWithAttributes.kP",
       "@type": "S231P:Parameter",
       "qudt:hasQuantityKind": {
-        "@id": "qudt:PressureDifference"
+        "@id": "S231P:PressureDifference"
       },
       "qudt:hasUnit": {
-        "@id": "qudt:Pa"
+        "@id": "S231P:Pa"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Some comment",
       "S231P:fixed": false,
+      "S231P:hasInstance": {
+        "@id": "http://example.org#FromModelica.ParameterWithAttributes.kP.stateSelect"
+      },
       "S231P:isOfDataType": {
         "@id": "S231P:Real"
       },
@@ -40,7 +43,7 @@
       "S231P:value": 1
     },
     {
-      "@id": "seq:ParameterWithAttributes#kP.stateSelect",
+      "@id": "http://example.org#FromModelica.ParameterWithAttributes.kP.stateSelect",
       "S231P:value": "StateSelect.default"
     }
   ]

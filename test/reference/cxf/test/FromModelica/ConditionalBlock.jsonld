@@ -4,23 +4,23 @@
   },
   "@graph": [
     {
-      "@id": "seq:ConditionalBlock",
+      "@id": "http://example.org#FromModelica.ConditionalBlock",
       "@type": "S231P:Block",
       "S231P:containsBlock": {
-        "@id": "seq:ConditionalBlock#abs"
+        "@id": "http://example.org#FromModelica.ConditionalBlock.abs"
       },
       "S231P:hasInput": {
-        "@id": "seq:ConditionalBlock#u"
+        "@id": "http://example.org#FromModelica.ConditionalBlock.u"
       },
       "S231P:hasOutput": {
-        "@id": "seq:ConditionalBlock#y"
+        "@id": "http://example.org#FromModelica.ConditionalBlock.y"
       },
       "S231P:hasParameter": {
-        "@id": "seq:ConditionalBlock#enaBlo"
+        "@id": "http://example.org#FromModelica.ConditionalBlock.enaBlo"
       }
     },
     {
-      "@id": "seq:ConditionalBlock#abs",
+      "@id": "http://example.org#FromModelica.ConditionalBlock.abs",
       "@type": "https://data.ashrae.org/S231P#CXF.Reals.Abs",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Instance could be conditional disabled",
@@ -28,7 +28,7 @@
       "S231P:label": "abs"
     },
     {
-      "@id": "seq:ConditionalBlock#enaBlo",
+      "@id": "http://example.org#FromModelica.ConditionalBlock.enaBlo",
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Flag for enabling instance",
@@ -39,7 +39,7 @@
       "S231P:value": true
     },
     {
-      "@id": "seq:ConditionalBlock#u",
+      "@id": "http://example.org#FromModelica.ConditionalBlock.u",
       "@type": "S231P:RealInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Input connector",
@@ -47,7 +47,7 @@
       "S231P:label": "u"
     },
     {
-      "@id": "seq:ConditionalBlock#y",
+      "@id": "http://example.org#FromModelica.ConditionalBlock.y",
       "@type": "S231P:RealOutput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Output connector",

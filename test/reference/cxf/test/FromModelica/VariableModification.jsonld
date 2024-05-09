@@ -1,58 +1,67 @@
 {
   "@context": {
     "S231P": "https://data.ashrae.org/S231P#",
-    "qudt": "http://qudt.org/schema/qudt#"
+    "qudt": "http://qudt.org/schema/qudt#",
+    "unit": "http://qudt.org/vocab/unit#"
   },
   "@graph": [
     {
-      "@id": "seq:VariableModification",
+      "@id": "http://example.org#FromModelica.VariableModification",
       "@type": "S231P:Block",
       "S231P:containsBlock": {
-        "@id": "seq:VariableModification#abs"
+        "@id": "http://example.org#FromModelica.VariableModification.abs"
       },
       "S231P:hasInput": [
         {
-          "@id": "seq:VariableModification#TOut"
+          "@id": "http://example.org#FromModelica.VariableModification.TOut"
         },
         {
-          "@id": "seq:VariableModification#u"
+          "@id": "http://example.org#FromModelica.VariableModification.u"
         }
       ]
     },
     {
-      "@id": "seq:VariableModification#abs",
+      "@id": "http://example.org#FromModelica.VariableModification.abs",
       "@type": "https://data.ashrae.org/S231P#CXF.Reals.Abs",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Instance with modified input and output attributes",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-8,\"y\":-10},{\"x\":12,\"y\":10}]}}}",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#FromModelica.VariableModification.abs.u"
+        },
+        {
+          "@id": "http://example.org#FromModelica.VariableModification.abs.y"
+        }
+      ],
       "S231P:label": "abs"
     },
     {
-      "@id": "seq:VariableModification#abs.u",
+      "@id": "http://example.org#FromModelica.VariableModification.abs.u",
       "qudt:hasDisplayUnit": {
-        "@id": "qudt:degC"
+        "@id": "unit:DEG_C"
       },
       "qudt:hasUnit": {
-        "@id": "qudt:K"
+        "@id": "S231P:K"
       }
     },
     {
-      "@id": "seq:VariableModification#abs.y",
+      "@id": "http://example.org#FromModelica.VariableModification.abs.y",
       "qudt:hasDisplayUnit": {
-        "@id": "qudt:degC"
+        "@id": "unit:DEG_C"
       },
       "qudt:hasUnit": {
-        "@id": "qudt:K"
+        "@id": "S231P:K"
       }
     },
     {
-      "@id": "seq:VariableModification#TOut",
+      "@id": "http://example.org#FromModelica.VariableModification.TOut",
       "@type": "S231P:RealInput",
       "qudt:hasQuantityKind": {
-        "@id": "qudt:ThermodynamicTemperature"
+        "@id": "S231P:ThermodynamicTemperature"
       },
       "qudt:hasUnit": {
-        "@id": "qudt:K"
+        "@id": "S231P:K"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Temperature input",
@@ -60,7 +69,7 @@
       "S231P:label": "TOut"
     },
     {
-      "@id": "seq:VariableModification#u",
+      "@id": "http://example.org#FromModelica.VariableModification.u",
       "@type": "S231P:RealInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Input connector",

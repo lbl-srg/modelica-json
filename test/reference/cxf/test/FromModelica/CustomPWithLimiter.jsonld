@@ -4,63 +4,68 @@
   },
   "@graph": [
     {
-      "@id": "seq:CustomPWithLimiter",
+      "@id": "http://example.org#FromModelica.CustomPWithLimiter",
       "@type": "S231P:Block",
       "S231P:containsBlock": [
         {
-          "@id": "seq:CustomPWithLimiter#gain"
+          "@id": "http://example.org#FromModelica.CustomPWithLimiter.gain"
         },
         {
-          "@id": "seq:CustomPWithLimiter#minValue"
+          "@id": "http://example.org#FromModelica.CustomPWithLimiter.minValue"
         }
       ],
       "S231P:hasInput": [
         {
-          "@id": "seq:CustomPWithLimiter#e"
+          "@id": "http://example.org#FromModelica.CustomPWithLimiter.e"
         },
         {
-          "@id": "seq:CustomPWithLimiter#yMax"
+          "@id": "http://example.org#FromModelica.CustomPWithLimiter.yMax"
         }
       ],
       "S231P:hasOutput": {
-        "@id": "seq:CustomPWithLimiter#y"
+        "@id": "http://example.org#FromModelica.CustomPWithLimiter.y"
       },
       "S231P:hasParameter": {
-        "@id": "seq:CustomPWithLimiter#k"
+        "@id": "http://example.org#FromModelica.CustomPWithLimiter.k"
       }
     },
     {
-      "@id": "seq:CustomPWithLimiter#e",
+      "@id": "http://example.org#FromModelica.CustomPWithLimiter.e",
       "@type": "S231P:RealInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Control error",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-60},{\"x\":-100,\"y\":-20}]}}}",
       "S231P:isConnectedTo": {
-        "@id": "seq:CustomPWithLimiter#gain.u"
+        "@id": "http://example.org#http://example.org#FromModelica.CustomPWithLimiter.gain.u"
       },
       "S231P:label": "e"
     },
     {
-      "@id": "seq:CustomPWithLimiter#gain",
+      "@id": "http://example.org#FromModelica.CustomPWithLimiter.gain",
       "@type": "https://data.ashrae.org/S231P#CXF.Reals.MultiplyByParameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Constant gain",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-60,\"y\":-50},{\"x\":-40,\"y\":-30}]}}}",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#FromModelica.CustomPWithLimiter.gain.k"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.CustomPWithLimiter.gain.u"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.CustomPWithLimiter.gain.y"
+        }
+      ],
       "S231P:label": "gain"
     },
     {
-      "@id": "seq:CustomPWithLimiter#gain.k",
+      "@id": "http://example.org#FromModelica.CustomPWithLimiter.gain.k",
       "S231P:isFinal": true,
       "S231P:value": "k"
     },
     {
-      "@id": "seq:CustomPWithLimiter#gain.y",
-      "S231P:isConnectedTo": {
-        "@id": "seq:CustomPWithLimiter#minValue.u2"
-      }
-    },
-    {
-      "@id": "seq:CustomPWithLimiter#k",
+      "@id": "http://example.org#FromModelica.CustomPWithLimiter.k",
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Constant gain",
@@ -71,21 +76,26 @@
       "S231P:value": 2
     },
     {
-      "@id": "seq:CustomPWithLimiter#minValue",
+      "@id": "http://example.org#FromModelica.CustomPWithLimiter.minValue",
       "@type": "https://data.ashrae.org/S231P#CXF.Reals.Min",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Outputs the minimum of its inputs",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":20,\"y\":-10},{\"x\":40,\"y\":10}]}}}",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.CustomPWithLimiter.minValue.u1"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.CustomPWithLimiter.minValue.u2"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.CustomPWithLimiter.minValue.y"
+        }
+      ],
       "S231P:label": "minValue"
     },
     {
-      "@id": "seq:CustomPWithLimiter#minValue.y",
-      "S231P:isConnectedTo": {
-        "@id": "seq:CustomPWithLimiter#y"
-      }
-    },
-    {
-      "@id": "seq:CustomPWithLimiter#y",
+      "@id": "http://example.org#FromModelica.CustomPWithLimiter.y",
       "@type": "S231P:RealOutput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Control signal",
@@ -93,15 +103,27 @@
       "S231P:label": "y"
     },
     {
-      "@id": "seq:CustomPWithLimiter#yMax",
+      "@id": "http://example.org#FromModelica.CustomPWithLimiter.yMax",
       "@type": "S231P:RealInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Maximum value of output signal",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":20},{\"x\":-100,\"y\":60}]}}}",
       "S231P:isConnectedTo": {
-        "@id": "seq:CustomPWithLimiter#minValue.u1"
+        "@id": "http://example.org#http://example.org#FromModelica.CustomPWithLimiter.minValue.u1"
       },
       "S231P:label": "yMax"
+    },
+    {
+      "@id": "http://example.org#http://example.org#FromModelica.CustomPWithLimiter.gain.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#http://example.org#FromModelica.CustomPWithLimiter.minValue.u2"
+      }
+    },
+    {
+      "@id": "http://example.org#http://example.org#FromModelica.CustomPWithLimiter.minValue.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#FromModelica.CustomPWithLimiter.y"
+      }
     }
   ]
 }

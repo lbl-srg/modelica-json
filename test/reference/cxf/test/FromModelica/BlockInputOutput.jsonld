@@ -4,17 +4,17 @@
   },
   "@graph": [
     {
-      "@id": "seq:BlockInputOutput",
+      "@id": "http://example.org#FromModelica.BlockInputOutput",
       "@type": "S231P:Block",
       "S231P:hasInput": {
-        "@id": "seq:BlockInputOutput#u"
+        "@id": "http://example.org#FromModelica.BlockInputOutput.u"
       },
       "S231P:hasOutput": {
-        "@id": "seq:BlockInputOutput#y"
+        "@id": "http://example.org#FromModelica.BlockInputOutput.y"
       }
     },
     {
-      "@id": "seq:BlockInputOutput#u",
+      "@id": "http://example.org#FromModelica.BlockInputOutput.u",
       "@type": "S231P:RealInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Input connector",
@@ -22,7 +22,7 @@
       "S231P:label": "u"
     },
     {
-      "@id": "seq:BlockInputOutput#y",
+      "@id": "http://example.org#FromModelica.BlockInputOutput.y",
       "@type": "S231P:RealOutput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Output connector",

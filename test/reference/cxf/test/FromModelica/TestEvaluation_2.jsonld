@@ -4,56 +4,58 @@
   },
   "@graph": [
     {
-      "@id": "seq:TestEvaluation_2",
+      "@id": "http://example.org#FromModelica.TestEvaluation_2",
       "@type": "S231P:Block",
       "S231P:containsBlock": {
-        "@id": "seq:TestEvaluation_2#hys"
+        "@id": "http://example.org#FromModelica.TestEvaluation_2.hys"
       },
       "S231P:hasInput": {
-        "@id": "seq:TestEvaluation_2#u"
+        "@id": "http://example.org#FromModelica.TestEvaluation_2.u"
       },
       "S231P:hasOutput": {
-        "@id": "seq:TestEvaluation_2#y"
+        "@id": "http://example.org#FromModelica.TestEvaluation_2.y"
       },
       "S231P:hasParameter": [
         {
-          "@id": "seq:TestEvaluation_2#uHigh"
+          "@id": "http://example.org#FromModelica.TestEvaluation_2.uHigh"
         },
         {
-          "@id": "seq:TestEvaluation_2#uLow"
+          "@id": "http://example.org#FromModelica.TestEvaluation_2.uLow"
         }
       ]
     },
     {
-      "@id": "seq:TestEvaluation_2#hys",
+      "@id": "http://example.org#FromModelica.TestEvaluation_2.hys",
       "@type": "https://data.ashrae.org/S231P#CXF.Reals.Hysteresis",
       "S231P:accessSpecifier": "public",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-10,\"y\":-10},{\"x\":10,\"y\":10}]}}}",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#FromModelica.TestEvaluation_2.hys.uHigh"
+        },
+        {
+          "@id": "http://example.org#FromModelica.TestEvaluation_2.hys.uLow"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.TestEvaluation_2.hys.u"
+        },
+        {
+          "@id": "http://example.org#http://example.org#FromModelica.TestEvaluation_2.hys.y"
+        }
+      ],
       "S231P:label": "hys"
     },
     {
-      "@id": "seq:TestEvaluation_2#hys.u",
-      "S231P:isConnectedTo": {
-        "@id": "seq:TestEvaluation_2#u"
-      }
-    },
-    {
-      "@id": "seq:TestEvaluation_2#hys.uHigh",
+      "@id": "http://example.org#FromModelica.TestEvaluation_2.hys.uHigh",
       "S231P:value": "uHigh"
     },
     {
-      "@id": "seq:TestEvaluation_2#hys.uLow",
+      "@id": "http://example.org#FromModelica.TestEvaluation_2.hys.uLow",
       "S231P:isFinal": true,
       "S231P:value": "uLow"
     },
     {
-      "@id": "seq:TestEvaluation_2#hys.y",
-      "S231P:isConnectedTo": {
-        "@id": "seq:TestEvaluation_2#y"
-      }
-    },
-    {
-      "@id": "seq:TestEvaluation_2#u",
+      "@id": "http://example.org#FromModelica.TestEvaluation_2.u",
       "@type": "S231P:RealInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Real input signal",
@@ -61,7 +63,7 @@
       "S231P:label": "u"
     },
     {
-      "@id": "seq:TestEvaluation_2#uHigh",
+      "@id": "http://example.org#FromModelica.TestEvaluation_2.uHigh",
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "if y=false and u>uHigh, switch to y=true",
@@ -72,7 +74,7 @@
       "S231P:value": "2*uLow"
     },
     {
-      "@id": "seq:TestEvaluation_2#uLow",
+      "@id": "http://example.org#FromModelica.TestEvaluation_2.uLow",
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "if y=true and u<uLow, switch to y=false",
@@ -87,12 +89,24 @@
       }
     },
     {
-      "@id": "seq:TestEvaluation_2#y",
+      "@id": "http://example.org#FromModelica.TestEvaluation_2.y",
       "@type": "S231P:BooleanOutput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Boolean output signal",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]},\"iconTransformation\":{\"extent\":[{\"x\":80,\"y\":-20},{\"x\":120,\"y\":20}]}}}",
       "S231P:label": "y"
+    },
+    {
+      "@id": "http://example.org#http://example.org#FromModelica.TestEvaluation_2.hys.u",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#FromModelica.TestEvaluation_2.u"
+      }
+    },
+    {
+      "@id": "http://example.org#http://example.org#FromModelica.TestEvaluation_2.hys.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#FromModelica.TestEvaluation_2.y"
+      }
     }
   ]
 }
