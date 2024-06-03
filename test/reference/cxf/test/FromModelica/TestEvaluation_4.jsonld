@@ -59,22 +59,22 @@
           "@id": "http://example.org#FromModelica.TestEvaluation_4.cooCoi.kCooCoi"
         },
         {
+          "@id": "http://example.org#FromModelica.TestEvaluation_4.cooCoi.TAirSup"
+        },
+        {
           "@id": "http://example.org#FromModelica.TestEvaluation_4.cooCoi.TiCooCoi"
         },
         {
-          "@id": "http://example.org#http://example.org#FromModelica.TestEvaluation_4.cooCoi.TAirSup"
+          "@id": "http://example.org#FromModelica.TestEvaluation_4.cooCoi.TSupCooSet"
         },
         {
-          "@id": "http://example.org#http://example.org#FromModelica.TestEvaluation_4.cooCoi.TSupCooSet"
+          "@id": "http://example.org#FromModelica.TestEvaluation_4.cooCoi.u1SupFan"
         },
         {
-          "@id": "http://example.org#http://example.org#FromModelica.TestEvaluation_4.cooCoi.u1SupFan"
+          "@id": "http://example.org#FromModelica.TestEvaluation_4.cooCoi.uZonSta"
         },
         {
-          "@id": "http://example.org#http://example.org#FromModelica.TestEvaluation_4.cooCoi.uZonSta"
-        },
-        {
-          "@id": "http://example.org#http://example.org#FromModelica.TestEvaluation_4.cooCoi.yCooCoi"
+          "@id": "http://example.org#FromModelica.TestEvaluation_4.cooCoi.yCooCoi"
         }
       ],
       "S231P:label": "cooCoi"
@@ -88,8 +88,38 @@
       "S231P:value": "kCooCoi"
     },
     {
+      "@id": "http://example.org#FromModelica.TestEvaluation_4.cooCoi.TAirSup",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#FromModelica.TestEvaluation_4.TAirSup"
+      }
+    },
+    {
       "@id": "http://example.org#FromModelica.TestEvaluation_4.cooCoi.TiCooCoi",
       "S231P:value": "TiCooCoi"
+    },
+    {
+      "@id": "http://example.org#FromModelica.TestEvaluation_4.cooCoi.TSupCooSet",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#FromModelica.TestEvaluation_4.TSupCooSet"
+      }
+    },
+    {
+      "@id": "http://example.org#FromModelica.TestEvaluation_4.cooCoi.u1SupFan",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#FromModelica.TestEvaluation_4.u1SupFan"
+      }
+    },
+    {
+      "@id": "http://example.org#FromModelica.TestEvaluation_4.cooCoi.uZonSta",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#FromModelica.TestEvaluation_4.uZonSta"
+      }
+    },
+    {
+      "@id": "http://example.org#FromModelica.TestEvaluation_4.cooCoi.yCooCoi",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#FromModelica.TestEvaluation_4.yCooCoi"
+      }
     },
     {
       "@id": "http://example.org#FromModelica.TestEvaluation_4.kCooCoi",
@@ -155,36 +185,6 @@
       "S231P:description": "Cooling coil position",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]},\"iconTransformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
       "S231P:label": "yCooCoi"
-    },
-    {
-      "@id": "http://example.org#http://example.org#FromModelica.TestEvaluation_4.cooCoi.TAirSup",
-      "S231P:isConnectedTo": {
-        "@id": "http://example.org#FromModelica.TestEvaluation_4.TAirSup"
-      }
-    },
-    {
-      "@id": "http://example.org#http://example.org#FromModelica.TestEvaluation_4.cooCoi.TSupCooSet",
-      "S231P:isConnectedTo": {
-        "@id": "http://example.org#FromModelica.TestEvaluation_4.TSupCooSet"
-      }
-    },
-    {
-      "@id": "http://example.org#http://example.org#FromModelica.TestEvaluation_4.cooCoi.u1SupFan",
-      "S231P:isConnectedTo": {
-        "@id": "http://example.org#FromModelica.TestEvaluation_4.u1SupFan"
-      }
-    },
-    {
-      "@id": "http://example.org#http://example.org#FromModelica.TestEvaluation_4.cooCoi.uZonSta",
-      "S231P:isConnectedTo": {
-        "@id": "http://example.org#FromModelica.TestEvaluation_4.uZonSta"
-      }
-    },
-    {
-      "@id": "http://example.org#http://example.org#FromModelica.TestEvaluation_4.cooCoi.yCooCoi",
-      "S231P:isConnectedTo": {
-        "@id": "http://example.org#FromModelica.TestEvaluation_4.yCooCoi"
-      }
     }
   ]
 }

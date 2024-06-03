@@ -43,16 +43,22 @@
       ],
       "S231P:hasInstance": [
         {
-          "@id": "http://example.org#http://example.org#FromModelica.PointList.con1.u1"
+          "@id": "http://example.org#FromModelica.PointList.con1.u1"
         },
         {
-          "@id": "http://example.org#http://example.org#FromModelica.PointList.con1.u2"
+          "@id": "http://example.org#FromModelica.PointList.con1.u2"
         },
         {
-          "@id": "http://example.org#http://example.org#FromModelica.PointList.con1.y"
+          "@id": "http://example.org#FromModelica.PointList.con1.y"
         }
       ],
       "S231P:label": "con1"
+    },
+    {
+      "@id": "http://example.org#FromModelica.PointList.con1.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#FromModelica.PointList.y2"
+      }
     },
     {
       "@id": "http://example.org#FromModelica.PointList.con2",
@@ -65,16 +71,22 @@
       ],
       "S231P:hasInstance": [
         {
-          "@id": "http://example.org#http://example.org#FromModelica.PointList.con2.u1"
+          "@id": "http://example.org#FromModelica.PointList.con2.u1"
         },
         {
-          "@id": "http://example.org#http://example.org#FromModelica.PointList.con2.u2"
+          "@id": "http://example.org#FromModelica.PointList.con2.u2"
         },
         {
-          "@id": "http://example.org#http://example.org#FromModelica.PointList.con2.y"
+          "@id": "http://example.org#FromModelica.PointList.con2.y"
         }
       ],
       "S231P:label": "con2"
+    },
+    {
+      "@id": "http://example.org#FromModelica.PointList.con2.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#FromModelica.PointList.y1"
+      }
     },
     {
       "@id": "http://example.org#FromModelica.PointList.u1",
@@ -87,10 +99,10 @@
       ],
       "S231P:isConnectedTo": [
         {
-          "@id": "http://example.org#http://example.org#FromModelica.PointList.con1.u1"
+          "@id": "http://example.org#FromModelica.PointList.con1.u1"
         },
         {
-          "@id": "http://example.org#http://example.org#FromModelica.PointList.con2.u1"
+          "@id": "http://example.org#FromModelica.PointList.con2.u1"
         }
       ],
       "S231P:label": "u1"
@@ -106,10 +118,10 @@
       ],
       "S231P:isConnectedTo": [
         {
-          "@id": "http://example.org#http://example.org#FromModelica.PointList.con1.u2"
+          "@id": "http://example.org#FromModelica.PointList.con1.u2"
         },
         {
-          "@id": "http://example.org#http://example.org#FromModelica.PointList.con2.u2"
+          "@id": "http://example.org#FromModelica.PointList.con2.u2"
         }
       ],
       "S231P:label": "u2"
@@ -135,18 +147,6 @@
         "{\"name\":\"__cdl\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"connection\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"hardwired\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"false\"}}}}}]}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"trend\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"interval\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"60\"}}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"enable\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"true\"}}}}}]}}}}]}}"
       ],
       "S231P:label": "y2"
-    },
-    {
-      "@id": "http://example.org#http://example.org#FromModelica.PointList.con1.y",
-      "S231P:isConnectedTo": {
-        "@id": "http://example.org#FromModelica.PointList.y2"
-      }
-    },
-    {
-      "@id": "http://example.org#http://example.org#FromModelica.PointList.con2.y",
-      "S231P:isConnectedTo": {
-        "@id": "http://example.org#FromModelica.PointList.y1"
-      }
     }
   ]
 }

@@ -26,7 +26,7 @@
     },
     {
       "@id": "http://example.org#FromModelica.MisplacedInfoWithEquation.gain",
-      "@type": "https://data.ashrae.org/S231P#CXF.Reals.MultiplyByParameter",
+      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Constant gain",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":0,\"y\":-10},{\"x\":20,\"y\":10}]}}}",
@@ -35,10 +35,10 @@
           "@id": "http://example.org#FromModelica.MisplacedInfoWithEquation.gain.k"
         },
         {
-          "@id": "http://example.org#http://example.org#FromModelica.MisplacedInfoWithEquation.gain.u"
+          "@id": "http://example.org#FromModelica.MisplacedInfoWithEquation.gain.u"
         },
         {
-          "@id": "http://example.org#http://example.org#FromModelica.MisplacedInfoWithEquation.gain.y"
+          "@id": "http://example.org#FromModelica.MisplacedInfoWithEquation.gain.y"
         }
       ],
       "S231P:label": "gain"
@@ -47,6 +47,12 @@
       "@id": "http://example.org#FromModelica.MisplacedInfoWithEquation.gain.k",
       "S231P:isFinal": true,
       "S231P:value": "k"
+    },
+    {
+      "@id": "http://example.org#FromModelica.MisplacedInfoWithEquation.gain.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#FromModelica.MisplacedInfoWithEquation.y1"
+      }
     },
     {
       "@id": "http://example.org#FromModelica.MisplacedInfoWithEquation.k",
@@ -66,7 +72,7 @@
       "S231P:description": "Input signal",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":20},{\"x\":-100,\"y\":60}]}}}",
       "S231P:isConnectedTo": {
-        "@id": "http://example.org#http://example.org#FromModelica.MisplacedInfoWithEquation.gain.u"
+        "@id": "http://example.org#FromModelica.MisplacedInfoWithEquation.gain.u"
       },
       "S231P:label": "u"
     },
@@ -85,12 +91,6 @@
       "S231P:description": "Output signal",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-10},{\"x\":120,\"y\":10}]}}}",
       "S231P:label": "y2"
-    },
-    {
-      "@id": "http://example.org#http://example.org#FromModelica.MisplacedInfoWithEquation.gain.y",
-      "S231P:isConnectedTo": {
-        "@id": "http://example.org#FromModelica.MisplacedInfoWithEquation.y1"
-      }
     }
   ]
 }

@@ -26,10 +26,13 @@
     },
     {
       "@id": "http://example.org#FromModelica.TestEvaluation_2.hys",
-      "@type": "https://data.ashrae.org/S231P#CXF.Reals.Hysteresis",
+      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Hysteresis",
       "S231P:accessSpecifier": "public",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-10,\"y\":-10},{\"x\":10,\"y\":10}]}}}",
       "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#FromModelica.TestEvaluation_2.hys.u"
+        },
         {
           "@id": "http://example.org#FromModelica.TestEvaluation_2.hys.uHigh"
         },
@@ -37,13 +40,16 @@
           "@id": "http://example.org#FromModelica.TestEvaluation_2.hys.uLow"
         },
         {
-          "@id": "http://example.org#http://example.org#FromModelica.TestEvaluation_2.hys.u"
-        },
-        {
-          "@id": "http://example.org#http://example.org#FromModelica.TestEvaluation_2.hys.y"
+          "@id": "http://example.org#FromModelica.TestEvaluation_2.hys.y"
         }
       ],
       "S231P:label": "hys"
+    },
+    {
+      "@id": "http://example.org#FromModelica.TestEvaluation_2.hys.u",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#FromModelica.TestEvaluation_2.u"
+      }
     },
     {
       "@id": "http://example.org#FromModelica.TestEvaluation_2.hys.uHigh",
@@ -53,6 +59,12 @@
       "@id": "http://example.org#FromModelica.TestEvaluation_2.hys.uLow",
       "S231P:isFinal": true,
       "S231P:value": "uLow"
+    },
+    {
+      "@id": "http://example.org#FromModelica.TestEvaluation_2.hys.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#FromModelica.TestEvaluation_2.y"
+      }
     },
     {
       "@id": "http://example.org#FromModelica.TestEvaluation_2.u",
@@ -95,18 +107,6 @@
       "S231P:description": "Boolean output signal",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]},\"iconTransformation\":{\"extent\":[{\"x\":80,\"y\":-20},{\"x\":120,\"y\":20}]}}}",
       "S231P:label": "y"
-    },
-    {
-      "@id": "http://example.org#http://example.org#FromModelica.TestEvaluation_2.hys.u",
-      "S231P:isConnectedTo": {
-        "@id": "http://example.org#FromModelica.TestEvaluation_2.u"
-      }
-    },
-    {
-      "@id": "http://example.org#http://example.org#FromModelica.TestEvaluation_2.hys.y",
-      "S231P:isConnectedTo": {
-        "@id": "http://example.org#FromModelica.TestEvaluation_2.y"
-      }
     }
   ]
 }

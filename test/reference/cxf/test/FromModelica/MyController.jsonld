@@ -32,22 +32,28 @@
     },
     {
       "@id": "http://example.org#FromModelica.MyController.add2",
-      "@type": "https://data.ashrae.org/S231P#CXF.Reals.Add",
+      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Add",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Add two real inputs",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-10,\"y\":-10},{\"x\":10,\"y\":10}]}}}",
       "S231P:hasInstance": [
         {
-          "@id": "http://example.org#http://example.org#FromModelica.MyController.add2.u1"
+          "@id": "http://example.org#FromModelica.MyController.add2.u1"
         },
         {
-          "@id": "http://example.org#http://example.org#FromModelica.MyController.add2.u2"
+          "@id": "http://example.org#FromModelica.MyController.add2.u2"
         },
         {
-          "@id": "http://example.org#http://example.org#FromModelica.MyController.add2.y"
+          "@id": "http://example.org#FromModelica.MyController.add2.y"
         }
       ],
       "S231P:label": "add2"
+    },
+    {
+      "@id": "http://example.org#FromModelica.MyController.add2.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#FromModelica.MyController.y"
+      }
     },
     {
       "@id": "http://example.org#FromModelica.MyController.subCon1",
@@ -59,7 +65,7 @@
         "{\"name\":\"__cdl\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"generatePointlist\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"true\"}}}}}]}}"
       ],
       "S231P:hasInstance": {
-        "@id": "http://example.org#http://example.org#FromModelica.MyController.subCon1.u"
+        "@id": "http://example.org#FromModelica.MyController.subCon1.u"
       },
       "S231P:label": "subCon1"
     },
@@ -70,7 +76,7 @@
       "S231P:description": "Sub controller",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-10,\"y\":-90},{\"x\":10,\"y\":-70}]}}}",
       "S231P:hasInstance": {
-        "@id": "http://example.org#http://example.org#FromModelica.MyController.subCon2.u"
+        "@id": "http://example.org#FromModelica.MyController.subCon2.u"
       },
       "S231P:label": "subCon2"
     },
@@ -84,7 +90,7 @@
         "{\"name\":\"__cdl\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"connection\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"hardwired\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"true\"}}}}}]}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"trend\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"interval\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"60\"}}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"enable\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"true\"}}}}}]}}}}]}}"
       ],
       "S231P:isConnectedTo": {
-        "@id": "http://example.org#http://example.org#FromModelica.MyController.add2.u1"
+        "@id": "http://example.org#FromModelica.MyController.add2.u1"
       },
       "S231P:label": "u1"
     },
@@ -99,13 +105,13 @@
       ],
       "S231P:isConnectedTo": [
         {
-          "@id": "http://example.org#http://example.org#FromModelica.MyController.add2.u2"
+          "@id": "http://example.org#FromModelica.MyController.add2.u2"
         },
         {
-          "@id": "http://example.org#http://example.org#FromModelica.MyController.subCon1.u"
+          "@id": "http://example.org#FromModelica.MyController.subCon1.u"
         },
         {
-          "@id": "http://example.org#http://example.org#FromModelica.MyController.subCon2.u"
+          "@id": "http://example.org#FromModelica.MyController.subCon2.u"
         }
       ],
       "S231P:label": "u2"
@@ -120,12 +126,6 @@
         "{\"name\":\"__cdl\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"connection\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"hardwired\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"true\"}}}}}]}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"trend\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"interval\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"60\"}}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"enable\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"true\"}}}}}]}}}}]}}"
       ],
       "S231P:label": "y"
-    },
-    {
-      "@id": "http://example.org#http://example.org#FromModelica.MyController.add2.y",
-      "S231P:isConnectedTo": {
-        "@id": "http://example.org#FromModelica.MyController.y"
-      }
     }
   ]
 }

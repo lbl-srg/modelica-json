@@ -36,13 +36,13 @@
       "S231P:description": "Control error",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-60},{\"x\":-100,\"y\":-20}]}}}",
       "S231P:isConnectedTo": {
-        "@id": "http://example.org#http://example.org#FromModelica.CustomPWithLimiter.gain.u"
+        "@id": "http://example.org#FromModelica.CustomPWithLimiter.gain.u"
       },
       "S231P:label": "e"
     },
     {
       "@id": "http://example.org#FromModelica.CustomPWithLimiter.gain",
-      "@type": "https://data.ashrae.org/S231P#CXF.Reals.MultiplyByParameter",
+      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Constant gain",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-60,\"y\":-50},{\"x\":-40,\"y\":-30}]}}}",
@@ -51,10 +51,10 @@
           "@id": "http://example.org#FromModelica.CustomPWithLimiter.gain.k"
         },
         {
-          "@id": "http://example.org#http://example.org#FromModelica.CustomPWithLimiter.gain.u"
+          "@id": "http://example.org#FromModelica.CustomPWithLimiter.gain.u"
         },
         {
-          "@id": "http://example.org#http://example.org#FromModelica.CustomPWithLimiter.gain.y"
+          "@id": "http://example.org#FromModelica.CustomPWithLimiter.gain.y"
         }
       ],
       "S231P:label": "gain"
@@ -63,6 +63,12 @@
       "@id": "http://example.org#FromModelica.CustomPWithLimiter.gain.k",
       "S231P:isFinal": true,
       "S231P:value": "k"
+    },
+    {
+      "@id": "http://example.org#FromModelica.CustomPWithLimiter.gain.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#FromModelica.CustomPWithLimiter.minValue.u2"
+      }
     },
     {
       "@id": "http://example.org#FromModelica.CustomPWithLimiter.k",
@@ -77,22 +83,28 @@
     },
     {
       "@id": "http://example.org#FromModelica.CustomPWithLimiter.minValue",
-      "@type": "https://data.ashrae.org/S231P#CXF.Reals.Min",
+      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Min",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Outputs the minimum of its inputs",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":20,\"y\":-10},{\"x\":40,\"y\":10}]}}}",
       "S231P:hasInstance": [
         {
-          "@id": "http://example.org#http://example.org#FromModelica.CustomPWithLimiter.minValue.u1"
+          "@id": "http://example.org#FromModelica.CustomPWithLimiter.minValue.u1"
         },
         {
-          "@id": "http://example.org#http://example.org#FromModelica.CustomPWithLimiter.minValue.u2"
+          "@id": "http://example.org#FromModelica.CustomPWithLimiter.minValue.u2"
         },
         {
-          "@id": "http://example.org#http://example.org#FromModelica.CustomPWithLimiter.minValue.y"
+          "@id": "http://example.org#FromModelica.CustomPWithLimiter.minValue.y"
         }
       ],
       "S231P:label": "minValue"
+    },
+    {
+      "@id": "http://example.org#FromModelica.CustomPWithLimiter.minValue.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#FromModelica.CustomPWithLimiter.y"
+      }
     },
     {
       "@id": "http://example.org#FromModelica.CustomPWithLimiter.y",
@@ -109,21 +121,9 @@
       "S231P:description": "Maximum value of output signal",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":20},{\"x\":-100,\"y\":60}]}}}",
       "S231P:isConnectedTo": {
-        "@id": "http://example.org#http://example.org#FromModelica.CustomPWithLimiter.minValue.u1"
+        "@id": "http://example.org#FromModelica.CustomPWithLimiter.minValue.u1"
       },
       "S231P:label": "yMax"
-    },
-    {
-      "@id": "http://example.org#http://example.org#FromModelica.CustomPWithLimiter.gain.y",
-      "S231P:isConnectedTo": {
-        "@id": "http://example.org#http://example.org#FromModelica.CustomPWithLimiter.minValue.u2"
-      }
-    },
-    {
-      "@id": "http://example.org#http://example.org#FromModelica.CustomPWithLimiter.minValue.y",
-      "S231P:isConnectedTo": {
-        "@id": "http://example.org#FromModelica.CustomPWithLimiter.y"
-      }
     }
   ]
 }
