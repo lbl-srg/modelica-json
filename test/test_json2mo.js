@@ -1101,4 +1101,208 @@ mo.describe('testing individual json2mo parsers', function() {
       as.deepEqual(referenceMoOutput, moOutput)
     })
   })
+  mo.describe('testing elementSection', function() {
+    mo.it('testing structure - public_element_list', function() {
+      sinon.stub(elementList, 'parse').returns('mocked elementList')
+      sinon.stub(equationSection, 'parse').returns('mocked equationSection')
+      sinon.stub(algorithmSection, 'parse').returns('mocked algorithmSection')
+
+      const json = {
+        'public_element_list': 'test public_element_list',
+      }       
+      const moOutput = elementSection.parse(json, false)
+
+      const referenceMoOutput = 'public\nmocked elementList'
+    })
+    mo.it('testing structure - protected_element_list', function() {
+      sinon.stub(elementList, 'parse').returns('mocked elementList')
+      sinon.stub(equationSection, 'parse').returns('mocked equationSection')
+      sinon.stub(algorithmSection, 'parse').returns('mocked algorithmSection')
+
+      const json = {
+        'protected_element_list': 'test protected_element_list',
+      }       
+      const moOutput = elementSection.parse(json, false)
+
+      const referenceMoOutput = 'protected\nmocked elementList'
+    })
+    mo.it('testing structure - equation_section', function() {
+      sinon.stub(elementList, 'parse').returns('mocked elementList')
+      sinon.stub(equationSection, 'parse').returns('mocked equationSection')
+      sinon.stub(algorithmSection, 'parse').returns('mocked algorithmSection')
+
+      const json = {
+        'equation_section': 'test equation_section',
+      }       
+      const moOutput = elementSection.parse(json, false)
+
+      const referenceMoOutput = 'mocked equationSection'
+    })
+    mo.it('testing structure - algorithm_section', function() {
+      sinon.stub(elementList, 'parse').returns('mocked elementList')
+      sinon.stub(equationSection, 'parse').returns('mocked equationSection')
+      sinon.stub(algorithmSection, 'parse').returns('mocked algorithmSection')
+
+      const json = {
+        'algorithm_section': 'test algorithm_section',
+      }       
+      const moOutput = elementSection.parse(json, false)
+
+      const referenceMoOutput = 'mocked algorithmSection'
+    })
+  })
+  mo.describe('testing enumList', function() {
+    mo.it('testing structure - true', function() {
+      sinon.stub(enumerationLiteral, 'parse').returns('mocked enumerationLiteral')
+      
+      const json = {
+        'enumeration_literal': ['test enumeration_literal1', 
+        'test enumeration_literal2']
+      }       
+      const moOutput = enumList.parse(json, true)
+
+      const referenceMoOutput = 'mocked enumerationLiteral, mocked enumerationLiteral'
+      as.deepEqual(referenceMoOutput, moOutput)
+    })
+    mo.it('testing structure - false', function() {
+      sinon.stub(enumerationLiteral, 'parse').returns('mocked enumerationLiteral')
+      
+      const json = {
+        'content': 'test content',
+        'content2': 'test content2'
+      }       
+      const moOutput = enumList.parse(json, false)
+
+      const referenceMoOutput = 'mocked enumerationLiteral, mocked enumerationLiteral'
+      as.deepEqual(referenceMoOutput, moOutput)
+    })
+  })
+  mo.describe('testing enumerationLiteral', function() {
+    mo.it('testing structure - true', function() {
+      sinon.stub(comment, 'parse').returns('mocked comment')
+
+      const json = {
+        'identifier': 'test identifier',
+        'comment': 'test comment'
+      }       
+      const moOutput = enumerationLiteral.parse(json, true)
+
+      const referenceMoOutput = 'test identifier mocked comment'
+      as.deepEqual(referenceMoOutput, moOutput)
+    })
+    mo.it('testing structure - false', function() {
+      sinon.stub(comment, 'parse').returns('mocked comment')
+
+      const json = {
+        'description': 'test description',
+      }       
+      const moOutput = enumerationLiteral.parse(json, false)
+
+      const referenceMoOutput = 'mocked comment'
+      as.deepEqual(referenceMoOutput, moOutput)
+    })
+  })
+  mo.describe('testing equation', function() {
+    mo.it('testing structure', function() {
+      sinon.stub(assignmentEquation, 'parse').returns('mocked assignmentEquation')
+
+      const json = {
+        'assignment_equation': 'test assignment_equation'
+      }       
+      const moOutput = equation.parse(json, false)
+
+      const referenceMoOutput = '\nmocked assignmentEquation'
+      as.deepEqual(referenceMoOutput, moOutput)
+    })
+    mo.it('testing structure', function() {
+      sinon.stub(assignmentEquation, 'parse').returns('mocked assignmentEquation')
+      sinon.stub(ifEquation, 'parse').returns('mocked ifEquation')
+
+      const json = {
+        'if_equation': 'test if_equation',
+      }       
+      const moOutput = equation.parse(json, false)
+
+      const referenceMoOutput = '\nmocked ifEquation'
+      as.deepEqual(referenceMoOutput, moOutput)
+    })
+    mo.it('testing structure', function() {
+      sinon.stub(assignmentEquation, 'parse').returns('mocked assignmentEquation')
+      sinon.stub(ifEquation, 'parse').returns('mocked ifEquation')
+      sinon.stub(forEquation, 'parse').returns('mocked forEquation')
+
+      const json = {
+        'for_equation': 'test for_equation',
+      }       
+      const moOutput = equation.parse(json, false)
+
+      const referenceMoOutput = '\nmocked forEquation'
+      as.deepEqual(referenceMoOutput, moOutput)
+    })
+    mo.it('testing structure', function() {
+      sinon.stub(assignmentEquation, 'parse').returns('mocked assignmentEquation')
+      sinon.stub(ifEquation, 'parse').returns('mocked ifEquation')
+      sinon.stub(forEquation, 'parse').returns('mocked forEquation')
+      sinon.stub(connectClause, 'parse').returns('mocked connectClause')
+
+      const json = {
+        'connect_clause': 'test connect_clause',
+      }       
+      const moOutput = equation.parse(json, false)
+
+      const referenceMoOutput = '\nmocked connectClause'
+      as.deepEqual(referenceMoOutput, moOutput)
+    })
+    mo.it('testing structure', function() {
+      sinon.stub(assignmentEquation, 'parse').returns('mocked assignmentEquation')
+      sinon.stub(ifEquation, 'parse').returns('mocked ifEquation')
+      sinon.stub(forEquation, 'parse').returns('mocked forEquation')
+      sinon.stub(connectClause, 'parse').returns('mocked connectClause')
+      sinon.stub(whenEquation, 'parse').returns('mocked whenEquation')
+      sinon.stub(comment, 'parse').returns('mocked comment')
+
+      const json = {
+        'when_equation': 'test when_equation',
+        'description': 'test description'
+      }       
+      const moOutput = equation.parse(json, false)
+
+      const referenceMoOutput = '\nmocked whenEquationmocked comment'
+      as.deepEqual(referenceMoOutput, moOutput)
+    })
+    mo.it('testing structure', function() {
+      sinon.stub(assignmentEquation, 'parse').returns('mocked assignmentEquation')
+      sinon.stub(ifEquation, 'parse').returns('mocked ifEquation')
+      sinon.stub(forEquation, 'parse').returns('mocked forEquation')
+      sinon.stub(connectClause, 'parse').returns('mocked connectClause')
+      sinon.stub(whenEquation, 'parse').returns('mocked whenEquation')
+      sinon.stub(functionCallEquation, 'parse').returns('mocked functionCallEquation')
+      sinon.stub(comment, 'parse').returns('mocked comment')
+
+      const json = {
+        'function_call_equation': 'test function_call_equation',
+        'comment': 'test comment'
+      }       
+      const moOutput = equation.parse(json, true)
+
+      const referenceMoOutput = '\nmocked functionCallEquationmocked comment'
+      as.deepEqual(referenceMoOutput, moOutput)
+    })
+  })
+  // mo.describe('testing test', function() {
+  //   mo.it('testing structure - public_element_list', function() {
+  //     sinon.stub(elementList, 'parse').returns('mocked elementList')
+  //     sinon.stub(equationSection, 'parse').returns('mocked equationSection')
+  //     sinon.stub(algorithmSection, 'parse').returns('mocked algorithmSection')
+
+  //     const json = {
+  //       'public_element_list': 'public_element_list',
+  //       'constraining_clause': 'test constraining_clause'
+  //     }       
+  //     const moOutput = elementSection.parse(json, false)
+
+  //     const referenceMoOutput = 'test'
+  //     as.deepEqual(referenceMoOutput, moOutput)
+  //   })
+  // })
 })
