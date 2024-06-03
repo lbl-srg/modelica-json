@@ -1,0 +1,31 @@
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#"
+  },
+  "@graph": [
+    {
+      "@id": "http://example.org#Enumeration1.e1",
+      "@type": "http://example.org#FromModelica.Enumeration1",
+      "S231P:description": "e1",
+      "S231P:label": "e1"
+    },
+    {
+      "@id": "http://example.org#Enumeration1.e2",
+      "@type": "http://example.org#FromModelica.Enumeration1",
+      "S231P:description": "e2",
+      "S231P:label": "e2"
+    },
+    {
+      "@id": "http://example.org#Enumeration1.e3",
+      "@type": "http://example.org#FromModelica.Enumeration1",
+      "S231P:description": "e3",
+      "S231P:label": "e3"
+    },
+    {
+      "@id": "http://example.org#FromModelica.Enumeration1",
+      "@type": "S231P:EnumerationKind",
+      "S231P:description": "Enumeration defining e1, e2 or e3",
+      "S231P:label": "Enumeration1"
+    }
+  ]
+}

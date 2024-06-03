@@ -1,5 +1,5 @@
 within FromModelica;
-model GainOutputsTwo
+block GainOutputsTwo
   Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter gain(final k=1)
     annotation (Placement(transformation(extent={{-18,-12},{2,8}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealInput u2
@@ -11,7 +11,6 @@ model GainOutputsTwo
 equation
   connect(u2, gain.u) annotation (Line(points={{-102,-18},{-30,-18},{-30,-2},{
           -20,-2}},color={0,0,127}));
-  connect(y1, y1) annotation (Line(points={{84,34},{84,34}}, color={0,0,127}));
   connect(gain.y, y1)
     annotation (Line(points={{4,-2},{84,-2},{84,34}}, color={0,0,127}));
   connect(gain.y, y2)
