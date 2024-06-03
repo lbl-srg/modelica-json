@@ -64,6 +64,8 @@ make clean-installation
 
 - Install [Java SE Development Kit (64-bit version)](https://www.oracle.com/java/technologies/javase-downloads.html), [Java Runtime Environment (64-bit version)](https://java.com/en/download/manual.jsp) and [Node.js](https://nodejs.org/en/download/).
 
+- Add `path\to\your\nodejs` to the `Path` environment.
+
 - In batch file `InstallOnWindows.bat`, update `JAVA_HOME` path in line `set JAVA_HOME=path\to\your\jdk`.
 
 - Finally, to install dependencies and compile the Java files, run `InstallOnWindows.bat`.
@@ -91,12 +93,18 @@ The only required input is the path of the file or package to be parsed.
 
 This parser can take a .mo file in input and produce three possible outputs, that can be specified with the argument -o :
 
+<<<<<<< HEAD
+- **raw-json** : detailed transcription of a Modelica file in JSON
+- **json**: simplified JSON format, easier to read an interpret
+- **semantic**: generate semantic model from semantic information included within `annotation` in the Modelica file
+=======
 - **raw-json** : intermediate JSON output, aligning closely with the Modelica syntax
 - **json**: simplified JSON format, to be used by all applications
 - **semantic**: generate a semantic model from the Modelica model, if annotations containing semantic information are present in the Modelica model
 
 This parser can also take a .json file as an input and if it aligns with the simplified JSON output format, a corresponding Modelica or CDL model can be generated using the followed argument in the output format (-o):
 - **modelica**: Generate a Modelica/CDL file (.mo) from a JSON file that conforms to the simplified JSON schema. 
+>>>>>>> ae0dee5722f82ce552a298c4e11fb05b1d90f5d9
 
 ##### --mode / -m
 
@@ -112,6 +120,11 @@ Logging level. The choices are `error`, `warn`, `info` (default), `verbose`, `de
 ##### --directory / -d
 
 Specify the output directory. The default option is the current directory.
+
+##### --prettyPrint / -p
+
+Boolean flag to specify if prettyprint the JSON output. The default option is `false`.
+
 
 ## 4. JSON Schemas
 
