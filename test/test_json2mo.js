@@ -1289,6 +1289,32 @@ mo.describe('testing individual json2mo parsers', function() {
       as.deepEqual(referenceMoOutput, moOutput)
     })
   })
+  mo.describe('testing equationSection', function() {
+    mo.it('testing structure - true', function() {
+      sinon.stub(equation, 'parse').returns('mocked equation')
+
+      const json = {
+        'initial': 'test initial',
+        'equations': ['test equations1', 'test equations2']
+      }       
+      const moOutput = equationSection.parse(json, true)
+
+      const referenceMoOutput = 'initial equation\nmocked equation;mocked equation;'
+      as.deepEqual(referenceMoOutput, moOutput)
+    })
+    mo.it('testing structure - false', function() {
+      sinon.stub(equation, 'parse').returns('mocked equation')
+
+      const json = {
+        'initial': 'test initial',
+        'equation': ['test equation1', 'test equation2']
+      }       
+      const moOutput = equationSection.parse(json, false)
+
+      const referenceMoOutput = 'initial equation\nmocked equation;mocked equation;'
+      as.deepEqual(referenceMoOutput, moOutput)
+    })
+  })
   // mo.describe('testing test', function() {
   //   mo.it('testing structure - public_element_list', function() {
   //     sinon.stub(elementList, 'parse').returns('mocked elementList')
