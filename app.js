@@ -58,7 +58,7 @@ parser.addArgument(
 
   ['-p', '--prettyPrint'],
   {
-    help: 'Pretty print JSON output. -o/--output should be raw-json/json/cxf',
+    help: 'Pretty print JSON output. The -o/--output should be raw-json/json/cxf.',
     action: 'storeTrue'
   }
 )
