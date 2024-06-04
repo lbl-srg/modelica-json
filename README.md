@@ -140,7 +140,7 @@ Graphical viewers are available (please use right click + open in a new tab or r
 
 ## 5. CXF-Core.jsonld
 
-[CXF-Core.jsonld](CXF-Core.jsonld) contains the CXF representation of all CDL elementary blocks, classes and relationships: It can be used to validate a CXF sequence. 
+[CXF-Core.jsonld](CXF-Core.jsonld) contains the CXF representation of all CDL elementary blocks, classes and relationships.
 
 To generate the `CXF-Core.jsonld`, use: 
 
