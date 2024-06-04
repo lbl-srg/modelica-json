@@ -2,6 +2,7 @@ const fs = require('fs')
 const pa = require('./lib/parser.js')
 const ut = require('./lib/util.js')
 const se = require('./lib/semanticExtractor.js')
+const ce = require('./lib/cxfExtractor.js')
 
 const logger = require('winston')
 const path = require('path')
@@ -135,6 +136,9 @@ if (args.output === 'modelica') {
   completedJsonGeneration.then(function () {
     if (args.output === 'semantic') {
       se.getSemanticInformation(args.file, args.directory)
+    }
+    if (args.output === 'cxf' && args.cxfCore && args.elementary) {
+      ce.getCxfCore(args.file, args.directory, args.prettyPrint)
     }
   })
 }

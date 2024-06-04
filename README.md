@@ -138,6 +138,18 @@ Graphical viewers are available (please use right click + open in a new tab or r
 - [CXF Schema viewer](https://htmlpreview.github.io/?https://github.com/lbl-srg/modelica-json/blob/issue214_cxf/cxf-viz.html)
 - [Modelica Schema viewer](https://htmlpreview.github.io/?https://github.com/lbl-srg/modelica-json/blob/master/modelica-viz.html)
 
+## 5. CXF-Core.jsonld
+
+[CXF-Core.jsonld](CXF-Core.jsonld) contains the CXF representation of all CDL elementary blocks, classes and relationships: It can be used to validate a CXF sequence. 
+
+To generate the `CXF-Core.jsonld`, use: 
+
+```
+node app.js -f <path/to/modelica-buildings>/Buildings/Controls/OBC/CDL -o cxf --elementary --cxfCore
+```
+
+The `CXF-Core.jsonld` file will be generated in `cxf` folder.
+
 When parsing a file using `app.js`, the schema is chosen according to the mode.
 
 To validate an existing JSON file against the schema, run

@@ -5,6 +5,12 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix qudt: <http://qudt.org/schema/qudt/> .
 
+S231P:Package
+  a rdfs:Class ;
+  rdfs:comment "A package is a specialized class used to group multiple blocks" ;
+  rdfs:label "Block" ;
+.
+
 S231P:Block
   a rdfs:Class ;
   rdfs:comment "A block is the abstract interface of a control sequence" ;
@@ -592,6 +598,12 @@ S231P:hasConstant
   rdfs:label "has input connector" ;
   rdfs:domain S231P:Block ;
   rdfs:range S231P:Constant ;
+.
+S231P:hasInstance
+  a rdf:Property ;
+  rdfs:comment "Used to define an instance (input, output, parameter or constant) for a block" ; 
+  rdfs:label "has instance" ;
+  rdfs:domain S231P:Block ;
 .
 S231P:isOfDataType
   a rdf:Property ;
