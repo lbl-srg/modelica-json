@@ -1,0 +1,26 @@
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#"
+  },
+  "@graph": [
+    {
+      "@id": "http://example.org#FromModelica.Parameter1",
+      "@type": "S231P:Block",
+      "S231P:hasParameter": {
+        "@id": "http://example.org#FromModelica.Parameter1.kP"
+      },
+      "S231P:label": "Parameter1"
+    },
+    {
+      "@id": "http://example.org#FromModelica.Parameter1.kP",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Some comment",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "kP",
+      "S231P:value": 1
+    }
+  ]
+}

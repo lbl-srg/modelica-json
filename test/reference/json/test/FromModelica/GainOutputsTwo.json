@@ -1,0 +1,398 @@
+{
+  "within": "FromModelica",
+  "class_definition": [
+    {
+      "class_prefixes": "block",
+      "class_specifier": {
+        "long_class_specifier": {
+          "identifier": "GainOutputsTwo",
+          "composition": {
+            "element_list": [
+              {
+                "component_clause": {
+                  "type_specifier": "Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter",
+                  "component_list": [
+                    {
+                      "declaration": {
+                        "identifier": "gain",
+                        "modification": {
+                          "class_modification": [
+                            {
+                              "element_modification_or_replaceable": {
+                                "final": true,
+                                "element_modification": {
+                                  "name": "k",
+                                  "modification": {
+                                    "equal": true,
+                                    "expression": {
+                                      "simple_expression": "1"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      "description": {
+                        "annotation": [
+                          {
+                            "element_modification_or_replaceable": {
+                              "element_modification": {
+                                "Placement": {
+                                  "transformation": {
+                                    "extent": [
+                                      {
+                                        "x": -18,
+                                        "y": -12
+                                      },
+                                      {
+                                        "x": 2,
+                                        "y": 8
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "component_clause": {
+                  "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+                  "component_list": [
+                    {
+                      "declaration": {
+                        "identifier": "u2"
+                      },
+                      "description": {
+                        "annotation": [
+                          {
+                            "element_modification_or_replaceable": {
+                              "element_modification": {
+                                "Placement": {
+                                  "transformation": {
+                                    "extent": [
+                                      {
+                                        "x": -122,
+                                        "y": -38
+                                      },
+                                      {
+                                        "x": -82,
+                                        "y": 2
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "component_clause": {
+                  "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
+                  "component_list": [
+                    {
+                      "declaration": {
+                        "identifier": "y2"
+                      },
+                      "description": {
+                        "annotation": [
+                          {
+                            "element_modification_or_replaceable": {
+                              "element_modification": {
+                                "Placement": {
+                                  "transformation": {
+                                    "extent": [
+                                      {
+                                        "x": 64,
+                                        "y": -56
+                                      },
+                                      {
+                                        "x": 104,
+                                        "y": -16
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "component_clause": {
+                  "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
+                  "component_list": [
+                    {
+                      "declaration": {
+                        "identifier": "y1"
+                      },
+                      "description": {
+                        "annotation": [
+                          {
+                            "element_modification_or_replaceable": {
+                              "element_modification": {
+                                "Placement": {
+                                  "transformation": {
+                                    "extent": [
+                                      {
+                                        "x": 64,
+                                        "y": 14
+                                      },
+                                      {
+                                        "x": 104,
+                                        "y": 54
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ],
+            "element_sections": [
+              {
+                "equation_section": {
+                  "equation": [
+                    {
+                      "connect_clause": {
+                        "from": [
+                          {
+                            "dot_op": false,
+                            "identifier": "u2"
+                          }
+                        ],
+                        "to": [
+                          {
+                            "dot_op": false,
+                            "identifier": "gain"
+                          },
+                          {
+                            "dot_op": true
+                          },
+                          {
+                            "dot_op": false,
+                            "identifier": "u"
+                          }
+                        ]
+                      },
+                      "description": {
+                        "annotation": [
+                          {
+                            "element_modification_or_replaceable": {
+                              "element_modification": {
+                                "Line": {
+                                  "points": [
+                                    {
+                                      "x": -102,
+                                      "y": -18
+                                    },
+                                    {
+                                      "x": -30,
+                                      "y": -18
+                                    },
+                                    {
+                                      "x": -30,
+                                      "y": -2
+                                    },
+                                    {
+                                      "x": -20,
+                                      "y": -2
+                                    }
+                                  ],
+                                  "color": {
+                                    "r": 0,
+                                    "g": 0,
+                                    "b": 127
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "connect_clause": {
+                        "from": [
+                          {
+                            "dot_op": false,
+                            "identifier": "gain"
+                          },
+                          {
+                            "dot_op": true
+                          },
+                          {
+                            "dot_op": false,
+                            "identifier": "y"
+                          }
+                        ],
+                        "to": [
+                          {
+                            "dot_op": false,
+                            "identifier": "y1"
+                          }
+                        ]
+                      },
+                      "description": {
+                        "annotation": [
+                          {
+                            "element_modification_or_replaceable": {
+                              "element_modification": {
+                                "Line": {
+                                  "points": [
+                                    {
+                                      "x": 4,
+                                      "y": -2
+                                    },
+                                    {
+                                      "x": 84,
+                                      "y": -2
+                                    },
+                                    {
+                                      "x": 84,
+                                      "y": 34
+                                    }
+                                  ],
+                                  "color": {
+                                    "r": 0,
+                                    "g": 0,
+                                    "b": 127
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "connect_clause": {
+                        "from": [
+                          {
+                            "dot_op": false,
+                            "identifier": "gain"
+                          },
+                          {
+                            "dot_op": true
+                          },
+                          {
+                            "dot_op": false,
+                            "identifier": "y"
+                          }
+                        ],
+                        "to": [
+                          {
+                            "dot_op": false,
+                            "identifier": "y2"
+                          }
+                        ]
+                      },
+                      "description": {
+                        "annotation": [
+                          {
+                            "element_modification_or_replaceable": {
+                              "element_modification": {
+                                "Line": {
+                                  "points": [
+                                    {
+                                      "x": 4,
+                                      "y": -2
+                                    },
+                                    {
+                                      "x": 84,
+                                      "y": -2
+                                    },
+                                    {
+                                      "x": 84,
+                                      "y": -36
+                                    }
+                                  ],
+                                  "color": {
+                                    "r": 0,
+                                    "g": 0,
+                                    "b": 127
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ],
+            "annotation": [
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "Icon",
+                    "modification": {
+                      "class_modification": [
+                        {
+                          "element_modification_or_replaceable": {
+                            "element_modification": {
+                              "coordinateSystem": {
+                                "preserveAspectRatio": "false"
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              },
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "Diagram",
+                    "modification": {
+                      "class_modification": [
+                        {
+                          "element_modification_or_replaceable": {
+                            "element_modification": {
+                              "coordinateSystem": {
+                                "preserveAspectRatio": "false"
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "modelicaFile": "test/FromModelica/GainOutputsTwo.mo",
+  "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/GainOutputsTwo.mo",
+  "checksum": "c2606f819268bc6db1c99d78d41ea061"
+}

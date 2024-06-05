@@ -4,6 +4,7 @@
       "within": "FromModelica",
       "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/SubController.mo",
       "type": "long_class_specifier",
+      "class_prefixes": "block",
       "annotation": [
         {
           "element_modification_or_replaceable": {
@@ -151,11 +152,16 @@
           }
         }
       ],
-      "semantics": {}
+      "semantics": {},
+      "cdl_annotations": {
+        "generatePointlist": "true",
+        "controlledDevice": "\"Sub Device\""
+      }
     },
     "u": {
       "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
       "type": "element",
+      "compositionSpecifier": "public",
       "long_class_specifier_identifier": "SubController",
       "single_component_list": {
         "declaration": {
@@ -378,12 +384,24 @@
         }
       ],
       "semantics": {},
+      "cdl_annotations": {
+        "connection": {
+          "hardwired": "true"
+        },
+        "trend": {
+          "interval": "60",
+          "enable": "true"
+        }
+      },
+      "isVector": false,
+      "arraySubscripts": "",
       "within": "FromModelica",
       "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/SubController.mo"
     },
     "y": {
       "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
       "type": "element",
+      "compositionSpecifier": "public",
       "long_class_specifier_identifier": "SubController",
       "single_component_list": {
         "declaration": {
@@ -606,6 +624,17 @@
         }
       ],
       "semantics": {},
+      "cdl_annotations": {
+        "connection": {
+          "hardwired": "true"
+        },
+        "trend": {
+          "interval": "60",
+          "enable": "true"
+        }
+      },
+      "isVector": false,
+      "arraySubscripts": "",
       "within": "FromModelica",
       "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/SubController.mo"
     }

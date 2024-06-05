@@ -1,0 +1,51 @@
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#",
+    "qudt": "http://qudt.org/schema/qudt#"
+  },
+  "@graph": [
+    {
+      "@id": "http://example.org#FromModelica.ParameterWithAttributes",
+      "@type": "S231P:Block",
+      "S231P:hasParameter": {
+        "@id": "http://example.org#FromModelica.ParameterWithAttributes.kP"
+      },
+      "S231P:label": "ParameterWithAttributes"
+    },
+    {
+      "@id": "http://example.org#FromModelica.ParameterWithAttributes.kP",
+      "@type": "S231P:Parameter",
+      "qudt:hasQuantityKind": {
+        "@id": "S231P:PressureDifference"
+      },
+      "qudt:hasUnit": {
+        "@id": "S231P:Pa"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Some comment",
+      "S231P:fixed": false,
+      "S231P:hasInstance": {
+        "@id": "http://example.org#FromModelica.ParameterWithAttributes.kP.stateSelect"
+      },
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "kP",
+      "S231P:max": 2,
+      "S231P:min": 0,
+      "S231P:nominal": {
+        "@value": "0.5",
+        "@type": "http://www.w3.org/2001/XMLSchema#decimal"
+      },
+      "S231P:start": {
+        "@value": "0.2",
+        "@type": "http://www.w3.org/2001/XMLSchema#decimal"
+      },
+      "S231P:value": 1
+    },
+    {
+      "@id": "http://example.org#FromModelica.ParameterWithAttributes.kP.stateSelect",
+      "S231P:value": "StateSelect.default"
+    }
+  ]
+}

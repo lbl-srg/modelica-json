@@ -1,0 +1,37 @@
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#"
+  },
+  "@graph": [
+    {
+      "@id": "http://example.org#FromModelica.Parameter3",
+      "@type": "S231P:Block",
+      "S231P:hasParameter": [
+        {
+          "@id": "http://example.org#FromModelica.Parameter3.myPar1"
+        },
+        {
+          "@id": "http://example.org#FromModelica.Parameter3.myParUnit"
+        }
+      ],
+      "S231P:label": "Parameter3"
+    },
+    {
+      "@id": "http://example.org#FromModelica.Parameter3.myPar1",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Some comment",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "myPar1",
+      "S231P:value": 1
+    },
+    {
+      "@id": "http://example.org#FromModelica.Parameter3.myParUnit",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Some comment",
+      "S231P:label": "myParUnit"
+    }
+  ]
+}

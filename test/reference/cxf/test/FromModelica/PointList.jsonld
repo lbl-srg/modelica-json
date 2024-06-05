@@ -1,0 +1,153 @@
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#",
+    "ex": "http://example.org#"
+  },
+  "@graph": [
+    {
+      "@id": "http://example.org#FromModelica.PointList",
+      "@type": "S231P:Block",
+      "S231P:containsBlock": [
+        {
+          "@id": "http://example.org#FromModelica.PointList.con1"
+        },
+        {
+          "@id": "http://example.org#FromModelica.PointList.con2"
+        }
+      ],
+      "S231P:hasInput": [
+        {
+          "@id": "http://example.org#FromModelica.PointList.u1"
+        },
+        {
+          "@id": "http://example.org#FromModelica.PointList.u2"
+        }
+      ],
+      "S231P:hasOutput": [
+        {
+          "@id": "http://example.org#FromModelica.PointList.y1"
+        },
+        {
+          "@id": "http://example.org#FromModelica.PointList.y2"
+        }
+      ],
+      "S231P:label": "PointList"
+    },
+    {
+      "@id": "http://example.org#FromModelica.PointList.con1",
+      "@type": "ex:MyController",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Subcontroller one",
+      "S231P:graphics": [
+        "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-10,\"y\":50},{\"x\":10,\"y\":70}]}}}",
+        "{\"name\":\"__cdl\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"propagate\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"instance\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"\\\"subCon1\\\"\"}}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"generatePointlist\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"true\"}}}}}]}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"propagate\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"instance\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"\\\"subCon2\\\"\"}}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"generatePointlist\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"true\"}}}}}]}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"propagate\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"instance\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"\\\"subCon2.u\\\"\"}}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"connection\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"hardwired\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"true\"}}}}}]}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"trend\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"interval\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"120\"}}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"enable\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"true\"}}}}}]}}}}]}}}}]}}"
+      ],
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#FromModelica.PointList.con1.u1"
+        },
+        {
+          "@id": "http://example.org#FromModelica.PointList.con1.u2"
+        },
+        {
+          "@id": "http://example.org#FromModelica.PointList.con1.y"
+        }
+      ],
+      "S231P:label": "con1"
+    },
+    {
+      "@id": "http://example.org#FromModelica.PointList.con1.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#FromModelica.PointList.y2"
+      }
+    },
+    {
+      "@id": "http://example.org#FromModelica.PointList.con2",
+      "@type": "ex:MyController",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Subcontroller two",
+      "S231P:graphics": [
+        "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-10,\"y\":-70},{\"x\":10,\"y\":-50}]}}}",
+        "{\"name\":\"__cdl\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"generatePointlist\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"true\"}}}}}]}}"
+      ],
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#FromModelica.PointList.con2.u1"
+        },
+        {
+          "@id": "http://example.org#FromModelica.PointList.con2.u2"
+        },
+        {
+          "@id": "http://example.org#FromModelica.PointList.con2.y"
+        }
+      ],
+      "S231P:label": "con2"
+    },
+    {
+      "@id": "http://example.org#FromModelica.PointList.con2.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#FromModelica.PointList.y1"
+      }
+    },
+    {
+      "@id": "http://example.org#FromModelica.PointList.u1",
+      "@type": "S231P:RealInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Input one",
+      "S231P:graphics": [
+        "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":40},{\"x\":-100,\"y\":80}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":40},{\"x\":-100,\"y\":80}]}}}",
+        "{\"name\":\"__cdl\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"connection\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"hardwired\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"true\"}}}}}]}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"trend\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"interval\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"60\"}}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"enable\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"true\"}}}}}]}}}}]}}"
+      ],
+      "S231P:isConnectedTo": [
+        {
+          "@id": "http://example.org#FromModelica.PointList.con1.u1"
+        },
+        {
+          "@id": "http://example.org#FromModelica.PointList.con2.u1"
+        }
+      ],
+      "S231P:label": "u1"
+    },
+    {
+      "@id": "http://example.org#FromModelica.PointList.u2",
+      "@type": "S231P:RealInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Input two",
+      "S231P:graphics": [
+        "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-80},{\"x\":-100,\"y\":-40}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":-80},{\"x\":-100,\"y\":-40}]}}}",
+        "{\"name\":\"__cdl\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"connection\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"hardwired\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"false\"}}}}}]}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"trend\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"interval\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"120\"}}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"enable\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"true\"}}}}}]}}}}]}}"
+      ],
+      "S231P:isConnectedTo": [
+        {
+          "@id": "http://example.org#FromModelica.PointList.con1.u2"
+        },
+        {
+          "@id": "http://example.org#FromModelica.PointList.con2.u2"
+        }
+      ],
+      "S231P:label": "u2"
+    },
+    {
+      "@id": "http://example.org#FromModelica.PointList.y1",
+      "@type": "S231P:RealOutput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Output one",
+      "S231P:graphics": [
+        "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-80},{\"x\":140,\"y\":-40}]},\"iconTransformation\":{\"extent\":[{\"x\":100,\"y\":40},{\"x\":140,\"y\":80}]}}}",
+        "{\"name\":\"__cdl\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"connection\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"hardwired\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"true\"}}}}}]}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"trend\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"interval\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"60\"}}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"enable\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"true\"}}}}}]}}}}]}}"
+      ],
+      "S231P:label": "y1"
+    },
+    {
+      "@id": "http://example.org#FromModelica.PointList.y2",
+      "@type": "S231P:RealOutput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Output two",
+      "S231P:graphics": [
+        "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":40},{\"x\":140,\"y\":80}]},\"iconTransformation\":{\"extent\":[{\"x\":100,\"y\":-80},{\"x\":140,\"y\":-40}]}}}",
+        "{\"name\":\"__cdl\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"connection\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"hardwired\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"false\"}}}}}]}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"trend\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"interval\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"60\"}}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"enable\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"true\"}}}}}]}}}}]}}"
+      ],
+      "S231P:label": "y2"
+    }
+  ]
+}

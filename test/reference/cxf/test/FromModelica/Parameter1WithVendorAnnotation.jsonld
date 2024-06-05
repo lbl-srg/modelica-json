@@ -1,0 +1,27 @@
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#"
+  },
+  "@graph": [
+    {
+      "@id": "http://example.org#FromModelica.Parameter1WithVendorAnnotation",
+      "@type": "S231P:Block",
+      "S231P:hasParameter": {
+        "@id": "http://example.org#FromModelica.Parameter1WithVendorAnnotation.kP"
+      },
+      "S231P:label": "Parameter1WithVendorAnnotation"
+    },
+    {
+      "@id": "http://example.org#FromModelica.Parameter1WithVendorAnnotation.kP",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Some comment",
+      "S231P:graphics": "{\"name\":\"__cdl\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"haystack\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"\\\"{ \\\\\\\"dis\\\\\\\": \\\\\\\"site\\\\\\\",\\n       \\\\\\\"area\\\\\\\": 400 }\\\"\"}}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"brick\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"\\\"xxxxx\\\"\"}}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"point\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"digital\"}}}}}]}}",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "kP",
+      "S231P:value": 1
+    }
+  ]
+}
