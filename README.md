@@ -26,9 +26,15 @@ First, set the MODELICAPATH environment variable by adding the following line to
 export MODELICAPATH=${MODELICAPATH}:/usr/local/Modelica/Library/
 ```
 
-The parser requires Java and node, which can be installed on Ubuntu using
+The parser requires Java and node. The java dependency can be installed using: 
 ```
-sudo apt-get install nodejs npm default-jdk
+sudo apt-get install default-jdk default-jre
+```
+The node version should be >= 18 and you can use [Node Version Manager](https://nodejs.org/en/download/package-manager) to set it up. Following is using 0.39.7 version: 
+```
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+source ~/.bashrc
+nvm install 18
 ```
 
 To install dependencies of the parser, run
