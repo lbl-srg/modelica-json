@@ -34,7 +34,7 @@ parser.addArgument(
 parser.addArgument(
   ['-m', '--mode'],
   {
-    help: "Parsing mode, CDL model or a package of the Modelica Buildings library, 'cdl' is the default.",
+    help: "Parsing mode, CDL model or a package of the Modelica Buildings library, 'modelica' is the default.",
     choices: ['cdl', 'modelica'],
     defaultValue: 'modelica'
   }
@@ -53,27 +53,21 @@ parser.addArgument(
     defaultValue: 'current'
   }
 )
-
 parser.addArgument(
-
   ['-p', '--prettyPrint'],
   {
     help: 'Pretty print JSON output. The -o/--output should be raw-json/json/cxf.',
     action: 'storeTrue'
   }
 )
-
 parser.addArgument(
-
   ['--elementary'],
   {
     help: 'If this flag is present, generate CXF of elementary blocks in addition to composite blocks. -o/--output should be cxf.',
     action: 'storeTrue'
   }
 )
-
 parser.addArgument(
-
   ['--cxfCore'],
   {
     help: 'If this flag is present, generate CXF-core.jsonld. -o/--output should be cxf, -f/--file should be path/to/CDL and --elementary flag must be used.',
