@@ -32,6 +32,29 @@
         }
       }
     },
+    "element_class_definition": {
+      "description": "Element class definition",
+      "type": "object",
+      "required": [
+        "class_prefixes",
+        "class_specifier"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "final": {
+          "type": "boolean"
+        },
+        "encapsulated": {
+          "type": "boolean"
+        },
+        "class_prefixes": {
+          "type": "string"
+        },
+        "class_specifier": {
+          "$ref": "#/definitions/class_specifier"
+        }
+      }
+    },
     "class_specifier": {
       "description": "Class specifier",
       "oneOf": [
@@ -168,8 +191,8 @@
           "constraining_clause": {
             "$ref": "#/definitions/constraining_clause"
           },
-          "class_definition": {
-            "$ref": "#/definitions/class_definition"
+          "element_class_definition": {
+            "$ref": "#/definitions/element_class_definition"
           },
           "component_clause": {
             "$ref": "#/definitions/component_clause"
