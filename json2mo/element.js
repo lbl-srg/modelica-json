@@ -45,8 +45,8 @@ function parse (content, rawJson = false) {
     if (content.replaceable != null) {
       if (content.replaceable) {
         moOutput += 'replaceable '
-        if (content.class_definition != null) {
-          moOutput += classDefinitionParser.parse(content.class_definition, rawJson)
+        if (content.element_class_definition != null) {
+          moOutput += classDefinitionParser.parse(content.element_class_definition, rawJson)
         } else if (content.component_clause != null) {
           moOutput += componentClauseParser.parse(content.component_clause, rawJson)
         }
@@ -67,15 +67,15 @@ function parse (content, rawJson = false) {
         }
         moOutput += ';\n'
       } else {
-        if (content.class_definition != null) {
-          moOutput += classDefinitionParser.parse(content.class_definition, rawJson)
+        if (content.element_class_definition != null) {
+          moOutput += classDefinitionParser.parse(content.element_class_definition, rawJson)
         } else if (content.component_clause != null) {
           moOutput += componentClauseParser.parse(content.component_clause, rawJson)
         }
       }
     } else {
-      if (content.class_definition != null) {
-        moOutput += classDefinitionParser.parse(content.class_definition, rawJson)
+      if (content.element_class_definition != null) {
+        moOutput += classDefinitionParser.parse(content.element_class_definition, rawJson)
       } else if (content.component_clause != null) {
         moOutput += componentClauseParser.parse(content.component_clause, rawJson)
       }
