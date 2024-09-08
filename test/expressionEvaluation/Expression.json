@@ -1,0 +1,1193 @@
+[
+  {
+    "within": "FromModelica",
+    "class_definition": [
+      {
+        "class_prefixes": "model",
+        "class_specifier": {
+          "long_class_specifier": {
+            "identifier": "Expression",
+            "composition": {
+              "element_list": [
+                {
+                  "component_clause": {
+                    "type_prefix": "constant",
+                    "type_specifier": "Real",
+                    "component_list": [
+                      {
+                        "declaration": {
+                          "identifier": "a",
+                          "modification": {
+                            "equal": true,
+                            "expression": {
+                              "simple_expression": "1"
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "component_clause": {
+                    "type_prefix": "parameter",
+                    "type_specifier": "Real",
+                    "component_list": [
+                      {
+                        "declaration": {
+                          "identifier": "b",
+                          "modification": {
+                            "equal": true,
+                            "expression": {
+                              "simple_expression": "a*2"
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "component_clause": {
+                    "type_prefix": "parameter",
+                    "type_specifier": "Real",
+                    "component_list": [
+                      {
+                        "declaration": {
+                          "identifier": "exp",
+                          "modification": {
+                            "equal": true,
+                            "expression": {
+                              "simple_expression": "b^b"
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "component_clause": {
+                    "type_prefix": "parameter",
+                    "type_specifier": "Boolean",
+                    "component_list": [
+                      {
+                        "declaration": {
+                          "identifier": "equal",
+                          "modification": {
+                            "equal": true,
+                            "expression": {
+                              "simple_expression": {
+                                "logical_expression": {
+                                  "logical_or": [
+                                    {
+                                      "logical_and": [
+                                        {
+                                          "arithmetic_expressions": [
+                                            {
+                                              "name": "a"
+                                            },
+                                            {
+                                              "name": "b"
+                                            }
+                                          ],
+                                          "relation_operator": "=="
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "component_clause": {
+                    "type_prefix": "parameter",
+                    "type_specifier": "Boolean",
+                    "component_list": [
+                      {
+                        "declaration": {
+                          "identifier": "diff",
+                          "modification": {
+                            "equal": true,
+                            "expression": {
+                              "simple_expression": {
+                                "logical_expression": {
+                                  "logical_or": [
+                                    {
+                                      "logical_and": [
+                                        {
+                                          "arithmetic_expressions": [
+                                            {
+                                              "name": "a"
+                                            },
+                                            {
+                                              "name": "b"
+                                            }
+                                          ],
+                                          "relation_operator": "<>"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "component_clause": {
+                    "type_prefix": "parameter",
+                    "type_specifier": "Boolean",
+                    "component_list": [
+                      {
+                        "declaration": {
+                          "identifier": "leq",
+                          "modification": {
+                            "equal": true,
+                            "expression": {
+                              "simple_expression": {
+                                "logical_expression": {
+                                  "logical_or": [
+                                    {
+                                      "logical_and": [
+                                        {
+                                          "arithmetic_expressions": [
+                                            {
+                                              "name": "a"
+                                            },
+                                            {
+                                              "name": "b"
+                                            }
+                                          ],
+                                          "relation_operator": "<="
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "component_clause": {
+                    "type_prefix": "parameter",
+                    "type_specifier": "Boolean",
+                    "component_list": [
+                      {
+                        "declaration": {
+                          "identifier": "geq",
+                          "modification": {
+                            "equal": true,
+                            "expression": {
+                              "simple_expression": {
+                                "logical_expression": {
+                                  "logical_or": [
+                                    {
+                                      "logical_and": [
+                                        {
+                                          "arithmetic_expressions": [
+                                            {
+                                              "name": "a"
+                                            },
+                                            {
+                                              "name": "b"
+                                            }
+                                          ],
+                                          "relation_operator": ">="
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "component_clause": {
+                    "type_prefix": "parameter",
+                    "type_specifier": "Boolean",
+                    "component_list": [
+                      {
+                        "declaration": {
+                          "identifier": "lt",
+                          "modification": {
+                            "equal": true,
+                            "expression": {
+                              "simple_expression": {
+                                "logical_expression": {
+                                  "logical_or": [
+                                    {
+                                      "logical_and": [
+                                        {
+                                          "arithmetic_expressions": [
+                                            {
+                                              "name": "a"
+                                            },
+                                            {
+                                              "name": "b"
+                                            }
+                                          ],
+                                          "relation_operator": "<"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "component_clause": {
+                    "type_prefix": "parameter",
+                    "type_specifier": "Boolean",
+                    "component_list": [
+                      {
+                        "declaration": {
+                          "identifier": "gt",
+                          "modification": {
+                            "equal": true,
+                            "expression": {
+                              "simple_expression": {
+                                "logical_expression": {
+                                  "logical_or": [
+                                    {
+                                      "logical_and": [
+                                        {
+                                          "arithmetic_expressions": [
+                                            {
+                                              "name": "a"
+                                            },
+                                            {
+                                              "name": "b"
+                                            }
+                                          ],
+                                          "relation_operator": ">"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "component_clause": {
+                    "type_prefix": "parameter",
+                    "type_specifier": "Real",
+                    "component_list": [
+                      {
+                        "declaration": {
+                          "identifier": "ifexp",
+                          "modification": {
+                            "equal": true,
+                            "expression": {
+                              "if_expression": {
+                                "if_elseif": [
+                                  {
+                                    "condition": {
+                                      "simple_expression": {
+                                        "logical_expression": {
+                                          "logical_or": [
+                                            {
+                                              "logical_and": [
+                                                {
+                                                  "arithmetic_expressions": [
+                                                    {
+                                                      "name": "b"
+                                                    },
+                                                    {
+                                                      "name": "a"
+                                                    }
+                                                  ],
+                                                  "relation_operator": ">"
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      }
+                                    },
+                                    "then": {
+                                      "simple_expression": "1"
+                                    }
+                                  }
+                                ],
+                                "else_expression": {
+                                  "simple_expression": "0"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "component_clause": {
+                    "type_prefix": "parameter",
+                    "type_specifier": "Real",
+                    "component_list": [
+                      {
+                        "declaration": {
+                          "identifier": "elseifexp",
+                          "modification": {
+                            "equal": true,
+                            "expression": {
+                              "if_expression": {
+                                "if_elseif": [
+                                  {
+                                    "condition": {
+                                      "simple_expression": {
+                                        "logical_expression": {
+                                          "logical_or": [
+                                            {
+                                              "logical_and": [
+                                                {
+                                                  "arithmetic_expressions": [
+                                                    {
+                                                      "name": "a"
+                                                    },
+                                                    {
+                                                      "name": "b"
+                                                    }
+                                                  ],
+                                                  "relation_operator": ">"
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      }
+                                    },
+                                    "then": {
+                                      "simple_expression": "0"
+                                    }
+                                  },
+                                  {
+                                    "condition": {
+                                      "simple_expression": {
+                                        "logical_expression": {
+                                          "logical_or": [
+                                            {
+                                              "logical_and": [
+                                                {
+                                                  "arithmetic_expressions": [
+                                                    {
+                                                      "name": "b"
+                                                    },
+                                                    {
+                                                      "name": "2"
+                                                    }
+                                                  ],
+                                                  "relation_operator": "=="
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      }
+                                    },
+                                    "then": {
+                                      "simple_expression": "1"
+                                    }
+                                  }
+                                ],
+                                "else_expression": {
+                                  "simple_expression": "-1"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "component_clause": {
+                    "type_prefix": "parameter",
+                    "type_specifier": "Integer",
+                    "component_list": [
+                      {
+                        "declaration": {
+                          "identifier": "notexp",
+                          "modification": {
+                            "equal": true,
+                            "expression": {
+                              "if_expression": {
+                                "if_elseif": [
+                                  {
+                                    "condition": {
+                                      "simple_expression": {
+                                        "logical_expression": {
+                                          "logical_or": [
+                                            {
+                                              "logical_and": [
+                                                {
+                                                  "not": true,
+                                                  "arithmetic_expressions": [
+                                                    {
+                                                      "name": "a"
+                                                    },
+                                                    {
+                                                      "name": "b"
+                                                    }
+                                                  ],
+                                                  "relation_operator": "<"
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      }
+                                    },
+                                    "then": {
+                                      "simple_expression": "1"
+                                    }
+                                  }
+                                ],
+                                "else_expression": {
+                                  "simple_expression": "2"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "component_clause": {
+                    "type_prefix": "parameter",
+                    "type_specifier": "Integer",
+                    "component_list": [
+                      {
+                        "declaration": {
+                          "identifier": "andnotexp",
+                          "modification": {
+                            "equal": true,
+                            "expression": {
+                              "if_expression": {
+                                "if_elseif": [
+                                  {
+                                    "condition": {
+                                      "simple_expression": {
+                                        "logical_expression": {
+                                          "logical_or": [
+                                            {
+                                              "logical_and": [
+                                                {
+                                                  "arithmetic_expressions": [
+                                                    {
+                                                      "name": "a"
+                                                    },
+                                                    {
+                                                      "name": "b"
+                                                    }
+                                                  ],
+                                                  "relation_operator": "<"
+                                                },
+                                                {
+                                                  "not": true,
+                                                  "arithmetic_expressions": [
+                                                    {
+                                                      "name": "a"
+                                                    },
+                                                    {
+                                                      "name": "b"
+                                                    }
+                                                  ],
+                                                  "relation_operator": "<"
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      }
+                                    },
+                                    "then": {
+                                      "simple_expression": "1"
+                                    }
+                                  }
+                                ],
+                                "else_expression": {
+                                  "simple_expression": "2"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "component_clause": {
+                    "type_prefix": "parameter",
+                    "type_specifier": "Integer",
+                    "component_list": [
+                      {
+                        "declaration": {
+                          "identifier": "notexppar",
+                          "modification": {
+                            "equal": true,
+                            "expression": {
+                              "if_expression": {
+                                "if_elseif": [
+                                  {
+                                    "condition": {
+                                      "simple_expression": "not ([object Object])"
+                                    },
+                                    "then": {
+                                      "simple_expression": "1"
+                                    }
+                                  }
+                                ],
+                                "else_expression": {
+                                  "simple_expression": "2"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "component_clause": {
+                    "type_prefix": "parameter",
+                    "type_specifier": "Integer",
+                    "component_list": [
+                      {
+                        "declaration": {
+                          "identifier": "andnotexppar",
+                          "modification": {
+                            "equal": true,
+                            "expression": {
+                              "if_expression": {
+                                "if_elseif": [
+                                  {
+                                    "condition": {
+                                      "simple_expression": "([object Object]) and not ([object Object])"
+                                    },
+                                    "then": {
+                                      "simple_expression": "1"
+                                    }
+                                  }
+                                ],
+                                "else_expression": {
+                                  "simple_expression": "2"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "component_clause": {
+                    "type_prefix": "parameter",
+                    "type_specifier": "Real",
+                    "component_list": [
+                      {
+                        "declaration": {
+                          "identifier": "fil",
+                          "array_subscripts": [
+                            {
+                              "colon_op": true
+                            }
+                          ],
+                          "modification": {
+                            "equal": true,
+                            "expression": {
+                              "simple_expression": {
+                                "function_call": {
+                                  "name": "fill",
+                                  "arguments": [
+                                    {
+                                      "name": "a"
+                                    },
+                                    {
+                                      "name": "4"
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "component_clause": {
+                    "type_prefix": "parameter",
+                    "type_specifier": "Real",
+                    "component_list": [
+                      {
+                        "declaration": {
+                          "identifier": "siz1",
+                          "modification": {
+                            "equal": true,
+                            "expression": {
+                              "simple_expression": {
+                                "function_call": {
+                                  "name": "size",
+                                  "arguments": [
+                                    {
+                                      "name": "fil"
+                                    },
+                                    {
+                                      "name": "1"
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "component_clause": {
+                    "type_prefix": "parameter",
+                    "type_specifier": "Real",
+                    "component_list": [
+                      {
+                        "declaration": {
+                          "identifier": "siz",
+                          "array_subscripts": [
+                            {
+                              "colon_op": true
+                            }
+                          ],
+                          "modification": {
+                            "equal": true,
+                            "expression": {
+                              "simple_expression": {
+                                "function_call": {
+                                  "name": "size",
+                                  "arguments": [
+                                    {
+                                      "name": "fil"
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "component_clause": {
+                    "type_prefix": "parameter",
+                    "type_specifier": "Real",
+                    "component_list": [
+                      {
+                        "declaration": {
+                          "identifier": "arr",
+                          "array_subscripts": [
+                            {
+                              "colon_op": true
+                            },
+                            {
+                              "colon_op": true
+                            },
+                            {
+                              "colon_op": true
+                            }
+                          ],
+                          "modification": {
+                            "equal": true,
+                            "expression": {
+                              "simple_expression": {
+                                "for_loop": {
+                                  "expression": {
+                                    "simple_expression": {
+                                      "for_loop": {
+                                        "expression": {
+                                          "simple_expression": "{i,j}"
+                                        },
+                                        "for_loop": [
+                                          {
+                                            "name": "i",
+                                            "range": "1:a"
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  },
+                                  "for_loop": [
+                                    {
+                                      "name": "j",
+                                      "range": "1:b"
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "component_clause": {
+                    "type_prefix": "parameter",
+                    "type_specifier": "Real",
+                    "component_list": [
+                      {
+                        "declaration": {
+                          "identifier": "fnabs",
+                          "modification": {
+                            "equal": true,
+                            "expression": {
+                              "simple_expression": {
+                                "function_call": {
+                                  "name": "abs",
+                                  "arguments": [
+                                    {
+                                      "name": "-b"
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "component_clause": {
+                    "type_prefix": "parameter",
+                    "type_specifier": "Real",
+                    "component_list": [
+                      {
+                        "declaration": {
+                          "identifier": "fnsign",
+                          "modification": {
+                            "equal": true,
+                            "expression": {
+                              "simple_expression": {
+                                "function_call": {
+                                  "name": "sign",
+                                  "arguments": [
+                                    {
+                                      "name": "b"
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "component_clause": {
+                    "type_prefix": "parameter",
+                    "type_specifier": "Real",
+                    "component_list": [
+                      {
+                        "declaration": {
+                          "identifier": "fnsqrt",
+                          "modification": {
+                            "equal": true,
+                            "expression": {
+                              "simple_expression": {
+                                "function_call": {
+                                  "name": "sqrt",
+                                  "arguments": [
+                                    {
+                                      "name": "b"
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "component_clause": {
+                    "type_prefix": "parameter",
+                    "type_specifier": "Real",
+                    "component_list": [
+                      {
+                        "declaration": {
+                          "identifier": "fndiv",
+                          "modification": {
+                            "equal": true,
+                            "expression": {
+                              "simple_expression": {
+                                "function_call": {
+                                  "name": "div",
+                                  "arguments": [
+                                    {
+                                      "name": "a"
+                                    },
+                                    {
+                                      "name": "b"
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "component_clause": {
+                    "type_prefix": "parameter",
+                    "type_specifier": "Real",
+                    "component_list": [
+                      {
+                        "declaration": {
+                          "identifier": "fnmod",
+                          "modification": {
+                            "equal": true,
+                            "expression": {
+                              "simple_expression": {
+                                "function_call": {
+                                  "name": "mod",
+                                  "arguments": [
+                                    {
+                                      "name": "a"
+                                    },
+                                    {
+                                      "name": "b"
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "component_clause": {
+                    "type_prefix": "parameter",
+                    "type_specifier": "Real",
+                    "component_list": [
+                      {
+                        "declaration": {
+                          "identifier": "fnrem",
+                          "modification": {
+                            "equal": true,
+                            "expression": {
+                              "simple_expression": {
+                                "function_call": {
+                                  "name": "rem",
+                                  "arguments": [
+                                    {
+                                      "name": "a"
+                                    },
+                                    {
+                                      "name": "b"
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "component_clause": {
+                    "type_prefix": "parameter",
+                    "type_specifier": "Real",
+                    "component_list": [
+                      {
+                        "declaration": {
+                          "identifier": "fnceil",
+                          "modification": {
+                            "equal": true,
+                            "expression": {
+                              "simple_expression": {
+                                "function_call": {
+                                  "name": "ceil",
+                                  "arguments": [
+                                    {
+                                      "name": "a/b"
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "component_clause": {
+                    "type_prefix": "parameter",
+                    "type_specifier": "Real",
+                    "component_list": [
+                      {
+                        "declaration": {
+                          "identifier": "fnfloor",
+                          "modification": {
+                            "equal": true,
+                            "expression": {
+                              "simple_expression": {
+                                "function_call": {
+                                  "name": "floor",
+                                  "arguments": [
+                                    {
+                                      "name": "a/b"
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "component_clause": {
+                    "type_prefix": "parameter",
+                    "type_specifier": "Real",
+                    "component_list": [
+                      {
+                        "declaration": {
+                          "identifier": "fnint",
+                          "modification": {
+                            "equal": true,
+                            "expression": {
+                              "simple_expression": {
+                                "function_call": {
+                                  "name": "integer",
+                                  "arguments": [
+                                    {
+                                      "name": "a/b"
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "component_clause": {
+                    "type_prefix": "parameter",
+                    "type_specifier": "Real",
+                    "component_list": [
+                      {
+                        "declaration": {
+                          "identifier": "fnmax",
+                          "modification": {
+                            "equal": true,
+                            "expression": {
+                              "simple_expression": {
+                                "function_call": {
+                                  "name": "max",
+                                  "arguments": [
+                                    {
+                                      "name": "a"
+                                    },
+                                    {
+                                      "name": "b"
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "component_clause": {
+                    "type_prefix": "parameter",
+                    "type_specifier": "Real",
+                    "component_list": [
+                      {
+                        "declaration": {
+                          "identifier": "fnmaxarr",
+                          "modification": {
+                            "equal": true,
+                            "expression": {
+                              "simple_expression": {
+                                "function_call": {
+                                  "name": "max",
+                                  "arguments": [
+                                    {
+                                      "name": "fil"
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "component_clause": {
+                    "type_prefix": "parameter",
+                    "type_specifier": "Real",
+                    "component_list": [
+                      {
+                        "declaration": {
+                          "identifier": "fnmin",
+                          "modification": {
+                            "equal": true,
+                            "expression": {
+                              "simple_expression": {
+                                "function_call": {
+                                  "name": "min",
+                                  "arguments": [
+                                    {
+                                      "name": "a"
+                                    },
+                                    {
+                                      "name": "b"
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "component_clause": {
+                    "type_prefix": "parameter",
+                    "type_specifier": "Real",
+                    "component_list": [
+                      {
+                        "declaration": {
+                          "identifier": "fnminarr",
+                          "modification": {
+                            "equal": true,
+                            "expression": {
+                              "simple_expression": {
+                                "function_call": {
+                                  "name": "min",
+                                  "arguments": [
+                                    {
+                                      "name": "fil"
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "component_clause": {
+                    "type_prefix": "parameter",
+                    "type_specifier": "Real",
+                    "component_list": [
+                      {
+                        "declaration": {
+                          "identifier": "fnsum",
+                          "modification": {
+                            "equal": true,
+                            "expression": {
+                              "simple_expression": {
+                                "function_call": {
+                                  "name": "sum",
+                                  "arguments": [
+                                    {
+                                      "name": "fil"
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "modelicaFile": "/Users/reituag/OrbStack/ubuntu/home/reituag/gitrepo/modelica-json/test/expressionEvaluation/Expression.mo",
+    "fullMoFilePath": "/Users/reituag/OrbStack/ubuntu/home/reituag/gitrepo/modelica-json/test/expressionEvaluation/Expression.mo",
+    "checksum": "c2133feecb95f9368ea2adce4fca48b0"
+  }
+]

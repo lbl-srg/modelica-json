@@ -1,0 +1,605 @@
+[
+  {
+    "protected": false,
+    "final": false,
+    "identifier": "use_enthalpy",
+    "type_prefix": "parameter",
+    "type_specifier": "Boolean",
+    "condition_expression": null,
+    "assignment": {
+      "simple_expression": "true"
+    },
+    "bindings": {},
+    "annotation_cdl": null,
+    "unit": null
+  },
+  {
+    "protected": false,
+    "final": false,
+    "identifier": "delTOutHis",
+    "type_prefix": "parameter",
+    "type_specifier": "Real",
+    "condition_expression": null,
+    "assignment": {
+      "simple_expression": "1"
+    },
+    "bindings": {
+      "unit": "\"K\"",
+      "displayUnit": "\"K\"",
+      "quantity": "\"TemperatureDifference\""
+    },
+    "annotation_cdl": null,
+    "unit": "\"K\""
+  },
+  {
+    "protected": false,
+    "final": false,
+    "identifier": "delEntHis",
+    "type_prefix": "parameter",
+    "type_specifier": "Real",
+    "condition_expression": null,
+    "assignment": {
+      "simple_expression": "1000"
+    },
+    "bindings": {
+      "unit": "\"J/kg\"",
+      "quantity": "\"SpecificEnergy\""
+    },
+    "annotation_cdl": null,
+    "unit": "\"J/kg\""
+  },
+  {
+    "protected": false,
+    "final": false,
+    "identifier": "retDamFulOpeTim",
+    "type_prefix": "parameter",
+    "type_specifier": "Real",
+    "condition_expression": null,
+    "assignment": {
+      "simple_expression": "180"
+    },
+    "bindings": {
+      "unit": "\"s\"",
+      "quantity": "\"Time\""
+    },
+    "annotation_cdl": null,
+    "unit": "\"s\""
+  },
+  {
+    "protected": false,
+    "final": false,
+    "identifier": "disDel",
+    "type_prefix": "parameter",
+    "type_specifier": "Real",
+    "condition_expression": null,
+    "assignment": {
+      "simple_expression": "15"
+    },
+    "bindings": {
+      "unit": "\"s\"",
+      "quantity": "\"Time\""
+    },
+    "annotation_cdl": null,
+    "unit": "\"s\""
+  },
+  {
+    "protected": false,
+    "final": false,
+    "identifier": "TOut",
+    "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+    "condition_expression": null,
+    "assignment": null,
+    "bindings": {
+      "unit": "\"K\"",
+      "displayUnit": "\"degC\"",
+      "quantity": "\"ThermodynamicTemperature\""
+    },
+    "annotation_cdl": null,
+    "unit": "\"K\""
+  },
+  {
+    "protected": false,
+    "final": false,
+    "identifier": "hOut",
+    "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+    "condition_expression": {
+      "simple_expression": "use_enthalpy"
+    },
+    "assignment": null,
+    "bindings": {
+      "unit": "\"J/kg\"",
+      "quantity": "\"SpecificEnergy\""
+    },
+    "annotation_cdl": null,
+    "unit": "\"J/kg\""
+  },
+  {
+    "protected": false,
+    "final": false,
+    "identifier": "TOutCut",
+    "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+    "condition_expression": null,
+    "assignment": null,
+    "bindings": {
+      "unit": "\"K\"",
+      "displayUnit": "\"degC\"",
+      "quantity": "\"ThermodynamicTemperature\""
+    },
+    "annotation_cdl": null,
+    "unit": "\"K\""
+  },
+  {
+    "protected": false,
+    "final": false,
+    "identifier": "hOutCut",
+    "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+    "condition_expression": {
+      "simple_expression": "use_enthalpy"
+    },
+    "assignment": null,
+    "bindings": {
+      "unit": "\"J/kg\"",
+      "quantity": "\"SpecificEnergy\""
+    },
+    "annotation_cdl": null,
+    "unit": "\"J/kg\""
+  },
+  {
+    "protected": false,
+    "final": false,
+    "identifier": "uOutDam_min",
+    "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+    "condition_expression": null,
+    "assignment": null,
+    "bindings": {
+      "unit": "\"1\"",
+      "min": "0",
+      "max": "1"
+    },
+    "annotation_cdl": null,
+    "unit": "\"1\""
+  },
+  {
+    "protected": false,
+    "final": false,
+    "identifier": "uOutDam_max",
+    "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+    "condition_expression": null,
+    "assignment": null,
+    "bindings": {
+      "unit": "\"1\"",
+      "min": "0",
+      "max": "1"
+    },
+    "annotation_cdl": null,
+    "unit": "\"1\""
+  },
+  {
+    "protected": false,
+    "final": false,
+    "identifier": "uRetDam_max",
+    "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+    "condition_expression": null,
+    "assignment": null,
+    "bindings": {
+      "unit": "\"1\"",
+      "min": "0",
+      "max": "1"
+    },
+    "annotation_cdl": null,
+    "unit": "\"1\""
+  },
+  {
+    "protected": false,
+    "final": false,
+    "identifier": "uRetDam_min",
+    "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+    "condition_expression": null,
+    "assignment": null,
+    "bindings": {
+      "unit": "\"1\"",
+      "min": "0",
+      "max": "1"
+    },
+    "annotation_cdl": null,
+    "unit": "\"1\""
+  },
+  {
+    "protected": false,
+    "final": false,
+    "identifier": "uRetDamPhy_max",
+    "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+    "condition_expression": null,
+    "assignment": null,
+    "bindings": {
+      "unit": "\"1\"",
+      "min": "0",
+      "max": "1"
+    },
+    "annotation_cdl": null,
+    "unit": "\"1\""
+  },
+  {
+    "protected": false,
+    "final": false,
+    "identifier": "u1SupFan",
+    "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.BooleanInput",
+    "condition_expression": null,
+    "assignment": null,
+    "bindings": null,
+    "annotation_cdl": null,
+    "unit": null
+  },
+  {
+    "protected": false,
+    "final": false,
+    "identifier": "uFreProSta",
+    "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.IntegerInput",
+    "condition_expression": null,
+    "assignment": null,
+    "bindings": null,
+    "annotation_cdl": null,
+    "unit": null
+  },
+  {
+    "protected": false,
+    "final": false,
+    "identifier": "yOutDam_max",
+    "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
+    "condition_expression": null,
+    "assignment": null,
+    "bindings": {
+      "unit": "\"1\"",
+      "min": "0",
+      "max": "1"
+    },
+    "annotation_cdl": null,
+    "unit": "\"1\""
+  },
+  {
+    "protected": false,
+    "final": false,
+    "identifier": "yRetDam_min",
+    "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
+    "condition_expression": null,
+    "assignment": null,
+    "bindings": {
+      "unit": "\"1\"",
+      "min": "0",
+      "max": "1"
+    },
+    "annotation_cdl": null,
+    "unit": "\"1\""
+  },
+  {
+    "protected": false,
+    "final": false,
+    "identifier": "yRetDam_max",
+    "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
+    "condition_expression": null,
+    "assignment": null,
+    "bindings": {
+      "unit": "\"1\"",
+      "min": "0",
+      "max": "1"
+    },
+    "annotation_cdl": null,
+    "unit": "\"1\""
+  },
+  {
+    "protected": false,
+    "final": false,
+    "identifier": "truFalHol",
+    "type_specifier": "Buildings.Controls.OBC.CDL.Logical.TrueFalseHold",
+    "condition_expression": null,
+    "assignment": null,
+    "bindings": {
+      "trueHoldDuration": "600"
+    },
+    "annotation_cdl": null,
+    "unit": null
+  },
+  {
+    "protected": false,
+    "final": false,
+    "identifier": "andEnaDis",
+    "type_specifier": "Buildings.Controls.OBC.CDL.Logical.And",
+    "condition_expression": null,
+    "assignment": null,
+    "bindings": null,
+    "annotation_cdl": null,
+    "unit": null
+  },
+  {
+    "protected": true,
+    "final": true,
+    "identifier": "TOutHigLimCutHig",
+    "type_prefix": "parameter",
+    "type_specifier": "Real",
+    "condition_expression": null,
+    "assignment": {
+      "simple_expression": "0"
+    },
+    "bindings": {
+      "unit": "\"K\"",
+      "displayUnit": "\"K\"",
+      "quantity": "\"TemperatureDifference\""
+    },
+    "annotation_cdl": null,
+    "unit": "\"K\""
+  },
+  {
+    "protected": true,
+    "final": true,
+    "identifier": "TOutHigLimCutLow",
+    "type_prefix": "parameter",
+    "type_specifier": "Real",
+    "condition_expression": null,
+    "assignment": {
+      "simple_expression": "TOutHigLimCutHig -delTOutHis"
+    },
+    "bindings": {},
+    "annotation_cdl": null,
+    "unit": null
+  },
+  {
+    "protected": true,
+    "final": true,
+    "identifier": "hOutHigLimCutHig",
+    "type_prefix": "parameter",
+    "type_specifier": "Real",
+    "condition_expression": null,
+    "assignment": {
+      "simple_expression": "0"
+    },
+    "bindings": {
+      "unit": "\"J/kg\"",
+      "quantity": "\"SpecificEnergy\""
+    },
+    "annotation_cdl": null,
+    "unit": "\"J/kg\""
+  },
+  {
+    "protected": true,
+    "final": true,
+    "identifier": "hOutHigLimCutLow",
+    "type_prefix": "parameter",
+    "type_specifier": "Real",
+    "condition_expression": null,
+    "assignment": {
+      "simple_expression": "hOutHigLimCutHig -delEntHis"
+    },
+    "bindings": {},
+    "annotation_cdl": null,
+    "unit": null
+  },
+  {
+    "protected": true,
+    "final": false,
+    "identifier": "sub2",
+    "type_specifier": "Buildings.Controls.OBC.CDL.Reals.Subtract",
+    "condition_expression": {
+      "simple_expression": "use_enthalpy"
+    },
+    "assignment": null,
+    "bindings": null,
+    "annotation_cdl": null,
+    "unit": null
+  },
+  {
+    "protected": true,
+    "final": false,
+    "identifier": "sub1",
+    "type_specifier": "Buildings.Controls.OBC.CDL.Reals.Subtract",
+    "condition_expression": null,
+    "assignment": null,
+    "bindings": null,
+    "annotation_cdl": null,
+    "unit": null
+  },
+  {
+    "protected": true,
+    "final": false,
+    "identifier": "hysOutTem",
+    "type_specifier": "Buildings.Controls.OBC.CDL.Reals.Hysteresis",
+    "condition_expression": null,
+    "assignment": null,
+    "bindings": {
+      "uLow": "TOutHigLimCutLow",
+      "uHigh": "TOutHigLimCutHig"
+    },
+    "annotation_cdl": null,
+    "unit": null
+  },
+  {
+    "protected": true,
+    "final": false,
+    "identifier": "hysOutEnt",
+    "type_specifier": "Buildings.Controls.OBC.CDL.Reals.Hysteresis",
+    "condition_expression": {
+      "simple_expression": "use_enthalpy"
+    },
+    "assignment": null,
+    "bindings": {
+      "uLow": "hOutHigLimCutLow",
+      "uHigh": "hOutHigLimCutHig"
+    },
+    "annotation_cdl": null,
+    "unit": null
+  },
+  {
+    "protected": true,
+    "final": false,
+    "identifier": "outDamSwitch",
+    "type_specifier": "Buildings.Controls.OBC.CDL.Reals.Switch",
+    "condition_expression": null,
+    "assignment": null,
+    "bindings": null,
+    "annotation_cdl": null,
+    "unit": null
+  },
+  {
+    "protected": true,
+    "final": false,
+    "identifier": "retDamSwitch",
+    "type_specifier": "Buildings.Controls.OBC.CDL.Reals.Switch",
+    "condition_expression": null,
+    "assignment": null,
+    "bindings": null,
+    "annotation_cdl": null,
+    "unit": null
+  },
+  {
+    "protected": true,
+    "final": false,
+    "identifier": "maxRetDamSwitch",
+    "type_specifier": "Buildings.Controls.OBC.CDL.Reals.Switch",
+    "condition_expression": null,
+    "assignment": null,
+    "bindings": null,
+    "annotation_cdl": null,
+    "unit": null
+  },
+  {
+    "protected": true,
+    "final": false,
+    "identifier": "minRetDamSwitch",
+    "type_specifier": "Buildings.Controls.OBC.CDL.Reals.Switch",
+    "condition_expression": null,
+    "assignment": null,
+    "bindings": null,
+    "annotation_cdl": null,
+    "unit": null
+  },
+  {
+    "protected": true,
+    "final": false,
+    "identifier": "not2",
+    "type_specifier": "Buildings.Controls.OBC.CDL.Logical.Not",
+    "condition_expression": null,
+    "assignment": null,
+    "bindings": null,
+    "annotation_cdl": null,
+    "unit": null
+  },
+  {
+    "protected": true,
+    "final": false,
+    "identifier": "and2",
+    "type_specifier": "Buildings.Controls.OBC.CDL.Logical.And",
+    "condition_expression": null,
+    "assignment": null,
+    "bindings": null,
+    "annotation_cdl": null,
+    "unit": null
+  },
+  {
+    "protected": true,
+    "final": false,
+    "identifier": "and1",
+    "type_specifier": "Buildings.Controls.OBC.CDL.Logical.And",
+    "condition_expression": null,
+    "assignment": null,
+    "bindings": null,
+    "annotation_cdl": null,
+    "unit": null
+  },
+  {
+    "protected": true,
+    "final": false,
+    "identifier": "and3",
+    "type_specifier": "Buildings.Controls.OBC.CDL.Logical.And",
+    "condition_expression": null,
+    "assignment": null,
+    "bindings": null,
+    "annotation_cdl": null,
+    "unit": null
+  },
+  {
+    "protected": true,
+    "final": false,
+    "identifier": "intEqu",
+    "type_specifier": "Buildings.Controls.OBC.CDL.Integers.Equal",
+    "condition_expression": null,
+    "assignment": null,
+    "bindings": null,
+    "annotation_cdl": null,
+    "unit": null
+  },
+  {
+    "protected": true,
+    "final": false,
+    "identifier": "delOutDamOsc",
+    "type_specifier": "Buildings.Controls.OBC.CDL.Logical.TrueDelay",
+    "condition_expression": null,
+    "assignment": null,
+    "bindings": {
+      "delayTime": "disDel"
+    },
+    "annotation_cdl": null,
+    "unit": null
+  },
+  {
+    "protected": true,
+    "final": false,
+    "identifier": "delRetDam",
+    "type_specifier": "Buildings.Controls.OBC.CDL.Logical.TrueDelay",
+    "condition_expression": null,
+    "assignment": null,
+    "bindings": {
+      "delayTime": "retDamFulOpeTim"
+    },
+    "annotation_cdl": null,
+    "unit": null
+  },
+  {
+    "protected": true,
+    "final": false,
+    "identifier": "not1",
+    "type_specifier": "Buildings.Controls.OBC.CDL.Logical.Not",
+    "condition_expression": null,
+    "assignment": null,
+    "bindings": null,
+    "annotation_cdl": null,
+    "unit": null
+  },
+  {
+    "protected": true,
+    "final": false,
+    "identifier": "conInt",
+    "type_specifier": "Buildings.Controls.OBC.CDL.Integers.Sources.Constant",
+    "condition_expression": null,
+    "assignment": null,
+    "bindings": {
+      "k": "Buildings.Controls.OBC.ASHRAE.G36.Types.FreezeProtectionStages.stage0"
+    },
+    "annotation_cdl": null,
+    "unit": null
+  },
+  {
+    "protected": true,
+    "final": false,
+    "identifier": "entSubst1",
+    "type_specifier": "Buildings.Controls.OBC.CDL.Logical.Sources.Constant",
+    "condition_expression": {
+      "simple_expression": "not use_enthalpy"
+    },
+    "assignment": null,
+    "bindings": {
+      "k": "false"
+    },
+    "annotation_cdl": null,
+    "unit": null
+  },
+  {
+    "protected": true,
+    "final": false,
+    "identifier": "or2",
+    "type_specifier": "Buildings.Controls.OBC.CDL.Logical.Or",
+    "condition_expression": null,
+    "assignment": null,
+    "bindings": null,
+    "annotation_cdl": null,
+    "unit": null
+  }
+]
