@@ -40,21 +40,21 @@ const expressionVal = [
   [ " if a < b and not (a < b) then 1 else 2", 2 ] ,
   [
     " if not ([object Object]) then 1 else 2",
-    "if ( ! ( [ objectObject ] ) ) 1 ; else 2"
+    " ! ( [ objectObject ] )  ?  1  :  2"
   ] ,
   [
     " if ([object Object]) and not ([object Object]) then 1 else 2",
-    "if ( ( [ objectObject ] ) && ! ( [ objectObject ] ) ) 1 ; else 2"
+    " ( [ objectObject ] ) && ! ( [ objectObject ] )  ?  1  :  2"
   ] ,
   [ "Array(4).fill(a)", [ 1, 1, 1, 1 ] ] ,
   [ "math.size(fil)[1 - 1]", 4 ] ,
   [ "math.size(fil)", [ 4 ] ] ,
   [
     "{{{i,j} for i in 1:a} for j in 1:b}",
-    "{ { { i , j } for i in 1 : 1 } for j in 1 : 2 }"
+    "[ [ [ i , j ] for i in 1 : 1 ] for j in 1 : 2 ]"
   ] ,
-  [ "{{i,j} for i in 1:a}", "{ { i , j } for i in 1 : 1 }" ] ,
-  [ "{i,j}", "{ i , j }" ] ,
+  [ "{{i,j} for i in 1:a}", "[ [ i , j ] for i in 1 : 1 ]" ] ,
+  [ "{i,j}", "[ i , j ]" ] ,
   [ "math.abs(-b)", 2 ] ,
   [ "math.sign(b)", 1 ] ,
   [ "math.sqrt(b)", 1.4142135623730951 ] ,
