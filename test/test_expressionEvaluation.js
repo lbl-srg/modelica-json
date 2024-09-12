@@ -76,27 +76,27 @@ const enableVal = {
   delEntHis: 1000,
   retDamFulOpeTim: 180,
   disDel: 15,
-  "truFalHol$trueHoldDuration": 600,
-  "truFalHol$falseHoldDuration": 600,
-  "truFalHol$pre_u_start": false,
+  "truFalHol.trueHoldDuration": 600,
+  "truFalHol.falseHoldDuration": 600,
+  "truFalHol.pre_u_start": false,
   TOutHigLimCutHig: 0,
   TOutHigLimCutLow: -1,
   hOutHigLimCutHig: 0,
   hOutHigLimCutLow: -1000,
-  "hysOutTem$uLow": -1,
-  "hysOutTem$uHigh": 0,
-  "hysOutTem$pre_y_start": false,
-  "hysOutEnt$uLow": -1000,
-  "hysOutEnt$uHigh": 0,
-  "hysOutEnt$pre_y_start": false,
-  "delOutDamOsc$delayTime": 15,
-  "delOutDamOsc$delayOnInit": false,
-  "delOutDamOsc$t_past": null,
-  "delRetDam$delayTime": 180,
-  "delRetDam$delayOnInit": false,
-  "delRetDam$t_past": null,
-  "conInt$k": "Buildings.Controls.OBC.ASHRAE.G36.Types.FreezeProtectionStages.stage0",
-  "entSubst1$k": false
+  "hysOutTem.uLow": -1,
+  "hysOutTem.uHigh": 0,
+  "hysOutTem.pre_y_start": false,
+  "hysOutEnt.uLow": -1000,
+  "hysOutEnt.uHigh": 0,
+  "hysOutEnt.pre_y_start": false,
+  "delOutDamOsc.delayTime": 15,
+  "delOutDamOsc.delayOnInit": false,
+  "delOutDamOsc.t_past": null,
+  "delRetDam.delayTime": 180,
+  "delRetDam.delayOnInit": false,
+  "delRetDam.t_past": null,
+  "conInt.k": "Buildings.Controls.OBC.ASHRAE.G36.Types.FreezeProtectionStages.stage0",
+  "entSubst1.k": false
 }
 mocha.describe('expressionEvaluation', function () {
   mocha.describe('#evalInContext()', function () {
@@ -117,10 +117,11 @@ mocha.describe('expressionEvaluation', function () {
     })
     mocha.it('should return 1', function () {
       assert.strictEqual(
-        expressionEvaluation.evalInContext('b', { a$b: 'c', b: 2, c: 1 }, 'a'),
+        expressionEvaluation.evalInContext('b', { 'a.b': 'c', b: 2, c: 1 }, 'a'),
         1)
     })
   })
+
   mocha.describe('#stringifyExpression()', function () {
     const stringifyExpression = expressionEvaluation.__get__('stringifyExpression')
     mocha.it('should return the given expression strings', function () {
@@ -129,11 +130,14 @@ mocha.describe('expressionEvaluation', function () {
         expressionVal.map(el => el[0]))
     })
   })
+
   mocha.describe('#evalExpression()', function () {
     mocha.it('should return the given values (case with a flat model with all types of expression)', function () {
       const values = []
       expressionVal.forEach((el) => {
-        values.push(expressionEvaluation.evalExpression(el[0], expressionParam))
+        values.push(expressionEvaluation.evalExpression(
+          el[0],
+          expressionParam.reduce((a, v) => ({ ...a, [v.name]: v.value }), {}) ))
       })
       assert.deepStrictEqual(
         values,
@@ -141,14 +145,17 @@ mocha.describe('expressionEvaluation', function () {
     })
     mocha.it('should return the given values (case with a composite model with a few types of expression)', function () {
       const values = {}
-      for (const [par, exp] of Object.entries(enableParam)) {
-        values[par] = expressionEvaluation.evalExpression(exp, enableParam)
-      }
+      enableParam.forEach( (par) => {
+        values[par.name] = expressionEvaluation.evalExpression(
+          par.value,
+          enableParam.reduce((a, v) => ({ ...a, [v.name]: v.value }), {}) )
+      })
       assert.deepStrictEqual(
         values,
         enableVal)
     })
   })
+
   mocha.describe('#getComponents()', function () {
     mocha.it('should return the given set of components for the given class object', function () {
       const components = JSON.parse(
@@ -161,6 +168,7 @@ mocha.describe('expressionEvaluation', function () {
       )
     })
   })
+
   mocha.describe('#getParametersAndBindings()', function () {
     mocha.it('should return the given set of parameters for the given class object', function () {
       assert.deepStrictEqual(

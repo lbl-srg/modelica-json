@@ -1,35 +1,200 @@
-{
-  "a": "1",
-  "b": "a*2",
-  "exp": "b^b",
-  "equal": "a == b",
-  "diff": "a <> b",
-  "leq": "a <= b",
-  "geq": "a >= b",
-  "lt": "a < b",
-  "gt": "a > b",
-  "ifexp": " if b > a then 1 else 0",
-  "elseifexp": " if a > b then 0 elseif b == 2 then 1 else -1",
-  "notexp": " if not (a < b) then 1 else 2",
-  "andnotexp": " if a < b and not (a < b) then 1 else 2",
-  "notexppar": " if not ([object Object]) then 1 else 2",
-  "andnotexppar": " if ([object Object]) and not ([object Object]) then 1 else 2",
-  "fil": "Array(4).fill(a)",
-  "siz1": "math.size(fil)[1 - 1]",
-  "siz": "math.size(fil)",
-  "arr": "{{{i,j} for i in 1:a} for j in 1:b}",
-  "fnabs": "math.abs(-b)",
-  "fnsign": "math.sign(b)",
-  "fnsqrt": "math.sqrt(b)",
-  "fndiv": "math.floor(math.divide(a,b))",
-  "fnmod": "math.mod(a,b)",
-  "fnrem": "rem(a,b)",
-  "fnceil": "math.ceil(a/b)",
-  "fnfloor": "math.floor(a/b)",
-  "fnint": "math.floor(a/b)",
-  "fnmax": "math.max(a,b)",
-  "fnmaxarr": "math.max(fil)",
-  "fnmin": "math.min(a,b)",
-  "fnminarr": "math.min(fil)",
-  "fnsum": "math.sum(fil)"
-}
+[
+  {
+    "name": "a",
+    "value": "1",
+    "unit": null,
+    "displayUnit": null
+  },
+  {
+    "name": "b",
+    "value": "a*2",
+    "unit": null,
+    "displayUnit": null
+  },
+  {
+    "name": "exp",
+    "value": "b^b",
+    "unit": null,
+    "displayUnit": null
+  },
+  {
+    "name": "equal",
+    "value": "a == b",
+    "unit": null,
+    "displayUnit": null
+  },
+  {
+    "name": "diff",
+    "value": "a <> b",
+    "unit": null,
+    "displayUnit": null
+  },
+  {
+    "name": "leq",
+    "value": "a <= b",
+    "unit": null,
+    "displayUnit": null
+  },
+  {
+    "name": "geq",
+    "value": "a >= b",
+    "unit": null,
+    "displayUnit": null
+  },
+  {
+    "name": "lt",
+    "value": "a < b",
+    "unit": null,
+    "displayUnit": null
+  },
+  {
+    "name": "gt",
+    "value": "a > b",
+    "unit": null,
+    "displayUnit": null
+  },
+  {
+    "name": "ifexp",
+    "value": " if b > a then 1 else 0",
+    "unit": null,
+    "displayUnit": null
+  },
+  {
+    "name": "elseifexp",
+    "value": " if a > b then 0 elseif b == 2 then 1 else -1",
+    "unit": null,
+    "displayUnit": null
+  },
+  {
+    "name": "notexp",
+    "value": " if not (a < b) then 1 else 2",
+    "unit": null,
+    "displayUnit": null
+  },
+  {
+    "name": "andnotexp",
+    "value": " if a < b and not (a < b) then 1 else 2",
+    "unit": null,
+    "displayUnit": null
+  },
+  {
+    "name": "notexppar",
+    "value": " if not ([object Object]) then 1 else 2",
+    "unit": null,
+    "displayUnit": null
+  },
+  {
+    "name": "andnotexppar",
+    "value": " if ([object Object]) and not ([object Object]) then 1 else 2",
+    "unit": null,
+    "displayUnit": null
+  },
+  {
+    "name": "fil",
+    "value": "Array(4).fill(a)",
+    "unit": null,
+    "displayUnit": null
+  },
+  {
+    "name": "siz1",
+    "value": "math.size(fil)[1 - 1]",
+    "unit": null,
+    "displayUnit": null
+  },
+  {
+    "name": "siz",
+    "value": "math.size(fil)",
+    "unit": null,
+    "displayUnit": null
+  },
+  {
+    "name": "arr",
+    "value": "{{{i,j} for i in 1:a} for j in 1:b}",
+    "unit": null,
+    "displayUnit": null
+  },
+  {
+    "name": "fnabs",
+    "value": "math.abs(-b)",
+    "unit": null,
+    "displayUnit": null
+  },
+  {
+    "name": "fnsign",
+    "value": "math.sign(b)",
+    "unit": null,
+    "displayUnit": null
+  },
+  {
+    "name": "fnsqrt",
+    "value": "math.sqrt(b)",
+    "unit": null,
+    "displayUnit": null
+  },
+  {
+    "name": "fndiv",
+    "value": "math.floor(math.divide(a,b))",
+    "unit": null,
+    "displayUnit": null
+  },
+  {
+    "name": "fnmod",
+    "value": "math.mod(a,b)",
+    "unit": null,
+    "displayUnit": null
+  },
+  {
+    "name": "fnrem",
+    "value": "rem(a,b)",
+    "unit": null,
+    "displayUnit": null
+  },
+  {
+    "name": "fnceil",
+    "value": "math.ceil(a/b)",
+    "unit": null,
+    "displayUnit": null
+  },
+  {
+    "name": "fnfloor",
+    "value": "math.floor(a/b)",
+    "unit": null,
+    "displayUnit": null
+  },
+  {
+    "name": "fnint",
+    "value": "math.floor(a/b)",
+    "unit": null,
+    "displayUnit": null
+  },
+  {
+    "name": "fnmax",
+    "value": "math.max(a,b)",
+    "unit": null,
+    "displayUnit": null
+  },
+  {
+    "name": "fnmaxarr",
+    "value": "math.max(fil)",
+    "unit": null,
+    "displayUnit": null
+  },
+  {
+    "name": "fnmin",
+    "value": "math.min(a,b)",
+    "unit": null,
+    "displayUnit": null
+  },
+  {
+    "name": "fnminarr",
+    "value": "math.min(fil)",
+    "unit": null,
+    "displayUnit": null
+  },
+  {
+    "name": "fnsum",
+    "value": "math.sum(fil)",
+    "unit": null,
+    "displayUnit": null
+  }
+]
