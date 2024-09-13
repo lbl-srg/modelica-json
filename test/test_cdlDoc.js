@@ -1,12 +1,17 @@
-const assert = require('assert')
-const fs = require('bluebird').promisifyAll(require('fs'))
-const jsonQuery = require('../lib/jsonquery')
-const mocha = require('mocha')
-const path = require('path')
-const rewire = require('rewire')
+const assert = require('assert');
+const fs = require('bluebird').promisifyAll(require('fs'));
+const jsonQuery = require('../lib/jsonquery');
+const math = require("mathjs");
+const mocha = require('mocha');
+const path = require('path');
+const rewire = require('rewire');
 
 // We use rewire to access private functions and test them
 const cdlDoc = rewire('../lib/cdlDoc.js')
+
+const units = JSON.parse(
+  fs.readFileSync(path.join(process.cwd(), 'units-si.json'), 'utf8')
+);
 
 mocha.describe('cdlDoc', function () {
   mocha.describe('#sortDocSections()', function () {
@@ -37,6 +42,18 @@ mocha.describe('cdlDoc', function () {
       assert.deepStrictEqual(
         doc.sort(sortDocSections.bind(doc)),
         orderedDoc)
+    })
+  })
+
+  mocha.describe('#convertUnit()', function () {
+    const convertUnit = cdlDoc.__get__('convertUnit');
+    mocha.it('should return the given array of converted units', function () {
+      assert.deepStrictEqual(
+        units.reduce((a, v) =>
+          [...a, math.round(convertUnit(300, v.unit, v.displayUnit, units), 5)], []
+        ),
+        [ 26.85, 0.08333, 0.00008, 1080 ]
+      )
     })
   })
 })
