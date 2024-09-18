@@ -173,13 +173,13 @@ mocha.describe('expressionEvaluation', function () {
     mocha.it('should return the given set of parameters for the given class object', function () {
       assert.deepStrictEqual(
         expressionEvaluation.getParametersAndBindings(
-          enableJsons, enableJsons[0]).parameters,
+          enableJsons[0], enableJsons).parameters,
         enableParam)
     })
     mocha.it('should return the given set of parameters for the given class definition', function () {
       assert.deepStrictEqual(
         expressionEvaluation.getParametersAndBindings(
-          enableJsons, enableJsons[0].class_definition[0]).parameters,
+          enableJsons[0].class_definition[0], enableJsons).parameters,
         enableParam)
     })
   })

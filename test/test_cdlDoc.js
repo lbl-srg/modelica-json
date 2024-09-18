@@ -72,11 +72,10 @@ mocha.describe('cdlDoc', function () {
         '<p>Documentation with <code>T + dT1 + dT2</code></p>\n' +
         '</html>"'
     };
-    const modifiedDoc = '<html>\n' +
-      "<h1>Heading from description string</h1>\n" +
-      "<h2>Existing heading</h2>\n" +
-      "<p>Documentation with <code>T + dT1 + dT2</code>&nbsp;(22 °C, adjustable)</p>\n" +
-      '</html>'
+    const modifiedDoc = '<section id="heading-from-description-string"><h1>Heading from description string</h1>\n' +
+      '<h2>Existing heading</h2>\n' +
+      '<p>Documentation with <code>T + dT1 + dT2</code>&nbsp;(22 °C, adjustable)</p>\n' +
+      '</section>';
     mocha.it('should return the given HTML string', function () {
       assert.strictEqual(
         modifyInfo(
