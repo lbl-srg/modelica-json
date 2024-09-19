@@ -56,6 +56,74 @@ mocha.describe('cdlDoc', function () {
     })
   })
 
+  mocha.describe('#processImg()', function () {
+    const processImg = cdlDoc.__get__('processImg');
+    mocha.it('should return the absolute image path and modify the argument object', function () {
+      const htmlStr = `<p align=\"center\"><img src=\"modelica://Library/Resources/Image.png\"`+
+      `border=\"1\" alt=\"Test image.\"/></p>`
+      $ = require('cheerio').load(htmlStr);
+      const imgPath = path.resolve(
+        path.join(process.cwd(), 'test', 'expressionEvaluation', 'Library', 'Resources', 'Image.png')
+      );
+      const libPath = path.join(process.cwd(), 'test', 'expressionEvaluation');
+      process.env.MODELICAPATH = process.env.MODELICAPATH + `:${libPath}`
+      assert.deepStrictEqual(
+        processImg($),
+        {'Library_Resources_Image.png': imgPath}
+      );
+      assert.strictEqual(
+        $.html(),
+        `<html><head></head><body><p align="center">` +
+        `<img alt="Test image." src="img/Library_Resources_Image.png"></p></body></html>`
+      )
+    })
+  })
+
+  mocha.describe('#createAnchorId()', function () {
+    const createAnchorId = cdlDoc.__get__('createAnchorId');
+    mocha.it('should return "1.1heading-text"', function () {
+      assert.strictEqual(
+        createAnchorId('1.1', 'Heading Text'),
+        '1.1heading-text'
+      )
+    })
+  })
+
+  mocha.describe('#createNomenclature()', function () {
+    const createNomenclature = cdlDoc.__get__('createNomenclature');
+    mocha.it('should modify the documentation object', function () {
+      const documentation = [
+        {
+          instance: {
+            cdlAnnotation: { section: '1.' }
+          },
+          classCdlAnnotation: { section: '1.2' },
+        },
+        {
+          instance: {
+            cdlAnnotation: { section: '2.' }
+          },
+          classCdlAnnotation: null,
+        },
+        {
+          instance: {
+            cdlAnnotation: null
+          },
+          classCdlAnnotation: { section: '2.2' },
+        },
+      ]
+      createNomenclature(documentation);
+      assert.deepStrictEqual(
+        documentation.map(({ headingIdx }) => headingIdx),
+        [1, 1, 2]
+      )
+      assert.deepStrictEqual(
+        documentation.map(({ headingNum }) => headingNum),
+        ["1", "2", "2.1"]
+      )
+    })
+  })
+
   mocha.describe('#modifyInfo()', function () {
     const modifyInfo = cdlDoc.__get__('modifyInfo');
     const docElement = {
@@ -70,12 +138,16 @@ mocha.describe('cdlDoc', function () {
       classDocInfo: '"<html>\n' +
         '<h4>Existing heading</h4>\n' +
         '<p>Documentation with <code>T + dT1 + dT2</code></p>\n' +
-        '</html>"'
+        '</html>"',
+      headingIdx: 1,
+      headingNum: '5'
     };
-    const modifiedDoc = '<section id="heading-from-description-string"><h1>Heading from description string</h1>\n' +
-      '<h2>Existing heading</h2>\n' +
-      '<p>Documentation with <code>T + dT1 + dT2</code>&nbsp;(22 °C, adjustable)</p>\n' +
-      '</section>';
+    const modifiedDoc = '<h1><a name="5heading-from-description-stri"></a>' +
+      '<!--[if !supportLists]--><span style="mso-list:Ignore">5.&nbsp;</span>' +
+      '<!--[endif]-->Heading from description string</h1>\n' +
+      '<h2><a name="5.1existing-heading"></a><!--[if !supportLists]-->' +
+      '<span style="mso-list:Ignore">5.1.&nbsp;</span><!--[endif]-->Existing heading</h2>\n' +
+      '\n<p>Documentation with <code>T + dT1 + dT2</code>&nbsp;(22&nbsp;°C, adjustable)</p>\n';
     mocha.it('should return the given HTML string', function () {
       assert.strictEqual(
         modifyInfo(
