@@ -626,6 +626,22 @@ S231P:connectedTo
   rdfs:range S231P:Connector ;
 .
 
+S231P:translationSoftware 
+  a rdf:Property ;
+  rdfs:comment "Used to include the name of the software used to CXF representation of the sequence" ;
+  rdfs:label "translation software" ;
+  rdfs:domain S231P:Block ;
+  rdfs:range S231P:String ;
+.
+
+S231P:translationSoftwareVersion
+  a rdf:Property ;
+  rdfs:comment "Used to include the version of the software used to CXF representation of the sequence" ;
+  rdfs:label "translation software version" ;
+  rdfs:domain S231P:Block ;
+  rdfs:range S231P:String ;
+.
+
 S231P:description a rdf:Property .
 S231P:accessSpecifier a rdf:Property . 
 S231P:graphics a rdf:Property .
