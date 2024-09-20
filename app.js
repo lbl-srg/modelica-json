@@ -102,8 +102,10 @@ if (args.output !== 'modelica' && args.file.endsWith('.json')) {
   throw new Error("The json input file required only when the output format (-o) is 'modelica'.")
 }
 
+const outDir = (args.directory === 'current') ? process.cwd() : args.directory
+
 if (args.output === 'modelica') {
-  pa.convertToModelica(args.file, args.directory, false)
+  pa.convertToModelica(args.file, outDir, false)
 } else {
   // Get mo files array
   if (args.elementary || args.cxfCore) {
@@ -123,16 +125,16 @@ if (args.output === 'modelica') {
     function (resolve, reject) {
       const moFiles = ut.getMoFiles(args.file)
       // Parse the json representation for moFiles
-      pa.getJsons(moFiles, args.mode, args.output, args.directory, args.prettyPrint, args.elementary, args.cxfCore)
+      pa.getJsons(moFiles, args.mode, args.output, outDir, args.prettyPrint, args.elementary, args.cxfCore)
       resolve(0)
     }
   )
   completedJsonGeneration.then(function () {
     if (args.output === 'semantic') {
-      se.getSemanticInformation(args.file, args.directory)
+      se.getSemanticInformation(args.file, outDir)
     }
     if (args.output === 'cxf' && args.cxfCore && args.elementary) {
-      ce.getCxfCore(args.file, args.directory, args.prettyPrint)
+      ce.getCxfCore(args.file, outDir, args.prettyPrint)
     }
   })
 }
@@ -144,8 +146,7 @@ if (args.output === 'json') {
   } else {
     schema = path.join(`${__dirname}`, 'schema-modelica.json')
   }
-  const jsonDir = (args.directory === 'current') ? process.cwd() : args.directory
-  let jsonFiles = ut.findFilesInDir(path.join(jsonDir, 'json'), '.json')
+  let jsonFiles = ut.findFilesInDir(path.join(outDir, 'json'), '.json')
   // exclude CDL folder and possibly Modelica folder
   const pathSep = path.sep
   const cdlPath = path.join(pathSep, 'CDL', pathSep)
