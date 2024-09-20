@@ -1,6 +1,8 @@
 const assert = require('assert');
+const cheerio = require('cheerio');
 const fs = require('bluebird').promisifyAll(require('fs'));
 const jsonQuery = require('../lib/jsonquery');
+const logger = require('winston');
 const math = require("mathjs");
 const mocha = require('mocha');
 const path = require('path');
@@ -8,7 +10,15 @@ const rewire = require('rewire');
 
 // We use rewire to access private functions and test them
 const cdlDoc = rewire('../lib/cdlDoc.js');
+const expressionEvaluation = rewire('../lib/expressionEvaluation.js');
 
+// Function to unset rewired functions after each test
+let unset;
+mocha.afterEach(() => {
+  if (unset != null) { unset.call(); }
+})
+
+logger.level = 'error';
 const unitData = JSON.parse(
   fs.readFileSync(path.join(process.cwd(), 'units-si.json'), 'utf8'));
 
@@ -58,10 +68,10 @@ mocha.describe('cdlDoc', function () {
 
   mocha.describe('#processImg()', function () {
     const processImg = cdlDoc.__get__('processImg');
-    mocha.it('should return the absolute image path and modify the argument object', function () {
-      const htmlStr = `<p align=\"center\"><img src=\"modelica://Library/Resources/Image.png\"`+
-      `border=\"1\" alt=\"Test image.\"/></p>`
-      $ = require('cheerio').load(htmlStr);
+    mocha.it('should return the absolute image path and modify the src attributes as expected', function () {
+      const htmlStr = `<p align=\"center\"><img src=\"modelica://Library/Resources/Image.png\"` +
+        `border=\"1\" alt=\"Test image\"/></p>`
+      $ = cheerio.load(htmlStr);
       const imgPath = path.resolve(
         path.join(process.cwd(), 'test', 'expressionEvaluation', 'Library', 'Resources', 'Image.png')
       );
@@ -69,13 +79,60 @@ mocha.describe('cdlDoc', function () {
       process.env.MODELICAPATH = process.env.MODELICAPATH + `:${libPath}`
       assert.deepStrictEqual(
         processImg($),
-        {'Library_Resources_Image.png': imgPath}
+        { 'Library_Resources_Image.png': imgPath }
       );
       assert.strictEqual(
         $.html(),
         `<html><head></head><body><p align="center">` +
-        `<img alt="Test image." src="img/Library_Resources_Image.png"></p></body></html>`
+        `<img src="img/Library_Resources_Image.png" border="1" alt="Test image"></p></body></html>`
       )
+    })
+  })
+
+  mocha.describe('#processCdlToggle()', function () {
+    const processCdlToggle = cdlDoc.__get__('processCdlToggle');
+    mocha.it('should empty the span element', function () {
+      const htmlStr = `<html><p>
+      Controller for a radiant heating system.
+      </p>
+      <span><-- cdl(visible=controllerType <> CDL.Types.SimpleController.P) -->
+      <p><b>Note:</b>
+      For systems with high thermal mass, this controller should be left configured as a P-controller.
+      </p><-- end cdl --></span>
+      </html>`
+      const $ = cheerio.load(htmlStr);
+      const $1 = cheerio.load(htmlStr);
+      processCdlToggle($, { controllerType: 'CDL.Types.SimpleController.P' });
+      $1('span').empty();
+      assert.strictEqual(
+        $.html(),
+        $1.html()
+      );
+    })
+  })
+
+  mocha.describe('#processHref()', function () {
+    const processHref = cdlDoc.__get__('processHref');
+    mocha.it('should modify the href attributes as expected', function () {
+      const htmlStr = `<html><p>See <a href=\\\"modelica://Library.ControlBlock\\\">Library.ControlBlock</a> ` +
+        `and <a href=\\\"modelica://Library.ExternalControlBlock\\\">Library.ExternalControlBlock</a></p></html>`
+      const documentation = [
+        {
+          descriptionString: 'Heading from description string',
+          fullClassName: 'Library.ControlBlock',
+          headingNum: '5'
+        }
+      ];
+      const libPath = path.join(process.cwd(), 'test', 'expressionEvaluation');
+      process.env.MODELICAPATH = process.env.MODELICAPATH + `:${libPath}`
+      const $ = cheerio.load(htmlStr);
+      processHref($, documentation);
+      assert.strictEqual(
+        $.html(),
+        `<html><head></head><body><p>See <a href="#5heading-from-description-stri"` +
+        ` style="white-space: nowrap;">Section 5</a> and <span style="color: grey;"` +
+        ` id="Library.ExternalControlBlock"><a>Library.ExternalControlBlock</a></span></p></body></html>`
+      );
     })
   })
 
@@ -147,7 +204,7 @@ mocha.describe('cdlDoc', function () {
       '<!--[endif]-->Heading from description string</h1>\n' +
       '<h2><a name="5.1existing-heading"></a><!--[if !supportLists]-->' +
       '<span style="mso-list:Ignore">5.1.&nbsp;</span><!--[endif]-->Existing heading</h2>\n' +
-      '\n<p>Documentation with <code>T + dT1 + dT2</code>&nbsp;(22&nbsp;°C, adjustable)</p>\n';
+      '\n<p>Documentation with <code>T + dT1 + dT2</code>&nbsp;(22&nbsp;°C, adjustable)</p>';
     mocha.it('should return the given HTML string', function () {
       assert.strictEqual(
         modifyInfo(
@@ -161,4 +218,30 @@ mocha.describe('cdlDoc', function () {
     })
   })
 
+  mocha.describe('#buildDoc()', function () {
+    mocha.it('should create the expected HTML document', function () {
+      const outputDir = path.join(process.cwd(), 'tmp');
+      const paramAndDoc = JSON.parse(fs.readFileSync(path.join(
+        process.cwd(), 'test', 'expressionEvaluation', 'MultiZoneVavParamAndDoc.json'
+      ), 'utf8'));
+      unset = cdlDoc.__set__({
+        expressionEvaluation: {
+          ...expressionEvaluation,
+          getParametersAndBindings: function () {
+            return paramAndDoc;
+          }
+        }
+      });
+      const jsons = JSON.parse(fs.readFileSync(path.join(
+        process.cwd(), 'test', 'expressionEvaluation', 'MultiZoneVav.json'
+      ), 'utf8'));
+      cdlDoc.buildDoc(jsons[0], jsons, unitData, outputDir, 'MultiZoneVavDoc');
+      const htmlDoc = fs.readFileSync(path.join(outputDir, 'MultiZoneVavDoc.html'), 'utf8');
+      const htmlDocExp = fs.readFileSync(path.join(
+        process.cwd(), 'test', 'expressionEvaluation', 'MultiZoneVavDoc.html'
+      ), 'utf8');
+      fs.rmSync(outputDir, { recursive: true, force: true });
+      assert.strictEqual(htmlDoc, htmlDocExp);
+    })
+  })
 })
