@@ -150,22 +150,13 @@ mocha.describe('cdlDoc', function () {
     mocha.it('should modify the documentation object', function () {
       const documentation = [
         {
-          instance: {
-            cdlAnnotation: { section: '1.' }
-          },
-          classCdlAnnotation: { section: '1.2' }
+          section: '1.'
         },
         {
-          instance: {
-            cdlAnnotation: { section: '2.' }
-          },
-          classCdlAnnotation: null
+          section: '2.'
         },
         {
-          instance: {
-            cdlAnnotation: null
-          },
-          classCdlAnnotation: { section: '2.2' }
+          section: '2.2'
         }
       ]
       createNomenclature(documentation)
@@ -190,8 +181,8 @@ mocha.describe('cdlDoc', function () {
         cdlAnnotation: { section: '1.' }
       },
       descriptionString: 'Heading from description string',
-      classCdlAnnotation: { section: '1.2' },
-      classDocInfo: '"<html>\n' +
+      cdlAnnotation: { section: '1.2' },
+      documentationInfo: '"<html>\n' +
         '<h4>Existing heading</h4>\n' +
         '<p>Documentation with <code>T + dT1 + dT2</code></p>\n' +
         '</html>"',
