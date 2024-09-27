@@ -117,7 +117,7 @@ mocha.describe('cdlDoc', function () {
         'and <a href="modelica://Library.ExternalControlBlock">Library.ExternalControlBlock</a></p></html>'
       const documentation = [
         {
-          descriptionString: 'Heading from description string',
+          headingText: 'Heading',
           fullClassName: 'Library.ControlBlock',
           headingNum: '5'
         }
@@ -128,7 +128,7 @@ mocha.describe('cdlDoc', function () {
       processHref($, documentation)
       assert.strictEqual(
         $.html(),
-        '<html><head></head><body><p>See <a href="#5heading-from-description-stri"' +
+        '<html><head></head><body><p>See <a href="#5heading"' +
         ' style="white-space: nowrap;">Section 5</a> and <span style="color: grey;"' +
         ' id="Library.ExternalControlBlock"><a>Library.ExternalControlBlock</a></span></p></body></html>'
       )
@@ -189,12 +189,12 @@ mocha.describe('cdlDoc', function () {
       headingIdx: 1,
       headingNum: '5'
     }
-    const modifiedDoc = '<h1><a name="5heading-from-description-stri"></a>' +
+    const modifiedDoc =
+      '<h1><a name="5heading-from-description-stri"></a>' +
       '<!--[if !supportLists]--><span style="mso-list:Ignore">5.&nbsp;</span>' +
-      '<!--[endif]-->Heading from description string</h1>\n' +
-      '<h2><a name="5.1existing-heading"></a><!--[if !supportLists]-->' +
-      '<span style="mso-list:Ignore">5.1.&nbsp;</span><!--[endif]-->Existing heading</h2>\n' +
-      '\n<p>Documentation with <code>T + dT1 + dT2</code>&nbsp;(22&nbsp;°C, adjustable)</p>'
+      '<!--[endif]-->Heading from description string</h1>\n<h2><a name="5.1existing-heading"></a>' +
+      '<!--[if !supportLists]--><span style="mso-list:Ignore">5.1.&nbsp;</span><!--[endif]-->Existing heading</h2>\n' +
+      '\n<p>Documentation with <code>T + dT1 + dT2</code>&nbsp;(22&nbsp;°C, adjustable)</p>\n'
     mocha.it('should return the given HTML string', function () {
       assert.strictEqual(
         modifyInfo(

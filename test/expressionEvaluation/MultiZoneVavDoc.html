@@ -1,4 +1,116 @@
-<html><head><title>MultiZoneVavDoc</title></head><body><h1><a name="1freeze-protection"></a><!--[if !supportLists]--><span style="mso-list:Ignore">1.&nbsp;</span><!--[endif]-->Freeze protection</h1>
+<html><head><title>MultiZoneVavDoc</title></head><body><h1><a name="1multizone-vav-air-handling-un"></a><!--[if !supportLists]--><span style="mso-list:Ignore">1.&nbsp;</span><!--[endif]-->Multizone VAV air handling unit controller</h1>
+<p>
+Block that is applied for multizone VAV AHU control. It outputs the supply fan status
+and the operation speed, outdoor and return air damper position, supply air
+temperature setpoint and the valve position of the cooling and heating coils.
+It is implemented according to the Section 5.16 of ASHRAE Guideline 36, May 2020.
+</p>
+<p>
+The sequence consists of eight types of subsequences.
+</p>
+<h2><a name="1.1supply-fan-speed-control"></a><!--[if !supportLists]--><span style="mso-list:Ignore">1.1.&nbsp;</span><!--[endif]-->Supply fan speed control</h2>
+
+<p>
+The fan speed control is implemented according to Section 5.16.1. It outputs
+the boolean signal <code>y1SupFan</code> to turn on or off the supply fan.
+In addition, based on the pressure reset request <code>uZonPreResReq</code>
+from the VAV zones controller, the
+sequence resets the duct pressure setpoint, and uses this setpoint
+to modulate the fan speed <code>ySupFanSpe</code> using a PI controller.
+See
+<a href="#5supply-fan-speed-setpoint" style="white-space: nowrap;">Section 5</a>
+for more detailed description.
+</p>
+<h2><a name="1.2minimum-outdoor-airflow-set"></a><!--[if !supportLists]--><span style="mso-list:Ignore">1.2.&nbsp;</span><!--[endif]-->Minimum outdoor airflow setting</h2>
+
+<p>
+According to current occupany, supply operation status <code>ySupFan</code>,
+zone temperatures and the discharge air temperature, the sequence computes the
+minimum outdoor airflow rate setpoint, which is used as input for the economizer control.
+More detailed information can be found in
+<span style="color: grey;" id="Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.OutdoorAirFlow"><a>
+Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.OutdoorAirFlow</a></span>.
+</p>
+<h2><a name="1.3economizer-control"></a><!--[if !supportLists]--><span style="mso-list:Ignore">1.3.&nbsp;</span><!--[endif]-->Economizer control</h2>
+
+<p>
+The block outputs outdoor and return air damper position, <code>yOutDamPos</code> and
+<code>yRetDamPos</code>. First, it computes the position limits to satisfy the minimum
+outdoor airflow requirement. Second, it determines the availability of the economizer based
+on the outdoor condition. The dampers are modulated to track the supply air temperature
+loop signal, which is calculated from the sequence below, subject to the minimum outdoor airflow
+requirement and economizer availability.
+See
+<a href="#4economizer-controller" style="white-space: nowrap;">Section 4</a>
+for more detailed description.
+</p>
+<h2><a name="1.4supply-air-temperature-setp"></a><!--[if !supportLists]--><span style="mso-list:Ignore">1.4.&nbsp;</span><!--[endif]-->Supply air temperature setpoint</h2>
+
+<p>
+Based on the Section 5.16.2, the sequence first sets the maximum supply air temperature
+based on reset requests collected from each zone <code>uZonTemResReq</code>. The
+outdoor temperature <code>TOut</code> and operation mode <code>uOpeMod</code> are used
+along with the maximum supply air temperature, for computing the supply air temperature
+setpoint. See
+<a href="#7supply-temperature-setpoint" style="white-space: nowrap;">Section 7</a>
+for more detailed description.
+</p>
+<h2><a name="1.5coil-valve-control"></a><!--[if !supportLists]--><span style="mso-list:Ignore">1.5.&nbsp;</span><!--[endif]-->Coil valve control</h2>
+
+<p>
+The subsequence retrieves supply air temperature setpoint from previous sequence.
+Along with the measured supply air temperature and the supply fan status, it
+generates coil valve positions. See
+<a href="#6heating-and-cooling-valve-pos" style="white-space: nowrap;">Section 6</a>
+for more detailed description.
+</p>
+<h2><a name="1.6freeze-protection"></a><!--[if !supportLists]--><span style="mso-list:Ignore">1.6.&nbsp;</span><!--[endif]-->Freeze protection</h2>
+
+<p>
+Based on the Section 5.16.12, the sequence enables freeze protection if the
+measured supply air temperature belows certain thresholds. There are three
+protection stages. See
+<a href="#2freeze-protection" style="white-space: nowrap;">Section 2</a>
+for more detailed description.
+</p>
+<h2><a name="1.7building-pressure-control"></a><!--[if !supportLists]--><span style="mso-list:Ignore">1.7.&nbsp;</span><!--[endif]-->Building pressure control</h2>
+
+<p>
+By selecting different building pressure control designs, which includes using actuated
+relief damper without fan, using actuated relief dampers with relief fan, using
+return fan with direct building pressure control, or using return fan with airflow
+tracking control, the sequences controls relief fans, relief dampers and return fans.
+See belows sequences for more detailed description:
+</p>
+<ul>
+<li>
+<span style="color: grey;" id="Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.ReliefDamper"><a>
+Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.ReliefDamper</a></span>
+</li>
+<li> Relief fan control
+<a href="#10control-of-relief-fan-when-i" style="white-space: nowrap;">Section 10</a> is not
+included in the AHU controller. This sequence controls all the relief fans that are
+serving one common space, which may include multiple air handling units.
+</li>
+<li>
+<span style="color: grey;" id="Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.ReturnFanAirflowTracking"><a>
+Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.ReturnFanAirflowTracking</a></span>
+</li>
+<li>
+<span style="color: grey;" id="Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.ReturnFanDirectPressure"><a>
+Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.ReturnFanDirectPressure</a></span>
+</li>
+</ul>
+<h2><a name="1.8plant-request"></a><!--[if !supportLists]--><span style="mso-list:Ignore">1.8.&nbsp;</span><!--[endif]-->Plant request</h2>
+
+<p>
+According to the Section 5.16.16, the sequence send out heating or cooling plant requests
+if the supply air temperature is below or above threshold value, or the heating or
+cooling valves have been widely open for certain times. See
+<a href="#3plant-requests" style="white-space: nowrap;">Section 3</a>
+for more detailed description.
+</p>
+<h1><a name="2freeze-protection"></a><!--[if !supportLists]--><span style="mso-list:Ignore">2.&nbsp;</span><!--[endif]-->Freeze protection</h1>
 <p>
 Freeze protection sequence for multizone AHU system. It is developed based on Section
 5.16.12 of ASHRAE Guideline 36, May 2020.
@@ -46,12 +158,13 @@ shall be no software reset switch.)
 </li>
 </ul>
 </li>
-</ol><h1><a name="2plant-requests"></a><!--[if !supportLists]--><span style="mso-list:Ignore">2.&nbsp;</span><!--[endif]-->Plant requests</h1>
+</ol>
+<h1><a name="3plant-requests"></a><!--[if !supportLists]--><span style="mso-list:Ignore">3.&nbsp;</span><!--[endif]-->Plant requests</h1>
 <p>
 This sequence outputs the system reset requests for multiple zone air handling unit. The
 implementation is according to the Section 5.16.16 of ASHRAE Guideline 36, May 2020. 
 </p>
-<h2><a name="2.1chilled-water-reset-request"></a><!--[if !supportLists]--><span style="mso-list:Ignore">2.1.&nbsp;</span><!--[endif]-->Chilled water reset request yChiWatResReq</h2>
+<h2><a name="3.1chilled-water-reset-request"></a><!--[if !supportLists]--><span style="mso-list:Ignore">3.1.&nbsp;</span><!--[endif]-->Chilled water reset request yChiWatResReq</h2>
 
 <ol>
 <li>
@@ -71,7 +184,7 @@ Else if the chilled water valve position <code>uCooCoiSet</code> is less than 95
 send 0 request.
 </li>
 </ol>
-<h2><a name="2.2chiller-plant-request-ychip"></a><!--[if !supportLists]--><span style="mso-list:Ignore">2.2.&nbsp;</span><!--[endif]-->Chiller plant request yChiPlaReq</h2>
+<h2><a name="3.2chiller-plant-request-ychip"></a><!--[if !supportLists]--><span style="mso-list:Ignore">3.2.&nbsp;</span><!--[endif]-->Chiller plant request yChiPlaReq</h2>
 
 <p>
 Send the chiller plant that serves the system a chiller plant request as follows:
@@ -86,7 +199,7 @@ Else if the chilled water valve position <code>uCooCoiSet</code> is less than 95
 send 0 request.
 </li>
 </ol>
-<h2><a name="2.3if-there-is-a-hot-water-coi"></a><!--[if !supportLists]--><span style="mso-list:Ignore">2.3.&nbsp;</span><!--[endif]-->If there is a hot-water coil, hot-water
+<h2><a name="3.3if-there-is-a-hot-water-coi"></a><!--[if !supportLists]--><span style="mso-list:Ignore">3.3.&nbsp;</span><!--[endif]-->If there is a hot-water coil, hot-water
 reset requests yHotWatResReq</h2>
 
 <ol>
@@ -109,7 +222,7 @@ Else if the hot water valve position <code>uHeaCoiSet</code> is less than 95%,
 send 0 request.
 </li>
 </ol>
-<h2><a name="2.4if-there-is-a-hot-water-coi"></a><!--[if !supportLists]--><span style="mso-list:Ignore">2.4.&nbsp;</span><!--[endif]-->If there is a hot-water coil and heating hot-water plant, heating hot-water
+<h2><a name="3.4if-there-is-a-hot-water-coi"></a><!--[if !supportLists]--><span style="mso-list:Ignore">3.4.&nbsp;</span><!--[endif]-->If there is a hot-water coil and heating hot-water plant, heating hot-water
 plant reqeusts yHotWatPlaReq</h2>
 
 <p>
@@ -124,7 +237,8 @@ request until the hot water valve position is less than 10%.
 <li>
 If the hot water valve position <code>uHeaCoiSet</code> is less than 95%, send 0 requests.
 </li>
-</ol><h1><a name="3economizer-controller"></a><!--[if !supportLists]--><span style="mso-list:Ignore">3.&nbsp;</span><!--[endif]-->Economizer controller</h1>
+</ol>
+<h1><a name="4economizer-controller"></a><!--[if !supportLists]--><span style="mso-list:Ignore">4.&nbsp;</span><!--[endif]-->Economizer controller</h1>
 <p>
 Multi zone VAV AHU economizer control sequence that calculates
 outdoor and return air damper positions based on ASHRAE
@@ -142,7 +256,7 @@ designes minimum outdoor air and economizer function, which include
 <li>
 separate minimum outdoor air damper, with airflow measurement. 
 See
-<a href="#9.1damper-position-limits-for-" style="white-space: nowrap;">Section 9.1</a>
+<a href="#10.1damper-position-limits-for" style="white-space: nowrap;">Section 10.1</a>
 for a description.
 </li>
 <li>
@@ -167,7 +281,7 @@ The second set of sequences which have one sequence enable or disable the econom
 outdoor temperature and optionally enthalpy, and based on the supply fan status,
 freeze protection stage and zone state.
 See
-<a href="#9.2enable-or-disable-economize" style="white-space: nowrap;">Section 9.2</a>
+<a href="#10.2enable-or-disable-economiz" style="white-space: nowrap;">Section 10.2</a>
 for a description.
 </li>
 
@@ -180,30 +294,31 @@ on the types of building pressure control system, which include
 <li>
 relief damper or relief fan control. 
 See
-<a href="#9.4modulate-economizer-dampers" style="white-space: nowrap;">Section 9.4</a>
+<a href="#10.4modulate-economizer-damper" style="white-space: nowrap;">Section 10.4</a>
 for a description.
 </li>
 <li>
 return fan control with airflow tracking, or with direct building pressure control. 
 See
-<a href="#9.3modulate-economizer-dampers" style="white-space: nowrap;">Section 9.3</a>
+<a href="#10.3modulate-economizer-damper" style="white-space: nowrap;">Section 10.3</a>
 for a description.
 </li>
 </ol>
 </li>
-</ul><h1><a name="4supply-fan-speed-setpoint"></a><!--[if !supportLists]--><span style="mso-list:Ignore">4.&nbsp;</span><!--[endif]-->Supply fan speed setpoint</h1>
+</ul>
+<h1><a name="5supply-fan-speed-setpoint"></a><!--[if !supportLists]--><span style="mso-list:Ignore">5.&nbsp;</span><!--[endif]-->Supply fan speed setpoint</h1>
 <p>
 Supply fan control for a multi zone VAV AHU according to Section 5.16.1 of 
 ASHRAE Guideline G36, May 2020.
 </p>
-<h2><a name="4.1supply-fan-start/stop"></a><!--[if !supportLists]--><span style="mso-list:Ignore">4.1.&nbsp;</span><!--[endif]-->Supply fan start/stop</h2>
+<h2><a name="5.1supply-fan-start/stop"></a><!--[if !supportLists]--><span style="mso-list:Ignore">5.1.&nbsp;</span><!--[endif]-->Supply fan start/stop</h2>
 
 <ul>
 <li>Supply fan shall run when system is in the Cool-down, Setup, or Occupied mode</li>
 <li>If there are any VAV-reheat boxes on perimeter zones, supply fan shall also
 run when system is in Setback or Warmup mode</li>
 </ul>
-<h2><a name="4.2static-pressure-setpoint-re"></a><!--[if !supportLists]--><span style="mso-list:Ignore">4.2.&nbsp;</span><!--[endif]-->Static pressure setpoint reset</h2>
+<h2><a name="5.2static-pressure-setpoint-re"></a><!--[if !supportLists]--><span style="mso-list:Ignore">5.2.&nbsp;</span><!--[endif]-->Static pressure setpoint reset</h2>
 
 <p>
 Static pressure setpoint shall be reset using trim-respond logic using following
@@ -224,7 +339,7 @@ parameters as a starting point:
 <tr><td>SPres_max</td><td><code>maxRes</code>&nbsp;(32&nbsp;Pa, adjustable)</td><td>Maximum response per time interval</td></tr>
 </tbody></table>
 <br>
-<h2><a name="4.3static-pressure-control"></a><!--[if !supportLists]--><span style="mso-list:Ignore">4.3.&nbsp;</span><!--[endif]-->Static pressure control</h2>
+<h2><a name="5.3static-pressure-control"></a><!--[if !supportLists]--><span style="mso-list:Ignore">5.3.&nbsp;</span><!--[endif]-->Static pressure control</h2>
 
 <p>
 Supply fan speed is controlled with a PI controller to maintain duct static pressure at setpoint
@@ -235,7 +350,8 @@ Where the zone groups served by the system are small,
 provide multiple sets of gains that are used in the control loop as a function
 of a load indicator (such as supply fan airflow rate, the area of the zone groups
 that are occupied, etc.).
-</p><h1><a name="5heating-and-cooling-valve-pos"></a><!--[if !supportLists]--><span style="mso-list:Ignore">5.&nbsp;</span><!--[endif]-->Heating and cooling valve position</h1>
+</p>
+<h1><a name="6heating-and-cooling-valve-pos"></a><!--[if !supportLists]--><span style="mso-list:Ignore">6.&nbsp;</span><!--[endif]-->Heating and cooling valve position</h1>
 <p>
 Block that outputs the supply temperature control loop signal,
 and the coil valve postions for VAV system with multiple zones,
@@ -263,7 +379,8 @@ Similarly, <code>uTSup = uCoo_min</code> to <code>uTSup = +1</code>,
 
 <p>
 The output <code>uTSup</code> can be used in a controller for the economizer.
-</p><h1><a name="6supply-temperature-setpoint"></a><!--[if !supportLists]--><span style="mso-list:Ignore">6.&nbsp;</span><!--[endif]-->Supply temperature setpoint</h1>
+</p>
+<h1><a name="7supply-temperature-setpoint"></a><!--[if !supportLists]--><span style="mso-list:Ignore">7.&nbsp;</span><!--[endif]-->Supply temperature setpoint</h1>
 <p>
 Block that outputs the supply air temperature setpoint and the coil valve control
 inputs for VAV system with multiple zones, implemented according to Section 5.16.2 of
@@ -275,7 +392,7 @@ and disabled and the output set to deadband (no heating, minimum economizer) oth
 </p>
 <p> The supply air temperature setpoint is computed as follows.</p>
 
-<h2><a name="6.1setpoints-for-tsupcoo_min,-"></a><!--[if !supportLists]--><span style="mso-list:Ignore">6.1.&nbsp;</span><!--[endif]-->Setpoints for TSupCoo_min, TSupCoo_max,
+<h2><a name="7.1setpoints-for-tsupcoo_min,-"></a><!--[if !supportLists]--><span style="mso-list:Ignore">7.1.&nbsp;</span><!--[endif]-->Setpoints for TSupCoo_min, TSupCoo_max,
 TOut_min, TOut_max
 </h2>
 
@@ -301,7 +418,7 @@ range of outdoor air temperature (e.g. <code>TOut_min=13°C</code>,
 </li>
 </ul>
 
-<h2><a name="6.2during-occupied-and-setup-m"></a><!--[if !supportLists]--><span style="mso-list:Ignore">6.2.&nbsp;</span><!--[endif]-->During occupied and Setup modes (uOpeMod=1, uOpeMod=2)</h2>
+<h2><a name="7.2during-occupied-and-setup-m"></a><!--[if !supportLists]--><span style="mso-list:Ignore">7.2.&nbsp;</span><!--[endif]-->During occupied and Setup modes (uOpeMod=1, uOpeMod=2)</h2>
 
 <p>
 The <code>TSupSet</code> shall be reset from <code>TSupCoo_min</code>&nbsp;(12&nbsp;°C, adjustable) when the outdoor
@@ -333,16 +450,17 @@ during the commissioning and tuning phase.
 <img alt="Image of set point reset" src="img/Buildings_Resources_Images_Controls_OBC_ASHRAE_G36_AHUs_MultiZone_VAV_SetPoints_VAVSupTempSet.png">
 </p>
 
-<h2><a name="6.3during-cool-down-modes-(uop"></a><!--[if !supportLists]--><span style="mso-list:Ignore">6.3.&nbsp;</span><!--[endif]-->During Cool-down modes (uOpeMod=3)</h2>
+<h2><a name="7.3during-cool-down-modes-(uop"></a><!--[if !supportLists]--><span style="mso-list:Ignore">7.3.&nbsp;</span><!--[endif]-->During Cool-down modes (uOpeMod=3)</h2>
 
 <p>
 Supply air temperature setpoint <code>TSupSet</code> shall be <code>TSupCoo_min</code>&nbsp;(12&nbsp;°C, adjustable).
 </p>
-<h2><a name="6.4during-setback-and-warmup-m"></a><!--[if !supportLists]--><span style="mso-list:Ignore">6.4.&nbsp;</span><!--[endif]-->During Setback and Warmup modes (uOpeMod=4, uOpeMod=5)</h2>
+<h2><a name="7.4during-setback-and-warmup-m"></a><!--[if !supportLists]--><span style="mso-list:Ignore">7.4.&nbsp;</span><!--[endif]-->During Setback and Warmup modes (uOpeMod=4, uOpeMod=5)</h2>
 
 <p>
 Supply air temperature setpoint <code>TSupSet</code> shall be <code>TSupWarUpSetBac</code>&nbsp;(35&nbsp;°C, adjustable).
-</p><h1><a name="7minimum-outdoor-airflow-setpo"></a><!--[if !supportLists]--><span style="mso-list:Ignore">7.&nbsp;</span><!--[endif]-->Minimum outdoor airflow setpoint, when complying with ASHRAE 62.1 requirements</h1>
+</p>
+<h1><a name="8minimum-outdoor-airflow-setpo"></a><!--[if !supportLists]--><span style="mso-list:Ignore">8.&nbsp;</span><!--[endif]-->Minimum outdoor airflow setpoint, when complying with ASHRAE 62.1 requirements</h1>
 <p>
 This sequence outputs AHU level uncorrected minimum outdoor airflow rate
 <code>VUncOutAir_flow</code> and effective minimum outdoor airflow rate
@@ -404,7 +522,8 @@ but no larger than the design total outdoor airflow rate <code>VDesTotOutAir_flo
 <pre>    VEffOutAir_flow = min(VUncOutAir_flow/sysVenEff, VDesTotOutAir_flow)
 </pre>
 </li>
-</ol><h1><a name="8minimum-outdoor-airflow-setpo"></a><!--[if !supportLists]--><span style="mso-list:Ignore">8.&nbsp;</span><!--[endif]-->Minimum outdoor airflow setpoint, when complying with Title 24 requirements</h1>
+</ol>
+<h1><a name="9minimum-outdoor-airflow-setpo"></a><!--[if !supportLists]--><span style="mso-list:Ignore">9.&nbsp;</span><!--[endif]-->Minimum outdoor airflow setpoint, when complying with Title 24 requirements</h1>
 <p>
 This sequence outputs AHU level effective outdoor air absolute minimum and design
 minimum setpoints <code>VEffAbsOutAir_flow</code>, <code>VEffDesOutAir_flow</code> and
@@ -450,7 +569,8 @@ setpoint should be reset based on the highest zone CO2 control- loop signal from
 at 100% signal. When there is no CO2 sensor in any zone, the effective minimum
 outdoor airflow setpoint should be equal to the <code>VEffDesOutAir_flow</code>.
 </li>
-</ol><h1><a name="9control-of-relief-fan-when-it"></a><!--[if !supportLists]--><span style="mso-list:Ignore">9.&nbsp;</span><!--[endif]-->Control of relief fan when it is part of AHU</h1>
+</ol>
+<h1><a name="10control-of-relief-fan-when-i"></a><!--[if !supportLists]--><span style="mso-list:Ignore">10.&nbsp;</span><!--[endif]-->Control of relief fan when it is part of AHU</h1>
 <p>
 Sequence for controling relief fan that is part of AHU. It is developed based on
 Section 5.16.9 of ASHRAE Guideline 36, May 2020, with the modification to accommodate
@@ -489,20 +609,21 @@ by 5 minutes, shut off the relief fan.
 </li>
 </ol>
 </li>
-</ol><h2><a name="9.1damper-position-limits-for-"></a><!--[if !supportLists]--><span style="mso-list:Ignore">9.1.&nbsp;</span><!--[endif]-->Damper position limits for units with separated minimum outdoor air damper and airflow measurement</h2>
+</ol>
+<h2><a name="10.1damper-position-limits-for"></a><!--[if !supportLists]--><span style="mso-list:Ignore">10.1.&nbsp;</span><!--[endif]-->Damper position limits for units with separated minimum outdoor air damper and airflow measurement</h2>
 <p>
 Block that outputs the position limits of the return and outdoor air damper for units
 with a separated minimum outdoor air damper and airflow measurement.
 It is implemented according to Section 5.16.5 of the ASHRAE Guideline 36, May 2020.
 </p>
-<h3><a name="9.1.1minimum-outdoor-air-set-p"></a><!--[if !supportLists]--><span style="mso-list:Ignore">9.1.1.&nbsp;</span><!--[endif]-->Minimum outdoor air set point</h3>
+<h3><a name="10.1.1minimum-outdoor-air-set-"></a><!--[if !supportLists]--><span style="mso-list:Ignore">10.1.1.&nbsp;</span><!--[endif]-->Minimum outdoor air set point</h3>
 
 <p>
 Calculate the outdoor air set point with
 <span style="color: grey;" id="Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.OutdoorAirFlow"><a>
 Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.OutdoorAirFlow</a></span>.
 </p>
-<h3><a name="9.1.2minimum-outdoor-air-contr"></a><!--[if !supportLists]--><span style="mso-list:Ignore">9.1.2.&nbsp;</span><!--[endif]-->Minimum outdoor air control loop</h3>
+<h3><a name="10.1.2minimum-outdoor-air-cont"></a><!--[if !supportLists]--><span style="mso-list:Ignore">10.1.2.&nbsp;</span><!--[endif]-->Minimum outdoor air control loop</h3>
 
 <p>
 Minimum outdoor air control loop is enabled when the supply fan is proven ON
@@ -515,7 +636,7 @@ set point by a reverse-acting control loop whose output is 0% to 100%.
 From 0% to 50% loop output, the minimum outdoor air damper is opened from 0%
 (<code>minOutDamPhy_min</code>&nbsp;(0, adjustable)) to 100% (<code>minOutDamPhy_max</code>&nbsp;(1, adjustable)).
 </p>
-<h3><a name="9.1.3return-air-damper"></a><!--[if !supportLists]--><span style="mso-list:Ignore">9.1.3.&nbsp;</span><!--[endif]-->Return air damper</h3>
+<h3><a name="10.1.3return-air-damper"></a><!--[if !supportLists]--><span style="mso-list:Ignore">10.1.3.&nbsp;</span><!--[endif]-->Return air damper</h3>
 
 <ul>
 <li>
@@ -534,7 +655,8 @@ When enabled, the maximum return air damper set point is reduced from 100%
 (<code>retDamPhy_max</code>&nbsp;(1, adjustable)) to 0% (<code>retDamPhy_min</code>&nbsp;(0, adjustable))
 as the minimum outdoor air loop output rises from 50% to 100%.
 </li>
-</ul><h2><a name="9.2enable-or-disable-economize"></a><!--[if !supportLists]--><span style="mso-list:Ignore">9.2.&nbsp;</span><!--[endif]-->Enable or disable economizer</h2>
+</ul>
+<h2><a name="10.2enable-or-disable-economiz"></a><!--[if !supportLists]--><span style="mso-list:Ignore">10.2.&nbsp;</span><!--[endif]-->Enable or disable economizer</h2>
 <p>
 This is a multi zone VAV AHU economizer enable/disable sequence
 based on the Section 5.16.7 of the ASHRAE Guideline 36, May 2020. Additional
@@ -583,7 +705,8 @@ time period, after which the return damper gets released to its minimum outdoor 
 The outdoor air damper is closed to its minimum outoor airflow control limit (<code>yOutDam_max = uOutDam_min</code>)
 after a <code>disDel</code>&nbsp;(15&nbsp;s, adjustable) time delay.
 </li>
-</ul><h2><a name="9.3modulate-economizer-dampers"></a><!--[if !supportLists]--><span style="mso-list:Ignore">9.3.&nbsp;</span><!--[endif]-->Modulate economizer dampers position for buildings with return fan controlling pressure</h2>
+</ul>
+<h2><a name="10.3modulate-economizer-damper"></a><!--[if !supportLists]--><span style="mso-list:Ignore">10.3.&nbsp;</span><!--[endif]-->Modulate economizer dampers position for buildings with return fan controlling pressure</h2>
 <p>
 Block modulates the damper of economizers of buildings with pressure controlled by
 return fan and airflow tracking. It is implemented according to Section 5.16.2.3.d,
@@ -595,7 +718,7 @@ sequences in package
 <span style="color: grey;" id="Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.Economizers.Subsequences.Limits"><a>
 Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.Economizers.Subsequences.Limits</a></span>.
 It also requires input <code>uTSup</code> from
-<a href="#5heating-and-cooling-valve-pos" style="white-space: nowrap;">Section 5</a>
+<a href="#6heating-and-cooling-valve-pos" style="white-space: nowrap;">Section 6</a>
 sequences.
 </p>
 <p>
@@ -619,7 +742,8 @@ The modulation is shown as the control chart:
 Note in the above chart, if the building has direct pressure control
 (<code>have_dirCon</code>), the profile for relief air damper control should
 be ignored.
-</p><h2><a name="9.4modulate-economizer-dampers"></a><!--[if !supportLists]--><span style="mso-list:Ignore">9.4.&nbsp;</span><!--[endif]-->Modulate economizer dampers position for buildings with relief damper or fan controlling pressure</h2>
+</p>
+<h2><a name="10.4modulate-economizer-damper"></a><!--[if !supportLists]--><span style="mso-list:Ignore">10.4.&nbsp;</span><!--[endif]-->Modulate economizer dampers position for buildings with relief damper or fan controlling pressure</h2>
 <p>
 This is a multi zone VAV AHU economizer modulation block. It calculates
 the outdoor and return air damper positions based on the supply air temperature
@@ -646,7 +770,8 @@ Multi zone AHU economizer modulation control chart:
 </p>
 <p align="center">
 <img alt="Image of the multi zone AHU modulation sequence expected performance" src="img/Buildings_Resources_Images_Controls_OBC_ASHRAE_G36_AHUs_MultiZone_VAV_Economizers_Subsequences_Modulations_ReliefControlChart.png">
-</p><h2><a name="9.5high-limits"></a><!--[if !supportLists]--><span style="mso-list:Ignore">9.5.&nbsp;</span><!--[endif]-->High limits</h2>
+</p>
+<h2><a name="10.5high-limits"></a><!--[if !supportLists]--><span style="mso-list:Ignore">10.5.&nbsp;</span><!--[endif]-->High limits</h2>
 <p>
 This block outputs the air economizer high limits according to the energy standard,
 device type and climate zone. The implementation is according to the Section 5.1.17 of ASHRAE
@@ -739,7 +864,8 @@ Guideline 36, May 2020.
 <p>
 Note that the device type <i>Fixed dry bulb with differential dry bulb</i> is not listed in either ASHRAE 90.1 or Title 24 standard.
 But it is possible to use in practice. See Section 3.1.6.2 in Guideline 36.
-</p><h2><a name="9.6static-pressure-setpoint-re"></a><!--[if !supportLists]--><span style="mso-list:Ignore">9.6.&nbsp;</span><!--[endif]-->Static pressure setpoint reset using trim and respond logic</h2>
+</p>
+<h2><a name="10.6static-pressure-setpoint-r"></a><!--[if !supportLists]--><span style="mso-list:Ignore">10.6.&nbsp;</span><!--[endif]-->Static pressure setpoint reset using trim and respond logic</h2>
 <p>
 This block implements the trim and respond logic according to Section 5.1.14.3 
 and 5.1.14.4 of ASHRAE Guideline 36, May 2020.
@@ -786,7 +912,7 @@ In other words, every time step <code>samplePeriod</code>&nbsp;(120&nbsp;s, adju
 -numIgnReq)</code> but no more than <code>maxRes</code>&nbsp;(32, adjustable).
 </li>
 </ul>
-<h3><a name="9.6.1hold-and-release-loop-out"></a><!--[if !supportLists]--><span style="mso-list:Ignore">9.6.1.&nbsp;</span><!--[endif]-->Hold and release loop output</h3>
+<h3><a name="10.6.1hold-and-release-loop-ou"></a><!--[if !supportLists]--><span style="mso-list:Ignore">10.6.1.&nbsp;</span><!--[endif]-->Hold and release loop output</h3>
 
 <p>
 Optionally, if the parameter <code>have_hol</code> is set to true, an additional
@@ -813,7 +939,7 @@ yields the following sequence of events.
 since <i>&lt;&nbsp;15&nbsp;</i>minutes have elapsed.</li>
 <li>0:15 - T&amp;R is released and continues resetting from <i>50&nbsp;%</i>.</li>
 </ul>
-<h3><a name="9.6.2examples"></a><!--[if !supportLists]--><span style="mso-list:Ignore">9.6.2.&nbsp;</span><!--[endif]-->Examples</h3>
+<h3><a name="10.6.2examples"></a><!--[if !supportLists]--><span style="mso-list:Ignore">10.6.2.&nbsp;</span><!--[endif]-->Examples</h3>
 
 <p>
 The figure below illustrates the trim and respond logic with a negative trim amount,
@@ -834,7 +960,8 @@ in a scenario where the equipment switches on and off.
 </p>
 <p>
 <img alt="Trend graph for trim and response" src="img/Buildings_Resources_Images_Controls_OBC_ASHRAE_G36_Generic_TrimAndRespond2.png">
-</p><h2><a name="9.7maximum-cooling-supply-temp"></a><!--[if !supportLists]--><span style="mso-list:Ignore">9.7.&nbsp;</span><!--[endif]-->Maximum cooling supply temperature reset</h2>
+</p>
+<h2><a name="10.7maximum-cooling-supply-tem"></a><!--[if !supportLists]--><span style="mso-list:Ignore">10.7.&nbsp;</span><!--[endif]-->Maximum cooling supply temperature reset</h2>
 <p>
 This block implements the trim and respond logic according to Section 5.1.14.3 
 and 5.1.14.4 of ASHRAE Guideline 36, May 2020.
@@ -881,7 +1008,7 @@ In other words, every time step <code>samplePeriod</code>&nbsp;(120&nbsp;s, adju
 -numIgnReq)</code> but no more than <code>maxRes</code>&nbsp;(-0.6, adjustable).
 </li>
 </ul>
-<h3><a name="9.7.1hold-and-release-loop-out"></a><!--[if !supportLists]--><span style="mso-list:Ignore">9.7.1.&nbsp;</span><!--[endif]-->Hold and release loop output</h3>
+<h3><a name="10.7.1hold-and-release-loop-ou"></a><!--[if !supportLists]--><span style="mso-list:Ignore">10.7.1.&nbsp;</span><!--[endif]-->Hold and release loop output</h3>
 
 <p>
 Optionally, if the parameter <code>have_hol</code> is set to true, an additional
@@ -908,7 +1035,7 @@ yields the following sequence of events.
 since <i>&lt;&nbsp;15&nbsp;</i>minutes have elapsed.</li>
 <li>0:15 - T&amp;R is released and continues resetting from <i>50&nbsp;%</i>.</li>
 </ul>
-<h3><a name="9.7.2examples"></a><!--[if !supportLists]--><span style="mso-list:Ignore">9.7.2.&nbsp;</span><!--[endif]-->Examples</h3>
+<h3><a name="10.7.2examples"></a><!--[if !supportLists]--><span style="mso-list:Ignore">10.7.2.&nbsp;</span><!--[endif]-->Examples</h3>
 
 <p>
 The figure below illustrates the trim and respond logic with a negative trim amount,
@@ -929,115 +1056,5 @@ in a scenario where the equipment switches on and off.
 </p>
 <p>
 <img alt="Trend graph for trim and response" src="img/Buildings_Resources_Images_Controls_OBC_ASHRAE_G36_Generic_TrimAndRespond2.png">
-</p><h3><a name="9.7.1multizone-vav-air-handlin"></a><!--[if !supportLists]--><span style="mso-list:Ignore">9.7.1.&nbsp;</span><!--[endif]-->Multizone VAV air handling unit controller</h3>
-<p>
-Block that is applied for multizone VAV AHU control. It outputs the supply fan status
-and the operation speed, outdoor and return air damper position, supply air
-temperature setpoint and the valve position of the cooling and heating coils.
-It is implemented according to the Section 5.16 of ASHRAE Guideline 36, May 2020.
 </p>
-<p>
-The sequence consists of eight types of subsequences.
-</p>
-<h4><a name="9.7.1.1supply-fan-speed-contro"></a><!--[if !supportLists]--><span style="mso-list:Ignore">9.7.1.1.&nbsp;</span><!--[endif]-->Supply fan speed control</h4>
-
-<p>
-The fan speed control is implemented according to Section 5.16.1. It outputs
-the boolean signal <code>y1SupFan</code> to turn on or off the supply fan.
-In addition, based on the pressure reset request <code>uZonPreResReq</code>
-from the VAV zones controller, the
-sequence resets the duct pressure setpoint, and uses this setpoint
-to modulate the fan speed <code>ySupFanSpe</code> using a PI controller.
-See
-<a href="#4supply-fan-speed-setpoint" style="white-space: nowrap;">Section 4</a>
-for more detailed description.
-</p>
-<h4><a name="9.7.1.2minimum-outdoor-airflow"></a><!--[if !supportLists]--><span style="mso-list:Ignore">9.7.1.2.&nbsp;</span><!--[endif]-->Minimum outdoor airflow setting</h4>
-
-<p>
-According to current occupany, supply operation status <code>ySupFan</code>,
-zone temperatures and the discharge air temperature, the sequence computes the
-minimum outdoor airflow rate setpoint, which is used as input for the economizer control.
-More detailed information can be found in
-<span style="color: grey;" id="Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.OutdoorAirFlow"><a>
-Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.OutdoorAirFlow</a></span>.
-</p>
-<h4><a name="9.7.1.3economizer-control"></a><!--[if !supportLists]--><span style="mso-list:Ignore">9.7.1.3.&nbsp;</span><!--[endif]-->Economizer control</h4>
-
-<p>
-The block outputs outdoor and return air damper position, <code>yOutDamPos</code> and
-<code>yRetDamPos</code>. First, it computes the position limits to satisfy the minimum
-outdoor airflow requirement. Second, it determines the availability of the economizer based
-on the outdoor condition. The dampers are modulated to track the supply air temperature
-loop signal, which is calculated from the sequence below, subject to the minimum outdoor airflow
-requirement and economizer availability.
-See
-<a href="#3economizer-controller" style="white-space: nowrap;">Section 3</a>
-for more detailed description.
-</p>
-<h4><a name="9.7.1.4supply-air-temperature-"></a><!--[if !supportLists]--><span style="mso-list:Ignore">9.7.1.4.&nbsp;</span><!--[endif]-->Supply air temperature setpoint</h4>
-
-<p>
-Based on the Section 5.16.2, the sequence first sets the maximum supply air temperature
-based on reset requests collected from each zone <code>uZonTemResReq</code>. The
-outdoor temperature <code>TOut</code> and operation mode <code>uOpeMod</code> are used
-along with the maximum supply air temperature, for computing the supply air temperature
-setpoint. See
-<a href="#6supply-temperature-setpoint" style="white-space: nowrap;">Section 6</a>
-for more detailed description.
-</p>
-<h4><a name="9.7.1.5coil-valve-control"></a><!--[if !supportLists]--><span style="mso-list:Ignore">9.7.1.5.&nbsp;</span><!--[endif]-->Coil valve control</h4>
-
-<p>
-The subsequence retrieves supply air temperature setpoint from previous sequence.
-Along with the measured supply air temperature and the supply fan status, it
-generates coil valve positions. See
-<a href="#5heating-and-cooling-valve-pos" style="white-space: nowrap;">Section 5</a>
-for more detailed description.
-</p>
-<h4><a name="9.7.1.6freeze-protection"></a><!--[if !supportLists]--><span style="mso-list:Ignore">9.7.1.6.&nbsp;</span><!--[endif]-->Freeze protection</h4>
-
-<p>
-Based on the Section 5.16.12, the sequence enables freeze protection if the
-measured supply air temperature belows certain thresholds. There are three
-protection stages. See
-<a href="#1freeze-protection" style="white-space: nowrap;">Section 1</a>
-for more detailed description.
-</p>
-<h4><a name="9.7.1.7building-pressure-contr"></a><!--[if !supportLists]--><span style="mso-list:Ignore">9.7.1.7.&nbsp;</span><!--[endif]-->Building pressure control</h4>
-
-<p>
-By selecting different building pressure control designs, which includes using actuated
-relief damper without fan, using actuated relief dampers with relief fan, using
-return fan with direct building pressure control, or using return fan with airflow
-tracking control, the sequences controls relief fans, relief dampers and return fans.
-See belows sequences for more detailed description:
-</p>
-<ul>
-<li>
-<span style="color: grey;" id="Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.ReliefDamper"><a>
-Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.ReliefDamper</a></span>
-</li>
-<li> Relief fan control
-<a href="#9control-of-relief-fan-when-it" style="white-space: nowrap;">Section 9</a> is not
-included in the AHU controller. This sequence controls all the relief fans that are
-serving one common space, which may include multiple air handling units.
-</li>
-<li>
-<span style="color: grey;" id="Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.ReturnFanAirflowTracking"><a>
-Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.ReturnFanAirflowTracking</a></span>
-</li>
-<li>
-<span style="color: grey;" id="Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.ReturnFanDirectPressure"><a>
-Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.ReturnFanDirectPressure</a></span>
-</li>
-</ul>
-<h4><a name="9.7.1.8plant-request"></a><!--[if !supportLists]--><span style="mso-list:Ignore">9.7.1.8.&nbsp;</span><!--[endif]-->Plant request</h4>
-
-<p>
-According to the Section 5.16.16, the sequence send out heating or cooling plant requests
-if the supply air temperature is below or above threshold value, or the heating or
-cooling valves have been widely open for certain times. See
-<a href="#2plant-requests" style="white-space: nowrap;">Section 2</a>
-for more detailed description.
-</p></body></html>
+</body></html>
