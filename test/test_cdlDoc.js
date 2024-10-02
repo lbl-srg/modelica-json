@@ -72,9 +72,9 @@ mocha.describe('cdlDoc', function () {
         'border="1" alt="Test image"/></p>'
       const $ = cheerio.load(htmlStr)
       const imgPath = path.resolve(
-        path.join(process.cwd(), 'test', 'expressionEvaluation', 'Library', 'Resources', 'Image.png')
+        path.join(process.cwd(), 'test', 'cdlDoc', 'Library', 'Resources', 'Image.png')
       )
-      const libPath = path.join(process.cwd(), 'test', 'expressionEvaluation')
+      const libPath = path.join(process.cwd(), 'test', 'cdlDoc')
       process.env.MODELICAPATH = process.env.MODELICAPATH + `:${libPath}`
       assert.deepStrictEqual(
         processImg($),
@@ -122,7 +122,7 @@ mocha.describe('cdlDoc', function () {
           headingNum: '5'
         }
       ]
-      const libPath = path.join(process.cwd(), 'test', 'expressionEvaluation')
+      const libPath = path.join(process.cwd(), 'test', 'cdlDoc')
       process.env.MODELICAPATH = process.env.MODELICAPATH + `:${libPath}`
       const $ = cheerio.load(htmlStr)
       processHref($, documentation)
@@ -212,7 +212,7 @@ mocha.describe('cdlDoc', function () {
     mocha.it('should create the expected HTML document', function () {
       const outputDir = path.join(process.cwd(), 'tmp')
       const paramAndDoc = JSON.parse(fs.readFileSync(path.join(
-        process.cwd(), 'test', 'expressionEvaluation', 'MultiZoneVavParamAndDoc.json'
+        process.cwd(), 'test', 'cdlDoc', 'MultiZoneVavParamAndDoc.json'
       ), 'utf8'))
       unset = cdlDoc.__set__({
         expressionEvaluation: {
@@ -223,12 +223,12 @@ mocha.describe('cdlDoc', function () {
         }
       })
       const jsons = JSON.parse(fs.readFileSync(path.join(
-        process.cwd(), 'test', 'expressionEvaluation', 'MultiZoneVav.json'
+        process.cwd(), 'test', 'cdlDoc', 'MultiZoneVav.json'
       ), 'utf8'))
       cdlDoc.buildDoc(jsons[0], jsons, unitData, outputDir, 'MultiZoneVavDoc')
       const htmlDoc = fs.readFileSync(path.join(outputDir, 'MultiZoneVavDoc.html'), 'utf8')
       const htmlDocExp = fs.readFileSync(path.join(
-        process.cwd(), 'test', 'expressionEvaluation', 'MultiZoneVavDoc.html'
+        process.cwd(), 'test', 'cdlDoc', 'MultiZoneVavDoc.html'
       ), 'utf8')
       fs.rmSync(outputDir, { recursive: true, force: true })
       assert.strictEqual(htmlDoc, htmlDocExp)
