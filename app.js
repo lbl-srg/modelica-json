@@ -3,6 +3,7 @@ const pa = require('./lib/parser.js')
 const ut = require('./lib/util.js')
 const se = require('./lib/semanticExtractor.js')
 const ce = require('./lib/cxfExtractor.js')
+const dc = require('./lib/cdlDoc.js')
 
 const logger = require('winston')
 const path = require('path')
@@ -19,7 +20,7 @@ parser.addArgument(
   ['-o', '--output'],
   {
     help: 'Specify output format.',
-    choices: ['raw-json', 'json', 'modelica', 'semantic', 'cxf'],
+    choices: ['raw-json', 'json', 'modelica', 'semantic', 'cxf', 'doc'],
     defaultValue: 'json'
   }
 )
@@ -119,11 +120,12 @@ if (args.output === 'modelica') {
       throw new Error('In order to generate CXF-core.jsonld containing all elementary blocks, --elementary flag must be used.')
     }
   }
+  let jsons // Array of json representations of all mo files recursively instantiated by the top-level class
   const completedJsonGeneration = new Promise(
     function (resolve, reject) {
       const moFiles = ut.getMoFiles(args.file)
       // Parse the json representation for moFiles
-      pa.getJsons(moFiles, args.mode, args.output, args.directory, args.prettyPrint, args.elementary, args.cxfCore)
+      jsons = pa.getJsons(moFiles, args.mode, args.output, args.directory, args.prettyPrint, args.elementary, args.cxfCore)
       resolve(0)
     }
   )
@@ -133,6 +135,11 @@ if (args.output === 'modelica') {
     }
     if (args.output === 'cxf' && args.cxfCore && args.elementary) {
       ce.getCxfCore(args.file, args.directory, args.prettyPrint)
+    }
+    if (args.output === 'doc') {
+      const unitData = JSON.parse(
+        fs.readFileSync(path.join(__dirname, 'units-si.json'), 'utf8'))
+      dc.buildDoc(jsons[0], jsons, unitData, args.directory)
     }
   })
 }
