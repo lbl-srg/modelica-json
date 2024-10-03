@@ -19,11 +19,11 @@ const expressionParam = JSON.parse(
 const enableJsons = JSON.parse(
   fs.readFileSync(path.join(
     process.cwd(), 'test', 'expressionEvaluation', 'Enable.json'), 'utf8')
-).toSorted()
+)
 const enableParam = JSON.parse(
   fs.readFileSync(path.join(
     process.cwd(), 'test', 'expressionEvaluation', 'EnableParam.json'), 'utf8')
-).toSorted()
+)
 const expressionVal = [
   ['1', 1],
   ['a*2', 2],
@@ -173,13 +173,13 @@ mocha.describe('expressionEvaluation', function () {
     mocha.it('should return the given set of parameters for the given class object', function () {
       assert.deepStrictEqual(
         expressionEvaluation.getParametersAndBindings(
-          enableJsons[0], enableJsons).parameters.toSorted(),
+          enableJsons[0], enableJsons).parameters,
         enableParam)
     })
     mocha.it('should return the given set of parameters for the given class definition', function () {
       assert.deepStrictEqual(
         expressionEvaluation.getParametersAndBindings(
-          enableJsons[0].class_definition[0], enableJsons).parameters.toSorted(),
+          enableJsons[0].class_definition[0], enableJsons).parameters,
         enableParam)
     })
   })
