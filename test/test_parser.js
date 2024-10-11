@@ -258,7 +258,7 @@ function checkCxfCoreGeneration () {
   const cdlPath = path.join('Buildings', 'Controls', 'OBC', 'CDL')
   const testMoFiles = ut.getMoFiles(cdlPath)
   pa.getJsons(testMoFiles, 'modelica', 'cxf', 'current', true, true, true)
-  ce.getCxfCore(cdlPath, 'current', true)
+  ce.getCxfCore(path.join(process.cwd(), cdlPath), 'current', true)
 
   const actualOutputCxfCorePath = path.join(process.cwd(), 'cxf', 'CXF-Core.jsonld')
   const actualOutputCxfCore = JSON.parse(fs.readFileSync(actualOutputCxfCorePath, 'utf8'))
