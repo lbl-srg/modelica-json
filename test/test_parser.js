@@ -257,7 +257,21 @@ const checkCxfJson = function (outFormat, extension, message) {
 function checkCxfCoreGeneration () {
   const cdlPath = path.join('Buildings', 'Controls', 'OBC', 'CDL')
   const testMoFiles = ut.getMoFiles(cdlPath)
-  pa.getJsons(testMoFiles, 'modelica', 'cxf', 'current', true, true, true)
+  pa.getJsons(testMoFiles, 'cdl', 'cxf', 'current', true, true, true)
+  const testFolder = process.cwd()
+
+  fs.readdir(testFolder, (err, files) => {
+    files.forEach(file => {
+      console.log(file)
+    })
+  })
+
+  console.log('cxf contents')
+  fs.readdir(path.join(testFolder, 'cxf'), (err, files) => {
+    files.forEach(file => {
+      console.log(file)
+    })
+  })
   ce.getCxfCore(path.join(process.cwd(), cdlPath), 'current', true)
 
   const actualOutputCxfCorePath = path.join(process.cwd(), 'cxf', 'CXF-Core.jsonld')
@@ -289,7 +303,7 @@ mo.describe('parser.js', function () {
     checkCxfJson('cxf', '.jsonld', 'Testing json for equality, "cdl" mode')
   })
   mo.describe('Testing CXF-Core.jsonld generation', function () {
-    mo.it('check CXF-Core.jsonld generation and comparison', function () {
+    mo.it('check CXF-Core.jsonld generation and comparison', () => {
       checkCxfCoreGeneration()
     })
   })
