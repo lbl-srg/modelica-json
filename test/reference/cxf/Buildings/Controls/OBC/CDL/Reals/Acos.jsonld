@@ -1,0 +1,38 @@
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#",
+    "qudt": "http://qudt.org/schema/qudt#"
+  },
+  "@graph": [
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Acos",
+      "@type": "S231P:ElementaryBlock",
+      "S231P:hasInput": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Acos.u"
+      },
+      "S231P:hasOutput": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Acos.y"
+      },
+      "S231P:label": "Acos"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Acos.u",
+      "@type": "S231P:RealInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Connector of Real input signal",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
+      "S231P:label": "u"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Acos.y",
+      "@type": "S231P:RealOutput",
+      "qudt:hasUnit": {
+        "@id": "S231P:rad"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Connector of Real output signal",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
+      "S231P:label": "y"
+    }
+  ]
+}

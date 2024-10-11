@@ -1,0 +1,76 @@
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#"
+  },
+  "@graph": [
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.IntegerVectorFilter",
+      "@type": "S231P:ElementaryBlock",
+      "S231P:hasInput": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.IntegerVectorFilter.u"
+      },
+      "S231P:hasOutput": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.IntegerVectorFilter.y"
+      },
+      "S231P:hasParameter": [
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.IntegerVectorFilter.msk"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.IntegerVectorFilter.nin"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.IntegerVectorFilter.nout"
+        }
+      ],
+      "S231P:label": "IntegerVectorFilter"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.IntegerVectorFilter.msk",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Array mask",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Boolean"
+      },
+      "S231P:label": "msk",
+      "S231P:value": "fill(true, nin)"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.IntegerVectorFilter.nin",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Size of input vector",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Integer"
+      },
+      "S231P:label": "nin"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.IntegerVectorFilter.nout",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Size of output vector",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Integer"
+      },
+      "S231P:label": "nout"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.IntegerVectorFilter.u",
+      "@type": "S231P:IntegerInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Connector of Integer input signal",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
+      "S231P:label": "u"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.IntegerVectorFilter.y",
+      "@type": "S231P:IntegerOutput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Connector of Integer output signals",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
+      "S231P:label": "y"
+    }
+  ]
+}

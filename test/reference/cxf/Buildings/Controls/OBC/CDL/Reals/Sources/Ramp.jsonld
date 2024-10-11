@@ -1,0 +1,94 @@
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#",
+    "qudt": "http://qudt.org/schema/qudt#"
+  },
+  "@graph": [
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.Ramp",
+      "@type": "S231P:ElementaryBlock",
+      "S231P:hasOutput": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.Ramp.y"
+      },
+      "S231P:hasParameter": [
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.Ramp.duration"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.Ramp.height"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.Ramp.offset"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.Ramp.startTime"
+        }
+      ],
+      "S231P:label": "Ramp"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.Ramp.duration",
+      "@type": "S231P:Parameter",
+      "qudt:hasQuantityKind": {
+        "@id": "S231P:Time"
+      },
+      "qudt:hasUnit": {
+        "@id": "S231P:s"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Duration of ramp (= 0.0 gives a Step)",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "duration",
+      "S231P:min": "Constants.small"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.Ramp.height",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Height of ramps",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "height",
+      "S231P:value": 1
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.Ramp.offset",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Offset of output signal",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "offset",
+      "S231P:value": 0
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.Ramp.startTime",
+      "@type": "S231P:Parameter",
+      "qudt:hasQuantityKind": {
+        "@id": "S231P:Time"
+      },
+      "qudt:hasUnit": {
+        "@id": "S231P:s"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Output = offset for time < startTime",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "startTime",
+      "S231P:value": 0
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.Ramp.y",
+      "@type": "S231P:RealOutput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Connector of Real output signal",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
+      "S231P:label": "y"
+    }
+  ]
+}

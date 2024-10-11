@@ -1,0 +1,89 @@
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#"
+  },
+  "@graph": [
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.IntegratorWithReset",
+      "@type": "S231P:ElementaryBlock",
+      "S231P:hasInput": [
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.IntegratorWithReset.trigger"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.IntegratorWithReset.u"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.IntegratorWithReset.y_reset_in"
+        }
+      ],
+      "S231P:hasOutput": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.IntegratorWithReset.y"
+      },
+      "S231P:hasParameter": [
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.IntegratorWithReset.k"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.IntegratorWithReset.y_start"
+        }
+      ],
+      "S231P:label": "IntegratorWithReset"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.IntegratorWithReset.k",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Integrator gain",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "k",
+      "S231P:value": 1
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.IntegratorWithReset.trigger",
+      "@type": "S231P:BooleanInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Resets the integrator output when trigger becomes true",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"origin\":{\"x\":0,\"y\":-120},\"extent\":[{\"x\":-20,\"y\":-20},{\"x\":20,\"y\":20}],\"rotation\":90},\"iconTransformation\":{\"origin\":{\"x\":0,\"y\":-120},\"extent\":[{\"x\":-20,\"y\":-20},{\"x\":20,\"y\":20}],\"rotation\":90}}}",
+      "S231P:label": "trigger"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.IntegratorWithReset.u",
+      "@type": "S231P:RealInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Connector of Real input signal",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
+      "S231P:label": "u"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.IntegratorWithReset.y",
+      "@type": "S231P:RealOutput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Connector of Real output signal",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
+      "S231P:label": "y"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.IntegratorWithReset.y_reset_in",
+      "@type": "S231P:RealInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Input signal for state to which integrator is reset",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-100},{\"x\":-100,\"y\":-60}]}}}",
+      "S231P:label": "y_reset_in"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.IntegratorWithReset.y_start",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Initial or guess value of output (= state)",
+      "S231P:graphics": "{\"name\":\"Dialog\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"group\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"\\\"Initialization\\\"\"}}}}}]}}",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "y_start",
+      "S231P:value": 0
+    }
+  ]
+}

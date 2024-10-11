@@ -1,0 +1,48 @@
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#"
+  },
+  "@graph": [
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.FallingEdge",
+      "@type": "S231P:ElementaryBlock",
+      "S231P:hasInput": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.FallingEdge.u"
+      },
+      "S231P:hasOutput": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.FallingEdge.y"
+      },
+      "S231P:hasParameter": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.FallingEdge.pre_u_start"
+      },
+      "S231P:label": "FallingEdge"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.FallingEdge.pre_u_start",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Start value of pre(u) at initial time",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Boolean"
+      },
+      "S231P:label": "pre_u_start",
+      "S231P:value": false
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.FallingEdge.u",
+      "@type": "S231P:BooleanInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Connector of Boolean input signal",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
+      "S231P:label": "u"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.FallingEdge.y",
+      "@type": "S231P:BooleanOutput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Connector of Boolean output signal",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
+      "S231P:label": "y"
+    }
+  ]
+}

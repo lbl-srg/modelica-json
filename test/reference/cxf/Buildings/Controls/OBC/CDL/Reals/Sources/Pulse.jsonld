@@ -1,0 +1,116 @@
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#",
+    "qudt": "http://qudt.org/schema/qudt#"
+  },
+  "@graph": [
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.Pulse",
+      "@type": "S231P:ElementaryBlock",
+      "S231P:hasOutput": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.Pulse.y"
+      },
+      "S231P:hasParameter": [
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.Pulse.amplitude"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.Pulse.offset"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.Pulse.period"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.Pulse.shift"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.Pulse.width"
+        }
+      ],
+      "S231P:label": "Pulse"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.Pulse.amplitude",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Amplitude of pulse",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "amplitude",
+      "S231P:value": 1
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.Pulse.offset",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Offset of output signals",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "offset",
+      "S231P:value": 0
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.Pulse.period",
+      "@type": "S231P:Parameter",
+      "qudt:hasQuantityKind": {
+        "@id": "S231P:Time"
+      },
+      "qudt:hasUnit": {
+        "@id": "S231P:s"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Time for one period",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "period",
+      "S231P:min": "Constants.small"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.Pulse.shift",
+      "@type": "S231P:Parameter",
+      "qudt:hasQuantityKind": {
+        "@id": "S231P:Time"
+      },
+      "qudt:hasUnit": {
+        "@id": "S231P:s"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Shift time for output",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "shift",
+      "S231P:value": 0
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.Pulse.width",
+      "@type": "S231P:Parameter",
+      "qudt:hasUnit": {
+        "@id": "S231P:1"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Width of pulse in fraction of period",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "width",
+      "S231P:max": 1,
+      "S231P:min": "Constants.small",
+      "S231P:value": {
+        "@value": "0.5",
+        "@type": "http://www.w3.org/2001/XMLSchema#decimal"
+      }
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.Pulse.y",
+      "@type": "S231P:RealOutput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Connector of Pulse output signal",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
+      "S231P:label": "y"
+    }
+  ]
+}

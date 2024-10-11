@@ -1,0 +1,87 @@
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#",
+    "qudt": "http://qudt.org/schema/qudt#"
+  },
+  "@graph": [
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.TimerAccumulating",
+      "@type": "S231P:ElementaryBlock",
+      "S231P:hasInput": [
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.TimerAccumulating.reset"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.TimerAccumulating.u"
+        }
+      ],
+      "S231P:hasOutput": [
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.TimerAccumulating.passed"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.TimerAccumulating.y"
+        }
+      ],
+      "S231P:hasParameter": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.TimerAccumulating.t"
+      },
+      "S231P:label": "TimerAccumulating"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.TimerAccumulating.passed",
+      "@type": "S231P:BooleanOutput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "True if the elapsed time is greater than threshold",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-100},{\"x\":140,\"y\":-60}]},\"iconTransformation\":{\"extent\":[{\"x\":100,\"y\":-100},{\"x\":140,\"y\":-60}]}}}",
+      "S231P:label": "passed"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.TimerAccumulating.reset",
+      "@type": "S231P:BooleanInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Connector for signal that sets timer to zero if it switches to true",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-100},{\"x\":-100,\"y\":-60}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":-100},{\"x\":-100,\"y\":-60}]}}}",
+      "S231P:label": "reset"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.TimerAccumulating.t",
+      "@type": "S231P:Parameter",
+      "qudt:hasQuantityKind": {
+        "@id": "S231P:Time"
+      },
+      "qudt:hasUnit": {
+        "@id": "S231P:s"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Threshold time for comparison",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "t",
+      "S231P:value": 0
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.TimerAccumulating.u",
+      "@type": "S231P:BooleanInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Input that switches timer on if true, and off if false",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
+      "S231P:label": "u"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.TimerAccumulating.y",
+      "@type": "S231P:RealOutput",
+      "qudt:hasQuantityKind": {
+        "@id": "S231P:Time"
+      },
+      "qudt:hasUnit": {
+        "@id": "S231P:s"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Elapsed time",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]},\"iconTransformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
+      "S231P:label": "y"
+    }
+  ]
+}

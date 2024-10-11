@@ -1,0 +1,48 @@
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#"
+  },
+  "@graph": [
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.BooleanScalarReplicator",
+      "@type": "S231P:ElementaryBlock",
+      "S231P:hasInput": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.BooleanScalarReplicator.u"
+      },
+      "S231P:hasOutput": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.BooleanScalarReplicator.y"
+      },
+      "S231P:hasParameter": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.BooleanScalarReplicator.nout"
+      },
+      "S231P:label": "BooleanScalarReplicator"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.BooleanScalarReplicator.nout",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Number of outputs",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Integer"
+      },
+      "S231P:label": "nout",
+      "S231P:value": 1
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.BooleanScalarReplicator.u",
+      "@type": "S231P:BooleanInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Connector of Boolean input signal",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
+      "S231P:label": "u"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.BooleanScalarReplicator.y",
+      "@type": "S231P:BooleanOutput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Connector of Boolean output signals",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
+      "S231P:label": "y"
+    }
+  ]
+}

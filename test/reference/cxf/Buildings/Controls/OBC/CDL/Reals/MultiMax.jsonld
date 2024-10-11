@@ -1,0 +1,53 @@
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#"
+  },
+  "@graph": [
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MultiMax",
+      "@type": "S231P:ElementaryBlock",
+      "S231P:hasInput": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MultiMax.u"
+      },
+      "S231P:hasOutput": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MultiMax.y"
+      },
+      "S231P:hasParameter": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MultiMax.nin"
+      },
+      "S231P:label": "MultiMax"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MultiMax.nin",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Number of input connections",
+      "S231P:graphics": [
+        "{\"name\":\"Dialog\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"connectorSizing\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"true\"}}}}}]}}",
+        "{\"name\":\"HideResult\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"true\"}}}"
+      ],
+      "S231P:isOfDataType": {
+        "@id": "S231P:Integer"
+      },
+      "S231P:label": "nin",
+      "S231P:min": 0,
+      "S231P:value": 0
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MultiMax.u",
+      "@type": "S231P:RealInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Connector of Real input signals",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":20},{\"x\":-100,\"y\":-20}]}}}",
+      "S231P:label": "u"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MultiMax.y",
+      "@type": "S231P:RealOutput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Connector of Real output signals",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
+      "S231P:label": "y"
+    }
+  ]
+}

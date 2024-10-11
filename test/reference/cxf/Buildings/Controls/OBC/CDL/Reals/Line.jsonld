@@ -1,0 +1,112 @@
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#"
+  },
+  "@graph": [
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Line",
+      "@type": "S231P:ElementaryBlock",
+      "S231P:hasInput": [
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Line.f1"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Line.f2"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Line.u"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Line.x1"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Line.x2"
+        }
+      ],
+      "S231P:hasOutput": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Line.y"
+      },
+      "S231P:hasParameter": [
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Line.limitAbove"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Line.limitBelow"
+        }
+      ],
+      "S231P:label": "Line"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Line.f1",
+      "@type": "S231P:RealInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Support point f(x1)",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":20},{\"x\":-100,\"y\":60}]}}}",
+      "S231P:label": "f1"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Line.f2",
+      "@type": "S231P:RealInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Support point f(x2)",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-100},{\"x\":-100,\"y\":-60}]}}}",
+      "S231P:label": "f2"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Line.limitAbove",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "If true, limit input u to be no larger than x2",
+      "S231P:graphics": "{\"name\":\"Evaluate\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"true\"}}}",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Boolean"
+      },
+      "S231P:label": "limitAbove",
+      "S231P:value": true
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Line.limitBelow",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "If true, limit input u to be no smaller than x1",
+      "S231P:graphics": "{\"name\":\"Evaluate\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"true\"}}}",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Boolean"
+      },
+      "S231P:label": "limitBelow",
+      "S231P:value": true
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Line.u",
+      "@type": "S231P:RealInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Independent variable",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
+      "S231P:label": "u"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Line.x1",
+      "@type": "S231P:RealInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Support point x1, with x1 < x2",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":60},{\"x\":-100,\"y\":100}]}}}",
+      "S231P:label": "x1"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Line.x2",
+      "@type": "S231P:RealInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Support point x2, with x2 > x1",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-60},{\"x\":-100,\"y\":-20}]}}}",
+      "S231P:label": "x2"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Line.y",
+      "@type": "S231P:RealOutput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "f(x) along the line specified by (x1, f1) and (x2, f2)",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
+      "S231P:label": "y"
+    }
+  ]
+}

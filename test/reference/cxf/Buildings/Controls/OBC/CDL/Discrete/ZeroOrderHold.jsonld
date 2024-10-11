@@ -1,0 +1,58 @@
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#",
+    "qudt": "http://qudt.org/schema/qudt#"
+  },
+  "@graph": [
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Discrete.ZeroOrderHold",
+      "@type": "S231P:ElementaryBlock",
+      "S231P:hasInput": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Discrete.ZeroOrderHold.u"
+      },
+      "S231P:hasOutput": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Discrete.ZeroOrderHold.y"
+      },
+      "S231P:hasParameter": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Discrete.ZeroOrderHold.samplePeriod"
+      },
+      "S231P:label": "ZeroOrderHold"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Discrete.ZeroOrderHold.samplePeriod",
+      "@type": "S231P:Parameter",
+      "qudt:hasQuantityKind": {
+        "@id": "S231P:Time"
+      },
+      "qudt:hasUnit": {
+        "@id": "S231P:s"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Sample period of component",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "samplePeriod",
+      "S231P:min": {
+        "@value": "0.001",
+        "@type": "http://www.w3.org/2001/XMLSchema#decimal"
+      }
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Discrete.ZeroOrderHold.u",
+      "@type": "S231P:RealInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Continuous input signal",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
+      "S231P:label": "u"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Discrete.ZeroOrderHold.y",
+      "@type": "S231P:RealOutput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Continuous output signal",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
+      "S231P:label": "y"
+    }
+  ]
+}

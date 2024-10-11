@@ -1,0 +1,69 @@
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#"
+  },
+  "@graph": [
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MultiSum",
+      "@type": "S231P:ElementaryBlock",
+      "S231P:hasInput": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MultiSum.u"
+      },
+      "S231P:hasOutput": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MultiSum.y"
+      },
+      "S231P:hasParameter": [
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MultiSum.k"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MultiSum.nin"
+        }
+      ],
+      "S231P:label": "MultiSum"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MultiSum.k",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Input gains",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "k",
+      "S231P:value": "fill(1, nin)"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MultiSum.nin",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Number of input connections",
+      "S231P:graphics": [
+        "{\"name\":\"Dialog\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"connectorSizing\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"true\"}}}}}]}}",
+        "{\"name\":\"HideResult\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"true\"}}}"
+      ],
+      "S231P:isOfDataType": {
+        "@id": "S231P:Integer"
+      },
+      "S231P:label": "nin",
+      "S231P:min": 0,
+      "S231P:value": 0
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MultiSum.u",
+      "@type": "S231P:RealInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Connector of Real input signals",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":20},{\"x\":-100,\"y\":-20}]}}}",
+      "S231P:label": "u"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MultiSum.y",
+      "@type": "S231P:RealOutput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Connector of Real output signal",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
+      "S231P:label": "y"
+    }
+  ]
+}

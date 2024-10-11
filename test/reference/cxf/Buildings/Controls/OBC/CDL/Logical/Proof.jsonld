@@ -1,0 +1,101 @@
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#",
+    "qudt": "http://qudt.org/schema/qudt#"
+  },
+  "@graph": [
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof",
+      "@type": "S231P:ElementaryBlock",
+      "S231P:hasInput": [
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof.u_m"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof.u_s"
+        }
+      ],
+      "S231P:hasOutput": [
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof.yLocFal"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof.yLocTru"
+        }
+      ],
+      "S231P:hasParameter": [
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof.debounce"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof.feedbackDelay"
+        }
+      ],
+      "S231P:label": "Proof"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof.debounce",
+      "@type": "S231P:Parameter",
+      "qudt:hasQuantityKind": {
+        "@id": "S231P:Time"
+      },
+      "qudt:hasUnit": {
+        "@id": "S231P:s"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Time during which input must remain unchanged for signal to considered valid and used in checks",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "debounce"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof.feedbackDelay",
+      "@type": "S231P:Parameter",
+      "qudt:hasQuantityKind": {
+        "@id": "S231P:Time"
+      },
+      "qudt:hasUnit": {
+        "@id": "S231P:s"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Delay after which the two inputs are checked for equality once they become valid",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "feedbackDelay"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof.u_m",
+      "@type": "S231P:BooleanInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Measured status",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"origin\":{\"x\":0,\"y\":-260},\"extent\":[{\"x\":-20,\"y\":-20},{\"x\":20,\"y\":20}],\"rotation\":90},\"iconTransformation\":{\"origin\":{\"x\":0,\"y\":-120},\"extent\":[{\"x\":-20,\"y\":-20},{\"x\":20,\"y\":20}],\"rotation\":90}}}",
+      "S231P:label": "u_m"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof.u_s",
+      "@type": "S231P:BooleanInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Commanded status setpoint",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-300,\"y\":-20},{\"x\":-260,\"y\":20}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
+      "S231P:label": "u_s"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof.yLocFal",
+      "@type": "S231P:BooleanOutput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "True: measured input is locked to false even after the setpoint has changed to true",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":240,\"y\":100},{\"x\":280,\"y\":140}]},\"iconTransformation\":{\"extent\":[{\"x\":100,\"y\":30},{\"x\":140,\"y\":70}]}}}",
+      "S231P:label": "yLocFal"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof.yLocTru",
+      "@type": "S231P:BooleanOutput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "True: measured input is locked to true even after the setpoint has changed to false",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":240,\"y\":-140},{\"x\":280,\"y\":-100}]},\"iconTransformation\":{\"extent\":[{\"x\":100,\"y\":-70},{\"x\":140,\"y\":-30}]}}}",
+      "S231P:label": "yLocTru"
+    }
+  ]
+}

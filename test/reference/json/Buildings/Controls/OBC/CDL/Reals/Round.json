@@ -1,0 +1,367 @@
+{
+  "within": "Buildings.Controls.OBC.CDL.Reals",
+  "class_definition": [
+    {
+      "class_prefixes": "block",
+      "class_specifier": {
+        "long_class_specifier": {
+          "identifier": "Round",
+          "description_string": "Round real number to given digits",
+          "composition": {
+            "element_list": [
+              {
+                "component_clause": {
+                  "type_prefix": "parameter",
+                  "type_specifier": "Integer",
+                  "component_list": [
+                    {
+                      "declaration": {
+                        "identifier": "n"
+                      },
+                      "description": {
+                        "description_string": "Number of digits being round to"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "component_clause": {
+                  "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+                  "component_list": [
+                    {
+                      "declaration": {
+                        "identifier": "u"
+                      },
+                      "description": {
+                        "description_string": "Connector of Real input signal",
+                        "annotation": [
+                          {
+                            "element_modification_or_replaceable": {
+                              "element_modification": {
+                                "Placement": {
+                                  "transformation": {
+                                    "extent": [
+                                      {
+                                        "x": -140,
+                                        "y": -20
+                                      },
+                                      {
+                                        "x": -100,
+                                        "y": 20
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "component_clause": {
+                  "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
+                  "component_list": [
+                    {
+                      "declaration": {
+                        "identifier": "y"
+                      },
+                      "description": {
+                        "description_string": "Connector of Real output signal",
+                        "annotation": [
+                          {
+                            "element_modification_or_replaceable": {
+                              "element_modification": {
+                                "Placement": {
+                                  "transformation": {
+                                    "extent": [
+                                      {
+                                        "x": 100,
+                                        "y": -20
+                                      },
+                                      {
+                                        "x": 140,
+                                        "y": 20
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ],
+            "element_sections": [
+              {
+                "protected_element_list": [
+                  {
+                    "component_clause": {
+                      "type_prefix": "parameter",
+                      "type_specifier": "Real",
+                      "component_list": [
+                        {
+                          "declaration": {
+                            "identifier": "fac",
+                            "modification": {
+                              "equal": true,
+                              "expression": {
+                                "simple_expression": "10^n"
+                              }
+                            }
+                          },
+                          "description": {
+                            "description_string": "Factor used for rounding"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              {
+                "equation_section": {
+                  "equation": [
+                    {
+                      "assignment_equation": {
+                        "lhs": "y",
+                        "rhs": {
+                          "if_expression": {
+                            "if_elseif": [
+                              {
+                                "condition": {
+                                  "simple_expression": "([object Object])"
+                                },
+                                "then": {
+                                  "simple_expression": "floor(u*fac +0.5)/fac"
+                                }
+                              }
+                            ],
+                            "else_expression": {
+                              "simple_expression": "ceil(u*fac -0.5)/fac"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            ],
+            "annotation": [
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "defaultComponentName",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "\"rou\""
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "Icon",
+                    "modification": {
+                      "class_modification": [
+                        {
+                          "element_modification_or_replaceable": {
+                            "element_modification": {
+                              "coordinateSystem": {
+                                "extent": [
+                                  {
+                                    "x": -100,
+                                    "y": -100
+                                  },
+                                  {
+                                    "x": 100,
+                                    "y": 100
+                                  }
+                                ],
+                                "preserveAspectRatio": "true"
+                              }
+                            }
+                          }
+                        },
+                        {
+                          "element_modification_or_replaceable": {
+                            "element_modification": {
+                              "graphics": [
+                                {
+                                  "name": "Rectangle",
+                                  "attribute": {
+                                    "extent": [
+                                      {
+                                        "x": -100,
+                                        "y": -100
+                                      },
+                                      {
+                                        "x": 100,
+                                        "y": 100
+                                      }
+                                    ],
+                                    "lineColor": {
+                                      "r": 0,
+                                      "g": 0,
+                                      "b": 127
+                                    },
+                                    "fillColor": {
+                                      "r": 255,
+                                      "g": 255,
+                                      "b": 255
+                                    },
+                                    "fillPattern": "FillPattern.Solid"
+                                  }
+                                },
+                                {
+                                  "name": "Text",
+                                  "attribute": {
+                                    "extent": [
+                                      {
+                                        "x": -56,
+                                        "y": 4
+                                      },
+                                      {
+                                        "x": 72,
+                                        "y": 106
+                                      }
+                                    ],
+                                    "textString": "\"round( )\"",
+                                    "textColor": {
+                                      "r": 0,
+                                      "g": 0,
+                                      "b": 127
+                                    }
+                                  }
+                                },
+                                {
+                                  "name": "Text",
+                                  "attribute": {
+                                    "extent": [
+                                      {
+                                        "x": -150,
+                                        "y": 150
+                                      },
+                                      {
+                                        "x": 150,
+                                        "y": 110
+                                      }
+                                    ],
+                                    "textString": "\"%name\"",
+                                    "textColor": {
+                                      "r": 0,
+                                      "g": 0,
+                                      "b": 255
+                                    }
+                                  }
+                                },
+                                {
+                                  "name": "Text",
+                                  "attribute": {
+                                    "extent": [
+                                      {
+                                        "x": -60,
+                                        "y": -88
+                                      },
+                                      {
+                                        "x": 54,
+                                        "y": -34
+                                      }
+                                    ],
+                                    "textString": "\"%n\"",
+                                    "textColor": {
+                                      "r": 0,
+                                      "g": 0,
+                                      "b": 127
+                                    }
+                                  }
+                                },
+                                {
+                                  "name": "Text",
+                                  "attribute": {
+                                    "extent": [
+                                      {
+                                        "x": 226,
+                                        "y": 60
+                                      },
+                                      {
+                                        "x": 106,
+                                        "y": 10
+                                      }
+                                    ],
+                                    "textString": "DynamicSelect(\"\",String(y",
+                                    "textColor": {
+                                      "r": 0,
+                                      "g": 0,
+                                      "b": 0
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              },
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "Documentation",
+                    "modification": {
+                      "class_modification": [
+                        {
+                          "element_modification_or_replaceable": {
+                            "element_modification": {
+                              "name": "info",
+                              "modification": {
+                                "equal": true,
+                                "expression": {
+                                  "simple_expression": "\"<html>\n<p>\nBlock that outputs the input after rounding it to <code>n</code> digits.\n</p>\n<p>\nFor example,\n</p>\n<ul>\n<li>\nset <code>n = 0</code> to round to the nearest integer,\n</li>\n<li>\nset <code>n = 1</code> to round to the next decimal point, and\n</li>\n<li>\nset <code>n = -1</code> to round to the next multiple of ten.\n</li>\n</ul>\n<p>\nHence, the block outputs\n</p>\n<pre>\n    y = floor(u*(10^n) + 0.5)/(10^n)  for  u &gt; 0,\n    y = ceil(u*(10^n) - 0.5)/(10^n)   for  u &lt; 0.\n</pre>\n</html>\""
+                                }
+                              }
+                            }
+                          }
+                        },
+                        {
+                          "element_modification_or_replaceable": {
+                            "element_modification": {
+                              "name": "revisions",
+                              "modification": {
+                                "equal": true,
+                                "expression": {
+                                  "simple_expression": "\"<html>\n<ul>\n<li>\nMarch 2, 2020, by Michael Wetter:<br/>\nChanged icon to display dynamically the output value.\n</li>\n<li>\nSeptember 14, 2017, by Jianjun Hu:<br/>\nFirst implementation, based on the implementation of the\nModelica Standard Library.\n</li>\n</ul>\n</html>\""
+                                }
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "modelicaFile": "Buildings/Controls/OBC/CDL/Reals/Round.mo",
+  "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Round.mo",
+  "checksum": "08f443c48a4b94c5bd167baed76e6b81"
+}

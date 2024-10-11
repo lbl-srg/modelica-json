@@ -1,0 +1,82 @@
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#"
+  },
+  "@graph": [
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sort",
+      "@type": "S231P:ElementaryBlock",
+      "S231P:hasInput": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sort.u"
+      },
+      "S231P:hasOutput": [
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sort.y"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sort.yIdx"
+        }
+      ],
+      "S231P:hasParameter": [
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sort.ascending"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sort.nin"
+        }
+      ],
+      "S231P:label": "Sort"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sort.ascending",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Set to true if ascending order, otherwise order is descending",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Boolean"
+      },
+      "S231P:label": "ascending",
+      "S231P:value": true
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sort.nin",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Number of input connections",
+      "S231P:graphics": [
+        "{\"name\":\"Dialog\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"connectorSizing\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"true\"}}}}}]}}",
+        "{\"name\":\"HideResult\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"true\"}}}"
+      ],
+      "S231P:isOfDataType": {
+        "@id": "S231P:Integer"
+      },
+      "S231P:label": "nin",
+      "S231P:min": 0,
+      "S231P:value": 0
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sort.u",
+      "@type": "S231P:RealInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Connector of Real input signals",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
+      "S231P:label": "u"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sort.y",
+      "@type": "S231P:RealOutput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Connector of Real output signals",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
+      "S231P:label": "y"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sort.yIdx",
+      "@type": "S231P:IntegerOutput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Indices of the sorted vector with respect to the original vector",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-80},{\"x\":140,\"y\":-40}]},\"iconTransformation\":{\"extent\":[{\"x\":100,\"y\":-80},{\"x\":140,\"y\":-40}]}}}",
+      "S231P:label": "yIdx"
+    }
+  ]
+}

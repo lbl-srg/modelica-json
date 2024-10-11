@@ -1,0 +1,508 @@
+{
+  "within": "Buildings.Controls.OBC.CDL.Reals",
+  "class_definition": [
+    {
+      "class_prefixes": "block",
+      "class_specifier": {
+        "long_class_specifier": {
+          "identifier": "Tan",
+          "description_string": "Output the tangent of the input",
+          "composition": {
+            "element_list": [
+              {
+                "component_clause": {
+                  "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+                  "component_list": [
+                    {
+                      "declaration": {
+                        "identifier": "u",
+                        "modification": {
+                          "class_modification": [
+                            {
+                              "element_modification_or_replaceable": {
+                                "element_modification": {
+                                  "name": "unit",
+                                  "modification": {
+                                    "equal": true,
+                                    "expression": {
+                                      "simple_expression": "\"rad\""
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      "description": {
+                        "description_string": "Connector of Real input signal",
+                        "annotation": [
+                          {
+                            "element_modification_or_replaceable": {
+                              "element_modification": {
+                                "Placement": {
+                                  "transformation": {
+                                    "extent": [
+                                      {
+                                        "x": -140,
+                                        "y": -20
+                                      },
+                                      {
+                                        "x": -100,
+                                        "y": 20
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "component_clause": {
+                  "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
+                  "component_list": [
+                    {
+                      "declaration": {
+                        "identifier": "y"
+                      },
+                      "description": {
+                        "description_string": "Connector of Real output signal",
+                        "annotation": [
+                          {
+                            "element_modification_or_replaceable": {
+                              "element_modification": {
+                                "Placement": {
+                                  "transformation": {
+                                    "extent": [
+                                      {
+                                        "x": 100,
+                                        "y": -20
+                                      },
+                                      {
+                                        "x": 140,
+                                        "y": 20
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ],
+            "element_sections": [
+              {
+                "equation_section": {
+                  "equation": [
+                    {
+                      "assignment_equation": {
+                        "lhs": "y",
+                        "rhs": {
+                          "simple_expression": {
+                            "function_call": {
+                              "name": "Modelica.Math.tan",
+                              "arguments": [
+                                {
+                                  "name": "u"
+                                }
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            ],
+            "annotation": [
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "defaultComponentName",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "\"tan\""
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "Icon",
+                    "modification": {
+                      "class_modification": [
+                        {
+                          "element_modification_or_replaceable": {
+                            "element_modification": {
+                              "coordinateSystem": {
+                                "extent": [
+                                  {
+                                    "x": -100,
+                                    "y": -100
+                                  },
+                                  {
+                                    "x": 100,
+                                    "y": 100
+                                  }
+                                ],
+                                "preserveAspectRatio": "true"
+                              }
+                            }
+                          }
+                        },
+                        {
+                          "element_modification_or_replaceable": {
+                            "element_modification": {
+                              "graphics": [
+                                {
+                                  "name": "Rectangle",
+                                  "attribute": {
+                                    "extent": [
+                                      {
+                                        "x": -100,
+                                        "y": -100
+                                      },
+                                      {
+                                        "x": 100,
+                                        "y": 100
+                                      }
+                                    ],
+                                    "lineColor": {
+                                      "r": 0,
+                                      "g": 0,
+                                      "b": 127
+                                    },
+                                    "fillColor": {
+                                      "r": 255,
+                                      "g": 255,
+                                      "b": 255
+                                    },
+                                    "fillPattern": "FillPattern.Solid"
+                                  }
+                                },
+                                {
+                                  "name": "Text",
+                                  "attribute": {
+                                    "extent": [
+                                      {
+                                        "x": -150,
+                                        "y": 110
+                                      },
+                                      {
+                                        "x": 150,
+                                        "y": 150
+                                      }
+                                    ],
+                                    "textString": "\"%name\"",
+                                    "textColor": {
+                                      "r": 0,
+                                      "g": 0,
+                                      "b": 255
+                                    }
+                                  }
+                                },
+                                {
+                                  "name": "Text",
+                                  "attribute": {
+                                    "extent": [
+                                      {
+                                        "x": -90,
+                                        "y": 72
+                                      },
+                                      {
+                                        "x": -18,
+                                        "y": 24
+                                      }
+                                    ],
+                                    "textString": "\"tan\"",
+                                    "textColor": {
+                                      "r": 192,
+                                      "g": 192,
+                                      "b": 192
+                                    }
+                                  }
+                                },
+                                {
+                                  "name": "Line",
+                                  "attribute": {
+                                    "points": [
+                                      {
+                                        "x": 0,
+                                        "y": -80
+                                      },
+                                      {
+                                        "x": 0,
+                                        "y": 68
+                                      }
+                                    ],
+                                    "color": {
+                                      "r": 192,
+                                      "g": 192,
+                                      "b": 192
+                                    }
+                                  }
+                                },
+                                {
+                                  "name": "Polygon",
+                                  "attribute": {
+                                    "points": [
+                                      {
+                                        "x": 0,
+                                        "y": 90
+                                      },
+                                      {
+                                        "x": -8,
+                                        "y": 68
+                                      },
+                                      {
+                                        "x": 8,
+                                        "y": 68
+                                      },
+                                      {
+                                        "x": 0,
+                                        "y": 90
+                                      }
+                                    ],
+                                    "lineColor": {
+                                      "r": 192,
+                                      "g": 192,
+                                      "b": 192
+                                    },
+                                    "fillColor": {
+                                      "r": 192,
+                                      "g": 192,
+                                      "b": 192
+                                    },
+                                    "fillPattern": "FillPattern.Solid"
+                                  }
+                                },
+                                {
+                                  "name": "Polygon",
+                                  "attribute": {
+                                    "points": [
+                                      {
+                                        "x": 90,
+                                        "y": 0
+                                      },
+                                      {
+                                        "x": 68,
+                                        "y": 8
+                                      },
+                                      {
+                                        "x": 68,
+                                        "y": -8
+                                      },
+                                      {
+                                        "x": 90,
+                                        "y": 0
+                                      }
+                                    ],
+                                    "lineColor": {
+                                      "r": 192,
+                                      "g": 192,
+                                      "b": 192
+                                    },
+                                    "fillColor": {
+                                      "r": 192,
+                                      "g": 192,
+                                      "b": 192
+                                    },
+                                    "fillPattern": "FillPattern.Solid"
+                                  }
+                                },
+                                {
+                                  "name": "Line",
+                                  "attribute": {
+                                    "points": [
+                                      {
+                                        "x": -90,
+                                        "y": 0
+                                      },
+                                      {
+                                        "x": 68,
+                                        "y": 0
+                                      }
+                                    ],
+                                    "color": {
+                                      "r": 192,
+                                      "g": 192,
+                                      "b": 192
+                                    }
+                                  }
+                                },
+                                {
+                                  "name": "Line",
+                                  "attribute": {
+                                    "points": [
+                                      {
+                                        "x": -80,
+                                        "y": -80
+                                      },
+                                      {
+                                        "x": -78.4,
+                                        "y": -68.4
+                                      },
+                                      {
+                                        "x": -76.8,
+                                        "y": -59.7
+                                      },
+                                      {
+                                        "x": -74.4,
+                                        "y": -50
+                                      },
+                                      {
+                                        "x": -71.2,
+                                        "y": -40.9
+                                      },
+                                      {
+                                        "x": -67.1,
+                                        "y": -33
+                                      },
+                                      {
+                                        "x": -60.7,
+                                        "y": -24.8
+                                      },
+                                      {
+                                        "x": -51.1,
+                                        "y": -17.2
+                                      },
+                                      {
+                                        "x": -35.8,
+                                        "y": -9.98
+                                      },
+                                      {
+                                        "x": -4.42,
+                                        "y": -1.07
+                                      },
+                                      {
+                                        "x": 33.4,
+                                        "y": 9.12
+                                      },
+                                      {
+                                        "x": 49.4,
+                                        "y": 16.2
+                                      },
+                                      {
+                                        "x": 59.1,
+                                        "y": 23.2
+                                      },
+                                      {
+                                        "x": 65.5,
+                                        "y": 30.6
+                                      },
+                                      {
+                                        "x": 70.4,
+                                        "y": 39.1
+                                      },
+                                      {
+                                        "x": 73.6,
+                                        "y": 47.4
+                                      },
+                                      {
+                                        "x": 76,
+                                        "y": 56.1
+                                      },
+                                      {
+                                        "x": 77.6,
+                                        "y": 63.8
+                                      },
+                                      {
+                                        "x": 80,
+                                        "y": 80
+                                      }
+                                    ],
+                                    "smooth": "Smooth.Bezier"
+                                  }
+                                },
+                                {
+                                  "name": "Text",
+                                  "attribute": {
+                                    "extent": [
+                                      {
+                                        "x": 226,
+                                        "y": 60
+                                      },
+                                      {
+                                        "x": 106,
+                                        "y": 10
+                                      }
+                                    ],
+                                    "textString": "DynamicSelect(\"\",String(y",
+                                    "textColor": {
+                                      "r": 0,
+                                      "g": 0,
+                                      "b": 0
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              },
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "Documentation",
+                    "modification": {
+                      "class_modification": [
+                        {
+                          "element_modification_or_replaceable": {
+                            "element_modification": {
+                              "name": "info",
+                              "modification": {
+                                "equal": true,
+                                "expression": {
+                                  "simple_expression": "\"<html>\n<p>\nBlock that outputs <code>y = tan(u)</code>,\nwhere\n<code>u</code> is an input.\n</p>\n\n<p align=\\\"center\\\">\n<img src=\\\"modelica://Buildings/Resources/Images/Controls/OBC/CDL/Reals/Tan.png\\\"\n     alt=\\\"tan.png\\\" />\n</p>\n\n</html>\""
+                                }
+                              }
+                            }
+                          }
+                        },
+                        {
+                          "element_modification_or_replaceable": {
+                            "element_modification": {
+                              "name": "revisions",
+                              "modification": {
+                                "equal": true,
+                                "expression": {
+                                  "simple_expression": "\"<html>\n<ul>\n<li>\nMarch 7, 2023, by Jianjun Hu:<br/>\nAdded unit <code>rad</code> to the input.<br/>\nThis is for\n<a href=\\\"https://github.com/lbl-srg/modelica-buildings/issues/3277\\\">issue 3277</a>.\n</li>\n<li>\nMarch 2, 2020, by Michael Wetter:<br/>\nChanged icon to display dynamically the output value.\n</li>\n<li>\nJanuary 3, 2017, by Michael Wetter:<br/>\nFirst implementation, based on the implementation of the\nModelica Standard Library.\n</li>\n</ul>\n</html>\""
+                                }
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "modelicaFile": "Buildings/Controls/OBC/CDL/Reals/Tan.mo",
+  "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Tan.mo",
+  "checksum": "3ee41cce99e1b1178c57aa4936713ac0"
+}

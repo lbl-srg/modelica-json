@@ -45,7 +45,8 @@ generate-reference-output:
 		node app.js -l warn -f $${ff} -o json -d ./test/reference; \
 		node app.js -l warn -f $${ff} -o semantic -d ./test/reference -p;\
 		node app.js -l warn -f $${ff} -o cxf -d ./test/reference -p;\
-		done)
+		done); \
+	node app.js -f Buildings/Controls/OBC/CDL -o cxf -d ./test/reference --elementary --cxfCore --prettyPrint
 
 clean-node-packages:
 	rm -rf node-modules

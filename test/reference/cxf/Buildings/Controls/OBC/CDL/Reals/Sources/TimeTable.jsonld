@@ -1,0 +1,90 @@
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#",
+    "qudt": "http://qudt.org/schema/qudt#"
+  },
+  "@graph": [
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.TimeTable",
+      "@type": "S231P:ElementaryBlock",
+      "S231P:hasOutput": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.TimeTable.y"
+      },
+      "S231P:hasParameter": [
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.TimeTable.extrapolation"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.TimeTable.offset"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.TimeTable.smoothness"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.TimeTable.table"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.TimeTable.timeScale"
+        }
+      ],
+      "S231P:label": "TimeTable"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.TimeTable.extrapolation",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Extrapolation of data outside the definition range",
+      "S231P:label": "extrapolation",
+      "S231P:value": "CDL.Types.Extrapolation.Periodic"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.TimeTable.offset",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Offsets of output signals as a vector with length equal to number of table matrix columns less one",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "offset",
+      "S231P:value": "fill(0, nout)"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.TimeTable.smoothness",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Smoothness of table interpolation",
+      "S231P:label": "smoothness",
+      "S231P:value": "CDL.Types.Smoothness.LinearSegments"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.TimeTable.table",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Table matrix (time = first column is time in seconds, unless timeScale <> 1)",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "table"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.TimeTable.timeScale",
+      "@type": "S231P:Parameter",
+      "qudt:hasUnit": {
+        "@id": "S231P:1"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Time scale of first table column. Set to 3600 if time in table is in hours",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "timeScale",
+      "S231P:value": 1
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.TimeTable.y",
+      "@type": "S231P:RealOutput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Output of the table",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
+      "S231P:label": "y"
+    }
+  ]
+}
