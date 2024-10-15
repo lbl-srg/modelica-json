@@ -20,7 +20,7 @@ parser.addArgument(
   ['-o', '--output'],
   {
     help: 'Specify output format.',
-    choices: ['raw-json', 'json', 'modelica', 'semantic', 'cxf', 'doc'],
+    choices: ['raw-json', 'json', 'modelica', 'semantic', 'cxf', 'doc', 'doc+'],
     defaultValue: 'json'
   }
 )
@@ -136,10 +136,11 @@ if (args.output === 'modelica') {
     if (args.output === 'cxf' && args.cxfCore && args.elementary) {
       ce.getCxfCore(args.file, args.directory, args.prettyPrint)
     }
-    if (args.output === 'doc') {
+    if (args.output === 'doc' || args.output === 'doc+') {
       const unitData = JSON.parse(
         fs.readFileSync(path.join(__dirname, 'units-si.json'), 'utf8'))
-      dc.buildDoc(jsons[0], jsons, unitData, args.directory)
+      const includeVariables = (args.output === 'doc+')
+      dc.buildDoc(jsons[0], jsons, unitData, args.directory, includeVariables)
     }
   })
 }

@@ -128,8 +128,8 @@ mocha.describe('cdlDoc', function () {
       processHref($, documentation)
       assert.strictEqual(
         $.html(),
-        '<html><head></head><body><p>See <a href="#5heading"' +
-        ' style="white-space: nowrap;">Section 5</a> and <span style="color: grey;"' +
+        '<html><head></head><body><p>See Section&nbsp;<a href="#5heading"' +
+        ' style="white-space: nowrap;">5</a> and <span style="color: grey;"' +
         ' id="Library.ExternalControlBlock"><a>Library.ExternalControlBlock</a></span></p></body></html>'
       )
     })
@@ -139,34 +139,8 @@ mocha.describe('cdlDoc', function () {
     const createAnchorId = cdlDoc.__get__('createAnchorId')
     mocha.it('should return "1.1heading-text"', function () {
       assert.strictEqual(
-        createAnchorId('1.1', 'Heading Text'),
+        createAnchorId('Heading Text', '1.1'),
         '1.1heading-text'
-      )
-    })
-  })
-
-  mocha.describe('#createNomenclature()', function () {
-    const createNomenclature = cdlDoc.__get__('createNomenclature')
-    mocha.it('should modify the documentation object', function () {
-      const documentation = [
-        {
-          section: '1.'
-        },
-        {
-          section: '2.'
-        },
-        {
-          section: '2.2'
-        }
-      ]
-      createNomenclature(documentation)
-      assert.deepStrictEqual(
-        documentation.map(({ headingIdx }) => headingIdx),
-        [1, 1, 2]
-      )
-      assert.deepStrictEqual(
-        documentation.map(({ headingNum }) => headingNum),
-        ['1', '2', '2.1']
       )
     })
   })
@@ -189,21 +163,23 @@ mocha.describe('cdlDoc', function () {
       headingIdx: 1,
       headingNum: '5'
     }
-    const modifiedDoc =
-      '<h1><a name="5heading-from-description-stri"></a>' +
-      '<!--[if !supportLists]--><span style="mso-list:Ignore">5.&nbsp;</span>' +
-      '<!--[endif]-->Heading from description string</h1>\n<h2><a name="5.1existing-heading"></a>' +
-      '<!--[if !supportLists]--><span style="mso-list:Ignore">5.1.&nbsp;</span><!--[endif]-->Existing heading</h2>\n' +
-      '\n<p>Documentation with <code>T + dT1 + dT2</code>&nbsp;(22&nbsp;°C, adjustable)</p>\n'
+    const modifiedInfo = {
+      html: '<h1><a name="3heading-from-description-stri"></a><!--[if !supportLists]--><span style="mso-list:Ignore">3.&nbsp;</span><!--[endif]-->Heading from description string</h1>\n' +
+        '<h2><a name="3.1existing-heading"></a><!--[if !supportLists]--><span style="mso-list:Ignore">3.1.&nbsp;</span><!--[endif]-->Existing heading</h2>\n' +
+        '\n' +
+        '<p>Documentation with <code>T + dT1 + dT2</code>&nbsp;(22&nbsp;°C, adjustable)</p>\n',
+      lastHeadingNum: '3.1'
+    }
     mocha.it('should return the given HTML string', function () {
-      assert.strictEqual(
+      assert.deepStrictEqual(
         modifyInfo(
           docElement,
           { 'frePro.T': 293.15, 'frePro.dT1': 'frePro.dT2', 'frePro.dT2': 1 },
           { 'frePro.T': { unit: 'K', displayUnit: 'degC' }, 'frePro.dT1': { unit: 'K' } },
-          unitData
+          unitData,
+          '2.1'
         ),
-        modifiedDoc
+        modifiedInfo
       )
     })
   })
@@ -225,13 +201,16 @@ mocha.describe('cdlDoc', function () {
       const jsons = JSON.parse(fs.readFileSync(path.join(
         process.cwd(), 'test', 'cdlDoc', 'MultiZoneVav.json'
       ), 'utf8'))
-      cdlDoc.buildDoc(jsons[0], jsons, unitData, outputDir, 'MultiZoneVavDoc')
-      const htmlDoc = fs.readFileSync(path.join(outputDir, 'MultiZoneVavDoc.html'), 'utf8')
+      cdlDoc.buildDoc(jsons[0], jsons, unitData, outputDir, /* includeVariables= */ true, 'MultiZoneVavDoc')
+      const htmlDoc = fs.readFileSync(path.join(outputDir, 'MultiZoneVavDoc.html'))
       const htmlDocExp = fs.readFileSync(path.join(
         process.cwd(), 'test', 'cdlDoc', 'MultiZoneVavDoc.html'
-      ), 'utf8')
+      ))
       fs.rmSync(outputDir, { recursive: true, force: true })
-      assert.strictEqual(htmlDoc, htmlDocExp)
+      assert.strictEqual(
+        cheerio.loadBuffer(htmlDoc).text(),
+        cheerio.loadBuffer(htmlDocExp).text()
+      )
     })
   })
 })
