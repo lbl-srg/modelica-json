@@ -8136,11 +8136,7 @@
       "descriptionString": "Multizone VAV air handling unit controller",
       "cdlAnnotation": null,
       "documentationInfo": "\"<html>\n<p>\nBlock that is applied for multizone VAV AHU control. It outputs the supply fan status\nand the operation speed, outdoor and return air damper position, supply air\ntemperature setpoint and the valve position of the cooling and heating coils.\nIt is implemented according to the Section 5.16 of ASHRAE Guideline 36, May 2020.\n</p>\n<p>\nThe sequence consists of eight types of subsequences.\n</p>\n<h4>Supply fan speed control</h4>\n<p>\nThe fan speed control is implemented according to Section 5.16.1. It outputs\nthe boolean signal <code>y1SupFan</code> to turn on or off the supply fan.\nIn addition, based on the pressure reset request <code>uZonPreResReq</code>\nfrom the VAV zones controller, the\nsequence resets the duct pressure setpoint, and uses this setpoint\nto modulate the fan speed <code>ySupFanSpe</code> using a PI controller.\nSee\n<a href=\\\"modelica://Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.SupplyFan\\\">\nBuildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.SupplyFan</a>\nfor more detailed description.\n</p>\n<h4>Minimum outdoor airflow setting</h4>\n<p>\nAccording to current occupany, supply operation status <code>ySupFan</code>,\nzone temperatures and the discharge air temperature, the sequence computes the\nminimum outdoor airflow rate setpoint, which is used as input for the economizer control.\nMore detailed information can be found in\n<a href=\\\"modelica://Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.OutdoorAirFlow\\\">\nBuildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.OutdoorAirFlow</a>.\n</p>\n<h4>Economizer control</h4>\n<p>\nThe block outputs outdoor and return air damper position, <code>yOutDamPos</code> and\n<code>yRetDamPos</code>. First, it computes the position limits to satisfy the minimum\noutdoor airflow requirement. Second, it determines the availability of the economizer based\non the outdoor condition. The dampers are modulated to track the supply air temperature\nloop signal, which is calculated from the sequence below, subject to the minimum outdoor airflow\nrequirement and economizer availability.\nSee\n<a href=\\\"modelica://Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.Economizers.Controller\\\">\nBuildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.Economizers.Controller</a>\nfor more detailed description.\n</p>\n<h4>Supply air temperature setpoint</h4>\n<p>\nBased on the Section 5.16.2, the sequence first sets the maximum supply air temperature\nbased on reset requests collected from each zone <code>uZonTemResReq</code>. The\noutdoor temperature <code>TOut</code> and operation mode <code>uOpeMod</code> are used\nalong with the maximum supply air temperature, for computing the supply air temperature\nsetpoint. See\n<a href=\\\"modelica://Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.SupplyTemperature\\\">\nBuildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.SupplyTemperature</a>\nfor more detailed description.\n</p>\n<h4>Coil valve control</h4>\n<p>\nThe subsequence retrieves supply air temperature setpoint from previous sequence.\nAlong with the measured supply air temperature and the supply fan status, it\ngenerates coil valve positions. See\n<a href=\\\"modelica://Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.SupplySignals\\\">\nBuildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.SupplySignals</a>\nfor more detailed description.\n</p>\n<h4>Freeze protection</h4>\n<p>\nBased on the Section 5.16.12, the sequence enables freeze protection if the\nmeasured supply air temperature belows certain thresholds. There are three\nprotection stages. See\n<a href=\\\"modelica://Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.FreezeProtection\\\">\nBuildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.FreezeProtection</a>\nfor more detailed description.\n</p>\n<h4>Building pressure control</h4>\n<p>\nBy selecting different building pressure control designs, which includes using actuated\nrelief damper without fan, using actuated relief dampers with relief fan, using\nreturn fan with direct building pressure control, or using return fan with airflow\ntracking control, the sequences controls relief fans, relief dampers and return fans.\nSee belows sequences for more detailed description:\n</p>\n<ul>\n<li>\n<a href=\\\"modelica://Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.ReliefDamper\\\">\nBuildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.ReliefDamper</a>\n</li>\n<li> Relief fan control\n<a href=\\\"modelica://Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.ReliefFan\\\">\nBuildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.ReliefFan</a> is not\nincluded in the AHU controller. This sequence controls all the relief fans that are\nserving one common space, which may include multiple air handling units.\n</li>\n<li>\n<a href=\\\"modelica://Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.ReturnFanAirflowTracking\\\">\nBuildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.ReturnFanAirflowTracking</a>\n</li>\n<li>\n<a href=\\\"modelica://Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.ReturnFanDirectPressure\\\">\nBuildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.ReturnFanDirectPressure</a>\n</li>\n</ul>\n<h4>Plant request</h4>\n<p>\nAccording to the Section 5.16.16, the sequence send out heating or cooling plant requests\nif the supply air temperature is below or above threshold value, or the heating or\ncooling valves have been widely open for certain times. See\n<a href=\\\"modelica://Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.PlantRequests\\\">\nBuildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.PlantRequests</a>\nfor more detailed description.\n</p>\n</html>\"",
-      "fullClassName": "Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.Controller",
-      "section": "1",
-      "headingText": "Multizone VAV air handling unit controller",
-      "headingIdx": 1,
-      "headingNum": "1"
+      "fullClassName": "Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.Controller"
     },
     {
       "instance": {
@@ -8153,11 +8149,7 @@
       "descriptionString": "Freeze protection sequence for multizone air handling unit",
       "cdlAnnotation": null,
       "documentationInfo": "\"<html>\n<p>\nFreeze protection sequence for multizone AHU system. It is developed based on Section\n5.16.12 of ASHRAE Guideline 36, May 2020.\n</p>\n<ol>\n<li>\nIf the supply air temperature <code>TAirSup</code> drops below 4.4 &deg;C (40 &deg;F)\nfor 5 minutes, send two (or more, as required to ensure that heating plant is active,\n<code>minHotWatReq</code>) heating hot-water plant requests, override the outdoor\nair damper to the minimum position, and modulate the heating coil to maintain a suppy\nair temperature of at least 6 &deg;C (42 &deg;F).\nDisable this function when supply air temperature rises above 7 &deg;C (45 &deg;F) for\n5 minutes.\n</li>\n<li>\nIf the supply air temperature <code>TAirSup</code> drops below 3.3 &deg;C (38 &deg;F)\nfor 5 minutes, fully close both the economizer damper and the minimum outdoor air\ndamper for 1 hour and set a Level 3 alarm noting that minimum ventilation was\ninterrupted. After 1 hour, the unit shall resume minimum outdoor air ventilation\nand enter the previous stage of freeze protection.\n<ul>\n<li>\nIf it is warm enough that the supply air temperature rises above 7 &deg;C (45 &deg;F)\nwith minimum ventilation, the unit will remain in Stage 1 freeze protection for 5\nminutes then resume normal operation.\n</li>\n</ul>\n</li>\n<li>\nUpon signal from the freeze-stat (if installed),\nor if supply air temperature drops below 3.3 &deg;C (38 &deg;F) for 15 minutes or\nbelow 1 &deg;C (34 &deg;F) for 5 minutes, shut down supply and return (or relief)\nfan(s), close outdoor air damper, open the cooling-coil valve to 100%, and energize\nthe CHW pump system. Also send two (or more, as required to ensure that heating plant\nis active, <code>minHotWatReq</code>) heating hot-water plant requests,\nmodulate the heating coil to maintain the higher of the supply air temperature or\nthe mixed air temperature at 27 &deg;C (80 &deg;F), and set a Level 2 alarm indicating\nthe unit is shut down by freeze protection.\n<ul>\n<li>\nIf a freeze-protection shutdown is triggered by a low air temperature sensor reading,\nit shall remain in effect until it is reset by a software switch from the operator's\nworkstation. (If a freeze-stat with a physical reset switch is used instead, there\nshall be no software reset switch.)\n</li>\n</ul>\n</li>\n</ol>\n</html>\"",
-      "fullClassName": "Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.FreezeProtection",
-      "section": "1",
-      "headingText": "Freeze protection",
-      "headingIdx": 1,
-      "headingNum": "2"
+      "fullClassName": "Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.FreezeProtection"
     },
     {
       "instance": {
@@ -8170,11 +8162,7 @@
       "descriptionString": "Output plant requests for multizone air handling unit",
       "cdlAnnotation": null,
       "documentationInfo": "\"<html>\n<p>\nThis sequence outputs the system reset requests for multiple zone air handling unit. The\nimplementation is according to the Section 5.16.16 of ASHRAE Guideline 36, May 2020. \n</p>\n<h4>Chilled water reset request <code>yChiWatResReq</code></h4>\n<ol>\n<li>\nIf the supply air temperature <code>TAirSup</code> exceeds the supply air temperature\nset point <code>TAirSupSet</code> by 3 &deg;C (5 &deg;F) for 2 minutes, send 3 requests.\n</li>\n<li>\nIf the supply air temperature <code>TAirSup</code> exceeds the supply air temperature\nset point <code>TAirSupSet</code> by 2 &deg;C (3 &deg;F) for 2 minutes, send 2 requests.\n</li>\n<li>\nElse if the chilled water valve position <code>uCooCoiSet</code> is greater than\n95%, send 1 request until the <code>uCooCoiSet</code> is less than 85%.\n</li>\n<li>\nElse if the chilled water valve position <code>uCooCoiSet</code> is less than 95%,\nsend 0 request.\n</li>\n</ol>\n<h4>Chiller plant request <code>yChiPlaReq</code></h4>\n<p>\nSend the chiller plant that serves the system a chiller plant request as follows:\n</p>\n<ol>\n<li>\nIf the chilled water valve position <code>uCooCoiSet</code> is greater than\n95%, send 1 request until the <code>uCooCoiSet</code> is less than 10%.\n</li>\n<li>\nElse if the chilled water valve position <code>uCooCoiSet</code> is less than 95%,\nsend 0 request.\n</li>\n</ol>\n<h4>If there is a hot-water coil, hot-water\nreset requests <code>yHotWatResReq</code></h4>\n<ol>\n<li>\nIf the supply air temperature <code>TAirSup</code> is 17 &deg;C (30 &deg;F) less than\nthe supply air temperature set point <code>TAirSupSet</code> for 5 minutes, send 3\nrequests.\n</li>\n<li>\nElse if the supply air temperature <code>TAirSup</code> is 8 &deg;C (15 &deg;F) less than\nthe supply air temperature set point <code>TAirSupSet</code> for 5 minutes, send 2\nrequests.\n</li>\n<li>\nElse if the hot water valve position <code>uHeaCoiSet</code> is greater than\n95%, send 1 request until the <code>uHeaCoiSet</code> is less than 85%.\n</li>\n<li>\nElse if the hot water valve position <code>uHeaCoiSet</code> is less than 95%,\nsend 0 request.\n</li>\n</ol>\n<h4>If there is a hot-water coil and heating hot-water plant, heating hot-water\nplant reqeusts <code>yHotWatPlaReq</code></h4>\n<p>\nSend the heating hot-water plant that serves the air handling unit a heating hot-water\nplant request as follows:\n</p>\n<ol>\n<li>\nIf the hot water valve position <code>uHeaCoiSet</code> is greater than 95%, send 1\nrequest until the hot water valve position is less than 10%.\n</li>\n<li>\nIf the hot water valve position <code>uHeaCoiSet</code> is less than 95%, send 0 requests.\n</li>\n</ol>\n</html>\"",
-      "fullClassName": "Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.PlantRequests",
-      "section": "1",
-      "headingText": "Plant requests",
-      "headingIdx": 1,
-      "headingNum": "3"
+      "fullClassName": "Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.PlantRequests"
     },
     {
       "instance": {
@@ -8187,11 +8175,7 @@
       "descriptionString": "Multi zone VAV AHU economizer control sequence",
       "cdlAnnotation": null,
       "documentationInfo": "\"<html>\n<p>\nMulti zone VAV AHU economizer control sequence that calculates\noutdoor and return air damper positions based on ASHRAE\nGuidline 36, May 2020, Sections: 5.16.2.3,5.16.4, 5.16.5, 5.16.6, 5.16.7.\n</p>\n<p>\nThe sequence consists of three sets of subsequences.\n</p>\n<ul>\n<li>\nFirst set of sequences compute the damper position limits to satisfy\noutdoor air requirements. Different sequence will be enabled depending on the\ndesignes minimum outdoor air and economizer function, which include\n<ol type=\\\"i\\\">\n<li>\nseparate minimum outdoor air damper, with airflow measurement. \nSee\n<a href=\\\"modelica://Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.Economizers.Subsequences.Limits.SeparateWithAFMS\\\">\nBuildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.Economizers.Subsequences.Limits.SeparateWithAFMS</a>\nfor a description.\n</li>\n<li>\nseparate minimum outdoor air damper, with differential pressure measurement. \nSee\n<a href=\\\"modelica://Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.Economizers.Subsequences.Limits.SeparateWithDP\\\">\nBuildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.Economizers.Subsequences.Limits.SeparateWithDP</a>\nfor a description.\n</li>\n<li>\nsingle common minimum outdoor air and economizer damper. \nSee\n<a href=\\\"modelica://Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.Economizers.Subsequences.Limits.Common\\\">\nBuildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.Economizers.Subsequences.Limits.Common</a>\nfor a description.\n</li>\n</ol>\n</li>\n\n<li>\nThe second set of sequences which have one sequence enable or disable the economizer based on\noutdoor temperature and optionally enthalpy, and based on the supply fan status,\nfreeze protection stage and zone state.\nSee\n<a href=\\\"modelica://Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.Economizers.Subsequences.Enable\\\">\nBuildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.Economizers.Subsequences.Enable</a>\nfor a description.\n</li>\n\n<li>\nThird set of sequences modulate the outdoor and return damper position\nto track the supply air temperature setpoint, subject to the limits of the damper positions\nthat were computed in the above blocks. Different sequence will be enabled depending\non the types of building pressure control system, which include\n<ol type=\\\"i\\\">\n<li>\nrelief damper or relief fan control. \nSee\n<a href=\\\"modelica://Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.Economizers.Subsequences.Modulations.Reliefs\\\">\nBuildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.Economizers.Subsequences.Modulations.Reliefs</a>\nfor a description.\n</li>\n<li>\nreturn fan control with airflow tracking, or with direct building pressure control. \nSee\n<a href=\\\"modelica://Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.Economizers.Subsequences.Modulations.ReturnFan\\\">\nBuildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.Economizers.Subsequences.Modulations.ReturnFan</a>\nfor a description.\n</li>\n</ol>\n</li>\n</ul>\n</html>\"",
-      "fullClassName": "Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.Economizers.Controller",
-      "section": "1",
-      "headingText": "Economizer controller",
-      "headingIdx": 1,
-      "headingNum": "4"
+      "fullClassName": "Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.Economizers.Controller"
     },
     {
       "instance": {
@@ -8204,11 +8188,7 @@
       "descriptionString": "Outdoor air and return air damper position limits for units with separated minimum outdoor air damper and airflow measurement",
       "cdlAnnotation": null,
       "documentationInfo": "\"<html>\n<p>\nBlock that outputs the position limits of the return and outdoor air damper for units\nwith a separated minimum outdoor air damper and airflow measurement.\nIt is implemented according to Section 5.16.5 of the ASHRAE Guideline 36, May 2020.\n</p>\n<h4>Minimum outdoor air set point</h4>\n<p>\nCalculate the outdoor air set point with\n<a href=\\\"modelica://Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.OutdoorAirFlow\\\">\nBuildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.OutdoorAirFlow</a>.\n</p>\n<h4>Minimum outdoor air control loop</h4>\n<p>\nMinimum outdoor air control loop is enabled when the supply fan is proven ON\n(<code>u1SupFan=true</code>) and in occupied mode, and disabled and output set to\nzero otherwise\n</p>\n<p>\nThe minimum outdoor airflow rate shall be maintained at the minimum outdoor air\nset point by a reverse-acting control loop whose output is 0% to 100%.\nFrom 0% to 50% loop output, the minimum outdoor air damper is opened from 0%\n(<code>minOutDamPhy_min</code>) to 100% (<code>minOutDamPhy_max</code>).\n</p>\n<h4>Return air damper</h4>\n<ul>\n<li>\nReturn air damper minimum outdoor air control is enabled when the minimum outdoor\nair damper is fully open and the economizer outdoor air damper is less than a projected\nposition limit, which is 5% when supply fan speed is at 100% design speed proportionally\nup to 80% when the fan is at minimum speed.\n</li>\n<li>\nReturn air damper minimum outdoor air control is disabled when the minimum outdoor\nair damper is not fully open or the economizer outdoor air damper is 10% above the projected\nposition limit as determined above.\n</li>\n<li>\nWhen enabled, the maximum return air damper set point is reduced from 100%\n(<code>retDamPhy_max</code>) to 0% (<code>retDamPhy_min</code>)\nas the minimum outdoor air loop output rises from 50% to 100%.\n</li>\n</ul>\n</html>\"",
-      "fullClassName": "Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.Economizers.Subsequences.Limits.SeparateWithAFMS",
-      "section": "1.1",
-      "headingText": "Damper position limits for units with separated minimum outdoor air damper and airflow measurement",
-      "headingIdx": 2,
-      "headingNum": "10.1"
+      "fullClassName": "Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.Economizers.Subsequences.Limits.SeparateWithAFMS"
     },
     {
       "instance": {
@@ -8247,11 +8227,7 @@
       "descriptionString": "Multi zone VAV AHU economizer enable/disable switch",
       "cdlAnnotation": null,
       "documentationInfo": "\"<html>\n<p>\nThis is a multi zone VAV AHU economizer enable/disable sequence\nbased on the Section 5.16.7 of the ASHRAE Guideline 36, May 2020. Additional\nconditions included in the sequence are: freeze protection (freeze protection\nstage 0-3, see Section 5.16.12), supply fan status (on or off, see Section 5.16.5).\n</p>\n<p>\nThe economizer is disabled whenever the outdoor air conditions\nexceed the economizer high limit setpoint.\nThis sequence allows for all device types listed in\nASHRAE 90.1-2013 and Title 24-2013.\n</p>\n<p>\nIn addition, the economizer gets disabled without a delay whenever any of the\nfollowing is <code>true</code>:\n</p>\n<ul>\n<li>\nThe supply fan is off (<code>u1SupFan = false</code>),\n</li>\n<li>\nthe freeze protection stage\n<a href=\\\"modelica://Buildings.Controls.OBC.ASHRAE.G36.Types.FreezeProtectionStages\\\">\nBuildings.Controls.OBC.ASHRAE.G36.Types.FreezeProtectionStages</a>\nis not <code>stage0</code>.\n</li>\n</ul>\n<p>\nThe following state machine chart illustrates the transitions between enabling and disabling:\n</p>\n<p align=\\\"center\\\">\n<img alt=\\\"Image of economizer enable-disable state machine chart\\\"\nsrc=\\\"modelica://Buildings/Resources/Images/Controls/OBC/ASHRAE/G36/AHUs/MultiZone/VAV/Economizers/Subsequences/EconEnableDisableStateMachineChart.png\\\"/>\n</p>\n<p>\nAfter the disable signal is activated, the following procedure is applied, in order to\nprevent pressure fluctuations in the HVAC system:\n</p>\n<ul>\n<li>\nThe return damper gets fully opened (<code>yRetDam_max = uRetDamPhy_max</code> and\n<code>yRetDam_min = uRetDamPhy_max</code>) for <code>retDamFulOpeTim</code>\ntime period, after which the return damper gets released to its minimum outdoor airflow control position\n(<code>yRetDam_max = uRetDam_max</code> and <code>yRetDam_min = uRetDam_max</code>).\n</li>\n<li>\nThe outdoor air damper is closed to its minimum outoor airflow control limit (<code>yOutDam_max = uOutDam_min</code>)\nafter a <code>disDel</code> time delay.\n</li>\n</ul>\n</html>\"",
-      "fullClassName": "Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.Economizers.Subsequences.Enable",
-      "section": "1.1",
-      "headingText": "Enable or disable economizer",
-      "headingIdx": 2,
-      "headingNum": "10.2"
+      "fullClassName": "Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.Economizers.Subsequences.Enable"
     },
     {
       "instance": {
@@ -8264,11 +8240,7 @@
       "descriptionString": "Modulates dampers of economizer in buildings using return fan to control the pressure",
       "cdlAnnotation": null,
       "documentationInfo": "\"<html>\n<p>\nBlock modulates the damper of economizers of buildings with pressure controlled by\nreturn fan and airflow tracking. It is implemented according to Section 5.16.2.3.d,\nFigure 5.16.2.3-2 and Figure 5.16.2.3-3 of ASHRAE Guideline 36, May 2020.\n</p>\n<p>\nReturn air damper position limits, which are the inputs to the sequence, are the outputs of\nsequences in package\n<a href=\\\"modelica://Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.Economizers.Subsequences.Limits\\\">\nBuildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.Economizers.Subsequences.Limits</a>.\nIt also requires input <code>uTSup</code> from\n<a href=\\\"modelica://Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.SupplySignals\\\">\nBuildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.SupplySignals</a>\nsequences.\n</p>\n<p>\nThe time rate of change of the damper signals is limited by a first order hold,\nusing the sample time <code>samplePeriod</code>.\nThis prevents a quick opening of the outdoor air damper, for example when the\noutdoor airflow setpoint has a step change.\nSlowing down the opening of the outdoor air damper allows the freeze protection\nto componensate with its dynamics that is faster than the opening of the outdoor air damper.\nTo avoid that all dampers are closed, the return air damper has the same\ntime rate of change limitation.\n</p>\n<p>\nThe modulation is shown as the control chart:\n<br/>\n</p>\n<p align=\\\"center\\\">\n<img alt=\\\"Image of the damper modulation for economizer in buildings with pressure controller by return fan\\\"\nsrc=\\\"modelica://Buildings/Resources/Images/Controls/OBC/ASHRAE/G36/AHUs/MultiZone/VAV/Economizers/Subsequences/Modulations/ReturnFan.png\\\"/>\n</p>\n<p>\nNote in the above chart, if the building has direct pressure control\n(<code>have_dirCon</code>), the profile for relief air damper control should\nbe ignored.\n</p>\n</html>\"",
-      "fullClassName": "Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.Economizers.Subsequences.Modulations.ReturnFan",
-      "section": "1.1",
-      "headingText": "Modulate economizer dampers position for buildings with return fan controlling pressure",
-      "headingIdx": 2,
-      "headingNum": "10.3"
+      "fullClassName": "Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.Economizers.Subsequences.Modulations.ReturnFan"
     },
     {
       "instance": {
@@ -8281,11 +8253,7 @@
       "descriptionString": "Modulates dampers of economizer in buildings using relief damper or fan to control the pressure",
       "cdlAnnotation": null,
       "documentationInfo": "\"<html>\n<p>\nThis is a multi zone VAV AHU economizer modulation block. It calculates\nthe outdoor and return air damper positions based on the supply air temperature\ncontrol loop signal. It is implemented according to Section 5.16.2.3.d,\nFigure 5.16.2.3-1 of ASHRAE Guideline 36, May 2020.\nDamper positions are linearly mapped to\nthe supply air control loop signal.\n</p>\n<p>\nWhen the economizer is enabled, the PI controller modulates the damper\npositions. Return and outdoor damper are not interlocked. When the economizer is disabled,\nthe damper positions are set to the minimum outdoor air damper position limits.\n</p>\n<p>\nThe control charts below show the input-output structure and an economizer damper\nmodulation sequence assuming a well configured controller. Control diagram:\n</p>\n<p align=\\\"center\\\">\n<img alt=\\\"Image of the multi zone AHU modulation sequence control diagram\\\"\nsrc=\\\"modelica://Buildings/Resources/Images/Controls/OBC/ASHRAE/G36/AHUs/MultiZone/VAV/Economizers/Subsequences/Modulations/ReliefControlDiagram.png\\\"/>\n</p>\n<p>\nMulti zone AHU economizer modulation control chart:\n<br/>\n</p>\n<p align=\\\"center\\\">\n<img alt=\\\"Image of the multi zone AHU modulation sequence expected performance\\\"\nsrc=\\\"modelica://Buildings/Resources/Images/Controls/OBC/ASHRAE/G36/AHUs/MultiZone/VAV/Economizers/Subsequences/Modulations/ReliefControlChart.png\\\"/>\n</p>\n</html>\"",
-      "fullClassName": "Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.Economizers.Subsequences.Modulations.Reliefs",
-      "section": "1.1",
-      "headingText": "Modulate economizer dampers position for buildings with relief damper or fan controlling pressure",
-      "headingIdx": 2,
-      "headingNum": "10.4"
+      "fullClassName": "Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.Economizers.Subsequences.Modulations.Reliefs"
     },
     {
       "instance": {
@@ -8298,11 +8266,7 @@
       "descriptionString": "Specify the economizer high liimits",
       "cdlAnnotation": null,
       "documentationInfo": "\"<html>\n<p>\nThis block outputs the air economizer high limits according to the energy standard,\ndevice type and climate zone. The implementation is according to the Section 5.1.17 of ASHRAE\nGuideline 36, May 2020.\n</p>\n<p>When ASHRAE 90.1-2016 is used.</p>\n<table summary=\\\"summary\\\" border=\\\"1\\\">\n<tr><th>Device type</th> <th>Allowed only in these ASHRAE Climate Zones</th><th>Required High Limit (Economizer OFF when)</th></tr>\n<tr>\n<td rowspan=\\\"3\\\">Fixed dry bulb</td><td>1b, 2b, 3b, 3c, 4b, 4c, 5b, 5c, 6b, 7, 8</td>\n<td>outdoor air temperature is higher than 24 &deg;C (<code>TCut=24&deg;C</code>)</td>\n</tr>\n<tr>\n<td>5a, 6a</td><td>outdoor air temperature is higher than 21 &deg;C (<code>TCut=21&deg;C</code>)</td>\n</tr>\n<tr>\n<td>1a, 2a, 3a, 4a</td><td>outdoor air temperature is higher than 18 &deg;C (<code>TCut=18&deg;C</code>)</td>\n</tr>\n<tr>\n<td>Differential dry bulb</td><td>1b, 2b, 3b, 3c, 4b, 4c, 5a, 5b, 5c, 6a, 6b, 7, 8</td>\n<td>outdoor air temperature is higher than the return air temperature (<code>TCut=TRet</code>)</td>\n</tr>\n<tr>\n<td>Fixed enthalpy with fixed dry bulb</td><td>All</td>\n<td>outdoor air temperature is higher than 24 &deg;C or the enthalpy is higher than 66 kJ/kg (<code>TCut=24&deg;C</code> or <code>hCut=66kJ/kg</code>)</td>\n</tr>\n<tr>\n<td>Differential enthalpy with fixed dry bulb</td><td>All</td>\n<td>outdoor air temperature is higher than 24 &deg;C or the outdoor air enthalpy is higher than the return air enthalpy (<code>TCut=24&deg;C</code> or <code>hCut=hRet</code>)</td>\n</tr>\n<tr>\n<td rowspan=\\\"2\\\">Fixed dry bulb with differential dry bulb</td>\n<td>1b, 2b, 3b, 3c, 4b, 4c, 5b, 5c, 6b, 7, 8</td>\n<td>outdoor air temperature is higher than 24 &deg;C or the return air temperature (<code>TCut=min(24&deg;C, TRet)</code>)</td>\n</tr>\n<tr>\n<td>5a, 6a</td>\n<td>outdoor air temperature is higher than 21 &deg;C or the return air temperature (<code>TCut=min(21&deg;C, TRet)</code>)</td>\n</tr>\n</table>\n<p>When California Title 24-2016 is used.</p>\n<table summary=\\\"summary\\\" border=\\\"1\\\">\n<tr><th>Device type</th> <th>California Climate Zones</th><th>Required High Limit (Economizer OFF when)</th></tr>\n<tr>\n<td rowspan=\\\"4\\\">Fixed dry bulb</td><td>1, 3, 5, 11 to 16</td><td>outdoor air temperature is higher than 24 &deg;C (<code>TCut=24&deg;C</code>)</td>\n</tr>\n<tr>\n<td>2, 4, 10</td><td>outdoor air temperature is higher than 23 &deg;C (<code>TCut=23&deg;C</code>)</td>\n</tr>\n<tr>\n<td>6, 8, 9</td><td>outdoor air temperature is higher than 22 &deg;C (<code>TCut=22&deg;C</code>)</td>\n</tr>\n<tr>\n<td>7</td><td>outdoor air temperature is higher than 21 &deg;C (<code>TCut=21&deg;C</code>)</td>\n</tr>\n<tr>\n<td rowspan=\\\"4\\\">Differential dry bulb</td><td>1, 3, 5, 11 to 16</td><td>outdoor air temperature is higher than the return air temperature (<code>TCut=TRet</code>)</td>\n</tr>\n<tr>\n<td>2, 4, 10</td><td>outdoor air temperature is higher than the return air temperature minus 1 &deg;C (<code>TCut=TRet-1&deg;C</code>)</td>\n</tr>\n<tr>\n<td>6, 8, 9</td><td>outdoor air temperature is higher than the return air temperature minus 2 &deg;C (<code>TCut=TRet-2&deg;C</code>)</td>\n</tr>\n<tr>\n<td>7</td><td>outdoor air temperature is higher than the return air temperature minus 3 &deg;C (<code>TCut=TRet-3&deg;C</code>)</td>\n</tr>\n<tr>\n<td>Fixed enthalpy with fixed dry bulb</td><td>All</td>\n<td>outdoor air temperature is higher than 24 &deg;C or the enthalpy is higher than 66 kJ/kg (<code>TCut=24&deg;C</code> or <code>hCut=66kJ/kg</code>)</td>\n</tr>\n<tr>\n<td rowspan=\\\"4\\\">Fixed dry bulb with differential dry bulb</td><td>1, 3, 5, 11 to 16</td>\n<td>outdoor air temperature is higher than 24 &deg;C or the return air temperature (<code>TCut=24&deg;C</code> or <code>TCut=TRet</code>)</td>\n</tr>\n<tr>\n<td>2, 4, 10</td>\n<td>outdoor air temperature is higher than 23 &deg;C or the return air temperature minus 1 &deg;C (<code>TCut=min(23&deg;C, TRet-1&deg;C)</code>)</td>\n</tr>\n<tr>\n<td>6, 8, 9</td>\n<td>outdoor air temperature is higher than 22 &deg;C or the return air temperature minus 2 &deg;C (<code>TCut=min(22&deg;C, TRet-2&deg;C)</code>)</td>\n</tr>\n<tr>\n<td>7</td>\n<td>outdoor air temperature is higher than 21 &deg;C or the return air temperature minus 3 &deg;C (<code>TCut=min(21&deg;C, TRet-3&deg;C)</code>)</td>\n</tr>\n</table>\n<br/>\n<p>\nNote that the device type <i>Fixed dry bulb with differential dry bulb</i> is not listed in either ASHRAE 90.1 or Title 24 standard.\nBut it is possible to use in practice. See Section 3.1.6.2 in Guideline 36.\n</p>\n</html>\"",
-      "fullClassName": "Buildings.Controls.OBC.ASHRAE.G36.Generic.AirEconomizerHighLimits",
-      "section": "1.1",
-      "headingText": "High limits",
-      "headingIdx": 2,
-      "headingNum": "10.5"
+      "fullClassName": "Buildings.Controls.OBC.ASHRAE.G36.Generic.AirEconomizerHighLimits"
     },
     {
       "instance": {
@@ -8315,11 +8279,7 @@
       "descriptionString": "Block to control multi zone VAV AHU supply fan",
       "cdlAnnotation": null,
       "documentationInfo": "\"<html>\n<p>\nSupply fan control for a multi zone VAV AHU according to Section 5.16.1 of \nASHRAE Guideline G36, May 2020.\n</p>\n<h4>Supply fan start/stop</h4>\n<ul>\n<li>Supply fan shall run when system is in the Cool-down, Setup, or Occupied mode</li>\n<li>If there are any VAV-reheat boxes on perimeter zones, supply fan shall also\nrun when system is in Setback or Warmup mode</li>\n</ul>\n<h4>Static pressure setpoint reset</h4>\n<p>\nStatic pressure setpoint shall be reset using trim-respond logic using following\nparameters as a starting point:\n</p>\n<table summary=\\\"summary\\\" border=\\\"1\\\">\n<tr><th> Variable </th> <th> Value </th> <th> Definition </th> </tr>\n<tr><td>Device</td><td>AHU Supply Fan</td> <td>Associated device</td></tr>\n<tr><td>SP0</td><td><code>iniSet</code></td><td>Initial setpoint</td></tr>\n<tr><td>SPmin</td><td><code>minSet</code></td><td>Minimum setpoint</td></tr>\n<tr><td>SPmax</td><td><code>maxSet</code></td><td>Maximum setpoint</td></tr>\n<tr><td>Td</td><td><code>delTim</code></td><td>Delay timer</td></tr>\n<tr><td>T</td><td><code>samplePeriod</code></td><td>Time step</td></tr>\n<tr><td>I</td><td><code>numIgnReq</code></td><td>Number of ignored requests</td></tr>\n<tr><td>R</td><td><code>uZonPreResReq</code></td><td>Number of requests</td></tr>\n<tr><td>SPtrim</td><td><code>triAmo</code></td><td>Trim amount</td></tr>\n<tr><td>SPres</td><td><code>resAmo</code></td><td>Respond amount</td></tr>\n<tr><td>SPres_max</td><td><code>maxRes</code></td><td>Maximum response per time interval</td></tr>\n</table>\n<br/>\n<h4>Static pressure control</h4>\n<p>\nSupply fan speed is controlled with a PI controller to maintain duct static pressure at setpoint\nwhen the fan is proven on. The setpoint for the PI controller and the measured\nduct static pressure are normalized with the maximum design static presssure\n<code>maxSet</code>.\nWhere the zone groups served by the system are small,\nprovide multiple sets of gains that are used in the control loop as a function\nof a load indicator (such as supply fan airflow rate, the area of the zone groups\nthat are occupied, etc.).\n</p>\n</html>\"",
-      "fullClassName": "Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.SupplyFan",
-      "section": "1",
-      "headingText": "Supply fan speed setpoint",
-      "headingIdx": 1,
-      "headingNum": "5"
+      "fullClassName": "Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.SupplyFan"
     },
     {
       "instance": {
@@ -8332,11 +8292,7 @@
       "descriptionString": "Block to inplement trim and respond logic",
       "cdlAnnotation": null,
       "documentationInfo": "\"<html>\n<p>\nThis block implements the trim and respond logic according to Section 5.1.14.3 \nand 5.1.14.4 of ASHRAE Guideline 36, May 2020.\n</p>\n<p>\nFor each upstream system or plant set point being controlled by a trim and respond\nloop, define the initial values in system or plant sequences. Values for trim,\nrespond, time step, etc. shall be tuned to provide stable control.\n</p>\n<table summary=\\\"summary\\\" border=\\\"1\\\">\n<tr><th> Variable </th> <th> Value </th> <th> Definition </th> </tr>\n<tr><td>Device</td><td>AHU Supply Fan</td> <td>Associated device</td></tr>\n<tr><td>SP0</td><td><code>iniSet</code></td><td>Initial setpoint</td></tr>\n<tr><td>SPmin</td><td><code>minSet</code></td><td>Minimum setpoint</td></tr>\n<tr><td>SPmax</td><td><code>maxSet</code></td><td>Maximum setpoint</td></tr>\n<tr><td>Td</td><td><code>delTim</code></td><td>Delay timer</td></tr>\n<tr><td>T</td><td><code>samplePeriod</code></td><td>Time step</td></tr>\n<tr><td>I</td><td><code>numIgnReq</code></td><td>Number of ignored requests</td></tr>\n<tr><td>R</td><td><code>numOfReq</code></td><td>Number of requests</td></tr>\n<tr><td>SPtrim</td><td><code>triAmo</code></td><td>Trim amount</td></tr>\n<tr><td>SPres</td><td><code>resAmo</code></td><td>Respond amount</td></tr>\n<tr><td>SPres_max</td><td><code>maxRes</code></td><td>Maximum response per time interval</td></tr>\n</table>\n<p>\nThe trim and respond logic shall reset setpoint within the range <code>minSet</code> to\n<code>maxSet</code>.\nWhen the associated device is off (<code>uDevSta=false</code>), the setpoint\nshall be <code>iniSet</code>.\nThe reset logic shall be active while the associated device is proven\non (<code>uDevSta=true</code>), starting <code>delTim</code> after initial\ndevice start command.\nWhen active, every time step <code>samplePeriod</code>, trim the setpoint by\n<code>triAmo</code>.\nIf there are more than <code>numIgnReq</code> requests, respond by changing\nthe setpoint by <code>resAmo*(numOfReq-numIgnReq)</code>, i.e., the number of\nrequests minus the number of ignored requests, but no more than <code>maxRes</code>.\n</p>\n<p>\nIn other words, every time step <code>samplePeriod</code>:\n</p>\n<ul>\n<li>Change setpoint by <code>triAmo</code>; </li>\n<li>If <code>numOfReq > numIgnReq</code>, <i>also</i> change setpoint by <code>resAmo*(numOfReq\n-numIgnReq)</code> but no more than <code>maxRes</code>.\n</li>\n</ul>\n<h4>Hold and release loop output</h4>\n<p>\nOptionally, if the parameter <code>have_hol</code> is set to true, an additional\ninput signal <code>uHol</code> allows for holding the trim and respond loop output\nat a fixed value for the longer of the time the input <code>uHol</code> remains true \nand the duration specified by the parameter <code>dtHol</code>.\nWhen <code>uHol</code> switches back to false, the hold is released and resetting\ncontinues from the previously held value (without reinitializing to <code>iniSet</code>\nor going through a delay time of <code>delTim</code>). \n</p>\n<p>\nThis is typically used in control sequences to freeze the reset logic during the plant\nstaging process.\nConsider for example the following specification:<br/>\n\\\"When a plant stage change is initiated, the reset logic shall be disabled and value\nfixed at its last value for the longer of <i>15</i> minutes and the time it takes \nfor the plant to successfully stage.\\\"<br/>\nUsing this block with <code>have_hol=true</code> and <code>dtHol=15*60</code> \nyields the following sequence of events.\n</p>\n<ul>\n<li>0:00 - Stage change is initiated. T&amp;R loop output is at <i>50&nbsp;%</i>.</li>\n<li>0:12 - Stage change is completed. T&amp;R loop output remains at <i>50&nbsp;%</i> \nsince <i>&lt;&nbsp;15&nbsp;</i>minutes have elapsed.</li>\n<li>0:15 - T&amp;R is released and continues resetting from <i>50&nbsp;%</i>.</li>\n</ul>\n<h4>Examples</h4>\n<p>\nThe figure below illustrates the trim and respond logic with a negative trim amount,\ncomparing scenarios with and without holding the loop output.\n</p>\n<p>\n<img alt=\\\"Trend graph for trim and response\\\"\nsrc=\\\"modelica://Buildings/Resources/Images/Controls/OBC/ASHRAE/G36/Generic/TrimAndRespond.png\\\"/>\n</p>\n<p>\nThe figure below illustrates the trim and respond logic with a positive trim amount.\n</p>\n<p>\n<img alt=\\\"Trend graph for trim and response\\\"\nsrc=\\\"modelica://Buildings/Resources/Images/Controls/OBC/ASHRAE/G36/Generic/TrimAndRespond1.png\\\"/>\n</p>\n<p>\nThe figure below illustrates the trim and respond logic with a negative trim amount,\nin a scenario where the equipment switches on and off.\n</p>\n<p>\n<img alt=\\\"Trend graph for trim and response\\\"\nsrc=\\\"modelica://Buildings/Resources/Images/Controls/OBC/ASHRAE/G36/Generic/TrimAndRespond2.png\\\"/>\n</p>\n</html>\"",
-      "fullClassName": "Buildings.Controls.OBC.ASHRAE.G36.Generic.TrimAndRespond",
-      "section": "1.1",
-      "headingText": "Static pressure setpoint reset using trim and respond logic",
-      "headingIdx": 2,
-      "headingNum": "10.6"
+      "fullClassName": "Buildings.Controls.OBC.ASHRAE.G36.Generic.TrimAndRespond"
     },
     {
       "instance": {
@@ -8349,11 +8305,7 @@
       "descriptionString": "Multizone VAV AHU supply air temperature control loop and coil valves position",
       "cdlAnnotation": null,
       "documentationInfo": "\"<html>\n<p>\nBlock that outputs the supply temperature control loop signal,\nand the coil valve postions for VAV system with multiple zones,\nimplemented according to Section 5.16.2.3 of the ASHRAE Guideline G36, May 2020.\n</p>\n<p>\nThe supply air temperature control loop signal <code>uTSup</code>\nis computed using a PI controller that tracks the supply air temperature\nsetpoint <code>TSupSet</code>.\nIf the fan is off, then <code>uTSup = 0</code>.\n</p>\n<p>\nHeating valve control signal (or modulating electric heating\ncoil if applicable) <code>yHeaCoi</code> and cooling valve control signal <code>yCooCoi</code>\nare sequenced based on the supply air temperature control loop signal <code>uTSup</code>.\nFrom <code>uTSup = uHea_max</code> to <code>uTSup = -1</code>,\n<code>yHeaCoi</code> increases linearly from <i>0</i> to <i>1</i>.\nSimilarly, <code>uTSup = uCoo_min</code> to <code>uTSup = +1</code>,\n<code>yCooCoi</code> increases linearly from <i>0</i> to <i>1</i>.\n</p>\n\n<p align=\\\"center\\\">\n<img alt=\\\"Image of supply temperature loop\\\"\nsrc=\\\"modelica://Buildings/Resources/Images/Controls/OBC/ASHRAE/G36/AHUs/MultiZone/VAV/SetPoints/SupTemLoop.png\\\"/>\n</p>\n\n<p>\nThe output <code>uTSup</code> can be used in a controller for the economizer.\n</p>\n</html>\"",
-      "fullClassName": "Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.SupplySignals",
-      "section": "1",
-      "headingText": "Heating and cooling valve position",
-      "headingIdx": 1,
-      "headingNum": "6"
+      "fullClassName": "Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.SupplySignals"
     },
     {
       "instance": {
@@ -8366,11 +8318,7 @@
       "descriptionString": "Supply air temperature setpoint for multi zone system",
       "cdlAnnotation": null,
       "documentationInfo": "\"<html>\n<p>\nBlock that outputs the supply air temperature setpoint and the coil valve control\ninputs for VAV system with multiple zones, implemented according to Section 5.16.2 of\nthe ASHRAE Guideline G36, May 2020.\n</p>\n<p>\nThe control loop is enabled when the supply air fan <code>u1SupFan</code> is proven on,\nand disabled and the output set to deadband (no heating, minimum economizer) otherwise.\n</p>\n<p> The supply air temperature setpoint is computed as follows.</p>\n\n<h4>Setpoints for <code>TSupCoo_min</code>, <code>TSupCoo_max</code>,\n<code>TOut_min</code>, <code>TOut_max</code>\n</h4>\n<p>\nPer Section 3.1.4.1, the setpoints are design information.\n</p>\n<ul>\n<li>\nThe <code>TSupCoo_min</code> should be set no lower than the design coil leaving air\ntemperature to prevent excessive chilled water temperature reset requests.\n</li>\n<li>\nThe <code>TSupCoo_max</code> is typically 18 &deg;C (65 &deg;F) in mild and dry climates\nand 16 &deg;C (60 &deg;F) or lower in humid climates. It should not typically be\ngreater than 18 &deg;C (65 &deg;F).\n</li>\n<li>\nThe default range of outdoor air temperature (<code>TOut_min=16&deg;C</code>,\n<code>TOut_max=21&deg;C</code>) used to reset the occupied mode <code>TSupSet</code>\nwas chosen to maximize economizer hours. It may be preferable to use a lower\nrange of outdoor air temperature (e.g. <code>TOut_min=13&deg;C</code>,\n<code>TOut_max=18&deg;C</code>) to minimize fan energy.\n</li>\n</ul>\n\n<h4>During occupied and Setup modes (<code>uOpeMod=1</code>, <code>uOpeMod=2</code>)</h4>\n<p>\nThe <code>TSupSet</code> shall be reset from <code>TSupCoo_min</code> when the outdoor\nair temperature is <code>TOut_max</code> and above, proportionally up to\nmaximum supply temperature when the outdoor air temperature is <code>TOut_min</code> and\nbelow. The maximum supply temperature shall be reset using trim and respond logic between\n<code>TSupCoo_min</code> and <code>TSupCoo_max</code>. Parameters suggested for the\ntrim and respond logic are shown in the table below. They require adjustment\nduring the commissioning and tuning phase.\n</p>\n\n<table summary=\\\"summary\\\" border=\\\"1\\\">\n<tr><th> Variable </th> <th> Value </th> <th> Definition </th> </tr>\n<tr><td>Device</td><td>AHU Supply Fan</td> <td>Associated device</td></tr>\n<tr><td>SP0</td><td><code>iniSet</code></td><td>Initial setpoint</td></tr>\n<tr><td>SPmin</td><td><code>TSupCoo_min</code></td><td>Minimum setpoint</td></tr>\n<tr><td>SPmax</td><td><code>TSupCoo_max</code></td><td>Maximum setpoint</td></tr>\n<tr><td>Td</td><td><code>delTim</code></td><td>Delay timer</td></tr>\n<tr><td>T</td><td><code>samplePeriod</code></td><td>Time step</td></tr>\n<tr><td>I</td><td><code>numIgnReq</code></td><td>Number of ignored requests</td></tr>\n<tr><td>R</td><td><code>uZonTemResReq</code></td><td>Number of requests</td></tr>\n<tr><td>SPtrim</td><td><code>triAmo</code></td><td>Trim amount</td></tr>\n<tr><td>SPres</td><td><code>resAmo</code></td><td>Respond amount</td></tr>\n<tr><td>SPres_max</td><td><code>maxRes</code></td><td>Maximum response per time interval</td></tr>\n</table>\n<br/>\n\n<p align=\\\"center\\\">\n<img alt=\\\"Image of set point reset\\\"\nsrc=\\\"modelica://Buildings/Resources/Images/Controls/OBC/ASHRAE/G36/AHUs/MultiZone/VAV/SetPoints/VAVSupTempSet.png\\\"/>\n</p>\n\n<h4>During Cool-down modes (<code>uOpeMod=3</code>)</h4>\n<p>\nSupply air temperature setpoint <code>TSupSet</code> shall be <code>TSupCoo_min</code>.\n</p>\n<h4>During Setback and Warmup modes (<code>uOpeMod=4</code>, <code>uOpeMod=5</code>)</h4>\n<p>\nSupply air temperature setpoint <code>TSupSet</code> shall be <code>TSupWarUpSetBac</code>.\n</p>\n</html>\"",
-      "fullClassName": "Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.SupplyTemperature",
-      "section": "1",
-      "headingText": "Supply temperature setpoint",
-      "headingIdx": 1,
-      "headingNum": "7"
+      "fullClassName": "Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.SupplyTemperature"
     },
     {
       "instance": {
@@ -8383,11 +8331,7 @@
       "descriptionString": "Block to inplement trim and respond logic",
       "cdlAnnotation": null,
       "documentationInfo": "\"<html>\n<p>\nThis block implements the trim and respond logic according to Section 5.1.14.3 \nand 5.1.14.4 of ASHRAE Guideline 36, May 2020.\n</p>\n<p>\nFor each upstream system or plant set point being controlled by a trim and respond\nloop, define the initial values in system or plant sequences. Values for trim,\nrespond, time step, etc. shall be tuned to provide stable control.\n</p>\n<table summary=\\\"summary\\\" border=\\\"1\\\">\n<tr><th> Variable </th> <th> Value </th> <th> Definition </th> </tr>\n<tr><td>Device</td><td>AHU Supply Fan</td> <td>Associated device</td></tr>\n<tr><td>SP0</td><td><code>iniSet</code></td><td>Initial setpoint</td></tr>\n<tr><td>SPmin</td><td><code>minSet</code></td><td>Minimum setpoint</td></tr>\n<tr><td>SPmax</td><td><code>maxSet</code></td><td>Maximum setpoint</td></tr>\n<tr><td>Td</td><td><code>delTim</code></td><td>Delay timer</td></tr>\n<tr><td>T</td><td><code>samplePeriod</code></td><td>Time step</td></tr>\n<tr><td>I</td><td><code>numIgnReq</code></td><td>Number of ignored requests</td></tr>\n<tr><td>R</td><td><code>numOfReq</code></td><td>Number of requests</td></tr>\n<tr><td>SPtrim</td><td><code>triAmo</code></td><td>Trim amount</td></tr>\n<tr><td>SPres</td><td><code>resAmo</code></td><td>Respond amount</td></tr>\n<tr><td>SPres_max</td><td><code>maxRes</code></td><td>Maximum response per time interval</td></tr>\n</table>\n<p>\nThe trim and respond logic shall reset setpoint within the range <code>minSet</code> to\n<code>maxSet</code>.\nWhen the associated device is off (<code>uDevSta=false</code>), the setpoint\nshall be <code>iniSet</code>.\nThe reset logic shall be active while the associated device is proven\non (<code>uDevSta=true</code>), starting <code>delTim</code> after initial\ndevice start command.\nWhen active, every time step <code>samplePeriod</code>, trim the setpoint by\n<code>triAmo</code>.\nIf there are more than <code>numIgnReq</code> requests, respond by changing\nthe setpoint by <code>resAmo*(numOfReq-numIgnReq)</code>, i.e., the number of\nrequests minus the number of ignored requests, but no more than <code>maxRes</code>.\n</p>\n<p>\nIn other words, every time step <code>samplePeriod</code>:\n</p>\n<ul>\n<li>Change setpoint by <code>triAmo</code>; </li>\n<li>If <code>numOfReq > numIgnReq</code>, <i>also</i> change setpoint by <code>resAmo*(numOfReq\n-numIgnReq)</code> but no more than <code>maxRes</code>.\n</li>\n</ul>\n<h4>Hold and release loop output</h4>\n<p>\nOptionally, if the parameter <code>have_hol</code> is set to true, an additional\ninput signal <code>uHol</code> allows for holding the trim and respond loop output\nat a fixed value for the longer of the time the input <code>uHol</code> remains true \nand the duration specified by the parameter <code>dtHol</code>.\nWhen <code>uHol</code> switches back to false, the hold is released and resetting\ncontinues from the previously held value (without reinitializing to <code>iniSet</code>\nor going through a delay time of <code>delTim</code>). \n</p>\n<p>\nThis is typically used in control sequences to freeze the reset logic during the plant\nstaging process.\nConsider for example the following specification:<br/>\n\\\"When a plant stage change is initiated, the reset logic shall be disabled and value\nfixed at its last value for the longer of <i>15</i> minutes and the time it takes \nfor the plant to successfully stage.\\\"<br/>\nUsing this block with <code>have_hol=true</code> and <code>dtHol=15*60</code> \nyields the following sequence of events.\n</p>\n<ul>\n<li>0:00 - Stage change is initiated. T&amp;R loop output is at <i>50&nbsp;%</i>.</li>\n<li>0:12 - Stage change is completed. T&amp;R loop output remains at <i>50&nbsp;%</i> \nsince <i>&lt;&nbsp;15&nbsp;</i>minutes have elapsed.</li>\n<li>0:15 - T&amp;R is released and continues resetting from <i>50&nbsp;%</i>.</li>\n</ul>\n<h4>Examples</h4>\n<p>\nThe figure below illustrates the trim and respond logic with a negative trim amount,\ncomparing scenarios with and without holding the loop output.\n</p>\n<p>\n<img alt=\\\"Trend graph for trim and response\\\"\nsrc=\\\"modelica://Buildings/Resources/Images/Controls/OBC/ASHRAE/G36/Generic/TrimAndRespond.png\\\"/>\n</p>\n<p>\nThe figure below illustrates the trim and respond logic with a positive trim amount.\n</p>\n<p>\n<img alt=\\\"Trend graph for trim and response\\\"\nsrc=\\\"modelica://Buildings/Resources/Images/Controls/OBC/ASHRAE/G36/Generic/TrimAndRespond1.png\\\"/>\n</p>\n<p>\nThe figure below illustrates the trim and respond logic with a negative trim amount,\nin a scenario where the equipment switches on and off.\n</p>\n<p>\n<img alt=\\\"Trend graph for trim and response\\\"\nsrc=\\\"modelica://Buildings/Resources/Images/Controls/OBC/ASHRAE/G36/Generic/TrimAndRespond2.png\\\"/>\n</p>\n</html>\"",
-      "fullClassName": "Buildings.Controls.OBC.ASHRAE.G36.Generic.TrimAndRespond",
-      "section": "1.1",
-      "headingText": "Maximum cooling supply temperature reset",
-      "headingIdx": 2,
-      "headingNum": "10.7"
+      "fullClassName": "Buildings.Controls.OBC.ASHRAE.G36.Generic.TrimAndRespond"
     },
     {
       "instance": {
@@ -8400,11 +8344,7 @@
       "descriptionString": "Outdoor airflow related calculations at the AHU level",
       "cdlAnnotation": null,
       "documentationInfo": "\"<html>\n<p>\nThis sequence outputs AHU level uncorrected minimum outdoor airflow rate\n<code>VUncOutAir_flow</code> and effective minimum outdoor airflow rate\n<code>VEffOutAir_flow</code> when complying with ASHRAE Standard 62.1 ventilation requirements.\nIt is implemented according to Section 5.16.3.1 of ASHRAE\nGuideline G36, May 2020.\n</p>\n<p>\nIt requires following inputs which are sum or maximum of the outputs from\nthe zone level calculation. See\n<a href=\\\"modelica://Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.OutdoorAirFlow.ASHRAE62_1.SumZone\\\">\nBuildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.OutdoorAirFlow.ASHRAE62_1.SumZone</a>\nfor these inputs.\n</p>\n<ol>\n<li>\nSum of the adjusted population component breathing zone flow rate for all zones that are in\nall zone groups in occupied mode, <code>VSumAdjPopBreZon_flow</code>.\n</li>\n<li>\nSum of the adjusted area component breathing zone flow rate for all zones that are in\nall zone groups in occupied mode, <code>VSumAdjAreBreZon_flow</code>.\n</li>\n<li>\nSum of the zone primary airflow rates for all zones in all zone groups that are\nin occupied mode,<code>VSumZonPri_flow</code>.\n</li>\n<li>\nMaximum zone outdoor air fraction for all zones in all zone groups that are\nin occupied mode, <code>uOutAirFra_max</code>.\n</li>\n</ol>\n<p>\nThe calculation is done using the steps below.\n</p>\n<ol>\n<li>\nSee Section 3.1.4.2.a of Guideline 36 for setpoints <code>VUncDesOutAir_flow</code>\nand <code>VDesTotOutAir_flow</code>.\n</li>\n<li>\nThe uncorrected outdoor airflow rate setpoint <code>VUncOutAir_flow</code> is recalculated\ncontinuously based on the adjusted population and area component breathing zone flow rate\nof the zones being served determined in accordance with Section 5.2.1.3. See\n<a href=\\\"modelica://Buildings.Controls.OBC.ASHRAE.G36.VentilationZones.ASHRAE62_1.Setpoints\\\">\nBuildings.Controls.OBC.ASHRAE.G36.VentilationZones.ASHRAE62_1.Setpoints</a>.\n<pre>\n    VUncOutAir_flow = min(VUncDesOutAir_flow, (VSumAdjPopBreZon_flow + VSumAdjAreBreZon_flow))\n</pre>\n</li>\n<li>\nCalculate the current system ventilation efficiency as\n<pre>\n    sysVenEff = 1 + (VUncOutAir_flow/VSumZonPri_flow) - uOutAirFra_max\n</pre> \n</li>\n<li>\nCalculate the effective minimum outdoor air setpoint <code>VEffOutAir_flow</code> as\nthe uncorrected outdoor air intake divided by the system ventilation efficiency,\nbut no larger than the design total outdoor airflow rate <code>VDesTotOutAir_flow</code>:\n<pre>\n    VEffOutAir_flow = min(VUncOutAir_flow/sysVenEff, VDesTotOutAir_flow)\n</pre>\n</li>\n</ol>\n</html>\"",
-      "fullClassName": "Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.OutdoorAirFlow.ASHRAE62_1.AHU",
-      "section": "1",
-      "headingText": "Minimum outdoor airflow setpoint, when complying with ASHRAE 62.1 requirements",
-      "headingIdx": 1,
-      "headingNum": "8"
+      "fullClassName": "Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.OutdoorAirFlow.ASHRAE62_1.AHU"
     },
     {
       "instance": {
@@ -8456,11 +8396,7 @@
       "descriptionString": "AHU level setpoint calculation",
       "cdlAnnotation": null,
       "documentationInfo": "\"<html>\n<p>\nThis sequence outputs AHU level effective outdoor air absolute minimum and design\nminimum setpoints <code>VEffAbsOutAir_flow</code>, <code>VEffDesOutAir_flow</code> and\nthe nomalized minimum setpoint <code>effOutAir_normalized</code>\nwhen complying with California Title 24 ventilation requirements.\nIt is implemented according to Section 5.16.3.2 of ASHRAE\nGuideline G36, May 2020.\n</p>\n<p>\nIt calculates as below:\n</p>\n<ol>\n<li>\nSee the sum of zone absolute and design minimum outdoor airflow setpoint\n<code>VSumZonAbsMin_flow</code> and <code>VSumZonDesMin_flow</code> from\n<a href=\\\"modelica://Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.OutdoorAirFlow.Title24.SumZone\\\">\nBuildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.OutdoorAirFlow.Title24.SumZone</a> for the detailed\ndescription.\n</li>\n<li>\nEffective outdoor air absolute minimum and design minimum setpoints\n(<code>VEffAbsOutAir_flow</code> and <code>VEffDesOutAir_flow</code>) are recalculated\ncontinuously based on the mode of the zones being served.\n<ul>\n<li>\nEffective outdoor air absolute minimum setpoint <code>VEffAbsOutAir_flow</code> is\nthe sum of <code>VZonAbsMin_flow</code> for all zones in all zone groups that\nare in occupied mode but shall be no larger than the absolute minimum outdoor airflow\n<code>VAbsOutAir_flow</code>.\n</li>\n<li>\nEffective outdoor air design minimum setpoint <code>VEffDesOutAir_flow</code> is\nthe sum of <code>VZonDesMin_flow</code> for all zones in all zone groups that\nare in occupied mode but shall be no larger than the absolute minimum outdoor airflow\n<code>VDesOutAir_flow</code>.\n</li>\n</ul>\n</li>\n<li>\nAccording to section 5.16.4, 5.16.5 and 5.16.6, the effective minimum outdoor airflow\nsetpoint should be reset based on the highest zone CO2 control- loop signal from\n<code>VEffAbsOutAir_flow</code> at 50% signal to <code>VEffDesOutAir_flow</code>\nat 100% signal. When there is no CO2 sensor in any zone, the effective minimum\noutdoor airflow setpoint should be equal to the <code>VEffDesOutAir_flow</code>.\n</li>\n</ol>\n</html>\"",
-      "fullClassName": "Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.OutdoorAirFlow.Title24.AHU",
-      "section": "1",
-      "headingText": "Minimum outdoor airflow setpoint, when complying with Title 24 requirements",
-      "headingIdx": 1,
-      "headingNum": "9"
+      "fullClassName": "Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.OutdoorAirFlow.Title24.AHU"
     },
     {
       "instance": {
@@ -8473,11 +8409,7 @@
       "descriptionString": "Sequence for control of relief fan in AHU",
       "cdlAnnotation": null,
       "documentationInfo": "\"<html>\n<p>\nSequence for controling relief fan that is part of AHU. It is developed based on\nSection 5.16.9 of ASHRAE Guideline 36, May 2020, with the modification to accommodate\nthe single relief fan control.\n</p>\n<ol>\n<li>\nThe relief fan shall be enabled when the AHU supply fan is proven ON\n(<code>u1SupFan=true</code>), and shall be disabled otherwise.\n</li>\n<li>\nBuilding static pressure (<code>dpBui</code>) shall be time averaged with a sliding\n5-minute window and 15 second sampling rate (to dampen fluctuations). The average\nvalue shall be that displayed and used for control.\n</li>\n<li>\nA P-only control loop maintains the building pressure at a set point (<code>dpBuiSet</code>)\nof 12 Pa (0.05 in. of water) with an output ranging from 0% to 100%. The loop is disabled\nand output set to zero when the relief fan is disabled.\n</li>\n<li>\nFan speed shall be equal to the PID signal but no less than the minimum speed.\n<ol type=\\\"a\\\">\n<li>\nWhen relief system is enabled, and the control loop\noutput is above 5%, open the motorized dampers to the relief fans;\nclose the dampers when the loop output drops to 0% for 5 minutes.\n</li>\n<li>\nWhen the control loop output is above minimum speed (<code>relFanSpe_min</code>) plus 15%\nby 7 minutes, start the relief fan.\n</li>\n<li>\nWhen the control loop output is below minimum speed (<code>relFanSpe_min</code>)\nby 5 minutes, shut off the relief fan.\n</li>\n</ol>\n</li>\n</ol>\n</html>\"",
-      "fullClassName": "Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.ReliefFan",
-      "section": "1",
-      "headingText": "Control of relief fan when it is part of AHU",
-      "headingIdx": 1,
-      "headingNum": "10"
+      "fullClassName": "Buildings.Controls.OBC.ASHRAE.G36.AHUs.MultiZone.VAV.SetPoints.ReliefFan"
     }
   ],
   "variables": {
@@ -8487,37 +8419,37 @@
           "type": "Real",
           "name": "uOutDamPosMin",
           "description": "Minimum economizer damper position limit as returned by the damper position limits sequence",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "uOutDam",
           "description": "Economizer outdoor air damper commanded position",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "uHeaCoi",
           "description": "Heating coil commanded position",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "uMinOutDam",
           "description": "Minimum outdoor air damper commanded position",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Boolean",
           "name": "u1MinOutDam",
           "description": "Minimum outdoor air damper command on position",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Real",
           "name": "uRetDam",
           "description": "Economizer return air damper commanded position",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
@@ -8529,55 +8461,55 @@
           "type": "Boolean",
           "name": "u1FreSta",
           "description": "Freeze protection stat signal. The stat is normally close (the input is normally true), when enabling freeze protection, the input becomes false",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Boolean",
           "name": "u1SofSwiRes",
           "description": "Freeze protection reset signal from software switch",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Boolean",
           "name": "u1SupFan",
           "description": "Supply fan commanded on",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Real",
           "name": "uSupFan",
           "description": "Supply fan commanded speed",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Boolean",
           "name": "u1RetFan",
           "description": "Return fan commanded on",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Real",
           "name": "uRetFan",
           "description": "Return fan commanded speed",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Boolean",
           "name": "u1RelFan",
           "description": "Relief fan commanded on",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Real",
           "name": "uRelFan",
           "description": "Relief fan commanded speed",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "uCooCoi",
           "description": "Cooling coil commanded position",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
@@ -8591,103 +8523,103 @@
           "type": "Integer",
           "name": "yFreProSta",
           "description": "Freeze protection stage index",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Boolean",
           "name": "y1EneCHWPum",
           "description": "Commanded on to energize chilled water pump",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Real",
           "name": "yRetDam",
           "description": "Return air damper commanded position",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "yOutDam",
           "description": "Outdoor air damper commanded position",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "yMinOutDam",
           "description": "Minimum outdoor air damper commanded position",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Boolean",
           "name": "y1MinOutDam",
           "description": "Minimum outdoor air damper command on position",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Boolean",
           "name": "y1SupFan",
           "description": "Supply fan commanded on",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Real",
           "name": "ySupFan",
           "description": "Supply fan commanded speed",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Boolean",
           "name": "y1RetFan",
           "description": "Return fan commanded on",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Real",
           "name": "yRetFan",
           "description": "Return fan commanded speed",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Boolean",
           "name": "y1RelFan",
           "description": "Relief fan commanded on",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Boolean",
           "name": "y1RelDam",
           "description": "True: 2-position relief damper is commanded open",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Real",
           "name": "yRelFan",
           "description": "Relief fan commanded speed",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "yCooCoi",
           "description": "Cooling coil commanded position",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "yHeaCoi",
           "description": "Heating coil commanded position",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Integer",
           "name": "yHotWatPlaReq",
           "description": "Request to heating hot-water plant",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Integer",
           "name": "yAla",
           "description": "Alarm level",
-          "unit": "-"
+          "unit": null
         }
       ],
       "parameters": [
@@ -8695,85 +8627,105 @@
           "type": "Boolean",
           "name": "have_frePro",
           "description": "True: enable freeze protection",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General"
         },
         {
           "type": "PressureControl",
           "name": "buiPreCon",
           "description": "Type of building pressure control system",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General"
         },
         {
           "type": "OutdoorAirSection",
           "name": "minOADes",
           "description": "Design of minimum outdoor air and economizer function",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General"
         },
         {
           "type": "FreezeStat",
           "name": "freSta",
           "description": "Type of freeze stat",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General"
         },
         {
           "type": "HeatingCoil",
           "name": "heaCoi",
           "description": "Heating coil type",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General"
         },
         {
           "type": "CoolingCoil",
           "name": "cooCoi",
           "description": "Cooling coil type",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General"
         },
         {
           "type": "Integer",
           "name": "minHotWatReq",
           "description": "Minimum heating hot-water plant request to active the heating plant",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General"
         },
         {
           "type": "SimpleController",
           "name": "heaCoiCon",
           "description": "Heating coil controller",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General",
+          "dialogGroup": "\"Heating coil controller\""
         },
         {
           "type": "Real",
           "name": "k",
           "description": "Gain of coil controller",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "General",
+          "dialogGroup": "\"Heating coil controller\""
         },
         {
           "type": "Real",
           "name": "Ti",
           "description": "Time constant of integrator block",
-          "unit": "s"
+          "unit": "s",
+          "dialogTab": "General",
+          "dialogGroup": "\"Heating coil controller\""
         },
         {
           "type": "Real",
           "name": "Td",
           "description": "Time constant of derivative block",
-          "unit": "s"
+          "unit": "s",
+          "dialogTab": "General",
+          "dialogGroup": "\"Heating coil controller\""
         },
         {
           "type": "Real",
           "name": "yMax",
           "description": "Upper limit of output",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General",
+          "dialogGroup": "\"Heating coil controller\""
         },
         {
           "type": "Real",
           "name": "yMin",
           "description": "Lower limit of output",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General",
+          "dialogGroup": "\"Heating coil controller\""
         },
         {
           "type": "Real",
           "name": "Thys",
           "description": "Hysteresis for checking temperature difference",
-          "unit": "K"
+          "unit": "K",
+          "dialogTab": "\"Advanced\""
         }
       ]
     },
@@ -8795,13 +8747,13 @@
           "type": "Real",
           "name": "uCooCoiSet",
           "description": "Commanded ooling coil valve position",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "uHeaCoiSet",
           "description": "Commanded heating coil valve position",
-          "unit": "-"
+          "unit": "1"
         }
       ],
       "outputs": [
@@ -8809,25 +8761,25 @@
           "type": "Integer",
           "name": "yChiWatResReq",
           "description": "Chilled water reset request",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Integer",
           "name": "yChiPlaReq",
           "description": "Chiller plant request",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Integer",
           "name": "yHotWatResReq",
           "description": "Hot water reset request",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Integer",
           "name": "yHotWatPlaReq",
           "description": "Hot water plant request",
-          "unit": "-"
+          "unit": null
         }
       ],
       "parameters": [
@@ -8835,25 +8787,29 @@
           "type": "HeatingCoil",
           "name": "heaCoi",
           "description": "Heating coil type",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General"
         },
         {
           "type": "CoolingCoil",
           "name": "cooCoi",
           "description": "Cooling coil type",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General"
         },
         {
           "type": "Real",
           "name": "Thys",
           "description": "Hysteresis for checking temperature difference",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "\"Advanced\""
         },
         {
           "type": "Real",
           "name": "posHys",
           "description": "Hysteresis for checking valve position difference",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "\"Advanced\""
         }
       ]
     },
@@ -8863,37 +8819,37 @@
           "type": "Real",
           "name": "VOutMinSet_flow_normalized",
           "description": "Effective minimum outdoor airflow setpoint, normalized by design minimum outdoor airflow rate",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "VOut_flow_normalized",
           "description": "Measured outdoor volumetric airflow rate, normalized by design minimum outdoor airflow rate",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Boolean",
           "name": "u1SupFan",
           "description": "Supply fan proven on",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Integer",
           "name": "uOpeMod",
           "description": "AHU operation mode status signal",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Real",
           "name": "uOutDam",
           "description": "Economizer outdoor air damper commanded position",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "uSupFan",
           "description": "Commanded supply fan speed",
-          "unit": "-"
+          "unit": "1"
         }
       ],
       "outputs": [
@@ -8901,43 +8857,43 @@
           "type": "Real",
           "name": "yMinOutDam",
           "description": "Minimum outdoor air damper commanded position",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Boolean",
           "name": "yEnaMinOut",
           "description": "True: enable minimum outdoor air control loop",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Real",
           "name": "yOutDam_min",
           "description": "Physically minimum outdoor air damper position limit",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "yOutDam_max",
           "description": "Physically maximum outdoor air damper position limit",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "yRetDam_min",
           "description": "Minimum return air damper position limit",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "yRetDam_max",
           "description": "Maximum return air damper position limit",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "yRetDamPhy_max",
           "description": "Physical maximum return air damper position limit. Required as an input for the economizer enable disable sequence",
-          "unit": "-"
+          "unit": "1"
         }
       ],
       "parameters": [
@@ -8945,67 +8901,88 @@
           "type": "Real",
           "name": "minSpe",
           "description": "Minimum supply fan speed",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "General"
         },
         {
           "type": "SimpleController",
           "name": "minOAConTyp",
           "description": "Type of minimum outdoor air controller",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General",
+          "dialogGroup": "\"Minimum OA control\""
         },
         {
           "type": "Real",
           "name": "kMinOA",
           "description": "Gain of controller",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "General",
+          "dialogGroup": "\"Minimum OA control\""
         },
         {
           "type": "Real",
           "name": "TiMinOA",
           "description": "Time constant of integrator block",
-          "unit": "s"
+          "unit": "s",
+          "dialogTab": "General",
+          "dialogGroup": "\"Minimum OA control\""
         },
         {
           "type": "Real",
           "name": "TdMinOA",
           "description": "Time constant of derivative block",
-          "unit": "s"
+          "unit": "s",
+          "dialogTab": "General",
+          "dialogGroup": "\"Minimum OA control\""
         },
         {
           "type": "Real",
           "name": "retDamPhy_max",
           "description": "Physically fixed maximum position of the return air damper",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Commissioning\"",
+          "dialogGroup": "\"Physical damper position limits\""
         },
         {
           "type": "Real",
           "name": "retDamPhy_min",
           "description": "Physically fixed minimum position of the return air damper",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Commissioning\"",
+          "dialogGroup": "\"Physical damper position limits\""
         },
         {
           "type": "Real",
           "name": "outDamPhy_max",
           "description": "Physically fixed maximum position of the outdoor air damper",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Commissioning\"",
+          "dialogGroup": "\"Physical damper position limits\""
         },
         {
           "type": "Real",
           "name": "outDamPhy_min",
           "description": "Physically fixed minimum position of the outdoor air damper",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Commissioning\"",
+          "dialogGroup": "\"Physical damper position limits\""
         },
         {
           "type": "Real",
           "name": "minOutDamPhy_max",
           "description": "Physically fixed maximum position of the minimum outdoor air damper",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Commissioning\"",
+          "dialogGroup": "\"Physical damper position limits\""
         },
         {
           "type": "Real",
           "name": "minOutDamPhy_min",
           "description": "Physically fixed minimum position of the minimum outdoor air damper",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Commissioning\"",
+          "dialogGroup": "\"Physical damper position limits\""
         }
       ]
     },
@@ -9015,19 +8992,19 @@
           "type": "Real",
           "name": "effAbsOutAir_normalized",
           "description": "Effective minimum outdoor airflow setpoint, normalized by the absolute outdoor airflow rate ",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "uCO2Loo_max",
           "description": "Maximum zone CO2 control loop",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "effDesOutAir_normalized",
           "description": "Effective minimum outdoor airflow setpoint, normalized by the design outdoor airflow rate ",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
@@ -9039,31 +9016,31 @@
           "type": "Real",
           "name": "VOutMinSet_flow_normalized",
           "description": "Effective minimum outdoor airflow setpoint, normalized by design minimum outdoor airflow rate",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Boolean",
           "name": "u1SupFan",
           "description": "Supply fan proven on",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Integer",
           "name": "uOpeMod",
           "description": "AHU operation mode status signal",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Real",
           "name": "uOutDam",
           "description": "Economizer outdoor air damper commanded position",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "uSupFan",
           "description": "Commanded supply fan speed",
-          "unit": "-"
+          "unit": "1"
         }
       ],
       "outputs": [
@@ -9071,37 +9048,37 @@
           "type": "Boolean",
           "name": "y1MinOutDam",
           "description": "Status of minimum outdoor air damper position, true means it's open",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Real",
           "name": "yOutDam_min",
           "description": "Physically minimum outdoor air damper position limit",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "yOutDam_max",
           "description": "Physically maximum outdoor air damper position limit",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "yRetDam_min",
           "description": "Minimum return air damper position limit",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "yRetDam_max",
           "description": "Maximum return air damper position limit",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "yRetDamPhy_max",
           "description": "Physical maximum return air damper position limit. Required as an input for the economizer enable disable sequence",
-          "unit": "-"
+          "unit": "1"
         }
       ],
       "parameters": [
@@ -9109,79 +9086,100 @@
           "type": "VentilationStandard",
           "name": "venStd",
           "description": "Ventilation standard, ASHRAE 62.1 or Title 24",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General"
         },
         {
           "type": "Boolean",
           "name": "have_CO2Sen",
           "description": "True: some zones have CO2 sensor",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General"
         },
         {
           "type": "Real",
           "name": "dpAbsMinOutDam",
           "description": "Absolute minimum pressure difference across the minimum outdoor air damper. It provides the absolute minimum outdoor airflow",
-          "unit": "Pa"
+          "unit": "Pa",
+          "dialogTab": "General"
         },
         {
           "type": "Real",
           "name": "dpDesMinOutDam",
           "description": "Design minimum pressure difference across the minimum outdoor air damper. It provides the design minimum outdoor airflow",
-          "unit": "Pa"
+          "unit": "Pa",
+          "dialogTab": "General"
         },
         {
           "type": "Real",
           "name": "minSpe",
           "description": "Minimum supply fan speed",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "General"
         },
         {
           "type": "SimpleController",
           "name": "dpCon",
           "description": "Type of differential pressure setpoint controller",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General",
+          "dialogGroup": "\"DP control\""
         },
         {
           "type": "Real",
           "name": "kDp",
           "description": "Gain of controller",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "General",
+          "dialogGroup": "\"DP control\""
         },
         {
           "type": "Real",
           "name": "TiDp",
           "description": "Time constant of integrator block",
-          "unit": "s"
+          "unit": "s",
+          "dialogTab": "General",
+          "dialogGroup": "\"DP control\""
         },
         {
           "type": "Real",
           "name": "TdDp",
           "description": "Time constant of derivative block",
-          "unit": "s"
+          "unit": "s",
+          "dialogTab": "General",
+          "dialogGroup": "\"DP control\""
         },
         {
           "type": "Real",
           "name": "retDamPhy_max",
           "description": "Physically fixed maximum position of the return air damper",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Commissioning\"",
+          "dialogGroup": "\"Physical damper position limits\""
         },
         {
           "type": "Real",
           "name": "retDamPhy_min",
           "description": "Physically fixed minimum position of the return air damper",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Commissioning\"",
+          "dialogGroup": "\"Physical damper position limits\""
         },
         {
           "type": "Real",
           "name": "outDamPhy_max",
           "description": "Physically fixed maximum position of the outdoor air damper",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Commissioning\"",
+          "dialogGroup": "\"Physical damper position limits\""
         },
         {
           "type": "Real",
           "name": "outDamPhy_min",
           "description": "Physically fixed minimum position of the outdoor air damper",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Commissioning\"",
+          "dialogGroup": "\"Physical damper position limits\""
         }
       ]
     },
@@ -9191,25 +9189,25 @@
           "type": "Real",
           "name": "VOut_flow_normalized",
           "description": "Measured outdoor volumetric airflow rate, normalized by design minimum outdoor airflow rate",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "VOutMinSet_flow_normalized",
           "description": "Effective minimum outdoor airflow setpoint, normalized by design minimum outdoor airflow rate",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Integer",
           "name": "uOpeMod",
           "description": "AHU operation mode status signal",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Boolean",
           "name": "u1SupFan",
           "description": "Supply fan proven on",
-          "unit": "-"
+          "unit": null
         }
       ],
       "outputs": [
@@ -9217,37 +9215,37 @@
           "type": "Real",
           "name": "yOutDam_min",
           "description": "Minimum outdoor air damper position limit",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "yOutDam_max",
           "description": "Maximum outdoor air damper position limit",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "yRetDam_min",
           "description": "Minimum return air damper position limit",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "yRetDam_max",
           "description": "Maximum return air damper position limit",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "yRetDamPhy_max",
           "description": "Physical maximum return air damper position limit. Required as an input for the economizer enable disable sequence",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Boolean",
           "name": "yEnaMinOut",
           "description": "True: enable minimum outdoor air control loop",
-          "unit": "-"
+          "unit": null
         }
       ],
       "parameters": [
@@ -9255,67 +9253,87 @@
           "type": "SimpleController",
           "name": "controllerType",
           "description": "Type of controller",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General",
+          "dialogGroup": "\"Controller\""
         },
         {
           "type": "Real",
           "name": "k",
           "description": "Gain of damper limit controller",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "General",
+          "dialogGroup": "\"Controller\""
         },
         {
           "type": "Real",
           "name": "Ti",
           "description": "Time constant of damper limit controller integrator block",
-          "unit": "s"
+          "unit": "s",
+          "dialogTab": "General",
+          "dialogGroup": "\"Controller\""
         },
         {
           "type": "Real",
           "name": "Td",
           "description": "Time constant of damper limit controller derivative block",
-          "unit": "s"
+          "unit": "s",
+          "dialogTab": "General",
+          "dialogGroup": "\"Controller\""
         },
         {
           "type": "Real",
           "name": "uRetDam_min",
           "description": "Loop signal value to start decreasing the maximum return air damper position",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Commissioning\"",
+          "dialogGroup": "\"Controller\""
         },
         {
           "type": "Real",
           "name": "retDamPhy_max",
           "description": "Physically fixed maximum position of the return air damper",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Commissioning\"",
+          "dialogGroup": "\"Physical damper position limits\""
         },
         {
           "type": "Real",
           "name": "retDamPhy_min",
           "description": "Physically fixed minimum position of the return air damper",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Commissioning\"",
+          "dialogGroup": "\"Physical damper position limits\""
         },
         {
           "type": "Real",
           "name": "outDamPhy_max",
           "description": "Physically fixed maximum position of the outdoor air damper",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Commissioning\"",
+          "dialogGroup": "\"Physical damper position limits\""
         },
         {
           "type": "Real",
           "name": "outDamPhy_min",
           "description": "Physically fixed minimum position of the outdoor air damper",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Commissioning\"",
+          "dialogGroup": "\"Physical damper position limits\""
         },
         {
           "type": "Real",
           "name": "yMin",
           "description": "Lower limit of control loop signal",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General"
         },
         {
           "type": "Real",
           "name": "yMax",
           "description": "Upper limit of control loop signal",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General"
         }
       ]
     },
@@ -9349,43 +9367,43 @@
           "type": "Real",
           "name": "uOutDam_min",
           "description": "Minimum outdoor air damper position, output from damper position limits sequence",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "uOutDam_max",
           "description": "Maximum outdoor air damper position, output from damper position limits sequence",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "uRetDam_max",
           "description": "Maximum return air damper position, output from damper position limits sequence",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "uRetDam_min",
           "description": "Minimum return air damper position, output from damper position limits sequence",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "uRetDamPhy_max",
           "description": "Physical maximum return air damper position, output from damper position limits sequence",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Boolean",
           "name": "u1SupFan",
           "description": "Supply fan proven on",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Integer",
           "name": "uFreProSta",
           "description": "Freeze protection stage status signal",
-          "unit": "-"
+          "unit": null
         }
       ],
       "outputs": [
@@ -9393,19 +9411,19 @@
           "type": "Real",
           "name": "yOutDam_max",
           "description": "Maximum outdoor air damper position",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "yRetDam_min",
           "description": "Minimum return air damper position",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "yRetDam_max",
           "description": "Maximum return air damper position",
-          "unit": "-"
+          "unit": "1"
         }
       ],
       "parameters": [
@@ -9413,55 +9431,69 @@
           "type": "Boolean",
           "name": "use_enthalpy",
           "description": "Set to true to evaluate outdoor air (OA) enthalpy in addition to temperature",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General",
+          "dialogGroup": "\"Conditional\""
         },
         {
           "type": "Real",
           "name": "delTOutHis",
           "description": "Delta between the temperature hysteresis high and low limit",
-          "unit": "K"
+          "unit": "K",
+          "dialogTab": "\"Advanced\"",
+          "dialogGroup": "\"Hysteresis\""
         },
         {
           "type": "Real",
           "name": "delEntHis",
           "description": "Delta between the enthalpy hysteresis high and low limits",
-          "unit": "J/kg"
+          "unit": "J/kg",
+          "dialogTab": "\"Advanced\"",
+          "dialogGroup": "\"Hysteresis\""
         },
         {
           "type": "Real",
           "name": "retDamFulOpeTim",
           "description": "Time period to keep RA damper fully open before releasing it for minimum outdoor airflow control\n    at disable to avoid pressure fluctuations",
-          "unit": "s"
+          "unit": "s",
+          "dialogTab": "\"Advanced\"",
+          "dialogGroup": "\"Delays at disable\""
         },
         {
           "type": "Real",
           "name": "disDel",
           "description": "Short time delay before closing the OA damper at disable to avoid pressure fluctuations",
-          "unit": "s"
+          "unit": "s",
+          "dialogTab": "\"Advanced\"",
+          "dialogGroup": "\"Delays at disable\""
         },
         {
           "type": "Real",
           "name": "TOutHigLimCutHig",
           "description": "Hysteresis high limit cutoff",
-          "unit": "K"
+          "unit": "K",
+          "dialogTab": "General"
         },
         {
           "type": "Real",
           "name": "TOutHigLimCutLow",
           "description": "Hysteresis low limit cutoff",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General"
         },
         {
           "type": "Real",
           "name": "hOutHigLimCutHig",
           "description": "Hysteresis block high limit cutoff",
-          "unit": "J/kg"
+          "unit": "J/kg",
+          "dialogTab": "General"
         },
         {
           "type": "Real",
           "name": "hOutHigLimCutLow",
           "description": "Hysteresis block low limit cutoff",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General"
         }
       ]
     },
@@ -9471,19 +9503,19 @@
           "type": "Real",
           "name": "uTSup",
           "description": "Supply air temperature control loop signal",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "uRetDam_max",
           "description": "Maximum return air damper position limit as returned by the economizer enable-disable sequence",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "uRetDam_min",
           "description": "Minimum return air damper position limit as returned by the economizer enable-disable sequence",
-          "unit": "-"
+          "unit": "1"
         }
       ],
       "outputs": [
@@ -9491,19 +9523,19 @@
           "type": "Real",
           "name": "yRetDam",
           "description": "Return air damper position",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "yRelDam",
           "description": "Relief air damper position",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "yOutDam",
           "description": "Outdoor air damper position",
-          "unit": "-"
+          "unit": "1"
         }
       ],
       "parameters": [
@@ -9511,19 +9543,24 @@
           "type": "Boolean",
           "name": "have_dirCon",
           "description": "True: the building have direct pressure control",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General"
         },
         {
           "type": "Real",
           "name": "uMin",
           "description": "Lower limit of controller input when outdoor damper opens (see diagram)",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Commissioning\"",
+          "dialogGroup": "\"Controller\""
         },
         {
           "type": "Real",
           "name": "uMax",
           "description": "Upper limit of controller input when return damper is closed (see diagram)",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Commissioning\"",
+          "dialogGroup": "\"Controller\""
         }
       ]
     },
@@ -9533,31 +9570,31 @@
           "type": "Real",
           "name": "uTSup",
           "description": "Signal for supply air temperature control (T Sup Control Loop Signal in diagram)",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "uOutDam_min",
           "description": "Minimum economizer damper position limit as returned by the damper position limits  sequence",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "uOutDam_max",
           "description": "Maximum economizer damper position limit as returned by the economizer enable-disable sequence.\n    If the economizer is disabled, this value equals uOutDam_min",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "uRetDam_min",
           "description": "Minimum return air damper position limit as returned by the economizer enable-disable sequence",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "uRetDam_max",
           "description": "Maximum return air damper position limit as returned by the economizer enable-disable sequence",
-          "unit": "-"
+          "unit": "1"
         }
       ],
       "outputs": [
@@ -9565,13 +9602,13 @@
           "type": "Real",
           "name": "yOutDam",
           "description": "Economizer damper commanded position",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "yRetDam",
           "description": "Return air damper commanded position",
-          "unit": "-"
+          "unit": "1"
         }
       ],
       "parameters": [
@@ -9579,25 +9616,33 @@
           "type": "Real",
           "name": "uMin",
           "description": "Lower limit of controller input when outdoor damper opens (see diagram)",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Commissioning\"",
+          "dialogGroup": "\"Controller\""
         },
         {
           "type": "Real",
           "name": "uMax",
           "description": "Upper limit of controller input when return damper is closed (see diagram)",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Commissioning\"",
+          "dialogGroup": "\"Controller\""
         },
         {
           "type": "Real",
           "name": "uOutDamMax",
           "description": "Maximum loop signal for the OA damper to be fully open",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Commissioning\"",
+          "dialogGroup": "\"Controller\""
         },
         {
           "type": "Real",
           "name": "uRetDamMin",
           "description": "Minimum loop signal for the RA damper to be fully open",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Commissioning\"",
+          "dialogGroup": "\"Controller\""
         }
       ]
     },
@@ -9635,25 +9680,29 @@
           "type": "EnergyStandard",
           "name": "eneStd",
           "description": "Energy standard, ASHRAE 90.1 or Title 24",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General"
         },
         {
           "type": "ControlEconomizer",
           "name": "ecoHigLimCon",
           "description": "Economizer high limit control device",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General"
         },
         {
           "type": "ASHRAEClimateZone",
           "name": "ashCliZon",
           "description": "ASHRAE climate zone",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General"
         },
         {
           "type": "Title24ClimateZone",
           "name": "tit24CliZon",
           "description": "California Title 24 climate zone",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General"
         }
       ]
     },
@@ -9663,37 +9712,37 @@
           "type": "Real",
           "name": "VOutMinSet_flow_normalized",
           "description": "Effective minimum outdoor airflow setpoint, normalized by design minimum outdoor airflow rate",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "VOut_flow_normalized",
           "description": "Measured outdoor volumetric airflow rate, normalized by design minimum outdoor airflow rate",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "uSupFan",
           "description": "Commanded supply fan speed",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "effAbsOutAir_normalized",
           "description": "Effective minimum outdoor airflow setpoint, normalized by the absolute outdoor airflow rate ",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "uCO2Loo_max",
           "description": "Maximum Zone CO2 control loop",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "effDesOutAir_normalized",
           "description": "Effective minimum outdoor airflow setpoint, normalized by the design outdoor airflow rate ",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
@@ -9705,7 +9754,7 @@
           "type": "Real",
           "name": "uTSup",
           "description": "Signal for supply air temperature control (T Sup Control Loop Signal in diagram)",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
@@ -9735,19 +9784,19 @@
           "type": "Boolean",
           "name": "u1SupFan",
           "description": "Supply fan status",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Integer",
           "name": "uOpeMod",
           "description": "AHU operation mode status signal",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Integer",
           "name": "uFreProSta",
           "description": "Freeze protection status",
-          "unit": "-"
+          "unit": null
         }
       ],
       "outputs": [
@@ -9755,43 +9804,43 @@
           "type": "Real",
           "name": "yOutDam_min",
           "description": "Minimum outdoor air damper position limit",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Boolean",
           "name": "yEnaMinOut",
           "description": "True: enable minimum outdoor air control loop",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Real",
           "name": "yMinOutDam",
           "description": "Minimum outdoor air flow damper commanded position",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Boolean",
           "name": "y1MinOutDam",
           "description": "Minimum outdoor air damper command on position",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Real",
           "name": "yRetDam",
           "description": "Return air damper commanded position",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "yRelDam",
           "description": "Relief air damper commanded position",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "yOutDam",
           "description": "Outdoor air damper commanded position",
-          "unit": "-"
+          "unit": "1"
         }
       ],
       "parameters": [
@@ -9799,205 +9848,266 @@
           "type": "OutdoorAirSection",
           "name": "minOADes",
           "description": "Design of minimum outdoor air and economizer function",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General"
         },
         {
           "type": "PressureControl",
           "name": "buiPreCon",
           "description": "Type of building pressure control system",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General"
         },
         {
           "type": "EnergyStandard",
           "name": "eneStd",
           "description": "Energy standard, ASHRAE 90.1 or Title 24",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General"
         },
         {
           "type": "ControlEconomizer",
           "name": "ecoHigLimCon",
           "description": "Economizer high limit control device",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General"
         },
         {
           "type": "ASHRAEClimateZone",
           "name": "ashCliZon",
           "description": "ASHRAE climate zone",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General"
         },
         {
           "type": "Title24ClimateZone",
           "name": "tit24CliZon",
           "description": "California Title 24 climate zone",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General"
         },
         {
           "type": "Real",
           "name": "minSpe",
           "description": "Minimum supply fan speed",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Limits\""
         },
         {
           "type": "SimpleController",
           "name": "minOAConTyp",
           "description": "Type of minimum outdoor air controller",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "\"Limits\"",
+          "dialogGroup": "\"With AFMS\""
         },
         {
           "type": "Real",
           "name": "kMinOA",
           "description": "Gain of controller",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Limits\"",
+          "dialogGroup": "\"With AFMS\""
         },
         {
           "type": "Real",
           "name": "TiMinOA",
           "description": "Time constant of integrator block",
-          "unit": "s"
+          "unit": "s",
+          "dialogTab": "\"Limits\"",
+          "dialogGroup": "\"With AFMS\""
         },
         {
           "type": "Real",
           "name": "TdMinOA",
           "description": "Time constant of derivative block",
-          "unit": "s"
+          "unit": "s",
+          "dialogTab": "\"Limits\"",
+          "dialogGroup": "\"With AFMS\""
         },
         {
           "type": "VentilationStandard",
           "name": "venStd",
           "description": "Ventilation standard, ASHRAE 62.1 or Title 24",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "\"Limits\"",
+          "dialogGroup": "\"With DP\""
         },
         {
           "type": "Boolean",
           "name": "have_CO2Sen",
           "description": "True: some zones have CO2 sensor",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "\"Limits\"",
+          "dialogGroup": "\"With DP\""
         },
         {
           "type": "Real",
           "name": "dpAbsMinOutDam",
           "description": "Absolute minimum pressure difference across the minimum outdoor air damper. It provides the absolute minimum outdoor airflow",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "\"Limits\"",
+          "dialogGroup": "\"With DP\""
         },
         {
           "type": "Real",
           "name": "dpDesMinOutDam",
           "description": "Design minimum pressure difference across the minimum outdoor air damper. It provides the design minimum outdoor airflow",
-          "unit": "Pa"
+          "unit": "Pa",
+          "dialogTab": "\"Limits\"",
+          "dialogGroup": "\"With DP\""
         },
         {
           "type": "SimpleController",
           "name": "dpConTyp",
           "description": "Type of differential pressure setpoint controller",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "\"Limits\"",
+          "dialogGroup": "\"With DP\""
         },
         {
           "type": "Real",
           "name": "kDp",
           "description": "Gain of controller",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Limits\"",
+          "dialogGroup": "\"With DP\""
         },
         {
           "type": "Real",
           "name": "TiDp",
           "description": "Time constant of integrator block",
-          "unit": "s"
+          "unit": "s",
+          "dialogTab": "\"Limits\"",
+          "dialogGroup": "\"With DP\""
         },
         {
           "type": "Real",
           "name": "TdDp",
           "description": "Time constant of derivative block",
-          "unit": "s"
+          "unit": "s",
+          "dialogTab": "\"Limits\"",
+          "dialogGroup": "\"With DP\""
         },
         {
           "type": "Real",
           "name": "uRetDam_min",
           "description": "Loop signal value to start decreasing the maximum return air damper position",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Limits\"",
+          "dialogGroup": "\"Common\""
         },
         {
           "type": "Real",
           "name": "delTOutHis",
           "description": "Delta between the temperature hysteresis high and low limit",
-          "unit": "K"
+          "unit": "K",
+          "dialogTab": "\"Enable\"",
+          "dialogGroup": "\"Hysteresis\""
         },
         {
           "type": "Real",
           "name": "delEntHis",
           "description": "Delta between the enthalpy hysteresis high and low limits",
-          "unit": "J/kg"
+          "unit": "J/kg",
+          "dialogTab": "\"Enable\"",
+          "dialogGroup": "\"Hysteresis\""
         },
         {
           "type": "Real",
           "name": "retDamFulOpeTim",
           "description": "Time period to keep RA damper fully open before releasing it for minimum outdoor airflow control at disable to avoid pressure fluctuations",
-          "unit": "s"
+          "unit": "s",
+          "dialogTab": "\"Enable\"",
+          "dialogGroup": "\"Delays\""
         },
         {
           "type": "Real",
           "name": "disDel",
           "description": "Short time delay before closing the OA damper at disable to avoid pressure fluctuations",
-          "unit": "s"
+          "unit": "s",
+          "dialogTab": "\"Enable\"",
+          "dialogGroup": "\"Delays\""
         },
         {
           "type": "Real",
           "name": "retDamPhy_max",
           "description": "Physically fixed maximum position of the return air damper",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Commissioning\"",
+          "dialogGroup": "\"Limits\""
         },
         {
           "type": "Real",
           "name": "retDamPhy_min",
           "description": "Physically fixed minimum position of the return air damper",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Commissioning\"",
+          "dialogGroup": "\"Limits\""
         },
         {
           "type": "Real",
           "name": "outDamPhy_max",
           "description": "Physically fixed maximum position of the outdoor air damper",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Commissioning\"",
+          "dialogGroup": "\"Limits\""
         },
         {
           "type": "Real",
           "name": "outDamPhy_min",
           "description": "Physically fixed minimum position of the outdoor air damper",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Commissioning\"",
+          "dialogGroup": "\"Limits\""
         },
         {
           "type": "Real",
           "name": "minOutDamPhy_max",
           "description": "Physically fixed maximum position of the minimum outdoor air damper",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Commissioning\"",
+          "dialogGroup": "\"Limits\""
         },
         {
           "type": "Real",
           "name": "minOutDamPhy_min",
           "description": "Physically fixed minimum position of the minimum outdoor air damper",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Commissioning\"",
+          "dialogGroup": "\"Limits\""
         },
         {
           "type": "Real",
           "name": "uHeaMax",
           "description": "Lower limit of controller input when outdoor damper opens (see diagram)",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Commissioning\"",
+          "dialogGroup": "\"Modulation\""
         },
         {
           "type": "Real",
           "name": "uCooMin",
           "description": "Upper limit of controller input when return damper is closed (see diagram)",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Commissioning\"",
+          "dialogGroup": "\"Modulation\""
         },
         {
           "type": "Real",
           "name": "uOutDamMax",
           "description": "Maximum loop signal for the OA damper to be fully open",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Commissioning\"",
+          "dialogGroup": "\"Modulation\""
         },
         {
           "type": "Real",
           "name": "uRetDamMin",
           "description": "Minimum loop signal for the RA damper to be fully open",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Commissioning\"",
+          "dialogGroup": "\"Modulation\""
         }
       ]
     },
@@ -10007,19 +10117,19 @@
           "type": "Integer",
           "name": "numOfReq",
           "description": "Number of requests from zones/systems",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Boolean",
           "name": "uDevSta",
           "description": "On/Off status of the associated device",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Boolean",
           "name": "uHol",
           "description": "Hold signal",
-          "unit": "-"
+          "unit": null
         }
       ],
       "outputs": [
@@ -10027,7 +10137,7 @@
           "type": "Real",
           "name": "y",
           "description": "Setpoint that have been reset",
-          "unit": "-"
+          "unit": null
         }
       ],
       "parameters": [
@@ -10035,67 +10145,78 @@
           "type": "Boolean",
           "name": "have_hol",
           "description": "Set to true to allow holding the reset, false to continuously reset when enabled",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General"
         },
         {
           "type": "Real",
           "name": "iniSet",
           "description": "Initial setpoint",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General"
         },
         {
           "type": "Real",
           "name": "minSet",
           "description": "Minimum setpoint",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General"
         },
         {
           "type": "Real",
           "name": "maxSet",
           "description": "Maximum setpoint",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General"
         },
         {
           "type": "Real",
           "name": "delTim",
           "description": "Delay time",
-          "unit": "s"
+          "unit": "s",
+          "dialogTab": "General"
         },
         {
           "type": "Real",
           "name": "samplePeriod",
           "description": "Sample period of component",
-          "unit": "s"
+          "unit": "s",
+          "dialogTab": "General"
         },
         {
           "type": "Integer",
           "name": "numIgnReq",
           "description": "Number of ignored requests",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General"
         },
         {
           "type": "Real",
           "name": "triAmo",
           "description": "Trim amount",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General"
         },
         {
           "type": "Real",
           "name": "resAmo",
           "description": "Respond amount (must have opposite sign of triAmo)",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General"
         },
         {
           "type": "Real",
           "name": "maxRes",
           "description": "Maximum response per time interval (must have same sign as resAmo)",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General"
         },
         {
           "type": "Real",
           "name": "dtHol",
           "description": "Minimum hold time",
-          "unit": "s"
+          "unit": "s",
+          "dialogTab": "General"
         }
       ]
     },
@@ -10105,7 +10226,7 @@
           "type": "Integer",
           "name": "uOpeMod",
           "description": "System operation mode",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Real",
@@ -10117,7 +10238,7 @@
           "type": "Integer",
           "name": "uZonPreResReq",
           "description": "Zone static pressure reset requests",
-          "unit": "-"
+          "unit": null
         }
       ],
       "outputs": [
@@ -10125,13 +10246,13 @@
           "type": "Boolean",
           "name": "y1SupFan",
           "description": "Supply fan command on",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Real",
           "name": "ySupFan",
           "description": "Supply fan commanded speed",
-          "unit": "-"
+          "unit": "1"
         }
       ],
       "parameters": [
@@ -10139,103 +10260,137 @@
           "type": "Boolean",
           "name": "have_perZonRehBox",
           "description": "Check if there is any VAV-reheat boxes on perimeter zones",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General",
+          "dialogGroup": "\"System configuration\""
         },
         {
           "type": "Real",
           "name": "iniSet",
           "description": "Initial setpoint",
-          "unit": "Pa"
+          "unit": "Pa",
+          "dialogTab": "General",
+          "dialogGroup": "\"Trim and respond for pressure setpoint\""
         },
         {
           "type": "Real",
           "name": "minSet",
           "description": "Minimum setpoint",
-          "unit": "Pa"
+          "unit": "Pa",
+          "dialogTab": "General",
+          "dialogGroup": "\"Trim and respond for pressure setpoint\""
         },
         {
           "type": "Real",
           "name": "maxSet",
           "description": "Duct design maximum static pressure. It is the Max_DSP shown in Section 3.2.1.1 of Guideline 36",
-          "unit": "Pa"
+          "unit": "Pa",
+          "dialogTab": "General",
+          "dialogGroup": "\"Trim and respond for pressure setpoint\""
         },
         {
           "type": "Real",
           "name": "delTim",
           "description": "Delay time after which trim and respond is activated",
-          "unit": "s"
+          "unit": "s",
+          "dialogTab": "General",
+          "dialogGroup": "\"Trim and respond for pressure setpoint\""
         },
         {
           "type": "Real",
           "name": "samplePeriod",
           "description": "Sample period",
-          "unit": "s"
+          "unit": "s",
+          "dialogTab": "General",
+          "dialogGroup": "\"Trim and respond for pressure setpoint\""
         },
         {
           "type": "Integer",
           "name": "numIgnReq",
           "description": "Number of ignored requests",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General",
+          "dialogGroup": "\"Trim and respond for pressure setpoint\""
         },
         {
           "type": "Real",
           "name": "triAmo",
           "description": "Trim amount",
-          "unit": "Pa"
+          "unit": "Pa",
+          "dialogTab": "General",
+          "dialogGroup": "\"Trim and respond for pressure setpoint\""
         },
         {
           "type": "Real",
           "name": "resAmo",
           "description": "Respond amount (must be opposite in to triAmo)",
-          "unit": "Pa"
+          "unit": "Pa",
+          "dialogTab": "General",
+          "dialogGroup": "\"Trim and respond for pressure setpoint\""
         },
         {
           "type": "Real",
           "name": "maxRes",
           "description": "Maximum response per time interval (same sign as resAmo)",
-          "unit": "Pa"
+          "unit": "Pa",
+          "dialogTab": "General",
+          "dialogGroup": "\"Trim and respond for pressure setpoint\""
         },
         {
           "type": "SimpleController",
           "name": "controllerType",
           "description": "Type of controller",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General",
+          "dialogGroup": "\"Fan PID controller\""
         },
         {
           "type": "Real",
           "name": "k",
           "description": "Gain of controller, normalized using maxSet",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "General",
+          "dialogGroup": "\"Fan PID controller\""
         },
         {
           "type": "Real",
           "name": "Ti",
           "description": "Time constant of integrator block",
-          "unit": "s"
+          "unit": "s",
+          "dialogTab": "General",
+          "dialogGroup": "\"Fan PID controller\""
         },
         {
           "type": "Real",
           "name": "Td",
           "description": "Time constant of derivative block",
-          "unit": "s"
+          "unit": "s",
+          "dialogTab": "General",
+          "dialogGroup": "\"Fan PID controller\""
         },
         {
           "type": "Real",
           "name": "maxSpe",
           "description": "Maximum allowed fan speed",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "General",
+          "dialogGroup": "\"Fan PID controller\""
         },
         {
           "type": "Real",
           "name": "minSpe",
           "description": "Lowest allowed fan speed if fan is on",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "General",
+          "dialogGroup": "\"Fan PID controller\""
         },
         {
           "type": "Real",
           "name": "iniSpe",
           "description": "Initial speed when fan is enabled. It has to be greater than the lowest allowed speed",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "General",
+          "dialogGroup": "\"Fan PID controller\""
         }
       ]
     },
@@ -10257,7 +10412,7 @@
           "type": "Boolean",
           "name": "u1SupFan",
           "description": "Supply fan status",
-          "unit": "-"
+          "unit": null
         }
       ],
       "outputs": [
@@ -10265,19 +10420,19 @@
           "type": "Real",
           "name": "yHeaCoi",
           "description": "Heating coil commanded position",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "yCooCoi",
           "description": "Cooling coil commanded position",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "uTSup",
           "description": "Supply temperature control signal",
-          "unit": "-"
+          "unit": "1"
         }
       ],
       "parameters": [
@@ -10285,49 +10440,57 @@
           "type": "Boolean",
           "name": "have_heaCoi",
           "description": "True: the AHU has heating coil. It could be the hot water coil, or the electric heating coil",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General"
         },
         {
           "type": "Boolean",
           "name": "have_cooCoi",
           "description": "True: the AHU has cooling coil. It could be the chilled water coil, or the direct expansion coil",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General"
         },
         {
           "type": "SimpleController",
           "name": "controllerType",
           "description": "Type of controller for supply air temperature signal",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General"
         },
         {
           "type": "Real",
           "name": "kTSup",
           "description": "Gain of controller for supply air temperature signal",
-          "unit": "-/K"
+          "unit": "1/K",
+          "dialogTab": "General"
         },
         {
           "type": "Real",
           "name": "TiTSup",
           "description": "Time constant of integrator block for supply temperature control signal",
-          "unit": "s"
+          "unit": "s",
+          "dialogTab": "General"
         },
         {
           "type": "Real",
           "name": "TdTSup",
           "description": "Time constant of derivative block for supply temperature control signal",
-          "unit": "s"
+          "unit": "s",
+          "dialogTab": "General"
         },
         {
           "type": "Real",
           "name": "uHea_max",
           "description": "Upper limit of controller signal when heating coil is off. Require -1 < uHea_max < uCoo_min < 1.",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "General"
         },
         {
           "type": "Real",
           "name": "uCoo_min",
           "description": "Lower limit of controller signal when cooling coil is off. Require -1 < uHea_max < uCoo_min < 1.",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "General"
         }
       ]
     },
@@ -10343,19 +10506,19 @@
           "type": "Boolean",
           "name": "u1SupFan",
           "description": "Supply fan status",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Integer",
           "name": "uOpeMod",
           "description": "System operation mode",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Integer",
           "name": "uZonTemResReq",
           "description": "Zone cooling supply air temperature reset request",
-          "unit": "-"
+          "unit": null
         }
       ],
       "outputs": [
@@ -10371,91 +10534,120 @@
           "type": "Real",
           "name": "TSupCoo_min",
           "description": "Lowest cooling supply air temperature setpoint when the outdoor air temperature is at the\n    higher value of the reset range and above",
-          "unit": "K"
+          "unit": "K",
+          "dialogTab": "General",
+          "dialogGroup": "\"Temperatures\""
         },
         {
           "type": "Real",
           "name": "TSupCoo_max",
           "description": "Highest cooling supply air temperature setpoint. It is typically 18 degC (65 degF) \n    in mild and dry climates, 16 degC (60 degF) or lower in humid climates",
-          "unit": "K"
+          "unit": "K",
+          "dialogTab": "General",
+          "dialogGroup": "\"Temperatures\""
         },
         {
           "type": "Real",
           "name": "TOut_min",
           "description": "Lower value of the outdoor air temperature reset range. Typically value is 16 degC (60 degF)",
-          "unit": "K"
+          "unit": "K",
+          "dialogTab": "General",
+          "dialogGroup": "\"Temperatures\""
         },
         {
           "type": "Real",
           "name": "TOut_max",
           "description": "Higher value of the outdoor air temperature reset range. Typically value is 21 degC (70 degF)",
-          "unit": "K"
+          "unit": "K",
+          "dialogTab": "General",
+          "dialogGroup": "\"Temperatures\""
         },
         {
           "type": "Real",
           "name": "TSupWarUpSetBac",
           "description": "Supply temperature in warm up and set back mode",
-          "unit": "K"
+          "unit": "K",
+          "dialogTab": "General",
+          "dialogGroup": "\"Temperatures\""
         },
         {
           "type": "Real",
           "name": "delTim",
           "description": "Delay timer",
-          "unit": "s"
+          "unit": "s",
+          "dialogTab": "General",
+          "dialogGroup": "\"Trim and respond logic\""
         },
         {
           "type": "Real",
           "name": "samplePeriod",
           "description": "Sample period of component",
-          "unit": "s"
+          "unit": "s",
+          "dialogTab": "General",
+          "dialogGroup": "\"Trim and respond logic\""
         },
         {
           "type": "Integer",
           "name": "numIgnReq",
           "description": "Number of ignorable requests for TrimResponse logic",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General",
+          "dialogGroup": "\"Trim and respond logic\""
         },
         {
           "type": "Real",
           "name": "triAmo",
           "description": "Trim amount",
-          "unit": "K"
+          "unit": "K",
+          "dialogTab": "General",
+          "dialogGroup": "\"Trim and respond logic\""
         },
         {
           "type": "Real",
           "name": "resAmo",
           "description": "Response amount",
-          "unit": "K"
+          "unit": "K",
+          "dialogTab": "General",
+          "dialogGroup": "\"Trim and respond logic\""
         },
         {
           "type": "Real",
           "name": "maxRes",
           "description": "Maximum response per time interval",
-          "unit": "K"
+          "unit": "K",
+          "dialogTab": "General",
+          "dialogGroup": "\"Trim and respond logic\""
         },
         {
           "type": "Real",
           "name": "TDeaBan",
           "description": "Default supply temperature setpoint when the AHU is disabled",
-          "unit": "K"
+          "unit": "K",
+          "dialogTab": "General"
         },
         {
           "type": "Real",
           "name": "iniSet",
           "description": "Initial setpoint",
-          "unit": "K"
+          "unit": "K",
+          "dialogTab": "General",
+          "dialogGroup": "\"Trim and respond logic\""
         },
         {
           "type": "Real",
           "name": "maxSet",
           "description": "Maximum setpoint",
-          "unit": "K"
+          "unit": "K",
+          "dialogTab": "General",
+          "dialogGroup": "\"Trim and respond logic\""
         },
         {
           "type": "Real",
           "name": "minSet",
           "description": "Minimum setpoint",
-          "unit": "K"
+          "unit": "K",
+          "dialogTab": "General",
+          "dialogGroup": "\"Trim and respond logic\""
         }
       ]
     },
@@ -10483,7 +10675,7 @@
           "type": "Real",
           "name": "uOutAirFra_max",
           "description": "Maximum zone outdoor air fraction",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
@@ -10509,13 +10701,13 @@
           "type": "Real",
           "name": "effOutAir_normalized",
           "description": "Effective minimum outdoor airflow setpoint, normalized by the design total outdoor airflow rate ",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "outAir_normalized",
           "description": "Normalized outdoor airflow rate",
-          "unit": "-"
+          "unit": "1"
         }
       ],
       "parameters": [
@@ -10523,19 +10715,25 @@
           "type": "OutdoorAirSection",
           "name": "minOADes",
           "description": "Type of outdoor air section",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General",
+          "dialogGroup": "\"Economizer design\""
         },
         {
           "type": "Real",
           "name": "VUncDesOutAir_flow",
           "description": "Uncorrected design outdoor airflow rate, including diversity where applicable. It can be determined using the 62MZCalc spreadsheet from ASHRAE 62.1 User's Manual",
-          "unit": "m3/s"
+          "unit": "m3/s",
+          "dialogTab": "General",
+          "dialogGroup": "\"Nominal condition\""
         },
         {
           "type": "Real",
           "name": "VDesTotOutAir_flow",
           "description": "Design total outdoor airflow rate. It can be determined using the 62MZCalc spreadsheet from ASHRAE 62.1 User's Manual",
-          "unit": "m3/s"
+          "unit": "m3/s",
+          "dialogTab": "General",
+          "dialogGroup": "\"Nominal condition\""
         }
       ]
     },
@@ -10551,7 +10749,7 @@
           "type": "Boolean",
           "name": "u1SupFan",
           "description": "Supply fan status",
-          "unit": "-"
+          "unit": null
         }
       ],
       "outputs": [
@@ -10559,7 +10757,7 @@
           "type": "Real",
           "name": "yRelDam",
           "description": "Relief damper commanded position",
-          "unit": "-"
+          "unit": "1"
         }
       ],
       "parameters": [
@@ -10567,13 +10765,15 @@
           "type": "Real",
           "name": "dpBuiSet",
           "description": "Building static pressure difference relative to ambient (positive to pressurize the building)",
-          "unit": "Pa"
+          "unit": "Pa",
+          "dialogTab": "General"
         },
         {
           "type": "Real",
           "name": "k",
           "description": "Gain, applied to building pressure control error normalized with dpBuiSet",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "General"
         }
       ]
     },
@@ -10589,13 +10789,13 @@
           "type": "Boolean",
           "name": "u1MinOutAirDam",
           "description": "Minimum outdoor air damper status, true when it is open",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Boolean",
           "name": "u1SupFan",
           "description": "Supply fan status",
-          "unit": "-"
+          "unit": null
         }
       ],
       "outputs": [
@@ -10609,7 +10809,7 @@
           "type": "Real",
           "name": "yRelDam",
           "description": "Relief damper commanded position",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
@@ -10621,13 +10821,13 @@
           "type": "Real",
           "name": "yRetFan",
           "description": "Return fan commanded speed",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Boolean",
           "name": "y1RetFan",
           "description": "Return fan commanded on",
-          "unit": "-"
+          "unit": null
         }
       ],
       "parameters": [
@@ -10635,55 +10835,68 @@
           "type": "Real",
           "name": "dpBuiSet",
           "description": "Building static pressure difference relative to ambient (positive to pressurize the building)",
-          "unit": "Pa"
+          "unit": "Pa",
+          "dialogTab": "General"
         },
         {
           "type": "Real",
           "name": "p_rel_RetFan_min",
           "description": "Return fan discharge static pressure difference minimum setpoint,no less than 2.4 Pa",
-          "unit": "Pa"
+          "unit": "Pa",
+          "dialogTab": "General"
         },
         {
           "type": "Real",
           "name": "p_rel_RetFan_max",
           "description": "Return fan discharge static pressure maximum setpoint",
-          "unit": "Pa"
+          "unit": "Pa",
+          "dialogTab": "General"
         },
         {
           "type": "Real",
           "name": "disSpe_min",
           "description": "Return fan speed when providing the minimum return fan discharge static pressure difference",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "General"
         },
         {
           "type": "Real",
           "name": "disSpe_max",
           "description": "Return fan speed when providing the maximum return fan discharge static pressure difference",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "General"
         },
         {
           "type": "SimpleController",
           "name": "conTyp",
           "description": "Type of controller",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General",
+          "dialogGroup": "\"Pressure controller\""
         },
         {
           "type": "Real",
           "name": "k",
           "description": "Gain, normalized using dpBuiSet",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "General",
+          "dialogGroup": "\"Pressure controller\""
         },
         {
           "type": "Real",
           "name": "Ti",
           "description": "Time constant of integrator block",
-          "unit": "s"
+          "unit": "s",
+          "dialogTab": "General",
+          "dialogGroup": "\"Pressure controller\""
         },
         {
           "type": "Real",
           "name": "Td",
           "description": "Time constant of derivative block",
-          "unit": "s"
+          "unit": "s",
+          "dialogTab": "General",
+          "dialogGroup": "\"Pressure controller\""
         }
       ]
     },
@@ -10705,7 +10918,7 @@
           "type": "Boolean",
           "name": "u1SupFan",
           "description": "Supply fan status",
-          "unit": "-"
+          "unit": null
         }
       ],
       "outputs": [
@@ -10713,13 +10926,13 @@
           "type": "Real",
           "name": "yRetFan",
           "description": "Return fan commanded speed",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Boolean",
           "name": "y1RetFan",
           "description": "Return fan commanded on",
-          "unit": "-"
+          "unit": null
         }
       ],
       "parameters": [
@@ -10727,43 +10940,56 @@
           "type": "Real",
           "name": "difFloSet",
           "description": "Airflow differential between supply air and return air fans required to maintain building pressure at desired pressure",
-          "unit": "m3/s"
+          "unit": "m3/s",
+          "dialogTab": "General"
         },
         {
           "type": "SimpleController",
           "name": "conTyp",
           "description": "Type of controller",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General",
+          "dialogGroup": "\"Fan controller\""
         },
         {
           "type": "Real",
           "name": "k",
           "description": "Gain, normalized using dpBuiSet",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "General",
+          "dialogGroup": "\"Fan controller\""
         },
         {
           "type": "Real",
           "name": "Ti",
           "description": "Time constant of integrator block",
-          "unit": "s"
+          "unit": "s",
+          "dialogTab": "General",
+          "dialogGroup": "\"Fan controller\""
         },
         {
           "type": "Real",
           "name": "Td",
           "description": "Time constant of derivative block",
-          "unit": "s"
+          "unit": "s",
+          "dialogTab": "General",
+          "dialogGroup": "\"Fan controller\""
         },
         {
           "type": "Real",
           "name": "maxSpe",
           "description": "Upper limit of output",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General",
+          "dialogGroup": "\"Fan controller\""
         },
         {
           "type": "Real",
           "name": "minSpe",
           "description": "Lower limit of output",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General",
+          "dialogGroup": "\"Fan controller\""
         }
       ]
     },
@@ -10785,7 +11011,7 @@
           "type": "Real",
           "name": "uCO2Loo_max",
           "description": "Maximum Zone CO2 control loop",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
@@ -10805,7 +11031,7 @@
           "type": "Real",
           "name": "effAbsOutAir_normalized",
           "description": "Effective minimum outdoor airflow setpoint, normalized by the absolute outdoor airflow rate ",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
@@ -10817,19 +11043,19 @@
           "type": "Real",
           "name": "effDesOutAir_normalized",
           "description": "Effective minimum outdoor airflow setpoint, normalized by the design outdoor airflow rate ",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "effOutAir_normalized",
           "description": "Effective minimum outdoor airflow setpoint, normalized by the design total outdoor airflow rate ",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "outAir_normalized",
           "description": "Normalized outdoor airflow rate",
-          "unit": "-"
+          "unit": "1"
         }
       ],
       "parameters": [
@@ -10837,25 +11063,32 @@
           "type": "OutdoorAirSection",
           "name": "minOADes",
           "description": "Type of outdoor air section",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General",
+          "dialogGroup": "\"Economizer design\""
         },
         {
           "type": "Boolean",
           "name": "have_CO2Sen",
           "description": "True: there are zones have CO2 sensor",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General"
         },
         {
           "type": "Real",
           "name": "VAbsOutAir_flow",
           "description": "Design outdoor airflow rate when all zones with CO2 sensors or occupancy sensors are unpopulated",
-          "unit": "m3/s"
+          "unit": "m3/s",
+          "dialogTab": "General",
+          "dialogGroup": "\"Nominal condition\""
         },
         {
           "type": "Real",
           "name": "VDesOutAir_flow",
           "description": "Design minimum outdoor airflow rate with the areas served by the system are occupied at their design population, including diversity where applicable",
-          "unit": "m3/s"
+          "unit": "m3/s",
+          "dialogTab": "General",
+          "dialogGroup": "\"Nominal condition\""
         }
       ]
     },
@@ -10871,7 +11104,7 @@
           "type": "Boolean",
           "name": "u1SupFan",
           "description": "AHU supply fan proven on status",
-          "unit": "-"
+          "unit": null
         }
       ],
       "outputs": [
@@ -10885,19 +11118,19 @@
           "type": "Boolean",
           "name": "y1RelDam",
           "description": "True: 2-position relief damper commanded open",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Real",
           "name": "yRelFan",
           "description": "Relief fan commanded speed",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Boolean",
           "name": "y1RelFan",
           "description": "Relief fan commanded on",
-          "unit": "-"
+          "unit": null
         }
       ],
       "parameters": [
@@ -10905,25 +11138,30 @@
           "type": "Real",
           "name": "relFanSpe_min",
           "description": "Relief fan minimum speed",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General"
         },
         {
           "type": "Real",
           "name": "dpBuiSet",
           "description": "Building static pressure difference relative to ambient (positive to pressurize the building)",
-          "unit": "Pa"
+          "unit": "Pa",
+          "dialogTab": "General"
         },
         {
           "type": "Real",
           "name": "k",
           "description": "Gain, normalized using dpBuiSet",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "General",
+          "dialogGroup": "\"Pressure controller\""
         },
         {
           "type": "Real",
           "name": "hys",
           "description": "Hysteresis for checking the controller output value",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "\"Advanced\""
         }
       ]
     },
@@ -10933,13 +11171,13 @@
           "type": "Integer",
           "name": "uAhuOpeMod",
           "description": "Operation mode for AHU operation",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Integer",
           "name": "uZonPreResReq",
           "description": "Zone static pressure reset requests",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Real",
@@ -10957,13 +11195,13 @@
           "type": "Integer",
           "name": "uZonTemResReq",
           "description": "Zone cooling supply air temperature reset request",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Boolean",
           "name": "u1SupFan",
           "description": "Supply fan status",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Real",
@@ -10993,7 +11231,7 @@
           "type": "Real",
           "name": "uOutAirFra_max",
           "description": "Maximum zone outdoor air fraction, equals to the maximum of primary outdoor air fraction of all zones",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
@@ -11017,7 +11255,7 @@
           "type": "Real",
           "name": "uCO2Loo_max",
           "description": "Maximum zone CO2 control loop output",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
@@ -11047,19 +11285,19 @@
           "type": "Boolean",
           "name": "u1FreSta",
           "description": "Freeze protection stat signal. The stat is normally close (the input is normally true), when enabling freeze protection, the input becomes false",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Boolean",
           "name": "u1SofSwiRes",
           "description": "Freeze protection reset signal from software switch",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Boolean",
           "name": "u1RelFan",
           "description": "Relief fan status",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Real",
@@ -11103,97 +11341,97 @@
           "type": "Real",
           "name": "yMinOutDam",
           "description": "Minimum outdoor air damper commanded position",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Boolean",
           "name": "y1MinOutDam",
           "description": "Minimum outdoor air damper command on",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Real",
           "name": "yRetDam",
           "description": "Return air damper commanded position",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "yRelDam",
           "description": "Relief air damper commanded position",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "yOutDam",
           "description": "Economizer outdoor air damper commanded position",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Boolean",
           "name": "y1EneCHWPum",
           "description": "Commanded on to energize chilled water pump",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Boolean",
           "name": "y1SupFan",
           "description": "Supply fan command on",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Real",
           "name": "ySupFan",
           "description": "Air handler supply fan commanded speed",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Boolean",
           "name": "y1RetFan",
           "description": "Return fan commanded on",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Real",
           "name": "yRetFan",
           "description": "Return fan commanded speed",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Boolean",
           "name": "y1RelFan",
           "description": "Relief fan commanded on",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Real",
           "name": "yRelFan",
           "description": "Relief fan commanded speed",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Boolean",
           "name": "y1RelDam",
           "description": "True: 2-position relief damper is commanded open",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Real",
           "name": "yCooCoi",
           "description": "Cooling coil valve commanded position",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Real",
           "name": "yHeaCoi",
           "description": "Heating coil valve commanded position",
-          "unit": "-"
+          "unit": "1"
         },
         {
           "type": "Integer",
           "name": "yAla",
           "description": "Alarm level",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Real",
@@ -11211,25 +11449,25 @@
           "type": "Integer",
           "name": "yChiWatResReq",
           "description": "Chilled water reset request",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Integer",
           "name": "yChiPlaReq",
           "description": "Chiller plant request",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Integer",
           "name": "yHotWatResReq",
           "description": "Hot water reset request",
-          "unit": "-"
+          "unit": null
         },
         {
           "type": "Integer",
           "name": "yHotWatPlaReq",
           "description": "Hot water plant request",
-          "unit": "-"
+          "unit": null
         }
       ],
       "parameters": [
@@ -11237,583 +11475,766 @@
           "type": "EnergyStandard",
           "name": "eneStd",
           "description": "Energy standard, ASHRAE 90.1 or Title 24",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General"
         },
         {
           "type": "VentilationStandard",
           "name": "venStd",
           "description": "Ventilation standard, ASHRAE 62.1 or Title 24",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General"
         },
         {
           "type": "ASHRAEClimateZone",
           "name": "ashCliZon",
           "description": "ASHRAE climate zone",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General"
         },
         {
           "type": "Title24ClimateZone",
           "name": "tit24CliZon",
           "description": "California Title 24 climate zone",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General"
         },
         {
           "type": "Boolean",
           "name": "have_frePro",
           "description": "True: enable freeze protection",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General"
         },
         {
           "type": "FreezeStat",
           "name": "freSta",
           "description": "Type of freeze stat",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General"
         },
         {
           "type": "OutdoorAirSection",
           "name": "minOADes",
           "description": "Type of outdoor air section",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General",
+          "dialogGroup": "\"Economizer design\""
         },
         {
           "type": "PressureControl",
           "name": "buiPreCon",
           "description": "Type of building pressure control system",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General",
+          "dialogGroup": "\"Economizer design\""
         },
         {
           "type": "Boolean",
           "name": "have_ahuRelFan",
           "description": "True: relief fan is part of AHU; False: the relief fans group that may associate multiple AHUs",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General",
+          "dialogGroup": "\"Economizer design\""
         },
         {
           "type": "ControlEconomizer",
           "name": "ecoHigLimCon",
           "description": "Economizer high limit control device",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General",
+          "dialogGroup": "\"Economizer design\""
         },
         {
           "type": "CoolingCoil",
           "name": "cooCoi",
           "description": "Cooling coil type",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General",
+          "dialogGroup": "\"System and building parameters\""
         },
         {
           "type": "HeatingCoil",
           "name": "heaCoi",
           "description": "Heating coil type",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General",
+          "dialogGroup": "\"System and building parameters\""
         },
         {
           "type": "Boolean",
           "name": "have_perZonRehBox",
           "description": "Check if there is any VAV-reheat boxes on perimeter zones",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "General",
+          "dialogGroup": "\"System and building parameters\""
         },
         {
           "type": "Real",
           "name": "VUncDesOutAir_flow",
           "description": "Uncorrected design outdoor airflow rate, including diversity where applicable. It can be determined using the 62MZCalc spreadsheet from ASHRAE 62.1 User's Manual",
-          "unit": "m3/s"
+          "unit": "m3/s",
+          "dialogTab": "General",
+          "dialogGroup": "\"Minimum outdoor air setpoint\""
         },
         {
           "type": "Real",
           "name": "VDesTotOutAir_flow",
           "description": "Design total outdoor airflow rate. It can be determined using the 62MZCalc spreadsheet from ASHRAE 62.1 User's Manual",
-          "unit": "m3/s"
+          "unit": "m3/s",
+          "dialogTab": "General",
+          "dialogGroup": "\"Minimum outdoor air setpoint\""
         },
         {
           "type": "Real",
           "name": "VAbsOutAir_flow",
           "description": "Design outdoor airflow rate when all zones with CO2 sensors or occupancy sensors are unpopulated. Needed when complying with Title 24 requirements",
-          "unit": "m3/s"
+          "unit": "m3/s",
+          "dialogTab": "General",
+          "dialogGroup": "\"Minimum outdoor air setpoint\""
         },
         {
           "type": "Real",
           "name": "VDesOutAir_flow",
           "description": "Design minimum outdoor airflow rate with the areas served by the system are occupied at their design population, including diversity where applicable. Needed when complying with Title 24 requirements",
-          "unit": "m3/s"
+          "unit": "m3/s",
+          "dialogTab": "General",
+          "dialogGroup": "\"Minimum outdoor air setpoint\""
         },
         {
           "type": "Real",
           "name": "pIniSet",
           "description": "Initial pressure setpoint for fan speed control",
-          "unit": "Pa"
+          "unit": "Pa",
+          "dialogTab": "\"Fan speed\"",
+          "dialogGroup": "\"Trim and respond for reseting duct static pressure setpoint\""
         },
         {
           "type": "Real",
           "name": "pMinSet",
           "description": "Minimum pressure setpoint for fan speed control",
-          "unit": "Pa"
+          "unit": "Pa",
+          "dialogTab": "\"Fan speed\"",
+          "dialogGroup": "\"Trim and respond for reseting duct static pressure setpoint\""
         },
         {
           "type": "Real",
           "name": "pMaxSet",
           "description": "Duct design maximum static pressure. It is the Max_DSP shown in Section 3.2.1.1 of Guideline 36",
-          "unit": "Pa"
+          "unit": "Pa",
+          "dialogTab": "\"Fan speed\"",
+          "dialogGroup": "\"Trim and respond for reseting duct static pressure setpoint\""
         },
         {
           "type": "Real",
           "name": "pDelTim",
           "description": "Delay time after which trim and respond is activated",
-          "unit": "s"
+          "unit": "s",
+          "dialogTab": "\"Fan speed\"",
+          "dialogGroup": "\"Trim and respond for reseting duct static pressure setpoint\""
         },
         {
           "type": "Real",
           "name": "pSamplePeriod",
           "description": "Sample period",
-          "unit": "s"
+          "unit": "s",
+          "dialogTab": "\"Fan speed\"",
+          "dialogGroup": "\"Trim and respond for reseting duct static pressure setpoint\""
         },
         {
           "type": "Integer",
           "name": "pNumIgnReq",
           "description": "Number of ignored requests",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "\"Fan speed\"",
+          "dialogGroup": "\"Trim and respond for reseting duct static pressure setpoint\""
         },
         {
           "type": "Real",
           "name": "pTriAmo",
           "description": "Trim amount",
-          "unit": "Pa"
+          "unit": "Pa",
+          "dialogTab": "\"Fan speed\"",
+          "dialogGroup": "\"Trim and respond for reseting duct static pressure setpoint\""
         },
         {
           "type": "Real",
           "name": "pResAmo",
           "description": "Respond amount (must be opposite in to trim amount)",
-          "unit": "Pa"
+          "unit": "Pa",
+          "dialogTab": "\"Fan speed\"",
+          "dialogGroup": "\"Trim and respond for reseting duct static pressure setpoint\""
         },
         {
           "type": "Real",
           "name": "pMaxRes",
           "description": "Maximum response per time interval (same sign as respond amount)",
-          "unit": "Pa"
+          "unit": "Pa",
+          "dialogTab": "\"Fan speed\"",
+          "dialogGroup": "\"Trim and respond for reseting duct static pressure setpoint\""
         },
         {
           "type": "SimpleController",
           "name": "fanSpeCon",
           "description": "Supply fan speed PID controller",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "\"Fan speed\"",
+          "dialogGroup": "\"PID controller\""
         },
         {
           "type": "Real",
           "name": "kFanSpe",
           "description": "Gain of supply fan speed PID controller",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Fan speed\"",
+          "dialogGroup": "\"PID controller\""
         },
         {
           "type": "Real",
           "name": "TiFanSpe",
           "description": "Time constant of integrator block for supply fan speed PID controller",
-          "unit": "s"
+          "unit": "s",
+          "dialogTab": "\"Fan speed\"",
+          "dialogGroup": "\"PID controller\""
         },
         {
           "type": "Real",
           "name": "TdFanSpe",
           "description": "Time constant of derivative block for supply fan speed PID controller",
-          "unit": "s"
+          "unit": "s",
+          "dialogTab": "\"Fan speed\"",
+          "dialogGroup": "\"PID controller\""
         },
         {
           "type": "Real",
           "name": "supFanSpe_max",
           "description": "Maximum allowed supply fan speed",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "\"Fan speed\"",
+          "dialogGroup": "\"PID controller\""
         },
         {
           "type": "Real",
           "name": "supFanSpe_min",
           "description": "Lowest allowed supply fan speed if fan is on",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "\"Fan speed\"",
+          "dialogGroup": "\"PID controller\""
         },
         {
           "type": "Real",
           "name": "iniFanSpe",
           "description": "Initial speed when fan is enabled. It has to be greater than the lowest allowed speed",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Fan speed\"",
+          "dialogGroup": "\"PID controller\""
         },
         {
           "type": "Real",
           "name": "TSupCoo_min",
           "description": "Lowest cooling supply air temperature setpoint when the outdoor air temperature is at the higher value of the reset range and above",
-          "unit": "K"
+          "unit": "K",
+          "dialogTab": "\"Supply air temperature\"",
+          "dialogGroup": "\"Temperature limits\""
         },
         {
           "type": "Real",
           "name": "TSupCoo_max",
           "description": "Highest cooling supply air temperature setpoint. It is typically 18 degC (65 degF)\n    in mild and dry climates, 16 degC (60 degF) or lower in humid climates",
-          "unit": "K"
+          "unit": "K",
+          "dialogTab": "\"Supply air temperature\"",
+          "dialogGroup": "\"Temperature limits\""
         },
         {
           "type": "Real",
           "name": "TOut_min",
           "description": "Lower value of the outdoor air temperature reset range. Typically value is 16 degC (60 degF)",
-          "unit": "K"
+          "unit": "K",
+          "dialogTab": "\"Supply air temperature\"",
+          "dialogGroup": "\"Temperature limits\""
         },
         {
           "type": "Real",
           "name": "TOut_max",
           "description": "Higher value of the outdoor air temperature reset range. Typically value is 21 degC (70 degF)",
-          "unit": "K"
+          "unit": "K",
+          "dialogTab": "\"Supply air temperature\"",
+          "dialogGroup": "\"Temperature limits\""
         },
         {
           "type": "Real",
           "name": "TSupWarUpSetBac",
           "description": "Supply temperature in warm up and set back mode",
-          "unit": "K"
+          "unit": "K",
+          "dialogTab": "\"Supply air temperature\"",
+          "dialogGroup": "\"Temperature limits\""
         },
         {
           "type": "Real",
           "name": "delTimSupTem",
           "description": "Delay timer",
-          "unit": "s"
+          "unit": "s",
+          "dialogTab": "\"Supply air temperature\"",
+          "dialogGroup": "\"Trim and respond for reseting supply air temperature setpoint\""
         },
         {
           "type": "Real",
           "name": "samPerSupTem",
           "description": "Sample period of component",
-          "unit": "s"
+          "unit": "s",
+          "dialogTab": "\"Supply air temperature\"",
+          "dialogGroup": "\"Trim and respond for reseting supply air temperature setpoint\""
         },
         {
           "type": "Integer",
           "name": "ignReqSupTem",
           "description": "Number of ignorable requests for TrimResponse logic",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "\"Supply air temperature\"",
+          "dialogGroup": "\"Trim and respond for reseting supply air temperature setpoint\""
         },
         {
           "type": "Real",
           "name": "triAmoSupTem",
           "description": "Trim amount",
-          "unit": "K"
+          "unit": "K",
+          "dialogTab": "\"Supply air temperature\"",
+          "dialogGroup": "\"Trim and respond for reseting supply air temperature setpoint\""
         },
         {
           "type": "Real",
           "name": "resAmoSupTem",
           "description": "Response amount",
-          "unit": "K"
+          "unit": "K",
+          "dialogTab": "\"Supply air temperature\"",
+          "dialogGroup": "\"Trim and respond for reseting supply air temperature setpoint\""
         },
         {
           "type": "Real",
           "name": "maxResSupTem",
           "description": "Maximum response per time interval",
-          "unit": "K"
+          "unit": "K",
+          "dialogTab": "\"Supply air temperature\"",
+          "dialogGroup": "\"Trim and respond for reseting supply air temperature setpoint\""
         },
         {
           "type": "SimpleController",
           "name": "valCon",
           "description": "Type of controller for coil valves control",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "\"Coils\"",
+          "dialogGroup": "\"Valves PID controller\""
         },
         {
           "type": "Real",
           "name": "kVal",
           "description": "Gain of controller for valve control",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Coils\"",
+          "dialogGroup": "\"Valves PID controller\""
         },
         {
           "type": "Real",
           "name": "TiVal",
           "description": "Time constant of integrator block for valve control",
-          "unit": "s"
+          "unit": "s",
+          "dialogTab": "\"Coils\"",
+          "dialogGroup": "\"Valves PID controller\""
         },
         {
           "type": "Real",
           "name": "TdVal",
           "description": "Time constant of derivative block for valve control",
-          "unit": "s"
+          "unit": "s",
+          "dialogTab": "\"Coils\"",
+          "dialogGroup": "\"Valves PID controller\""
         },
         {
           "type": "Real",
           "name": "uHeaCoi_max",
           "description": "Upper limit of controller signal when heating coil is off. Require -1 < uHea_max < uCoo_min < 1.",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "\"Coils\"",
+          "dialogGroup": "\"Limits\""
         },
         {
           "type": "Real",
           "name": "uCooCoi_min",
           "description": "Lower limit of controller signal when cooling coil is off. Require -1 < uHea_max < uCoo_min < 1.",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "\"Coils\"",
+          "dialogGroup": "\"Limits\""
         },
         {
           "type": "SimpleController",
           "name": "minOAConTyp",
           "description": "Type of minimum outdoor air controller",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "\"Economizer\"",
+          "dialogGroup": "\"Limits, separated with AFMS\""
         },
         {
           "type": "Real",
           "name": "kMinOA",
           "description": "Gain of controller",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Economizer\"",
+          "dialogGroup": "\"Limits, separated with AFMS\""
         },
         {
           "type": "Real",
           "name": "TiMinOA",
           "description": "Time constant of integrator block",
-          "unit": "s"
+          "unit": "s",
+          "dialogTab": "\"Economizer\"",
+          "dialogGroup": "\"Limits, separated with AFMS\""
         },
         {
           "type": "Real",
           "name": "TdMinOA",
           "description": "Time constant of derivative block",
-          "unit": "s"
+          "unit": "s",
+          "dialogTab": "\"Economizer\"",
+          "dialogGroup": "\"Limits, separated with AFMS\""
         },
         {
           "type": "Boolean",
           "name": "have_CO2Sen",
           "description": "True: some zones have CO2 sensor",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "\"Economizer\"",
+          "dialogGroup": "\"Limits, separated with DP\""
         },
         {
           "type": "Real",
           "name": "dpAbsMinOutDam",
           "description": "Absolute minimum pressure difference across the minimum outdoor air damper. It provides the absolute minimum outdoor airflow",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "\"Economizer\"",
+          "dialogGroup": "\"Limits, separated with DP\""
         },
         {
           "type": "Real",
           "name": "dpDesMinOutDam",
           "description": "Design minimum pressure difference across the minimum outdoor air damper. It provides the design minimum outdoor airflow",
-          "unit": "Pa"
+          "unit": "Pa",
+          "dialogTab": "\"Economizer\"",
+          "dialogGroup": "\"Limits, separated with DP\""
         },
         {
           "type": "SimpleController",
           "name": "dpConTyp",
           "description": "Type of differential pressure setpoint controller",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "\"Economizer\"",
+          "dialogGroup": "\"Limits, separated with DP\""
         },
         {
           "type": "Real",
           "name": "kDp",
           "description": "Gain of controller",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Economizer\"",
+          "dialogGroup": "\"Limits, separated with DP\""
         },
         {
           "type": "Real",
           "name": "TiDp",
           "description": "Time constant of integrator block",
-          "unit": "s"
+          "unit": "s",
+          "dialogTab": "\"Economizer\"",
+          "dialogGroup": "\"Limits, separated with DP\""
         },
         {
           "type": "Real",
           "name": "TdDp",
           "description": "Time constant of derivative block",
-          "unit": "s"
+          "unit": "s",
+          "dialogTab": "\"Economizer\"",
+          "dialogGroup": "\"Limits, separated with DP\""
         },
         {
           "type": "Real",
           "name": "uRetDam_min",
           "description": "Loop signal value to start decreasing the maximum return air damper position",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Economizer\"",
+          "dialogGroup": "\"Limits, Common\""
         },
         {
           "type": "Real",
           "name": "delTOutHis",
           "description": "Delta between the temperature hysteresis high and low limit",
-          "unit": "K"
+          "unit": "K",
+          "dialogTab": "\"Economizer\"",
+          "dialogGroup": "\"Enable\""
         },
         {
           "type": "Real",
           "name": "delEntHis",
           "description": "Delta between the enthalpy hysteresis high and low limits",
-          "unit": "J/kg"
+          "unit": "J/kg",
+          "dialogTab": "\"Economizer\"",
+          "dialogGroup": "\"Enable\""
         },
         {
           "type": "Real",
           "name": "retDamFulOpeTim",
           "description": "Time period to keep return air damper fully open before releasing it for minimum outdoor airflow control\n    at disable to avoid pressure fluctuations",
-          "unit": "s"
+          "unit": "s",
+          "dialogTab": "\"Economizer\"",
+          "dialogGroup": "\"Enable\""
         },
         {
           "type": "Real",
           "name": "disDel",
           "description": "Short time delay before closing the outdoor air damper at disable to avoid pressure fluctuations",
-          "unit": "s"
+          "unit": "s",
+          "dialogTab": "\"Economizer\"",
+          "dialogGroup": "\"Enable\""
         },
         {
           "type": "Real",
           "name": "retDamPhy_max",
           "description": "Physically fixed maximum position of the return air damper",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Economizer\"",
+          "dialogGroup": "\"Commissioning, limits\""
         },
         {
           "type": "Real",
           "name": "retDamPhy_min",
           "description": "Physically fixed minimum position of the return air damper",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Economizer\"",
+          "dialogGroup": "\"Commissioning, limits\""
         },
         {
           "type": "Real",
           "name": "outDamPhy_max",
           "description": "Physically fixed maximum position of the outdoor air damper",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Economizer\"",
+          "dialogGroup": "\"Commissioning, limits\""
         },
         {
           "type": "Real",
           "name": "outDamPhy_min",
           "description": "Physically fixed minimum position of the outdoor air damper",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Economizer\"",
+          "dialogGroup": "\"Commissioning, limits\""
         },
         {
           "type": "Real",
           "name": "minOutDamPhy_max",
           "description": "Physically fixed maximum position of the minimum outdoor air damper",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Economizer\"",
+          "dialogGroup": "\"Commissioning, limits\""
         },
         {
           "type": "Real",
           "name": "minOutDamPhy_min",
           "description": "Physically fixed minimum position of the minimum outdoor air damper",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Economizer\"",
+          "dialogGroup": "\"Commissioning, limits\""
         },
         {
           "type": "Real",
           "name": "uHeaMax",
           "description": "Lower limit of controller input when outdoor damper opens (see diagram)",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Economizer\"",
+          "dialogGroup": "\"Commissioning, modulation\""
         },
         {
           "type": "Real",
           "name": "uCooMin",
           "description": "Upper limit of controller input when return damper is closed (see diagram)",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Economizer\"",
+          "dialogGroup": "\"Commissioning, modulation\""
         },
         {
           "type": "Integer",
           "name": "minHotWatReq",
           "description": "Minimum heating hot-water plant request to active the heating plant",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "\"Freeze protection\""
         },
         {
           "type": "SimpleController",
           "name": "freProHeaCoiCon",
           "description": "Freeze protection heating coil controller",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "\"Freeze protection\"",
+          "dialogGroup": "\"Heating coil PID Controller\""
         },
         {
           "type": "Real",
           "name": "kFrePro",
           "description": "Gain of coil controller",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Freeze protection\"",
+          "dialogGroup": "\"Heating coil PID Controller\""
         },
         {
           "type": "Real",
           "name": "TiFrePro",
           "description": "Time constant of integrator block",
-          "unit": "s"
+          "unit": "s",
+          "dialogTab": "\"Freeze protection\"",
+          "dialogGroup": "\"Heating coil PID Controller\""
         },
         {
           "type": "Real",
           "name": "TdFrePro",
           "description": "Time constant of derivative block",
-          "unit": "s"
+          "unit": "s",
+          "dialogTab": "\"Freeze protection\"",
+          "dialogGroup": "\"Heating coil PID Controller\""
         },
         {
           "type": "Real",
           "name": "yMaxFrePro",
           "description": "Upper limit of output",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "\"Freeze protection\"",
+          "dialogGroup": "\"Heating coil PID Controller\""
         },
         {
           "type": "Real",
           "name": "yMinFrePro",
           "description": "Lower limit of output",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "\"Freeze protection\"",
+          "dialogGroup": "\"Heating coil PID Controller\""
         },
         {
           "type": "Real",
           "name": "dpBuiSet",
           "description": "Building static pressure difference relative to ambient (positive to pressurize the building)",
-          "unit": "Pa"
+          "unit": "Pa",
+          "dialogTab": "\"Pressure control\""
         },
         {
           "type": "Real",
           "name": "kRelDam",
           "description": "Gain, applied to building pressure control error normalized with dpBuiSet",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Pressure control\"",
+          "dialogGroup": "\"Relief damper\""
         },
         {
           "type": "Real",
           "name": "difFloSet",
           "description": "Airflow differential between supply air and return air fans required to maintain building pressure at desired pressure",
-          "unit": "m3/s"
+          "unit": "m3/s",
+          "dialogTab": "\"Pressure control\"",
+          "dialogGroup": "\"Return fan\""
         },
         {
           "type": "SimpleController",
           "name": "retFanCon",
           "description": "Type of controller for return fan",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "\"Pressure control\"",
+          "dialogGroup": "\"Return fan\""
         },
         {
           "type": "Real",
           "name": "kRetFan",
           "description": "Gain, normalized using dpBuiSet",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Pressure control\"",
+          "dialogGroup": "\"Return fan\""
         },
         {
           "type": "Real",
           "name": "TiRetFan",
           "description": "Time constant of integrator block",
-          "unit": "s"
+          "unit": "s",
+          "dialogTab": "\"Pressure control\"",
+          "dialogGroup": "\"Return fan\""
         },
         {
           "type": "Real",
           "name": "TdRetFan",
           "description": "Time constant of derivative block",
-          "unit": "s"
+          "unit": "s",
+          "dialogTab": "\"Pressure control\"",
+          "dialogGroup": "\"Return fan\""
         },
         {
           "type": "Real",
           "name": "retFanSpe_max",
           "description": "Maximum return fan speed",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "\"Pressure control\"",
+          "dialogGroup": "\"Return fan\""
         },
         {
           "type": "Real",
           "name": "retFanSpe_min",
           "description": "Minimum return fan speed",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "\"Pressure control\"",
+          "dialogGroup": "\"Return fan\""
         },
         {
           "type": "Real",
           "name": "p_rel_RetFan_min",
           "description": "Minimum return fan discharge static pressure difference setpoint",
-          "unit": "Pa"
+          "unit": "Pa",
+          "dialogTab": "\"Pressure control\"",
+          "dialogGroup": "\"Return fan\""
         },
         {
           "type": "Real",
           "name": "p_rel_RetFan_max",
           "description": "Maximum return fan discharge static pressure difference setpoint",
-          "unit": "Pa"
+          "unit": "Pa",
+          "dialogTab": "\"Pressure control\"",
+          "dialogGroup": "\"Return fan\""
         },
         {
           "type": "Real",
           "name": "relFanSpe_min",
           "description": "Relief fan minimum speed",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "\"Pressure control\"",
+          "dialogGroup": "\"Relief fan\""
         },
         {
           "type": "Real",
           "name": "kRelFan",
           "description": "Gain of relief fan controller, normalized using dpBuiSet",
-          "unit": "-"
+          "unit": "1",
+          "dialogTab": "\"Pressure control\"",
+          "dialogGroup": "\"Relief fan\""
         },
         {
           "type": "Real",
           "name": "Thys",
           "description": "Hysteresis for checking temperature difference",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "\"Advanced\""
         },
         {
           "type": "Real",
           "name": "posHys",
           "description": "Hysteresis for checking valve position difference",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "\"Advanced\""
         },
         {
           "type": "Real",
           "name": "hys",
           "description": "Hysteresis for checking the relief fan controller output value",
-          "unit": "-"
+          "unit": null,
+          "dialogTab": "\"Advanced\""
         }
       ]
     }

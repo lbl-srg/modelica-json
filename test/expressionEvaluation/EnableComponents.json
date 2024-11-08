@@ -11,6 +11,9 @@
     },
     "bindings": {},
     "cdlAnnotation": null,
+    "dialogAnnotation": {
+      "group": "\"Conditional\""
+    },
     "unit": null,
     "displayUnit": null,
     "descriptionString": "Set to true to evaluate outdoor air (OA) enthalpy in addition to temperature"
@@ -31,6 +34,10 @@
       "quantity": "\"TemperatureDifference\""
     },
     "cdlAnnotation": null,
+    "dialogAnnotation": {
+      "tab": "\"Advanced\"",
+      "group": "\"Hysteresis\""
+    },
     "unit": "\"K\"",
     "displayUnit": "\"K\"",
     "descriptionString": "Delta between the temperature hysteresis high and low limit"
@@ -50,6 +57,11 @@
       "quantity": "\"SpecificEnergy\""
     },
     "cdlAnnotation": null,
+    "dialogAnnotation": {
+      "tab": "\"Advanced\"",
+      "group": "\"Hysteresis\"",
+      "enable": "use_enthalpy"
+    },
     "unit": "\"J/kg\"",
     "displayUnit": null,
     "descriptionString": "Delta between the enthalpy hysteresis high and low limits"
@@ -69,6 +81,10 @@
       "quantity": "\"Time\""
     },
     "cdlAnnotation": null,
+    "dialogAnnotation": {
+      "tab": "\"Advanced\"",
+      "group": "\"Delays at disable\""
+    },
     "unit": "\"s\"",
     "displayUnit": null,
     "descriptionString": "Time period to keep RA damper fully open before releasing it for minimum outdoor airflow control\n    at disable to avoid pressure fluctuations"
@@ -88,6 +104,10 @@
       "quantity": "\"Time\""
     },
     "cdlAnnotation": null,
+    "dialogAnnotation": {
+      "tab": "\"Advanced\"",
+      "group": "\"Delays at disable\""
+    },
     "unit": "\"s\"",
     "displayUnit": null,
     "descriptionString": "Short time delay before closing the OA damper at disable to avoid pressure fluctuations"
@@ -105,6 +125,7 @@
       "quantity": "\"ThermodynamicTemperature\""
     },
     "cdlAnnotation": null,
+    "dialogAnnotation": null,
     "unit": "\"K\"",
     "displayUnit": "\"degC\"",
     "descriptionString": "Outdoor air temperature"
@@ -123,6 +144,7 @@
       "quantity": "\"SpecificEnergy\""
     },
     "cdlAnnotation": null,
+    "dialogAnnotation": null,
     "unit": "\"J/kg\"",
     "displayUnit": null,
     "descriptionString": "Outdoor air enthalpy"
@@ -140,6 +162,7 @@
       "quantity": "\"ThermodynamicTemperature\""
     },
     "cdlAnnotation": null,
+    "dialogAnnotation": null,
     "unit": "\"K\"",
     "displayUnit": "\"degC\"",
     "descriptionString": "OA temperature high limit cutoff. For differential dry bulb temperature condition use return air temperature measurement"
@@ -158,6 +181,7 @@
       "quantity": "\"SpecificEnergy\""
     },
     "cdlAnnotation": null,
+    "dialogAnnotation": null,
     "unit": "\"J/kg\"",
     "displayUnit": null,
     "descriptionString": "OA enthalpy high limit cutoff. For differential enthalpy use return air enthalpy measurement"
@@ -175,6 +199,7 @@
       "max": "1"
     },
     "cdlAnnotation": null,
+    "dialogAnnotation": null,
     "unit": "\"1\"",
     "displayUnit": null,
     "descriptionString": "Minimum outdoor air damper position, output from damper position limits sequence"
@@ -192,6 +217,7 @@
       "max": "1"
     },
     "cdlAnnotation": null,
+    "dialogAnnotation": null,
     "unit": "\"1\"",
     "displayUnit": null,
     "descriptionString": "Maximum outdoor air damper position, output from damper position limits sequence"
@@ -209,6 +235,7 @@
       "max": "1"
     },
     "cdlAnnotation": null,
+    "dialogAnnotation": null,
     "unit": "\"1\"",
     "displayUnit": null,
     "descriptionString": "Maximum return air damper position, output from damper position limits sequence"
@@ -226,6 +253,7 @@
       "max": "1"
     },
     "cdlAnnotation": null,
+    "dialogAnnotation": null,
     "unit": "\"1\"",
     "displayUnit": null,
     "descriptionString": "Minimum return air damper position, output from damper position limits sequence"
@@ -243,6 +271,7 @@
       "max": "1"
     },
     "cdlAnnotation": null,
+    "dialogAnnotation": null,
     "unit": "\"1\"",
     "displayUnit": null,
     "descriptionString": "Physical maximum return air damper position, output from damper position limits sequence"
@@ -256,6 +285,7 @@
     "assignment": null,
     "bindings": null,
     "cdlAnnotation": null,
+    "dialogAnnotation": null,
     "unit": null,
     "displayUnit": null,
     "descriptionString": "Supply fan proven on"
@@ -269,6 +299,7 @@
     "assignment": null,
     "bindings": null,
     "cdlAnnotation": null,
+    "dialogAnnotation": null,
     "unit": null,
     "displayUnit": null,
     "descriptionString": "Freeze protection stage status signal"
@@ -286,6 +317,7 @@
       "max": "1"
     },
     "cdlAnnotation": null,
+    "dialogAnnotation": null,
     "unit": "\"1\"",
     "displayUnit": null,
     "descriptionString": "Maximum outdoor air damper position"
@@ -303,6 +335,7 @@
       "max": "1"
     },
     "cdlAnnotation": null,
+    "dialogAnnotation": null,
     "unit": "\"1\"",
     "displayUnit": null,
     "descriptionString": "Minimum return air damper position"
@@ -320,6 +353,7 @@
       "max": "1"
     },
     "cdlAnnotation": null,
+    "dialogAnnotation": null,
     "unit": "\"1\"",
     "displayUnit": null,
     "descriptionString": "Maximum return air damper position"
@@ -335,6 +369,7 @@
       "trueHoldDuration": "600"
     },
     "cdlAnnotation": null,
+    "dialogAnnotation": null,
     "unit": null,
     "displayUnit": null,
     "descriptionString": "Economizer should not be enabled or disabled within 10 minutes of change"
@@ -348,6 +383,7 @@
     "assignment": null,
     "bindings": null,
     "cdlAnnotation": null,
+    "dialogAnnotation": null,
     "unit": null,
     "displayUnit": null,
     "descriptionString": "Check freeze protection stage and zone state"
@@ -368,6 +404,7 @@
       "quantity": "\"TemperatureDifference\""
     },
     "cdlAnnotation": null,
+    "dialogAnnotation": null,
     "unit": "\"K\"",
     "displayUnit": "\"K\"",
     "descriptionString": "Hysteresis high limit cutoff"
@@ -384,6 +421,7 @@
     },
     "bindings": {},
     "cdlAnnotation": null,
+    "dialogAnnotation": null,
     "unit": null,
     "displayUnit": null,
     "descriptionString": "Hysteresis low limit cutoff"
@@ -403,6 +441,7 @@
       "quantity": "\"SpecificEnergy\""
     },
     "cdlAnnotation": null,
+    "dialogAnnotation": null,
     "unit": "\"J/kg\"",
     "displayUnit": null,
     "descriptionString": "Hysteresis block high limit cutoff"
@@ -419,6 +458,7 @@
     },
     "bindings": {},
     "cdlAnnotation": null,
+    "dialogAnnotation": null,
     "unit": null,
     "displayUnit": null,
     "descriptionString": "Hysteresis block low limit cutoff"
@@ -434,6 +474,7 @@
     "assignment": null,
     "bindings": null,
     "cdlAnnotation": null,
+    "dialogAnnotation": null,
     "unit": null,
     "displayUnit": null,
     "descriptionString": "Add block determines difference between hOut and hOutCut"
@@ -447,6 +488,7 @@
     "assignment": null,
     "bindings": null,
     "cdlAnnotation": null,
+    "dialogAnnotation": null,
     "unit": null,
     "displayUnit": null,
     "descriptionString": "Add block determines difference between TOut and TOutCut"
@@ -463,6 +505,7 @@
       "uHigh": "TOutHigLimCutHig"
     },
     "cdlAnnotation": null,
+    "dialogAnnotation": null,
     "unit": null,
     "displayUnit": null,
     "descriptionString": "Outdoor air temperature hysteresis for both fixed and differential dry bulb temperature cutoff conditions"
@@ -481,6 +524,7 @@
       "uHigh": "hOutHigLimCutHig"
     },
     "cdlAnnotation": null,
+    "dialogAnnotation": null,
     "unit": null,
     "displayUnit": null,
     "descriptionString": "Outdoor air enthalpy hysteresis for both fixed and differential enthalpy cutoff conditions"
@@ -494,6 +538,7 @@
     "assignment": null,
     "bindings": null,
     "cdlAnnotation": null,
+    "dialogAnnotation": null,
     "unit": null,
     "displayUnit": null,
     "descriptionString": "Set maximum OA damper position to minimum at disable (after a given time delay)"
@@ -507,6 +552,7 @@
     "assignment": null,
     "bindings": null,
     "cdlAnnotation": null,
+    "dialogAnnotation": null,
     "unit": null,
     "displayUnit": null,
     "descriptionString": "Set minimum RA damper position to maximum at disable"
@@ -520,6 +566,7 @@
     "assignment": null,
     "bindings": null,
     "cdlAnnotation": null,
+    "dialogAnnotation": null,
     "unit": null,
     "displayUnit": null,
     "descriptionString": "Keep maximum RA damper position at physical maximum for a short time period after disable signal"
@@ -533,6 +580,7 @@
     "assignment": null,
     "bindings": null,
     "cdlAnnotation": null,
+    "dialogAnnotation": null,
     "unit": null,
     "displayUnit": null,
     "descriptionString": "Keep minimum RA damper position at physical maximum for a short time period after disable"
@@ -546,6 +594,7 @@
     "assignment": null,
     "bindings": null,
     "cdlAnnotation": null,
+    "dialogAnnotation": null,
     "unit": null,
     "displayUnit": null,
     "descriptionString": "Logical not that starts the timer at disable signal "
@@ -559,6 +608,7 @@
     "assignment": null,
     "bindings": null,
     "cdlAnnotation": null,
+    "dialogAnnotation": null,
     "unit": null,
     "displayUnit": null,
     "descriptionString": "Logical and"
@@ -572,6 +622,7 @@
     "assignment": null,
     "bindings": null,
     "cdlAnnotation": null,
+    "dialogAnnotation": null,
     "unit": null,
     "displayUnit": null,
     "descriptionString": "Check supply fan status"
@@ -585,6 +636,7 @@
     "assignment": null,
     "bindings": null,
     "cdlAnnotation": null,
+    "dialogAnnotation": null,
     "unit": null,
     "displayUnit": null,
     "descriptionString": "Check if delay time has been passed after economizer being disabled"
@@ -598,6 +650,7 @@
     "assignment": null,
     "bindings": null,
     "cdlAnnotation": null,
+    "dialogAnnotation": null,
     "unit": null,
     "displayUnit": null,
     "descriptionString": "Logical block to check if the freeze protection is deactivated"
@@ -613,6 +666,7 @@
       "delayTime": "disDel"
     },
     "cdlAnnotation": null,
+    "dialogAnnotation": null,
     "unit": null,
     "displayUnit": null,
     "descriptionString": "Small delay before closing the outdoor air damper to avoid pressure fluctuations"
@@ -628,6 +682,7 @@
       "delayTime": "retDamFulOpeTim"
     },
     "cdlAnnotation": null,
+    "dialogAnnotation": null,
     "unit": null,
     "displayUnit": null,
     "descriptionString": "Keep return damper open to its physical maximum for a short period of time before closing the outdoor air damper and resuming the maximum return air damper position, per G36 Part N7"
@@ -641,6 +696,7 @@
     "assignment": null,
     "bindings": null,
     "cdlAnnotation": null,
+    "dialogAnnotation": null,
     "unit": null,
     "displayUnit": null,
     "descriptionString": "Logical not"
@@ -656,6 +712,7 @@
       "k": "Buildings.Controls.OBC.ASHRAE.G36.Types.FreezeProtectionStages.stage0"
     },
     "cdlAnnotation": null,
+    "dialogAnnotation": null,
     "unit": null,
     "displayUnit": null,
     "descriptionString": "Integer constant, stage 0"
@@ -673,6 +730,7 @@
       "k": "false"
     },
     "cdlAnnotation": null,
+    "dialogAnnotation": null,
     "unit": null,
     "displayUnit": null,
     "descriptionString": "Deactivates outdoor air enthalpy condition if there is no enthalpy sensor"
@@ -686,6 +744,7 @@
     "assignment": null,
     "bindings": null,
     "cdlAnnotation": null,
+    "dialogAnnotation": null,
     "unit": null,
     "displayUnit": null,
     "descriptionString": "Check if either the temperature or the enthalpy condition is satisfied"
