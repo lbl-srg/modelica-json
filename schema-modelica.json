@@ -3,8 +3,14 @@
   "$id": "schema-modelica.json",
   "title": "JSON parsed Modelica file",
   "description": "Json representation of a Modelica model",
-  "$comment": "Version 2, 12/05/2022",
+  "$comment": "08/29/2024",
   "definitions": {
+    "stored_class_definitions": {
+      "description": "Stored class definitions",
+      "type": "array",
+      "additionalItems": false,
+      "items": { "$ref": "#/definitions/class_definition" }
+    }, 
     "class_definition": {
       "description": "Class definition",
       "type": "array",
