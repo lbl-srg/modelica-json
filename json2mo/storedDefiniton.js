@@ -17,8 +17,8 @@ function parse (content, rawJson = false) {
       })
     }
   } else {
-    if (content.stored_class_definition != null) {
-      content.stored_class_definition.forEach(ele => {
+    if (content.stored_class_definitions != null) {
+      content.stored_class_definitions.forEach(ele => {
         moOutput += finalClassDefinitionParser.parse(ele, rawJson)
         moOutput += '\n'
       })

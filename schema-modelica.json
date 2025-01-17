@@ -10,31 +10,27 @@
       "type": "array",
       "additionalItems": false,
       "items": { "$ref": "#/definitions/class_definition" }
-    }, 
+    },
     "class_definition": {
       "description": "Class definition",
-      "type": "array",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "required": [
-          "class_prefixes",
-          "class_specifier"
-        ],
-        "additionalProperties": false,
-        "properties": {
-          "final": {
-            "type": "boolean"
-          },
-          "encapsulated": {
-            "type": "boolean"
-          },
-          "class_prefixes": {
-            "type": "string"
-          },
-          "class_specifier": {
-            "$ref": "#/definitions/class_specifier"
-          }
+      "type": "object",
+      "required": [
+        "class_prefixes",
+        "class_specifier"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "final": {
+          "type": "boolean"
+        },
+        "encapsulated": {
+          "type": "boolean"
+        },
+        "class_prefixes": {
+          "type": "string"
+        },
+        "class_specifier": {
+          "$ref": "#/definitions/class_specifier"
         }
       }
     },
@@ -1889,7 +1885,7 @@
   "type": "object",
   "required": [
     "within",
-    "class_definition"
+    "stored_class_definitions"
   ],
   "additionalProperties": false,
   "properties": {
@@ -1898,8 +1894,8 @@
       "type": "string",
       "pattern": "^([a-zA-Z0-9._*]*)$"
     },
-    "class_definition": {
-      "$ref": "#/definitions/class_definition"
+    "stored_class_definitions": {
+      "$ref": "#/definitions/stored_class_definitions"
     },
     "modelicaFile": {
       "description": "Relative modelica file path.",
