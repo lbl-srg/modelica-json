@@ -1,0 +1,94 @@
+<html>
+    <title>{{ blockName }}</title>
+    <style>
+        h1 {
+            color: maroon;
+            margin-left: 40px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        </style>
+    <body>
+        {% for block in blocks %}
+            <h1>{{ block.blockName }} </h1>
+            {{ block.description|safe }}
+            <img src="{{ block.imagePath }}">
+            <h2>Connectors</h2>
+            {% if block.inputs | length > 0 %}
+            <h3>Inputs</h3>
+            <table>
+                <th>
+                    <td>Name</td>
+                    <td>Description</td>
+                </th>
+                {% for input in block.inputs %}
+                <tr>
+                    <td>input {{ input.type }}</td>
+                    <td>{{ input.name }}</td>
+                    <td>{{ input.description }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            {% endif %}
+
+            {% if block.outputs | length > 0 %}
+            <h3>Outputs</h3>
+            <table>
+                    <th>
+                        <td>Name</td>
+                        <td>Description</td>
+                    </th>
+                    {% for output in block.outputs %}
+                    <tr>
+                        <td>output {{ output.type }}</td>
+                        <td>{{ output.name }}</td>
+                        <td>{{ output.description }}</td>
+                    </tr>
+                    {% endfor %}
+            </table>
+            {% endif %}
+
+            {% if block.parameters | length > 0 %}
+            <h3>Parameters</h3>
+            <table>
+                <th>
+                    <td>Name</td>
+                    <td>Description</td>
+                </th>
+                {% for parameter in block.parameters %}
+                <tr>
+                    <td>parameter {{ parameter.type }}</td>
+                    <td>{{ parameter.name }}</td>
+                    <td>{{ parameter.description }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            {% endif %}
+            {% if block.constants | length > 0 %}
+            <h3>Constants</h3>
+            <table>
+                
+                    <th>
+                        <td>Name</td>
+                        <td>Description</td>
+                    </th>
+                    {% for constant in block.constants %}
+                    <tr>
+                        <td>constant {{ constant.type }}</td>
+                        <td>{{ constant.name }}</td>
+                        <td>{{ constant.description }}</td>
+                    </tr>
+                    {% endfor %}
+            </table>
+            {% endif %}
+        {% endfor %}
+        
+    </body>
+</html>
