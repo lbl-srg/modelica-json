@@ -1,94 +1,87 @@
 <html>
     <title>{{ blockName }}</title>
-    <style>
-        h1 {
-            color: maroon;
-            margin-left: 40px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        </style>
     <body>
-        {% for block in blocks %}
-            <h1>{{ block.blockName }} </h1>
-            {{ block.description|safe }}
-            <img src="{{ block.imagePath }}">
-            <h2>Connectors</h2>
-            {% if block.inputs | length > 0 %}
-            <h3>Inputs</h3>
-            <table>
-                <th>
-                    <td>Name</td>
-                    <td>Description</td>
-                </th>
-                {% for input in block.inputs %}
-                <tr>
-                    <td>input {{ input.type }}</td>
-                    <td>{{ input.name }}</td>
-                    <td>{{ input.description }}</td>
-                </tr>
-                {% endfor %}
-            </table>
-            {% endif %}
+        {% if blocks | length > 0 %}
+            {% for block in blocks %}
+                <h1 style="font-size: 20px;">{{ block.blockName }} </h1>
+                <p>{{ block.description}}</p>
+                <h3 style="font-size: 16px">Information</h3>
+                {{ block.documentation | safe }}
+                <h3 style="font-size: 16px">Icon</h3>
+                <img src="data:image/png;base64, {{ block.imagePath }}" style="height: 100px; width: 100px;">
+                <h2 style="font-size: 18px">Connectors</h2>
+                {% if block.inputs | length > 0 %}
+                <h3 style="font-size: 16px">Inputs</h3>
+                <table style="width: 100%; border: 1px solid black; border-collapse: collapse;">
+                    <tr>
+                        <td><b>Type</b></td>
+                        <td><b>Name</b></td>
+                        <td><b>Description</b></td>
+                    </tr>
+                    {% for input in block.inputs %}
+                    <tr>
+                        <td>{{ input.type }}</td>
+                        <td>{{ input.name }}</td>
+                        <td>{{ input.description }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                {% endif %}
 
-            {% if block.outputs | length > 0 %}
-            <h3>Outputs</h3>
-            <table>
-                    <th>
-                        <td>Name</td>
-                        <td>Description</td>
-                    </th>
+                {% if block.outputs | length > 0 %}
+                <h3 style="font-size: 16px">Outputs</h3>
+                <table style="width: 100%; border: 1px solid black; border-collapse: collapse;">
+                    <tr>
+                        <td><b>Type</b></td>
+                        <td><b>Name</b></td>
+                        <td><b>Description</b></td>
+                    </tr>
                     {% for output in block.outputs %}
                     <tr>
-                        <td>output {{ output.type }}</td>
+                        <td>{{ output.type }}</td>
                         <td>{{ output.name }}</td>
                         <td>{{ output.description }}</td>
                     </tr>
                     {% endfor %}
-            </table>
-            {% endif %}
+                </table>
+                {% endif %}
 
-            {% if block.parameters | length > 0 %}
-            <h3>Parameters</h3>
-            <table>
-                <th>
-                    <td>Name</td>
-                    <td>Description</td>
-                </th>
-                {% for parameter in block.parameters %}
-                <tr>
-                    <td>parameter {{ parameter.type }}</td>
-                    <td>{{ parameter.name }}</td>
-                    <td>{{ parameter.description }}</td>
-                </tr>
-                {% endfor %}
-            </table>
-            {% endif %}
-            {% if block.constants | length > 0 %}
-            <h3>Constants</h3>
-            <table>
-                
-                    <th>
-                        <td>Name</td>
-                        <td>Description</td>
-                    </th>
+                {% if block.parameters | length > 0 %}
+                <h3 style="font-size: 16px">Parameters</h3>
+                <table style="width: 100%; border: 1px solid black; border-collapse: collapse;">
+                    <tr>
+                        <td><b>Type</b></td>
+                        <td><b>Name</b></td>
+                        <td><b>Description</b></td>
+                    </tr>
+                    {% for parameter in block.parameters %}
+                    <tr>
+                        <td>{{ parameter.type }}</td>
+                        <td>{{ parameter.name }}</td>
+                        <td>{{ parameter.description }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                {% endif %}
+                {% if block.constants | length > 0 %}
+                <h3 style="font-size: 16px">Constants</h3>
+                <table style="width: 100%; border: 1px solid black; border-collapse: collapse;">
+                    <tr>
+                        <td><b>Type</b></td>
+                        <td><b>Name</b></td>
+                        <td><b>Description</b></td>
+                    </tr>
                     {% for constant in block.constants %}
                     <tr>
-                        <td>constant {{ constant.type }}</td>
+                        <td>{{ constant.type }}</td>
                         <td>{{ constant.name }}</td>
                         <td>{{ constant.description }}</td>
                     </tr>
                     {% endfor %}
-            </table>
-            {% endif %}
-        {% endfor %}
+                </table>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
         
     </body>
 </html>

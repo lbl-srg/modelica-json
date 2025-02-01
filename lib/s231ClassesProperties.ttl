@@ -15,6 +15,16 @@ S231P:Block
   a rdfs:Class ;
   rdfs:comment "A block is the abstract interface of a control sequence" ;
   rdfs:label "Block" ;
+    sh:property [
+    sh:path S231P:description ;
+    rdfs:comment "Description for a block" ;
+    sh:datatype xsd:string ;
+  ] ;
+    sh:property [
+    sh:path S231P:documentation ;
+    rdfs:comment "Documentation for Block" ;
+    sh:datatype xsd:string ;
+  ] ;
 .
 S231P:ElementaryBlock
   a rdfs:Class ;
