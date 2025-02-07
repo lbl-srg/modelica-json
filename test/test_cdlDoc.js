@@ -90,19 +90,29 @@ mocha.describe('cdlDoc', function () {
 
   mocha.describe('#processCdlToggle()', function () {
     const processCdlToggle = cdlDoc.__get__('processCdlToggle')
-    mocha.it('should empty the span element', function () {
-      const htmlStr = `<html><p>
-      Controller for a radiant heating system.
-      </p>
-      <span><-- cdl(visible=controllerType <> CDL.Types.SimpleController.P) -->
-      <p><b>Note:</b>
-      For systems with high thermal mass, this controller should be left configured as a P-controller.
-      </p><-- end cdl --></span>
-      </html>`
+    const htmlStr = `<html><p>
+    Controller for a radiant heating system.
+    </p>
+    <template data-cdl-visible='controllerType<>CDL.Types.SimpleController.P'>
+    <p><b>Note:</b>
+    For systems with high thermal mass, this controller should be left configured as a P-controller.
+    </p></template>
+    </html>`
+    mocha.it('should empty the template element', function () {
       const $ = cheerio.load(htmlStr)
       const $1 = cheerio.load(htmlStr)
       processCdlToggle($, { controllerType: 'CDL.Types.SimpleController.P' })
-      $1('span').empty()
+      $1('template').remove()
+      assert.strictEqual(
+        $.html(),
+        $1.html()
+      )
+    })
+    mocha.it('should keep the template element', function () {
+      const $ = cheerio.load(htmlStr)
+      const $1 = cheerio.load(htmlStr)
+      processCdlToggle($, { controllerType: 'CDL.Types.SimpleController.PI' })
+      $1('template').replaceWith($1('template').html())
       assert.strictEqual(
         $.html(),
         $1.html()
