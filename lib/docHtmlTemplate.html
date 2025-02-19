@@ -7,8 +7,43 @@
                 <p>{{ block.description}}</p>
                 <h3 style="font-size: 16px">Information</h3>
                 {{ block.documentation | safe }}
-                <h3 style="font-size: 16px">Icon</h3>
+                <h3 style="font-size: 16px">Symbol</h3>
                 <img src="data:image/png;base64, {{ block.imagePath }}" style="height: 100px; width: 100px;">
+                {% if block.parameters | length > 0 %}
+                <h3 style="font-size: 16px">Parameters</h3>
+                <table style="width: 100%; border: 1px solid black; border-collapse: collapse;">
+                    <tr>
+                        <td><b>Type</b></td>
+                        <td><b>Name</b></td>
+                        <td><b>Description</b></td>
+                    </tr>
+                    {% for parameter in block.parameters %}
+                    <tr>
+                        <td>{{ parameter.type }}</td>
+                        <td>{{ parameter.name }}</td>
+                        <td>{{ parameter.description }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                {% endif %}
+                {% if block.constants | length > 0 %}
+                <h2 style="font-size: 16px">Constants</h2>
+                <table style="width: 100%; border: 1px solid black; border-collapse: collapse;">
+                    <tr>
+                        <td><b>Type</b></td>
+                        <td><b>Name</b></td>
+                        <td><b>Description</b></td>
+                    </tr>
+                    {% for constant in block.constants %}
+                    <tr>
+                        <td>{{ constant.type }}</td>
+                        <td>{{ constant.name }}</td>
+                        <td>{{ constant.description }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                {% endif %}
+
                 <h2 style="font-size: 18px">Connectors</h2>
                 {% if block.inputs | length > 0 %}
                 <h3 style="font-size: 16px">Inputs</h3>
@@ -46,40 +81,7 @@
                 </table>
                 {% endif %}
 
-                {% if block.parameters | length > 0 %}
-                <h3 style="font-size: 16px">Parameters</h3>
-                <table style="width: 100%; border: 1px solid black; border-collapse: collapse;">
-                    <tr>
-                        <td><b>Type</b></td>
-                        <td><b>Name</b></td>
-                        <td><b>Description</b></td>
-                    </tr>
-                    {% for parameter in block.parameters %}
-                    <tr>
-                        <td>{{ parameter.type }}</td>
-                        <td>{{ parameter.name }}</td>
-                        <td>{{ parameter.description }}</td>
-                    </tr>
-                    {% endfor %}
-                </table>
-                {% endif %}
-                {% if block.constants | length > 0 %}
-                <h3 style="font-size: 16px">Constants</h3>
-                <table style="width: 100%; border: 1px solid black; border-collapse: collapse;">
-                    <tr>
-                        <td><b>Type</b></td>
-                        <td><b>Name</b></td>
-                        <td><b>Description</b></td>
-                    </tr>
-                    {% for constant in block.constants %}
-                    <tr>
-                        <td>{{ constant.type }}</td>
-                        <td>{{ constant.name }}</td>
-                        <td>{{ constant.description }}</td>
-                    </tr>
-                    {% endfor %}
-                </table>
-                {% endif %}
+                
             {% endfor %}
         {% endif %}
         
