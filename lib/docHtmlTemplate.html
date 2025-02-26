@@ -8,7 +8,7 @@
                 <h3 style="font-size: 16px">Information</h3>
                 {{ block.documentation | safe }}
                 <h3 style="font-size: 16px">Symbol</h3>
-                <img src="data:image/png;base64, {{ block.imagePath }}" style="height: 100px; width: 100px;">
+                <img src="data:image/png;base64, {{ block.imagePath }}" style="width: 75px; height: auto;">
                 {% if block.parameters | length > 0 %}
                 <h3 style="font-size: 16px">Parameters</h3>
                 <table style="width: 100%; border: 1px solid black; border-collapse: collapse;">
