@@ -3,79 +3,78 @@
     <body>
         {% if blocks | length > 0 %}
             {% for block in blocks %}
-                <h1 style="font-size: 20px;">{{ block.blockName }} </h1>
-                <p>{{ block.description}}</p>
-                <h3 style="font-size: 16px">Information</h3>
+                <h4>{{ block.blockName }} </h4>
+                <p style="font-size: 16px;">{{ block.description}}</p>
+                <p style="font-size: 16px;">Information</p>
                 {{ block.documentation | safe }}
-                <h3 style="font-size: 16px">Symbol</h3>
+                <p style="font-size: 16px;">Symbol</p>
                 <img src="data:image/png;base64, {{ block.imagePath }}" style="width: 75px; height: auto;">
                 {% if block.parameters | length > 0 %}
-                <h3 style="font-size: 16px">Parameters</h3>
+                <p style="font-size: 16px;">Parameters</p>
                 <table style="width: 100%; border: 1px solid black; border-collapse: collapse;">
                     <tr>
-                        <td><b>Type</b></td>
-                        <td><b>Name</b></td>
-                        <td><b>Description</b></td>
+                        <td style="font-size: 16px;"><b>Type</b></td>
+                        <td style="font-size: 16px;"><b>Name</b></td>
+                        <td style="font-size: 16px;"><b>Description</b></td>
                     </tr>
                     {% for parameter in block.parameters %}
                     <tr>
-                        <td>{{ parameter.type }}</td>
-                        <td>{{ parameter.name }}</td>
-                        <td>{{ parameter.description }}</td>
+                        <td style="font-size: 16px;">{{ parameter.type }}</td>
+                        <td style="font-size: 16px;">{{ parameter.name }}</td>
+                        <td style="font-size: 16px;">{{ parameter.description }}</td>
                     </tr>
                     {% endfor %}
                 </table>
                 {% endif %}
                 {% if block.constants | length > 0 %}
-                <h2 style="font-size: 16px">Constants</h2>
+                <p style="font-size: 16px;">Constants</p>
                 <table style="width: 100%; border: 1px solid black; border-collapse: collapse;">
                     <tr>
-                        <td><b>Type</b></td>
-                        <td><b>Name</b></td>
-                        <td><b>Description</b></td>
+                        <td style="font-size: 16px;"><b>Type</b></td>
+                        <td style="font-size: 16px;"><b>Name</b></td>
+                        <td style="font-size: 16px;"><b>Description</b></td>
                     </tr>
                     {% for constant in block.constants %}
                     <tr>
-                        <td>{{ constant.type }}</td>
-                        <td>{{ constant.name }}</td>
-                        <td>{{ constant.description }}</td>
+                        <td style="font-size: 16px;">{{ constant.type }}</td>
+                        <td style="font-size: 16px;">{{ constant.name }}</td>
+                        <td style="font-size: 16px;">{{ constant.description }}</td>
                     </tr>
                     {% endfor %}
                 </table>
                 {% endif %}
 
-                <h2 style="font-size: 18px">Connectors</h2>
                 {% if block.inputs | length > 0 %}
-                <h3 style="font-size: 16px">Inputs</h3>
+                <p style="font-size: 16px;">Inputs</p>
                 <table style="width: 100%; border: 1px solid black; border-collapse: collapse;">
                     <tr>
-                        <td><b>Type</b></td>
-                        <td><b>Name</b></td>
-                        <td><b>Description</b></td>
+                        <td style="font-size: 16px;"><b>Type</b></td>
+                        <td style="font-size: 16px;"><b>Name</b></td>
+                        <td style="font-size: 16px;"><b>Description</b></td>
                     </tr>
                     {% for input in block.inputs %}
                     <tr>
-                        <td>{{ input.type }}</td>
-                        <td>{{ input.name }}</td>
-                        <td>{{ input.description }}</td>
+                        <td style="font-size: 16px;">{{ input.type }}</td>
+                        <td style="font-size: 16px;">{{ input.name }}</td>
+                        <td style="font-size: 16px;">{{ input.description }}</td>
                     </tr>
                     {% endfor %}
                 </table>
                 {% endif %}
 
                 {% if block.outputs | length > 0 %}
-                <h3 style="font-size: 16px">Outputs</h3>
+                <p style="font-size: 16px;">Outputs</p>
                 <table style="width: 100%; border: 1px solid black; border-collapse: collapse;">
                     <tr>
-                        <td><b>Type</b></td>
-                        <td><b>Name</b></td>
-                        <td><b>Description</b></td>
+                        <td style="font-size: 16px;"><b>Type</b></td>
+                        <td style="font-size: 16px;"><b>Name</b></td>
+                        <td style="font-size: 16px;"><b>Description</b></td>
                     </tr>
                     {% for output in block.outputs %}
                     <tr>
-                        <td>{{ output.type }}</td>
-                        <td>{{ output.name }}</td>
-                        <td>{{ output.description }}</td>
+                        <td style="font-size: 16px;">{{ output.type }}</td>
+                        <td style="font-size: 16px;">{{ output.name }}</td>
+                        <td style="font-size: 16px;">{{ output.description }}</td>
                     </tr>
                     {% endfor %}
                 </table>
