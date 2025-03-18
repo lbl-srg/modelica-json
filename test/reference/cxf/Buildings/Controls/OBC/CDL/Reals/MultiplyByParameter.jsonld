@@ -21,7 +21,7 @@
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter.k",
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
-      "S231P:description": "Gain value multiplied with input signal",
+      "S231P:description": "Factor to be multiplied with input signal",
       "S231P:isOfDataType": {
         "@id": "S231P:Real"
       },
@@ -31,7 +31,7 @@
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter.u",
       "@type": "S231P:RealInput",
       "S231P:accessSpecifier": "public",
-      "S231P:description": "Input signal connector",
+      "S231P:description": "Input to be multiplied with gain",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
       "S231P:label": "u"
     },
@@ -39,7 +39,7 @@
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter.y",
       "@type": "S231P:RealOutput",
       "S231P:accessSpecifier": "public",
-      "S231P:description": "Output signal connector",
+      "S231P:description": "Product of the parameter times the input",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
       "S231P:label": "y"
     }

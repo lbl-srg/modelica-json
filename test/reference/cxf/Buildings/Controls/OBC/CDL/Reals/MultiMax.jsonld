@@ -21,7 +21,7 @@
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MultiMax.nin",
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
-      "S231P:description": "Number of input connections",
+      "S231P:description": "Number of input signals",
       "S231P:graphics": [
         "{\"name\":\"Dialog\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"connectorSizing\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"true\"}}}}}]}}",
         "{\"name\":\"HideResult\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"true\"}}}"
@@ -37,7 +37,7 @@
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MultiMax.u",
       "@type": "S231P:RealInput",
       "S231P:accessSpecifier": "public",
-      "S231P:description": "Connector of Real input signals",
+      "S231P:description": "Input to max function",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":20},{\"x\":-100,\"y\":-20}]}}}",
       "S231P:label": "u"
     },
@@ -45,7 +45,7 @@
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MultiMax.y",
       "@type": "S231P:RealOutput",
       "S231P:accessSpecifier": "public",
-      "S231P:description": "Connector of Real output signals",
+      "S231P:description": "Largest element of the input vector",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
       "S231P:label": "y"
     }

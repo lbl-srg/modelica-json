@@ -45,7 +45,7 @@
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.IntegratorWithReset.trigger",
       "@type": "S231P:BooleanInput",
       "S231P:accessSpecifier": "public",
-      "S231P:description": "Resets the integrator output when trigger becomes true",
+      "S231P:description": "Input that resets the integrator output when it becomes true",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"origin\":{\"x\":0,\"y\":-120},\"extent\":[{\"x\":-20,\"y\":-20},{\"x\":20,\"y\":20}],\"rotation\":90},\"iconTransformation\":{\"origin\":{\"x\":0,\"y\":-120},\"extent\":[{\"x\":-20,\"y\":-20},{\"x\":20,\"y\":20}],\"rotation\":90}}}",
       "S231P:label": "trigger"
     },
@@ -53,7 +53,7 @@
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.IntegratorWithReset.u",
       "@type": "S231P:RealInput",
       "S231P:accessSpecifier": "public",
-      "S231P:description": "Connector of Real input signal",
+      "S231P:description": "Input to be integrated",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
       "S231P:label": "u"
     },
@@ -61,7 +61,7 @@
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.IntegratorWithReset.y",
       "@type": "S231P:RealOutput",
       "S231P:accessSpecifier": "public",
-      "S231P:description": "Connector of Real output signal",
+      "S231P:description": "Value of the integrator",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
       "S231P:label": "y"
     },

@@ -748,7 +748,7 @@
                         "modification": {
                           "equal": true,
                           "expression": {
-                            "simple_expression": "\"<html>\n<ul>\n<li>\nMarch 30, 2022, by Michael Wetter:<br/>\nAdded <code>discrete</code> keyword to sampled variable.<br/>\nThis is for\n<a href=\\\"https://github.com/lbl-srg/modelica-buildings/issues/2942\\\">issue 2942</a>.\n</li>\n<li>\nOctober 19, 2020, by Michael Wetter:<br/>\nRemoved non-needed protected parameter <code>t0</code>.\n</li>\n<li>\nMarch 2, 2020, by Michael Wetter:<br/>\nChanged icon to display dynamically the output value.\n</li>\n<li>\nNovember 7, 2019, by Michael Wetter:<br/>\nReformulated model to use an <code>equation</code> rather than an <code>algorithm</code> section.\n</li>\n<li>\nOctober 16, 2019, by Kun Zhang:<br/>\nFirst implementation. This is for <a href=\\\"https://github.com/lbl-srg/modelica-buildings/issues/1588\\\">issue 1588</a>.\n</li>\n</ul>\n</html>\""
+                            "simple_expression": "\"<html>\n<ul>\n<li>\nMarch 30, 2022, by Michael Wetter:<br/>\nAdded <code>discrete</code> keyword to sampled variable.<br/>\nThis is for\n<a href=\\\"https://github.com/lbl-srg/modelica-buildings/issues/2942\\\">Buildings, issue 2942</a>.\n</li>\n<li>\nOctober 19, 2020, by Michael Wetter:<br/>\nRemoved non-needed protected parameter <code>t0</code>.\n</li>\n<li>\nMarch 2, 2020, by Michael Wetter:<br/>\nChanged icon to display dynamically the output value.\n</li>\n<li>\nNovember 7, 2019, by Michael Wetter:<br/>\nReformulated model to use an <code>equation</code> rather than an <code>algorithm</code> section.\n</li>\n<li>\nOctober 16, 2019, by Kun Zhang:<br/>\nFirst implementation. This is for <a href=\\\"https://github.com/lbl-srg/modelica-buildings/issues/1588\\\">Buildings, issue 1588</a>.\n</li>\n</ul>\n</html>\""
                           }
                         }
                       }
@@ -812,7 +812,7 @@
           "identifier": "u"
         },
         "description": {
-          "description_string": "Continuous input signal",
+          "description_string": "Input signal to be sampled",
           "annotation": [
             {
               "element_modification_or_replaceable": {
@@ -876,7 +876,7 @@
           "identifier": "trigger"
         },
         "description": {
-          "description_string": "Boolean signal that triggers the block",
+          "description_string": "Input for trigger that causes u to be sampled",
           "annotation": [
             {
               "element_modification_or_replaceable": {
@@ -984,7 +984,7 @@
           "identifier": "y"
         },
         "description": {
-          "description_string": "Discrete averaged signal",
+          "description_string": "Moving mean of input signal over all trigger instants",
           "annotation": [
             {
               "element_modification_or_replaceable": {

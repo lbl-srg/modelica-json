@@ -18,7 +18,7 @@
                         "identifier": "u"
                       },
                       "description": {
-                        "description_string": "Connector with a Real input signal",
+                        "description_string": "Input signal to be sampled",
                         "annotation": [
                           {
                             "element_modification_or_replaceable": {
@@ -55,7 +55,7 @@
                         "identifier": "trigger"
                       },
                       "description": {
-                        "description_string": "Connector for trigger",
+                        "description_string": "Input for trigger that causes u to be sampled",
                         "annotation": [
                           {
                             "element_modification_or_replaceable": {
@@ -97,7 +97,7 @@
                         "identifier": "y"
                       },
                       "description": {
-                        "description_string": "Connector with a Real output signal",
+                        "description_string": "Maximum of input signal over all trigger instants",
                         "annotation": [
                           {
                             "element_modification_or_replaceable": {
@@ -514,7 +514,7 @@
                               "modification": {
                                 "equal": true,
                                 "expression": {
-                                  "simple_expression": "\"<html>\n<ul>\n<li>\nMarch 30, 2022, by Michael Wetter:<br/>\nRemoved graphic from diagram view.\n</li>\n<li>\nMarch 2, 2020, by Michael Wetter:<br/>\nChanged icon to display dynamically the output value.\n</li>\n<li>\nSeptember 14, 2017, by Michael Wetter:<br/>\nRemoved parameter <code>startTime</code> and <code>sampleTime</code>\nas these are not needed for this block, and introduced parameter\n<code>y_start=0</code>.<br/>\nThis is for <a href=\\\"https://github.com/lbl-srg/modelica-buildings/issues/938\\\">issue 938</a>.\n</li>\n<li>\nJanuary 3, 2017, by Michael Wetter:<br/>\nFirst implementation, based on the implementation of the\nModelica Standard Library.\n</li>\n</ul>\n</html>\""
+                                  "simple_expression": "\"<html>\n<ul>\n<li>\nMarch 30, 2022, by Michael Wetter:<br/>\nRemoved graphic from diagram view.\n</li>\n<li>\nMarch 2, 2020, by Michael Wetter:<br/>\nChanged icon to display dynamically the output value.\n</li>\n<li>\nSeptember 14, 2017, by Michael Wetter:<br/>\nRemoved parameter <code>startTime</code> and <code>sampleTime</code>\nas these are not needed for this block, and introduced parameter\n<code>y_start=0</code>.<br/>\nThis is for <a href=\\\"https://github.com/lbl-srg/modelica-buildings/issues/938\\\">Buildings, issue 938</a>.\n</li>\n<li>\nJanuary 3, 2017, by Michael Wetter:<br/>\nFirst implementation, based on the implementation of the\nModelica Standard Library.\n</li>\n</ul>\n</html>\""
                                 }
                               }
                             }
@@ -533,5 +533,5 @@
   ],
   "modelicaFile": "Buildings/Controls/OBC/CDL/Discrete/TriggeredMax.mo",
   "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Discrete/TriggeredMax.mo",
-  "checksum": "7cd4c51e31b332901492a7f9feaf0baf"
+  "checksum": "c4df1a3bc348ed9f23989b27f62c5e83"
 }

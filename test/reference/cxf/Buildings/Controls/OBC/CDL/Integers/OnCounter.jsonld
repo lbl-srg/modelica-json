@@ -26,7 +26,7 @@
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.OnCounter.reset",
       "@type": "S231P:BooleanInput",
       "S231P:accessSpecifier": "public",
-      "S231P:description": "Reset the counter",
+      "S231P:description": "Reset, when true, the counter is set to y_start",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"origin\":{\"x\":0,\"y\":-120},\"extent\":[{\"x\":-20,\"y\":-20},{\"x\":20,\"y\":20}],\"rotation\":90}}}",
       "S231P:label": "reset"
     },
@@ -34,7 +34,7 @@
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.OnCounter.trigger",
       "@type": "S231P:BooleanInput",
       "S231P:accessSpecifier": "public",
-      "S231P:description": "Boolean input signal",
+      "S231P:description": "Trigger, when set to true, the counter increases",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
       "S231P:label": "trigger"
     },
@@ -42,7 +42,7 @@
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.OnCounter.y",
       "@type": "S231P:IntegerOutput",
       "S231P:accessSpecifier": "public",
-      "S231P:description": "Integer output signal",
+      "S231P:description": "Counter value",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
       "S231P:label": "y"
     },

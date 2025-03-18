@@ -6,7 +6,7 @@
       "class_specifier": {
         "long_class_specifier": {
           "identifier": "Pre",
-          "description_string": "Breaks algebraic loops by an infinitesimal small time delay (y = pre(u): event iteration continues until u = pre(u))",
+          "description_string": "Breaks algebraic loops by adding a delay of the output without advancing time (y = pre(u): event iteration continues until u = pre(u))",
           "composition": {
             "element_list": [
               {
@@ -40,7 +40,7 @@
                         "identifier": "u"
                       },
                       "description": {
-                        "description_string": "Connector of Boolean input signal",
+                        "description_string": "Input to be delayed by one event iteration",
                         "annotation": [
                           {
                             "element_modification_or_replaceable": {
@@ -77,7 +77,7 @@
                         "identifier": "y"
                       },
                       "description": {
-                        "description_string": "Connector of Boolean output signal",
+                        "description_string": "Input delayed by one event iteration",
                         "annotation": [
                           {
                             "element_modification_or_replaceable": {
@@ -369,5 +369,5 @@
   ],
   "modelicaFile": "Buildings/Controls/OBC/CDL/Logical/Pre.mo",
   "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/Pre.mo",
-  "checksum": "6e8f33e08bb46969f12a627ae5034e9b"
+  "checksum": "5a5867661a2ba99abb8b68205378e159"
 }

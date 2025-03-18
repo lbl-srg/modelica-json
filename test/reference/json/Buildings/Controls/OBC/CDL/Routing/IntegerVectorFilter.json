@@ -98,7 +98,7 @@
                         ]
                       },
                       "description": {
-                        "description_string": "Connector of Integer input signal",
+                        "description_string": "Input signals from which values are extracted",
                         "annotation": [
                           {
                             "element_modification_or_replaceable": {
@@ -142,7 +142,7 @@
                         ]
                       },
                       "description": {
-                        "description_string": "Connector of Integer output signals",
+                        "description_string": "Output with extracted input signals",
                         "annotation": [
                           {
                             "element_modification_or_replaceable": {
@@ -250,7 +250,7 @@
                           "function_arguments": {
                             "function_argument": {
                               "expression": {
-                                "simple_expression": "\"The size of the output vector does not match the\n    size of included elements in the mask.\""
+                                "simple_expression": "\"In \" +getInstanceName() +\": The size of the output vector does not\n    match the size of included elements in the mask.\""
                               }
                             }
                           }
@@ -516,5 +516,5 @@
   ],
   "modelicaFile": "Buildings/Controls/OBC/CDL/Routing/IntegerVectorFilter.mo",
   "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Routing/IntegerVectorFilter.mo",
-  "checksum": "d353528db7d5d39bb7f0239a9d323d39"
+  "checksum": "e40dbfc320ea3de6f8bf440dd198e9f0"
 }

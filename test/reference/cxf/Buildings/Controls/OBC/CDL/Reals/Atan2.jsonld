@@ -24,7 +24,7 @@
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Atan2.u1",
       "@type": "S231P:RealInput",
       "S231P:accessSpecifier": "public",
-      "S231P:description": "Connector of Real input signal 1",
+      "S231P:description": "Input u1 for the atan2(u1/u2) function",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":40},{\"x\":-100,\"y\":80}]}}}",
       "S231P:label": "u1"
     },
@@ -32,18 +32,21 @@
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Atan2.u2",
       "@type": "S231P:RealInput",
       "S231P:accessSpecifier": "public",
-      "S231P:description": "Connector of Real input signal 2",
+      "S231P:description": "Input u2 for the atan2(u1/u2) function",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-80},{\"x\":-100,\"y\":-40}]}}}",
       "S231P:label": "u2"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Atan2.y",
       "@type": "S231P:RealOutput",
+      "qudt:hasDisplayUnit": {
+        "@id": "S231P:deg"
+      },
       "qudt:hasUnit": {
         "@id": "S231P:rad"
       },
       "S231P:accessSpecifier": "public",
-      "S231P:description": "Connector of Real output signal",
+      "S231P:description": "Output with atan2(u1/u2)",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
       "S231P:label": "y"
     }

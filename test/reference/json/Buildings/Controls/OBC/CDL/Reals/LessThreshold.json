@@ -6,7 +6,7 @@
       "class_specifier": {
         "long_class_specifier": {
           "identifier": "LessThreshold",
-          "description_string": "Output y is true, if input u is less than threshold",
+          "description_string": "Output y is true, if input u is less than threshold with hysteresis",
           "composition": {
             "element_list": [
               {
@@ -141,7 +141,7 @@
                         "identifier": "u"
                       },
                       "description": {
-                        "description_string": "Input",
+                        "description_string": "Input to be compared against the threshold",
                         "annotation": [
                           {
                             "element_modification_or_replaceable": {
@@ -178,7 +178,7 @@
                         "identifier": "y"
                       },
                       "description": {
-                        "description_string": "Output",
+                        "description_string": "Outputs true if u is less than the threshold with hysteresis",
                         "annotation": [
                           {
                             "element_modification_or_replaceable": {
@@ -1537,7 +1537,7 @@
                               "modification": {
                                 "equal": true,
                                 "expression": {
-                                  "simple_expression": "\"<html>\n<ul>\n<li>\nApril 29, 2022, by Jianjun Hu:<br/>\nCorrected the condition of swiching true back to false.<br/>\nThis is for <a href=\\\"https://github.com/lbl-srg/modelica-buildings/issues/2981\\\">issue 2981</a>.\n</li>\n<li>\nFebruary 3, 2021, by Antoine Gautier:<br/>\nCorrected documentation.<br/>\nThis is for <a href=\\\"https://github.com/lbl-srg/modelica-buildings/issues/2246\\\">issue 2246</a>.\n</li>\n<li>\nAugust 5, 2020, by Michael Wetter:<br/>\nAdded hysteresis.<br/>\nThis is for <a href=\\\"https://github.com/lbl-srg/modelica-buildings/issues/2076\\\">issue 2076</a>.\n</li>\n<li>\nJanuary 3, 2017, by Michael Wetter:<br/>\nFirst implementation, based on the implementation of the\nModelica Standard Library.\n</li>\n</ul>\n</html>\""
+                                  "simple_expression": "\"<html>\n<ul>\n<li>\nApril 29, 2022, by Jianjun Hu:<br/>\nCorrected the condition of swiching true back to false.<br/>\nThis is for <a href=\\\"https://github.com/lbl-srg/modelica-buildings/issues/2981\\\">Buildings, issue 2981</a>.\n</li>\n<li>\nFebruary 3, 2021, by Antoine Gautier:<br/>\nCorrected documentation.<br/>\nThis is for <a href=\\\"https://github.com/lbl-srg/modelica-buildings/issues/2246\\\">Buildings, issue 2246</a>.\n</li>\n<li>\nAugust 5, 2020, by Michael Wetter:<br/>\nAdded hysteresis.<br/>\nThis is for <a href=\\\"https://github.com/lbl-srg/modelica-buildings/issues/2076\\\">Buildings, issue 2076</a>.\n</li>\n<li>\nJanuary 3, 2017, by Michael Wetter:<br/>\nFirst implementation, based on the implementation of the\nModelica Standard Library.\n</li>\n</ul>\n</html>\""
                                 }
                               }
                             }
@@ -1556,5 +1556,5 @@
   ],
   "modelicaFile": "Buildings/Controls/OBC/CDL/Reals/LessThreshold.mo",
   "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/LessThreshold.mo",
-  "checksum": "529549fb4eeafbb780b37252b4458bd4"
+  "checksum": "39170b93a38969382a24a81fb117dcd2"
 }

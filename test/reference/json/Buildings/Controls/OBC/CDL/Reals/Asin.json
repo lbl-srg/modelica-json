@@ -18,7 +18,7 @@
                         "identifier": "u"
                       },
                       "description": {
-                        "description_string": "Connector of Real input signal",
+                        "description_string": "Input for the arc sine function",
                         "annotation": [
                           {
                             "element_modification_or_replaceable": {
@@ -57,6 +57,7 @@
                           "class_modification": [
                             {
                               "element_modification_or_replaceable": {
+                                "final": true,
                                 "element_modification": {
                                   "name": "unit",
                                   "modification": {
@@ -67,12 +68,25 @@
                                   }
                                 }
                               }
+                            },
+                            {
+                              "element_modification_or_replaceable": {
+                                "element_modification": {
+                                  "name": "displayUnit",
+                                  "modification": {
+                                    "equal": true,
+                                    "expression": {
+                                      "simple_expression": "\"deg\""
+                                    }
+                                  }
+                                }
+                              }
                             }
                           ]
                         }
                       },
                       "description": {
-                        "description_string": "Connector of Real output signal",
+                        "description_string": "Arc sin of the input",
                         "annotation": [
                           {
                             "element_modification_or_replaceable": {
@@ -471,7 +485,7 @@
                               "modification": {
                                 "equal": true,
                                 "expression": {
-                                  "simple_expression": "\"<html>\n<ul>\n<li>\nMarch 7, 2023, by Jianjun Hu:<br/>\nAdded unit <code>rad</code> to the output.<br/>\nThis is for\n<a href=\\\"https://github.com/lbl-srg/modelica-buildings/issues/3277\\\">issue 3277</a>.\n</li>\n<li>\nJanuary 28, 2022, by Jianjun Hu:<br/>\nFirst implementation, based on the implementation of the\nModelica Standard Library.\n</li>\n</ul>\n</html>\""
+                                  "simple_expression": "\"<html>\n<ul>\n<li>\nNovember 8, 2024, by Michael Wetter:<br/>\nAdded <code>final</code> keyword to unit declaration as block is only valid for this unit.<br/>\nAlso added <code>displayUnit</code> keyword.\n</li>\n<li>\nMarch 7, 2023, by Jianjun Hu:<br/>\nAdded unit <code>rad</code> to the output.<br/>\nThis is for\n<a href=\\\"https://github.com/lbl-srg/modelica-buildings/issues/3277\\\">Buildings, issue 3277</a>.\n</li>\n<li>\nJanuary 28, 2022, by Jianjun Hu:<br/>\nFirst implementation, based on the implementation of the\nModelica Standard Library.\n</li>\n</ul>\n</html>\""
                                 }
                               }
                             }
@@ -490,5 +504,5 @@
   ],
   "modelicaFile": "Buildings/Controls/OBC/CDL/Reals/Asin.mo",
   "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Asin.mo",
-  "checksum": "677e99e714bfa60b7eb6993ce046e00a"
+  "checksum": "1002fe65161606f4a8883cbf3ca7a98b"
 }
