@@ -50,7 +50,8 @@ generate-reference-output:
 		node app.js -l warn -f $${ff} -o semantic -d ./test/reference -p;\
 		node app.js -l warn -f $${ff} -o cxf -d ./test/reference -p;\
 		done); \
-	node app.js -f Buildings/Controls/OBC/CDL -o cxf -d ./test/reference --elementary --cxfCore --prettyPrint
+	node app.js -f Buildings/Controls/OBC/CDL -o cxf -d ./test/reference --elementary --cxfCore --prettyPrint; \
+	cp ./test/reference/cxf/CXF-Core.jsonld .
 
 generate-cxfCore:
 	node app.js -f Buildings/Controls/OBC/CDL -o cxf --elementary --cxfCore --prettyPrint; 

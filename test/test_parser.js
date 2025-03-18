@@ -258,27 +258,13 @@ function checkCxfCoreGeneration () {
   const cdlPath = path.join('Buildings', 'Controls', 'OBC', 'CDL')
   const testMoFiles = ut.getMoFiles(cdlPath)
   pa.getJsons(testMoFiles, 'cdl', 'cxf', 'current', true, true, true)
-  const testFolder = process.cwd()
-
-  fs.readdir(testFolder, (err, files) => {
-    files.forEach(file => {
-      console.log(file)
-    })
-  })
-
-  console.log('cxf contents')
-  fs.readdir(path.join(testFolder, 'cxf'), (err, files) => {
-    files.forEach(file => {
-      console.log(file)
-    })
-  })
   ce.getCxfCore(path.join(process.cwd(), cdlPath), 'current', true)
 
   const actualOutputCxfCorePath = path.join(process.cwd(), 'cxf', 'CXF-Core.jsonld')
-  const actualOutputCxfCore = JSON.parse(fs.readFileSync(actualOutputCxfCorePath, 'utf8'))
+  const actualOutputCxfCore = JSON.stringify(JSON.parse(fs.readFileSync(actualOutputCxfCorePath, 'utf8')))
 
   const refOutputCxfCorePath = path.join(process.cwd(), 'test', 'reference', 'cxf', 'CXF-Core.jsonld')
-  const refOutputCxfCore = JSON.parse(fs.readFileSync(refOutputCxfCorePath, 'utf8'))
+  const refOutputCxfCore = JSON.stringify(JSON.parse(fs.readFileSync(refOutputCxfCorePath, 'utf8')))
 
   as.deepEqual(actualOutputCxfCore, refOutputCxfCore, 'CXF-Core.jsonld different for generated file=' + actualOutputCxfCorePath + ' and reference file=' + refOutputCxfCorePath)
 }
