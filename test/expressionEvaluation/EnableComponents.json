@@ -1,0 +1,752 @@
+[
+  {
+    "protected": false,
+    "final": false,
+    "identifier": "use_enthalpy",
+    "typePrefix": "parameter",
+    "typeSpecifier": "Boolean",
+    "conditionExpression": null,
+    "assignment": {
+      "simple_expression": "true"
+    },
+    "bindings": {},
+    "cdlAnnotation": null,
+    "dialogAnnotation": {
+      "group": "\"Conditional\""
+    },
+    "unit": null,
+    "displayUnit": null,
+    "descriptionString": "Set to true to evaluate outdoor air (OA) enthalpy in addition to temperature"
+  },
+  {
+    "protected": false,
+    "final": false,
+    "identifier": "delTOutHis",
+    "typePrefix": "parameter",
+    "typeSpecifier": "Real",
+    "conditionExpression": null,
+    "assignment": {
+      "simple_expression": "1"
+    },
+    "bindings": {
+      "unit": "\"K\"",
+      "displayUnit": "\"K\"",
+      "quantity": "\"TemperatureDifference\""
+    },
+    "cdlAnnotation": null,
+    "dialogAnnotation": {
+      "tab": "\"Advanced\"",
+      "group": "\"Hysteresis\""
+    },
+    "unit": "\"K\"",
+    "displayUnit": "\"K\"",
+    "descriptionString": "Delta between the temperature hysteresis high and low limit"
+  },
+  {
+    "protected": false,
+    "final": false,
+    "identifier": "delEntHis",
+    "typePrefix": "parameter",
+    "typeSpecifier": "Real",
+    "conditionExpression": null,
+    "assignment": {
+      "simple_expression": "1000"
+    },
+    "bindings": {
+      "unit": "\"J/kg\"",
+      "quantity": "\"SpecificEnergy\""
+    },
+    "cdlAnnotation": null,
+    "dialogAnnotation": {
+      "tab": "\"Advanced\"",
+      "group": "\"Hysteresis\"",
+      "enable": "use_enthalpy"
+    },
+    "unit": "\"J/kg\"",
+    "displayUnit": null,
+    "descriptionString": "Delta between the enthalpy hysteresis high and low limits"
+  },
+  {
+    "protected": false,
+    "final": false,
+    "identifier": "retDamFulOpeTim",
+    "typePrefix": "parameter",
+    "typeSpecifier": "Real",
+    "conditionExpression": null,
+    "assignment": {
+      "simple_expression": "180"
+    },
+    "bindings": {
+      "unit": "\"s\"",
+      "quantity": "\"Time\""
+    },
+    "cdlAnnotation": null,
+    "dialogAnnotation": {
+      "tab": "\"Advanced\"",
+      "group": "\"Delays at disable\""
+    },
+    "unit": "\"s\"",
+    "displayUnit": null,
+    "descriptionString": "Time period to keep RA damper fully open before releasing it for minimum outdoor airflow control\n    at disable to avoid pressure fluctuations"
+  },
+  {
+    "protected": false,
+    "final": false,
+    "identifier": "disDel",
+    "typePrefix": "parameter",
+    "typeSpecifier": "Real",
+    "conditionExpression": null,
+    "assignment": {
+      "simple_expression": "15"
+    },
+    "bindings": {
+      "unit": "\"s\"",
+      "quantity": "\"Time\""
+    },
+    "cdlAnnotation": null,
+    "dialogAnnotation": {
+      "tab": "\"Advanced\"",
+      "group": "\"Delays at disable\""
+    },
+    "unit": "\"s\"",
+    "displayUnit": null,
+    "descriptionString": "Short time delay before closing the OA damper at disable to avoid pressure fluctuations"
+  },
+  {
+    "protected": false,
+    "final": false,
+    "identifier": "TOut",
+    "typeSpecifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+    "conditionExpression": null,
+    "assignment": null,
+    "bindings": {
+      "unit": "\"K\"",
+      "displayUnit": "\"degC\"",
+      "quantity": "\"ThermodynamicTemperature\""
+    },
+    "cdlAnnotation": null,
+    "dialogAnnotation": null,
+    "unit": "\"K\"",
+    "displayUnit": "\"degC\"",
+    "descriptionString": "Outdoor air temperature"
+  },
+  {
+    "protected": false,
+    "final": false,
+    "identifier": "hOut",
+    "typeSpecifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+    "conditionExpression": {
+      "simple_expression": "use_enthalpy"
+    },
+    "assignment": null,
+    "bindings": {
+      "unit": "\"J/kg\"",
+      "quantity": "\"SpecificEnergy\""
+    },
+    "cdlAnnotation": null,
+    "dialogAnnotation": null,
+    "unit": "\"J/kg\"",
+    "displayUnit": null,
+    "descriptionString": "Outdoor air enthalpy"
+  },
+  {
+    "protected": false,
+    "final": false,
+    "identifier": "TOutCut",
+    "typeSpecifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+    "conditionExpression": null,
+    "assignment": null,
+    "bindings": {
+      "unit": "\"K\"",
+      "displayUnit": "\"degC\"",
+      "quantity": "\"ThermodynamicTemperature\""
+    },
+    "cdlAnnotation": null,
+    "dialogAnnotation": null,
+    "unit": "\"K\"",
+    "displayUnit": "\"degC\"",
+    "descriptionString": "OA temperature high limit cutoff. For differential dry bulb temperature condition use return air temperature measurement"
+  },
+  {
+    "protected": false,
+    "final": false,
+    "identifier": "hOutCut",
+    "typeSpecifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+    "conditionExpression": {
+      "simple_expression": "use_enthalpy"
+    },
+    "assignment": null,
+    "bindings": {
+      "unit": "\"J/kg\"",
+      "quantity": "\"SpecificEnergy\""
+    },
+    "cdlAnnotation": null,
+    "dialogAnnotation": null,
+    "unit": "\"J/kg\"",
+    "displayUnit": null,
+    "descriptionString": "OA enthalpy high limit cutoff. For differential enthalpy use return air enthalpy measurement"
+  },
+  {
+    "protected": false,
+    "final": false,
+    "identifier": "uOutDam_min",
+    "typeSpecifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+    "conditionExpression": null,
+    "assignment": null,
+    "bindings": {
+      "unit": "\"1\"",
+      "min": "0",
+      "max": "1"
+    },
+    "cdlAnnotation": null,
+    "dialogAnnotation": null,
+    "unit": "\"1\"",
+    "displayUnit": null,
+    "descriptionString": "Minimum outdoor air damper position, output from damper position limits sequence"
+  },
+  {
+    "protected": false,
+    "final": false,
+    "identifier": "uOutDam_max",
+    "typeSpecifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+    "conditionExpression": null,
+    "assignment": null,
+    "bindings": {
+      "unit": "\"1\"",
+      "min": "0",
+      "max": "1"
+    },
+    "cdlAnnotation": null,
+    "dialogAnnotation": null,
+    "unit": "\"1\"",
+    "displayUnit": null,
+    "descriptionString": "Maximum outdoor air damper position, output from damper position limits sequence"
+  },
+  {
+    "protected": false,
+    "final": false,
+    "identifier": "uRetDam_max",
+    "typeSpecifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+    "conditionExpression": null,
+    "assignment": null,
+    "bindings": {
+      "unit": "\"1\"",
+      "min": "0",
+      "max": "1"
+    },
+    "cdlAnnotation": null,
+    "dialogAnnotation": null,
+    "unit": "\"1\"",
+    "displayUnit": null,
+    "descriptionString": "Maximum return air damper position, output from damper position limits sequence"
+  },
+  {
+    "protected": false,
+    "final": false,
+    "identifier": "uRetDam_min",
+    "typeSpecifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+    "conditionExpression": null,
+    "assignment": null,
+    "bindings": {
+      "unit": "\"1\"",
+      "min": "0",
+      "max": "1"
+    },
+    "cdlAnnotation": null,
+    "dialogAnnotation": null,
+    "unit": "\"1\"",
+    "displayUnit": null,
+    "descriptionString": "Minimum return air damper position, output from damper position limits sequence"
+  },
+  {
+    "protected": false,
+    "final": false,
+    "identifier": "uRetDamPhy_max",
+    "typeSpecifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+    "conditionExpression": null,
+    "assignment": null,
+    "bindings": {
+      "unit": "\"1\"",
+      "min": "0",
+      "max": "1"
+    },
+    "cdlAnnotation": null,
+    "dialogAnnotation": null,
+    "unit": "\"1\"",
+    "displayUnit": null,
+    "descriptionString": "Physical maximum return air damper position, output from damper position limits sequence"
+  },
+  {
+    "protected": false,
+    "final": false,
+    "identifier": "u1SupFan",
+    "typeSpecifier": "Buildings.Controls.OBC.CDL.Interfaces.BooleanInput",
+    "conditionExpression": null,
+    "assignment": null,
+    "bindings": null,
+    "cdlAnnotation": null,
+    "dialogAnnotation": null,
+    "unit": null,
+    "displayUnit": null,
+    "descriptionString": "Supply fan proven on"
+  },
+  {
+    "protected": false,
+    "final": false,
+    "identifier": "uFreProSta",
+    "typeSpecifier": "Buildings.Controls.OBC.CDL.Interfaces.IntegerInput",
+    "conditionExpression": null,
+    "assignment": null,
+    "bindings": null,
+    "cdlAnnotation": null,
+    "dialogAnnotation": null,
+    "unit": null,
+    "displayUnit": null,
+    "descriptionString": "Freeze protection stage status signal"
+  },
+  {
+    "protected": false,
+    "final": false,
+    "identifier": "yOutDam_max",
+    "typeSpecifier": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
+    "conditionExpression": null,
+    "assignment": null,
+    "bindings": {
+      "unit": "\"1\"",
+      "min": "0",
+      "max": "1"
+    },
+    "cdlAnnotation": null,
+    "dialogAnnotation": null,
+    "unit": "\"1\"",
+    "displayUnit": null,
+    "descriptionString": "Maximum outdoor air damper position"
+  },
+  {
+    "protected": false,
+    "final": false,
+    "identifier": "yRetDam_min",
+    "typeSpecifier": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
+    "conditionExpression": null,
+    "assignment": null,
+    "bindings": {
+      "unit": "\"1\"",
+      "min": "0",
+      "max": "1"
+    },
+    "cdlAnnotation": null,
+    "dialogAnnotation": null,
+    "unit": "\"1\"",
+    "displayUnit": null,
+    "descriptionString": "Minimum return air damper position"
+  },
+  {
+    "protected": false,
+    "final": false,
+    "identifier": "yRetDam_max",
+    "typeSpecifier": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
+    "conditionExpression": null,
+    "assignment": null,
+    "bindings": {
+      "unit": "\"1\"",
+      "min": "0",
+      "max": "1"
+    },
+    "cdlAnnotation": null,
+    "dialogAnnotation": null,
+    "unit": "\"1\"",
+    "displayUnit": null,
+    "descriptionString": "Maximum return air damper position"
+  },
+  {
+    "protected": false,
+    "final": false,
+    "identifier": "truFalHol",
+    "typeSpecifier": "Buildings.Controls.OBC.CDL.Logical.TrueFalseHold",
+    "conditionExpression": null,
+    "assignment": null,
+    "bindings": {
+      "trueHoldDuration": "600"
+    },
+    "cdlAnnotation": null,
+    "dialogAnnotation": null,
+    "unit": null,
+    "displayUnit": null,
+    "descriptionString": "Economizer should not be enabled or disabled within 10 minutes of change"
+  },
+  {
+    "protected": false,
+    "final": false,
+    "identifier": "andEnaDis",
+    "typeSpecifier": "Buildings.Controls.OBC.CDL.Logical.And",
+    "conditionExpression": null,
+    "assignment": null,
+    "bindings": null,
+    "cdlAnnotation": null,
+    "dialogAnnotation": null,
+    "unit": null,
+    "displayUnit": null,
+    "descriptionString": "Check freeze protection stage and zone state"
+  },
+  {
+    "protected": true,
+    "final": true,
+    "identifier": "TOutHigLimCutHig",
+    "typePrefix": "parameter",
+    "typeSpecifier": "Real",
+    "conditionExpression": null,
+    "assignment": {
+      "simple_expression": "0"
+    },
+    "bindings": {
+      "unit": "\"K\"",
+      "displayUnit": "\"K\"",
+      "quantity": "\"TemperatureDifference\""
+    },
+    "cdlAnnotation": null,
+    "dialogAnnotation": null,
+    "unit": "\"K\"",
+    "displayUnit": "\"K\"",
+    "descriptionString": "Hysteresis high limit cutoff"
+  },
+  {
+    "protected": true,
+    "final": true,
+    "identifier": "TOutHigLimCutLow",
+    "typePrefix": "parameter",
+    "typeSpecifier": "Real",
+    "conditionExpression": null,
+    "assignment": {
+      "simple_expression": "TOutHigLimCutHig -delTOutHis"
+    },
+    "bindings": {},
+    "cdlAnnotation": null,
+    "dialogAnnotation": null,
+    "unit": null,
+    "displayUnit": null,
+    "descriptionString": "Hysteresis low limit cutoff"
+  },
+  {
+    "protected": true,
+    "final": true,
+    "identifier": "hOutHigLimCutHig",
+    "typePrefix": "parameter",
+    "typeSpecifier": "Real",
+    "conditionExpression": null,
+    "assignment": {
+      "simple_expression": "0"
+    },
+    "bindings": {
+      "unit": "\"J/kg\"",
+      "quantity": "\"SpecificEnergy\""
+    },
+    "cdlAnnotation": null,
+    "dialogAnnotation": null,
+    "unit": "\"J/kg\"",
+    "displayUnit": null,
+    "descriptionString": "Hysteresis block high limit cutoff"
+  },
+  {
+    "protected": true,
+    "final": true,
+    "identifier": "hOutHigLimCutLow",
+    "typePrefix": "parameter",
+    "typeSpecifier": "Real",
+    "conditionExpression": null,
+    "assignment": {
+      "simple_expression": "hOutHigLimCutHig -delEntHis"
+    },
+    "bindings": {},
+    "cdlAnnotation": null,
+    "dialogAnnotation": null,
+    "unit": null,
+    "displayUnit": null,
+    "descriptionString": "Hysteresis block low limit cutoff"
+  },
+  {
+    "protected": true,
+    "final": false,
+    "identifier": "sub2",
+    "typeSpecifier": "Buildings.Controls.OBC.CDL.Reals.Subtract",
+    "conditionExpression": {
+      "simple_expression": "use_enthalpy"
+    },
+    "assignment": null,
+    "bindings": null,
+    "cdlAnnotation": null,
+    "dialogAnnotation": null,
+    "unit": null,
+    "displayUnit": null,
+    "descriptionString": "Add block determines difference between hOut and hOutCut"
+  },
+  {
+    "protected": true,
+    "final": false,
+    "identifier": "sub1",
+    "typeSpecifier": "Buildings.Controls.OBC.CDL.Reals.Subtract",
+    "conditionExpression": null,
+    "assignment": null,
+    "bindings": null,
+    "cdlAnnotation": null,
+    "dialogAnnotation": null,
+    "unit": null,
+    "displayUnit": null,
+    "descriptionString": "Add block determines difference between TOut and TOutCut"
+  },
+  {
+    "protected": true,
+    "final": false,
+    "identifier": "hysOutTem",
+    "typeSpecifier": "Buildings.Controls.OBC.CDL.Reals.Hysteresis",
+    "conditionExpression": null,
+    "assignment": null,
+    "bindings": {
+      "uLow": "TOutHigLimCutLow",
+      "uHigh": "TOutHigLimCutHig"
+    },
+    "cdlAnnotation": null,
+    "dialogAnnotation": null,
+    "unit": null,
+    "displayUnit": null,
+    "descriptionString": "Outdoor air temperature hysteresis for both fixed and differential dry bulb temperature cutoff conditions"
+  },
+  {
+    "protected": true,
+    "final": false,
+    "identifier": "hysOutEnt",
+    "typeSpecifier": "Buildings.Controls.OBC.CDL.Reals.Hysteresis",
+    "conditionExpression": {
+      "simple_expression": "use_enthalpy"
+    },
+    "assignment": null,
+    "bindings": {
+      "uLow": "hOutHigLimCutLow",
+      "uHigh": "hOutHigLimCutHig"
+    },
+    "cdlAnnotation": null,
+    "dialogAnnotation": null,
+    "unit": null,
+    "displayUnit": null,
+    "descriptionString": "Outdoor air enthalpy hysteresis for both fixed and differential enthalpy cutoff conditions"
+  },
+  {
+    "protected": true,
+    "final": false,
+    "identifier": "outDamSwitch",
+    "typeSpecifier": "Buildings.Controls.OBC.CDL.Reals.Switch",
+    "conditionExpression": null,
+    "assignment": null,
+    "bindings": null,
+    "cdlAnnotation": null,
+    "dialogAnnotation": null,
+    "unit": null,
+    "displayUnit": null,
+    "descriptionString": "Set maximum OA damper position to minimum at disable (after a given time delay)"
+  },
+  {
+    "protected": true,
+    "final": false,
+    "identifier": "retDamSwitch",
+    "typeSpecifier": "Buildings.Controls.OBC.CDL.Reals.Switch",
+    "conditionExpression": null,
+    "assignment": null,
+    "bindings": null,
+    "cdlAnnotation": null,
+    "dialogAnnotation": null,
+    "unit": null,
+    "displayUnit": null,
+    "descriptionString": "Set minimum RA damper position to maximum at disable"
+  },
+  {
+    "protected": true,
+    "final": false,
+    "identifier": "maxRetDamSwitch",
+    "typeSpecifier": "Buildings.Controls.OBC.CDL.Reals.Switch",
+    "conditionExpression": null,
+    "assignment": null,
+    "bindings": null,
+    "cdlAnnotation": null,
+    "dialogAnnotation": null,
+    "unit": null,
+    "displayUnit": null,
+    "descriptionString": "Keep maximum RA damper position at physical maximum for a short time period after disable signal"
+  },
+  {
+    "protected": true,
+    "final": false,
+    "identifier": "minRetDamSwitch",
+    "typeSpecifier": "Buildings.Controls.OBC.CDL.Reals.Switch",
+    "conditionExpression": null,
+    "assignment": null,
+    "bindings": null,
+    "cdlAnnotation": null,
+    "dialogAnnotation": null,
+    "unit": null,
+    "displayUnit": null,
+    "descriptionString": "Keep minimum RA damper position at physical maximum for a short time period after disable"
+  },
+  {
+    "protected": true,
+    "final": false,
+    "identifier": "not2",
+    "typeSpecifier": "Buildings.Controls.OBC.CDL.Logical.Not",
+    "conditionExpression": null,
+    "assignment": null,
+    "bindings": null,
+    "cdlAnnotation": null,
+    "dialogAnnotation": null,
+    "unit": null,
+    "displayUnit": null,
+    "descriptionString": "Logical not that starts the timer at disable signal "
+  },
+  {
+    "protected": true,
+    "final": false,
+    "identifier": "and2",
+    "typeSpecifier": "Buildings.Controls.OBC.CDL.Logical.And",
+    "conditionExpression": null,
+    "assignment": null,
+    "bindings": null,
+    "cdlAnnotation": null,
+    "dialogAnnotation": null,
+    "unit": null,
+    "displayUnit": null,
+    "descriptionString": "Logical and"
+  },
+  {
+    "protected": true,
+    "final": false,
+    "identifier": "and1",
+    "typeSpecifier": "Buildings.Controls.OBC.CDL.Logical.And",
+    "conditionExpression": null,
+    "assignment": null,
+    "bindings": null,
+    "cdlAnnotation": null,
+    "dialogAnnotation": null,
+    "unit": null,
+    "displayUnit": null,
+    "descriptionString": "Check supply fan status"
+  },
+  {
+    "protected": true,
+    "final": false,
+    "identifier": "and3",
+    "typeSpecifier": "Buildings.Controls.OBC.CDL.Logical.And",
+    "conditionExpression": null,
+    "assignment": null,
+    "bindings": null,
+    "cdlAnnotation": null,
+    "dialogAnnotation": null,
+    "unit": null,
+    "displayUnit": null,
+    "descriptionString": "Check if delay time has been passed after economizer being disabled"
+  },
+  {
+    "protected": true,
+    "final": false,
+    "identifier": "intEqu",
+    "typeSpecifier": "Buildings.Controls.OBC.CDL.Integers.Equal",
+    "conditionExpression": null,
+    "assignment": null,
+    "bindings": null,
+    "cdlAnnotation": null,
+    "dialogAnnotation": null,
+    "unit": null,
+    "displayUnit": null,
+    "descriptionString": "Logical block to check if the freeze protection is deactivated"
+  },
+  {
+    "protected": true,
+    "final": false,
+    "identifier": "delOutDamOsc",
+    "typeSpecifier": "Buildings.Controls.OBC.CDL.Logical.TrueDelay",
+    "conditionExpression": null,
+    "assignment": null,
+    "bindings": {
+      "delayTime": "disDel"
+    },
+    "cdlAnnotation": null,
+    "dialogAnnotation": null,
+    "unit": null,
+    "displayUnit": null,
+    "descriptionString": "Small delay before closing the outdoor air damper to avoid pressure fluctuations"
+  },
+  {
+    "protected": true,
+    "final": false,
+    "identifier": "delRetDam",
+    "typeSpecifier": "Buildings.Controls.OBC.CDL.Logical.TrueDelay",
+    "conditionExpression": null,
+    "assignment": null,
+    "bindings": {
+      "delayTime": "retDamFulOpeTim"
+    },
+    "cdlAnnotation": null,
+    "dialogAnnotation": null,
+    "unit": null,
+    "displayUnit": null,
+    "descriptionString": "Keep return damper open to its physical maximum for a short period of time before closing the outdoor air damper and resuming the maximum return air damper position, per G36 Part N7"
+  },
+  {
+    "protected": true,
+    "final": false,
+    "identifier": "not1",
+    "typeSpecifier": "Buildings.Controls.OBC.CDL.Logical.Not",
+    "conditionExpression": null,
+    "assignment": null,
+    "bindings": null,
+    "cdlAnnotation": null,
+    "dialogAnnotation": null,
+    "unit": null,
+    "displayUnit": null,
+    "descriptionString": "Logical not"
+  },
+  {
+    "protected": true,
+    "final": false,
+    "identifier": "conInt",
+    "typeSpecifier": "Buildings.Controls.OBC.CDL.Integers.Sources.Constant",
+    "conditionExpression": null,
+    "assignment": null,
+    "bindings": {
+      "k": "Buildings.Controls.OBC.ASHRAE.G36.Types.FreezeProtectionStages.stage0"
+    },
+    "cdlAnnotation": null,
+    "dialogAnnotation": null,
+    "unit": null,
+    "displayUnit": null,
+    "descriptionString": "Integer constant, stage 0"
+  },
+  {
+    "protected": true,
+    "final": false,
+    "identifier": "entSubst1",
+    "typeSpecifier": "Buildings.Controls.OBC.CDL.Logical.Sources.Constant",
+    "conditionExpression": {
+      "simple_expression": "not use_enthalpy"
+    },
+    "assignment": null,
+    "bindings": {
+      "k": "false"
+    },
+    "cdlAnnotation": null,
+    "dialogAnnotation": null,
+    "unit": null,
+    "displayUnit": null,
+    "descriptionString": "Deactivates outdoor air enthalpy condition if there is no enthalpy sensor"
+  },
+  {
+    "protected": true,
+    "final": false,
+    "identifier": "or2",
+    "typeSpecifier": "Buildings.Controls.OBC.CDL.Logical.Or",
+    "conditionExpression": null,
+    "assignment": null,
+    "bindings": null,
+    "cdlAnnotation": null,
+    "dialogAnnotation": null,
+    "unit": null,
+    "displayUnit": null,
+    "descriptionString": "Check if either the temperature or the enthalpy condition is satisfied"
+  }
+]
