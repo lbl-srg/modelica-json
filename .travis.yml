@@ -6,19 +6,12 @@ node_js:
 
 env:
   - MODELICAPATH="./.tmp"
-  - MODELICA_BUILDINGS_VERSION=c34c05affcb4fbab6bfced9f84e2782cd1f956a6
 
 before_install:
   - unset _JAVA_OPTIONS # To suppress a warning from Java to stderr
 
 install:
-    - wget --no-verbose https://github.com/lbl-srg/modelica-buildings/archive/${MODELICA_BUILDINGS_VERSION}.tar.gz;
-      tar xzf ${MODELICA_BUILDINGS_VERSION}.tar.gz;
-      rm modelica-buildings-${MODELICA_BUILDINGS_VERSION}.tar.gz;
-      mv modelica-buildings-${MODELICA_BUILDINGS_VERSION} ${MODELICAPATH};
-      cd ${MODELICAPATH};
-      cd -;
-      echo "Set up modelica-buildings at ${MODELICAPATH}";
+  - git clone --branch=master https://github.com/lbl-srg/modelica-buildings .tmp
   - make clean-installation
   - make install
   - make compile
