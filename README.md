@@ -97,7 +97,7 @@ The only required input is the path of the file or package to be parsed.
 This parser takes a .mo file in input and has three possible outputs, that can be specified with the argument -o :
 
 - **raw-json** : detailed transcription of a Modelica file in JSON
-- **json**: simplified JSON format, easier to read an interpret
+- **json**: simplified JSON format, easier to read and interpret
 - **semantic**: generate semantic model from semantic information included within `annotation` in the Modelica file
 - **cxf**: generate CXF representation in `.jsonld` of a CDL sequence complying with ASHRAE S231P
 - **doc**: create the documentation of the sequence of operation in an HTML document

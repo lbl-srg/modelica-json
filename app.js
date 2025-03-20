@@ -125,7 +125,7 @@ if (args.output === 'modelica') {
     function (resolve, reject) {
       const moFiles = ut.getMoFiles(args.file)
       // Parse the json representation for moFiles
-      jsons = pa.getJsons(moFiles, args.mode, args.output, args.directory, args.prettyPrint, args.elementary, args.cxfCore)
+      jsons = pa.getJsons(moFiles, args.output, args.directory, args.prettyPrint, args.elementary, args.cxfCore)
       resolve(0)
     }
   )
