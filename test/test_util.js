@@ -119,4 +119,20 @@ mo.describe('util', function () {
       as.deepEqual(actualOutput, expectedOutput)
     })
   })
+  mo.describe('testing joinWithinPath()', function () {
+    mo.it('testing with current directory modelicapath', function () {
+      const moPath = __dirname
+      const within = ['FromModelica']
+      const actuatOutput = ut.joinWithinPath(moPath, within)
+      const expectedOutput = [path.join(__dirname, 'FromModelica'), __dirname]
+      as.deepEqual(actuatOutput, expectedOutput)
+    })
+    mo.it('testing with empty within', function () {
+      const moPath = __dirname
+      const within = null
+      const actuatOutput = ut.joinWithinPath(moPath, within)
+      const expectedOutput = [__dirname]
+      as.deepEqual(actuatOutput, expectedOutput)
+    })
+  })
 })
