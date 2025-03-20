@@ -9,6 +9,7 @@ const fs = Promise.promisifyAll(require('fs'))
 const glob = require('glob-promise')
 const logger = require('winston')
 const se = require('../lib/semanticExtractor.js')
+const ce = require('../lib/cxfExtractor.js')
 // const cheerio = require('cheerio')
 
 logger.configure({
@@ -253,6 +254,21 @@ const checkCxfJson = function (outFormat, extension, message) {
   })
 }
 
+function checkCxfCoreGeneration () {
+  const cdlPath = path.join('Buildings', 'Controls', 'OBC', 'CDL')
+  const testMoFiles = ut.getMoFiles(cdlPath)
+  pa.getJsons(testMoFiles, 'cxf', 'current', true, true, true)
+  ce.getCxfCore(path.join(process.cwd(), cdlPath), 'current', true)
+
+  const actualOutputCxfCorePath = path.join(process.cwd(), 'cxf', 'CXF-Core.jsonld')
+  const actualOutputCxfCore = JSON.stringify(JSON.parse(fs.readFileSync(actualOutputCxfCorePath, 'utf8')))
+
+  const refOutputCxfCorePath = path.join(process.cwd(), 'test', 'reference', 'cxf', 'CXF-Core.jsonld')
+  const refOutputCxfCore = JSON.stringify(JSON.parse(fs.readFileSync(refOutputCxfCorePath, 'utf8')))
+
+  as.deepEqual(actualOutputCxfCore, refOutputCxfCore, 'CXF-Core.jsonld different for generated file=' + actualOutputCxfCorePath + ' and reference file=' + refOutputCxfCorePath)
+}
+
 mo.describe('parser.js', function () {
   mo.describe('Testing Modelica to raw-json using CDL files', function () {
     checkCdlJSON('raw-json', '.json', 'Testing unmodified json for equality, "cdl" mode')
@@ -271,6 +287,11 @@ mo.describe('parser.js', function () {
   })
   mo.describe('Testing parse from Modelica to CXF JsonLD', function () {
     checkCxfJson('cxf', '.jsonld', 'Testing json for equality, "cdl" mode')
+  })
+  mo.describe('Testing CXF-Core.jsonld generation', function () {
+    mo.it('check CXF-Core.jsonld generation and comparison', () => {
+      checkCxfCoreGeneration()
+    })
   })
   mo.describe('Testing call to getJsons', function () {
     const moFile = path.join(getIntFiles('modelica'), 'Enable.mo')

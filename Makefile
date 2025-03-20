@@ -44,12 +44,18 @@ test-moParser:
 # or when new tests are added.
 generate-reference-output:
 	rm -rf ./test/reference; \
-	(for ff in `find . -name '*.mo'`; do \
+	(for ff in `find ./test/FromModelica -name '*.mo'`; do \
 		node app.js -l warn -f $${ff} -o raw-json -d ./test/reference; \
 		node app.js -l warn -f $${ff} -o json -d ./test/reference; \
 		node app.js -l warn -f $${ff} -o semantic -d ./test/reference -p;\
 		node app.js -l warn -f $${ff} -o cxf -d ./test/reference -p;\
-		done)
+		done); \
+	node app.js -f Buildings/Controls/OBC/CDL -o cxf -d ./test/reference --elementary --cxfCore --prettyPrint; \
+	cp ./test/reference/cxf/CXF-Core.jsonld .
+
+generate-cxfCore:
+	node app.js -f Buildings/Controls/OBC/CDL -o cxf --elementary --cxfCore --prettyPrint; 
+	cp cxf/CXF-Core.jsonld .
 
 clean-node-packages:
 	rm -rf node-modules

@@ -1,0 +1,67 @@
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#",
+    "qudt": "http://qudt.org/schema/qudt#"
+  },
+  "@graph": [
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Psychrometrics.DewPoint_TDryBulPhi",
+      "@type": "S231P:ElementaryBlock",
+      "S231P:hasInput": [
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Psychrometrics.DewPoint_TDryBulPhi.phi"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Psychrometrics.DewPoint_TDryBulPhi.TDryBul"
+        }
+      ],
+      "S231P:hasOutput": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Psychrometrics.DewPoint_TDryBulPhi.TDewPoi"
+      },
+      "S231P:label": "DewPoint_TDryBulPhi"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Psychrometrics.DewPoint_TDryBulPhi.phi",
+      "@type": "S231P:RealInput",
+      "qudt:hasUnit": {
+        "@id": "S231P:1"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Relative air humidity",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-80},{\"x\":-100,\"y\":-40}]}}}",
+      "S231P:label": "phi",
+      "S231P:max": 1,
+      "S231P:min": 0
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Psychrometrics.DewPoint_TDryBulPhi.TDewPoi",
+      "@type": "S231P:RealOutput",
+      "qudt:hasQuantityKind": {
+        "@id": "S231P:ThermodynamicTemperature"
+      },
+      "qudt:hasUnit": {
+        "@id": "S231P:K"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Dew point temperature",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
+      "S231P:label": "TDewPoi",
+      "S231P:min": 100
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Psychrometrics.DewPoint_TDryBulPhi.TDryBul",
+      "@type": "S231P:RealInput",
+      "qudt:hasQuantityKind": {
+        "@id": "S231P:ThermodynamicTemperature"
+      },
+      "qudt:hasUnit": {
+        "@id": "S231P:K"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Dry bulb temperature",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":40},{\"x\":-100,\"y\":80}]}}}",
+      "S231P:label": "TDryBul",
+      "S231P:min": 100
+    }
+  ]
+}

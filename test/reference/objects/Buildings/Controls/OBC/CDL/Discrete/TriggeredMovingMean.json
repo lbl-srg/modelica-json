@@ -1,0 +1,1267 @@
+{
+  "instances": {
+    "TriggeredMovingMean": {
+      "within": "Buildings.Controls.OBC.CDL.Discrete",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Discrete/TriggeredMovingMean.mo",
+      "type": "long_class_specifier",
+      "class_prefixes": "block",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "defaultComponentName",
+              "modification": {
+                "equal": true,
+                "expression": {
+                  "simple_expression": "\"triMovMea\""
+                }
+              }
+            }
+          }
+        },
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Icon",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "coordinateSystem": {
+                          "extent": [
+                            {
+                              "x": -100,
+                              "y": -100
+                            },
+                            {
+                              "x": 100,
+                              "y": 100
+                            }
+                          ],
+                          "preserveAspectRatio": "true"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "graphics": [
+                          {
+                            "name": "Rectangle",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -100,
+                                  "y": -100
+                                },
+                                {
+                                  "x": 100,
+                                  "y": 100
+                                }
+                              ],
+                              "borderPattern": "BorderPattern.Raised",
+                              "lineColor": {
+                                "r": 0,
+                                "g": 0,
+                                "b": 127
+                              },
+                              "fillColor": {
+                                "r": 223,
+                                "g": 211,
+                                "b": 169
+                              },
+                              "fillPattern": "FillPattern.Solid",
+                              "lineThickness": 5
+                            }
+                          },
+                          {
+                            "name": "Text",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -150,
+                                  "y": 150
+                                },
+                                {
+                                  "x": 150,
+                                  "y": 110
+                                }
+                              ],
+                              "textString": "\"%name\"",
+                              "textColor": {
+                                "r": 0,
+                                "g": 0,
+                                "b": 255
+                              }
+                            }
+                          },
+                          {
+                            "name": "Line",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": -88,
+                                  "y": 0
+                                },
+                                {
+                                  "x": 70,
+                                  "y": 0
+                                }
+                              ],
+                              "color": {
+                                "r": 192,
+                                "g": 192,
+                                "b": 192
+                              }
+                            }
+                          },
+                          {
+                            "name": "Polygon",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": 92,
+                                  "y": 0
+                                },
+                                {
+                                  "x": 70,
+                                  "y": 8
+                                },
+                                {
+                                  "x": 70,
+                                  "y": -8
+                                },
+                                {
+                                  "x": 92,
+                                  "y": 0
+                                }
+                              ],
+                              "lineColor": {
+                                "r": 192,
+                                "g": 192,
+                                "b": 192
+                              },
+                              "fillColor": {
+                                "r": 192,
+                                "g": 192,
+                                "b": 192
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          },
+                          {
+                            "name": "Line",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": -80,
+                                  "y": 68
+                                },
+                                {
+                                  "x": -80,
+                                  "y": -80
+                                }
+                              ],
+                              "color": {
+                                "r": 192,
+                                "g": 192,
+                                "b": 192
+                              }
+                            }
+                          },
+                          {
+                            "name": "Polygon",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": -80,
+                                  "y": 90
+                                },
+                                {
+                                  "x": -88,
+                                  "y": 68
+                                },
+                                {
+                                  "x": -72,
+                                  "y": 68
+                                },
+                                {
+                                  "x": -80,
+                                  "y": 90
+                                }
+                              ],
+                              "lineColor": {
+                                "r": 192,
+                                "g": 192,
+                                "b": 192
+                              },
+                              "fillColor": {
+                                "r": 192,
+                                "g": 192,
+                                "b": 192
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          },
+                          {
+                            "name": "Line",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": -80,
+                                  "y": 0
+                                },
+                                {
+                                  "x": -52,
+                                  "y": 0
+                                }
+                              ],
+                              "color": {
+                                "r": 217,
+                                "g": 67,
+                                "b": 180
+                              }
+                            }
+                          },
+                          {
+                            "name": "Line",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": -80,
+                                  "y": 0
+                                },
+                                {
+                                  "x": -68.7,
+                                  "y": 34.2
+                                },
+                                {
+                                  "x": -61.5,
+                                  "y": 53.1
+                                },
+                                {
+                                  "x": -55.1,
+                                  "y": 66.4
+                                },
+                                {
+                                  "x": -49.4,
+                                  "y": 74.6
+                                },
+                                {
+                                  "x": -43.8,
+                                  "y": 79.1
+                                },
+                                {
+                                  "x": -38.2,
+                                  "y": 79.8
+                                },
+                                {
+                                  "x": -32.6,
+                                  "y": 76.6
+                                },
+                                {
+                                  "x": -26.9,
+                                  "y": 69.7
+                                },
+                                {
+                                  "x": -21.3,
+                                  "y": 59.4
+                                },
+                                {
+                                  "x": -14.9,
+                                  "y": 44.1
+                                },
+                                {
+                                  "x": -6.83,
+                                  "y": 21.2
+                                },
+                                {
+                                  "x": 10.1,
+                                  "y": -30.8
+                                },
+                                {
+                                  "x": 17.3,
+                                  "y": -50.2
+                                },
+                                {
+                                  "x": 23.7,
+                                  "y": -64.2
+                                },
+                                {
+                                  "x": 29.3,
+                                  "y": -73.1
+                                },
+                                {
+                                  "x": 35,
+                                  "y": -78.4
+                                },
+                                {
+                                  "x": 40.6,
+                                  "y": -80
+                                },
+                                {
+                                  "x": 46.2,
+                                  "y": -77.6
+                                },
+                                {
+                                  "x": 51.9,
+                                  "y": -71.5
+                                },
+                                {
+                                  "x": 57.5,
+                                  "y": -61.9
+                                },
+                                {
+                                  "x": 63.9,
+                                  "y": -47.2
+                                },
+                                {
+                                  "x": 72,
+                                  "y": -24.8
+                                },
+                                {
+                                  "x": 80,
+                                  "y": 0
+                                }
+                              ],
+                              "color": {
+                                "r": 28,
+                                "g": 108,
+                                "b": 200
+                              },
+                              "smooth": "Smooth.Bezier"
+                            }
+                          },
+                          {
+                            "name": "Line",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": -52,
+                                  "y": 36
+                                },
+                                {
+                                  "x": -24,
+                                  "y": 36
+                                }
+                              ],
+                              "color": {
+                                "r": 217,
+                                "g": 67,
+                                "b": 180
+                              }
+                            }
+                          },
+                          {
+                            "name": "Line",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": -52,
+                                  "y": 0
+                                },
+                                {
+                                  "x": -52,
+                                  "y": 36
+                                }
+                              ],
+                              "color": {
+                                "r": 217,
+                                "g": 67,
+                                "b": 180
+                              },
+                              "smooth": "Smooth.Bezier"
+                            }
+                          },
+                          {
+                            "name": "Line",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": -24,
+                                  "y": 36
+                                },
+                                {
+                                  "x": -24,
+                                  "y": 46
+                                }
+                              ],
+                              "color": {
+                                "r": 217,
+                                "g": 67,
+                                "b": 180
+                              },
+                              "smooth": "Smooth.Bezier"
+                            }
+                          },
+                          {
+                            "name": "Line",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": -24,
+                                  "y": 46
+                                },
+                                {
+                                  "x": 4,
+                                  "y": 46
+                                }
+                              ],
+                              "color": {
+                                "r": 217,
+                                "g": 67,
+                                "b": 180
+                              }
+                            }
+                          },
+                          {
+                            "name": "Line",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": 4,
+                                  "y": 4
+                                },
+                                {
+                                  "x": 32,
+                                  "y": 4
+                                }
+                              ],
+                              "color": {
+                                "r": 217,
+                                "g": 67,
+                                "b": 180
+                              }
+                            }
+                          },
+                          {
+                            "name": "Line",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": 4,
+                                  "y": 46
+                                },
+                                {
+                                  "x": 4,
+                                  "y": 4
+                                }
+                              ],
+                              "color": {
+                                "r": 217,
+                                "g": 67,
+                                "b": 180
+                              },
+                              "smooth": "Smooth.Bezier"
+                            }
+                          },
+                          {
+                            "name": "Line",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": 32,
+                                  "y": -32
+                                },
+                                {
+                                  "x": 60,
+                                  "y": -32
+                                }
+                              ],
+                              "color": {
+                                "r": 217,
+                                "g": 67,
+                                "b": 180
+                              }
+                            }
+                          },
+                          {
+                            "name": "Line",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": 32,
+                                  "y": 4
+                                },
+                                {
+                                  "x": 32,
+                                  "y": -32
+                                }
+                              ],
+                              "color": {
+                                "r": 217,
+                                "g": 67,
+                                "b": 180
+                              },
+                              "smooth": "Smooth.Bezier"
+                            }
+                          },
+                          {
+                            "name": "Line",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": 60,
+                                  "y": -58
+                                },
+                                {
+                                  "x": 82,
+                                  "y": -58
+                                }
+                              ],
+                              "color": {
+                                "r": 217,
+                                "g": 67,
+                                "b": 180
+                              }
+                            }
+                          },
+                          {
+                            "name": "Line",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": 60,
+                                  "y": -32
+                                },
+                                {
+                                  "x": 60,
+                                  "y": -58
+                                }
+                              ],
+                              "color": {
+                                "r": 217,
+                                "g": 67,
+                                "b": 180
+                              },
+                              "smooth": "Smooth.Bezier"
+                            }
+                          },
+                          {
+                            "name": "Ellipse",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -25,
+                                  "y": -10
+                                },
+                                {
+                                  "x": -45,
+                                  "y": 10
+                                }
+                              ],
+                              "lineColor": {
+                                "r": 176,
+                                "g": 181,
+                                "b": 255
+                              },
+                              "fillColor": {
+                                "r": 255,
+                                "g": 255,
+                                "b": 255
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          },
+                          {
+                            "name": "Ellipse",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": 45,
+                                  "y": -10
+                                },
+                                {
+                                  "x": 25,
+                                  "y": 10
+                                }
+                              ],
+                              "lineColor": {
+                                "r": 176,
+                                "g": 181,
+                                "b": 255
+                              },
+                              "fillColor": {
+                                "r": 255,
+                                "g": 255,
+                                "b": 255
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          },
+                          {
+                            "name": "Line",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": -100,
+                                  "y": 0
+                                },
+                                {
+                                  "x": -45,
+                                  "y": 0
+                                }
+                              ],
+                              "color": {
+                                "r": 176,
+                                "g": 181,
+                                "b": 255
+                              }
+                            }
+                          },
+                          {
+                            "name": "Line",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": 45,
+                                  "y": 0
+                                },
+                                {
+                                  "x": 100,
+                                  "y": 0
+                                }
+                              ],
+                              "color": {
+                                "r": 176,
+                                "g": 181,
+                                "b": 255
+                              }
+                            }
+                          },
+                          {
+                            "name": "Line",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": -35,
+                                  "y": 0
+                                },
+                                {
+                                  "x": 28,
+                                  "y": -48
+                                }
+                              ],
+                              "color": {
+                                "r": 176,
+                                "g": 181,
+                                "b": 255
+                              }
+                            }
+                          },
+                          {
+                            "name": "Line",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": 0,
+                                  "y": -100
+                                },
+                                {
+                                  "x": 0,
+                                  "y": -26
+                                }
+                              ],
+                              "color": {
+                                "r": 255,
+                                "g": 0,
+                                "b": 255
+                              }
+                            }
+                          },
+                          {
+                            "name": "Text",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": 56,
+                                  "y": 92
+                                },
+                                {
+                                  "x": 92,
+                                  "y": 60
+                                }
+                              ],
+                              "textString": "\"%n\"",
+                              "textColor": {
+                                "r": 28,
+                                "g": 108,
+                                "b": 200
+                              }
+                            }
+                          },
+                          {
+                            "name": "Text",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": 226,
+                                  "y": 60
+                                },
+                                {
+                                  "x": 106,
+                                  "y": 10
+                                }
+                              ],
+                              "textString": "DynamicSelect(\"\",String(y",
+                              "textColor": {
+                                "r": 0,
+                                "g": 0,
+                                "b": 0
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Documentation",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "info",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<p>\nBlock that outputs the triggered moving mean value of an input signal.\n</p>\n<p>\nAt the start of the simulation, and whenever the trigger signal is rising\n(i.e., the trigger changes to <code>true</code>), the block samples\nthe input, computes the moving mean value over the past <code>n</code> samples,\nand produces this value at its output <code>y</code>.\n</p>\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "revisions",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<ul>\n<li>\nMarch 30, 2022, by Michael Wetter:<br/>\nAdded <code>discrete</code> keyword to sampled variable.<br/>\nThis is for\n<a href=\\\"https://github.com/lbl-srg/modelica-buildings/issues/2942\\\">Buildings, issue 2942</a>.\n</li>\n<li>\nOctober 19, 2020, by Michael Wetter:<br/>\nRemoved non-needed protected parameter <code>t0</code>.\n</li>\n<li>\nMarch 2, 2020, by Michael Wetter:<br/>\nChanged icon to display dynamically the output value.\n</li>\n<li>\nNovember 7, 2019, by Michael Wetter:<br/>\nReformulated model to use an <code>equation</code> rather than an <code>algorithm</code> section.\n</li>\n<li>\nOctober 16, 2019, by Kun Zhang:<br/>\nFirst implementation. This is for <a href=\\\"https://github.com/lbl-srg/modelica-buildings/issues/1588\\\">Buildings, issue 1588</a>.\n</li>\n</ul>\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    },
+    "n": {
+      "type_prefix": "parameter",
+      "type_specifier": "Integer",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "TriggeredMovingMean",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "n",
+          "modification": {
+            "class_modification": [
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "min",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "1"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "description": {
+          "description_string": "Number of samples over which the input is averaged"
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "within": "Buildings.Controls.OBC.CDL.Discrete",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Discrete/TriggeredMovingMean.mo"
+    },
+    "u": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "TriggeredMovingMean",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "u"
+        },
+        "description": {
+          "description_string": "Input signal to be sampled",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": -140,
+                          "y": -20
+                        },
+                        {
+                          "x": -100,
+                          "y": 20
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": -140,
+                      "y": -20
+                    },
+                    {
+                      "x": -100,
+                      "y": 20
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "within": "Buildings.Controls.OBC.CDL.Discrete",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Discrete/TriggeredMovingMean.mo"
+    },
+    "trigger": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.BooleanInput",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "TriggeredMovingMean",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "trigger"
+        },
+        "description": {
+          "description_string": "Input for trigger that causes u to be sampled",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "origin": {
+                        "x": 0,
+                        "y": -120
+                      },
+                      "extent": [
+                        {
+                          "x": -20,
+                          "y": -20
+                        },
+                        {
+                          "x": 20,
+                          "y": 20
+                        }
+                      ],
+                      "rotation": 90
+                    },
+                    "iconTransformation": {
+                      "origin": {
+                        "x": 0,
+                        "y": -120
+                      },
+                      "extent": [
+                        {
+                          "x": -20,
+                          "y": -20
+                        },
+                        {
+                          "x": 20,
+                          "y": 20
+                        }
+                      ],
+                      "rotation": 90
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "origin": {
+                    "x": 0,
+                    "y": -120
+                  },
+                  "extent": [
+                    {
+                      "x": -20,
+                      "y": -20
+                    },
+                    {
+                      "x": 20,
+                      "y": 20
+                    }
+                  ],
+                  "rotation": 90
+                },
+                "iconTransformation": {
+                  "origin": {
+                    "x": 0,
+                    "y": -120
+                  },
+                  "extent": [
+                    {
+                      "x": -20,
+                      "y": -20
+                    },
+                    {
+                      "x": 20,
+                      "y": 20
+                    }
+                  ],
+                  "rotation": 90
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "within": "Buildings.Controls.OBC.CDL.Discrete",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Discrete/TriggeredMovingMean.mo"
+    },
+    "y": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "TriggeredMovingMean",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "y"
+        },
+        "description": {
+          "description_string": "Moving mean of input signal over all trigger instants",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": 100,
+                          "y": -20
+                        },
+                        {
+                          "x": 140,
+                          "y": 20
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": 100,
+                      "y": -20
+                    },
+                    {
+                      "x": 140,
+                      "y": 20
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "within": "Buildings.Controls.OBC.CDL.Discrete",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Discrete/TriggeredMovingMean.mo"
+    },
+    "iSample": {
+      "type_specifier": "Integer",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "TriggeredMovingMean",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "iSample",
+          "modification": {
+            "class_modification": [
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "start",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "0"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "fixed",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "true"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "description": {
+          "description_string": "Sample numbering in the calculation"
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "within": "Buildings.Controls.OBC.CDL.Discrete",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Discrete/TriggeredMovingMean.mo"
+    },
+    "counter": {
+      "type_specifier": "Integer",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "TriggeredMovingMean",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "counter",
+          "modification": {
+            "class_modification": [
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "start",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "0"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "fixed",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "true"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "description": {
+          "description_string": "Number of samples used for averaging calculation"
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "within": "Buildings.Controls.OBC.CDL.Discrete",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Discrete/TriggeredMovingMean.mo"
+    },
+    "index": {
+      "type_specifier": "Integer",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "TriggeredMovingMean",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "index",
+          "modification": {
+            "class_modification": [
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "start",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "0"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "fixed",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "true"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "description": {
+          "description_string": "Index of the vector ySample"
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "within": "Buildings.Controls.OBC.CDL.Discrete",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Discrete/TriggeredMovingMean.mo"
+    },
+    "ySample": {
+      "type_prefix": "discrete",
+      "type_specifier": "Real",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "TriggeredMovingMean",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "ySample",
+          "array_subscripts": [
+            {
+              "expression": {
+                "simple_expression": "n"
+              }
+            }
+          ],
+          "modification": {
+            "class_modification": [
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "start",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": {
+                          "function_call": {
+                            "name": "zeros",
+                            "arguments": [
+                              {
+                                "name": "n"
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "element_modification_or_replaceable": {
+                  "each": true,
+                  "element_modification": {
+                    "name": "fixed",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "true"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "description": {
+          "description_string": "Vector of samples to be averaged"
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": true,
+      "arraySubscripts": "[n]",
+      "within": "Buildings.Controls.OBC.CDL.Discrete",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Discrete/TriggeredMovingMean.mo"
+    }
+  },
+  "requiredReferences": {
+    "connections": {}
+  }
+}
