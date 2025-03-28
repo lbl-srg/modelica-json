@@ -26,9 +26,15 @@ First, set the MODELICAPATH environment variable by adding the following line to
 export MODELICAPATH=${MODELICAPATH}:/usr/local/Modelica/Library/
 ```
 
-The parser requires Java and node, which can be installed on Ubuntu using
+The parser requires Java and node. The java dependency can be installed using:
 ```
-sudo apt-get install nodejs npm default-jdk
+sudo apt-get install default-jdk default-jre
+```
+The node version should be >= 18 and you can use [Node Version Manager](https://nodejs.org/en/download/package-manager) to set it up. Following is using 0.39.7 version:
+```
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+source ~/.bashrc
+nvm install 18
 ```
 
 To install dependencies of the parser, run
@@ -54,7 +60,7 @@ make clean-installation
 
 ### Windows
 
-- First, make sure that both the `modelica-json` directory and the `Modelica Buildings Library` directory are in the folders that do not require administrator access. 
+- First, make sure that both the `modelica-json` directory and the `Modelica Buildings Library` directory are in the folders that do not require administrator access.
   By saving the directories in driver other than `C:\` would typical avoid the administrator access issue.
 
 - Then, create the `MODELICAPATH` environment variable and set the value as the path of Modelica Buildings Library, like `E:\modelica-buildings` or `E:\modelica-buildings-master`.
@@ -91,9 +97,11 @@ The only required input is the path of the file or package to be parsed.
 This parser takes a .mo file in input and has three possible outputs, that can be specified with the argument -o :
 
 - **raw-json** : detailed transcription of a Modelica file in JSON
-- **json**: simplified JSON format, easier to read an interpret
+- **json**: simplified JSON format, easier to read and interpret
 - **semantic**: generate semantic model from semantic information included within `annotation` in the Modelica file
-- **cxf**: generate CXF representation in `.jsonld` of a CDL sequence complying with ASHRAE S231P 
+- **cxf**: generate CXF representation in `.jsonld` of a CDL sequence complying with ASHRAE S231P
+- **doc**: create the documentation of the sequence of operation in an HTML document
+- **doc+**: create the documentation of the sequence of operation and the list of all variables in an HTML document
 
 ##### --mode / -m
 
@@ -116,12 +124,12 @@ If `-p` flag is specified, the JSON output conforms to prettyprint. The default 
 
 ##### --elementary
 
-If `--elementary` flag is specified, the CXF (jsonld) files for the elementary blocks are also generated. Else, they are ignored. The default option is `false`. 
+If `--elementary` flag is specified, the CXF (jsonld) files for the elementary blocks are also generated. Else, they are ignored. The default option is `false`.
 `-o`/`--output` should be `cxf`.
 
 ##### --cxfCore
 
-If `--cxfCore` flag is specified, generate the  CXF-core.jsonld files for all the elementary blocks. The default option is `false`.  
+If `--cxfCore` flag is specified, generate the  CXF-core.jsonld files for all the elementary blocks. The default option is `false`.
 `-o`/`--output` should be `cxf`, `-f`/`--file` should be `path/to/CDL` and `--elementary` flag must be used.
 
 ## 4. JSON Schemas
@@ -142,7 +150,7 @@ Graphical viewers are available (please use right click + open in a new tab or r
 
 [CXF-Core.jsonld](CXF-Core.jsonld) contains the CXF representation of all CDL elementary blocks, classes and relationships.
 
-To generate the `CXF-Core.jsonld`, use: 
+To generate the `CXF-Core.jsonld`, use:
 
 ```
 node app.js -f <path/to/modelica-buildings>/Buildings/Controls/OBC/CDL -o cxf --elementary --cxfCore

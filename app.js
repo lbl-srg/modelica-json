@@ -3,6 +3,7 @@ const pa = require('./lib/parser.js')
 const ut = require('./lib/util.js')
 const se = require('./lib/semanticExtractor.js')
 const ce = require('./lib/cxfExtractor.js')
+const dc = require('./lib/cdlDoc.js')
 
 const logger = require('winston')
 const path = require('path')
@@ -19,7 +20,7 @@ parser.addArgument(
   ['-o', '--output'],
   {
     help: 'Specify output format.',
-    choices: ['raw-json', 'json', 'modelica', 'semantic', 'cxf'],
+    choices: ['raw-json', 'json', 'modelica', 'semantic', 'cxf', 'doc', 'doc+'],
     defaultValue: 'json'
   }
 )
@@ -34,7 +35,7 @@ parser.addArgument(
 parser.addArgument(
   ['-m', '--mode'],
   {
-    help: "Parsing mode, CDL model or a package of the Modelica Buildings library, 'cdl' is the default.",
+    help: "Parsing mode, CDL model or a package of the Modelica Buildings library, 'modelica' is the default.",
     choices: ['cdl', 'modelica'],
     defaultValue: 'modelica'
   }
@@ -53,27 +54,21 @@ parser.addArgument(
     defaultValue: 'current'
   }
 )
-
 parser.addArgument(
-
   ['-p', '--prettyPrint'],
   {
     help: 'Pretty print JSON output. The -o/--output should be raw-json/json/cxf.',
     action: 'storeTrue'
   }
 )
-
 parser.addArgument(
-
   ['--elementary'],
   {
     help: 'If this flag is present, generate CXF of elementary blocks in addition to composite blocks. -o/--output should be cxf.',
     action: 'storeTrue'
   }
 )
-
 parser.addArgument(
-
   ['--cxfCore'],
   {
     help: 'If this flag is present, generate CXF-core.jsonld. -o/--output should be cxf, -f/--file should be path/to/CDL and --elementary flag must be used.',
@@ -125,11 +120,12 @@ if (args.output === 'modelica') {
       throw new Error('In order to generate CXF-core.jsonld containing all elementary blocks, --elementary flag must be used.')
     }
   }
+  let jsons // Array of json representations of all mo files recursively instantiated by the top-level class
   const completedJsonGeneration = new Promise(
     function (resolve, reject) {
       const moFiles = ut.getMoFiles(args.file)
       // Parse the json representation for moFiles
-      pa.getJsons(moFiles, args.mode, args.output, args.directory, args.prettyPrint, args.elementary, args.cxfCore)
+      jsons = pa.getJsons(moFiles, args.output, args.directory, args.prettyPrint, args.elementary, args.cxfCore)
       resolve(0)
     }
   )
@@ -139,6 +135,12 @@ if (args.output === 'modelica') {
     }
     if (args.output === 'cxf' && args.cxfCore && args.elementary) {
       ce.getCxfCore(args.file, args.directory, args.prettyPrint)
+    }
+    if (args.output === 'doc' || args.output === 'doc+') {
+      const unitData = JSON.parse(
+        fs.readFileSync(path.join(__dirname, 'units-si.json'), 'utf8'))
+      const includeVariables = (args.output === 'doc+')
+      dc.buildDoc(jsons[0], jsons, unitData, args.directory, includeVariables)
     }
   })
 }
