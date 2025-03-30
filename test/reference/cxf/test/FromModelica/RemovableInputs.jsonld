@@ -1,7 +1,9 @@
 {
   "@context": {
     "S231P": "https://data.ashrae.org/S231P#",
-    "qudt": "http://qudt.org/schema/qudt#"
+    "qudt": "http://qudt.org/schema/qudt#",
+    "q": "http://qudt.org/vocab/quantitykind#",
+    "unit": "http://qudt.org/vocab/unit#"
   },
   "@graph": [
     {
@@ -94,10 +96,10 @@
       "@id": "http://example.org#FromModelica.RemovableInputs.TOut",
       "@type": "S231P:RealInput",
       "qudt:hasQuantityKind": {
-        "@id": "S231P:ThermodynamicTemperature"
+        "@id": "q:ThermodynamicTemperature"
       },
       "qudt:hasUnit": {
-        "@id": "S231P:K"
+        "@id": "unit:K"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Temperature input",
@@ -108,10 +110,10 @@
       "@id": "http://example.org#FromModelica.RemovableInputs.TOutWitDef",
       "@type": "S231P:RealInput",
       "qudt:hasQuantityKind": {
-        "@id": "S231P:ThermodynamicTemperature"
+        "@id": "q:ThermodynamicTemperature"
       },
       "qudt:hasUnit": {
-        "@id": "S231P:K"
+        "@id": "unit:K"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Temperature input with specified default value",

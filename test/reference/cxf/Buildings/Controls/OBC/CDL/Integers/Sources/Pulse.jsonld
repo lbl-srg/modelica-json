@@ -1,7 +1,9 @@
 {
   "@context": {
     "S231P": "https://data.ashrae.org/S231P#",
-    "qudt": "http://qudt.org/schema/qudt#"
+    "qudt": "http://qudt.org/schema/qudt#",
+    "q": "http://qudt.org/vocab/quantitykind#",
+    "unit": "http://qudt.org/vocab/unit#"
   },
   "@graph": [
     {
@@ -55,10 +57,10 @@
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.Sources.Pulse.period",
       "@type": "S231P:Parameter",
       "qudt:hasQuantityKind": {
-        "@id": "S231P:Time"
+        "@id": "q:Time"
       },
       "qudt:hasUnit": {
-        "@id": "S231P:s"
+        "@id": "unit:SEC"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Time for one period",
@@ -72,10 +74,10 @@
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.Sources.Pulse.shift",
       "@type": "S231P:Parameter",
       "qudt:hasQuantityKind": {
-        "@id": "S231P:Time"
+        "@id": "q:Time"
       },
       "qudt:hasUnit": {
-        "@id": "S231P:s"
+        "@id": "unit:SEC"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Shift time for output",
@@ -89,7 +91,7 @@
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.Sources.Pulse.width",
       "@type": "S231P:Parameter",
       "qudt:hasUnit": {
-        "@id": "S231P:1"
+        "@id": "unit:UNITLESS"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Width of pulse in fraction of period",

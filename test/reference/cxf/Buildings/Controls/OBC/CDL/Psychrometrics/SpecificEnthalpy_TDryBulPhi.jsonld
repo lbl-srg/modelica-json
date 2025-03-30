@@ -1,7 +1,9 @@
 {
   "@context": {
     "S231P": "https://data.ashrae.org/S231P#",
-    "qudt": "http://qudt.org/schema/qudt#"
+    "qudt": "http://qudt.org/schema/qudt#",
+    "q": "http://qudt.org/vocab/quantitykind#",
+    "unit": "http://qudt.org/vocab/unit#"
   },
   "@graph": [
     {
@@ -27,10 +29,10 @@
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Psychrometrics.SpecificEnthalpy_TDryBulPhi.h",
       "@type": "S231P:RealOutput",
       "qudt:hasQuantityKind": {
-        "@id": "S231P:SpecificEnergy"
+        "@id": "q:SpecificEnergy"
       },
       "qudt:hasUnit": {
-        "@id": "https://data.ashrae.org/S231P#J/kg"
+        "@id": "unit:J-PER-KiloGM"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Specific enthalpy",
@@ -41,10 +43,10 @@
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Psychrometrics.SpecificEnthalpy_TDryBulPhi.pAtm",
       "@type": "S231P:Parameter",
       "qudt:hasQuantityKind": {
-        "@id": "S231P:Pressure"
+        "@id": "q:Pressure"
       },
       "qudt:hasUnit": {
-        "@id": "S231P:Pa"
+        "@id": "unit:PA"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Atmospheric pressure",
@@ -68,10 +70,10 @@
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Psychrometrics.SpecificEnthalpy_TDryBulPhi.TDryBul",
       "@type": "S231P:RealInput",
       "qudt:hasQuantityKind": {
-        "@id": "S231P:ThermodynamicTemperature"
+        "@id": "q:ThermodynamicTemperature"
       },
       "qudt:hasUnit": {
-        "@id": "S231P:K"
+        "@id": "unit:K"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Dry bulb temperature",

@@ -1,7 +1,9 @@
 {
   "@context": {
     "S231P": "https://data.ashrae.org/S231P#",
-    "qudt": "http://qudt.org/schema/qudt#"
+    "qudt": "http://qudt.org/schema/qudt#",
+    "q": "http://qudt.org/vocab/quantitykind#",
+    "unit": "http://qudt.org/vocab/unit#"
   },
   "@graph": [
     {
@@ -16,10 +18,10 @@
       "@id": "http://example.org#FromModelica.ParameterWithAttributes.kP",
       "@type": "S231P:Parameter",
       "qudt:hasQuantityKind": {
-        "@id": "S231P:PressureDifference"
+        "@id": "q:Pressure"
       },
       "qudt:hasUnit": {
-        "@id": "S231P:Pa"
+        "@id": "unit:PA"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Some comment",

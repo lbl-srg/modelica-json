@@ -1,7 +1,9 @@
 {
   "@context": {
     "S231P": "https://data.ashrae.org/S231P#",
-    "qudt": "http://qudt.org/schema/qudt#"
+    "qudt": "http://qudt.org/schema/qudt#",
+    "q": "http://qudt.org/vocab/quantitykind#",
+    "unit": "http://qudt.org/vocab/unit#"
   },
   "@graph": [
     {
@@ -39,17 +41,17 @@
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Utilities.SunRiseSet.lat",
       "@type": "S231P:Parameter",
-      "qudt:hasDisplayUnit": {
-        "@id": "S231P:deg"
-      },
       "qudt:hasQuantityKind": {
-        "@id": "S231P:Angle"
+        "@id": "q:Angle"
       },
       "qudt:hasUnit": {
-        "@id": "S231P:rad"
+        "@id": "unit:RAD"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Latitude",
+      "S231P:hasDisplayUnit": {
+        "@id": "unit:DEG"
+      },
       "S231P:isOfDataType": {
         "@id": "S231P:Real"
       },
@@ -58,17 +60,17 @@
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Utilities.SunRiseSet.lon",
       "@type": "S231P:Parameter",
-      "qudt:hasDisplayUnit": {
-        "@id": "S231P:deg"
-      },
       "qudt:hasQuantityKind": {
-        "@id": "S231P:Angle"
+        "@id": "q:Angle"
       },
       "qudt:hasUnit": {
-        "@id": "S231P:rad"
+        "@id": "unit:RAD"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Longitude",
+      "S231P:hasDisplayUnit": {
+        "@id": "unit:DEG"
+      },
       "S231P:isOfDataType": {
         "@id": "S231P:Real"
       },
@@ -77,35 +79,35 @@
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Utilities.SunRiseSet.nextSunRise",
       "@type": "S231P:RealOutput",
-      "qudt:hasDisplayUnit": {
-        "@id": "S231P:h"
-      },
       "qudt:hasQuantityKind": {
-        "@id": "S231P:Time"
+        "@id": "q:Time"
       },
       "qudt:hasUnit": {
-        "@id": "S231P:s"
+        "@id": "unit:SEC"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Time of next sunrise",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":40},{\"x\":140,\"y\":80}]}}}",
+      "S231P:hasDisplayUnit": {
+        "@id": "unit:HR"
+      },
       "S231P:label": "nextSunRise"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Utilities.SunRiseSet.nextSunSet",
       "@type": "S231P:RealOutput",
-      "qudt:hasDisplayUnit": {
-        "@id": "S231P:h"
-      },
       "qudt:hasQuantityKind": {
-        "@id": "S231P:Time"
+        "@id": "q:Time"
       },
       "qudt:hasUnit": {
-        "@id": "S231P:s"
+        "@id": "unit:SEC"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Time of next sunset",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
+      "S231P:hasDisplayUnit": {
+        "@id": "unit:HR"
+      },
       "S231P:label": "nextSunSet"
     },
     {
@@ -119,17 +121,17 @@
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Utilities.SunRiseSet.timZon",
       "@type": "S231P:Parameter",
-      "qudt:hasDisplayUnit": {
-        "@id": "S231P:h"
-      },
       "qudt:hasQuantityKind": {
-        "@id": "S231P:Time"
+        "@id": "q:Time"
       },
       "qudt:hasUnit": {
-        "@id": "S231P:s"
+        "@id": "unit:SEC"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Time zone",
+      "S231P:hasDisplayUnit": {
+        "@id": "unit:HR"
+      },
       "S231P:isOfDataType": {
         "@id": "S231P:Real"
       },

@@ -1,7 +1,9 @@
 {
   "@context": {
     "S231P": "https://data.ashrae.org/S231P#",
-    "qudt": "http://qudt.org/schema/qudt#"
+    "qudt": "http://qudt.org/schema/qudt#",
+    "unit": "http://qudt.org/vocab/unit#",
+    "q": "http://qudt.org/vocab/quantitykind#"
   },
   "@graph": [
     {
@@ -24,7 +26,7 @@
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Psychrometrics.DewPoint_TDryBulPhi.phi",
       "@type": "S231P:RealInput",
       "qudt:hasUnit": {
-        "@id": "S231P:1"
+        "@id": "unit:UNITLESS"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Relative air humidity",
@@ -37,10 +39,10 @@
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Psychrometrics.DewPoint_TDryBulPhi.TDewPoi",
       "@type": "S231P:RealOutput",
       "qudt:hasQuantityKind": {
-        "@id": "S231P:ThermodynamicTemperature"
+        "@id": "q:ThermodynamicTemperature"
       },
       "qudt:hasUnit": {
-        "@id": "S231P:K"
+        "@id": "unit:K"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Dew point temperature",
@@ -52,10 +54,10 @@
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Psychrometrics.DewPoint_TDryBulPhi.TDryBul",
       "@type": "S231P:RealInput",
       "qudt:hasQuantityKind": {
-        "@id": "S231P:ThermodynamicTemperature"
+        "@id": "q:ThermodynamicTemperature"
       },
       "qudt:hasUnit": {
-        "@id": "S231P:K"
+        "@id": "unit:K"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Dry bulb temperature",

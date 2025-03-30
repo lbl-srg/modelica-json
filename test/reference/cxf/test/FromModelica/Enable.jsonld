@@ -2,6 +2,7 @@
   "@context": {
     "S231P": "https://data.ashrae.org/S231P#",
     "qudt": "http://qudt.org/schema/qudt#",
+    "q": "http://qudt.org/vocab/quantitykind#",
     "unit": "http://qudt.org/vocab/unit#"
   },
   "@graph": [
@@ -292,10 +293,10 @@
       "@id": "http://example.org#FromModelica.Enable.delEntHis",
       "@type": "S231P:Parameter",
       "qudt:hasQuantityKind": {
-        "@id": "S231P:SpecificEnergy"
+        "@id": "q:SpecificEnergy"
       },
       "qudt:hasUnit": {
-        "@id": "https://data.ashrae.org/S231P#J/kg"
+        "@id": "unit:J-PER-KiloGM"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Delta between the enthalpy hysteresis high and low limits",
@@ -369,18 +370,18 @@
     {
       "@id": "http://example.org#FromModelica.Enable.delTOutHis",
       "@type": "S231P:Parameter",
-      "qudt:hasDisplayUnit": {
-        "@id": "S231P:K"
-      },
       "qudt:hasQuantityKind": {
-        "@id": "S231P:TemperatureDifference"
+        "@id": "q:TemperatureDifference"
       },
       "qudt:hasUnit": {
-        "@id": "S231P:K"
+        "@id": "unit:K"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Delta between the temperature hysteresis high and low limit",
       "S231P:graphics": "{\"name\":\"Dialog\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"tab\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"\\\"Advanced\\\"\"}}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"group\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"\\\"Hysteresis\\\"\"}}}}}]}}",
+      "S231P:hasDisplayUnit": {
+        "@id": "unit:K"
+      },
       "S231P:isOfDataType": {
         "@id": "S231P:Real"
       },
@@ -391,10 +392,10 @@
       "@id": "http://example.org#FromModelica.Enable.disDel",
       "@type": "S231P:Parameter",
       "qudt:hasQuantityKind": {
-        "@id": "S231P:Time"
+        "@id": "q:Time"
       },
       "qudt:hasUnit": {
-        "@id": "S231P:s"
+        "@id": "unit:SEC"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Short time delay before closing the OA damper at disable to avoid pressure fluctuations",
@@ -436,10 +437,10 @@
       "@id": "http://example.org#FromModelica.Enable.hOut",
       "@type": "S231P:RealInput",
       "qudt:hasQuantityKind": {
-        "@id": "S231P:SpecificEnergy"
+        "@id": "q:SpecificEnergy"
       },
       "qudt:hasUnit": {
-        "@id": "https://data.ashrae.org/S231P#J/kg"
+        "@id": "unit:J-PER-KiloGM"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Outdoor air enthalpy",
@@ -453,10 +454,10 @@
       "@id": "http://example.org#FromModelica.Enable.hOutCut",
       "@type": "S231P:RealInput",
       "qudt:hasQuantityKind": {
-        "@id": "S231P:SpecificEnergy"
+        "@id": "q:SpecificEnergy"
       },
       "qudt:hasUnit": {
-        "@id": "https://data.ashrae.org/S231P#J/kg"
+        "@id": "unit:J-PER-KiloGM"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "OA enthalpy high limit cutoff. For differential enthalpy use return air enthalpy measurement",
@@ -470,10 +471,10 @@
       "@id": "http://example.org#FromModelica.Enable.hOutHigLimCutHig",
       "@type": "S231P:Parameter",
       "qudt:hasQuantityKind": {
-        "@id": "S231P:SpecificEnergy"
+        "@id": "q:SpecificEnergy"
       },
       "qudt:hasUnit": {
-        "@id": "https://data.ashrae.org/S231P#J/kg"
+        "@id": "unit:J-PER-KiloGM"
       },
       "S231P:accessSpecifier": "protected",
       "S231P:description": "Hysteresis block high limit cutoff",
@@ -766,10 +767,10 @@
       "@id": "http://example.org#FromModelica.Enable.retDamFulOpeTim",
       "@type": "S231P:Parameter",
       "qudt:hasQuantityKind": {
-        "@id": "S231P:Time"
+        "@id": "q:Time"
       },
       "qudt:hasUnit": {
-        "@id": "S231P:s"
+        "@id": "unit:SEC"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Time period to keep RA damper fully open before releasing it for minimum outdoor airflow control\n    at disable to avoid pressure fluctuations",
@@ -861,18 +862,18 @@
     {
       "@id": "http://example.org#FromModelica.Enable.TOut",
       "@type": "S231P:RealInput",
-      "qudt:hasDisplayUnit": {
-        "@id": "unit:DEG_C"
-      },
       "qudt:hasQuantityKind": {
-        "@id": "S231P:ThermodynamicTemperature"
+        "@id": "q:ThermodynamicTemperature"
       },
       "qudt:hasUnit": {
-        "@id": "S231P:K"
+        "@id": "unit:K"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Outdoor air temperature",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-300,\"y\":232},{\"x\":-260,\"y\":272}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":110},{\"x\":-100,\"y\":150}]}}}",
+      "S231P:hasDisplayUnit": {
+        "@id": "unit:DEG_C"
+      },
       "S231P:isConnectedTo": {
         "@id": "http://example.org#FromModelica.Enable.sub1.u1"
       },
@@ -881,18 +882,18 @@
     {
       "@id": "http://example.org#FromModelica.Enable.TOutCut",
       "@type": "S231P:RealInput",
-      "qudt:hasDisplayUnit": {
-        "@id": "unit:DEG_C"
-      },
       "qudt:hasQuantityKind": {
-        "@id": "S231P:ThermodynamicTemperature"
+        "@id": "q:ThermodynamicTemperature"
       },
       "qudt:hasUnit": {
-        "@id": "S231P:K"
+        "@id": "unit:K"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "OA temperature high limit cutoff. For differential dry bulb temperature condition use return air temperature measurement",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-300,\"y\":192},{\"x\":-260,\"y\":232}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":90},{\"x\":-100,\"y\":130}]}}}",
+      "S231P:hasDisplayUnit": {
+        "@id": "unit:DEG_C"
+      },
       "S231P:isConnectedTo": {
         "@id": "http://example.org#FromModelica.Enable.sub1.u2"
       },
@@ -901,17 +902,17 @@
     {
       "@id": "http://example.org#FromModelica.Enable.TOutHigLimCutHig",
       "@type": "S231P:Parameter",
-      "qudt:hasDisplayUnit": {
-        "@id": "S231P:K"
-      },
       "qudt:hasQuantityKind": {
-        "@id": "S231P:TemperatureDifference"
+        "@id": "q:TemperatureDifference"
       },
       "qudt:hasUnit": {
-        "@id": "S231P:K"
+        "@id": "unit:K"
       },
       "S231P:accessSpecifier": "protected",
       "S231P:description": "Hysteresis high limit cutoff",
+      "S231P:hasDisplayUnit": {
+        "@id": "unit:K"
+      },
       "S231P:isOfDataType": {
         "@id": "S231P:Real"
       },
@@ -985,7 +986,7 @@
       "@id": "http://example.org#FromModelica.Enable.uOutDam_max",
       "@type": "S231P:RealInput",
       "qudt:hasUnit": {
-        "@id": "S231P:1"
+        "@id": "unit:UNITLESS"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Maximum outdoor air damper position, output from damper position limits sequence",
@@ -1001,7 +1002,7 @@
       "@id": "http://example.org#FromModelica.Enable.uOutDam_min",
       "@type": "S231P:RealInput",
       "qudt:hasUnit": {
-        "@id": "S231P:1"
+        "@id": "unit:UNITLESS"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Minimum outdoor air damper position, output from damper position limits sequence",
@@ -1017,7 +1018,7 @@
       "@id": "http://example.org#FromModelica.Enable.uRetDam_max",
       "@type": "S231P:RealInput",
       "qudt:hasUnit": {
-        "@id": "S231P:1"
+        "@id": "unit:UNITLESS"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Maximum return air damper position, output from damper position limits sequence",
@@ -1038,7 +1039,7 @@
       "@id": "http://example.org#FromModelica.Enable.uRetDam_min",
       "@type": "S231P:RealInput",
       "qudt:hasUnit": {
-        "@id": "S231P:1"
+        "@id": "unit:UNITLESS"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Minimum return air damper position, output from damper position limits sequence",
@@ -1054,7 +1055,7 @@
       "@id": "http://example.org#FromModelica.Enable.uRetDamPhy_max",
       "@type": "S231P:RealInput",
       "qudt:hasUnit": {
-        "@id": "S231P:1"
+        "@id": "unit:UNITLESS"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Physical maximum return air damper position, output from damper position limits sequence",
@@ -1087,7 +1088,7 @@
       "@id": "http://example.org#FromModelica.Enable.yOutDam_max",
       "@type": "S231P:RealOutput",
       "qudt:hasUnit": {
-        "@id": "S231P:1"
+        "@id": "unit:UNITLESS"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Maximum outdoor air damper position",
@@ -1100,7 +1101,7 @@
       "@id": "http://example.org#FromModelica.Enable.yRetDam_max",
       "@type": "S231P:RealOutput",
       "qudt:hasUnit": {
-        "@id": "S231P:1"
+        "@id": "unit:UNITLESS"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Maximum return air damper position",
@@ -1113,7 +1114,7 @@
       "@id": "http://example.org#FromModelica.Enable.yRetDam_min",
       "@type": "S231P:RealOutput",
       "qudt:hasUnit": {
-        "@id": "S231P:1"
+        "@id": "unit:UNITLESS"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Minimum return air damper position",

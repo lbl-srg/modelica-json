@@ -1,7 +1,8 @@
 {
   "@context": {
     "S231P": "https://data.ashrae.org/S231P#",
-    "qudt": "http://qudt.org/schema/qudt#"
+    "qudt": "http://qudt.org/schema/qudt#",
+    "unit": "http://qudt.org/vocab/unit#"
   },
   "@graph": [
     {
@@ -26,15 +27,15 @@
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Acos.y",
       "@type": "S231P:RealOutput",
-      "qudt:hasDisplayUnit": {
-        "@id": "S231P:deg"
-      },
       "qudt:hasUnit": {
-        "@id": "S231P:rad"
+        "@id": "unit:RAD"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Arc cosine of the input",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
+      "S231P:hasDisplayUnit": {
+        "@id": "unit:DEG"
+      },
       "S231P:label": "y"
     }
   ]
