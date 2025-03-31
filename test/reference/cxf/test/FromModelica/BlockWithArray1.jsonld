@@ -1,0 +1,62 @@
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#"
+  },
+  "@graph": [
+    {
+      "@id": "http://example.org#FromModelica.BlockWithArray1",
+      "@type": "S231P:Block",
+      "S231P:hasParameter": [
+        {
+          "@id": "http://example.org#FromModelica.BlockWithArray1.a"
+        },
+        {
+          "@id": "http://example.org#FromModelica.BlockWithArray1.b"
+        },
+        {
+          "@id": "http://example.org#FromModelica.BlockWithArray1.c"
+        }
+      ],
+      "S231P:label": "BlockWithArray1"
+    },
+    {
+      "@id": "http://example.org#FromModelica.BlockWithArray1.a",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:hasDimensions": 1,
+      "S231P:isArray": true,
+      "S231P:isOfDataType": {
+        "@id": "S231P:Integer"
+      },
+      "S231P:label": "a[5]",
+      "S231P:lengthOfDimension1": "5",
+      "S231P:value": "{1,2,3,4,5}"
+    },
+    {
+      "@id": "http://example.org#FromModelica.BlockWithArray1.b",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:hasDimensions": 1,
+      "S231P:isArray": true,
+      "S231P:isOfDataType": {
+        "@id": "S231P:Integer"
+      },
+      "S231P:label": "b[:]",
+      "S231P:value": "{1,2}"
+    },
+    {
+      "@id": "http://example.org#FromModelica.BlockWithArray1.c",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:hasDimensions": 2,
+      "S231P:isArray": true,
+      "S231P:isOfDataType": {
+        "@id": "S231P:Integer"
+      },
+      "S231P:label": "c[3,2]",
+      "S231P:lengthOfDimension1": "3",
+      "S231P:lengthOfDimension2": "2",
+      "S231P:value": "{{1,2},{3,4},{5,6}}"
+    }
+  ]
+}

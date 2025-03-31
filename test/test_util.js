@@ -34,6 +34,11 @@ mo.describe('util', function () {
       const expectedFilesInTestFolder = [
         'Block1.mo',
         'BlockInputOutput.mo',
+        'BlockWithArray1.mo',
+        'BlockWithArray2.mo',
+        'BlockWithArray3.mo',
+        'BlockWithArray4.mo',
+        'BlockWithArray5.mo',
         'BlockWithBlock1.mo',
         'ConditionalBlock.mo',
         'CustomPWithLimiter.mo',

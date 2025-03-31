@@ -30,11 +30,14 @@
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Array mask",
+      "S231P:hasDimensions": 1,
+      "S231P:isArray": true,
       "S231P:isOfDataType": {
         "@id": "S231P:Boolean"
       },
-      "S231P:label": "msk",
-      "S231P:value": "fill(true, nin)"
+      "S231P:label": "msk[nin]",
+      "S231P:lengthOfDimension1": "nin",
+      "S231P:value": "fill(true,nin)"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.RealVectorFilter.nin",
@@ -62,7 +65,10 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Input signals from which values are extracted",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
-      "S231P:label": "u"
+      "S231P:hasDimensions": 1,
+      "S231P:isArray": true,
+      "S231P:label": "u[nin]",
+      "S231P:lengthOfDimension1": "nin"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.RealVectorFilter.y",
@@ -70,7 +76,10 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Output with extracted input signals",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
-      "S231P:label": "y"
+      "S231P:hasDimensions": 1,
+      "S231P:isArray": true,
+      "S231P:label": "y[nout]",
+      "S231P:lengthOfDimension1": "nout"
     }
   ]
 }

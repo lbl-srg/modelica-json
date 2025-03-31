@@ -1237,11 +1237,14 @@
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Input gains",
+      "S231P:hasDimensions": 1,
+      "S231P:isArray": true,
       "S231P:isOfDataType": {
         "@id": "S231P:Integer"
       },
-      "S231P:label": "k",
-      "S231P:value": "fill(1, nin)"
+      "S231P:label": "k[nin]",
+      "S231P:lengthOfDimension1": "nin",
+      "S231P:value": "fill(1,nin)"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.MultiSum.nin",
@@ -1265,7 +1268,10 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Inputs to be multipled with gain and added",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":70},{\"x\":-100,\"y\":-70}]}}}",
-      "S231P:label": "u"
+      "S231P:hasDimensions": 1,
+      "S231P:isArray": true,
+      "S231P:label": "u[nin]",
+      "S231P:lengthOfDimension1": "nin"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.MultiSum.y",
@@ -1553,10 +1559,12 @@
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Table matrix with time as a first table column (in seconds, unless timeScale is not 1) and Integers in all other columns",
+      "S231P:hasDimensions": 2,
+      "S231P:isArray": true,
       "S231P:isOfDataType": {
         "@id": "S231P:Real"
       },
-      "S231P:label": "table"
+      "S231P:label": "table[:,:]"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.Sources.TimeTable.timeScale",
@@ -1578,7 +1586,10 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Output with tabulated values",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
-      "S231P:label": "y"
+      "S231P:hasDimensions": 1,
+      "S231P:isArray": true,
+      "S231P:label": "y[nout]",
+      "S231P:lengthOfDimension1": "nout"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.Stage",
@@ -2007,7 +2018,10 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Input signals",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":70},{\"x\":-100,\"y\":-70}]}}}",
-      "S231P:label": "u"
+      "S231P:hasDimensions": 1,
+      "S231P:isArray": true,
+      "S231P:label": "u[nin]",
+      "S231P:lengthOfDimension1": "nin"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.MultiAnd.y",
@@ -2053,7 +2067,10 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Input signals",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":70},{\"x\":-100,\"y\":-70}]}}}",
-      "S231P:label": "u"
+      "S231P:hasDimensions": 1,
+      "S231P:isArray": true,
+      "S231P:label": "u[nin]",
+      "S231P:lengthOfDimension1": "nin"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.MultiOr.y",
@@ -2551,10 +2568,12 @@
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Table matrix with time as a first column (in seconds, unless timeScale is not 1) and 0 for False or 1 for True in all other columns",
+      "S231P:hasDimensions": 2,
+      "S231P:isArray": true,
       "S231P:isOfDataType": {
         "@id": "S231P:Real"
       },
-      "S231P:label": "table"
+      "S231P:label": "table[:,:]"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Sources.TimeTable.timeScale",
@@ -2576,7 +2595,10 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Output with tabulated values",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":120,\"y\":-20},{\"x\":160,\"y\":20}]},\"iconTransformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
-      "S231P:label": "y"
+      "S231P:hasDimensions": 1,
+      "S231P:isArray": true,
+      "S231P:label": "y[nout]",
+      "S231P:lengthOfDimension1": "nout"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Switch",
@@ -4539,10 +4561,12 @@
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Gain matrix which is multiplied with the input",
+      "S231P:hasDimensions": 2,
+      "S231P:isArray": true,
       "S231P:isOfDataType": {
         "@id": "S231P:Real"
       },
-      "S231P:label": "K",
+      "S231P:label": "K[:,:]",
       "S231P:value": "[1,0;0,1]"
     },
     {
@@ -4551,7 +4575,10 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Input to be multiplied with the gain matrix",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
-      "S231P:label": "u"
+      "S231P:hasDimensions": 1,
+      "S231P:isArray": true,
+      "S231P:label": "u[nin]",
+      "S231P:lengthOfDimension1": "nin"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MatrixGain.y",
@@ -4559,7 +4586,10 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Product of gain matrix times the input",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
-      "S231P:label": "y"
+      "S231P:hasDimensions": 1,
+      "S231P:isArray": true,
+      "S231P:label": "y[nout]",
+      "S231P:lengthOfDimension1": "nout"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MatrixMax",
@@ -4622,7 +4652,11 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Input for the matrix max function",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
-      "S231P:label": "u"
+      "S231P:hasDimensions": 2,
+      "S231P:isArray": true,
+      "S231P:label": "u[nRow,nCol]",
+      "S231P:lengthOfDimension1": "nRow",
+      "S231P:lengthOfDimension2": "nCol"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MatrixMax.y",
@@ -4630,7 +4664,8 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Output with vector of row- or colum-wise maximum of the input matrix",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
-      "S231P:label": "y"
+      "S231P:isArray": true,
+      "S231P:label": "y[ if rowMax then size(u,1) else size(u,2)]"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MatrixMin",
@@ -4693,7 +4728,11 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Input for the matrix min function",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
-      "S231P:label": "u"
+      "S231P:hasDimensions": 2,
+      "S231P:isArray": true,
+      "S231P:label": "u[nRow,nCol]",
+      "S231P:lengthOfDimension1": "nRow",
+      "S231P:lengthOfDimension2": "nCol"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MatrixMin.y",
@@ -4701,7 +4740,8 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Output with vector of row- or colum-wise minimum of the input matrix",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
-      "S231P:label": "y"
+      "S231P:isArray": true,
+      "S231P:label": "y[ if rowMin then size(u,1) else size(u,2)]"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Max",
@@ -4909,7 +4949,10 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Input to max function",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":20},{\"x\":-100,\"y\":-20}]}}}",
-      "S231P:label": "u"
+      "S231P:hasDimensions": 1,
+      "S231P:isArray": true,
+      "S231P:label": "u[nin]",
+      "S231P:lengthOfDimension1": "nin"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MultiMax.y",
@@ -4955,7 +4998,10 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Input to the min function",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":20},{\"x\":-100,\"y\":-20}]}}}",
-      "S231P:label": "u"
+      "S231P:hasDimensions": 1,
+      "S231P:isArray": true,
+      "S231P:label": "u[nin]",
+      "S231P:lengthOfDimension1": "nin"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MultiMin.y",
@@ -4989,11 +5035,14 @@
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Input gains",
+      "S231P:hasDimensions": 1,
+      "S231P:isArray": true,
       "S231P:isOfDataType": {
         "@id": "S231P:Real"
       },
-      "S231P:label": "k",
-      "S231P:value": "fill(1, nin)"
+      "S231P:label": "k[nin]",
+      "S231P:lengthOfDimension1": "nin",
+      "S231P:value": "fill(1,nin)"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MultiSum.nin",
@@ -5017,7 +5066,10 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Input to multiplied by gain and then added",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":20},{\"x\":-100,\"y\":-20}]}}}",
-      "S231P:label": "u"
+      "S231P:hasDimensions": 1,
+      "S231P:isArray": true,
+      "S231P:label": "u[nin]",
+      "S231P:lengthOfDimension1": "nin"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MultiSum.y",
@@ -6151,7 +6203,10 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Input to be sorted",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
-      "S231P:label": "u"
+      "S231P:hasDimensions": 1,
+      "S231P:isArray": true,
+      "S231P:label": "u[nin]",
+      "S231P:lengthOfDimension1": "nin"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sort.y",
@@ -6159,7 +6214,10 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Output with sorted input",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
-      "S231P:label": "y"
+      "S231P:hasDimensions": 1,
+      "S231P:isArray": true,
+      "S231P:label": "y[nin]",
+      "S231P:lengthOfDimension1": "nin"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sort.yIdx",
@@ -6167,7 +6225,10 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Indices of the sorted vector with respect to the original vector",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-80},{\"x\":140,\"y\":-40}]},\"iconTransformation\":{\"extent\":[{\"x\":100,\"y\":-80},{\"x\":140,\"y\":-40}]}}}",
-      "S231P:label": "yIdx"
+      "S231P:hasDimensions": 1,
+      "S231P:isArray": true,
+      "S231P:label": "yIdx[nin]",
+      "S231P:lengthOfDimension1": "nin"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.CalendarTime",
@@ -6674,11 +6735,13 @@
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Offsets of output signals as a vector with length equal to number of table matrix columns less one",
+      "S231P:hasDimensions": 1,
+      "S231P:isArray": true,
       "S231P:isOfDataType": {
         "@id": "S231P:Real"
       },
-      "S231P:label": "offset",
-      "S231P:value": "fill(0, nout)"
+      "S231P:label": "offset[:]",
+      "S231P:value": "fill(0,nout)"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.TimeTable.smoothness",
@@ -6692,10 +6755,12 @@
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Table matrix (time = first column is time in seconds, unless timeScale <> 1)",
+      "S231P:hasDimensions": 2,
+      "S231P:isArray": true,
       "S231P:isOfDataType": {
         "@id": "S231P:Real"
       },
-      "S231P:label": "table"
+      "S231P:label": "table[:,:]"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.TimeTable.timeScale",
@@ -6717,7 +6782,10 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Output with tabulated values",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
-      "S231P:label": "y"
+      "S231P:hasDimensions": 1,
+      "S231P:isArray": true,
+      "S231P:label": "y[nout]",
+      "S231P:lengthOfDimension1": "nout"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sqrt",
@@ -6897,10 +6965,13 @@
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Extracting vector",
+      "S231P:hasDimensions": 1,
+      "S231P:isArray": true,
       "S231P:isOfDataType": {
         "@id": "S231P:Integer"
       },
-      "S231P:label": "extract",
+      "S231P:label": "extract[nout]",
+      "S231P:lengthOfDimension1": "nout",
       "S231P:value": "1:nout"
     },
     {
@@ -6931,7 +7002,10 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Boolean input signals",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
-      "S231P:label": "u"
+      "S231P:hasDimensions": 1,
+      "S231P:isArray": true,
+      "S231P:label": "u[nin]",
+      "S231P:lengthOfDimension1": "nin"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.BooleanExtractSignal.y",
@@ -6939,7 +7013,10 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Boolean signals extracted from the input vector with the extraction scheme specified by the integer vector",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
-      "S231P:label": "y"
+      "S231P:hasDimensions": 1,
+      "S231P:isArray": true,
+      "S231P:label": "y[nout]",
+      "S231P:lengthOfDimension1": "nout"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.BooleanExtractor",
@@ -6985,7 +7062,10 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Boolean input signals",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
-      "S231P:label": "u"
+      "S231P:hasDimensions": 1,
+      "S231P:isArray": true,
+      "S231P:label": "u[nin]",
+      "S231P:lengthOfDimension1": "nin"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.BooleanExtractor.y",
@@ -7034,7 +7114,10 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Output with replicated input signal",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
-      "S231P:label": "y"
+      "S231P:hasDimensions": 1,
+      "S231P:isArray": true,
+      "S231P:label": "y[nout]",
+      "S231P:lengthOfDimension1": "nout"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.BooleanVectorFilter",
@@ -7063,11 +7146,14 @@
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Array mask",
+      "S231P:hasDimensions": 1,
+      "S231P:isArray": true,
       "S231P:isOfDataType": {
         "@id": "S231P:Boolean"
       },
-      "S231P:label": "msk",
-      "S231P:value": "fill(true, nin)"
+      "S231P:label": "msk[nin]",
+      "S231P:lengthOfDimension1": "nin",
+      "S231P:value": "fill(true,nin)"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.BooleanVectorFilter.nin",
@@ -7095,7 +7181,10 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Input signals from which values are extracted",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
-      "S231P:label": "u"
+      "S231P:hasDimensions": 1,
+      "S231P:isArray": true,
+      "S231P:label": "u[nin]",
+      "S231P:lengthOfDimension1": "nin"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.BooleanVectorFilter.y",
@@ -7103,7 +7192,10 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Output with extracted input signals",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
-      "S231P:label": "y"
+      "S231P:hasDimensions": 1,
+      "S231P:isArray": true,
+      "S231P:label": "y[nout]",
+      "S231P:lengthOfDimension1": "nout"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.BooleanVectorReplicator",
@@ -7152,7 +7244,10 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Input signal to be replicated",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
-      "S231P:label": "u"
+      "S231P:hasDimensions": 1,
+      "S231P:isArray": true,
+      "S231P:label": "u[nin]",
+      "S231P:lengthOfDimension1": "nin"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.BooleanVectorReplicator.y",
@@ -7160,7 +7255,11 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Output with replicated input signal",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
-      "S231P:label": "y"
+      "S231P:hasDimensions": 2,
+      "S231P:isArray": true,
+      "S231P:label": "y[nout,nin]",
+      "S231P:lengthOfDimension1": "nout",
+      "S231P:lengthOfDimension2": "nin"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.IntegerExtractSignal",
@@ -7189,10 +7288,13 @@
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Extracting vector",
+      "S231P:hasDimensions": 1,
+      "S231P:isArray": true,
       "S231P:isOfDataType": {
         "@id": "S231P:Integer"
       },
-      "S231P:label": "extract",
+      "S231P:label": "extract[nout]",
+      "S231P:lengthOfDimension1": "nout",
       "S231P:value": "1:nout"
     },
     {
@@ -7223,7 +7325,10 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Integer input signals",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
-      "S231P:label": "u"
+      "S231P:hasDimensions": 1,
+      "S231P:isArray": true,
+      "S231P:label": "u[nin]",
+      "S231P:lengthOfDimension1": "nin"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.IntegerExtractSignal.y",
@@ -7231,7 +7336,10 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Integer signals extracted from the input vector with the extraction scheme specified by the integer vector",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
-      "S231P:label": "y"
+      "S231P:hasDimensions": 1,
+      "S231P:isArray": true,
+      "S231P:label": "y[nout]",
+      "S231P:lengthOfDimension1": "nout"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.IntegerExtractor",
@@ -7277,7 +7385,10 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Integer input signals",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
-      "S231P:label": "u"
+      "S231P:hasDimensions": 1,
+      "S231P:isArray": true,
+      "S231P:label": "u[nin]",
+      "S231P:lengthOfDimension1": "nin"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.IntegerExtractor.y",
@@ -7326,7 +7437,10 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Output with replicated input signal",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
-      "S231P:label": "y"
+      "S231P:hasDimensions": 1,
+      "S231P:isArray": true,
+      "S231P:label": "y[nout]",
+      "S231P:lengthOfDimension1": "nout"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.IntegerVectorFilter",
@@ -7355,11 +7469,14 @@
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Array mask",
+      "S231P:hasDimensions": 1,
+      "S231P:isArray": true,
       "S231P:isOfDataType": {
         "@id": "S231P:Boolean"
       },
-      "S231P:label": "msk",
-      "S231P:value": "fill(true, nin)"
+      "S231P:label": "msk[nin]",
+      "S231P:lengthOfDimension1": "nin",
+      "S231P:value": "fill(true,nin)"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.IntegerVectorFilter.nin",
@@ -7387,7 +7504,10 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Input signals from which values are extracted",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
-      "S231P:label": "u"
+      "S231P:hasDimensions": 1,
+      "S231P:isArray": true,
+      "S231P:label": "u[nin]",
+      "S231P:lengthOfDimension1": "nin"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.IntegerVectorFilter.y",
@@ -7395,7 +7515,10 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Output with extracted input signals",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
-      "S231P:label": "y"
+      "S231P:hasDimensions": 1,
+      "S231P:isArray": true,
+      "S231P:label": "y[nout]",
+      "S231P:lengthOfDimension1": "nout"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.IntegerVectorReplicator",
@@ -7444,7 +7567,10 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Input signal to be replicated",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
-      "S231P:label": "u"
+      "S231P:hasDimensions": 1,
+      "S231P:isArray": true,
+      "S231P:label": "u[nin]",
+      "S231P:lengthOfDimension1": "nin"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.IntegerVectorReplicator.y",
@@ -7452,7 +7578,11 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Output with replicated input signal",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
-      "S231P:label": "y"
+      "S231P:hasDimensions": 2,
+      "S231P:isArray": true,
+      "S231P:label": "y[nout,nin]",
+      "S231P:lengthOfDimension1": "nout",
+      "S231P:lengthOfDimension2": "nin"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.RealExtractSignal",
@@ -7481,10 +7611,13 @@
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Extracting vector",
+      "S231P:hasDimensions": 1,
+      "S231P:isArray": true,
       "S231P:isOfDataType": {
         "@id": "S231P:Integer"
       },
-      "S231P:label": "extract",
+      "S231P:label": "extract[nout]",
+      "S231P:lengthOfDimension1": "nout",
       "S231P:value": "1:nout"
     },
     {
@@ -7515,7 +7648,10 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Real input signals",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
-      "S231P:label": "u"
+      "S231P:hasDimensions": 1,
+      "S231P:isArray": true,
+      "S231P:label": "u[nin]",
+      "S231P:lengthOfDimension1": "nin"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.RealExtractSignal.y",
@@ -7523,7 +7659,10 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Real signals extracted from the input vector with the extraction scheme specified by the integer vector",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
-      "S231P:label": "y"
+      "S231P:hasDimensions": 1,
+      "S231P:isArray": true,
+      "S231P:label": "y[nout]",
+      "S231P:lengthOfDimension1": "nout"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.RealExtractor",
@@ -7569,7 +7708,10 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Real input signals",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
-      "S231P:label": "u"
+      "S231P:hasDimensions": 1,
+      "S231P:isArray": true,
+      "S231P:label": "u[nin]",
+      "S231P:lengthOfDimension1": "nin"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.RealExtractor.y",
@@ -7618,7 +7760,10 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Output with replicated input signal",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
-      "S231P:label": "y"
+      "S231P:hasDimensions": 1,
+      "S231P:isArray": true,
+      "S231P:label": "y[nout]",
+      "S231P:lengthOfDimension1": "nout"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.RealVectorFilter",
@@ -7647,11 +7792,14 @@
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Array mask",
+      "S231P:hasDimensions": 1,
+      "S231P:isArray": true,
       "S231P:isOfDataType": {
         "@id": "S231P:Boolean"
       },
-      "S231P:label": "msk",
-      "S231P:value": "fill(true, nin)"
+      "S231P:label": "msk[nin]",
+      "S231P:lengthOfDimension1": "nin",
+      "S231P:value": "fill(true,nin)"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.RealVectorFilter.nin",
@@ -7679,7 +7827,10 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Input signals from which values are extracted",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
-      "S231P:label": "u"
+      "S231P:hasDimensions": 1,
+      "S231P:isArray": true,
+      "S231P:label": "u[nin]",
+      "S231P:lengthOfDimension1": "nin"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.RealVectorFilter.y",
@@ -7687,7 +7838,10 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Output with extracted input signals",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
-      "S231P:label": "y"
+      "S231P:hasDimensions": 1,
+      "S231P:isArray": true,
+      "S231P:label": "y[nout]",
+      "S231P:lengthOfDimension1": "nout"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.RealVectorReplicator",
@@ -7736,7 +7890,10 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Input signal to be replicated",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
-      "S231P:label": "u"
+      "S231P:hasDimensions": 1,
+      "S231P:isArray": true,
+      "S231P:label": "u[nin]",
+      "S231P:lengthOfDimension1": "nin"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.RealVectorReplicator.y",
@@ -7744,7 +7901,11 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Output with replicated input signal",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
-      "S231P:label": "y"
+      "S231P:hasDimensions": 2,
+      "S231P:isArray": true,
+      "S231P:label": "y[nout,nin]",
+      "S231P:lengthOfDimension1": "nout",
+      "S231P:lengthOfDimension2": "nin"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Types.Extrapolation",

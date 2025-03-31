@@ -64,7 +64,11 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Input for the matrix min function",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
-      "S231P:label": "u"
+      "S231P:hasDimensions": 2,
+      "S231P:isArray": true,
+      "S231P:label": "u[nRow,nCol]",
+      "S231P:lengthOfDimension1": "nRow",
+      "S231P:lengthOfDimension2": "nCol"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MatrixMin.y",
@@ -72,7 +76,10 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Output with vector of row- or colum-wise minimum of the input matrix",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
-      "S231P:label": "y"
+      "S231P:hasDimensions": 1,
+      "S231P:isArray": true,
+      "S231P:label": "y[undefined]",
+      "S231P:lengthOfDimension1": "undefined"
     }
   ]
 }

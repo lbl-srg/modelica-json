@@ -53,10 +53,12 @@
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Table matrix with time as a first table column (in seconds, unless timeScale is not 1) and Integers in all other columns",
+      "S231P:hasDimensions": 2,
+      "S231P:isArray": true,
       "S231P:isOfDataType": {
         "@id": "S231P:Real"
       },
-      "S231P:label": "table"
+      "S231P:label": "table[:,:]"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.Sources.TimeTable.timeScale",
@@ -78,7 +80,10 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Output with tabulated values",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
-      "S231P:label": "y"
+      "S231P:hasDimensions": 1,
+      "S231P:isArray": true,
+      "S231P:label": "y[nout]",
+      "S231P:lengthOfDimension1": "nout"
     }
   ]
 }
