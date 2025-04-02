@@ -30,13 +30,13 @@
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Extracting vector",
-      "S231P:hasDimensions": 1,
       "S231P:isArray": true,
       "S231P:isOfDataType": {
         "@id": "S231P:Integer"
       },
       "S231P:label": "extract[nout]",
-      "S231P:lengthOfDimension1": "nout",
+      "S231P:numberDimensions": 1,
+      "S231P:sizeOfDimensions": "(nout)",
       "S231P:value": "1:nout"
     },
     {
@@ -67,10 +67,10 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Integer input signals",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
-      "S231P:hasDimensions": 1,
       "S231P:isArray": true,
       "S231P:label": "u[nin]",
-      "S231P:lengthOfDimension1": "nin"
+      "S231P:numberDimensions": 1,
+      "S231P:sizeOfDimensions": "(nin)"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.IntegerExtractSignal.y",
@@ -78,10 +78,10 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Integer signals extracted from the input vector with the extraction scheme specified by the integer vector",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
-      "S231P:hasDimensions": 1,
       "S231P:isArray": true,
       "S231P:label": "y[nout]",
-      "S231P:lengthOfDimension1": "nout"
+      "S231P:numberDimensions": 1,
+      "S231P:sizeOfDimensions": "(nout)"
     }
   ]
 }

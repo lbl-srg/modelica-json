@@ -42,12 +42,12 @@
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Offsets of output signals as a vector with length equal to number of table matrix columns less one",
-      "S231P:hasDimensions": 1,
       "S231P:isArray": true,
       "S231P:isOfDataType": {
         "@id": "S231P:Real"
       },
       "S231P:label": "offset[:]",
+      "S231P:numberDimensions": 1,
       "S231P:value": "fill(0,nout)"
     },
     {
@@ -62,12 +62,12 @@
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Table matrix (time = first column is time in seconds, unless timeScale <> 1)",
-      "S231P:hasDimensions": 2,
       "S231P:isArray": true,
       "S231P:isOfDataType": {
         "@id": "S231P:Real"
       },
-      "S231P:label": "table[:,:]"
+      "S231P:label": "table[:,:]",
+      "S231P:numberDimensions": 2
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.TimeTable.timeScale",
@@ -89,10 +89,10 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Output with tabulated values",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
-      "S231P:hasDimensions": 1,
       "S231P:isArray": true,
       "S231P:label": "y[nout]",
-      "S231P:lengthOfDimension1": "nout"
+      "S231P:numberDimensions": 1,
+      "S231P:sizeOfDimensions": "(nout)"
     }
   ]
 }

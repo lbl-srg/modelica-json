@@ -22,12 +22,12 @@
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Gain matrix which is multiplied with the input",
-      "S231P:hasDimensions": 2,
       "S231P:isArray": true,
       "S231P:isOfDataType": {
         "@id": "S231P:Real"
       },
       "S231P:label": "K[:,:]",
+      "S231P:numberDimensions": 2,
       "S231P:value": "[1,0;0,1]"
     },
     {
@@ -36,10 +36,10 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Input to be multiplied with the gain matrix",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
-      "S231P:hasDimensions": 1,
       "S231P:isArray": true,
       "S231P:label": "u[nin]",
-      "S231P:lengthOfDimension1": "nin"
+      "S231P:numberDimensions": 1,
+      "S231P:sizeOfDimensions": "(nin)"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MatrixGain.y",
@@ -47,10 +47,10 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Product of gain matrix times the input",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
-      "S231P:hasDimensions": 1,
       "S231P:isArray": true,
       "S231P:label": "y[nout]",
-      "S231P:lengthOfDimension1": "nout"
+      "S231P:numberDimensions": 1,
+      "S231P:sizeOfDimensions": "(nout)"
     }
   ]
 }

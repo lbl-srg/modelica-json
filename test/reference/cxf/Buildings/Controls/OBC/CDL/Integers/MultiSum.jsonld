@@ -27,13 +27,13 @@
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Input gains",
-      "S231P:hasDimensions": 1,
       "S231P:isArray": true,
       "S231P:isOfDataType": {
         "@id": "S231P:Integer"
       },
       "S231P:label": "k[nin]",
-      "S231P:lengthOfDimension1": "nin",
+      "S231P:numberDimensions": 1,
+      "S231P:sizeOfDimensions": "(nin)",
       "S231P:value": "fill(1,nin)"
     },
     {
@@ -58,10 +58,10 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Inputs to be multipled with gain and added",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":70},{\"x\":-100,\"y\":-70}]}}}",
-      "S231P:hasDimensions": 1,
       "S231P:isArray": true,
       "S231P:label": "u[nin]",
-      "S231P:lengthOfDimension1": "nin"
+      "S231P:numberDimensions": 1,
+      "S231P:sizeOfDimensions": "(nin)"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.MultiSum.y",

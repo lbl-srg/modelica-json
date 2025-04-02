@@ -104,6 +104,190 @@
       "arraySubscripts": "[3,2]",
       "within": "FromModelica",
       "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/BlockWithArray1.mo"
+    },
+    "k1": {
+      "type_prefix": "parameter",
+      "type_specifier": "Real",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "BlockWithArray1",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "k1",
+          "array_subscripts": [
+            {
+              "expression": {
+                "simple_expression": "3"
+              }
+            }
+          ],
+          "modification": {
+            "equal": true,
+            "expression": {
+              "simple_expression": "{1,2,3}"
+            }
+          }
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": true,
+      "arraySubscripts": "[3]",
+      "within": "FromModelica",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/BlockWithArray1.mo"
+    },
+    "k2": {
+      "type_prefix": "parameter",
+      "type_specifier": "Real",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "BlockWithArray1",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "k2",
+          "array_subscripts": [
+            {
+              "expression": {
+                "simple_expression": "3"
+              }
+            }
+          ],
+          "modification": {
+            "equal": true,
+            "expression": {
+              "simple_expression": {
+                "for_loop": {
+                  "expression": {
+                    "simple_expression": "i"
+                  },
+                  "for_loop": [
+                    {
+                      "name": "i",
+                      "range": "1:3"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": true,
+      "arraySubscripts": "[3]",
+      "within": "FromModelica",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/BlockWithArray1.mo"
+    },
+    "k3": {
+      "type_prefix": "parameter",
+      "type_specifier": "Real",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "BlockWithArray1",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "k3",
+          "array_subscripts": [
+            {
+              "expression": {
+                "simple_expression": "3"
+              }
+            }
+          ],
+          "modification": {
+            "equal": true,
+            "expression": {
+              "simple_expression": "k1"
+            }
+          }
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": true,
+      "arraySubscripts": "[3]",
+      "within": "FromModelica",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/BlockWithArray1.mo"
+    },
+    "k4": {
+      "type_prefix": "parameter",
+      "type_specifier": "Real",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "BlockWithArray1",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "k4",
+          "array_subscripts": [
+            {
+              "expression": {
+                "simple_expression": "3"
+              }
+            }
+          ],
+          "modification": {
+            "equal": true,
+            "expression": {
+              "simple_expression": "fill(1,3) +{0,1,2}"
+            }
+          }
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": true,
+      "arraySubscripts": "[3]",
+      "within": "FromModelica",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/BlockWithArray1.mo"
+    },
+    "k5": {
+      "type_prefix": "parameter",
+      "type_specifier": "Real",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "BlockWithArray1",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "k5",
+          "array_subscripts": [
+            {
+              "expression": {
+                "simple_expression": "3"
+              }
+            }
+          ],
+          "modification": {
+            "equal": true,
+            "expression": {
+              "simple_expression": {
+                "function_call": {
+                  "name": "cat",
+                  "arguments": [
+                    {
+                      "name": "1"
+                    },
+                    {
+                      "name": "{1},{2},{3}"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": true,
+      "arraySubscripts": "[3]",
+      "within": "FromModelica",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/BlockWithArray1.mo"
     }
   },
   "requiredReferences": {}
