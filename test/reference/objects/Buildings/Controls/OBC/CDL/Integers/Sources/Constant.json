@@ -2,8 +2,9 @@
   "instances": {
     "Constant": {
       "within": "Buildings.Controls.OBC.CDL.Integers.Sources",
-      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Integers/Sources/Constant.mo",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Integers/Sources/Constant.mo",
       "type": "long_class_specifier",
+      "class_prefixes": "block",
       "annotation": [
         {
           "element_modification_or_replaceable": {
@@ -272,12 +273,14 @@
           }
         }
       ],
-      "semantics": {}
+      "semantics": {},
+      "cdl_annotations": {}
     },
     "k": {
       "type_prefix": "parameter",
       "type_specifier": "Integer",
       "type": "element",
+      "compositionSpecifier": "public",
       "long_class_specifier_identifier": "Constant",
       "single_component_list": {
         "declaration": {
@@ -289,19 +292,23 @@
       },
       "annotation": null,
       "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
       "within": "Buildings.Controls.OBC.CDL.Integers.Sources",
-      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Integers/Sources/Constant.mo"
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Integers/Sources/Constant.mo"
     },
     "y": {
-      "type_specifier": "Interfaces.IntegerOutput",
+      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.IntegerOutput",
       "type": "element",
+      "compositionSpecifier": "public",
       "long_class_specifier_identifier": "Constant",
       "single_component_list": {
         "declaration": {
           "identifier": "y"
         },
         "description": {
-          "description_string": "Connector of Integer output signal",
+          "description_string": "Output with constant value",
           "annotation": [
             {
               "element_modification_or_replaceable": {
@@ -349,8 +356,11 @@
         }
       ],
       "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
       "within": "Buildings.Controls.OBC.CDL.Integers.Sources",
-      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Integers/Sources/Constant.mo"
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Integers/Sources/Constant.mo"
     }
   },
   "requiredReferences": {

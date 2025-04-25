@@ -1,0 +1,645 @@
+@prefix S231P: <http://data.ashrae.org/S231P#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+
+S231P:Package
+  a rdfs:Class ;
+  rdfs:comment "A package is a specialized class used to group multiple blocks" ;
+  rdfs:label "Block" ;
+.
+
+S231P:Block
+  a rdfs:Class ;
+  rdfs:comment "A block is the abstract interface of a control sequence" ;
+  rdfs:label "Block" ;
+.
+S231P:ElementaryBlock
+  a rdfs:Class ;
+  rdfs:subClassOf S231P:Block ;
+  rdfs:comment "An elementary block defined by ASHRAE S231P" ;
+  rdfs:label "ElementaryBlock" ;
+.
+S231P:CompositeBlock
+  a rdfs:Class ;
+  rdfs:subClassOf S231P:Block ;
+  rdfs:comment "A composite block is a function implemented as a collection of elementary blocks or other composite blocks" ;
+  rdfs:label "CompositeBlock" ;
+.
+S231P:ExtensionBlock
+  a rdfs:Class ;
+  rdfs:subClassOf S231P:Block ;
+  rdfs:comment """An extension block supports functionalities that cannot, or are hard to, implement with a composite block. 
+                They allow, for example, implementation of blocks that contain statistical functions, fault detection and diagnostics methods, as well as proprietary code. 
+                They are intended to define new elementary blocks beyond those defined in this standard""" ;
+  rdfs:label "ExtensionBlock" ;
+.
+S231P:Connector
+  a rdfs:Class ;
+  a sh:NodeShape ;
+  rdfs:comment """The Connector class is used by blocks to expose their inputs and outputs""" ;
+  rdfs:label "Connector" ;
+  sh:property [
+    sh:path S231P:isOfDataType ;
+    sh:class S231P:DataType ;
+    sh:message "This Connector must be associated with exactly 1 Datatype." ;
+    sh:maxCount 1 ;
+  ] ;
+.
+S231P:InputConnector
+  a rdfs:Class ;
+  a sh:NodeShape ;
+  rdfs:comment """An input connector is a connector that provides an input to a block""";
+  rdfs:label "InputConnector" ;
+  rdfs:subClassOf S231P:Connector ;
+  sh:property [
+    sh:path [ sh:inversePath S231P:hasInput ];
+    sh:class S231P:Block ;
+    sh:message "This InputConnector must be associated with exactly 1 Block" ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+  ] ;
+  sh:property [
+    sh:path S231P:description ;
+    rdfs:comment "Description for an input connector" ;
+    sh:datatype xsd:string ;
+  ] ;
+  sh:property [
+    sh:path S231P:accessSpecifier ;
+    rdfs:comment "Access specifier for the input connector in CDL (public/protected). Default: public" ;
+    sh:datatype xsd:string ;
+  ] ;
+  sh:property [
+    sh:path S231P:graphics ;
+    rdfs:comment "The path to the graphical representation of the input connector" ;
+    sh:datatype xsd:string ;
+  ] ;
+  sh:property [
+    sh:path S231P:label ;
+    rdfs:comment "The label assigned to the input connector" ;
+    sh:datatype xsd:string ;
+  ] ;
+  sh:property [
+    sh:path S231P:value ;
+    rdfs:comment "A decimal value associated with the input connector" ;
+    sh:datatype xsd:decimal ;
+  ] ;
+  sh:property [
+    sh:path S231P:start ;
+    rdfs:comment "The starting decimal value associated with the input connector" ;
+    sh:datatype xsd:decimal ;
+  ] ;
+  sh:property [
+    sh:path S231P:nominal ;
+    rdfs:comment "The nominal decimal value associated with the input connector" ;
+    sh:datatype xsd:decimal ;
+  ] ;
+  sh:property [
+    sh:path S231P:quantity ;
+    rdfs:comment "The QuantityKind associated with the input connector" ;
+    sh:class qudt:QuantityKind ;
+  ] ;
+  sh:property [
+    sh:path S231P:fixed ;
+    rdfs:comment "A boolean to indicate whether this is a fixed input or not" ;
+    sh:datatype xsd:boolean ;
+  ] ;
+  sh:property [
+    sh:path S231P:instantiate ;
+    rdfs:comment "A boolean to indicate whether this input is instantiated or not" ;
+    sh:datatype xsd:boolean ;
+  ] ;
+  sh:property [
+    sh:path S231P:min ;
+    rdfs:comment "The minimum allowable value for the input connector" ;
+    sh:datatype xsd:decimal ;
+  ] ;
+  sh:property [
+    sh:path S231P:max ;
+    rdfs:comment "The maximum allowable value for the input connector" ;
+    sh:datatype xsd:decimal ;
+  ] ;
+  sh:property [
+    sh:path S231P:hasUnit ;
+    rdfs:comment "The unit of the input connector used for controls and calculations" ;
+    sh:class qudt:Unit ;
+  ] ;
+  sh:property [
+    sh:path S231P:hasDisplayUnit ;
+    rdfs:comment "The unit of the input connector used for display and graphics" ;
+    sh:class qudt:Unit ;
+  ] ;
+  sh:property [
+    sh:path S231P:cdlLineNumStart ;
+    rdfs:comment "An integer value indicating the starting line number for the input connector definition in the CDL sequence" ;
+    sh:datatype xsd:decimal ;
+  ] ;
+    sh:property [
+    sh:path S231P:cdlLineNumEnd ;
+    rdfs:comment "An integer value indicating the ending line number for the input connector definition in the CDL sequence" ;
+    sh:datatype xsd:decimal ;
+  ] ;
+.
+S231P:OutputConnector
+  a rdfs:Class ;
+  a sh:NodeShape ;
+  rdfs:comment """An output connector is a connector that provides an output from a block""";
+  rdfs:label "OutputConnector" ;
+  rdfs:subClassOf S231P:Connector ;
+  sh:property [
+    sh:path [ sh:inversePath S231P:hasOutput ];
+    sh:class S231P:Block ;
+    sh:message "This OutputConnector must be associated with exactly 1 Block" ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+  ] ;
+  sh:property [
+    sh:path S231P:description ;
+    rdfs:comment "Description for an output connector" ;
+    sh:datatype xsd:string ;
+  ] ;
+  sh:property [
+    sh:path S231P:accessSpecifier ;
+    rdfs:comment "Access specifier for the output connector in CDL (public/protected). Default: public" ;
+    sh:datatype xsd:string ;
+  ] ;
+  sh:property [
+    sh:path S231P:graphics ;
+    rdfs:comment "The path to the graphical representation of the output connector" ;
+    sh:datatype xsd:string ;
+  ] ;
+  sh:property [
+    sh:path S231P:name ;
+    rdfs:comment "The name assigned to the output connector" ;
+    sh:datatype xsd:string ;
+  ] ;
+  sh:property [
+    sh:path S231P:label ;
+    rdfs:comment "The label assigned to the output connector" ;
+    sh:datatype xsd:string ;
+  ] ;
+  sh:property [
+    sh:path S231P:value ;
+    rdfs:comment "A decimal value associated with the output connector" ;
+    sh:datatype xsd:decimal ;
+  ] ;
+  sh:property [
+    sh:path S231P:start ;
+    rdfs:comment "The starting decimal value associated with the output connector" ;
+    sh:datatype xsd:decimal ;
+  ] ;
+  sh:property [
+    sh:path S231P:nominal ;
+    rdfs:comment "The nominal decimal value associated with the output connector" ;
+    sh:datatype xsd:decimal ;
+  ] ;
+  sh:property [
+    sh:path S231P:quantity ;
+    rdfs:comment "The QuantityKind associated with the output connector" ;
+    sh:class qudt:QuantityKind ;
+  ] ;
+  sh:property [
+    sh:path S231P:fixed ;
+    rdfs:comment "A boolean to indicate whether this is a fixed output or not" ;
+    sh:datatype xsd:boolean ;
+  ] ;
+  sh:property [
+    sh:path S231P:instantiate ;
+    rdfs:comment "A boolean to indicate whether this output is instantiated or not" ;
+    sh:datatype xsd:boolean ;
+  ] ;
+  sh:property [
+    sh:path S231P:min ;
+    rdfs:comment "The minimum allowable value for the output connector" ;
+    sh:datatype xsd:decimal ;
+  ] ;
+  sh:property [
+    sh:path S231P:max ;
+    rdfs:comment "The maximum allowable value for the output connector" ;
+    sh:datatype xsd:decimal ;
+  ] ;
+  sh:property [
+    sh:path S231P:hasUnit ;
+    rdfs:comment "The unit of the output connector used for controls and calculations" ;
+    sh:class qudt:Unit ;
+  ] ;
+  sh:property [
+    sh:path S231P:hasDisplayUnit ;
+    rdfs:comment "The unit of the output connector used for display and graphics" ;
+    sh:class qudt:Unit ;
+  ] ;
+  sh:property [
+    sh:path S231P:cdlLineNumStart ;
+    rdfs:comment "An integer value indicating the starting line number for the output connector definition in the CDL sequence" ;
+    sh:datatype xsd:decimal ;
+  ] ;
+    sh:property [
+    sh:path S231P:cdlLineNumEnd ;
+    rdfs:comment "An integer value indicating the ending line number for the output connector definition in the CDL sequence" ;
+    sh:datatype xsd:decimal ;
+  ] ;
+.
+S231P:Parameter
+  a rdfs:Class ;
+  rdfs:comment """A parameter is a value that is time-invariant and cannot be changed based on an input signal. A block can have multiple parameters.""" ;
+  rdfs:label "Parameter" ;
+  a sh:NodeShape ;
+  sh:targetClass S231P:Parameter ;
+  sh:property [
+    sh:path S231P:isOfDataType ;
+    sh:class S231P:DataType ;
+    sh:maxCount 1 ;
+    sh:message "This Parameter must be associated with exactly 1 Datatype" ;
+    sh:severity sh:Info ;
+  ] ;
+  sh:property [
+    sh:path [ sh:inversePath S231P:hasParameter ];
+    sh:class S231P:Block ;
+    sh:message "This Parameter must be associated with exactly 1 Block" ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+  ] ;
+  sh:property [
+    sh:path S231P:description ;
+    rdfs:comment "Description for an parameter" ;
+    sh:datatype xsd:string ;
+  ] ;
+  sh:property [
+    sh:path S231P:accessSpecifier ;
+    rdfs:comment "Access specifier for the parameter in CDL (public/protected). Default: public" ;
+    sh:datatype xsd:string ;
+  ] ;
+  sh:property [
+    sh:path S231P:graphics ;
+    rdfs:comment "The path to the graphical representation of the parameter" ;
+    sh:datatype xsd:string ;
+  ] ;
+  sh:property [
+    sh:path S231P:name ;
+    rdfs:comment "The name assigned to the parameter" ;
+    sh:datatype xsd:string ;
+  ] ;
+  sh:property [
+    sh:path S231P:label ;
+    rdfs:comment "The label assigned to the parameter" ;
+    sh:datatype xsd:string ;
+  ] ;
+  sh:property [
+    sh:path S231P:value ;
+    rdfs:comment "A decimal value associated with the parameter" ;
+    sh:datatype xsd:decimal ;
+  ] ;
+  sh:property [
+    sh:path S231P:start ;
+    rdfs:comment "The starting decimal value associated with the parameter" ;
+    sh:datatype xsd:decimal ;
+  ] ;
+  sh:property [
+    sh:path S231P:nominal ;
+    rdfs:comment "The nominal decimal value associated with the parameter" ;
+    sh:datatype xsd:decimal ;
+  ] ;
+  sh:property [
+    sh:path S231P:quantity ;
+    rdfs:comment "The QuantityKind associated with the parameter" ;
+    sh:class qudt:QuantityKind ;
+  ] ;
+  sh:property [
+    sh:path S231P:fixed ;
+    rdfs:comment "A boolean to indicate whether this is a fixed value parameter or not" ;
+    sh:datatype xsd:boolean ;
+  ] ;
+  sh:property [
+    sh:path S231P:instantiate ;
+    rdfs:comment "A boolean to indicate whether this parameter is instantiated or not" ;
+    sh:datatype xsd:boolean ;
+  ] ;
+  sh:property [
+    sh:path S231P:min ;
+    rdfs:comment "The minimum allowable value for the parameter" ;
+    sh:datatype xsd:decimal ;
+  ] ;
+  sh:property [
+    sh:path S231P:max ;
+    rdfs:comment "The maximum allowable value for the parameter" ;
+    sh:datatype xsd:decimal ;
+  ] ;
+  sh:property [
+    sh:path S231P:hasUnit ;
+    rdfs:comment "The unit of the parameter used for controls and calculations" ;
+    sh:class qudt:Unit ;
+  ] ;
+  sh:property [
+    sh:path S231P:hasDisplayUnit ;
+    rdfs:comment "The unit of the parameter used for display and graphics" ;
+    sh:class qudt:Unit ;
+  ] ;
+  sh:property [
+    sh:path S231P:cdlLineNumStart ;
+    rdfs:comment "An integer value indicating the starting line number for the parameter definition in the CDL sequence" ;
+    sh:datatype xsd:decimal ;
+  ] ;
+    sh:property [
+    sh:path S231P:cdlLineNumEnd ;
+    rdfs:comment "An integer value indicating the ending line number for the parameter definition in the CDL sequence" ;
+    sh:datatype xsd:decimal ;
+  ] ;
+.
+S231P:Constant
+  a rdfs:Class ;
+  rdfs:comment """A constant is a value that is fixed at compilation time. A block can have multiple constants""" ;
+  rdfs:label "Constant" ;
+  sh:property [
+    sh:path S231P:isOfDataType ;
+    sh:class S231P:DataType ;
+    sh:maxCount 1 ;
+    sh:message "This Constant must be associated with exactly 1 Datatype" ;
+    sh:severity sh:Info ;
+  ] ;
+  sh:property [
+    sh:path [ sh:inversePath S231P:hasConstant ];
+    sh:class S231P:Block ;
+    sh:message "This Constant must be associated with exactly 1 Block" ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+  ] ;
+  sh:property [
+    sh:path S231P:description ;
+    rdfs:comment "Description for an constant" ;
+    sh:datatype xsd:string ;
+  ] ;
+  sh:property [
+    sh:path S231P:accessSpecifier ;
+    rdfs:comment "Access specifier for the constant in CDL (public/protected). Default: public" ;
+    sh:datatype xsd:string ;
+  ] ;
+  sh:property [
+    sh:path S231P:graphics ;
+    rdfs:comment "The path to the graphical representation of the constant" ;
+    sh:datatype xsd:string ;
+  ] ;
+  sh:property [
+    sh:path S231P:name ;
+    rdfs:comment "The name assigned to the constant" ;
+    sh:datatype xsd:string ;
+  ] ;
+  sh:property [
+    sh:path S231P:label ;
+    rdfs:comment "The label assigned to the constant" ;
+    sh:datatype xsd:string ;
+  ] ;
+  sh:property [
+    sh:path S231P:value ;
+    rdfs:comment "A decimal value associated with the constant" ;
+    sh:datatype xsd:decimal ;
+  ] ;
+  sh:property [
+    sh:path S231P:start ;
+    rdfs:comment "The starting decimal value associated with the constant" ;
+    sh:datatype xsd:decimal ;
+  ] ;
+  sh:property [
+    sh:path S231P:nominal ;
+    rdfs:comment "The nominal decimal value associated with the constant" ;
+    sh:datatype xsd:decimal ;
+  ] ;
+  sh:property [
+    sh:path S231P:quantity ;
+    rdfs:comment "The QuantityKind associated with the constant" ;
+    sh:class qudt:QuantityKind ;
+  ] ;
+  sh:property [
+    sh:path S231P:fixed ;
+    rdfs:comment "A boolean to indicate whether this is a fixed value constant or not" ;
+    sh:datatype xsd:boolean ;
+  ] ;
+  sh:property [
+    sh:path S231P:instantiate ;
+    rdfs:comment "A boolean to indicate whether this constant is instantiated or not" ;
+    sh:datatype xsd:boolean ;
+  ] ;
+  sh:property [
+    sh:path S231P:min ;
+    rdfs:comment "The minimum allowable value for the constant" ;
+    sh:datatype xsd:decimal ;
+  ] ;
+  sh:property [
+    sh:path S231P:max ;
+    rdfs:comment "The maximum allowable value for the constant" ;
+    sh:datatype xsd:decimal ;
+  ] ;
+  sh:property [
+    sh:path S231P:unit ;
+    rdfs:comment "The unit of the constant used for controls and calculations" ;
+    sh:class qudt:Unit ;
+  ] ;
+  sh:property [
+    sh:path S231P:displayUnit ;
+    rdfs:comment "The unit of the constant used for display and graphics" ;
+    sh:class qudt:Unit ;
+  ] ;
+  sh:property [
+    sh:path S231P:cdlLineNumStart ;
+    rdfs:comment "An integer value indicating the starting line number for the constant definition in the CDL sequence" ;
+    sh:datatype xsd:decimal ;
+  ] ;
+    sh:property [
+    sh:path S231P:cdlLineNumEnd ;
+    rdfs:comment "An integer value indicating the ending line number for the constant definition in the CDL sequence" ;
+    sh:datatype xsd:decimal ;
+  ] ;
+.
+S231P:DataType
+  a rdfs:Class ;
+  rdfs:comment """A data type description for function block connectors, parameters, and constants""" ;
+  rdfs:label "DataType" ;
+.
+S231P:Boolean a S231P:BooleanDataType,
+  S231P:DataType 
+.
+S231P:Real a S231P:Datatype,
+  S231P:RealDatatype 
+.
+S231P:Integer a S231P:DataType,
+  S231P:IntegerDataType 
+.
+S231P:Analog a S231P:AnalogDataType,
+  S231P:DataType 
+.
+S231P:String a S231P:Datatype,
+  S231P:StringDatatype ;
+  rdfs:comment "A data type to represent text";
+.
+S231P:BooleanDataType a rdfs:Class ;
+  rdfs:subClassOf S231P:DataType 
+.
+S231P:RealDatatype a rdfs:Class ;
+  rdfs:subClassOf S231P:Datatype 
+.
+S231P:IntegerDataType a rdfs:Class ;
+  rdfs:subClassOf S231P:DataType 
+.
+S231P:AnalogDataType a rdfs:Class ;
+  rdfs:subClassOf S231P:DataType 
+.
+S231P:StringDatatype a rdfs:Class ;
+  rdfs:subClassOf S231P:Datatype 
+.
+S231P:EnumerationType a S231P:Datatype,
+  S231P:EnumerationDatatype 
+.
+S231P:EnumerationDatatype a rdfs:Class ;
+  rdfs:subClassOf S231P:Datatype 
+.
+S231P:AnalogInput a rdfs:Class ;
+  rdfs:comment "An input connector for real data type";
+  rdfs:subClassOf S231P:InputConnector ;
+  a sh:NodeShape ;
+  sh:targetClass S231P:AnalogInput ;
+  sh:property [
+    sh:class S231P:AnalogDataType ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:path S231P:isOfDataType
+  ] ;
+.
+S231P:AnalogOutput a rdfs:Class ;
+  rdfs:comment "An output connector for analog data type";
+  rdfs:subClassOf S231P:OutputConnector ;
+  a sh:NodeShape ;
+  sh:targetClass S231P:AnalogOutput ;
+  sh:property [ 
+    a sh:PropertyShape ;
+    sh:class S231P:AnalogDataType ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:path S231P:isOfDataType 
+  ] ;
+.
+S231P:IntegerInput a rdfs:Class ;
+  rdfs:comment "An input connector for integer data type";
+  rdfs:subClassOf S231P:InputConnector ;
+  a sh:NodeShape ;
+  sh:targetClass S231P:IntegerInput ;
+  sh:property [ 
+    a sh:PropertyShape ;
+    sh:class S231P:IntegerDataType ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:path S231P:isOfDataType 
+  ] ;
+.
+S231P:IntegerOutput a rdfs:Class ;
+  rdfs:comment "An output connector for integer data type";
+  rdfs:subClassOf S231P:OutputConnector ;
+  a sh:NodeShape ;
+  sh:targetClass S231P:IntegerOutput ;
+  sh:property [ 
+    a sh:PropertyShape ;
+    sh:class S231P:IntegerDatatype ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:path S231P:isOfDataType 
+    ] ;
+.
+S231P:RealInput a rdfs:Class ;
+  rdfs:comment "An input connector for real data type";
+  rdfs:subClassOf S231P:InputConnector ;
+  a sh:NodeShape ;
+  sh:targetClass S231P:RealInput ;
+  sh:property [ 
+    a sh:PropertyShape ;
+    sh:class S231P:RealDatatype ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:path S231P:isOfDataType 
+  ] ;
+.
+S231P:RealOutput a rdfs:Class ;
+  rdfs:comment "An output connector for real data type" ;
+  rdfs:subClassOf S231P:OutputConnector ;
+  a sh:NodeShape ;
+  sh:targetClass S231P:RealOutput ;
+  sh:property [ 
+    a sh:PropertyShape ;
+    sh:class S231P:RealDatatype ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:path S231P:isOfDataType 
+  ] ;
+.
+
+S231P:hasInput
+  a rdf:Property ;
+  rdfs:comment "Used to define an input connector for a block" ;
+  rdfs:label "has input connector" ;
+  rdfs:domain S231P:Block ;
+  rdfs:range S231P:InputConnector ;
+.
+S231P:hasOutput
+  a rdf:Property ;
+  rdfs:comment "Used to define an output connector for a block" ;
+  rdfs:label "has output connector" ;
+  rdfs:domain S231P:Block ;
+  rdfs:range S231P:OutputConnector ;
+.
+S231P:hasParameter
+  a rdf:Property ;
+  rdfs:comment "Used to define a parameter for a block" ;
+  rdfs:label "has parameter" ;
+  rdfs:domain S231P:Block ;
+  rdfs:range S231P:Parameter ;
+.
+S231P:hasConstant
+  a rdf:Property ;
+  rdfs:comment "Used to define a constant for a block" ; 
+  rdfs:label "has input connector" ;
+  rdfs:domain S231P:Block ;
+  rdfs:range S231P:Constant ;
+.
+S231P:hasInstance
+  a rdf:Property ;
+  rdfs:comment "Used to define an instance (input, output, parameter or constant) for a block" ; 
+  rdfs:label "has instance" ;
+  rdfs:domain S231P:Block ;
+.
+S231P:isOfDataType
+  a rdf:Property ;
+  rdfs:comment "Used to define the data type for input connectors, output connectors, parameters and constants" ;
+  rdfs:label "is of DataType" ;
+  rdfs:range S231P:DataType ;
+.
+S231P:containsBlock
+  a rdf:Property ;
+  rdfs:comment "Used in composite block to include other blocks" ;
+  rdfs:label "contains block" ;
+  rdfs:domain S231P:Block ;
+  rdfs:range S231P:Block ;
+.
+S231P:connectedTo 
+  a rdf:Property ;
+  rdfs:comment "Used to connect the output of one block to the input of a block. Only connectors that carry the same data type can be connected" ;
+  rdfs:label "connected to" ;
+  rdfs:domain S231P:Connector ;
+  rdfs:range S231P:Connector ;
+.
+
+S231P:description a rdf:Property .
+S231P:accessSpecifier a rdf:Property . 
+S231P:graphics a rdf:Property .
+S231P:name a rdf:Property .
+S231P:label a rdf:Property .
+S231P:value a rdf:Property .
+S231P:start a rdf:Property .
+S231P:nominal a rdf:Property .
+S231P:quantity a rdf:Property .
+S231P:fixed a rdf:Property .
+S231P:instantiate a rdf:Property .
+S231P:min a rdf:Property .
+S231P:max a rdf:Property .
+S231P:unit a rdf:Property .
+S231P:displayUnit a rdf:Property .
+S231P:cdlLineNumStart a rdf:Property .
+S231P:cdlLineNumEnd a rdf:Property .

@@ -2,8 +2,9 @@
   "instances": {
     "MyController": {
       "within": "FromModelica",
-      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-json/test/FromModelica/MyController.mo",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/MyController.mo",
       "type": "long_class_specifier",
+      "class_prefixes": "block",
       "annotation": [
         {
           "element_modification_or_replaceable": {
@@ -151,11 +152,16 @@
           }
         }
       ],
-      "semantics": {}
+      "semantics": {},
+      "cdl_annotations": {
+        "generatePointlist": "true",
+        "controlledDevice": "\"My Device\""
+      }
     },
     "u1": {
       "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
       "type": "element",
+      "compositionSpecifier": "public",
       "long_class_specifier_identifier": "MyController",
       "single_component_list": {
         "declaration": {
@@ -378,12 +384,24 @@
         }
       ],
       "semantics": {},
+      "cdl_annotations": {
+        "connection": {
+          "hardwired": "true"
+        },
+        "trend": {
+          "interval": "60",
+          "enable": "true"
+        }
+      },
+      "isVector": false,
+      "arraySubscripts": "",
       "within": "FromModelica",
-      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-json/test/FromModelica/MyController.mo"
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/MyController.mo"
     },
     "u2": {
       "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
       "type": "element",
+      "compositionSpecifier": "public",
       "long_class_specifier_identifier": "MyController",
       "single_component_list": {
         "declaration": {
@@ -606,12 +624,24 @@
         }
       ],
       "semantics": {},
+      "cdl_annotations": {
+        "connection": {
+          "hardwired": "true"
+        },
+        "trend": {
+          "interval": "60",
+          "enable": "true"
+        }
+      },
+      "isVector": false,
+      "arraySubscripts": "",
       "within": "FromModelica",
-      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-json/test/FromModelica/MyController.mo"
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/MyController.mo"
     },
     "y": {
       "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
       "type": "element",
+      "compositionSpecifier": "public",
       "long_class_specifier_identifier": "MyController",
       "single_component_list": {
         "declaration": {
@@ -834,12 +864,24 @@
         }
       ],
       "semantics": {},
+      "cdl_annotations": {
+        "connection": {
+          "hardwired": "true"
+        },
+        "trend": {
+          "interval": "60",
+          "enable": "true"
+        }
+      },
+      "isVector": false,
+      "arraySubscripts": "",
       "within": "FromModelica",
-      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-json/test/FromModelica/MyController.mo"
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/MyController.mo"
     },
     "add2": {
-      "type_specifier": "Buildings.Controls.OBC.CDL.Continuous.Add",
+      "type_specifier": "Buildings.Controls.OBC.CDL.Reals.Add",
       "type": "element",
+      "compositionSpecifier": "public",
       "long_class_specifier_identifier": "MyController",
       "single_component_list": {
         "declaration": {
@@ -894,12 +936,16 @@
         }
       ],
       "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
       "within": "FromModelica",
-      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-json/test/FromModelica/MyController.mo"
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/MyController.mo"
     },
     "subCon1": {
       "type_specifier": "SubController",
       "type": "element",
+      "compositionSpecifier": "public",
       "long_class_specifier_identifier": "MyController",
       "single_component_list": {
         "declaration": {
@@ -1002,12 +1048,18 @@
         }
       ],
       "semantics": {},
+      "cdl_annotations": {
+        "generatePointlist": "true"
+      },
+      "isVector": false,
+      "arraySubscripts": "",
       "within": "FromModelica",
-      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-json/test/FromModelica/MyController.mo"
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/MyController.mo"
     },
     "subCon2": {
       "type_specifier": "SubController",
       "type": "element",
+      "compositionSpecifier": "public",
       "long_class_specifier_identifier": "MyController",
       "single_component_list": {
         "declaration": {
@@ -1062,8 +1114,11 @@
         }
       ],
       "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
       "within": "FromModelica",
-      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-json/test/FromModelica/MyController.mo"
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/MyController.mo"
     }
   },
   "requiredReferences": {

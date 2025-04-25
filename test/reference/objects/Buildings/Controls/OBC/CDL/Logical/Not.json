@@ -2,8 +2,9 @@
   "instances": {
     "Not": {
       "within": "Buildings.Controls.OBC.CDL.Logical",
-      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/Not.mo",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/Not.mo",
       "type": "long_class_specifier",
+      "class_prefixes": "block",
       "annotation": [
         {
           "element_modification_or_replaceable": {
@@ -190,18 +191,20 @@
           }
         }
       ],
-      "semantics": {}
+      "semantics": {},
+      "cdl_annotations": {}
     },
     "u": {
-      "type_specifier": "Interfaces.BooleanInput",
+      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.BooleanInput",
       "type": "element",
+      "compositionSpecifier": "public",
       "long_class_specifier_identifier": "Not",
       "single_component_list": {
         "declaration": {
           "identifier": "u"
         },
         "description": {
-          "description_string": "Connector of Boolean input signal",
+          "description_string": "Input to be negated",
           "annotation": [
             {
               "element_modification_or_replaceable": {
@@ -249,19 +252,23 @@
         }
       ],
       "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
       "within": "Buildings.Controls.OBC.CDL.Logical",
-      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/Not.mo"
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/Not.mo"
     },
     "y": {
-      "type_specifier": "Interfaces.BooleanOutput",
+      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.BooleanOutput",
       "type": "element",
+      "compositionSpecifier": "public",
       "long_class_specifier_identifier": "Not",
       "single_component_list": {
         "declaration": {
           "identifier": "y"
         },
         "description": {
-          "description_string": "Connector of Boolean output signal",
+          "description_string": "Output with negated input",
           "annotation": [
             {
               "element_modification_or_replaceable": {
@@ -309,8 +316,11 @@
         }
       ],
       "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
       "within": "Buildings.Controls.OBC.CDL.Logical",
-      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/Not.mo"
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/Not.mo"
     }
   },
   "requiredReferences": {

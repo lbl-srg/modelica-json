@@ -1,0 +1,928 @@
+{
+  "within": "Buildings.Controls.OBC.CDL.Psychrometrics",
+  "class_definition": [
+    {
+      "class_prefixes": "block",
+      "class_specifier": {
+        "long_class_specifier": {
+          "identifier": "SpecificEnthalpy_TDryBulPhi",
+          "description_string": "Block to compute the specific enthalpy based on relative humidity",
+          "composition": {
+            "element_list": [
+              {
+                "component_clause": {
+                  "type_prefix": "parameter",
+                  "type_specifier": "Real",
+                  "component_list": [
+                    {
+                      "declaration": {
+                        "identifier": "pAtm",
+                        "modification": {
+                          "class_modification": [
+                            {
+                              "element_modification_or_replaceable": {
+                                "final": true,
+                                "element_modification": {
+                                  "name": "quantity",
+                                  "modification": {
+                                    "equal": true,
+                                    "expression": {
+                                      "simple_expression": "\"Pressure\""
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "element_modification_or_replaceable": {
+                                "final": true,
+                                "element_modification": {
+                                  "name": "unit",
+                                  "modification": {
+                                    "equal": true,
+                                    "expression": {
+                                      "simple_expression": "\"Pa\""
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ],
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "101325"
+                          }
+                        }
+                      },
+                      "description": {
+                        "description_string": "Atmospheric pressure"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "component_clause": {
+                  "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+                  "component_list": [
+                    {
+                      "declaration": {
+                        "identifier": "TDryBul",
+                        "modification": {
+                          "class_modification": [
+                            {
+                              "element_modification_or_replaceable": {
+                                "final": true,
+                                "element_modification": {
+                                  "name": "quantity",
+                                  "modification": {
+                                    "equal": true,
+                                    "expression": {
+                                      "simple_expression": "\"ThermodynamicTemperature\""
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "element_modification_or_replaceable": {
+                                "final": true,
+                                "element_modification": {
+                                  "name": "unit",
+                                  "modification": {
+                                    "equal": true,
+                                    "expression": {
+                                      "simple_expression": "\"K\""
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "element_modification_or_replaceable": {
+                                "final": true,
+                                "element_modification": {
+                                  "name": "min",
+                                  "modification": {
+                                    "equal": true,
+                                    "expression": {
+                                      "simple_expression": "100"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      "description": {
+                        "description_string": "Dry bulb temperature",
+                        "annotation": [
+                          {
+                            "element_modification_or_replaceable": {
+                              "element_modification": {
+                                "Placement": {
+                                  "transformation": {
+                                    "extent": [
+                                      {
+                                        "x": -140,
+                                        "y": 40
+                                      },
+                                      {
+                                        "x": -100,
+                                        "y": 80
+                                      }
+                                    ]
+                                  },
+                                  "iconTransformation": {
+                                    "extent": [
+                                      {
+                                        "x": -140,
+                                        "y": 40
+                                      },
+                                      {
+                                        "x": -100,
+                                        "y": 80
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "component_clause": {
+                  "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+                  "component_list": [
+                    {
+                      "declaration": {
+                        "identifier": "phi",
+                        "modification": {
+                          "class_modification": [
+                            {
+                              "element_modification_or_replaceable": {
+                                "final": true,
+                                "element_modification": {
+                                  "name": "min",
+                                  "modification": {
+                                    "equal": true,
+                                    "expression": {
+                                      "simple_expression": "0"
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "element_modification_or_replaceable": {
+                                "final": true,
+                                "element_modification": {
+                                  "name": "max",
+                                  "modification": {
+                                    "equal": true,
+                                    "expression": {
+                                      "simple_expression": "1"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      "description": {
+                        "description_string": "Relative air humidity",
+                        "annotation": [
+                          {
+                            "element_modification_or_replaceable": {
+                              "element_modification": {
+                                "Placement": {
+                                  "transformation": {
+                                    "extent": [
+                                      {
+                                        "x": -140,
+                                        "y": -80
+                                      },
+                                      {
+                                        "x": -100,
+                                        "y": -40
+                                      }
+                                    ]
+                                  },
+                                  "iconTransformation": {
+                                    "extent": [
+                                      {
+                                        "x": -140,
+                                        "y": -80
+                                      },
+                                      {
+                                        "x": -100,
+                                        "y": -40
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "component_clause": {
+                  "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
+                  "component_list": [
+                    {
+                      "declaration": {
+                        "identifier": "h",
+                        "modification": {
+                          "class_modification": [
+                            {
+                              "element_modification_or_replaceable": {
+                                "final": true,
+                                "element_modification": {
+                                  "name": "quantity",
+                                  "modification": {
+                                    "equal": true,
+                                    "expression": {
+                                      "simple_expression": "\"SpecificEnergy\""
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "element_modification_or_replaceable": {
+                                "final": true,
+                                "element_modification": {
+                                  "name": "unit",
+                                  "modification": {
+                                    "equal": true,
+                                    "expression": {
+                                      "simple_expression": "\"J/kg\""
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      "description": {
+                        "description_string": "Specific enthalpy",
+                        "annotation": [
+                          {
+                            "element_modification_or_replaceable": {
+                              "element_modification": {
+                                "Placement": {
+                                  "transformation": {
+                                    "extent": [
+                                      {
+                                        "x": 100,
+                                        "y": -20
+                                      },
+                                      {
+                                        "x": 140,
+                                        "y": 20
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ],
+            "element_sections": [
+              {
+                "protected_element_list": [
+                  {
+                    "component_clause": {
+                      "type_specifier": "Real",
+                      "component_list": [
+                        {
+                          "declaration": {
+                            "identifier": "TDryBul_degC",
+                            "modification": {
+                              "class_modification": [
+                                {
+                                  "element_modification_or_replaceable": {
+                                    "final": true,
+                                    "element_modification": {
+                                      "name": "unit",
+                                      "modification": {
+                                        "equal": true,
+                                        "expression": {
+                                          "simple_expression": "\"degC\""
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                {
+                                  "element_modification_or_replaceable": {
+                                    "element_modification": {
+                                      "name": "displayUnit",
+                                      "modification": {
+                                        "equal": true,
+                                        "expression": {
+                                          "simple_expression": "\"degC\""
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "description": {
+                            "description_string": "Dry bulb temperature in degree Celsius"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "component_clause": {
+                      "type_specifier": "Real",
+                      "component_list": [
+                        {
+                          "declaration": {
+                            "identifier": "p_w",
+                            "modification": {
+                              "class_modification": [
+                                {
+                                  "element_modification_or_replaceable": {
+                                    "final": true,
+                                    "element_modification": {
+                                      "name": "quantity",
+                                      "modification": {
+                                        "equal": true,
+                                        "expression": {
+                                          "simple_expression": "\"Pressure\""
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                {
+                                  "element_modification_or_replaceable": {
+                                    "final": true,
+                                    "element_modification": {
+                                      "name": "unit",
+                                      "modification": {
+                                        "equal": true,
+                                        "expression": {
+                                          "simple_expression": "\"Pa\""
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                {
+                                  "element_modification_or_replaceable": {
+                                    "element_modification": {
+                                      "name": "displayUnit",
+                                      "modification": {
+                                        "equal": true,
+                                        "expression": {
+                                          "simple_expression": "\"Pa\""
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "description": {
+                            "description_string": "Water vapor pressure"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "component_clause": {
+                      "type_specifier": "Real",
+                      "component_list": [
+                        {
+                          "declaration": {
+                            "identifier": "w",
+                            "modification": {
+                              "class_modification": [
+                                {
+                                  "element_modification_or_replaceable": {
+                                    "final": true,
+                                    "element_modification": {
+                                      "name": "unit",
+                                      "modification": {
+                                        "equal": true,
+                                        "expression": {
+                                          "simple_expression": "\"1\""
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                {
+                                  "element_modification_or_replaceable": {
+                                    "element_modification": {
+                                      "name": "nominal",
+                                      "modification": {
+                                        "equal": true,
+                                        "expression": {
+                                          "simple_expression": "0.01"
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "description": {
+                            "description_string": "Water vapor mass fraction in kg per kg dry air"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              {
+                "equation_section": {
+                  "equation": [
+                    {
+                      "assignment_equation": {
+                        "lhs": "TDryBul_degC",
+                        "rhs": {
+                          "simple_expression": "TDryBul -273.15"
+                        }
+                      }
+                    },
+                    {
+                      "assignment_equation": {
+                        "lhs": "p_w",
+                        "rhs": {
+                          "simple_expression": "phi*Buildings.Utilities.Psychrometrics.Functions.saturationPressure(TDryBul)"
+                        }
+                      }
+                    },
+                    {
+                      "assignment_equation": {
+                        "lhs": "w",
+                        "rhs": {
+                          "simple_expression": "0.6219647130774989*p_w/(pAtm -p_w)"
+                        }
+                      }
+                    },
+                    {
+                      "assignment_equation": {
+                        "lhs": "h",
+                        "rhs": {
+                          "simple_expression": "1006*TDryBul_degC +w*(2501014.5 +1860*TDryBul_degC)"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            ],
+            "annotation": [
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "defaultComponentName",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "\"ent\""
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "Documentation",
+                    "modification": {
+                      "class_modification": [
+                        {
+                          "element_modification_or_replaceable": {
+                            "element_modification": {
+                              "name": "info",
+                              "modification": {
+                                "equal": true,
+                                "expression": {
+                                  "simple_expression": "\"<html>\n<p>\nThis block computes the specific enthalpy for a given dry bulb temperature, relative air humidity\nand atmospheric pressure.\nThe specific enthalpy is zero if the temperature is <i>0</i>&deg;C and if there\nis no moisture.\n</p>\n<p>\nThe correlation used in this model is from the 2009 ASHRAE Handbook Fundamentals, p. 1.9, equation 32.\n</p>\n</html>\""
+                                }
+                              }
+                            }
+                          }
+                        },
+                        {
+                          "element_modification_or_replaceable": {
+                            "element_modification": {
+                              "name": "revisions",
+                              "modification": {
+                                "equal": true,
+                                "expression": {
+                                  "simple_expression": "\"<html>\n<ul>\n<li>\nNovember 12, 2020, by Michael Wetter:<br/>\nReformulated to remove dependency to <code>Modelica.Units.SI</code>.<br/>\nThis is for\n<a href=\\\"https://github.com/lbl-srg/modelica-buildings/issues/2243\\\">Buildings, issue 2243</a>.\n</li>\n<li>\nSeptember 29, 2020, by Michael Wetter:<br/>\nRemoved input <code>p</code>, used instead a parameter for the atmospheric pressure and renamed block.<br/>\nThis is for\n<a href=\\\"https://github.com/lbl-srg/modelica-buildings/issues/2139\\\">Buildings, issue 2139</a>\n</li>\n<li>\nApril 7, 2017 by Jianjun Hu:<br/>\nFirst implementation.\n</li>\n</ul>\n</html>\""
+                                }
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              },
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "Icon",
+                    "modification": {
+                      "class_modification": [
+                        {
+                          "element_modification_or_replaceable": {
+                            "element_modification": {
+                              "coordinateSystem": {
+                                "extent": [
+                                  {
+                                    "x": -100,
+                                    "y": -100
+                                  },
+                                  {
+                                    "x": 100,
+                                    "y": 100
+                                  }
+                                ],
+                                "preserveAspectRatio": "false"
+                              }
+                            }
+                          }
+                        },
+                        {
+                          "element_modification_or_replaceable": {
+                            "element_modification": {
+                              "graphics": [
+                                {
+                                  "name": "Text",
+                                  "attribute": {
+                                    "extent": [
+                                      {
+                                        "x": -150,
+                                        "y": 150
+                                      },
+                                      {
+                                        "x": 150,
+                                        "y": 110
+                                      }
+                                    ],
+                                    "textString": "\"%name\"",
+                                    "textColor": {
+                                      "r": 0,
+                                      "g": 0,
+                                      "b": 255
+                                    }
+                                  }
+                                },
+                                {
+                                  "name": "Rectangle",
+                                  "attribute": {
+                                    "extent": [
+                                      {
+                                        "x": -100,
+                                        "y": 100
+                                      },
+                                      {
+                                        "x": 100,
+                                        "y": -100
+                                      }
+                                    ],
+                                    "lineColor": {
+                                      "r": 0,
+                                      "g": 0,
+                                      "b": 0
+                                    },
+                                    "fillColor": {
+                                      "r": 255,
+                                      "g": 255,
+                                      "b": 255
+                                    },
+                                    "fillPattern": "FillPattern.Solid"
+                                  }
+                                },
+                                {
+                                  "name": "Line",
+                                  "attribute": {
+                                    "points": [
+                                      {
+                                        "x": -44,
+                                        "y": -52
+                                      },
+                                      {
+                                        "x": -30,
+                                        "y": -48
+                                      },
+                                      {
+                                        "x": 0,
+                                        "y": -36
+                                      },
+                                      {
+                                        "x": 32,
+                                        "y": -8
+                                      },
+                                      {
+                                        "x": 44,
+                                        "y": 16
+                                      },
+                                      {
+                                        "x": 52,
+                                        "y": 48
+                                      },
+                                      {
+                                        "x": 56,
+                                        "y": 68
+                                      }
+                                    ],
+                                    "color": {
+                                      "r": 215,
+                                      "g": 215,
+                                      "b": 215
+                                    },
+                                    "smooth": "Smooth.Bezier"
+                                  }
+                                },
+                                {
+                                  "name": "Line",
+                                  "attribute": {
+                                    "points": [
+                                      {
+                                        "x": 66,
+                                        "y": -58
+                                      },
+                                      {
+                                        "x": 10,
+                                        "y": -28
+                                      }
+                                    ],
+                                    "color": {
+                                      "r": 255,
+                                      "g": 0,
+                                      "b": 0
+                                    },
+                                    "thickness": 0.5
+                                  }
+                                },
+                                {
+                                  "name": "Text",
+                                  "attribute": {
+                                    "extent": [
+                                      {
+                                        "x": -44,
+                                        "y": 82
+                                      },
+                                      {
+                                        "x": -22,
+                                        "y": 64
+                                      }
+                                    ],
+                                    "textString": "\"X\"",
+                                    "textColor": {
+                                      "r": 0,
+                                      "g": 0,
+                                      "b": 0
+                                    },
+                                    "fillColor": {
+                                      "r": 0,
+                                      "g": 0,
+                                      "b": 0
+                                    },
+                                    "fillPattern": "FillPattern.Solid"
+                                  }
+                                },
+                                {
+                                  "name": "Polygon",
+                                  "attribute": {
+                                    "points": [
+                                      {
+                                        "x": -48,
+                                        "y": 88
+                                      },
+                                      {
+                                        "x": -46,
+                                        "y": 74
+                                      },
+                                      {
+                                        "x": -50,
+                                        "y": 74
+                                      },
+                                      {
+                                        "x": -48,
+                                        "y": 88
+                                      }
+                                    ],
+                                    "lineColor": {
+                                      "r": 0,
+                                      "g": 0,
+                                      "b": 0
+                                    },
+                                    "fillColor": {
+                                      "r": 0,
+                                      "g": 0,
+                                      "b": 0
+                                    },
+                                    "fillPattern": "FillPattern.Solid"
+                                  }
+                                },
+                                {
+                                  "name": "Text",
+                                  "attribute": {
+                                    "extent": [
+                                      {
+                                        "x": -88,
+                                        "y": -44
+                                      },
+                                      {
+                                        "x": -68,
+                                        "y": -70
+                                      }
+                                    ],
+                                    "textString": "\"phi\"",
+                                    "textColor": {
+                                      "r": 0,
+                                      "g": 0,
+                                      "b": 127
+                                    }
+                                  }
+                                },
+                                {
+                                  "name": "Text",
+                                  "attribute": {
+                                    "extent": [
+                                      {
+                                        "x": -92,
+                                        "y": 82
+                                      },
+                                      {
+                                        "x": -62,
+                                        "y": 38
+                                      }
+                                    ],
+                                    "textString": "\"TDryBul\"",
+                                    "textColor": {
+                                      "r": 0,
+                                      "g": 0,
+                                      "b": 127
+                                    }
+                                  }
+                                },
+                                {
+                                  "name": "Line",
+                                  "attribute": {
+                                    "points": [
+                                      {
+                                        "x": 78,
+                                        "y": -74
+                                      },
+                                      {
+                                        "x": -48,
+                                        "y": -74
+                                      }
+                                    ]
+                                  }
+                                },
+                                {
+                                  "name": "Polygon",
+                                  "attribute": {
+                                    "points": [
+                                      {
+                                        "x": 86,
+                                        "y": -74
+                                      },
+                                      {
+                                        "x": 76,
+                                        "y": -72
+                                      },
+                                      {
+                                        "x": 76,
+                                        "y": -76
+                                      },
+                                      {
+                                        "x": 86,
+                                        "y": -74
+                                      }
+                                    ],
+                                    "lineColor": {
+                                      "r": 0,
+                                      "g": 0,
+                                      "b": 0
+                                    },
+                                    "fillColor": {
+                                      "r": 0,
+                                      "g": 0,
+                                      "b": 0
+                                    },
+                                    "fillPattern": "FillPattern.Solid"
+                                  }
+                                },
+                                {
+                                  "name": "Text",
+                                  "attribute": {
+                                    "extent": [
+                                      {
+                                        "x": 76,
+                                        "y": -78
+                                      },
+                                      {
+                                        "x": 86,
+                                        "y": -94
+                                      }
+                                    ],
+                                    "textString": "\"T\"",
+                                    "textColor": {
+                                      "r": 0,
+                                      "g": 0,
+                                      "b": 0
+                                    },
+                                    "fillColor": {
+                                      "r": 0,
+                                      "g": 0,
+                                      "b": 0
+                                    },
+                                    "fillPattern": "FillPattern.Solid"
+                                  }
+                                },
+                                {
+                                  "name": "Line",
+                                  "attribute": {
+                                    "points": [
+                                      {
+                                        "x": -48,
+                                        "y": 84
+                                      },
+                                      {
+                                        "x": -48,
+                                        "y": -74
+                                      }
+                                    ]
+                                  }
+                                },
+                                {
+                                  "name": "Text",
+                                  "attribute": {
+                                    "extent": [
+                                      {
+                                        "x": 74,
+                                        "y": 14
+                                      },
+                                      {
+                                        "x": 94,
+                                        "y": -12
+                                      }
+                                    ],
+                                    "textString": "\"h\"",
+                                    "textColor": {
+                                      "r": 0,
+                                      "g": 0,
+                                      "b": 127
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "modelicaFile": "Buildings/Controls/OBC/CDL/Psychrometrics/SpecificEnthalpy_TDryBulPhi.mo",
+  "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Psychrometrics/SpecificEnthalpy_TDryBulPhi.mo",
+  "checksum": "032cab10b9c1213b6e18a285e77b4cc0"
+}

@@ -2,8 +2,9 @@
   "instances": {
     "Derivative": {
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Derivative.mo",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Derivative.mo",
       "type": "long_class_specifier",
+      "class_prefixes": "block",
       "annotation": [
         {
           "element_modification_or_replaceable": {
@@ -44,7 +45,7 @@
                         "modification": {
                           "equal": true,
                           "expression": {
-                            "simple_expression": "\"<html>\n<ul>\n<li>\nMay 20, 2022, by Michael Wetter:<br/>\nFirst implementation.<br/>\nThis is for\n<a href=\\\"https://github.com/lbl-srg/modelica-buildings/issues/3022\\\">issue 3022</a>.\n</li>\n</ul>\n</html>\""
+                            "simple_expression": "\"<html>\n<ul>\n<li>\nMay 20, 2022, by Michael Wetter:<br/>\nFirst implementation.<br/>\nThis is for\n<a href=\\\"https://github.com/lbl-srg/modelica-buildings/issues/3022\\\">Buildings, issue 3022</a>.\n</li>\n</ul>\n</html>\""
                           }
                         }
                       }
@@ -378,12 +379,14 @@
           }
         }
       ],
-      "semantics": {}
+      "semantics": {},
+      "cdl_annotations": {}
     },
     "y_start": {
       "type_prefix": "parameter",
       "type_specifier": "Real",
       "type": "element",
+      "compositionSpecifier": "public",
       "long_class_specifier_identifier": "Derivative",
       "single_component_list": {
         "declaration": {
@@ -452,19 +455,23 @@
         }
       ],
       "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Derivative.mo"
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Derivative.mo"
     },
     "k": {
       "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
       "type": "element",
+      "compositionSpecifier": "public",
       "long_class_specifier_identifier": "Derivative",
       "single_component_list": {
         "declaration": {
           "identifier": "k"
         },
         "description": {
-          "description_string": "Connector for gain signal",
+          "description_string": "Input for the gain",
           "annotation": [
             {
               "element_modification_or_replaceable": {
@@ -512,12 +519,16 @@
         }
       ],
       "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Derivative.mo"
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Derivative.mo"
     },
     "T": {
       "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
       "type": "element",
+      "compositionSpecifier": "public",
       "long_class_specifier_identifier": "Derivative",
       "single_component_list": {
         "declaration": {
@@ -569,7 +580,7 @@
           }
         },
         "description": {
-          "description_string": "Time constant (T>0 required; T=0 is ideal derivative block)",
+          "description_string": "Input for the time constant (T>0 required; T=0 is ideal derivative block)",
           "annotation": [
             {
               "element_modification_or_replaceable": {
@@ -617,12 +628,16 @@
         }
       ],
       "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Derivative.mo"
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Derivative.mo"
     },
     "u": {
       "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
       "type": "element",
+      "compositionSpecifier": "public",
       "long_class_specifier_identifier": "Derivative",
       "single_component_list": {
         "declaration": {
@@ -677,12 +692,16 @@
         }
       ],
       "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Derivative.mo"
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Derivative.mo"
     },
     "y": {
       "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
       "type": "element",
+      "compositionSpecifier": "public",
       "long_class_specifier_identifier": "Derivative",
       "single_component_list": {
         "declaration": {
@@ -737,12 +756,16 @@
         }
       ],
       "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Derivative.mo"
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Derivative.mo"
     },
     "T_nonZero": {
       "type_specifier": "Real",
       "type": "element",
+      "compositionSpecifier": "protected",
       "long_class_specifier_identifier": "Derivative",
       "single_component_list": {
         "declaration": {
@@ -772,13 +795,17 @@
       },
       "annotation": null,
       "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Derivative.mo"
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Derivative.mo"
     },
     "x": {
       "type_prefix": "output",
       "type_specifier": "Real",
       "type": "element",
+      "compositionSpecifier": "protected",
       "long_class_specifier_identifier": "Derivative",
       "single_component_list": {
         "declaration": {
@@ -790,8 +817,11 @@
       },
       "annotation": null,
       "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Derivative.mo"
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Derivative.mo"
     }
   },
   "requiredReferences": {

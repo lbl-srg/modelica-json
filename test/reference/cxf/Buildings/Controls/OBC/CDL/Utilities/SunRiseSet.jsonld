@@ -1,0 +1,139 @@
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#",
+    "qudt": "http://qudt.org/schema/qudt#"
+  },
+  "@graph": [
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Utilities.SunRiseSet",
+      "@type": "S231P:ElementaryBlock",
+      "S231P:hasOutput": [
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Utilities.SunRiseSet.nextSunRise"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Utilities.SunRiseSet.nextSunSet"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Utilities.SunRiseSet.sunUp"
+        }
+      ],
+      "S231P:hasParameter": [
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Utilities.SunRiseSet.lat"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Utilities.SunRiseSet.lon"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Utilities.SunRiseSet.timZon"
+        }
+      ],
+      "S231P:label": [
+        "SunRiseSet",
+        "computeSunRise",
+        "computeSunSet",
+        "nextHourAngle"
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Utilities.SunRiseSet.lat",
+      "@type": "S231P:Parameter",
+      "qudt:hasDisplayUnit": {
+        "@id": "S231P:deg"
+      },
+      "qudt:hasQuantityKind": {
+        "@id": "S231P:Angle"
+      },
+      "qudt:hasUnit": {
+        "@id": "S231P:rad"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Latitude",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "lat"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Utilities.SunRiseSet.lon",
+      "@type": "S231P:Parameter",
+      "qudt:hasDisplayUnit": {
+        "@id": "S231P:deg"
+      },
+      "qudt:hasQuantityKind": {
+        "@id": "S231P:Angle"
+      },
+      "qudt:hasUnit": {
+        "@id": "S231P:rad"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Longitude",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "lon"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Utilities.SunRiseSet.nextSunRise",
+      "@type": "S231P:RealOutput",
+      "qudt:hasDisplayUnit": {
+        "@id": "S231P:h"
+      },
+      "qudt:hasQuantityKind": {
+        "@id": "S231P:Time"
+      },
+      "qudt:hasUnit": {
+        "@id": "S231P:s"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Time of next sunrise",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":40},{\"x\":140,\"y\":80}]}}}",
+      "S231P:label": "nextSunRise"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Utilities.SunRiseSet.nextSunSet",
+      "@type": "S231P:RealOutput",
+      "qudt:hasDisplayUnit": {
+        "@id": "S231P:h"
+      },
+      "qudt:hasQuantityKind": {
+        "@id": "S231P:Time"
+      },
+      "qudt:hasUnit": {
+        "@id": "S231P:s"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Time of next sunset",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
+      "S231P:label": "nextSunSet"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Utilities.SunRiseSet.sunUp",
+      "@type": "S231P:BooleanOutput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Output with true if the sun is up",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-80},{\"x\":140,\"y\":-40}]}}}",
+      "S231P:label": "sunUp"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Utilities.SunRiseSet.timZon",
+      "@type": "S231P:Parameter",
+      "qudt:hasDisplayUnit": {
+        "@id": "S231P:h"
+      },
+      "qudt:hasQuantityKind": {
+        "@id": "S231P:Time"
+      },
+      "qudt:hasUnit": {
+        "@id": "S231P:s"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Time zone",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "timZon"
+    }
+  ]
+}

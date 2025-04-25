@@ -1,0 +1,113 @@
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#",
+    "qudt": "http://qudt.org/schema/qudt#"
+  },
+  "@graph": [
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.VariablePulse",
+      "@type": "S231P:ElementaryBlock",
+      "S231P:hasInput": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.VariablePulse.u"
+      },
+      "S231P:hasOutput": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.VariablePulse.y"
+      },
+      "S231P:hasParameter": [
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.VariablePulse.deltaU"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.VariablePulse.minTruFalHol"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.VariablePulse.period"
+        }
+      ],
+      "S231P:label": [
+        "Cycle",
+        "VariablePulse"
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.VariablePulse.deltaU",
+      "@type": "S231P:Parameter",
+      "qudt:hasUnit": {
+        "@id": "S231P:1"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Increment of u that triggers recomputation of output",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "deltaU",
+      "S231P:max": {
+        "@value": "0.5",
+        "@type": "http://www.w3.org/2001/XMLSchema#decimal"
+      },
+      "S231P:min": {
+        "@value": "0.001",
+        "@type": "http://www.w3.org/2001/XMLSchema#decimal"
+      },
+      "S231P:value": {
+        "@value": "0.01",
+        "@type": "http://www.w3.org/2001/XMLSchema#decimal"
+      }
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.VariablePulse.minTruFalHol",
+      "@type": "S231P:Parameter",
+      "qudt:hasQuantityKind": {
+        "@id": "S231P:Time"
+      },
+      "qudt:hasUnit": {
+        "@id": "S231P:s"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Minimum time to hold true or false",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "minTruFalHol",
+      "S231P:min": "Constants.small",
+      "S231P:value": "0.01*period"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.VariablePulse.period",
+      "@type": "S231P:Parameter",
+      "qudt:hasQuantityKind": {
+        "@id": "S231P:Time"
+      },
+      "qudt:hasUnit": {
+        "@id": "S231P:s"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Time for one pulse period",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "period"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.VariablePulse.u",
+      "@type": "S231P:RealInput",
+      "qudt:hasUnit": {
+        "@id": "S231P:1"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Ratio of the period that the output should be true",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-160,\"y\":-20},{\"x\":-120,\"y\":20}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
+      "S231P:label": "u",
+      "S231P:max": 1,
+      "S231P:min": 0
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.VariablePulse.y",
+      "@type": "S231P:BooleanOutput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Boolean pulse when the input is greater than zero",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":120,\"y\":-20},{\"x\":160,\"y\":20}]},\"iconTransformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
+      "S231P:label": "y"
+    }
+  ]
+}

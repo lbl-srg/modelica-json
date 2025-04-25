@@ -1,4 +1,201 @@
 {
-  "instances": {},
+  "instances": {
+    "SimpleController": {
+      "type": "enumeration_class",
+      "type_specifier": null,
+      "short_class_specifier_value": {
+        "description": {
+          "description_string": "Enumeration defining P, PI, PD, or PID simple controller type",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "name": "Evaluate",
+                  "modification": {
+                    "equal": true,
+                    "expression": {
+                      "simple_expression": "true"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "name": "Documentation",
+                  "modification": {
+                    "class_modification": [
+                      {
+                        "element_modification_or_replaceable": {
+                          "element_modification": {
+                            "name": "info",
+                            "modification": {
+                              "equal": true,
+                              "expression": {
+                                "simple_expression": "\"<html>\n<p>\nEnumeration to define the type of the controller.\nPossible values are:\n</p>\n<table border=\\\"1\\\" summary=\\\"Explanation of the enumeration\\\">\n<tr>\n<th>Enumeration</th>\n<th>Description</th></tr>\n<tr><td><code>P</code></td>\n<td>\nController with proportional term.\n</td></tr>\n<tr><td><code>PI</code></td>\n<td>\nController with proportional and integral terms.\n</td></tr>\n<tr><td><code>PD</code></td>\n<td>\nController with proportional and derivative term.\n</td></tr>\n<tr><td><code>PID</code></td>\n<td>\nController with proportional, integral and derivative terms.\n</td></tr>\n</table>\n</html>\""
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "element_modification_or_replaceable": {
+                          "element_modification": {
+                            "name": "revisions",
+                            "modification": {
+                              "equal": true,
+                              "expression": {
+                                "simple_expression": "\"<html>\n<ul>\n<li>\nMarch 23, 2017, by Jianjun Hu:<br/>\nFirst implementation.\n</li>\n</ul>\n</html>\""
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "enum_list": [
+          {
+            "identifier": "P",
+            "description": {
+              "description_string": "P controller"
+            }
+          },
+          {
+            "identifier": "PI",
+            "description": {
+              "description_string": "PI controller"
+            }
+          },
+          {
+            "identifier": "PD",
+            "description": {
+              "description_string": "PD controller"
+            }
+          },
+          {
+            "identifier": "PID",
+            "description": {
+              "description_string": "PID controller"
+            }
+          }
+        ]
+      },
+      "within": "Buildings.Controls.OBC.CDL.Types",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Types/SimpleController.mo",
+      "description": {
+        "description_string": "Enumeration defining P, PI, PD, or PID simple controller type",
+        "annotation": [
+          {
+            "element_modification_or_replaceable": {
+              "element_modification": {
+                "name": "Evaluate",
+                "modification": {
+                  "equal": true,
+                  "expression": {
+                    "simple_expression": "true"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "element_modification_or_replaceable": {
+              "element_modification": {
+                "name": "Documentation",
+                "modification": {
+                  "class_modification": [
+                    {
+                      "element_modification_or_replaceable": {
+                        "element_modification": {
+                          "name": "info",
+                          "modification": {
+                            "equal": true,
+                            "expression": {
+                              "simple_expression": "\"<html>\n<p>\nEnumeration to define the type of the controller.\nPossible values are:\n</p>\n<table border=\\\"1\\\" summary=\\\"Explanation of the enumeration\\\">\n<tr>\n<th>Enumeration</th>\n<th>Description</th></tr>\n<tr><td><code>P</code></td>\n<td>\nController with proportional term.\n</td></tr>\n<tr><td><code>PI</code></td>\n<td>\nController with proportional and integral terms.\n</td></tr>\n<tr><td><code>PD</code></td>\n<td>\nController with proportional and derivative term.\n</td></tr>\n<tr><td><code>PID</code></td>\n<td>\nController with proportional, integral and derivative terms.\n</td></tr>\n</table>\n</html>\""
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "element_modification_or_replaceable": {
+                        "element_modification": {
+                          "name": "revisions",
+                          "modification": {
+                            "equal": true,
+                            "expression": {
+                              "simple_expression": "\"<html>\n<ul>\n<li>\nMarch 23, 2017, by Jianjun Hu:<br/>\nFirst implementation.\n</li>\n</ul>\n</html>\""
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "P": {
+      "type": "enumeration",
+      "description": {
+        "description_string": "P controller"
+      },
+      "enumeration_literal": {
+        "identifier": "P",
+        "description": {
+          "description_string": "P controller"
+        }
+      },
+      "enumeration_kind": "SimpleController"
+    },
+    "PI": {
+      "type": "enumeration",
+      "description": {
+        "description_string": "PI controller"
+      },
+      "enumeration_literal": {
+        "identifier": "PI",
+        "description": {
+          "description_string": "PI controller"
+        }
+      },
+      "enumeration_kind": "SimpleController"
+    },
+    "PD": {
+      "type": "enumeration",
+      "description": {
+        "description_string": "PD controller"
+      },
+      "enumeration_literal": {
+        "identifier": "PD",
+        "description": {
+          "description_string": "PD controller"
+        }
+      },
+      "enumeration_kind": "SimpleController"
+    },
+    "PID": {
+      "type": "enumeration",
+      "description": {
+        "description_string": "PID controller"
+      },
+      "enumeration_literal": {
+        "identifier": "PID",
+        "description": {
+          "description_string": "PID controller"
+        }
+      },
+      "enumeration_kind": "SimpleController"
+    }
+  },
   "requiredReferences": {}
 }

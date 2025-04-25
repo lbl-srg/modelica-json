@@ -2,8 +2,9 @@
   "instances": {
     "Limiter": {
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Limiter.mo",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Limiter.mo",
       "type": "long_class_specifier",
+      "class_prefixes": "block",
       "annotation": [
         {
           "element_modification_or_replaceable": {
@@ -31,7 +32,7 @@
                         "modification": {
                           "equal": true,
                           "expression": {
-                            "simple_expression": "\"<html>\n<p>\nBlock that outputs <code>y = min(uMax, max(uMin, u))</code>,\nwhere\n<code>u</code> is an input\nand\n<code>uMax</code> and <code>uMin</code> are parameters.\n</p>\n<p>\nIf <code>uMax &lt; uMin</code>, an error occurs and no output is produced.\n</p>\n</html>\""
+                            "simple_expression": "\"<html>\n<p>\nBlock that outputs <code>y = min(uMax, max(uMin, u))</code>,\nwhere\n<code>u</code> is an input\nand\n<code>uMax</code> and <code>uMin</code> are parameters.\n</p>\n<p>\nIf <code>uMax &lt; uMin</code>, an error occurs.\n</p>\n</html>\""
                           }
                         }
                       }
@@ -44,7 +45,7 @@
                         "modification": {
                           "equal": true,
                           "expression": {
-                            "simple_expression": "\"<html>\n<ul>\n<li>\nMarch 2, 2020, by Michael Wetter:<br/>\nChanged icon to display dynamically the output value.\n</li>\n<li>\nJuly 17, 2017, by Michael Wetter:<br/>\nRemoved cyclical definition.\n</li>\n<li>\nJanuary 3, 2017, by Michael Wetter:<br/>\nFirst implementation, based on the implementation of the\nModelica Standard Library.\n</li>\n</ul>\n</html>\""
+                            "simple_expression": "\"<html>\n<ul>\n<li>\nFebruary 15, 2024, by Michael Wetter:<br/>\nUpdated documentation.\n</li>\n<li>\nMarch 2, 2020, by Michael Wetter:<br/>\nChanged icon to display dynamically the output value.\n</li>\n<li>\nJuly 17, 2017, by Michael Wetter:<br/>\nRemoved cyclical definition.\n</li>\n<li>\nJanuary 3, 2017, by Michael Wetter:<br/>\nFirst implementation, based on the implementation of the\nModelica Standard Library.\n</li>\n</ul>\n</html>\""
                           }
                         }
                       }
@@ -367,12 +368,14 @@
           }
         }
       ],
-      "semantics": {}
+      "semantics": {},
+      "cdl_annotations": {}
     },
     "uMax": {
       "type_prefix": "parameter",
       "type_specifier": "Real",
       "type": "element",
+      "compositionSpecifier": "public",
       "long_class_specifier_identifier": "Limiter",
       "single_component_list": {
         "declaration": {
@@ -384,13 +387,17 @@
       },
       "annotation": null,
       "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Limiter.mo"
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Limiter.mo"
     },
     "uMin": {
       "type_prefix": "parameter",
       "type_specifier": "Real",
       "type": "element",
+      "compositionSpecifier": "public",
       "long_class_specifier_identifier": "Limiter",
       "single_component_list": {
         "declaration": {
@@ -402,19 +409,23 @@
       },
       "annotation": null,
       "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Limiter.mo"
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Limiter.mo"
     },
     "u": {
-      "type_specifier": "Interfaces.RealInput",
+      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
       "type": "element",
+      "compositionSpecifier": "public",
       "long_class_specifier_identifier": "Limiter",
       "single_component_list": {
         "declaration": {
           "identifier": "u"
         },
         "description": {
-          "description_string": "Connector of Real input signal",
+          "description_string": "Input to be limited",
           "annotation": [
             {
               "element_modification_or_replaceable": {
@@ -462,19 +473,23 @@
         }
       ],
       "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Limiter.mo"
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Limiter.mo"
     },
     "y": {
-      "type_specifier": "Interfaces.RealOutput",
+      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
       "type": "element",
+      "compositionSpecifier": "public",
       "long_class_specifier_identifier": "Limiter",
       "single_component_list": {
         "declaration": {
           "identifier": "y"
         },
         "description": {
-          "description_string": "Connector of Real output signal",
+          "description_string": "Limited value of input signal",
           "annotation": [
             {
               "element_modification_or_replaceable": {
@@ -522,8 +537,11 @@
         }
       ],
       "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Limiter.mo"
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Limiter.mo"
     }
   },
   "requiredReferences": {

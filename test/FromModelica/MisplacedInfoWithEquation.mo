@@ -14,13 +14,13 @@ block MisplacedInfoWithEquation
   Buildings.Controls.OBC.CDL.Interfaces.RealOutput y2 "Output signal"
     annotation (Placement(transformation(extent={{100,-10},{120,10}})));
 
-  Buildings.Controls.OBC.CDL.Continuous.MultiplyByParameter gain(final k=k) "Constant gain"
+  Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter gain(final k=k) "Constant gain"
     annotation (Placement(transformation(extent={{0,-10},{20,10}})));
 
 equation
   connect(u, gain.u) annotation (
     Line(points={{-120,0},{-2,0}},color={0,0,127}));
-  connect(gain.y, y) annotation (
+  connect(gain.y, y1) annotation (
     Line(points={{22,0},{110,0}},color={0,0,127}));
    y2 = k * u
   annotation (Documentation(info="<html>

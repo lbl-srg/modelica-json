@@ -2,6 +2,8 @@ const fs = require('fs')
 const pa = require('./lib/parser.js')
 const ut = require('./lib/util.js')
 const se = require('./lib/semanticExtractor.js')
+const ce = require('./lib/cxfExtractor.js')
+const dc = require('./lib/cdlDoc.js')
 
 const logger = require('winston')
 const path = require('path')
@@ -18,7 +20,7 @@ parser.addArgument(
   ['-o', '--output'],
   {
     help: 'Specify output format.',
-    choices: ['raw-json', 'json', 'modelica', 'semantic'],
+    choices: ['raw-json', 'json', 'modelica', 'semantic', 'cxf', 'doc', 'doc+'],
     defaultValue: 'json'
   }
 )
@@ -33,7 +35,7 @@ parser.addArgument(
 parser.addArgument(
   ['-m', '--mode'],
   {
-    help: "Parsing mode, CDL model or a package of the Modelica Buildings library, 'cdl' is the default.",
+    help: "Parsing mode, CDL model or a package of the Modelica Buildings library, 'modelica' is the default.",
     choices: ['cdl', 'modelica'],
     defaultValue: 'modelica'
   }
@@ -52,13 +54,25 @@ parser.addArgument(
     defaultValue: 'current'
   }
 )
-
 parser.addArgument(
-
   ['-p', '--prettyPrint'],
   {
-    help: 'Pretty print JSON output.',
-    defaultValue: 'false'
+    help: 'Pretty print JSON output. The -o/--output should be raw-json/json/cxf.',
+    action: 'storeTrue'
+  }
+)
+parser.addArgument(
+  ['--elementary'],
+  {
+    help: 'If this flag is present, generate CXF of elementary blocks in addition to composite blocks. -o/--output should be cxf.',
+    action: 'storeTrue'
+  }
+)
+parser.addArgument(
+  ['--cxfCore'],
+  {
+    help: 'If this flag is present, generate CXF-core.jsonld. -o/--output should be cxf, -f/--file should be path/to/CDL and --elementary flag must be used.',
+    action: 'storeTrue'
   }
 )
 
@@ -93,18 +107,40 @@ if (args.output === 'modelica') {
   pa.convertToModelica(args.file, args.directory, false)
 } else {
   // Get mo files array
-
+  if (args.elementary || args.cxfCore) {
+    if (!args.output === 'cxf') {
+      throw new Error('In order to generate CXF (jsonld) of elementary blocks, -o/--output should be cxf.')
+    }
+  }
+  if (args.cxfCore) {
+    if (!args.file.endsWith('CDL') && !args.file.endsWith('cdl')) {
+      throw new Error('In order to generate CXF-core.jsonld containing all elementary blocks, -f/--file should be path/to/CDL.')
+    }
+    if (!args.elementary) {
+      throw new Error('In order to generate CXF-core.jsonld containing all elementary blocks, --elementary flag must be used.')
+    }
+  }
+  let jsons // Array of json representations of all mo files recursively instantiated by the top-level class
   const completedJsonGeneration = new Promise(
     function (resolve, reject) {
       const moFiles = ut.getMoFiles(args.file)
       // Parse the json representation for moFiles
-      pa.getJsons(moFiles, args.mode, args.output, args.directory, args.prettyPrint)
+      jsons = pa.getJsons(moFiles, args.output, args.directory, args.prettyPrint, args.elementary, args.cxfCore)
       resolve(0)
     }
   )
   completedJsonGeneration.then(function () {
     if (args.output === 'semantic') {
       se.getSemanticInformation(args.file, args.directory)
+    }
+    if (args.output === 'cxf' && args.cxfCore && args.elementary) {
+      ce.getCxfCore(args.file, args.directory, args.prettyPrint)
+    }
+    if (args.output === 'doc' || args.output === 'doc+') {
+      const unitData = JSON.parse(
+        fs.readFileSync(path.join(__dirname, 'units-si.json'), 'utf8'))
+      const includeVariables = (args.output === 'doc+')
+      dc.buildDoc(jsons[0], jsons, unitData, args.directory, includeVariables)
     }
   })
 }
@@ -116,7 +152,8 @@ if (args.output === 'json') {
   } else {
     schema = path.join(`${__dirname}`, 'schema-modelica.json')
   }
-  let jsonFiles = ut.findFilesInDir(path.join(args.directory, 'json'), '.json')
+  const jsonDir = (args.directory === 'current') ? process.cwd() : args.directory
+  let jsonFiles = ut.findFilesInDir(path.join(jsonDir, 'json'), '.json')
   // exclude CDL folder and possibly Modelica folder
   const pathSep = path.sep
   const cdlPath = path.join(pathSep, 'CDL', pathSep)

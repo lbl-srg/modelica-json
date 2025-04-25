@@ -9,6 +9,7 @@ const fs = Promise.promisifyAll(require('fs'))
 const glob = require('glob-promise')
 const logger = require('winston')
 const se = require('../lib/semanticExtractor.js')
+const ce = require('../lib/cxfExtractor.js')
 // const cheerio = require('cheerio')
 
 logger.configure({
@@ -25,7 +26,7 @@ logger.level = 'error'
 
 /** Function to get all the Modelica files to be tested
   */
-const getIntFiles = function (mode) {
+const getIntFiles = function (mode = 'modelica') {
   let pattern
   if (mode === 'cdl') {
     pattern = path.join(__dirname, 'FromModelica', '*.mo')
@@ -56,7 +57,7 @@ const checkCdlJSON = function (outFormat, extension, message) {
       // 'fil.split()' changes string 'fil' to be string array with single element
       // 'fil' is like '../test/FromModelica/***.mo'
       // const jsonNewCDL = pa.getJSON(fil.split(), mode, outFormat)
-      pa.getJsons([fil], mode, outFormat, 'current', 'false')
+      pa.getJsons([fil], outFormat, 'current', 'false')
       const idx = fil.lastIndexOf(path.sep)
       const jsonNewCDLFile = path.join(process.cwd(), subPackName, 'test', 'FromModelica', fil.slice(idx + 1, -3) + extension)
 
@@ -103,7 +104,7 @@ const checkModJSON = function (outFormat, extension, message) {
     const subPackName = (outFormat === 'raw-json' ? 'raw-json' : 'json')
     // When parsing mode is 'modelica', the moFiles should feed into parser in package
     // const jsonNewMOD = pa.getJSON(testMoFiles, mode, outFormat)
-    pa.getJsons(testMoFiles, mode, outFormat, 'current', 'false')
+    pa.getJsons(testMoFiles, outFormat, 'current', 'false')
     const pattern = path.join('test', 'FromModelica', '*.mo')
     const files = glob.sync(pattern)
     const expectedOutputPath = path.join(process.cwd(), 'test', 'reference')
@@ -132,7 +133,7 @@ const checkModJSON = function (outFormat, extension, message) {
   })
 }
 
-/** Function that checks parsing from Modelica to JSON, in 'modelica' parsing mode
+/** Function that checks parsing from Modelica to Objects Json, in 'modelica' parsing mode
   */
 const checkObjectsJSON = function (outFormat, extension, message) {
   const mode = 'modelica'
@@ -146,7 +147,7 @@ const checkObjectsJSON = function (outFormat, extension, message) {
     const subPackName = 'objects'
     // When parsing mode is 'modelica', the moFiles should feed into parser in package
     // const jsonNewMOD = pa.getJSON(testMoFiles, mode, outFormat)
-    pa.getJsons(testMoFiles, mode, outFormat, 'current', 'false')
+    pa.getJsons(testMoFiles, outFormat, 'current', 'false')
     const pattern = path.join('test', 'FromModelica', '*.mo')
     const files = glob.sync(pattern)
     const expectedOutputPath = path.join(process.cwd(), 'test', 'reference', subPackName, 'test', 'FromModelica')
@@ -209,20 +210,120 @@ const checkObjectsJSON = function (outFormat, extension, message) {
   })
 }
 
+/** Function that checks parsing from Modelica to Objects Json, in 'modelica' parsing mode
+  */
+const checkCxfJson = function (outFormat, extension, message) {
+  const mode = 'modelica'
+  // process.env.MODELICAPATH = __dirname
+  mo.it(message, () => {
+    // mo files package to be tested
+    const testMoFilesTemp = getIntFiles(mode)
+    const testMoFiles = ut.getMoFiles(testMoFilesTemp)
+
+    // Name of subpackage to store json output files
+    const subPackName = 'cxf'
+    // When parsing mode is 'modelica', the moFiles should feed into parser in package
+    // const jsonNewMOD = pa.getJSON(testMoFiles, mode, outFormat)
+    pa.getJsons(testMoFiles, outFormat, 'current', 'false')
+    const pattern = path.join('test', 'FromModelica', '*.mo')
+    const files = glob.sync(pattern)
+    const filesToExclude = glob.sync(path.join('test', 'FromModelica', 'ExtendsClause*'))
+    const expectedOutputPath = path.join(process.cwd(), 'test', 'reference', subPackName, 'test', 'FromModelica')
+    const actualOutputPath = path.join(process.cwd(), subPackName, 'test', 'FromModelica')
+
+    for (let i = 0; i < files.length; i++) {
+      const idx2 = files[i].lastIndexOf(path.sep)
+      const fileNameMOD = files[i].slice(idx2 + 1, -3) + extension
+      if (!filesToExclude.includes(files[i])) {
+        const oldFileMOD = path.join(expectedOutputPath, fileNameMOD)
+        // Read the old json
+        const jsonOldMOD = JSON.parse(fs.readFileSync(oldFileMOD, 'utf8'))
+
+        const jsonNewMOD = path.join(actualOutputPath, fileNameMOD)
+        const neMOD = JSON.parse(fs.readFileSync(jsonNewMOD, 'utf8'))
+
+        const tempOld = JSON.stringify(jsonOldMOD)
+        const tempNew = JSON.stringify(neMOD)
+        as.notEqual(tempOld, undefined, 'JSON is undefined')
+        as.deepEqual(tempNew, tempOld, 'JSON result differs for ' + oldFileMOD)
+      } else {
+        const jsonLdPath = path.join(actualOutputPath, fileNameMOD)
+        as.throws(function () { fs.readFileSync(jsonLdPath, 'utf8') }, Error, 'asd')
+      }
+    }
+  })
+}
+
+function checkCxfCoreGeneration () {
+  const cdlPath = path.join('Buildings', 'Controls', 'OBC', 'CDL')
+  const testMoFiles = ut.getMoFiles(cdlPath)
+  pa.getJsons(testMoFiles, 'cxf', 'current', true, true, true)
+  ce.getCxfCore(path.join(process.cwd(), cdlPath), 'current', true)
+
+  const actualOutputCxfCorePath = path.join(process.cwd(), 'cxf', 'CXF-Core.jsonld')
+  const actualOutputCxfCore = JSON.stringify(JSON.parse(fs.readFileSync(actualOutputCxfCorePath, 'utf8')))
+
+  const refOutputCxfCorePath = path.join(process.cwd(), 'test', 'reference', 'cxf', 'CXF-Core.jsonld')
+  const refOutputCxfCore = JSON.stringify(JSON.parse(fs.readFileSync(refOutputCxfCorePath, 'utf8')))
+
+  as.deepEqual(actualOutputCxfCore, refOutputCxfCore, 'CXF-Core.jsonld different for generated file=' + actualOutputCxfCorePath + ' and reference file=' + refOutputCxfCorePath)
+}
+
 mo.describe('parser.js', function () {
-  mo.describe('Testing parse from Modelica to raw Json, in "cdl" parsing mode', function () {
+  mo.describe('Testing Modelica to raw-json using CDL files', function () {
     checkCdlJSON('raw-json', '.json', 'Testing unmodified json for equality, "cdl" mode')
   })
-  mo.describe('Testing parse from Modelica to raw Json, in "modelica" parsing mode', function () {
+  mo.describe('Testing Modelica to raw-json using folder', function () {
     checkModJSON('raw-json', '.json', 'Testing unmodified json for equality, "modelica" mode')
   })
-  mo.describe('Testing parse from Modelica to Json, in "cdl" parsing mode', function () {
+  mo.describe('Testing Modelica to JSON using CDL files', function () {
     checkCdlJSON('json', '.json', 'Testing json for equality, "cdl" mode')
   })
-  mo.describe('Testing parse from Modelica to Json, in "modelica" parsing mode', function () {
+  mo.describe('Testing Modelica to JSON using folder', function () {
     checkModJSON('json', '.json', 'Testing json for equality, "modelica" mode')
   })
-  mo.describe('Testing parse from Modelica to Objects Json, in "cdl" parsing mode', function () {
+  mo.describe('Testing parse from Modelica to Objects Json', function () {
     checkObjectsJSON('semantic', '.json', 'Testing json for equality, "cdl" mode')
+  })
+  mo.describe('Testing parse from Modelica to CXF JsonLD', function () {
+    checkCxfJson('cxf', '.jsonld', 'Testing json for equality, "cdl" mode')
+  })
+  mo.describe('Testing CXF-Core.jsonld generation', function () {
+    mo.it('check CXF-Core.jsonld generation and comparison', () => {
+      checkCxfCoreGeneration()
+    })
+  })
+  mo.describe('Testing call to getJsons', function () {
+    const moFile = path.join(getIntFiles('modelica'), 'Enable.mo')
+    const jsons = pa.getJsons([moFile], 'json', 'current', false)
+    mo.it('Checking the Modelica class names in the returned array', function () {
+      // full class names are generated by string replacement in the modelica file path
+      const classNames = jsons.map(({ modelicaFile }) => modelicaFile).map(
+        (el) => el.replace(/\//g, '.').replace(/\.mo/, '').replace(/^.*\.Buildings\./, 'Buildings.'))
+      const classNamesRef = [
+        'test.FromModelica.Enable',
+        'Buildings.Controls.OBC.CDL.Interfaces.RealInput',
+        'Buildings.Controls.OBC.CDL.Interfaces.BooleanInput',
+        'Buildings.Controls.OBC.CDL.Interfaces.IntegerInput',
+        'Buildings.Controls.OBC.CDL.Interfaces.RealOutput',
+        'Buildings.Controls.OBC.CDL.Logical.TrueFalseHold',
+        'Buildings.Controls.OBC.CDL.Interfaces.BooleanOutput',
+        'Buildings.Controls.OBC.CDL.Logical.And',
+        'Buildings.Controls.OBC.CDL.Reals.Subtract',
+        'Buildings.Controls.OBC.CDL.Reals.Hysteresis',
+        'Buildings.Controls.OBC.CDL.Reals.Switch',
+        'Buildings.Controls.OBC.CDL.Logical.Not',
+        'Buildings.Controls.OBC.CDL.Integers.Equal',
+        'Buildings.Controls.OBC.CDL.Logical.TrueDelay',
+        'Buildings.Controls.OBC.CDL.Integers.Sources.Constant',
+        'Buildings.Controls.OBC.CDL.Interfaces.IntegerOutput',
+        'Buildings.Controls.OBC.CDL.Logical.Sources.Constant',
+        'Buildings.Controls.OBC.CDL.Logical.Or'
+      ]
+      as.deepStrictEqual(
+        JSON.stringify(classNames.sort()),
+        JSON.stringify(classNamesRef.sort()),
+        `Processing ${moFile} with getJsons returned the wrong class names`)
+    })
   })
 })

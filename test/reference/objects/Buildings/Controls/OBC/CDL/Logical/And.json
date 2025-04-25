@@ -2,8 +2,9 @@
   "instances": {
     "And": {
       "within": "Buildings.Controls.OBC.CDL.Logical",
-      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/And.mo",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/And.mo",
       "type": "long_class_specifier",
+      "class_prefixes": "block",
       "annotation": [
         {
           "element_modification_or_replaceable": {
@@ -237,18 +238,20 @@
           }
         }
       ],
-      "semantics": {}
+      "semantics": {},
+      "cdl_annotations": {}
     },
     "u1": {
-      "type_specifier": "Interfaces.BooleanInput",
+      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.BooleanInput",
       "type": "element",
+      "compositionSpecifier": "public",
       "long_class_specifier_identifier": "And",
       "single_component_list": {
         "declaration": {
           "identifier": "u1"
         },
         "description": {
-          "description_string": "Connector of first Boolean input signal",
+          "description_string": "Input signal for logical 'and'",
           "annotation": [
             {
               "element_modification_or_replaceable": {
@@ -296,19 +299,23 @@
         }
       ],
       "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
       "within": "Buildings.Controls.OBC.CDL.Logical",
-      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/And.mo"
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/And.mo"
     },
     "u2": {
-      "type_specifier": "Interfaces.BooleanInput",
+      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.BooleanInput",
       "type": "element",
+      "compositionSpecifier": "public",
       "long_class_specifier_identifier": "And",
       "single_component_list": {
         "declaration": {
           "identifier": "u2"
         },
         "description": {
-          "description_string": "Connector of second Boolean input signal",
+          "description_string": "Input signal for logical 'and'",
           "annotation": [
             {
               "element_modification_or_replaceable": {
@@ -356,19 +363,23 @@
         }
       ],
       "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
       "within": "Buildings.Controls.OBC.CDL.Logical",
-      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/And.mo"
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/And.mo"
     },
     "y": {
-      "type_specifier": "Interfaces.BooleanOutput",
+      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.BooleanOutput",
       "type": "element",
+      "compositionSpecifier": "public",
       "long_class_specifier_identifier": "And",
       "single_component_list": {
         "declaration": {
           "identifier": "y"
         },
         "description": {
-          "description_string": "Connector of Boolean output signal",
+          "description_string": "Outputs true if u1 and u2 are both true",
           "annotation": [
             {
               "element_modification_or_replaceable": {
@@ -416,8 +427,11 @@
         }
       ],
       "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
       "within": "Buildings.Controls.OBC.CDL.Logical",
-      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/And.mo"
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/And.mo"
     }
   },
   "requiredReferences": {

@@ -1,0 +1,125 @@
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#",
+    "qudt": "http://qudt.org/schema/qudt#"
+  },
+  "@graph": [
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.CalendarTime",
+      "@type": "S231P:ElementaryBlock",
+      "S231P:hasOutput": [
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.CalendarTime.day"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.CalendarTime.hour"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.CalendarTime.minute"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.CalendarTime.weekDay"
+        }
+      ],
+      "S231P:hasParameter": [
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.CalendarTime.offset"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.CalendarTime.yearRef"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.CalendarTime.zerTim"
+        }
+      ],
+      "S231P:label": "CalendarTime"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.CalendarTime.day",
+      "@type": "S231P:IntegerOutput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Day of the month",
+      "S231P:fixed": false,
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":20},{\"x\":120,\"y\":40}]},\"iconTransformation\":{\"extent\":[{\"x\":100,\"y\":20},{\"x\":120,\"y\":40}]}}}",
+      "S231P:label": "day"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.CalendarTime.hour",
+      "@type": "S231P:IntegerOutput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Hour of the day",
+      "S231P:fixed": false,
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":50},{\"x\":120,\"y\":70}]},\"iconTransformation\":{\"extent\":[{\"x\":100,\"y\":50},{\"x\":120,\"y\":70}]}}}",
+      "S231P:label": "hour"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.CalendarTime.minute",
+      "@type": "S231P:RealOutput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Minute of the hour",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":80},{\"x\":120,\"y\":100}]},\"iconTransformation\":{\"extent\":[{\"x\":100,\"y\":80},{\"x\":120,\"y\":100}]}}}",
+      "S231P:label": "minute"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.CalendarTime.month",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Month of the year",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-10},{\"x\":120,\"y\":10}]},\"iconTransformation\":{\"extent\":[{\"x\":100,\"y\":-10},{\"x\":120,\"y\":10}]}}}",
+      "S231P:label": "month"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.CalendarTime.offset",
+      "@type": "S231P:Parameter",
+      "qudt:hasQuantityKind": {
+        "@id": "S231P:Time"
+      },
+      "qudt:hasUnit": {
+        "@id": "S231P:s"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Offset that is added to 'time', may be used for computing time in different time zone",
+      "S231P:graphics": "{\"name\":\"Dialog\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"tab\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"\\\"Advanced\\\"\"}}}}}]}}",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "offset",
+      "S231P:value": 0
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.CalendarTime.weekDay",
+      "@type": "S231P:IntegerOutput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Integer output representing week day (monday = 1, sunday = 7)",
+      "S231P:fixed": false,
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-70},{\"x\":120,\"y\":-50}]},\"iconTransformation\":{\"extent\":[{\"x\":100,\"y\":-70},{\"x\":120,\"y\":-50}]}}}",
+      "S231P:label": "weekDay"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.CalendarTime.year",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Year",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-40},{\"x\":120,\"y\":-20}]},\"iconTransformation\":{\"extent\":[{\"x\":100,\"y\":-40},{\"x\":120,\"y\":-20}]}}}",
+      "S231P:label": "year"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.CalendarTime.yearRef",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Year when time = 0, used if zerTim=Custom",
+      "S231P:graphics": "{\"name\":\"Dialog\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"enable\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":{\"logical_expression\":{\"logical_or\":[{\"logical_and\":[{\"arithmetic_expressions\":[{\"name\":\"zerTim\"},{\"name\":\"Buildings.Controls.OBC.CDL.Types.ZeroTime.Custom\"}],\"relation_operator\":\"==\"}]}]}}}}}}}]}}",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Integer"
+      },
+      "S231P:label": "yearRef",
+      "S231P:max": "lastYear",
+      "S231P:min": "firstYear",
+      "S231P:value": 2016
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.CalendarTime.zerTim",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Enumeration for choosing how reference time (time = 0) should be defined",
+      "S231P:label": "zerTim"
+    }
+  ]
+}

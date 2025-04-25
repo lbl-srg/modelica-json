@@ -2,8 +2,9 @@
   "instances": {
     "MultiplyByParameter": {
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/MultiplyByParameter.mo",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/MultiplyByParameter.mo",
       "type": "long_class_specifier",
+      "class_prefixes": "block",
       "annotation": [
         {
           "element_modification_or_replaceable": {
@@ -44,7 +45,7 @@
                         "modification": {
                           "equal": true,
                           "expression": {
-                            "simple_expression": "\"<html>\n<ul>\n<li>\nJanuary 27, 2022, by Jianjun Hu:<br/>\nRenamed the block name from Gain to MultiplyByParameter.<br/>\nThis is for <a href=\\\"https://github.com/lbl-srg/modelica-buildings/issues/2865\\\">issue 2865</a>.\n</li>\n<li>\nMarch 2, 2020, by Michael Wetter:<br/>\nChanged icon to display dynamically the output value.\n</li>\n<li>\nJanuary 3, 2017, by Michael Wetter:<br/>\nFirst implementation, based on the implementation of the\nModelica Standard Library.\n</li>\n</ul>\n</html>\""
+                            "simple_expression": "\"<html>\n<ul>\n<li>\nJanuary 27, 2022, by Jianjun Hu:<br/>\nRenamed the block name from Gain to MultiplyByParameter.<br/>\nThis is for <a href=\\\"https://github.com/lbl-srg/modelica-buildings/issues/2865\\\">Buildings, issue 2865</a>.\n</li>\n<li>\nMarch 2, 2020, by Michael Wetter:<br/>\nChanged icon to display dynamically the output value.\n</li>\n<li>\nJanuary 3, 2017, by Michael Wetter:<br/>\nFirst implementation, based on the implementation of the\nModelica Standard Library.\n</li>\n</ul>\n</html>\""
                           }
                         }
                       }
@@ -191,36 +192,42 @@
           }
         }
       ],
-      "semantics": {}
+      "semantics": {},
+      "cdl_annotations": {}
     },
     "k": {
       "type_prefix": "parameter",
       "type_specifier": "Real",
       "type": "element",
+      "compositionSpecifier": "public",
       "long_class_specifier_identifier": "MultiplyByParameter",
       "single_component_list": {
         "declaration": {
           "identifier": "k"
         },
         "description": {
-          "description_string": "Gain value multiplied with input signal"
+          "description_string": "Factor to be multiplied with input signal"
         }
       },
       "annotation": null,
       "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/MultiplyByParameter.mo"
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/MultiplyByParameter.mo"
     },
     "u": {
-      "type_specifier": "Interfaces.RealInput",
+      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
       "type": "element",
+      "compositionSpecifier": "public",
       "long_class_specifier_identifier": "MultiplyByParameter",
       "single_component_list": {
         "declaration": {
           "identifier": "u"
         },
         "description": {
-          "description_string": "Input signal connector",
+          "description_string": "Input to be multiplied with gain",
           "annotation": [
             {
               "element_modification_or_replaceable": {
@@ -268,19 +275,23 @@
         }
       ],
       "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/MultiplyByParameter.mo"
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/MultiplyByParameter.mo"
     },
     "y": {
-      "type_specifier": "Interfaces.RealOutput",
+      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
       "type": "element",
+      "compositionSpecifier": "public",
       "long_class_specifier_identifier": "MultiplyByParameter",
       "single_component_list": {
         "declaration": {
           "identifier": "y"
         },
         "description": {
-          "description_string": "Output signal connector",
+          "description_string": "Product of the parameter times the input",
           "annotation": [
             {
               "element_modification_or_replaceable": {
@@ -328,8 +339,11 @@
         }
       ],
       "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/MultiplyByParameter.mo"
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/MultiplyByParameter.mo"
     }
   },
   "requiredReferences": {

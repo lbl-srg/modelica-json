@@ -1,0 +1,40 @@
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#"
+  },
+  "@graph": [
+    {
+      "@id": "http://example.org#FromModelica.SubController",
+      "@type": "S231P:Block",
+      "S231P:hasInput": {
+        "@id": "http://example.org#FromModelica.SubController.u"
+      },
+      "S231P:hasOutput": {
+        "@id": "http://example.org#FromModelica.SubController.y"
+      },
+      "S231P:label": "SubController"
+    },
+    {
+      "@id": "http://example.org#FromModelica.SubController.u",
+      "@type": "S231P:RealInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Real input",
+      "S231P:graphics": [
+        "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
+        "{\"name\":\"__cdl\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"connection\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"hardwired\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"true\"}}}}}]}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"trend\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"interval\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"60\"}}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"enable\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"true\"}}}}}]}}}}]}}"
+      ],
+      "S231P:label": "u"
+    },
+    {
+      "@id": "http://example.org#FromModelica.SubController.y",
+      "@type": "S231P:RealOutput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Real output",
+      "S231P:graphics": [
+        "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]},\"iconTransformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
+        "{\"name\":\"__cdl\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"connection\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"hardwired\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"true\"}}}}}]}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"trend\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"interval\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"60\"}}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"enable\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"true\"}}}}}]}}}}]}}"
+      ],
+      "S231P:label": "y"
+    }
+  ]
+}

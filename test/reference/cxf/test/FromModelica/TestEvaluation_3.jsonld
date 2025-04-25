@@ -1,0 +1,79 @@
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#"
+  },
+  "@graph": [
+    {
+      "@id": "http://example.org#FromModelica.TestEvaluation_3",
+      "@type": "S231P:Block",
+      "S231P:containsBlock": [
+        {
+          "@id": "http://example.org#FromModelica.TestEvaluation_3.con"
+        },
+        {
+          "@id": "http://example.org#FromModelica.TestEvaluation_3.con1"
+        }
+      ],
+      "S231P:hasParameter": [
+        {
+          "@id": "http://example.org#FromModelica.TestEvaluation_3.k1"
+        },
+        {
+          "@id": "http://example.org#FromModelica.TestEvaluation_3.k2"
+        }
+      ],
+      "S231P:label": "TestEvaluation_3"
+    },
+    {
+      "@id": "http://example.org#FromModelica.TestEvaluation_3.con",
+      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Sources.Constant",
+      "S231P:accessSpecifier": "public",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-10,\"y\":10},{\"x\":10,\"y\":30}]}}}",
+      "S231P:hasInstance": {
+        "@id": "http://example.org#FromModelica.TestEvaluation_3.con.k"
+      },
+      "S231P:label": "con"
+    },
+    {
+      "@id": "http://example.org#FromModelica.TestEvaluation_3.con.k",
+      "S231P:isFinal": true,
+      "S231P:value": "k2"
+    },
+    {
+      "@id": "http://example.org#FromModelica.TestEvaluation_3.con1",
+      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Sources.Constant",
+      "S231P:accessSpecifier": "public",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-8,\"y\":-30},{\"x\":12,\"y\":-10}]}}}",
+      "S231P:hasInstance": {
+        "@id": "http://example.org#FromModelica.TestEvaluation_3.con1.k"
+      },
+      "S231P:label": "con1"
+    },
+    {
+      "@id": "http://example.org#FromModelica.TestEvaluation_3.con1.k",
+      "S231P:isFinal": true,
+      "S231P:value": "k1"
+    },
+    {
+      "@id": "http://example.org#FromModelica.TestEvaluation_3.k1",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Constant output value",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Boolean"
+      },
+      "S231P:label": "k1",
+      "S231P:value": true
+    },
+    {
+      "@id": "http://example.org#FromModelica.TestEvaluation_3.k2",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Boolean"
+      },
+      "S231P:label": "k2",
+      "S231P:value": "not k1"
+    }
+  ]
+}

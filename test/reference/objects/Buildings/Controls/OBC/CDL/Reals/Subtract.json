@@ -2,8 +2,9 @@
   "instances": {
     "Subtract": {
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Subtract.mo",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Subtract.mo",
       "type": "long_class_specifier",
+      "class_prefixes": "block",
       "annotation": [
         {
           "element_modification_or_replaceable": {
@@ -277,18 +278,20 @@
           }
         }
       ],
-      "semantics": {}
+      "semantics": {},
+      "cdl_annotations": {}
     },
     "u1": {
-      "type_specifier": "Interfaces.RealInput",
+      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
       "type": "element",
+      "compositionSpecifier": "public",
       "long_class_specifier_identifier": "Subtract",
       "single_component_list": {
         "declaration": {
           "identifier": "u1"
         },
         "description": {
-          "description_string": "Connector of Real input signal 1",
+          "description_string": "Input with minuend",
           "annotation": [
             {
               "element_modification_or_replaceable": {
@@ -336,19 +339,23 @@
         }
       ],
       "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Subtract.mo"
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Subtract.mo"
     },
     "u2": {
-      "type_specifier": "Interfaces.RealInput",
+      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
       "type": "element",
+      "compositionSpecifier": "public",
       "long_class_specifier_identifier": "Subtract",
       "single_component_list": {
         "declaration": {
           "identifier": "u2"
         },
         "description": {
-          "description_string": "Connector of Real input signal 2",
+          "description_string": "Input with subtrahend",
           "annotation": [
             {
               "element_modification_or_replaceable": {
@@ -396,19 +403,23 @@
         }
       ],
       "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Subtract.mo"
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Subtract.mo"
     },
     "y": {
-      "type_specifier": "Interfaces.RealOutput",
+      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
       "type": "element",
+      "compositionSpecifier": "public",
       "long_class_specifier_identifier": "Subtract",
       "single_component_list": {
         "declaration": {
           "identifier": "y"
         },
         "description": {
-          "description_string": "Connector of Real output signal",
+          "description_string": "Output with difference",
           "annotation": [
             {
               "element_modification_or_replaceable": {
@@ -456,8 +467,11 @@
         }
       ],
       "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Subtract.mo"
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Subtract.mo"
     }
   },
   "requiredReferences": {

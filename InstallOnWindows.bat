@@ -11,6 +11,7 @@
 :: versions of JRE, add the higher version JRE path to the top of your "Path" environment
 
 :: Download and install Node.js: https://nodejs.org/en/download/
+:: Add nodejs folder to your "Path" environment
 
 :: set MODELICAPATH
 
@@ -18,10 +19,14 @@
 :: Setup Maven
 ::*******************************************************************
 :: Download maven
-echo ----------- Downloading Apache Maven ----------- 
-set MVNLink=https://dlcdn.apache.org/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.zip
+setlocal
+FOR /F "tokens=*" %%i in ('type .env') do SET %%i
+java -Dsetting1=%setting1% ...
+echo ----------- Downloading Apache Maven -----------
+set MVNLink=https://archive.apache.org/dist/maven/maven-3/%MAVEN3_VERSION%/binaries/apache-maven-%MAVEN3_VERSION%-bin.zip
 set MVNZip=%CD%\apache_maven.zip
-bitsadmin /transfer "Downloading MVN" %MVNLink% %MVNZip%
+bitsadmin /transfer "Downloading Apache Maven v%MAVEN3_VERSION%" %MVNLink% %MVNZip%
+endlocal
 
 :: Unpack Maven
 set MVNFolder=apache_maven
@@ -33,7 +38,7 @@ del /f %MVNZip%
 set JAVA_HOME=C:\Program Files\Java\jdk-13.0.2
 
 :: Compile jave to produce jar
-echo ----------- Compiling jave to produce jar ----------- 
+echo ----------- Compiling jave to produce jar -----------
 cd java
 CALL ..\apache_maven\bin\mvn package
 CALL move parser\target\parser-1.0-SNAPSHOT.jar moParser.jar

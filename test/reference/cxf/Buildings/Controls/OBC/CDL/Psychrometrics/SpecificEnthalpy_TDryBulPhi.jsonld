@@ -1,0 +1,83 @@
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#",
+    "qudt": "http://qudt.org/schema/qudt#"
+  },
+  "@graph": [
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Psychrometrics.SpecificEnthalpy_TDryBulPhi",
+      "@type": "S231P:ElementaryBlock",
+      "S231P:hasInput": [
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Psychrometrics.SpecificEnthalpy_TDryBulPhi.phi"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Psychrometrics.SpecificEnthalpy_TDryBulPhi.TDryBul"
+        }
+      ],
+      "S231P:hasOutput": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Psychrometrics.SpecificEnthalpy_TDryBulPhi.h"
+      },
+      "S231P:hasParameter": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Psychrometrics.SpecificEnthalpy_TDryBulPhi.pAtm"
+      },
+      "S231P:label": "SpecificEnthalpy_TDryBulPhi"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Psychrometrics.SpecificEnthalpy_TDryBulPhi.h",
+      "@type": "S231P:RealOutput",
+      "qudt:hasQuantityKind": {
+        "@id": "S231P:SpecificEnergy"
+      },
+      "qudt:hasUnit": {
+        "@id": "https://data.ashrae.org/S231P#J/kg"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Specific enthalpy",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
+      "S231P:label": "h"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Psychrometrics.SpecificEnthalpy_TDryBulPhi.pAtm",
+      "@type": "S231P:Parameter",
+      "qudt:hasQuantityKind": {
+        "@id": "S231P:Pressure"
+      },
+      "qudt:hasUnit": {
+        "@id": "S231P:Pa"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Atmospheric pressure",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "pAtm",
+      "S231P:value": 101325
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Psychrometrics.SpecificEnthalpy_TDryBulPhi.phi",
+      "@type": "S231P:RealInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Relative air humidity",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-80},{\"x\":-100,\"y\":-40}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":-80},{\"x\":-100,\"y\":-40}]}}}",
+      "S231P:label": "phi",
+      "S231P:max": 1,
+      "S231P:min": 0
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Psychrometrics.SpecificEnthalpy_TDryBulPhi.TDryBul",
+      "@type": "S231P:RealInput",
+      "qudt:hasQuantityKind": {
+        "@id": "S231P:ThermodynamicTemperature"
+      },
+      "qudt:hasUnit": {
+        "@id": "S231P:K"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Dry bulb temperature",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":40},{\"x\":-100,\"y\":80}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":40},{\"x\":-100,\"y\":80}]}}}",
+      "S231P:label": "TDryBul",
+      "S231P:min": 100
+    }
+  ]
+}

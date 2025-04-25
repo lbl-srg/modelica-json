@@ -1,0 +1,23 @@
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#"
+  },
+  "@graph": [
+    {
+      "@id": "http://example.org#FromModelica.DynamicTextColor",
+      "@type": "S231P:Block",
+      "S231P:containsBlock": {
+        "@id": "http://example.org#FromModelica.DynamicTextColor.u"
+      },
+      "S231P:label": "DynamicTextColor"
+    },
+    {
+      "@id": "http://example.org#FromModelica.DynamicTextColor.u",
+      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Interfaces.Boolean",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Input connector",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
+      "S231P:label": "u"
+    }
+  ]
+}

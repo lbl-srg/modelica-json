@@ -26,9 +26,15 @@ First, set the MODELICAPATH environment variable by adding the following line to
 export MODELICAPATH=${MODELICAPATH}:/usr/local/Modelica/Library/
 ```
 
-The parser requires Java and node, which can be installed on Ubuntu using
+The parser requires Java and node. The java dependency can be installed using:
 ```
-sudo apt-get install nodejs npm default-jdk
+sudo apt-get install default-jdk default-jre
+```
+The node version should be >= 18 and you can use [Node Version Manager](https://nodejs.org/en/download/package-manager) to set it up. Following is using 0.39.7 version:
+```
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+source ~/.bashrc
+nvm install 18
 ```
 
 To install dependencies of the parser, run
@@ -54,12 +60,14 @@ make clean-installation
 
 ### Windows
 
-- First, make sure that both the `modelica-json` directory and the `Modelica Buildings Library` directory are in the folders that do not require administrator access. 
+- First, make sure that both the `modelica-json` directory and the `Modelica Buildings Library` directory are in the folders that do not require administrator access.
   By saving the directories in driver other than `C:\` would typical avoid the administrator access issue.
 
 - Then, create the `MODELICAPATH` environment variable and set the value as the path of Modelica Buildings Library, like `E:\modelica-buildings` or `E:\modelica-buildings-master`.
 
 - Install [Java SE Development Kit (64-bit version)](https://www.oracle.com/java/technologies/javase-downloads.html), [Java Runtime Environment (64-bit version)](https://java.com/en/download/manual.jsp) and [Node.js](https://nodejs.org/en/download/).
+
+- Add `path\to\your\nodejs` to the `Path` environment.
 
 - In batch file `InstallOnWindows.bat`, update `JAVA_HOME` path in line `set JAVA_HOME=path\to\your\jdk`.
 
@@ -89,7 +97,11 @@ The only required input is the path of the file or package to be parsed.
 This parser takes a .mo file in input and has three possible outputs, that can be specified with the argument -o :
 
 - **raw-json** : detailed transcription of a Modelica file in JSON
-- **json**: simplified JSON format, easier to read an interpret
+- **json**: simplified JSON format, easier to read and interpret
+- **semantic**: generate semantic model from semantic information included within `annotation` in the Modelica file
+- **cxf**: generate CXF representation in `.jsonld` of a CDL sequence complying with ASHRAE S231P
+- **doc**: create the documentation of the sequence of operation in an HTML document
+- **doc+**: create the documentation of the sequence of operation and the list of all variables in an HTML document
 
 ##### --mode / -m
 
@@ -106,19 +118,45 @@ Logging level. The choices are `error`, `warn`, `info` (default), `verbose`, `de
 
 Specify the output directory. The default option is the current directory.
 
+##### --prettyPrint / -p
+
+If `-p` flag is specified, the JSON output conforms to prettyprint. The default option is `false`.
+
+##### --elementary
+
+If `--elementary` flag is specified, the CXF (jsonld) files for the elementary blocks are also generated. Else, they are ignored. The default option is `false`.
+`-o`/`--output` should be `cxf`.
+
+##### --cxfCore
+
+If `--cxfCore` flag is specified, generate the  CXF-core.jsonld files for all the elementary blocks. The default option is `false`.
+`-o`/`--output` should be `cxf`, `-f`/`--file` should be `path/to/CDL` and `--elementary` flag must be used.
+
 ## 4. JSON Schemas
 
-The JSON representation of Modelica and CDL models must be compliant with the corresponding JSON Schema. This is applicable for the JSON output, not for the raw-json one.
+The JSON representation of Modelica and CXF models must be compliant with the corresponding JSON Schema. This is applicable for the JSON and CXF output respectively.
 
 JSON Schemas describe the data format and file structure to ensure the quality of the JSON files.
 
 Two schemas are available (links to the raw files) :
-- [schema-cdl.json](schema-cdl.json) validates the JSON files parsed from CDL
+- [schema-cxf.json](schema-cxf.json) validates the JSON files parsed from CDL classes to form CXF representations
 - [schema-modelica.json](schema-modelica.json) validates the JSON files parsed from Modelica models
 
 Graphical viewers are available (please use right click + open in a new tab or refresh the page if necessary - this is not optimized for Firefox) :
-- [CDL Schema viewer](cdl-viz.html)
-- [Modelica Schema viewer](modelica-viz.html)
+- [CXF Schema viewer](https://htmlpreview.github.io/?https://github.com/lbl-srg/modelica-json/blob/issue214_cxf/cxf-viz.html)
+- [Modelica Schema viewer](https://htmlpreview.github.io/?https://github.com/lbl-srg/modelica-json/blob/master/modelica-viz.html)
+
+## 5. CXF-Core.jsonld
+
+[CXF-Core.jsonld](CXF-Core.jsonld) contains the CXF representation of all CDL elementary blocks, classes and relationships.
+
+To generate the `CXF-Core.jsonld`, use:
+
+```
+node app.js -f <path/to/modelica-buildings>/Buildings/Controls/OBC/CDL -o cxf --elementary --cxfCore
+```
+
+The `CXF-Core.jsonld` file will be generated in `cxf` folder.
 
 When parsing a file using `app.js`, the schema is chosen according to the mode.
 

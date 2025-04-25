@@ -1,0 +1,59 @@
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#"
+  },
+  "@graph": [
+    {
+      "@id": "http://example.org#FromModelica.ConditionalBlock",
+      "@type": "S231P:Block",
+      "S231P:containsBlock": {
+        "@id": "http://example.org#FromModelica.ConditionalBlock.abs"
+      },
+      "S231P:hasInput": {
+        "@id": "http://example.org#FromModelica.ConditionalBlock.u"
+      },
+      "S231P:hasOutput": {
+        "@id": "http://example.org#FromModelica.ConditionalBlock.y"
+      },
+      "S231P:hasParameter": {
+        "@id": "http://example.org#FromModelica.ConditionalBlock.enaBlo"
+      },
+      "S231P:label": "ConditionalBlock"
+    },
+    {
+      "@id": "http://example.org#FromModelica.ConditionalBlock.abs",
+      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Abs",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Instance could be conditional disabled",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-8,\"y\":-10},{\"x\":12,\"y\":10}]}}}",
+      "S231P:label": "abs"
+    },
+    {
+      "@id": "http://example.org#FromModelica.ConditionalBlock.enaBlo",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Flag for enabling instance",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Boolean"
+      },
+      "S231P:label": "enaBlo",
+      "S231P:value": true
+    },
+    {
+      "@id": "http://example.org#FromModelica.ConditionalBlock.u",
+      "@type": "S231P:RealInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Input connector",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
+      "S231P:label": "u"
+    },
+    {
+      "@id": "http://example.org#FromModelica.ConditionalBlock.y",
+      "@type": "S231P:RealOutput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Output connector",
+      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-10},{\"x\":120,\"y\":10}]}}}",
+      "S231P:label": "y"
+    }
+  ]
+}

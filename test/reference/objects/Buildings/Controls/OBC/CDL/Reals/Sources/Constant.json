@@ -2,8 +2,9 @@
   "instances": {
     "Constant": {
       "within": "Buildings.Controls.OBC.CDL.Reals.Sources",
-      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Sources/Constant.mo",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Sources/Constant.mo",
       "type": "long_class_specifier",
+      "class_prefixes": "block",
       "annotation": [
         {
           "element_modification_or_replaceable": {
@@ -306,12 +307,14 @@
           }
         }
       ],
-      "semantics": {}
+      "semantics": {},
+      "cdl_annotations": {}
     },
     "k": {
       "type_prefix": "parameter",
       "type_specifier": "Real",
       "type": "element",
+      "compositionSpecifier": "public",
       "long_class_specifier_identifier": "Constant",
       "single_component_list": {
         "declaration": {
@@ -323,19 +326,23 @@
       },
       "annotation": null,
       "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
       "within": "Buildings.Controls.OBC.CDL.Reals.Sources",
-      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Sources/Constant.mo"
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Sources/Constant.mo"
     },
     "y": {
-      "type_specifier": "Interfaces.RealOutput",
+      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
       "type": "element",
+      "compositionSpecifier": "public",
       "long_class_specifier_identifier": "Constant",
       "single_component_list": {
         "declaration": {
           "identifier": "y"
         },
         "description": {
-          "description_string": "Connector of Real output signal",
+          "description_string": "Constant output signal",
           "annotation": [
             {
               "element_modification_or_replaceable": {
@@ -383,8 +390,11 @@
         }
       ],
       "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
       "within": "Buildings.Controls.OBC.CDL.Reals.Sources",
-      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Sources/Constant.mo"
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Sources/Constant.mo"
     }
   },
   "requiredReferences": {

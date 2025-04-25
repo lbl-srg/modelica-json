@@ -1,0 +1,402 @@
+{
+  "instances": {
+    "RealScalarReplicator": {
+      "within": "Buildings.Controls.OBC.CDL.Routing",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Routing/RealScalarReplicator.mo",
+      "type": "long_class_specifier",
+      "class_prefixes": "block",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "defaultComponentName",
+              "modification": {
+                "equal": true,
+                "expression": {
+                  "simple_expression": "\"reaScaRep\""
+                }
+              }
+            }
+          }
+        },
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Icon",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "graphics": [
+                          {
+                            "name": "Rectangle",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -100,
+                                  "y": -100
+                                },
+                                {
+                                  "x": 100,
+                                  "y": 100
+                                }
+                              ],
+                              "lineColor": {
+                                "r": 0,
+                                "g": 0,
+                                "b": 127
+                              },
+                              "fillColor": {
+                                "r": 255,
+                                "g": 255,
+                                "b": 255
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          },
+                          {
+                            "name": "Line",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": -100,
+                                  "y": 0
+                                },
+                                {
+                                  "x": -6,
+                                  "y": 0
+                                }
+                              ],
+                              "color": {
+                                "r": 0,
+                                "g": 0,
+                                "b": 127
+                              }
+                            }
+                          },
+                          {
+                            "name": "Line",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": 100,
+                                  "y": 0
+                                },
+                                {
+                                  "x": 10,
+                                  "y": 0
+                                }
+                              ],
+                              "color": {
+                                "r": 0,
+                                "g": 0,
+                                "b": 127
+                              }
+                            }
+                          },
+                          {
+                            "name": "Line",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": 0,
+                                  "y": 0
+                                },
+                                {
+                                  "x": 100,
+                                  "y": 10
+                                }
+                              ],
+                              "color": {
+                                "r": 0,
+                                "g": 0,
+                                "b": 127
+                              }
+                            }
+                          },
+                          {
+                            "name": "Line",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": 0,
+                                  "y": 0
+                                },
+                                {
+                                  "x": 100,
+                                  "y": -10
+                                }
+                              ],
+                              "color": {
+                                "r": 0,
+                                "g": 0,
+                                "b": 127
+                              }
+                            }
+                          },
+                          {
+                            "name": "Ellipse",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -14,
+                                  "y": 16
+                                },
+                                {
+                                  "x": 16,
+                                  "y": -14
+                                }
+                              ],
+                              "lineColor": {
+                                "r": 0,
+                                "g": 0,
+                                "b": 0
+                              },
+                              "fillColor": {
+                                "r": 0,
+                                "g": 0,
+                                "b": 127
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          },
+                          {
+                            "name": "Text",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -150,
+                                  "y": 110
+                                },
+                                {
+                                  "x": 150,
+                                  "y": 150
+                                }
+                              ],
+                              "textString": "\"%name\"",
+                              "textColor": {
+                                "r": 0,
+                                "g": 0,
+                                "b": 255
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Documentation",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "info",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<p>\nThis block replicates the Real input signal to an array of <code>nout</code>\nidentical Real output signals.\n</p>\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "revisions",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<ul>\n<li>\nJuly 27, 2021, by Baptiste Ravache:<br/>\nRenamed to <code>RealScalarReplicator</code>.\n</li>\n<li>\nJuly 24, 2017, by Jianjun Hu:<br/>\nFirst implementation, based on the implementation of the\nModelica Standard Library.\n</li>\n</ul>\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    },
+    "nout": {
+      "type_prefix": "parameter",
+      "type_specifier": "Integer",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "RealScalarReplicator",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "nout",
+          "modification": {
+            "equal": true,
+            "expression": {
+              "simple_expression": "1"
+            }
+          }
+        },
+        "description": {
+          "description_string": "Number of outputs"
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "within": "Buildings.Controls.OBC.CDL.Routing",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Routing/RealScalarReplicator.mo"
+    },
+    "u": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "RealScalarReplicator",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "u"
+        },
+        "description": {
+          "description_string": "Input signal to be replicated",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": -140,
+                          "y": -20
+                        },
+                        {
+                          "x": -100,
+                          "y": 20
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": -140,
+                      "y": -20
+                    },
+                    {
+                      "x": -100,
+                      "y": 20
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "within": "Buildings.Controls.OBC.CDL.Routing",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Routing/RealScalarReplicator.mo"
+    },
+    "y": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "RealScalarReplicator",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "y",
+          "array_subscripts": [
+            {
+              "expression": {
+                "simple_expression": "nout"
+              }
+            }
+          ]
+        },
+        "description": {
+          "description_string": "Output with replicated input signal",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": 100,
+                          "y": -20
+                        },
+                        {
+                          "x": 140,
+                          "y": 20
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": 100,
+                      "y": -20
+                    },
+                    {
+                      "x": 140,
+                      "y": 20
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": true,
+      "arraySubscripts": "[nout]",
+      "within": "Buildings.Controls.OBC.CDL.Routing",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Routing/RealScalarReplicator.mo"
+    }
+  },
+  "requiredReferences": {
+    "connections": {}
+  }
+}
