@@ -1,0 +1,412 @@
+{
+  "instances": {
+    "CustomPWithLimiterNoDescription": {
+      "within": "FromModelica",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/CustomPWithLimiterNoDescription.mo",
+      "type": "long_class_specifier",
+      "class_prefixes": "block",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Documentation",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "info",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<p>\nBlock that outputs <code>y = min(yMax, k*e)</code>,\nwhere\n<code>yMax</code> and <code>e</code> are real-valued input signals and\n<code>k</code> is a parameter.\n</p>\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    },
+    "k": {
+      "type_prefix": "parameter",
+      "type_specifier": "Real",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "CustomPWithLimiterNoDescription",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "k",
+          "modification": {
+            "equal": true,
+            "expression": {
+              "simple_expression": "2"
+            }
+          }
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "within": "FromModelica",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/CustomPWithLimiterNoDescription.mo"
+    },
+    "yMax": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "CustomPWithLimiterNoDescription",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "yMax"
+        },
+        "description": {
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": -140,
+                          "y": 20
+                        },
+                        {
+                          "x": -100,
+                          "y": 60
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": -140,
+                      "y": 20
+                    },
+                    {
+                      "x": -100,
+                      "y": 60
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "within": "FromModelica",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/CustomPWithLimiterNoDescription.mo"
+    },
+    "e": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "CustomPWithLimiterNoDescription",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "e"
+        },
+        "description": {
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": -140,
+                          "y": -60
+                        },
+                        {
+                          "x": -100,
+                          "y": -20
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": -140,
+                      "y": -60
+                    },
+                    {
+                      "x": -100,
+                      "y": -20
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "within": "FromModelica",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/CustomPWithLimiterNoDescription.mo"
+    },
+    "y": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "CustomPWithLimiterNoDescription",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "y"
+        },
+        "description": {
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": 100,
+                          "y": -10
+                        },
+                        {
+                          "x": 120,
+                          "y": 10
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": 100,
+                      "y": -10
+                    },
+                    {
+                      "x": 120,
+                      "y": 10
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "within": "FromModelica",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/CustomPWithLimiterNoDescription.mo"
+    },
+    "gain": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "CustomPWithLimiterNoDescription",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "gain",
+          "modification": {
+            "class_modification": [
+              {
+                "element_modification_or_replaceable": {
+                  "final": true,
+                  "element_modification": {
+                    "name": "k",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "k"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "description": {
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": -60,
+                          "y": -50
+                        },
+                        {
+                          "x": -40,
+                          "y": -30
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": -60,
+                      "y": -50
+                    },
+                    {
+                      "x": -40,
+                      "y": -30
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "within": "FromModelica",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/CustomPWithLimiterNoDescription.mo"
+    },
+    "minValue": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Reals.Min",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "CustomPWithLimiterNoDescription",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "minValue"
+        },
+        "description": {
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": 20,
+                          "y": -10
+                        },
+                        {
+                          "x": 40,
+                          "y": 10
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": 20,
+                      "y": -10
+                    },
+                    {
+                      "x": 40,
+                      "y": 10
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "within": "FromModelica",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/CustomPWithLimiterNoDescription.mo"
+    }
+  },
+  "requiredReferences": {
+    "connections": {
+      "yMax": [
+        "minValue.u1"
+      ],
+      "e": [
+        "gain.u"
+      ],
+      "gain.y": [
+        "minValue.u2"
+      ],
+      "minValue.y": [
+        "y"
+      ]
+    }
+  }
+}

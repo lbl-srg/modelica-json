@@ -22,10 +22,12 @@
     },
     {
       "@id": "http://example.org#FromModelica.ConditionalBlock.abs",
-      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Abs",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Abs",
       "S231P:accessSpecifier": "public",
+      "S231P:conditionalExpression": "not enaBlo",
       "S231P:description": "Instance could be conditional disabled",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-8,\"y\":-10},{\"x\":12,\"y\":10}]}}}",
+      "S231P:isConditionalComponent": true,
       "S231P:label": "abs"
     },
     {
@@ -43,8 +45,10 @@
       "@id": "http://example.org#FromModelica.ConditionalBlock.u",
       "@type": "S231P:RealInput",
       "S231P:accessSpecifier": "public",
+      "S231P:conditionalExpression": "enaBlo",
       "S231P:description": "Input connector",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
+      "S231P:isConditionalComponent": true,
       "S231P:label": "u"
     },
     {

@@ -4,23 +4,23 @@
   },
   "@graph": [
     {
-      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Constants",
-      "@type": "S231P:ElementaryBlock",
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Constants",
+      "@type": "S231P:Block",
       "S231P:hasConstant": [
         {
-          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Constants.eps"
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Constants.eps"
         },
         {
-          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Constants.pi"
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Constants.pi"
         },
         {
-          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Constants.small"
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Constants.small"
         }
       ],
       "S231P:label": "Constants"
     },
     {
-      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Constants.eps",
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Constants.eps",
       "@type": "S231P:Constant",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Biggest number such that 1.0 + eps = 1.0",
@@ -34,7 +34,7 @@
       }
     },
     {
-      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Constants.pi",
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Constants.pi",
       "@type": "S231P:Constant",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Constant number pi, 3.14159265358979",
@@ -45,7 +45,7 @@
       "S231P:value": "2*Modelica.Math.asin(1)"
     },
     {
-      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Constants.small",
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Constants.small",
       "@type": "S231P:Constant",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Smallest number such that small and -small are representable on the machine",

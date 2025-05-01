@@ -11,23 +11,23 @@
   },
   "@graph": [
     {
-      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Constants",
-      "@type": "S231P:ElementaryBlock",
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Constants",
+      "@type": "S231P:Block",
       "S231P:hasConstant": [
         {
-          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Constants.eps"
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Constants.eps"
         },
         {
-          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Constants.pi"
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Constants.pi"
         },
         {
-          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Constants.small"
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Constants.small"
         }
       ],
       "S231P:label": "Constants"
     },
     {
-      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Constants.eps",
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Constants.eps",
       "@type": "S231P:Constant",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Biggest number such that 1.0 + eps = 1.0",
@@ -41,7 +41,7 @@
       }
     },
     {
-      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Constants.pi",
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Constants.pi",
       "@type": "S231P:Constant",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Constant number pi, 3.14159265358979",
@@ -52,7 +52,7 @@
       "S231P:value": "2*Modelica.Math.asin(1)"
     },
     {
-      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Constants.small",
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Constants.small",
       "@type": "S231P:Constant",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Smallest number such that small and -small are representable on the machine",
@@ -1405,6 +1405,18 @@
       "S231P:label": "y"
     },
     {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Integers.Sources.Pulse.booPul.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Integers.Sources.Pulse.booToInt.u"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Integers.Sources.Pulse.booToInt.y",
+      "S231P:isConnectedTo": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.Sources.Pulse.y"
+      }
+    },
+    {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.Sources.Pulse",
       "@type": "S231P:ElementaryBlock",
       "S231P:hasOutput": {
@@ -1439,6 +1451,23 @@
       },
       "S231P:label": "amplitude",
       "S231P:value": 1
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.Sources.Pulse.booPul",
+      "S231P:hasInstance": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Integers.Sources.Pulse.booPul.y"
+      }
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.Sources.Pulse.booToInt",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Integers.Sources.Pulse.booToInt.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Integers.Sources.Pulse.booToInt.y"
+        }
+      ]
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.Sources.Pulse.offset",
@@ -2269,6 +2298,273 @@
       "S231P:label": "y"
     },
     {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.booToInt.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.equSta.u1"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.booToInt1.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.equSta.u2"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.botFal.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.notBotFal.u"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.botTru.y",
+      "S231P:isConnectedTo": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.equInp.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.notBotTru.u"
+        }
+      ]
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.cheDif.y",
+      "S231P:isConnectedTo": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.cheDif1.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.cheDif2.u2"
+        }
+      ]
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.cheDif1.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.cheStaMea.u3"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.cheDif2.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.cheStaMea1.u3"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.cheStaMea.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.holTru.u"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.cheStaMea1.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.holTru1.u"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.conFal.y",
+      "S231P:isConnectedTo": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.cheDif1.u3"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.cheDif2.u3"
+        }
+      ]
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.conTru.y",
+      "S231P:isConnectedTo": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.cheStaMea.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.cheStaMea1.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.valFal.u3"
+        }
+      ]
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.delChe1.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.pasDel.u2"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.delChe2.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.pasDel.u1"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.equInp.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.valEqu.u1"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.equSta.y",
+      "S231P:isConnectedTo": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.botFal.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.equInp.u2"
+        }
+      ]
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.falTru.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.cheDif2.u1"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.holTru.y",
+      "S231P:isConnectedTo": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof.yLocFal"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.holTru1.y",
+      "S231P:isConnectedTo": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof.yLocTru"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.invInp.y",
+      "S231P:isConnectedTo": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.cheStaMea.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.cheStaMea1.u2"
+        }
+      ]
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.not1.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.truDel1.u"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.not2.y",
+      "S231P:isConnectedTo": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.botFal.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.delChe1.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.falTru.u2"
+        }
+      ]
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.not3.y",
+      "S231P:isConnectedTo": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.invInp.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.pasDeb.u"
+        }
+      ]
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.notBotFal.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.falTru.u1"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.notBotTru.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.truFal.u1"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.pasDeb.passed",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.invInp.u2"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.pasDel.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.cheDif.u1"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.samInpEdg.y",
+      "S231P:isConnectedTo": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.holTru.clr"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.holTru1.clr"
+        }
+      ]
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.truDel1.y",
+      "S231P:isConnectedTo": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.valFal.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.valInp.u2"
+        }
+      ]
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.truFal.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.cheDif1.u1"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.valEqu.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.samInpEdg.u"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.valFal.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.booToInt.u"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.valInp.y",
+      "S231P:isConnectedTo": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.cheDif.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.not3.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.valEqu.u2"
+        }
+      ]
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.valTru.y",
+      "S231P:isConnectedTo": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.botTru.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.valInp.u1"
+        }
+      ]
+    },
+    {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof",
       "@type": "S231P:ElementaryBlock",
       "S231P:hasInput": [
@@ -2298,6 +2594,150 @@
       "S231P:label": "Proof"
     },
     {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof.booToInt",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.booToInt.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.booToInt.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof.booToInt1",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.booToInt1.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.booToInt1.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof.botFal",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.botFal.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.botFal.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.botFal.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof.botTru",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.botTru.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.botTru.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.botTru.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof.cheDif",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.cheDif.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.cheDif.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.cheDif.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof.cheDif1",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.cheDif1.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.cheDif1.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.cheDif1.u3"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.cheDif1.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof.cheDif2",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.cheDif2.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.cheDif2.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.cheDif2.u3"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.cheDif2.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof.cheStaMea",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.cheStaMea.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.cheStaMea.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.cheStaMea.u3"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.cheStaMea.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof.cheStaMea1",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.cheStaMea1.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.cheStaMea1.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.cheStaMea1.u3"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.cheStaMea1.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof.conFal",
+      "S231P:hasInstance": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.conFal.y"
+      }
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof.conTru",
+      "S231P:hasInstance": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.conTru.y"
+      }
+    },
+    {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof.debounce",
       "@type": "S231P:Parameter",
       "qudt:hasQuantityKind": {
@@ -2312,6 +2752,70 @@
         "@id": "S231P:Real"
       },
       "S231P:label": "debounce"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof.delChe1",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.delChe1.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.delChe1.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof.delChe2",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.delChe2.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.delChe2.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof.equInp",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.equInp.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.equInp.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.equInp.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof.equSta",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.equSta.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.equSta.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.equSta.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof.falTru",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.falTru.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.falTru.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.falTru.y"
+        }
+      ]
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof.feedbackDelay",
@@ -2330,11 +2834,180 @@
       "S231P:label": "feedbackDelay"
     },
     {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof.holTru",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.holTru.clr"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.holTru.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.holTru.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof.holTru1",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.holTru1.clr"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.holTru1.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.holTru1.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof.invInp",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.invInp.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.invInp.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.invInp.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof.not1",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.not1.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.not1.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof.not2",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.not2.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.not2.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof.not3",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.not3.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.not3.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof.notBotFal",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.notBotFal.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.notBotFal.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof.notBotTru",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.notBotTru.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.notBotTru.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof.pasDeb",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.pasDeb.passed"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.pasDeb.u"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof.pasDel",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.pasDel.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.pasDel.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.pasDel.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof.samInpEdg",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.samInpEdg.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.samInpEdg.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof.truDel1",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.truDel1.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.truDel1.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof.truFal",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.truFal.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.truFal.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.truFal.y"
+        }
+      ]
+    },
+    {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof.u_m",
       "@type": "S231P:BooleanInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Measured status",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"origin\":{\"x\":0,\"y\":-260},\"extent\":[{\"x\":-20,\"y\":-20},{\"x\":20,\"y\":20}],\"rotation\":90},\"iconTransformation\":{\"origin\":{\"x\":0,\"y\":-120},\"extent\":[{\"x\":-20,\"y\":-20},{\"x\":20,\"y\":20}],\"rotation\":90}}}",
+      "S231P:isConnectedTo": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.not1.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.valFal.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.valTru.u"
+        }
+      ],
       "S231P:label": "u_m"
     },
     {
@@ -2343,7 +3016,80 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Commanded status setpoint",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-300,\"y\":-20},{\"x\":-260,\"y\":20}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
+      "S231P:isConnectedTo": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.booToInt1.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.botTru.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.delChe2.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.not2.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.truFal.u2"
+        }
+      ],
       "S231P:label": "u_s"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof.valEqu",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.valEqu.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.valEqu.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.valEqu.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof.valFal",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.valFal.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.valFal.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.valFal.u3"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.valFal.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof.valInp",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.valInp.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.valInp.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.valInp.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof.valTru",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.valTru.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Proof.valTru.y"
+        }
+      ]
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Proof.yLocFal",
@@ -2529,6 +3275,18 @@
       "S231P:label": "y"
     },
     {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Sources.TimeTable.intGreThr.y",
+      "S231P:isConnectedTo": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Sources.TimeTable.y"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Sources.TimeTable.intTimTab.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Sources.TimeTable.intGreThr.u"
+      }
+    },
+    {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Sources.TimeTable",
       "@type": "S231P:ElementaryBlock",
       "S231P:hasOutput": {
@@ -2546,6 +3304,23 @@
         }
       ],
       "S231P:label": "TimeTable"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Sources.TimeTable.intGreThr",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Sources.TimeTable.intGreThr.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Sources.TimeTable.intGreThr.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Sources.TimeTable.intTimTab",
+      "S231P:hasInstance": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Sources.TimeTable.intTimTab.y"
+      }
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Sources.TimeTable.period",
@@ -2969,6 +3744,59 @@
       "S231P:label": "y"
     },
     {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.abs1.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.greThr.u"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.cycOut.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.truFalHol.u"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.edg2.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.cycOut.go"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.greThr.y",
+      "S231P:isConnectedTo": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.edg2.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.preBre.u"
+        }
+      ]
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.preBre.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.triSam.trigger"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.sub.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.abs1.u"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.triSam.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.sub.u1"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.truFalHol.y",
+      "S231P:isConnectedTo": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.VariablePulse.y"
+      }
+    },
+    {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.VariablePulse",
       "@type": "S231P:ElementaryBlock",
       "S231P:hasInput": {
@@ -2991,6 +3819,31 @@
       "S231P:label": [
         "Cycle",
         "VariablePulse"
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.VariablePulse.abs1",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.abs1.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.abs1.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.VariablePulse.cycOut",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.cycOut.go"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.cycOut.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.cycOut.y"
+        }
       ]
     },
     {
@@ -3017,6 +3870,28 @@
         "@value": "0.01",
         "@type": "http://www.w3.org/2001/XMLSchema#decimal"
       }
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.VariablePulse.edg2",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.edg2.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.edg2.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.VariablePulse.greThr",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.greThr.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.greThr.y"
+        }
+      ]
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.VariablePulse.minTruFalHol",
@@ -3053,6 +3928,56 @@
       "S231P:label": "period"
     },
     {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.VariablePulse.preBre",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.preBre.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.preBre.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.VariablePulse.sub",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.sub.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.sub.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.sub.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.VariablePulse.triSam",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.triSam.trigger"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.triSam.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.triSam.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.VariablePulse.truFalHol",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.truFalHol.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.truFalHol.y"
+        }
+      ]
+    },
+    {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.VariablePulse.u",
       "@type": "S231P:RealInput",
       "qudt:hasUnit": {
@@ -3061,6 +3986,17 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Ratio of the period that the output should be true",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-160,\"y\":-20},{\"x\":-120,\"y\":20}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
+      "S231P:isConnectedTo": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.cycOut.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.sub.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.triSam.u"
+        }
+      ],
       "S231P:label": "u",
       "S231P:max": 1,
       "S231P:min": 0
@@ -3769,6 +4705,18 @@
       "S231P:label": "y"
     },
     {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Greater.greHys.y",
+      "S231P:isConnectedTo": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Greater.y"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Greater.greNoHys.y",
+      "S231P:isConnectedTo": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Greater.y"
+      }
+    },
+    {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Greater",
       "@type": "S231P:ElementaryBlock",
       "S231P:hasInput": [
@@ -3794,6 +4742,34 @@
         "Greater",
         "GreaterNoHysteresis",
         "GreaterWithHysteresis"
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Greater.greHys",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Greater.greHys.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Greater.greHys.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Greater.greHys.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Greater.greNoHys",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Greater.greNoHys.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Greater.greNoHys.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Greater.greNoHys.y"
+        }
       ]
     },
     {
@@ -3827,6 +4803,14 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "First input u1",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
+      "S231P:isConnectedTo": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Greater.greHys.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Greater.greNoHys.u1"
+        }
+      ],
       "S231P:label": "u1"
     },
     {
@@ -3835,6 +4819,14 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Second input u2",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-100},{\"x\":-100,\"y\":-60}]}}}",
+      "S231P:isConnectedTo": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Greater.greHys.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Greater.greNoHys.u2"
+        }
+      ],
       "S231P:label": "u2"
     },
     {
@@ -3844,6 +4836,18 @@
       "S231P:description": "Output true if u1 is greater than u2 with hysteresis",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
       "S231P:label": "y"
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.GreaterThreshold.greHys.y",
+      "S231P:isConnectedTo": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.GreaterThreshold.y"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.GreaterThreshold.greNoHys.y",
+      "S231P:isConnectedTo": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.GreaterThreshold.y"
+      }
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.GreaterThreshold",
@@ -3869,6 +4873,28 @@
         "GreaterNoHysteresis",
         "GreaterThreshold",
         "GreaterWithHysteresis"
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.GreaterThreshold.greHys",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.GreaterThreshold.greHys.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.GreaterThreshold.greHys.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.GreaterThreshold.greNoHys",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.GreaterThreshold.greNoHys.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.GreaterThreshold.greNoHys.y"
+        }
       ]
     },
     {
@@ -3913,6 +4939,14 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Input to be compared against the threshold",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
+      "S231P:isConnectedTo": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.GreaterThreshold.greHys.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.GreaterThreshold.greNoHys.u"
+        }
+      ],
       "S231P:label": "u"
     },
     {
@@ -4075,6 +5109,18 @@
       "S231P:value": 0
     },
     {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Less.lesHys.y",
+      "S231P:isConnectedTo": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Less.y"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Less.lesNoHys.y",
+      "S231P:isConnectedTo": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Less.y"
+      }
+    },
+    {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Less",
       "@type": "S231P:ElementaryBlock",
       "S231P:hasInput": [
@@ -4116,6 +5162,34 @@
       "S231P:value": 0
     },
     {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Less.lesHys",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Less.lesHys.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Less.lesHys.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Less.lesHys.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Less.lesNoHys",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Less.lesNoHys.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Less.lesNoHys.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Less.lesNoHys.y"
+        }
+      ]
+    },
+    {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Less.pre_y_start",
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
@@ -4133,6 +5207,14 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "First input u1",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
+      "S231P:isConnectedTo": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Less.lesHys.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Less.lesNoHys.u1"
+        }
+      ],
       "S231P:label": "u1"
     },
     {
@@ -4141,6 +5223,14 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Second input u2",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-100},{\"x\":-100,\"y\":-60}]}}}",
+      "S231P:isConnectedTo": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Less.lesHys.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Less.lesNoHys.u2"
+        }
+      ],
       "S231P:label": "u2"
     },
     {
@@ -4150,6 +5240,18 @@
       "S231P:description": "Outputs true if u1 is less than u2",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
       "S231P:label": "y"
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.LessThreshold.lesHys.y",
+      "S231P:isConnectedTo": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.LessThreshold.y"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.LessThreshold.lesNoHys.y",
+      "S231P:isConnectedTo": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.LessThreshold.y"
+      }
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.LessThreshold",
@@ -4191,6 +5293,28 @@
       "S231P:value": 0
     },
     {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.LessThreshold.lesHys",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.LessThreshold.lesHys.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.LessThreshold.lesHys.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.LessThreshold.lesNoHys",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.LessThreshold.lesNoHys.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.LessThreshold.lesNoHys.y"
+        }
+      ]
+    },
+    {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.LessThreshold.pre_y_start",
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
@@ -4219,6 +5343,14 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Input to be compared against the threshold",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
+      "S231P:isConnectedTo": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.LessThreshold.lesHys.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.LessThreshold.lesNoHys.u"
+        }
+      ],
       "S231P:label": "u"
     },
     {
@@ -5160,6 +6292,163 @@
       "S231P:label": "y"
     },
     {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.addPD.u1",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.P.y"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.addPD.u2",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.Dzero.y"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.addPID.u1",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.addPD.y"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.addPID.u2",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.I.y"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.addPID.y",
+      "S231P:isConnectedTo": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.antWinErr.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.lim.u"
+        }
+      ]
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.antWinErr.u2",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.lim.y"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.antWinErr.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.antWinGai.u"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.antWinGai.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.errI2.u2"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.cheYMinMax.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.assMesYMinMax.u"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.con.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.I.y_reset_in"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.con1.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.I.trigger"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.D.u",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.errD.y"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.D.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.addPD.u2"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.errD.u1",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.uS_revAct.y"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.errI1.u1",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.uS_revAct.y"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.errI1.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.errI2.u1"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.I.u",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.errI2.y"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.Izero.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.addPID.u2"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.kDer.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.D.k"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.lim.y",
+      "S231P:isConnectedTo": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PID.y"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.P.u",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.errP.y"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.TDer.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.D.T"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.uMea_revAct.y",
+      "S231P:isConnectedTo": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.errD.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.errI1.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.errP.u2"
+        }
+      ]
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.uS_revAct.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.errP.u1"
+      }
+    },
+    {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PID",
       "@type": "S231P:ElementaryBlock",
       "S231P:containsBlock": [
@@ -5243,11 +6532,96 @@
       "S231P:label": "PID"
     },
     {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PID.addPD",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.addPD.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.addPD.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.addPD.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PID.addPID",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.addPID.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.addPID.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.addPID.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PID.antWinErr",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.antWinErr.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.antWinErr.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.antWinErr.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PID.antWinGai",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.antWinGai.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.antWinGai.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PID.assMesYMinMax",
+      "S231P:hasInstance": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.assMesYMinMax.u"
+      }
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PID.cheYMinMax",
+      "S231P:hasInstance": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.cheYMinMax.y"
+      }
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PID.con",
+      "S231P:hasInstance": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.con.y"
+      }
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PID.con1",
+      "S231P:hasInstance": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.con1.y"
+      }
+    },
+    {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PID.controlError",
-      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Subtract",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Subtract",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Control error (set point - measurement)",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-200,\"y\":-16},{\"x\":-180,\"y\":4}]}}}",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.controlError.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.controlError.u2"
+        }
+      ],
       "S231P:label": "controlError"
     },
     {
@@ -5259,13 +6633,29 @@
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PID.D",
-      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Derivative",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Derivative",
       "S231P:accessSpecifier": "public",
+      "S231P:conditionalExpression": "with_D",
       "S231P:description": "Derivative term",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-50,\"y\":60},{\"x\":-30,\"y\":80}]}}}",
-      "S231P:hasInstance": {
-        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PID.D.y_start"
-      },
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.D.k"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.D.T"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.D.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.D.y"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PID.D.y_start"
+        }
+      ],
+      "S231P:isConditionalComponent": true,
       "S231P:label": "D"
     },
     {
@@ -5274,44 +6664,113 @@
       "S231P:value": "yd_start"
     },
     {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PID.Dzero",
+      "S231P:hasInstance": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.Dzero.y"
+      }
+    },
+    {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PID.errD",
-      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Subtract",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Subtract",
       "S231P:accessSpecifier": "public",
+      "S231P:conditionalExpression": "with_D",
       "S231P:description": "D error",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":60},{\"x\":-120,\"y\":80}]}}}",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.errD.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.errD.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.errD.y"
+        }
+      ],
+      "S231P:isConditionalComponent": true,
       "S231P:label": "errD"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PID.errI1",
-      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Subtract",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Subtract",
       "S231P:accessSpecifier": "public",
+      "S231P:conditionalExpression": "with_I",
       "S231P:description": "I error (before anti-windup compensation)",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-4},{\"x\":-120,\"y\":16}]}}}",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.errI1.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.errI1.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.errI1.y"
+        }
+      ],
+      "S231P:isConditionalComponent": true,
       "S231P:label": "errI1"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PID.errI2",
-      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Subtract",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Subtract",
       "S231P:accessSpecifier": "public",
+      "S231P:conditionalExpression": "with_I",
       "S231P:description": "I error (after anti-windup compensation)",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-100,\"y\":-10},{\"x\":-80,\"y\":10}]}}}",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.errI2.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.errI2.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.errI2.y"
+        }
+      ],
+      "S231P:isConditionalComponent": true,
       "S231P:label": "errI2"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PID.errP",
-      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Subtract",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Subtract",
       "S231P:accessSpecifier": "public",
       "S231P:description": "P error",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":130},{\"x\":-120,\"y\":150}]}}}",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.errP.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.errP.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.errP.y"
+        }
+      ],
       "S231P:label": "errP"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PID.I",
-      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.IntegratorWithReset",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.IntegratorWithReset",
       "S231P:accessSpecifier": "public",
+      "S231P:conditionalExpression": "with_I",
       "S231P:description": "Integral term",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-50,\"y\":-10},{\"x\":-30,\"y\":10}]}}}",
       "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.I.trigger"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.I.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.I.y"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.I.y_reset_in"
+        },
         {
           "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PID.I.k"
         },
@@ -5319,6 +6778,7 @@
           "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PID.I.y_start"
         }
       ],
+      "S231P:isConditionalComponent": true,
       "S231P:label": "I"
     },
     {
@@ -5330,6 +6790,12 @@
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PID.I.y_start",
       "S231P:isFinal": true,
       "S231P:value": "xi_start"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PID.Izero",
+      "S231P:hasInstance": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.Izero.y"
+      }
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PID.k",
@@ -5345,12 +6811,24 @@
       "S231P:value": 1
     },
     {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PID.kDer",
+      "S231P:hasInstance": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.kDer.y"
+      }
+    },
+    {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PID.lim",
-      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Limiter",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Limiter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Limiter",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":120,\"y\":80},{\"x\":140,\"y\":100}]}}}",
       "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.lim.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.lim.y"
+        },
         {
           "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PID.lim.uMax"
         },
@@ -5401,13 +6879,21 @@
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PID.P",
-      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Gain for proportional control action",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-50,\"y\":130},{\"x\":-30,\"y\":150}]}}}",
-      "S231P:hasInstance": {
-        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PID.P.k"
-      },
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.P.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.P.y"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PID.P.k"
+        }
+      ],
       "S231P:label": "P"
     },
     {
@@ -5461,6 +6947,12 @@
       }
     },
     {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PID.TDer",
+      "S231P:hasInstance": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.TDer.y"
+      }
+    },
+    {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PID.Ti",
       "@type": "S231P:Parameter",
       "qudt:hasQuantityKind": {
@@ -5488,6 +6980,14 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Measurement input signal",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"origin\":{\"x\":0,\"y\":-220},\"extent\":[{\"x\":20,\"y\":-20},{\"x\":-20,\"y\":20}],\"rotation\":270},\"iconTransformation\":{\"origin\":{\"x\":0,\"y\":-120},\"extent\":[{\"x\":20,\"y\":-20},{\"x\":-20,\"y\":20}],\"rotation\":270}}}",
+      "S231P:isConnectedTo": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.controlError.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.uMea_revAct.u"
+        }
+      ],
       "S231P:label": "u_m"
     },
     {
@@ -5496,7 +6996,37 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Setpoint input signal",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-260,\"y\":-20},{\"x\":-220,\"y\":20}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
+      "S231P:isConnectedTo": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.controlError.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.uS_revAct.u"
+        }
+      ],
       "S231P:label": "u_s"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PID.uMea_revAct",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.uMea_revAct.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.uMea_revAct.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PID.uS_revAct",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.uS_revAct.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.uS_revAct.y"
+        }
+      ]
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PID.xi_start",
@@ -5553,6 +7083,178 @@
       },
       "S231P:label": "yMin",
       "S231P:value": 0
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.addPD.u1",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.P.y"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.addPD.u2",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.Dzero.y"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.addPD.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.addRes.u2"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.addPID.u1",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.addPD.y"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.addPID.u2",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.I.y"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.addPID.y",
+      "S231P:isConnectedTo": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.antWinErr.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.lim.u"
+        }
+      ]
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.addRes.u1",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.yResSig.y"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.addRes.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.I.y_reset_in"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.antWinErr.u2",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.lim.y"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.antWinErr.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.antWinGai.u"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.antWinGai.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.errI2.u2"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.cheYMinMax.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.assMesYMinMax.u"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.controlError.u1",
+      "S231P:isConnectedTo": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.u_s"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.D.u",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.errD.y"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.D.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.addPD.u2"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.errD.u1",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.uS_revAct.y"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.errD.u2",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.uMea_revAct.y"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.errI1.u1",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.uS_revAct.y"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.errI1.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.errI2.u1"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.errP.u1",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.uS_revAct.y"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.I.u",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.errI2.y"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.Izero.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.addPID.u2"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.kDer.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.D.k"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.lim.y",
+      "S231P:isConnectedTo": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.y"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.P.u",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.errP.y"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.TDer.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.D.T"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.uMea_revAct.y",
+      "S231P:isConnectedTo": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.errI1.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.errP.u2"
+        }
+      ]
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PIDWithReset",
@@ -5644,11 +7346,98 @@
       "S231P:label": "PIDWithReset"
     },
     {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.addPD",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.addPD.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.addPD.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.addPD.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.addPID",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.addPID.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.addPID.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.addPID.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.addRes",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.addRes.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.addRes.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.addRes.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.antWinErr",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.antWinErr.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.antWinErr.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.antWinErr.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.antWinGai",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.antWinGai.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.antWinGai.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.assMesYMinMax",
+      "S231P:hasInstance": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.assMesYMinMax.u"
+      }
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.cheYMinMax",
+      "S231P:hasInstance": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.cheYMinMax.y"
+      }
+    },
+    {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.controlError",
-      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Subtract",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Subtract",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Control error (set point - measurement)",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-200,\"y\":-16},{\"x\":-180,\"y\":4}]}}}",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.controlError.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.controlError.u2"
+        }
+      ],
       "S231P:label": "controlError"
     },
     {
@@ -5660,13 +7449,29 @@
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.D",
-      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Derivative",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Derivative",
       "S231P:accessSpecifier": "public",
+      "S231P:conditionalExpression": "with_D",
       "S231P:description": "Derivative term",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-50,\"y\":60},{\"x\":-30,\"y\":80}]}}}",
-      "S231P:hasInstance": {
-        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.D.y_start"
-      },
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.D.k"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.D.T"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.D.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.D.y"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.D.y_start"
+        }
+      ],
+      "S231P:isConditionalComponent": true,
       "S231P:label": "D"
     },
     {
@@ -5675,44 +7480,113 @@
       "S231P:value": "yd_start"
     },
     {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.Dzero",
+      "S231P:hasInstance": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.Dzero.y"
+      }
+    },
+    {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.errD",
-      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Subtract",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Subtract",
       "S231P:accessSpecifier": "public",
+      "S231P:conditionalExpression": "with_D",
       "S231P:description": "D error",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":60},{\"x\":-120,\"y\":80}]}}}",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.errD.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.errD.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.errD.y"
+        }
+      ],
+      "S231P:isConditionalComponent": true,
       "S231P:label": "errD"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.errI1",
-      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Subtract",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Subtract",
       "S231P:accessSpecifier": "public",
+      "S231P:conditionalExpression": "with_I",
       "S231P:description": "I error (before anti-windup compensation)",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-4},{\"x\":-120,\"y\":16}]}}}",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.errI1.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.errI1.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.errI1.y"
+        }
+      ],
+      "S231P:isConditionalComponent": true,
       "S231P:label": "errI1"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.errI2",
-      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Subtract",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Subtract",
       "S231P:accessSpecifier": "public",
+      "S231P:conditionalExpression": "with_I",
       "S231P:description": "I error (after anti-windup compensation)",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-100,\"y\":-10},{\"x\":-80,\"y\":10}]}}}",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.errI2.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.errI2.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.errI2.y"
+        }
+      ],
+      "S231P:isConditionalComponent": true,
       "S231P:label": "errI2"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.errP",
-      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Subtract",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Subtract",
       "S231P:accessSpecifier": "public",
       "S231P:description": "P error",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":130},{\"x\":-120,\"y\":150}]}}}",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.errP.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.errP.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.errP.y"
+        }
+      ],
       "S231P:label": "errP"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.I",
-      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.IntegratorWithReset",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.IntegratorWithReset",
       "S231P:accessSpecifier": "public",
+      "S231P:conditionalExpression": "with_I",
       "S231P:description": "Integral term",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-50,\"y\":-10},{\"x\":-30,\"y\":10}]}}}",
       "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.I.trigger"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.I.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.I.y"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.I.y_reset_in"
+        },
         {
           "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.I.k"
         },
@@ -5720,6 +7594,7 @@
           "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.I.y_start"
         }
       ],
+      "S231P:isConditionalComponent": true,
       "S231P:label": "I"
     },
     {
@@ -5731,6 +7606,12 @@
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.I.y_start",
       "S231P:isFinal": true,
       "S231P:value": "xi_start"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.Izero",
+      "S231P:hasInstance": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.Izero.y"
+      }
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.k",
@@ -5746,12 +7627,24 @@
       "S231P:value": 1
     },
     {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.kDer",
+      "S231P:hasInstance": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.kDer.y"
+      }
+    },
+    {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.lim",
-      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Limiter",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Limiter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Limiter",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":120,\"y\":80},{\"x\":140,\"y\":100}]}}}",
       "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.lim.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.lim.y"
+        },
         {
           "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.lim.uMax"
         },
@@ -5802,13 +7695,21 @@
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.P",
-      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Proportional action",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-50,\"y\":130},{\"x\":-30,\"y\":150}]}}}",
-      "S231P:hasInstance": {
-        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.P.k"
-      },
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.P.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.P.y"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.P.k"
+        }
+      ],
       "S231P:label": "P"
     },
     {
@@ -5862,6 +7763,12 @@
       }
     },
     {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.TDer",
+      "S231P:hasInstance": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.TDer.y"
+      }
+    },
+    {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.Ti",
       "@type": "S231P:Parameter",
       "qudt:hasQuantityKind": {
@@ -5889,6 +7796,9 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Resets the controller output when trigger becomes true",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"origin\":{\"x\":-160,\"y\":-220},\"extent\":[{\"x\":-20,\"y\":-20},{\"x\":20,\"y\":20}],\"rotation\":90},\"iconTransformation\":{\"origin\":{\"x\":-60,\"y\":-120},\"extent\":[{\"x\":-20,\"y\":-20},{\"x\":20,\"y\":20}],\"rotation\":90}}}",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.I.trigger"
+      },
       "S231P:label": "trigger"
     },
     {
@@ -5897,6 +7807,14 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Connector of measurement input signal",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"origin\":{\"x\":0,\"y\":-220},\"extent\":[{\"x\":20,\"y\":-20},{\"x\":-20,\"y\":20}],\"rotation\":270},\"iconTransformation\":{\"origin\":{\"x\":0,\"y\":-120},\"extent\":[{\"x\":20,\"y\":-20},{\"x\":-20,\"y\":20}],\"rotation\":270}}}",
+      "S231P:isConnectedTo": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.controlError.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.uMea_revAct.u"
+        }
+      ],
       "S231P:label": "u_m"
     },
     {
@@ -5905,7 +7823,32 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Connector of setpoint input signal",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-260,\"y\":-20},{\"x\":-220,\"y\":20}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.uS_revAct.u"
+      },
       "S231P:label": "u_s"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.uMea_revAct",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.uMea_revAct.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.uMea_revAct.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.uS_revAct",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.uS_revAct.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.uS_revAct.y"
+        }
+      ]
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.xi_start",
@@ -5974,6 +7917,12 @@
       },
       "S231P:label": "yMin",
       "S231P:value": 0
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.yResSig",
+      "S231P:hasInstance": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.yResSig.y"
+      }
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Ramp",
@@ -6231,6 +8180,42 @@
       "S231P:sizeOfDimensions": "(nin)"
     },
     {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Sources.CalendarTime.calTim.day",
+      "S231P:isConnectedTo": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.CalendarTime.day"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Sources.CalendarTime.calTim.hour",
+      "S231P:isConnectedTo": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.CalendarTime.hour"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Sources.CalendarTime.calTim.minute",
+      "S231P:isConnectedTo": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.CalendarTime.minute"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Sources.CalendarTime.calTim.month",
+      "S231P:isConnectedTo": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.CalendarTime.month"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Sources.CalendarTime.calTim.weekDay",
+      "S231P:isConnectedTo": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.CalendarTime.weekDay"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Sources.CalendarTime.calTim.year",
+      "S231P:isConnectedTo": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.CalendarTime.year"
+      }
+    },
+    {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.CalendarTime",
       "@type": "S231P:ElementaryBlock",
       "S231P:hasOutput": [
@@ -6259,6 +8244,29 @@
         }
       ],
       "S231P:label": "CalendarTime"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.CalendarTime.calTim",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Sources.CalendarTime.calTim.day"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Sources.CalendarTime.calTim.hour"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Sources.CalendarTime.calTim.minute"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Sources.CalendarTime.calTim.month"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Sources.CalendarTime.calTim.weekDay"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Sources.CalendarTime.calTim.year"
+        }
+      ]
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.CalendarTime.day",
@@ -6396,6 +8404,12 @@
       "S231P:label": "y"
     },
     {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Sources.Pulse.booPul.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Sources.Pulse.booToRea.u"
+      }
+    },
+    {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.Pulse",
       "@type": "S231P:ElementaryBlock",
       "S231P:hasOutput": {
@@ -6430,6 +8444,23 @@
       },
       "S231P:label": "amplitude",
       "S231P:value": 1
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.Pulse.booPul",
+      "S231P:hasInstance": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Sources.Pulse.booPul.y"
+      }
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.Pulse.booToRea",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Sources.Pulse.booToRea.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Sources.Pulse.booToRea.y"
+        }
+      ]
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.Pulse.offset",
@@ -6501,6 +8532,9 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Pulse output signal",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Sources.Pulse.booToRea.y"
+      },
       "S231P:label": "y"
     },
     {
@@ -6699,6 +8733,12 @@
       "S231P:label": "y"
     },
     {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Sources.TimeTable.tab.y",
+      "S231P:isConnectedTo": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.TimeTable.y"
+      }
+    },
+    {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.TimeTable",
       "@type": "S231P:ElementaryBlock",
       "S231P:hasOutput": {
@@ -6749,6 +8789,12 @@
       "S231P:description": "Smoothness of table interpolation",
       "S231P:label": "smoothness",
       "S231P:value": "CDL.Types.Smoothness.LinearSegments"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.TimeTable.tab",
+      "S231P:hasInstance": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Sources.TimeTable.tab.y"
+      }
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.TimeTable.table",

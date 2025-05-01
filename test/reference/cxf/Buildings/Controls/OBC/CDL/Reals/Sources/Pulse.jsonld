@@ -7,6 +7,12 @@
   },
   "@graph": [
     {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Sources.Pulse.booPul.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Sources.Pulse.booToRea.u"
+      }
+    },
+    {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.Pulse",
       "@type": "S231P:ElementaryBlock",
       "S231P:hasOutput": {
@@ -41,6 +47,23 @@
       },
       "S231P:label": "amplitude",
       "S231P:value": 1
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.Pulse.booPul",
+      "S231P:hasInstance": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Sources.Pulse.booPul.y"
+      }
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.Pulse.booToRea",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Sources.Pulse.booToRea.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Sources.Pulse.booToRea.y"
+        }
+      ]
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.Pulse.offset",
@@ -112,6 +135,9 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Pulse output signal",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Sources.Pulse.booToRea.y"
+      },
       "S231P:label": "y"
     }
   ]

@@ -47,10 +47,12 @@
     },
     {
       "@id": "http://example.org#FromModelica.RemovableInputs.abs",
-      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Abs",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Abs",
       "S231P:accessSpecifier": "public",
+      "S231P:conditionalExpression": "not enaBlo",
       "S231P:description": "Instance could be conditional disabled",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-8,\"y\":-10},{\"x\":12,\"y\":10}]}}}",
+      "S231P:isConditionalComponent": true,
       "S231P:label": "abs"
     },
     {
@@ -88,8 +90,10 @@
       "@id": "http://example.org#FromModelica.RemovableInputs.nOcc",
       "@type": "S231P:IntegerInput",
       "S231P:accessSpecifier": "public",
+      "S231P:conditionalExpression": "have_occSen",
       "S231P:description": "Occupancy",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":60},{\"x\":-100,\"y\":100}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":60},{\"x\":-100,\"y\":100}]}}}",
+      "S231P:isConditionalComponent": true,
       "S231P:label": "nOcc"
     },
     {
@@ -102,8 +106,10 @@
         "@id": "unit:K"
       },
       "S231P:accessSpecifier": "public",
+      "S231P:conditionalExpression": "enaBlo",
       "S231P:description": "Temperature input",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":20},{\"x\":-100,\"y\":60}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":20},{\"x\":-100,\"y\":60}]}}}",
+      "S231P:isConditionalComponent": true,
       "S231P:label": "TOut"
     },
     {
@@ -116,27 +122,33 @@
         "@id": "unit:K"
       },
       "S231P:accessSpecifier": "public",
+      "S231P:conditionalExpression": "enaBlo",
       "S231P:description": "Temperature input with specified default value",
       "S231P:graphics": [
         "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-70},{\"x\":-100,\"y\":-30}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":-80},{\"x\":-100,\"y\":-40}]}}}",
         "{\"name\":\"__cdl\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"default\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"300.15\"}}}}}]}}"
       ],
+      "S231P:isConditionalComponent": true,
       "S231P:label": "TOutWitDef"
     },
     {
       "@id": "http://example.org#FromModelica.RemovableInputs.u",
       "@type": "S231P:RealInput",
       "S231P:accessSpecifier": "public",
+      "S231P:conditionalExpression": "enaBlo",
       "S231P:description": "Input connector",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":-40},{\"x\":-100,\"y\":0}]}}}",
+      "S231P:isConditionalComponent": true,
       "S231P:label": "u"
     },
     {
       "@id": "http://example.org#FromModelica.RemovableInputs.uWin",
       "@type": "S231P:BooleanInput",
       "S231P:accessSpecifier": "public",
+      "S231P:conditionalExpression": "have_winSen",
       "S231P:description": "Window opening status",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-100},{\"x\":-100,\"y\":-60}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":-110},{\"x\":-100,\"y\":-70}]}}}",
+      "S231P:isConditionalComponent": true,
       "S231P:label": "uWin"
     },
     {

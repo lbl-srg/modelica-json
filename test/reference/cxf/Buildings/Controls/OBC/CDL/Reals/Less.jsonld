@@ -4,6 +4,18 @@
   },
   "@graph": [
     {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Less.lesHys.y",
+      "S231P:isConnectedTo": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Less.y"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Less.lesNoHys.y",
+      "S231P:isConnectedTo": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Less.y"
+      }
+    },
+    {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Less",
       "@type": "S231P:ElementaryBlock",
       "S231P:hasInput": [
@@ -45,6 +57,34 @@
       "S231P:value": 0
     },
     {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Less.lesHys",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Less.lesHys.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Less.lesHys.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Less.lesHys.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Less.lesNoHys",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Less.lesNoHys.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Less.lesNoHys.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Less.lesNoHys.y"
+        }
+      ]
+    },
+    {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Less.pre_y_start",
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
@@ -62,6 +102,14 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "First input u1",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
+      "S231P:isConnectedTo": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Less.lesHys.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Less.lesNoHys.u1"
+        }
+      ],
       "S231P:label": "u1"
     },
     {
@@ -70,6 +118,14 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Second input u2",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-100},{\"x\":-100,\"y\":-60}]}}}",
+      "S231P:isConnectedTo": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Less.lesHys.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Less.lesNoHys.u2"
+        }
+      ],
       "S231P:label": "u2"
     },
     {

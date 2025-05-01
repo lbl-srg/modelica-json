@@ -4,6 +4,18 @@
   },
   "@graph": [
     {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.LessThreshold.lesHys.y",
+      "S231P:isConnectedTo": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.LessThreshold.y"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.LessThreshold.lesNoHys.y",
+      "S231P:isConnectedTo": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.LessThreshold.y"
+      }
+    },
+    {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.LessThreshold",
       "@type": "S231P:ElementaryBlock",
       "S231P:hasInput": {
@@ -43,6 +55,28 @@
       "S231P:value": 0
     },
     {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.LessThreshold.lesHys",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.LessThreshold.lesHys.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.LessThreshold.lesHys.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.LessThreshold.lesNoHys",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.LessThreshold.lesNoHys.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.LessThreshold.lesNoHys.y"
+        }
+      ]
+    },
+    {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.LessThreshold.pre_y_start",
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
@@ -71,6 +105,14 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Input to be compared against the threshold",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
+      "S231P:isConnectedTo": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.LessThreshold.lesHys.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.LessThreshold.lesNoHys.u"
+        }
+      ],
       "S231P:label": "u"
     },
     {

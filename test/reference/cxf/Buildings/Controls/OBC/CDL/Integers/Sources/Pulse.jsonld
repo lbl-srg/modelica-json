@@ -7,6 +7,18 @@
   },
   "@graph": [
     {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Integers.Sources.Pulse.booPul.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Integers.Sources.Pulse.booToInt.u"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Integers.Sources.Pulse.booToInt.y",
+      "S231P:isConnectedTo": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.Sources.Pulse.y"
+      }
+    },
+    {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.Sources.Pulse",
       "@type": "S231P:ElementaryBlock",
       "S231P:hasOutput": {
@@ -41,6 +53,23 @@
       },
       "S231P:label": "amplitude",
       "S231P:value": 1
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.Sources.Pulse.booPul",
+      "S231P:hasInstance": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Integers.Sources.Pulse.booPul.y"
+      }
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.Sources.Pulse.booToInt",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Integers.Sources.Pulse.booToInt.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Integers.Sources.Pulse.booToInt.y"
+        }
+      ]
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.Sources.Pulse.offset",

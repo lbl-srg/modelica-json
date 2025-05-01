@@ -6,6 +6,12 @@
   },
   "@graph": [
     {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Sources.TimeTable.tab.y",
+      "S231P:isConnectedTo": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.TimeTable.y"
+      }
+    },
+    {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.TimeTable",
       "@type": "S231P:ElementaryBlock",
       "S231P:hasOutput": {
@@ -56,6 +62,12 @@
       "S231P:description": "Smoothness of table interpolation",
       "S231P:label": "smoothness",
       "S231P:value": "CDL.Types.Smoothness.LinearSegments"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.TimeTable.tab",
+      "S231P:hasInstance": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Sources.TimeTable.tab.y"
+      }
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sources.TimeTable.table",

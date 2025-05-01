@@ -4,6 +4,18 @@
   },
   "@graph": [
     {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.GreaterThreshold.greHys.y",
+      "S231P:isConnectedTo": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.GreaterThreshold.y"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.GreaterThreshold.greNoHys.y",
+      "S231P:isConnectedTo": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.GreaterThreshold.y"
+      }
+    },
+    {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.GreaterThreshold",
       "@type": "S231P:ElementaryBlock",
       "S231P:hasInput": {
@@ -27,6 +39,28 @@
         "GreaterNoHysteresis",
         "GreaterThreshold",
         "GreaterWithHysteresis"
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.GreaterThreshold.greHys",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.GreaterThreshold.greHys.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.GreaterThreshold.greHys.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.GreaterThreshold.greNoHys",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.GreaterThreshold.greNoHys.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.GreaterThreshold.greNoHys.y"
+        }
       ]
     },
     {
@@ -71,6 +105,14 @@
       "S231P:accessSpecifier": "public",
       "S231P:description": "Input to be compared against the threshold",
       "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
+      "S231P:isConnectedTo": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.GreaterThreshold.greHys.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.GreaterThreshold.greNoHys.u"
+        }
+      ],
       "S231P:label": "u"
     },
     {
