@@ -6,6 +6,7 @@
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.MultiSum",
       "@type": "S231P:ElementaryBlock",
+      "S231P:documentation": "info=<html>\n<p>\nBlock that outputs\n</p>\n<p align=\\center\\ style=\\font-style:italic;\\>\ny = &sum;<sub>i=1</sub><sup>n</sup> k<sub>i</sub> &nbsp; u<sub>i</sub>,\n</p>\n<p>\nwhere <i>k</i> is a parameter with <i>n</i> elements and <i>u</i> is\nan input of the same length.\nThe dimension of <i>u</i> can be enlarged by\ndrawing an additional connection line. The connection is automatically connected\nto this new free index.\n</p>\n\n<p>\nIf no connection to the input connector <i>u</i> is present,\nthe output is <i>y=0</i>.\n</p>\n<p>\nSee\n<a href=\\modelica://Buildings.Controls.OBC.CDL.Integers.Validation.MultiSum\\>\nBuildings.Controls.OBC.CDL.Integers.Validation.MultiSum</a>\nfor an example.\n</p>\n</html>,revisions=<html>\n<ul>\n<li>\nSeptember 14, 2017, by Jianjun Hu:<br/>\nFirst implementation, based on the implementation of the Modelica Standard\nLibrary. This is for\n<a href=\\https://github.com/lbl-srg/modelica-buildings/issues/933\\>Buildings, issue 933</a>.\n</li>\n</ul>\n</html>",
       "S231P:hasInput": {
         "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.MultiSum.u"
       },
@@ -20,6 +21,7 @@
           "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.MultiSum.nin"
         }
       ],
+      "S231P:icon": "graphics={Rectangle(extent={{-100,-100},{100,100}},lineColor={255,127,0},fillColor={255,255,255},fillPattern=FillPattern.Solid),Text(textString=\"%k\",textColor={0,0,0},extent={{-200,-110},{200,-140}},fillColor={255,213,170},fillPattern=FillPattern.Solid),Text(textString=\"+\",textColor={255,127,0},extent={{-82,84},{82,-52}},fillColor={255,213,170},fillPattern=FillPattern.Solid),Text(textString=\"%name\",textColor={0,0,255},extent={{-144,150},{156,110}})}",
       "S231P:label": "MultiSum"
     },
     {
@@ -41,10 +43,6 @@
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Number of input connections",
-      "S231P:graphics": [
-        "{\"name\":\"Dialog\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"connectorSizing\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"true\"}}}}}]}}",
-        "{\"name\":\"HideResult\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"true\"}}}"
-      ],
       "S231P:isOfDataType": {
         "@id": "S231P:Integer"
       },
@@ -57,7 +55,7 @@
       "@type": "S231P:IntegerInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Inputs to be multipled with gain and added",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":70},{\"x\":-100,\"y\":-70}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-140,70},{-100,-70}})))",
       "S231P:isArray": true,
       "S231P:label": "u[nin]",
       "S231P:numberDimensions": 1,
@@ -68,7 +66,7 @@
       "@type": "S231P:IntegerOutput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Sum of inputs multiplied by the gain",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{100,-20},{140,20}})))",
       "S231P:label": "y"
     }
   ]

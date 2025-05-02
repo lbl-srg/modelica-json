@@ -6,6 +6,8 @@
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MatrixGain",
       "@type": "S231P:ElementaryBlock",
+      "S231P:diagram": "coordinateSystem(extent={{-100,-100},{100,100}},preserveAspectRatio=true),graphics={Rectangle(extent={{-100,-100},{100,100}},lineColor={0,0,255},fillColor={255,255,255},fillPattern=FillPattern.Solid),Text(textString=\"[  ]\",textColor={0,0,0},extent={{-50,-30},{20,38}}),Text(textString=\"*\",textColor={0,0,0},extent={{8,-30},{80,10}})}",
+      "S231P:documentation": "info=<html>\n<p>\nThis blocks computes output vector <i>y</i> as the product of the\ngain matrix <i>K</i> with the input signal vector <i>u</i> as\n<i>y = K u</i>.\nFor example,\n</p>\n<pre>\n   parameter Real K[:,:] = [0.12, 2; 3, 1.5];\n</pre>\n<p>\nresults in\n</p>\n<pre>\n     | y[1] |     | 0.12,  2.00 |   | u[1] |\n     |      |  =  |            | * |      |\n     | y[2] |     | 3.00,  1.50 |   | u[2] |\n</pre>\n\n</html>,revisions=<html>\n<ul>\n<li>\nFebruary 15, 2024, by Michael Wetter:<br/>\nUpdated documentation to have valid syntax.\n</li>\n<li>\nFebruary 11, 2019, by Milica Grahovac:<br/>\nFirst implementation, based on the implementation of the\nModelica Standard Library.\n</li>\n</ul>\n</html>",
       "S231P:hasInput": {
         "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MatrixGain.u"
       },
@@ -15,6 +17,7 @@
       "S231P:hasParameter": {
         "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MatrixGain.K"
       },
+      "S231P:icon": "coordinateSystem(extent={{-100,-100},{100,100}},preserveAspectRatio=true),graphics={Rectangle(extent={{-100,-100},{100,100}},lineColor={0,0,127},fillColor={255,255,255},fillPattern=FillPattern.Solid),Text(textString=\"%name\",textColor={0,0,255},extent={{-150,150},{150,110}}),Text(textString=\"[  ]\",textColor={0,0,0},extent={{-50,-30},{20,38}}),Text(textString=\"*\",textColor={0,0,0},extent={{8,-30},{80,10}})}",
       "S231P:label": "MatrixGain"
     },
     {
@@ -35,7 +38,7 @@
       "@type": "S231P:RealInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Input to be multiplied with the gain matrix",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-140,-20},{-100,20}})))",
       "S231P:isArray": true,
       "S231P:label": "u[nin]",
       "S231P:numberDimensions": 1,
@@ -46,7 +49,7 @@
       "@type": "S231P:RealOutput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Product of gain matrix times the input",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{100,-20},{140,20}})))",
       "S231P:isArray": true,
       "S231P:label": "y[nout]",
       "S231P:numberDimensions": 1,

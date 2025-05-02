@@ -14,6 +14,7 @@
           "@id": "http://example.org#FromModelica.CustomPWithLimiter.minValue"
         }
       ],
+      "S231P:documentation": "info=<html>\n<p>\nBlock that outputs <code>y = min(yMax, k*e)</code>,\nwhere\n<code>yMax</code> and <code>e</code> are real-valued input signals and\n<code>k</code> is a parameter.\n</p>\n</html>",
       "S231P:hasInput": [
         {
           "@id": "http://example.org#FromModelica.CustomPWithLimiter.e"
@@ -35,7 +36,7 @@
       "@type": "S231P:RealInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Control error",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-60},{\"x\":-100,\"y\":-20}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-140,-60},{-100,-20}})))",
       "S231P:isConnectedTo": {
         "@id": "http://example.org#FromModelica.CustomPWithLimiter.gain.u"
       },
@@ -46,7 +47,7 @@
       "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Constant gain",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-60,\"y\":-50},{\"x\":-40,\"y\":-30}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-60,-50},{-40,-30}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#FromModelica.CustomPWithLimiter.gain.k"
@@ -87,7 +88,7 @@
       "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Min",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Outputs the minimum of its inputs",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":20,\"y\":-10},{\"x\":40,\"y\":10}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{20,-10},{40,10}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#FromModelica.CustomPWithLimiter.minValue.u1"
@@ -112,7 +113,7 @@
       "@type": "S231P:RealOutput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Control signal",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-10},{\"x\":120,\"y\":10}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{100,-10},{120,10}})))",
       "S231P:label": "y"
     },
     {
@@ -120,7 +121,7 @@
       "@type": "S231P:RealInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Maximum value of output signal",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":20},{\"x\":-100,\"y\":60}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-140,20},{-100,60}})))",
       "S231P:isConnectedTo": {
         "@id": "http://example.org#FromModelica.CustomPWithLimiter.minValue.u1"
       },

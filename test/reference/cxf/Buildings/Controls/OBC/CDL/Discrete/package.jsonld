@@ -4,5 +4,7 @@
   },
   "@id": "http://example.org#Buildings.Controls.OBC.CDL.package",
   "@type": "S231P:Block",
+  "S231P:documentation": "info=<html>\n<p>\nThis package contains discrete control blocks\nwith fixed sample period.\nEvery component of this package is structured in the following way:\n</p>\n<ol>\n<li> A component has continuous Real input and output signals.</li>\n<li> The input signals are sampled by the given sample period\n     defined via parameter <code>samplePeriod</code>.\n     The first sample instant is defined by the parameter <code>startTime</code>.\n</li>\n<li> The output signals are computed from the sampled input signals.\n</li>\n</ol>\n\n</html>,revisions=<html>\n<ul>\n<li>\nDecember 22, 2016, by Michael Wetter:<br/>\nFirt implementation, based on the blocks from the Modelica Standard Library.\n</li>\n</ul>\n</html>",
+  "S231P:icon": "graphics={Rectangle(extent={{-100,-100},{100,100}},radius=25,lineColor={200,200,200},fillColor={248,248,248},fillPattern=FillPattern.HorizontalCylinder),Rectangle(extent={{-100,-100},{100,100}},radius=25,lineColor={128,128,128}),Line(color={95,95,95},points={{-88,0},{-45,0}}),Ellipse(extent={{-45,-10},{-25,10}},lineColor={95,95,95},fillColor={255,255,255},fillPattern=FillPattern.Solid),Line(color={95,95,95},points={{-35,0},{24,52}}),Ellipse(extent={{25,-10},{45,10}},lineColor={95,95,95},fillColor={255,255,255},fillPattern=FillPattern.Solid),Line(color={95,95,95},points={{45,0},{82,0}})}",
   "S231P:label": "Discrete"
 }

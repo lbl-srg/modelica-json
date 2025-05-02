@@ -8,12 +8,14 @@
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Cos",
       "@type": "S231P:ElementaryBlock",
+      "S231P:documentation": "info=<html>\n<p>\nBlock that outputs <code>y = cos(u)</code>,\nwhere\n<code>u</code> is an input.\n</p>\n\n<p align=\\center\\>\n<img src=\\modelica://Buildings/Resources/Images/Controls/OBC/CDL/Reals/Cos.png\\\n     alt=\\cos.png\\ />\n</p>\n\n</html>,revisions=<html>\n<ul>\n<li>\nNovember 8, 2024, by Michael Wetter:<br/>\nAdded <code>final</code> keyword to unit declaration as block is only valid for this unit.<br/>\nAlso added <code>displayUnit</code> keyword.\n</li>\n<li>\nMarch 7, 2023, by Jianjun Hu:<br/>\nAdded unit <code>rad</code> to the input.<br/>\nThis is for\n<a href=\\https://github.com/lbl-srg/modelica-buildings/issues/3277\\>Buildings, issue 3277</a>.\n</li>\n<li>\nMarch 2, 2020, by Michael Wetter:<br/>\nChanged icon to display dynamically the output value.\n</li>\n<li>\nJanuary 3, 2017, by Michael Wetter:<br/>\nFirst implementation, based on the implementation of the\nModelica Standard Library.\n</li>\n</ul>\n</html>",
       "S231P:hasInput": {
         "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Cos.u"
       },
       "S231P:hasOutput": {
         "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Cos.y"
       },
+      "S231P:icon": "coordinateSystem(extent={{-100,-100},{100,100}},preserveAspectRatio=true),graphics={Rectangle(extent={{-100,-100},{100,100}},lineColor={0,0,127},fillColor={255,255,255},fillPattern=FillPattern.Solid),Line(points={{-80,80},{-74.4,78.1},{-68.7,72.3},{-63.1,63},{-56.7,48.7},{-48.6,26.6},{-29.3,-32.5},{-22.1,-51.7},{-15.7,-65.3},{-10.1,-73.8},{-4.42,-78.8},{1.21,-79.9},{6.83,-77.1},{12.5,-70.6},{18.1,-60.6},{24.5,-45.7},{32.6,-23},{50.3,31.3},{57.5,50.7},{63.9,64.6},{69.5,73.4},{75.2,78.6},{80,80}},smooth=Smooth.Bezier),Text(textString=\"%name\",textColor={0,0,255},extent={{-150,110},{150,150}}),Polygon(points={{-80,90},{-88,68},{-72,68},{-80,90}},lineColor={192,192,192},fillColor={192,192,192},fillPattern=FillPattern.Solid),Line(color={192,192,192},points={{-80,-80},{-80,68}}),Line(color={192,192,192},points={{-90,0},{68,0}}),Polygon(points={{90,0},{68,8},{68,-8},{90,0}},lineColor={192,192,192},fillColor={192,192,192},fillPattern=FillPattern.Solid),Text(textString=\"cos\",textColor={192,192,192},extent={{-36,80},{36,32}}),Text(textString=DynamicSelect(\"\",String(y,textColor={0,0,0},extent={{226,60},{106,10}})}",
       "S231P:label": "Cos"
     },
     {
@@ -24,7 +26,7 @@
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Input for the cosine function",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-140,-20},{-100,20}})))",
       "S231P:hasDisplayUnit": {
         "@id": "unit:DEG"
       },
@@ -35,7 +37,7 @@
       "@type": "S231P:RealOutput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Cosine of the input",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{100,-20},{140,20}})))",
       "S231P:label": "y"
     }
   ]

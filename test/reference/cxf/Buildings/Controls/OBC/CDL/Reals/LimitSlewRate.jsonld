@@ -9,6 +9,7 @@
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.LimitSlewRate",
       "@type": "S231P:ElementaryBlock",
+      "S231P:documentation": "info=<html>\n<p>\nThe block limits the rate of change of the input by a ramp.\n</p>\n<p>\nThis block computes a threshold for the rate of change of the output <code>y</code> as\n<code>thr = (u-y)/Td</code>, where <code>Td &gt; 0</code> is  parameter.\nThe output <code>y</code> is computed as follows:\n<ul>\n<li>\nIf <code>thr &lt; fallingSlewRate</code>, then <code>dy/dt = fallingSlewRate</code>,\n</li>\n<li>\nif <code>thr &gt; raisingSlewRate</code>, then <code>dy/dt = raisingSlewRate</code>,\n</li>\n<li>\notherwise, <code>dy/dt = thr</code>.\n</li>\n</ul>\n<h4>Implementation</h4>\n<p>\nFor the block to work with arbitrary inputs and in order to produce a differentiable output,\nthe input is numerically differentiated with derivative time constant <code>Td</code>.\nSmaller time constant <code>Td</code> means nearer ideal derivative.\n</p>\n</html>,revisions=<html>\n<ul>\n<li>\nJanuary 27, 2022, by Jianjun Hu:<br/>\nRenamed the block name from SlewRateLimiter to LimitSlewRate.<br/>\nThis is for <a href=\\https://github.com/lbl-srg/modelica-buildings/issues/2865\\>Buildings, issue 2865</a>.\n</li>\n<li>\nNovember 12, 2020, by Michael Wetter:<br/>\nReformulated to remove dependency to <code>Modelica.Units.SI</code>.<br/>\nThis is for\n<a href=\\https://github.com/lbl-srg/modelica-buildings/issues/2243\\>Buildings, issue 2243</a>.\n</li>\n<li>\nApril 21, 2020, by Michael Wetter:<br/>\nRemoved final attribute on unit because if the input quantity is power,\nthen the rate limit is units of power per units of time.\n</li>\n<li>\nMarch 2, 2020, by Michael Wetter:<br/>\nChanged icon to display dynamically the output value.\n</li>\n<li>\nMarch 29, 2017, by Jianjun Hu:<br/>\nFirst implementation, based on the implementation of the\nModelica Standard Library.\n</li>\n</ul>\n</html>",
       "S231P:hasInput": {
         "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.LimitSlewRate.u"
       },
@@ -29,6 +30,7 @@
           "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.LimitSlewRate.Td"
         }
       ],
+      "S231P:icon": "coordinateSystem(extent={{-100,-100},{100,100}},preserveAspectRatio=true),graphics={Text(textString=\"%name\",textColor={0,0,255},extent={{-150,110},{150,150}}),Rectangle(extent={{-100,-100},{100,100}},lineColor={0,0,127},fillColor={255,255,255},fillPattern=FillPattern.Solid),Line(color={192,192,192},points={{0,-90},{0,68}}),Polygon(points={{0,90},{-8,68},{8,68},{0,90}},lineColor={192,192,192},fillColor={192,192,192},fillPattern=FillPattern.Solid),Line(color={192,192,192},points={{-90,0},{68,0}}),Polygon(points={{90,0},{68,-8},{68,8},{90,0}},lineColor={192,192,192},fillColor={192,192,192},fillPattern=FillPattern.Solid),Text(textString=\"%name\",textColor={0,0,255},extent={{-150,150},{150,110}}),Line(points={{-50,-70},{50,70}}),Text(textString=DynamicSelect(\"\",String(y,textColor={0,0,0},extent={{226,60},{106,10}})}",
       "S231P:label": "LimitSlewRate"
     },
     {
@@ -94,7 +96,7 @@
       "@type": "S231P:RealInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Input signal to be rate of change limited",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-140,-20},{-100,20}})))",
       "S231P:label": "u"
     },
     {
@@ -102,7 +104,7 @@
       "@type": "S231P:RealOutput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Rate of change limited output signal",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{100,-20},{140,20}})))",
       "S231P:label": "y"
     }
   ]

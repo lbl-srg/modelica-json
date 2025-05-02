@@ -6,6 +6,7 @@
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.GreaterEqualThreshold",
       "@type": "S231P:ElementaryBlock",
+      "S231P:documentation": "info=<html>\n<p>\nBlock that outputs <code>true</code> if the Integer input is greater than or equal to\nthe parameter <code>t</code>.\nOtherwise the output is <code>false</code>.\n</p>\n</html>,revisions=<html>\n<ul>\n<li>\nAugust 6, 2020, by Michael Wetter:<br/>\nRenamed <code>threshold</code> to <code>t</code>.<br/>\nThis is for <a href=\\https://github.com/lbl-srg/modelica-buildings/issues/2076\\>Buildings, issue 2076</a>.\n</li>\n<li>\nAugust 30, 2017, by Jianjun Hu:<br/>\nFirst implementation, based on the implementation of the\nModelica Standard Library.\n</li>\n</ul>\n</html>",
       "S231P:hasInput": {
         "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.GreaterEqualThreshold.u"
       },
@@ -15,6 +16,7 @@
       "S231P:hasParameter": {
         "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.GreaterEqualThreshold.t"
       },
+      "S231P:icon": "coordinateSystem(extent={{-100,-100},{100,100}},preserveAspectRatio=true),graphics={Text(textString=\"%t\",textColor={0,0,0},extent={{-150,-140},{150,-110}}),Rectangle(extent={{-100,100},{100,-100}},borderPattern=BorderPattern.Raised,lineColor={0,0,0},fillColor={210,210,210},fillPattern=FillPattern.Solid),Ellipse(extent={{71,7},{85,-7}},lineColor={235,235,NaN},fillColor={235,235,NaN},fillPattern=FillPattern.Solid),Text(textString=\"%name\",textColor={0,0,255},extent={{-150,150},{150,110}}),Line(color={255,127,0},thickness=0.5,points={{-54,22},{-8,2},{-54,-18}}),Line(color={255,127,0},thickness=0.5,points={{-52,-36},{-6,-14}})}",
       "S231P:label": "GreaterEqualThreshold"
     },
     {
@@ -33,7 +35,7 @@
       "@type": "S231P:IntegerInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Input to be compared against the threshold",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-140,-20},{-100,20}})))",
       "S231P:label": "u"
     },
     {
@@ -41,7 +43,7 @@
       "@type": "S231P:BooleanOutput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Outputs true if u is greater or equal than the threshold",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{100,-20},{140,20}})))",
       "S231P:label": "y"
     }
   ]

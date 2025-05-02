@@ -29,6 +29,8 @@
           "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.switch"
         }
       ],
+      "S231P:diagram": "coordinateSystem(preserveAspectRatio=false)",
+      "S231P:documentation": "info=<html>\n<p>\nThis block outputs the cooling coil control signal if the fan is on and the zone is\nin cooling status (see\n<a href=\\modelica://Buildings.Controls.OBC.ASHRAE.G36.Types.ZoneStates\\>\nBuildings.Controls.OBC.ASHRAE.G36.Types.ZoneStates</a>).\nOtherwise, the control signal for the coil is set to <code>0</code>.\nThe implementation is according to the Section 5.18.5.3 of ASHRAE Guideline 36, May 2020.\n</p>\n</html>,revisions=<html>\n<ul>\n<li>\nAugust 1, 2020, by Jianjun Hu:<br/>\nFirst implementation based on G36 official version.\n</li>\n</ul>\n</html>",
       "S231P:hasInput": [
         {
           "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.TAirSup"
@@ -60,6 +62,7 @@
           "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.TiCooCoi"
         }
       ],
+      "S231P:icon": "coordinateSystem(preserveAspectRatio=false),graphics={Rectangle(extent={{-100,-100},{100,100}},lineColor={0,0,127},fillColor={255,255,255},fillPattern=FillPattern.Solid),Text(textString=\"%name\",textColor={0,0,255},extent={{-150,150},{150,110}})}",
       "S231P:label": "CoolingCoil"
     },
     {
@@ -67,7 +70,7 @@
       "@type": "http://example.org#Buildings.Controls.OBC.CDL.Logical.And",
       "S231P:accessSpecifier": "protected",
       "S231P:description": "Conditions for cooling state",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":0,\"y\":-10},{\"x\":20,\"y\":10}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{0,-10},{20,10}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.and2.u1"
@@ -98,7 +101,7 @@
       "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Cooling coil control signal",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-10,\"y\":70},{\"x\":10,\"y\":90}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-10,70},{10,90}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conCoi.controllerType"
@@ -184,7 +187,7 @@
       "@type": "http://example.org#Buildings.Controls.OBC.CDL.Integers.Sources.Constant",
       "S231P:accessSpecifier": "protected",
       "S231P:description": "Cooling state value",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-80,\"y\":-10},{\"x\":-60,\"y\":10}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-80,-10},{-60,10}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conInt.k"
@@ -211,7 +214,7 @@
       "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Sources.Constant",
       "S231P:accessSpecifier": "protected",
       "S231P:description": "Cooling off mode",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":20,\"y\":-50},{\"x\":40,\"y\":-30}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{20,-50},{40,-30}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.const.k"
@@ -236,10 +239,6 @@
       "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.controllerTypeCooCoi",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Type of controller",
-      "S231P:graphics": [
-        "{\"name\":\"Dialog\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"group\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"\\\"Cooling coil loop signal\\\"\"}}}}}]}}",
-        "{\"name\":\"__cdl\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"ValueInReference\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"false\"}}}}}]}}"
-      ],
       "S231P:label": "controllerTypeCooCoi",
       "S231P:value": "Buildings.Controls.OBC.CDL.Types.SimpleController.PI"
     },
@@ -248,7 +247,7 @@
       "@type": "http://example.org#Buildings.Controls.OBC.CDL.Integers.Equal",
       "S231P:accessSpecifier": "protected",
       "S231P:description": "Logical block to check if zone is in cooling state",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-40,\"y\":-10},{\"x\":-20,\"y\":10}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-40,-10},{-20,10}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.intEqu.u1"
@@ -276,10 +275,6 @@
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Gain for cooling coil control loop signal",
-      "S231P:graphics": [
-        "{\"name\":\"Dialog\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"group\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"\\\"Cooling coil loop signal\\\"\"}}}}}]}}",
-        "{\"name\":\"__cdl\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"ValueInReference\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"false\"}}}}}]}}"
-      ],
       "S231P:isOfDataType": {
         "@id": "S231P:Real"
       },
@@ -294,7 +289,7 @@
       "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Switch",
       "S231P:accessSpecifier": "protected",
       "S231P:description": "Switch to assign cooling coil control signal",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":72,\"y\":-10},{\"x\":92,\"y\":10}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{72,-10},{92,10}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.switch.u1"
@@ -328,7 +323,7 @@
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Supply air temperature measurement",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":20},{\"x\":-100,\"y\":60}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-140,20},{-100,60}})))",
       "S231P:hasDisplayUnit": {
         "@id": "unit:DEG_C"
       },
@@ -342,10 +337,6 @@
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Time constant of derivative block for cooling coil control loop signal",
-      "S231P:graphics": [
-        "{\"name\":\"Dialog\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"group\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"\\\"Cooling coil loop signal\\\"\"}}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"enable\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":{\"logical_expression\":{\"logical_or\":[{\"logical_and\":[{\"arithmetic_expressions\":[{\"name\":\"controllerTypeCooCoi\"},{\"name\":\"Buildings.Controls.OBC.CDL.Types.SimpleController.PD\"}],\"relation_operator\":\"==\"}]},{\"logical_and\":[{\"arithmetic_expressions\":[{\"name\":\"controllerTypeCooCoi\"},{\"name\":\"Buildings.Controls.OBC.CDL.Types.SimpleController.PID\"}],\"relation_operator\":\"==\"}]}]}}}}}}}]}}",
-        "{\"name\":\"__cdl\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"ValueInReference\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"false\"}}}}}]}}"
-      ],
       "S231P:isOfDataType": {
         "@id": "S231P:Real"
       },
@@ -363,10 +354,6 @@
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Time constant of integrator block for cooling coil control loop signal",
-      "S231P:graphics": [
-        "{\"name\":\"Dialog\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"group\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"\\\"Cooling coil loop signal\\\"\"}}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"enable\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":{\"logical_expression\":{\"logical_or\":[{\"logical_and\":[{\"arithmetic_expressions\":[{\"name\":\"controllerTypeCooCoi\"},{\"name\":\"Buildings.Controls.OBC.CDL.Types.SimpleController.PI\"}],\"relation_operator\":\"==\"}]},{\"logical_and\":[{\"arithmetic_expressions\":[{\"name\":\"controllerTypeCooCoi\"},{\"name\":\"Buildings.Controls.OBC.CDL.Types.SimpleController.PID\"}],\"relation_operator\":\"==\"}]}]}}}}}}}]}}",
-        "{\"name\":\"__cdl\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"ValueInReference\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"false\"}}}}}]}}"
-      ],
       "S231P:isOfDataType": {
         "@id": "S231P:Real"
       },
@@ -384,7 +371,7 @@
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Cooling supply air temperature setpoint",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":60},{\"x\":-100,\"y\":100}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-140,60},{-100,100}})))",
       "S231P:hasDisplayUnit": {
         "@id": "unit:DEG_C"
       },
@@ -395,7 +382,7 @@
       "@type": "S231P:BooleanInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Supply fan proven on",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-100},{\"x\":-100,\"y\":-60}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-140,-100},{-100,-60}})))",
       "S231P:label": "u1SupFan"
     },
     {
@@ -403,7 +390,7 @@
       "@type": "S231P:IntegerInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Zone state",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-40},{\"x\":-100,\"y\":0}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":-60},{\"x\":-100,\"y\":-20}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-140,-40},{-100,0}})),iconTransformation(extent={{-140,-60},{-100,-20}})))",
       "S231P:isConnectedTo": {
         "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.intEqu.u2"
       },
@@ -414,7 +401,7 @@
       "@type": "S231P:RealOutput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Cooling coil valve commanded position",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]},\"iconTransformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{100,-20},{140,20}})),iconTransformation(extent={{100,-20},{140,20}})))",
       "S231P:label": "yCooCoi"
     }
   ]

@@ -9,6 +9,7 @@
       "S231P:containsBlock": {
         "@id": "http://example.org#FromModelica.TestEvaluation_2.hys"
       },
+      "S231P:diagram": "coordinateSystem(preserveAspectRatio=false)",
       "S231P:hasInput": {
         "@id": "http://example.org#FromModelica.TestEvaluation_2.u"
       },
@@ -23,13 +24,14 @@
           "@id": "http://example.org#FromModelica.TestEvaluation_2.uLow"
         }
       ],
+      "S231P:icon": "coordinateSystem(preserveAspectRatio=false)",
       "S231P:label": "TestEvaluation_2"
     },
     {
       "@id": "http://example.org#FromModelica.TestEvaluation_2.hys",
       "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Hysteresis",
       "S231P:accessSpecifier": "public",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-10,\"y\":-10},{\"x\":10,\"y\":10}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-10,-10},{10,10}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#FromModelica.TestEvaluation_2.hys.u"
@@ -72,7 +74,7 @@
       "@type": "S231P:RealInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Real input signal",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]},\"iconTransformation\":{\"extent\":[{\"x\":-118,\"y\":-20},{\"x\":-78,\"y\":20}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-140,-20},{-100,20}})),iconTransformation(extent={{-118,-20},{-78,20}})))",
       "S231P:label": "u"
     },
     {
@@ -106,7 +108,7 @@
       "@type": "S231P:BooleanOutput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Boolean output signal",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]},\"iconTransformation\":{\"extent\":[{\"x\":80,\"y\":-20},{\"x\":120,\"y\":20}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{100,-20},{140,20}})),iconTransformation(extent={{80,-20},{120,20}})))",
       "S231P:label": "y"
     }
   ]

@@ -6,6 +6,8 @@
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.RealVectorFilter",
       "@type": "S231P:ElementaryBlock",
+      "S231P:diagram": "coordinateSystem(preserveAspectRatio=false)",
+      "S231P:documentation": "revisions=<html>\n<ul>\n<li>\nJune 22, 2021, by Baptiste Ravache:<br/>\nFirst implementation\n</li>\n</ul>\n</html>,info=<html>\n<p>\nThis block filters a Real vector of size <code>nin</code> to\na vector of size <code>nout</code> given a boolean mask\n<code>msk</code>.\n</p>\n<p>\nIf an entry in <code>msk</code> is <code>true</code>, then the value\nof this input will be sent to the output <code>y</code>, otherwise it\nwill be discarded.\n</p>\n<p>\nThe parameter <code>msk</code> must have exactly <code>nout</code> entries\nset to <code>true</code>, otherwise an error message is issued.\n</p>\n</html>",
       "S231P:hasInput": {
         "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.RealVectorFilter.u"
       },
@@ -23,6 +25,7 @@
           "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.RealVectorFilter.nout"
         }
       ],
+      "S231P:icon": "coordinateSystem(preserveAspectRatio=false),graphics={Rectangle(extent={{-100,-100},{100,100}},lineColor={0,0,127},fillColor={255,255,255},fillPattern=FillPattern.Solid),Text(textString=\"%name\",textColor={0,0,255},extent={{-150,110},{150,150}}),Polygon(points={{-60,80},{-60,-80},{20,-10},{60,-10},{80,10},{20,10},{-60,80}},lineColor={0,0,0},fillColor={0,0,127},fillPattern=FillPattern.Solid,lineThickness=0.5),Line(color={0,0,127},points={{-100,0},{-60,0}}),Line(color={0,0,127},points={{70,0},{100,0}})}",
       "S231P:label": "RealVectorFilter"
     },
     {
@@ -64,7 +67,7 @@
       "@type": "S231P:RealInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Input signals from which values are extracted",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-140,-20},{-100,20}})))",
       "S231P:isArray": true,
       "S231P:label": "u[nin]",
       "S231P:numberDimensions": 1,
@@ -75,7 +78,7 @@
       "@type": "S231P:RealOutput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Output with extracted input signals",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{100,-20},{140,20}})))",
       "S231P:isArray": true,
       "S231P:label": "y[nout]",
       "S231P:numberDimensions": 1,

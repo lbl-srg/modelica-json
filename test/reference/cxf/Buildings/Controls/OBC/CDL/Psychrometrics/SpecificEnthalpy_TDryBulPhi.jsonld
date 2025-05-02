@@ -9,6 +9,7 @@
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Psychrometrics.SpecificEnthalpy_TDryBulPhi",
       "@type": "S231P:ElementaryBlock",
+      "S231P:documentation": "info=<html>\n<p>\nThis block computes the specific enthalpy for a given dry bulb temperature, relative air humidity\nand atmospheric pressure.\nThe specific enthalpy is zero if the temperature is <i>0</i>&deg;C and if there\nis no moisture.\n</p>\n<p>\nThe correlation used in this model is from the 2009 ASHRAE Handbook Fundamentals, p. 1.9, equation 32.\n</p>\n</html>,revisions=<html>\n<ul>\n<li>\nNovember 12, 2020, by Michael Wetter:<br/>\nReformulated to remove dependency to <code>Modelica.Units.SI</code>.<br/>\nThis is for\n<a href=\\https://github.com/lbl-srg/modelica-buildings/issues/2243\\>Buildings, issue 2243</a>.\n</li>\n<li>\nSeptember 29, 2020, by Michael Wetter:<br/>\nRemoved input <code>p</code>, used instead a parameter for the atmospheric pressure and renamed block.<br/>\nThis is for\n<a href=\\https://github.com/lbl-srg/modelica-buildings/issues/2139\\>Buildings, issue 2139</a>\n</li>\n<li>\nApril 7, 2017 by Jianjun Hu:<br/>\nFirst implementation.\n</li>\n</ul>\n</html>",
       "S231P:hasInput": [
         {
           "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Psychrometrics.SpecificEnthalpy_TDryBulPhi.phi"
@@ -23,6 +24,7 @@
       "S231P:hasParameter": {
         "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Psychrometrics.SpecificEnthalpy_TDryBulPhi.pAtm"
       },
+      "S231P:icon": "coordinateSystem(extent={{-100,-100},{100,100}},preserveAspectRatio=false),graphics={Text(textString=\"%name\",textColor={0,0,255},extent={{-150,150},{150,110}}),Rectangle(extent={{-100,100},{100,-100}},lineColor={0,0,0},fillColor={255,255,255},fillPattern=FillPattern.Solid),Line(color={215,215,215},points={{-44,-52},{-30,-48},{0,-36},{32,-8},{44,16},{52,48},{56,68}},smooth=Smooth.Bezier),Line(color={255,0,0},thickness=0.5,points={{66,-58},{10,-28}}),Text(textString=\"X\",textColor={0,0,0},extent={{-44,82},{-22,64}},fillColor={0,0,0},fillPattern=FillPattern.Solid),Polygon(points={{-48,88},{-46,74},{-50,74},{-48,88}},lineColor={0,0,0},fillColor={0,0,0},fillPattern=FillPattern.Solid),Text(textString=\"phi\",textColor={0,0,127},extent={{-88,-44},{-68,-70}}),Text(textString=\"TDryBul\",textColor={0,0,127},extent={{-92,82},{-62,38}}),Line(points={{78,-74},{-48,-74}}),Polygon(points={{86,-74},{76,-72},{76,-76},{86,-74}},lineColor={0,0,0},fillColor={0,0,0},fillPattern=FillPattern.Solid),Text(textString=\"T\",textColor={0,0,0},extent={{76,-78},{86,-94}},fillColor={0,0,0},fillPattern=FillPattern.Solid),Line(points={{-48,84},{-48,-74}}),Text(textString=\"h\",textColor={0,0,127},extent={{74,14},{94,-12}})}",
       "S231P:label": "SpecificEnthalpy_TDryBulPhi"
     },
     {
@@ -36,7 +38,7 @@
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Specific enthalpy",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{100,-20},{140,20}})))",
       "S231P:label": "h"
     },
     {
@@ -61,7 +63,7 @@
       "@type": "S231P:RealInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Relative air humidity",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-80},{\"x\":-100,\"y\":-40}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":-80},{\"x\":-100,\"y\":-40}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-140,-80},{-100,-40}})),iconTransformation(extent={{-140,-80},{-100,-40}})))",
       "S231P:label": "phi",
       "S231P:max": 1,
       "S231P:min": 0
@@ -77,7 +79,7 @@
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Dry bulb temperature",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":40},{\"x\":-100,\"y\":80}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":40},{\"x\":-100,\"y\":80}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-140,40},{-100,80}})),iconTransformation(extent={{-140,40},{-100,80}})))",
       "S231P:label": "TDryBul",
       "S231P:min": 100
     }

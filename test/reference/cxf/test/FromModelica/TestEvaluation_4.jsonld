@@ -9,6 +9,7 @@
       "S231P:containsBlock": {
         "@id": "http://example.org#FromModelica.TestEvaluation_4.cooCoi"
       },
+      "S231P:diagram": "coordinateSystem(preserveAspectRatio=false)",
       "S231P:hasInput": [
         {
           "@id": "http://example.org#FromModelica.TestEvaluation_4.TAirSup"
@@ -37,6 +38,7 @@
           "@id": "http://example.org#FromModelica.TestEvaluation_4.TiCooCoi"
         }
       ],
+      "S231P:icon": "coordinateSystem(preserveAspectRatio=false)",
       "S231P:label": "TestEvaluation_4"
     },
     {
@@ -51,7 +53,7 @@
       "@type": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Cooling coil control",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-10,\"y\":-10},{\"x\":10,\"y\":10}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-10,-10},{10,10}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#FromModelica.TestEvaluation_4.cooCoi.controllerTypeCooCoi"
@@ -141,7 +143,7 @@
       "@type": "S231P:RealInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Supply air temperature measurement",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":0},{\"x\":-100,\"y\":40}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":20},{\"x\":-100,\"y\":60}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-140,0},{-100,40}})),iconTransformation(extent={{-140,20},{-100,60}})))",
       "S231P:label": "TAirSup"
     },
     {
@@ -160,7 +162,7 @@
       "@type": "S231P:RealInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Cooling supply air temperature setpoint",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":40},{\"x\":-100,\"y\":80}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":60},{\"x\":-100,\"y\":100}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-140,40},{-100,80}})),iconTransformation(extent={{-140,60},{-100,100}})))",
       "S231P:label": "TSupCooSet"
     },
     {
@@ -168,7 +170,7 @@
       "@type": "S231P:BooleanInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Supply fan proven on",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-80},{\"x\":-100,\"y\":-40}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":-98},{\"x\":-100,\"y\":-58}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-140,-80},{-100,-40}})),iconTransformation(extent={{-140,-98},{-100,-58}})))",
       "S231P:label": "u1SupFan"
     },
     {
@@ -176,7 +178,7 @@
       "@type": "S231P:IntegerInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Zone state",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-40},{\"x\":-100,\"y\":0}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":-60},{\"x\":-100,\"y\":-20}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-140,-40},{-100,0}})),iconTransformation(extent={{-140,-60},{-100,-20}})))",
       "S231P:label": "uZonSta"
     },
     {
@@ -184,7 +186,7 @@
       "@type": "S231P:RealOutput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Cooling coil position",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]},\"iconTransformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{100,-20},{140,20}})),iconTransformation(extent={{100,-20},{140,20}})))",
       "S231P:label": "yCooCoi"
     }
   ]

@@ -6,12 +6,14 @@
     {
       "@id": "http://example.org#FromModelica.SubController",
       "@type": "S231P:Block",
+      "S231P:diagram": "coordinateSystem(preserveAspectRatio=false)",
       "S231P:hasInput": {
         "@id": "http://example.org#FromModelica.SubController.u"
       },
       "S231P:hasOutput": {
         "@id": "http://example.org#FromModelica.SubController.y"
       },
+      "S231P:icon": "coordinateSystem(preserveAspectRatio=false),graphics={Rectangle(extent={{-100,-100},{100,100}},lineColor={0,0,127},fillColor={255,255,255},fillPattern=FillPattern.Solid),Text(textString=\"%name\",extent={{-100,100},{100,140}},lineColor={0,0,255})}",
       "S231P:label": "SubController"
     },
     {
@@ -19,10 +21,7 @@
       "@type": "S231P:RealInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Real input",
-      "S231P:graphics": [
-        "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
-        "{\"name\":\"__cdl\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"connection\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"hardwired\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"true\"}}}}}]}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"trend\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"interval\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"60\"}}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"enable\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"true\"}}}}}]}}}}]}}"
-      ],
+      "S231P:graphics": "Placement(transformation(extent={{-140,-20},{-100,20}})),iconTransformation(extent={{-140,-20},{-100,20}})))",
       "S231P:label": "u"
     },
     {
@@ -30,10 +29,7 @@
       "@type": "S231P:RealOutput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Real output",
-      "S231P:graphics": [
-        "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]},\"iconTransformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
-        "{\"name\":\"__cdl\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"connection\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"hardwired\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"true\"}}}}}]}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"trend\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"interval\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"60\"}}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"enable\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"true\"}}}}}]}}}}]}}"
-      ],
+      "S231P:graphics": "Placement(transformation(extent={{100,-20},{140,20}})),iconTransformation(extent={{100,-20},{140,20}})))",
       "S231P:label": "y"
     }
   ]

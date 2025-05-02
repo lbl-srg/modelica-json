@@ -195,6 +195,8 @@
           "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PID.P"
         }
       ],
+      "S231P:diagram": "coordinateSystem(extent={{-220,-200},{220,200}}),graphics={Rectangle(extent={{-56,180},{-24,-16}},fillColor={215,215,215},pattern=LinePattern.None,fillPattern=FillPattern.Solid),Text(textString=\"PID\",textColor={0,0,0},extent={{-52,184},{-28,156}},fillColor={215,215,215},pattern=LinePattern.None,fillPattern=FillPattern.Solid)}",
+      "S231P:documentation": "info=<html>\n<p>\nPID controller in the standard form\n</p>\n<p align=\\center\\ style=\\font-style:italic;\\>\ny<sub>u</sub> = k/r &nbsp; (e(t) + 1 &frasl; T<sub>i</sub> &nbsp; &int; e(&tau;) d&tau; + T<sub>d</sub> d&frasl;dt e(t)),\n</p>\n<p>\nwhere\n<i>y<sub>u</sub></i> is the control signal before output limitation,\n<i>e(t) = u<sub>s</sub>(t) - u<sub>m</sub>(t)</i> is the control error,\nwith <i>u<sub>s</sub></i> being the set point and <i>u<sub>m</sub></i> being\nthe measured quantity,\n<i>k</i> is the gain,\n<i>T<sub>i</sub></i> is the time constant of the integral term,\n<i>T<sub>d</sub></i> is the time constant of the derivative term,\nand\n<i>r</i> is a scaling factor, with default <i>r=1</i>.\nThe scaling factor should be set to the typical order of magnitude of the range of the error <i>e</i>.\nFor example, you may set <i>r=100</i> to <i>r=1000</i>\nif the control input is a pressure of a heating water circulation pump in units of Pascal, or\nleave <i>r=1</i> if the control input is a room temperature.\n</p>\n<p>\nNote that the units of <i>k</i> are the inverse of the units of the control error,\nwhile the units of <i>T<sub>i</sub></i> and <i>T<sub>d</sub></i> are seconds.\n</p>\n<p>\nThe actual control output is\n</p>\n<p align=\\center\\ style=\\font-style:italic;\\>\ny = min( y<sub>max</sub>, max( y<sub>min</sub>, y)),\n</p>\n<p>\nwhere <i>y<sub>min</sub></i> and <i>y<sub>max</sub></i> are limits for the control signal.\n</p>\n<h4>P, PI, PD, or PID action</h4>\n<p>\nThrough the parameter <code>controllerType</code>, the controller can be configured\nas P, PI, PD or PID controller. The default configuration is PI.\n</p>\n<h4>Reverse or direct action</h4>\n<p>\nThrough the parameter <code>reverseActing</code>, the controller can be configured to\nbe reverse or direct acting.\nThe above standard form is reverse acting, which is the default configuration.\nFor a reverse acting controller, for a constant set point,\nan increase in measurement signal <code>u_m</code> decreases the control output signal <code>y</code>\n(Montgomery and McDowall, 2008).\nThus,\n</p>\n<ul>\n  <li>\n  for a heating coil with a two-way valve, leave <code>reverseActing = true</code>, but\n  </li>\n  <li>\n  for a cooling coil with a two-way valve, set <code>reverseActing = false</code>.\n  </li>\n</ul>\n<p>\nIf <code>reverseAction=false</code>, then the error <i>e</i> above is multiplied by <i>-1</i>.\n</p>\n<h4>Anti-windup compensation</h4>\n<p>\nThe controller anti-windup compensation is as follows:\nInstead of the above basic control law, the implementation is\n</p>\n<p align=\\center\\ style=\\font-style:italic;\\>\ny<sub>u</sub> = k &nbsp; (e(t) &frasl; r + 1 &frasl; T<sub>i</sub> &nbsp; &int; (-&Delta;y + e(&tau;) &frasl; r) d&tau; + T<sub>d</sub> &frasl; r d&frasl;dt e(t)),\n</p>\n<p>\nwhere the anti-windup compensation <i>&Delta;y</i> is\n</p>\n<p align=\\center\\ style=\\font-style:italic;\\>\n&Delta;y = (y<sub>u</sub> - y) &frasl; (k N<sub>i</sub>),\n</p>\n<p>\nwhere\n<i>N<sub>i</sub> &gt; 0</i> is the time constant for the anti-windup compensation.\nTo accelerate the anti-windup, decrease <i>N<sub>i</sub></i>.\n</p>\n<p>\nNote that the anti-windup term <i>(-&Delta;y + e(&tau;) &frasl; r)</i> shows that the range of\nthe typical control error <i>r</i> should be set to a reasonable value so that\n</p>\n<p align=\\center\\ style=\\font-style:italic;\\>\ne(&tau;) &frasl; r = (u<sub>s</sub>(&tau;) - u<sub>m</sub>(&tau;)) &frasl; r\n</p>\n<p>\nhas order of magnitude one, and hence the anti-windup compensation should work well.\n</p>\n<h4>Reset of the controller output</h4>\n<p>\nNote that this controller implements an integrator anti-windup. Therefore,\nfor most applications, the controller output does not need to be reset.\nHowever, if the controller is used in conjuction with equipment that is being\nswitched on, better control performance may be achieved by resetting the controller\noutput when the equipment is switched on. This is in particular the case in situations\nwhere the equipment control input should continuously increase as the equipment is\nswitched on, such as a light dimmer that may slowly increase the luminance, or\na variable speed drive of a motor that should continuously increase the speed. In\nthis case, the controller\n<a href=\\modelica://Buildings.Controls.OBC.CDL.Reals.PIDWithReset\\>\nBuildings.Controls.OBC.CDL.Reals.PIDWithReset</a>\nthat can reset the output should be used.\n</p>\n<h4>Approximation of the derivative term</h4>\n<p>\nThe derivative of the control error <i>d &frasl; dt e(t)</i> is approximated using\n</p>\n<p align=\\center\\ style=\\font-style:italic;\\>\nd&frasl;dt x(t) = (e(t)-x(t)) N<sub>d</sub> &frasl; T<sub>d</sub>,\n</p>\n<p>\nand\n</p>\n<p align=\\center\\ style=\\font-style:italic;\\>\nd&frasl;dt e(t) &asymp; N<sub>d</sub> (e(t)-x(t)),\n</p>\n<p>\nwhere <i>x(t)</i> is an internal state.\n</p>\n<h4>Guidance for tuning the control gains</h4>\n<p>\nThe parameters of the controller can be manually adjusted by performing\nclosed loop tests (= controller + plant connected\ntogether) and using the following strategy:\n</p>\n<ol>\n<li> Set very large limits, e.g., set <i>y<sub>max</sub> = 1000</i>.\n</li>\n<li>\nSelect a <strong>P</strong>-controller and manually enlarge the parameter <code>k</code>\n(the total gain of the controller) until the closed-loop response\ncannot be improved any more.\n</li>\n<li>\nSelect a <strong>PI</strong>-controller and manually adjust the parameters\n<code>k</code> and <code>Ti</code> (the time constant of the integrator).\nThe first value of <code>Ti</code> can be selected such that it is in the\norder of the time constant of the oscillations occurring with\nthe P-controller. If, e.g., oscillations in the order of <i>100</i> seconds\noccur in the previous step, start with <code>Ti=1/100</code> seconds.\n</li>\n<li>\nIf you want to make the reaction of the control loop faster\n(but probably less robust against disturbances and measurement noise)\nselect a <strong>PID</strong>-controller and manually adjust parameters\n<code>k</code>, <code>Ti</code>, <code>Td</code> (time constant of derivative block).\n</li>\n<li>\nSet the limits <code>yMax</code> and <code>yMin</code> according to your specification.\n</li>\n<li>\nPerform simulations such that the output of the PID controller\ngoes in its limits. Tune <code>Ni</code> (<i>N<sub>i</sub> T<sub>i</sub></i> is the time constant of\nthe anti-windup compensation) such that the input to the limiter\nblock (= <code>lim.u</code>) goes quickly enough back to its limits.\nIf <code>Ni</code> is decreased, this happens faster. If <code>Ni</code> is very large, the\nanti-windup compensation is not effective and the controller works bad.\n</li>\n</ol>\n<h4>References</h4>\n<p>\nR. Montgomery and R. McDowall (2008).\n\\Fundamentals of HVAC Control Systems.\\\nAmerican Society of Heating Refrigerating and Air-Conditioning Engineers Inc. Atlanta, GA.\n</p>\n</html>,revisions=<html>\n<ul>\n<li>\nOctober 23, 2023, by Michael Wetter:<br/>\nAdded value of control output <code>y</code> to icon.\n</li>\n<li>\nMay 20, 2022, by Michael Wetter:<br/>\nRefactored implementation to use new derivative block from CDL package.<br/>\nThis is for\n<a href=\\https://github.com/lbl-srg/modelica-buildings/issues/3022\\>Buildings, issue 3022</a>.\n</li>\n<li>\nMay 6, 2022, by Michael Wetter:<br/>\nCorrected wrong documentation in how the derivative of the control error is approximated.<br/>\nThis is for\n<a href=\\https://github.com/lbl-srg/modelica-buildings/issues/2994\\>Buildings, issue 2994</a>.\n</li>\n<li>\nNovember 12, 2020, by Michael Wetter:<br/>\nReformulated to remove dependency to <code>Modelica.Units.SI</code>.<br/>\nThis is for\n<a href=\\https://github.com/lbl-srg/modelica-buildings/issues/2243\\>Buildings, issue 2243</a>.\n</li>\n<li>\nOctober 15, 2020, by Michael Wetter:<br/>\nAdded scaling factor <code>r</code>, removed set point weights <code>wp</code> and <code>wd</code>.\nRevised documentation.<br/>\nThis is for <a href=\\https://github.com/lbl-srg/modelica-buildings/issues/2182\\>Buildings, issue 2182</a>.\n</li>\n<li>\nAugust 4, 2020, by Jianjun Hu:<br/>\nRemoved the conditional inputs <code>trigger</code> and <code>y_rest_in</code>.\nRefactored to internally implement the derivative block.<br/>\nThis is for <a href=\\https://github.com/lbl-srg/modelica-buildings/issues/2056\\>Buildings, issue 2056</a>.\n</li>\n<li>\nJune 1, 2020, by Michael Wetter:<br/>\nCorrected wrong convention of reverse and direct action.<br/>\nThis is for <a href=\\https://github.com/ibpsa/modelica-ibpsa/issues/1365\\>Buildings, issue 1365</a>.\n</li>\n<li>\nApril 23, 2020, by Michael Wetter:<br/>\nChanged default parameters for limits <code>yMax</code> from unspecified to <code>1</code>\nand <code>yMin</code> from <code>-yMax</code> to <code>0</code>.<br/>\nThis is for\n<a href=\\https://github.com/lbl-srg/modelica-buildings/issues/1888\\>Buildings, issue 1888</a>.\n</li>\n<li>\nApril 7, 2020, by Michael Wetter:<br/>\nReimplemented block using only CDL constructs.\nThis refactoring removes the no longer use parameters <code>xd_start</code> that was\nused to initialize the state of the derivative term. This state is now initialized\nbased on the requested initial output <code>yd_start</code> which is a new parameter\nwith a default of <code>0</code>.\nAlso, removed the parameters <code>y_start</code> and <code>initType</code> because\nthe initial output of the controller can be set by using <code>xi_start</code>\nand <code>yd_start</code>.\nThis is a non-backward compatible change, made to simplify the controller through\nthe removal of options that can be realized differently and are hardly ever used.\nThis refactoring also removes the parameter <code>strict</code> that\nwas used in the output limiter. The new implementation enforces a strict check by default.<br/>\nThis is for\n<a href=\\https://github.com/lbl-srg/modelica-buildings/issues/1878\\>Buildings, issue 1878</a>.\n</li>\n<li>\nMarch 9, 2020, by Michael Wetter:<br/>\nCorrected unit declaration for gain <code>k</code>.<br/>\nSee <a href=\\https://github.com/lbl-srg/modelica-buildings/issues/1821\\>Buildings, issue 1821</a>.\n</li>\n<li>\nMarch 2, 2020, by Michael Wetter:<br/>\nChanged icon to display dynamically the output value.\n</li>\n<li>\nFebruary 25, 2020, by Michael Wetter:<br/>\nChanged icon to display the output value.\n</li>\n<li>\nOctober 19, 2019, by Michael Wetter:<br/>\nDisabled homotopy to ensure bounded outputs\nby copying the implementation from MSL 3.2.3 and by\nhardcoding the implementation for <code>homotopyType=NoHomotopy</code>.<br/>\nSee <a href=\\https://github.com/ibpsa/modelica-ibpsa/issues/1221\\>Buildings, issue 1221</a>.\n</li>\n<li>\nNovember 13, 2017, by Michael Wetter:<br/>\nChanged default controller type from PID to PI.\n</li>\n<li>\nNovember 6, 2017, by Michael Wetter:<br/>\nExplicitly declared types and used integrator with reset from CDL.\n</li>\n<li>\nOctober 22, 2017, by Michael Wetter:<br/>\nAdded to CDL to have a PI controller with integrator reset.\n</li>\n<li>\nSeptember 29, 2016, by Michael Wetter:<br/>\nRefactored model.\n</li>\n<li>\nAugust 25, 2016, by Michael Wetter:<br/>\nRemoved parameter <code>limitsAtInit</code> because it was only propagated to\nthe instance <code>limiter</code>, but this block no longer makes use of this parameter.\nThis is a non-backward compatible change.<br/>\nRevised implemenentation, added comments, made some parameter in the instances final.\n</li>\n<li>July 18, 2016, by Philipp Mehrfeld:<br/>\nAdded integrator reset.\nThis is for <a href=\\https://github.com/ibpsa/modelica-ibpsa/issues/494\\>Buildings, issue 494</a>.\n</li>\n<li>\nMarch 15, 2016, by Michael Wetter:<br/>\nChanged the default value to <code>strict=true</code> in order to avoid events\nwhen the controller saturates.\nThis is for <a href=\\https://github.com/ibpsa/modelica-ibpsa/issues/433\\>Buildings, issue 433</a>.\n</li>\n<li>\nFebruary 24, 2010, by Michael Wetter:<br/>\nFirst implementation.\n</li>\n</ul>\n</html>",
       "S231P:hasInput": [
         {
           "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PID.u_m"
@@ -244,6 +246,7 @@
           "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.PID.yMin"
         }
       ],
+      "S231P:icon": "coordinateSystem(extent={{-100,-100},{100,100}}),graphics={Rectangle(extent={{-100,-100},{100,100}},lineColor={0,0,127},fillColor={255,255,255},fillPattern=FillPattern.Solid),Rectangle(extent={{-6,-20},{66,-66}},lineColor={255,255,255},fillColor={255,255,255},fillPattern=FillPattern.Solid),Text(textString=\"P\",textColor={0,0,0},extent={{-32,-22},{68,-62}},visible=([object Object]),fillColor={175,175,175},fillPattern=FillPattern.Solid),Text(textString=\"PI\",textColor={0,0,0},extent={{-26,-22},{74,-62}},visible=([object Object]),fillColor={175,175,175},fillPattern=FillPattern.Solid),Text(textString=\"P D\",textColor={0,0,0},extent={{-16,-22},{88,-62}},visible=([object Object]),fillColor={175,175,175},fillPattern=FillPattern.Solid),Text(textString=\"PID\",textColor={0,0,0},extent={{-14,-22},{86,-62}},visible=([object Object]),fillColor={175,175,175},fillPattern=FillPattern.Solid),Polygon(points={{-80,82},{-88,60},{-72,60},{-80,82}},lineColor={192,192,192},fillColor={192,192,192},fillPattern=FillPattern.Solid),Line(color={192,192,192},points={{-80,68},{-80,-100}}),Line(color={192,192,192},points={{-90,-80},{70,-80}}),Polygon(points={{74,-80},{52,-72},{52,-88},{74,-80}},lineColor={192,192,192},fillColor={192,192,192},fillPattern=FillPattern.Solid),Text(textString=\"%name\",textColor={0,0,255},extent={{-150,150},{150,110}}),Line(color={0,0,0},points={{-80,-80},{-80,-22}}),Line(color={0,0,0},points={{-80,-22},{6,56}}),Line(color={0,0,0},points={{6,56},{68,56}}),Rectangle(extent={{100,-100},{84,-100},{null,null},{100,-100},{84,null}},lineColor={0,0,0},fillColor={175,175,175},pattern=LinePattern.None,fillPattern=FillPattern.Solid),Text(textString=DynamicSelect(\"\",String(y,textColor={0,0,0},extent={{226,60},{106,10}})}",
       "S231P:label": "PID"
     },
     {
@@ -328,7 +331,7 @@
       "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Subtract",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Control error (set point - measurement)",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-200,\"y\":-16},{\"x\":-180,\"y\":4}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-200,-16},{-180,4}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.controlError.u1"
@@ -352,7 +355,7 @@
       "S231P:accessSpecifier": "public",
       "S231P:conditionalExpression": "with_D",
       "S231P:description": "Derivative term",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-50,\"y\":60},{\"x\":-30,\"y\":80}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-50,60},{-30,80}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.D.k"
@@ -390,7 +393,7 @@
       "S231P:accessSpecifier": "public",
       "S231P:conditionalExpression": "with_D",
       "S231P:description": "D error",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":60},{\"x\":-120,\"y\":80}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-140,60},{-120,80}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.errD.u1"
@@ -411,7 +414,7 @@
       "S231P:accessSpecifier": "public",
       "S231P:conditionalExpression": "with_I",
       "S231P:description": "I error (before anti-windup compensation)",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-4},{\"x\":-120,\"y\":16}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-140,-4},{-120,16}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.errI1.u1"
@@ -432,7 +435,7 @@
       "S231P:accessSpecifier": "public",
       "S231P:conditionalExpression": "with_I",
       "S231P:description": "I error (after anti-windup compensation)",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-100,\"y\":-10},{\"x\":-80,\"y\":10}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-100,-10},{-80,10}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.errI2.u1"
@@ -452,7 +455,7 @@
       "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Subtract",
       "S231P:accessSpecifier": "public",
       "S231P:description": "P error",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":130},{\"x\":-120,\"y\":150}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-140,130},{-120,150}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.errP.u1"
@@ -472,7 +475,7 @@
       "S231P:accessSpecifier": "public",
       "S231P:conditionalExpression": "with_I",
       "S231P:description": "Integral term",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-50,\"y\":-10},{\"x\":-30,\"y\":10}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-50,-10},{-30,10}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.I.trigger"
@@ -517,7 +520,6 @@
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Gain of controller",
-      "S231P:graphics": "{\"name\":\"Dialog\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"group\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"\\\"Control gains\\\"\"}}}}}]}}",
       "S231P:isOfDataType": {
         "@id": "S231P:Real"
       },
@@ -536,7 +538,7 @@
       "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Limiter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Limiter",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":120,\"y\":80},{\"x\":140,\"y\":100}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{120,80},{140,100}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.lim.u"
@@ -568,7 +570,6 @@
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "The higher Nd, the more ideal the derivative block",
-      "S231P:graphics": "{\"name\":\"Dialog\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"tab\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"\\\"Advanced\\\"\"}}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"group\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"\\\"Derivative block\\\"\"}}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"enable\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":{\"logical_expression\":{\"logical_or\":[{\"logical_and\":[{\"arithmetic_expressions\":[{\"name\":\"controllerType\"},{\"name\":\"CDL.Types.SimpleController.PD\"}],\"relation_operator\":\"==\"}]},{\"logical_and\":[{\"arithmetic_expressions\":[{\"name\":\"controllerType\"},{\"name\":\"CDL.Types.SimpleController.PID\"}],\"relation_operator\":\"==\"}]}]}}}}}}}]}}",
       "S231P:isOfDataType": {
         "@id": "S231P:Real"
       },
@@ -581,7 +582,6 @@
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Ni*Ti is time constant of anti-windup compensation",
-      "S231P:graphics": "{\"name\":\"Dialog\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"tab\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"\\\"Advanced\\\"\"}}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"group\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"\\\"Integrator anti-windup\\\"\"}}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"enable\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":{\"logical_expression\":{\"logical_or\":[{\"logical_and\":[{\"arithmetic_expressions\":[{\"name\":\"controllerType\"},{\"name\":\"CDL.Types.SimpleController.PI\"}],\"relation_operator\":\"==\"}]},{\"logical_and\":[{\"arithmetic_expressions\":[{\"name\":\"controllerType\"},{\"name\":\"CDL.Types.SimpleController.PID\"}],\"relation_operator\":\"==\"}]}]}}}}}}}]}}",
       "S231P:isOfDataType": {
         "@id": "S231P:Real"
       },
@@ -597,7 +597,7 @@
       "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Gain for proportional control action",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-50,\"y\":130},{\"x\":-30,\"y\":150}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-50,130},{-30,150}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.P.u"
@@ -650,7 +650,6 @@
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Time constant of derivative block",
-      "S231P:graphics": "{\"name\":\"Dialog\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"group\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"\\\"Control gains\\\"\"}}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"enable\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":{\"logical_expression\":{\"logical_or\":[{\"logical_and\":[{\"arithmetic_expressions\":[{\"name\":\"controllerType\"},{\"name\":\"CDL.Types.SimpleController.PD\"}],\"relation_operator\":\"==\"}]},{\"logical_and\":[{\"arithmetic_expressions\":[{\"name\":\"controllerType\"},{\"name\":\"CDL.Types.SimpleController.PID\"}],\"relation_operator\":\"==\"}]}]}}}}}}}]}}",
       "S231P:isOfDataType": {
         "@id": "S231P:Real"
       },
@@ -678,7 +677,6 @@
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Time constant of integrator block",
-      "S231P:graphics": "{\"name\":\"Dialog\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"group\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"\\\"Control gains\\\"\"}}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"enable\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":{\"logical_expression\":{\"logical_or\":[{\"logical_and\":[{\"arithmetic_expressions\":[{\"name\":\"controllerType\"},{\"name\":\"CDL.Types.SimpleController.PI\"}],\"relation_operator\":\"==\"}]},{\"logical_and\":[{\"arithmetic_expressions\":[{\"name\":\"controllerType\"},{\"name\":\"CDL.Types.SimpleController.PID\"}],\"relation_operator\":\"==\"}]}]}}}}}}}]}}",
       "S231P:isOfDataType": {
         "@id": "S231P:Real"
       },
@@ -694,7 +692,7 @@
       "@type": "S231P:RealInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Measurement input signal",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"origin\":{\"x\":0,\"y\":-220},\"extent\":[{\"x\":20,\"y\":-20},{\"x\":-20,\"y\":20}],\"rotation\":270},\"iconTransformation\":{\"origin\":{\"x\":0,\"y\":-120},\"extent\":[{\"x\":20,\"y\":-20},{\"x\":-20,\"y\":20}],\"rotation\":270}}}",
+      "S231P:graphics": "Placement(transformation(origin={0,-220},extent={{20,-20},{-20,20}},rotation=270)),iconTransformation(origin={0,-120},extent={{20,-20},{-20,20}},rotation=270)))",
       "S231P:isConnectedTo": [
         {
           "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.controlError.u2"
@@ -710,7 +708,7 @@
       "@type": "S231P:RealInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Setpoint input signal",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-260,\"y\":-20},{\"x\":-220,\"y\":20}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-260,-20},{-220,20}})),iconTransformation(extent={{-140,-20},{-100,20}})))",
       "S231P:isConnectedTo": [
         {
           "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID.controlError.u1"
@@ -748,7 +746,6 @@
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Initial value of integrator state",
-      "S231P:graphics": "{\"name\":\"Dialog\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"tab\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"\\\"Advanced\\\"\"}}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"group\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"\\\"Initialization\\\"\"}}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"enable\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":{\"logical_expression\":{\"logical_or\":[{\"logical_and\":[{\"arithmetic_expressions\":[{\"name\":\"controllerType\"},{\"name\":\"CDL.Types.SimpleController.PI\"}],\"relation_operator\":\"==\"}]},{\"logical_and\":[{\"arithmetic_expressions\":[{\"name\":\"controllerType\"},{\"name\":\"CDL.Types.SimpleController.PID\"}],\"relation_operator\":\"==\"}]}]}}}}}}}]}}",
       "S231P:isOfDataType": {
         "@id": "S231P:Real"
       },
@@ -760,7 +757,7 @@
       "@type": "S231P:RealOutput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Actuator output signal",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":220,\"y\":-20},{\"x\":260,\"y\":20}]},\"iconTransformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{220,-20},{260,20}})),iconTransformation(extent={{100,-20},{140,20}})))",
       "S231P:label": "y"
     },
     {
@@ -768,7 +765,6 @@
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Initial value of derivative output",
-      "S231P:graphics": "{\"name\":\"Dialog\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"tab\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"\\\"Advanced\\\"\"}}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"group\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"\\\"Initialization\\\"\"}}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"enable\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":{\"logical_expression\":{\"logical_or\":[{\"logical_and\":[{\"arithmetic_expressions\":[{\"name\":\"controllerType\"},{\"name\":\"CDL.Types.SimpleController.PD\"}],\"relation_operator\":\"==\"}]},{\"logical_and\":[{\"arithmetic_expressions\":[{\"name\":\"controllerType\"},{\"name\":\"CDL.Types.SimpleController.PID\"}],\"relation_operator\":\"==\"}]}]}}}}}}}]}}",
       "S231P:isOfDataType": {
         "@id": "S231P:Real"
       },
@@ -780,7 +776,6 @@
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Upper limit of output",
-      "S231P:graphics": "{\"name\":\"Dialog\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"group\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"\\\"Limits\\\"\"}}}}}]}}",
       "S231P:isOfDataType": {
         "@id": "S231P:Real"
       },
@@ -792,7 +787,6 @@
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Lower limit of output",
-      "S231P:graphics": "{\"name\":\"Dialog\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"group\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"\\\"Limits\\\"\"}}}}}]}}",
       "S231P:isOfDataType": {
         "@id": "S231P:Real"
       },

@@ -6,6 +6,7 @@
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.BooleanScalarReplicator",
       "@type": "S231P:ElementaryBlock",
+      "S231P:documentation": "info=<html>\n<p>\nThis block replicates the Boolean input signal to an array of <code>nout</code>\nidentical Boolean output signals.\n</p>\n</html>,revisions=<html>\n<ul>\n<li>\nJuly 27, 2021, by Baptiste Ravache:<br/>\nRenamed to <code>BooleanScalarReplicator</code>.\n</li>\n<li>\nJuly 24, 2017, by Jianjun Hu:<br/>\nFirst implementation, based on the implementation of the\nModelica Standard Library.\n</li>\n</ul>\n</html>",
       "S231P:hasInput": {
         "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.BooleanScalarReplicator.u"
       },
@@ -15,6 +16,7 @@
       "S231P:hasParameter": {
         "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.BooleanScalarReplicator.nout"
       },
+      "S231P:icon": "graphics={Rectangle(extent={{-100,-100},{100,100}},lineColor={255,0,255},fillColor={255,255,255},fillPattern=FillPattern.Solid),Line(color={255,0,255},points={{-100,0},{-6,0}}),Line(color={255,0,255},points={{100,0},{10,0}}),Line(color={255,0,255},points={{0,0},{100,10}}),Line(color={255,0,255},points={{0,0},{100,-10}}),Ellipse(extent={{-14,16},{16,-14}},lineColor={0,0,0},fillColor={255,0,255},fillPattern=FillPattern.Solid),Text(textString=\"%name\",textColor={0,0,255},extent={{-150,110},{150,150}})}",
       "S231P:label": "BooleanScalarReplicator"
     },
     {
@@ -33,7 +35,7 @@
       "@type": "S231P:BooleanInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Input signal to be replicated",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-140,-20},{-100,20}})))",
       "S231P:label": "u"
     },
     {
@@ -41,7 +43,7 @@
       "@type": "S231P:BooleanOutput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Output with replicated input signal",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{100,-20},{140,20}})))",
       "S231P:isArray": true,
       "S231P:label": "y[nout]",
       "S231P:numberDimensions": 1,

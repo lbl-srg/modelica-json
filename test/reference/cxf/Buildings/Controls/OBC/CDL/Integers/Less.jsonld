@@ -6,6 +6,7 @@
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.Less",
       "@type": "S231P:ElementaryBlock",
+      "S231P:documentation": "info=<html>\n<p>\nBlock that outputs <code>true</code> if the Integer input <code>u1</code>\nis less than the Integer input <code>u2</code>.\nOtherwise the output is <code>false</code>.\n</p>\n</html>,revisions=<html>\n<ul>\n<li>\nAugust 30, 2017, by Jianjun Hu:<br/>\nFirst implementation, based on the implementation of the\nModelica Standard Library.\n</li>\n</ul>\n</html>",
       "S231P:hasInput": [
         {
           "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.Less.u1"
@@ -17,6 +18,7 @@
       "S231P:hasOutput": {
         "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.Less.y"
       },
+      "S231P:icon": "coordinateSystem(extent={{-100,-100},{100,100}},preserveAspectRatio=false),graphics={Rectangle(extent={{-100,100},{100,-100}},borderPattern=BorderPattern.Raised,lineColor={0,0,0},fillColor={210,210,210},fillPattern=FillPattern.Solid),Ellipse(extent={{73,7},{87,-7}},lineColor={235,235,NaN},fillColor={235,235,NaN},fillPattern=FillPattern.Solid),Ellipse(extent={{32,10},{52,-10}},lineColor={255,127,0}),Line(color={255,127,0},points={{-100,-80},{42,-80},{42,0}}),Line(color={255,127,0},thickness=0.5,points={{-6,18},{-50,-2},{-6,-20}}),Text(textString=\"%name\",textColor={0,0,255},extent={{-150,150},{150,110}})}",
       "S231P:label": "Less"
     },
     {
@@ -24,7 +26,7 @@
       "@type": "S231P:IntegerInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "First input u1",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-140,-20},{-100,20}})))",
       "S231P:label": "u1"
     },
     {
@@ -32,7 +34,7 @@
       "@type": "S231P:IntegerInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Second input u2",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-100},{\"x\":-100,\"y\":-60}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-140,-100},{-100,-60}})))",
       "S231P:label": "u2"
     },
     {
@@ -40,7 +42,7 @@
       "@type": "S231P:BooleanOutput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Outputs true if u1 is less than u2",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{100,-20},{140,20}})))",
       "S231P:label": "y"
     }
   ]

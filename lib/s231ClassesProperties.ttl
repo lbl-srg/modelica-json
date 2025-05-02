@@ -618,10 +618,10 @@ S231P:containsBlock
   rdfs:domain S231P:Block ;
   rdfs:range S231P:Block ;
 .
-S231P:connectedTo 
+S231P:isConnectedTo 
   a rdf:Property ;
   rdfs:comment "Used to connect the output of one block to the input of a block. Only connectors that carry the same data type can be connected" ;
-  rdfs:label "connected to" ;
+  rdfs:label "is connected to" ;
   rdfs:domain S231P:Connector ;
   rdfs:range S231P:Connector ;
 .
@@ -642,7 +642,44 @@ S231P:translationSoftwareVersion
   rdfs:range S231P:String ;
 .
 
+S231P:isArray
+  a rdf:Property ;
+  rdfs:comment "Boolean property that denotes whether or not an is an Array" ;
+  rdfs:label "Is Array" ;
+  rdfs:range S231P:Boolean ;
+.
+
+S231P:sizeOfDimensions
+  a rdf:Property ;
+  rdfs:comment "Property that presents length of each of the dimensions in an array instance. Size within ( and ), each dimension separated by a comma " ;
+  rdfs:label "length of each dimension of array" ;
+.
+
+S231P:numberDimensions
+  a rdf:Property ;
+  rdfs:comment "Property that denotes number of dimensions in an array instance" ;
+  rdfs:label "number of dimensions" ;
+  rdfs:range S231P:Integer ;
+.
+
+S231P:isConditionalComponent
+  a rdf:Property ;
+  rdfs:comment "Boolean property that denotes whether or not an instance exists or not based on a conditional expression" ;
+  rdfs:label "Is conditional component" ;
+  rdfs:range S231P:Boolean ;
+.
+
+S231P:conditionalExpression
+  a rdf:Property ;
+  rdfs:comment "Property to describe the expression, which if false, removes an instance and if true, retains the instance" ;
+  rdfs:label "conditional expression" ;
+  rdfs:range S231P:String ;
+.
+
 S231P:description a rdf:Property .
+S231P:documentation a rdf:Property .
+S231P:icon a rdf:Property .
+S231P:diagram a rdf:Property .
 S231P:accessSpecifier a rdf:Property . 
 S231P:graphics a rdf:Property .
 S231P:name a rdf:Property .
