@@ -86,6 +86,11 @@ S231P:InputConnector
     rdfs:comment "A decimal value associated with the input connector" ;
     sh:datatype xsd:decimal ;
   ] ;
+    sh:property [
+    sh:path S231P:defaultValue ;
+    rdfs:comment "A default decimal value associated with the input connector" ;
+    sh:datatype xsd:decimal ;
+  ] ;
   sh:property [
     sh:path S231P:start ;
     rdfs:comment "The starting decimal value associated with the input connector" ;
@@ -183,6 +188,11 @@ S231P:OutputConnector
   sh:property [
     sh:path S231P:value ;
     rdfs:comment "A decimal value associated with the output connector" ;
+    sh:datatype xsd:decimal ;
+  ] ;
+  sh:property [
+    sh:path S231P:defaultValue ;
+    rdfs:comment "A default decimal value associated with the output connector" ;
     sh:datatype xsd:decimal ;
   ] ;
   sh:property [
@@ -288,8 +298,11 @@ S231P:Parameter
   ] ;
   sh:property [
     sh:path S231P:value ;
-    rdfs:comment "A decimal value associated with the parameter" ;
-    sh:datatype xsd:decimal ;
+    rdfs:comment "A value associated with the parameter" ;
+  ] ;
+  sh:property [
+    sh:path S231P:defaultValue ;
+    rdfs:comment "A default value associated with the parameter" ;
   ] ;
   sh:property [
     sh:path S231P:start ;
@@ -392,8 +405,11 @@ S231P:Constant
   ] ;
   sh:property [
     sh:path S231P:value ;
-    rdfs:comment "A decimal value associated with the constant" ;
-    sh:datatype xsd:decimal ;
+    rdfs:comment "A value associated with the constant" ;
+  ] ;
+  sh:property [
+    sh:path S231P:default ;
+    rdfs:comment "A default value associated with the constant" ;
   ] ;
   sh:property [
     sh:path S231P:start ;
@@ -685,6 +701,7 @@ S231P:graphics a rdf:Property .
 S231P:name a rdf:Property .
 S231P:label a rdf:Property .
 S231P:value a rdf:Property .
+S231P:defaultValue a rdf:Property .
 S231P:start a rdf:Property .
 S231P:nominal a rdf:Property .
 S231P:quantity a rdf:Property .

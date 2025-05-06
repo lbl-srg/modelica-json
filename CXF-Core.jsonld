@@ -10906,10 +10906,13 @@
           }
         },
         {
-          "rdfs:comment": "A decimal value associated with the constant",
-          "sh:datatype": {
-            "@id": "xsd:decimal"
-          },
+          "rdfs:comment": "A default value associated with the constant",
+          "sh:path": {
+            "@id": "S231P:default"
+          }
+        },
+        {
+          "rdfs:comment": "A value associated with the constant",
           "sh:path": {
             "@id": "S231P:value"
           }
@@ -11087,6 +11090,10 @@
       "rdfs:label": "DataType"
     },
     {
+      "@id": "S231P:defaultValue",
+      "@type": "rdf:Property"
+    },
+    {
       "@id": "S231P:description",
       "@type": "rdf:Property"
     },
@@ -11240,6 +11247,15 @@
           },
           "sh:path": {
             "@id": "S231P:value"
+          }
+        },
+        {
+          "rdfs:comment": "A default decimal value associated with the input connector",
+          "sh:datatype": {
+            "@id": "xsd:decimal"
+          },
+          "sh:path": {
+            "@id": "S231P:defaultValue"
           }
         },
         {
@@ -11550,6 +11566,15 @@
           }
         },
         {
+          "rdfs:comment": "A default decimal value associated with the output connector",
+          "sh:datatype": {
+            "@id": "xsd:decimal"
+          },
+          "sh:path": {
+            "@id": "S231P:defaultValue"
+          }
+        },
+        {
           "rdfs:comment": "Access specifier for the output connector in CDL (public/protected). Default: public",
           "sh:datatype": {
             "@id": "xsd:string"
@@ -11724,10 +11749,13 @@
           }
         },
         {
-          "rdfs:comment": "A decimal value associated with the parameter",
-          "sh:datatype": {
-            "@id": "xsd:decimal"
-          },
+          "rdfs:comment": "A default value associated with the parameter",
+          "sh:path": {
+            "@id": "S231P:defaultValue"
+          }
+        },
+        {
+          "rdfs:comment": "A value associated with the parameter",
           "sh:path": {
             "@id": "S231P:value"
           }

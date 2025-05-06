@@ -41,6 +41,7 @@ mo.describe('util', function () {
         'BlockWithArray5.mo',
         'BlockWithBlock1.mo',
         'ConditionalBlock.mo',
+        'ConditionalBlockWithDefaultValue.mo',
         'CustomPWithLimiter.mo',
         'CustomPWithLimiterNoDescription.mo',
         'DynamicTextColor.mo',
