@@ -22,6 +22,43 @@
         {
           "element_modification_or_replaceable": {
             "element_modification": {
+              "name": "__cdl",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "generatePointlist",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "true"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "controlledDevice",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"testController\""
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
               "name": "Icon",
               "modification": {
                 "class_modification": [
@@ -729,7 +766,10 @@
         }
       ],
       "semantics": {},
-      "cdl_annotations": {}
+      "cdl_annotations": {
+        "generatePointlist": "true",
+        "controlledDevice": "\"testController\""
+      }
     },
     "use_enthalpy": {
       "type_prefix": "parameter",

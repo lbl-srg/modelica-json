@@ -57,6 +57,7 @@ mo.describe('util', function () {
         'MisplacedInfoWithParameter.mo',
         'MyController.mo',
         'MyControllerWithExportAnnotation1.mo',
+        'MyControllerWithPropagate.mo',
         'MyControllerWithSemantics.mo',
         'NoClassComment.mo',
         'NoWithin.mo',

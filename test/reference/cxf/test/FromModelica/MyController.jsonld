@@ -18,7 +18,9 @@
           "@id": "http://example.org#FromModelica.MyController.subCon2"
         }
       ],
+      "S231P:controlledDevice": "My Device",
       "S231P:diagram": "coordinateSystem(preserveAspectRatio=false)",
+      "S231P:generatePointlist": true,
       "S231P:hasInput": [
         {
           "@id": "http://example.org#FromModelica.MyController.u1"
@@ -63,6 +65,7 @@
       "@type": "ex:SubController",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Sub controller",
+      "S231P:generatePointlist": true,
       "S231P:graphics": "Placement(transformation(extent={{-10,-50},{10,-30}})))",
       "S231P:hasInstance": {
         "@id": "http://example.org#FromModelica.MyController.subCon1.u"
