@@ -4,7 +4,7 @@ function parse (content, rawJson) {
 
   let moOutput = ''
   if (content.declaration != null) {
-    moOutput += declarationParser.parse(content.declaration, rawJson)
+    moOutput += declarationParser.parse(content.declaration, rawJson, true)
   }
   if (rawJson) {
     if (content.comment != null) {
