@@ -1,0 +1,54 @@
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#"
+  },
+  "@graph": [
+    {
+      "@id": "http://example.org#FromModelica.ExtendsClause_1",
+      "@type": "S231P:Block",
+      "S231P:containsBlock": {
+        "@id": "http://example.org#FromModelica.ExtendsClause_1.gain"
+      },
+      "S231P:documentation": "info=<html>\ntest...test...test...test...test...\n</html>,revisions=<html>\ntest...test...test...\n</html>",
+      "S231P:extends": "Buildings.Controls.OBC.CDL.Reals.PID(k=2, Ti=2)",
+      "S231P:hasParameter": [
+        {
+          "@id": "http://example.org#FromModelica.ExtendsClause_1.ARound"
+        },
+        {
+          "@id": "http://example.org#FromModelica.ExtendsClause_1.length"
+        }
+      ],
+      "S231P:label": "ExtendsClause_1"
+    },
+    {
+      "@id": "http://example.org#FromModelica.ExtendsClause_1.ARound",
+      "S231P:accessSpecifier": "protected",
+      "S231P:description": "Cross sectional area (assuming a round cross section area)",
+      "S231P:label": "ARound",
+      "S231P:value": "dh^2*Modelica.Constants.pi/4"
+    },
+    {
+      "@id": "http://example.org#FromModelica.ExtendsClause_1.gain",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Constant gain",
+      "S231P:graphics": "Placement(transformation(extent={{-60,-50},{-40,-30}})))",
+      "S231P:hasInstance": {
+        "@id": "http://example.org#FromModelica.ExtendsClause_1.gain.k"
+      },
+      "S231P:label": "gain"
+    },
+    {
+      "@id": "http://example.org#FromModelica.ExtendsClause_1.gain.k",
+      "S231P:isFinal": true,
+      "S231P:value": "k"
+    },
+    {
+      "@id": "http://example.org#FromModelica.ExtendsClause_1.length",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Length of the pipe",
+      "S231P:label": "length"
+    }
+  ]
+}

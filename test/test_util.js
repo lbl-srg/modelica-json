@@ -52,6 +52,7 @@ mo.describe('util', function () {
         'ExtendsClause_1.mo',
         'ExtendsClause_2.mo',
         'ExtendsClause_3.mo',
+        'ExtendsClause_4.mo',
         'GainOutputsTwo.mo',
         'MisplacedInfoWithComponent.mo',
         'MisplacedInfoWithEquation.mo',
