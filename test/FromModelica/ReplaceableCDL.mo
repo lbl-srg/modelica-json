@@ -8,7 +8,7 @@ block ReplaceableCDL "A composite block in a library"
      annotation(
     Placement(transformation(extent = {{-10, -10}, {10, 10}})));
 
-  replaceable Buildings.Controls.OBC.CDL.Reals.PID conPID 2
+  replaceable Buildings.Controls.OBC.CDL.Reals.PID conPID
      constrainedby Buildings.Controls.OBC.CDL.Reals.PID
      "PID controller"
      annotation(
