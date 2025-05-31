@@ -35,6 +35,11 @@ S231P:ExtensionBlock
                 They allow, for example, implementation of blocks that contain statistical functions, fault detection and diagnostics methods, as well as proprietary code. 
                 They are intended to define new elementary blocks beyond those defined in this standard""" ;
   rdfs:label "ExtensionBlock" ;
+  sh:property [
+    sh:path S231P:hasFmuPath ;
+    rdfs:comment "Path for FMU implementation of FMU" ;
+    sh:datatype xsd:string ;
+  ] ;
 .
 S231P:Connector
   a rdfs:Class ;

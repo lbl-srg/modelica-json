@@ -43,6 +43,7 @@ mo.describe('util', function () {
         'ConditionalBlock.mo',
         'ConditionalBlockWithDefaultValue.mo',
         'CustomPWithLimiter.mo',
+        'CustomPWithLimiterExtensionBlock.mo',
         'CustomPWithLimiterNoDescription.mo',
         'DynamicTextColor.mo',
         'EmptyEquation.mo',
