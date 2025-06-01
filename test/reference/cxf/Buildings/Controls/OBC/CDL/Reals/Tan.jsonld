@@ -1,32 +1,35 @@
 {
   "@context": {
     "S231P": "https://data.ashrae.org/S231P#",
-    "qudt": "http://qudt.org/schema/qudt#"
+    "qudt": "http://qudt.org/schema/qudt#",
+    "unit": "http://qudt.org/vocab/unit#"
   },
   "@graph": [
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Tan",
       "@type": "S231P:ElementaryBlock",
+      "S231P:documentation": "info=<html>\n<p>\nBlock that outputs <code>y = tan(u)</code>,\nwhere\n<code>u</code> is an input.\n</p>\n\n<p align=\\center\\>\n<img src=\\modelica://Buildings/Resources/Images/Controls/OBC/CDL/Reals/Tan.png\\\n     alt=\\tan.png\\ />\n</p>\n\n</html>,revisions=<html>\n<ul>\n<li>\nNovember 8, 2024, by Michael Wetter:<br/>\nAdded <code>final</code> keyword to unit declaration as block is only valid for this unit.<br/>\nAlso added <code>displayUnit</code> keyword.\n</li>\n<li>\nMarch 7, 2023, by Jianjun Hu:<br/>\nAdded unit <code>rad</code> to the input.<br/>\nThis is for\n<a href=\\https://github.com/lbl-srg/modelica-buildings/issues/3277\\>Buildings, issue 3277</a>.\n</li>\n<li>\nMarch 2, 2020, by Michael Wetter:<br/>\nChanged icon to display dynamically the output value.\n</li>\n<li>\nJanuary 3, 2017, by Michael Wetter:<br/>\nFirst implementation, based on the implementation of the\nModelica Standard Library.\n</li>\n</ul>\n</html>",
       "S231P:hasInput": {
         "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Tan.u"
       },
       "S231P:hasOutput": {
         "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Tan.y"
       },
+      "S231P:icon": "coordinateSystem(extent={{-100,-100},{100,100}},preserveAspectRatio=true),graphics={Rectangle(extent={{-100,-100},{100,100}},lineColor={0,0,127},fillColor={255,255,255},fillPattern=FillPattern.Solid),Text(textString=\"%name\",textColor={0,0,255},extent={{-150,110},{150,150}}),Text(textString=\"tan\",textColor={192,192,192},extent={{-90,72},{-18,24}}),Line(color={192,192,192},points={{0,-80},{0,68}}),Polygon(points={{0,90},{-8,68},{8,68},{0,90}},lineColor={192,192,192},fillColor={192,192,192},fillPattern=FillPattern.Solid),Polygon(points={{90,0},{68,8},{68,-8},{90,0}},lineColor={192,192,192},fillColor={192,192,192},fillPattern=FillPattern.Solid),Line(color={192,192,192},points={{-90,0},{68,0}}),Line(points={{-80,-80},{-78.4,-68.4},{-76.8,-59.7},{-74.4,-50},{-71.2,-40.9},{-67.1,-33},{-60.7,-24.8},{-51.1,-17.2},{-35.8,-9.98},{-4.42,-1.07},{33.4,9.12},{49.4,16.2},{59.1,23.2},{65.5,30.6},{70.4,39.1},{73.6,47.4},{76,56.1},{77.6,63.8},{80,80}},smooth=Smooth.Bezier),Text(textString=DynamicSelect(\"\",String(y,textColor={0,0,0},extent={{226,60},{106,10}})}",
       "S231P:label": "Tan"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Tan.u",
       "@type": "S231P:RealInput",
-      "qudt:hasDisplayUnit": {
-        "@id": "S231P:deg"
-      },
       "qudt:hasUnit": {
-        "@id": "S231P:rad"
+        "@id": "unit:RAD"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Input for the tangent function",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-140,-20},{-100,20}})))",
+      "S231P:hasDisplayUnit": {
+        "@id": "unit:DEG"
+      },
       "S231P:label": "u"
     },
     {
@@ -34,7 +37,7 @@
       "@type": "S231P:RealOutput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Tangent of the input",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{100,-20},{140,20}})))",
       "S231P:label": "y"
     }
   ]

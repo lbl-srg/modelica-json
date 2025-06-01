@@ -1,11 +1,11 @@
-function parse (content, rawJson = false) {
+function parse (content, rawJson = false, singleLine = false) {
   const classModificationParser = require('./classModification')
   const expressionParser = require('./expression')
   let moOutput = ''
 
   const haveClaMod = content.class_modification != null
   if (haveClaMod) {
-    moOutput += classModificationParser.parse(content.class_modification, rawJson)
+    moOutput += classModificationParser.parse(content.class_modification, rawJson, singleLine)
   }
 
   if (content.equal != null) {

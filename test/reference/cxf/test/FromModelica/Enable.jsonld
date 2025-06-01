@@ -2,6 +2,7 @@
   "@context": {
     "S231P": "https://data.ashrae.org/S231P#",
     "qudt": "http://qudt.org/schema/qudt#",
+    "q": "http://qudt.org/vocab/quantitykind#",
     "unit": "http://qudt.org/vocab/unit#"
   },
   "@graph": [
@@ -73,6 +74,10 @@
           "@id": "http://example.org#FromModelica.Enable.truFalHol"
         }
       ],
+      "S231P:controlledDevice": "testController",
+      "S231P:diagram": "coordinateSystem(extent={{-260,-280},{240,280}},preserveAspectRatio=false,initialScale=0.05),graphics={Rectangle(extent={{-240,-2},{220,-250}},lineColor={215,215,215},fillColor={215,215,215},fillPattern=FillPattern.Solid),Rectangle(extent={{-240,58},{220,6}},lineColor={215,215,215},fillColor={215,215,215},fillPattern=FillPattern.Solid),Rectangle(extent={{-240,118},{220,66}},lineColor={215,215,215},fillColor={215,215,215},fillPattern=FillPattern.Solid),Rectangle(extent={{-240,258},{220,130}},lineColor={215,215,215},fillColor={215,215,215},fillPattern=FillPattern.Solid),Text(textString=\"Outdoor air\nconditions\",textColor={0,0,0},horizontalAlignment=TextAlignment.Left,extent={{120,158},{204,138}}),Text(textString=\"Freeze protection -\ndisable if stage1\nand above\",textColor={0,0,0},horizontalAlignment=TextAlignment.Left,extent={{120,52},{298,18}}),Text(textString=\"Damper position\nlimit assignments\nwith delays\",textColor={0,0,0},horizontalAlignment=TextAlignment.Left,extent={{120,-198},{288,-246}}),Text(textString=\"Supply fan status\",textColor={0,0,0},horizontalAlignment=TextAlignment.Left,extent={{120,84},{214,74}})}",
+      "S231P:documentation": "info=<html>\n<p>\nThis is a multi zone VAV AHU economizer enable/disable sequence\nbased on the Section 5.16.7 of the ASHRAE Guideline 36, May 2020. Additional\nconditions included in the sequence are: freeze protection (freeze protection\nstage 0-3, see Section 5.16.12), supply fan status (on or off, see Section 5.16.5).\n</p>\n<p>\nThe economizer is disabled whenever the outdoor air conditions\nexceed the economizer high limit setpoint.\nThis sequence allows for all device types listed in\nASHRAE 90.1-2013 and Title 24-2013.\n</p>\n<p>\nIn addition, the economizer gets disabled without a delay whenever any of the\nfollowing is <code>true</code>:\n</p>\n<ul>\n<li>\nThe supply fan is off (<code>u1SupFan = false</code>),\n</li>\n<li>\nthe freeze protection stage\n<a href=\\modelica://Buildings.Controls.OBC.ASHRAE.G36.Types.FreezeProtectionStages\\>\nBuildings.Controls.OBC.ASHRAE.G36.Types.FreezeProtectionStages</a>\nis not <code>stage0</code>.\n</li>\n</ul>\n<p>\nThe following state machine chart illustrates the transitions between enabling and disabling:\n</p>\n<p align=\\center\\>\n<img alt=\\Image of economizer enable-disable state machine chart\\\nsrc=\\modelica://Buildings/Resources/Images/Controls/OBC/ASHRAE/G36/AHUs/MultiZone/VAV/Economizers/Subsequences/EconEnableDisableStateMachineChart.png\\/>\n</p>\n<p>\nAfter the disable signal is activated, the following procedure is applied, in order to\nprevent pressure fluctuations in the HVAC system:\n</p>\n<ul>\n<li>\nThe return damper gets fully opened (<code>yRetDam_max = uRetDamPhy_max</code> and\n<code>yRetDam_min = uRetDamPhy_max</code>) for <code>retDamFulOpeTim</code>\ntime period, after which the return damper gets released to its minimum outdoor airflow control position\n(<code>yRetDam_max = uRetDam_max</code> and <code>yRetDam_min = uRetDam_max</code>).\n</li>\n<li>\nThe outdoor air damper is closed to its minimum outoor airflow control limit (<code>yOutDam_max = uOutDam_min</code>)\nafter a <code>disDel</code> time delay.\n</li>\n</ul>\n</html>,revisions=<html>\n<ul>\n<li>\nOctober 13, 2017, by Michael Wetter:<br/>\nAdded freeze protection that tracks mixed air temperature.\n</li>\n<li>\nAugust 3, 2017, by Michael Wetter:<br/>\nRemoved unrequired input into block <code>and2</code> as this input\nwas always <code>true</code> if <code>and2.u2 = true</code>.\n</li>\n<li>\nJune 27, 2017, by Milica Grahovac:<br/>\nFirst implementation.\n</li>\n</ul>\n</html>",
+      "S231P:generatePointlist": true,
       "S231P:hasInput": [
         {
           "@id": "http://example.org#FromModelica.Enable.hOut"
@@ -148,14 +153,15 @@
           "@id": "http://example.org#FromModelica.Enable.use_enthalpy"
         }
       ],
+      "S231P:icon": "coordinateSystem(extent={{-100,-140},{100,140}}),graphics={Rectangle(extent={{-100,-140},{100,140}},lineColor={0,0,127},fillColor={255,255,255},fillPattern=FillPattern.Solid),Text(textString=\"%name\",textColor={0,0,255},extent={{-100,180},{100,140}}),Line(color={0,0,127},thickness=0.5,points={{0,60},{80,60}}),Line(color={0,0,127},thickness=0.5,points={{-80,-60},{0,-60},{0,60}}),Text(textString=\"u1SupFan\",textColor={255,0,255},extent={{-98,38},{-56,24}},pattern=LinePattern.Dash),Text(textString=\"uFreProSta\",textColor={255,127,0},extent={{-100,18},{-44,4}},pattern=LinePattern.Dash),Text(textString=\"hOutCut\",textColor={0,0,127},extent={{-100,68},{-56,54}},visible=use_enthalpy,pattern=LinePattern.Dash),Text(textString=\"hOut\",textColor={0,0,127},extent={{-100,86},{-70,72}},visible=use_enthalpy,pattern=LinePattern.Dash),Text(textString=\"TOutCut\",textColor={0,0,127},extent={{-100,116},{-56,102}},pattern=LinePattern.Dash),Text(textString=\"TOut\",textColor={0,0,127},extent={{-100,138},{-72,124}},pattern=LinePattern.Dash),Text(textString=\"uRetDam_max\",textColor={0,0,127},extent={{-96,-100},{-32,-118}},pattern=LinePattern.Dash),Text(textString=\"uOutDam_max\",textColor={0,0,127},extent={{-96,-10},{-28,-28}},pattern=LinePattern.Dash),Text(textString=\"uOutDam_min\",textColor={0,0,127},extent={{-96,-30},{-28,-48}},pattern=LinePattern.Dash),Text(textString=\"uRetDamPhy_max\",textColor={0,0,127},extent={{-96,-80},{-12,-98}},pattern=LinePattern.Dash),Text(textString=\"uRetDam_min\",textColor={0,0,127},extent={{-96,-120},{-32,-138}},pattern=LinePattern.Dash),Text(textString=\"yOutDam_max\",textColor={0,0,127},extent={{36,110},{96,92}},pattern=LinePattern.Dash),Text(textString=\"yRetDam_max\",textColor={0,0,127},extent={{36,12},{96,-6}},pattern=LinePattern.Dash),Text(textString=\"yRetDam_min\",textColor={0,0,127},extent={{36,-88},{96,-106}},pattern=LinePattern.Dash)}",
       "S231P:label": "Enable"
     },
     {
       "@id": "http://example.org#FromModelica.Enable.and1",
-      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.And",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Logical.And",
       "S231P:accessSpecifier": "protected",
       "S231P:description": "Check supply fan status",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":20,\"y\":80},{\"x\":40,\"y\":100}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{20,80},{40,100}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#FromModelica.Enable.and1.u1"
@@ -177,10 +183,10 @@
     },
     {
       "@id": "http://example.org#FromModelica.Enable.and2",
-      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.And",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Logical.And",
       "S231P:accessSpecifier": "protected",
       "S231P:description": "Logical and",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":160,\"y\":-100},{\"x\":180,\"y\":-80}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{160,-100},{180,-80}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#FromModelica.Enable.and2.u1"
@@ -213,10 +219,10 @@
     },
     {
       "@id": "http://example.org#FromModelica.Enable.and3",
-      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.And",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Logical.And",
       "S231P:accessSpecifier": "protected",
       "S231P:description": "Check if delay time has been passed after economizer being disabled",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":40,\"y\":-54},{\"x\":60,\"y\":-34}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{40,-54},{60,-34}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#FromModelica.Enable.and3.u1"
@@ -238,10 +244,10 @@
     },
     {
       "@id": "http://example.org#FromModelica.Enable.andEnaDis",
-      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.And",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Logical.And",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Check freeze protection stage and zone state",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":60,\"y\":12},{\"x\":80,\"y\":32}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{60,12},{80,32}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#FromModelica.Enable.andEnaDis.u1"
@@ -263,10 +269,10 @@
     },
     {
       "@id": "http://example.org#FromModelica.Enable.conInt",
-      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.Sources.Constant",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Integers.Sources.Constant",
       "S231P:accessSpecifier": "protected",
       "S231P:description": "Integer constant, stage 0",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-118,\"y\":12},{\"x\":-98,\"y\":32}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-118,12},{-98,32}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#FromModelica.Enable.conInt.k"
@@ -292,14 +298,13 @@
       "@id": "http://example.org#FromModelica.Enable.delEntHis",
       "@type": "S231P:Parameter",
       "qudt:hasQuantityKind": {
-        "@id": "S231P:SpecificEnergy"
+        "@id": "q:SpecificEnergy"
       },
       "qudt:hasUnit": {
-        "@id": "https://data.ashrae.org/S231P#J/kg"
+        "@id": "unit:J-PER-KiloGM"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Delta between the enthalpy hysteresis high and low limits",
-      "S231P:graphics": "{\"name\":\"Dialog\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"tab\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"\\\"Advanced\\\"\"}}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"group\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"\\\"Hysteresis\\\"\"}}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"enable\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"use_enthalpy\"}}}}}]}}",
       "S231P:isOfDataType": {
         "@id": "S231P:Real"
       },
@@ -308,10 +313,10 @@
     },
     {
       "@id": "http://example.org#FromModelica.Enable.delOutDamOsc",
-      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.TrueDelay",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Logical.TrueDelay",
       "S231P:accessSpecifier": "protected",
       "S231P:description": "Small delay before closing the outdoor air damper to avoid pressure fluctuations",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-20,\"y\":-58},{\"x\":0,\"y\":-38}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-20,-58},{0,-38}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#FromModelica.Enable.delOutDamOsc.delayTime"
@@ -338,10 +343,10 @@
     },
     {
       "@id": "http://example.org#FromModelica.Enable.delRetDam",
-      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.TrueDelay",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Logical.TrueDelay",
       "S231P:accessSpecifier": "protected",
       "S231P:description": "Keep return damper open to its physical maximum for a short period of time before closing the outdoor air damper and resuming the maximum return air damper position, per G36 Part N7",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-20,\"y\":-108},{\"x\":0,\"y\":-88}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-20,-108},{0,-88}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#FromModelica.Enable.delRetDam.delayTime"
@@ -369,18 +374,17 @@
     {
       "@id": "http://example.org#FromModelica.Enable.delTOutHis",
       "@type": "S231P:Parameter",
-      "qudt:hasDisplayUnit": {
-        "@id": "S231P:K"
-      },
       "qudt:hasQuantityKind": {
-        "@id": "S231P:TemperatureDifference"
+        "@id": "q:TemperatureDifference"
       },
       "qudt:hasUnit": {
-        "@id": "S231P:K"
+        "@id": "unit:K"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Delta between the temperature hysteresis high and low limit",
-      "S231P:graphics": "{\"name\":\"Dialog\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"tab\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"\\\"Advanced\\\"\"}}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"group\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"\\\"Hysteresis\\\"\"}}}}}]}}",
+      "S231P:hasDisplayUnit": {
+        "@id": "unit:K"
+      },
       "S231P:isOfDataType": {
         "@id": "S231P:Real"
       },
@@ -391,14 +395,13 @@
       "@id": "http://example.org#FromModelica.Enable.disDel",
       "@type": "S231P:Parameter",
       "qudt:hasQuantityKind": {
-        "@id": "S231P:Time"
+        "@id": "q:Time"
       },
       "qudt:hasUnit": {
-        "@id": "S231P:s"
+        "@id": "unit:SEC"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Short time delay before closing the OA damper at disable to avoid pressure fluctuations",
-      "S231P:graphics": "{\"name\":\"Dialog\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"tab\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"\\\"Advanced\\\"\"}}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"group\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"\\\"Delays at disable\\\"\"}}}}}]}}",
       "S231P:isOfDataType": {
         "@id": "S231P:Real"
       },
@@ -407,10 +410,11 @@
     },
     {
       "@id": "http://example.org#FromModelica.Enable.entSubst1",
-      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Sources.Constant",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Sources.Constant",
       "S231P:accessSpecifier": "protected",
+      "S231P:conditionalExpression": "not use_enthalpy",
       "S231P:description": "Deactivates outdoor air enthalpy condition if there is no enthalpy sensor",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-160,\"y\":180},{\"x\":-140,\"y\":200}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-160,180},{-140,200}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#FromModelica.Enable.entSubst1.k"
@@ -419,6 +423,7 @@
           "@id": "http://example.org#FromModelica.Enable.entSubst1.y"
         }
       ],
+      "S231P:isConditionalComponent": true,
       "S231P:label": "entSubst1"
     },
     {
@@ -436,14 +441,16 @@
       "@id": "http://example.org#FromModelica.Enable.hOut",
       "@type": "S231P:RealInput",
       "qudt:hasQuantityKind": {
-        "@id": "S231P:SpecificEnergy"
+        "@id": "q:SpecificEnergy"
       },
       "qudt:hasUnit": {
-        "@id": "https://data.ashrae.org/S231P#J/kg"
+        "@id": "unit:J-PER-KiloGM"
       },
       "S231P:accessSpecifier": "public",
+      "S231P:conditionalExpression": "use_enthalpy",
       "S231P:description": "Outdoor air enthalpy",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-300,\"y\":152},{\"x\":-260,\"y\":192}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":60},{\"x\":-100,\"y\":100}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-300,152},{-260,192}})),iconTransformation(extent={{-140,60},{-100,100}})))",
+      "S231P:isConditionalComponent": true,
       "S231P:isConnectedTo": {
         "@id": "http://example.org#FromModelica.Enable.sub2.u1"
       },
@@ -453,14 +460,16 @@
       "@id": "http://example.org#FromModelica.Enable.hOutCut",
       "@type": "S231P:RealInput",
       "qudt:hasQuantityKind": {
-        "@id": "S231P:SpecificEnergy"
+        "@id": "q:SpecificEnergy"
       },
       "qudt:hasUnit": {
-        "@id": "https://data.ashrae.org/S231P#J/kg"
+        "@id": "unit:J-PER-KiloGM"
       },
       "S231P:accessSpecifier": "public",
+      "S231P:conditionalExpression": "use_enthalpy",
       "S231P:description": "OA enthalpy high limit cutoff. For differential enthalpy use return air enthalpy measurement",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-300,\"y\":112},{\"x\":-260,\"y\":152}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":40},{\"x\":-100,\"y\":80}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-300,112},{-260,152}})),iconTransformation(extent={{-140,40},{-100,80}})))",
+      "S231P:isConditionalComponent": true,
       "S231P:isConnectedTo": {
         "@id": "http://example.org#FromModelica.Enable.sub2.u2"
       },
@@ -470,10 +479,10 @@
       "@id": "http://example.org#FromModelica.Enable.hOutHigLimCutHig",
       "@type": "S231P:Parameter",
       "qudt:hasQuantityKind": {
-        "@id": "S231P:SpecificEnergy"
+        "@id": "q:SpecificEnergy"
       },
       "qudt:hasUnit": {
-        "@id": "https://data.ashrae.org/S231P#J/kg"
+        "@id": "unit:J-PER-KiloGM"
       },
       "S231P:accessSpecifier": "protected",
       "S231P:description": "Hysteresis block high limit cutoff",
@@ -496,10 +505,11 @@
     },
     {
       "@id": "http://example.org#FromModelica.Enable.hysOutEnt",
-      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Hysteresis",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Hysteresis",
       "S231P:accessSpecifier": "protected",
+      "S231P:conditionalExpression": "use_enthalpy",
       "S231P:description": "Outdoor air enthalpy hysteresis for both fixed and differential enthalpy cutoff conditions",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-160,\"y\":140},{\"x\":-140,\"y\":160}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-160,140},{-140,160}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#FromModelica.Enable.hysOutEnt.u"
@@ -514,6 +524,7 @@
           "@id": "http://example.org#FromModelica.Enable.hysOutEnt.y"
         }
       ],
+      "S231P:isConditionalComponent": true,
       "S231P:label": "hysOutEnt"
     },
     {
@@ -534,10 +545,10 @@
     },
     {
       "@id": "http://example.org#FromModelica.Enable.hysOutTem",
-      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Hysteresis",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Hysteresis",
       "S231P:accessSpecifier": "protected",
       "S231P:description": "Outdoor air temperature hysteresis for both fixed and differential dry bulb temperature cutoff conditions",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-160,\"y\":220},{\"x\":-140,\"y\":240}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-160,220},{-140,240}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#FromModelica.Enable.hysOutTem.u"
@@ -572,10 +583,10 @@
     },
     {
       "@id": "http://example.org#FromModelica.Enable.intEqu",
-      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.Equal",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Integers.Equal",
       "S231P:accessSpecifier": "protected",
       "S231P:description": "Logical block to check if the freeze protection is deactivated",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-78,\"y\":32},{\"x\":-58,\"y\":52}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-78,32},{-58,52}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#FromModelica.Enable.intEqu.u1"
@@ -597,10 +608,10 @@
     },
     {
       "@id": "http://example.org#FromModelica.Enable.maxRetDamSwitch",
-      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Switch",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Switch",
       "S231P:accessSpecifier": "protected",
       "S231P:description": "Keep maximum RA damper position at physical maximum for a short time period after disable signal",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":60,\"y\":-136},{\"x\":80,\"y\":-116}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{60,-136},{80,-116}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#FromModelica.Enable.maxRetDamSwitch.u1"
@@ -625,10 +636,10 @@
     },
     {
       "@id": "http://example.org#FromModelica.Enable.minRetDamSwitch",
-      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Switch",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Switch",
       "S231P:accessSpecifier": "protected",
       "S231P:description": "Keep minimum RA damper position at physical maximum for a short time period after disable",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":60,\"y\":-178},{\"x\":80,\"y\":-158}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{60,-178},{80,-158}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#FromModelica.Enable.minRetDamSwitch.u1"
@@ -653,10 +664,10 @@
     },
     {
       "@id": "http://example.org#FromModelica.Enable.not1",
-      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Not",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Not",
       "S231P:accessSpecifier": "protected",
       "S231P:description": "Logical not",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":20,\"y\":-108},{\"x\":40,\"y\":-88}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{20,-108},{40,-88}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#FromModelica.Enable.not1.u"
@@ -675,10 +686,10 @@
     },
     {
       "@id": "http://example.org#FromModelica.Enable.not2",
-      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Not",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Not",
       "S231P:accessSpecifier": "protected",
       "S231P:description": "Logical not that starts the timer at disable signal ",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-60,\"y\":-58},{\"x\":-40,\"y\":-38}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-60,-58},{-40,-38}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#FromModelica.Enable.not2.u"
@@ -705,10 +716,10 @@
     },
     {
       "@id": "http://example.org#FromModelica.Enable.or2",
-      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Or",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Or",
       "S231P:accessSpecifier": "protected",
       "S231P:description": "Check if either the temperature or the enthalpy condition is satisfied",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-60,\"y\":182},{\"x\":-40,\"y\":202}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-60,182},{-40,202}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#FromModelica.Enable.or2.u1"
@@ -730,10 +741,10 @@
     },
     {
       "@id": "http://example.org#FromModelica.Enable.outDamSwitch",
-      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Switch",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Switch",
       "S231P:accessSpecifier": "protected",
       "S231P:description": "Set maximum OA damper position to minimum at disable (after a given time delay)",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":82,\"y\":-78},{\"x\":102,\"y\":-58}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{82,-78},{102,-58}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#FromModelica.Enable.outDamSwitch.u1"
@@ -766,14 +777,13 @@
       "@id": "http://example.org#FromModelica.Enable.retDamFulOpeTim",
       "@type": "S231P:Parameter",
       "qudt:hasQuantityKind": {
-        "@id": "S231P:Time"
+        "@id": "q:Time"
       },
       "qudt:hasUnit": {
-        "@id": "S231P:s"
+        "@id": "unit:SEC"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Time period to keep RA damper fully open before releasing it for minimum outdoor airflow control\n    at disable to avoid pressure fluctuations",
-      "S231P:graphics": "{\"name\":\"Dialog\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"tab\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"\\\"Advanced\\\"\"}}}}},{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"group\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"\\\"Delays at disable\\\"\"}}}}}]}}",
       "S231P:isOfDataType": {
         "@id": "S231P:Real"
       },
@@ -782,10 +792,10 @@
     },
     {
       "@id": "http://example.org#FromModelica.Enable.retDamSwitch",
-      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Switch",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Switch",
       "S231P:accessSpecifier": "protected",
       "S231P:description": "Set minimum RA damper position to maximum at disable",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-20,\"y\":-176},{\"x\":0,\"y\":-156}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-20,-176},{0,-156}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#FromModelica.Enable.retDamSwitch.u1"
@@ -810,10 +820,10 @@
     },
     {
       "@id": "http://example.org#FromModelica.Enable.sub1",
-      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Subtract",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Subtract",
       "S231P:accessSpecifier": "protected",
       "S231P:description": "Add block determines difference between TOut and TOutCut",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-200,\"y\":220},{\"x\":-180,\"y\":240}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-200,220},{-180,240}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#FromModelica.Enable.sub1.u1"
@@ -835,10 +845,11 @@
     },
     {
       "@id": "http://example.org#FromModelica.Enable.sub2",
-      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Subtract",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Subtract",
       "S231P:accessSpecifier": "protected",
+      "S231P:conditionalExpression": "use_enthalpy",
       "S231P:description": "Add block determines difference between hOut and hOutCut",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-200,\"y\":140},{\"x\":-180,\"y\":160}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-200,140},{-180,160}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#FromModelica.Enable.sub2.u1"
@@ -850,6 +861,7 @@
           "@id": "http://example.org#FromModelica.Enable.sub2.y"
         }
       ],
+      "S231P:isConditionalComponent": true,
       "S231P:label": "sub2"
     },
     {
@@ -861,18 +873,18 @@
     {
       "@id": "http://example.org#FromModelica.Enable.TOut",
       "@type": "S231P:RealInput",
-      "qudt:hasDisplayUnit": {
-        "@id": "unit:DEG_C"
-      },
       "qudt:hasQuantityKind": {
-        "@id": "S231P:ThermodynamicTemperature"
+        "@id": "q:ThermodynamicTemperature"
       },
       "qudt:hasUnit": {
-        "@id": "S231P:K"
+        "@id": "unit:K"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Outdoor air temperature",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-300,\"y\":232},{\"x\":-260,\"y\":272}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":110},{\"x\":-100,\"y\":150}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-300,232},{-260,272}})),iconTransformation(extent={{-140,110},{-100,150}})))",
+      "S231P:hasDisplayUnit": {
+        "@id": "unit:DEG_C"
+      },
       "S231P:isConnectedTo": {
         "@id": "http://example.org#FromModelica.Enable.sub1.u1"
       },
@@ -881,18 +893,18 @@
     {
       "@id": "http://example.org#FromModelica.Enable.TOutCut",
       "@type": "S231P:RealInput",
-      "qudt:hasDisplayUnit": {
-        "@id": "unit:DEG_C"
-      },
       "qudt:hasQuantityKind": {
-        "@id": "S231P:ThermodynamicTemperature"
+        "@id": "q:ThermodynamicTemperature"
       },
       "qudt:hasUnit": {
-        "@id": "S231P:K"
+        "@id": "unit:K"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "OA temperature high limit cutoff. For differential dry bulb temperature condition use return air temperature measurement",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-300,\"y\":192},{\"x\":-260,\"y\":232}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":90},{\"x\":-100,\"y\":130}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-300,192},{-260,232}})),iconTransformation(extent={{-140,90},{-100,130}})))",
+      "S231P:hasDisplayUnit": {
+        "@id": "unit:DEG_C"
+      },
       "S231P:isConnectedTo": {
         "@id": "http://example.org#FromModelica.Enable.sub1.u2"
       },
@@ -901,17 +913,17 @@
     {
       "@id": "http://example.org#FromModelica.Enable.TOutHigLimCutHig",
       "@type": "S231P:Parameter",
-      "qudt:hasDisplayUnit": {
-        "@id": "S231P:K"
-      },
       "qudt:hasQuantityKind": {
-        "@id": "S231P:TemperatureDifference"
+        "@id": "q:TemperatureDifference"
       },
       "qudt:hasUnit": {
-        "@id": "S231P:K"
+        "@id": "unit:K"
       },
       "S231P:accessSpecifier": "protected",
       "S231P:description": "Hysteresis high limit cutoff",
+      "S231P:hasDisplayUnit": {
+        "@id": "unit:K"
+      },
       "S231P:isOfDataType": {
         "@id": "S231P:Real"
       },
@@ -931,10 +943,10 @@
     },
     {
       "@id": "http://example.org#FromModelica.Enable.truFalHol",
-      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.TrueFalseHold",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Logical.TrueFalseHold",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Economizer should not be enabled or disabled within 10 minutes of change",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":20,\"y\":182},{\"x\":40,\"y\":202}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{20,182},{40,202}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#FromModelica.Enable.truFalHol.trueHoldDuration"
@@ -964,7 +976,7 @@
       "@type": "S231P:BooleanInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Supply fan proven on",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-300,\"y\":62},{\"x\":-260,\"y\":102}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":10},{\"x\":-100,\"y\":50}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-300,62},{-260,102}})),iconTransformation(extent={{-140,10},{-100,50}})))",
       "S231P:isConnectedTo": {
         "@id": "http://example.org#FromModelica.Enable.and1.u2"
       },
@@ -975,7 +987,7 @@
       "@type": "S231P:IntegerInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Freeze protection stage status signal",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-300,\"y\":22},{\"x\":-260,\"y\":62}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":-10},{\"x\":-100,\"y\":30}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-300,22},{-260,62}})),iconTransformation(extent={{-140,-10},{-100,30}})))",
       "S231P:isConnectedTo": {
         "@id": "http://example.org#FromModelica.Enable.intEqu.u1"
       },
@@ -985,11 +997,11 @@
       "@id": "http://example.org#FromModelica.Enable.uOutDam_max",
       "@type": "S231P:RealInput",
       "qudt:hasUnit": {
-        "@id": "S231P:1"
+        "@id": "unit:UNITLESS"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Maximum outdoor air damper position, output from damper position limits sequence",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-300,\"y\":-58},{\"x\":-260,\"y\":-18}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":-40},{\"x\":-100,\"y\":0}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-300,-58},{-260,-18}})),iconTransformation(extent={{-140,-40},{-100,0}})))",
       "S231P:isConnectedTo": {
         "@id": "http://example.org#FromModelica.Enable.outDamSwitch.u3"
       },
@@ -1001,11 +1013,11 @@
       "@id": "http://example.org#FromModelica.Enable.uOutDam_min",
       "@type": "S231P:RealInput",
       "qudt:hasUnit": {
-        "@id": "S231P:1"
+        "@id": "unit:UNITLESS"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Minimum outdoor air damper position, output from damper position limits sequence",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-300,\"y\":-98},{\"x\":-260,\"y\":-58}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":-60},{\"x\":-100,\"y\":-20}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-300,-98},{-260,-58}})),iconTransformation(extent={{-140,-60},{-100,-20}})))",
       "S231P:isConnectedTo": {
         "@id": "http://example.org#FromModelica.Enable.outDamSwitch.u1"
       },
@@ -1017,11 +1029,11 @@
       "@id": "http://example.org#FromModelica.Enable.uRetDam_max",
       "@type": "S231P:RealInput",
       "qudt:hasUnit": {
-        "@id": "S231P:1"
+        "@id": "unit:UNITLESS"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Maximum return air damper position, output from damper position limits sequence",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-300,\"y\":-178},{\"x\":-260,\"y\":-138}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":-130},{\"x\":-100,\"y\":-90}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-300,-178},{-260,-138}})),iconTransformation(extent={{-140,-130},{-100,-90}})))",
       "S231P:isConnectedTo": [
         {
           "@id": "http://example.org#FromModelica.Enable.maxRetDamSwitch.u3"
@@ -1038,11 +1050,11 @@
       "@id": "http://example.org#FromModelica.Enable.uRetDam_min",
       "@type": "S231P:RealInput",
       "qudt:hasUnit": {
-        "@id": "S231P:1"
+        "@id": "unit:UNITLESS"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Minimum return air damper position, output from damper position limits sequence",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-300,\"y\":-218},{\"x\":-260,\"y\":-178}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":-150},{\"x\":-100,\"y\":-110}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-300,-218},{-260,-178}})),iconTransformation(extent={{-140,-150},{-100,-110}})))",
       "S231P:isConnectedTo": {
         "@id": "http://example.org#FromModelica.Enable.retDamSwitch.u3"
       },
@@ -1054,11 +1066,11 @@
       "@id": "http://example.org#FromModelica.Enable.uRetDamPhy_max",
       "@type": "S231P:RealInput",
       "qudt:hasUnit": {
-        "@id": "S231P:1"
+        "@id": "unit:UNITLESS"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Physical maximum return air damper position, output from damper position limits sequence",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-300,\"y\":-138},{\"x\":-260,\"y\":-98}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":-110},{\"x\":-100,\"y\":-70}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-300,-138},{-260,-98}})),iconTransformation(extent={{-140,-110},{-100,-70}})))",
       "S231P:isConnectedTo": [
         {
           "@id": "http://example.org#FromModelica.Enable.maxRetDamSwitch.u1"
@@ -1076,7 +1088,6 @@
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Set to true to evaluate outdoor air (OA) enthalpy in addition to temperature",
-      "S231P:graphics": "{\"name\":\"Dialog\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"group\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"\\\"Conditional\\\"\"}}}}}]}}",
       "S231P:isOfDataType": {
         "@id": "S231P:Boolean"
       },
@@ -1087,11 +1098,11 @@
       "@id": "http://example.org#FromModelica.Enable.yOutDam_max",
       "@type": "S231P:RealOutput",
       "qudt:hasUnit": {
-        "@id": "S231P:1"
+        "@id": "unit:UNITLESS"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Maximum outdoor air damper position",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":240,\"y\":22},{\"x\":280,\"y\":62}]},\"iconTransformation\":{\"extent\":[{\"x\":100,\"y\":80},{\"x\":140,\"y\":120}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{240,22},{280,62}})),iconTransformation(extent={{100,80},{140,120}})))",
       "S231P:label": "yOutDam_max",
       "S231P:max": 1,
       "S231P:min": 0
@@ -1100,11 +1111,11 @@
       "@id": "http://example.org#FromModelica.Enable.yRetDam_max",
       "@type": "S231P:RealOutput",
       "qudt:hasUnit": {
-        "@id": "S231P:1"
+        "@id": "unit:UNITLESS"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Maximum return air damper position",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":240,\"y\":-38},{\"x\":280,\"y\":2}]},\"iconTransformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{240,-38},{280,2}})),iconTransformation(extent={{100,-20},{140,20}})))",
       "S231P:label": "yRetDam_max",
       "S231P:max": 1,
       "S231P:min": 0
@@ -1113,11 +1124,11 @@
       "@id": "http://example.org#FromModelica.Enable.yRetDam_min",
       "@type": "S231P:RealOutput",
       "qudt:hasUnit": {
-        "@id": "S231P:1"
+        "@id": "unit:UNITLESS"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Minimum return air damper position",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":240,\"y\":-98},{\"x\":280,\"y\":-58}]},\"iconTransformation\":{\"extent\":[{\"x\":100,\"y\":-120},{\"x\":140,\"y\":-80}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{240,-98},{280,-58}})),iconTransformation(extent={{100,-120},{140,-80}})))",
       "S231P:label": "yRetDam_min",
       "S231P:max": 1,
       "S231P:min": 0

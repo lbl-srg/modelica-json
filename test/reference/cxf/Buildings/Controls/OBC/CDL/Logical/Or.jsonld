@@ -6,6 +6,7 @@
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Or",
       "@type": "S231P:ElementaryBlock",
+      "S231P:documentation": "info=<html>\n<p>\nBlock that outputs <code>true</code> if at least one input\nis <code>true</code>.\nOtherwise the output is <code>false</code>.\n</p>\n</html>,revisions=<html>\n<ul>\n<li>\nJanuary 3, 2017, by Michael Wetter:<br/>\nFirst implementation, based on the implementation of the\nModelica Standard Library.\n</li>\n</ul>\n</html>",
       "S231P:hasInput": [
         {
           "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Or.u1"
@@ -17,6 +18,7 @@
       "S231P:hasOutput": {
         "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Or.y"
       },
+      "S231P:icon": "coordinateSystem(extent={{-100,-100},{100,100}},preserveAspectRatio=true),graphics={Rectangle(extent={{-100,100},{100,-100}},borderPattern=BorderPattern.Raised,fillColor={210,210,210},fillPattern=FillPattern.Solid),Text(textString=\"or\",textColor={0,0,0},extent={{-90,40},{90,-40}}),Ellipse(extent={{71,7},{85,-7}},lineColor={235,235,235},fillColor={235,235,235},fillPattern=FillPattern.Solid),Ellipse(extent={{-75,-6},{-89,8}},lineColor={235,235,235},fillColor={235,235,235},fillPattern=FillPattern.Solid),Ellipse(extent={{-75,-73},{-89,-87}},lineColor={235,235,235},fillColor={235,235,235},fillPattern=FillPattern.Solid),Text(textString=\"%name\",textColor={0,0,255},extent={{-150,150},{150,110}})}",
       "S231P:label": "Or"
     },
     {
@@ -24,7 +26,7 @@
       "@type": "S231P:BooleanInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Input for logical 'or'",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-140,-20},{-100,20}})))",
       "S231P:label": "u1"
     },
     {
@@ -32,7 +34,7 @@
       "@type": "S231P:BooleanInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Input for logical 'or'",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-100},{\"x\":-100,\"y\":-60}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-140,-100},{-100,-60}})))",
       "S231P:label": "u2"
     },
     {
@@ -40,7 +42,7 @@
       "@type": "S231P:BooleanOutput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Output with true if at least one of the inputs is true",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{100,-20},{140,20}})))",
       "S231P:label": "y"
     }
   ]

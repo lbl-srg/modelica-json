@@ -6,12 +6,14 @@
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Conversions.RealToInteger",
       "@type": "S231P:ElementaryBlock",
+      "S231P:documentation": "info=<html>\n<p>\nBlock that outputs <code>y</code>\nas the nearest integer value of the input <code>u</code>.\n</p>\n<p>\nThe block outputs\n</p>\n<pre>\n    y = integer( floor( u + 0.5 ) )  if u &gt; 0,\n    y = integer( ceil ( u - 0.5 ) )  otherwise.\n</pre>\n</html>,revisions=<html>\n<ul>\n<li>\nJanuary 3, 2017, by Michael Wetter:<br/>\nFirst implementation, based on the implementation of the\nModelica Standard Library.\n</li>\n</ul>\n</html>",
       "S231P:hasInput": {
         "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Conversions.RealToInteger.u"
       },
       "S231P:hasOutput": {
         "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Conversions.RealToInteger.y"
       },
+      "S231P:icon": "coordinateSystem(extent={{-100,-100},{100,100}},preserveAspectRatio=true),graphics={Rectangle(extent={{-100,-100},{100,100}},lineColor={255,127,0},fillColor={255,255,255},fillPattern=FillPattern.Solid),Text(textString=\"R\",textColor={0,0,127},extent={{-100,-40},{0,40}}),Text(textString=\"I\",textColor={255,127,0},extent={{20,-40},{120,40}}),Polygon(points={{50,0},{30,20},{30,10},{0,10},{0,-10},{30,-10},{30,-20},{50,0}},lineColor={255,127,0},fillColor={255,127,0},fillPattern=FillPattern.Solid),Text(textString=\"%name\",textColor={0,0,255},extent={{-150,150},{150,110}})}",
       "S231P:label": "RealToInteger"
     },
     {
@@ -19,7 +21,7 @@
       "@type": "S231P:RealInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Real signal to be converted to an Integer signal",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-140,-20},{-100,20}})))",
       "S231P:label": "u"
     },
     {
@@ -27,7 +29,7 @@
       "@type": "S231P:IntegerOutput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Converted input signal as an Integer",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{100,-20},{140,20}})))",
       "S231P:label": "y"
     }
   ]

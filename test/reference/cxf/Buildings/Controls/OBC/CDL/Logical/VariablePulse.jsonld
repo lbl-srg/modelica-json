@@ -1,12 +1,69 @@
 {
   "@context": {
     "S231P": "https://data.ashrae.org/S231P#",
-    "qudt": "http://qudt.org/schema/qudt#"
+    "qudt": "http://qudt.org/schema/qudt#",
+    "unit": "http://qudt.org/vocab/unit#",
+    "q": "http://qudt.org/vocab/quantitykind#"
   },
   "@graph": [
     {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.abs1.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.greThr.u"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.cycOut.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.truFalHol.u"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.edg2.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.cycOut.go"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.greThr.y",
+      "S231P:isConnectedTo": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.edg2.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.preBre.u"
+        }
+      ]
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.preBre.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.triSam.trigger"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.sub.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.abs1.u"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.triSam.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.sub.u1"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.truFalHol.y",
+      "S231P:isConnectedTo": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.VariablePulse.y"
+      }
+    },
+    {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.VariablePulse",
       "@type": "S231P:ElementaryBlock",
+      "S231P:diagram": "coordinateSystem(extent={{-120,-120},{120,120}})",
+      "S231P:documentation": "info=<html>\n<p>\nBlock that outputs a boolean pulse.\n</p>\n<p>\nThe output of this block is a pulse with a constant period\nand a width as obtained from the input <code>0 &le; u &le; 1</code>,\nwhich is the width relative to the period.\n</p>\n<p>\nThe block produces the following ouputs:\n</p>\n<ul>\n<li>\nIf <code>u = 0</code>, the output <code>y</code> remains <code>false</code>.\n</li>\n<li>\nIf <code>0 &lt; u &lt; 1</code>, the output <code>y</code> will be\na boolean pulse with the period specified by the parameter <code>period</code> and\nthe width set to <code>u*period</code>.\n</li>\n<li>\nIf <code>u = 1</code>, the output <code>y</code> remains <code>true</code>.\n</li>\n</ul>\n<p>\nWhen the input <code>u</code> changes by more than <code>deltaU</code> and the output\nhas been holding constant for more than minimum holding time\n<code>minTruFalHol</code>, the output will change to a new pulse with\nwidth equal to <code>u*period</code>.\n</p>\n<p align=\\center\\>\n<img src=\\modelica://Buildings/Resources/Images/Controls/OBC/CDL/Logical/VariablePulse.png\\\n     alt=\\VariablePulse.png\\ />\n</p>\n</html>,revisions=<html>\n<ul>\n<li>\nAugust 11, 2022, by Jianjun Hu:<br/>\nFirst implementation.\n</li>\n</ul>\n</html>",
       "S231P:hasInput": {
         "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.VariablePulse.u"
       },
@@ -24,16 +81,45 @@
           "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.VariablePulse.period"
         }
       ],
+      "S231P:icon": [
+        "coordinateSystem(extent={{-100,-100},{100,100}},preserveAspectRatio=true),graphics={Rectangle(extent={{-100,100},{100,-100}},borderPattern=BorderPattern.Raised,fillColor={210,210,210},fillPattern=FillPattern.Solid),Text(textString=\"%period\",textColor={0,0,0},extent={{-150,-140},{150,-110}}),Polygon(points={{-80,0},{-88,-22},{-72,-22},{-80,0}},lineColor={255,0,255},fillColor={255,0,255},fillPattern=FillPattern.Solid),Line(color={255,0,255},points={{-80,-6},{-80,-92}}),Line(color={255,0,255},points={{-90,-80},{72,-80}}),Polygon(points={{90,-80},{68,-72},{68,-88},{90,-80}},lineColor={255,0,255},fillColor={255,0,255},fillPattern=FillPattern.Solid),Ellipse(extent={{71,7},{85,-7}},lineColor={235,235,235},fillColor={235,235,235},fillPattern=FillPattern.Solid),Text(textString=\"%period\",textColor={135,135,135},extent={{-46,-12},{-14,-30}}),Polygon(points={{0,-30},{-8,-28},{-8,-32},{0,-30}},lineColor={0,0,0},fillColor={135,135,135},pattern=LinePattern.None,fillPattern=FillPattern.Solid),Line(color={135,135,135},points={{-60,-30},{0,-30}}),Polygon(points={{-60,-30},{-52,-28},{-52,-32},{-60,-30}},lineColor={0,0,0},fillColor={135,135,135},pattern=LinePattern.None,fillPattern=FillPattern.Solid),Line(color={0,0,127},points={{-80,20},{-60,20},{-60,60},{60,60}}),Line(color={0,0,0},points={{-80,-80},{-60,-80}}),Line(color={0,0,0},points={{-60,-40},{-30,-40},{-30,-80}}),Line(color={0,0,0},points={{0,-40},{30,-40},{30,-80}}),Line(color={0,0,0},points={{0,-40},{0,-80}}),Text(textString=\"%width\",textColor={135,135,135},extent={{-54,76},{-30,62}}),Line(color={0,0,127},points={{-90,20},{72,20}}),Polygon(points={{90,20},{68,28},{68,12},{90,20}},lineColor={0,0,127},fillColor={0,0,127},fillPattern=FillPattern.Solid),Line(color={0,0,127},points={{-80,94},{-80,16}}),Polygon(points={{-80,94},{-88,72},{-72,72},{-80,94}},lineColor={0,0,127},fillColor={0,0,127},fillPattern=FillPattern.Solid),Text(textString=\"%name\",textColor={0,0,255},extent={{-100,140},{100,100}}),Line(color={0,0,0},points={{-60,-40},{-60,-80}}),Line(color={0,0,0},points={{-30,-80},{0,-80}}),Line(color={0,0,0},points={{30,-80},{60,-80}})}",
+        "graphics={Rectangle(extent={{-100,100},{100,-100}},borderPattern=BorderPattern.Raised,lineColor={0,0,0},fillColor={210,210,210},fillPattern=FillPattern.Solid),Text(textString=\"%name\",textColor={0,0,255},extent={{-100,140},{100,100}})}"
+      ],
       "S231P:label": [
         "Cycle",
         "VariablePulse"
       ]
     },
     {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.VariablePulse.abs1",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.abs1.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.abs1.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.VariablePulse.cycOut",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.cycOut.go"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.cycOut.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.cycOut.y"
+        }
+      ]
+    },
+    {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.VariablePulse.deltaU",
       "@type": "S231P:Parameter",
       "qudt:hasUnit": {
-        "@id": "S231P:1"
+        "@id": "unit:UNITLESS"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Increment of u that triggers recomputation of output",
@@ -55,13 +141,35 @@
       }
     },
     {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.VariablePulse.edg2",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.edg2.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.edg2.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.VariablePulse.greThr",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.greThr.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.greThr.y"
+        }
+      ]
+    },
+    {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.VariablePulse.minTruFalHol",
       "@type": "S231P:Parameter",
       "qudt:hasQuantityKind": {
-        "@id": "S231P:Time"
+        "@id": "q:Time"
       },
       "qudt:hasUnit": {
-        "@id": "S231P:s"
+        "@id": "unit:SEC"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Minimum time to hold true or false",
@@ -76,10 +184,10 @@
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.VariablePulse.period",
       "@type": "S231P:Parameter",
       "qudt:hasQuantityKind": {
-        "@id": "S231P:Time"
+        "@id": "q:Time"
       },
       "qudt:hasUnit": {
-        "@id": "S231P:s"
+        "@id": "unit:SEC"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Time for one pulse period",
@@ -89,14 +197,75 @@
       "S231P:label": "period"
     },
     {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.VariablePulse.preBre",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.preBre.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.preBre.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.VariablePulse.sub",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.sub.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.sub.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.sub.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.VariablePulse.triSam",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.triSam.trigger"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.triSam.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.triSam.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.VariablePulse.truFalHol",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.truFalHol.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.truFalHol.y"
+        }
+      ]
+    },
+    {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.VariablePulse.u",
       "@type": "S231P:RealInput",
       "qudt:hasUnit": {
-        "@id": "S231P:1"
+        "@id": "unit:UNITLESS"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Ratio of the period that the output should be true",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-160,\"y\":-20},{\"x\":-120,\"y\":20}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-160,-20},{-120,20}})),iconTransformation(extent={{-140,-20},{-100,20}})))",
+      "S231P:isConnectedTo": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.cycOut.u"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.sub.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Logical.VariablePulse.triSam.u"
+        }
+      ],
       "S231P:label": "u",
       "S231P:max": 1,
       "S231P:min": 0
@@ -106,7 +275,7 @@
       "@type": "S231P:BooleanOutput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Boolean pulse when the input is greater than zero",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":120,\"y\":-20},{\"x\":160,\"y\":20}]},\"iconTransformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{120,-20},{160,20}})),iconTransformation(extent={{100,-20},{140,20}})))",
       "S231P:label": "y"
     }
   ]

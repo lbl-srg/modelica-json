@@ -227,7 +227,10 @@ const checkCxfJson = function (outFormat, extension, message) {
     pa.getJsons(testMoFiles, outFormat, 'current', 'false')
     const pattern = path.join('test', 'FromModelica', '*.mo')
     const files = glob.sync(pattern)
-    const filesToExclude = glob.sync(path.join('test', 'FromModelica', 'ExtendsClause*'))
+    const filesToExclude = [
+      path.join('test', 'FromModelica', 'ExtendsClause_2.mo'),
+      path.join('test', 'FromModelica', 'ExtendsClause_3.mo')
+    ]
     const expectedOutputPath = path.join(process.cwd(), 'test', 'reference', subPackName, 'test', 'FromModelica')
     const actualOutputPath = path.join(process.cwd(), subPackName, 'test', 'FromModelica')
 

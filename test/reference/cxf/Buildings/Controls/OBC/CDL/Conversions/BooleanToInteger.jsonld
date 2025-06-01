@@ -6,6 +6,7 @@
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Conversions.BooleanToInteger",
       "@type": "S231P:ElementaryBlock",
+      "S231P:documentation": "info=<html>\n<p>\nBlock that outputs the <code>Integer</code>\nequivalent of the <code>Boolean</code> input.\n</p>\n<pre>\n  y = if u then integerTrue else integerFalse;\n</pre>\n<p>\nwhere <code>u</code> is of <code>Boolean</code> and <code>y</code>\nof <code>Integer</code> type,\nand <code>integerTrue</code> and <code>integerFalse</code> are parameters.\n</p>\n</html>,revisions=<html>\n<ul>\n<li>\nMay 17, 2022, by Hongxiang Fu:<br/>\nCorrected documentation texts where the variables were described with wrong types.<br/>\nThis is for\n<a href=\\https://github.com/lbl-srg/modelica-buildings/issues/3016\\>Buildings, issue 3016</a>.\n</li>\n<li>\nJanuary 3, 2017, by Michael Wetter:<br/>\nFirst implementation, based on the implementation of the\nModelica Standard Library.\n</li>\n</ul>\n</html>",
       "S231P:hasInput": {
         "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Conversions.BooleanToInteger.u"
       },
@@ -20,6 +21,7 @@
           "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Conversions.BooleanToInteger.integerTrue"
         }
       ],
+      "S231P:icon": "coordinateSystem(extent={{-100,-100},{100,100}},preserveAspectRatio=true),graphics={Rectangle(extent={{-100,100},{100,-100}},borderPattern=BorderPattern.Raised,fillColor={210,210,210},fillPattern=FillPattern.Solid),Text(textString=\"B\",textColor={255,0,255},extent={{-86,78},{-34,26}}),Polygon(points={{28,48},{8,68},{8,58},{-24,58},{-24,38},{8,38},{8,28},{28,48}},lineColor={255,170,85},fillColor={255,170,85},fillPattern=FillPattern.Solid),Text(textString=\"I\",textColor={255,170,85},extent={{34,82},{86,24}}),Ellipse(extent={{-71,7},{-85,-7}},lineColor={235,235,235},fillColor={235,235,235},fillPattern=FillPattern.Solid),Text(textString=\"%name\",textColor={0,0,255},extent={{-150,150},{150,110}}),Text(textString=\"%integerTrue\",textColor={0,0,0},extent={{-74,-28},{64,20}}),Text(textString=\"%integerFalse\",textColor={0,0,0},extent={{-74,-90},{64,-42}})}",
       "S231P:label": "BooleanToInteger"
     },
     {
@@ -49,7 +51,7 @@
       "@type": "S231P:BooleanInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Boolean signal to be converted to an Integer signal",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-140,-20},{-100,20}})))",
       "S231P:label": "u"
     },
     {
@@ -57,7 +59,7 @@
       "@type": "S231P:IntegerOutput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Converted input signal as an Integer",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{100,-20},{140,20}})))",
       "S231P:label": "y"
     }
   ]

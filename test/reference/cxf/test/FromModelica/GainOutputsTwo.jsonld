@@ -9,6 +9,7 @@
       "S231P:containsBlock": {
         "@id": "http://example.org#FromModelica.GainOutputsTwo.gain"
       },
+      "S231P:diagram": "coordinateSystem(preserveAspectRatio=false)",
       "S231P:hasInput": {
         "@id": "http://example.org#FromModelica.GainOutputsTwo.u2"
       },
@@ -20,13 +21,14 @@
           "@id": "http://example.org#FromModelica.GainOutputsTwo.y2"
         }
       ],
+      "S231P:icon": "coordinateSystem(preserveAspectRatio=false)",
       "S231P:label": "GainOutputsTwo"
     },
     {
       "@id": "http://example.org#FromModelica.GainOutputsTwo.gain",
-      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter",
       "S231P:accessSpecifier": "public",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-18,\"y\":-12},{\"x\":2,\"y\":8}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-18,-12},{2,8}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#FromModelica.GainOutputsTwo.gain.k"
@@ -60,7 +62,7 @@
       "@id": "http://example.org#FromModelica.GainOutputsTwo.u2",
       "@type": "S231P:RealInput",
       "S231P:accessSpecifier": "public",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-122,\"y\":-38},{\"x\":-82,\"y\":2}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-122,-38},{-82,2}})))",
       "S231P:isConnectedTo": {
         "@id": "http://example.org#FromModelica.GainOutputsTwo.gain.u"
       },
@@ -70,14 +72,14 @@
       "@id": "http://example.org#FromModelica.GainOutputsTwo.y1",
       "@type": "S231P:RealOutput",
       "S231P:accessSpecifier": "public",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":64,\"y\":14},{\"x\":104,\"y\":54}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{64,14},{104,54}})))",
       "S231P:label": "y1"
     },
     {
       "@id": "http://example.org#FromModelica.GainOutputsTwo.y2",
       "@type": "S231P:RealOutput",
       "S231P:accessSpecifier": "public",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":64,\"y\":-56},{\"x\":104,\"y\":-16}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{64,-56},{104,-16}})))",
       "S231P:label": "y2"
     }
   ]

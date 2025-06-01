@@ -6,6 +6,7 @@
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Conversions.BooleanToReal",
       "@type": "S231P:ElementaryBlock",
+      "S231P:documentation": "info=<html>\n<p>\nBlock that outputs the <code>Real</code>\nequivalent of the <code>Boolean</code> input.\n</p>\n<pre>\n  y = if u then realTrue else realFalse;\n</pre>\n<p>\nwhere <code>u</code> is of <code>Boolean</code> and <code>y</code>\nof <code>Real</code> type,\nand <code>realTrue</code> and <code>realFalse</code> are parameters.\n</p>\n</html>,revisions=<html>\n<ul>\n<li>\nMay 17, 2022, by Hongxiang Fu:<br/>\nCorrected documentation texts where the variables were described with wrong types.<br/>\nThis is for\n<a href=\\https://github.com/lbl-srg/modelica-buildings/issues/3016\\>Buildings, issue 3016</a>.\n</li>\n<li>\nApril 10, 2017, by Jianjun Hu:<br/>\nFirst implementation, based on the implementation of the\nModelica Standard Library.\n</li>\n</ul>\n</html>",
       "S231P:hasInput": {
         "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Conversions.BooleanToReal.u"
       },
@@ -20,6 +21,7 @@
           "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Conversions.BooleanToReal.realTrue"
         }
       ],
+      "S231P:icon": "coordinateSystem(extent={{-100,-100},{100,100}},preserveAspectRatio=true),graphics={Rectangle(extent={{-100,100},{100,-100}},borderPattern=BorderPattern.Raised,fillColor={210,210,210},fillPattern=FillPattern.Solid),Ellipse(extent={{-71,7},{-85,-7}},lineColor={235,235,235},fillColor={235,235,235},fillPattern=FillPattern.Solid),Text(textString=\"%name\",textColor={0,0,255},extent={{-150,150},{150,110}}),Text(textString=\"%realFalse\",textColor={0,0,0},extent={{-68,-86},{70,-38}}),Text(textString=\"%realTrue\",textColor={0,0,0},extent={{-68,-26},{70,22}}),Text(textString=\"B\",textColor={255,0,255},extent={{-86,78},{-34,26}}),Polygon(points={{26,48},{6,68},{6,58},{-26,58},{-26,38},{6,38},{6,28},{26,48}},lineColor={0,0,127},fillColor={0,0,127},fillPattern=FillPattern.Solid),Text(textString=\"R\",textColor={0,0,127},extent={{34,82},{86,24}})}",
       "S231P:label": "BooleanToReal"
     },
     {
@@ -49,7 +51,7 @@
       "@type": "S231P:BooleanInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Boolean signal to be converted to a Real signal",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-140,-20},{-100,20}})))",
       "S231P:label": "u"
     },
     {
@@ -57,7 +59,7 @@
       "@type": "S231P:RealOutput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Converted input signal as a Real",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{100,-20},{140,20}})))",
       "S231P:label": "y"
     }
   ]

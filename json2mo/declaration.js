@@ -1,4 +1,4 @@
-function parse (content, rawJson = false) {
+function parse (content, rawJson = false, singleLine = false) {
   const util = require('util')
   const arraySubscriptsParser = require('./arraySubscripts')
   const modificationParser = require('./modification')
@@ -11,7 +11,7 @@ function parse (content, rawJson = false) {
     moOutput += arraySubscriptsParser.parse(content.array_subscripts, rawJson)
   }
   if (content.modification != null) {
-    moOutput += modificationParser.parse(content.modification, rawJson)
+    moOutput += modificationParser.parse(content.modification, rawJson, singleLine)
   }
   return moOutput
 }

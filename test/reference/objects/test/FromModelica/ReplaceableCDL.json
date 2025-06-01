@@ -1,0 +1,102 @@
+{
+  "instances": {
+    "ReplaceableCDL": {
+      "within": "",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/ReplaceableCDL.mo",
+      "type": "long_class_specifier",
+      "class_prefixes": "block",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "uses",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "Buildings",
+                        "modification": {
+                          "class_modification": [
+                            {
+                              "element_modification_or_replaceable": {
+                                "element_modification": {
+                                  "name": "version",
+                                  "modification": {
+                                    "equal": true,
+                                    "expression": {
+                                      "simple_expression": "\"12.0.0\""
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    },
+    "k": {
+      "type_prefix": "parameter",
+      "type_specifier": "Real",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "ReplaceableCDL",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "k",
+          "modification": {
+            "equal": true,
+            "expression": {
+              "simple_expression": "2"
+            }
+          }
+        },
+        "description": {
+          "description_string": "Proportional gain"
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/ReplaceableCDL.mo"
+    },
+    "conPID": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Reals.PID",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "ReplaceableCDL",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "conPID"
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": true,
+      "constraining_clause": {
+        "name": "Buildings.Controls.OBC.CDL.Reals.PID"
+      },
+      "within": "",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/ReplaceableCDL.mo"
+    }
+  },
+  "requiredReferences": {}
+}

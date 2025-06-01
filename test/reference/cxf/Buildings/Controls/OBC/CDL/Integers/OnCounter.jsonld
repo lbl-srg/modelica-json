@@ -6,6 +6,7 @@
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.OnCounter",
       "@type": "S231P:ElementaryBlock",
+      "S231P:documentation": "info=<html>\n<p>\nBlock that outputs how often the <code>trigger</code> input changed to <code>true</code>\nsince the last invocation of <code>reset</code>.\n</p>\n<p>\nThis block may be used as a counter. Its output <code>y</code> starts\nat the parameter value <code>y_start</code>.\nWhenever the input signal <code>trigger</code> changes to <code>true</code>,\nthe output is incremented by <i>1</i>.\nWhen the input <code>reset</code> changes to <code>true</code>,\nthen the output is reset to <code>y = y_start</code>.\nIf both inputs <code>trigger</code> and <code>reset</code> change\nsimultaneously, then the ouput is <code>y = y_start</code>.\n</p>\n</html>,revisions=<html>\n<ul>\n<li>\nOctober 21, 2021, by Michael Wetter:<br/>\nRemoved errorneous <code>visible</code> attribute in icon.\n</li>\n<li>\nJanuary 3, 2017, by Michael Wetter:<br/>\nFirst implementation, based on the implementation of the\nModelica Standard Library.\n</li>\n</ul>\n</html>",
       "S231P:hasInput": [
         {
           "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.OnCounter.reset"
@@ -20,6 +21,7 @@
       "S231P:hasParameter": {
         "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.OnCounter.y_start"
       },
+      "S231P:icon": "coordinateSystem(extent={{-100,-100},{100,100}},preserveAspectRatio=false,initialScale=0.06),graphics={Rectangle(extent={{-100,100},{100,-100}},borderPattern=BorderPattern.Raised,lineColor={0,0,0},fillColor={255,213,170},fillPattern=FillPattern.Solid),Text(textString=\"reset\",textColor={0,0,0},extent={{-64,-62},{58,-86}}),Text(textString=\"%name\",textColor={0,0,255},extent={{-150,150},{150,110}})}",
       "S231P:label": "OnCounter"
     },
     {
@@ -27,7 +29,7 @@
       "@type": "S231P:BooleanInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Reset, when true, the counter is set to y_start",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"origin\":{\"x\":0,\"y\":-120},\"extent\":[{\"x\":-20,\"y\":-20},{\"x\":20,\"y\":20}],\"rotation\":90}}}",
+      "S231P:graphics": "Placement(transformation(origin={0,-120},extent={{-20,-20},{20,20}},rotation=90)))",
       "S231P:label": "reset"
     },
     {
@@ -35,7 +37,7 @@
       "@type": "S231P:BooleanInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Trigger, when set to true, the counter increases",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-140,-20},{-100,20}})))",
       "S231P:label": "trigger"
     },
     {
@@ -43,7 +45,7 @@
       "@type": "S231P:IntegerOutput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Counter value",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{100,-20},{140,20}})))",
       "S231P:label": "y"
     },
     {

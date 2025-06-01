@@ -4,8 +4,21 @@
   },
   "@graph": [
     {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Greater.greHys.y",
+      "S231P:isConnectedTo": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Greater.y"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Greater.greNoHys.y",
+      "S231P:isConnectedTo": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Greater.y"
+      }
+    },
+    {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Greater",
       "@type": "S231P:ElementaryBlock",
+      "S231P:documentation": "info=<html>\n<p>\nBlock that outputs <code>true</code> if the Real input <code>u1</code>\nis greater than the Real input <code>u2</code>, optionally within a hysteresis <code>h</code>.\n</p>\n<p>\nThe parameter <code>h &ge; 0</code> is used to specify a hysteresis.\nFor any <i>h &ge; 0</i>, the output switches to <code>true</code> if <i>u<sub>1</sub> &gt; u<sub>2</sub></i>,\nand it switches to <code>false</code> if <i>u<sub>1</sub> &le; u<sub>2</sub> - h</i>.\nNote that in the special case of <i>h = 0</i>, this produces the output <i>y=u<sub>1</sub> &gt; u<sub>2</sub></i>.\n</p>\n<p>\nTo disable hysteresis, set <code>h=0</code>.\n</p>\n<h4>Usage</h4>\n<p>\nEnabling hysteresis can avoid frequent switching.<br/>\nIn simulation, adding hysteresis is recommended to guard against numerical noise.\nOtherwise, numerical noise from a nonlinear solver or from an\nimplicit time integration algorithm may cause the simulation to stall.\nNumerical noise can be present if an input depends\non a state variable or a quantity that requires an iterative solution,\nsuch as a temperature or a mass flow rate of an HVAC system.<br/>\nIn real controllers, adding hysteresis is recommended to guard against measurement noise.\nOtherwise, measurement noise may cause the output to change frequently.\n</p>\n</html>,revisions=<html>\n<ul>\n<li>\nApril 29, 2022, by Jianjun Hu:<br/>\nCorrected the condition of swiching true back to false.<br/>\nThis is for <a href=\\https://github.com/lbl-srg/modelica-buildings/issues/2981\\>Buildings, issue 2981</a>.\n</li>\n<li>\nFebruary 3, 2021, by Antoine Gautier:<br/>\nCorrected documentation.<br/>\nThis is for <a href=\\https://github.com/lbl-srg/modelica-buildings/issues/2246\\>Buildings, issue 2246</a>.\n</li>\n<li>\nAugust 5, 2020, by Michael Wetter:<br/>\nAdded hysteresis.<br/>\nThis is for <a href=\\https://github.com/lbl-srg/modelica-buildings/issues/2076\\>Buildings, issue 2076</a>.\n</li>\n<li>\nJanuary 3, 2017, by Michael Wetter:<br/>\nFirst implementation, based on the implementation of the\nModelica Standard Library.\n</li>\n</ul>\n</html>",
       "S231P:hasInput": [
         {
           "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Greater.u1"
@@ -25,6 +38,11 @@
           "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Greater.pre_y_start"
         }
       ],
+      "S231P:icon": [
+        "coordinateSystem(extent={{-100,-100},{100,100}},preserveAspectRatio=false),graphics={Rectangle(extent={{-100,100},{100,-100}},borderPattern=BorderPattern.Raised,lineColor={0,0,0},fillColor={210,210,210},fillPattern=FillPattern.Solid),Ellipse(extent={{73,7},{87,-7}},lineColor={235,235,235},fillColor={235,235,235},fillPattern=FillPattern.Solid),Line(color={0,0,127},points={{-100,-80},{42,-80},{42,-62}}),Line(thickness=0.5,points={{-12,14},{18,2},{-12,-8}}),Text(textString=\"%name\",textColor={0,0,255},extent={{-150,150},{150,110}}),Text(textString=,textString=,textColor={0,0,0},extent={{-64,62},{62,92}}),Text(textString=DynamicSelect(\"\",String(u1,textColor={0,0,0},extent={{-88,-18},{-21,24}}),Text(textString=DynamicSelect(\"\",String(u2,textColor={0,0,0},extent={{-86,-76},{-19,-34}}),Text(textString=DynamicSelect(\"\",String(u2,textColor={235,235,235},extent={{22,20},{89,62}},visible=,visible=),Text(textString=DynamicSelect(\"\",String(u2,textColor={235,235,235},extent={{22,20},{89,62}},visible=,visible=),Text(textString=DynamicSelect(\"\",String(u2 -h,textColor={235,235,235},extent={{20,-56},{87,-14}},visible=,visible=)}",
+        "graphics={Rectangle(extent={{-100,100},{100,-100}},borderPattern=BorderPattern.Raised,lineColor={0,0,0},fillColor={210,210,210},fillPattern=FillPattern.Solid),Text(textString=\"%name\",textColor={0,0,255},extent={{-150,150},{150,110}}),Text(textString=,textString=,textColor={0,0,0},extent={{-64,62},{62,92}})}",
+        "graphics={Rectangle(extent={{-100,100},{100,-100}},borderPattern=BorderPattern.Raised,lineColor={0,0,0},fillColor={210,210,210},fillPattern=FillPattern.Solid),Text(textString=\"%name\",textColor={0,0,255},extent={{-150,150},{150,110}})}"
+      ],
       "S231P:label": [
         "Greater",
         "GreaterNoHysteresis",
@@ -32,11 +50,38 @@
       ]
     },
     {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Greater.greHys",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Greater.greHys.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Greater.greHys.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Greater.greHys.y"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Greater.greNoHys",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Greater.greNoHys.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Greater.greNoHys.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Greater.greNoHys.y"
+        }
+      ]
+    },
+    {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Greater.h",
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Hysteresis",
-      "S231P:graphics": "{\"name\":\"Evaluate\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"true\"}}}",
       "S231P:isOfDataType": {
         "@id": "S231P:Real"
       },
@@ -49,7 +94,6 @@
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Value of pre(y) at initial time",
-      "S231P:graphics": "{\"name\":\"Dialog\",\"modification\":{\"class_modification\":[{\"element_modification_or_replaceable\":{\"element_modification\":{\"name\":\"tab\",\"modification\":{\"equal\":true,\"expression\":{\"simple_expression\":\"\\\"Advanced\\\"\"}}}}}]}}",
       "S231P:isOfDataType": {
         "@id": "S231P:Boolean"
       },
@@ -61,7 +105,15 @@
       "@type": "S231P:RealInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "First input u1",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-140,-20},{-100,20}})))",
+      "S231P:isConnectedTo": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Greater.greHys.u1"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Greater.greNoHys.u1"
+        }
+      ],
       "S231P:label": "u1"
     },
     {
@@ -69,7 +121,15 @@
       "@type": "S231P:RealInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Second input u2",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-100},{\"x\":-100,\"y\":-60}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-140,-100},{-100,-60}})))",
+      "S231P:isConnectedTo": [
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Greater.greHys.u2"
+        },
+        {
+          "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Greater.greNoHys.u2"
+        }
+      ],
       "S231P:label": "u2"
     },
     {
@@ -77,7 +137,7 @@
       "@type": "S231P:BooleanOutput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Output true if u1 is greater than u2 with hysteresis",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{100,-20},{140,20}})))",
       "S231P:label": "y"
     }
   ]

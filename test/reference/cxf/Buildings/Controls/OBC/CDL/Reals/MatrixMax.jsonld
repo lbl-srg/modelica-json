@@ -6,6 +6,8 @@
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MatrixMax",
       "@type": "S231P:ElementaryBlock",
+      "S231P:diagram": "coordinateSystem(extent={{-100,-100},{100,100}},preserveAspectRatio=true)",
+      "S231P:documentation": "info=<html>\n<p>\nIf <code>rowMax = true</code>, this block outputs the row-wise maximum\nof the input matrix <code>u</code>,\notherwise it outputs the column-wise maximum of the input matrix <code>u</code>.\n</p>\n</html>,revisions=<html>\n<ul>\n<li>\nMay 17, 2019, by Milica Grahovac:<br/>\nFirst implementation.\n</li>\n</ul>\n</html>",
       "S231P:hasInput": {
         "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MatrixMax.u"
       },
@@ -23,6 +25,7 @@
           "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MatrixMax.rowMax"
         }
       ],
+      "S231P:icon": "coordinateSystem(extent={{-100,-100},{100,100}},preserveAspectRatio=true),graphics={Rectangle(extent={{-100,-100},{100,100}},lineColor={0,0,127},fillColor={255,255,255},fillPattern=FillPattern.Solid),Text(textString=\"%name\",textColor={0,0,255},extent={{-150,150},{150,110}}),Text(textString=\"[  ] max()\",textColor={0,0,0},extent={{-78,-62},{86,68}})}",
       "S231P:label": "MatrixMax"
     },
     {
@@ -63,16 +66,21 @@
       "@type": "S231P:RealInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Input for the matrix max function",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
-      "S231P:label": "u"
+      "S231P:graphics": "Placement(transformation(extent={{-140,-20},{-100,20}})))",
+      "S231P:isArray": true,
+      "S231P:label": "u[nRow,nCol]",
+      "S231P:numberDimensions": 2,
+      "S231P:sizeOfDimensions": "(nRow,nCol)"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MatrixMax.y",
       "@type": "S231P:RealOutput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Output with vector of row- or colum-wise maximum of the input matrix",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
-      "S231P:label": "y"
+      "S231P:graphics": "Placement(transformation(extent={{100,-20},{140,20}})))",
+      "S231P:isArray": true,
+      "S231P:label": "y[ if rowMax then size(u,1) else size(u,2)]",
+      "S231P:sizeOfDimensions": " if rowMax then size(u,1) else size(u,2)"
     }
   ]
 }

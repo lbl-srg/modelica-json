@@ -1,0 +1,64 @@
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#"
+  },
+  "@graph": [
+    {
+      "@id": "http://example.org#FromModelica.ConditionalBlockWithDefaultValue",
+      "@type": "S231P:Block",
+      "S231P:containsBlock": {
+        "@id": "http://example.org#FromModelica.ConditionalBlockWithDefaultValue.abs"
+      },
+      "S231P:hasInput": {
+        "@id": "http://example.org#FromModelica.ConditionalBlockWithDefaultValue.u"
+      },
+      "S231P:hasOutput": {
+        "@id": "http://example.org#FromModelica.ConditionalBlockWithDefaultValue.y"
+      },
+      "S231P:hasParameter": {
+        "@id": "http://example.org#FromModelica.ConditionalBlockWithDefaultValue.enaBlo"
+      },
+      "S231P:label": "ConditionalBlockWithDefaultValue"
+    },
+    {
+      "@id": "http://example.org#FromModelica.ConditionalBlockWithDefaultValue.abs",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Integers.Abs",
+      "S231P:accessSpecifier": "public",
+      "S231P:conditionalExpression": "not enaBlo",
+      "S231P:description": "Instance could be conditional disabled",
+      "S231P:graphics": "Placement(transformation(extent={{-8,-10},{12,10}})))",
+      "S231P:isConditionalComponent": true,
+      "S231P:label": "abs"
+    },
+    {
+      "@id": "http://example.org#FromModelica.ConditionalBlockWithDefaultValue.enaBlo",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Flag for enabling instance",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Boolean"
+      },
+      "S231P:label": "enaBlo",
+      "S231P:value": true
+    },
+    {
+      "@id": "http://example.org#FromModelica.ConditionalBlockWithDefaultValue.u",
+      "@type": "S231P:IntegerInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:conditionalExpression": "enaBlo",
+      "S231P:defaultValue": 0,
+      "S231P:description": "Input connector",
+      "S231P:graphics": "Placement(transformation(extent={{-140,-20},{-100,20}})),iconTransformation(extent={{-140,-20},{-100,20}})))",
+      "S231P:isConditionalComponent": true,
+      "S231P:label": "u"
+    },
+    {
+      "@id": "http://example.org#FromModelica.ConditionalBlockWithDefaultValue.y",
+      "@type": "S231P:IntegerOutput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Output connector",
+      "S231P:graphics": "Placement(transformation(extent={{100,-10},{120,10}})))",
+      "S231P:label": "y"
+    }
+  ]
+}
