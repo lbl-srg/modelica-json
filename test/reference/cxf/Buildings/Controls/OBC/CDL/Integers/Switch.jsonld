@@ -6,6 +6,7 @@
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.Switch",
       "@type": "S231P:ElementaryBlock",
+      "S231P:documentation": "info=<html>\n<p>\nBlock that outputs one of two integer input signals based on a boolean input signal.\n</p>\n<p>\nIf the input signal <code>u2</code> is <code>true</code>,\nthe block outputs <code>y = u1</code>.\nOtherwise, it outputs <code>y = u3</code>.\n</p>\n</html>,revisions=<html>\n<ul>\n<li>\nJuly 17, 2020, by Jianjun Hu:<br/>\nChanged icon to display dynamically which input signal is being outputted.<br/>\nThis is for\n<a href=\\https://github.com/lbl-srg/modelica-buildings/issues/2033\\>Buildings, issue  2033</a>.\n</li>\n<li>\nJuly 10, 2019, by Milica Grahovac:<br/>\nFirst implementation.\n</li>\n</ul>\n</html>",
       "S231P:hasInput": [
         {
           "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.Switch.u1"
@@ -20,6 +21,7 @@
       "S231P:hasOutput": {
         "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.Switch.y"
       },
+      "S231P:icon": "coordinateSystem(extent={{-100,-100},{100,100}},preserveAspectRatio=true),graphics={Rectangle(extent={{-100,100},{100,-100}},borderPattern=BorderPattern.Raised,fillColor={210,210,210},fillPattern=FillPattern.Solid),Line(color={244,125,35},points={{12,0},{100,0}}),Line(color={255,0,255},points={{-100,0},{-40,0}}),Line(color={244,125,35},points={{-100,-80},{-40,-80},{-40,-80}}),Line(color={255,0,255},points={{-40,12},{-40,-10}}),Line(color={244,125,35},points={{-100,80},{-40,80}}),Line(color={244,125,35},thickness=1,points={{8,2},{-40,80},{8,2},{-40,80},{-40,-80}}),Ellipse(extent={{2,-6},{18,8}},lineColor={0,0,127},pattern=LinePattern.None,fillPattern=FillPattern.Solid),Ellipse(extent={{-71,7},{-85,-7}},lineColor={235,235,235},fillColor={235,235,235},fillPattern=FillPattern.Solid),Text(textString=\"true\",textColor={0,0,0},extent={{-90,80},{-46,54}}),Text(textString=\"false\",textColor={0,0,0},extent={{-90,-46},{-38,-76}}),Text(textString=\"%name\",textColor={0,0,255},extent={{-150,150},{150,110}})}",
       "S231P:label": "Switch"
     },
     {
@@ -27,7 +29,7 @@
       "@type": "S231P:IntegerInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Input u1",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":60},{\"x\":-100,\"y\":100}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-140,60},{-100,100}})))",
       "S231P:label": "u1"
     },
     {
@@ -35,7 +37,7 @@
       "@type": "S231P:BooleanInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Boolean switch input signal, if true, y=u1, else y=u3",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-140,-20},{-100,20}})))",
       "S231P:label": "u2"
     },
     {
@@ -43,7 +45,7 @@
       "@type": "S231P:IntegerInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Input u3",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-100},{\"x\":-100,\"y\":-60}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-140,-100},{-100,-60}})))",
       "S231P:label": "u3"
     },
     {
@@ -51,7 +53,7 @@
       "@type": "S231P:IntegerOutput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Output with u1 if u2 is true, else u3",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{100,-20},{140,20}})))",
       "S231P:label": "y"
     }
   ]

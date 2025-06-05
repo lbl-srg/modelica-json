@@ -1,0 +1,28 @@
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#"
+  },
+  "@graph": [
+    {
+      "@id": "http://example.org#FromModelica.BlockWithArray2",
+      "@type": "S231P:Block",
+      "S231P:hasParameter": {
+        "@id": "http://example.org#FromModelica.BlockWithArray2.k"
+      },
+      "S231P:label": "BlockWithArray2"
+    },
+    {
+      "@id": "http://example.org#FromModelica.BlockWithArray2.k",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:isArray": true,
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "k[2,3]",
+      "S231P:numberDimensions": 2,
+      "S231P:sizeOfDimensions": "(2,3)",
+      "S231P:value": "{i*0.5 +j for i in 1:2, j in 1:3}"
+    }
+  ]
+}

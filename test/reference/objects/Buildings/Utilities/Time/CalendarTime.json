@@ -1,0 +1,2494 @@
+{
+  "instances": {
+    "CalendarTime": {
+      "within": "Buildings.Utilities.Time",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Utilities/Time/CalendarTime.mo",
+      "type": "long_class_specifier",
+      "class_prefixes": "model",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "defaultComponentName",
+              "modification": {
+                "equal": true,
+                "expression": {
+                  "simple_expression": "\"calTim\""
+                }
+              }
+            }
+          }
+        },
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Documentation",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "revisions",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<ul>\n<li>\nMarch 8, 2024, by Jelger Jansen:<br/>\nAllow reference years later than 2020 and extend functionality to year 2050.<br/>\nThis is for \n<a href=\\\"https://github.com/ibpsa/modelica-ibpsa/issues/1847\\\">#1847</a>.\n</li>  \n<li>\nDecember 19, 2022, by Michael Wetter:<br/>\nRefactored implementation to avoid wrong day number due to rounding errors that caused simultaneous events\nto not be triggered at the same time.<br/>\nThis is for\n<a href=\\\"https://github.com/lbl-srg/modelica-buildings/issues/3199\\\">Buildings, #3199</a>.\n</li>\n<li>\nNovember 6, 2019, by Milica Grahovac:<br/>\nExtended functionality to year 2030.\n</li>\n<li>\nAugust 20, 2019, by Filip Jorissen:<br/>\nRevised implementation such that the meaning of <code>time</code> is better explained\nand unix time stamps are correctly defined with respect to GMT.\n(see <a href=\\\"https://github.com/ibpsa/modelica-ibpsa/issues/1192\\\">#1192</a>).\n</li>\n<li>\nFebruary 14, 2019, by Damien Picard:<br/>\nFix bug when non-zero offset by substracting the offset from hourSampleStart and daySampleStart\n(see <a href=\\\"https://github.com/ibpsa/modelica-ibpsa/issues/1099\\\">#1099</a>).\n</li>\n<li>\nAugust 3, 2016, by Filip Jorissen:<br/>\nFirst implementation.\n</li>\n</ul>\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "info",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<p>\nThis blocks computes the unix time stamp, date and time\nand the day of the week based on the Modelica\nvariable <code>time</code>.\nAs for the weather data reader\n<a href=\\\"modelica://Buildings.BoundaryConditions.WeatherData.ReaderTMY3\\\">\nBuildings.BoundaryConditions.WeatherData.ReaderTMY3</a>,\n<code>time=0</code> corresponds to January 1st at midnight\nin the <em>local time zone</em>.\nThe computed outputs are thus also for the local time zone.\nThe year for which <code>time=0</code> is determined by\nthe parameter <code>zerTim</code>.\n</p>\n<h4>Main equations</h4>\n<p>\nThe unix time stamp corresponding to the current time is computed.\nFrom this variables the corresponding, year, date and time are computed using functions\nsuch as <code>floor()</code> and <code>ceil()</code>.\n</p>\n<h4>Assumption and limitations</h4>\n<p>\nThe implementation only supports date computations from year 2010 up to and including 2020.\nDaylight saving is not supported.\n</p>\n<h4>Typical use and important parameters</h4>\n<p>\nThe user must define which time and date correspond to <code>time = 0</code>\nusing the model parameters <code>zerTim</code>, and, if\n<code>zerTim==Buildings.Utilities.Time.Types.ZeroTime.Custom</code>,\nthe parameter <code>yearRef</code>.\nWhen <code>zerTim==Buildings.Utilities.Time.Types.ZeroTime.UnixTimeStampGMT</code>,\n<code>time</code> is defined with respect to GMT. This is different from the use\nof <code>time</code> in the weather data reader\n<a href=\\\"modelica://Buildings.BoundaryConditions.WeatherData.ReaderTMY3\\\">\nBuildings.BoundaryConditions.WeatherData.ReaderTMY3</a>, as the weather data files\nused with this reader are generally defined with <code>time</code> being local time.\nIf  <code>zerTim==Buildings.Utilities.Time.Types.ZeroTime.UnixTimeStampGMT</code> is used,\nthen the weather data files read by\n<a href=\\\"modelica://Buildings.BoundaryConditions.WeatherData.ReaderTMY3\\\">\nBuildings.BoundaryConditions.WeatherData.ReaderTMY3</a>\nmust also be defined with GMT as the time stamp.\n\nThe user can choose from new year, midnight for a number of years:\n2010 to 2050 and also 1970.\nThe latter corresponds to a unix stamp of <i>0</i>.\n(Note that when choosing the reference time equal to 0 at 1970,\nthe actual simulation time must be within the 2010-2051 range.\nFor instance <code>startTime = 1262304000</code> corresponds\nto the simulation starting on the 1st of January 2010\nwhen setting <code>zerTim = ZeroTime.UnixTimeStamp</code>.\nThis is within the 2010-2050 range and is therefore allowed.)\nThe unix time stamp is formally defined as the number of\nseconds since midnight of new year in 1970 GMT.\nTo output the correct unix time stamp, set <code>outputUnixTimeStamp=true</code>\nWe then require the local time zone <code>timZon</code>\n(see <a href=\\\"modelica://Buildings.BoundaryConditions.WeatherData.ReaderTMY3\\\">\nBuildings.BoundaryConditions.WeatherData.ReaderTMY3</a>)\nsince <code>time</code> uses the local time zone instead of GMT.\nWe always output <code>unixTimeStampLocal</code>, which is a time stamp\nthat uses the local time zone reference instead of GMT.\n</p>\n<h4>Implementation</h4>\n<p>\nThe model was implemented such that no events are being generated for computing the minute of the day.\nThe model also contains an implementation for setting <code>time=0</code>\nfor any day and month other than January first.\nThis is however not activated in the current model since these options may wrongly give the impression\nthat it changes the time based on which the solar position is computed and TMY3 data are read.\n</p>\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Icon",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "graphics": [
+                          {
+                            "name": "Text",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -34,
+                                  "y": 90
+                                },
+                                {
+                                  "x": 96,
+                                  "y": 80
+                                }
+                              ],
+                              "textString": "\"Minute\"",
+                              "textColor": {
+                                "r": 28,
+                                "g": 108,
+                                "b": 200
+                              },
+                              "horizontalAlignment": "TextAlignment.Right"
+                            }
+                          },
+                          {
+                            "name": "Text",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -28,
+                                  "y": 68
+                                },
+                                {
+                                  "x": 96,
+                                  "y": 58
+                                }
+                              ],
+                              "textString": "\"Hour\"",
+                              "textColor": {
+                                "r": 28,
+                                "g": 108,
+                                "b": 200
+                              },
+                              "horizontalAlignment": "TextAlignment.Right"
+                            }
+                          },
+                          {
+                            "name": "Text",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -38,
+                                  "y": 44
+                                },
+                                {
+                                  "x": 96,
+                                  "y": 32
+                                }
+                              ],
+                              "textString": "\"Day\"",
+                              "textColor": {
+                                "r": 28,
+                                "g": 108,
+                                "b": 200
+                              },
+                              "horizontalAlignment": "TextAlignment.Right"
+                            }
+                          },
+                          {
+                            "name": "Text",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -50,
+                                  "y": 18
+                                },
+                                {
+                                  "x": 96,
+                                  "y": 8
+                                }
+                              ],
+                              "textString": "\"Month\"",
+                              "textColor": {
+                                "r": 28,
+                                "g": 108,
+                                "b": 200
+                              },
+                              "horizontalAlignment": "TextAlignment.Right"
+                            }
+                          },
+                          {
+                            "name": "Text",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -70,
+                                  "y": -8
+                                },
+                                {
+                                  "x": 96,
+                                  "y": -18
+                                }
+                              ],
+                              "textString": "\"Year\"",
+                              "textColor": {
+                                "r": 28,
+                                "g": 108,
+                                "b": 200
+                              },
+                              "horizontalAlignment": "TextAlignment.Right"
+                            }
+                          },
+                          {
+                            "name": "Text",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -68,
+                                  "y": -30
+                                },
+                                {
+                                  "x": 96,
+                                  "y": -42
+                                }
+                              ],
+                              "textString": "\"Weekday\"",
+                              "textColor": {
+                                "r": 28,
+                                "g": 108,
+                                "b": 200
+                              },
+                              "horizontalAlignment": "TextAlignment.Right"
+                            }
+                          },
+                          {
+                            "name": "Text",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -102,
+                                  "y": -60
+                                },
+                                {
+                                  "x": 94,
+                                  "y": -72
+                                }
+                              ],
+                              "textString": "\"Unix time stamp (local)\"",
+                              "textColor": {
+                                "r": 28,
+                                "g": 108,
+                                "b": 200
+                              },
+                              "horizontalAlignment": "TextAlignment.Right"
+                            }
+                          },
+                          {
+                            "name": "Ellipse",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -94,
+                                  "y": 94
+                                },
+                                {
+                                  "x": 16,
+                                  "y": -16
+                                }
+                              ],
+                              "lineColor": {
+                                "r": 160,
+                                "g": 160,
+                                "b": 164
+                              },
+                              "fillColor": {
+                                "r": 215,
+                                "g": 215,
+                                "b": 215
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          },
+                          {
+                            "name": "Line",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": -40,
+                                  "y": 38
+                                },
+                                {
+                                  "x": -64,
+                                  "y": 62
+                                }
+                              ],
+                              "thickness": 0.5
+                            }
+                          },
+                          {
+                            "name": "Line",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": -40,
+                                  "y": 38
+                                },
+                                {
+                                  "x": -14,
+                                  "y": 38
+                                }
+                              ],
+                              "thickness": 0.5
+                            }
+                          },
+                          {
+                            "name": "Text",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -102,
+                                  "y": -82
+                                },
+                                {
+                                  "x": 94,
+                                  "y": -94
+                                }
+                              ],
+                              "textString": "\"Unix time stamp (GMT)\"",
+                              "textColor": {
+                                "r": 28,
+                                "g": 108,
+                                "b": 200
+                              },
+                              "horizontalAlignment": "TextAlignment.Right",
+                              "visible": "outputUnixTimeStamp"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    },
+    "zerTim": {
+      "type_prefix": "parameter",
+      "type_specifier": "Buildings.Utilities.Time.Types.ZeroTime",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "CalendarTime",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "zerTim"
+        },
+        "description": {
+          "description_string": "Enumeration for choosing how reference time (time = 0) should be defined"
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Utilities.Time",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Utilities/Time/CalendarTime.mo"
+    },
+    "yearRef": {
+      "type_prefix": "parameter",
+      "type_specifier": "Integer",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "CalendarTime",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "yearRef",
+          "modification": {
+            "class_modification": [
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "min",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "firstYear"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "max",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "lastYear"
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "equal": true,
+            "expression": {
+              "simple_expression": "2016"
+            }
+          }
+        },
+        "description": {
+          "description_string": "Year when time = 0, used if zerTim=Custom",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "name": "Dialog",
+                  "modification": {
+                    "class_modification": [
+                      {
+                        "element_modification_or_replaceable": {
+                          "element_modification": {
+                            "name": "enable",
+                            "modification": {
+                              "equal": true,
+                              "expression": {
+                                "simple_expression": {
+                                  "logical_expression": {
+                                    "logical_or": [
+                                      {
+                                        "logical_and": [
+                                          {
+                                            "arithmetic_expressions": [
+                                              {
+                                                "name": "zerTim"
+                                              },
+                                              {
+                                                "name": "Buildings.Utilities.Time.Types.ZeroTime.Custom"
+                                              }
+                                            ],
+                                            "relation_operator": "=="
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Dialog",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "enable",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": {
+                              "logical_expression": {
+                                "logical_or": [
+                                  {
+                                    "logical_and": [
+                                      {
+                                        "arithmetic_expressions": [
+                                          {
+                                            "name": "zerTim"
+                                          },
+                                          {
+                                            "name": "Buildings.Utilities.Time.Types.ZeroTime.Custom"
+                                          }
+                                        ],
+                                        "relation_operator": "=="
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Utilities.Time",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Utilities/Time/CalendarTime.mo"
+    },
+    "outputUnixTimeStamp": {
+      "type_prefix": "parameter",
+      "type_specifier": "Boolean",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "CalendarTime",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "outputUnixTimeStamp",
+          "modification": {
+            "equal": true,
+            "expression": {
+              "simple_expression": "false"
+            }
+          }
+        },
+        "description": {
+          "description_string": "= true, to output the unix time stamp (using GMT reference)",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "name": "Dialog",
+                  "modification": {
+                    "class_modification": [
+                      {
+                        "element_modification_or_replaceable": {
+                          "element_modification": {
+                            "name": "group",
+                            "modification": {
+                              "equal": true,
+                              "expression": {
+                                "simple_expression": "\"Unix time stamp\""
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Dialog",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "group",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"Unix time stamp\""
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Utilities.Time",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Utilities/Time/CalendarTime.mo"
+    },
+    "timZon": {
+      "type_prefix": "parameter",
+      "type_specifier": "Modelica.Units.SI.Time",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "CalendarTime",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "timZon",
+          "modification": {
+            "class_modification": [
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "displayUnit",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "\"h\""
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "equal": true,
+            "expression": {
+              "simple_expression": "0"
+            }
+          }
+        },
+        "description": {
+          "description_string": "The local time zone, for computing the unix time stamp only",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "name": "Dialog",
+                  "modification": {
+                    "class_modification": [
+                      {
+                        "element_modification_or_replaceable": {
+                          "element_modification": {
+                            "name": "enable",
+                            "modification": {
+                              "equal": true,
+                              "expression": {
+                                "simple_expression": "outputUnixTimeStamp"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "element_modification_or_replaceable": {
+                          "element_modification": {
+                            "name": "group",
+                            "modification": {
+                              "equal": true,
+                              "expression": {
+                                "simple_expression": "\"Unix time stamp\""
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Dialog",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "enable",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "outputUnixTimeStamp"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "group",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"Unix time stamp\""
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Utilities.Time",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Utilities/Time/CalendarTime.mo"
+    },
+    "offset": {
+      "type_prefix": "parameter",
+      "type_specifier": "Modelica.Units.SI.Time",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "CalendarTime",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "offset",
+          "modification": {
+            "class_modification": [
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "displayUnit",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "\"h\""
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "equal": true,
+            "expression": {
+              "simple_expression": "0"
+            }
+          }
+        },
+        "description": {
+          "description_string": "Offset that is added to 'time', may be used for computing time in different time zones",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "name": "Dialog",
+                  "modification": {
+                    "class_modification": [
+                      {
+                        "element_modification_or_replaceable": {
+                          "element_modification": {
+                            "name": "tab",
+                            "modification": {
+                              "equal": true,
+                              "expression": {
+                                "simple_expression": "\"Advanced\""
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Dialog",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "tab",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"Advanced\""
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Utilities.Time",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Utilities/Time/CalendarTime.mo"
+    },
+    "unixTimeStampLocal": {
+      "type_specifier": "Modelica.Blocks.Interfaces.RealOutput",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "CalendarTime",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "unixTimeStampLocal",
+          "modification": {
+            "class_modification": [
+              {
+                "element_modification_or_replaceable": {
+                  "final": true,
+                  "element_modification": {
+                    "name": "unit",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "\"s\""
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "description": {
+          "description_string": "Unix time stamp at local time",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": 100,
+                          "y": -78
+                        },
+                        {
+                          "x": 120,
+                          "y": -58
+                        }
+                      ]
+                    },
+                    "iconTransformation": {
+                      "extent": [
+                        {
+                          "x": 100,
+                          "y": -78
+                        },
+                        {
+                          "x": 120,
+                          "y": -58
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": 100,
+                      "y": -78
+                    },
+                    {
+                      "x": 120,
+                      "y": -58
+                    }
+                  ]
+                },
+                "iconTransformation": {
+                  "extent": [
+                    {
+                      "x": 100,
+                      "y": -78
+                    },
+                    {
+                      "x": 120,
+                      "y": -58
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Utilities.Time",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Utilities/Time/CalendarTime.mo"
+    },
+    "unixTimeStamp": {
+      "type_specifier": "Modelica.Blocks.Interfaces.RealOutput",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "CalendarTime",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "unixTimeStamp",
+          "modification": {
+            "class_modification": [
+              {
+                "element_modification_or_replaceable": {
+                  "final": true,
+                  "element_modification": {
+                    "name": "unit",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "\"s\""
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "equal": true,
+            "expression": {
+              "simple_expression": "unixTimeStampLocal -timZon"
+            }
+          }
+        },
+        "condition_attribute": {
+          "expression": {
+            "simple_expression": "outputUnixTimeStamp"
+          }
+        },
+        "description": {
+          "description_string": "Unix time stamp",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": 100,
+                          "y": -100
+                        },
+                        {
+                          "x": 120,
+                          "y": -80
+                        }
+                      ]
+                    },
+                    "iconTransformation": {
+                      "extent": [
+                        {
+                          "x": 100,
+                          "y": -100
+                        },
+                        {
+                          "x": 120,
+                          "y": -80
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": 100,
+                      "y": -100
+                    },
+                    {
+                      "x": 120,
+                      "y": -80
+                    }
+                  ]
+                },
+                "iconTransformation": {
+                  "extent": [
+                    {
+                      "x": 100,
+                      "y": -100
+                    },
+                    {
+                      "x": 120,
+                      "y": -80
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Utilities.Time",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Utilities/Time/CalendarTime.mo"
+    },
+    "year": {
+      "type_prefix": "discrete",
+      "type_specifier": "Modelica.Blocks.Interfaces.IntegerOutput",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "CalendarTime",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "year"
+        },
+        "description": {
+          "description_string": "Year",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": 100,
+                          "y": -24
+                        },
+                        {
+                          "x": 120,
+                          "y": -4
+                        }
+                      ]
+                    },
+                    "iconTransformation": {
+                      "extent": [
+                        {
+                          "x": 100,
+                          "y": -24
+                        },
+                        {
+                          "x": 120,
+                          "y": -4
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": 100,
+                      "y": -24
+                    },
+                    {
+                      "x": 120,
+                      "y": -4
+                    }
+                  ]
+                },
+                "iconTransformation": {
+                  "extent": [
+                    {
+                      "x": 100,
+                      "y": -24
+                    },
+                    {
+                      "x": 120,
+                      "y": -4
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Utilities.Time",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Utilities/Time/CalendarTime.mo"
+    },
+    "month": {
+      "type_prefix": "discrete",
+      "type_specifier": "Modelica.Blocks.Interfaces.IntegerOutput",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "CalendarTime",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "month"
+        },
+        "description": {
+          "description_string": "Month of the year",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": 100,
+                          "y": 2
+                        },
+                        {
+                          "x": 120,
+                          "y": 22
+                        }
+                      ]
+                    },
+                    "iconTransformation": {
+                      "extent": [
+                        {
+                          "x": 100,
+                          "y": 2
+                        },
+                        {
+                          "x": 120,
+                          "y": 22
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": 100,
+                      "y": 2
+                    },
+                    {
+                      "x": 120,
+                      "y": 22
+                    }
+                  ]
+                },
+                "iconTransformation": {
+                  "extent": [
+                    {
+                      "x": 100,
+                      "y": 2
+                    },
+                    {
+                      "x": 120,
+                      "y": 22
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Utilities.Time",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Utilities/Time/CalendarTime.mo"
+    },
+    "day": {
+      "type_specifier": "Modelica.Blocks.Interfaces.IntegerOutput",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "CalendarTime",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "day",
+          "modification": {
+            "class_modification": [
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "fixed",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "false"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "description": {
+          "description_string": "Day of the month",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": 100,
+                          "y": 28
+                        },
+                        {
+                          "x": 120,
+                          "y": 48
+                        }
+                      ]
+                    },
+                    "iconTransformation": {
+                      "extent": [
+                        {
+                          "x": 100,
+                          "y": 28
+                        },
+                        {
+                          "x": 120,
+                          "y": 48
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": 100,
+                      "y": 28
+                    },
+                    {
+                      "x": 120,
+                      "y": 48
+                    }
+                  ]
+                },
+                "iconTransformation": {
+                  "extent": [
+                    {
+                      "x": 100,
+                      "y": 28
+                    },
+                    {
+                      "x": 120,
+                      "y": 48
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Utilities.Time",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Utilities/Time/CalendarTime.mo"
+    },
+    "hour": {
+      "type_specifier": "Modelica.Blocks.Interfaces.IntegerOutput",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "CalendarTime",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "hour",
+          "modification": {
+            "class_modification": [
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "fixed",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "false"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "description": {
+          "description_string": "Hour of the day",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": 100,
+                          "y": 54
+                        },
+                        {
+                          "x": 120,
+                          "y": 74
+                        }
+                      ]
+                    },
+                    "iconTransformation": {
+                      "extent": [
+                        {
+                          "x": 100,
+                          "y": 54
+                        },
+                        {
+                          "x": 120,
+                          "y": 74
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": 100,
+                      "y": 54
+                    },
+                    {
+                      "x": 120,
+                      "y": 74
+                    }
+                  ]
+                },
+                "iconTransformation": {
+                  "extent": [
+                    {
+                      "x": 100,
+                      "y": 54
+                    },
+                    {
+                      "x": 120,
+                      "y": 74
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Utilities.Time",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Utilities/Time/CalendarTime.mo"
+    },
+    "minute": {
+      "type_specifier": "Modelica.Blocks.Interfaces.RealOutput",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "CalendarTime",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "minute"
+        },
+        "description": {
+          "description_string": "Minute of the hour",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": 100,
+                          "y": 80
+                        },
+                        {
+                          "x": 120,
+                          "y": 100
+                        }
+                      ]
+                    },
+                    "iconTransformation": {
+                      "extent": [
+                        {
+                          "x": 100,
+                          "y": 80
+                        },
+                        {
+                          "x": 120,
+                          "y": 100
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": 100,
+                      "y": 80
+                    },
+                    {
+                      "x": 120,
+                      "y": 100
+                    }
+                  ]
+                },
+                "iconTransformation": {
+                  "extent": [
+                    {
+                      "x": 100,
+                      "y": 80
+                    },
+                    {
+                      "x": 120,
+                      "y": 100
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Utilities.Time",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Utilities/Time/CalendarTime.mo"
+    },
+    "weekDay": {
+      "type_specifier": "Modelica.Blocks.Interfaces.IntegerOutput",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "CalendarTime",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "weekDay",
+          "modification": {
+            "class_modification": [
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "fixed",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "false"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "description": {
+          "description_string": "Integer output representing week day (monday = 1, sunday = 7)",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": 100,
+                          "y": -50
+                        },
+                        {
+                          "x": 120,
+                          "y": -30
+                        }
+                      ]
+                    },
+                    "iconTransformation": {
+                      "extent": [
+                        {
+                          "x": 100,
+                          "y": -50
+                        },
+                        {
+                          "x": 120,
+                          "y": -30
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": 100,
+                      "y": -50
+                    },
+                    {
+                      "x": 120,
+                      "y": -30
+                    }
+                  ]
+                },
+                "iconTransformation": {
+                  "extent": [
+                    {
+                      "x": 100,
+                      "y": -50
+                    },
+                    {
+                      "x": 120,
+                      "y": -30
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Utilities.Time",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Utilities/Time/CalendarTime.mo"
+    },
+    "eps_time": {
+      "type_prefix": "constant",
+      "type_specifier": "Real",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "CalendarTime",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "eps_time",
+          "modification": {
+            "class_modification": [
+              {
+                "element_modification_or_replaceable": {
+                  "final": true,
+                  "element_modification": {
+                    "name": "unit",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "\"s\""
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "equal": true,
+            "expression": {
+              "simple_expression": "1"
+            }
+          }
+        },
+        "description": {
+          "description_string": "Small value for time"
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Utilities.Time",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Utilities/Time/CalendarTime.mo"
+    },
+    "firstYear": {
+      "type_prefix": "constant",
+      "type_specifier": "Integer",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "CalendarTime",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "firstYear",
+          "modification": {
+            "equal": true,
+            "expression": {
+              "simple_expression": "2010"
+            }
+          }
+        },
+        "description": {
+          "description_string": "First year that is supported, i.e. the first year in timeStampsNewYear[:]"
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Utilities.Time",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Utilities/Time/CalendarTime.mo"
+    },
+    "lastYear": {
+      "type_prefix": "constant",
+      "type_specifier": "Integer",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "CalendarTime",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "lastYear",
+          "modification": {
+            "equal": true,
+            "expression": {
+              "simple_expression": "firstYear +size(timeStampsNewYear,1) -1"
+            }
+          }
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Utilities.Time",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Utilities/Time/CalendarTime.mo"
+    },
+    "timeStampsNewYear": {
+      "type_prefix": "constant",
+      "type_specifier": "Modelica.Units.SI.Time",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "CalendarTime",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "timeStampsNewYear",
+          "array_subscripts": [
+            {
+              "expression": {
+                "simple_expression": "42"
+              }
+            }
+          ],
+          "modification": {
+            "equal": true,
+            "expression": {
+              "simple_expression": "{1262304000,1293840000,1325376000,1356998400,1388534400,1420070400,1451606400,1483228800,1514764800,1546300800,1577836800,1609459200,1640995200,1672531200,1704067200,1735689600,1767225600,1798761600,1830297600,1861920000,1893456000,1924992000,1956528000,1988150400,2019686400,2051222400,2082758400,2114380800,2145916800,2177452800,2208988800,2240611200,2272147200,2303683200,2335219200,2366841600,2398377600,2429913600,2461449600,2493072000,2524608000,2556144000}"
+            }
+          }
+        },
+        "description": {
+          "description_string": "Epoch time stamps for new years day 2010 to 2051"
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": true,
+      "arraySubscripts": "[42]",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Utilities.Time",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Utilities/Time/CalendarTime.mo"
+    },
+    "isLeapYear": {
+      "type_prefix": "constant",
+      "type_specifier": "Boolean",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "CalendarTime",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "isLeapYear",
+          "array_subscripts": [
+            {
+              "expression": {
+                "simple_expression": "41"
+              }
+            }
+          ],
+          "modification": {
+            "equal": true,
+            "expression": {
+              "simple_expression": "{false,false,true,false,false,false,true,false,false,false,true,false,false,false,true,false,false,false,true,false,false,false,true,false,false,false,true,false,false,false,true,false,false,false,true,false,false,false,true,false,false}"
+            }
+          }
+        },
+        "description": {
+          "description_string": "List of leap years starting from firstYear (2010), up to and including 2050"
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": true,
+      "arraySubscripts": "[41]",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Utilities.Time",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Utilities/Time/CalendarTime.mo"
+    },
+    "dayInMonth": {
+      "type_prefix": "constant",
+      "type_specifier": "Integer",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "CalendarTime",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "dayInMonth",
+          "array_subscripts": [
+            {
+              "expression": {
+                "simple_expression": "12"
+              }
+            }
+          ],
+          "modification": {
+            "equal": true,
+            "expression": {
+              "simple_expression": "{31,28,31,30,31,30,31,31,30,31,30,31}"
+            }
+          }
+        },
+        "description": {
+          "description_string": "Number of days in each month"
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": true,
+      "arraySubscripts": "[12]",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Utilities.Time",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Utilities/Time/CalendarTime.mo"
+    },
+    "timOff": {
+      "type_prefix": "parameter",
+      "type_specifier": "Modelica.Units.SI.Time",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "CalendarTime",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "timOff",
+          "modification": {
+            "class_modification": [
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "fixed",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "false"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "description": {
+          "description_string": "Time offset"
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Utilities.Time",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Utilities/Time/CalendarTime.mo"
+    },
+    "monthRef": {
+      "type_prefix": "constant",
+      "type_specifier": "Integer",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "CalendarTime",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "monthRef",
+          "modification": {
+            "class_modification": [
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "min",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "1"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "max",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "12"
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "equal": true,
+            "expression": {
+              "simple_expression": "1"
+            }
+          }
+        },
+        "description": {
+          "description_string": "Month when time = 0",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "name": "Dialog",
+                  "modification": {
+                    "class_modification": [
+                      {
+                        "element_modification_or_replaceable": {
+                          "element_modification": {
+                            "name": "enable",
+                            "modification": {
+                              "equal": true,
+                              "expression": {
+                                "simple_expression": {
+                                  "logical_expression": {
+                                    "logical_or": [
+                                      {
+                                        "logical_and": [
+                                          {
+                                            "arithmetic_expressions": [
+                                              {
+                                                "name": "zerTim"
+                                              },
+                                              {
+                                                "name": "Buildings.Utilities.Time.Types.ZeroTime.Custom"
+                                              }
+                                            ],
+                                            "relation_operator": "=="
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Dialog",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "enable",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": {
+                              "logical_expression": {
+                                "logical_or": [
+                                  {
+                                    "logical_and": [
+                                      {
+                                        "arithmetic_expressions": [
+                                          {
+                                            "name": "zerTim"
+                                          },
+                                          {
+                                            "name": "Buildings.Utilities.Time.Types.ZeroTime.Custom"
+                                          }
+                                        ],
+                                        "relation_operator": "=="
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Utilities.Time",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Utilities/Time/CalendarTime.mo"
+    },
+    "dayRef": {
+      "type_prefix": "constant",
+      "type_specifier": "Integer",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "CalendarTime",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "dayRef",
+          "modification": {
+            "class_modification": [
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "min",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "1"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "max",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "31"
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "equal": true,
+            "expression": {
+              "simple_expression": "1"
+            }
+          }
+        },
+        "description": {
+          "description_string": "Day when time = 0",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "name": "Dialog",
+                  "modification": {
+                    "class_modification": [
+                      {
+                        "element_modification_or_replaceable": {
+                          "element_modification": {
+                            "name": "enable",
+                            "modification": {
+                              "equal": true,
+                              "expression": {
+                                "simple_expression": {
+                                  "logical_expression": {
+                                    "logical_or": [
+                                      {
+                                        "logical_and": [
+                                          {
+                                            "arithmetic_expressions": [
+                                              {
+                                                "name": "zerTim"
+                                              },
+                                              {
+                                                "name": "Buildings.Utilities.Time.Types.ZeroTime.Custom"
+                                              }
+                                            ],
+                                            "relation_operator": "=="
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Dialog",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "enable",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": {
+                              "logical_expression": {
+                                "logical_or": [
+                                  {
+                                    "logical_and": [
+                                      {
+                                        "arithmetic_expressions": [
+                                          {
+                                            "name": "zerTim"
+                                          },
+                                          {
+                                            "name": "Buildings.Utilities.Time.Types.ZeroTime.Custom"
+                                          }
+                                        ],
+                                        "relation_operator": "=="
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Utilities.Time",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Utilities/Time/CalendarTime.mo"
+    },
+    "daysSinceEpoch": {
+      "type_specifier": "Integer",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "CalendarTime",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "daysSinceEpoch",
+          "modification": {
+            "class_modification": [
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "fixed",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "false"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "description": {
+          "description_string": "Number of days that passed since 1st of January 1970"
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Utilities.Time",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Utilities/Time/CalendarTime.mo"
+    },
+    "yearIndex": {
+      "type_prefix": "discrete",
+      "type_specifier": "Integer",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "CalendarTime",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "yearIndex"
+        },
+        "description": {
+          "description_string": "Index of the current year in timeStampsNewYear"
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Utilities.Time",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Utilities/Time/CalendarTime.mo"
+    },
+    "epochLastMonth": {
+      "type_prefix": "discrete",
+      "type_specifier": "Real",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "CalendarTime",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "epochLastMonth"
+        },
+        "description": {
+          "description_string": "Unix time stamp of the beginning of the current month"
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Utilities.Time",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Utilities/Time/CalendarTime.mo"
+    },
+    "hourSampleStart": {
+      "type_prefix": "parameter",
+      "type_specifier": "Modelica.Units.SI.Time",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "CalendarTime",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "hourSampleStart",
+          "modification": {
+            "class_modification": [
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "fixed",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "false"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "description": {
+          "description_string": "Time when the sampling every hour starts"
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Utilities.Time",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Utilities/Time/CalendarTime.mo"
+    },
+    "daySampleStart": {
+      "type_prefix": "parameter",
+      "type_specifier": "Modelica.Units.SI.Time",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "CalendarTime",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "daySampleStart",
+          "modification": {
+            "class_modification": [
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "fixed",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "false"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "description": {
+          "description_string": "Time when the sampling every day starts"
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Utilities.Time",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Utilities/Time/CalendarTime.mo"
+    },
+    "hourSampleTrigger": {
+      "type_specifier": "Boolean",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "CalendarTime",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "hourSampleTrigger"
+        },
+        "description": {
+          "description_string": "True, if hourly sample time instant"
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Utilities.Time",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Utilities/Time/CalendarTime.mo"
+    },
+    "daySampleTrigger": {
+      "type_specifier": "Boolean",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "CalendarTime",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "daySampleTrigger"
+        },
+        "description": {
+          "description_string": "True, if daily sample time instant"
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Utilities.Time",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Utilities/Time/CalendarTime.mo"
+    },
+    "firstHourSampling": {
+      "type_specifier": "Boolean",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "CalendarTime",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "firstHourSampling",
+          "modification": {
+            "class_modification": [
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "fixed",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "true"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "start",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "true"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "description": {
+          "description_string": "=true if the hour is sampled the first time"
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Utilities.Time",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Utilities/Time/CalendarTime.mo"
+    },
+    "firstDaySampling": {
+      "type_specifier": "Boolean",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "CalendarTime",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "firstDaySampling",
+          "modification": {
+            "class_modification": [
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "fixed",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "true"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "start",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "true"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "description": {
+          "description_string": "=true if the day is sampled the first time"
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Utilities.Time",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Utilities/Time/CalendarTime.mo"
+    }
+  },
+  "requiredReferences": {
+    "extends_clause": [
+      {
+        "name": "Modelica.Blocks.Icons.DiscreteBlock",
+        "long_class_specifier_identifier": "CalendarTime",
+        "within": "Buildings.Utilities.Time",
+        "compositionSpecifier": "public"
+      }
+    ],
+    "connections": {}
+  }
+}

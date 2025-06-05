@@ -1,0 +1,404 @@
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#",
+    "ex": "http://example.org#",
+    "qudt": "http://qudt.org/schema/qudt#",
+    "unit": "http://qudt.org/vocab/unit#"
+  },
+  "@graph": [
+    {
+      "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime",
+      "@type": "S231P:Block",
+      "S231P:containsBlock": [
+        {
+          "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.daySampleTrigger"
+        },
+        {
+          "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.daysSinceEpoch"
+        },
+        {
+          "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.firstDaySampling"
+        },
+        {
+          "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.firstHourSampling"
+        },
+        {
+          "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.hourSampleTrigger"
+        }
+      ],
+      "S231P:documentation": "revisions=<html>\n<ul>\n<li>\nMarch 8, 2024, by Jelger Jansen:<br/>\nAllow reference years later than 2020 and extend functionality to year 2050.<br/>\nThis is for \n<a href=\\https://github.com/ibpsa/modelica-ibpsa/issues/1847\\>#1847</a>.\n</li>  \n<li>\nDecember 19, 2022, by Michael Wetter:<br/>\nRefactored implementation to avoid wrong day number due to rounding errors that caused simultaneous events\nto not be triggered at the same time.<br/>\nThis is for\n<a href=\\https://github.com/lbl-srg/modelica-buildings/issues/3199\\>Buildings, #3199</a>.\n</li>\n<li>\nNovember 6, 2019, by Milica Grahovac:<br/>\nExtended functionality to year 2030.\n</li>\n<li>\nAugust 20, 2019, by Filip Jorissen:<br/>\nRevised implementation such that the meaning of <code>time</code> is better explained\nand unix time stamps are correctly defined with respect to GMT.\n(see <a href=\\https://github.com/ibpsa/modelica-ibpsa/issues/1192\\>#1192</a>).\n</li>\n<li>\nFebruary 14, 2019, by Damien Picard:<br/>\nFix bug when non-zero offset by substracting the offset from hourSampleStart and daySampleStart\n(see <a href=\\https://github.com/ibpsa/modelica-ibpsa/issues/1099\\>#1099</a>).\n</li>\n<li>\nAugust 3, 2016, by Filip Jorissen:<br/>\nFirst implementation.\n</li>\n</ul>\n</html>,info=<html>\n<p>\nThis blocks computes the unix time stamp, date and time\nand the day of the week based on the Modelica\nvariable <code>time</code>.\nAs for the weather data reader\n<a href=\\modelica://Buildings.BoundaryConditions.WeatherData.ReaderTMY3\\>\nBuildings.BoundaryConditions.WeatherData.ReaderTMY3</a>,\n<code>time=0</code> corresponds to January 1st at midnight\nin the <em>local time zone</em>.\nThe computed outputs are thus also for the local time zone.\nThe year for which <code>time=0</code> is determined by\nthe parameter <code>zerTim</code>.\n</p>\n<h4>Main equations</h4>\n<p>\nThe unix time stamp corresponding to the current time is computed.\nFrom this variables the corresponding, year, date and time are computed using functions\nsuch as <code>floor()</code> and <code>ceil()</code>.\n</p>\n<h4>Assumption and limitations</h4>\n<p>\nThe implementation only supports date computations from year 2010 up to and including 2020.\nDaylight saving is not supported.\n</p>\n<h4>Typical use and important parameters</h4>\n<p>\nThe user must define which time and date correspond to <code>time = 0</code>\nusing the model parameters <code>zerTim</code>, and, if\n<code>zerTim==Buildings.Utilities.Time.Types.ZeroTime.Custom</code>,\nthe parameter <code>yearRef</code>.\nWhen <code>zerTim==Buildings.Utilities.Time.Types.ZeroTime.UnixTimeStampGMT</code>,\n<code>time</code> is defined with respect to GMT. This is different from the use\nof <code>time</code> in the weather data reader\n<a href=\\modelica://Buildings.BoundaryConditions.WeatherData.ReaderTMY3\\>\nBuildings.BoundaryConditions.WeatherData.ReaderTMY3</a>, as the weather data files\nused with this reader are generally defined with <code>time</code> being local time.\nIf  <code>zerTim==Buildings.Utilities.Time.Types.ZeroTime.UnixTimeStampGMT</code> is used,\nthen the weather data files read by\n<a href=\\modelica://Buildings.BoundaryConditions.WeatherData.ReaderTMY3\\>\nBuildings.BoundaryConditions.WeatherData.ReaderTMY3</a>\nmust also be defined with GMT as the time stamp.\n\nThe user can choose from new year, midnight for a number of years:\n2010 to 2050 and also 1970.\nThe latter corresponds to a unix stamp of <i>0</i>.\n(Note that when choosing the reference time equal to 0 at 1970,\nthe actual simulation time must be within the 2010-2051 range.\nFor instance <code>startTime = 1262304000</code> corresponds\nto the simulation starting on the 1st of January 2010\nwhen setting <code>zerTim = ZeroTime.UnixTimeStamp</code>.\nThis is within the 2010-2050 range and is therefore allowed.)\nThe unix time stamp is formally defined as the number of\nseconds since midnight of new year in 1970 GMT.\nTo output the correct unix time stamp, set <code>outputUnixTimeStamp=true</code>\nWe then require the local time zone <code>timZon</code>\n(see <a href=\\modelica://Buildings.BoundaryConditions.WeatherData.ReaderTMY3\\>\nBuildings.BoundaryConditions.WeatherData.ReaderTMY3</a>)\nsince <code>time</code> uses the local time zone instead of GMT.\nWe always output <code>unixTimeStampLocal</code>, which is a time stamp\nthat uses the local time zone reference instead of GMT.\n</p>\n<h4>Implementation</h4>\n<p>\nThe model was implemented such that no events are being generated for computing the minute of the day.\nThe model also contains an implementation for setting <code>time=0</code>\nfor any day and month other than January first.\nThis is however not activated in the current model since these options may wrongly give the impression\nthat it changes the time based on which the solar position is computed and TMY3 data are read.\n</p>\n</html>",
+      "S231P:extends": "Modelica.Blocks.Icons.DiscreteBlock",
+      "S231P:hasConstant": [
+        {
+          "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.dayInMonth"
+        },
+        {
+          "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.dayRef"
+        },
+        {
+          "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.eps_time"
+        },
+        {
+          "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.firstYear"
+        },
+        {
+          "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.isLeapYear"
+        },
+        {
+          "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.lastYear"
+        },
+        {
+          "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.monthRef"
+        },
+        {
+          "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.timeStampsNewYear"
+        }
+      ],
+      "S231P:hasOutput": [
+        {
+          "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.day"
+        },
+        {
+          "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.hour"
+        },
+        {
+          "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.minute"
+        },
+        {
+          "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.unixTimeStamp"
+        },
+        {
+          "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.unixTimeStampLocal"
+        },
+        {
+          "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.weekDay"
+        }
+      ],
+      "S231P:hasParameter": [
+        {
+          "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.daySampleStart"
+        },
+        {
+          "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.hourSampleStart"
+        },
+        {
+          "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.offset"
+        },
+        {
+          "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.outputUnixTimeStamp"
+        },
+        {
+          "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.timOff"
+        },
+        {
+          "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.timZon"
+        },
+        {
+          "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.yearRef"
+        },
+        {
+          "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.zerTim"
+        }
+      ],
+      "S231P:icon": "graphics={Text(textString=\"Minute\",textColor={28,108,200},horizontalAlignment=TextAlignment.Right,extent={{-34,90},{96,80}}),Text(textString=\"Hour\",textColor={28,108,200},horizontalAlignment=TextAlignment.Right,extent={{-28,68},{96,58}}),Text(textString=\"Day\",textColor={28,108,200},horizontalAlignment=TextAlignment.Right,extent={{-38,44},{96,32}}),Text(textString=\"Month\",textColor={28,108,200},horizontalAlignment=TextAlignment.Right,extent={{-50,18},{96,8}}),Text(textString=\"Year\",textColor={28,108,200},horizontalAlignment=TextAlignment.Right,extent={{-70,-8},{96,-18}}),Text(textString=\"Weekday\",textColor={28,108,200},horizontalAlignment=TextAlignment.Right,extent={{-68,-30},{96,-42}}),Text(textString=\"Unix time stamp (local)\",textColor={28,108,200},horizontalAlignment=TextAlignment.Right,extent={{-102,-60},{94,-72}}),Ellipse(extent={{-94,94},{16,-16}},lineColor={160,160,164},fillColor={215,215,215},fillPattern=FillPattern.Solid),Line(thickness=0.5,points={{-40,38},{-64,62}}),Line(thickness=0.5,points={{-40,38},{-14,38}}),Text(textString=\"Unix time stamp (GMT)\",textColor={28,108,200},horizontalAlignment=TextAlignment.Right,extent={{-102,-82},{94,-94}},visible=outputUnixTimeStamp)}",
+      "S231P:label": "CalendarTime"
+    },
+    {
+      "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.day",
+      "@type": "S231P:IntegerOutput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Day of the month",
+      "S231P:fixed": false,
+      "S231P:graphics": "Placement(transformation(extent={{100,28},{120,48}})),iconTransformation(extent={{100,28},{120,48}})))",
+      "S231P:label": "day"
+    },
+    {
+      "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.dayInMonth",
+      "@type": "S231P:Constant",
+      "S231P:accessSpecifier": "protected",
+      "S231P:description": "Number of days in each month",
+      "S231P:isArray": true,
+      "S231P:isOfDataType": {
+        "@id": "S231P:Integer"
+      },
+      "S231P:label": "dayInMonth[12]",
+      "S231P:numberDimensions": 1,
+      "S231P:sizeOfDimensions": "(12)",
+      "S231P:value": "{31,28,31,30,31,30,31,31,30,31,30,31}"
+    },
+    {
+      "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.dayRef",
+      "@type": "S231P:Constant",
+      "S231P:accessSpecifier": "protected",
+      "S231P:description": "Day when time = 0",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Integer"
+      },
+      "S231P:label": "dayRef",
+      "S231P:max": 31,
+      "S231P:min": 1,
+      "S231P:value": 1
+    },
+    {
+      "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.daySampleStart",
+      "S231P:accessSpecifier": "protected",
+      "S231P:description": "Time when the sampling every day starts",
+      "S231P:fixed": false,
+      "S231P:label": "daySampleStart"
+    },
+    {
+      "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.daySampleTrigger",
+      "@type": "ex:Boolean",
+      "S231P:accessSpecifier": "protected",
+      "S231P:description": "True, if daily sample time instant",
+      "S231P:label": "daySampleTrigger"
+    },
+    {
+      "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.daysSinceEpoch",
+      "@type": "ex:Integer",
+      "S231P:accessSpecifier": "protected",
+      "S231P:description": "Number of days that passed since 1st of January 1970",
+      "S231P:fixed": false,
+      "S231P:label": "daysSinceEpoch"
+    },
+    {
+      "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.epochLastMonth",
+      "S231P:accessSpecifier": "protected",
+      "S231P:description": "Unix time stamp of the beginning of the current month",
+      "S231P:label": "epochLastMonth"
+    },
+    {
+      "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.eps_time",
+      "@type": "S231P:Constant",
+      "qudt:hasUnit": {
+        "@id": "unit:SEC"
+      },
+      "S231P:accessSpecifier": "protected",
+      "S231P:description": "Small value for time",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "eps_time",
+      "S231P:value": 1
+    },
+    {
+      "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.firstDaySampling",
+      "@type": "ex:Boolean",
+      "S231P:accessSpecifier": "protected",
+      "S231P:description": "=true if the day is sampled the first time",
+      "S231P:fixed": true,
+      "S231P:label": "firstDaySampling",
+      "S231P:start": true
+    },
+    {
+      "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.firstHourSampling",
+      "@type": "ex:Boolean",
+      "S231P:accessSpecifier": "protected",
+      "S231P:description": "=true if the hour is sampled the first time",
+      "S231P:fixed": true,
+      "S231P:label": "firstHourSampling",
+      "S231P:start": true
+    },
+    {
+      "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.firstYear",
+      "@type": "S231P:Constant",
+      "S231P:accessSpecifier": "protected",
+      "S231P:description": "First year that is supported, i.e. the first year in timeStampsNewYear[:]",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Integer"
+      },
+      "S231P:label": "firstYear",
+      "S231P:value": 2010
+    },
+    {
+      "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.hour",
+      "@type": "S231P:IntegerOutput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Hour of the day",
+      "S231P:fixed": false,
+      "S231P:graphics": "Placement(transformation(extent={{100,54},{120,74}})),iconTransformation(extent={{100,54},{120,74}})))",
+      "S231P:label": "hour"
+    },
+    {
+      "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.hourSampleStart",
+      "S231P:accessSpecifier": "protected",
+      "S231P:description": "Time when the sampling every hour starts",
+      "S231P:fixed": false,
+      "S231P:label": "hourSampleStart"
+    },
+    {
+      "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.hourSampleTrigger",
+      "@type": "ex:Boolean",
+      "S231P:accessSpecifier": "protected",
+      "S231P:description": "True, if hourly sample time instant",
+      "S231P:label": "hourSampleTrigger"
+    },
+    {
+      "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.isLeapYear",
+      "@type": "S231P:Constant",
+      "S231P:accessSpecifier": "protected",
+      "S231P:description": "List of leap years starting from firstYear (2010), up to and including 2050",
+      "S231P:isArray": true,
+      "S231P:isOfDataType": {
+        "@id": "S231P:Boolean"
+      },
+      "S231P:label": "isLeapYear[41]",
+      "S231P:numberDimensions": 1,
+      "S231P:sizeOfDimensions": "(41)",
+      "S231P:value": "{false,false,true,false,false,false,true,false,false,false,true,false,false,false,true,false,false,false,true,false,false,false,true,false,false,false,true,false,false,false,true,false,false,false,true,false,false,false,true,false,false}"
+    },
+    {
+      "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.lastYear",
+      "@type": "S231P:Constant",
+      "S231P:accessSpecifier": "protected",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Integer"
+      },
+      "S231P:label": "lastYear",
+      "S231P:value": "firstYear +size(timeStampsNewYear,1) -1"
+    },
+    {
+      "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.minute",
+      "@type": "S231P:RealOutput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Minute of the hour",
+      "S231P:graphics": "Placement(transformation(extent={{100,80},{120,100}})),iconTransformation(extent={{100,80},{120,100}})))",
+      "S231P:label": "minute"
+    },
+    {
+      "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.month",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Month of the year",
+      "S231P:graphics": "Placement(transformation(extent={{100,2},{120,22}})),iconTransformation(extent={{100,2},{120,22}})))",
+      "S231P:label": "month"
+    },
+    {
+      "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.monthRef",
+      "@type": "S231P:Constant",
+      "S231P:accessSpecifier": "protected",
+      "S231P:description": "Month when time = 0",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Integer"
+      },
+      "S231P:label": "monthRef",
+      "S231P:max": 12,
+      "S231P:min": 1,
+      "S231P:value": 1
+    },
+    {
+      "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.offset",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Offset that is added to 'time', may be used for computing time in different time zones",
+      "S231P:hasDisplayUnit": {
+        "@id": "unit:HR"
+      },
+      "S231P:label": "offset",
+      "S231P:value": 0
+    },
+    {
+      "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.outputUnixTimeStamp",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "= true, to output the unix time stamp (using GMT reference)",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Boolean"
+      },
+      "S231P:label": "outputUnixTimeStamp",
+      "S231P:value": false
+    },
+    {
+      "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.timeStampsNewYear",
+      "@type": "S231P:Constant",
+      "S231P:accessSpecifier": "protected",
+      "S231P:description": "Epoch time stamps for new years day 2010 to 2051",
+      "S231P:isArray": true,
+      "S231P:label": "timeStampsNewYear[42]",
+      "S231P:numberDimensions": 1,
+      "S231P:sizeOfDimensions": "(42)",
+      "S231P:value": "{1262304000,1293840000,1325376000,1356998400,1388534400,1420070400,1451606400,1483228800,1514764800,1546300800,1577836800,1609459200,1640995200,1672531200,1704067200,1735689600,1767225600,1798761600,1830297600,1861920000,1893456000,1924992000,1956528000,1988150400,2019686400,2051222400,2082758400,2114380800,2145916800,2177452800,2208988800,2240611200,2272147200,2303683200,2335219200,2366841600,2398377600,2429913600,2461449600,2493072000,2524608000,2556144000}"
+    },
+    {
+      "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.timOff",
+      "S231P:accessSpecifier": "protected",
+      "S231P:description": "Time offset",
+      "S231P:fixed": false,
+      "S231P:label": "timOff"
+    },
+    {
+      "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.timZon",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "The local time zone, for computing the unix time stamp only",
+      "S231P:hasDisplayUnit": {
+        "@id": "unit:HR"
+      },
+      "S231P:label": "timZon",
+      "S231P:value": 0
+    },
+    {
+      "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.unixTimeStamp",
+      "@type": "S231P:RealOutput",
+      "qudt:hasUnit": {
+        "@id": "unit:SEC"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:conditionalExpression": "outputUnixTimeStamp",
+      "S231P:description": "Unix time stamp",
+      "S231P:graphics": "Placement(transformation(extent={{100,-100},{120,-80}})),iconTransformation(extent={{100,-100},{120,-80}})))",
+      "S231P:isConditionalComponent": true,
+      "S231P:label": "unixTimeStamp",
+      "S231P:value": "unixTimeStampLocal -timZon"
+    },
+    {
+      "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.unixTimeStampLocal",
+      "@type": "S231P:RealOutput",
+      "qudt:hasUnit": {
+        "@id": "unit:SEC"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Unix time stamp at local time",
+      "S231P:graphics": "Placement(transformation(extent={{100,-78},{120,-58}})),iconTransformation(extent={{100,-78},{120,-58}})))",
+      "S231P:label": "unixTimeStampLocal"
+    },
+    {
+      "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.weekDay",
+      "@type": "S231P:IntegerOutput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Integer output representing week day (monday = 1, sunday = 7)",
+      "S231P:fixed": false,
+      "S231P:graphics": "Placement(transformation(extent={{100,-50},{120,-30}})),iconTransformation(extent={{100,-50},{120,-30}})))",
+      "S231P:label": "weekDay"
+    },
+    {
+      "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.year",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Year",
+      "S231P:graphics": "Placement(transformation(extent={{100,-24},{120,-4}})),iconTransformation(extent={{100,-24},{120,-4}})))",
+      "S231P:label": "year"
+    },
+    {
+      "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.yearIndex",
+      "S231P:accessSpecifier": "protected",
+      "S231P:description": "Index of the current year in timeStampsNewYear",
+      "S231P:label": "yearIndex"
+    },
+    {
+      "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.yearRef",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Year when time = 0, used if zerTim=Custom",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Integer"
+      },
+      "S231P:label": "yearRef",
+      "S231P:max": "lastYear",
+      "S231P:min": "firstYear",
+      "S231P:value": 2016
+    },
+    {
+      "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.zerTim",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Enumeration for choosing how reference time (time = 0) should be defined",
+      "S231P:label": "zerTim"
+    }
+  ]
+}

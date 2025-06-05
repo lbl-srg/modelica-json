@@ -1,0 +1,64 @@
+{
+  "instances": {
+    "RedeclaredBlock": {
+      "within": "",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/RedeclaredBlock.mo",
+      "type": "long_class_specifier",
+      "class_prefixes": "block"
+    },
+    "repBlo": {
+      "type_specifier": "ReplaceableBlock",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "RedeclaredBlock",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "repBlo",
+          "modification": {
+            "class_modification": [
+              {
+                "element_redeclaration": {
+                  "component_clause1": {
+                    "type_specifier": "Buildings.Controls.OBC.CDL.Reals.Sources.Pulse",
+                    "component_declaration1": {
+                      "declaration": {
+                        "identifier": "con",
+                        "modification": {
+                          "class_modification": [
+                            {
+                              "element_modification_or_replaceable": {
+                                "element_modification": {
+                                  "name": "period",
+                                  "modification": {
+                                    "equal": true,
+                                    "expression": {
+                                      "simple_expression": "0.1"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/RedeclaredBlock.mo"
+    }
+  },
+  "requiredReferences": {}
+}

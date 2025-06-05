@@ -1,12 +1,16 @@
 {
   "@context": {
     "S231P": "https://data.ashrae.org/S231P#",
-    "qudt": "http://qudt.org/schema/qudt#"
+    "qudt": "http://qudt.org/schema/qudt#",
+    "q": "http://qudt.org/vocab/quantitykind#",
+    "unit": "http://qudt.org/vocab/unit#"
   },
   "@graph": [
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Ramp",
       "@type": "S231P:ElementaryBlock",
+      "S231P:diagram": "coordinateSystem(preserveAspectRatio=false)",
+      "S231P:documentation": "info=<html>\n<p>\nBlock that limits the rate of change of the input <code>u</code> by a ramp\nif the boolean input <code>active</code> is <code>true</code>,\notherwise the block outputs <code>y = u</code>.\n</p>\n<p>\nThis block computes a threshold for the rate of change between\ninput <code>u</code> and output <code>y</code> as\n<code>thr = (u-y)/Td</code>, where <code>Td &gt; 0</code> is a parameter.\nThe output <code>y</code> is computed as follows:\n<ul>\n<li>\nIf <code>thr &lt; fallingSlewRate</code>, then <code>dy/dt = fallingSlewRate</code>,\n</li>\n<li>\nif <code>thr &gt; raisingSlewRate</code>, then <code>dy/dt = raisingSlewRate</code>,\n</li>\n<li>\notherwise, <code>dy/dt = thr</code>.\n</li>\n</ul>\n<p>\nA smaller time constant <code>Td &gt; 0</code> means a higher accuracy for the derivative approximation.\n</p>\n<p>\nNote that when the input <code>activate</code> switches to <code>false</code>,\nthe output <code>y</code> can have a discontinuity.\n</p>\n<h4>Implementation</h4>\n<p>\nFor the block to work with arbitrary inputs and in order to produce a differentiable output,\nthe input is numerically differentiated with derivative time constant <code>Td</code>.\n</p>\n</html>,revisions=<html>\n<ul>\n<li>\nFebruary 15, 2024, by Michael Wetter:<br/>\nUpdated documentation.\n</li>\n<li>\nNovember 16, 2022, by Jianjun Hu:<br/>\nFirst implementation.\n</li>\n</ul>\n</html>",
       "S231P:hasInput": [
         {
           "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Ramp.active"
@@ -29,6 +33,7 @@
           "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Ramp.Td"
         }
       ],
+      "S231P:icon": "coordinateSystem(preserveAspectRatio=false),graphics={Rectangle(extent={{-100,-100},{100,100}},lineColor={0,0,127},fillColor={255,255,255},fillPattern=FillPattern.Solid),Text(textString=\"%name\",textColor={0,0,255},extent={{-100,100},{100,140}}),Line(color={192,192,192},points={{-90,-80},{82,-80}}),Polygon(points={{90,-80},{68,-72},{68,-88},{90,-80}},lineColor={192,192,192},fillColor={192,192,192},fillPattern=FillPattern.Solid),Line(color={192,192,192},points={{-80,58},{-80,-90}}),Polygon(points={{-80,80},{-88,58},{-72,58},{-80,80}},lineColor={192,192,192},fillColor={192,192,192},fillPattern=FillPattern.Solid),Line(color={0,0,127},points={{-80,-44},{-60,20},{-44,26},{40,8},{40,-4}}),Line(color={254,0,254},points={{-80,-80},{-60,-80},{-60,-50},{40,-50},{40,-80},{58,-80}}),Text(textString=DynamicSelect(\"\",String(y,textColor={0,0,0},extent={{226,60},{106,10}}),Line(color={0,0,127},points={{40,-4},{58,-28},{76,28}})}",
       "S231P:label": "Ramp"
     },
     {
@@ -36,7 +41,7 @@
       "@type": "S231P:BooleanInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Set to true to enable rate limiter",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-100},{\"x\":-100,\"y\":-60}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":-100},{\"x\":-100,\"y\":-60}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-140,-100},{-100,-60}})),iconTransformation(extent={{-140,-100},{-100,-60}})))",
       "S231P:label": "active"
     },
     {
@@ -72,10 +77,10 @@
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Ramp.Td",
       "@type": "S231P:Parameter",
       "qudt:hasQuantityKind": {
-        "@id": "S231P:Time"
+        "@id": "q:Time"
       },
       "qudt:hasUnit": {
-        "@id": "S231P:s"
+        "@id": "unit:SEC"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Derivative time constant",
@@ -91,7 +96,7 @@
       "@type": "S231P:RealInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Input that is being rate limited",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-140,-20},{-100,20}})))",
       "S231P:label": "u"
     },
     {
@@ -99,7 +104,7 @@
       "@type": "S231P:RealOutput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Rate limited output if active is true, else output is equal to input",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{100,-20},{140,20}})))",
       "S231P:label": "y"
     }
   ]

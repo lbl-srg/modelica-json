@@ -1,0 +1,41 @@
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#"
+  },
+  "@graph": [
+    {
+      "@id": "http://example.org#FromModelica.ExtendsClause_4",
+      "@type": "S231P:Block",
+      "S231P:containsBlock": {
+        "@id": "http://example.org#FromModelica.ExtendsClause_4.gain"
+      },
+      "S231P:extends": "Buildings.Controls.OBC.CDL.Reals.PID(k=2, Ti=2)",
+      "S231P:hasParameter": {
+        "@id": "http://example.org#FromModelica.ExtendsClause_4.length"
+      },
+      "S231P:label": "ExtendsClause_4"
+    },
+    {
+      "@id": "http://example.org#FromModelica.ExtendsClause_4.gain",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Constant gain",
+      "S231P:graphics": "Placement(transformation(extent={{-60,-50},{-40,-30}})))",
+      "S231P:hasInstance": {
+        "@id": "http://example.org#FromModelica.ExtendsClause_4.gain.k"
+      },
+      "S231P:label": "gain"
+    },
+    {
+      "@id": "http://example.org#FromModelica.ExtendsClause_4.gain.k",
+      "S231P:isFinal": true,
+      "S231P:value": "k"
+    },
+    {
+      "@id": "http://example.org#FromModelica.ExtendsClause_4.length",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Length of the pipe",
+      "S231P:label": "length"
+    }
+  ]
+}

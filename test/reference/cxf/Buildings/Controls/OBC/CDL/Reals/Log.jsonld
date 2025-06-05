@@ -6,12 +6,14 @@
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Log",
       "@type": "S231P:ElementaryBlock",
+      "S231P:documentation": "info=<html>\n<p>\nBlock that outputs <code>y = log(u)</code>,\nwhere\n<code>u</code> is an input and <code>log()</code> is the\nnatural logarithm (base-e) function.\n</p>\n\n<p>\nAn error occurs if the input <code>u</code> is\nzero or negative.\n</p>\n\n<p align=\\center\\>\n<img src=\\modelica://Buildings/Resources/Images/Controls/OBC/CDL/Reals/Log.png\\\n     alt=\\log.png\\ />\n</p>\n\n</html>,revisions=<html>\n<ul>\n<li>\nMarch 2, 2020, by Michael Wetter:<br/>\nChanged icon to display dynamically the output value.\n</li>\n<li>\nJanuary 3, 2017, by Michael Wetter:<br/>\nFirst implementation, based on the implementation of the\nModelica Standard Library.\n</li>\n</ul>\n</html>",
       "S231P:hasInput": {
         "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Log.u"
       },
       "S231P:hasOutput": {
         "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Log.y"
       },
+      "S231P:icon": "coordinateSystem(extent={{-100,-100},{100,100}},preserveAspectRatio=true),graphics={Rectangle(extent={{-100,100},{100,-100}},lineColor={0,0,0},fillColor={255,255,255},fillPattern=FillPattern.Solid),Line(color={192,192,192},points={{-80,-80},{-80,68}}),Polygon(points={{-80,90},{-88,68},{-72,68},{-80,90}},lineColor={192,192,192},fillColor={192,192,192},fillPattern=FillPattern.Solid),Text(textString=\"%name\",textColor={0,0,255},extent={{-150,150},{150,110}}),Line(color={192,192,192},points={{-90,0},{68,0}}),Line(points={{-80,-80},{-79.2,-50.6},{-78.4,-37},{-77.6,-28},{-76.8,-21.3},{-75.2,-11.4},{-72.8,-1.31},{-69.5,8.08},{-64.7,17.9},{-57.5,28},{-47,38.1},{-31.8,48.1},{-10.1,58},{22.1,68},{68.7,78.1},{80,80}}),Text(textString=\"log\",textColor={192,192,192},extent={{-6,-24},{66,-72}}),Text(textString=DynamicSelect(\"\",String(y,textColor={0,0,0},extent={{226,60},{106,10}})}",
       "S231P:label": "Log"
     },
     {
@@ -19,7 +21,7 @@
       "@type": "S231P:RealInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Input for base e logarithm",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-140,-20},{-100,20}})))",
       "S231P:label": "u"
     },
     {
@@ -27,7 +29,7 @@
       "@type": "S231P:RealOutput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Base e logarithm of the input",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{100,-20},{140,20}})))",
       "S231P:label": "y"
     }
   ]

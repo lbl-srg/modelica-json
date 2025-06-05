@@ -86,6 +86,19 @@ The parser can be run with the app.js file as follows:
 ```
 node app.js -f <path of the file to parse>
 ```
+You can use the parser from a different directory by setting the `MODELICAJSONPATH` environment variable to the location of the `modelica-json` directory.
+
+The parser can then be run with the app.js file as follows:
+
+### Linux
+```
+node $MODELICAJSONPATH/app.js -f <path of the file to parse>
+```
+
+### Windows
+```
+node %MODELICAJSONPATH%\app.js -f <path of the file to parse>
+```
 
 #### Arguments :
 

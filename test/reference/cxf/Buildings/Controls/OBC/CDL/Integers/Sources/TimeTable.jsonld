@@ -1,12 +1,15 @@
 {
   "@context": {
     "S231P": "https://data.ashrae.org/S231P#",
-    "qudt": "http://qudt.org/schema/qudt#"
+    "qudt": "http://qudt.org/schema/qudt#",
+    "q": "http://qudt.org/vocab/quantitykind#",
+    "unit": "http://qudt.org/vocab/unit#"
   },
   "@graph": [
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.Sources.TimeTable",
       "@type": "S231P:ElementaryBlock",
+      "S231P:documentation": "info=<html>\n<p>\nBlock that outputs <code>Integer</code> time table values.\n</p>\n<p>\nThe block takes as a parameter a time table of a format:\n</p>\n<pre>\ntable = [ 0*3600, 2;\n          6*3600, 1;\n         18*3600, 8];\nperiod = 24*3600;\n</pre>\n<p>\nwhere the first column of <code>table</code> is time and the remaining column(s) are the table values.\nThe time column contains <code>Real</code> values that are in units of seconds if <code>timeScale = 1</code>.\nThe parameter <code>timeScale</code> can be used to scale the time values, for example, use\n<code>timeScale = 3600</code> if the values in the first column are interpreted as hours.\n</p>\n<p>\nThe values in column two and higher must be of type <code>Integer</code>, otherwise the model stops with an error.\n</p>\n<p>\nUntil a new tabulated value is set, the previous tabulated value is returned.\n</p>\n<p>\nThe table scope is repeated periodically with periodicity <code>period</code>.\n</p>\n</html>,revisions=<html>\n<ul>\n<li>\nOctober 21, 2021, by Michael Wetter:<br/>\nRemoved writing output value in icon (as it is an array of values).\n</li>\n<li>\nNovember 12, 2020, by Michael Wetter:<br/>\nReformulated to remove dependency to <code>Modelica.Units.SI</code>.<br/>\nThis is for\n<a href=\\https://github.com/lbl-srg/modelica-buildings/issues/2243\\>Buildings, issue 2243</a>.\n</li>\n<li>\nOctober 19, 2020, by Michael Wetter:<br/>\nRevised to call <code>round()</code> as a function.<br/>\nFor <a href=\\https://github.com/lbl-srg/modelica-buildings/issues/2170\\>Buildings, issue 2170</a>.\n</li>\n<li>\nOctober 7, 2020, by Michael Wetter:<br/>\nRevised implementation to add <code>timeSpan</code> and to guard against rounding errors.\nRefactored to avoid non-needed event-triggering functions.\nRemoved parameter <code>offset</code> as I dont see a use case that justifies this complexity.\n</li>\n<li>\nSeptember 14, 2020, by Milica Grahovac:<br/>\nInitial CDL implementation based on continuous time table implementation in CDL.\n</li>\n</ul>\n</html>",
       "S231P:hasOutput": {
         "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.Sources.TimeTable.y"
       },
@@ -21,6 +24,7 @@
           "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.Sources.TimeTable.timeScale"
         }
       ],
+      "S231P:icon": "coordinateSystem(extent={{-100,-100},{100,100}},preserveAspectRatio=true),graphics={Rectangle(extent={{-100,-100},{100,100}},lineColor={244,125,35},fillColor={255,255,255},fillPattern=FillPattern.Solid),Text(textString=\"%name\",textColor={0,0,255},extent={{-150,150},{150,110}}),Polygon(points={{-80,90},{-88,68},{-72,68},{-80,90}},lineColor={192,192,192},fillColor={192,192,192},fillPattern=FillPattern.Solid),Line(color={192,192,192},points={{-80,68},{-80,-80}}),Line(color={192,192,192},points={{-90,-70},{82,-70}}),Polygon(points={{90,-70},{68,-62},{68,-78},{90,-70}},lineColor={192,192,192},fillColor={192,192,192},fillPattern=FillPattern.Solid),Rectangle(extent={{-48,-50},{2,70}},lineColor={255,255,255},fillColor={255,215,136},fillPattern=FillPattern.Solid),Line(points={{-48,-50},{-48,70},{52,70},{52,-50},{-48,-50},{-48,-20},{52,-20},{52,10},{-48,10},{-48,40},{52,40},{52,70},{2,70},{2,-51}})}",
       "S231P:label": [
         "TimeTable",
         "getIndex"
@@ -30,10 +34,10 @@
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.Sources.TimeTable.period",
       "@type": "S231P:Parameter",
       "qudt:hasQuantityKind": {
-        "@id": "S231P:Time"
+        "@id": "q:Time"
       },
       "qudt:hasUnit": {
-        "@id": "S231P:s"
+        "@id": "unit:SEC"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Periodicity of table",
@@ -51,16 +55,18 @@
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Table matrix with time as a first table column (in seconds, unless timeScale is not 1) and Integers in all other columns",
+      "S231P:isArray": true,
       "S231P:isOfDataType": {
         "@id": "S231P:Real"
       },
-      "S231P:label": "table"
+      "S231P:label": "table[:,:]",
+      "S231P:numberDimensions": 2
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.Sources.TimeTable.timeScale",
       "@type": "S231P:Parameter",
       "qudt:hasUnit": {
-        "@id": "S231P:1"
+        "@id": "unit:UNITLESS"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Time scale of first table column. Set to 3600 if time in table is in hours",
@@ -75,8 +81,11 @@
       "@type": "S231P:IntegerOutput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Output with tabulated values",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
-      "S231P:label": "y"
+      "S231P:graphics": "Placement(transformation(extent={{100,-20},{140,20}})))",
+      "S231P:isArray": true,
+      "S231P:label": "y[nout]",
+      "S231P:numberDimensions": 1,
+      "S231P:sizeOfDimensions": "(nout)"
     }
   ]
 }

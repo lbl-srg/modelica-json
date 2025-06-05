@@ -6,6 +6,7 @@
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.RealExtractor",
       "@type": "S231P:ElementaryBlock",
+      "S231P:documentation": "info=<html>\n<p>\nBlock that returns\n</p>\n<pre>    y = u[index];\n</pre>\n<p>\nwhere <code>u</code> is a vector-valued <code>Real</code> input signal and\n<code>index</code> is an <code>Integer</code> input signal. When the <code>index</code>\nis out of range,\n</p>\n<ul>\n<li>\nthen <code>y = u[nin]</code> if <code>index &gt; nin</code>, and\n</li>\n<li>\n<code>y = u[1]</code> if <code>index &lt; 1</code>.\n</li>\n</ul>\n</html>,revisions=<html>\n<ul>\n<li>\nApril 19, 2023, by Michael Wetter:<br/>\nConverted equation section to algorithm section.\nThis works around the issue reported\nin <a href=\\https://github.com/OpenModelica/OpenModelica/issues/10580\\>OpenModelica, #10580</a>.\n</li>\n<li>\nOctober 14, 2022, by Jianjun Hu:<br/>\nChanged output from a specified value to the element with the nearest valid index when the index input is out of range.\n</li>\n<li>\nJuly 19, 2018, by Jianjun Hu:<br/>\nFirst implementation, based on the implementation of the\nModelica Standard Library.\n</li>\n</ul>\n</html>",
       "S231P:hasInput": [
         {
           "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.RealExtractor.index"
@@ -20,6 +21,7 @@
       "S231P:hasParameter": {
         "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.RealExtractor.nin"
       },
+      "S231P:icon": "coordinateSystem(extent={{-100,-100},{100,100}},preserveAspectRatio=true),graphics={Rectangle(extent={{-100,-100},{100,100}},lineColor={0,0,127},fillColor={255,255,255},fillPattern=FillPattern.Solid),Rectangle(extent={{-80,50},{-40,-50}},lineColor={0,0,127},fillColor={255,255,255},fillPattern=FillPattern.Solid),Polygon(points={{-84.4104,1.9079},{-84.4104,-2.09208},{-80.4104,-0.09208},{-84.4104,1.9079}},lineColor={0,0,127},fillColor={0,0,0},fillPattern=FillPattern.Solid),Line(color={0,0,127},points={{-62,2},{-50.1395,12.907},{-39.1395,12.907}}),Line(color={0,0,127},points={{-63,4},{-49,40},{-39,40}}),Line(color={0,0,127},points={{-102,0},{-65.0373,-0.01802}}),Ellipse(extent={{-70.0437,4.5925},{-60.0437,-4.90745}},lineColor={0,0,127},fillColor={0,0,127},fillPattern=FillPattern.Solid),Line(color={0,0,127},points={{-63,-5},{-50,-40},{-39,-40}}),Line(color={0,0,127},points={{-62,-2},{-50.0698,-12.907},{-39.0698,-12.907}}),Polygon(points={{-38.8808,-11},{-38.8808,-15},{-34.8808,-13},{-38.8808,-11}},lineColor={0,0,127},fillColor={255,255,255},fillPattern=FillPattern.Solid),Polygon(points={{-39,42},{-39,38},{-35,40},{-39,42}},lineColor={0,0,127},fillColor={255,255,255},fillPattern=FillPattern.Solid),Polygon(points={{-38.8728,-38.0295},{-38.8728,-42.0295},{-34.8728,-40.0295},{-38.8728,-38.0295}},lineColor={0,0,127},fillColor={255,255,255},fillPattern=FillPattern.Solid),Polygon(points={{-38.9983,14.8801},{-38.9983,10.8801},{-34.9983,12.8801},{-38.9983,14.8801}},lineColor={0,0,127},fillColor={255,255,255},fillPattern=FillPattern.Solid),Rectangle(extent={{-30,50},{30,-50}},lineColor={0,0,127},fillColor={235,235,235},fillPattern=FillPattern.Solid),Line(color={0,0,127},points={{100,0},{0,0}}),Line(color={255,128,0},points={{0,2},{0,-104}}),Line(color={0,0,127},points={{-35,40},{-20,40}}),Line(color={0,0,127},points={{-35,13},{-20,13}}),Line(color={0,0,127},points={{-35,-13},{-20,-13}}),Line(color={0,0,127},points={{-35,-40},{-20,-40}}),Polygon(points={{0,0},{-20,13},{-20,13},{0,0},{0,0}},lineColor={0,0,127}),Ellipse(extent={{-6,6},{6,-6}},lineColor={255,128,0},fillColor={255,128,0},fillPattern=FillPattern.Solid),Text(textString=\"%name\",textColor={0,0,255},extent={{-100,100},{100,140}})}",
       "S231P:label": "RealExtractor"
     },
     {
@@ -27,7 +29,7 @@
       "@type": "S231P:IntegerInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Index of input vector element to be extracted out",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"origin\":{\"x\":0,\"y\":-120},\"extent\":[{\"x\":-20,\"y\":-20},{\"x\":20,\"y\":20}],\"rotation\":90}}}",
+      "S231P:graphics": "Placement(transformation(origin={0,-120},extent={{-20,-20},{20,20}},rotation=90)))",
       "S231P:label": "index"
     },
     {
@@ -46,15 +48,18 @@
       "@type": "S231P:RealInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Real input signals",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]}}}",
-      "S231P:label": "u"
+      "S231P:graphics": "Placement(transformation(extent={{-140,-20},{-100,20}})))",
+      "S231P:isArray": true,
+      "S231P:label": "u[nin]",
+      "S231P:numberDimensions": 1,
+      "S231P:sizeOfDimensions": "(nin)"
     },
     {
       "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.RealExtractor.y",
       "@type": "S231P:RealOutput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Real signal extracted from input vector, u[index]",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":100,\"y\":-20},{\"x\":140,\"y\":20}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{100,-20},{140,20}})))",
       "S231P:label": "y"
     }
   ]

@@ -228,7 +228,7 @@ function commonGraphicItems (obj) {
     strArr.push('fontSize=' + util.format('%s', fontSize))
   }
   if (textColor != null) {
-    strArr.push('textColor=' + colorParse(extent))
+    strArr.push('textColor=' + colorParse(textColor))
   }
   if (horizontalAlignment != null) {
     strArr.push('horizontalAlignment=' + util.format('%s', horizontalAlignment))
