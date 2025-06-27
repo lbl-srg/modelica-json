@@ -3,6 +3,8 @@ const mo = require('mocha')
 const sinon = require('sinon')
 const algSV = require('../jsParser/parser/Algorithm_sectionVisitor.js').Algorithm_sectionVisitor
 const sv = require('../jsParser/parser/StatementVisitor.js')
+const annV = require('../jsParser/parser/AnnotationVisitor.js').AnnotationVisitor
+const cmv = require('../jsParser/parser/Class_modificationVisitor.js')
 
 mo.afterEach(() => {
   sinon.restore()
@@ -81,9 +83,6 @@ mo.describe('testing Algorithm_sectionVisitor.js', function () {
 })
 mo.describe('testing AnnotationVisitor.js', function () {
     mo.it('testing visitAnnotation(ctx)', function () {
-        const annV = require('../jsParser/parser/AnnotationVisitor.js').AnnotationVisitor
-        const cmv = require('../jsParser/parser/Class_modificationVisitor.js')
-
         class ctxMock {
             class_modification () {
                 return 'mocked class modifier'
@@ -100,5 +99,27 @@ mo.describe('testing AnnotationVisitor.js', function () {
         const output = visitor.visitAnnotation(input)
         const referenceOutput = 'mocked class modifier'
         as.deepEqual(output.class_modification, referenceOutput, 'expected: ' + referenceOutput + ' ; actual: ' + output.class_modification)
+    })
+})
+mo.describe('testing Argument_listVisitor.js', function () {
+    mo.it('testing visitArgument_list(ctx)', function () {
+        const argV = require('../jsParser/parser/ArgumentVisitor.js')
+        const alv = require('../jsParser/parser/Argument_listVisitor.js').Argument_listVisitor
+        class ctxMock {
+            argument () {
+                return [1,2,3,4,5]
+            }
+        }
+        class ArgumentVisitorMock {
+            visitArgument (arg) {
+                return arg
+            }
+        }
+        sinon.stub(argV, 'ArgumentVisitor').returns(new ArgumentVisitorMock)
+        const visitor = new alv()
+        const input = new ctxMock()
+        const output = visitor.visitArgument_list(input)
+        const referenceOutput = [1,2,3,4,5]
+        as.deepEqual(output.args, referenceOutput, 'expected: ' + referenceOutput + ' ; actual: ' + output.args)
     })
 })
