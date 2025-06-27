@@ -7,6 +7,9 @@ const annV = require('../jsParser/parser/AnnotationVisitor.js').AnnotationVisito
 const cmv = require('../jsParser/parser/Class_modificationVisitor.js')
 const argV = require('../jsParser/parser/ArgumentVisitor.js')
 const alv = require('../jsParser/parser/Argument_listVisitor.js').Argument_listVisitor
+const emorv = require('../jsParser/parser/Element_modification_or_replaceableVisitor.js')
+const erv = require('../jsParser/parser/Element_redeclarationVisitor.js')
+const argv = require('../jsParser/parser/ArgumentVisitor.js').ArgumentVisitor
 
 mo.afterEach(() => {
   sinon.restore()
@@ -125,9 +128,6 @@ mo.describe('testing Argument_listVisitor.js', function () {
 })
 mo.describe('testing ArgumentVisitor.js', function () {
     mo.it('testing visitArgument(ctx)', function () {
-        const emorv = require('../jsParser/parser/Element_modification_or_replaceableVisitor.js')
-        const erv = require('../jsParser/parser/Element_redeclarationVisitor.js')
-        const argv = require('../jsParser/parser/ArgumentVisitor.js').ArgumentVisitor
         class ctxMock {
             element_modification_or_replaceable () {
                 return "mocked element_modification_or_replaceable"
