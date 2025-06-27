@@ -28,12 +28,7 @@ mo.describe('testing Algorithm_sectionVisitor.js', function () {
                     return [1,2,3,4,5]
                 }
             }
-            class statementVisitorMock {
-                visitStatement (stmt) {
-                    return stmt
-                }
-            }
-            sinon.stub(sv, 'StatementVisitor').returns(new statementVisitorMock)
+            statementVisitorStub = sinon.stub(sv.StatementVisitor.prototype, 'visitStatement').callsFake((stmt) => stmt)
             const visitor = new algSV()
             const input = new ctxMockTrue()
             const output = visitor.visitAlgorithm_section(input)
@@ -50,12 +45,7 @@ mo.describe('testing Algorithm_sectionVisitor.js', function () {
                     return [1,2,3,4,5]
                 }
             }
-            class statementVisitorMock {
-                visitStatement (stmt) {
-                    return stmt
-                }
-            }
-            sinon.stub(sv, 'StatementVisitor').returns(new statementVisitorMock)
+            statementVisitorStub = sinon.stub(sv.StatementVisitor.prototype, 'visitStatement').callsFake((stmt) => stmt)
             const visitor = new algSV()
             const input = new ctxMockFalse()
             const output = visitor.visitAlgorithm_section(input)
@@ -72,12 +62,7 @@ mo.describe('testing Algorithm_sectionVisitor.js', function () {
                     return [1,2,3,4,5]
                 }
             }
-            class statementVisitorMock {
-                visitStatement (stmt) {
-                    return stmt
-                }
-            }
-            sinon.stub(sv, 'StatementVisitor').returns(new statementVisitorMock)
+            statementVisitorStub = sinon.stub(sv.StatementVisitor.prototype, 'visitStatement').callsFake((stmt) => stmt)
             const visitor = new algSV()
             const input = new ctxMockNull()
             const output = visitor.visitAlgorithm_section(input)
@@ -95,12 +80,7 @@ mo.describe('testing AnnotationVisitor.js', function () {
                 return 'mocked class modifier'
             }
         }
-        class class_modificationVisitorMock {
-            visitClass_modification (class_modification) {
-                return class_modification
-            }
-        }
-        sinon.stub(cmv, 'Class_modificationVisitor').returns(new class_modificationVisitorMock)
+        sinon.stub(cmv.Class_modificationVisitor.prototype, 'visitClass_modification').callsFake((class_modification) => class_modification)
         const visitor = new annV()
         const input = new ctxMock()
         const output = visitor.visitAnnotation(input)
@@ -115,12 +95,7 @@ mo.describe('testing Argument_listVisitor.js', function () {
                 return [1,2,3,4,5]
             }
         }
-        class ArgumentVisitorMock {
-            visitArgument (arg) {
-                return arg
-            }
-        }
-        sinon.stub(argV, 'ArgumentVisitor').returns(new ArgumentVisitorMock)
+        sinon.stub(argV.ArgumentVisitor.prototype, 'visitArgument').callsFake((arg) => arg)
         const visitor = new alv()
         const input = new ctxMock()
         const output = visitor.visitArgument_list(input)
@@ -138,18 +113,8 @@ mo.describe('testing ArgumentVisitor.js', function () {
                 return "mocked element_redeclaration"
             }
         }
-        class Element_modification_or_replaceableVisitorMocked {
-            visitElement_modification_or_replaceable (element_modification_or_replaceable) {
-                return element_modification_or_replaceable
-            }
-        }
-        class Element_redeclarationVisitorMocked {
-            visitElement_redeclaration (element_redeclaration) {
-                return element_redeclaration
-            }
-        }
-        sinon.stub(emorv, 'Element_modification_or_replaceableVisitor').returns(new Element_modification_or_replaceableVisitorMocked)
-        sinon.stub(erv, 'Element_redeclarationVisitor').returns(new Element_redeclarationVisitorMocked)
+        sinon.stub(emorv.Element_modification_or_replaceableVisitor.prototype, 'visitElement_modification_or_replaceable').callsFake((input) => input)
+        sinon.stub(erv.Element_redeclarationVisitor.prototype, 'visitElement_redeclaration').callsFake((input) => input)
         const visitor = new argv()
         const input = new ctxMock()
         const output = visitor.visitArgument(input)
@@ -158,7 +123,6 @@ mo.describe('testing ArgumentVisitor.js', function () {
         as.deepEqual(output.element_redeclaration, referenceOutput[1], 'expected: ' + referenceOutput[1] + ' ; actual: ' + output.element_redeclaration)
     })
 })
-// Need 1 test for if (app_opps.length == (terms.length - 1)) and one where it's not
 mo.describe('testing Arithmetic_expressionVisitor.js', function () {
     mo.describe('visitArithmetic_expression(ctx)', function () {
         class addMock {
@@ -167,11 +131,6 @@ mo.describe('testing Arithmetic_expressionVisitor.js', function () {
             }
             getText () {
                 return this.n
-            }
-        }
-        class TermVisitorMocked {
-            visitTerm (t) {
-                return t
             }
         }
         mo.it('testing when add_ops.length == (terms.length -1)', function () {
@@ -183,7 +142,7 @@ mo.describe('testing Arithmetic_expressionVisitor.js', function () {
                     return [3,4,5]
                 }
             }
-            sinon.stub(tv, 'TermVisitor').returns(new TermVisitorMocked())
+            sinon.stub(tv.TermVisitor.prototype, 'visitTerm').callsFake((t) => t)
             const visitor = new vae()
             const input = new ctxMock()
             const output = visitor.visitArithmetic_expression(input)
@@ -201,7 +160,7 @@ mo.describe('testing Arithmetic_expressionVisitor.js', function () {
                     return [3,4]
                 }
             }
-            sinon.stub(tv, 'TermVisitor').returns(new TermVisitorMocked())
+            sinon.stub(tv.TermVisitor.prototype, 'visitTerm').callsFake((t) => t)
             const visitor = new vae()
             const input = new ctxMock()
             const output = visitor.visitArithmetic_expression(input)
