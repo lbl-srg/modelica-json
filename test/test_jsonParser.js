@@ -10,6 +10,8 @@ const alv = require('../jsParser/parser/Argument_listVisitor.js').Argument_listV
 const emorv = require('../jsParser/parser/Element_modification_or_replaceableVisitor.js')
 const erv = require('../jsParser/parser/Element_redeclarationVisitor.js')
 const argv = require('../jsParser/parser/ArgumentVisitor.js').ArgumentVisitor
+const tv = require('../jsParser/parser/TermVisitor.js')
+const vae = require('../jsParser/parser/Arithmetic_expressionVisitor.js').Arithmetic_expressionVisitor
 
 mo.afterEach(() => {
   sinon.restore()
@@ -154,5 +156,58 @@ mo.describe('testing ArgumentVisitor.js', function () {
         const referenceOutput = ['mocked element_modification_or_replaceable', 'mocked element_redeclaration']
         as.deepEqual(output.element_modification_or_replaceable, referenceOutput[0], 'expected: ' + referenceOutput[0] + ' ; actual: ' + output.element_modification_or_replaceable)
         as.deepEqual(output.element_redeclaration, referenceOutput[1], 'expected: ' + referenceOutput[1] + ' ; actual: ' + output.element_redeclaration)
+    })
+})
+// Need 1 test for if (app_opps.length == (terms.length - 1)) and one where it's not
+mo.describe('testing Arithmetic_expressionVisitor.js', function () {
+    mo.describe('visitArithmetic_expression(ctx)', function () {
+        class addMock {
+            constructor (n) {
+                this.n = n
+            }
+            getText () {
+                return this.n
+            }
+        }
+        class TermVisitorMocked {
+            visitTerm (t) {
+                return t
+            }
+        }
+        mo.it('testing when add_ops.length == (terms.length -1)', function () {
+            class ctxMock {
+                add_op () {
+                    return [new addMock(1),new addMock(2)]
+                }
+                term () {
+                    return [3,4,5]
+                }
+            }
+            sinon.stub(tv, 'TermVisitor').returns(new TermVisitorMocked())
+            const visitor = new vae()
+            const input = new ctxMock()
+            const output = visitor.visitArithmetic_expression(input)
+            referenceOutput = [[null, 3], [1, 4], [2,5]]
+            as.deepEqual([output.arithmetic_term_list[0].add_op, output.arithmetic_term_list[0].term], referenceOutput[0], 'expected: ' + referenceOutput[0] + ' ; actual: ' + [output.arithmetic_term_list[0].add_op, output.arithmetic_term_list[0].term])
+            as.deepEqual([output.arithmetic_term_list[1].add_op, output.arithmetic_term_list[1].term], referenceOutput[1], 'expected: ' + referenceOutput[1] + ' ; actual: ' + [output.arithmetic_term_list[1].add_op, output.arithmetic_term_list[1].term])
+            as.deepEqual([output.arithmetic_term_list[2].add_op, output.arithmetic_term_list[2].term], referenceOutput[2], 'expected: ' + referenceOutput[2] + ' ; actual: ' + [output.arithmetic_term_list[2].add_op, output.arithmetic_term_list[2].term]) 
+        })
+        mo.it('testing when add_ops.length != (terms.length -1)', function () {
+            class ctxMock {
+                add_op () {
+                    return [new addMock(1),new addMock(2)]
+                }
+                term () {
+                    return [3,4]
+                }
+            }
+            sinon.stub(tv, 'TermVisitor').returns(new TermVisitorMocked())
+            const visitor = new vae()
+            const input = new ctxMock()
+            const output = visitor.visitArithmetic_expression(input)
+            referenceOutput = [[1, 3], [2,4]]
+            as.deepEqual([output.arithmetic_term_list[0].add_op, output.arithmetic_term_list[0].term], referenceOutput[0], 'expected: ' + referenceOutput[0] + ' ; actual: ' + [output.arithmetic_term_list[0].add_op, output.arithmetic_term_list[0].term])
+            as.deepEqual([output.arithmetic_term_list[1].add_op, output.arithmetic_term_list[1].term], referenceOutput[1], 'expected: ' + referenceOutput[1] + ' ; actual: ' + [output.arithmetic_term_list[1].add_op, output.arithmetic_term_list[1].term])
+        })
     })
 })
