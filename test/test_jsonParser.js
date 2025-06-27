@@ -5,6 +5,8 @@ const algSV = require('../jsParser/parser/Algorithm_sectionVisitor.js').Algorith
 const sv = require('../jsParser/parser/StatementVisitor.js')
 const annV = require('../jsParser/parser/AnnotationVisitor.js').AnnotationVisitor
 const cmv = require('../jsParser/parser/Class_modificationVisitor.js')
+const argV = require('../jsParser/parser/ArgumentVisitor.js')
+const alv = require('../jsParser/parser/Argument_listVisitor.js').Argument_listVisitor
 
 mo.afterEach(() => {
   sinon.restore()
@@ -103,8 +105,6 @@ mo.describe('testing AnnotationVisitor.js', function () {
 })
 mo.describe('testing Argument_listVisitor.js', function () {
     mo.it('testing visitArgument_list(ctx)', function () {
-        const argV = require('../jsParser/parser/ArgumentVisitor.js')
-        const alv = require('../jsParser/parser/Argument_listVisitor.js').Argument_listVisitor
         class ctxMock {
             argument () {
                 return [1,2,3,4,5]
@@ -121,5 +121,38 @@ mo.describe('testing Argument_listVisitor.js', function () {
         const output = visitor.visitArgument_list(input)
         const referenceOutput = [1,2,3,4,5]
         as.deepEqual(output.args, referenceOutput, 'expected: ' + referenceOutput + ' ; actual: ' + output.args)
+    })
+})
+mo.describe('testing ArgumentVisitor.js', function () {
+    mo.it('testing visitArgument(ctx)', function () {
+        const emorv = require('../jsParser/parser/Element_modification_or_replaceableVisitor.js')
+        const erv = require('../jsParser/parser/Element_redeclarationVisitor.js')
+        const argv = require('../jsParser/parser/ArgumentVisitor.js').ArgumentVisitor
+        class ctxMock {
+            element_modification_or_replaceable () {
+                return "mocked element_modification_or_replaceable"
+            }
+            element_redeclaration () {
+                return "mocked element_redeclaration"
+            }
+        }
+        class Element_modification_or_replaceableVisitorMocked {
+            visitElement_modification_or_replaceable (element_modification_or_replaceable) {
+                return element_modification_or_replaceable
+            }
+        }
+        class Element_redeclarationVisitorMocked {
+            visitElement_redeclaration (element_redeclaration) {
+                return element_redeclaration
+            }
+        }
+        sinon.stub(emorv, 'Element_modification_or_replaceableVisitor').returns(new Element_modification_or_replaceableVisitorMocked)
+        sinon.stub(erv, 'Element_redeclarationVisitor').returns(new Element_redeclarationVisitorMocked)
+        const visitor = new argv()
+        const input = new ctxMock()
+        const output = visitor.visitArgument(input)
+        const referenceOutput = ['mocked element_modification_or_replaceable', 'mocked element_redeclaration']
+        as.deepEqual(output.element_modification_or_replaceable, referenceOutput[0], 'expected: ' + referenceOutput[0] + ' ; actual: ' + output.element_modification_or_replaceable)
+        as.deepEqual(output.element_redeclaration, referenceOutput[1], 'expected: ' + referenceOutput[1] + ' ; actual: ' + output.element_redeclaration)
     })
 })
