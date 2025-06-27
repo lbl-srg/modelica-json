@@ -2,7 +2,6 @@ const as = require('assert')
 const mo = require('mocha')
 const sinon = require('sinon')
 const algSV = require('../jsParser/parser/Algorithm_sectionVisitor.js').Algorithm_sectionVisitor
-const algSec = require('../jsParser/domain/Algorithm_section.js')
 const sv = require('../jsParser/parser/StatementVisitor.js')
 
 mo.afterEach(() => {
@@ -79,4 +78,27 @@ mo.describe('testing Algorithm_sectionVisitor.js', function () {
         })
     })
 
+})
+mo.describe('testing AnnotationVisitor.js', function () {
+    mo.it('testing visitAnnotation(ctx)', function () {
+        const annV = require('../jsParser/parser/AnnotationVisitor.js').AnnotationVisitor
+        const cmv = require('../jsParser/parser/Class_modificationVisitor.js')
+
+        class ctxMock {
+            class_modification () {
+                return 'mocked class modifier'
+            }
+        }
+        class class_modificationVisitorMock {
+            visitClass_modification (class_modification) {
+                return class_modification
+            }
+        }
+        sinon.stub(cmv, 'Class_modificationVisitor').returns(new class_modificationVisitorMock)
+        const visitor = new annV()
+        const input = new ctxMock()
+        const output = visitor.visitAnnotation(input)
+        const referenceOutput = 'mocked class modifier'
+        as.deepEqual(output.class_modification, referenceOutput, 'expected: ' + referenceOutput + ' ; actual: ' + output.class_modification)
+    })
 })
