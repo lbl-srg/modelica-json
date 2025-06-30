@@ -23,6 +23,8 @@ const cv = require('../jsParser/parser/CommentVisitor.js').CommentVisitor
 const tsv = require('../jsParser/parser/Type_specifierVisitor.js').Type_specifierVisitor
 const cd1v = require('../jsParser/parser/Component_declaration1Visitor.js').Component_declaration1Visitor
 const cc1v = require('../jsParser/parser/Component_clause1Visitor.js').Component_clause1Visitor
+const clv = require('../jsParser/parser/Component_listVisitor.js').Component_listVisitor
+const ccv = require('../jsParser/parser/Component_clauseVisitor.js').Component_clauseVisitor
 
 mo.afterEach(() => {
   sinon.restore()
@@ -413,6 +415,7 @@ mo.describe('testing Class_specifierVisitor.js', function () {
             const referenceOutput = 'mocked long_class_specifier'
             as.deepEqual(output.long_class_specifier, referenceOutput, 'expected: ' + referenceOutput + ' ; actual: ' + output.long_class_specifier)
         })
+        // NOT WORKING
         mo.it('testing short_class_specifier', function () {
             sinon.stub(scsv.prototype, 'visitShort_class_specifier').callsFake((class_specifier) => class_specifier)
             const visitor = new csv()
@@ -421,6 +424,7 @@ mo.describe('testing Class_specifierVisitor.js', function () {
             const referenceOutput = 'mocked short_class_specifier'
             as.deepEqual(output.short_class_specifier, referenceOutput, 'expected: ' + referenceOutput + ' ; actual: ' + output.short_class_specifier)
         })
+        //NOT WORKING
         mo.it('testing der_class_specifier', function () {
             sinon.stub(dcsv.prototype, 'visitDer_class_specifier').callsFake((class_specifier) => class_specifier)
             const visitor = new csv()
@@ -474,6 +478,36 @@ mo.describe('testing Component_clause1Visitor.js', function () {
         as.deepEqual(output.type_prefix, referenceOutput[0], 'expected: ' + referenceOutput[0] + ' ; actual: ' + output.type_prefix)
         as.deepEqual(output.type_specifier, referenceOutput[1], 'expected: ' + referenceOutput[1] + ' ; actual: ' + output.type_specifier)
         as.deepEqual(output.component_declaration1, referenceOutput[2], 'expected: ' + referenceOutput[2] + ' ; actual: ' + output.Component_declaration1)
+    })
+})
+mo.describe('testing Component_clauseVisitor.js', function () {
+    mo.it('testing visitComponent_clause(ctx)', function () {
+        class ctxMock {
+            type_prefix () {
+                return 'mocked type_prefix'
+            }
+            type_specifier () {
+                return 'mocked type_specifier'
+            }
+            array_subscripts () {
+                return 'mocked array_subscripts'
+            }
+            component_list () {
+                return 'mocked component_list'
+            }
+        }
+        sinon.stub(tpv.prototype, 'visitType_prefix').callsFake((type_prefix) => type_prefix)
+        sinon.stub(tsv.prototype, 'visitType_specifier').callsFake((type_specifier) => type_specifier)
+        sinon.stub(asv.prototype, 'visitArray_subscripts').callsFake((array_subscripts) => array_subscripts)
+        sinon.stub(clv.prototype, 'visitComponent_list').callsFake((component_list) => component_list)
+        const visitor = new ccv()
+        const input = new ctxMock()
+        const output = visitor.visitComponent_clause(input)
+        const referenceOutput = ['mocked type_prefix','mocked type_specifier','mocked array_subscripts','mocked component_list']
+        as.deepEqual(output.type_prefix, referenceOutput[0], 'expected: ' + referenceOutput[0] + ' ; actual: ' + output.type_prefix)
+        as.deepEqual(output.type_specifier, referenceOutput[1], 'expected: ' + referenceOutput[1] + ' ; actual: ' + output.type_specifier)
+        as.deepEqual(output.array_subscripts, referenceOutput[2], 'expected: ' + referenceOutput[2] + ' ; actual: ' + output.array_subscripts)
+        as.deepEqual(output.component_list, referenceOutput[3], 'expected: ' + referenceOutput[3] + ' ; actual: ' + output.component_list)
     })
 })
 
