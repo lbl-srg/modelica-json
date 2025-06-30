@@ -25,6 +25,9 @@ const cd1v = require('../jsParser/parser/Component_declaration1Visitor.js').Comp
 const cc1v = require('../jsParser/parser/Component_clause1Visitor.js').Component_clause1Visitor
 const clv = require('../jsParser/parser/Component_listVisitor.js').Component_listVisitor
 const ccv = require('../jsParser/parser/Component_clauseVisitor.js').Component_clauseVisitor
+const dv = require('../jsParser/parser/DeclarationVisitor.js').DeclarationVisitor
+const cav = require('../jsParser/parser/Condition_attributeVisitor.js').Condition_attributeVisitor
+const comDecV = require('../jsParser/parser/Component_declarationVisitor.js').Component_declarationVisitor
 
 mo.afterEach(() => {
   sinon.restore()
@@ -512,7 +515,6 @@ mo.describe('testing Component_clauseVisitor.js', function () {
 })
 mo.describe('testing Component_declaration1Visitor.js', function () {
     mo.it('testing visitComponent_declaration1(ctx)', function () {
-        const dv = require('../jsParser/parser/DeclarationVisitor.js').DeclarationVisitor
         class ctxMock {
             declaration () {
                 return 'mocked declaration'
@@ -531,5 +533,29 @@ mo.describe('testing Component_declaration1Visitor.js', function () {
         as.deepEqual(output.comment, referenceOutput[1], 'expected: ' + referenceOutput[1] + ' ; actual: ' + output.comment)
     })
 })
-
+mo.describe('testing Component_declarationVisitor.js', function () {
+    mo.it('testing visitComponent_declaration(ctx)', function () {
+        class ctxMock {
+            declaration () {
+                return 'mocked declaration'
+            }
+            condition_attribute () {
+                return 'mocked condition_attribute'
+            }
+            comment () {
+                return 'mocked comment'
+            }
+        }
+        sinon.stub(dv.prototype, 'visitDeclaration').callsFake((declaration) => declaration)
+        sinon.stub(cav.prototype, 'visitCondition_attribute').callsFake((condition_attribute) => condition_attribute)
+        sinon.stub(cv.prototype, 'visitComment').callsFake((comment) => comment)
+        const visitor = new comDecV()
+        const input = new ctxMock()
+        const output = visitor.visitComponent_declaration(input)
+        const referenceOutput = ['mocked declaration', 'mocked condition_attribute', 'mocked comment']
+        as.deepEqual(output.declaration, referenceOutput[0], 'expected: ' + referenceOutput[0] + ' ; actual: ' + output.declaration)
+        as.deepEqual(output.condition_attribute, referenceOutput[1], 'expected: ' + referenceOutput[1] + ' ; actual: ' + output.condition_attribute)
+        as.deepEqual(output.comment, referenceOutput[2], 'expected: ' + referenceOutput[2] + ' ; actual: ' + output.comment)
+    })
+})
 
