@@ -124,7 +124,7 @@ mo.describe('testing ArgumentVisitor.js', function () {
     })
 })
 mo.describe('testing Arithmetic_expressionVisitor.js', function () {
-    mo.describe('visitArithmetic_expression(ctx)', function () {
+    mo.describe('testing visitArithmetic_expression(ctx)', function () {
         class addMock {
             constructor (n) {
                 this.n = n
@@ -168,5 +168,22 @@ mo.describe('testing Arithmetic_expressionVisitor.js', function () {
             as.deepEqual([output.arithmetic_term_list[0].add_op, output.arithmetic_term_list[0].term], referenceOutput[0], 'expected: ' + referenceOutput[0] + ' ; actual: ' + [output.arithmetic_term_list[0].add_op, output.arithmetic_term_list[0].term])
             as.deepEqual([output.arithmetic_term_list[1].add_op, output.arithmetic_term_list[1].term], referenceOutput[1], 'expected: ' + referenceOutput[1] + ' ; actual: ' + [output.arithmetic_term_list[1].add_op, output.arithmetic_term_list[1].term])
         })
+    })
+})
+mo.describe('testing Array_subscriptsVisitor.js', function () {
+    mo.it('testing visitArray_subscripts(ctx)', function () {
+        const asv = require('../jsParser/parser/Array_subscriptsVisitor.js').Array_subscriptsVisitor
+        const subV = require('../jsParser/parser/SubscriptVisitor.js') 
+        class ctxMock {
+            subscript () {
+                return [1,2,3,4,5]
+            }
+        }
+        sinon.stub(subV.SubscriptVisitor.prototype, 'visitSubscript').callsFake((sub) => sub)
+        const visitor = new asv()
+        const input = new ctxMock()
+        const output = visitor.visitArray_subscripts(input)
+        const referenceOutput = [1,2,3,4,5]
+        as.deepEqual(output.subscripts,referenceOutput,'expected: ' + referenceOutput + ' ; actual: ' + output.subscripts)
     })
 })
