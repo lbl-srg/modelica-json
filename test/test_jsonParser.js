@@ -12,6 +12,10 @@ const erv = require('../jsParser/parser/Element_redeclarationVisitor.js')
 const argv = require('../jsParser/parser/ArgumentVisitor.js').ArgumentVisitor
 const tv = require('../jsParser/parser/TermVisitor.js')
 const vae = require('../jsParser/parser/Arithmetic_expressionVisitor.js').Arithmetic_expressionVisitor
+const asv = require('../jsParser/parser/Array_subscriptsVisitor.js').Array_subscriptsVisitor
+const subV = require('../jsParser/parser/SubscriptVisitor.js')
+const tpv = require('../jsParser/parser/Type_prefixVisitor.js') 
+const bpv = require('../jsParser/parser/Base_prefixVisitor.js').Base_prefixVisitor
 
 mo.afterEach(() => {
   sinon.restore()
@@ -172,8 +176,6 @@ mo.describe('testing Arithmetic_expressionVisitor.js', function () {
 })
 mo.describe('testing Array_subscriptsVisitor.js', function () {
     mo.it('testing visitArray_subscripts(ctx)', function () {
-        const asv = require('../jsParser/parser/Array_subscriptsVisitor.js').Array_subscriptsVisitor
-        const subV = require('../jsParser/parser/SubscriptVisitor.js') 
         class ctxMock {
             subscript () {
                 return [1,2,3,4,5]
@@ -185,5 +187,20 @@ mo.describe('testing Array_subscriptsVisitor.js', function () {
         const output = visitor.visitArray_subscripts(input)
         const referenceOutput = [1,2,3,4,5]
         as.deepEqual(output.subscripts,referenceOutput,'expected: ' + referenceOutput + ' ; actual: ' + output.subscripts)
+    })
+})
+mo.describe('testing Base_prefixVisitor.js', function () {
+    mo.it('testing visitBase_prefix(ctx)', function () {
+        class ctxMock {
+            type_prefix () {
+                return 'mocked type_prefix'
+            }
+        }
+        sinon.stub(tpv.Type_prefixVisitor.prototype, 'visitType_prefix').callsFake((type_prefix) => type_prefix)
+        const visitor = new bpv()
+        const input = new ctxMock()
+        const output = visitor.visitBase_prefix(input)
+        const referenceOutput = 'mocked type_prefix'
+        as.deepEqual(output.type_prefix,referenceOutput,'expected: ' + referenceOutput + ' ; actual: ' + output.type_prefix)
     })
 })
