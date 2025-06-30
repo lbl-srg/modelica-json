@@ -558,4 +558,20 @@ mo.describe('testing Component_declarationVisitor.js', function () {
         as.deepEqual(output.comment, referenceOutput[2], 'expected: ' + referenceOutput[2] + ' ; actual: ' + output.comment)
     })
 })
+mo.describe('testing Component_listVisitor.js', function () {
+    mo.it('testing visitComponent_list(ctx)', function () {
+        class ctxMock {
+            component_declaration () {
+                return [1,2,3,4,5]
+            }
+        }
+        sinon.stub(comDecV.prototype, 'visitComponent_declaration').callsFake((component_dec) => component_dec)
+        const visitor = new clv()
+        const input = new ctxMock()
+        const output = visitor.visitComponent_list(input)
+        const referenceOutput = [1,2,3,4,5]
+        as.deepEqual(output.component_declaration_list, referenceOutput, 'expected: ' + referenceOutput + ' ; actual: ' + output.component_declaration_list)
+    })
+})
+
 
