@@ -16,6 +16,9 @@ const asv = require('../jsParser/parser/Array_subscriptsVisitor.js').Array_subsc
 const subV = require('../jsParser/parser/SubscriptVisitor.js')
 const tpv = require('../jsParser/parser/Type_prefixVisitor.js') 
 const bpv = require('../jsParser/parser/Base_prefixVisitor.js').Base_prefixVisitor
+const cpv = require('../jsParser/parser/Class_prefixesVisitor.js')
+const csv = require('../jsParser/parser/Class_specifierVisitor.js') 
+const cdv = require('../jsParser/parser/Class_definitionVisitor.js').Class_definitionVisitor
 
 mo.afterEach(() => {
   sinon.restore()
@@ -202,5 +205,29 @@ mo.describe('testing Base_prefixVisitor.js', function () {
         const output = visitor.visitBase_prefix(input)
         const referenceOutput = 'mocked type_prefix'
         as.deepEqual(output.type_prefix,referenceOutput,'expected: ' + referenceOutput + ' ; actual: ' + output.type_prefix)
+    })
+})
+mo.describe('testing Class_definitionVisitor.js', function () {
+    mo.it('testing visitClass_definition', function () {
+        class ctxMock {
+            ENCAPSULATED () {
+                return true
+            }
+            class_prefixes () {
+                return 'mocked class_prefixes'
+            }
+            class_specifier () {
+                return 'mocked class_specifier'
+            }
+        }
+        sinon.stub(cpv.Class_prefixesVisitor.prototype, 'visitClass_prefixes').callsFake((class_prefixes) => class_prefixes)
+        sinon.stub(csv.Class_specifierVisitor.prototype, 'visitClass_specifier').callsFake((class_specifier) => class_specifier)
+        const visitor = new cdv()
+        const input = new ctxMock()
+        const output = visitor.visitClass_definition(input)
+        const referenceOutput = [true, 'mocked class_prefixes', 'mocked class_specifier']
+        as.deepEqual(output.encapsulated, referenceOutput[0],'expected: ' + referenceOutput[0] + ' ; actual: ' + output.encapsulated)
+        as.deepEqual(output.class_prefixes, referenceOutput[1],'expected: ' + referenceOutput[1] + ' ; actual: ' + output.class_prefixes)
+        as.deepEqual(output.class_specifier, referenceOutput[2],'expected: ' + referenceOutput[2] + ' ; actual: ' + output.class_specifier)
     })
 })
