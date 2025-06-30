@@ -28,7 +28,7 @@ mo.describe('testing Algorithm_sectionVisitor.js', function () {
                     return [1,2,3,4,5]
                 }
             }
-            statementVisitorStub = sinon.stub(sv.StatementVisitor.prototype, 'visitStatement').callsFake((stmt) => stmt)
+            sinon.stub(sv.StatementVisitor.prototype, 'visitStatement').callsFake((stmt) => stmt)
             const visitor = new algSV()
             const input = new ctxMockTrue()
             const output = visitor.visitAlgorithm_section(input)
