@@ -1,5 +1,6 @@
 const as = require('assert')
 const mo = require('mocha')
+const { getegid } = require('process')
 const sinon = require('sinon')
 const algSV = require('../jsParser/parser/Algorithm_sectionVisitor.js').Algorithm_sectionVisitor
 const sv = require('../jsParser/parser/StatementVisitor.js').StatementVisitor
@@ -243,5 +244,141 @@ mo.describe('testing Class_modificationVisitor.js', function () {
         const output = visitor.visitClass_modification(input)
         const referenceOutput = 'mocked argument_list'
         as.deepEqual(output.argument_list, referenceOutput,'expected: ' + referenceOutput + ' ; actual: ' + output.argument_list)
+    })
+})
+mo.describe('testing Class_prefixesVisitor.js', function () {
+    class getTextClass {
+        constructor (mockedObject) {
+            this.mockedObject = mockedObject
+        }
+        getText () {
+            return 'mocked ' + this.mockedObject
+        }
+    }
+    class ctxMock {
+        constructor (testing) {
+            this.testing = testing
+        }
+        PARTIAL () {
+            return this.testing == 'partial_dec' ? new getTextClass('partial_dec') : false
+        }
+        CLASS () {
+            return this.testing == 'class_dec' ? new getTextClass('class_dec') : false
+        }
+        MODEL () {
+            return this.testing == 'model_dec' ? new getTextClass('model_dec') : false
+        }
+        BLOCK () {
+            return this.testing == 'block_dec' ? new getTextClass('block_dec') : false
+        }
+        TYPE () {
+            return this.testing == 'type_dec' ? new getTextClass('type_dec') : false
+        }
+        PACKAGE () {
+            return this.testing == 'package_dec' ? new getTextClass('package_dec') : false
+        }
+        OPERATOR () {
+            return (this.testing == 'operator_dec') || (this.testing == 'record_dec') || (this.testing == 'function_dec, pure_dec') || (this.testing == 'function_dec, impure_dec')
+             ? new getTextClass('operator_dec') : false
+        }
+        RECORD () {
+            return this.testing == 'record_dec' ? new getTextClass('record_dec') : false
+        }
+        EXPANDABLE () {
+            return (this.testing == 'expandable_dec') || (this.testing == 'connector_dec') ? new getTextClass('expandable_dec') : false
+        }
+        CONNECTOR () {
+            return this.testing == 'connector_dec' ? new getTextClass('connector_dec') : false
+        }
+        PURE () {
+            return this.testing == 'function_dec, pure_dec' ? new getTextClass('pure_dec') : false
+        }
+        IMPURE () {
+            return this.testing == 'function_dec, impure_dec' ? new getTextClass('impure_dec') : false
+        }
+        FUNCTION () {
+            return (this.testing == 'function_dec, pure_dec') || (this.testing == 'function_dec, impure_dec') ? new getTextClass('function_dec') : false
+        }
+    }
+    mo.describe('testing visitClass_prefixes(ctx)', function () {
+        mo.it('testing partial_dec', function () {
+            const visitor = new cpv()
+            const input = new ctxMock('partial_dec')
+            const output = visitor.visitClass_prefixes(input)
+            const referenceOutput = 'mocked partial_dec '
+            as.deepEqual(output, referenceOutput,'expected: ' + referenceOutput + ' ; actual: ' + output)
+        })
+        mo.it('testing class_dec', function () {
+            const visitor = new cpv()
+            const input = new ctxMock('class_dec')
+            const output = visitor.visitClass_prefixes(input)
+            const referenceOutput = ' mocked class_dec'
+            as.deepEqual(output, referenceOutput,'expected: ' + referenceOutput + ' ; actual: ' + output)
+        })
+        mo.it('testing model_dec', function () {
+            const visitor = new cpv()
+            const input = new ctxMock('model_dec')
+            const output = visitor.visitClass_prefixes(input)
+            const referenceOutput = ' mocked model_dec'
+            as.deepEqual(output, referenceOutput,'expected: ' + referenceOutput + ' ; actual: ' + output)
+        })
+        mo.it('testing record_dec', function () {
+            const visitor = new cpv()
+            const input = new ctxMock('record_dec')
+            const output = visitor.visitClass_prefixes(input)
+            const referenceOutput = ' mocked operator_dec mocked record_dec'
+            as.deepEqual(output, referenceOutput,'expected: ' + referenceOutput + ' ; actual: ' + output)
+        })
+        mo.it('testing block_dec', function () {
+            const visitor = new cpv()
+            const input = new ctxMock('block_dec')
+            const output = visitor.visitClass_prefixes(input)
+            const referenceOutput = ' mocked block_dec'
+            as.deepEqual(output, referenceOutput,'expected: ' + referenceOutput + ' ; actual: ' + output)
+        })
+        mo.it('testing connector_dec', function () {
+            const visitor = new cpv()
+            const input = new ctxMock('connector_dec')
+            const output = visitor.visitClass_prefixes(input)
+            const referenceOutput = ' mocked expandable_dec mocked connector_dec'
+            as.deepEqual(output, referenceOutput,'expected: ' + referenceOutput + ' ; actual: ' + output)
+        })
+        mo.it('testing type_dec', function () {
+            const visitor = new cpv()
+            const input = new ctxMock('type_dec')
+            const output = visitor.visitClass_prefixes(input)
+            const referenceOutput = ' mocked type_dec'
+            as.deepEqual(output, referenceOutput,'expected: ' + referenceOutput + ' ; actual: ' + output)
+        })
+        mo.it('testing package_dec', function () {
+            const visitor = new cpv()
+            const input = new ctxMock('package_dec')
+            const output = visitor.visitClass_prefixes(input)
+            const referenceOutput = ' mocked package_dec'
+            as.deepEqual(output, referenceOutput,'expected: ' + referenceOutput + ' ; actual: ' + output)
+        })
+        mo.describe('testing function_dec', function () {
+            mo.it('testing pure_dec', function () {
+                const visitor = new cpv()
+                const input = new ctxMock('function_dec, pure_dec')
+                const output = visitor.visitClass_prefixes(input)
+                const referenceOutput = ' mocked pure_dec mocked operator_dec mocked function_dec'
+                as.deepEqual(output, referenceOutput,'expected: ' + referenceOutput + ' ; actual: ' + output)
+            })
+            mo.it('testing impure_dec', function () {
+                const visitor = new cpv()
+                const input = new ctxMock('function_dec, impure_dec')
+                const output = visitor.visitClass_prefixes(input)
+                const referenceOutput = ' mocked impure_dec mocked operator_dec mocked function_dec'
+                as.deepEqual(output, referenceOutput,'expected: ' + referenceOutput + ' ; actual: ' + output)
+            })
+        })
+        mo.it('testing operator_dec', function () {
+            const visitor = new cpv()
+            const input = new ctxMock('operator_dec')
+            const output = visitor.visitClass_prefixes(input)
+            const referenceOutput = ' mocked operator_dec'
+            as.deepEqual(output, referenceOutput,'expected: ' + referenceOutput + ' ; actual: ' + output)
+        })
     })
 })
