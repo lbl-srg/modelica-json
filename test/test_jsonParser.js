@@ -4,7 +4,7 @@ const sinon = require('sinon')
 const algSV = require('../jsParser/parser/Algorithm_sectionVisitor.js').Algorithm_sectionVisitor
 const sv = require('../jsParser/parser/StatementVisitor.js').StatementVisitor
 const annV = require('../jsParser/parser/AnnotationVisitor.js').AnnotationVisitor
-const cmv = require('../jsParser/parser/Class_modificationVisitor.js')
+const cmv = require('../jsParser/parser/Class_modificationVisitor.js').Class_modificationVisitor
 const argV = require('../jsParser/parser/ArgumentVisitor.js').ArgumentVisitor
 const alv = require('../jsParser/parser/Argument_listVisitor.js').Argument_listVisitor
 const emorv = require('../jsParser/parser/Element_modification_or_replaceableVisitor.js').Element_modification_or_replaceableVisitor
@@ -86,7 +86,7 @@ mo.describe('testing AnnotationVisitor.js', function () {
                 return 'mocked class modifier'
             }
         }
-        sinon.stub(cmv.Class_modificationVisitor.prototype, 'visitClass_modification').callsFake((class_modification) => class_modification)
+        sinon.stub(cmv.prototype, 'visitClass_modification').callsFake((class_modification) => class_modification)
         const visitor = new annV()
         const input = new ctxMock()
         const output = visitor.visitAnnotation(input)
@@ -228,5 +228,20 @@ mo.describe('testing Class_definitionVisitor.js', function () {
         as.deepEqual(output.encapsulated, referenceOutput[0],'expected: ' + referenceOutput[0] + ' ; actual: ' + output.encapsulated)
         as.deepEqual(output.class_prefixes, referenceOutput[1],'expected: ' + referenceOutput[1] + ' ; actual: ' + output.class_prefixes)
         as.deepEqual(output.class_specifier, referenceOutput[2],'expected: ' + referenceOutput[2] + ' ; actual: ' + output.class_specifier)
+    })
+})
+mo.describe('testing Class_modificationVisitor.js', function () {
+    mo.it('testing visitClass_modification', function () {
+        class ctxMock {
+            argument_list () {
+                return 'mocked argument_list'
+            }
+        }
+        sinon.stub(alv.prototype,'visitArgument_list').callsFake((argument_list) => argument_list)
+        const visitor = new cmv()
+        const input = new ctxMock()
+        const output = visitor.visitClass_modification(input)
+        const referenceOutput = 'mocked argument_list'
+        as.deepEqual(output.argument_list, referenceOutput,'expected: ' + referenceOutput + ' ; actual: ' + output.argument_list)
     })
 })
