@@ -382,3 +382,49 @@ mo.describe('testing Class_prefixesVisitor.js', function () {
         })
     })
 })
+mo.describe('testing Class_specifierVisitor.js', function () {
+    mo.describe('testing visitClass_specifier(ctx)', function () {
+        const lcsv = require('../jsParser/parser/Long_class_specifierVisitor.js').Long_class_specifierVisitor
+        const scsv = require('../jsParser/parser/Short_class_specifierVisitor.js').Short_class_specifierVisitor
+        const dcsv = require('../jsParser/parser/Der_class_specifierVisitor.js').Der_class_specifierVisitor
+        class ctxMock {
+            constructor (testing) {
+                this.testing = testing
+            }
+            long_class_specifier () {
+                return this.testing = 'long_class_specifier' ? 'mocked long_class_specifier' : false
+            }
+            short_class_specifier () {
+                return this.testing = 'short_class_specifier' ? 'mocked short_class_specifier' : false
+            }
+            der_class_specifier () {
+                return this.testing = 'der_class_specifier' ? 'mocked der_class_specifier' : false
+            }
+        }
+        mo.it('testing long_class_specifier', function () {
+            sinon.stub(lcsv.prototype, 'visitLong_class_specifier').callsFake((class_specifier) => class_specifier)
+            const visitor = new csv()
+            const input = new ctxMock('long_class_specifier')
+            const output = visitor.visitClass_specifier(input)
+            const referenceOutput = 'mocked long_class_specifier'
+            as.deepEqual(output.long_class_specifier, referenceOutput, 'expected: ' + referenceOutput + ' ; actual: ' + output.long_class_specifier)
+        })
+        mo.it('testing short_class_specifier', function () {
+            sinon.stub(scsv.prototype, 'visitShort_class_specifier').callsFake((class_specifier) => class_specifier)
+            const visitor = new csv()
+            const input = new ctxMock('short_class_specifier')
+            const output = visitor.visitClass_specifier(input)
+            const referenceOutput = 'mocked short_class_specifier'
+            as.deepEqual(output.short_class_specifier, referenceOutput, 'expected: ' + referenceOutput + ' ; actual: ' + output.short_class_specifier)
+        })
+        mo.it('testing der_class_specifier', function () {
+            sinon.stub(dcsv.prototype, 'visitDer_class_specifier').callsFake((class_specifier) => class_specifier)
+            const visitor = new csv()
+            const input = new ctxMock('der_class_specifier')
+            const output = visitor.visitClass_specifier(input)
+            const referenceOutput = 'mocked der_class_specifier'
+            as.deepEqual(output.der_class_specifier, referenceOutput, 'expected: ' + referenceOutput + ' ; actual: ' + output.der_class_specifier)
+        })
+    })
+})
+
