@@ -1,6 +1,5 @@
 const as = require('assert')
 const mo = require('mocha')
-const { getegid } = require('process')
 const sinon = require('sinon')
 const algSV = require('../jsParser/parser/Algorithm_sectionVisitor.js').Algorithm_sectionVisitor
 const sv = require('../jsParser/parser/StatementVisitor.js').StatementVisitor
@@ -19,6 +18,11 @@ const bpv = require('../jsParser/parser/Base_prefixVisitor.js').Base_prefixVisit
 const cpv = require('../jsParser/parser/Class_prefixesVisitor.js').Class_prefixesVisitor
 const csv = require('../jsParser/parser/Class_specifierVisitor.js').Class_specifierVisitor 
 const cdv = require('../jsParser/parser/Class_definitionVisitor.js').Class_definitionVisitor
+const scv = require('../jsParser/parser/String_commentVisitor.js').String_commentVisitor
+const cv = require('../jsParser/parser/CommentVisitor.js').CommentVisitor
+const tsv = require('../jsParser/parser/Type_specifierVisitor.js').Type_specifierVisitor
+const cd1v = require('../jsParser/parser/Component_declaration1Visitor.js').Component_declaration1Visitor
+const cc1v = require('../jsParser/parser/Component_clause1Visitor.js').Component_clause1Visitor
 
 mo.afterEach(() => {
   sinon.restore()
@@ -429,8 +433,6 @@ mo.describe('testing Class_specifierVisitor.js', function () {
 })
 mo.describe('testing CommentVisitor.js', function () {
     mo.it('testing visitComment(ctx)', function () {
-        const scv = require('../jsParser/parser/String_commentVisitor.js').String_commentVisitor
-        const cv = require('../jsParser/parser/CommentVisitor.js').CommentVisitor
         class ctxMock {
             annotation () {
                 return 'mocked annotation'
@@ -447,6 +449,31 @@ mo.describe('testing CommentVisitor.js', function () {
         const referenceOutput = ['mocked annotation', 'mocked string_comment']
         as.deepEqual(output.annotation, referenceOutput[0], 'expected: ' + referenceOutput[0] + ' ; actual: ' + output.annotation)
         as.deepEqual(output.string_comment, referenceOutput[1], 'expected: ' + referenceOutput[1] + ' ; actual: ' + output.string_comment)
+    })
+})
+mo.describe('testing Component_clause1Visitor.js', function () {
+    mo.it('testing visitComponent_clause1(ctx)', function () {
+        class ctxMock {
+            type_prefix () {
+                return 'mocked type_prefix'
+            }
+            type_specifier () {
+                return 'mocked type_specifier'
+            }
+            component_declaration1 () {
+                return 'mocked component_declaration'
+            }
+        }
+        sinon.stub(tpv.prototype, 'visitType_prefix').callsFake((type_prefix) => type_prefix)
+        sinon.stub(tsv.prototype, 'visitType_specifier').callsFake((type_specifier) => type_specifier)
+        sinon.stub(cd1v.prototype, 'visitComponent_declaration1').callsFake((component_declaration1) => component_declaration1)
+        const visitor = new cc1v()
+        const input = new ctxMock()
+        const output = visitor.visitComponent_clause1(input)
+        const referenceOutput = ['mocked type_prefix', 'mocked type_specifier', 'mocked component_declaration']
+        as.deepEqual(output.type_prefix, referenceOutput[0], 'expected: ' + referenceOutput[0] + ' ; actual: ' + output.type_prefix)
+        as.deepEqual(output.type_specifier, referenceOutput[1], 'expected: ' + referenceOutput[1] + ' ; actual: ' + output.type_specifier)
+        as.deepEqual(output.component_declaration1, referenceOutput[2], 'expected: ' + referenceOutput[2] + ' ; actual: ' + output.Component_declaration1)
     })
 })
 
