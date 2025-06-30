@@ -427,4 +427,26 @@ mo.describe('testing Class_specifierVisitor.js', function () {
         })
     })
 })
+mo.describe('testing CommentVisitor.js', function () {
+    mo.it('testing visitComment(ctx)', function () {
+        const scv = require('../jsParser/parser/String_commentVisitor.js').String_commentVisitor
+        const cv = require('../jsParser/parser/CommentVisitor.js').CommentVisitor
+        class ctxMock {
+            annotation () {
+                return 'mocked annotation'
+            }
+            string_comment () {
+                return 'mocked string_comment'
+            }
+        }
+        sinon.stub(annV.prototype, 'visitAnnotation').callsFake((annotation) => annotation)
+        sinon.stub(scv.prototype, 'visitString_comment').callsFake((string_comment) => string_comment)
+        const visitor = new cv()
+        const input = new ctxMock()
+        const output = visitor.visitComment(input)
+        const referenceOutput = ['mocked annotation', 'mocked string_comment']
+        as.deepEqual(output.annotation, referenceOutput[0], 'expected: ' + referenceOutput[0] + ' ; actual: ' + output.annotation)
+        as.deepEqual(output.string_comment, referenceOutput[1], 'expected: ' + referenceOutput[1] + ' ; actual: ' + output.string_comment)
+    })
+})
 
