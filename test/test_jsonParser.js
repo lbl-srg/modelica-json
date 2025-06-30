@@ -510,4 +510,26 @@ mo.describe('testing Component_clauseVisitor.js', function () {
         as.deepEqual(output.component_list, referenceOutput[3], 'expected: ' + referenceOutput[3] + ' ; actual: ' + output.component_list)
     })
 })
+mo.describe('testing Component_declaration1Visitor.js', function () {
+    mo.it('testing visitComponent_declaration1(ctx)', function () {
+        const dv = require('../jsParser/parser/DeclarationVisitor.js').DeclarationVisitor
+        class ctxMock {
+            declaration () {
+                return 'mocked declaration'
+            }
+            comment () {
+                return 'mocked comment'
+            }
+        }
+        sinon.stub(dv.prototype, 'visitDeclaration').callsFake((declaration) => declaration)
+        sinon.stub(cv.prototype, 'visitComment').callsFake((comment) => comment)
+        const visitor = new cd1v()
+        const input = new ctxMock()
+        const output = visitor.visitComponent_declaration1(input)
+        const referenceOutput = ['mocked declaration', 'mocked comment']
+        as.deepEqual(output.declaration, referenceOutput[0], 'expected: ' + referenceOutput[0] + ' ; actual: ' + output.declaration)
+        as.deepEqual(output.comment, referenceOutput[1], 'expected: ' + referenceOutput[1] + ' ; actual: ' + output.comment)
+    })
+})
+
 
