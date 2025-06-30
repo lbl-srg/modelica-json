@@ -2,22 +2,21 @@ const as = require('assert')
 const mo = require('mocha')
 const sinon = require('sinon')
 const algSV = require('../jsParser/parser/Algorithm_sectionVisitor.js').Algorithm_sectionVisitor
-const sv = require('../jsParser/parser/StatementVisitor.js')
+const sv = require('../jsParser/parser/StatementVisitor.js').StatementVisitor
 const annV = require('../jsParser/parser/AnnotationVisitor.js').AnnotationVisitor
 const cmv = require('../jsParser/parser/Class_modificationVisitor.js')
-const argV = require('../jsParser/parser/ArgumentVisitor.js')
+const argV = require('../jsParser/parser/ArgumentVisitor.js').ArgumentVisitor
 const alv = require('../jsParser/parser/Argument_listVisitor.js').Argument_listVisitor
-const emorv = require('../jsParser/parser/Element_modification_or_replaceableVisitor.js')
-const erv = require('../jsParser/parser/Element_redeclarationVisitor.js')
-const argv = require('../jsParser/parser/ArgumentVisitor.js').ArgumentVisitor
-const tv = require('../jsParser/parser/TermVisitor.js')
+const emorv = require('../jsParser/parser/Element_modification_or_replaceableVisitor.js').Element_modification_or_replaceableVisitor
+const erv = require('../jsParser/parser/Element_redeclarationVisitor.js').Element_redeclarationVisitor
+const tv = require('../jsParser/parser/TermVisitor.js').TermVisitor
 const vae = require('../jsParser/parser/Arithmetic_expressionVisitor.js').Arithmetic_expressionVisitor
 const asv = require('../jsParser/parser/Array_subscriptsVisitor.js').Array_subscriptsVisitor
-const subV = require('../jsParser/parser/SubscriptVisitor.js')
-const tpv = require('../jsParser/parser/Type_prefixVisitor.js') 
+const subV = require('../jsParser/parser/SubscriptVisitor.js').SubscriptVisitor
+const tpv = require('../jsParser/parser/Type_prefixVisitor.js').Type_prefixVisitor
 const bpv = require('../jsParser/parser/Base_prefixVisitor.js').Base_prefixVisitor
-const cpv = require('../jsParser/parser/Class_prefixesVisitor.js')
-const csv = require('../jsParser/parser/Class_specifierVisitor.js') 
+const cpv = require('../jsParser/parser/Class_prefixesVisitor.js').Class_prefixesVisitor
+const csv = require('../jsParser/parser/Class_specifierVisitor.js').Class_specifierVisitor 
 const cdv = require('../jsParser/parser/Class_definitionVisitor.js').Class_definitionVisitor
 
 mo.afterEach(() => {
@@ -35,7 +34,7 @@ mo.describe('testing Algorithm_sectionVisitor.js', function () {
                     return [1,2,3,4,5]
                 }
             }
-            sinon.stub(sv.StatementVisitor.prototype, 'visitStatement').callsFake((stmt) => stmt)
+            sinon.stub(sv.prototype, 'visitStatement').callsFake((stmt) => stmt)
             const visitor = new algSV()
             const input = new ctxMockTrue()
             const output = visitor.visitAlgorithm_section(input)
@@ -52,7 +51,7 @@ mo.describe('testing Algorithm_sectionVisitor.js', function () {
                     return [1,2,3,4,5]
                 }
             }
-            statementVisitorStub = sinon.stub(sv.StatementVisitor.prototype, 'visitStatement').callsFake((stmt) => stmt)
+            sinon.stub(sv.prototype, 'visitStatement').callsFake((stmt) => stmt)
             const visitor = new algSV()
             const input = new ctxMockFalse()
             const output = visitor.visitAlgorithm_section(input)
@@ -69,7 +68,7 @@ mo.describe('testing Algorithm_sectionVisitor.js', function () {
                     return [1,2,3,4,5]
                 }
             }
-            statementVisitorStub = sinon.stub(sv.StatementVisitor.prototype, 'visitStatement').callsFake((stmt) => stmt)
+            sinon.stub(sv.prototype, 'visitStatement').callsFake((stmt) => stmt)
             const visitor = new algSV()
             const input = new ctxMockNull()
             const output = visitor.visitAlgorithm_section(input)
@@ -102,7 +101,7 @@ mo.describe('testing Argument_listVisitor.js', function () {
                 return [1,2,3,4,5]
             }
         }
-        sinon.stub(argV.ArgumentVisitor.prototype, 'visitArgument').callsFake((arg) => arg)
+        sinon.stub(argV.prototype, 'visitArgument').callsFake((arg) => arg)
         const visitor = new alv()
         const input = new ctxMock()
         const output = visitor.visitArgument_list(input)
@@ -120,9 +119,9 @@ mo.describe('testing ArgumentVisitor.js', function () {
                 return "mocked element_redeclaration"
             }
         }
-        sinon.stub(emorv.Element_modification_or_replaceableVisitor.prototype, 'visitElement_modification_or_replaceable').callsFake((input) => input)
-        sinon.stub(erv.Element_redeclarationVisitor.prototype, 'visitElement_redeclaration').callsFake((input) => input)
-        const visitor = new argv()
+        sinon.stub(emorv.prototype, 'visitElement_modification_or_replaceable').callsFake((input) => input)
+        sinon.stub(erv.prototype, 'visitElement_redeclaration').callsFake((input) => input)
+        const visitor = new argV()
         const input = new ctxMock()
         const output = visitor.visitArgument(input)
         const referenceOutput = ['mocked element_modification_or_replaceable', 'mocked element_redeclaration']
@@ -149,7 +148,7 @@ mo.describe('testing Arithmetic_expressionVisitor.js', function () {
                     return [3,4,5]
                 }
             }
-            sinon.stub(tv.TermVisitor.prototype, 'visitTerm').callsFake((t) => t)
+            sinon.stub(tv.prototype, 'visitTerm').callsFake((t) => t)
             const visitor = new vae()
             const input = new ctxMock()
             const output = visitor.visitArithmetic_expression(input)
@@ -167,7 +166,7 @@ mo.describe('testing Arithmetic_expressionVisitor.js', function () {
                     return [3,4]
                 }
             }
-            sinon.stub(tv.TermVisitor.prototype, 'visitTerm').callsFake((t) => t)
+            sinon.stub(tv.prototype, 'visitTerm').callsFake((t) => t)
             const visitor = new vae()
             const input = new ctxMock()
             const output = visitor.visitArithmetic_expression(input)
@@ -184,7 +183,7 @@ mo.describe('testing Array_subscriptsVisitor.js', function () {
                 return [1,2,3,4,5]
             }
         }
-        sinon.stub(subV.SubscriptVisitor.prototype, 'visitSubscript').callsFake((sub) => sub)
+        sinon.stub(subV.prototype, 'visitSubscript').callsFake((sub) => sub)
         const visitor = new asv()
         const input = new ctxMock()
         const output = visitor.visitArray_subscripts(input)
@@ -199,7 +198,7 @@ mo.describe('testing Base_prefixVisitor.js', function () {
                 return 'mocked type_prefix'
             }
         }
-        sinon.stub(tpv.Type_prefixVisitor.prototype, 'visitType_prefix').callsFake((type_prefix) => type_prefix)
+        sinon.stub(tpv.prototype, 'visitType_prefix').callsFake((type_prefix) => type_prefix)
         const visitor = new bpv()
         const input = new ctxMock()
         const output = visitor.visitBase_prefix(input)
@@ -220,8 +219,8 @@ mo.describe('testing Class_definitionVisitor.js', function () {
                 return 'mocked class_specifier'
             }
         }
-        sinon.stub(cpv.Class_prefixesVisitor.prototype, 'visitClass_prefixes').callsFake((class_prefixes) => class_prefixes)
-        sinon.stub(csv.Class_specifierVisitor.prototype, 'visitClass_specifier').callsFake((class_specifier) => class_specifier)
+        sinon.stub(cpv.prototype, 'visitClass_prefixes').callsFake((class_prefixes) => class_prefixes)
+        sinon.stub(csv.prototype, 'visitClass_specifier').callsFake((class_specifier) => class_specifier)
         const visitor = new cdv()
         const input = new ctxMock()
         const output = visitor.visitClass_definition(input)
