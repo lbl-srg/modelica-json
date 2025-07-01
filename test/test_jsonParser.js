@@ -33,6 +33,10 @@ const crv = require('../jsParser/parser/Component_referenceVisitor.js').Componen
 const connCV = require('../jsParser/parser/Connect_clauseVisitor.js').Connect_clauseVisitor
 const nv = require('../jsParser/parser/NameVisitor.js').NameVisitor
 const consCV = require('../jsParser/parser/Constraining_clauseVisitor.js').Constraining_clauseVisitor
+const mv = require('../jsParser/parser/ModificationVisitor.js').ModificationVisitor
+const lcsv = require('../jsParser/parser/Long_class_specifierVisitor.js').Long_class_specifierVisitor
+const scsv = require('../jsParser/parser/Short_class_specifierVisitor.js').Short_class_specifierVisitor
+const dcsv = require('../jsParser/parser/Der_class_specifierVisitor.js').Der_class_specifierVisitor
 
 mo.afterEach(() => {
   sinon.restore()
@@ -398,9 +402,6 @@ mo.describe('testing Class_prefixesVisitor.js', function () {
 })
 mo.describe('testing Class_specifierVisitor.js', function () {
     mo.describe('testing visitClass_specifier(ctx)', function () {
-        const lcsv = require('../jsParser/parser/Long_class_specifierVisitor.js').Long_class_specifierVisitor
-        const scsv = require('../jsParser/parser/Short_class_specifierVisitor.js').Short_class_specifierVisitor
-        const dcsv = require('../jsParser/parser/Der_class_specifierVisitor.js').Der_class_specifierVisitor
         class ctxMock {
             constructor (testing) {
                 this.testing = testing
@@ -662,7 +663,6 @@ mo.describe('testing Constraining_clauseVisitor.js', function () {
 })
 mo.describe('testing DeclarationVisitor.js', function () {
     mo.it('testing visitDeclaration', function () {
-        const mv = require('../jsParser/parser/ModificationVisitor.js').ModificationVisitor
         class getTextClass {
             constructor (text) {
                 this.text = text
@@ -693,3 +693,38 @@ mo.describe('testing DeclarationVisitor.js', function () {
         as.deepEqual(output.modification, referenceOutput[2], 'expected: ' + referenceOutput[2] + ' ; actual: ' + output.modification)
     })
 })
+/* CANNOT RUN BECAUSE CommentVisitor IS COMMENTTED OUT IN ORIGINAL FILE 
+mo.describe('testing Der_class_specifierVisitor.js', function () {
+    mo.it('testing visitDer_clas_specifier(ctx)', function () {
+        class getTextClass {
+            constructor (text) {
+                this.text = text
+            }
+            getText () {
+                return this.text
+            }
+        }
+        class ctxMock {
+            IDENT (x = 1) {
+                if (x == 0) {
+                    return new getTextClass(0)
+                }
+                else {
+                    return [new getTextClass(0), new getTextClass(1), new getTextClass(2)]
+                } 
+            }
+            name () {
+                return 'mocked name'
+            }
+            comment () {
+                return 'mocked comment'
+            }
+        }
+        sinon.stub(nv.prototype,'visitName').callsFake((name) => name)
+        sinon.stub(cv.prototype, 'visitComment').callsFake((comment) => comment)
+        const visitor = new dcsv()
+        const input = new ctxMock()
+        const output = visitor.visitDer_class_specifier(input)
+        //const referenceOutput = 
+    })
+}) */
