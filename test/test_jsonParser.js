@@ -29,6 +29,8 @@ const ccv = require('../jsParser/parser/Component_clauseVisitor.js').Component_c
 const dv = require('../jsParser/parser/DeclarationVisitor.js').DeclarationVisitor
 const cav = require('../jsParser/parser/Condition_attributeVisitor.js').Condition_attributeVisitor
 const comDecV = require('../jsParser/parser/Component_declarationVisitor.js').Component_declarationVisitor
+const ev = require('../jsParser/parser/ExpressionVisitor.js').ExpressionVisitor
+const crv = require('../jsParser/parser/Component_referenceVisitor.js').Component_referenceVisitor
 
 mo.afterEach(() => {
   sinon.restore()
@@ -577,7 +579,6 @@ mo.describe('testing Component_listVisitor.js', function () {
 /* NOT WORKING
 mo.describe('testing Component_referenceVisitor.js', function () {
     mo.describe('testing visitComponent_reference(ctx)', function () {
-        const crv = require('../jsParser/parser/Component_referenceVisitor.js').Component_referenceVisitor
         const tn = require('../node_modules/antlr4/tree/Tree.js').TerminalNodeImpl
         const crp = require('../jsParser/domain/Component_reference_part.js').Component_reference_part
         mo.it('testing ', function () {
@@ -608,7 +609,6 @@ mo.describe('testing CompositionVisitor.js', function () {
 }) */
 mo.describe('testing Condition_attributeVisitor.js', function () {
     mo.it('testing visitCondition_attribute(ctx)', function () {
-        const ev = require('../jsParser/parser/ExpressionVisitor.js').ExpressionVisitor
         class ctxMock {
             expression () {
                 return 'mocked expression'
@@ -620,6 +620,23 @@ mo.describe('testing Condition_attributeVisitor.js', function () {
         const output = visitor.visitCondition_attribute(input)
         const referenceOutput = 'mocked expression'
         as.deepEqual(output.expression, referenceOutput, 'expected: ' + referenceOutput + ' ; actual: ' + output.expression)
+    })
+})
+mo.describe('testing Connect_clauseVisitor.js', function () {
+    mo.it('testing visitConnect_clause(ctx)', function () {
+        const conCV = require('../jsParser/parser/Connect_clauseVisitor.js').Connect_clauseVisitor
+        class ctxMock {
+            component_reference () {
+                return [1,2]
+            }
+        }
+        sinon.stub(crv.prototype, 'visitComponent_reference').callsFake((comp_ref) => comp_ref)
+        const visitor = new conCV()
+        const input = new ctxMock()
+        const output = visitor.visitConnect_clause(input)
+        const referenceOutput = [1,2]
+        as.deepEqual(output.from, referenceOutput[0], 'expected: ' + referenceOutput[0] + ' ; actual: ' + output.from)
+        as.deepEqual(output.to, referenceOutput[1], 'expected: ' + referenceOutput[1] + ' ; actual: ' + output.to)
     })
 })
 
