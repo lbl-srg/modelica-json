@@ -31,6 +31,9 @@ const cav = require('../jsParser/parser/Condition_attributeVisitor.js').Conditio
 const comDecV = require('../jsParser/parser/Component_declarationVisitor.js').Component_declarationVisitor
 const ev = require('../jsParser/parser/ExpressionVisitor.js').ExpressionVisitor
 const crv = require('../jsParser/parser/Component_referenceVisitor.js').Component_referenceVisitor
+const connCV = require('../jsParser/parser/Connect_clauseVisitor.js').Connect_clauseVisitor
+const nv = require('../jsParser/parser/NameVisitor.js').NameVisitor
+const consCV = require('../jsParser/parser/Constraining_clauseVisitor.js').Constraining_clauseVisitor
 
 mo.afterEach(() => {
   sinon.restore()
@@ -624,19 +627,38 @@ mo.describe('testing Condition_attributeVisitor.js', function () {
 })
 mo.describe('testing Connect_clauseVisitor.js', function () {
     mo.it('testing visitConnect_clause(ctx)', function () {
-        const conCV = require('../jsParser/parser/Connect_clauseVisitor.js').Connect_clauseVisitor
         class ctxMock {
             component_reference () {
                 return [1,2]
             }
         }
         sinon.stub(crv.prototype, 'visitComponent_reference').callsFake((comp_ref) => comp_ref)
-        const visitor = new conCV()
+        const visitor = new connCV()
         const input = new ctxMock()
         const output = visitor.visitConnect_clause(input)
         const referenceOutput = [1,2]
         as.deepEqual(output.from, referenceOutput[0], 'expected: ' + referenceOutput[0] + ' ; actual: ' + output.from)
         as.deepEqual(output.to, referenceOutput[1], 'expected: ' + referenceOutput[1] + ' ; actual: ' + output.to)
+    })
+})
+mo.describe('testing Constraining_clauseVisitor.js', function () {
+    mo.it('testing visitConstraining_clause(ctx)', function () {
+        class ctxMock {
+            name () {
+                return 'mocked name'
+            }
+            class_modification () {
+                return 'mocked class_modification'
+            }
+        }
+        sinon.stub(nv.prototype, 'visitName').callsFake((name) => name)
+        sinon.stub(cmv.prototype, 'visitClass_modification').callsFake((cm) => cm)
+        const visitor = new consCV()
+        const input = new ctxMock()
+        const output = visitor.visitConstraining_clause(input)
+        const referenceOutput = ['mocked name', 'mocked class_modification']
+        as.deepEqual(output.name, referenceOutput[0], 'expected: ' + referenceOutput[0] + ' ; actual: ' + output.name)
+        as.deepEqual(output.class_modification, referenceOutput[1], 'expected: ' + referenceOutput[1] + ' ; actual: ' + output.class_modification)
     })
 })
 
