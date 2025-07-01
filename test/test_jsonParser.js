@@ -1,4 +1,3 @@
-const { TerminalNodeImpl } = require('antlr4/tree/Tree.js')
 const as = require('assert')
 const mo = require('mocha')
 const sinon = require('sinon')
@@ -661,4 +660,36 @@ mo.describe('testing Constraining_clauseVisitor.js', function () {
         as.deepEqual(output.class_modification, referenceOutput[1], 'expected: ' + referenceOutput[1] + ' ; actual: ' + output.class_modification)
     })
 })
-
+mo.describe('testing DeclarationVisitor.js', function () {
+    mo.it('testing visitDeclaration', function () {
+        const mv = require('../jsParser/parser/ModificationVisitor.js').ModificationVisitor
+        class getTextClass {
+            constructor (text) {
+                this.text = text
+            }
+            getText () {
+                return this.text
+            }
+        }
+        class ctxMock {
+            IDENT () {
+                return new getTextClass('mocked identifier')
+            }
+            array_subscripts () {
+                return 'mocked array_subscripts'
+            }
+            modification () {
+                return 'mocked modification'
+            }
+        }
+        sinon.stub(asv.prototype, 'visitArray_subscripts').callsFake((array_subscripts) => array_subscripts)
+        sinon.stub(mv.prototype, 'visitModification').callsFake((modification) => modification)
+        const visitor = new dv()
+        const input = new ctxMock()
+        const output = visitor.visitDeclaration(input)
+        const referenceOutput = ['mocked identifier', 'mocked array_subscripts', 'mocked modification']
+        as.deepEqual(output.identifier, referenceOutput[0], 'expected: ' + referenceOutput[0] + ' ; actual: ' + output.identifier)
+        as.deepEqual(output.array_subscripts, referenceOutput[1], 'expected: ' + referenceOutput[1] + ' ; actual: ' + output.array_subscripts)
+        as.deepEqual(output.modification, referenceOutput[2], 'expected: ' + referenceOutput[2] + ' ; actual: ' + output.modification)
+    })
+})
