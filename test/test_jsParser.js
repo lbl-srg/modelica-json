@@ -58,69 +58,63 @@ mo.afterEach(() => {
   sinon.restore()
 })
 
+class ctxMock {
+    constructor (boolean=null) {
+        this.boolean = boolean
+    }
+    INITIAL () {
+        return this.boolean
+    }
+    statement () {
+        return [1,2,3,4,5]
+    }
+    class_modification () {
+        return 'mocked class modifier'
+    }
+    argument () {
+        return [1,2,3,4,5]
+    }
+    element_modification_or_replaceable () {
+        return "mocked element_modification_or_replaceable"
+    }
+    element_redeclaration () {
+        return "mocked element_redeclaration"
+    }
+}
+
 mo.describe('testing Algorithm_sectionVisitor.js', function () {
     mo.describe('testing visitAlgorithm_section(ctx)', function () {
         mo.it('testing initial = true', function () {
-            class ctxMockTrue {
-                INITIAL () {
-                    return true
-                }
-                statement () {
-                    return [1,2,3,4,5]
-                }
-            }
             sinon.stub(sv.prototype, 'visitStatement').callsFake((stmt) => stmt)
             const visitor = new algSV()
-            const input = new ctxMockTrue()
+            const input = new ctxMock(true)
             const output = visitor.visitAlgorithm_section(input)
             const referenceOutput = [true, [1,2,3,4,5]]
             as.equal(output.initial, referenceOutput[0], 'expected value for "initial": ' + referenceOutput[0] + '; actual value for "initial": ' + output.initial)
             as.deepEqual(output.statements, referenceOutput[1], 'expected value for "statements": ' + referenceOutput[1] + '; actual value for "statements": ' + output.statements)
         })
         mo.it('testing initial = false', function () {
-            class ctxMockFalse {
-                INITIAL () {
-                    return false
-                }
-                statement () {
-                    return [1,2,3,4,5]
-                }
-            }
             sinon.stub(sv.prototype, 'visitStatement').callsFake((stmt) => stmt)
             const visitor = new algSV()
-            const input = new ctxMockFalse()
+            const input = new ctxMock(false)
             const output = visitor.visitAlgorithm_section(input)
             const referenceOutput = [false, [1,2,3,4,5]]
             as.equal(output.initial, referenceOutput[0], 'expected value for "initial": ' + referenceOutput[0] + '; actual value for "initial": ' + output.initial)
             as.deepEqual(output.statements, referenceOutput[1], 'expected value for "statements": ' + referenceOutput[1] + '; actual value for "statements": ' + output.statements)
         })
         mo.it('testing initial = null', function () {
-                class ctxMockNull {
-                INITIAL () {
-                    return null
-                }
-                statement () {
-                    return [1,2,3,4,5]
-                }
-            }
             sinon.stub(sv.prototype, 'visitStatement').callsFake((stmt) => stmt)
             const visitor = new algSV()
-            const input = new ctxMockNull()
+            const input = new ctxMock(null)
             const output = visitor.visitAlgorithm_section(input)
             const referenceOutput = [false, [1,2,3,4,5]]
             as.equal(output.initial, referenceOutput[0], 'expected value for "initial": ' + referenceOutput[0] + '; actual value for "initial": ' + output.initial)
             as.deepEqual(output.statements, referenceOutput[1], 'expected value for "statements": ' + referenceOutput[1] + '; actual value for "statements": ' + output.statements)
         })
     })
-
 })
 mo.describe('testing AnnotationVisitor.js', function () {
     mo.it('testing visitAnnotation(ctx)', function () {
-        class ctxMock {
-            class_modification () {
-                return 'mocked class modifier'
-            }
-        }
         sinon.stub(cmv.prototype, 'visitClass_modification').callsFake((class_modification) => class_modification)
         const visitor = new annV()
         const input = new ctxMock()
@@ -131,11 +125,6 @@ mo.describe('testing AnnotationVisitor.js', function () {
 })
 mo.describe('testing Argument_listVisitor.js', function () {
     mo.it('testing visitArgument_list(ctx)', function () {
-        class ctxMock {
-            argument () {
-                return [1,2,3,4,5]
-            }
-        }
         sinon.stub(argV.prototype, 'visitArgument').callsFake((arg) => arg)
         const visitor = new alv()
         const input = new ctxMock()
@@ -146,14 +135,6 @@ mo.describe('testing Argument_listVisitor.js', function () {
 })
 mo.describe('testing ArgumentVisitor.js', function () {
     mo.it('testing visitArgument(ctx)', function () {
-        class ctxMock {
-            element_modification_or_replaceable () {
-                return "mocked element_modification_or_replaceable"
-            }
-            element_redeclaration () {
-                return "mocked element_redeclaration"
-            }
-        }
         sinon.stub(emorv.prototype, 'visitElement_modification_or_replaceable').callsFake((input) => input)
         sinon.stub(erv.prototype, 'visitElement_redeclaration').callsFake((input) => input)
         const visitor = new argV()
