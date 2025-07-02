@@ -37,6 +37,10 @@ const mv = require('../jsParser/parser/ModificationVisitor.js').ModificationVisi
 const lcsv = require('../jsParser/parser/Long_class_specifierVisitor.js').Long_class_specifierVisitor
 const scsv = require('../jsParser/parser/Short_class_specifierVisitor.js').Short_class_specifierVisitor
 const dcsv = require('../jsParser/parser/Der_class_specifierVisitor.js').Der_class_specifierVisitor
+const eleV = require('../jsParser/parser/ElementVisitor.js').ElementVisitor
+const elv = require('../jsParser/parser/Element_listVisitor.js').Element_listVisitor
+const emv = require('../jsParser/parser/Element_modificationVisitor.js').Element_modificationVisitor
+const eleRepV = require('../jsParser/parser/Element_replaceableVisitor.js').Element_replaceableVisitor
 
 mo.afterEach(() => {
   sinon.restore()
@@ -733,8 +737,6 @@ mo.describe('testing Der_class_specifierVisitor.js', function () {
     })
 }) 
 mo.describe('testing Element_listVisitor.js', function () {
-    const eleV = require('../jsParser/parser/ElementVisitor.js').ElementVisitor
-    const elv = require('../jsParser/parser/Element_listVisitor.js').Element_listVisitor
     mo.it('testing visitElement_list(ctx)', function () {
         class ctxMock {
             element () {
@@ -747,5 +749,62 @@ mo.describe('testing Element_listVisitor.js', function () {
         const output = visitor.visitElement_list(input)
         const referenceOutput = [1,2,3]
         as.deepEqual(output.elements, referenceOutput, 'expected: ' + referenceOutput + ' ; actual: ' + output.elements)
+    })
+})
+mo.describe('testing Element_modification_or_replaceableVisitor.js', function () {
+    mo.describe('testing visitElement_modification_or_replaceable(ctx)', function () {
+        class ctxMock {
+            constructor (boolean) {
+                this.boolean = boolean
+            }
+            EACH () {
+                return this.boolean
+            }
+            FINAL () {
+                return this.boolean
+            }
+            element_modification () {
+                return 'mocked element_modification'
+            }
+            element_replaceable () {
+                return 'mocked element_replaceable'
+            }
+        }
+        mo.it('testing EACH & FINAL = true', function () {
+            sinon.stub(emv.prototype, 'visitElement_modification').callsFake((element_modification) => element_modification)
+            sinon.stub(eleRepV.prototype,'visitElement_replaceable').callsFake((element_replaceable) => element_replaceable)
+            const visitor = new emorv()
+            const input = new ctxMock(true)
+            const output = visitor.visitElement_modification_or_replaceable(input)
+            const referenceOutput = [true, true, 'mocked element_modification', 'mocked element_replaceable']
+            as.deepEqual(output.each, referenceOutput[0], 'expected: ' + referenceOutput[0] + ' ; actual: ' + output.each)
+            as.deepEqual(output.is_final, referenceOutput[1], 'expected: ' + referenceOutput[1] + ' ; actual: ' + output.is_final)
+            as.deepEqual(output.element_modification, referenceOutput[2], 'expected: ' + referenceOutput[2] + ' ; actual: ' + output.element_modification)
+            as.deepEqual(output.element_replaceable, referenceOutput[3], 'expected: ' + referenceOutput[3] + ' ; actual: ' + output.element_replaceable)
+        }) 
+        mo.it('testing EACH & FINAL = false', function () {
+            sinon.stub(emv.prototype, 'visitElement_modification').callsFake((element_modification) => element_modification)
+            sinon.stub(eleRepV.prototype,'visitElement_replaceable').callsFake((element_replaceable) => element_replaceable)
+            const visitor = new emorv()
+            const input = new ctxMock(false)
+            const output = visitor.visitElement_modification_or_replaceable(input)
+            const referenceOutput = [false, false, 'mocked element_modification', 'mocked element_replaceable']
+            as.deepEqual(output.each, referenceOutput[0], 'expected: ' + referenceOutput[0] + ' ; actual: ' + output.each)
+            as.deepEqual(output.is_final, referenceOutput[1], 'expected: ' + referenceOutput[1] + ' ; actual: ' + output.is_final)
+            as.deepEqual(output.element_modification, referenceOutput[2], 'expected: ' + referenceOutput[2] + ' ; actual: ' + output.element_modification)
+            as.deepEqual(output.element_replaceable, referenceOutput[3], 'expected: ' + referenceOutput[3] + ' ; actual: ' + output.element_replaceable)
+        }) 
+        mo.it('testing EACH & FINAL = null', function () {
+            sinon.stub(emv.prototype, 'visitElement_modification').callsFake((element_modification) => element_modification)
+            sinon.stub(eleRepV.prototype,'visitElement_replaceable').callsFake((element_replaceable) => element_replaceable)
+            const visitor = new emorv()
+            const input = new ctxMock(null)
+            const output = visitor.visitElement_modification_or_replaceable(input)
+            const referenceOutput = [false, false, 'mocked element_modification', 'mocked element_replaceable']
+            as.deepEqual(output.each, referenceOutput[0], 'expected: ' + referenceOutput[0] + ' ; actual: ' + output.each)
+            as.deepEqual(output.is_final, referenceOutput[1], 'expected: ' + referenceOutput[1] + ' ; actual: ' + output.is_final)
+            as.deepEqual(output.element_modification, referenceOutput[2], 'expected: ' + referenceOutput[2] + ' ; actual: ' + output.element_modification)
+            as.deepEqual(output.element_replaceable, referenceOutput[3], 'expected: ' + referenceOutput[3] + ' ; actual: ' + output.element_replaceable)
+        }) 
     })
 })
