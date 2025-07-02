@@ -62,8 +62,8 @@ mo.describe('testing Algorithm_sectionVisitor.js', function () {
             const input = new ctxMockTrue()
             const output = visitor.visitAlgorithm_section(input)
             const referenceOutput = [true, [1,2,3,4,5]]
-            as.equal(output.initial, referenceOutput[0], 'expected initial value: ' + referenceOutput[0] + '; actual initial value: ' + output.initial)
-            as.deepEqual(output.statements, referenceOutput[1], 'expected statements value: ' + referenceOutput[1] + '; actual statements value: ' + output.statements)
+            as.equal(output.initial, referenceOutput[0], 'expected value for "initial": ' + referenceOutput[0] + '; actual value for "initial": ' + output.initial)
+            as.deepEqual(output.statements, referenceOutput[1], 'expected value for "statements": ' + referenceOutput[1] + '; actual value for "statements": ' + output.statements)
         })
         mo.it('testing initial = false', function () {
             class ctxMockFalse {
@@ -79,8 +79,8 @@ mo.describe('testing Algorithm_sectionVisitor.js', function () {
             const input = new ctxMockFalse()
             const output = visitor.visitAlgorithm_section(input)
             const referenceOutput = [false, [1,2,3,4,5]]
-            as.equal(output.initial, referenceOutput[0], 'expected initial value: ' + referenceOutput[0] + '; actual initial value: ' + output.initial)
-            as.deepEqual(output.statements, referenceOutput[1], 'expected statements value: ' + referenceOutput[1] + '; actual statement value: ' + output.statements)
+            as.equal(output.initial, referenceOutput[0], 'expected value for "initial": ' + referenceOutput[0] + '; actual value for "initial": ' + output.initial)
+            as.deepEqual(output.statements, referenceOutput[1], 'expected value for "statements": ' + referenceOutput[1] + '; actual value for "statements": ' + output.statements)
         })
         mo.it('testing initial = null', function () {
                 class ctxMockNull {
@@ -96,9 +96,26 @@ mo.describe('testing Algorithm_sectionVisitor.js', function () {
             const input = new ctxMockNull()
             const output = visitor.visitAlgorithm_section(input)
             const referenceOutput = [false, [1,2,3,4,5]]
-            as.equal(output.initial, referenceOutput[0], 'expected initial value: ' + referenceOutput[0] + '; actual initial value: ' + output.initial)
-            as.deepEqual(output.statements, referenceOutput[1], 'expected statements value: ' + referenceOutput[1] + '; actual statements value: ' + output.statements)
+            as.equal(output.initial, referenceOutput[0], 'expected value for "initial": ' + referenceOutput[0] + '; actual value for "initial": ' + output.initial)
+            as.deepEqual(output.statements, referenceOutput[1], 'expected value for "statements": ' + referenceOutput[1] + '; actual value for "statements": ' + output.statements)
         })
+        /*
+        mo.it('testing ctx.statement() = false', function () {
+            class ctxMock {
+                INITIAL () {
+                    return true
+                }
+                statement () {
+                    return false
+                }
+            }
+            const visitor = new algSV()
+            const input = new ctxMock()
+            const output = visitor.visitAlgorithm_section(input)
+            const referenceOutput = [true, []]
+            as.equal(output.initial, referenceOutput[0], 'expected value for "initial": ' + referenceOutput[0] + '; actual value for "initial": ' + output.initial)
+            as.deepEqual(output.statements, referenceOutput[1], 'expected value for "statements": ' + referenceOutput[1] + '; actual value for "statements": ' + output.statements)
+        }) */
     })
 
 })
@@ -129,7 +146,7 @@ mo.describe('testing Argument_listVisitor.js', function () {
         const input = new ctxMock()
         const output = visitor.visitArgument_list(input)
         const referenceOutput = [1,2,3,4,5]
-        as.deepEqual(output.args, referenceOutput, 'expected args value: ' + referenceOutput + ' ; actual args value: ' + output.args)
+        as.deepEqual(output.args, referenceOutput, 'expected value for "args": ' + referenceOutput + ' ; actual value for "args: ' + output.args)
     })
 })
 mo.describe('testing ArgumentVisitor.js', function () {
@@ -176,9 +193,9 @@ mo.describe('testing Arithmetic_expressionVisitor.js', function () {
             const input = new ctxMock()
             const output = visitor.visitArithmetic_expression(input)
             referenceOutput = [[null, 3], [1, 4], [2,5]]
-            as.deepEqual([output.arithmetic_term_list[0].add_op, output.arithmetic_term_list[0].term], referenceOutput[0], 'expected first term value: ' + referenceOutput[0] + ' ; actual first term value: ' + [output.arithmetic_term_list[0].add_op, output.arithmetic_term_list[0].term])
-            as.deepEqual([output.arithmetic_term_list[1].add_op, output.arithmetic_term_list[1].term], referenceOutput[1], 'expected second term value: ' + referenceOutput[1] + ' ; actual second term value: ' + [output.arithmetic_term_list[1].add_op, output.arithmetic_term_list[1].term])
-            as.deepEqual([output.arithmetic_term_list[2].add_op, output.arithmetic_term_list[2].term], referenceOutput[2], 'expected third term value: ' + referenceOutput[2] + ' ; actual third term value: ' + [output.arithmetic_term_list[2].add_op, output.arithmetic_term_list[2].term]) 
+            as.deepEqual([output.arithmetic_term_list[0].add_op, output.arithmetic_term_list[0].term], referenceOutput[0], 'expected value for first term: ' + referenceOutput[0] + ' ; actual value for first term: ' + [output.arithmetic_term_list[0].add_op, output.arithmetic_term_list[0].term])
+            as.deepEqual([output.arithmetic_term_list[1].add_op, output.arithmetic_term_list[1].term], referenceOutput[1], 'expected value for second term: ' + referenceOutput[1] + ' ; actual value for second term: ' + [output.arithmetic_term_list[1].add_op, output.arithmetic_term_list[1].term])
+            as.deepEqual([output.arithmetic_term_list[2].add_op, output.arithmetic_term_list[2].term], referenceOutput[2], 'expected value for third term: ' + referenceOutput[2] + ' ; actual value for third term: ' + [output.arithmetic_term_list[2].add_op, output.arithmetic_term_list[2].term]) 
         })
         mo.it('testing when add_ops.length != (terms.length -1)', function () {
             class ctxMock {
@@ -194,8 +211,8 @@ mo.describe('testing Arithmetic_expressionVisitor.js', function () {
             const input = new ctxMock()
             const output = visitor.visitArithmetic_expression(input)
             referenceOutput = [[1, 3], [2,4]]
-            as.deepEqual([output.arithmetic_term_list[0].add_op, output.arithmetic_term_list[0].term], referenceOutput[0], 'expected first term value: ' + referenceOutput[0] + ' ; actual first term value: ' + [output.arithmetic_term_list[0].add_op, output.arithmetic_term_list[0].term])
-            as.deepEqual([output.arithmetic_term_list[1].add_op, output.arithmetic_term_list[1].term], referenceOutput[1], 'expected second term value: ' + referenceOutput[1] + ' ; actual second term value: ' + [output.arithmetic_term_list[1].add_op, output.arithmetic_term_list[1].term])
+            as.deepEqual([output.arithmetic_term_list[0].add_op, output.arithmetic_term_list[0].term], referenceOutput[0], 'expected value for first term: ' + referenceOutput[0] + ' ; actual value for first term: ' + [output.arithmetic_term_list[0].add_op, output.arithmetic_term_list[0].term])
+            as.deepEqual([output.arithmetic_term_list[1].add_op, output.arithmetic_term_list[1].term], referenceOutput[1], 'expected value for second term: ' + referenceOutput[1] + ' ; actual value for second term: ' + [output.arithmetic_term_list[1].add_op, output.arithmetic_term_list[1].term])
         })
     })
 })
@@ -211,7 +228,7 @@ mo.describe('testing Array_subscriptsVisitor.js', function () {
         const input = new ctxMock()
         const output = visitor.visitArray_subscripts(input)
         const referenceOutput = [1,2,3,4,5]
-        as.deepEqual(output.subscripts,referenceOutput,'expected subscripts value: ' + referenceOutput + ' ; actual subscripts value: ' + output.subscripts)
+        as.deepEqual(output.subscripts,referenceOutput,'expected value for "subscripts": ' + referenceOutput + ' ; actual value for "subscripts": ' + output.subscripts)
     })
 })
 mo.describe('testing Base_prefixVisitor.js', function () {
@@ -248,7 +265,7 @@ mo.describe('testing Class_definitionVisitor.js', function () {
         const input = new ctxMock()
         const output = visitor.visitClass_definition(input)
         const referenceOutput = [true, 'mocked class_prefixes', 'mocked class_specifier']
-        as.deepEqual(output.encapsulated, referenceOutput[0],'expected encapsulated value: ' + referenceOutput[0] + ' ; actual encapsulated value: ' + output.encapsulated)
+        as.deepEqual(output.encapsulated, referenceOutput[0],'expected value for "encapsulated": ' + referenceOutput[0] + ' ; actual value for "encapsulated": ' + output.encapsulated)
         as.deepEqual(output.class_prefixes, referenceOutput[1],'expected: ' + referenceOutput[1] + ' ; actual: ' + output.class_prefixes)
         as.deepEqual(output.class_specifier, referenceOutput[2],'expected: ' + referenceOutput[2] + ' ; actual: ' + output.class_specifier)
     })
@@ -640,8 +657,8 @@ mo.describe('testing Connect_clauseVisitor.js', function () {
         const input = new ctxMock()
         const output = visitor.visitConnect_clause(input)
         const referenceOutput = [1,2]
-        as.deepEqual(output.from, referenceOutput[0], 'expected "from" value: ' + referenceOutput[0] + ' ; actual "from" value: ' + output.from)
-        as.deepEqual(output.to, referenceOutput[1], 'expected "to" value: ' + referenceOutput[1] + ' ; actual "to" value: ' + output.to)
+        as.deepEqual(output.from, referenceOutput[0], 'expected value for "from": ' + referenceOutput[0] + ' ; actual value for "from": ' + output.from)
+        as.deepEqual(output.to, referenceOutput[1], 'expected value for "to": ' + referenceOutput[1] + ' ; actual value for "to": ' + output.to)
     })
 })
 mo.describe('testing Constraining_clauseVisitor.js', function () {
@@ -728,9 +745,9 @@ mo.describe('testing Der_class_specifierVisitor.js', function () {
         const input = new ctxMock()
         const output = visitor.visitDer_class_specifier(input)
         const referenceOutput = [0, 'mocked name', [1,2], 'mocked comment']
-        as.deepEqual(output.identifier, referenceOutput[0], 'expected identifier value: ' + referenceOutput[0] + ' ; actual identifier value: ' + output.identifier)
+        as.deepEqual(output.identifier, referenceOutput[0], 'expected value for "identifier": ' + referenceOutput[0] + ' ; actual value for "identifier": ' + output.identifier)
         as.deepEqual(output.der_class_specifier_value.type_specifier, referenceOutput[1], 'expected: ' + referenceOutput[1] + ' ; actual: ' + output.der_class_specifier_value.type_specifier)
-        as.deepEqual(output.der_class_specifier_value.identifiers, referenceOutput[2], 'expected identifiers: ' + referenceOutput[2] + ' ; actual identifiers: ' + output.der_class_specifier_value.identifiers)
+        as.deepEqual(output.der_class_specifier_value.identifiers, referenceOutput[2], 'expected value for "identifiers": ' + referenceOutput[2] + ' ; actual value for "identifiers": ' + output.der_class_specifier_value.identifiers)
         as.deepEqual(output.der_class_specifier_value.comment, referenceOutput[3], 'expected: ' + referenceOutput[3] + ' ; actual: ' + output.der_class_specifier_value.comment)
     })
 }) 
@@ -746,7 +763,7 @@ mo.describe('testing Element_listVisitor.js', function () {
         const input = new ctxMock()
         const output = visitor.visitElement_list(input)
         const referenceOutput = [1,2,3]
-        as.deepEqual(output.elements, referenceOutput, 'expected elements value: ' + referenceOutput + ' ; actual elements value: ' + output.elements)
+        as.deepEqual(output.elements, referenceOutput, 'expected value for "elements": ' + referenceOutput + ' ; actual value for "elements": ' + output.elements)
     })
 })
 mo.describe('testing Element_modification_or_replaceableVisitor.js', function () {
@@ -775,8 +792,8 @@ mo.describe('testing Element_modification_or_replaceableVisitor.js', function ()
             const input = new ctxMock(true)
             const output = visitor.visitElement_modification_or_replaceable(input)
             const referenceOutput = [true, true, 'mocked element_modification', 'mocked element_replaceable']
-            as.deepEqual(output.each, referenceOutput[0], 'expected "each" value: ' + referenceOutput[0] + ' ; actual "each value: ' + output.each)
-            as.deepEqual(output.is_final, referenceOutput[1], 'expected is_final value: ' + referenceOutput[1] + ' ; actual is_final value: ' + output.is_final)
+            as.deepEqual(output.each, referenceOutput[0], 'expected value for "each": ' + referenceOutput[0] + ' ; actual value for "each": ' + output.each)
+            as.deepEqual(output.is_final, referenceOutput[1], 'expected value for "is_final": ' + referenceOutput[1] + ' ; actual value for "is_final": ' + output.is_final)
             as.deepEqual(output.element_modification, referenceOutput[2], 'expected: ' + referenceOutput[2] + ' ; actual: ' + output.element_modification)
             as.deepEqual(output.element_replaceable, referenceOutput[3], 'expected: ' + referenceOutput[3] + ' ; actual: ' + output.element_replaceable)
         }) 
@@ -787,8 +804,8 @@ mo.describe('testing Element_modification_or_replaceableVisitor.js', function ()
             const input = new ctxMock(false)
             const output = visitor.visitElement_modification_or_replaceable(input)
             const referenceOutput = [false, false, 'mocked element_modification', 'mocked element_replaceable']
-            as.deepEqual(output.each, referenceOutput[0], 'expected "each" value: ' + referenceOutput[0] + ' ; actual "each" value: ' + output.each)
-            as.deepEqual(output.is_final, referenceOutput[1], 'expected is_final value: ' + referenceOutput[1] + ' ; actual is_final value: ' + output.is_final)
+            as.deepEqual(output.each, referenceOutput[0], 'expected value for "each": ' + referenceOutput[0] + ' ; actual value for "each": ' + output.each)
+            as.deepEqual(output.is_final, referenceOutput[1], 'expected value for "is_final": ' + referenceOutput[1] + ' ; actual value for "is_final": ' + output.is_final)
             as.deepEqual(output.element_modification, referenceOutput[2], 'expected: ' + referenceOutput[2] + ' ; actual: ' + output.element_modification)
             as.deepEqual(output.element_replaceable, referenceOutput[3], 'expected: ' + referenceOutput[3] + ' ; actual: ' + output.element_replaceable)
         }) 
@@ -799,8 +816,8 @@ mo.describe('testing Element_modification_or_replaceableVisitor.js', function ()
             const input = new ctxMock(null)
             const output = visitor.visitElement_modification_or_replaceable(input)
             const referenceOutput = [false, false, 'mocked element_modification', 'mocked element_replaceable']
-            as.deepEqual(output.each, referenceOutput[0], 'expected "each" value: ' + referenceOutput[0] + ' ; actual "each" value: ' + output.each)
-            as.deepEqual(output.is_final, referenceOutput[1], 'expected is_final value: ' + referenceOutput[1] + ' ; actual is_final value: ' + output.is_final)
+            as.deepEqual(output.each, referenceOutput[0], 'expected value for "each": ' + referenceOutput[0] + ' ; actual value for "each": ' + output.each)
+            as.deepEqual(output.is_final, referenceOutput[1], 'expected value for "is_final": ' + referenceOutput[1] + ' ; actual value for "is_final": ' + output.is_final)
             as.deepEqual(output.element_modification, referenceOutput[2], 'expected: ' + referenceOutput[2] + ' ; actual: ' + output.element_modification)
             as.deepEqual(output.element_replaceable, referenceOutput[3], 'expected: ' + referenceOutput[3] + ' ; actual: ' + output.element_replaceable)
         }) 
@@ -829,5 +846,46 @@ mo.describe('testing Element_modificationVisitor.js', function () {
         as.deepEqual(output.name, referenceOutput[0], 'expected: ' + referenceOutput[0] + ' ; actual: ' + output.name)
         as.deepEqual(output.modification, referenceOutput[1], 'expected: ' + referenceOutput[1] + ' ; actual: ' + output.modification)
         as.deepEqual(output.string_comment, referenceOutput[2], 'expected: ' + referenceOutput[2] + ' ; actual: ' + output.string_comment)
+    })
+})
+mo.describe('testing Element_redeclarationVisitor.js', function () {
+    mo.describe('testing visitElement_redeclaration(ctx)', function () {
+        const scdv = require('../jsParser/parser/Short_class_definitionVisitor.js').Short_class_definitionVisitor
+        class ctxMock {
+            constructor (boolean) {
+                this.boolean = boolean
+            }
+            EACH () {
+                return this.boolean
+            }
+            FINAL () {
+                return this.boolean
+            }
+            short_class_definition () {
+                return 'mocked short_class_definition'
+            }
+            component_clause1 () {
+                return 'mocked component_clause1'
+            }
+            element_replaceable () {
+                return 'mocked element_replaceable'
+            }
+        }
+        mo.describe('testing ctx.EACH() and ctx.FINAL()', function () {
+            mo.it('testing when true', function () {
+                sinon.stub(scdv.prototype, 'visitShort_class_definition').callsFake((scd) => scd)
+                sinon.stub(cc1v.prototype, 'visitComponent_clause1').callsFake((clause) => clause)
+                sinon.stub(eleRepV.prototype,'visitElement_replaceable').callsFake((element) => element)
+                const visitor = new erv()
+                const input = new ctxMock(true)
+                const output = visitor.visitElement_redeclaration(input)
+                const referenceOutput = [true, true, 'mocked short_class_definition', 'mocked component_clause1', 'mocked element_replaceable']
+                as.deepEqual(output.each, referenceOutput[0], 'expected value for "each": ' + referenceOutput[0] + ' ; actual value for "each": ' + output.each)
+                as.deepEqual(output.is_final, referenceOutput[1], 'expected value for "is_final": ' + referenceOutput[1] + ' ; actual value for "is_final": ' + output.is_final)
+                as.deepEqual(output.short_class_definition, referenceOutput[2], 'expected: ' + referenceOutput[2] + ' ; actual: ' + output.short_class_definition)
+                as.deepEqual(output.component_clause1, referenceOutput[3], 'expected: ' + referenceOutput[3] + ' ; actual: ' + output.component_clause1)
+                as.deepEqual(output.element_replaceable, referenceOutput[4], 'expected: ' + referenceOutput[4] + ' ; actual: ' + output.element_replaceable)
+            })
+        })
     })
 })
