@@ -411,13 +411,13 @@ mo.describe('testing Class_specifierVisitor.js', function () {
                 this.testing = testing
             }
             long_class_specifier () {
-                return this.testing = 'long_class_specifier' ? 'mocked long_class_specifier' : false
+                return this.testing == 'long_class_specifier' ? 'mocked long_class_specifier' : null
             }
             short_class_specifier () {
-                return this.testing = 'short_class_specifier' ? 'mocked short_class_specifier' : false
+                return this.testing == 'short_class_specifier' ? 'mocked short_class_specifier' : null
             }
             der_class_specifier () {
-                return this.testing = 'der_class_specifier' ? 'mocked der_class_specifier' : false
+                return this.testing == 'der_class_specifier' ? 'mocked der_class_specifier' : null
             }
         }
         mo.it('testing long_class_specifier', function () {
@@ -428,7 +428,7 @@ mo.describe('testing Class_specifierVisitor.js', function () {
             const referenceOutput = 'mocked long_class_specifier'
             as.deepEqual(output.long_class_specifier, referenceOutput, 'expected: ' + referenceOutput + ' ; actual: ' + output.long_class_specifier)
         })
-        /* NOT WORKING
+        
         mo.it('testing short_class_specifier', function () {
             sinon.stub(scsv.prototype, 'visitShort_class_specifier').callsFake((class_specifier) => class_specifier)
             const visitor = new csv()
@@ -436,8 +436,8 @@ mo.describe('testing Class_specifierVisitor.js', function () {
             const output = visitor.visitClass_specifier(input)
             const referenceOutput = 'mocked short_class_specifier'
             as.deepEqual(output.short_class_specifier, referenceOutput, 'expected: ' + referenceOutput + ' ; actual: ' + output.short_class_specifier)
-        }) */
-        /* NOT WORKING
+        }) 
+        
         mo.it('testing der_class_specifier', function () {
             sinon.stub(dcsv.prototype, 'visitDer_class_specifier').callsFake((class_specifier) => class_specifier)
             const visitor = new csv()
@@ -445,7 +445,7 @@ mo.describe('testing Class_specifierVisitor.js', function () {
             const output = visitor.visitClass_specifier(input)
             const referenceOutput = 'mocked der_class_specifier'
             as.deepEqual(output.der_class_specifier, referenceOutput, 'expected: ' + referenceOutput + ' ; actual: ' + output.der_class_specifier)
-        }) */
+        })
     })
 })
 mo.describe('testing CommentVisitor.js', function () {
@@ -583,10 +583,10 @@ mo.describe('testing Component_listVisitor.js', function () {
         as.deepEqual(output.component_declaration_list, referenceOutput, 'expected: ' + referenceOutput + ' ; actual: ' + output.component_declaration_list)
     })
 })
-/* NOT WORKING
+/* Anand will write these tests
 mo.describe('testing Component_referenceVisitor.js', function () {
     mo.describe('testing visitComponent_reference(ctx)', function () {
-        const tn = require('../node_modules/antlr4/tree/Tree.js').TerminalNodeImpl
+        const tn = require('antlr4/tree/Tree.js').TerminalNodeImpl
         const crp = require('../jsParser/domain/Component_reference_part.js').Component_reference_part
         mo.it('testing ', function () {
             class ctxMock {
@@ -600,12 +600,11 @@ mo.describe('testing Component_referenceVisitor.js', function () {
             const input = new ctxMock()
             const output = visitor.visitComponent_reference(input)
             const referenceOutput = new crp(true, null, null)
-            console.log('OUTPUT: ' + output)
-            as.deepEqual(output[0], referenceOutput, 'expected: ' + referenceOutput + ' ; actual: ' + output)
+            as.deepEqual(output.component_reference_parts[0], referenceOutput, 'expected: ' + referenceOutput.dot_op + ' ; actual: ' + output)
         })
     })
-}) */ 
-/* WILL COME BACK TO BUILD TESTS
+}) */
+/* Anand will write these tests
 mo.describe('testing CompositionVisitor.js', function () {
     mo.describe('testing visitComposition(ctx)', function () {
         mo.it('testing ', function () {
@@ -733,7 +732,6 @@ mo.describe('testing Der_class_specifierVisitor.js', function () {
         as.deepEqual(output.der_class_specifier_value.type_specifier, referenceOutput[1], 'expected: ' + referenceOutput[1] + ' ; actual: ' + output.der_class_specifier_value.type_specifier)
         as.deepEqual(output.der_class_specifier_value.identifiers, referenceOutput[2], 'expected identifiers: ' + referenceOutput[2] + ' ; actual identifiers: ' + output.der_class_specifier_value.identifiers)
         as.deepEqual(output.der_class_specifier_value.comment, referenceOutput[3], 'expected: ' + referenceOutput[3] + ' ; actual: ' + output.der_class_specifier_value.comment)
-        console.log('OUTPUT: ' + output.der_class_specifier_value.type_specifier)
     })
 }) 
 mo.describe('testing Element_listVisitor.js', function () {
