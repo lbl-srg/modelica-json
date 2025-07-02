@@ -41,6 +41,7 @@ const eleV = require('../jsParser/parser/ElementVisitor.js').ElementVisitor
 const elv = require('../jsParser/parser/Element_listVisitor.js').Element_listVisitor
 const emv = require('../jsParser/parser/Element_modificationVisitor.js').Element_modificationVisitor
 const eleRepV = require('../jsParser/parser/Element_replaceableVisitor.js').Element_replaceableVisitor
+const scdv = require('../jsParser/parser/Short_class_definitionVisitor.js').Short_class_definitionVisitor
 
 mo.afterEach(() => {
   sinon.restore()
@@ -850,7 +851,6 @@ mo.describe('testing Element_modificationVisitor.js', function () {
 })
 mo.describe('testing Element_redeclarationVisitor.js', function () {
     mo.describe('testing visitElement_redeclaration(ctx)', function () {
-        const scdv = require('../jsParser/parser/Short_class_definitionVisitor.js').Short_class_definitionVisitor
         class ctxMock {
             constructor (boolean) {
                 this.boolean = boolean
@@ -886,6 +886,59 @@ mo.describe('testing Element_redeclarationVisitor.js', function () {
                 as.deepEqual(output.component_clause1, referenceOutput[3], 'expected: ' + referenceOutput[3] + ' ; actual: ' + output.component_clause1)
                 as.deepEqual(output.element_replaceable, referenceOutput[4], 'expected: ' + referenceOutput[4] + ' ; actual: ' + output.element_replaceable)
             })
+            mo.it('testing when false', function () {
+                sinon.stub(scdv.prototype, 'visitShort_class_definition').callsFake((scd) => scd)
+                sinon.stub(cc1v.prototype, 'visitComponent_clause1').callsFake((clause) => clause)
+                sinon.stub(eleRepV.prototype,'visitElement_replaceable').callsFake((element) => element)
+                const visitor = new erv()
+                const input = new ctxMock(false)
+                const output = visitor.visitElement_redeclaration(input)
+                const referenceOutput = [false, false, 'mocked short_class_definition', 'mocked component_clause1', 'mocked element_replaceable']
+                as.deepEqual(output.each, referenceOutput[0], 'expected value for "each": ' + referenceOutput[0] + ' ; actual value for "each": ' + output.each)
+                as.deepEqual(output.is_final, referenceOutput[1], 'expected value for "is_final": ' + referenceOutput[1] + ' ; actual value for "is_final": ' + output.is_final)
+                as.deepEqual(output.short_class_definition, referenceOutput[2], 'expected: ' + referenceOutput[2] + ' ; actual: ' + output.short_class_definition)
+                as.deepEqual(output.component_clause1, referenceOutput[3], 'expected: ' + referenceOutput[3] + ' ; actual: ' + output.component_clause1)
+                as.deepEqual(output.element_replaceable, referenceOutput[4], 'expected: ' + referenceOutput[4] + ' ; actual: ' + output.element_replaceable)
+            })
+            mo.it('testing when null', function () {
+                sinon.stub(scdv.prototype, 'visitShort_class_definition').callsFake((scd) => scd)
+                sinon.stub(cc1v.prototype, 'visitComponent_clause1').callsFake((clause) => clause)
+                sinon.stub(eleRepV.prototype,'visitElement_replaceable').callsFake((element) => element)
+                const visitor = new erv()
+                const input = new ctxMock(null)
+                const output = visitor.visitElement_redeclaration(input)
+                const referenceOutput = [false, false, 'mocked short_class_definition', 'mocked component_clause1', 'mocked element_replaceable']
+                as.deepEqual(output.each, referenceOutput[0], 'expected value for "each": ' + referenceOutput[0] + ' ; actual value for "each": ' + output.each)
+                as.deepEqual(output.is_final, referenceOutput[1], 'expected value for "is_final": ' + referenceOutput[1] + ' ; actual value for "is_final": ' + output.is_final)
+                as.deepEqual(output.short_class_definition, referenceOutput[2], 'expected: ' + referenceOutput[2] + ' ; actual: ' + output.short_class_definition)
+                as.deepEqual(output.component_clause1, referenceOutput[3], 'expected: ' + referenceOutput[3] + ' ; actual: ' + output.component_clause1)
+                as.deepEqual(output.element_replaceable, referenceOutput[4], 'expected: ' + referenceOutput[4] + ' ; actual: ' + output.element_replaceable)
+            })
         })
+    })
+})
+mo.describe('testing Element_replaceableVisitor.js', function () {
+    mo.it('testing visitElement_replaceable', function () {
+        class ctxMock {
+            short_class_definition () {
+                return 'mocked short_class_definition'
+            }
+            component_clause1 () {
+                return 'mocked component_clause1'
+            }
+            constraining_clause () {
+                return 'mocked constraining_clause'
+            }
+        }
+        sinon.stub(scdv.prototype, 'visitShort_class_definition').callsFake((definition) => definition)
+        sinon.stub(cc1v.prototype, 'visitComponent_clause1').callsFake((clause) => clause)
+        sinon.stub(consCV.prototype, 'visitConstraining_clause').callsFake((clause) => clause)
+        const visitor = new eleRepV()
+        const input = new ctxMock()
+        const output = visitor.visitElement_replaceable(input)
+        const referenceOutput = ['mocked short_class_definition', 'mocked component_clause1', 'mocked constraining_clause']
+        as.deepEqual(output.short_class_definition, referenceOutput[0], 'expected: ' + referenceOutput[0] + ' ; actual: ' + output.short_class_definition)
+        as.deepEqual(output.component_clause1, referenceOutput[1], 'expected: ' + referenceOutput[1] + ' ; actual: ' + output.component_clause1)
+        as.deepEqual(output.constraining_clause, referenceOutput[2], 'expected: ' + referenceOutput[2] + ' ; actual: ' + output.constraining_clause)
     })
 })
