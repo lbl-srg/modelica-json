@@ -689,16 +689,13 @@ mo.describe('testing Constraining_clauseVisitor.js', function () {
 mo.describe('testing DeclarationVisitor.js', function () {
     mo.it('testing visitDeclaration', function () {
         class getTextClass {
-            constructor (text) {
-                this.text = text
-            }
             getText () {
-                return this.text
+                return 'mocked identifier'
             }
         }
         class ctxMock {
             IDENT () {
-                return new getTextClass('mocked identifier')
+                return new getTextClass()
             }
             array_subscripts () {
                 return 'mocked array_subscripts'
@@ -1027,5 +1024,29 @@ mo.describe('testing Enum_listVisitor.js', function () {
         const output = visitor.visitEnum_list(input)
         const referenceOutput = [1,2,3]
         as.deepEqual(output.enumeration_literal_list, referenceOutput, 'expected value for "enumeration_literal_list": ' + referenceOutput + ' ; actual value for "enumeration_literal_list": ' + output.enumeration_literal_list)
+    })
+})
+mo.describe('testing Enumeration_literalVisitor.js', function () {
+    mo.it('testing visitEnumeration_literal(ctx)', function () {
+        class getTextClass {
+            getText () {
+                return 'mocked identifier'
+            }
+        }
+        class ctxMock {
+            IDENT () {
+                return new getTextClass()
+            }
+            comment () {
+                return 'mocked comment'
+            }
+        }
+        sinon.stub(cv.prototype,'visitComment').callsFake((comment) => comment)
+        const visitor = new enumLitV()
+        const input = new ctxMock()
+        const output = visitor.visitEnumeration_literal(input)
+        const referenceOutput = ['mocked identifier', 'mocked comment']
+        as.deepEqual(output.identifier, referenceOutput[0], 'expected: ' + referenceOutput[0] + ' ; actual: ' + output.identifier)
+        as.deepEqual(output.comment, referenceOutput[1], 'expected: ' + referenceOutput[1] + ' ; actual: ' + output.comment)
     })
 })
