@@ -693,7 +693,6 @@ mo.describe('testing DeclarationVisitor.js', function () {
         as.deepEqual(output.modification, referenceOutput[2], 'expected: ' + referenceOutput[2] + ' ; actual: ' + output.modification)
     })
 })
-/* CANNOT RUN BECAUSE CommentVisitor IS COMMENTTED OUT IN ORIGINAL FILE 
 mo.describe('testing Der_class_specifierVisitor.js', function () {
     mo.it('testing visitDer_clas_specifier(ctx)', function () {
         class getTextClass {
@@ -725,6 +724,28 @@ mo.describe('testing Der_class_specifierVisitor.js', function () {
         const visitor = new dcsv()
         const input = new ctxMock()
         const output = visitor.visitDer_class_specifier(input)
-        //const referenceOutput = 
+        const referenceOutput = [0, 'mocked name', [1,2], 'mocked comment']
+        as.deepEqual(output.identifier, referenceOutput[0], 'expected: ' + referenceOutput[0] + ' ; actual: ' + output.identifier)
+        as.deepEqual(output.der_class_specifier_value.type_specifier, referenceOutput[1], 'expected: ' + referenceOutput[1] + ' ; actual: ' + output.der_class_specifier_value.type_specifier)
+        as.deepEqual(output.der_class_specifier_value.identifiers, referenceOutput[2], 'expected: ' + referenceOutput[2] + ' ; actual: ' + output.der_class_specifier_value.identifiers)
+        as.deepEqual(output.der_class_specifier_value.comment, referenceOutput[3], 'expected: ' + referenceOutput[3] + ' ; actual: ' + output.der_class_specifier_value.comment)
+        console.log('OUTPUT: ' + output.der_class_specifier_value.type_specifier)
     })
-}) */
+}) 
+mo.describe('testing Element_listVisitor.js', function () {
+    const eleV = require('../jsParser/parser/ElementVisitor.js').ElementVisitor
+    const elv = require('../jsParser/parser/Element_listVisitor.js').Element_listVisitor
+    mo.it('testing visitElement_list(ctx)', function () {
+        class ctxMock {
+            element () {
+                return [1,2,3]
+            }
+        }
+        sinon.stub(eleV.prototype, 'visitElement').callsFake((element) => element)
+        const visitor = new elv()
+        const input = new ctxMock()
+        const output = visitor.visitElement_list(input)
+        const referenceOutput = [1,2,3]
+        as.deepEqual(output.elements, referenceOutput, 'expected: ' + referenceOutput + ' ; actual: ' + output.elements)
+    })
+})
