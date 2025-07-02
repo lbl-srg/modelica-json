@@ -44,6 +44,8 @@ const eleRepV = require('../jsParser/parser/Element_replaceableVisitor.js').Elem
 const scdv = require('../jsParser/parser/Short_class_definitionVisitor.js').Short_class_definitionVisitor
 const icv = require('../jsParser/parser/Import_clauseVisitor.js').Import_clauseVisitor
 const ecv = require('../jsParser/parser/Extends_clauseVisitor.js').Extends_clauseVisitor
+const enumLitV = require('../jsParser/parser/Enumeration_literalVisitor.js').Enumeration_literalVisitor
+const enumListV = require('../jsParser/parser/Enum_listVisitor.js').Enum_listVisitor
 
 mo.afterEach(() => {
   sinon.restore()
@@ -1011,4 +1013,19 @@ mo.describe('testing ElementVisitor.js', function () {
         })
     })
     
+})
+mo.describe('testing Enum_listVisitor.js', function () {
+    mo.it('testing visitEnum_list(ctx)', function () {
+        class ctxMock {
+            enumeration_literal () {
+                return [1,2,3]
+            }
+        }
+        sinon.stub(enumLitV.prototype,'visitEnumeration_literal').callsFake((enumeration_literal) => enumeration_literal)
+        const visitor = new enumListV()
+        const input = new ctxMock()
+        const output = visitor.visitEnum_list(input)
+        const referenceOutput = [1,2,3]
+        as.deepEqual(output.enumeration_literal_list, referenceOutput, 'expected value for "enumeration_literal_list": ' + referenceOutput + ' ; actual value for "enumeration_literal_list": ' + output.enumeration_literal_list)
+    })
 })
