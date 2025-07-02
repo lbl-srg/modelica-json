@@ -46,6 +46,13 @@ const icv = require('../jsParser/parser/Import_clauseVisitor.js').Import_clauseV
 const ecv = require('../jsParser/parser/Extends_clauseVisitor.js').Extends_clauseVisitor
 const enumLitV = require('../jsParser/parser/Enumeration_literalVisitor.js').Enumeration_literalVisitor
 const enumListV = require('../jsParser/parser/Enum_listVisitor.js').Enum_listVisitor
+const eqV = require('../jsParser/parser/EquationVisitor.js').EquationVisitor
+const esv = require('../jsParser/parser/Equation_sectionVisitor.js').Equation_sectionVisitor
+const sev = require('../jsParser/parser/Simple_expressionVisitor.js').Simple_expressionVisitor
+const iev = require('../jsParser/parser/If_equationVisitor.js').If_equationVisitor
+const fev = require('../jsParser/parser/For_equationVisitor.js').For_equationVisitor
+const wev = require('../jsParser/parser/When_equationVisitor.js').When_equationVisitor
+const fcav = require('../jsParser/parser/Function_call_argsVisitor.js').Function_call_argsVisitor
 
 mo.afterEach(() => {
   sinon.restore()
@@ -104,23 +111,6 @@ mo.describe('testing Algorithm_sectionVisitor.js', function () {
             as.equal(output.initial, referenceOutput[0], 'expected value for "initial": ' + referenceOutput[0] + '; actual value for "initial": ' + output.initial)
             as.deepEqual(output.statements, referenceOutput[1], 'expected value for "statements": ' + referenceOutput[1] + '; actual value for "statements": ' + output.statements)
         })
-        /*
-        mo.it('testing ctx.statement() = false', function () {
-            class ctxMock {
-                INITIAL () {
-                    return true
-                }
-                statement () {
-                    return false
-                }
-            }
-            const visitor = new algSV()
-            const input = new ctxMock()
-            const output = visitor.visitAlgorithm_section(input)
-            const referenceOutput = [true, []]
-            as.equal(output.initial, referenceOutput[0], 'expected value for "initial": ' + referenceOutput[0] + '; actual value for "initial": ' + output.initial)
-            as.deepEqual(output.statements, referenceOutput[1], 'expected value for "statements": ' + referenceOutput[1] + '; actual value for "statements": ' + output.statements)
-        }) */
     })
 
 })
@@ -1048,5 +1038,104 @@ mo.describe('testing Enumeration_literalVisitor.js', function () {
         const referenceOutput = ['mocked identifier', 'mocked comment']
         as.deepEqual(output.identifier, referenceOutput[0], 'expected: ' + referenceOutput[0] + ' ; actual: ' + output.identifier)
         as.deepEqual(output.comment, referenceOutput[1], 'expected: ' + referenceOutput[1] + ' ; actual: ' + output.comment)
+    })
+})
+mo.describe('testing Equation_sectionVisitor.js', function () {
+    mo.describe('testing visitEquation_section(ctx)', function () {
+        class ctxMock {
+            constructor (boolean) {
+                this.boolean = boolean
+            }
+            INITIAL () {
+                return this.boolean
+            }
+            equation () {
+                return [1,2,3]
+            }
+        }
+        mo.describe('testing ctx.INITIAL()', function () {
+            mo.it('testing when true', function () {
+                sinon.stub(eqV.prototype, 'visitEquation').callsFake((eqn) => eqn)
+                const visitor = new esv()
+                const input = new ctxMock(true)
+                const output = visitor.visitEquation_section(input)
+                const referenceOutput = [true, [1,2,3]]
+                as.deepEqual(output.initial, referenceOutput[0], 'expected value for "initial": ' + referenceOutput[0] + ' ; actual value for "initial": ' + output.initial)
+                as.deepEqual(output.equations, referenceOutput[1], 'expected value for "equations": ' + referenceOutput[1] + ' ; actual value for "equations": ' + output.equations)
+            })
+            mo.it('testing when false', function () {
+                sinon.stub(eqV.prototype, 'visitEquation').callsFake((eqn) => eqn)
+                const visitor = new esv()
+                const input = new ctxMock(false)
+                const output = visitor.visitEquation_section(input)
+                const referenceOutput = [false, [1,2,3]]
+                as.deepEqual(output.initial, referenceOutput[0], 'expected value for "initial": ' + referenceOutput[0] + ' ; actual value for "initial": ' + output.initial)
+                as.deepEqual(output.equations, referenceOutput[1], 'expected value for "equations": ' + referenceOutput[1] + ' ; actual value for "equations": ' + output.equations)
+            })
+            mo.it('testing when null', function () {
+                sinon.stub(eqV.prototype, 'visitEquation').callsFake((eqn) => eqn)
+                const visitor = new esv()
+                const input = new ctxMock(null)
+                const output = visitor.visitEquation_section(input)
+                const referenceOutput = [false, [1,2,3]]
+                as.deepEqual(output.initial, referenceOutput[0], 'expected value for "initial": ' + referenceOutput[0] + ' ; actual value for "initial": ' + output.initial)
+                as.deepEqual(output.equations, referenceOutput[1], 'expected value for "equations": ' + referenceOutput[1] + ' ; actual value for "equations": ' + output.equations)
+            })
+        })
+    })
+})
+mo.describe('testing EquationVisitor.js', function () {
+    mo.it('testing visitEquation(ctx)', function () {
+        class ctxMock {
+            simple_expression () {
+                return 'mocked simple_expression'
+            }
+            expression () {
+                return 'mocked expression'
+            }
+            if_equation () {
+                return 'mocked if_equation'
+            }
+            for_equation () {
+                return 'mocked for_equation'
+            }
+            connect_clause () {
+                return 'mocked connect_clause'
+            }
+            when_equation () {
+                return 'mocked when_equation'
+            }
+            name () {
+                return 'mocked name'
+            }
+            function_call_args () {
+                return 'mocked function_call_args'
+            }
+            comment () {
+                return 'mocked comment'
+            }
+        }
+        sinon.stub(sev.prototype,'visitSimple_expression').callsFake((exp) => exp)
+        sinon.stub(ev.prototype,'visitExpression').callsFake((exp) => exp)
+        sinon.stub(iev.prototype,'visitIf_equation').callsFake((eqn) => eqn)
+        sinon.stub(fev.prototype,'visitFor_equation').callsFake((eqn) => eqn)
+        sinon.stub(connCV.prototype,'visitConnect_clause').callsFake((clause) => clause)
+        sinon.stub(wev.prototype,'visitWhen_equation').callsFake((eqn) => eqn)
+        sinon.stub(nv.prototype,'visitName').callsFake((name) => name)
+        sinon.stub(fcav.prototype,'visitFunction_call_args').callsFake((args) => args)
+        sinon.stub(cv.prototype, 'visitComment').callsFake((comment) => comment)
+        const visitor = new eqV()
+        const input = new ctxMock()
+        const output = visitor.visitEquation(input)
+        const referenceOutput = ['mocked simple_expression', 'mocked expression', 'mocked if_equation', 'mocked for_equation', 'mocked connect_clause', 'mocked when_equation', 'mocked name', 'mocked function_call_args', 'mocked comment']
+        as.deepEqual(output.assignment_equation.lhs, referenceOutput[0], 'expected: ' + referenceOutput[0] + ' ; actual: ' + output.assignment_equation.lhs)
+        as.deepEqual(output.assignment_equation.rhs, referenceOutput[1], 'expected: ' + referenceOutput[1] + ' ; actual: ' + output.assignment_equation.rhs)
+        as.deepEqual(output.if_equation, referenceOutput[2], 'expected: ' + referenceOutput[2] + ' ; actual: ' + output.if_equation)
+        as.deepEqual(output.for_equation, referenceOutput[3], 'expected: ' + referenceOutput[3] + ' ; actual: ' + output.for_equation)
+        as.deepEqual(output.connect_clause, referenceOutput[4], 'expected: ' + referenceOutput[4] + ' ; actual: ' + output.connect_clause)
+        as.deepEqual(output.when_equation, referenceOutput[5], 'expected: ' + referenceOutput[5] + ' ; actual: ' + output.when_equation)
+        as.deepEqual(output.function_call_equation.function_name, referenceOutput[6], 'expected: ' + referenceOutput[6] + ' ; actual: ' + output.function_call_equation.function_name)
+        as.deepEqual(output.function_call_equation.function_call_args, referenceOutput[7], 'expected: ' + referenceOutput[7] + ' ; actual: ' + output.function_call_equation.function_call_args)
+        as.deepEqual(output.comment, referenceOutput[8], 'expected: ' + referenceOutput[8] + ' ; actual: ' + output.comment)
     })
 })
