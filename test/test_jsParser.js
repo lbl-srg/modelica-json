@@ -42,6 +42,8 @@ const elv = require('../jsParser/parser/Element_listVisitor.js').Element_listVis
 const emv = require('../jsParser/parser/Element_modificationVisitor.js').Element_modificationVisitor
 const eleRepV = require('../jsParser/parser/Element_replaceableVisitor.js').Element_replaceableVisitor
 const scdv = require('../jsParser/parser/Short_class_definitionVisitor.js').Short_class_definitionVisitor
+const icv = require('../jsParser/parser/Import_clauseVisitor.js').Import_clauseVisitor
+const ecv = require('../jsParser/parser/Extends_clauseVisitor.js').Extends_clauseVisitor
 
 mo.afterEach(() => {
   sinon.restore()
@@ -941,4 +943,72 @@ mo.describe('testing Element_replaceableVisitor.js', function () {
         as.deepEqual(output.component_clause1, referenceOutput[1], 'expected: ' + referenceOutput[1] + ' ; actual: ' + output.component_clause1)
         as.deepEqual(output.constraining_clause, referenceOutput[2], 'expected: ' + referenceOutput[2] + ' ; actual: ' + output.constraining_clause)
     })
+})
+mo.describe('testing ElementVisitor.js', function () {
+    mo.describe('testing visitElement(ctx)', function () {
+        class ctxMock {
+            constructor (boolean) {
+                this.boolean = boolean
+            }
+            import_clause () {
+                return 'mocked import_clause'
+            }
+            extends_clause () {
+                return 'mocked extends_clause'
+            }
+            REDECLARE () {
+                return this.boolean
+            }
+            FINAL () {
+                return this.boolean
+            }
+            INNER () {
+                return this.boolean
+            }
+            OUTER () {
+                return this.boolean
+            }
+            REPLACEABLE () {
+                return this.boolean
+            }
+            constraining_clause () {
+                return 'mocked constraining_clause'
+            }
+            class_definition () {
+                return 'mocked class_definition'
+            }
+            component_clause () {
+                return 'mocked component_clause'
+            }
+            comment () {
+                return 'mocked comment'
+            }
+        }
+        mo.describe('testing ctx.REDECLARE(), ctx.FINAL(), ctx.INNER(), ctx.OUTER(), ctx.REPLACEABLE()', function () {
+            mo.it('testing when true', function () {
+                sinon.stub(icv.prototype, 'visitImport_clause').callsFake((clause) => clause)
+                sinon.stub(ecv.prototype, 'visitExtends_clause').callsFake((clause) => clause)
+                sinon.stub(consCV.prototype, 'visitConstraining_clause').callsFake((clause) => clause)
+                sinon.stub(cdv.prototype,'visitClass_definition').callsFake((class_definition) => class_definition)
+                sinon.stub(ccv.prototype, 'visitComponent_clause').callsFake((clause) => clause)
+                sinon.stub(cv.prototype, 'visitComment').callsFake((comment) => comment)
+                const visitor = new eleV()
+                const input = new ctxMock(true)
+                const output = visitor.visitElement(input)
+                const referenceOutput = ['mocked import_clause', 'mocked extends_clause', true, true, true, true, true, 'mocked constraining_clause', 'mocked class_definition', 'mocked component_clause', 'mocked comment']
+                as.deepEqual(output.import_clause, referenceOutput[0], 'expected: ' + referenceOutput[0] + ' ; actual: ' + output.import_clause)
+                as.deepEqual(output.extends_clause, referenceOutput[1], 'expected: ' + referenceOutput[1] + ' ; actual: ' + output.extends_clause)
+                as.deepEqual(output.redeclare, referenceOutput[2], 'expected value for "redeclare": ' + referenceOutput[2] + ' ; actual value for "redeclare": ' + output.redeclare)
+                as.deepEqual(output.is_final, referenceOutput[3], 'expected value for "is_final": ' + referenceOutput[3] + ' ; actual value for "is_final": ' + output.is_final)
+                as.deepEqual(output.inner, referenceOutput[4], 'expected value for "inner": ' + referenceOutput[4] + ' ; actual value for "inner": ' + output.inner)
+                as.deepEqual(output.outer, referenceOutput[5], 'expected value for "outer": ' + referenceOutput[5] + ' ; actual value for "outer": ' + output.outer)
+                as.deepEqual(output.replaceable, referenceOutput[6], 'expected value for "replaceable": ' + referenceOutput[6] + ' ; actual value for "replaceable": ' + output.replaceable)
+                as.deepEqual(output.constraining_clause, referenceOutput[7], 'expected: ' + referenceOutput[7] + ' ; actual: ' + output.constraining_clause)
+                as.deepEqual(output.class_definition, referenceOutput[8], 'expected: ' + referenceOutput[8] + ' ; actual: ' + output.class_definition)
+                as.deepEqual(output.component_clause, referenceOutput[9], 'expected: ' + referenceOutput[9] + ' ; actual: ' + output.component_clause)
+                as.deepEqual(output.comment, referenceOutput[10], 'expected: ' + referenceOutput[10] + ' ; actual: ' + output.comment)
+            })
+        })
+    })
+    
 })
