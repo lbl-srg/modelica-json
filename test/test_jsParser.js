@@ -58,27 +58,120 @@ mo.afterEach(() => {
   sinon.restore()
 })
 
+class getTextClass {
+    constructor (text) {
+        this.text = text
+    }
+    getText () {
+        return this.text
+    }
+}
 class ctxMock {
-    constructor (boolean=null) {
+    constructor (boolean=null, testing=null) {
         this.boolean = boolean
+        this.testing = testing
     }
-    INITIAL () {
-        return this.boolean
+    INITIAL () { return this.boolean }
+    statement () { return [1,2,3,4,5] }
+    argument () { return [1,2,3,4,5] }
+    element_modification_or_replaceable () { return "mocked element_modification_or_replaceable" }
+    element_redeclaration () { return "mocked element_redeclaration" }
+    add_op () { return [new getTextClass(1),new getTextClass(2)] }
+    term () { return [3,4,5] }
+    subscript () { return [1,2,3,4,5] }
+    type_prefix () { return 'mocked type_prefix' }
+    ENCAPSULATED () { return true }
+    class_prefixes () { return 'mocked class_prefixes' }
+    class_specifier () { return 'mocked class_specifier' }
+    argument_list () { return 'mocked argument_list' }
+    annotation () { return 'mocked annotation' }
+    string_comment () { return 'mocked string_comment' }
+    type_specifier () { return 'mocked type_specifier' }
+    component_declaration1 () { return 'mocked component_declaration' }
+    array_subscripts () { return 'mocked array_subscripts' }
+    component_list () { return 'mocked component_list' }
+    declaration () { return 'mocked declaration' }
+    comment () { return 'mocked comment' }
+    condition_attribute () { return 'mocked condition_attribute' }
+    component_declaration () { return [1,2,3,4,5] }
+    expression () { return 'mocked expression' }
+    component_reference () { return [1,2] }
+    name () { return 'mocked name' }
+    class_modification () { return 'mocked class_modification' }
+    IDENT () { return new getTextClass('mocked identifier') }
+    modification () { return 'mocked modification' }
+    element () { return [1,2,3] }
+    EACH () { return this.boolean }
+    FINAL () { return this.boolean }
+    element_modification () { return 'mocked element_modification' }
+    element_replaceable () { return 'mocked element_replaceable' }
+    short_class_definition () { return 'mocked short_class_definition' }
+    component_clause1 () { return 'mocked component_clause1' }
+    constraining_clause () { return 'mocked constraining_clause' }
+    import_clause () { return 'mocked import_clause' }
+    extends_clause () { return 'mocked extends_clause' }
+    REDECLARE () { return this.boolean }
+    INNER () { return this.boolean }
+    OUTER () { return this.boolean }
+    REPLACEABLE () { return this.boolean }
+    class_definition () { return 'mocked class_definition' }
+    component_clause () { return 'mocked component_clause' }
+    enumeration_literal () { return [1,2,3] }
+    equation () { return [1,2,3] }
+    simple_expression () { return 'mocked simple_expression' }
+    if_equation () { return 'mocked if_equation' }
+    for_equation () { return 'mocked for_equation' }
+    connect_clause () { return 'mocked connect_clause' }
+    when_equation () { return 'mocked when_equation' }
+    function_call_args () { return 'mocked function_call_args' }
+    PARTIAL () {
+        return this.testing == 'partial_dec' ? new getTextClass('mocked partial_dec') : false
     }
-    statement () {
-        return [1,2,3,4,5]
+    CLASS () {
+        return this.testing == 'class_dec' ? new getTextClass('mocked class_dec') : false
     }
-    class_modification () {
-        return 'mocked class modifier'
+    MODEL () {
+        return this.testing == 'model_dec' ? new getTextClass('mocked model_dec') : false
     }
-    argument () {
-        return [1,2,3,4,5]
+    BLOCK () {
+        return this.testing == 'block_dec' ? new getTextClass('mocked block_dec') : false
     }
-    element_modification_or_replaceable () {
-        return "mocked element_modification_or_replaceable"
+    TYPE () {
+        return this.testing == 'type_dec' ? new getTextClass('mocked type_dec') : false
     }
-    element_redeclaration () {
-        return "mocked element_redeclaration"
+    PACKAGE () {
+        return this.testing == 'package_dec' ? new getTextClass('mocked package_dec') : false
+    }
+    OPERATOR () {
+        return (this.testing == 'operator_dec') || (this.testing == 'record_dec') || (this.testing == 'function_dec, pure_dec') || (this.testing == 'function_dec, impure_dec')
+            ? new getTextClass('mocked operator_dec') : false
+    }
+    RECORD () {
+        return this.testing == 'record_dec' ? new getTextClass('mocked record_dec') : false
+    }
+    EXPANDABLE () {
+        return (this.testing == 'expandable_dec') || (this.testing == 'connector_dec') ? new getTextClass('mocked expandable_dec') : false
+    }
+    CONNECTOR () {
+        return this.testing == 'connector_dec' ? new getTextClass('mocked connector_dec') : false
+    }
+    PURE () {
+        return this.testing == 'function_dec, pure_dec' ? new getTextClass('mocked pure_dec') : false
+    }
+    IMPURE () {
+        return this.testing == 'function_dec, impure_dec' ? new getTextClass('mocked impure_dec') : false
+    }
+    FUNCTION () {
+        return (this.testing == 'function_dec, pure_dec') || (this.testing == 'function_dec, impure_dec') ? new getTextClass('mocked function_dec') : false
+    }
+    long_class_specifier () {
+        return this.testing == 'long_class_specifier' ? 'mocked long_class_specifier' : null
+    }
+    short_class_specifier () {
+        return this.testing == 'short_class_specifier' ? 'mocked short_class_specifier' : null
+    }
+    der_class_specifier () {
+        return this.testing == 'der_class_specifier' ? 'mocked der_class_specifier' : null
     }
 }
 
@@ -119,7 +212,7 @@ mo.describe('testing AnnotationVisitor.js', function () {
         const visitor = new annV()
         const input = new ctxMock()
         const output = visitor.visitAnnotation(input)
-        const referenceOutput = 'mocked class modifier'
+        const referenceOutput = 'mocked class_modification'
         as.deepEqual(output.class_modification, referenceOutput, 'expected: ' + referenceOutput + ' ; actual: ' + output.class_modification)
     })
 })
@@ -147,23 +240,7 @@ mo.describe('testing ArgumentVisitor.js', function () {
 })
 mo.describe('testing Arithmetic_expressionVisitor.js', function () {
     mo.describe('testing visitArithmetic_expression(ctx)', function () {
-        class addMock {
-            constructor (n) {
-                this.n = n
-            }
-            getText () {
-                return this.n
-            }
-        }
         mo.it('testing when add_ops.length == (terms.length -1)', function () {
-            class ctxMock {
-                add_op () {
-                    return [new addMock(1),new addMock(2)]
-                }
-                term () {
-                    return [3,4,5]
-                }
-            }
             sinon.stub(tv.prototype, 'visitTerm').callsFake((t) => t)
             const visitor = new vae()
             const input = new ctxMock()
@@ -174,15 +251,8 @@ mo.describe('testing Arithmetic_expressionVisitor.js', function () {
             as.deepEqual([output.arithmetic_term_list[2].add_op, output.arithmetic_term_list[2].term], referenceOutput[2], 'expected value for third term: ' + referenceOutput[2] + ' ; actual value for third term: ' + [output.arithmetic_term_list[2].add_op, output.arithmetic_term_list[2].term]) 
         })
         mo.it('testing when add_ops.length != (terms.length -1)', function () {
-            class ctxMock {
-                add_op () {
-                    return [new addMock(1),new addMock(2)]
-                }
-                term () {
-                    return [3,4]
-                }
-            }
             sinon.stub(tv.prototype, 'visitTerm').callsFake((t) => t)
+            sinon.stub(ctxMock.prototype,'term').returns([3,4])
             const visitor = new vae()
             const input = new ctxMock()
             const output = visitor.visitArithmetic_expression(input)
@@ -194,11 +264,6 @@ mo.describe('testing Arithmetic_expressionVisitor.js', function () {
 })
 mo.describe('testing Array_subscriptsVisitor.js', function () {
     mo.it('testing visitArray_subscripts(ctx)', function () {
-        class ctxMock {
-            subscript () {
-                return [1,2,3,4,5]
-            }
-        }
         sinon.stub(subV.prototype, 'visitSubscript').callsFake((sub) => sub)
         const visitor = new asv()
         const input = new ctxMock()
@@ -209,11 +274,6 @@ mo.describe('testing Array_subscriptsVisitor.js', function () {
 })
 mo.describe('testing Base_prefixVisitor.js', function () {
     mo.it('testing visitBase_prefix(ctx)', function () {
-        class ctxMock {
-            type_prefix () {
-                return 'mocked type_prefix'
-            }
-        }
         sinon.stub(tpv.prototype, 'visitType_prefix').callsFake((type_prefix) => type_prefix)
         const visitor = new bpv()
         const input = new ctxMock()
@@ -224,17 +284,6 @@ mo.describe('testing Base_prefixVisitor.js', function () {
 })
 mo.describe('testing Class_definitionVisitor.js', function () {
     mo.it('testing visitClass_definition', function () {
-        class ctxMock {
-            ENCAPSULATED () {
-                return true
-            }
-            class_prefixes () {
-                return 'mocked class_prefixes'
-            }
-            class_specifier () {
-                return 'mocked class_specifier'
-            }
-        }
         sinon.stub(cpv.prototype, 'visitClass_prefixes').callsFake((class_prefixes) => class_prefixes)
         sinon.stub(csv.prototype, 'visitClass_specifier').callsFake((class_specifier) => class_specifier)
         const visitor = new cdv()
@@ -248,11 +297,6 @@ mo.describe('testing Class_definitionVisitor.js', function () {
 })
 mo.describe('testing Class_modificationVisitor.js', function () {
     mo.it('testing visitClass_modification', function () {
-        class ctxMock {
-            argument_list () {
-                return 'mocked argument_list'
-            }
-        }
         sinon.stub(alv.prototype,'visitArgument_list').callsFake((argument_list) => argument_list)
         const visitor = new cmv()
         const input = new ctxMock()
@@ -262,112 +306,59 @@ mo.describe('testing Class_modificationVisitor.js', function () {
     })
 })
 mo.describe('testing Class_prefixesVisitor.js', function () {
-    class getTextClass {
-        constructor (mockedObject) {
-            this.mockedObject = mockedObject
-        }
-        getText () {
-            return 'mocked ' + this.mockedObject
-        }
-    }
-    class ctxMock {
-        constructor (testing) {
-            this.testing = testing
-        }
-        PARTIAL () {
-            return this.testing == 'partial_dec' ? new getTextClass('partial_dec') : false
-        }
-        CLASS () {
-            return this.testing == 'class_dec' ? new getTextClass('class_dec') : false
-        }
-        MODEL () {
-            return this.testing == 'model_dec' ? new getTextClass('model_dec') : false
-        }
-        BLOCK () {
-            return this.testing == 'block_dec' ? new getTextClass('block_dec') : false
-        }
-        TYPE () {
-            return this.testing == 'type_dec' ? new getTextClass('type_dec') : false
-        }
-        PACKAGE () {
-            return this.testing == 'package_dec' ? new getTextClass('package_dec') : false
-        }
-        OPERATOR () {
-            return (this.testing == 'operator_dec') || (this.testing == 'record_dec') || (this.testing == 'function_dec, pure_dec') || (this.testing == 'function_dec, impure_dec')
-             ? new getTextClass('operator_dec') : false
-        }
-        RECORD () {
-            return this.testing == 'record_dec' ? new getTextClass('record_dec') : false
-        }
-        EXPANDABLE () {
-            return (this.testing == 'expandable_dec') || (this.testing == 'connector_dec') ? new getTextClass('expandable_dec') : false
-        }
-        CONNECTOR () {
-            return this.testing == 'connector_dec' ? new getTextClass('connector_dec') : false
-        }
-        PURE () {
-            return this.testing == 'function_dec, pure_dec' ? new getTextClass('pure_dec') : false
-        }
-        IMPURE () {
-            return this.testing == 'function_dec, impure_dec' ? new getTextClass('impure_dec') : false
-        }
-        FUNCTION () {
-            return (this.testing == 'function_dec, pure_dec') || (this.testing == 'function_dec, impure_dec') ? new getTextClass('function_dec') : false
-        }
-    }
     mo.describe('testing visitClass_prefixes(ctx)', function () {
         mo.it('testing partial_dec', function () {
             const visitor = new cpv()
-            const input = new ctxMock('partial_dec')
+            const input = new ctxMock(null, 'partial_dec')
             const output = visitor.visitClass_prefixes(input)
             const referenceOutput = 'mocked partial_dec '
             as.deepEqual(output, referenceOutput,'expected: ' + referenceOutput + ' ; actual: ' + output)
         })
         mo.it('testing class_dec', function () {
             const visitor = new cpv()
-            const input = new ctxMock('class_dec')
+            const input = new ctxMock(null, 'class_dec')
             const output = visitor.visitClass_prefixes(input)
             const referenceOutput = ' mocked class_dec'
             as.deepEqual(output, referenceOutput,'expected: ' + referenceOutput + ' ; actual: ' + output)
         })
         mo.it('testing model_dec', function () {
             const visitor = new cpv()
-            const input = new ctxMock('model_dec')
+            const input = new ctxMock(null, 'model_dec')
             const output = visitor.visitClass_prefixes(input)
             const referenceOutput = ' mocked model_dec'
             as.deepEqual(output, referenceOutput,'expected: ' + referenceOutput + ' ; actual: ' + output)
         })
         mo.it('testing record_dec', function () {
             const visitor = new cpv()
-            const input = new ctxMock('record_dec')
+            const input = new ctxMock(null, 'record_dec')
             const output = visitor.visitClass_prefixes(input)
             const referenceOutput = ' mocked operator_dec mocked record_dec'
             as.deepEqual(output, referenceOutput,'expected: ' + referenceOutput + ' ; actual: ' + output)
         })
         mo.it('testing block_dec', function () {
             const visitor = new cpv()
-            const input = new ctxMock('block_dec')
+            const input = new ctxMock(null, 'block_dec')
             const output = visitor.visitClass_prefixes(input)
             const referenceOutput = ' mocked block_dec'
             as.deepEqual(output, referenceOutput,'expected: ' + referenceOutput + ' ; actual: ' + output)
         })
         mo.it('testing connector_dec', function () {
             const visitor = new cpv()
-            const input = new ctxMock('connector_dec')
+            const input = new ctxMock(null, 'connector_dec')
             const output = visitor.visitClass_prefixes(input)
             const referenceOutput = ' mocked expandable_dec mocked connector_dec'
             as.deepEqual(output, referenceOutput,'expected: ' + referenceOutput + ' ; actual: ' + output)
         })
         mo.it('testing type_dec', function () {
             const visitor = new cpv()
-            const input = new ctxMock('type_dec')
+            const input = new ctxMock(null, 'type_dec')
             const output = visitor.visitClass_prefixes(input)
             const referenceOutput = ' mocked type_dec'
             as.deepEqual(output, referenceOutput,'expected: ' + referenceOutput + ' ; actual: ' + output)
         })
         mo.it('testing package_dec', function () {
             const visitor = new cpv()
-            const input = new ctxMock('package_dec')
+            const input = new ctxMock(null, 'package_dec')
             const output = visitor.visitClass_prefixes(input)
             const referenceOutput = ' mocked package_dec'
             as.deepEqual(output, referenceOutput,'expected: ' + referenceOutput + ' ; actual: ' + output)
@@ -375,14 +366,14 @@ mo.describe('testing Class_prefixesVisitor.js', function () {
         mo.describe('testing function_dec', function () {
             mo.it('testing pure_dec', function () {
                 const visitor = new cpv()
-                const input = new ctxMock('function_dec, pure_dec')
+                const input = new ctxMock(null, 'function_dec, pure_dec')
                 const output = visitor.visitClass_prefixes(input)
                 const referenceOutput = ' mocked pure_dec mocked operator_dec mocked function_dec'
                 as.deepEqual(output, referenceOutput,'expected: ' + referenceOutput + ' ; actual: ' + output)
             })
             mo.it('testing impure_dec', function () {
                 const visitor = new cpv()
-                const input = new ctxMock('function_dec, impure_dec')
+                const input = new ctxMock(null, 'function_dec, impure_dec')
                 const output = visitor.visitClass_prefixes(input)
                 const referenceOutput = ' mocked impure_dec mocked operator_dec mocked function_dec'
                 as.deepEqual(output, referenceOutput,'expected: ' + referenceOutput + ' ; actual: ' + output)
@@ -390,7 +381,7 @@ mo.describe('testing Class_prefixesVisitor.js', function () {
         })
         mo.it('testing operator_dec', function () {
             const visitor = new cpv()
-            const input = new ctxMock('operator_dec')
+            const input = new ctxMock(null, 'operator_dec')
             const output = visitor.visitClass_prefixes(input)
             const referenceOutput = ' mocked operator_dec'
             as.deepEqual(output, referenceOutput,'expected: ' + referenceOutput + ' ; actual: ' + output)
@@ -399,42 +390,26 @@ mo.describe('testing Class_prefixesVisitor.js', function () {
 })
 mo.describe('testing Class_specifierVisitor.js', function () {
     mo.describe('testing visitClass_specifier(ctx)', function () {
-        class ctxMock {
-            constructor (testing) {
-                this.testing = testing
-            }
-            long_class_specifier () {
-                return this.testing == 'long_class_specifier' ? 'mocked long_class_specifier' : null
-            }
-            short_class_specifier () {
-                return this.testing == 'short_class_specifier' ? 'mocked short_class_specifier' : null
-            }
-            der_class_specifier () {
-                return this.testing == 'der_class_specifier' ? 'mocked der_class_specifier' : null
-            }
-        }
         mo.it('testing long_class_specifier', function () {
             sinon.stub(lcsv.prototype, 'visitLong_class_specifier').callsFake((class_specifier) => class_specifier)
             const visitor = new csv()
-            const input = new ctxMock('long_class_specifier')
+            const input = new ctxMock(null, 'long_class_specifier')
             const output = visitor.visitClass_specifier(input)
             const referenceOutput = 'mocked long_class_specifier'
             as.deepEqual(output.long_class_specifier, referenceOutput, 'expected: ' + referenceOutput + ' ; actual: ' + output.long_class_specifier)
         })
-        
         mo.it('testing short_class_specifier', function () {
             sinon.stub(scsv.prototype, 'visitShort_class_specifier').callsFake((class_specifier) => class_specifier)
             const visitor = new csv()
-            const input = new ctxMock('short_class_specifier')
+            const input = new ctxMock(null, 'short_class_specifier')
             const output = visitor.visitClass_specifier(input)
             const referenceOutput = 'mocked short_class_specifier'
             as.deepEqual(output.short_class_specifier, referenceOutput, 'expected: ' + referenceOutput + ' ; actual: ' + output.short_class_specifier)
         }) 
-        
         mo.it('testing der_class_specifier', function () {
             sinon.stub(dcsv.prototype, 'visitDer_class_specifier').callsFake((class_specifier) => class_specifier)
             const visitor = new csv()
-            const input = new ctxMock('der_class_specifier')
+            const input = new ctxMock(null, 'der_class_specifier')
             const output = visitor.visitClass_specifier(input)
             const referenceOutput = 'mocked der_class_specifier'
             as.deepEqual(output.der_class_specifier, referenceOutput, 'expected: ' + referenceOutput + ' ; actual: ' + output.der_class_specifier)
@@ -443,14 +418,6 @@ mo.describe('testing Class_specifierVisitor.js', function () {
 })
 mo.describe('testing CommentVisitor.js', function () {
     mo.it('testing visitComment(ctx)', function () {
-        class ctxMock {
-            annotation () {
-                return 'mocked annotation'
-            }
-            string_comment () {
-                return 'mocked string_comment'
-            }
-        }
         sinon.stub(annV.prototype, 'visitAnnotation').callsFake((annotation) => annotation)
         sinon.stub(scv.prototype, 'visitString_comment').callsFake((string_comment) => string_comment)
         const visitor = new cv()
@@ -463,17 +430,6 @@ mo.describe('testing CommentVisitor.js', function () {
 })
 mo.describe('testing Component_clause1Visitor.js', function () {
     mo.it('testing visitComponent_clause1(ctx)', function () {
-        class ctxMock {
-            type_prefix () {
-                return 'mocked type_prefix'
-            }
-            type_specifier () {
-                return 'mocked type_specifier'
-            }
-            component_declaration1 () {
-                return 'mocked component_declaration'
-            }
-        }
         sinon.stub(tpv.prototype, 'visitType_prefix').callsFake((type_prefix) => type_prefix)
         sinon.stub(tsv.prototype, 'visitType_specifier').callsFake((type_specifier) => type_specifier)
         sinon.stub(cd1v.prototype, 'visitComponent_declaration1').callsFake((component_declaration1) => component_declaration1)
@@ -488,20 +444,6 @@ mo.describe('testing Component_clause1Visitor.js', function () {
 })
 mo.describe('testing Component_clauseVisitor.js', function () {
     mo.it('testing visitComponent_clause(ctx)', function () {
-        class ctxMock {
-            type_prefix () {
-                return 'mocked type_prefix'
-            }
-            type_specifier () {
-                return 'mocked type_specifier'
-            }
-            array_subscripts () {
-                return 'mocked array_subscripts'
-            }
-            component_list () {
-                return 'mocked component_list'
-            }
-        }
         sinon.stub(tpv.prototype, 'visitType_prefix').callsFake((type_prefix) => type_prefix)
         sinon.stub(tsv.prototype, 'visitType_specifier').callsFake((type_specifier) => type_specifier)
         sinon.stub(asv.prototype, 'visitArray_subscripts').callsFake((array_subscripts) => array_subscripts)
@@ -518,14 +460,6 @@ mo.describe('testing Component_clauseVisitor.js', function () {
 })
 mo.describe('testing Component_declaration1Visitor.js', function () {
     mo.it('testing visitComponent_declaration1(ctx)', function () {
-        class ctxMock {
-            declaration () {
-                return 'mocked declaration'
-            }
-            comment () {
-                return 'mocked comment'
-            }
-        }
         sinon.stub(dv.prototype, 'visitDeclaration').callsFake((declaration) => declaration)
         sinon.stub(cv.prototype, 'visitComment').callsFake((comment) => comment)
         const visitor = new cd1v()
@@ -538,17 +472,6 @@ mo.describe('testing Component_declaration1Visitor.js', function () {
 })
 mo.describe('testing Component_declarationVisitor.js', function () {
     mo.it('testing visitComponent_declaration(ctx)', function () {
-        class ctxMock {
-            declaration () {
-                return 'mocked declaration'
-            }
-            condition_attribute () {
-                return 'mocked condition_attribute'
-            }
-            comment () {
-                return 'mocked comment'
-            }
-        }
         sinon.stub(dv.prototype, 'visitDeclaration').callsFake((declaration) => declaration)
         sinon.stub(cav.prototype, 'visitCondition_attribute').callsFake((condition_attribute) => condition_attribute)
         sinon.stub(cv.prototype, 'visitComment').callsFake((comment) => comment)
@@ -563,11 +486,6 @@ mo.describe('testing Component_declarationVisitor.js', function () {
 })
 mo.describe('testing Component_listVisitor.js', function () {
     mo.it('testing visitComponent_list(ctx)', function () {
-        class ctxMock {
-            component_declaration () {
-                return [1,2,3,4,5]
-            }
-        }
         sinon.stub(comDecV.prototype, 'visitComponent_declaration').callsFake((component_dec) => component_dec)
         const visitor = new clv()
         const input = new ctxMock()
@@ -608,11 +526,6 @@ mo.describe('testing CompositionVisitor.js', function () {
 }) */
 mo.describe('testing Condition_attributeVisitor.js', function () {
     mo.it('testing visitCondition_attribute(ctx)', function () {
-        class ctxMock {
-            expression () {
-                return 'mocked expression'
-            }
-        }
         sinon.stub(ev.prototype, 'visitExpression').callsFake((expression) => expression)
         const visitor = new cav()
         const input = new ctxMock()
@@ -623,11 +536,6 @@ mo.describe('testing Condition_attributeVisitor.js', function () {
 })
 mo.describe('testing Connect_clauseVisitor.js', function () {
     mo.it('testing visitConnect_clause(ctx)', function () {
-        class ctxMock {
-            component_reference () {
-                return [1,2]
-            }
-        }
         sinon.stub(crv.prototype, 'visitComponent_reference').callsFake((comp_ref) => comp_ref)
         const visitor = new connCV()
         const input = new ctxMock()
@@ -639,14 +547,6 @@ mo.describe('testing Connect_clauseVisitor.js', function () {
 })
 mo.describe('testing Constraining_clauseVisitor.js', function () {
     mo.it('testing visitConstraining_clause(ctx)', function () {
-        class ctxMock {
-            name () {
-                return 'mocked name'
-            }
-            class_modification () {
-                return 'mocked class_modification'
-            }
-        }
         sinon.stub(nv.prototype, 'visitName').callsFake((name) => name)
         sinon.stub(cmv.prototype, 'visitClass_modification').callsFake((cm) => cm)
         const visitor = new consCV()
@@ -659,22 +559,6 @@ mo.describe('testing Constraining_clauseVisitor.js', function () {
 })
 mo.describe('testing DeclarationVisitor.js', function () {
     mo.it('testing visitDeclaration', function () {
-        class getTextClass {
-            getText () {
-                return 'mocked identifier'
-            }
-        }
-        class ctxMock {
-            IDENT () {
-                return new getTextClass()
-            }
-            array_subscripts () {
-                return 'mocked array_subscripts'
-            }
-            modification () {
-                return 'mocked modification'
-            }
-        }
         sinon.stub(asv.prototype, 'visitArray_subscripts').callsFake((array_subscripts) => array_subscripts)
         sinon.stub(mv.prototype, 'visitModification').callsFake((modification) => modification)
         const visitor = new dv()
@@ -688,15 +572,7 @@ mo.describe('testing DeclarationVisitor.js', function () {
 })
 mo.describe('testing Der_class_specifierVisitor.js', function () {
     mo.it('testing visitDer_clas_specifier(ctx)', function () {
-        class getTextClass {
-            constructor (text) {
-                this.text = text
-            }
-            getText () {
-                return this.text
-            }
-        }
-        class ctxMock {
+        class ctxMockUnique {
             IDENT (x = 1) {
                 if (x == 0) {
                     return new getTextClass(0)
@@ -715,7 +591,7 @@ mo.describe('testing Der_class_specifierVisitor.js', function () {
         sinon.stub(nv.prototype,'visitName').callsFake((name) => name)
         sinon.stub(cv.prototype, 'visitComment').callsFake((comment) => comment)
         const visitor = new dcsv()
-        const input = new ctxMock()
+        const input = new ctxMockUnique()
         const output = visitor.visitDer_class_specifier(input)
         const referenceOutput = [0, 'mocked name', [1,2], 'mocked comment']
         as.deepEqual(output.identifier, referenceOutput[0], 'expected value for "identifier": ' + referenceOutput[0] + ' ; actual value for "identifier": ' + output.identifier)
@@ -726,11 +602,6 @@ mo.describe('testing Der_class_specifierVisitor.js', function () {
 }) 
 mo.describe('testing Element_listVisitor.js', function () {
     mo.it('testing visitElement_list(ctx)', function () {
-        class ctxMock {
-            element () {
-                return [1,2,3]
-            }
-        }
         sinon.stub(eleV.prototype, 'visitElement').callsFake((element) => element)
         const visitor = new elv()
         const input = new ctxMock()
@@ -741,23 +612,6 @@ mo.describe('testing Element_listVisitor.js', function () {
 })
 mo.describe('testing Element_modification_or_replaceableVisitor.js', function () {
     mo.describe('testing visitElement_modification_or_replaceable(ctx)', function () {
-        class ctxMock {
-            constructor (boolean) {
-                this.boolean = boolean
-            }
-            EACH () {
-                return this.boolean
-            }
-            FINAL () {
-                return this.boolean
-            }
-            element_modification () {
-                return 'mocked element_modification'
-            }
-            element_replaceable () {
-                return 'mocked element_replaceable'
-            }
-        }
         mo.it('testing EACH & FINAL = true', function () {
             sinon.stub(emv.prototype, 'visitElement_modification').callsFake((element_modification) => element_modification)
             sinon.stub(eleRepV.prototype,'visitElement_replaceable').callsFake((element_replaceable) => element_replaceable)
@@ -798,17 +652,6 @@ mo.describe('testing Element_modification_or_replaceableVisitor.js', function ()
 })
 mo.describe('testing Element_modificationVisitor.js', function () {
     mo.it('testing visitElement_modification', function () {
-        class ctxMock {
-            name () {
-                return 'mocked name'
-            }
-            modification () {
-                return 'mocked modification'
-            }
-            string_comment () {
-                return 'mocked string_comment'
-            }
-        }
         sinon.stub(nv.prototype, 'visitName').callsFake((input) => input)
         sinon.stub(mv.prototype, 'visitModification').callsFake((modification) => modification)
         sinon.stub(scv.prototype,'visitString_comment').callsFake((string) => string)
@@ -823,26 +666,6 @@ mo.describe('testing Element_modificationVisitor.js', function () {
 })
 mo.describe('testing Element_redeclarationVisitor.js', function () {
     mo.describe('testing visitElement_redeclaration(ctx)', function () {
-        class ctxMock {
-            constructor (boolean) {
-                this.boolean = boolean
-            }
-            EACH () {
-                return this.boolean
-            }
-            FINAL () {
-                return this.boolean
-            }
-            short_class_definition () {
-                return 'mocked short_class_definition'
-            }
-            component_clause1 () {
-                return 'mocked component_clause1'
-            }
-            element_replaceable () {
-                return 'mocked element_replaceable'
-            }
-        }
         mo.describe('testing ctx.EACH() and ctx.FINAL()', function () {
             mo.it('testing when true', function () {
                 sinon.stub(scdv.prototype, 'visitShort_class_definition').callsFake((scd) => scd)
@@ -891,17 +714,6 @@ mo.describe('testing Element_redeclarationVisitor.js', function () {
 })
 mo.describe('testing Element_replaceableVisitor.js', function () {
     mo.it('testing visitElement_replaceable', function () {
-        class ctxMock {
-            short_class_definition () {
-                return 'mocked short_class_definition'
-            }
-            component_clause1 () {
-                return 'mocked component_clause1'
-            }
-            constraining_clause () {
-                return 'mocked constraining_clause'
-            }
-        }
         sinon.stub(scdv.prototype, 'visitShort_class_definition').callsFake((definition) => definition)
         sinon.stub(cc1v.prototype, 'visitComponent_clause1').callsFake((clause) => clause)
         sinon.stub(consCV.prototype, 'visitConstraining_clause').callsFake((clause) => clause)
@@ -916,44 +728,6 @@ mo.describe('testing Element_replaceableVisitor.js', function () {
 })
 mo.describe('testing ElementVisitor.js', function () {
     mo.describe('testing visitElement(ctx)', function () {
-        class ctxMock {
-            constructor (boolean) {
-                this.boolean = boolean
-            }
-            import_clause () {
-                return 'mocked import_clause'
-            }
-            extends_clause () {
-                return 'mocked extends_clause'
-            }
-            REDECLARE () {
-                return this.boolean
-            }
-            FINAL () {
-                return this.boolean
-            }
-            INNER () {
-                return this.boolean
-            }
-            OUTER () {
-                return this.boolean
-            }
-            REPLACEABLE () {
-                return this.boolean
-            }
-            constraining_clause () {
-                return 'mocked constraining_clause'
-            }
-            class_definition () {
-                return 'mocked class_definition'
-            }
-            component_clause () {
-                return 'mocked component_clause'
-            }
-            comment () {
-                return 'mocked comment'
-            }
-        }
         mo.describe('testing ctx.REDECLARE(), ctx.FINAL(), ctx.INNER(), ctx.OUTER(), ctx.REPLACEABLE()', function () {
             mo.it('testing when true', function () {
                 sinon.stub(icv.prototype, 'visitImport_clause').callsFake((clause) => clause)
@@ -980,15 +754,9 @@ mo.describe('testing ElementVisitor.js', function () {
             })
         })
     })
-    
 })
 mo.describe('testing Enum_listVisitor.js', function () {
     mo.it('testing visitEnum_list(ctx)', function () {
-        class ctxMock {
-            enumeration_literal () {
-                return [1,2,3]
-            }
-        }
         sinon.stub(enumLitV.prototype,'visitEnumeration_literal').callsFake((enumeration_literal) => enumeration_literal)
         const visitor = new enumListV()
         const input = new ctxMock()
@@ -999,19 +767,6 @@ mo.describe('testing Enum_listVisitor.js', function () {
 })
 mo.describe('testing Enumeration_literalVisitor.js', function () {
     mo.it('testing visitEnumeration_literal(ctx)', function () {
-        class getTextClass {
-            getText () {
-                return 'mocked identifier'
-            }
-        }
-        class ctxMock {
-            IDENT () {
-                return new getTextClass()
-            }
-            comment () {
-                return 'mocked comment'
-            }
-        }
         sinon.stub(cv.prototype,'visitComment').callsFake((comment) => comment)
         const visitor = new enumLitV()
         const input = new ctxMock()
@@ -1023,17 +778,6 @@ mo.describe('testing Enumeration_literalVisitor.js', function () {
 })
 mo.describe('testing Equation_sectionVisitor.js', function () {
     mo.describe('testing visitEquation_section(ctx)', function () {
-        class ctxMock {
-            constructor (boolean) {
-                this.boolean = boolean
-            }
-            INITIAL () {
-                return this.boolean
-            }
-            equation () {
-                return [1,2,3]
-            }
-        }
         mo.describe('testing ctx.INITIAL()', function () {
             mo.it('testing when true', function () {
                 sinon.stub(eqV.prototype, 'visitEquation').callsFake((eqn) => eqn)
@@ -1067,35 +811,6 @@ mo.describe('testing Equation_sectionVisitor.js', function () {
 })
 mo.describe('testing EquationVisitor.js', function () {
     mo.it('testing visitEquation(ctx)', function () {
-        class ctxMock {
-            simple_expression () {
-                return 'mocked simple_expression'
-            }
-            expression () {
-                return 'mocked expression'
-            }
-            if_equation () {
-                return 'mocked if_equation'
-            }
-            for_equation () {
-                return 'mocked for_equation'
-            }
-            connect_clause () {
-                return 'mocked connect_clause'
-            }
-            when_equation () {
-                return 'mocked when_equation'
-            }
-            name () {
-                return 'mocked name'
-            }
-            function_call_args () {
-                return 'mocked function_call_args'
-            }
-            comment () {
-                return 'mocked comment'
-            }
-        }
         sinon.stub(sev.prototype,'visitSimple_expression').callsFake((exp) => exp)
         sinon.stub(ev.prototype,'visitExpression').callsFake((exp) => exp)
         sinon.stub(iev.prototype,'visitIf_equation').callsFake((eqn) => eqn)
