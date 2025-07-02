@@ -1,6 +1,7 @@
 const as = require('assert')
 const mo = require('mocha')
 const sinon = require('sinon')
+const { modification } = require('../lib/jsonquery.js')
 const algSV = require('../jsParser/parser/Algorithm_sectionVisitor.js').Algorithm_sectionVisitor
 const sv = require('../jsParser/parser/StatementVisitor.js').StatementVisitor
 const annV = require('../jsParser/parser/AnnotationVisitor.js').AnnotationVisitor
@@ -806,5 +807,30 @@ mo.describe('testing Element_modification_or_replaceableVisitor.js', function ()
             as.deepEqual(output.element_modification, referenceOutput[2], 'expected: ' + referenceOutput[2] + ' ; actual: ' + output.element_modification)
             as.deepEqual(output.element_replaceable, referenceOutput[3], 'expected: ' + referenceOutput[3] + ' ; actual: ' + output.element_replaceable)
         }) 
+    })
+})
+mo.describe('testing Element_modificationVisitor.js', function () {
+    mo.it('testing visitElement_modification', function () {
+        class ctxMock {
+            name () {
+                return 'mocked name'
+            }
+            modification () {
+                return 'mocked modification'
+            }
+            string_comment () {
+                return 'mocked string_comment'
+            }
+        }
+        sinon.stub(nv.prototype, 'visitName').callsFake((input) => input)
+        sinon.stub(mv.prototype, 'visitModification').callsFake((modification) => modification)
+        sinon.stub(scv.prototype,'visitString_comment').callsFake((string) => string)
+        const visitor = new emv()
+        const input = new ctxMock()
+        const output = visitor.visitElement_modification(input)
+        const referenceOutput = ['mocked name', 'mocked modification', 'mocked string_comment']
+        as.deepEqual(output.name, referenceOutput[0], 'expected: ' + referenceOutput[0] + ' ; actual: ' + output.name)
+        as.deepEqual(output.modification, referenceOutput[1], 'expected: ' + referenceOutput[1] + ' ; actual: ' + output.modification)
+        as.deepEqual(output.string_comment, referenceOutput[2], 'expected: ' + referenceOutput[2] + ' ; actual: ' + output.string_comment)
     })
 })
