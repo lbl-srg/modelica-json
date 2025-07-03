@@ -60,6 +60,9 @@ const fv = require('../jsParser/parser/FactorVisitor.js').FactorVisitor
 const fiv = require('../jsParser/parser/For_indicesVisitor.js').For_indicesVisitor
 const forIndexV = require('../jsParser/parser/For_indexVisitor.js').For_indexVisitor
 const fsv = require('../jsParser/parser/For_statementVisitor.js').For_statementVisitor
+const funcArgsV = require('../jsParser/parser/Function_argumentsVisitor.js').Function_argumentsVisitor
+const funcAV = require('../jsParser/parser/Function_argumentVisitor.js').Function_argumentVisitor
+const namedArgsV = require('../jsParser/parser/Named_argumentsVisitor.js').Named_argumentsVisitor
 
 mo.afterEach(() => {
   sinon.restore()
@@ -137,6 +140,9 @@ class ctxMock {
     SYMBOL_DOTCARET () { return new getTextClass('mocked symbol_dotcaret') }
     for_indices () { return 'mocked for_indices' }
     for_index () { return [1,2,3] }
+    named_arguments () { return 'mocked named_arguments' }
+    function_argument () { return 'mocked function_argument' }
+    function_arguments () { return 'mocked function_arguments' }
     PARTIAL () {
         return this.testing == 'partial_dec' ? new getTextClass('mocked partial_dec') : false
     }
@@ -990,5 +996,32 @@ mo.describe('testing For_statementVisitor.js', function () {
         const referenceOutput = ['mocked for_indices', [1,2,3,4,5]]
         as.deepEqual(output.for_indices, referenceOutput[0], 'expected: ' + referenceOutput[0] + ' ; actual: ' + output.for_indices)
         as.deepEqual(output.loop_statements, referenceOutput[1], 'expected value for "loop_statements": ' + referenceOutput[1] + ' ; actual value for "loop_statements": ' + output.loop_statements)
+    })
+})
+/* WORK IN PROGRESS
+mo.describe('testing Function_argumentsVisitor.js', function () {
+    mo.it('testing visitFunction_arguments', function () {
+        sinon.stub(namedArgsV.prototype,'visitNamed_arguments').callsFake((args) => args)
+        sinon.stub(funcAV.prototype,'visitFunction_argument').callsFake((arg) => arg)
+        sinon.stub(funcArgsV.prototype,'visitFunction_arguments').callsFake((args) => args)
+        sinon.stub(fiv.prototype,'visitFor_indices').callsFake((fi) => fi)
+        const visitor = new funcArgsV()
+        const input = new ctxMock()
+        const output = visitor.visitFunction_arguments(input)
+        const referenceOutput = [] 
+    })
+}) */
+mo.describe('testing Function_argumentVisitor.js', function () {
+    mo.it('testing visitFunction_argument(ctx)', function () {
+        sinon.stub(nv.prototype,'visitName').callsFake((name) => name)
+        sinon.stub(namedArgsV.prototype,'visitNamed_arguments').callsFake((args) => args)
+        sinon.stub(ev.prototype,'visitExpression').callsFake((exp) => exp)
+        const visitor = new funcAV()
+        const input = new ctxMock()
+        const output = visitor.visitFunction_argument(input)
+        const referenceOutput = ['mocked name', 'mocked named_arguments', 'mocked expression']
+        as.deepEqual(output.function_name, referenceOutput[0], 'expected: ' + referenceOutput[0] + ' ; actual: ' + output.function_name)
+        as.deepEqual(output.named_arguments, referenceOutput[1], 'expected: ' + referenceOutput[1] + ' ; actual: ' + output.named_arguments)
+        as.deepEqual(output.expression, referenceOutput[2], 'expected: ' + referenceOutput[2] + ' ; actual: ' + output.expression)
     })
 })
