@@ -1025,3 +1025,13 @@ mo.describe('testing Function_argumentVisitor.js', function () {
         as.deepEqual(output.expression, referenceOutput[2], 'expected: ' + referenceOutput[2] + ' ; actual: ' + output.expression)
     })
 })
+mo.describe('testing Function_call_argsVisitor.js', function () {
+    mo.it('testing visitFunction_call_args(ctx)', function () {
+        sinon.stub(funcArgsV.prototype, 'visitFunction_arguments').callsFake((args) => args)
+        const visitor = new fcav()
+        const input = new ctxMock()
+        const output = visitor.visitFunction_call_args(input)
+        const referenceOutput = 'mocked function_arguments'
+        as.deepEqual(output.function_arguments, referenceOutput, 'expected: ' + referenceOutput + ' ; actual: ' + output.function_arguments)
+    })
+})
