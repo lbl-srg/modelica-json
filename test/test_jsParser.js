@@ -135,6 +135,7 @@ class ctxMock {
     SYMBOL_CARET () { return new getTextClass('mocked symbol_caret') }
     SYMBOL_DOTCARET () { return new getTextClass('mocked symbol_dotcaret') }
     for_indices () { return 'mocked for_indices' }
+    for_index () { return [1,2,3] }
     PARTIAL () {
         return this.testing == 'partial_dec' ? new getTextClass('mocked partial_dec') : false
     }
@@ -966,5 +967,15 @@ mo.describe('testing For_indexVisitor.js', function () {
         const referenceOutput = ['mocked identifier', 'mocked expression']
         as.deepEqual(output.identifier, referenceOutput[0], 'expected: ' + referenceOutput[0] + ' ; actual: ' + output.identifier)
         as.deepEqual(output.expression, referenceOutput[1], 'expected: ' + referenceOutput[1] + ' ; actual: ' + output.expression)
+    })
+})
+mo.describe('testing For_indicesVisitor.js', function () {
+    mo.it('testing visitFor_indices(ctx)', function () {
+        sinon.stub(forIndexV.prototype,'visitFor_index').callsFake((index) => index)
+        const visitor = new fiv()
+        const input = new ctxMock()
+        const output = visitor.visitFor_indices(input)
+        const referenceOutput = [1,2,3]
+        as.deepEqual(output.indices, referenceOutput, 'expected value for "indices": ' + referenceOutput + ' ; actual value for "indices": ' + output.indices)
     })
 })
