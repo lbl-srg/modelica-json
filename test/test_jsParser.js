@@ -57,6 +57,7 @@ const expLV = require('../jsParser/parser/Expression_listVisitor.js').Expression
 const efcv = require('../jsParser/parser/External_function_callVisitor.js').External_function_callVisitor
 const pv = require('../jsParser/parser/PrimaryVisitor.js').PrimaryVisitor
 const fv = require('../jsParser/parser/FactorVisitor.js').FactorVisitor
+const fiv = require('../jsParser/parser/For_indicesVisitor.js').For_indicesVisitor
 
 mo.afterEach(() => {
   sinon.restore()
@@ -132,6 +133,7 @@ class ctxMock {
     primary () { return [1,2] }
     SYMBOL_CARET () { return new getTextClass('mocked symbol_caret') }
     SYMBOL_DOTCARET () { return new getTextClass('mocked symbol_dotcaret') }
+    for_indices () { return 'mocked for_indices' }
     PARTIAL () {
         return this.testing == 'partial_dec' ? new getTextClass('mocked partial_dec') : false
     }
@@ -940,5 +942,17 @@ mo.describe('testing FactorVisitor.js', function () {
             as.deepEqual(output.op, referenceOutput[1], 'expected: ' + referenceOutput[1] + ' ; actual: ' + output.op)
             as.deepEqual(output.primary2, referenceOutput[2], 'expected value for "primary2": ' + referenceOutput[2] + ' ; actual value for "primary2": ' + output.primary2)
         })
+    })
+})
+mo.describe('testing For_equationVisitor.js', function () {
+    mo.it('testing visitFor_equation(ctx)', function () {
+        sinon.stub(fiv.prototype,'visitFor_indices').callsFake((fi) => fi)
+        sinon.stub(eqV.prototype,'visitEquation').callsFake((eq) => eq)
+        const visitor = new fev()
+        const input = new ctxMock()
+        const output = visitor.visitFor_equation(input)
+        const referenceOutput = ['mocked for_indices', [1,2,3]]
+        as.deepEqual(output.for_indices, referenceOutput[0], 'expected: ' + referenceOutput[0] + ' ; actual: ' + output.for_indices)
+        as.deepEqual(output.loop_equations, referenceOutput[1], 'expected value for "loop_equations": ' + referenceOutput[1] + ' ; actual value for "loop equations": ' + output.loop_equations)
     })
 })
