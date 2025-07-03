@@ -54,6 +54,7 @@ const fev = require('../jsParser/parser/For_equationVisitor.js').For_equationVis
 const wev = require('../jsParser/parser/When_equationVisitor.js').When_equationVisitor
 const fcav = require('../jsParser/parser/Function_call_argsVisitor.js').Function_call_argsVisitor
 const expLV = require('../jsParser/parser/Expression_listVisitor.js').Expression_listVisitor
+const efcv = require('../jsParser/parser/External_function_callVisitor.js').External_function_callVisitor
 
 mo.afterEach(() => {
   sinon.restore()
@@ -125,6 +126,7 @@ class ctxMock {
     connect_clause () { return 'mocked connect_clause' }
     when_equation () { return 'mocked when_equation' }
     function_call_args () { return 'mocked function_call_args' }
+    expression_list () { return 'mocked expression_list' }
     PARTIAL () {
         return this.testing == 'partial_dec' ? new getTextClass('mocked partial_dec') : false
     }
@@ -883,5 +885,19 @@ mo.describe('testing Extends_clauseVisitor.js', function () {
         as.deepEqual(output.name, referenceOutput[0], 'expected: ' + referenceOutput[0] + ' ; actual: ' + output.name)
         as.deepEqual(output.class_modification, referenceOutput[1], 'expected: ' + referenceOutput[1] + ' ; actual: ' + output.class_modification)
         as.deepEqual(output.annotation, referenceOutput[2], 'expected: ' + referenceOutput[2] + ' ; actual: ' + output.annotation)
+    })
+})
+mo.describe('testing External_function_callVisitor.js', function () {
+    mo.it('testing visitExternal_function_call(ctx)', function () {
+        sinon.stub(crv.prototype,'visitComponent_reference').callsFake((comRef) => comRef)
+        sinon.stub(expLV.prototype, 'visitExpression_list').callsFake((exp) => exp)
+        sinon.stub(ctxMock.prototype,'component_reference').returns('mocked component_reference')
+        const visitor = new efcv()
+        const input = new ctxMock()
+        const output = visitor.visitExternal_function_call(input)
+        const referenceOutput = ['mocked component_reference', 'mocked identifier', 'mocked expression_list']
+        as.deepEqual(output.component_reference, referenceOutput[0], 'expected: ' + referenceOutput[0] + ' ; actual: ' + output.component_reference)
+        as.deepEqual(output.identifier, referenceOutput[1], 'expected: ' + referenceOutput[1] + ' ; actual: ' + output.identifier)
+        as.deepEqual(output.expression_list, referenceOutput[2], 'expected: ' + referenceOutput[2] + ' ; actual: ' + output.expression_list)
     })
 })
