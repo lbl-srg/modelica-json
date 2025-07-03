@@ -63,6 +63,8 @@ const fsv = require('../jsParser/parser/For_statementVisitor.js').For_statementV
 const funcArgsV = require('../jsParser/parser/Function_argumentsVisitor.js').Function_argumentsVisitor
 const funcAV = require('../jsParser/parser/Function_argumentVisitor.js').Function_argumentVisitor
 const namedArgsV = require('../jsParser/parser/Named_argumentsVisitor.js').Named_argumentsVisitor
+const ilv = require('../jsParser/parser/Import_listVisitor.js').Import_listVisitor
+
 
 mo.afterEach(() => {
   sinon.restore()
@@ -143,6 +145,7 @@ class ctxMock {
     named_arguments () { return 'mocked named_arguments' }
     function_argument () { return 'mocked function_argument' }
     function_arguments () { return 'mocked function_arguments' }
+    import_list () { return 'mocked import_list' }
     PARTIAL () {
         return this.testing == 'partial_dec' ? new getTextClass('mocked partial_dec') : false
     }
@@ -1033,5 +1036,54 @@ mo.describe('testing Function_call_argsVisitor.js', function () {
         const output = visitor.visitFunction_call_args(input)
         const referenceOutput = 'mocked function_arguments'
         as.deepEqual(output.function_arguments, referenceOutput, 'expected: ' + referenceOutput + ' ; actual: ' + output.function_arguments)
+    })
+})
+/* WORK IN PROGRESS
+mo.describe('testing If_equationVisitor.js', function () {
+    mo.describe('testing visitIf_equation(ctx)', function () {
+        mo.it('testing ', function () {
+            
+        })
+    })
+}) */
+/* WORK IN PROGRESS
+mo.describe('testing If_statementVisitor.js', function () {
+    mo.describe('testing visitIf_statement(ctx)', function () {
+        mo.it('testing ', function () {
+
+        })
+    })
+}) */
+mo.describe('testing Import_clauseVisitor.js', function () {
+    mo.describe('testing visitImport_clause(ctx)', function () {
+        mo.it('testing when ctx.IDENT() exists', function () {
+            sinon.stub(nv.prototype,'visitName').callsFake((name) => name)
+            sinon.stub(ilv.prototype,'visitImport_list').callsFake((list) => list)
+            sinon.stub(cv.prototype,'visitComment').callsFake((comment) => comment)
+            const visitor = new icv()
+            const input = new ctxMock()
+            const output = visitor.visitImport_clause(input)
+            referenceOutput = ['mocked identifier', 'mocked name', true, 'mocked import_list', 'mocked comment']
+            as.deepEqual(output.identifier, referenceOutput[0], 'expected: ' + referenceOutput[0] + ' ; actual: ' + output.identifier)
+            as.deepEqual(output.name, referenceOutput[1], 'expected: ' + referenceOutput[1] + ' ; actual: ' + output.name)
+            as.deepEqual(output.dot_star, referenceOutput[2], 'expected value for "dot_star": ' + referenceOutput[2] + ' ; actual value for "dot_star": ' + output.dot_star)
+            as.deepEqual(output.import_list, referenceOutput[3], 'expected: ' + referenceOutput[3] + ' ; actual: ' + output.import_list)
+            as.deepEqual(output.comment, referenceOutput[4], 'expected: ' + referenceOutput[4] + ' ; actual: ' + output.comment)
+        })
+        mo.it('testing when ctx.IDENT() does not exists', function () {
+            sinon.stub(nv.prototype,'visitName').callsFake((name) => name)
+            sinon.stub(ilv.prototype,'visitImport_list').callsFake((list) => list)
+            sinon.stub(cv.prototype,'visitComment').callsFake((comment) => comment)
+            sinon.stub(ctxMock.prototype, 'IDENT').returns(null)
+            const visitor = new icv()
+            const input = new ctxMock()
+            const output = visitor.visitImport_clause(input)
+            referenceOutput = ['', 'mocked name', false, 'mocked import_list', 'mocked comment']
+            as.deepEqual(output.identifier, referenceOutput[0], 'expected: ' + referenceOutput[0] + ' ; actual: ' + output.identifier)
+            as.deepEqual(output.name, referenceOutput[1], 'expected: ' + referenceOutput[1] + ' ; actual: ' + output.name)
+            as.deepEqual(output.dot_star, referenceOutput[2], 'expected value for "dot_star": ' + referenceOutput[2] + ' ; actual value for "dot_star": ' + output.dot_star)
+            as.deepEqual(output.import_list, referenceOutput[3], 'expected: ' + referenceOutput[3] + ' ; actual: ' + output.import_list)
+            as.deepEqual(output.comment, referenceOutput[4], 'expected: ' + referenceOutput[4] + ' ; actual: ' + output.comment)
+        })
     })
 })
