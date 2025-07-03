@@ -59,6 +59,7 @@ const pv = require('../jsParser/parser/PrimaryVisitor.js').PrimaryVisitor
 const fv = require('../jsParser/parser/FactorVisitor.js').FactorVisitor
 const fiv = require('../jsParser/parser/For_indicesVisitor.js').For_indicesVisitor
 const forIndexV = require('../jsParser/parser/For_indexVisitor.js').For_indexVisitor
+const fsv = require('../jsParser/parser/For_statementVisitor.js').For_statementVisitor
 
 mo.afterEach(() => {
   sinon.restore()
@@ -977,5 +978,17 @@ mo.describe('testing For_indicesVisitor.js', function () {
         const output = visitor.visitFor_indices(input)
         const referenceOutput = [1,2,3]
         as.deepEqual(output.indices, referenceOutput, 'expected value for "indices": ' + referenceOutput + ' ; actual value for "indices": ' + output.indices)
+    })
+})
+mo.describe('testing For_statementVisitor.js', function () {
+    mo.it('testing visitFor_statement(ctx)', function () {
+        sinon.stub(fiv.prototype,'visitFor_indices').callsFake((fi) => fi)
+        sinon.stub(sv.prototype,'visitStatement').callsFake((stmt) => stmt)
+        const visitor = new fsv()
+        const input = new ctxMock()
+        const output = visitor.visitFor_statement(input)
+        const referenceOutput = ['mocked for_indices', [1,2,3,4,5]]
+        as.deepEqual(output.for_indices, referenceOutput[0], 'expected: ' + referenceOutput[0] + ' ; actual: ' + output.for_indices)
+        as.deepEqual(output.loop_statements, referenceOutput[1], 'expected value for "loop_statements": ' + referenceOutput[1] + ' ; actual value for "loop_statements": ' + output.loop_statements)
     })
 })
