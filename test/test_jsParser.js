@@ -53,6 +53,7 @@ const iev = require('../jsParser/parser/If_equationVisitor.js').If_equationVisit
 const fev = require('../jsParser/parser/For_equationVisitor.js').For_equationVisitor
 const wev = require('../jsParser/parser/When_equationVisitor.js').When_equationVisitor
 const fcav = require('../jsParser/parser/Function_call_argsVisitor.js').Function_call_argsVisitor
+const expLV = require('../jsParser/parser/Expression_listVisitor.js').Expression_listVisitor
 
 mo.afterEach(() => {
   sinon.restore()
@@ -840,5 +841,47 @@ mo.describe('testing EquationVisitor.js', function () {
         as.deepEqual(output.function_call_equation.function_name, referenceOutput[6], 'expected: ' + referenceOutput[6] + ' ; actual: ' + output.function_call_equation.function_name)
         as.deepEqual(output.function_call_equation.function_call_args, referenceOutput[7], 'expected: ' + referenceOutput[7] + ' ; actual: ' + output.function_call_equation.function_call_args)
         as.deepEqual(output.comment, referenceOutput[8], 'expected: ' + referenceOutput[8] + ' ; actual: ' + output.comment)
+    })
+})
+mo.describe('testing Expression_listVisitor.js', function () {
+    mo.it('testing visitExpression_list(ctx)', function () {
+        sinon.stub(ev.prototype,'visitExpression').callsFake((exp) => exp)
+        sinon.stub(ctxMock.prototype,'expression').returns([1,2,3])
+        const visitor = new expLV()
+        const input = new ctxMock()
+        const output = visitor.visitExpression_list(input)
+        const referenceOutput = [1,2,3]
+        as.deepEqual(output.expressions, referenceOutput, 'expected value for "expressions": ' + referenceOutput + ' ; actual value for "expressions": ' + output.expressions)
+    })
+})
+/* WORK IN PROGRESS
+mo.describe('testing ExpressionVisitor.js', function () {
+    mo.describe('testing visitExpression', function () {
+        mo.it('testing when ctx.expression() = 2', function () {
+            class ctxMockUnique { 
+                expression () {return [1,2] }
+                simple_expression () { return 'mocked simple_expression' }
+            }
+            sinon.stub(ctxMockUnique.prototype,'expression').returns([1,2])
+            sinon.stub(sev.prototype,'visitSimple_expression').callsFake((exp) => exp)
+            const visitor = new ev()
+            const input = new ctxMockUnique()
+            const output = visitor.visitExpression(input)
+            sinon.stub(ev.prototype,'visitExpression').callsFake((exp) => exp)
+        })
+    })
+}) */
+mo.describe('testing Extends_clauseVisitor.js', function () {
+    mo.it('testing visitExtends_clause(ctx)', function () {
+        sinon.stub(nv.prototype,'visitName').callsFake((name) => name)
+        sinon.stub(cmv.prototype,'visitClass_modification').callsFake((cm) => cm)
+        sinon.stub(annV.prototype,'visitAnnotation').callsFake((ann) => ann)
+        const visitor = new ecv()
+        const input = new ctxMock()
+        const output = visitor.visitExtends_clause(input)
+        const referenceOutput = ['mocked name', 'mocked class_modification', 'mocked annotation']
+        as.deepEqual(output.name, referenceOutput[0], 'expected: ' + referenceOutput[0] + ' ; actual: ' + output.name)
+        as.deepEqual(output.class_modification, referenceOutput[1], 'expected: ' + referenceOutput[1] + ' ; actual: ' + output.class_modification)
+        as.deepEqual(output.annotation, referenceOutput[2], 'expected: ' + referenceOutput[2] + ' ; actual: ' + output.annotation)
     })
 })
