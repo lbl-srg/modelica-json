@@ -55,6 +55,8 @@ const wev = require('../jsParser/parser/When_equationVisitor.js').When_equationV
 const fcav = require('../jsParser/parser/Function_call_argsVisitor.js').Function_call_argsVisitor
 const expLV = require('../jsParser/parser/Expression_listVisitor.js').Expression_listVisitor
 const efcv = require('../jsParser/parser/External_function_callVisitor.js').External_function_callVisitor
+const pv = require('../jsParser/parser/PrimaryVisitor.js').PrimaryVisitor
+const fv = require('../jsParser/parser/FactorVisitor.js').FactorVisitor
 
 mo.afterEach(() => {
   sinon.restore()
@@ -127,6 +129,9 @@ class ctxMock {
     when_equation () { return 'mocked when_equation' }
     function_call_args () { return 'mocked function_call_args' }
     expression_list () { return 'mocked expression_list' }
+    primary () { return [1,2] }
+    SYMBOL_CARET () { return new getTextClass('mocked symbol_caret') }
+    SYMBOL_DOTCARET () { return new getTextClass('mocked symbol_dotcaret') }
     PARTIAL () {
         return this.testing == 'partial_dec' ? new getTextClass('mocked partial_dec') : false
     }
@@ -899,5 +904,41 @@ mo.describe('testing External_function_callVisitor.js', function () {
         as.deepEqual(output.component_reference, referenceOutput[0], 'expected: ' + referenceOutput[0] + ' ; actual: ' + output.component_reference)
         as.deepEqual(output.identifier, referenceOutput[1], 'expected: ' + referenceOutput[1] + ' ; actual: ' + output.identifier)
         as.deepEqual(output.expression_list, referenceOutput[2], 'expected: ' + referenceOutput[2] + ' ; actual: ' + output.expression_list)
+    })
+})
+mo.describe('testing FactorVisitor.js', function () {
+    mo.describe('testing visitFactor(ctx)', function () {
+        mo.it('testing ctx.SYMBOL_CARET()', function () {
+            sinon.stub(pv.prototype,'visitPrimary').callsFake((pri) => pri)
+            const visitor = new fv()
+            const input = new ctxMock()
+            const output = visitor.visitFactor(input)
+            const referenceOutput = [1, 'mocked symbol_caret', 2]
+            as.deepEqual(output.primary1, referenceOutput[0], 'expected value for "primary1": ' + referenceOutput[0] + ' ; actual value for "primary1": ' + output.primary1)
+            as.deepEqual(output.op, referenceOutput[1], 'expected: ' + referenceOutput[1] + ' ; actual: ' + output.op)
+            as.deepEqual(output.primary2, referenceOutput[2], 'expected value for "primary2": ' + referenceOutput[2] + ' ; actual value for "primary2": ' + output.primary2)
+        })
+        mo.it('testing ctx.SYMBOL_DOTCARET()', function () {
+            sinon.stub(pv.prototype,'visitPrimary').callsFake((pri) => pri)
+            sinon.stub(ctxMock.prototype,'SYMBOL_CARET').returns(false)
+            const visitor = new fv()
+            const input = new ctxMock()
+            const output = visitor.visitFactor(input)
+            const referenceOutput = [1, 'mocked symbol_dotcaret', 2]
+            as.deepEqual(output.primary1, referenceOutput[0], 'expected value for "primary1": ' + referenceOutput[0] + ' ; actual value for "primary1": ' + output.primary1)
+            as.deepEqual(output.op, referenceOutput[1], 'expected: ' + referenceOutput[1] + ' ; actual: ' + output.op)
+            as.deepEqual(output.primary2, referenceOutput[2], 'expected value for "primary2": ' + referenceOutput[2] + ' ; actual value for "primary2": ' + output.primary2)
+        })
+        mo.it('testing when primarys = 1', function () {
+            sinon.stub(pv.prototype,'visitPrimary').callsFake((pri) => pri)
+            sinon.stub(ctxMock.prototype,'primary').returns([1])
+            const visitor = new fv()
+            const input = new ctxMock()
+            const output = visitor.visitFactor(input)
+            const referenceOutput = [1, 'mocked symbol_caret', null]
+            as.deepEqual(output.primary1, referenceOutput[0], 'expected value for "primary1": ' + referenceOutput[0] + ' ; actual value for "primary1": ' + output.primary1)
+            as.deepEqual(output.op, referenceOutput[1], 'expected: ' + referenceOutput[1] + ' ; actual: ' + output.op)
+            as.deepEqual(output.primary2, referenceOutput[2], 'expected value for "primary2": ' + referenceOutput[2] + ' ; actual value for "primary2": ' + output.primary2)
+        })
     })
 })
