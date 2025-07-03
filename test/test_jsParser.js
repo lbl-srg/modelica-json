@@ -1087,3 +1087,13 @@ mo.describe('testing Import_clauseVisitor.js', function () {
         })
     })
 })
+mo.describe('testing Import_listVisitor.js', function () {
+    mo.it('testing visitImport_list(ctx)', function () {
+        sinon.stub(ctxMock.prototype,'IDENT').returns([1,2,3])
+        const visitor = new ilv()
+        const input = new ctxMock()
+        const output = visitor.visitImport_list(input)
+        const referenceOutput = [1,2,3]
+        as.deepEqual(output.identifier_list, referenceOutput, 'expected value for "identifier_list: ' + referenceOutput + ' ; actual value for "identifier_list": ' + output.identifier_list)
+    })
+})
