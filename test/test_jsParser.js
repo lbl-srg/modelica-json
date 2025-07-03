@@ -262,7 +262,7 @@ mo.describe('testing ArgumentVisitor.js', function () {
 })
 mo.describe('testing Arithmetic_expressionVisitor.js', function () {
     mo.describe('testing visitArithmetic_expression(ctx)', function () {
-        mo.it('testing when add_ops.length == (terms.length -1)', function () {
+        mo.it('testing when add_ops.length == (terms.length - 1)', function () {
             sinon.stub(tv.prototype, 'visitTerm').callsFake((t) => t)
             const visitor = new vae()
             const input = new ctxMock()
@@ -272,7 +272,7 @@ mo.describe('testing Arithmetic_expressionVisitor.js', function () {
             as.deepEqual([output.arithmetic_term_list[1].add_op, output.arithmetic_term_list[1].term], referenceOutput[1], 'expected value for second term: ' + referenceOutput[1] + ' ; actual value for second term: ' + [output.arithmetic_term_list[1].add_op, output.arithmetic_term_list[1].term])
             as.deepEqual([output.arithmetic_term_list[2].add_op, output.arithmetic_term_list[2].term], referenceOutput[2], 'expected value for third term: ' + referenceOutput[2] + ' ; actual value for third term: ' + [output.arithmetic_term_list[2].add_op, output.arithmetic_term_list[2].term]) 
         })
-        mo.it('testing when add_ops.length != (terms.length -1)', function () {
+        mo.it('testing when add_ops.length != (terms.length - 1)', function () {
             sinon.stub(tv.prototype, 'visitTerm').callsFake((t) => t)
             sinon.stub(ctxMock.prototype,'term').returns([3,4])
             const visitor = new vae()
