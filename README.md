@@ -26,24 +26,18 @@ First, set the MODELICAPATH environment variable by adding the following line to
 export MODELICAPATH=${MODELICAPATH}:/usr/local/Modelica/Library/
 ```
 
-The parser requires Java and node. The java dependency can be installed using:
+The parser requires node.
 ```
-sudo apt-get install default-jdk default-jre
-```
-The node version should be >= 18 and you can use [Node Version Manager](https://nodejs.org/en/download/package-manager) to set it up. Following is using 0.39.7 version:
+The node version should be >= 20 and you can use [Node Version Manager](https://nodejs.org/en/download/package-manager) to set it up. Following is using 0.39.7 version:
 ```
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 source ~/.bashrc
-nvm install 18
+nvm install 20
 ```
 
 To install dependencies of the parser, run
 ```
 make install
-```
-To compile the Java files, run
-```
-make compile
 ```
 To run the test cases, run
 ```
@@ -65,13 +59,9 @@ make clean-installation
 
 - Then, create the `MODELICAPATH` environment variable and set the value as the path of Modelica Buildings Library, like `E:\modelica-buildings` or `E:\modelica-buildings-master`.
 
-- Install [Java SE Development Kit (64-bit version)](https://www.oracle.com/java/technologies/javase-downloads.html), [Java Runtime Environment (64-bit version)](https://java.com/en/download/manual.jsp) and [Node.js](https://nodejs.org/en/download/).
-
 - Add `path\to\your\nodejs` to the `Path` environment.
 
-- In batch file `InstallOnWindows.bat`, update `JAVA_HOME` path in line `set JAVA_HOME=path\to\your\jdk`.
-
-- Finally, to install dependencies and compile the Java files, run `InstallOnWindows.bat`.
+- Finally, to install dependencies, run `InstallOnWindows.bat`.
 
 To test the installation, from the `\modelica-json` directory, run the parser on Command Prompt:
 ```
