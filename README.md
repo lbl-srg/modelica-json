@@ -25,10 +25,7 @@ First, set the MODELICAPATH environment variable by adding the following line to
 ```
 export MODELICAPATH=${MODELICAPATH}:/usr/local/Modelica/Library/
 ```
-
-The parser requires node.
-```
-The node version should be >= 20 and you can use [Node Version Manager](https://nodejs.org/en/download/package-manager) to set it up. Following is using 0.39.7 version:
+The parser requires node. The node version should be >= 20 and you can use [Node Version Manager](https://nodejs.org/en/download/package-manager) to set it up. Following is using 0.39.7 version:
 ```
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 source ~/.bashrc
