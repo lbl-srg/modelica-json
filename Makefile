@@ -6,7 +6,6 @@ export
 
 .PHONY: install-node-packages install test run generate-reference-output clean-node-packages clean-installation
 
-# download maven source file to current directory and change its name
 install-node-packages:
 	npm install --save
 
