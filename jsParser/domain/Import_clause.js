@@ -1,10 +1,10 @@
 class Import_clause {
   constructor (identifier, name, dot_star, import_list, comment) {
-    this.identifier = identifier
-    this.name = name
-    this.dot_star = dot_star
-    this.import_list = import_list
-    this.comment = comment
+    identifier != null ? this.identifier = identifier : ''
+    name != null ? this.name = name : ''
+    dot_star != null ? this.dot_star = dot_star : ''
+    import_list != null ? this.import_list = import_list : ''
+    comment != null ? this.comment = comment : ''
   }
 }
 exports.Import_clause = Import_clause

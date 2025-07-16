@@ -1,6 +1,6 @@
 class Array_subscripts {
   constructor (subscripts) {
-    this.subscripts = subscripts
+    subscripts != null ? this.subscripts = subscripts : ''
   }
 }
 exports.Array_subscripts = Array_subscripts
