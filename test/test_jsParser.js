@@ -165,7 +165,7 @@ class ctxMock {
         return this.testing == 'package_dec' ? new getTextClass('mocked package_dec') : false
     }
     OPERATOR () {
-        return (this.testing == 'operator_dec') || (this.testing == 'record_dec') || (this.testing == 'function_dec, operator_dec, pure_dec') || (this.testing == 'function_dec, operator_dec, impure_dec')
+        return (this.testing == 'operator_dec') || (this.testing == 'record_dec') || (this.testing == 'function_dec operator_dec pure_dec') || (this.testing == 'function_dec operator_dec impure_dec')
             ? new getTextClass('mocked operator_dec') : false
     }
     RECORD () {
