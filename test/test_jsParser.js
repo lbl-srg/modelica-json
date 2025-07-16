@@ -334,7 +334,7 @@ mo.describe('testing Class_prefixesVisitor.js', function () {
                 const visitor = new cpv()
                 const input = new ctxMock(null, 'partial_dec')
                 const output = visitor.visitClass_prefixes(input)
-                const referenceOutput = 'mocked partial_dec '
+                const referenceOutput = 'mocked partial_dec'
                 as.deepEqual(output, referenceOutput,'expected: ' + referenceOutput + ' ; actual: ' + output)
             })
             mo.it('testing partial_dec with another string (class_dec)', function () {
