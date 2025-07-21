@@ -2,7 +2,7 @@ const modelicaVisitor = require('../antlrFiles/modelicaVisitor').modelicaVisitor
 const When_statement = require('../domain/When_statement')
 const When_elsewhen_statement = require('../domain/When_elsewhen_statement')
 
-const statementVisitor = require('./statementVisitor')
+const statementVisitor = require('./StatementVisitor')
 const ExpressionVisitor = require('./ExpressionVisitor')
 
 class When_statementVisitor {

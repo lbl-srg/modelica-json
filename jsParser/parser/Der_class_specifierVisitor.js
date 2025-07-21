@@ -3,7 +3,7 @@ const Der_class_specifier = require('../domain/Der_class_specifier')
 const Der_class_specifier_value = require('../domain/Der_class_specifier_value')
 
 const NameVisitor = require('./NameVisitor')
-// const CommentVisitor = require('./CommentVisitor');
+const CommentVisitor = require('./CommentVisitor');
 
 class Der_class_specifierVisitor {
   constructor () {

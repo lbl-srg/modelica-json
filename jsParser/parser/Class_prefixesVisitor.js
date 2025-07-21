@@ -24,36 +24,36 @@ class Class_prefixesVisitor {
     const impure_dec = ctx.IMPURE() ? ctx.IMPURE().getText() : ''
     const function_dec = ctx.FUNCTION() ? ctx.FUNCTION().getText() : ''
 
-    class_prefixes = (partial_dec.length == 0) ? '' : util.format('%s ', partial_dec)
+    class_prefixes = (partial_dec.length == 0) ? '' : util.format('%s', partial_dec)
     if (class_dec.length > 0) {
-      class_prefixes = util.format('%s %s', class_prefixes, class_dec)
+      class_prefixes = class_prefixes != '' ? util.format('%s %s', class_prefixes, class_dec) : class_dec
     } else if (model_dec.length > 0) {
-      class_prefixes = util.format('%s %s', class_prefixes, model_dec)
+      class_prefixes = class_prefixes != '' ? util.format('%s %s', class_prefixes, model_dec) : model_dec
     } else if (record_dec.length > 0) {
-      class_prefixes = (operator_dec.length > 0) ? util.format('%s %s', class_prefixes, operator_dec) : class_prefixes
-      class_prefixes = util.format('%s %s', class_prefixes, record_dec)
+      class_prefixes = (operator_dec.length > 0) ? class_prefixes != '' ? util.format('%s %s', class_prefixes, operator_dec) : operator_dec : class_prefixes
+      class_prefixes = class_prefixes != '' ? util.format('%s %s', class_prefixes, record_dec) : record_dec
     } else if (block_dec.length > 0) {
-      class_prefixes = util.format('%s %s', class_prefixes, block_dec)
+      class_prefixes = class_prefixes != '' ? util.format('%s %s', class_prefixes, block_dec) : block_dec
     } else if (connector_dec.length > 0) {
-      class_prefixes = (expandable_dec.length > 0) ? util.format('%s %s', class_prefixes, expandable_dec) : class_prefixes
-      class_prefixes = util.format('%s %s', class_prefixes, connector_dec)
+      class_prefixes = (expandable_dec.length > 0) ? class_prefixes != '' ? util.format('%s %s', class_prefixes, expandable_dec) : expandable_dec : class_prefixes
+      class_prefixes = class_prefixes != '' ? util.format('%s %s', class_prefixes, connector_dec) : connector_dec
     } else if (type_dec.length > 0) {
-      class_prefixes = util.format('%s %s', class_prefixes, type_dec)
+      class_prefixes = class_prefixes != '' ? util.format('%s %s', class_prefixes, type_dec) : type_dec
     } else if (package_dec.length > 0) {
-      class_prefixes = util.format('%s %s', class_prefixes, package_dec)
+      class_prefixes = class_prefixes != '' ? util.format('%s %s', class_prefixes, package_dec) : package_dec
     } else if (function_dec.length > 0) {
       if (pure_dec.length > 0) {
-        class_prefixes = util.format('%s %s', class_prefixes, pure_dec)
+        class_prefixes = class_prefixes != '' ? util.format('%s %s', class_prefixes, pure_dec) : pure_dec
       } else if (impure_dec.length > 0) {
-        class_prefixes = util.format('%s %s', class_prefixes, impure_dec)
+        class_prefixes = class_prefixes != '' ? util.format('%s %s', class_prefixes, impure_dec) : impure_dec
       }
 
       if (operator_dec.length > 0) {
-        class_prefixes = util.format('%s %s', class_prefixes, operator_dec)
+        class_prefixes = class_prefixes != '' ? util.format('%s %s', class_prefixes, operator_dec) : operator_dec
       }
-      class_prefixes = util.format('%s %s', class_prefixes, function_dec)
+      class_prefixes = class_prefixes != '' ? util.format('%s %s', class_prefixes, function_dec) : function_dec
     } else if (operator_dec.length > 0) {
-      class_prefixes = util.format('%s %s', class_prefixes, operator_dec)
+      class_prefixes = class_prefixes != '' ? util.format('%s %s', class_prefixes, operator_dec) : operator_dec
     }
 
     return class_prefixes

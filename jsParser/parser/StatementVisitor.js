@@ -31,8 +31,8 @@ class StatementVisitor {
     const is_return = !!ctx.RETURN()
     let if_statement = null
     let for_statement = null
-    const while_statement = null
-    const when_statement = null
+    let while_statement = null
+    let when_statement = null
     let comment = null
     let output_expression_list = null
 
@@ -70,11 +70,11 @@ class StatementVisitor {
     }
     if (ctx.while_statement()) {
       const while_statementVisitor = new While_statementVisitor.While_statementVisitor()
-      while_equation = while_statementVisitor.visitWhile_statement(ctx.while_statement())
+      while_statement = while_statementVisitor.visitWhile_statement(ctx.while_statement())
     }
     if (ctx.when_statement()) {
       const when_statementVisitor = new When_statementVisitor.When_statementVisitor()
-      when_equation = when_statementVisitor.visitWhen_statement(ctx.when_statement())
+      when_statement = when_statementVisitor.visitWhen_statement(ctx.when_statement())
     }
     if (ctx.comment()) {
       const commentVisitor = new CommentVisitor.CommentVisitor()

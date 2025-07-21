@@ -4,40 +4,15 @@
 include .env
 export
 
-ifeq ($(wildcard ./apache_maven/bin/mvn),)
-MVN = mvn  # Use maven from system installation
-else
-MVN = ../apache_maven/bin/mvn
-endif
-
-MVN_LINK = https://archive.apache.org/dist/maven/maven-3/$(MAVEN3_VERSION)/binaries/apache-maven-$(MAVEN3_VERSION)-bin.tar.gz
-
-.PHONY: install-maven install-node-packages install compile test run compile-java generate-reference-output clean-node-packages clean-maven clean-installation
-
-# download maven source file to current directory and change its name
-install-maven:
-	@echo "Installing Maven v$(MAVEN3_VERSION)"
-	curl $(MVN_LINK) > apache-maven.tar.gz
-	mkdir -p apache_maven
-	tar xzf apache-maven.tar.gz -C apache_maven --strip-components 1
-	rm -rf apache-maven.tar.gz
+.PHONY: install-node-packages install test run generate-reference-output clean-node-packages clean-installation
 
 install-node-packages:
 	npm install --save
 
 install: install-node-packages
 
-compile:
-	@echo "Compiling java to produce jar"
-	cd java && $(MVN) package
-	mv java/parser/target/parser-1.0-SNAPSHOT-jar-with-dependencies.jar java/moParser.jar
-	cd java && $(MVN) clean
-
 test:
 	npm test
-
-test-moParser:
-	java -jar java/moParser.jar --mo test/FromModelica/Block1.mo
 
 # Target to generate reference output files
 # This only needs to be run when the output format changes,
@@ -60,10 +35,7 @@ generate-cxfCore:
 clean-node-packages:
 	rm -rf node-modules
 
-clean-maven:
-	rm -rf apache_maven
-
-clean-installation: clean-node-packages clean-maven
+clean-installation: clean-node-packages
 
 run:
 	node app.js \

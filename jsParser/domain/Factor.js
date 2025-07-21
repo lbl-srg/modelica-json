@@ -1,8 +1,8 @@
 class Factor {
   constructor (primary1, op, primary2) {
-    this.primary1 = primary1
-    this.op = op
-    this.primary2 = primary2
+    primary1 != null ? this.primary1 = primary1 : ''
+    op != null && op != '' ? this.op = op : ''
+    primary2 != null ? this.primary2 = primary2 : ''
   }
 }
 exports.Factor = Factor
