@@ -267,7 +267,7 @@ mo.describe('testing Arithmetic_expressionVisitor.js', function () {
             const visitor = new vae()
             const input = new ctxMock()
             const output = visitor.visitArithmetic_expression(input)
-            referenceOutput = [[null, 3], [1, 4], [2,5]]
+            referenceOutput = [[undefined, 3], [1, 4], [2,5]]
             as.deepEqual([output.arithmetic_term_list[0].add_op, output.arithmetic_term_list[0].term], referenceOutput[0], 'expected value for first term: ' + referenceOutput[0] + ' ; actual value for first term: ' + [output.arithmetic_term_list[0].add_op, output.arithmetic_term_list[0].term])
             as.deepEqual([output.arithmetic_term_list[1].add_op, output.arithmetic_term_list[1].term], referenceOutput[1], 'expected value for second term: ' + referenceOutput[1] + ' ; actual value for second term: ' + [output.arithmetic_term_list[1].add_op, output.arithmetic_term_list[1].term])
             as.deepEqual([output.arithmetic_term_list[2].add_op, output.arithmetic_term_list[2].term], referenceOutput[2], 'expected value for third term: ' + referenceOutput[2] + ' ; actual value for third term: ' + [output.arithmetic_term_list[2].add_op, output.arithmetic_term_list[2].term]) 
@@ -609,14 +609,14 @@ mo.describe('testing DeclarationVisitor.js', function () {
     })
 })
 mo.describe('testing Der_class_specifierVisitor.js', function () {
-    mo.it('testing visitDer_clas_specifier(ctx)', function () {
+    mo.it('testing visitDer_class_specifier(ctx)', function () {
         class ctxMockUnique {
             IDENT (x = 1) {
                 if (x == 0) {
-                    return new getTextClass(0)
+                    return new getTextClass(1)
                 }
                 else {
-                    return [new getTextClass(0), new getTextClass(1), new getTextClass(2)]
+                    return [new getTextClass(1), new getTextClass(2), new getTextClass(3)]
                 } 
             }
             name () {
@@ -631,7 +631,7 @@ mo.describe('testing Der_class_specifierVisitor.js', function () {
         const visitor = new dcsv()
         const input = new ctxMockUnique()
         const output = visitor.visitDer_class_specifier(input)
-        const referenceOutput = [0, 'mocked name', [1,2], 'mocked comment']
+        const referenceOutput = [1, 'mocked name', [2,3], 'mocked comment']
         as.deepEqual(output.identifier, referenceOutput[0], 'expected value for "identifier": ' + referenceOutput[0] + ' ; actual value for "identifier": ' + output.identifier)
         as.deepEqual(output.der_class_specifier_value.type_specifier, referenceOutput[1], 'expected: ' + referenceOutput[1] + ' ; actual: ' + output.der_class_specifier_value.type_specifier)
         as.deepEqual(output.der_class_specifier_value.identifiers, referenceOutput[2], 'expected value for "identifiers": ' + referenceOutput[2] + ' ; actual value for "identifiers": ' + output.der_class_specifier_value.identifiers)
@@ -1092,7 +1092,7 @@ mo.describe('testing Import_clauseVisitor.js', function () {
             const visitor = new icv()
             const input = new ctxMock()
             const output = visitor.visitImport_clause(input)
-            referenceOutput = ['', 'mocked name', false, 'mocked import_list', 'mocked comment']
+            referenceOutput = [undefined, 'mocked name', false, 'mocked import_list', 'mocked comment']
             as.deepEqual(output.identifier, referenceOutput[0], 'expected: ' + referenceOutput[0] + ' ; actual: ' + output.identifier)
             as.deepEqual(output.name, referenceOutput[1], 'expected: ' + referenceOutput[1] + ' ; actual: ' + output.name)
             as.deepEqual(output.dot_star, referenceOutput[2], 'expected value for "dot_star": ' + referenceOutput[2] + ' ; actual value for "dot_star": ' + output.dot_star)

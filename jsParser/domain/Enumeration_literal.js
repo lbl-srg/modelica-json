@@ -1,6 +1,6 @@
 class Enumeration_literal {
   constructor (identifier, comment) {
-    identifier != null ? this.identifier = identifier : ''
+    identifier != null && identifier != '' ? this.identifier = identifier : ''
     comment != null ? this.comment = comment : ''
   }
 }

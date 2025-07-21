@@ -1,6 +1,6 @@
 class Der_class_specifier {
   constructor (identifier, der_class_specifier_value) {
-    identifier != null ? this.identifier = identifier : ''
+    identifier != null && identifier != '' ? this.identifier = identifier : ''
     der_class_specifier_value != null ? this.der_class_specifier_value = der_class_specifier_value : ''
   }
 }

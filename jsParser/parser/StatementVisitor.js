@@ -31,8 +31,8 @@ class StatementVisitor {
     const is_return = !!ctx.RETURN()
     let if_statement = null
     let for_statement = null
-    const while_statement = null
-    const when_statement = null
+    let while_statement = null
+    let when_statement = null
     let comment = null
     let output_expression_list = null
 

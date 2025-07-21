@@ -1,6 +1,6 @@
 class For_index {
   constructor (identifier, expression) {
-    identifier != null ? this.identifier = identifier : ''
+    identifier != null && identifier != '' ? this.identifier = identifier : ''
     expression != null ? this.expression = expression : ''
   }
 }

@@ -1,6 +1,6 @@
 class Short_class_definition {
   constructor (class_prefixes, short_class_specifier) {
-    class_prefixes != null ? this.class_prefixes = class_prefixes : ''
+    class_prefixes != null && class_prefixes != '' ? this.class_prefixes = class_prefixes : ''
     short_class_specifier != null ? this.short_class_specifier = short_class_specifier : ''
   }
 }

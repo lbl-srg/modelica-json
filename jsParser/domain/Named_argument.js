@@ -1,6 +1,6 @@
 class Named_argument {
   constructor (identifier, value) {
-    identifier != null ? this.identifier = identifier : ''
+    identifier != null && identifier != '' ? this.identifier = identifier : ''
     value != null ? this.value = value : ''
   }
 }
