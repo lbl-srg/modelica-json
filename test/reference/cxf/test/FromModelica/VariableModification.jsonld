@@ -2,7 +2,8 @@
   "@context": {
     "S231P": "https://data.ashrae.org/S231P#",
     "qudt": "http://qudt.org/schema/qudt#",
-    "unit": "http://qudt.org/vocab/unit#"
+    "unit": "http://qudt.org/vocab/unit#",
+    "q": "http://qudt.org/vocab/quantitykind#"
   },
   "@graph": [
     {
@@ -23,10 +24,10 @@
     },
     {
       "@id": "http://example.org#FromModelica.VariableModification.abs",
-      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Abs",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Abs",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Instance with modified input and output attributes",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-8,\"y\":-10},{\"x\":12,\"y\":10}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-8,-10},{12,10}})))",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#FromModelica.VariableModification.abs.u"
@@ -39,34 +40,34 @@
     },
     {
       "@id": "http://example.org#FromModelica.VariableModification.abs.u",
-      "qudt:hasDisplayUnit": {
-        "@id": "unit:DEG_C"
-      },
       "qudt:hasUnit": {
-        "@id": "S231P:K"
+        "@id": "unit:K"
+      },
+      "S231P:hasDisplayUnit": {
+        "@id": "unit:DEG_C"
       }
     },
     {
       "@id": "http://example.org#FromModelica.VariableModification.abs.y",
-      "qudt:hasDisplayUnit": {
-        "@id": "unit:DEG_C"
-      },
       "qudt:hasUnit": {
-        "@id": "S231P:K"
+        "@id": "unit:K"
+      },
+      "S231P:hasDisplayUnit": {
+        "@id": "unit:DEG_C"
       }
     },
     {
       "@id": "http://example.org#FromModelica.VariableModification.TOut",
       "@type": "S231P:RealInput",
       "qudt:hasQuantityKind": {
-        "@id": "S231P:ThermodynamicTemperature"
+        "@id": "q:ThermodynamicTemperature"
       },
       "qudt:hasUnit": {
-        "@id": "S231P:K"
+        "@id": "unit:K"
       },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Temperature input",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":20},{\"x\":-100,\"y\":60}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":20},{\"x\":-100,\"y\":60}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-140,20},{-100,60}})),iconTransformation(extent={{-140,20},{-100,60}})))",
       "S231P:label": "TOut"
     },
     {
@@ -74,7 +75,7 @@
       "@type": "S231P:RealInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Input connector",
-      "S231P:graphics": "{\"Placement\":{\"transformation\":{\"extent\":[{\"x\":-140,\"y\":-20},{\"x\":-100,\"y\":20}]},\"iconTransformation\":{\"extent\":[{\"x\":-140,\"y\":-40},{\"x\":-100,\"y\":0}]}}}",
+      "S231P:graphics": "Placement(transformation(extent={{-140,-20},{-100,20}})),iconTransformation(extent={{-140,-40},{-100,0}})))",
       "S231P:label": "u"
     }
   ]

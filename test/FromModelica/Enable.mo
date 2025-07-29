@@ -290,6 +290,8 @@ equation
           184},{-62,184}}, color={255,0,255}));
 annotation (
     defaultComponentName = "enaDis",
+    __cdl(generatePointlist=true,
+    controlledDevice="testController"),    
     Icon(coordinateSystem(extent={{-100,-140},{100,140}}),
          graphics={
         Rectangle(

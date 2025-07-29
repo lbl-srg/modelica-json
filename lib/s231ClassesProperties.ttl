@@ -35,6 +35,11 @@ S231P:ExtensionBlock
                 They allow, for example, implementation of blocks that contain statistical functions, fault detection and diagnostics methods, as well as proprietary code. 
                 They are intended to define new elementary blocks beyond those defined in this standard""" ;
   rdfs:label "ExtensionBlock" ;
+  sh:property [
+    sh:path S231P:hasFmuPath ;
+    rdfs:comment "Path for FMU implementation of FMU" ;
+    sh:datatype xsd:string ;
+  ] ;
 .
 S231P:Connector
   a rdfs:Class ;
@@ -84,6 +89,11 @@ S231P:InputConnector
   sh:property [
     sh:path S231P:value ;
     rdfs:comment "A decimal value associated with the input connector" ;
+    sh:datatype xsd:decimal ;
+  ] ;
+    sh:property [
+    sh:path S231P:defaultValue ;
+    rdfs:comment "A default decimal value associated with the input connector" ;
     sh:datatype xsd:decimal ;
   ] ;
   sh:property [
@@ -183,6 +193,11 @@ S231P:OutputConnector
   sh:property [
     sh:path S231P:value ;
     rdfs:comment "A decimal value associated with the output connector" ;
+    sh:datatype xsd:decimal ;
+  ] ;
+  sh:property [
+    sh:path S231P:defaultValue ;
+    rdfs:comment "A default decimal value associated with the output connector" ;
     sh:datatype xsd:decimal ;
   ] ;
   sh:property [
@@ -288,8 +303,11 @@ S231P:Parameter
   ] ;
   sh:property [
     sh:path S231P:value ;
-    rdfs:comment "A decimal value associated with the parameter" ;
-    sh:datatype xsd:decimal ;
+    rdfs:comment "A value associated with the parameter" ;
+  ] ;
+  sh:property [
+    sh:path S231P:defaultValue ;
+    rdfs:comment "A default value associated with the parameter" ;
   ] ;
   sh:property [
     sh:path S231P:start ;
@@ -392,8 +410,11 @@ S231P:Constant
   ] ;
   sh:property [
     sh:path S231P:value ;
-    rdfs:comment "A decimal value associated with the constant" ;
-    sh:datatype xsd:decimal ;
+    rdfs:comment "A value associated with the constant" ;
+  ] ;
+  sh:property [
+    sh:path S231P:default ;
+    rdfs:comment "A default value associated with the constant" ;
   ] ;
   sh:property [
     sh:path S231P:start ;
@@ -618,20 +639,80 @@ S231P:containsBlock
   rdfs:domain S231P:Block ;
   rdfs:range S231P:Block ;
 .
-S231P:connectedTo 
+S231P:isConnectedTo 
   a rdf:Property ;
   rdfs:comment "Used to connect the output of one block to the input of a block. Only connectors that carry the same data type can be connected" ;
-  rdfs:label "connected to" ;
+  rdfs:label "is connected to" ;
   rdfs:domain S231P:Connector ;
   rdfs:range S231P:Connector ;
 .
 
+S231P:translationSoftware 
+  a rdf:Property ;
+  rdfs:comment "Used to include the name of the software used to CXF representation of the sequence" ;
+  rdfs:label "translation software" ;
+  rdfs:domain S231P:Block ;
+  rdfs:range S231P:String ;
+.
+
+S231P:translationSoftwareVersion
+  a rdf:Property ;
+  rdfs:comment "Used to include the version of the software used to CXF representation of the sequence" ;
+  rdfs:label "translation software version" ;
+  rdfs:domain S231P:Block ;
+  rdfs:range S231P:String ;
+.
+
+S231P:isArray
+  a rdf:Property ;
+  rdfs:comment "Boolean property that denotes whether or not an is an Array" ;
+  rdfs:label "Is Array" ;
+  rdfs:range S231P:Boolean ;
+.
+
+S231P:sizeOfDimensions
+  a rdf:Property ;
+  rdfs:comment "Property that presents length of each of the dimensions in an array instance. Size within ( and ), each dimension separated by a comma " ;
+  rdfs:label "length of each dimension of array" ;
+.
+
+S231P:numberDimensions
+  a rdf:Property ;
+  rdfs:comment "Property that denotes number of dimensions in an array instance" ;
+  rdfs:label "number of dimensions" ;
+  rdfs:range S231P:Integer ;
+.
+
+S231P:isConditionalComponent
+  a rdf:Property ;
+  rdfs:comment "Boolean property that denotes whether or not an instance exists or not based on a conditional expression" ;
+  rdfs:label "Is conditional component" ;
+  rdfs:range S231P:Boolean ;
+.
+
+S231P:conditionalExpression
+  a rdf:Property ;
+  rdfs:comment "Property to describe the expression, which if false, removes an instance and if true, retains the instance" ;
+  rdfs:label "conditional expression" ;
+  rdfs:range S231P:String ;
+.
+
 S231P:description a rdf:Property .
+S231P:documentation a rdf:Property .
+S231P:icon a rdf:Property .
+S231P:generatePointlist a rdf:Property .
+S231P:controlledDevice a rdf:Property .
+S231P:isReplaceable a rdf:Property .
+S231P:constrainedby a rdf:Property .
+S231P:redeclare a rdf:Property .
+S231P:isFinal a rdf:Property .
+S231P:diagram a rdf:Property .
 S231P:accessSpecifier a rdf:Property . 
 S231P:graphics a rdf:Property .
 S231P:name a rdf:Property .
 S231P:label a rdf:Property .
 S231P:value a rdf:Property .
+S231P:defaultValue a rdf:Property .
 S231P:start a rdf:Property .
 S231P:nominal a rdf:Property .
 S231P:quantity a rdf:Property .

@@ -1,0 +1,66 @@
+{
+  "instances": {
+    "BlockWithArray2": {
+      "within": "FromModelica",
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-json/test/FromModelica/BlockWithArray2.mo",
+      "type": "long_class_specifier",
+      "class_prefixes": "block"
+    },
+    "k": {
+      "type_prefix": "parameter",
+      "type_specifier": "Real",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "BlockWithArray2",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "k",
+          "array_subscripts": [
+            {
+              "expression": {
+                "simple_expression": "2"
+              }
+            },
+            {
+              "expression": {
+                "simple_expression": "3"
+              }
+            }
+          ],
+          "modification": {
+            "equal": true,
+            "expression": {
+              "simple_expression": {
+                "for_loop": {
+                  "expression": {
+                    "simple_expression": "i*0.5 +j"
+                  },
+                  "for_loop": [
+                    {
+                      "name": "i",
+                      "range": "1:2"
+                    },
+                    {
+                      "name": "j",
+                      "range": "1:3"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": true,
+      "arraySubscripts": "[2,3]",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "FromModelica",
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-json/test/FromModelica/BlockWithArray2.mo"
+    }
+  },
+  "requiredReferences": {}
+}
