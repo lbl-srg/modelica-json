@@ -332,6 +332,7 @@
     },
     "element_modification": {
       "description": "Element modification",
+      "type": "object",
       "oneOf": [
         {
           "type": "object",
@@ -710,33 +711,51 @@
             "type": "string"
           },
           "attribute": {
-            "$ref": "#/definitions/attribute"
+            "type": "object"
+          }
+        },
+        "if": {
+          "properties": {"name": {"const": "Line"}}
+        },
+        "then": {
+          "properties": {"attribute": {"$ref": "#/definitions/Line"}}
+        },
+        "else": {
+          "if": {
+            "properties": {"name": {"const": "Text"}}
+          },
+          "then": {
+            "properties": {"attribute": {"$ref": "#/definitions/Text"}}
+          },
+          "else": {
+            "if": {
+              "properties": {"name": {"const": "Rectangle"}}
+            },
+            "then": {
+              "properties": {"attribute": {"$ref": "#/definitions/Rectangle"}}
+            },
+            "else": {
+              "if": {
+                "properties": {"name": {"const": "Polygon"}}
+              },
+              "then": {
+                "properties": {"attribute": {"$ref": "#/definitions/Polygon"}}
+              },
+              "else": {
+                "if": {
+                  "properties": {"name": {"const": "Ellipse"}}
+                },
+                "then": {
+                  "properties": {"attribute": {"$ref": "#/definitions/Ellipse"}}
+                },
+                "else": {
+                  "properties": {"attribute": {"$ref": "#/definitions/Bitmap"}}
+                }
+              }
+            }
           }
         }
       }
-    },
-    "attribute": {
-      "description": "graphics item attributes",
-      "oneOf": [
-        {
-          "$ref": "#/definitions/Line"
-        },
-        {
-          "$ref": "#/definitions/Text"
-        },
-        {
-          "$ref": "#/definitions/Rectangle"
-        },
-        {
-          "$ref": "#/definitions/Polygon"
-        },
-        {
-          "$ref": "#/definitions/Ellipse"
-        },
-        {
-          "$ref": "#/definitions/Bitmap"
-        }
-      ]
     },
     "points": {
       "description": "points on a 2d plan",
@@ -1290,6 +1309,19 @@
         }
       }
     },
+    "equationDescription": {
+      "description": "Equation description",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "description_string": {
+          "type": "string"
+        },
+        "annotation": {
+          "$ref": "#/definitions/class_modification"
+        }
+      }
+    },
     "constraining_clause": {
       "description": "Constraining clause",
       "type": "object",
@@ -1548,7 +1580,7 @@
             "$ref": "#/definitions/function_call_equation"
           },
           "description": {
-            "$ref": "#/definitions/descriptionSchema"
+            "$ref": "#/definitions/equationDescription"
           }
         }
       }
@@ -1876,7 +1908,7 @@
             "$ref": "#/definitions/when_statement"
           },
           "description": {
-            "$ref": "#/definitions/descriptionSchema"
+            "$ref": "#/definitions/equationDescription"
           }
         }
       }
