@@ -1,0 +1,71 @@
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#",
+    "qudt": "http://qudt.org/schema/qudt#",
+    "unit": "http://qudt.org/vocab/unit#",
+    "q": "http://qudt.org/vocab/quantitykind#"
+  },
+  "@graph": [
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Psychrometrics.DewPoint_TDryBulPhi",
+      "@type": "S231P:ElementaryBlock",
+      "S231P:documentation": "info=<html>\n<p>\nDew point temperature calculation for moist air above freezing temperature.\n</p>\n<p>\nThe correlation used in this model is valid for dew point temperatures between\n<i>0</i>&deg;C and <i>93</i>&deg;C. It is the correlation from 2009\nASHRAE Handbook Fundamentals, p. 1.9, equation 39.\n</p>\n</html>,revisions=<html>\n<ul>\n<li>\nNovember 12, 2020, by Michael Wetter:<br/>\nReformulated to remove dependency to <code>Modelica.Units.SI</code>.<br/>\nThis is for\n<a href=\\https://github.com/lbl-srg/modelica-buildings/issues/2243\\>Buildings, issue 2243</a>.\n</li>\n<li>\nSeptember 29, 2020, by Michael Wetter:<br/>\nRemoved unused input <code>p</code> and renamed block.<br/>\nThis is for\n<a href=\\https://github.com/lbl-srg/modelica-buildings/issues/2139\\>Buildings, issue 2139</a>\n</li>\n<li>\nApril 7, 2017 by Jianjun Hu:<br/>\nFirst implementation.\n</li>\n</ul>\n</html>",
+      "S231P:hasInput": [
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Psychrometrics.DewPoint_TDryBulPhi.phi"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Psychrometrics.DewPoint_TDryBulPhi.TDryBul"
+        }
+      ],
+      "S231P:hasOutput": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Psychrometrics.DewPoint_TDryBulPhi.TDewPoi"
+      },
+      "S231P:icon": "coordinateSystem(extent={{-100,-100},{100,100}},preserveAspectRatio=false),graphics={Rectangle(extent={{-100,-100},{100,100}},lineColor={0,0,127},fillColor={255,255,255},fillPattern=FillPattern.Solid),Text(textString=\"%name\",textColor={0,0,255},extent={{-150,150},{150,110}}),Text(textString=\"X\",textColor={0,0,0},extent={{-44,82},{-22,64}},fillColor={0,0,0},fillPattern=FillPattern.Solid),Polygon(points={{-48,88},{-46,74},{-50,74},{-48,88}},lineColor={0,0,0},fillColor={0,0,0},fillPattern=FillPattern.Solid),Text(textString=\"phi\",textColor={0,0,127},extent={{-90,-46},{-70,-72}}),Text(textString=\"TDryBul\",textColor={0,0,127},extent={{-92,82},{-62,38}}),Polygon(points={{86,-74},{76,-72},{76,-76},{86,-74}},lineColor={0,0,0},fillColor={0,0,0},fillPattern=FillPattern.Solid),Text(textString=\"T\",textColor={0,0,0},extent={{76,-78},{86,-94}},fillColor={0,0,0},fillPattern=FillPattern.Solid),Line(points={{-48,84},{-48,-74}}),Text(textString=\"TDewPoi\",textColor={0,0,127},extent={{60,14},{98,-12}}),Line(points={{82,-72},{-66,-72}}),Line(points={{-48,-40},{-38,-36},{-24,-30},{8,-2},{20,22},{28,54},{32,74}}),Line(color={255,0,0},thickness=0.5,points={{68,-12},{-2,-12}}),Polygon(points={{-2,-12},{12,-10},{12,-14},{-2,-12}},lineColor={255,0,0},fillColor={255,0,0},fillPattern=FillPattern.Solid),Line(color={175,175,175},points={{66,-44},{-48,-44}}),Line(color={175,175,175},points={{68,-18},{-10,-18}}),Line(color={175,175,175},points={{70,6},{12,6}}),Line(color={175,175,175},points={{68,32},{22,32}})}",
+      "S231P:label": "DewPoint_TDryBulPhi"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Psychrometrics.DewPoint_TDryBulPhi.phi",
+      "@type": "S231P:RealInput",
+      "qudt:hasUnit": {
+        "@id": "unit:UNITLESS"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Relative air humidity",
+      "S231P:graphics": "Placement(transformation(extent={{-140,-80},{-100,-40}})))",
+      "S231P:label": "phi",
+      "S231P:max": 1,
+      "S231P:min": 0
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Psychrometrics.DewPoint_TDryBulPhi.TDewPoi",
+      "@type": "S231P:RealOutput",
+      "qudt:hasQuantityKind": {
+        "@id": "q:ThermodynamicTemperature"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:K"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Dew point temperature",
+      "S231P:graphics": "Placement(transformation(extent={{100,-20},{140,20}})))",
+      "S231P:label": "TDewPoi",
+      "S231P:min": 100
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Psychrometrics.DewPoint_TDryBulPhi.TDryBul",
+      "@type": "S231P:RealInput",
+      "qudt:hasQuantityKind": {
+        "@id": "q:ThermodynamicTemperature"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:K"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Dry bulb temperature",
+      "S231P:graphics": "Placement(transformation(extent={{-140,40},{-100,80}})))",
+      "S231P:label": "TDryBul",
+      "S231P:min": 100
+    }
+  ]
+}

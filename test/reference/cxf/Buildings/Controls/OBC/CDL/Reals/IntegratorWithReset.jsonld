@@ -1,0 +1,90 @@
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#"
+  },
+  "@graph": [
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.IntegratorWithReset",
+      "@type": "S231P:ElementaryBlock",
+      "S231P:documentation": "info=<html>\n<p>\nBlock that outputs\n</p>\n<p align=\\center\\ style=\\font-style:italic;\\>\ny(t) = y<sub>start</sub> + &int;<sub>t<sub>0</sub></sub><sup>t</sup> u(s) ds.\n</p>\n<p>\nWhenever the input signal <code>trigger</code> changes from <code>false</code>\nto <code>true</code>,\nthe integrator is reset by setting <i>y<sub>start</sub></i>\nto the value of the input signal <code>y_reset_in</code>.\n</p>\n</html>,revisions=<html>\n<ul>\n<li>\nJune 8, 2023, by Michael Wetter:<br/>\nUpdated documentation.\n</li>\n<li>\nFebruary 2, 2022, by Michael Wetter:<br/>\nRemoved <code>unit=\\1\\</code> declaration for gain <code>k</code>.\nThis is to avoid the warning observed in\n<a href=\\https://github.com/lbl-srg/modelica-buildings/pull/2872\\>Buildings, issue 2872</a>.\n</li>\n<li>\nOctober 21, 2021, by Michael Wetter:<br/>\nRemoved errorneous <code>visible</code> attribute in icon.\n</li>\n<li>\nAugust 3, 2020, by Jianjun:<br/>\nFixed the input <code>y_reset_in</code>.\n<br/>\nThis is for\n<a href=\\https://github.com/lbl-srg/modelica-buildings/issues/2056\\>Buildings, issue 2056</a>.\n</li>\n<li>\nApril 21, 2020, by Michael Wetter:<br/>\nRemoved parameter <code>initType</code>.\n<br/>\nThis is for\n<a href=\\https://github.com/lbl-srg/modelica-buildings/issues/1887\\>Buildings, issue 1887</a>.\n</li>\n<li>\nMarch 2, 2020, by Michael Wetter:<br/>\nChanged icon to display dynamically the output value.\n</li>\n<li>\nNovember 6, 2017, by Michael Wetter:<br/>\nExplicitly declared types from CDL.\n</li>\n<li>\nMarch 23, 2017, by Jianjun Hu:<br/>\nFirst implementation, based on the implementation of\n<a href=\\modelica://Buildings.Utilities.Math.IntegratorWithReset\\>\nBuildings.Utilities.Math.IntegratorWithReset</a>.\n</li>\n</ul>\n</html>",
+      "S231P:hasInput": [
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.IntegratorWithReset.trigger"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.IntegratorWithReset.u"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.IntegratorWithReset.y_reset_in"
+        }
+      ],
+      "S231P:hasOutput": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.IntegratorWithReset.y"
+      },
+      "S231P:hasParameter": [
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.IntegratorWithReset.k"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.IntegratorWithReset.y_start"
+        }
+      ],
+      "S231P:icon": "coordinateSystem(extent={{-100,-100},{100,100}},preserveAspectRatio=true),graphics={Rectangle(extent={{-100,-100},{100,100}},lineColor={0,0,127},fillColor={255,255,255},fillPattern=FillPattern.Solid),Text(textString=\"y_reset_in\",textColor={0,0,0},horizontalAlignment=TextAlignment.Left,extent={{-88,-94},{212,-54}}),Bitmap(fileName=\"modelica://Buildings/Resources/Images/Controls/OBC/CDL/Reals/int.png\",extent={{-54,-50},{60,50}}),Text(textString=,textString=,textColor={0,0,0},horizontalAlignment=TextAlignment.Left,extent={{-88,56},{206,92}}),Text(textString=\"u\",textColor={0,0,0},horizontalAlignment=TextAlignment.Left,extent={{-92,-12},{208,28}}),Text(textString=\"y\",textColor={0,0,0},horizontalAlignment=TextAlignment.Left,extent={{70,-14},{370,26}}),Text(textString=\"%name\",textColor={0,0,255},extent={{-150,150},{150,110}}),Text(textString=DynamicSelect(\"\",String(y,textColor={0,0,0},extent={{226,60},{106,10}})}",
+      "S231P:label": "IntegratorWithReset"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.IntegratorWithReset.k",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Integrator gain",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "k",
+      "S231P:value": 1
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.IntegratorWithReset.trigger",
+      "@type": "S231P:BooleanInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Input that resets the integrator output when it becomes true",
+      "S231P:graphics": "Placement(transformation(origin={0,-120},extent={{-20,-20},{20,20}},rotation=90)),iconTransformation(origin={0,-120},extent={{-20,-20},{20,20}},rotation=90)))",
+      "S231P:label": "trigger"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.IntegratorWithReset.u",
+      "@type": "S231P:RealInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Input to be integrated",
+      "S231P:graphics": "Placement(transformation(extent={{-140,-20},{-100,20}})))",
+      "S231P:label": "u"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.IntegratorWithReset.y",
+      "@type": "S231P:RealOutput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Value of the integrator",
+      "S231P:graphics": "Placement(transformation(extent={{100,-20},{140,20}})))",
+      "S231P:label": "y"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.IntegratorWithReset.y_reset_in",
+      "@type": "S231P:RealInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Input signal for state to which integrator is reset",
+      "S231P:graphics": "Placement(transformation(extent={{-140,-100},{-100,-60}})))",
+      "S231P:label": "y_reset_in"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.IntegratorWithReset.y_start",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Initial or guess value of output (= state)",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "y_start",
+      "S231P:value": 0
+    }
+  ]
+}

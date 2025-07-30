@@ -1,0 +1,36 @@
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#"
+  },
+  "@graph": [
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Conversions.IntegerToReal",
+      "@type": "S231P:ElementaryBlock",
+      "S231P:documentation": "info=<html>\n<p>\nBlock that outputs the <code>Real</code>\nequivalent of the <code>Integer</code> input.\n</p>\n<pre>\n  y = u;\n</pre>\n<p>\nwhere <code>u</code> is of <code>Integer</code> and\n<code>y</code> of <code>Real</code> type.\n</p>\n</html>,revisions=<html>\n<ul>\n<li>\nJanuary 3, 2017, by Michael Wetter:<br/>\nFirst implementation, based on the implementation of the\nModelica Standard Library.\n</li>\n</ul>\n</html>",
+      "S231P:hasInput": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Conversions.IntegerToReal.u"
+      },
+      "S231P:hasOutput": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Conversions.IntegerToReal.y"
+      },
+      "S231P:icon": "coordinateSystem(extent={{-100,-100},{100,100}},preserveAspectRatio=true),graphics={Text(textString=\"%name\",textColor={0,0,255},extent={{-150,150},{150,110}}),Rectangle(extent={{-100,-100},{100,100}},lineColor={0,0,127},fillColor={255,255,255},fillPattern=FillPattern.Solid),Text(textString=\"I\",textColor={255,127,0},extent={{-120,-40},{-20,40}}),Text(textString=\"R\",textColor={0,0,127},extent={{0,-40},{100,40}},fillPattern=FillPattern.Solid),Polygon(points={{10,0},{-10,20},{-10,10},{-40,10},{-40,-10},{-10,-10},{-10,-20},{10,0}},lineColor={0,0,127},fillColor={0,0,127},fillPattern=FillPattern.Solid)}",
+      "S231P:label": "IntegerToReal"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Conversions.IntegerToReal.u",
+      "@type": "S231P:IntegerInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Integer signal to be converted to a Real signal",
+      "S231P:graphics": "Placement(transformation(extent={{-140,-20},{-100,20}})))",
+      "S231P:label": "u"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Conversions.IntegerToReal.y",
+      "@type": "S231P:RealOutput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Converted input signal as a Real",
+      "S231P:graphics": "Placement(transformation(extent={{100,-20},{140,20}})))",
+      "S231P:label": "y"
+    }
+  ]
+}

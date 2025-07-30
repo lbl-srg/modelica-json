@@ -1,0 +1,318 @@
+{
+  "within": "Buildings.Controls.OBC.CDL",
+  "stored_class_definitions": [
+    {
+      "class_prefixes": "package",
+      "class_specifier": {
+        "long_class_specifier": {
+          "identifier": "Psychrometrics",
+          "description_string": "Package with psychrometric blocks",
+          "composition": {
+            "annotation": [
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "Documentation",
+                    "modification": {
+                      "class_modification": [
+                        {
+                          "element_modification_or_replaceable": {
+                            "element_modification": {
+                              "name": "info",
+                              "modification": {
+                                "equal": true,
+                                "expression": {
+                                  "simple_expression": "\"<html>\n<p>\nThis package contains blocks for psychrometric calculations.\n</p>\n</html>\""
+                                }
+                              }
+                            }
+                          }
+                        },
+                        {
+                          "element_modification_or_replaceable": {
+                            "element_modification": {
+                              "name": "revisions",
+                              "modification": {
+                                "equal": true,
+                                "expression": {
+                                  "simple_expression": "\"<html>\n<ul>\n<li>\nDecember 22, 2016, by Michael Wetter:<br/>\nFirt implementation, based on the blocks from the Modelica Standard Library.\n</li>\n</ul>\n</html>\""
+                                }
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              },
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "Icon",
+                    "modification": {
+                      "class_modification": [
+                        {
+                          "element_modification_or_replaceable": {
+                            "element_modification": {
+                              "graphics": [
+                                {
+                                  "name": "Rectangle",
+                                  "attribute": {
+                                    "extent": [
+                                      {
+                                        "x": -100,
+                                        "y": -100
+                                      },
+                                      {
+                                        "x": 100,
+                                        "y": 100
+                                      }
+                                    ],
+                                    "radius": 25,
+                                    "lineColor": {
+                                      "r": 200,
+                                      "g": 200,
+                                      "b": 200
+                                    },
+                                    "fillColor": {
+                                      "r": 248,
+                                      "g": 248,
+                                      "b": 248
+                                    },
+                                    "fillPattern": "FillPattern.HorizontalCylinder"
+                                  }
+                                },
+                                {
+                                  "name": "Rectangle",
+                                  "attribute": {
+                                    "extent": [
+                                      {
+                                        "x": -100,
+                                        "y": -100
+                                      },
+                                      {
+                                        "x": 100,
+                                        "y": 100
+                                      }
+                                    ],
+                                    "radius": 25,
+                                    "lineColor": {
+                                      "r": 128,
+                                      "g": 128,
+                                      "b": 128
+                                    }
+                                  }
+                                },
+                                {
+                                  "name": "Line",
+                                  "attribute": {
+                                    "points": [
+                                      {
+                                        "x": -78,
+                                        "y": 86
+                                      },
+                                      {
+                                        "x": -78,
+                                        "y": -72
+                                      }
+                                    ]
+                                  }
+                                },
+                                {
+                                  "name": "Polygon",
+                                  "attribute": {
+                                    "points": [
+                                      {
+                                        "x": -78,
+                                        "y": 88
+                                      },
+                                      {
+                                        "x": -76,
+                                        "y": 74
+                                      },
+                                      {
+                                        "x": -80,
+                                        "y": 74
+                                      },
+                                      {
+                                        "x": -78,
+                                        "y": 88
+                                      }
+                                    ],
+                                    "lineColor": {
+                                      "r": 0,
+                                      "g": 0,
+                                      "b": 0
+                                    },
+                                    "fillColor": {
+                                      "r": 0,
+                                      "g": 0,
+                                      "b": 0
+                                    },
+                                    "fillPattern": "FillPattern.Solid"
+                                  }
+                                },
+                                {
+                                  "name": "Text",
+                                  "attribute": {
+                                    "extent": [
+                                      {
+                                        "x": -74,
+                                        "y": 84
+                                      },
+                                      {
+                                        "x": -52,
+                                        "y": 66
+                                      }
+                                    ],
+                                    "textString": "\"X\"",
+                                    "textColor": {
+                                      "r": 0,
+                                      "g": 0,
+                                      "b": 0
+                                    },
+                                    "fillColor": {
+                                      "r": 0,
+                                      "g": 0,
+                                      "b": 0
+                                    },
+                                    "fillPattern": "FillPattern.Solid"
+                                  }
+                                },
+                                {
+                                  "name": "Line",
+                                  "attribute": {
+                                    "points": [
+                                      {
+                                        "x": -78,
+                                        "y": -46
+                                      },
+                                      {
+                                        "x": -64,
+                                        "y": -42
+                                      },
+                                      {
+                                        "x": -40,
+                                        "y": -32
+                                      },
+                                      {
+                                        "x": -16,
+                                        "y": -18
+                                      },
+                                      {
+                                        "x": 10,
+                                        "y": 6
+                                      },
+                                      {
+                                        "x": 30,
+                                        "y": 40
+                                      },
+                                      {
+                                        "x": 38,
+                                        "y": 72
+                                      }
+                                    ],
+                                    "color": {
+                                      "r": 0,
+                                      "g": 0,
+                                      "b": 0
+                                    },
+                                    "smooth": "Smooth.Bezier"
+                                  }
+                                },
+                                {
+                                  "name": "Line",
+                                  "attribute": {
+                                    "points": [
+                                      {
+                                        "x": 72,
+                                        "y": -72
+                                      },
+                                      {
+                                        "x": -76,
+                                        "y": -72
+                                      }
+                                    ]
+                                  }
+                                },
+                                {
+                                  "name": "Polygon",
+                                  "attribute": {
+                                    "points": [
+                                      {
+                                        "x": 74,
+                                        "y": -72
+                                      },
+                                      {
+                                        "x": 64,
+                                        "y": -70
+                                      },
+                                      {
+                                        "x": 64,
+                                        "y": -74
+                                      },
+                                      {
+                                        "x": 74,
+                                        "y": -72
+                                      }
+                                    ],
+                                    "lineColor": {
+                                      "r": 0,
+                                      "g": 0,
+                                      "b": 0
+                                    },
+                                    "fillColor": {
+                                      "r": 0,
+                                      "g": 0,
+                                      "b": 0
+                                    },
+                                    "fillPattern": "FillPattern.Solid"
+                                  }
+                                },
+                                {
+                                  "name": "Text",
+                                  "attribute": {
+                                    "extent": [
+                                      {
+                                        "x": 72,
+                                        "y": -80
+                                      },
+                                      {
+                                        "x": 82,
+                                        "y": -96
+                                      }
+                                    ],
+                                    "textString": "\"T\"",
+                                    "textColor": {
+                                      "r": 0,
+                                      "g": 0,
+                                      "b": 0
+                                    },
+                                    "fillColor": {
+                                      "r": 0,
+                                      "g": 0,
+                                      "b": 0
+                                    },
+                                    "fillPattern": "FillPattern.Solid"
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "modelicaFile": "Buildings/Controls/OBC/CDL/Psychrometrics/package.mo",
+  "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Psychrometrics/package.mo",
+  "checksum": "0777a261d44a7ba1901ddecf2756d3f6"
+}

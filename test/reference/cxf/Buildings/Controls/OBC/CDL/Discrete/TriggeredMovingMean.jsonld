@@ -1,0 +1,63 @@
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#"
+  },
+  "@graph": [
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Discrete.TriggeredMovingMean",
+      "@type": "S231P:ElementaryBlock",
+      "S231P:documentation": "info=<html>\n<p>\nBlock that outputs the triggered moving mean value of an input signal.\n</p>\n<p>\nAt the start of the simulation, and whenever the trigger signal is rising\n(i.e., the trigger changes to <code>true</code>), the block samples\nthe input, computes the moving mean value over the past <code>n</code> samples,\nand produces this value at its output <code>y</code>.\n</p>\n</html>,revisions=<html>\n<ul>\n<li>\nMarch 30, 2022, by Michael Wetter:<br/>\nAdded <code>discrete</code> keyword to sampled variable.<br/>\nThis is for\n<a href=\\https://github.com/lbl-srg/modelica-buildings/issues/2942\\>Buildings, issue 2942</a>.\n</li>\n<li>\nOctober 19, 2020, by Michael Wetter:<br/>\nRemoved non-needed protected parameter <code>t0</code>.\n</li>\n<li>\nMarch 2, 2020, by Michael Wetter:<br/>\nChanged icon to display dynamically the output value.\n</li>\n<li>\nNovember 7, 2019, by Michael Wetter:<br/>\nReformulated model to use an <code>equation</code> rather than an <code>algorithm</code> section.\n</li>\n<li>\nOctober 16, 2019, by Kun Zhang:<br/>\nFirst implementation. This is for <a href=\\https://github.com/lbl-srg/modelica-buildings/issues/1588\\>Buildings, issue 1588</a>.\n</li>\n</ul>\n</html>",
+      "S231P:hasInput": [
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Discrete.TriggeredMovingMean.trigger"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Discrete.TriggeredMovingMean.u"
+        }
+      ],
+      "S231P:hasOutput": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Discrete.TriggeredMovingMean.y"
+      },
+      "S231P:hasParameter": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Discrete.TriggeredMovingMean.n"
+      },
+      "S231P:icon": "coordinateSystem(extent={{-100,-100},{100,100}},preserveAspectRatio=true),graphics={Rectangle(extent={{-100,-100},{100,100}},borderPattern=BorderPattern.Raised,lineColor={0,0,127},fillColor={223,211,169},fillPattern=FillPattern.Solid),Text(textString=\"%name\",textColor={0,0,255},extent={{-150,150},{150,110}}),Line(color={192,192,192},points={{-88,0},{70,0}}),Polygon(points={{92,0},{70,8},{70,-8},{92,0}},lineColor={192,192,192},fillColor={192,192,192},fillPattern=FillPattern.Solid),Line(color={192,192,192},points={{-80,68},{-80,-80}}),Polygon(points={{-80,90},{-88,68},{-72,68},{-80,90}},lineColor={192,192,192},fillColor={192,192,192},fillPattern=FillPattern.Solid),Line(color={217,67,180},points={{-80,0},{-52,0}}),Line(color={28,108,200},points={{-80,0},{-68.7,34.2},{-61.5,53.1},{-55.1,66.4},{-49.4,74.6},{-43.8,79.1},{-38.2,79.8},{-32.6,76.6},{-26.9,69.7},{-21.3,59.4},{-14.9,44.1},{-6.83,21.2},{10.1,-30.8},{17.3,-50.2},{23.7,-64.2},{29.3,-73.1},{35,-78.4},{40.6,-80},{46.2,-77.6},{51.9,-71.5},{57.5,-61.9},{63.9,-47.2},{72,-24.8},{80,0}},smooth=Smooth.Bezier),Line(color={217,67,180},points={{-52,36},{-24,36}}),Line(color={217,67,180},points={{-52,0},{-52,36}},smooth=Smooth.Bezier),Line(color={217,67,180},points={{-24,36},{-24,46}},smooth=Smooth.Bezier),Line(color={217,67,180},points={{-24,46},{4,46}}),Line(color={217,67,180},points={{4,4},{32,4}}),Line(color={217,67,180},points={{4,46},{4,4}},smooth=Smooth.Bezier),Line(color={217,67,180},points={{32,-32},{60,-32}}),Line(color={217,67,180},points={{32,4},{32,-32}},smooth=Smooth.Bezier),Line(color={217,67,180},points={{60,-58},{82,-58}}),Line(color={217,67,180},points={{60,-32},{60,-58}},smooth=Smooth.Bezier),Ellipse(extent={{-25,-10},{-45,10}},lineColor={176,181,255},fillColor={255,255,255},fillPattern=FillPattern.Solid),Ellipse(extent={{45,-10},{25,10}},lineColor={176,181,255},fillColor={255,255,255},fillPattern=FillPattern.Solid),Line(color={176,181,255},points={{-100,0},{-45,0}}),Line(color={176,181,255},points={{45,0},{100,0}}),Line(color={176,181,255},points={{-35,0},{28,-48}}),Line(color={255,0,255},points={{0,-100},{0,-26}}),Text(textString=\"%n\",textColor={28,108,200},extent={{56,92},{92,60}}),Text(textString=DynamicSelect(\"\",String(y,textColor={0,0,0},extent={{226,60},{106,10}})}",
+      "S231P:label": "TriggeredMovingMean"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Discrete.TriggeredMovingMean.n",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Number of samples over which the input is averaged",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Integer"
+      },
+      "S231P:label": "n",
+      "S231P:min": 1
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Discrete.TriggeredMovingMean.trigger",
+      "@type": "S231P:BooleanInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Input for trigger that causes u to be sampled",
+      "S231P:graphics": "Placement(transformation(origin={0,-120},extent={{-20,-20},{20,20}},rotation=90)),iconTransformation(origin={0,-120},extent={{-20,-20},{20,20}},rotation=90)))",
+      "S231P:label": "trigger"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Discrete.TriggeredMovingMean.u",
+      "@type": "S231P:RealInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Input signal to be sampled",
+      "S231P:graphics": "Placement(transformation(extent={{-140,-20},{-100,20}})))",
+      "S231P:label": "u"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Discrete.TriggeredMovingMean.y",
+      "@type": "S231P:RealOutput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Moving mean of input signal over all trigger instants",
+      "S231P:graphics": "Placement(transformation(extent={{100,-20},{140,20}})))",
+      "S231P:label": "y"
+    }
+  ]
+}

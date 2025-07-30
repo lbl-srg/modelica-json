@@ -1,0 +1,130 @@
+{
+  "instances": {
+    "Extrapolation": {
+      "type": "enumeration_class",
+      "type_specifier": null,
+      "short_class_specifier_value": {
+        "description": {
+          "description_string": "Enumeration defining the extrapolation of time table interpolation",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "name": "Documentation",
+                  "modification": {
+                    "class_modification": [
+                      {
+                        "element_modification_or_replaceable": {
+                          "element_modification": {
+                            "name": "info",
+                            "modification": {
+                              "equal": true,
+                              "expression": {
+                                "simple_expression": "\"<html>\n<p>\nEnumeration for the type of extrapolation that is used when reading data from a table.\nThe possible values are:\n</p>\n\n<table border=\\\"1\\\" summary=\\\"Explanation of the enumeration\\\">\n<tr>\n<th>Enumeration</th>\n<th>Description</th></tr>\n<tr><td><code>HoldLastPoint</code></td>\n<td>\nHold the first or last point outside of the table scope.\n</td></tr>\n<tr><td><code>LastTwoPoints</code></td>\n<td>\nExtrapolate by using the derivative at the first or last table points outside of the table scope.\n</td></tr>\n<tr><td><code>Periodic</code></td>\n<td>\nRepeat the table scope periodically.\n</td></tr>\n</table>\n</html>\""
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "enum_list": [
+          {
+            "identifier": "HoldLastPoint",
+            "description": {
+              "description_string": "Hold the first/last table point outside of the table scope"
+            }
+          },
+          {
+            "identifier": "LastTwoPoints",
+            "description": {
+              "description_string": "Extrapolate by using the derivative at the first/last table points outside of the table scope"
+            }
+          },
+          {
+            "identifier": "Periodic",
+            "description": {
+              "description_string": "Repeat the table scope periodically"
+            }
+          }
+        ]
+      },
+      "within": "Buildings.Controls.OBC.CDL.Types",
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Types/Extrapolation.mo",
+      "description": {
+        "description_string": "Enumeration defining the extrapolation of time table interpolation",
+        "annotation": [
+          {
+            "element_modification_or_replaceable": {
+              "element_modification": {
+                "name": "Documentation",
+                "modification": {
+                  "class_modification": [
+                    {
+                      "element_modification_or_replaceable": {
+                        "element_modification": {
+                          "name": "info",
+                          "modification": {
+                            "equal": true,
+                            "expression": {
+                              "simple_expression": "\"<html>\n<p>\nEnumeration for the type of extrapolation that is used when reading data from a table.\nThe possible values are:\n</p>\n\n<table border=\\\"1\\\" summary=\\\"Explanation of the enumeration\\\">\n<tr>\n<th>Enumeration</th>\n<th>Description</th></tr>\n<tr><td><code>HoldLastPoint</code></td>\n<td>\nHold the first or last point outside of the table scope.\n</td></tr>\n<tr><td><code>LastTwoPoints</code></td>\n<td>\nExtrapolate by using the derivative at the first or last table points outside of the table scope.\n</td></tr>\n<tr><td><code>Periodic</code></td>\n<td>\nRepeat the table scope periodically.\n</td></tr>\n</table>\n</html>\""
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "HoldLastPoint": {
+      "type": "enumeration",
+      "description": {
+        "description_string": "Hold the first/last table point outside of the table scope"
+      },
+      "enumeration_literal": {
+        "identifier": "HoldLastPoint",
+        "description": {
+          "description_string": "Hold the first/last table point outside of the table scope"
+        }
+      },
+      "enumeration_kind": "Extrapolation"
+    },
+    "LastTwoPoints": {
+      "type": "enumeration",
+      "description": {
+        "description_string": "Extrapolate by using the derivative at the first/last table points outside of the table scope"
+      },
+      "enumeration_literal": {
+        "identifier": "LastTwoPoints",
+        "description": {
+          "description_string": "Extrapolate by using the derivative at the first/last table points outside of the table scope"
+        }
+      },
+      "enumeration_kind": "Extrapolation"
+    },
+    "Periodic": {
+      "type": "enumeration",
+      "description": {
+        "description_string": "Repeat the table scope periodically"
+      },
+      "enumeration_literal": {
+        "identifier": "Periodic",
+        "description": {
+          "description_string": "Repeat the table scope periodically"
+        }
+      },
+      "enumeration_kind": "Extrapolation"
+    }
+  },
+  "requiredReferences": {}
+}

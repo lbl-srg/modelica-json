@@ -1,0 +1,110 @@
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#",
+    "qudt": "http://qudt.org/schema/qudt#",
+    "q": "http://qudt.org/vocab/quantitykind#",
+    "unit": "http://qudt.org/vocab/unit#"
+  },
+  "@graph": [
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.Stage",
+      "@type": "S231P:ElementaryBlock",
+      "S231P:diagram": "coordinateSystem(extent={{-100,-100},{100,100}},preserveAspectRatio=false)",
+      "S231P:documentation": "info=<html>\n<p>\nBlock that outputs the total number of stages to be enabled.\n</p>\n<p>\nThe block compares the input <code>u</code> with the threshold of each stage. If the input is greater\nthan a stage threshold, the output is set to that stage.\nThe block outputs the total number of stages to be enabled.\n</p>\n<p>\nThe parameter <code>n</code> specifies the maximum number of stages.\nThe stage thresholds are evenly distributed, i.e. the thresholds\nfor stages <code>[1, 2, 3, ... , n]</code> are\n<code>[0, 1/n, 2/n, ... , (n-1)/n]</code>, plus a hysteresis which is by default\n<code>h=0.02/n</code>.\nOnce the output changes, it cannot change for at least <codE>holdDuration</code> seconds.\n</p>\n</html>,revisions=<html>\n<ul>\n<li>\nMarch 3, 2023, by Michael Wetter:<br/>\nRevised implementation.\n</li>\n<li>\nSeptember 8, 2022, by Jianjun Hu:<br/>\nFirst implementation.<br/>\nThis is for <a href=\\https://github.com/lbl-srg/modelica-buildings/issues/3103\\>Buildings, issue 3103</a>.\n</li>\n</ul>\n</html>",
+      "S231P:hasInput": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.Stage.u"
+      },
+      "S231P:hasOutput": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.Stage.y"
+      },
+      "S231P:hasParameter": [
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.Stage.h"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.Stage.holdDuration"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.Stage.n"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.Stage.pre_y_start"
+        }
+      ],
+      "S231P:icon": "coordinateSystem(extent={{-100,-100},{100,100}},preserveAspectRatio=false),graphics={Rectangle(extent={{-100,100},{100,-100}},borderPattern=BorderPattern.Raised,lineColor={0,0,0},fillColor={255,213,170},fillPattern=FillPattern.Solid),Text(textString=\"%name\",textColor={0,0,255},extent={{-100,140},{100,100}}),Text(textString=DynamicSelect(\"\",String(u,textColor={0,0,0},extent={{-98,14},{-54,-12}}),Text(textString=DynamicSelect(\"\",String(y,textColor={0,0,0},extent={{56,16},{100,-10}}),Text(textString=,textString=,textColor={0,0,0},extent={{-62,70},{64,100}}),Line(color={0,0,0},thickness=0.5,points={{-60,-60},{-40,-60},{-40,-20},{0,-20},{0,20},{40,20},{40,60},{60,60}}),Line(color={0,0,0},thickness=0.5,points={{-80,-60},{40,60}},pattern=LinePattern.Dash)}",
+      "S231P:label": "Stage"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.Stage.h",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Hysteresis for comparing input with threshold",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "h",
+      "S231P:max": "0.5/n",
+      "S231P:min": "0.001/n",
+      "S231P:value": "0.02/n"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.Stage.holdDuration",
+      "@type": "S231P:Parameter",
+      "qudt:hasQuantityKind": {
+        "@id": "q:Time"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:SEC"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Minimum time that the output needs to be held constant. Set to 0 to disable hold time",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "holdDuration",
+      "S231P:min": 0
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.Stage.n",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Number of stages that could be enabled",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Integer"
+      },
+      "S231P:label": "n",
+      "S231P:min": 1
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.Stage.pre_y_start",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Value of pre(y) at initial time",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Integer"
+      },
+      "S231P:label": "pre_y_start",
+      "S231P:value": 0
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.Stage.u",
+      "@type": "S231P:RealInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Input between 0 and 1 for specifying stages",
+      "S231P:graphics": "Placement(transformation(extent={{-140,-20},{-100,20}})),iconTransformation(extent={{-140,-20},{-100,20}})))",
+      "S231P:label": "u",
+      "S231P:max": 1,
+      "S231P:min": 0
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Integers.Stage.y",
+      "@type": "S231P:IntegerOutput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Total number of stages that should be enabled",
+      "S231P:graphics": "Placement(transformation(extent={{100,-20},{140,20}})),iconTransformation(extent={{100,-20},{140,20}})))",
+      "S231P:label": "y",
+      "S231P:max": "n",
+      "S231P:min": 1
+    }
+  ]
+}

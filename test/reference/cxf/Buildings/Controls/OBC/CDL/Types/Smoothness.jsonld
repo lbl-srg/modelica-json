@@ -1,0 +1,28 @@
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#"
+  },
+  "@graph": [
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Types.Smoothness",
+      "@type": "S231P:EnumerationType",
+      "S231P:description": "Enumeration defining the smoothness of table interpolation",
+      "S231P:label": "Smoothness",
+      "S231P:value": "Smoothness"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Smoothness.ConstantSegments",
+      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Types.Smoothness",
+      "S231P:description": "Table points are not interpolated, but the previous tabulated value is returned",
+      "S231P:label": "ConstantSegments",
+      "S231P:value": "ConstantSegments"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Smoothness.LinearSegments",
+      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Types.Smoothness",
+      "S231P:description": "Table points are linearly interpolated",
+      "S231P:label": "LinearSegments",
+      "S231P:value": "LinearSegments"
+    }
+  ]
+}

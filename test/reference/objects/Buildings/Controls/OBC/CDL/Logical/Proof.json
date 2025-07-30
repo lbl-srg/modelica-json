@@ -1,0 +1,3833 @@
+{
+  "instances": {
+    "Proof": {
+      "within": "Buildings.Controls.OBC.CDL.Logical",
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/Proof.mo",
+      "type": "long_class_specifier",
+      "class_prefixes": "block",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "defaultComponentName",
+              "modification": {
+                "equal": true,
+                "expression": {
+                  "simple_expression": "\"pro\""
+                }
+              }
+            }
+          }
+        },
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Diagram",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "coordinateSystem": {
+                          "extent": [
+                            {
+                              "x": -260,
+                              "y": -240
+                            },
+                            {
+                              "x": 240,
+                              "y": 240
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "graphics": [
+                          {
+                            "name": "Rectangle",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -258,
+                                  "y": 236
+                                },
+                                {
+                                  "x": 28,
+                                  "y": 42
+                                }
+                              ],
+                              "lineColor": {
+                                "r": 215,
+                                "g": 215,
+                                "b": 215
+                              },
+                              "fillColor": {
+                                "r": 215,
+                                "g": 215,
+                                "b": 215
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          },
+                          {
+                            "name": "Rectangle",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -258,
+                                  "y": 38
+                                },
+                                {
+                                  "x": -114,
+                                  "y": -58
+                                }
+                              ],
+                              "lineColor": {
+                                "r": 215,
+                                "g": 215,
+                                "b": 215
+                              },
+                              "fillColor": {
+                                "r": 215,
+                                "g": 215,
+                                "b": 215
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          },
+                          {
+                            "name": "Rectangle",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -116,
+                                  "y": -62
+                                },
+                                {
+                                  "x": 66,
+                                  "y": -198
+                                }
+                              ],
+                              "lineColor": {
+                                "r": 215,
+                                "g": 215,
+                                "b": 215
+                              },
+                              "fillColor": {
+                                "r": 215,
+                                "g": 215,
+                                "b": 215
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          },
+                          {
+                            "name": "Text",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -248,
+                                  "y": 38
+                                },
+                                {
+                                  "x": -174,
+                                  "y": 20
+                                }
+                              ],
+                              "textString": "\"Output true if u_s has passed\nthe feedback delay\"",
+                              "textColor": {
+                                "r": 0,
+                                "g": 0,
+                                "b": 255
+                              },
+                              "horizontalAlignment": "TextAlignment.Left",
+                              "fillColor": {
+                                "r": 215,
+                                "g": 215,
+                                "b": 215
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          },
+                          {
+                            "name": "Text",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -90,
+                                  "y": -182
+                                },
+                                {
+                                  "x": -4,
+                                  "y": -196
+                                }
+                              ],
+                              "textString": "\"Check if the inputs are different\"",
+                              "textColor": {
+                                "r": 0,
+                                "g": 0,
+                                "b": 255
+                              },
+                              "horizontalAlignment": "TextAlignment.Left",
+                              "fillColor": {
+                                "r": 215,
+                                "g": 215,
+                                "b": 215
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          },
+                          {
+                            "name": "Text",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -252,
+                                  "y": 236
+                                },
+                                {
+                                  "x": -130,
+                                  "y": 224
+                                }
+                              ],
+                              "textString": "\"Check if there is a stable measured input u_m\"",
+                              "textColor": {
+                                "r": 0,
+                                "g": 0,
+                                "b": 255
+                              },
+                              "horizontalAlignment": "TextAlignment.Left",
+                              "fillColor": {
+                                "r": 215,
+                                "g": 215,
+                                "b": 215
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Icon",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "coordinateSystem": {
+                          "extent": [
+                            {
+                              "x": -100,
+                              "y": -100
+                            },
+                            {
+                              "x": 100,
+                              "y": 100
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "graphics": [
+                          {
+                            "name": "Rectangle",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -100,
+                                  "y": 100
+                                },
+                                {
+                                  "x": 100,
+                                  "y": -100
+                                }
+                              ],
+                              "borderPattern": "BorderPattern.Raised",
+                              "fillColor": {
+                                "r": 210,
+                                "g": 210,
+                                "b": 210
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          },
+                          {
+                            "name": "Ellipse",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": 7,
+                                  "y": -73
+                                },
+                                {
+                                  "x": -7,
+                                  "y": -87
+                                }
+                              ],
+                              "lineColor": {
+                                "r": 235,
+                                "g": 235,
+                                "b": 235
+                              },
+                              "fillColor": {
+                                "r": 235,
+                                "g": 235,
+                                "b": 235
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          },
+                          {
+                            "name": "Ellipse",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -73,
+                                  "y": 7
+                                },
+                                {
+                                  "x": -87,
+                                  "y": -7
+                                }
+                              ],
+                              "lineColor": {
+                                "r": 235,
+                                "g": 235,
+                                "b": 235
+                              },
+                              "fillColor": {
+                                "r": 235,
+                                "g": 235,
+                                "b": 235
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          },
+                          {
+                            "name": "Ellipse",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": 73,
+                                  "y": 57
+                                },
+                                {
+                                  "x": 87,
+                                  "y": 43
+                                }
+                              ],
+                              "lineColor": {
+                                "r": 235,
+                                "g": 235,
+                                "b": 235
+                              },
+                              "fillColor": {
+                                "r": 235,
+                                "g": 235,
+                                "b": 235
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          },
+                          {
+                            "name": "Ellipse",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": 75,
+                                  "y": -43
+                                },
+                                {
+                                  "x": 89,
+                                  "y": -57
+                                }
+                              ],
+                              "lineColor": {
+                                "r": 235,
+                                "g": 235,
+                                "b": 235
+                              },
+                              "fillColor": {
+                                "r": 235,
+                                "g": 235,
+                                "b": 235
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          },
+                          {
+                            "name": "Text",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -100,
+                                  "y": 140
+                                },
+                                {
+                                  "x": 100,
+                                  "y": 100
+                                }
+                              ],
+                              "textString": "\"%name\"",
+                              "textColor": {
+                                "r": 0,
+                                "g": 0,
+                                "b": 255
+                              }
+                            }
+                          },
+                          {
+                            "name": "Line",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": -60,
+                                  "y": 60
+                                },
+                                {
+                                  "x": -60,
+                                  "y": -88
+                                }
+                              ],
+                              "color": {
+                                "r": 192,
+                                "g": 192,
+                                "b": 192
+                              }
+                            }
+                          },
+                          {
+                            "name": "Polygon",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": -60,
+                                  "y": 82
+                                },
+                                {
+                                  "x": -68,
+                                  "y": 60
+                                },
+                                {
+                                  "x": -52,
+                                  "y": 60
+                                },
+                                {
+                                  "x": -60,
+                                  "y": 82
+                                }
+                              ],
+                              "lineColor": {
+                                "r": 192,
+                                "g": 192,
+                                "b": 192
+                              },
+                              "fillColor": {
+                                "r": 192,
+                                "g": 192,
+                                "b": 192
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          },
+                          {
+                            "name": "Line",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": -70,
+                                  "y": -68
+                                },
+                                {
+                                  "x": 80,
+                                  "y": -68
+                                }
+                              ],
+                              "color": {
+                                "r": 192,
+                                "g": 192,
+                                "b": 192
+                              }
+                            }
+                          },
+                          {
+                            "name": "Polygon",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": 90,
+                                  "y": -68
+                                },
+                                {
+                                  "x": 68,
+                                  "y": -60
+                                },
+                                {
+                                  "x": 68,
+                                  "y": -76
+                                },
+                                {
+                                  "x": 90,
+                                  "y": -68
+                                }
+                              ],
+                              "lineColor": {
+                                "r": 192,
+                                "g": 192,
+                                "b": 192
+                              },
+                              "fillColor": {
+                                "r": 192,
+                                "g": 192,
+                                "b": 192
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          },
+                          {
+                            "name": "Line",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": -40,
+                                  "y": 44
+                                }
+                              ],
+                              "color": {
+                                "r": 28,
+                                "g": 108,
+                                "b": 200
+                              }
+                            }
+                          },
+                          {
+                            "name": "Line",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": -60,
+                                  "y": -36
+                                },
+                                {
+                                  "x": -40,
+                                  "y": -36
+                                },
+                                {
+                                  "x": -40,
+                                  "y": -16
+                                },
+                                {
+                                  "x": 20,
+                                  "y": -16
+                                },
+                                {
+                                  "x": 20,
+                                  "y": -36
+                                },
+                                {
+                                  "x": 60,
+                                  "y": -36
+                                }
+                              ],
+                              "color": {
+                                "r": 0,
+                                "g": 0,
+                                "b": 0
+                              }
+                            }
+                          },
+                          {
+                            "name": "Line",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": -60,
+                                  "y": -68
+                                },
+                                {
+                                  "x": -14,
+                                  "y": -68
+                                },
+                                {
+                                  "x": -14,
+                                  "y": -48
+                                },
+                                {
+                                  "x": 40,
+                                  "y": -48
+                                },
+                                {
+                                  "x": 40,
+                                  "y": -68
+                                },
+                                {
+                                  "x": 60,
+                                  "y": -68
+                                }
+                              ],
+                              "color": {
+                                "r": 0,
+                                "g": 0,
+                                "b": 0
+                              }
+                            }
+                          },
+                          {
+                            "name": "Line",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": -60,
+                                  "y": 44
+                                },
+                                {
+                                  "x": -40,
+                                  "y": 44
+                                },
+                                {
+                                  "x": -40,
+                                  "y": 64
+                                },
+                                {
+                                  "x": -14,
+                                  "y": 64
+                                },
+                                {
+                                  "x": -14,
+                                  "y": 44
+                                },
+                                {
+                                  "x": 60,
+                                  "y": 44
+                                }
+                              ],
+                              "color": {
+                                "r": 28,
+                                "g": 108,
+                                "b": 200
+                              }
+                            }
+                          },
+                          {
+                            "name": "Line",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": -60,
+                                  "y": 12
+                                },
+                                {
+                                  "x": 20,
+                                  "y": 12
+                                },
+                                {
+                                  "x": 20,
+                                  "y": 32
+                                },
+                                {
+                                  "x": 40,
+                                  "y": 32
+                                },
+                                {
+                                  "x": 40,
+                                  "y": 12
+                                },
+                                {
+                                  "x": 60,
+                                  "y": 12
+                                }
+                              ],
+                              "color": {
+                                "r": 28,
+                                "g": 108,
+                                "b": 200
+                              }
+                            }
+                          },
+                          {
+                            "name": "Line",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": -40,
+                                  "y": 40
+                                },
+                                {
+                                  "x": -40,
+                                  "y": -12
+                                }
+                              ],
+                              "color": {
+                                "r": 28,
+                                "g": 108,
+                                "b": 200
+                              },
+                              "pattern": "LinePattern.Dash"
+                            }
+                          },
+                          {
+                            "name": "Line",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": -14,
+                                  "y": 40
+                                },
+                                {
+                                  "x": -14,
+                                  "y": -44
+                                }
+                              ],
+                              "color": {
+                                "r": 28,
+                                "g": 108,
+                                "b": 200
+                              },
+                              "pattern": "LinePattern.Dash"
+                            }
+                          },
+                          {
+                            "name": "Line",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": 20,
+                                  "y": 8
+                                },
+                                {
+                                  "x": 20,
+                                  "y": -12
+                                }
+                              ],
+                              "color": {
+                                "r": 28,
+                                "g": 108,
+                                "b": 200
+                              },
+                              "pattern": "LinePattern.Dash"
+                            }
+                          },
+                          {
+                            "name": "Line",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": 40,
+                                  "y": 8
+                                },
+                                {
+                                  "x": 40,
+                                  "y": -44
+                                }
+                              ],
+                              "color": {
+                                "r": 28,
+                                "g": 108,
+                                "b": 200
+                              },
+                              "pattern": "LinePattern.Dash"
+                            }
+                          },
+                          {
+                            "name": "Text",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -6,
+                                  "y": -4
+                                },
+                                {
+                                  "x": 6,
+                                  "y": -14
+                                }
+                              ],
+                              "textString": "\"u_s\"",
+                              "textColor": {
+                                "r": 0,
+                                "g": 0,
+                                "b": 0
+                              },
+                              "fillColor": {
+                                "r": 210,
+                                "g": 210,
+                                "b": 210
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          },
+                          {
+                            "name": "Text",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -10,
+                                  "y": -36
+                                },
+                                {
+                                  "x": 6,
+                                  "y": -46
+                                }
+                              ],
+                              "textString": "\"u_m\"",
+                              "textColor": {
+                                "r": 0,
+                                "g": 0,
+                                "b": 0
+                              },
+                              "fillColor": {
+                                "r": 210,
+                                "g": 210,
+                                "b": 210
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          },
+                          {
+                            "name": "Text",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": 22,
+                                  "y": 44
+                                },
+                                {
+                                  "x": 44,
+                                  "y": 32
+                                }
+                              ],
+                              "textString": "\"yLocTru\"",
+                              "textColor": {
+                                "r": 0,
+                                "g": 0,
+                                "b": 0
+                              },
+                              "fillColor": {
+                                "r": 210,
+                                "g": 210,
+                                "b": 210
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          },
+                          {
+                            "name": "Text",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -40,
+                                  "y": 76
+                                },
+                                {
+                                  "x": -18,
+                                  "y": 64
+                                }
+                              ],
+                              "textString": "\"yLocFal\"",
+                              "textColor": {
+                                "r": 0,
+                                "g": 0,
+                                "b": 0
+                              },
+                              "fillColor": {
+                                "r": 210,
+                                "g": 210,
+                                "b": 210
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Documentation",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "info",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<p>\nBlock that compares a boolean set point <code>u_s</code> with\na measured signal <code>u_m</code> and produces two outputs\nthat may be used to raise alarms about malfunctioning equipment.\n</p>\n<p>\nThe block sets the output <code>yLocFal = true</code> if\nthe set point is <code>u_s = true</code> but the measured signal is locked\nat <code>false</code>, i.e., <code>u_m = false</code>.\nSimilarly, the block sets the output <code>yLocTru = true</code>\nif the set point is <code>u_s = false</code> but the measured signal is locked\nat <code>true</code>, i.e., <code>u_m = true</code>.\nHence, any output being <code>true</code> indicates an operational\nproblem.\n</p>\n<p>\nTo use this block, proceed as follows:\nSet the parameter <code>feedbackDelay &ge; 0</code> to specify how long the\nfeedback of the controlled device is allowed to take to report\nits measured operational signal <code>u_s</code>\nafter a set point change <code>u_m</code>.\nSet the parameter <code>debounce &ge; 0</code>\nto specify how long the measured\nsignal <code>u_m</code> need to remain constant for it to be considered\nstable.\nConnect the inputs for the set point <code>u_s</code> and\nthe measured signal <code>u_m</code> to the output signals that need to be checked.\nIf either output is <code>true</code>, raise an alarm, such as by\nconnecting instances of\n<a href=\\\"modelica://Buildings.Controls.OBC.CDL.Utilities.Assert\\\">\nBuildings.Controls.OBC.CDL.Utilities.Assert</a>\nto the outputs of this block.\n</p>\n<p>\nAny output being <code>true</code> indicates a problem.\n</p>\n<p>\nThe block has two timers that each start whenever the corresponding input changes.\nOne timer, called <code>feedbackDelay+debounce</code> timer, starts\nwhenever the set point <code>u_s</code> change, and it runs for a time equal to\n<code>feedbackDelay+debounce</code>.\nThe other timer, called <code>debounce</code> timer, starts whenever\nthe measured signal <code>u_m</code> changes, and it runs for a time equal to\n<code>debounce</code>.\nThe block starts verifying the inputs whenever the <code>feedbackDelay+debounce</code> timer\nlapsed, or the <code>debounce</code> timer lapsed,\n(and hence the measurement is stable,) whichever is first.\n</p>\n<p>\nBoth outputs being <code>true</code> indicates that the measured signal <code>u_m</code>\nis not stable within <code>feedbackDelay+debounce</code> time.\nExactly one output being <code>true</code> indicates\nthat the measured signal <code>u_m</code> is stable, but\n<code>u_s &ne; u_m</code>. In this case,\nthe block sets <code>yLocFal = true</code> if <code>u_s = true</code>\n(the measured signal is locked at <code>false</code>),\nor it sets <code>yLocTru = true</code> if <code>u_s = false</code>\n(the measured signal is locked at <code>true</code>).\n</p>\n<p>\nTherefore, exactly one output being <code>true</code> can be interpreted as follows:\nSuppose <code>true</code> means on and <code>false</code> means off.</br>\nThen, <code>yLocTru = true</code> indicates that an equipment is locked\nin operation mode but is commanded off; and similarly,\n<code>yLocFal = true</code> indicates that it is locked in off mode\nwhen it is commanded on.\n</p>\n<h4>Detailed description</h4>\n<p>\nThe block works as follows.\nAny change in set point <code>u_s</code> starts the <code>feedbackDelay+debounce</code> timer, and\nany change in measured signal <code>u_m</code> starts the <code>debounce</code> timer.\n</p>\n<p>\nAs soon as the <code>feedbackDelay+debounce</code> timer\nor the <code>debounce</code> timer lapsed,\nwhichever happens first,\nthe controller continuously performs these checks:\n</p>\n<ol>\n<li>\n<b>Check for stable measured signal.</b><br/>\nIf <code>u_m</code> is stable, then<br/>\n&nbsp; &nbsp; goto step 2.<br/>\nElse:<br/>\n&nbsp; &nbsp; Set <code>yLocFal = yLocTru = true</code>.<br/>\n&nbsp; &nbsp; (Equipment is commanded on but we cannot conclude it is running;<br/>\n&nbsp; &nbsp; set both <code>true</code> to flag an unstable measurement signal.)<br/>\n</li>\n<li>\n<b>Check for commanded and measured input to be equal.</b><br/>\nIf <code>u_s &NotEqual; u_m</code>, then<br/>\n&nbsp; &nbsp; goto step 3.<br/>\nElse,<br/>\n&nbsp; &nbsp; set <code>yLocFal = false </code> and <code>yLocTru = false</code>.<br/>\n&nbsp; &nbsp; (Equipment is operating as commanded, verified using stable input.)\n</li>\n<li>\n<b>Inputs differ.</b><br/>\nIf <code>u_s = true </code>, then<br/>\n&nbsp; &nbsp; set  <code>yLocFal = true </code> and <code>yLocTru = false</code>.<br/>\n&nbsp; &nbsp; (The equipment is commanded on, but it is off.)<br/>\nElse,<br/>\n&nbsp; &nbsp; set  <code>yLocFal = false </code> and <code>yLocTru = true</code>.<br/>\n&nbsp; &nbsp; (The equipment is commanded off, but it is on.)<br/>\n</li>\n</ol>\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "revisions",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<ul>\n<li>\nMarch 28, 2023, by Michael Wetter:<br/>\nRevised documentation.\n</li>\n<li>\nMarch 27, 2023, by Jianjun Hu:<br/>\nFirst implementation.\n</li>\n</ul>\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    },
+    "debounce": {
+      "type_prefix": "parameter",
+      "type_specifier": "Real",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "Proof",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "debounce",
+          "modification": {
+            "class_modification": [
+              {
+                "element_modification_or_replaceable": {
+                  "final": true,
+                  "element_modification": {
+                    "name": "quantity",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "\"Time\""
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "element_modification_or_replaceable": {
+                  "final": true,
+                  "element_modification": {
+                    "name": "unit",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "\"s\""
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "description": {
+          "description_string": "Time during which input must remain unchanged for signal to considered valid and used in checks"
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Controls.OBC.CDL.Logical",
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/Proof.mo"
+    },
+    "feedbackDelay": {
+      "type_prefix": "parameter",
+      "type_specifier": "Real",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "Proof",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "feedbackDelay",
+          "modification": {
+            "class_modification": [
+              {
+                "element_modification_or_replaceable": {
+                  "final": true,
+                  "element_modification": {
+                    "name": "quantity",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "\"Time\""
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "element_modification_or_replaceable": {
+                  "final": true,
+                  "element_modification": {
+                    "name": "unit",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "\"s\""
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "description": {
+          "description_string": "Delay after which the two inputs are checked for equality once they become valid"
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Controls.OBC.CDL.Logical",
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/Proof.mo"
+    },
+    "u_s": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.BooleanInput",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "Proof",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "u_s"
+        },
+        "description": {
+          "description_string": "Commanded status setpoint",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": -300,
+                          "y": -20
+                        },
+                        {
+                          "x": -260,
+                          "y": 20
+                        }
+                      ]
+                    },
+                    "iconTransformation": {
+                      "extent": [
+                        {
+                          "x": -140,
+                          "y": -20
+                        },
+                        {
+                          "x": -100,
+                          "y": 20
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": -300,
+                      "y": -20
+                    },
+                    {
+                      "x": -260,
+                      "y": 20
+                    }
+                  ]
+                },
+                "iconTransformation": {
+                  "extent": [
+                    {
+                      "x": -140,
+                      "y": -20
+                    },
+                    {
+                      "x": -100,
+                      "y": 20
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Controls.OBC.CDL.Logical",
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/Proof.mo"
+    },
+    "u_m": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.BooleanInput",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "Proof",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "u_m"
+        },
+        "description": {
+          "description_string": "Measured status",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "origin": {
+                        "x": 0,
+                        "y": -260
+                      },
+                      "extent": [
+                        {
+                          "x": -20,
+                          "y": -20
+                        },
+                        {
+                          "x": 20,
+                          "y": 20
+                        }
+                      ],
+                      "rotation": 90
+                    },
+                    "iconTransformation": {
+                      "origin": {
+                        "x": 0,
+                        "y": -120
+                      },
+                      "extent": [
+                        {
+                          "x": -20,
+                          "y": -20
+                        },
+                        {
+                          "x": 20,
+                          "y": 20
+                        }
+                      ],
+                      "rotation": 90
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "origin": {
+                    "x": 0,
+                    "y": -260
+                  },
+                  "extent": [
+                    {
+                      "x": -20,
+                      "y": -20
+                    },
+                    {
+                      "x": 20,
+                      "y": 20
+                    }
+                  ],
+                  "rotation": 90
+                },
+                "iconTransformation": {
+                  "origin": {
+                    "x": 0,
+                    "y": -120
+                  },
+                  "extent": [
+                    {
+                      "x": -20,
+                      "y": -20
+                    },
+                    {
+                      "x": 20,
+                      "y": 20
+                    }
+                  ],
+                  "rotation": 90
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Controls.OBC.CDL.Logical",
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/Proof.mo"
+    },
+    "yLocFal": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.BooleanOutput",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "Proof",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "yLocFal"
+        },
+        "description": {
+          "description_string": "Output with true if the measured input is locked to false even after the setpoint has changed to true",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": 240,
+                          "y": 100
+                        },
+                        {
+                          "x": 280,
+                          "y": 140
+                        }
+                      ]
+                    },
+                    "iconTransformation": {
+                      "extent": [
+                        {
+                          "x": 100,
+                          "y": 30
+                        },
+                        {
+                          "x": 140,
+                          "y": 70
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": 240,
+                      "y": 100
+                    },
+                    {
+                      "x": 280,
+                      "y": 140
+                    }
+                  ]
+                },
+                "iconTransformation": {
+                  "extent": [
+                    {
+                      "x": 100,
+                      "y": 30
+                    },
+                    {
+                      "x": 140,
+                      "y": 70
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Controls.OBC.CDL.Logical",
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/Proof.mo"
+    },
+    "yLocTru": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.BooleanOutput",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "Proof",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "yLocTru"
+        },
+        "description": {
+          "description_string": "Output with true if the measured input is locked to true even after the setpoint has changed to false",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": 240,
+                          "y": -140
+                        },
+                        {
+                          "x": 280,
+                          "y": -100
+                        }
+                      ]
+                    },
+                    "iconTransformation": {
+                      "extent": [
+                        {
+                          "x": 100,
+                          "y": -70
+                        },
+                        {
+                          "x": 140,
+                          "y": -30
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": 240,
+                      "y": -140
+                    },
+                    {
+                      "x": 280,
+                      "y": -100
+                    }
+                  ]
+                },
+                "iconTransformation": {
+                  "extent": [
+                    {
+                      "x": 100,
+                      "y": -70
+                    },
+                    {
+                      "x": 140,
+                      "y": -30
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Controls.OBC.CDL.Logical",
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/Proof.mo"
+    },
+    "valInp": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Logical.Or",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "Proof",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "valInp"
+        },
+        "description": {
+          "description_string": "Output true if the input becomes stable after the delay time",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": -140,
+                          "y": 170
+                        },
+                        {
+                          "x": -120,
+                          "y": 190
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": -140,
+                      "y": 170
+                    },
+                    {
+                      "x": -120,
+                      "y": 190
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Controls.OBC.CDL.Logical",
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/Proof.mo"
+    },
+    "invInp": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Logical.And",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "Proof",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "invInp"
+        },
+        "description": {
+          "description_string": "Output true if debounce time has passed and there is still no stable input",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": 0,
+                          "y": 170
+                        },
+                        {
+                          "x": 20,
+                          "y": 190
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": 0,
+                      "y": 170
+                    },
+                    {
+                      "x": 20,
+                      "y": 190
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Controls.OBC.CDL.Logical",
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/Proof.mo"
+    },
+    "pasDel": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Logical.Or",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "Proof",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "pasDel"
+        },
+        "description": {
+          "description_string": "Output true if the feedback checking time has passed",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": -142,
+                          "y": -10
+                        },
+                        {
+                          "x": -122,
+                          "y": 10
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": -142,
+                      "y": -10
+                    },
+                    {
+                      "x": -122,
+                      "y": 10
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Controls.OBC.CDL.Logical",
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/Proof.mo"
+    },
+    "cheDif": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Logical.Or",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "Proof",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "cheDif"
+        },
+        "description": {
+          "description_string": "Output true if the measured input is stable, or the feedback checking time has passed",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": -60,
+                          "y": -10
+                        },
+                        {
+                          "x": -40,
+                          "y": 10
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": -60,
+                      "y": -10
+                    },
+                    {
+                      "x": -40,
+                      "y": 10
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Controls.OBC.CDL.Logical",
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/Proof.mo"
+    },
+    "botTru": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Logical.And",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "Proof",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "botTru"
+        },
+        "description": {
+          "description_string": "Output true if both valid measured input and the setpoint input are true",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": -100,
+                          "y": -90
+                        },
+                        {
+                          "x": -80,
+                          "y": -70
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": -100,
+                      "y": -90
+                    },
+                    {
+                      "x": -80,
+                      "y": -70
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Controls.OBC.CDL.Logical",
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/Proof.mo"
+    },
+    "truFal": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Logical.And",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "Proof",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "truFal"
+        },
+        "description": {
+          "description_string": "Output true if the setpoint input is true but the valid measured input is false",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": 0,
+                          "y": -110
+                        },
+                        {
+                          "x": 20,
+                          "y": -90
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": 0,
+                      "y": -110
+                    },
+                    {
+                      "x": 20,
+                      "y": -90
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Controls.OBC.CDL.Logical",
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/Proof.mo"
+    },
+    "valTru": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Logical.TrueDelay",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "Proof",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "valTru",
+          "modification": {
+            "class_modification": [
+              {
+                "element_modification_or_replaceable": {
+                  "final": true,
+                  "element_modification": {
+                    "name": "delayTime",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "debounce"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "description": {
+          "description_string": "Valid measured input change from false to true",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": -240,
+                          "y": 170
+                        },
+                        {
+                          "x": -220,
+                          "y": 190
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": -240,
+                      "y": 170
+                    },
+                    {
+                      "x": -220,
+                      "y": 190
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Controls.OBC.CDL.Logical",
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/Proof.mo"
+    },
+    "valFal": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Logical.Switch",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "Proof",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "valFal"
+        },
+        "description": {
+          "description_string": "Output false if measured input is stable and changed from true to false",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": -140,
+                          "y": 100
+                        },
+                        {
+                          "x": -120,
+                          "y": 120
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": -140,
+                      "y": 100
+                    },
+                    {
+                      "x": -120,
+                      "y": 120
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Controls.OBC.CDL.Logical",
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/Proof.mo"
+    },
+    "cheDif1": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Logical.Switch",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "Proof",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "cheDif1"
+        },
+        "description": {
+          "description_string": "Output the difference check result if the difference check condition is satisfied",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": 120,
+                          "y": 140
+                        },
+                        {
+                          "x": 140,
+                          "y": 160
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": 120,
+                      "y": 140
+                    },
+                    {
+                      "x": 140,
+                      "y": 160
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Controls.OBC.CDL.Logical",
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/Proof.mo"
+    },
+    "truDel1": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Logical.TrueDelay",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "Proof",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "truDel1",
+          "modification": {
+            "class_modification": [
+              {
+                "element_modification_or_replaceable": {
+                  "final": true,
+                  "element_modification": {
+                    "name": "delayTime",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "debounce"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "description": {
+          "description_string": "Delay a rising edge, to check if the false input is valid",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": -200,
+                          "y": 130
+                        },
+                        {
+                          "x": -180,
+                          "y": 150
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": -200,
+                      "y": 130
+                    },
+                    {
+                      "x": -180,
+                      "y": 150
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Controls.OBC.CDL.Logical",
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/Proof.mo"
+    },
+    "not1": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Logical.Not",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "Proof",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "not1"
+        },
+        "description": {
+          "description_string": "Logical not",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": -240,
+                          "y": 130
+                        },
+                        {
+                          "x": -220,
+                          "y": 150
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": -240,
+                      "y": 130
+                    },
+                    {
+                      "x": -220,
+                      "y": 150
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Controls.OBC.CDL.Logical",
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/Proof.mo"
+    },
+    "notBotFal": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Logical.Not",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "Proof",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "notBotFal"
+        },
+        "description": {
+          "description_string": "Not both false inputs",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": 40,
+                          "y": -160
+                        },
+                        {
+                          "x": 60,
+                          "y": -140
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": 40,
+                      "y": -160
+                    },
+                    {
+                      "x": 60,
+                      "y": -140
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Controls.OBC.CDL.Logical",
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/Proof.mo"
+    },
+    "not2": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Logical.Not",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "Proof",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "not2"
+        },
+        "description": {
+          "description_string": "Logical not",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": -220,
+                          "y": -50
+                        },
+                        {
+                          "x": -200,
+                          "y": -30
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": -220,
+                      "y": -50
+                    },
+                    {
+                      "x": -200,
+                      "y": -30
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Controls.OBC.CDL.Logical",
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/Proof.mo"
+    },
+    "falTru": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Logical.And",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "Proof",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "falTru"
+        },
+        "description": {
+          "description_string": "Output true if the setpoint input is false but the valid measured input is true",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": 80,
+                          "y": -200
+                        },
+                        {
+                          "x": 100,
+                          "y": -180
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": 80,
+                      "y": -200
+                    },
+                    {
+                      "x": 100,
+                      "y": -180
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Controls.OBC.CDL.Logical",
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/Proof.mo"
+    },
+    "delChe1": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Logical.TrueDelay",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "Proof",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "delChe1",
+          "modification": {
+            "class_modification": [
+              {
+                "element_modification_or_replaceable": {
+                  "final": true,
+                  "element_modification": {
+                    "name": "delayTime",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "feedbackDelay +debounce"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "description": {
+          "description_string": "Delay the difference check",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": -180,
+                          "y": -50
+                        },
+                        {
+                          "x": -160,
+                          "y": -30
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": -180,
+                      "y": -50
+                    },
+                    {
+                      "x": -160,
+                      "y": -30
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Controls.OBC.CDL.Logical",
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/Proof.mo"
+    },
+    "booToInt": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Conversions.BooleanToInteger",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "Proof",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "booToInt"
+        },
+        "description": {
+          "description_string": "Convert boolean input to integer output",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": -100,
+                          "y": -140
+                        },
+                        {
+                          "x": -80,
+                          "y": -120
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": -100,
+                      "y": -140
+                    },
+                    {
+                      "x": -80,
+                      "y": -120
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Controls.OBC.CDL.Logical",
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/Proof.mo"
+    },
+    "equSta": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Integers.Equal",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "Proof",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "equSta"
+        },
+        "description": {
+          "description_string": "Output true if both inputs are same",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": -60,
+                          "y": -140
+                        },
+                        {
+                          "x": -40,
+                          "y": -120
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": -60,
+                      "y": -140
+                    },
+                    {
+                      "x": -40,
+                      "y": -120
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Controls.OBC.CDL.Logical",
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/Proof.mo"
+    },
+    "booToInt1": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Conversions.BooleanToInteger",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "Proof",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "booToInt1"
+        },
+        "description": {
+          "description_string": "Convert boolean input to integer output",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": -100,
+                          "y": -180
+                        },
+                        {
+                          "x": -80,
+                          "y": -160
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": -100,
+                      "y": -180
+                    },
+                    {
+                      "x": -80,
+                      "y": -160
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Controls.OBC.CDL.Logical",
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/Proof.mo"
+    },
+    "botFal": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Logical.And",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "Proof",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "botFal"
+        },
+        "description": {
+          "description_string": "Output true if both valid measured input and the setpoint input are false",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": 0,
+                          "y": -160
+                        },
+                        {
+                          "x": 20,
+                          "y": -140
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": 0,
+                      "y": -160
+                    },
+                    {
+                      "x": 20,
+                      "y": -140
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Controls.OBC.CDL.Logical",
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/Proof.mo"
+    },
+    "conTru": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Logical.Sources.Constant",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "Proof",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "conTru",
+          "modification": {
+            "class_modification": [
+              {
+                "element_modification_or_replaceable": {
+                  "final": true,
+                  "element_modification": {
+                    "name": "k",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "true"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "description": {
+          "description_string": "True constant",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": -200,
+                          "y": 200
+                        },
+                        {
+                          "x": -180,
+                          "y": 220
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": -200,
+                      "y": 200
+                    },
+                    {
+                      "x": -180,
+                      "y": 220
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Controls.OBC.CDL.Logical",
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/Proof.mo"
+    },
+    "not3": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Logical.Not",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "Proof",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "not3"
+        },
+        "description": {
+          "description_string": "Input is invalid",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": -80,
+                          "y": 170
+                        },
+                        {
+                          "x": -60,
+                          "y": 190
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": -80,
+                      "y": 170
+                    },
+                    {
+                      "x": -60,
+                      "y": 190
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Controls.OBC.CDL.Logical",
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/Proof.mo"
+    },
+    "cheStaMea": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Logical.Switch",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "Proof",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "cheStaMea"
+        },
+        "description": {
+          "description_string": "Output true if there is no stable measured input",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": 160,
+                          "y": 110
+                        },
+                        {
+                          "x": 180,
+                          "y": 130
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": 160,
+                      "y": 110
+                    },
+                    {
+                      "x": 180,
+                      "y": 130
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Controls.OBC.CDL.Logical",
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/Proof.mo"
+    },
+    "delChe2": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Logical.TrueDelay",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "Proof",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "delChe2",
+          "modification": {
+            "class_modification": [
+              {
+                "element_modification_or_replaceable": {
+                  "final": true,
+                  "element_modification": {
+                    "name": "delayTime",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "feedbackDelay +debounce"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "description": {
+          "description_string": "Delay the difference check",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": -220,
+                          "y": -10
+                        },
+                        {
+                          "x": -200,
+                          "y": 10
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": -220,
+                      "y": -10
+                    },
+                    {
+                      "x": -200,
+                      "y": 10
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Controls.OBC.CDL.Logical",
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/Proof.mo"
+    },
+    "conFal": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Logical.Sources.Constant",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "Proof",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "conFal",
+          "modification": {
+            "class_modification": [
+              {
+                "element_modification_or_replaceable": {
+                  "final": true,
+                  "element_modification": {
+                    "name": "k",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "false"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "description": {
+          "description_string": "False constant",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": 40,
+                          "y": 132
+                        },
+                        {
+                          "x": 60,
+                          "y": 152
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": 40,
+                      "y": 132
+                    },
+                    {
+                      "x": 60,
+                      "y": 152
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Controls.OBC.CDL.Logical",
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/Proof.mo"
+    },
+    "notBotTru": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Logical.Not",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "Proof",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "notBotTru"
+        },
+        "description": {
+          "description_string": "Not both true inputs",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": -60,
+                          "y": -90
+                        },
+                        {
+                          "x": -40,
+                          "y": -70
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": -60,
+                      "y": -90
+                    },
+                    {
+                      "x": -40,
+                      "y": -70
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Controls.OBC.CDL.Logical",
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/Proof.mo"
+    },
+    "cheDif2": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Logical.Switch",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "Proof",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "cheDif2"
+        },
+        "description": {
+          "description_string": "Output the difference check result if the difference check condition is satisfied",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": 120,
+                          "y": -90
+                        },
+                        {
+                          "x": 140,
+                          "y": -70
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": 120,
+                      "y": -90
+                    },
+                    {
+                      "x": 140,
+                      "y": -70
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Controls.OBC.CDL.Logical",
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/Proof.mo"
+    },
+    "cheStaMea1": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Logical.Switch",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "Proof",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "cheStaMea1"
+        },
+        "description": {
+          "description_string": "Output true if there is no stable measured input",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": 160,
+                          "y": -130
+                        },
+                        {
+                          "x": 180,
+                          "y": -110
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": 160,
+                      "y": -130
+                    },
+                    {
+                      "x": 180,
+                      "y": -110
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Controls.OBC.CDL.Logical",
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/Proof.mo"
+    },
+    "pasDeb": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Logical.Timer",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "Proof",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "pasDeb",
+          "modification": {
+            "class_modification": [
+              {
+                "element_modification_or_replaceable": {
+                  "final": true,
+                  "element_modification": {
+                    "name": "t",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "feedbackDelay +debounce"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "description": {
+          "description_string": "Check if the debounce time has passed",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": -40,
+                          "y": 140
+                        },
+                        {
+                          "x": -20,
+                          "y": 160
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": -40,
+                      "y": 140
+                    },
+                    {
+                      "x": -20,
+                      "y": 160
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Controls.OBC.CDL.Logical",
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/Proof.mo"
+    },
+    "holTru": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Logical.Latch",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "Proof",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "holTru"
+        },
+        "description": {
+          "description_string": "Hold the true output when the input changes to true",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": 200,
+                          "y": 110
+                        },
+                        {
+                          "x": 220,
+                          "y": 130
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": 200,
+                      "y": 110
+                    },
+                    {
+                      "x": 220,
+                      "y": 130
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Controls.OBC.CDL.Logical",
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/Proof.mo"
+    },
+    "holTru1": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Logical.Latch",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "Proof",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "holTru1"
+        },
+        "description": {
+          "description_string": "Hold the true output when the input changes to true",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": 200,
+                          "y": -130
+                        },
+                        {
+                          "x": 220,
+                          "y": -110
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": 200,
+                      "y": -130
+                    },
+                    {
+                      "x": 220,
+                      "y": -110
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Controls.OBC.CDL.Logical",
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/Proof.mo"
+    },
+    "equInp": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Logical.Or",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "Proof",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "equInp"
+        },
+        "description": {
+          "description_string": "Output true if the measured input equal to the set point",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": 20,
+                          "y": 10
+                        },
+                        {
+                          "x": 40,
+                          "y": 30
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": 20,
+                      "y": 10
+                    },
+                    {
+                      "x": 40,
+                      "y": 30
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Controls.OBC.CDL.Logical",
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/Proof.mo"
+    },
+    "samInpEdg": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Logical.Edge",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "Proof",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "samInpEdg"
+        },
+        "description": {
+          "description_string": "Output a rising edge when both inputs are same",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": 160,
+                          "y": -30
+                        },
+                        {
+                          "x": 180,
+                          "y": -10
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": 160,
+                      "y": -30
+                    },
+                    {
+                      "x": 180,
+                      "y": -10
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Controls.OBC.CDL.Logical",
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/Proof.mo"
+    },
+    "valEqu": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Logical.And",
+      "type": "element",
+      "compositionSpecifier": "protected",
+      "long_class_specifier_identifier": "Proof",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "valEqu"
+        },
+        "description": {
+          "description_string": "Output true if the measured input is valid and equal to the set point",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": 120,
+                          "y": -30
+                        },
+                        {
+                          "x": 140,
+                          "y": -10
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": 120,
+                      "y": -30
+                    },
+                    {
+                      "x": 140,
+                      "y": -10
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "Buildings.Controls.OBC.CDL.Logical",
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/Proof.mo"
+    }
+  },
+  "requiredReferences": {
+    "connections": {
+      "u_m": [
+        "valTru.u",
+        "not1.u",
+        "valFal.u1"
+      ],
+      "not1.y": [
+        "truDel1.u"
+      ],
+      "valTru.y": [
+        "valInp.u1",
+        "botTru.u1"
+      ],
+      "truDel1.y": [
+        "valInp.u2",
+        "valFal.u2"
+      ],
+      "conTru.y": [
+        "valFal.u3",
+        "cheStaMea.u1",
+        "cheStaMea1.u1"
+      ],
+      "valInp.y": [
+        "not3.u",
+        "cheDif.u2",
+        "valEqu.u2"
+      ],
+      "not3.y": [
+        "invInp.u1",
+        "pasDeb.u"
+      ],
+      "u_s": [
+        "not2.u",
+        "delChe2.u",
+        "truFal.u2",
+        "booToInt1.u",
+        "botTru.u2"
+      ],
+      "not2.y": [
+        "delChe1.u",
+        "botFal.u1",
+        "falTru.u2"
+      ],
+      "delChe2.y": [
+        "pasDel.u1"
+      ],
+      "delChe1.y": [
+        "pasDel.u2"
+      ],
+      "pasDel.y": [
+        "cheDif.u1"
+      ],
+      "cheDif.y": [
+        "cheDif1.u2",
+        "cheDif2.u2"
+      ],
+      "botTru.y": [
+        "notBotTru.u",
+        "equInp.u1"
+      ],
+      "notBotTru.y": [
+        "truFal.u1"
+      ],
+      "valFal.y": [
+        "booToInt.u"
+      ],
+      "booToInt.y": [
+        "equSta.u1"
+      ],
+      "booToInt1.y": [
+        "equSta.u2"
+      ],
+      "equSta.y": [
+        "botFal.u2",
+        "equInp.u2"
+      ],
+      "botFal.y": [
+        "notBotFal.u"
+      ],
+      "notBotFal.y": [
+        "falTru.u1"
+      ],
+      "cheDif1.y": [
+        "cheStaMea.u3"
+      ],
+      "cheDif2.y": [
+        "cheStaMea1.u3"
+      ],
+      "conFal.y": [
+        "cheDif1.u3",
+        "cheDif2.u3"
+      ],
+      "falTru.y": [
+        "cheDif2.u1"
+      ],
+      "truFal.y": [
+        "cheDif1.u1"
+      ],
+      "cheStaMea.y": [
+        "holTru.u"
+      ],
+      "cheStaMea1.y": [
+        "holTru1.u"
+      ],
+      "holTru.y": [
+        "yLocFal"
+      ],
+      "holTru1.y": [
+        "yLocTru"
+      ],
+      "samInpEdg.y": [
+        "holTru.clr",
+        "holTru1.clr"
+      ],
+      "invInp.y": [
+        "cheStaMea.u2",
+        "cheStaMea1.u2"
+      ],
+      "pasDeb.passed": [
+        "invInp.u2"
+      ],
+      "equInp.y": [
+        "valEqu.u1"
+      ],
+      "valEqu.y": [
+        "samInpEdg.u"
+      ]
+    }
+  }
+}

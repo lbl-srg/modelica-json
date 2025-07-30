@@ -1,0 +1,111 @@
+{
+  "instances": {
+    "Smoothness": {
+      "type": "enumeration_class",
+      "type_specifier": null,
+      "short_class_specifier_value": {
+        "description": {
+          "description_string": "Enumeration defining the smoothness of table interpolation",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "name": "Documentation",
+                  "modification": {
+                    "class_modification": [
+                      {
+                        "element_modification_or_replaceable": {
+                          "element_modification": {
+                            "name": "info",
+                            "modification": {
+                              "equal": true,
+                              "expression": {
+                                "simple_expression": "\"<html>\n<p>\nEnumeration for the type of smoothness that is used when interpolating data from a table.\nThe possible values are:\n</p>\n\n<table border=\\\"1\\\" summary=\\\"Explanation of the enumeration\\\">\n<tr>\n<th>Enumeration</th>\n<th>Description</th></tr>\n<tr><td><code>LinearSegments</code></td>\n<td>\nLinearly interpolate table points.\n</td></tr>\n<tr><td><code>ConstantSegments</code></td>\n<td>\nDo not interpolate, but rather use the previously tabulated value.\n</td></tr>\n</table>\n</html>\""
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "enum_list": [
+          {
+            "identifier": "LinearSegments",
+            "description": {
+              "description_string": "Table points are linearly interpolated"
+            }
+          },
+          {
+            "identifier": "ConstantSegments",
+            "description": {
+              "description_string": "Table points are not interpolated, but the previous tabulated value is returned"
+            }
+          }
+        ]
+      },
+      "within": "Buildings.Controls.OBC.CDL.Types",
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Types/Smoothness.mo",
+      "description": {
+        "description_string": "Enumeration defining the smoothness of table interpolation",
+        "annotation": [
+          {
+            "element_modification_or_replaceable": {
+              "element_modification": {
+                "name": "Documentation",
+                "modification": {
+                  "class_modification": [
+                    {
+                      "element_modification_or_replaceable": {
+                        "element_modification": {
+                          "name": "info",
+                          "modification": {
+                            "equal": true,
+                            "expression": {
+                              "simple_expression": "\"<html>\n<p>\nEnumeration for the type of smoothness that is used when interpolating data from a table.\nThe possible values are:\n</p>\n\n<table border=\\\"1\\\" summary=\\\"Explanation of the enumeration\\\">\n<tr>\n<th>Enumeration</th>\n<th>Description</th></tr>\n<tr><td><code>LinearSegments</code></td>\n<td>\nLinearly interpolate table points.\n</td></tr>\n<tr><td><code>ConstantSegments</code></td>\n<td>\nDo not interpolate, but rather use the previously tabulated value.\n</td></tr>\n</table>\n</html>\""
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "LinearSegments": {
+      "type": "enumeration",
+      "description": {
+        "description_string": "Table points are linearly interpolated"
+      },
+      "enumeration_literal": {
+        "identifier": "LinearSegments",
+        "description": {
+          "description_string": "Table points are linearly interpolated"
+        }
+      },
+      "enumeration_kind": "Smoothness"
+    },
+    "ConstantSegments": {
+      "type": "enumeration",
+      "description": {
+        "description_string": "Table points are not interpolated, but the previous tabulated value is returned"
+      },
+      "enumeration_literal": {
+        "identifier": "ConstantSegments",
+        "description": {
+          "description_string": "Table points are not interpolated, but the previous tabulated value is returned"
+        }
+      },
+      "enumeration_kind": "Smoothness"
+    }
+  },
+  "requiredReferences": {}
+}

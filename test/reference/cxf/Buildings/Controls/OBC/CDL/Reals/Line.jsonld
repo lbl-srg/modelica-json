@@ -1,0 +1,112 @@
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#"
+  },
+  "@graph": [
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Line",
+      "@type": "S231P:ElementaryBlock",
+      "S231P:documentation": "info=<html>\n<p>\nBlock that outputs <code>y = a + b u</code>,\nwhere\n<code>u</code> is an input\nand the coefficients <code>a</code> and <code>b</code>\nare determined so that the line intercepts the two input points\nspecified by the two points <code>x1</code> and <code>f1</code>,\nand <code>x2</code> and <code>f2</code>.\n</p>\n<p>\nThe parameters <code>limitBelow</code> and <code>limitAbove</code>\ndetermine whether <code>x1</code> and <code>x2</code> are also used\nto limit the input <code>u</code>.\n</p>\n<p>\nIf the limits are used, then this block requires <code>x1 &lt; x2</code>.\n</p>\n</html>,revisions=<html>\n<ul>\n<li>\nMarch 2, 2020, by Michael Wetter:<br/>\nChanged icon to display dynamically the output value.\n</li>\n<li>\nMarch 25, 2018, by Michael Wetter:<br/>\nImproved documentation, icon and added warning if the limits are used and\n<code>x1 &gt; x2</code>.<br/>\nThis is for <a href=\\https://github.com/lbl-srg/modelica-buildings/issues/1155\\>Buildings, issue 1155</a>.\n</li>\n<li>\nJanuary 11, 2017, by Michael Wetter:<br/>\nFirst implementation.\n</li>\n</ul>\n</html>",
+      "S231P:hasInput": [
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Line.f1"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Line.f2"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Line.u"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Line.x1"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Line.x2"
+        }
+      ],
+      "S231P:hasOutput": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Line.y"
+      },
+      "S231P:hasParameter": [
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Line.limitAbove"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Line.limitBelow"
+        }
+      ],
+      "S231P:icon": "coordinateSystem(extent={{-100,-100},{100,100}},preserveAspectRatio=true),graphics={Rectangle(extent={{-100,-100},{100,100}},lineColor={0,0,127},fillColor={255,255,255},fillPattern=FillPattern.Solid),Text(textString=\"%name\",textColor={0,0,255},extent={{-150,110},{150,150}}),Polygon(points={{92,-78},{70,-70},{70,-86},{92,-78}},lineColor={192,192,192},fillColor={192,192,192},fillPattern=FillPattern.Solid),Line(color={0,0,0},thickness=0.5,points={{-46,40},{50,-44}}),Line(color={192,192,192},points={{-80,-80},{-80,72}}),Polygon(points={{-80,92},{-88,70},{-72,70},{-80,92}},lineColor={192,192,192},fillColor={192,192,192},fillPattern=FillPattern.Solid),Line(color={192,192,192},points={{-88,-78},{76,-78}}),Line(color={28,108,200},points={{-100,80},{-64,80}},smooth=Smooth.Bezier,pattern=LinePattern.Dot),Line(color={28,108,200},points={{-64,80},{-62,-78}},smooth=Smooth.Bezier,pattern=LinePattern.Dot),Line(color={28,108,200},points={{-100,40},{-88,40}},smooth=Smooth.Bezier,pattern=LinePattern.Dot),Line(color={28,108,200},points={{-88,40},{-48,40}},smooth=Smooth.Bezier,pattern=LinePattern.Dot),Line(color={28,108,200},points={{-100,-40},{48,-36}},smooth=Smooth.Bezier,pattern=LinePattern.Dot),Line(color={28,108,200},points={{48,-36},{50,-78}},smooth=Smooth.Bezier,pattern=LinePattern.Dot),Line(color={28,108,200},points={{-100,-80},{-38,-56}},smooth=Smooth.Bezier,pattern=LinePattern.Dot),Line(color={28,108,200},points={{-38,-56},{48,-44}},smooth=Smooth.Bezier,pattern=LinePattern.Dot),Line(color={28,108,200},points={{-100,0},{-62,0}},smooth=Smooth.Bezier,pattern=LinePattern.Dot),Line(color={28,108,200},points={{-62,0},{8,-8}},smooth=Smooth.Bezier,pattern=LinePattern.Dot),Line(color={28,108,200},points={{10,-8},{52,-8}},smooth=Smooth.Bezier,pattern=LinePattern.Dot),Line(color={28,108,200},points={{52,-8},{100,0}},smooth=Smooth.Bezier,pattern=LinePattern.Dot),Ellipse(extent={{44,-38},{56,-50}},lineColor={0,0,0},fillColor={0,0,0},pattern=LinePattern.None,fillPattern=FillPattern.Solid),Ellipse(extent={{2,-2},{14,-14}},lineColor={0,0,0},fillColor={0,0,127},pattern=LinePattern.None,fillPattern=FillPattern.Solid),Line(color={0,0,0},thickness=0.5,points={{50,-44},{80,-70}},visible=not limitAbove),Line(color={238,46,47},thickness=0.5,points={{52,-44},{86,-44}},visible=limitAbove),Line(color={0,0,0},thickness=0.5,points={{-80,68},{-46,40}},visible=not limitBelow),Line(color={238,46,47},thickness=0.5,points={{-80,40},{-46,40}},visible=limitBelow),Ellipse(extent={{-52,46},{-40,34}},lineColor={0,0,0},fillColor={0,0,0},pattern=LinePattern.None,fillPattern=FillPattern.Solid),Text(textString=DynamicSelect(\"\",String(y,textColor={0,0,0},extent={{226,60},{106,10}})}",
+      "S231P:label": "Line"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Line.f1",
+      "@type": "S231P:RealInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Input for support point f(x1)",
+      "S231P:graphics": "Placement(transformation(extent={{-140,20},{-100,60}})))",
+      "S231P:label": "f1"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Line.f2",
+      "@type": "S231P:RealInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Input for support point f(x2)",
+      "S231P:graphics": "Placement(transformation(extent={{-140,-100},{-100,-60}})))",
+      "S231P:label": "f2"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Line.limitAbove",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "If true, limit input u to be no larger than x2",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Boolean"
+      },
+      "S231P:label": "limitAbove",
+      "S231P:value": true
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Line.limitBelow",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "If true, limit input u to be no smaller than x1",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Boolean"
+      },
+      "S231P:label": "limitBelow",
+      "S231P:value": true
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Line.u",
+      "@type": "S231P:RealInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Input for independent variable",
+      "S231P:graphics": "Placement(transformation(extent={{-140,-20},{-100,20}})))",
+      "S231P:label": "u"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Line.x1",
+      "@type": "S231P:RealInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Input for support point x1, with x1 < x2",
+      "S231P:graphics": "Placement(transformation(extent={{-140,60},{-100,100}})))",
+      "S231P:label": "x1"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Line.x2",
+      "@type": "S231P:RealInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Input for support point x2, with x2 > x1",
+      "S231P:graphics": "Placement(transformation(extent={{-140,-60},{-100,-20}})))",
+      "S231P:label": "x2"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Line.y",
+      "@type": "S231P:RealOutput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Output with f(x) along the line specified by (x1, f1) and (x2, f2)",
+      "S231P:graphics": "Placement(transformation(extent={{100,-20},{140,20}})))",
+      "S231P:label": "y"
+    }
+  ]
+}

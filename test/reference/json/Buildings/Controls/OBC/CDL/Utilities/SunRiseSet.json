@@ -1,0 +1,3211 @@
+{
+  "within": "Buildings.Controls.OBC.CDL.Utilities",
+  "stored_class_definitions": [
+    {
+      "class_prefixes": "block",
+      "class_specifier": {
+        "long_class_specifier": {
+          "identifier": "SunRiseSet",
+          "description_string": "Next sunrise and sunset time",
+          "composition": {
+            "element_list": [
+              {
+                "component_clause": {
+                  "type_prefix": "parameter",
+                  "type_specifier": "Real",
+                  "component_list": [
+                    {
+                      "declaration": {
+                        "identifier": "lat",
+                        "modification": {
+                          "class_modification": [
+                            {
+                              "element_modification_or_replaceable": {
+                                "final": true,
+                                "element_modification": {
+                                  "name": "quantity",
+                                  "modification": {
+                                    "equal": true,
+                                    "expression": {
+                                      "simple_expression": "\"Angle\""
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "element_modification_or_replaceable": {
+                                "final": true,
+                                "element_modification": {
+                                  "name": "unit",
+                                  "modification": {
+                                    "equal": true,
+                                    "expression": {
+                                      "simple_expression": "\"rad\""
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "element_modification_or_replaceable": {
+                                "element_modification": {
+                                  "name": "displayUnit",
+                                  "modification": {
+                                    "equal": true,
+                                    "expression": {
+                                      "simple_expression": "\"deg\""
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      "description": {
+                        "description_string": "Latitude"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "component_clause": {
+                  "type_prefix": "parameter",
+                  "type_specifier": "Real",
+                  "component_list": [
+                    {
+                      "declaration": {
+                        "identifier": "lon",
+                        "modification": {
+                          "class_modification": [
+                            {
+                              "element_modification_or_replaceable": {
+                                "final": true,
+                                "element_modification": {
+                                  "name": "quantity",
+                                  "modification": {
+                                    "equal": true,
+                                    "expression": {
+                                      "simple_expression": "\"Angle\""
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "element_modification_or_replaceable": {
+                                "final": true,
+                                "element_modification": {
+                                  "name": "unit",
+                                  "modification": {
+                                    "equal": true,
+                                    "expression": {
+                                      "simple_expression": "\"rad\""
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "element_modification_or_replaceable": {
+                                "element_modification": {
+                                  "name": "displayUnit",
+                                  "modification": {
+                                    "equal": true,
+                                    "expression": {
+                                      "simple_expression": "\"deg\""
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      "description": {
+                        "description_string": "Longitude"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "component_clause": {
+                  "type_prefix": "parameter",
+                  "type_specifier": "Real",
+                  "component_list": [
+                    {
+                      "declaration": {
+                        "identifier": "timZon",
+                        "modification": {
+                          "class_modification": [
+                            {
+                              "element_modification_or_replaceable": {
+                                "final": true,
+                                "element_modification": {
+                                  "name": "quantity",
+                                  "modification": {
+                                    "equal": true,
+                                    "expression": {
+                                      "simple_expression": "\"Time\""
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "element_modification_or_replaceable": {
+                                "final": true,
+                                "element_modification": {
+                                  "name": "unit",
+                                  "modification": {
+                                    "equal": true,
+                                    "expression": {
+                                      "simple_expression": "\"s\""
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "element_modification_or_replaceable": {
+                                "element_modification": {
+                                  "name": "displayUnit",
+                                  "modification": {
+                                    "equal": true,
+                                    "expression": {
+                                      "simple_expression": "\"h\""
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      "description": {
+                        "description_string": "Time zone"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "component_clause": {
+                  "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
+                  "component_list": [
+                    {
+                      "declaration": {
+                        "identifier": "nextSunRise",
+                        "modification": {
+                          "class_modification": [
+                            {
+                              "element_modification_or_replaceable": {
+                                "final": true,
+                                "element_modification": {
+                                  "name": "quantity",
+                                  "modification": {
+                                    "equal": true,
+                                    "expression": {
+                                      "simple_expression": "\"Time\""
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "element_modification_or_replaceable": {
+                                "final": true,
+                                "element_modification": {
+                                  "name": "unit",
+                                  "modification": {
+                                    "equal": true,
+                                    "expression": {
+                                      "simple_expression": "\"s\""
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "element_modification_or_replaceable": {
+                                "element_modification": {
+                                  "name": "displayUnit",
+                                  "modification": {
+                                    "equal": true,
+                                    "expression": {
+                                      "simple_expression": "\"h\""
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      "description": {
+                        "description_string": "Time of next sunrise",
+                        "annotation": [
+                          {
+                            "element_modification_or_replaceable": {
+                              "element_modification": {
+                                "Placement": {
+                                  "transformation": {
+                                    "extent": [
+                                      {
+                                        "x": 100,
+                                        "y": 40
+                                      },
+                                      {
+                                        "x": 140,
+                                        "y": 80
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "component_clause": {
+                  "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
+                  "component_list": [
+                    {
+                      "declaration": {
+                        "identifier": "nextSunSet",
+                        "modification": {
+                          "class_modification": [
+                            {
+                              "element_modification_or_replaceable": {
+                                "final": true,
+                                "element_modification": {
+                                  "name": "quantity",
+                                  "modification": {
+                                    "equal": true,
+                                    "expression": {
+                                      "simple_expression": "\"Time\""
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "element_modification_or_replaceable": {
+                                "final": true,
+                                "element_modification": {
+                                  "name": "unit",
+                                  "modification": {
+                                    "equal": true,
+                                    "expression": {
+                                      "simple_expression": "\"s\""
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "element_modification_or_replaceable": {
+                                "element_modification": {
+                                  "name": "displayUnit",
+                                  "modification": {
+                                    "equal": true,
+                                    "expression": {
+                                      "simple_expression": "\"h\""
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      "description": {
+                        "description_string": "Time of next sunset",
+                        "annotation": [
+                          {
+                            "element_modification_or_replaceable": {
+                              "element_modification": {
+                                "Placement": {
+                                  "transformation": {
+                                    "extent": [
+                                      {
+                                        "x": 100,
+                                        "y": -20
+                                      },
+                                      {
+                                        "x": 140,
+                                        "y": 20
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "component_clause": {
+                  "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.BooleanOutput",
+                  "component_list": [
+                    {
+                      "declaration": {
+                        "identifier": "sunUp"
+                      },
+                      "description": {
+                        "description_string": "Output with true if the sun is up",
+                        "annotation": [
+                          {
+                            "element_modification_or_replaceable": {
+                              "element_modification": {
+                                "Placement": {
+                                  "transformation": {
+                                    "extent": [
+                                      {
+                                        "x": 100,
+                                        "y": -80
+                                      },
+                                      {
+                                        "x": 140,
+                                        "y": -40
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ],
+            "element_sections": [
+              {
+                "protected_element_list": [
+                  {
+                    "component_clause": {
+                      "type_prefix": "constant",
+                      "type_specifier": "Real",
+                      "component_list": [
+                        {
+                          "declaration": {
+                            "identifier": "k1",
+                            "modification": {
+                              "equal": true,
+                              "expression": {
+                                "simple_expression": {
+                                  "function_call": {
+                                    "name": "sin",
+                                    "arguments": [
+                                      {
+                                        "name": "23.45*2*Modelica.Constants.pi/360"
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "description": {
+                            "description_string": "Intermediate constant"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "component_clause": {
+                      "type_prefix": "constant",
+                      "type_specifier": "Real",
+                      "component_list": [
+                        {
+                          "declaration": {
+                            "identifier": "k2",
+                            "modification": {
+                              "equal": true,
+                              "expression": {
+                                "simple_expression": "2*Modelica.Constants.pi/365.25"
+                              }
+                            }
+                          },
+                          "description": {
+                            "description_string": "Intermediate constant"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "component_clause": {
+                      "type_prefix": "parameter",
+                      "type_specifier": "Real",
+                      "component_list": [
+                        {
+                          "declaration": {
+                            "identifier": "staTim",
+                            "modification": {
+                              "class_modification": [
+                                {
+                                  "element_modification_or_replaceable": {
+                                    "final": true,
+                                    "element_modification": {
+                                      "name": "quantity",
+                                      "modification": {
+                                        "equal": true,
+                                        "expression": {
+                                          "simple_expression": "\"Time\""
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                {
+                                  "element_modification_or_replaceable": {
+                                    "final": true,
+                                    "element_modification": {
+                                      "name": "unit",
+                                      "modification": {
+                                        "equal": true,
+                                        "expression": {
+                                          "simple_expression": "\"s\""
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                {
+                                  "element_modification_or_replaceable": {
+                                    "element_modification": {
+                                      "name": "fixed",
+                                      "modification": {
+                                        "equal": true,
+                                        "expression": {
+                                          "simple_expression": "false"
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "description": {
+                            "description_string": "Simulation start time"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "component_clause": {
+                      "type_prefix": "parameter",
+                      "type_specifier": "Real",
+                      "component_list": [
+                        {
+                          "declaration": {
+                            "identifier": "timDifLocCiv",
+                            "modification": {
+                              "class_modification": [
+                                {
+                                  "element_modification_or_replaceable": {
+                                    "final": true,
+                                    "element_modification": {
+                                      "name": "quantity",
+                                      "modification": {
+                                        "equal": true,
+                                        "expression": {
+                                          "simple_expression": "\"Time\""
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                {
+                                  "element_modification_or_replaceable": {
+                                    "final": true,
+                                    "element_modification": {
+                                      "name": "unit",
+                                      "modification": {
+                                        "equal": true,
+                                        "expression": {
+                                          "simple_expression": "\"s\""
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                {
+                                  "element_modification_or_replaceable": {
+                                    "element_modification": {
+                                      "name": "fixed",
+                                      "modification": {
+                                        "equal": true,
+                                        "expression": {
+                                          "simple_expression": "false"
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "description": {
+                            "description_string": "Time difference between local and civil time"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "component_clause": {
+                      "type_specifier": "Real",
+                      "component_list": [
+                        {
+                          "declaration": {
+                            "identifier": "eqnTim",
+                            "modification": {
+                              "class_modification": [
+                                {
+                                  "element_modification_or_replaceable": {
+                                    "final": true,
+                                    "element_modification": {
+                                      "name": "quantity",
+                                      "modification": {
+                                        "equal": true,
+                                        "expression": {
+                                          "simple_expression": "\"Time\""
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                {
+                                  "element_modification_or_replaceable": {
+                                    "final": true,
+                                    "element_modification": {
+                                      "name": "unit",
+                                      "modification": {
+                                        "equal": true,
+                                        "expression": {
+                                          "simple_expression": "\"s\""
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "description": {
+                            "description_string": "Equation of time"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "component_clause": {
+                      "type_specifier": "Real",
+                      "component_list": [
+                        {
+                          "declaration": {
+                            "identifier": "timCor",
+                            "modification": {
+                              "class_modification": [
+                                {
+                                  "element_modification_or_replaceable": {
+                                    "final": true,
+                                    "element_modification": {
+                                      "name": "quantity",
+                                      "modification": {
+                                        "equal": true,
+                                        "expression": {
+                                          "simple_expression": "\"Time\""
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                {
+                                  "element_modification_or_replaceable": {
+                                    "final": true,
+                                    "element_modification": {
+                                      "name": "unit",
+                                      "modification": {
+                                        "equal": true,
+                                        "expression": {
+                                          "simple_expression": "\"s\""
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "description": {
+                            "description_string": "Time correction"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "component_clause": {
+                      "type_specifier": "Real",
+                      "component_list": [
+                        {
+                          "declaration": {
+                            "identifier": "decAng",
+                            "modification": {
+                              "class_modification": [
+                                {
+                                  "element_modification_or_replaceable": {
+                                    "final": true,
+                                    "element_modification": {
+                                      "name": "quantity",
+                                      "modification": {
+                                        "equal": true,
+                                        "expression": {
+                                          "simple_expression": "\"Angle\""
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                {
+                                  "element_modification_or_replaceable": {
+                                    "final": true,
+                                    "element_modification": {
+                                      "name": "unit",
+                                      "modification": {
+                                        "equal": true,
+                                        "expression": {
+                                          "simple_expression": "\"rad\""
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                {
+                                  "element_modification_or_replaceable": {
+                                    "element_modification": {
+                                      "name": "displayUnit",
+                                      "modification": {
+                                        "equal": true,
+                                        "expression": {
+                                          "simple_expression": "\"deg\""
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "description": {
+                            "description_string": "Declination angle"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "component_clause": {
+                      "type_specifier": "Real",
+                      "component_list": [
+                        {
+                          "declaration": {
+                            "identifier": "Bt"
+                          },
+                          "description": {
+                            "description_string": "Intermediate variable to calculate equation of time"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "component_clause": {
+                      "type_specifier": "Real",
+                      "component_list": [
+                        {
+                          "declaration": {
+                            "identifier": "cosHou"
+                          },
+                          "description": {
+                            "description_string": "Cosine of hour angle"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "class_definition": {
+                      "class_prefixes": "function",
+                      "class_specifier": {
+                        "long_class_specifier": {
+                          "identifier": "nextHourAngle",
+                          "description_string": "Calculate the hour angle when the sun rises or sets next time",
+                          "composition": {
+                            "element_list": [
+                              {
+                                "component_clause": {
+                                  "type_prefix": "input",
+                                  "type_specifier": "Real",
+                                  "component_list": [
+                                    {
+                                      "declaration": {
+                                        "identifier": "t",
+                                        "modification": {
+                                          "class_modification": [
+                                            {
+                                              "element_modification_or_replaceable": {
+                                                "final": true,
+                                                "element_modification": {
+                                                  "name": "quantity",
+                                                  "modification": {
+                                                    "equal": true,
+                                                    "expression": {
+                                                      "simple_expression": "\"Time\""
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            {
+                                              "element_modification_or_replaceable": {
+                                                "final": true,
+                                                "element_modification": {
+                                                  "name": "unit",
+                                                  "modification": {
+                                                    "equal": true,
+                                                    "expression": {
+                                                      "simple_expression": "\"s\""
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "description": {
+                                        "description_string": "Current simulation time"
+                                      }
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "component_clause": {
+                                  "type_prefix": "input",
+                                  "type_specifier": "Real",
+                                  "component_list": [
+                                    {
+                                      "declaration": {
+                                        "identifier": "timDifLocCiv",
+                                        "modification": {
+                                          "class_modification": [
+                                            {
+                                              "element_modification_or_replaceable": {
+                                                "final": true,
+                                                "element_modification": {
+                                                  "name": "quantity",
+                                                  "modification": {
+                                                    "equal": true,
+                                                    "expression": {
+                                                      "simple_expression": "\"Time\""
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            {
+                                              "element_modification_or_replaceable": {
+                                                "final": true,
+                                                "element_modification": {
+                                                  "name": "unit",
+                                                  "modification": {
+                                                    "equal": true,
+                                                    "expression": {
+                                                      "simple_expression": "\"s\""
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "description": {
+                                        "description_string": "Time difference between local and civil time"
+                                      }
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "component_clause": {
+                                  "type_prefix": "input",
+                                  "type_specifier": "Real",
+                                  "component_list": [
+                                    {
+                                      "declaration": {
+                                        "identifier": "lat",
+                                        "modification": {
+                                          "class_modification": [
+                                            {
+                                              "element_modification_or_replaceable": {
+                                                "final": true,
+                                                "element_modification": {
+                                                  "name": "quantity",
+                                                  "modification": {
+                                                    "equal": true,
+                                                    "expression": {
+                                                      "simple_expression": "\"Angle\""
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            {
+                                              "element_modification_or_replaceable": {
+                                                "final": true,
+                                                "element_modification": {
+                                                  "name": "unit",
+                                                  "modification": {
+                                                    "equal": true,
+                                                    "expression": {
+                                                      "simple_expression": "\"rad\""
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            {
+                                              "element_modification_or_replaceable": {
+                                                "element_modification": {
+                                                  "name": "displayUnit",
+                                                  "modification": {
+                                                    "equal": true,
+                                                    "expression": {
+                                                      "simple_expression": "\"deg\""
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "description": {
+                                        "description_string": "Latitude"
+                                      }
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "component_clause": {
+                                  "type_prefix": "output",
+                                  "type_specifier": "Real",
+                                  "component_list": [
+                                    {
+                                      "declaration": {
+                                        "identifier": "houAng",
+                                        "modification": {
+                                          "class_modification": [
+                                            {
+                                              "element_modification_or_replaceable": {
+                                                "final": true,
+                                                "element_modification": {
+                                                  "name": "quantity",
+                                                  "modification": {
+                                                    "equal": true,
+                                                    "expression": {
+                                                      "simple_expression": "\"Angle\""
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            {
+                                              "element_modification_or_replaceable": {
+                                                "final": true,
+                                                "element_modification": {
+                                                  "name": "unit",
+                                                  "modification": {
+                                                    "equal": true,
+                                                    "expression": {
+                                                      "simple_expression": "\"rad\""
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            {
+                                              "element_modification_or_replaceable": {
+                                                "element_modification": {
+                                                  "name": "displayUnit",
+                                                  "modification": {
+                                                    "equal": true,
+                                                    "expression": {
+                                                      "simple_expression": "\"deg\""
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "description": {
+                                        "description_string": "Solar hour angle"
+                                      }
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "component_clause": {
+                                  "type_prefix": "output",
+                                  "type_specifier": "Real",
+                                  "component_list": [
+                                    {
+                                      "declaration": {
+                                        "identifier": "tNext",
+                                        "modification": {
+                                          "class_modification": [
+                                            {
+                                              "element_modification_or_replaceable": {
+                                                "final": true,
+                                                "element_modification": {
+                                                  "name": "quantity",
+                                                  "modification": {
+                                                    "equal": true,
+                                                    "expression": {
+                                                      "simple_expression": "\"Time\""
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            {
+                                              "element_modification_or_replaceable": {
+                                                "final": true,
+                                                "element_modification": {
+                                                  "name": "unit",
+                                                  "modification": {
+                                                    "equal": true,
+                                                    "expression": {
+                                                      "simple_expression": "\"s\""
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "description": {
+                                        "description_string": "Timesnap when sun rises or sets next time"
+                                      }
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "component_clause": {
+                                  "type_prefix": "output",
+                                  "type_specifier": "Real",
+                                  "component_list": [
+                                    {
+                                      "declaration": {
+                                        "identifier": "timCor",
+                                        "modification": {
+                                          "class_modification": [
+                                            {
+                                              "element_modification_or_replaceable": {
+                                                "final": true,
+                                                "element_modification": {
+                                                  "name": "quantity",
+                                                  "modification": {
+                                                    "equal": true,
+                                                    "expression": {
+                                                      "simple_expression": "\"Time\""
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            {
+                                              "element_modification_or_replaceable": {
+                                                "final": true,
+                                                "element_modification": {
+                                                  "name": "unit",
+                                                  "modification": {
+                                                    "equal": true,
+                                                    "expression": {
+                                                      "simple_expression": "\"s\""
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "description": {
+                                        "description_string": "Time correction"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ],
+                            "element_sections": [
+                              {
+                                "protected_element_list": [
+                                  {
+                                    "component_clause": {
+                                      "type_specifier": "Integer",
+                                      "component_list": [
+                                        {
+                                          "declaration": {
+                                            "identifier": "iDay"
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "component_clause": {
+                                      "type_specifier": "Boolean",
+                                      "component_list": [
+                                        {
+                                          "declaration": {
+                                            "identifier": "compute"
+                                          },
+                                          "description": {
+                                            "description_string": "Flag, set to false when the sun rise or sets "
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "component_clause": {
+                                      "type_specifier": "Real",
+                                      "component_list": [
+                                        {
+                                          "declaration": {
+                                            "identifier": "Bt"
+                                          },
+                                          "description": {
+                                            "description_string": "Intermediate variable to calculate equation of time"
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "component_clause": {
+                                      "type_specifier": "Real",
+                                      "component_list": [
+                                        {
+                                          "declaration": {
+                                            "identifier": "eqnTim",
+                                            "modification": {
+                                              "class_modification": [
+                                                {
+                                                  "element_modification_or_replaceable": {
+                                                    "final": true,
+                                                    "element_modification": {
+                                                      "name": "quantity",
+                                                      "modification": {
+                                                        "equal": true,
+                                                        "expression": {
+                                                          "simple_expression": "\"Time\""
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                },
+                                                {
+                                                  "element_modification_or_replaceable": {
+                                                    "final": true,
+                                                    "element_modification": {
+                                                      "name": "unit",
+                                                      "modification": {
+                                                        "equal": true,
+                                                        "expression": {
+                                                          "simple_expression": "\"s\""
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "description": {
+                                            "description_string": "Equation of time"
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "component_clause": {
+                                      "type_specifier": "Real",
+                                      "component_list": [
+                                        {
+                                          "declaration": {
+                                            "identifier": "decAng",
+                                            "modification": {
+                                              "class_modification": [
+                                                {
+                                                  "element_modification_or_replaceable": {
+                                                    "final": true,
+                                                    "element_modification": {
+                                                      "name": "quantity",
+                                                      "modification": {
+                                                        "equal": true,
+                                                        "expression": {
+                                                          "simple_expression": "\"Angle\""
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                },
+                                                {
+                                                  "element_modification_or_replaceable": {
+                                                    "final": true,
+                                                    "element_modification": {
+                                                      "name": "unit",
+                                                      "modification": {
+                                                        "equal": true,
+                                                        "expression": {
+                                                          "simple_expression": "\"rad\""
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                },
+                                                {
+                                                  "element_modification_or_replaceable": {
+                                                    "element_modification": {
+                                                      "name": "displayUnit",
+                                                      "modification": {
+                                                        "equal": true,
+                                                        "expression": {
+                                                          "simple_expression": "\"deg\""
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "description": {
+                                            "description_string": "Declination angle"
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "component_clause": {
+                                      "type_specifier": "Real",
+                                      "component_list": [
+                                        {
+                                          "declaration": {
+                                            "identifier": "cosHou"
+                                          },
+                                          "description": {
+                                            "description_string": "Cosine of hour angle"
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "algorithm_section": {
+                                  "statement": [
+                                    {
+                                      "assignment_statement": {
+                                        "identifier": [
+                                          {
+                                            "dot_op": false,
+                                            "identifier": "iDay"
+                                          }
+                                        ],
+                                        "value": {
+                                          "simple_expression": "1"
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "assignment_statement": {
+                                        "identifier": [
+                                          {
+                                            "dot_op": false,
+                                            "identifier": "compute"
+                                          }
+                                        ],
+                                        "value": {
+                                          "simple_expression": "true"
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "while_statement": {
+                                        "expression": {
+                                          "simple_expression": "compute"
+                                        },
+                                        "loop_statement": [
+                                          {
+                                            "assignment_statement": {
+                                              "identifier": [
+                                                {
+                                                  "dot_op": false,
+                                                  "identifier": "tNext"
+                                                }
+                                              ],
+                                              "value": {
+                                                "simple_expression": "t +iDay*86400"
+                                              }
+                                            }
+                                          },
+                                          {
+                                            "assignment_statement": {
+                                              "identifier": [
+                                                {
+                                                  "dot_op": false,
+                                                  "identifier": "Bt"
+                                                }
+                                              ],
+                                              "value": {
+                                                "simple_expression": "Modelica.Constants.pi*((tNext +86400)/86400 -81)/182"
+                                              }
+                                            }
+                                          },
+                                          {
+                                            "assignment_statement": {
+                                              "identifier": [
+                                                {
+                                                  "dot_op": false,
+                                                  "identifier": "eqnTim"
+                                                }
+                                              ],
+                                              "value": {
+                                                "simple_expression": "60*(9.87*Modelica.Math.sin(2*Bt) -7.53*Modelica.Math.cos(Bt) -1.5*Modelica.Math.sin(Bt))"
+                                              }
+                                            }
+                                          },
+                                          {
+                                            "assignment_statement": {
+                                              "identifier": [
+                                                {
+                                                  "dot_op": false,
+                                                  "identifier": "timCor"
+                                                }
+                                              ],
+                                              "value": {
+                                                "simple_expression": "eqnTim +timDifLocCiv"
+                                              }
+                                            }
+                                          },
+                                          {
+                                            "assignment_statement": {
+                                              "identifier": [
+                                                {
+                                                  "dot_op": false,
+                                                  "identifier": "decAng"
+                                                }
+                                              ],
+                                              "value": {
+                                                "simple_expression": {
+                                                  "function_call": {
+                                                    "name": "Modelica.Math.asin",
+                                                    "arguments": [
+                                                      {
+                                                        "name": "-k1*Modelica.Math.cos((tNext/86400 +10)*k2)"
+                                                      }
+                                                    ]
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          },
+                                          {
+                                            "assignment_statement": {
+                                              "identifier": [
+                                                {
+                                                  "dot_op": false,
+                                                  "identifier": "cosHou"
+                                                }
+                                              ],
+                                              "value": {
+                                                "simple_expression": "-Modelica.Math.tan(lat)*Modelica.Math.tan(decAng)"
+                                              }
+                                            }
+                                          },
+                                          {
+                                            "assignment_statement": {
+                                              "identifier": [
+                                                {
+                                                  "dot_op": false,
+                                                  "identifier": "compute"
+                                                }
+                                              ],
+                                              "value": {
+                                                "simple_expression": {
+                                                  "logical_expression": {
+                                                    "logical_or": [
+                                                      {
+                                                        "logical_and": [
+                                                          {
+                                                            "arithmetic_expressions": [
+                                                              {
+                                                                "name": "abs(cosHou)"
+                                                              },
+                                                              {
+                                                                "name": "1"
+                                                              }
+                                                            ],
+                                                            "relation_operator": ">"
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          },
+                                          {
+                                            "assignment_statement": {
+                                              "identifier": [
+                                                {
+                                                  "dot_op": false,
+                                                  "identifier": "iDay"
+                                                }
+                                              ],
+                                              "value": {
+                                                "simple_expression": "iDay +1"
+                                              }
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "assignment_statement": {
+                                        "identifier": [
+                                          {
+                                            "dot_op": false,
+                                            "identifier": "houAng"
+                                          }
+                                        ],
+                                        "value": {
+                                          "simple_expression": {
+                                            "function_call": {
+                                              "name": "Modelica.Math.acos",
+                                              "arguments": [
+                                                {
+                                                  "name": "cosHou"
+                                                }
+                                              ]
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "class_definition": {
+                      "class_prefixes": "function",
+                      "class_specifier": {
+                        "long_class_specifier": {
+                          "identifier": "computeSunRise",
+                          "description_string": "Output the next sunrise time",
+                          "composition": {
+                            "element_list": [
+                              {
+                                "component_clause": {
+                                  "type_prefix": "input",
+                                  "type_specifier": "Real",
+                                  "component_list": [
+                                    {
+                                      "declaration": {
+                                        "identifier": "t",
+                                        "modification": {
+                                          "class_modification": [
+                                            {
+                                              "element_modification_or_replaceable": {
+                                                "final": true,
+                                                "element_modification": {
+                                                  "name": "quantity",
+                                                  "modification": {
+                                                    "equal": true,
+                                                    "expression": {
+                                                      "simple_expression": "\"Time\""
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            {
+                                              "element_modification_or_replaceable": {
+                                                "final": true,
+                                                "element_modification": {
+                                                  "name": "unit",
+                                                  "modification": {
+                                                    "equal": true,
+                                                    "expression": {
+                                                      "simple_expression": "\"s\""
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "description": {
+                                        "description_string": "Current simulation time"
+                                      }
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "component_clause": {
+                                  "type_prefix": "input",
+                                  "type_specifier": "Real",
+                                  "component_list": [
+                                    {
+                                      "declaration": {
+                                        "identifier": "staTim",
+                                        "modification": {
+                                          "class_modification": [
+                                            {
+                                              "element_modification_or_replaceable": {
+                                                "final": true,
+                                                "element_modification": {
+                                                  "name": "quantity",
+                                                  "modification": {
+                                                    "equal": true,
+                                                    "expression": {
+                                                      "simple_expression": "\"Time\""
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            {
+                                              "element_modification_or_replaceable": {
+                                                "final": true,
+                                                "element_modification": {
+                                                  "name": "unit",
+                                                  "modification": {
+                                                    "equal": true,
+                                                    "expression": {
+                                                      "simple_expression": "\"s\""
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "description": {
+                                        "description_string": "Simulation start time"
+                                      }
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "component_clause": {
+                                  "type_prefix": "input",
+                                  "type_specifier": "Real",
+                                  "component_list": [
+                                    {
+                                      "declaration": {
+                                        "identifier": "timDifLocCiv",
+                                        "modification": {
+                                          "class_modification": [
+                                            {
+                                              "element_modification_or_replaceable": {
+                                                "final": true,
+                                                "element_modification": {
+                                                  "name": "quantity",
+                                                  "modification": {
+                                                    "equal": true,
+                                                    "expression": {
+                                                      "simple_expression": "\"Time\""
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            {
+                                              "element_modification_or_replaceable": {
+                                                "final": true,
+                                                "element_modification": {
+                                                  "name": "unit",
+                                                  "modification": {
+                                                    "equal": true,
+                                                    "expression": {
+                                                      "simple_expression": "\"s\""
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "description": {
+                                        "description_string": "Time difference between local and civil time"
+                                      }
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "component_clause": {
+                                  "type_prefix": "input",
+                                  "type_specifier": "Real",
+                                  "component_list": [
+                                    {
+                                      "declaration": {
+                                        "identifier": "lat",
+                                        "modification": {
+                                          "class_modification": [
+                                            {
+                                              "element_modification_or_replaceable": {
+                                                "final": true,
+                                                "element_modification": {
+                                                  "name": "quantity",
+                                                  "modification": {
+                                                    "equal": true,
+                                                    "expression": {
+                                                      "simple_expression": "\"Angle\""
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            {
+                                              "element_modification_or_replaceable": {
+                                                "final": true,
+                                                "element_modification": {
+                                                  "name": "unit",
+                                                  "modification": {
+                                                    "equal": true,
+                                                    "expression": {
+                                                      "simple_expression": "\"rad\""
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            {
+                                              "element_modification_or_replaceable": {
+                                                "element_modification": {
+                                                  "name": "displayUnit",
+                                                  "modification": {
+                                                    "equal": true,
+                                                    "expression": {
+                                                      "simple_expression": "\"deg\""
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "description": {
+                                        "description_string": "Latitude"
+                                      }
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "component_clause": {
+                                  "type_prefix": "output",
+                                  "type_specifier": "Real",
+                                  "component_list": [
+                                    {
+                                      "declaration": {
+                                        "identifier": "nextSunRise",
+                                        "modification": {
+                                          "class_modification": [
+                                            {
+                                              "element_modification_or_replaceable": {
+                                                "final": true,
+                                                "element_modification": {
+                                                  "name": "quantity",
+                                                  "modification": {
+                                                    "equal": true,
+                                                    "expression": {
+                                                      "simple_expression": "\"Time\""
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            {
+                                              "element_modification_or_replaceable": {
+                                                "final": true,
+                                                "element_modification": {
+                                                  "name": "unit",
+                                                  "modification": {
+                                                    "equal": true,
+                                                    "expression": {
+                                                      "simple_expression": "\"s\""
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ],
+                            "element_sections": [
+                              {
+                                "protected_element_list": [
+                                  {
+                                    "component_clause": {
+                                      "type_specifier": "Real",
+                                      "component_list": [
+                                        {
+                                          "declaration": {
+                                            "identifier": "houAng",
+                                            "modification": {
+                                              "class_modification": [
+                                                {
+                                                  "element_modification_or_replaceable": {
+                                                    "final": true,
+                                                    "element_modification": {
+                                                      "name": "quantity",
+                                                      "modification": {
+                                                        "equal": true,
+                                                        "expression": {
+                                                          "simple_expression": "\"Angle\""
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                },
+                                                {
+                                                  "element_modification_or_replaceable": {
+                                                    "final": true,
+                                                    "element_modification": {
+                                                      "name": "unit",
+                                                      "modification": {
+                                                        "equal": true,
+                                                        "expression": {
+                                                          "simple_expression": "\"rad\""
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                },
+                                                {
+                                                  "element_modification_or_replaceable": {
+                                                    "element_modification": {
+                                                      "name": "displayUnit",
+                                                      "modification": {
+                                                        "equal": true,
+                                                        "expression": {
+                                                          "simple_expression": "\"deg\""
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "description": {
+                                            "description_string": "Solar hour angle"
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "component_clause": {
+                                      "type_specifier": "Real",
+                                      "component_list": [
+                                        {
+                                          "declaration": {
+                                            "identifier": "tNext",
+                                            "modification": {
+                                              "class_modification": [
+                                                {
+                                                  "element_modification_or_replaceable": {
+                                                    "final": true,
+                                                    "element_modification": {
+                                                      "name": "quantity",
+                                                      "modification": {
+                                                        "equal": true,
+                                                        "expression": {
+                                                          "simple_expression": "\"Time\""
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                },
+                                                {
+                                                  "element_modification_or_replaceable": {
+                                                    "final": true,
+                                                    "element_modification": {
+                                                      "name": "unit",
+                                                      "modification": {
+                                                        "equal": true,
+                                                        "expression": {
+                                                          "simple_expression": "\"s\""
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "description": {
+                                            "description_string": "Timesnap when sun rises next time"
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "component_clause": {
+                                      "type_specifier": "Real",
+                                      "component_list": [
+                                        {
+                                          "declaration": {
+                                            "identifier": "timCor",
+                                            "modification": {
+                                              "class_modification": [
+                                                {
+                                                  "element_modification_or_replaceable": {
+                                                    "final": true,
+                                                    "element_modification": {
+                                                      "name": "quantity",
+                                                      "modification": {
+                                                        "equal": true,
+                                                        "expression": {
+                                                          "simple_expression": "\"Time\""
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                },
+                                                {
+                                                  "element_modification_or_replaceable": {
+                                                    "final": true,
+                                                    "element_modification": {
+                                                      "name": "unit",
+                                                      "modification": {
+                                                        "equal": true,
+                                                        "expression": {
+                                                          "simple_expression": "\"s\""
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "description": {
+                                            "description_string": "Time correction"
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "component_clause": {
+                                      "type_specifier": "Real",
+                                      "component_list": [
+                                        {
+                                          "declaration": {
+                                            "identifier": "sunRis",
+                                            "modification": {
+                                              "class_modification": [
+                                                {
+                                                  "element_modification_or_replaceable": {
+                                                    "final": true,
+                                                    "element_modification": {
+                                                      "name": "quantity",
+                                                      "modification": {
+                                                        "equal": true,
+                                                        "expression": {
+                                                          "simple_expression": "\"Time\""
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                },
+                                                {
+                                                  "element_modification_or_replaceable": {
+                                                    "final": true,
+                                                    "element_modification": {
+                                                      "name": "unit",
+                                                      "modification": {
+                                                        "equal": true,
+                                                        "expression": {
+                                                          "simple_expression": "\"s\""
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "description": {
+                                            "description_string": "Sunrise of the same day as input time"
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "component_clause": {
+                                      "type_specifier": "Real",
+                                      "component_list": [
+                                        {
+                                          "declaration": {
+                                            "identifier": "cosHou",
+                                            "modification": {
+                                              "class_modification": [
+                                                {
+                                                  "element_modification_or_replaceable": {
+                                                    "final": true,
+                                                    "element_modification": {
+                                                      "name": "quantity",
+                                                      "modification": {
+                                                        "equal": true,
+                                                        "expression": {
+                                                          "simple_expression": "\"Time\""
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                },
+                                                {
+                                                  "element_modification_or_replaceable": {
+                                                    "final": true,
+                                                    "element_modification": {
+                                                      "name": "unit",
+                                                      "modification": {
+                                                        "equal": true,
+                                                        "expression": {
+                                                          "simple_expression": "\"s\""
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "description": {
+                                            "description_string": "Cosine of hour angle"
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "algorithm_section": {
+                                  "statement": [
+                                    {},
+                                    {
+                                      "assignment_statement": {
+                                        "identifier": [
+                                          {
+                                            "dot_op": false,
+                                            "identifier": "sunRis"
+                                          }
+                                        ],
+                                        "value": {
+                                          "simple_expression": "(12 -houAng*24/(2*Modelica.Constants.pi) -timCor/3600)*3600 +floor(tNext/86400)*86400"
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "if_statement": {
+                                        "if_elseif": [
+                                          {
+                                            "condition": {
+                                              "simple_expression": {
+                                                "logical_expression": {
+                                                  "logical_or": [
+                                                    {
+                                                      "logical_and": [
+                                                        {
+                                                          "arithmetic_expressions": [
+                                                            {
+                                                              "name": "staTim"
+                                                            },
+                                                            {
+                                                              "name": "sunRis"
+                                                            }
+                                                          ],
+                                                          "relation_operator": ">"
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              }
+                                            },
+                                            "then": [
+                                              {
+                                                "assignment_statement": {
+                                                  "identifier": [
+                                                    {
+                                                      "dot_op": false,
+                                                      "identifier": "nextSunRise"
+                                                    }
+                                                  ],
+                                                  "value": {
+                                                    "simple_expression": "sunRis +86400"
+                                                  }
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        ],
+                                        "else_statement": [
+                                          {
+                                            "assignment_statement": {
+                                              "identifier": [
+                                                {
+                                                  "dot_op": false,
+                                                  "identifier": "nextSunRise"
+                                                }
+                                              ],
+                                              "value": {
+                                                "simple_expression": "sunRis"
+                                              }
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "class_definition": {
+                      "class_prefixes": "function",
+                      "class_specifier": {
+                        "long_class_specifier": {
+                          "identifier": "computeSunSet",
+                          "description_string": "Output the next sunset time",
+                          "composition": {
+                            "element_list": [
+                              {
+                                "component_clause": {
+                                  "type_prefix": "input",
+                                  "type_specifier": "Real",
+                                  "component_list": [
+                                    {
+                                      "declaration": {
+                                        "identifier": "t",
+                                        "modification": {
+                                          "class_modification": [
+                                            {
+                                              "element_modification_or_replaceable": {
+                                                "final": true,
+                                                "element_modification": {
+                                                  "name": "quantity",
+                                                  "modification": {
+                                                    "equal": true,
+                                                    "expression": {
+                                                      "simple_expression": "\"Time\""
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            {
+                                              "element_modification_or_replaceable": {
+                                                "final": true,
+                                                "element_modification": {
+                                                  "name": "unit",
+                                                  "modification": {
+                                                    "equal": true,
+                                                    "expression": {
+                                                      "simple_expression": "\"s\""
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "description": {
+                                        "description_string": "Current simulation time"
+                                      }
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "component_clause": {
+                                  "type_prefix": "input",
+                                  "type_specifier": "Real",
+                                  "component_list": [
+                                    {
+                                      "declaration": {
+                                        "identifier": "staTim",
+                                        "modification": {
+                                          "class_modification": [
+                                            {
+                                              "element_modification_or_replaceable": {
+                                                "final": true,
+                                                "element_modification": {
+                                                  "name": "quantity",
+                                                  "modification": {
+                                                    "equal": true,
+                                                    "expression": {
+                                                      "simple_expression": "\"Time\""
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            {
+                                              "element_modification_or_replaceable": {
+                                                "final": true,
+                                                "element_modification": {
+                                                  "name": "unit",
+                                                  "modification": {
+                                                    "equal": true,
+                                                    "expression": {
+                                                      "simple_expression": "\"s\""
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "description": {
+                                        "description_string": "Simulation start time"
+                                      }
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "component_clause": {
+                                  "type_prefix": "input",
+                                  "type_specifier": "Real",
+                                  "component_list": [
+                                    {
+                                      "declaration": {
+                                        "identifier": "timDifLocCiv",
+                                        "modification": {
+                                          "class_modification": [
+                                            {
+                                              "element_modification_or_replaceable": {
+                                                "final": true,
+                                                "element_modification": {
+                                                  "name": "quantity",
+                                                  "modification": {
+                                                    "equal": true,
+                                                    "expression": {
+                                                      "simple_expression": "\"Time\""
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            {
+                                              "element_modification_or_replaceable": {
+                                                "final": true,
+                                                "element_modification": {
+                                                  "name": "unit",
+                                                  "modification": {
+                                                    "equal": true,
+                                                    "expression": {
+                                                      "simple_expression": "\"s\""
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "description": {
+                                        "description_string": "Time difference between local and civil time"
+                                      }
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "component_clause": {
+                                  "type_prefix": "input",
+                                  "type_specifier": "Real",
+                                  "component_list": [
+                                    {
+                                      "declaration": {
+                                        "identifier": "lat",
+                                        "modification": {
+                                          "class_modification": [
+                                            {
+                                              "element_modification_or_replaceable": {
+                                                "final": true,
+                                                "element_modification": {
+                                                  "name": "quantity",
+                                                  "modification": {
+                                                    "equal": true,
+                                                    "expression": {
+                                                      "simple_expression": "\"Angle\""
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            {
+                                              "element_modification_or_replaceable": {
+                                                "final": true,
+                                                "element_modification": {
+                                                  "name": "unit",
+                                                  "modification": {
+                                                    "equal": true,
+                                                    "expression": {
+                                                      "simple_expression": "\"rad\""
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            {
+                                              "element_modification_or_replaceable": {
+                                                "element_modification": {
+                                                  "name": "displayUnit",
+                                                  "modification": {
+                                                    "equal": true,
+                                                    "expression": {
+                                                      "simple_expression": "\"deg\""
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "description": {
+                                        "description_string": "Latitude"
+                                      }
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "component_clause": {
+                                  "type_prefix": "output",
+                                  "type_specifier": "Real",
+                                  "component_list": [
+                                    {
+                                      "declaration": {
+                                        "identifier": "nextSunSet",
+                                        "modification": {
+                                          "class_modification": [
+                                            {
+                                              "element_modification_or_replaceable": {
+                                                "final": true,
+                                                "element_modification": {
+                                                  "name": "quantity",
+                                                  "modification": {
+                                                    "equal": true,
+                                                    "expression": {
+                                                      "simple_expression": "\"Time\""
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            {
+                                              "element_modification_or_replaceable": {
+                                                "final": true,
+                                                "element_modification": {
+                                                  "name": "unit",
+                                                  "modification": {
+                                                    "equal": true,
+                                                    "expression": {
+                                                      "simple_expression": "\"s\""
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ],
+                            "element_sections": [
+                              {
+                                "protected_element_list": [
+                                  {
+                                    "component_clause": {
+                                      "type_specifier": "Real",
+                                      "component_list": [
+                                        {
+                                          "declaration": {
+                                            "identifier": "houAng",
+                                            "modification": {
+                                              "class_modification": [
+                                                {
+                                                  "element_modification_or_replaceable": {
+                                                    "final": true,
+                                                    "element_modification": {
+                                                      "name": "quantity",
+                                                      "modification": {
+                                                        "equal": true,
+                                                        "expression": {
+                                                          "simple_expression": "\"Angle\""
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                },
+                                                {
+                                                  "element_modification_or_replaceable": {
+                                                    "final": true,
+                                                    "element_modification": {
+                                                      "name": "unit",
+                                                      "modification": {
+                                                        "equal": true,
+                                                        "expression": {
+                                                          "simple_expression": "\"rad\""
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                },
+                                                {
+                                                  "element_modification_or_replaceable": {
+                                                    "element_modification": {
+                                                      "name": "displayUnit",
+                                                      "modification": {
+                                                        "equal": true,
+                                                        "expression": {
+                                                          "simple_expression": "\"deg\""
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "description": {
+                                            "description_string": "Solar hour angle"
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "component_clause": {
+                                      "type_specifier": "Real",
+                                      "component_list": [
+                                        {
+                                          "declaration": {
+                                            "identifier": "tNext",
+                                            "modification": {
+                                              "class_modification": [
+                                                {
+                                                  "element_modification_or_replaceable": {
+                                                    "final": true,
+                                                    "element_modification": {
+                                                      "name": "quantity",
+                                                      "modification": {
+                                                        "equal": true,
+                                                        "expression": {
+                                                          "simple_expression": "\"Time\""
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                },
+                                                {
+                                                  "element_modification_or_replaceable": {
+                                                    "final": true,
+                                                    "element_modification": {
+                                                      "name": "unit",
+                                                      "modification": {
+                                                        "equal": true,
+                                                        "expression": {
+                                                          "simple_expression": "\"s\""
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "description": {
+                                            "description_string": "Timesnap when sun sets next time"
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "component_clause": {
+                                      "type_specifier": "Real",
+                                      "component_list": [
+                                        {
+                                          "declaration": {
+                                            "identifier": "timCor",
+                                            "modification": {
+                                              "class_modification": [
+                                                {
+                                                  "element_modification_or_replaceable": {
+                                                    "final": true,
+                                                    "element_modification": {
+                                                      "name": "quantity",
+                                                      "modification": {
+                                                        "equal": true,
+                                                        "expression": {
+                                                          "simple_expression": "\"Time\""
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                },
+                                                {
+                                                  "element_modification_or_replaceable": {
+                                                    "final": true,
+                                                    "element_modification": {
+                                                      "name": "unit",
+                                                      "modification": {
+                                                        "equal": true,
+                                                        "expression": {
+                                                          "simple_expression": "\"s\""
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "description": {
+                                            "description_string": "Time correction"
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "component_clause": {
+                                      "type_specifier": "Real",
+                                      "component_list": [
+                                        {
+                                          "declaration": {
+                                            "identifier": "sunSet",
+                                            "modification": {
+                                              "class_modification": [
+                                                {
+                                                  "element_modification_or_replaceable": {
+                                                    "final": true,
+                                                    "element_modification": {
+                                                      "name": "quantity",
+                                                      "modification": {
+                                                        "equal": true,
+                                                        "expression": {
+                                                          "simple_expression": "\"Time\""
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                },
+                                                {
+                                                  "element_modification_or_replaceable": {
+                                                    "final": true,
+                                                    "element_modification": {
+                                                      "name": "unit",
+                                                      "modification": {
+                                                        "equal": true,
+                                                        "expression": {
+                                                          "simple_expression": "\"s\""
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "description": {
+                                            "description_string": "Sunset of the same day as input time"
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "component_clause": {
+                                      "type_specifier": "Real",
+                                      "component_list": [
+                                        {
+                                          "declaration": {
+                                            "identifier": "cosHou",
+                                            "modification": {
+                                              "class_modification": [
+                                                {
+                                                  "element_modification_or_replaceable": {
+                                                    "final": true,
+                                                    "element_modification": {
+                                                      "name": "quantity",
+                                                      "modification": {
+                                                        "equal": true,
+                                                        "expression": {
+                                                          "simple_expression": "\"Time\""
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                },
+                                                {
+                                                  "element_modification_or_replaceable": {
+                                                    "final": true,
+                                                    "element_modification": {
+                                                      "name": "unit",
+                                                      "modification": {
+                                                        "equal": true,
+                                                        "expression": {
+                                                          "simple_expression": "\"s\""
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "description": {
+                                            "description_string": "Cosine of hour angle"
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "algorithm_section": {
+                                  "statement": [
+                                    {},
+                                    {
+                                      "assignment_statement": {
+                                        "identifier": [
+                                          {
+                                            "dot_op": false,
+                                            "identifier": "sunSet"
+                                          }
+                                        ],
+                                        "value": {
+                                          "simple_expression": "(12 +houAng*24/(2*Modelica.Constants.pi) -timCor/3600)*3600 +floor(tNext/86400)*86400"
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "if_statement": {
+                                        "if_elseif": [
+                                          {
+                                            "condition": {
+                                              "simple_expression": {
+                                                "logical_expression": {
+                                                  "logical_or": [
+                                                    {
+                                                      "logical_and": [
+                                                        {
+                                                          "arithmetic_expressions": [
+                                                            {
+                                                              "name": "staTim"
+                                                            },
+                                                            {
+                                                              "name": "sunSet"
+                                                            }
+                                                          ],
+                                                          "relation_operator": ">"
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              }
+                                            },
+                                            "then": [
+                                              {
+                                                "assignment_statement": {
+                                                  "identifier": [
+                                                    {
+                                                      "dot_op": false,
+                                                      "identifier": "nextSunSet"
+                                                    }
+                                                  ],
+                                                  "value": {
+                                                    "simple_expression": "sunSet +86400"
+                                                  }
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        ],
+                                        "else_statement": [
+                                          {
+                                            "assignment_statement": {
+                                              "identifier": [
+                                                {
+                                                  "dot_op": false,
+                                                  "identifier": "nextSunSet"
+                                                }
+                                              ],
+                                              "value": {
+                                                "simple_expression": "sunSet"
+                                              }
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "equation_section": {
+                  "initial": true,
+                  "equation": [
+                    {
+                      "assignment_equation": {
+                        "lhs": "staTim",
+                        "rhs": {
+                          "simple_expression": "time"
+                        }
+                      }
+                    },
+                    {
+                      "assignment_equation": {
+                        "lhs": "timDifLocCiv",
+                        "rhs": {
+                          "simple_expression": "lon*43200/Modelica.Constants.pi -timZon"
+                        }
+                      }
+                    },
+                    {
+                      "assignment_equation": {
+                        "lhs": "nextSunRise",
+                        "rhs": {
+                          "simple_expression": {
+                            "function_call": {
+                              "name": "computeSunRise",
+                              "arguments": [
+                                {
+                                  "name": "t=time -86400,staTim=staTim,timDifLocCiv=timDifLocCiv,lat=lat"
+                                }
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "if_equation": {
+                        "if_elseif": [
+                          {
+                            "condition": {
+                              "simple_expression": {
+                                "logical_expression": {
+                                  "logical_or": [
+                                    {
+                                      "logical_and": [
+                                        {
+                                          "arithmetic_expressions": [
+                                            {
+                                              "name": "cosHou"
+                                            },
+                                            {
+                                              "name": "-1"
+                                            }
+                                          ],
+                                          "relation_operator": "<"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              }
+                            },
+                            "then": [
+                              {
+                                "equation": {
+                                  "assignment_equation": {
+                                    "lhs": "nextSunSet",
+                                    "rhs": {
+                                      "simple_expression": "computeSunSet(t=time -86400,staTim=staTim,timDifLocCiv=timDifLocCiv,lat=lat) -86400"
+                                    }
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        ],
+                        "else_equation": [
+                          {
+                            "assignment_equation": {
+                              "lhs": "nextSunSet",
+                              "rhs": {
+                                "simple_expression": {
+                                  "function_call": {
+                                    "name": "computeSunSet",
+                                    "arguments": [
+                                      {
+                                        "name": "t=time -86400,staTim=staTim,timDifLocCiv=timDifLocCiv,lat=lat"
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "equation_section": {
+                  "equation": [
+                    {
+                      "assignment_equation": {
+                        "lhs": "Bt",
+                        "rhs": {
+                          "simple_expression": "Modelica.Constants.pi*((time +86400)/86400 -81)/182"
+                        }
+                      }
+                    },
+                    {
+                      "assignment_equation": {
+                        "lhs": "eqnTim",
+                        "rhs": {
+                          "simple_expression": "60*(9.87*Modelica.Math.sin(2*Bt) -7.53*Modelica.Math.cos(Bt) -1.5*Modelica.Math.sin(Bt))"
+                        }
+                      }
+                    },
+                    {
+                      "assignment_equation": {
+                        "lhs": "timCor",
+                        "rhs": {
+                          "simple_expression": "eqnTim +timDifLocCiv"
+                        }
+                      }
+                    },
+                    {
+                      "assignment_equation": {
+                        "lhs": "decAng",
+                        "rhs": {
+                          "simple_expression": {
+                            "function_call": {
+                              "name": "Modelica.Math.asin",
+                              "arguments": [
+                                {
+                                  "name": "-k1*Modelica.Math.cos((time/86400 +10)*k2)"
+                                }
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "assignment_equation": {
+                        "lhs": "cosHou",
+                        "rhs": {
+                          "simple_expression": "-Modelica.Math.tan(lat)*Modelica.Math.tan(decAng)"
+                        }
+                      }
+                    },
+                    {
+                      "when_equation": [
+                        {
+                          "condition": {
+                            "simple_expression": {
+                              "logical_expression": {
+                                "logical_or": [
+                                  {
+                                    "logical_and": [
+                                      {
+                                        "arithmetic_expressions": [
+                                          {
+                                            "name": "time"
+                                          },
+                                          {
+                                            "name": "pre(nextSunRise)"
+                                          }
+                                        ],
+                                        "relation_operator": ">="
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            }
+                          },
+                          "then": [
+                            {
+                              "assignment_equation": {
+                                "lhs": "nextSunRise",
+                                "rhs": {
+                                  "simple_expression": {
+                                    "function_call": {
+                                      "name": "computeSunRise",
+                                      "arguments": [
+                                        {
+                                          "name": "t=time,staTim=staTim,timDifLocCiv=timDifLocCiv,lat=lat"
+                                        }
+                                      ]
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "when_equation": [
+                        {
+                          "condition": {
+                            "simple_expression": {
+                              "logical_expression": {
+                                "logical_or": [
+                                  {
+                                    "logical_and": [
+                                      {
+                                        "arithmetic_expressions": [
+                                          {
+                                            "name": "time"
+                                          },
+                                          {
+                                            "name": "pre(nextSunSet)"
+                                          }
+                                        ],
+                                        "relation_operator": ">="
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            }
+                          },
+                          "then": [
+                            {
+                              "assignment_equation": {
+                                "lhs": "nextSunSet",
+                                "rhs": {
+                                  "simple_expression": {
+                                    "function_call": {
+                                      "name": "computeSunSet",
+                                      "arguments": [
+                                        {
+                                          "name": "t=time,staTim=staTim,timDifLocCiv=timDifLocCiv,lat=lat"
+                                        }
+                                      ]
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "assignment_equation": {
+                        "lhs": "sunUp",
+                        "rhs": {
+                          "simple_expression": {
+                            "logical_expression": {
+                              "logical_or": [
+                                {
+                                  "logical_and": [
+                                    {
+                                      "arithmetic_expressions": [
+                                        {
+                                          "name": "nextSunSet"
+                                        },
+                                        {
+                                          "name": "nextSunRise"
+                                        }
+                                      ],
+                                      "relation_operator": "<"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            ],
+            "annotation": [
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "defaultComponentName",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "\"sunRiseSet\""
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "Documentation",
+                    "modification": {
+                      "class_modification": [
+                        {
+                          "element_modification_or_replaceable": {
+                            "element_modification": {
+                              "name": "info",
+                              "modification": {
+                                "equal": true,
+                                "expression": {
+                                  "simple_expression": "\"<html>\n<p>\nThis block outputs the next sunrise and sunset time.\nThe sunrise time keeps constant until the model time reaches the next sunrise,\nat which time the output gets updated.\nSimilarly, the output for the next sunset is updated at each sunset.\n</p>\n<p>\nThe time zone parameter is based on UTC time; for instance, Eastern Standard Time is -5h.\nNote that daylight savings time is not considered in this component.\n</p>\n<h4>Validation</h4>\n<p>\nA validation can be found at\n<a href=\\\"modelica://Buildings.Controls.OBC.CDL.Utilities.Validation.SunRiseSet\\\">\nBuildings.Controls.OBC.CDL.Utilities.Validation.SunRiseSet</a>.\n</p>\n</html>\""
+                                }
+                              }
+                            }
+                          }
+                        },
+                        {
+                          "element_modification_or_replaceable": {
+                            "element_modification": {
+                              "name": "revisions",
+                              "modification": {
+                                "equal": true,
+                                "expression": {
+                                  "simple_expression": "\"<html>\n<ul>\n<li>\nJanuary 4, 2022, by Michael Wetter:<br/>\nChanged implementation to avoid NaN in OpenModelica.<br/>\nThis is for\n<a href=\\\"https://github.com/lbl-srg/modelica-buildings/issues/2835\\\">Buildings, issue 2835</a>.\n</li>\n<li>\nNovember 12, 2020, by Michael Wetter:<br/>\nReformulated to remove dependency to <code>Modelica.Units.SI</code>.<br/>\nThis is for\n<a href=\\\"https://github.com/lbl-srg/modelica-buildings/issues/2243\\\">Buildings, issue 2243</a>.\n</li>\n<li>\nNovember 27, 2018, by Kun Zhang:<br/>\nFirst implementation.\nThis is for\nissue <a href=\\\"https://github.com/lbl-srg/modelica-buildings/issues/829\\\">829</a>.\n</li>\n</ul>\n</html>\""
+                                }
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              },
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "Icon",
+                    "modification": {
+                      "class_modification": [
+                        {
+                          "element_modification_or_replaceable": {
+                            "element_modification": {
+                              "graphics": [
+                                {
+                                  "name": "Rectangle",
+                                  "attribute": {
+                                    "extent": [
+                                      {
+                                        "x": -100,
+                                        "y": -100
+                                      },
+                                      {
+                                        "x": 100,
+                                        "y": 100
+                                      }
+                                    ],
+                                    "lineColor": {
+                                      "r": 0,
+                                      "g": 0,
+                                      "b": 127
+                                    },
+                                    "fillColor": {
+                                      "r": 255,
+                                      "g": 255,
+                                      "b": 255
+                                    },
+                                    "fillPattern": "FillPattern.Solid"
+                                  }
+                                },
+                                {
+                                  "name": "Text",
+                                  "attribute": {
+                                    "extent": [
+                                      {
+                                        "x": -100,
+                                        "y": 160
+                                      },
+                                      {
+                                        "x": 100,
+                                        "y": 106
+                                      }
+                                    ],
+                                    "textString": "\"%name\"",
+                                    "textColor": {
+                                      "r": 0,
+                                      "g": 0,
+                                      "b": 255
+                                    }
+                                  }
+                                },
+                                {
+                                  "name": "Ellipse",
+                                  "attribute": {
+                                    "extent": [
+                                      {
+                                        "x": 70,
+                                        "y": -100
+                                      },
+                                      {
+                                        "x": -70,
+                                        "y": 20
+                                      }
+                                    ],
+                                    "startAngle": 0,
+                                    "endAngle": 180,
+                                    "lineColor": {
+                                      "r": 238,
+                                      "g": 46,
+                                      "b": 47
+                                    }
+                                  }
+                                },
+                                {
+                                  "name": "Line",
+                                  "attribute": {
+                                    "points": [
+                                      {
+                                        "x": -94,
+                                        "y": -40
+                                      },
+                                      {
+                                        "x": 92,
+                                        "y": -40
+                                      },
+                                      {
+                                        "x": 92,
+                                        "y": -40
+                                      }
+                                    ],
+                                    "color": {
+                                      "r": 28,
+                                      "g": 108,
+                                      "b": 200
+                                    },
+                                    "thickness": 0.5
+                                  }
+                                },
+                                {
+                                  "name": "Line",
+                                  "attribute": {
+                                    "points": [
+                                      {
+                                        "x": 0,
+                                        "y": 60
+                                      },
+                                      {
+                                        "x": 0,
+                                        "y": 32
+                                      }
+                                    ],
+                                    "color": {
+                                      "r": 238,
+                                      "g": 46,
+                                      "b": 47
+                                    }
+                                  }
+                                },
+                                {
+                                  "name": "Line",
+                                  "attribute": {
+                                    "points": [
+                                      {
+                                        "x": 60,
+                                        "y": 40
+                                      },
+                                      {
+                                        "x": 40,
+                                        "y": 20
+                                      }
+                                    ],
+                                    "color": {
+                                      "r": 238,
+                                      "g": 46,
+                                      "b": 47
+                                    }
+                                  }
+                                },
+                                {
+                                  "name": "Line",
+                                  "attribute": {
+                                    "points": [
+                                      {
+                                        "x": 94,
+                                        "y": -6
+                                      },
+                                      {
+                                        "x": 70,
+                                        "y": -6
+                                      }
+                                    ],
+                                    "color": {
+                                      "r": 238,
+                                      "g": 46,
+                                      "b": 47
+                                    }
+                                  }
+                                },
+                                {
+                                  "name": "Line",
+                                  "attribute": {
+                                    "points": [
+                                      {
+                                        "x": 10,
+                                        "y": 10
+                                      },
+                                      {
+                                        "x": -10,
+                                        "y": -10
+                                      }
+                                    ],
+                                    "color": {
+                                      "r": 238,
+                                      "g": 46,
+                                      "b": 47
+                                    }
+                                  }
+                                },
+                                {
+                                  "name": "Line",
+                                  "attribute": {
+                                    "points": [
+                                      {
+                                        "x": -70,
+                                        "y": -6
+                                      },
+                                      {
+                                        "x": -94,
+                                        "y": -6
+                                      }
+                                    ],
+                                    "color": {
+                                      "r": 238,
+                                      "g": 46,
+                                      "b": 47
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "modelicaFile": "Buildings/Controls/OBC/CDL/Utilities/SunRiseSet.mo",
+  "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-buildings/Buildings/Controls/OBC/CDL/Utilities/SunRiseSet.mo",
+  "checksum": "ebf32190d75e017e47a3927ca45dc8d0"
+}

@@ -1,0 +1,50 @@
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#"
+  },
+  "@graph": [
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Pre",
+      "@type": "S231P:ElementaryBlock",
+      "S231P:documentation": "info=<html>\n<p>\nThis block delays the Boolean input by an infinitesimal small time delay and\ntherefore breaks algebraic loops. In a network of logical blocks, in every\n<i>closed connection loop</i>, at least one logical block must have a delay,\nsince algebraic systems of Boolean equations are not solvable.\n</p>\n\n<p>\nThis block returns the value of the input signal <code>u</code> from the\nlast event iteration. The event iteration stops once both\nvalues are identical, i.e., if <code>u = pre(u)</code>.\n</p>\n</html>,revisions=<html>\n<ul>\n<li>\nMay 24, 2017, by Milica Grahovac:<br/>\nFirst CDL implementation.\n</li>\n</ul>\n</html>",
+      "S231P:hasInput": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Pre.u"
+      },
+      "S231P:hasOutput": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Pre.y"
+      },
+      "S231P:hasParameter": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Pre.pre_u_start"
+      },
+      "S231P:icon": "coordinateSystem(extent={{-100,-100},{100,100}},preserveAspectRatio=true),graphics={Rectangle(extent={{-100,100},{100,-100}},borderPattern=BorderPattern.Raised,fillColor={210,210,210},fillPattern=FillPattern.Solid),Text(textString=\"pre\",textColor={0,0,0},extent={{-90,40},{90,-40}}),Text(textString=\"%name\",textColor={0,0,255},extent={{-150,150},{150,110}}),Ellipse(extent={{71,7},{85,-7}},lineColor={235,235,235},fillColor={235,235,235},fillPattern=FillPattern.Solid),Ellipse(extent={{-75,-6},{-89,8}},lineColor={235,235,235},fillColor={235,235,235},fillPattern=FillPattern.Solid)}",
+      "S231P:label": "Pre"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Pre.pre_u_start",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Start value of pre(u) at initial time",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Boolean"
+      },
+      "S231P:label": "pre_u_start",
+      "S231P:value": false
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Pre.u",
+      "@type": "S231P:BooleanInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Input to be delayed by one event iteration",
+      "S231P:graphics": "Placement(transformation(extent={{-140,-20},{-100,20}})))",
+      "S231P:label": "u"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Logical.Pre.y",
+      "@type": "S231P:BooleanOutput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Input delayed by one event iteration",
+      "S231P:graphics": "Placement(transformation(extent={{100,-20},{140,20}})))",
+      "S231P:label": "y"
+    }
+  ]
+}

@@ -1,0 +1,3641 @@
+{
+  "instances": {
+    "Interfaces": {
+      "within": "Modelica.Blocks",
+      "fullMoFilePath": "/opt/oct/ThirdParty/MSL/MSL400/Modelica/Blocks/Interfaces.mo",
+      "type": "long_class_specifier",
+      "class_prefixes": "package",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Documentation",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "info",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<p>\nThis package contains interface definitions for\n<strong>continuous</strong> input/output blocks with Real,\nInteger and Boolean signals. Furthermore, it contains\npartial models for continuous and discrete blocks.\n</p>\n\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "revisions",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<ul>\n<li><em>June 28, 2019</em>\n       by Thomas Beutlich:<br>\n       Removed obsolete blocks.</li>\n<li><em>Oct. 21, 2002</em>\n       by <a href=\\\"http://www.robotic.dlr.de/Martin.Otter/\\\">Martin Otter</a>\n       and Christian Schweiger:<br>\n       Added several new interfaces.</li>\n<li><em>Oct. 24, 1999</em>\n       by <a href=\\\"http://www.robotic.dlr.de/Martin.Otter/\\\">Martin Otter</a>:<br>\n       RealInputSignal renamed to RealInput. RealOutputSignal renamed to\n       output RealOutput. GraphBlock renamed to BlockIcon. SISOreal renamed to\n       SISO. SOreal renamed to SO. I2SOreal renamed to M2SO.\n       SignalGenerator renamed to SignalSource. Introduced the following\n       new models: MIMO, MIMOs, SVcontrol, MVcontrol, DiscreteBlockIcon,\n       DiscreteBlock, DiscreteSISO, DiscreteMIMO, DiscreteMIMOs,\n       BooleanBlockIcon, BooleanSISO, BooleanSignalSource, MI2BooleanMOs.</li>\n<li><em>June 30, 1999</em>\n       by <a href=\\\"http://www.robotic.dlr.de/Martin.Otter/\\\">Martin Otter</a>:<br>\n       Realized a first version, based on an existing Dymola library\n       of Dieter Moormann and Hilding Elmqvist.</li>\n</ul>\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    },
+    "SO": {
+      "within": "Modelica.Blocks",
+      "fullMoFilePath": "/opt/oct/ThirdParty/MSL/MSL400/Modelica/Blocks/Interfaces.mo",
+      "classPrefixes": "partial block",
+      "compositionSpecifier": "public",
+      "type": "long_class_specifier",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Documentation",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "info",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<p>\nBlock has one continuous Real output signal.\n</p>\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    },
+    "MO": {
+      "within": "Modelica.Blocks",
+      "fullMoFilePath": "/opt/oct/ThirdParty/MSL/MSL400/Modelica/Blocks/Interfaces.mo",
+      "classPrefixes": "partial block",
+      "compositionSpecifier": "public",
+      "type": "long_class_specifier",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Documentation",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "info",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<p>\nBlock has one continuous Real output signal vector.\n</p>\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    },
+    "SISO": {
+      "within": "Modelica.Blocks",
+      "fullMoFilePath": "/opt/oct/ThirdParty/MSL/MSL400/Modelica/Blocks/Interfaces.mo",
+      "classPrefixes": "partial block",
+      "compositionSpecifier": "public",
+      "type": "long_class_specifier",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Documentation",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "info",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<p>\nBlock has one continuous Real input and one continuous Real output signal.\n</p>\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    },
+    "SI2SO": {
+      "within": "Modelica.Blocks",
+      "fullMoFilePath": "/opt/oct/ThirdParty/MSL/MSL400/Modelica/Blocks/Interfaces.mo",
+      "classPrefixes": "partial block",
+      "compositionSpecifier": "public",
+      "type": "long_class_specifier",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Documentation",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "info",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<p>\nBlock has two continuous Real input signals u1 and u2 and one\ncontinuous Real output signal y.\n</p>\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    },
+    "SIMO": {
+      "within": "Modelica.Blocks",
+      "fullMoFilePath": "/opt/oct/ThirdParty/MSL/MSL400/Modelica/Blocks/Interfaces.mo",
+      "classPrefixes": "partial block",
+      "compositionSpecifier": "public",
+      "type": "long_class_specifier",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Documentation",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "info",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<p> Block has one continuous Real input signal and a\n    vector of continuous Real output signals.</p>\n\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    },
+    "MISO": {
+      "within": "Modelica.Blocks",
+      "fullMoFilePath": "/opt/oct/ThirdParty/MSL/MSL400/Modelica/Blocks/Interfaces.mo",
+      "classPrefixes": "partial block",
+      "compositionSpecifier": "public",
+      "type": "long_class_specifier",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Documentation",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "info",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<p>\nBlock has a vector of continuous Real input signals and\none continuous Real output signal.\n</p>\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    },
+    "PartialRealMISO": {
+      "within": "Modelica.Blocks",
+      "fullMoFilePath": "/opt/oct/ThirdParty/MSL/MSL400/Modelica/Blocks/Interfaces.mo",
+      "classPrefixes": "partial block",
+      "compositionSpecifier": "public",
+      "type": "long_class_specifier",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Icon",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "coordinateSystem": {
+                          "extent": [
+                            {
+                              "x": -100,
+                              "y": -100
+                            },
+                            {
+                              "x": 100,
+                              "y": 100
+                            }
+                          ],
+                          "preserveAspectRatio": "true",
+                          "initialScale": 0.06
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "graphics": [
+                          {
+                            "name": "Text",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": 110,
+                                  "y": -50
+                                },
+                                {
+                                  "x": 300,
+                                  "y": -70
+                                }
+                              ],
+                              "textString": "DynamicSelect(\" \",String(y"
+                            }
+                          },
+                          {
+                            "name": "Text",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -250,
+                                  "y": 170
+                                },
+                                {
+                                  "x": 250,
+                                  "y": 110
+                                }
+                              ],
+                              "textString": "\"%name\"",
+                              "textColor": {
+                                "r": 0,
+                                "g": 0,
+                                "b": 255
+                              }
+                            }
+                          },
+                          {
+                            "name": "Rectangle",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -100,
+                                  "y": 100
+                                },
+                                {
+                                  "x": 100,
+                                  "y": -100
+                                }
+                              ],
+                              "borderPattern": "BorderPattern.Raised",
+                              "lineColor": {
+                                "r": 255,
+                                "g": 137,
+                                "b": 0
+                              },
+                              "fillColor": {
+                                "r": 255,
+                                "g": 255,
+                                "b": 255
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    },
+    "MIMO": {
+      "within": "Modelica.Blocks",
+      "fullMoFilePath": "/opt/oct/ThirdParty/MSL/MSL400/Modelica/Blocks/Interfaces.mo",
+      "classPrefixes": "partial block",
+      "compositionSpecifier": "public",
+      "type": "long_class_specifier",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Documentation",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "info",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<p>\nBlock has a continuous Real input and a continuous Real output signal vector.\nThe signal sizes of the input and output vector may be different.\n</p>\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    },
+    "MIMOs": {
+      "within": "Modelica.Blocks",
+      "fullMoFilePath": "/opt/oct/ThirdParty/MSL/MSL400/Modelica/Blocks/Interfaces.mo",
+      "classPrefixes": "partial block",
+      "compositionSpecifier": "public",
+      "type": "long_class_specifier",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Documentation",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "info",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<p>\nBlock has a continuous Real input and a continuous Real output signal vector\nwhere the signal sizes of the input and output vector are identical.\n</p>\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    },
+    "MI2MO": {
+      "within": "Modelica.Blocks",
+      "fullMoFilePath": "/opt/oct/ThirdParty/MSL/MSL400/Modelica/Blocks/Interfaces.mo",
+      "classPrefixes": "partial block",
+      "compositionSpecifier": "public",
+      "type": "long_class_specifier",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Documentation",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "info",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<p>\nBlock has two continuous Real input vectors u1 and u2 and one\ncontinuous Real output vector y.\nAll vectors have the same number of elements.\n</p>\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    },
+    "SignalSource": {
+      "within": "Modelica.Blocks",
+      "fullMoFilePath": "/opt/oct/ThirdParty/MSL/MSL400/Modelica/Blocks/Interfaces.mo",
+      "classPrefixes": "partial block",
+      "compositionSpecifier": "public",
+      "type": "long_class_specifier",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Documentation",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "info",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<p>\nBasic block for Real sources of package Blocks.Sources.\nThis component has one continuous Real output signal y\nand two parameters (offset, startTime) to shift the\ngenerated signal.\n</p>\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    },
+    "SVcontrol": {
+      "within": "Modelica.Blocks",
+      "fullMoFilePath": "/opt/oct/ThirdParty/MSL/MSL400/Modelica/Blocks/Interfaces.mo",
+      "classPrefixes": "partial block",
+      "compositionSpecifier": "public",
+      "type": "long_class_specifier",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Documentation",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "info",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<p>\nBlock has two continuous Real input signals and one\ncontinuous Real output signal. The block is designed\nto be used as base class for a corresponding controller.\n</p>\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    },
+    "MVcontrol": {
+      "within": "Modelica.Blocks",
+      "fullMoFilePath": "/opt/oct/ThirdParty/MSL/MSL400/Modelica/Blocks/Interfaces.mo",
+      "classPrefixes": "partial block",
+      "compositionSpecifier": "public",
+      "type": "long_class_specifier",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Documentation",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "info",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<p>\nBlock has two continuous Real input signal vectors and one\ncontinuous Real output signal vector. The block is designed\nto be used as base class for a corresponding controller.\n</p>\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    },
+    "DiscreteBlock": {
+      "within": "Modelica.Blocks",
+      "fullMoFilePath": "/opt/oct/ThirdParty/MSL/MSL400/Modelica/Blocks/Interfaces.mo",
+      "classPrefixes": "partial block",
+      "compositionSpecifier": "public",
+      "type": "long_class_specifier",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Documentation",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "info",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<p>\nBasic definitions of a discrete block of library\nBlocks.Discrete.\nThe output(s) will only change at events, but are not formally a discrete variable(s) in Modelica.\nThe input(s) will be sampled, and can thus be continuous variable(s).\n</p>\n\n<p>\n<strong>Important</strong>: If you connect several discrete blocks you should normally ensure that <strong>samplePeriod (and startTime)\nare exactly identical</strong> for all blocks, since otherwise the output from one block will be transformed into a continuous signal\nand sampled, which can cause a variable delay of up to one sample period leading to unexpected results.\n</p>\n\n<p>\nModelica 3.3 introduced synchronous operators that avoid the need to manually propagate samplePeriod to each block.\n</p>\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    },
+    "DiscreteSISO": {
+      "within": "Modelica.Blocks",
+      "fullMoFilePath": "/opt/oct/ThirdParty/MSL/MSL400/Modelica/Blocks/Interfaces.mo",
+      "classPrefixes": "partial block",
+      "compositionSpecifier": "public",
+      "type": "long_class_specifier",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Documentation",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "info",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<p>\nBlock has one input and one output signal\nwhich are sampled due to the defined <strong>samplePeriod</strong> parameter.\nSee the base-class <a href=\\\"modelica://Modelica.Blocks.Interfaces.DiscreteBlock\\\">DiscreteBlock</a> for more information.\n</p>\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    },
+    "DiscreteMIMO": {
+      "within": "Modelica.Blocks",
+      "fullMoFilePath": "/opt/oct/ThirdParty/MSL/MSL400/Modelica/Blocks/Interfaces.mo",
+      "classPrefixes": "partial block",
+      "compositionSpecifier": "public",
+      "type": "long_class_specifier",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Documentation",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "info",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<p>\nBlock has a input and a output signal vector\nwhich are sampled due to the defined <strong>samplePeriod</strong> parameter.\nSee the base-class <a href=\\\"modelica://Modelica.Blocks.Interfaces.DiscreteBlock\\\">DiscreteBlock</a> for more information.\n</p>\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    },
+    "DiscreteMIMOs": {
+      "within": "Modelica.Blocks",
+      "fullMoFilePath": "/opt/oct/ThirdParty/MSL/MSL400/Modelica/Blocks/Interfaces.mo",
+      "classPrefixes": "partial block",
+      "compositionSpecifier": "public",
+      "type": "long_class_specifier",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Documentation",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "info",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<p>\nBlock has a input and a output signal vector\nwhere the signal sizes of the input and output vector are identical.\nThese signals are sampled due to the defined <strong>samplePeriod</strong> parameter.\nSee the base-class <a href=\\\"modelica://Modelica.Blocks.Interfaces.DiscreteBlock\\\">DiscreteBlock</a> for more information.\n</p>\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    },
+    "SVdiscrete": {
+      "within": "Modelica.Blocks",
+      "fullMoFilePath": "/opt/oct/ThirdParty/MSL/MSL400/Modelica/Blocks/Interfaces.mo",
+      "classPrefixes": "partial block",
+      "compositionSpecifier": "public",
+      "type": "long_class_specifier",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Documentation",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "info",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<p>\nBlock has two Real input signals and one\nReal output signal\nthat are sampled due to the defined <strong>samplePeriod</strong> parameter.\nThe block is designed\nto be used as base class for a corresponding controller.\nSee the base-class <a href=\\\"modelica://Modelica.Blocks.Interfaces.DiscreteBlock\\\">DiscreteBlock</a> for more information.\n</p>\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    },
+    "MVdiscrete": {
+      "within": "Modelica.Blocks",
+      "fullMoFilePath": "/opt/oct/ThirdParty/MSL/MSL400/Modelica/Blocks/Interfaces.mo",
+      "classPrefixes": "partial block",
+      "compositionSpecifier": "public",
+      "type": "long_class_specifier",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Diagram",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "coordinateSystem": {
+                          "extent": [
+                            {
+                              "x": -100,
+                              "y": -100
+                            },
+                            {
+                              "x": 100,
+                              "y": 100
+                            }
+                          ],
+                          "preserveAspectRatio": "true"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "graphics": [
+                          {
+                            "name": "Text",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -100,
+                                  "y": -10
+                                },
+                                {
+                                  "x": -80,
+                                  "y": -30
+                                }
+                              ],
+                              "textString": "\"u_s\"",
+                              "textColor": {
+                                "r": 0,
+                                "g": 0,
+                                "b": 255
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Documentation",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "info",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<p>\nBlock has two Real input signal vectors and one\nReal output signal vector. The vector signals\nare sampled due to the defined <strong>samplePeriod</strong> parameter.\nThe block is designed\nto be used as base class for a corresponding controller.\nSee the base-class <a href=\\\"modelica://Modelica.Blocks.Interfaces.DiscreteBlock\\\">DiscreteBlock</a> for more information.\n</p>\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    },
+    "BooleanSISO": {
+      "within": "Modelica.Blocks",
+      "fullMoFilePath": "/opt/oct/ThirdParty/MSL/MSL400/Modelica/Blocks/Interfaces.mo",
+      "classPrefixes": "partial block",
+      "compositionSpecifier": "public",
+      "type": "long_class_specifier",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Documentation",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "info",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<p>\nBlock has one continuous Boolean input and one continuous Boolean output signal.\n</p>\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    },
+    "BooleanMIMOs": {
+      "within": "Modelica.Blocks",
+      "fullMoFilePath": "/opt/oct/ThirdParty/MSL/MSL400/Modelica/Blocks/Interfaces.mo",
+      "classPrefixes": "partial block",
+      "compositionSpecifier": "public",
+      "type": "long_class_specifier",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Documentation",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "info",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<p>\nBlock has a continuous Boolean input and a continuous Boolean output signal vector\nwhere the signal sizes of the input and output vector are identical.\n</p>\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    },
+    "MI2BooleanMOs": {
+      "within": "Modelica.Blocks",
+      "fullMoFilePath": "/opt/oct/ThirdParty/MSL/MSL400/Modelica/Blocks/Interfaces.mo",
+      "classPrefixes": "partial block",
+      "compositionSpecifier": "public",
+      "type": "long_class_specifier",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Documentation",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "info",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<p>Block has two Boolean input vectors u1 and u2 and one Boolean output\nvector y. All vectors have the same number of elements.</p>\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    },
+    "SI2BooleanSO": {
+      "within": "Modelica.Blocks",
+      "fullMoFilePath": "/opt/oct/ThirdParty/MSL/MSL400/Modelica/Blocks/Interfaces.mo",
+      "classPrefixes": "partial block",
+      "compositionSpecifier": "public",
+      "type": "long_class_specifier",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Documentation",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "info",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<p>\nBlock has two Boolean input signals u1 and u2 and one Boolean output signal y.\n</p>\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    },
+    "BooleanSignalSource": {
+      "within": "Modelica.Blocks",
+      "fullMoFilePath": "/opt/oct/ThirdParty/MSL/MSL400/Modelica/Blocks/Interfaces.mo",
+      "classPrefixes": "partial block",
+      "compositionSpecifier": "public",
+      "type": "long_class_specifier",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Icon",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "coordinateSystem": {
+                          "extent": [
+                            {
+                              "x": -100,
+                              "y": -100
+                            },
+                            {
+                              "x": 100,
+                              "y": 100
+                            }
+                          ],
+                          "preserveAspectRatio": "true"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "graphics": [
+                          {
+                            "name": "Line",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": -80,
+                                  "y": 68
+                                },
+                                {
+                                  "x": -80,
+                                  "y": -80
+                                }
+                              ],
+                              "color": {
+                                "r": 192,
+                                "g": 192,
+                                "b": 192
+                              }
+                            }
+                          },
+                          {
+                            "name": "Polygon",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": -80,
+                                  "y": 90
+                                },
+                                {
+                                  "x": -88,
+                                  "y": 68
+                                },
+                                {
+                                  "x": -72,
+                                  "y": 68
+                                },
+                                {
+                                  "x": -80,
+                                  "y": 90
+                                }
+                              ],
+                              "lineColor": {
+                                "r": 192,
+                                "g": 192,
+                                "b": 192
+                              },
+                              "fillColor": {
+                                "r": 192,
+                                "g": 192,
+                                "b": 192
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          },
+                          {
+                            "name": "Line",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": -90,
+                                  "y": -70
+                                },
+                                {
+                                  "x": 68,
+                                  "y": -70
+                                }
+                              ],
+                              "color": {
+                                "r": 192,
+                                "g": 192,
+                                "b": 192
+                              }
+                            }
+                          },
+                          {
+                            "name": "Polygon",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": 90,
+                                  "y": -70
+                                },
+                                {
+                                  "x": 68,
+                                  "y": -62
+                                },
+                                {
+                                  "x": 68,
+                                  "y": -78
+                                },
+                                {
+                                  "x": 90,
+                                  "y": -70
+                                }
+                              ],
+                              "lineColor": {
+                                "r": 192,
+                                "g": 192,
+                                "b": 192
+                              },
+                              "fillColor": {
+                                "r": 192,
+                                "g": 192,
+                                "b": 192
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Documentation",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "info",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<p>\nBasic block for Boolean sources of package Blocks.Sources.\nThis component has one continuous Boolean output signal y.\n</p>\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    },
+    "IntegerSO": {
+      "within": "Modelica.Blocks",
+      "fullMoFilePath": "/opt/oct/ThirdParty/MSL/MSL400/Modelica/Blocks/Interfaces.mo",
+      "classPrefixes": "partial block",
+      "compositionSpecifier": "public",
+      "type": "long_class_specifier",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Documentation",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "info",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<p>\nBlock has one continuous Integer output signal.\n</p>\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    },
+    "IntegerMO": {
+      "within": "Modelica.Blocks",
+      "fullMoFilePath": "/opt/oct/ThirdParty/MSL/MSL400/Modelica/Blocks/Interfaces.mo",
+      "classPrefixes": "partial block",
+      "compositionSpecifier": "public",
+      "type": "long_class_specifier",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Documentation",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "info",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<p>\nBlock has one continuous Integer output signal vector.\n</p>\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    },
+    "IntegerSignalSource": {
+      "within": "Modelica.Blocks",
+      "fullMoFilePath": "/opt/oct/ThirdParty/MSL/MSL400/Modelica/Blocks/Interfaces.mo",
+      "classPrefixes": "partial block",
+      "compositionSpecifier": "public",
+      "type": "long_class_specifier",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Documentation",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "info",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<p>\nBasic block for Integer sources of package Blocks.Sources.\nThis component has one continuous Integer output signal y\nand two parameters (offset, startTime) to shift the\ngenerated signal.\n</p>\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    },
+    "IntegerSIBooleanSO": {
+      "within": "Modelica.Blocks",
+      "fullMoFilePath": "/opt/oct/ThirdParty/MSL/MSL400/Modelica/Blocks/Interfaces.mo",
+      "classPrefixes": "partial block",
+      "compositionSpecifier": "public",
+      "type": "long_class_specifier",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Documentation",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "info",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<p>\nBlock has a continuous Integer input and a continuous Boolean output signal.\n</p>\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    },
+    "IntegerMIBooleanMOs": {
+      "within": "Modelica.Blocks",
+      "fullMoFilePath": "/opt/oct/ThirdParty/MSL/MSL400/Modelica/Blocks/Interfaces.mo",
+      "classPrefixes": "partial block",
+      "compositionSpecifier": "public",
+      "type": "long_class_specifier",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Documentation",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "info",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<p>\nBlock has a continuous Integer input and a continuous Boolean output signal vector\nwhere the signal sizes of the input and output vector are identical.\n</p>\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    },
+    "PartialIntegerSISO": {
+      "within": "Modelica.Blocks",
+      "fullMoFilePath": "/opt/oct/ThirdParty/MSL/MSL400/Modelica/Blocks/Interfaces.mo",
+      "classPrefixes": "partial block",
+      "compositionSpecifier": "public",
+      "type": "long_class_specifier",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Icon",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "coordinateSystem": {
+                          "extent": [
+                            {
+                              "x": -100,
+                              "y": -100
+                            },
+                            {
+                              "x": 100,
+                              "y": 100
+                            }
+                          ],
+                          "preserveAspectRatio": "false",
+                          "initialScale": 0.06
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "graphics": [
+                          {
+                            "name": "Text",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": 110,
+                                  "y": -50
+                                },
+                                {
+                                  "x": 250,
+                                  "y": -70
+                                }
+                              ],
+                              "textString": "DynamicSelect(\" \",String(y"
+                            }
+                          },
+                          {
+                            "name": "Text",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -150,
+                                  "y": 150
+                                },
+                                {
+                                  "x": 150,
+                                  "y": 110
+                                }
+                              ],
+                              "textString": "\"%name\"",
+                              "textColor": {
+                                "r": 0,
+                                "g": 0,
+                                "b": 255
+                              }
+                            }
+                          },
+                          {
+                            "name": "Rectangle",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -100,
+                                  "y": 100
+                                },
+                                {
+                                  "x": 100,
+                                  "y": -100
+                                }
+                              ],
+                              "borderPattern": "BorderPattern.Raised",
+                              "fillColor": {
+                                "r": 255,
+                                "g": 213,
+                                "b": 170
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    },
+    "PartialIntegerMISO": {
+      "within": "Modelica.Blocks",
+      "fullMoFilePath": "/opt/oct/ThirdParty/MSL/MSL400/Modelica/Blocks/Interfaces.mo",
+      "classPrefixes": "partial block",
+      "compositionSpecifier": "public",
+      "type": "long_class_specifier",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Icon",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "coordinateSystem": {
+                          "extent": [
+                            {
+                              "x": -100,
+                              "y": -100
+                            },
+                            {
+                              "x": 100,
+                              "y": 100
+                            }
+                          ],
+                          "preserveAspectRatio": "true",
+                          "initialScale": 0.06
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "graphics": [
+                          {
+                            "name": "Text",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": 110,
+                                  "y": -50
+                                },
+                                {
+                                  "x": 250,
+                                  "y": -70
+                                }
+                              ],
+                              "textString": "DynamicSelect(\" \",String(y"
+                            }
+                          },
+                          {
+                            "name": "Text",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -150,
+                                  "y": 150
+                                },
+                                {
+                                  "x": 150,
+                                  "y": 110
+                                }
+                              ],
+                              "textString": "\"%name\"",
+                              "textColor": {
+                                "r": 0,
+                                "g": 0,
+                                "b": 255
+                              }
+                            }
+                          },
+                          {
+                            "name": "Rectangle",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -100,
+                                  "y": 100
+                                },
+                                {
+                                  "x": 100,
+                                  "y": -100
+                                }
+                              ],
+                              "borderPattern": "BorderPattern.Raised",
+                              "lineColor": {
+                                "r": 255,
+                                "g": 137,
+                                "b": 0
+                              },
+                              "fillColor": {
+                                "r": 255,
+                                "g": 213,
+                                "b": 170
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    },
+    "partialBooleanSISO": {
+      "within": "Modelica.Blocks",
+      "fullMoFilePath": "/opt/oct/ThirdParty/MSL/MSL400/Modelica/Blocks/Interfaces.mo",
+      "classPrefixes": "partial block",
+      "compositionSpecifier": "public",
+      "type": "long_class_specifier",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Icon",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "coordinateSystem": {
+                          "extent": [
+                            {
+                              "x": -100,
+                              "y": -100
+                            },
+                            {
+                              "x": 100,
+                              "y": 100
+                            }
+                          ],
+                          "preserveAspectRatio": "true"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "graphics": [
+                          {
+                            "name": "Ellipse",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -71,
+                                  "y": 7
+                                },
+                                {
+                                  "x": -85,
+                                  "y": -7
+                                }
+                              ],
+                              "lineColor": {
+                                "r": 235,
+                                "g": 235,
+                                "b": 235
+                              },
+                              "fillColor": {
+                                "r": 235,
+                                "g": 235,
+                                "b": 235
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          },
+                          {
+                            "name": "Ellipse",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": 71,
+                                  "y": 7
+                                },
+                                {
+                                  "x": 85,
+                                  "y": -7
+                                }
+                              ],
+                              "lineColor": {
+                                "r": 235,
+                                "g": 235,
+                                "b": 235
+                              },
+                              "fillColor": {
+                                "r": 235,
+                                "g": 235,
+                                "b": 235
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Documentation",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "info",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<p>\nBlock has one continuous Boolean input and one continuous Boolean output signal\nwith a 3D icon (e.g., used in Blocks.Logical library).\n</p>\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    },
+    "partialBooleanSI2SO": {
+      "within": "Modelica.Blocks",
+      "fullMoFilePath": "/opt/oct/ThirdParty/MSL/MSL400/Modelica/Blocks/Interfaces.mo",
+      "classPrefixes": "partial block",
+      "compositionSpecifier": "public",
+      "type": "long_class_specifier",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Icon",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "coordinateSystem": {
+                          "extent": [
+                            {
+                              "x": -100,
+                              "y": -100
+                            },
+                            {
+                              "x": 100,
+                              "y": 100
+                            }
+                          ],
+                          "preserveAspectRatio": "true"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "graphics": [
+                          {
+                            "name": "Ellipse",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -71,
+                                  "y": 7
+                                },
+                                {
+                                  "x": -85,
+                                  "y": -7
+                                }
+                              ],
+                              "lineColor": {
+                                "r": 235,
+                                "g": 235,
+                                "b": 235
+                              },
+                              "fillColor": {
+                                "r": 235,
+                                "g": 235,
+                                "b": 235
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          },
+                          {
+                            "name": "Ellipse",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -71,
+                                  "y": -74
+                                },
+                                {
+                                  "x": -85,
+                                  "y": -88
+                                }
+                              ],
+                              "lineColor": {
+                                "r": 235,
+                                "g": 235,
+                                "b": 235
+                              },
+                              "fillColor": {
+                                "r": 235,
+                                "g": 235,
+                                "b": 235
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          },
+                          {
+                            "name": "Ellipse",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": 71,
+                                  "y": 7
+                                },
+                                {
+                                  "x": 85,
+                                  "y": -7
+                                }
+                              ],
+                              "lineColor": {
+                                "r": 235,
+                                "g": 235,
+                                "b": 235
+                              },
+                              "fillColor": {
+                                "r": 235,
+                                "g": 235,
+                                "b": 235
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Documentation",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "info",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<p>\nBlock has two continuous Boolean input and one continuous Boolean output signal\nwith a 3D icon (e.g., used in Blocks.Logical library).\n</p>\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    },
+    "partialBooleanSI3SO": {
+      "within": "Modelica.Blocks",
+      "fullMoFilePath": "/opt/oct/ThirdParty/MSL/MSL400/Modelica/Blocks/Interfaces.mo",
+      "classPrefixes": "partial block",
+      "compositionSpecifier": "public",
+      "type": "long_class_specifier",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Icon",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "coordinateSystem": {
+                          "extent": [
+                            {
+                              "x": -100,
+                              "y": -100
+                            },
+                            {
+                              "x": 100,
+                              "y": 100
+                            }
+                          ],
+                          "preserveAspectRatio": "true"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "graphics": [
+                          {
+                            "name": "Ellipse",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -71,
+                                  "y": 74
+                                },
+                                {
+                                  "x": -85,
+                                  "y": 88
+                                }
+                              ],
+                              "lineColor": {
+                                "r": 235,
+                                "g": 235,
+                                "b": 235
+                              },
+                              "fillColor": {
+                                "r": 235,
+                                "g": 235,
+                                "b": 235
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          },
+                          {
+                            "name": "Ellipse",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -71,
+                                  "y": 7
+                                },
+                                {
+                                  "x": -85,
+                                  "y": -7
+                                }
+                              ],
+                              "lineColor": {
+                                "r": 235,
+                                "g": 235,
+                                "b": 235
+                              },
+                              "fillColor": {
+                                "r": 235,
+                                "g": 235,
+                                "b": 235
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          },
+                          {
+                            "name": "Ellipse",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -71,
+                                  "y": -74
+                                },
+                                {
+                                  "x": -85,
+                                  "y": -88
+                                }
+                              ],
+                              "lineColor": {
+                                "r": 235,
+                                "g": 235,
+                                "b": 235
+                              },
+                              "fillColor": {
+                                "r": 235,
+                                "g": 235,
+                                "b": 235
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          },
+                          {
+                            "name": "Ellipse",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": 71,
+                                  "y": 7
+                                },
+                                {
+                                  "x": 85,
+                                  "y": -7
+                                }
+                              ],
+                              "lineColor": {
+                                "r": 235,
+                                "g": 235,
+                                "b": 235
+                              },
+                              "fillColor": {
+                                "r": 235,
+                                "g": 235,
+                                "b": 235
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Documentation",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "info",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html><p>\nBlock has three continuous Boolean input and one continuous Boolean output signal\nwith a 3D icon (e.g., used in Blocks.Logical library).\n</p>\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    },
+    "partialBooleanSI": {
+      "within": "Modelica.Blocks",
+      "fullMoFilePath": "/opt/oct/ThirdParty/MSL/MSL400/Modelica/Blocks/Interfaces.mo",
+      "classPrefixes": "partial block",
+      "compositionSpecifier": "public",
+      "type": "long_class_specifier",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Icon",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "coordinateSystem": {
+                          "extent": [
+                            {
+                              "x": -100,
+                              "y": -100
+                            },
+                            {
+                              "x": 100,
+                              "y": 100
+                            }
+                          ],
+                          "preserveAspectRatio": "true"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "graphics": [
+                          {
+                            "name": "Ellipse",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -71,
+                                  "y": 7
+                                },
+                                {
+                                  "x": -85,
+                                  "y": -7
+                                }
+                              ],
+                              "lineColor": {
+                                "r": 235,
+                                "g": 235,
+                                "b": 235
+                              },
+                              "fillColor": {
+                                "r": 235,
+                                "g": 235,
+                                "b": 235
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Documentation",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "info",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<p>\nBlock has one continuous Boolean input signal\nwith a 3D icon (e.g., used in Blocks.Logical library).\n</p>\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    },
+    "partialBooleanSO": {
+      "within": "Modelica.Blocks",
+      "fullMoFilePath": "/opt/oct/ThirdParty/MSL/MSL400/Modelica/Blocks/Interfaces.mo",
+      "classPrefixes": "partial block",
+      "compositionSpecifier": "public",
+      "type": "long_class_specifier",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Icon",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "coordinateSystem": {
+                          "extent": [
+                            {
+                              "x": -100,
+                              "y": -100
+                            },
+                            {
+                              "x": 100,
+                              "y": 100
+                            }
+                          ],
+                          "preserveAspectRatio": "true"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "graphics": [
+                          {
+                            "name": "Ellipse",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": 71,
+                                  "y": 7
+                                },
+                                {
+                                  "x": 85,
+                                  "y": -7
+                                }
+                              ],
+                              "lineColor": {
+                                "r": 235,
+                                "g": 235,
+                                "b": 235
+                              },
+                              "fillColor": {
+                                "r": 235,
+                                "g": 235,
+                                "b": 235
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Documentation",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "info",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<p>\nBlock has one continuous Boolean output signal\nwith a 3D icon (e.g., used in Blocks.Logical library).\n</p>\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    },
+    "partialBooleanSource": {
+      "within": "Modelica.Blocks",
+      "fullMoFilePath": "/opt/oct/ThirdParty/MSL/MSL400/Modelica/Blocks/Interfaces.mo",
+      "classPrefixes": "partial block",
+      "compositionSpecifier": "public",
+      "type": "long_class_specifier",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Icon",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "coordinateSystem": {
+                          "extent": [
+                            {
+                              "x": -100,
+                              "y": -100
+                            },
+                            {
+                              "x": 100,
+                              "y": 100
+                            }
+                          ],
+                          "preserveAspectRatio": "true"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "graphics": [
+                          {
+                            "name": "Polygon",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": -80,
+                                  "y": 88
+                                },
+                                {
+                                  "x": -88,
+                                  "y": 66
+                                },
+                                {
+                                  "x": -72,
+                                  "y": 66
+                                },
+                                {
+                                  "x": -80,
+                                  "y": 88
+                                }
+                              ],
+                              "lineColor": {
+                                "r": 255,
+                                "g": 0,
+                                "b": 255
+                              },
+                              "fillColor": {
+                                "r": 255,
+                                "g": 0,
+                                "b": 255
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          },
+                          {
+                            "name": "Line",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": -80,
+                                  "y": 66
+                                },
+                                {
+                                  "x": -80,
+                                  "y": -82
+                                }
+                              ],
+                              "color": {
+                                "r": 255,
+                                "g": 0,
+                                "b": 255
+                              }
+                            }
+                          },
+                          {
+                            "name": "Line",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": -90,
+                                  "y": -70
+                                },
+                                {
+                                  "x": 72,
+                                  "y": -70
+                                }
+                              ],
+                              "color": {
+                                "r": 255,
+                                "g": 0,
+                                "b": 255
+                              }
+                            }
+                          },
+                          {
+                            "name": "Polygon",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": 90,
+                                  "y": -70
+                                },
+                                {
+                                  "x": 68,
+                                  "y": -62
+                                },
+                                {
+                                  "x": 68,
+                                  "y": -78
+                                },
+                                {
+                                  "x": 90,
+                                  "y": -70
+                                }
+                              ],
+                              "lineColor": {
+                                "r": 255,
+                                "g": 0,
+                                "b": 255
+                              },
+                              "fillColor": {
+                                "r": 255,
+                                "g": 0,
+                                "b": 255
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          },
+                          {
+                            "name": "Ellipse",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": 71,
+                                  "y": 7
+                                },
+                                {
+                                  "x": 85,
+                                  "y": -7
+                                }
+                              ],
+                              "lineColor": {
+                                "r": 235,
+                                "g": 235,
+                                "b": 235
+                              },
+                              "fillColor": {
+                                "r": 235,
+                                "g": 235,
+                                "b": 235
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Documentation",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "info",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<p>\nBasic block for Boolean sources of package Blocks.Sources.\nThis component has one continuous Boolean output signal y\nand a 3D icon (e.g., used in Blocks.Logical library).\n</p>\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    },
+    "partialBooleanThresholdComparison": {
+      "within": "Modelica.Blocks",
+      "fullMoFilePath": "/opt/oct/ThirdParty/MSL/MSL400/Modelica/Blocks/Interfaces.mo",
+      "classPrefixes": "partial block",
+      "compositionSpecifier": "public",
+      "type": "long_class_specifier",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Icon",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "coordinateSystem": {
+                          "extent": [
+                            {
+                              "x": -100,
+                              "y": -100
+                            },
+                            {
+                              "x": 100,
+                              "y": 100
+                            }
+                          ],
+                          "preserveAspectRatio": "true"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "graphics": [
+                          {
+                            "name": "Rectangle",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -100,
+                                  "y": 100
+                                },
+                                {
+                                  "x": 100,
+                                  "y": -100
+                                }
+                              ],
+                              "borderPattern": "BorderPattern.Raised",
+                              "fillColor": {
+                                "r": 210,
+                                "g": 210,
+                                "b": 210
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          },
+                          {
+                            "name": "Text",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -150,
+                                  "y": -140
+                                },
+                                {
+                                  "x": 150,
+                                  "y": -110
+                                }
+                              ],
+                              "textString": "\"%threshold\""
+                            }
+                          },
+                          {
+                            "name": "Ellipse",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": 71,
+                                  "y": 7
+                                },
+                                {
+                                  "x": 85,
+                                  "y": -7
+                                }
+                              ],
+                              "lineColor": {
+                                "r": 235,
+                                "g": 235,
+                                "b": 235
+                              },
+                              "fillColor": {
+                                "r": 235,
+                                "g": 235,
+                                "b": 235
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          },
+                          {
+                            "name": "Text",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -150,
+                                  "y": 150
+                                },
+                                {
+                                  "x": 150,
+                                  "y": 110
+                                }
+                              ],
+                              "textString": "\"%name\"",
+                              "textColor": {
+                                "r": 0,
+                                "g": 0,
+                                "b": 255
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Documentation",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "info",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<p>\nBlock has one continuous Real input and one continuous Boolean output signal\nas well as a 3D icon (e.g., used in Blocks.Logical library).\n</p>\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    },
+    "partialBooleanComparison": {
+      "within": "Modelica.Blocks",
+      "fullMoFilePath": "/opt/oct/ThirdParty/MSL/MSL400/Modelica/Blocks/Interfaces.mo",
+      "classPrefixes": "partial block",
+      "compositionSpecifier": "public",
+      "type": "long_class_specifier",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Icon",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "coordinateSystem": {
+                          "extent": [
+                            {
+                              "x": -100,
+                              "y": -100
+                            },
+                            {
+                              "x": 100,
+                              "y": 100
+                            }
+                          ],
+                          "preserveAspectRatio": "true"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "graphics": [
+                          {
+                            "name": "Rectangle",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -100,
+                                  "y": 100
+                                },
+                                {
+                                  "x": 100,
+                                  "y": -100
+                                }
+                              ],
+                              "borderPattern": "BorderPattern.Raised",
+                              "fillColor": {
+                                "r": 210,
+                                "g": 210,
+                                "b": 210
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          },
+                          {
+                            "name": "Ellipse",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": 73,
+                                  "y": 7
+                                },
+                                {
+                                  "x": 87,
+                                  "y": -7
+                                }
+                              ],
+                              "lineColor": {
+                                "r": 235,
+                                "g": 235,
+                                "b": 235
+                              },
+                              "fillColor": {
+                                "r": 235,
+                                "g": 235,
+                                "b": 235
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          },
+                          {
+                            "name": "Ellipse",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": 32,
+                                  "y": 10
+                                },
+                                {
+                                  "x": 52,
+                                  "y": -10
+                                }
+                              ],
+                              "lineColor": {
+                                "r": 0,
+                                "g": 0,
+                                "b": 127
+                              }
+                            }
+                          },
+                          {
+                            "name": "Line",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": -100,
+                                  "y": -80
+                                },
+                                {
+                                  "x": 42,
+                                  "y": -80
+                                },
+                                {
+                                  "x": 42,
+                                  "y": 0
+                                }
+                              ],
+                              "color": {
+                                "r": 0,
+                                "g": 0,
+                                "b": 127
+                              }
+                            }
+                          },
+                          {
+                            "name": "Text",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -150,
+                                  "y": 150
+                                },
+                                {
+                                  "x": 150,
+                                  "y": 110
+                                }
+                              ],
+                              "textString": "\"%name\"",
+                              "textColor": {
+                                "r": 0,
+                                "g": 0,
+                                "b": 255
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Documentation",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "info",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<p>\nBlock has two continuous Real input and one continuous Boolean output signal\nas a result of the comparison of the two input signals. The block\nhas a 3D icon (e.g., used in Blocks.Logical library).\n</p>\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    },
+    "PartialBooleanSISO_small": {
+      "within": "Modelica.Blocks",
+      "fullMoFilePath": "/opt/oct/ThirdParty/MSL/MSL400/Modelica/Blocks/Interfaces.mo",
+      "classPrefixes": "partial block",
+      "compositionSpecifier": "public",
+      "type": "long_class_specifier",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Icon",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "coordinateSystem": {
+                          "extent": [
+                            {
+                              "x": -100,
+                              "y": -100
+                            },
+                            {
+                              "x": 100,
+                              "y": 100
+                            }
+                          ],
+                          "preserveAspectRatio": "true",
+                          "initialScale": 0.04
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "graphics": [
+                          {
+                            "name": "Text",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -300,
+                                  "y": 200
+                                },
+                                {
+                                  "x": 300,
+                                  "y": 120
+                                }
+                              ],
+                              "textString": "\"%name\"",
+                              "textColor": {
+                                "r": 0,
+                                "g": 0,
+                                "b": 255
+                              }
+                            }
+                          },
+                          {
+                            "name": "Rectangle",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -100,
+                                  "y": 100
+                                },
+                                {
+                                  "x": 100,
+                                  "y": -100
+                                }
+                              ],
+                              "borderPattern": "BorderPattern.Raised",
+                              "fillColor": {
+                                "r": 215,
+                                "g": 215,
+                                "b": 215
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          },
+                          {
+                            "name": "Ellipse",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": 60,
+                                  "y": 10
+                                },
+                                {
+                                  "x": 80,
+                                  "y": -10
+                                }
+                              ],
+                              "lineColor": {
+                                "r": 235,
+                                "g": 235,
+                                "b": 235
+                              },
+                              "fillColor": {
+                                "r": 235,
+                                "g": 235,
+                                "b": 235
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    },
+    "PartialBooleanMISO": {
+      "within": "Modelica.Blocks",
+      "fullMoFilePath": "/opt/oct/ThirdParty/MSL/MSL400/Modelica/Blocks/Interfaces.mo",
+      "classPrefixes": "partial block",
+      "compositionSpecifier": "public",
+      "type": "long_class_specifier",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Icon",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "coordinateSystem": {
+                          "extent": [
+                            {
+                              "x": -100,
+                              "y": -100
+                            },
+                            {
+                              "x": 100,
+                              "y": 100
+                            }
+                          ],
+                          "preserveAspectRatio": "true",
+                          "initialScale": 0.06
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "graphics": [
+                          {
+                            "name": "Text",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -250,
+                                  "y": 170
+                                },
+                                {
+                                  "x": 250,
+                                  "y": 110
+                                }
+                              ],
+                              "textString": "\"%name\"",
+                              "textColor": {
+                                "r": 0,
+                                "g": 0,
+                                "b": 255
+                              }
+                            }
+                          },
+                          {
+                            "name": "Rectangle",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -100,
+                                  "y": 100
+                                },
+                                {
+                                  "x": 100,
+                                  "y": -100
+                                }
+                              ],
+                              "borderPattern": "BorderPattern.Raised",
+                              "fillColor": {
+                                "r": 215,
+                                "g": 215,
+                                "b": 215
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          },
+                          {
+                            "name": "Ellipse",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": 60,
+                                  "y": 10
+                                },
+                                {
+                                  "x": 80,
+                                  "y": -10
+                                }
+                              ],
+                              "lineColor": {
+                                "r": 235,
+                                "g": 235,
+                                "b": 235
+                              },
+                              "fillColor": {
+                                "r": 235,
+                                "g": 235,
+                                "b": 235
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    },
+    "PartialConversionBlock": {
+      "within": "Modelica.Blocks",
+      "fullMoFilePath": "/opt/oct/ThirdParty/MSL/MSL400/Modelica/Blocks/Interfaces.mo",
+      "classPrefixes": "partial block",
+      "compositionSpecifier": "public",
+      "type": "long_class_specifier",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Icon",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "coordinateSystem": {
+                          "extent": [
+                            {
+                              "x": -100,
+                              "y": -100
+                            },
+                            {
+                              "x": 100,
+                              "y": 100
+                            }
+                          ],
+                          "preserveAspectRatio": "true"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "graphics": [
+                          {
+                            "name": "Rectangle",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -100,
+                                  "y": -100
+                                },
+                                {
+                                  "x": 100,
+                                  "y": 100
+                                }
+                              ],
+                              "lineColor": {
+                                "r": 0,
+                                "g": 0,
+                                "b": 127
+                              },
+                              "fillColor": {
+                                "r": 255,
+                                "g": 255,
+                                "b": 255
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          },
+                          {
+                            "name": "Line",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": -90,
+                                  "y": 0
+                                },
+                                {
+                                  "x": 30,
+                                  "y": 0
+                                }
+                              ],
+                              "color": {
+                                "r": 191,
+                                "g": 0,
+                                "b": 0
+                              }
+                            }
+                          },
+                          {
+                            "name": "Polygon",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": 90,
+                                  "y": 0
+                                },
+                                {
+                                  "x": 30,
+                                  "y": 20
+                                },
+                                {
+                                  "x": 30,
+                                  "y": -20
+                                },
+                                {
+                                  "x": 90,
+                                  "y": 0
+                                }
+                              ],
+                              "lineColor": {
+                                "r": 191,
+                                "g": 0,
+                                "b": 0
+                              },
+                              "fillColor": {
+                                "r": 191,
+                                "g": 0,
+                                "b": 0
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          },
+                          {
+                            "name": "Text",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -150,
+                                  "y": 110
+                                },
+                                {
+                                  "x": 150,
+                                  "y": 150
+                                }
+                              ],
+                              "textString": "\"%name\"",
+                              "textColor": {
+                                "r": 0,
+                                "g": 0,
+                                "b": 255
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Documentation",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "info",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<p>\nThis block defines the interface of a conversion block that\nconverts from one unit into another one.\n</p>\n\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    },
+    "PartialNoise": {
+      "within": "Modelica.Blocks",
+      "fullMoFilePath": "/opt/oct/ThirdParty/MSL/MSL400/Modelica/Blocks/Interfaces.mo",
+      "classPrefixes": "partial block",
+      "compositionSpecifier": "public",
+      "type": "long_class_specifier",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Icon",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "coordinateSystem": {
+                          "extent": [
+                            {
+                              "x": -100,
+                              "y": -100
+                            },
+                            {
+                              "x": 100,
+                              "y": 100
+                            }
+                          ],
+                          "preserveAspectRatio": "false"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "graphics": [
+                          {
+                            "name": "Polygon",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": -76,
+                                  "y": 90
+                                },
+                                {
+                                  "x": -84,
+                                  "y": 68
+                                },
+                                {
+                                  "x": -68,
+                                  "y": 68
+                                },
+                                {
+                                  "x": -76,
+                                  "y": 90
+                                }
+                              ],
+                              "lineColor": {
+                                "r": 192,
+                                "g": 192,
+                                "b": 192
+                              },
+                              "fillColor": {
+                                "r": 192,
+                                "g": 192,
+                                "b": 192
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          },
+                          {
+                            "name": "Line",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": -76,
+                                  "y": 68
+                                },
+                                {
+                                  "x": -76,
+                                  "y": -80
+                                }
+                              ],
+                              "color": {
+                                "r": 192,
+                                "g": 192,
+                                "b": 192
+                              }
+                            }
+                          },
+                          {
+                            "name": "Line",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": -86,
+                                  "y": -14
+                                },
+                                {
+                                  "x": 72,
+                                  "y": -14
+                                }
+                              ],
+                              "color": {
+                                "r": 192,
+                                "g": 192,
+                                "b": 192
+                              }
+                            }
+                          },
+                          {
+                            "name": "Polygon",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": 94,
+                                  "y": -14
+                                },
+                                {
+                                  "x": 72,
+                                  "y": -6
+                                },
+                                {
+                                  "x": 72,
+                                  "y": -22
+                                },
+                                {
+                                  "x": 94,
+                                  "y": -14
+                                }
+                              ],
+                              "lineColor": {
+                                "r": 192,
+                                "g": 192,
+                                "b": 192
+                              },
+                              "fillColor": {
+                                "r": 192,
+                                "g": 192,
+                                "b": 192
+                              },
+                              "fillPattern": "FillPattern.Solid"
+                            }
+                          },
+                          {
+                            "name": "Line",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": -76,
+                                  "y": -19
+                                },
+                                {
+                                  "x": -62,
+                                  "y": -19
+                                },
+                                {
+                                  "x": -62,
+                                  "y": -3
+                                },
+                                {
+                                  "x": -54,
+                                  "y": -3
+                                },
+                                {
+                                  "x": -54,
+                                  "y": -51
+                                },
+                                {
+                                  "x": -46,
+                                  "y": -51
+                                },
+                                {
+                                  "x": -46,
+                                  "y": -29
+                                },
+                                {
+                                  "x": -38,
+                                  "y": -29
+                                },
+                                {
+                                  "x": -38,
+                                  "y": 55
+                                },
+                                {
+                                  "x": -30,
+                                  "y": 55
+                                },
+                                {
+                                  "x": -30,
+                                  "y": 23
+                                },
+                                {
+                                  "x": -30,
+                                  "y": 23
+                                },
+                                {
+                                  "x": -30,
+                                  "y": -37
+                                },
+                                {
+                                  "x": -20,
+                                  "y": -37
+                                },
+                                {
+                                  "x": -20,
+                                  "y": -19
+                                },
+                                {
+                                  "x": -10,
+                                  "y": -19
+                                },
+                                {
+                                  "x": -10,
+                                  "y": -47
+                                },
+                                {
+                                  "x": 0,
+                                  "y": -47
+                                },
+                                {
+                                  "x": 0,
+                                  "y": 35
+                                },
+                                {
+                                  "x": 6,
+                                  "y": 35
+                                },
+                                {
+                                  "x": 6,
+                                  "y": 49
+                                },
+                                {
+                                  "x": 12,
+                                  "y": 49
+                                },
+                                {
+                                  "x": 12,
+                                  "y": -7
+                                },
+                                {
+                                  "x": 22,
+                                  "y": -7
+                                },
+                                {
+                                  "x": 22,
+                                  "y": 5
+                                },
+                                {
+                                  "x": 28,
+                                  "y": 5
+                                },
+                                {
+                                  "x": 28,
+                                  "y": -25
+                                },
+                                {
+                                  "x": 38,
+                                  "y": -25
+                                },
+                                {
+                                  "x": 38,
+                                  "y": 47
+                                },
+                                {
+                                  "x": 48,
+                                  "y": 47
+                                },
+                                {
+                                  "x": 48,
+                                  "y": 13
+                                },
+                                {
+                                  "x": 56,
+                                  "y": 13
+                                },
+                                {
+                                  "x": 56,
+                                  "y": -53
+                                },
+                                {
+                                  "x": 66,
+                                  "y": -53
+                                }
+                              ],
+                              "visible": "enableNoise"
+                            }
+                          },
+                          {
+                            "name": "Text",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -150,
+                                  "y": -110
+                                },
+                                {
+                                  "x": 150,
+                                  "y": -150
+                                }
+                              ],
+                              "textString": "\"%samplePeriod s\""
+                            }
+                          },
+                          {
+                            "name": "Line",
+                            "attribute": {
+                              "points": [
+                                {
+                                  "x": -76,
+                                  "y": 48
+                                },
+                                {
+                                  "x": 72,
+                                  "y": 48
+                                }
+                              ],
+                              "visible": "not enableNoise"
+                            }
+                          },
+                          {
+                            "name": "Text",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -75,
+                                  "y": 42
+                                },
+                                {
+                                  "x": 95,
+                                  "y": 2
+                                }
+                              ],
+                              "textString": "\"%y_off\"",
+                              "visible": "not enableNoise"
+                            }
+                          },
+                          {
+                            "name": "Text",
+                            "attribute": {
+                              "extent": [
+                                {
+                                  "x": -92,
+                                  "y": 20
+                                },
+                                {
+                                  "x": 98,
+                                  "y": -22
+                                }
+                              ],
+                              "textString": "\"%fixedLocalSeed\"",
+                              "textColor": {
+                                "r": 238,
+                                "g": 46,
+                                "b": 47
+                              },
+                              "visible": "enableNoise and not useAutomaticLocalSeed"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Documentation",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "info",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<p>\nPartial base class of noise generators defining the common features\nof noise blocks.\n</p>\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "revisions",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<table border=\\\"1\\\" cellspacing=\\\"0\\\" cellpadding=\\\"2\\\">\n<tr><th>Date</th> <th align=\\\"left\\\">Description</th></tr>\n\n<tr><td> June 22, 2015 </td>\n    <td>\n\n<table border=\\\"0\\\">\n<tr><td>\n         <img src=\\\"modelica://Modelica/Resources/Images/Logos/dlr_logo.png\\\" alt=\\\"DLR logo\\\">\n</td><td valign=\\\"bottom\\\">\n         Initial version implemented by\n         A. Kl&ouml;ckner, F. v.d. Linden, D. Zimmer, M. Otter.<br>\n         <a href=\\\"http://www.dlr.de/rmc/sr/en\\\">DLR Institute of System Dynamics and Control</a>\n</td></tr></table>\n</td></tr>\n\n</table>\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    },
+    "Adaptors": {
+      "within": "Modelica.Blocks",
+      "fullMoFilePath": "/opt/oct/ThirdParty/MSL/MSL400/Modelica/Blocks/Interfaces.mo",
+      "classPrefixes": "package",
+      "compositionSpecifier": "public",
+      "type": "long_class_specifier",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Documentation",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "info",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<p>\nThis package contains partial adaptors to implement adaptors in various domains\nbetween a physical connector and a signal representation of the connector signals.\nThis component is used to provide a pure signal interface around a physical model\nand export this model in form of an input/output block,\nespecially as FMU (<a href=\\\"https://fmi-standard.org\\\">Functional Mock-up Unit</a>).\n</p>\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    }
+  },
+  "requiredReferences": {
+    "extends_clause": [
+      {
+        "name": "Modelica.Icons.InterfacesPackage",
+        "long_class_specifier_identifier": "Interfaces",
+        "within": "Modelica.Blocks",
+        "compositionSpecifier": "public"
+      }
+    ]
+  }
+}

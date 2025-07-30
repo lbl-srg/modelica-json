@@ -1,0 +1,84 @@
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#",
+    "qudt": "http://qudt.org/schema/qudt#",
+    "q": "http://qudt.org/vocab/quantitykind#",
+    "unit": "http://qudt.org/vocab/unit#"
+  },
+  "@graph": [
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Derivative",
+      "@type": "S231P:ElementaryBlock",
+      "S231P:documentation": "info=<html>\n<p>\nThis blocks defines the transfer function between the\ninput <code>u</code> and the output <code>y</code>\nas <i>approximated derivative</i>:\n</p>\n<pre>\n                s\n  y = k * ------------ * u\n            T * s + 1\n</pre>\n<p>\nIf <code>k=0</code>, the block reduces to <code>y=0</code>.\n</p>\n</html>,revisions=<html>\n<ul>\n<li>\nMay 20, 2022, by Michael Wetter:<br/>\nFirst implementation.<br/>\nThis is for\n<a href=\\https://github.com/lbl-srg/modelica-buildings/issues/3022\\>Buildings, issue 3022</a>.\n</li>\n</ul>\n</html>",
+      "S231P:hasInput": [
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Derivative.k"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Derivative.T"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Derivative.u"
+        }
+      ],
+      "S231P:hasOutput": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Derivative.y"
+      },
+      "S231P:hasParameter": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Derivative.y_start"
+      },
+      "S231P:icon": "coordinateSystem(extent={{-100,-100},{100,100}}),graphics={Rectangle(extent={{-100,-100},{100,100}},lineColor={0,0,127},fillColor={255,255,255},fillPattern=FillPattern.Solid),Line(color={192,192,192},points={{-56,78},{-56,-90}}),Polygon(points={{-56,90},{-64,68},{-48,68},{-56,90}},lineColor={192,192,192},fillColor={192,192,192},fillPattern=FillPattern.Solid),Line(color={192,192,192},points={{-64,-80},{82,-80}}),Polygon(points={{90,-80},{68,-72},{68,-88},{90,-80}},lineColor={192,192,192},fillColor={192,192,192},fillPattern=FillPattern.Solid),Line(color={0,0,127},points={{-31.333,89.333},{-19.333,-40.667},{86.667,-52.667}},smooth=Smooth.Bezier),Text(textString=\"%name\",textColor={0,0,255},extent={{-150,150},{150,110}}),Text(textString=DynamicSelect(\"\",String(y,textColor={0,0,0},extent={{226,60},{106,10}}),Text(textString=\"u\",textColor={0,0,0},extent={{-106,14},{-62,-12}}),Text(textString=,textString=,textColor={0,0,0},extent={{46,14},{90,-12}}),Text(textString=\"k\",textColor={0,0,0},extent={{-108,94},{-64,68}}),Text(textString=\"T\",textColor={0,0,0},extent={{-108,54},{-64,28}})}",
+      "S231P:label": "Derivative"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Derivative.k",
+      "@type": "S231P:RealInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Input for the gain",
+      "S231P:graphics": "Placement(transformation(extent={{-140,60},{-100,100}})))",
+      "S231P:label": "k"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Derivative.T",
+      "@type": "S231P:RealInput",
+      "qudt:hasQuantityKind": {
+        "@id": "q:Time"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:SEC"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Input for the time constant (T>0 required; T=0 is ideal derivative block)",
+      "S231P:graphics": "Placement(transformation(extent={{-140,20},{-100,60}})))",
+      "S231P:label": "T",
+      "S231P:min": "100*Buildings.Controls.OBC.CDL.Constants.eps"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Derivative.u",
+      "@type": "S231P:RealInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Input to be differentiated",
+      "S231P:graphics": "Placement(transformation(extent={{-140,-20},{-100,20}})))",
+      "S231P:label": "u"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Derivative.y",
+      "@type": "S231P:RealOutput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Approximation of derivative du/dt",
+      "S231P:graphics": "Placement(transformation(extent={{100,-20},{140,20}})))",
+      "S231P:label": "y"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Derivative.y_start",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Initial value of output (= state)",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "y_start",
+      "S231P:value": 0
+    }
+  ]
+}

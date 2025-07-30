@@ -1,0 +1,89 @@
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#"
+  },
+  "@graph": [
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sort",
+      "@type": "S231P:ElementaryBlock",
+      "S231P:documentation": "info=<html>\n<p>\nBlock that sorts the elements of the input signal <i>u</i>.\nIf the parameter <code>ascending = true</code>, then the output signal <i>y</i> satisfies\n<i>y<sub>i</sub> &lt;= y<sub>i+1</sub></i> for all <i>i &isin; {1, ..., n-1}</i>.\nOtherwise, it satisfies\n<i>y<sub>i</sub> &gt;= y<sub>i+1</sub></i> for all <i>i &isin; {1, ..., n-1}</i>.\nThe output signal <i>yIdx</i> contains the indices of the sorted elements,\nwith respect to the input vector <i>u</i>.\n</p>\n<h4>Usage</h4>\n<p>\nNote that this block shall only be used for input signals <code>u</code> that are\ntime sampled.<br/>\nOtherwise, in simulation, numerical noise from a nonlinear solver or from an\nimplicit time integration algorithm may cause the simulation to stall.\nNumerical noise can be present if an input depends\non a state variable or a quantity that requires an iterative solution,\nsuch as a temperature or a mass flow rate of an HVAC system.<br/>\nIn real controllers, measurement noise may cause the output to change frequently.\n</p>\n<p>\nThis block may for example be used in a variable air volume flow\ncontroller to access the position of the dampers that are most open.\n</p>\n</html>,revisions=<html>\n<ul>\n<li>\nApril 18, 2024, by Jianjun Hu:<br/>\nAdded an output variable with the indices of the sorted elements.\nThis is for <a href=\\https://github.com/lbl-srg/modelica-buildings/issues/3809\\>Buildings, issue 3809</a>.\n</li>\n<li>\nMarch 2, 2020, by Michael Wetter:<br/>\nChanged icon to display dynamically the output value.\n</li>\n<li>\nSeptember 22, 2017, by Michael Wetter:<br/>\nReimplemented function to make it work with OpenModelica.\n</li>\n<li>\nSeptember 14, 2017, by Jianjun Hu:<br/>\nChanged model name.\n</li>\n<li>\nJanuary 10, 2017, by Milica Grahovac:<br/>\nInitial CDL implementation.\n</li>\n<li>\nNovember 21, 2011, by Michael Wetter:<br/>\nRemoved <code>assert</code> statement.\n</li>\n<li>\nNovember 25, 2008, by Michael Wetter:<br/>\nFirst implementation.\n</li>\n</ul>\n</html>",
+      "S231P:hasInput": {
+        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sort.u"
+      },
+      "S231P:hasOutput": [
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sort.y"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sort.yIdx"
+        }
+      ],
+      "S231P:hasParameter": [
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sort.ascending"
+        },
+        {
+          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sort.nin"
+        }
+      ],
+      "S231P:icon": "coordinateSystem(extent={{-100,-100},{100,100}},preserveAspectRatio=true),graphics={Rectangle(extent={{-100,-100},{100,100}},lineColor={0,0,127},fillColor={255,255,255},fillPattern=FillPattern.Solid),Text(textString=\"%name\",textColor={0,0,255},extent={{-150,150},{150,110}}),Text(textString=\"sort\",textColor={0,0,89},extent={{-58,70},{54,-60}})}",
+      "S231P:label": "Sort"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sort.ascending",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Set to true if ascending order, otherwise order is descending",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Boolean"
+      },
+      "S231P:label": "ascending",
+      "S231P:value": true
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sort.nin",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Number of input signals",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Integer"
+      },
+      "S231P:label": "nin",
+      "S231P:min": 0,
+      "S231P:value": 0
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sort.u",
+      "@type": "S231P:RealInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Input to be sorted",
+      "S231P:graphics": "Placement(transformation(extent={{-140,-20},{-100,20}})))",
+      "S231P:isArray": true,
+      "S231P:label": "u[nin]",
+      "S231P:numberDimensions": 1,
+      "S231P:sizeOfDimensions": "(nin)"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sort.y",
+      "@type": "S231P:RealOutput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Output with sorted input",
+      "S231P:graphics": "Placement(transformation(extent={{100,-20},{140,20}})))",
+      "S231P:isArray": true,
+      "S231P:label": "y[nin]",
+      "S231P:numberDimensions": 1,
+      "S231P:sizeOfDimensions": "(nin)"
+    },
+    {
+      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.Sort.yIdx",
+      "@type": "S231P:IntegerOutput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Indices of the sorted vector with respect to the original vector",
+      "S231P:graphics": "Placement(transformation(extent={{100,-80},{140,-40}})),iconTransformation(extent={{100,-80},{140,-40}})))",
+      "S231P:isArray": true,
+      "S231P:label": "yIdx[nin]",
+      "S231P:numberDimensions": 1,
+      "S231P:sizeOfDimensions": "(nin)"
+    }
+  ]
+}
