@@ -157,7 +157,7 @@ if (args.output === 'json') {
   // exclude CDL folder and possibly Modelica folder
   const pathSep = path.sep
   const cdlPath = path.join(pathSep, 'CDL', pathSep)
-  const modelicaPath = path.join('Modelica', pathSep)
+  const modelicaPath = path.join(pathSep, 'Modelica', pathSep)
   jsonFiles = jsonFiles.filter(obj => !(obj.includes(cdlPath) || obj.includes(modelicaPath)))
   // validate json schema
   for (let i = 0; i < jsonFiles.length; i++) {
