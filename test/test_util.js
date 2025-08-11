@@ -148,4 +148,40 @@ mo.describe('util', function () {
       as.deepEqual(actuatOutput, expectedOutput)
     })
   })
+  mo.describe('testing checkIfCdlElementaryBlockOrPackage()', function () {
+    mo.it('testing set of files all true', function () {
+      const filesToCheck1 = ['CDL/Reals/Add.mo', 'OBC/CDL/Reals/Add.mo', 'Controls/OBC/CDL/Reals/Add.mo', 'Buildings/Controls/OBC/CDL/Reals/Add.mo']
+      const expectedOutput1 = true
+      const filesToCheck2 = ['CDL.Reals.Add', 'OBC.CDL.Reals.Add', 'Controls.OBC.CDL.Reals.Add', 'Buildings.Controls.OBC.CDL.Reals.Add']
+      const expectedOutput2 = true
+      const filesToCheck3 = ['Reals/Sources/Constant.mo', 'CDL/Reals/Sources/Constant.mo', 'OBC/CDL/Reals/Sources/Constant.mo', 'Controls/OBC/CDL/Reals/Sources/Constant.mo', 'Buildings/Controls/OBC/CDL/Reals/Sources/Constant.mo']
+      const expectedOutput3 = true
+      const filesToCheck4 = ['Reals.Sources.Constant', 'CDL.Reals.Sources.Constant', 'OBC.CDL.Reals.Sources.Constant', 'Controls.OBC.CDL.Reals.Sources.Constant', 'Buildings.Controls.OBC.CDL.Reals.Sources.Constant']
+      const expectedOutput4 = true
+
+      filesToCheck1.forEach(file => {
+        const actualOutput1 = ut.checkIfCdlElementaryBlockOrPackage(file)
+        as.equal(actualOutput1, expectedOutput1, `File ${file} should return ${expectedOutput1}`)
+      })
+      filesToCheck2.forEach(file => {
+        const actualOutput2 = ut.checkIfCdlElementaryBlockOrPackage(file)
+        as.equal(actualOutput2, expectedOutput2, `File ${file} should return ${expectedOutput2}`)
+      })
+      filesToCheck3.forEach(file => {
+        const actualOutput3 = ut.checkIfCdlElementaryBlockOrPackage(file)
+        as.equal(actualOutput3, expectedOutput3, `File ${file} should return ${expectedOutput3}`)
+      })
+      filesToCheck4.forEach(file => {
+        const actualOutput4 = ut.checkIfCdlElementaryBlockOrPackage(file)
+        as.equal(actualOutput4, expectedOutput4, `File ${file} should return ${expectedOutput4}`)
+      })
+    })
+    mo.it('testing with empty within', function () {
+      const moPath = __dirname
+      const within = null
+      const actuatOutput = ut.joinWithinPath(moPath, within)
+      const expectedOutput = [__dirname]
+      as.deepEqual(actuatOutput, expectedOutput)
+    })
+  })
 })
