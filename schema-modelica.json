@@ -3,32 +3,34 @@
   "$id": "schema-modelica.json",
   "title": "JSON parsed Modelica file",
   "description": "Json representation of a Modelica model",
-  "$comment": "Version 2, 12/05/2022",
+  "$comment": "08/29/2024",
   "definitions": {
-    "class_definition": {
-      "description": "Class definition",
+    "stored_class_definitions": {
+      "description": "Stored class definitions",
       "type": "array",
       "additionalItems": false,
-      "items": {
-        "type": "object",
-        "required": [
-          "class_prefixes",
-          "class_specifier"
-        ],
-        "additionalProperties": false,
-        "properties": {
-          "final": {
-            "type": "boolean"
-          },
-          "encapsulated": {
-            "type": "boolean"
-          },
-          "class_prefixes": {
-            "type": "string"
-          },
-          "class_specifier": {
-            "$ref": "#/definitions/class_specifier"
-          }
+      "items": { "$ref": "#/definitions/class_definition" }
+    },
+    "class_definition": {
+      "description": "Class definition",
+      "type": "object",
+      "required": [
+        "class_prefixes",
+        "class_specifier"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "final": {
+          "type": "boolean"
+        },
+        "encapsulated": {
+          "type": "boolean"
+        },
+        "class_prefixes": {
+          "type": "string"
+        },
+        "class_specifier": {
+          "$ref": "#/definitions/class_specifier"
         }
       }
     },
@@ -304,6 +306,10 @@
       "additionalItems": false,
       "items": {
         "type": "object",
+        "required": [
+          "declaration",
+          "description"
+        ],
         "additionalProperties": false,
         "properties": {
           "declaration": {
@@ -330,6 +336,7 @@
     },
     "element_modification": {
       "description": "Element modification",
+      "type": "object",
       "oneOf": [
         {
           "type": "object",
@@ -708,33 +715,51 @@
             "type": "string"
           },
           "attribute": {
-            "$ref": "#/definitions/attribute"
+            "type": "object"
+          }
+        },
+        "if": {
+          "properties": {"name": {"const": "Line"}}
+        },
+        "then": {
+          "properties": {"attribute": {"$ref": "#/definitions/Line"}}
+        },
+        "else": {
+          "if": {
+            "properties": {"name": {"const": "Text"}}
+          },
+          "then": {
+            "properties": {"attribute": {"$ref": "#/definitions/Text"}}
+          },
+          "else": {
+            "if": {
+              "properties": {"name": {"const": "Rectangle"}}
+            },
+            "then": {
+              "properties": {"attribute": {"$ref": "#/definitions/Rectangle"}}
+            },
+            "else": {
+              "if": {
+                "properties": {"name": {"const": "Polygon"}}
+              },
+              "then": {
+                "properties": {"attribute": {"$ref": "#/definitions/Polygon"}}
+              },
+              "else": {
+                "if": {
+                  "properties": {"name": {"const": "Ellipse"}}
+                },
+                "then": {
+                  "properties": {"attribute": {"$ref": "#/definitions/Ellipse"}}
+                },
+                "else": {
+                  "properties": {"attribute": {"$ref": "#/definitions/Bitmap"}}
+                }
+              }
+            }
           }
         }
       }
-    },
-    "attribute": {
-      "description": "graphics item attributes",
-      "oneOf": [
-        {
-          "$ref": "#/definitions/Line"
-        },
-        {
-          "$ref": "#/definitions/Text"
-        },
-        {
-          "$ref": "#/definitions/Rectangle"
-        },
-        {
-          "$ref": "#/definitions/Polygon"
-        },
-        {
-          "$ref": "#/definitions/Ellipse"
-        },
-        {
-          "$ref": "#/definitions/Bitmap"
-        }
-      ]
     },
     "points": {
       "description": "points on a 2d plan",
@@ -1288,6 +1313,19 @@
         }
       }
     },
+    "equationDescription": {
+      "description": "Equation description",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "description_string": {
+          "type": "string"
+        },
+        "annotation": {
+          "$ref": "#/definitions/class_modification"
+        }
+      }
+    },
     "constraining_clause": {
       "description": "Constraining clause",
       "type": "object",
@@ -1546,7 +1584,7 @@
             "$ref": "#/definitions/function_call_equation"
           },
           "description": {
-            "$ref": "#/definitions/descriptionSchema"
+            "$ref": "#/definitions/equationDescription"
           }
         }
       }
@@ -1874,7 +1912,7 @@
             "$ref": "#/definitions/when_statement"
           },
           "description": {
-            "$ref": "#/definitions/descriptionSchema"
+            "$ref": "#/definitions/equationDescription"
           }
         }
       }
@@ -1883,7 +1921,7 @@
   "type": "object",
   "required": [
     "within",
-    "class_definition"
+    "stored_class_definitions"
   ],
   "additionalProperties": false,
   "properties": {
@@ -1892,8 +1930,8 @@
       "type": "string",
       "pattern": "^([a-zA-Z0-9._*]*)$"
     },
-    "class_definition": {
-      "$ref": "#/definitions/class_definition"
+    "stored_class_definitions": {
+      "$ref": "#/definitions/stored_class_definitions"
     },
     "modelicaFile": {
       "description": "Relative modelica file path.",
