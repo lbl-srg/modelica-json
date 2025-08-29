@@ -1019,7 +1019,7 @@
       "additionalProperties": false,
       "properties": {
         "expression": {
-          "$ref": "#/definitions/simpleExpression"
+          "$ref": "#/definitions/expression"
         },
         "for_loop": {
           "$ref": "#/definitions/forLoopIndices"
@@ -1076,7 +1076,7 @@
         "additionalItems": false,
         "properties": {
           "not": {
-            "type": "string"
+            "type": "boolean"
           },
           "arithmetic_expressions": {
             "type": "array",
@@ -1406,7 +1406,34 @@
           "type": "boolean"
         },
         "equation": {
-          "$ref": "#/definitions/equation"
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "assignment_equation": {
+                "$ref": "#/definitions/assignment_equation"
+              },
+              "if_equation": {
+                "$ref": "#/definitions/if_equation"
+              },
+              "for_equation": {
+                "$ref": "#/definitions/for_equation"
+              },
+              "connect_clause": {
+                "$ref": "#/definitions/connect_clause"
+              },
+              "when_equation": {
+                "$ref": "#/definitions/when_equation"
+              },
+              "function_call_equation": {
+                "$ref": "#/definitions/function_call_equation"
+              },
+              "description": {
+                "$ref": "#/definitions/equationDescription"
+              }
+            }
+          }
         }
       }
     },
@@ -1429,7 +1456,7 @@
       "additionalProperties": false,
       "properties": {
         "lhs": {
-          "type": "string"
+          "$ref": "#/definitions/simpleExpression"
         },
         "rhs": {
           "$ref": "#/definitions/expression"
@@ -1475,8 +1502,26 @@
             "type": "object",
             "additionalProperties": false,
             "properties": {
-              "equation": {
-                "$ref": "#/definitions/equation"
+              "assignment_equation": {
+                "$ref": "#/definitions/assignment_equation"
+              },
+              "if_equation": {
+                "$ref": "#/definitions/if_equation"
+              },
+              "for_equation": {
+                "$ref": "#/definitions/for_equation"
+              },
+              "connect_clause": {
+                "$ref": "#/definitions/connect_clause"
+              },
+              "when_equation": {
+                "$ref": "#/definitions/when_equation"
+              },
+              "function_call_equation": {
+                "$ref": "#/definitions/function_call_equation"
+              },
+              "description": {
+                "$ref": "#/definitions/equationDescription"
               }
             }
           }
@@ -1497,8 +1542,26 @@
             "type": "object",
             "additionalProperties": false,
             "properties": {
-              "equation": {
-                "$ref": "#/definitions/equation"
+              "assignment_equation": {
+                "$ref": "#/definitions/assignment_equation"
+              },
+              "if_equation": {
+                "$ref": "#/definitions/if_equation"
+              },
+              "for_equation": {
+                "$ref": "#/definitions/for_equation"
+              },
+              "connect_clause": {
+                "$ref": "#/definitions/connect_clause"
+              },
+              "when_equation": {
+                "$ref": "#/definitions/when_equation"
+              },
+              "function_call_equation": {
+                "$ref": "#/definitions/function_call_equation"
+              },
+              "description": {
+                "$ref": "#/definitions/equationDescription"
               }
             }
           }
@@ -1532,14 +1595,32 @@
           "then": {
             "type": "array",
             "items": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "equation": {
-                  "$ref": "#/definitions/equation"
-                }
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "assignment_equation": {
+                "$ref": "#/definitions/assignment_equation"
+              },
+              "if_equation": {
+                "$ref": "#/definitions/if_equation"
+              },
+              "for_equation": {
+                "$ref": "#/definitions/for_equation"
+              },
+              "connect_clause": {
+                "$ref": "#/definitions/connect_clause"
+              },
+              "when_equation": {
+                "$ref": "#/definitions/when_equation"
+              },
+              "function_call_equation": {
+                "$ref": "#/definitions/function_call_equation"
+              },
+              "description": {
+                "$ref": "#/definitions/equationDescription"
               }
             }
+          }
           }
         }
       }
@@ -1559,33 +1640,29 @@
     },
     "equation": {
       "description": "Equation section",
-      "type": "array",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "assignment_equation": {
-            "$ref": "#/definitions/assignment_equation"
-          },
-          "if_equation": {
-            "$ref": "#/definitions/if_equation"
-          },
-          "for_equation": {
-            "$ref": "#/definitions/for_equation"
-          },
-          "connect_clause": {
-            "$ref": "#/definitions/connect_clause"
-          },
-          "when_equation": {
-            "$ref": "#/definitions/when_equation"
-          },
-          "function_call_equation": {
-            "$ref": "#/definitions/function_call_equation"
-          },
-          "description": {
-            "$ref": "#/definitions/equationDescription"
-          }
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "assignment_equation": {
+          "$ref": "#/definitions/assignment_equation"
+        },
+        "if_equation": {
+          "$ref": "#/definitions/if_equation"
+        },
+        "for_equation": {
+          "$ref": "#/definitions/for_equation"
+        },
+        "connect_clause": {
+          "$ref": "#/definitions/connect_clause"
+        },
+        "when_equation": {
+          "$ref": "#/definitions/when_equation"
+        },
+        "function_call_equation": {
+          "$ref": "#/definitions/function_call_equation"
+        },
+        "description": {
+          "$ref": "#/definitions/equationDescription"
         }
       }
     },
@@ -1735,7 +1812,6 @@
       "description": "Assignment with function call statement",
       "type": "object",
       "required": [
-        "output_expression_list",
         "function_name",
         "function_call_args"
       ],
@@ -1747,8 +1823,11 @@
             "type": "object",
             "additionalProperties": false,
             "properties": {
-              "expression": {
-                "$ref": "#/definitions/expression"
+              "simple_expression": {
+                "$ref": "#/definitions/simpleExpression"
+              },
+              "if_expression": {
+                "$ref": "#/definitions/ifExpression"
               }
             }
           }
@@ -1761,39 +1840,62 @@
         }
       }
     },
-    "if_elseIfStatement": {
-      "description": "If-else condition and statement",
-      "type": "array",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "condition": {
-            "$ref": "#/definitions/expression"
-          },
-          "then": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "statement": {
-                  "$ref": "#/definitions/statement"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "if_statement": {
       "description": "If-else statement",
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "if_elseIf": {
-          "$ref": "#/definitions/if_elseIfStatement"
+        "if_elseif": {
+          "type": "array",
+          "additionalItems": false,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "condition": {
+                "$ref": "#/definitions/expression"
+              },
+              "then": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "assignment_statement": {
+                      "$ref": "#/definitions/assignment_statement"
+                    },
+                    "Function_call_statement": {
+                      "$ref": "#/definitions/Function_call_statement"
+                    },
+                    "assignment_with_function_call_statement": {
+                      "$ref": "#/definitions/assignment_with_function_call_statement"
+                    },
+                    "break": {
+                      "type": "boolean"
+                    },
+                    "return": {
+                      "type": "boolean"
+                    },
+                    "if_statement": {
+                      "$ref": "#/definitions/if_statement"
+                    },
+                    "for_statement": {
+                      "$ref": "#/definitions/for_statement"
+                    },
+                    "while_statement": {
+                      "$ref": "#/definitions/while_statement"
+                    },
+                    "when_statement": {
+                      "$ref": "#/definitions/when_statement"
+                    },
+                    "description": {
+                      "$ref": "#/definitions/equationDescription"
+                    }
+                  }
+                }
+              }
+            }
+          }
         },
         "else_statement": {
           "type": "array",
@@ -1801,8 +1903,35 @@
             "type": "object",
             "additionalProperties": false,
             "properties": {
-              "expression": {
-                "$ref": "#/definitions/statement"
+              "assignment_statement": {
+                "$ref": "#/definitions/assignment_statement"
+              },
+              "Function_call_statement": {
+                "$ref": "#/definitions/Function_call_statement"
+              },
+              "assignment_with_function_call_statement": {
+                "$ref": "#/definitions/assignment_with_function_call_statement"
+              },
+              "break": {
+                "type": "boolean"
+              },
+              "return": {
+                "type": "boolean"
+              },
+              "if_statement": {
+                "$ref": "#/definitions/if_statement"
+              },
+              "for_statement": {
+                "$ref": "#/definitions/for_statement"
+              },
+              "while_statement": {
+                "$ref": "#/definitions/while_statement"
+              },
+              "when_statement": {
+                "$ref": "#/definitions/when_statement"
+              },
+              "description": {
+                "$ref": "#/definitions/equationDescription"
               }
             }
           }
@@ -1823,8 +1952,35 @@
             "type": "object",
             "additionalProperties": false,
             "properties": {
-              "expression": {
-                "$ref": "#/definitions/statement"
+              "assignment_statement": {
+                "$ref": "#/definitions/assignment_statement"
+              },
+              "Function_call_statement": {
+                "$ref": "#/definitions/Function_call_statement"
+              },
+              "assignment_with_function_call_statement": {
+                "$ref": "#/definitions/assignment_with_function_call_statement"
+              },
+              "break": {
+                "type": "boolean"
+              },
+              "return": {
+                "type": "boolean"
+              },
+              "if_statement": {
+                "$ref": "#/definitions/if_statement"
+              },
+              "for_statement": {
+                "$ref": "#/definitions/for_statement"
+              },
+              "while_statement": {
+                "$ref": "#/definitions/while_statement"
+              },
+              "when_statement": {
+                "$ref": "#/definitions/when_statement"
+              },
+              "description": {
+                "$ref": "#/definitions/equationDescription"
               }
             }
           }
@@ -1836,17 +1992,44 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "condition": {
+        "expression": {
           "$ref": "#/definitions/expression"
         },
-        "loop_statements": {
+        "loop_statement": {
           "type": "array",
           "items": {
             "type": "object",
             "additionalProperties": false,
             "properties": {
-              "expression": {
-                "$ref": "#/definitions/statement"
+              "assignment_statement": {
+                "$ref": "#/definitions/assignment_statement"
+              },
+              "Function_call_statement": {
+                "$ref": "#/definitions/Function_call_statement"
+              },
+              "assignment_with_function_call_statement": {
+                "$ref": "#/definitions/assignment_with_function_call_statement"
+              },
+              "break": {
+                "type": "boolean"
+              },
+              "return": {
+                "type": "boolean"
+              },
+              "if_statement": {
+                "$ref": "#/definitions/if_statement"
+              },
+              "for_statement": {
+                "$ref": "#/definitions/for_statement"
+              },
+              "while_statement": {
+                "$ref": "#/definitions/while_statement"
+              },
+              "when_statement": {
+                "$ref": "#/definitions/when_statement"
+              },
+              "description": {
+                "$ref": "#/definitions/equationDescription"
               }
             }
           }
@@ -1867,8 +2050,35 @@
             "type": "object",
             "additionalProperties": false,
             "properties": {
-              "expression": {
-                "$ref": "#/definitions/statement"
+              "assignment_statement": {
+                "$ref": "#/definitions/assignment_statement"
+              },
+              "Function_call_statement": {
+                "$ref": "#/definitions/Function_call_statement"
+              },
+              "assignment_with_function_call_statement": {
+                "$ref": "#/definitions/assignment_with_function_call_statement"
+              },
+              "break": {
+                "type": "boolean"
+              },
+              "return": {
+                "type": "boolean"
+              },
+              "if_statement": {
+                "$ref": "#/definitions/if_statement"
+              },
+              "for_statement": {
+                "$ref": "#/definitions/for_statement"
+              },
+              "while_statement": {
+                "$ref": "#/definitions/while_statement"
+              },
+              "when_statement": {
+                "$ref": "#/definitions/when_statement"
+              },
+              "description": {
+                "$ref": "#/definitions/equationDescription"
               }
             }
           }
