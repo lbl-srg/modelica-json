@@ -692,7 +692,7 @@
                                   "assignment_equation": {
                                     "lhs": "y",
                                     "rhs": {
-                                      "simple_expression": "offset +(if [object Object] then 0 else time -startTime)"
+                                      "simple_expression": "offset +(if time < startTime then 0 else time -startTime)"
                                     }
                                   }
                                 }
@@ -1035,7 +1035,7 @@
                                                     "y": -110
                                                   }
                                                 ],
-                                                "textString": ",textString="
+                                                "textString": "\"startTime=%startTime\""
                                               }
                                             }
                                           ]
@@ -1346,7 +1346,7 @@
                                                     "y": -110
                                                   }
                                                 ],
-                                                "textString": ",textString="
+                                                "textString": "\"k=%k\""
                                               }
                                             }
                                           ]
@@ -1459,7 +1459,7 @@
                                   "assignment_equation": {
                                     "lhs": "y",
                                     "rhs": {
-                                      "simple_expression": "offset +(if [object Object] then 0 else height)"
+                                      "simple_expression": "offset +(if time < startTime then 0 else height)"
                                     }
                                   }
                                 }
@@ -1641,7 +1641,7 @@
                                                     "y": -110
                                                   }
                                                 ],
-                                                "textString": ",textString="
+                                                "textString": "\"startTime=%startTime\""
                                               }
                                             }
                                           ]
@@ -1800,7 +1800,7 @@
                                   "assignment_equation": {
                                     "lhs": "y",
                                     "rhs": {
-                                      "simple_expression": "offset +(if [object Object] then 0 else if [object Object] then (time -startTime)*height/duration else height)"
+                                      "simple_expression": "offset +(if time < startTime then 0 else if time < (startTime +duration) then (time -startTime)*height/duration else height)"
                                     }
                                   }
                                 }
@@ -1978,7 +1978,7 @@
                                                     "y": -110
                                                   }
                                                 ],
-                                                "textString": ",textString="
+                                                "textString": "\"duration=%duration\""
                                               }
                                             },
                                             {
@@ -2167,7 +2167,7 @@
                                   "assignment_equation": {
                                     "lhs": "y",
                                     "rhs": {
-                                      "simple_expression": "offset +(if [object Object] then 0 else amplitude*Modelica.Math.sin(2*pi*f*(time -startTime) +phase))"
+                                      "simple_expression": "offset +(if time < startTime then 0 else amplitude*Modelica.Math.sin(2*pi*f*(time -startTime) +phase))"
                                     }
                                   }
                                 }
@@ -2430,7 +2430,7 @@
                                                     "y": -112
                                                   }
                                                 ],
-                                                "textString": ",textString="
+                                                "textString": "\"f=%f\""
                                               }
                                             }
                                           ]
@@ -2604,7 +2604,7 @@
                                   "assignment_equation": {
                                     "lhs": "y",
                                     "rhs": {
-                                      "simple_expression": "offset +(if [object Object] then 0 else amplitude*Modelica.Math.cos(2*pi*f*(time -startTime) +phase))"
+                                      "simple_expression": "offset +(if time < startTime then 0 else amplitude*Modelica.Math.cos(2*pi*f*(time -startTime) +phase))"
                                     }
                                   }
                                 }
@@ -2847,7 +2847,7 @@
                                                     "y": -112
                                                   }
                                                 ],
-                                                "textString": ",textString="
+                                                "textString": "\"f=%f\""
                                               }
                                             },
                                             {
@@ -3174,7 +3174,24 @@
                                   },
                                   "condition_attribute": {
                                     "expression": {
-                                      "simple_expression": "not useConstantAmplitude"
+                                      "simple_expression": {
+                                        "logical_expression": {
+                                          "logical_or": [
+                                            {
+                                              "logical_and": [
+                                                {
+                                                  "not": true,
+                                                  "arithmetic_expressions": [
+                                                    {
+                                                      "name": "useConstantAmplitude"
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      }
                                     }
                                   },
                                   "description": {
@@ -3237,7 +3254,24 @@
                                   },
                                   "condition_attribute": {
                                     "expression": {
-                                      "simple_expression": "not useConstantFrequency"
+                                      "simple_expression": {
+                                        "logical_expression": {
+                                          "logical_or": [
+                                            {
+                                              "logical_and": [
+                                                {
+                                                  "not": true,
+                                                  "arithmetic_expressions": [
+                                                    {
+                                                      "name": "useConstantFrequency"
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      }
                                     }
                                   },
                                   "description": {
@@ -4567,7 +4601,24 @@
                                   },
                                   "condition_attribute": {
                                     "expression": {
-                                      "simple_expression": "not useConstantAmplitude"
+                                      "simple_expression": {
+                                        "logical_expression": {
+                                          "logical_or": [
+                                            {
+                                              "logical_and": [
+                                                {
+                                                  "not": true,
+                                                  "arithmetic_expressions": [
+                                                    {
+                                                      "name": "useConstantAmplitude"
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      }
                                     }
                                   },
                                   "description": {
@@ -4630,7 +4681,24 @@
                                   },
                                   "condition_attribute": {
                                     "expression": {
-                                      "simple_expression": "not useConstantFrequency"
+                                      "simple_expression": {
+                                        "logical_expression": {
+                                          "logical_or": [
+                                            {
+                                              "logical_and": [
+                                                {
+                                                  "not": true,
+                                                  "arithmetic_expressions": [
+                                                    {
+                                                      "name": "useConstantFrequency"
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      }
                                     }
                                   },
                                   "description": {
@@ -5848,7 +5916,7 @@
                                   "assignment_equation": {
                                     "lhs": "y",
                                     "rhs": {
-                                      "simple_expression": "offset +(if [object Object] then 0 else amplitude*(if [object Object] then 1 else ([object Object])/x))"
+                                      "simple_expression": "offset +(if time < startTime then 0 else amplitude*(if noEvent(time -startTime < eps) then 1 else (sin(x))/x))"
                                     }
                                   }
                                 }
@@ -6007,7 +6075,7 @@
                                                     "y": -112
                                                   }
                                                 ],
-                                                "textString": ",textString=",
+                                                "textString": "\"f=%f\"",
                                                 "textColor": {
                                                   "r": 0,
                                                   "g": 0,
@@ -6391,7 +6459,7 @@
                                   "assignment_equation": {
                                     "lhs": "y",
                                     "rhs": {
-                                      "simple_expression": "offset +(if [object Object] then 0 else amplitude*Modelica.Math.exp(-(time -startTime)*damping)*Modelica.Math.sin(2*pi*f*(time -startTime) +phase))"
+                                      "simple_expression": "offset +(if time < startTime then 0 else amplitude*Modelica.Math.exp(-(time -startTime)*damping)*Modelica.Math.sin(2*pi*f*(time -startTime) +phase))"
                                     }
                                   }
                                 }
@@ -6686,7 +6754,7 @@
                                                     "y": -112
                                                   }
                                                 ],
-                                                "textString": ",textString="
+                                                "textString": "\"f=%f\""
                                               }
                                             }
                                           ]
@@ -6943,7 +7011,7 @@
                                   "assignment_equation": {
                                     "lhs": "y",
                                     "rhs": {
-                                      "simple_expression": "offset +(if ([object Object]) then 0 else if ([object Object]) then outMax*(1 -Modelica.Math.exp(-(time -startTime)/riseTimeConst)) else y_riseTime*Modelica.Math.exp(-(time -startTime -riseTime)/fallTimeConst))"
+                                      "simple_expression": "offset +(if (time < startTime) then 0 else if (time < (startTime +riseTime)) then outMax*(1 -Modelica.Math.exp(-(time -startTime)/riseTimeConst)) else y_riseTime*Modelica.Math.exp(-(time -startTime -riseTime)/fallTimeConst))"
                                     }
                                   }
                                 }
@@ -7225,7 +7293,7 @@
                                                     "y": -110
                                                   }
                                                 ],
-                                                "textString": ",textString="
+                                                "textString": "\"riseTime=%riseTime\""
                                               }
                                             }
                                           ]
@@ -7592,7 +7660,7 @@
                                   "assignment_equation": {
                                     "lhs": "y",
                                     "rhs": {
-                                      "simple_expression": "offset +(if ([object Object]) then 0 else if [object Object] then amplitude else 0)"
+                                      "simple_expression": "offset +(if (time < startTime or nperiod == 0 or (nperiod > 0 and count >= nperiod)) then 0 else if time < T_start +T_width then amplitude else 0)"
                                     }
                                   }
                                 }
@@ -7790,7 +7858,7 @@
                                                     "y": -112
                                                   }
                                                 ],
-                                                "textString": ",textString="
+                                                "textString": "\"period=%period\""
                                               }
                                             }
                                           ]
@@ -8105,7 +8173,7 @@
                                   "assignment_equation": {
                                     "lhs": "y",
                                     "rhs": {
-                                      "simple_expression": "offset +(if ([object Object]) then 0 else amplitude*(time -T_start)/period)"
+                                      "simple_expression": "offset +(if (time < startTime or nperiod == 0 or (nperiod > 0 and count >= nperiod)) then 0 else amplitude*(time -T_start)/period)"
                                     }
                                   }
                                 }
@@ -8295,7 +8363,7 @@
                                                     "y": -112
                                                   }
                                                 ],
-                                                "textString": ",textString="
+                                                "textString": "\"period=%period\""
                                               }
                                             }
                                           ]
@@ -8772,7 +8840,7 @@
                                   "assignment_equation": {
                                     "lhs": "y",
                                     "rhs": {
-                                      "simple_expression": "offset +(if ([object Object]) then 0 else if ([object Object]) then amplitude*(time -T_start)/rising else if ([object Object]) then amplitude else if ([object Object]) then amplitude*(T_start +T_falling -time)/falling else 0)"
+                                      "simple_expression": "offset +(if (time < startTime or nperiod == 0 or (nperiod > 0 and count >= nperiod)) then 0 else if (time < T_start +T_rising) then amplitude*(time -T_start)/rising else if (time < T_start +T_width) then amplitude else if (time < T_start +T_falling) then amplitude*(T_start +T_falling -time)/falling else 0)"
                                     }
                                   }
                                 }
@@ -8931,7 +8999,7 @@
                                                     "y": -112
                                                   }
                                                 ],
-                                                "textString": ",textString="
+                                                "textString": "\"period=%period\""
                                               }
                                             },
                                             {
@@ -9804,7 +9872,7 @@
                                               "name": "max",
                                               "arguments": [
                                                 {
-                                                  "name": "[[object Object];[object Object];[object Object]]"
+                                                  "name": "[size(deltaq,1);size(qd_max,1);size(qdd_max,1)]"
                                                 }
                                               ]
                                             }
@@ -9844,27 +9912,7 @@
                                                 {
                                                   "if_elseif": [
                                                     {
-                                                      "condition": {
-                                                        "logical_expression": {
-                                                          "logical_or": [
-                                                            {
-                                                              "logical_and": [
-                                                                {
-                                                                  "arithmetic_expressions": [
-                                                                    {
-                                                                      "name": "size(deltaq,1)"
-                                                                    },
-                                                                    {
-                                                                      "name": "1"
-                                                                    }
-                                                                  ],
-                                                                  "relation_operator": "=="
-                                                                }
-                                                              ]
-                                                            }
-                                                          ]
-                                                        }
-                                                      },
+                                                      "condition": "size(deltaq,1) == 1",
                                                       "then": "ones(nout)*deltaq[1]"
                                                     }
                                                   ],
@@ -9902,27 +9950,7 @@
                                                 {
                                                   "if_elseif": [
                                                     {
-                                                      "condition": {
-                                                        "logical_expression": {
-                                                          "logical_or": [
-                                                            {
-                                                              "logical_and": [
-                                                                {
-                                                                  "arithmetic_expressions": [
-                                                                    {
-                                                                      "name": "size(qd_max,1)"
-                                                                    },
-                                                                    {
-                                                                      "name": "1"
-                                                                    }
-                                                                  ],
-                                                                  "relation_operator": "=="
-                                                                }
-                                                              ]
-                                                            }
-                                                          ]
-                                                        }
-                                                      },
+                                                      "condition": "size(qd_max,1) == 1",
                                                       "then": "ones(nout)*qd_max[1]"
                                                     }
                                                   ],
@@ -9960,27 +9988,7 @@
                                                 {
                                                   "if_elseif": [
                                                     {
-                                                      "condition": {
-                                                        "logical_expression": {
-                                                          "logical_or": [
-                                                            {
-                                                              "logical_and": [
-                                                                {
-                                                                  "arithmetic_expressions": [
-                                                                    {
-                                                                      "name": "size(qdd_max,1)"
-                                                                    },
-                                                                    {
-                                                                      "name": "1"
-                                                                    }
-                                                                  ],
-                                                                  "relation_operator": "=="
-                                                                }
-                                                              ]
-                                                            }
-                                                          ]
-                                                        }
-                                                      },
+                                                      "condition": "size(qdd_max,1) == 1",
                                                       "then": "ones(nout)*qdd_max[1]"
                                                     }
                                                   ],
@@ -10313,7 +10321,7 @@
                                           }
                                         ],
                                         "else_expression": {
-                                          "simple_expression": "([object Object])"
+                                          "simple_expression": "((if noWphase then (if time < Ta1 +startTime then sdd_max else (if time < Te +startTime then -sdd_max else 0)) else (if time < Ta2 +startTime then sdd_max else (if time < Tv +startTime then 0 else (if time < Te +startTime then -sdd_max else 0)))))"
                                         }
                                       }
                                     }
@@ -10554,7 +10562,7 @@
                                                     "y": -110
                                                   }
                                                 ],
-                                                "textString": ",textString="
+                                                "textString": "\"deltaq=%deltaq\""
                                               }
                                             }
                                           ]
@@ -10830,7 +10838,7 @@
                                             "name": "max",
                                             "arguments": [
                                               {
-                                                "name": "[[object Object];[object Object];[object Object];[object Object]]"
+                                                "name": "[size(q_begin,1);size(q_end,1);size(qd_max,1);size(qdd_max,1)]"
                                               }
                                             ]
                                           }
@@ -11064,27 +11072,7 @@
                                                 {
                                                   "if_elseif": [
                                                     {
-                                                      "condition": {
-                                                        "logical_expression": {
-                                                          "logical_or": [
-                                                            {
-                                                              "logical_and": [
-                                                                {
-                                                                  "arithmetic_expressions": [
-                                                                    {
-                                                                      "name": "size(q_begin,1)"
-                                                                    },
-                                                                    {
-                                                                      "name": "1"
-                                                                    }
-                                                                  ],
-                                                                  "relation_operator": "=="
-                                                                }
-                                                              ]
-                                                            }
-                                                          ]
-                                                        }
-                                                      },
+                                                      "condition": "size(q_begin,1) == 1",
                                                       "then": "ones(nout)*q_begin[1]"
                                                     }
                                                   ],
@@ -11122,27 +11110,7 @@
                                                 {
                                                   "if_elseif": [
                                                     {
-                                                      "condition": {
-                                                        "logical_expression": {
-                                                          "logical_or": [
-                                                            {
-                                                              "logical_and": [
-                                                                {
-                                                                  "arithmetic_expressions": [
-                                                                    {
-                                                                      "name": "size(q_end,1)"
-                                                                    },
-                                                                    {
-                                                                      "name": "1"
-                                                                    }
-                                                                  ],
-                                                                  "relation_operator": "=="
-                                                                }
-                                                              ]
-                                                            }
-                                                          ]
-                                                        }
-                                                      },
+                                                      "condition": "size(q_end,1) == 1",
                                                       "then": "ones(nout)*q_end[1]"
                                                     }
                                                   ],
@@ -11180,27 +11148,7 @@
                                                 {
                                                   "if_elseif": [
                                                     {
-                                                      "condition": {
-                                                        "logical_expression": {
-                                                          "logical_or": [
-                                                            {
-                                                              "logical_and": [
-                                                                {
-                                                                  "arithmetic_expressions": [
-                                                                    {
-                                                                      "name": "size(qd_max,1)"
-                                                                    },
-                                                                    {
-                                                                      "name": "1"
-                                                                    }
-                                                                  ],
-                                                                  "relation_operator": "=="
-                                                                }
-                                                              ]
-                                                            }
-                                                          ]
-                                                        }
-                                                      },
+                                                      "condition": "size(qd_max,1) == 1",
                                                       "then": "ones(nout)*qd_max[1]"
                                                     }
                                                   ],
@@ -11238,27 +11186,7 @@
                                                 {
                                                   "if_elseif": [
                                                     {
-                                                      "condition": {
-                                                        "logical_expression": {
-                                                          "logical_or": [
-                                                            {
-                                                              "logical_and": [
-                                                                {
-                                                                  "arithmetic_expressions": [
-                                                                    {
-                                                                      "name": "size(qdd_max,1)"
-                                                                    },
-                                                                    {
-                                                                      "name": "1"
-                                                                    }
-                                                                  ],
-                                                                  "relation_operator": "=="
-                                                                }
-                                                              ]
-                                                            }
-                                                          ]
-                                                        }
-                                                      },
+                                                      "condition": "size(qdd_max,1) == 1",
                                                       "then": "ones(nout)*qdd_max[1]"
                                                     }
                                                   ],
@@ -14204,7 +14132,7 @@
                                                     "y": -110
                                                   }
                                                 ],
-                                                "textString": ",textString="
+                                                "textString": "\"offset=%offset\""
                                               }
                                             }
                                           ]
@@ -14291,7 +14219,7 @@
                                               "name": "max",
                                               "arguments": [
                                                 {
-                                                  "name": "[[object Object];[object Object]]"
+                                                  "name": "[size(columns,1);size(offset,1)]"
                                                 }
                                               ]
                                             }
@@ -14416,7 +14344,24 @@
                                                       "modification": {
                                                         "equal": true,
                                                         "expression": {
-                                                          "simple_expression": "not tableOnFile"
+                                                          "simple_expression": {
+                                                            "logical_expression": {
+                                                              "logical_or": [
+                                                                {
+                                                                  "logical_and": [
+                                                                    {
+                                                                      "not": true,
+                                                                      "arithmetic_expressions": [
+                                                                        {
+                                                                          "name": "tableOnFile"
+                                                                        }
+                                                                      ]
+                                                                    }
+                                                                  ]
+                                                                }
+                                                              ]
+                                                            }
+                                                          }
                                                         }
                                                       }
                                                     }
@@ -15355,27 +15300,7 @@
                                                 {
                                                   "if_elseif": [
                                                     {
-                                                      "condition": {
-                                                        "logical_expression": {
-                                                          "logical_or": [
-                                                            {
-                                                              "logical_and": [
-                                                                {
-                                                                  "arithmetic_expressions": [
-                                                                    {
-                                                                      "name": "size(offset,1)"
-                                                                    },
-                                                                    {
-                                                                      "name": "1"
-                                                                    }
-                                                                  ],
-                                                                  "relation_operator": "=="
-                                                                }
-                                                              ]
-                                                            }
-                                                          ]
-                                                        }
-                                                      },
+                                                      "condition": "size(offset,1) == 1",
                                                       "then": "ones(nout)*offset[1]"
                                                     }
                                                   ],
@@ -15412,7 +15337,7 @@
                                                     "name": "if tableOnFile then tableName else \"NoName\""
                                                   },
                                                   {
-                                                    "name": "if [object Object] then fileName else \"NoName\",table,startTime/timeScale,columns,smoothness,extrapolation,shiftTime/timeScale,if [object Object] then timeEvents elseif [object Object] then Modelica.Blocks.Types.TimeEvents.Always else Modelica.Blocks.Types.TimeEvents.NoTimeEvents,if tableOnFile then verboseRead else false"
+                                                    "name": "if tableOnFile and fileName <> \"NoName\" and not Modelica.Utilities.Strings.isEmpty(fileName) then fileName else \"NoName\",table,startTime/timeScale,columns,smoothness,extrapolation,shiftTime/timeScale,if smoothness == Modelica.Blocks.Types.Smoothness.LinearSegments then timeEvents elseif smoothness == Modelica.Blocks.Types.Smoothness.ConstantSegments then Modelica.Blocks.Types.TimeEvents.Always else Modelica.Blocks.Types.TimeEvents.NoTimeEvents,if tableOnFile then verboseRead else false"
                                                   }
                                                 ]
                                               }
@@ -15650,7 +15575,30 @@
                                     "if_elseif": [
                                       {
                                         "condition": {
-                                          "simple_expression": "verboseExtrapolation and ([object Object])"
+                                          "simple_expression": {
+                                            "logical_expression": {
+                                              "logical_or": [
+                                                {
+                                                  "logical_and": [
+                                                    {
+                                                      "arithmetic_expressions": [
+                                                        {
+                                                          "name": "verboseExtrapolation"
+                                                        }
+                                                      ]
+                                                    },
+                                                    {
+                                                      "arithmetic_expressions": [
+                                                        {
+                                                          "name": "(extrapolation == Modelica.Blocks.Types.Extrapolation.LastTwoPoints or extrapolation == Modelica.Blocks.Types.Extrapolation.HoldLastPoint)"
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          }
                                         },
                                         "then": [
                                           {
@@ -16495,7 +16443,24 @@
                                               }
                                             },
                                             "then": {
-                                              "simple_expression": "not startValue"
+                                              "simple_expression": {
+                                                "logical_expression": {
+                                                  "logical_or": [
+                                                    {
+                                                      "logical_and": [
+                                                        {
+                                                          "not": true,
+                                                          "arithmetic_expressions": [
+                                                            {
+                                                              "name": "startValue"
+                                                            }
+                                                          ]
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              }
                                             }
                                           }
                                         ],
@@ -17700,12 +17665,12 @@
                                                                   "simple_expression": "startValue"
                                                                 },
                                                                 "then": {
-                                                                  "simple_expression": "[table[1],1;table,[object Object]]"
+                                                                  "simple_expression": "[table[1],1;table,{mod(i +1,2) for i in 1:n}]"
                                                                 }
                                                               }
                                                             ],
                                                             "else_expression": {
-                                                              "simple_expression": "[table[1],0;table,[object Object]]"
+                                                              "simple_expression": "[table[1],0;table,{mod(i,2) for i in 1:n}]"
                                                             }
                                                           }
                                                         }
@@ -19272,7 +19237,7 @@
                                                     "y": -110
                                                   }
                                                 ],
-                                                "textString": ",textString="
+                                                "textString": "\"k=%k\""
                                               }
                                             }
                                           ]
@@ -19359,7 +19324,7 @@
                                   "assignment_equation": {
                                     "lhs": "y",
                                     "rhs": {
-                                      "simple_expression": "offset +(if [object Object] then 0 else height)"
+                                      "simple_expression": "offset +(if time < startTime then 0 else height)"
                                     }
                                   }
                                 }
@@ -19541,7 +19506,7 @@
                                                     "y": -110
                                                   }
                                                 ],
-                                                "textString": ",textString="
+                                                "textString": "\"startTime=%startTime\""
                                               }
                                             }
                                           ]

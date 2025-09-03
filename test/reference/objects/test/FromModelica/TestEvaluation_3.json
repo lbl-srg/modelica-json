@@ -92,7 +92,24 @@
           "modification": {
             "equal": true,
             "expression": {
-              "simple_expression": "not k1"
+              "simple_expression": {
+                "logical_expression": {
+                  "logical_or": [
+                    {
+                      "logical_and": [
+                        {
+                          "not": true,
+                          "arithmetic_expressions": [
+                            {
+                              "name": "k1"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
             }
           }
         },
@@ -139,7 +156,24 @@
         },
         "condition_attribute": {
           "expression": {
-            "simple_expression": "not k1"
+            "simple_expression": {
+              "logical_expression": {
+                "logical_or": [
+                  {
+                    "logical_and": [
+                      {
+                        "not": true,
+                        "arithmetic_expressions": [
+                          {
+                            "name": "k1"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
           }
         },
         "description": {

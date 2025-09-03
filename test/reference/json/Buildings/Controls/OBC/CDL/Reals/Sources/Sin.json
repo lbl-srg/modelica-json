@@ -277,7 +277,7 @@
                       "assignment_equation": {
                         "lhs": "y",
                         "rhs": {
-                          "simple_expression": "offset +(if [object Object] then 0 else amplitude*Modelica.Math.sin(2*Buildings.Controls.OBC.CDL.Constants.pi*freqHz*(time -startTime) +phase))"
+                          "simple_expression": "offset +(if time < startTime then 0 else amplitude*Modelica.Math.sin(2*Buildings.Controls.OBC.CDL.Constants.pi*freqHz*(time -startTime) +phase))"
                         }
                       }
                     }
@@ -600,7 +600,7 @@
                                         "y": -112
                                       }
                                     ],
-                                    "textString": ",textString=",
+                                    "textString": "\"freqHz=%freqHz\"",
                                     "textColor": {
                                       "r": 0,
                                       "g": 0,
@@ -621,7 +621,7 @@
                                         "y": 10
                                       }
                                     ],
-                                    "textString": "DynamicSelect(\"\",String(y",
+                                    "textString": "DynamicSelect(\"\",String(y,leftJustified=false,significantDigits=3))",
                                     "textColor": {
                                       "r": 0,
                                       "g": 0,

@@ -118,7 +118,7 @@
                                 "g": 0,
                                 "b": 0
                               },
-                              "visible": "([object Object])",
+                              "visible": "(controllerType == Buildings.Controls.OBC.CDL.Types.SimpleController.P)",
                               "fillColor": {
                                 "r": 175,
                                 "g": 175,
@@ -146,7 +146,7 @@
                                 "g": 0,
                                 "b": 0
                               },
-                              "visible": "([object Object])",
+                              "visible": "(controllerType == Buildings.Controls.OBC.CDL.Types.SimpleController.PI)",
                               "fillColor": {
                                 "r": 175,
                                 "g": 175,
@@ -174,7 +174,7 @@
                                 "g": 0,
                                 "b": 0
                               },
-                              "visible": "([object Object])",
+                              "visible": "(controllerType == Buildings.Controls.OBC.CDL.Types.SimpleController.PD)",
                               "fillColor": {
                                 "r": 175,
                                 "g": 175,
@@ -202,7 +202,7 @@
                                 "g": 0,
                                 "b": 0
                               },
-                              "visible": "([object Object])",
+                              "visible": "(controllerType == Buildings.Controls.OBC.CDL.Types.SimpleController.PID)",
                               "fillColor": {
                                 "r": 175,
                                 "g": 175,
@@ -444,7 +444,7 @@
                                   "y": 10
                                 }
                               ],
-                              "textString": "DynamicSelect(\"\",String(y",
+                              "textString": "DynamicSelect(\"\",String(y,leftJustified=false,significantDigits=3))",
                               "textColor": {
                                 "r": 0,
                                 "g": 0,
@@ -4019,7 +4019,24 @@
         },
         "condition_attribute": {
           "expression": {
-            "simple_expression": "not with_D"
+            "simple_expression": {
+              "logical_expression": {
+                "logical_or": [
+                  {
+                    "logical_and": [
+                      {
+                        "not": true,
+                        "arithmetic_expressions": [
+                          {
+                            "name": "with_D"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
           }
         },
         "description": {
@@ -4160,7 +4177,24 @@
         },
         "condition_attribute": {
           "expression": {
-            "simple_expression": "not with_I"
+            "simple_expression": {
+              "logical_expression": {
+                "logical_or": [
+                  {
+                    "logical_and": [
+                      {
+                        "not": true,
+                        "arithmetic_expressions": [
+                          {
+                            "name": "with_I"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
           }
         },
         "description": {

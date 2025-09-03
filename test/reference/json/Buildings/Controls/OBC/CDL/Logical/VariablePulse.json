@@ -1308,7 +1308,30 @@
                                       "assignment_equation": {
                                         "lhs": "y",
                                         "rhs": {
-                                          "simple_expression": "([object Object]) and ([object Object])"
+                                          "simple_expression": {
+                                            "logical_expression": {
+                                              "logical_or": [
+                                                {
+                                                  "logical_and": [
+                                                    {
+                                                      "arithmetic_expressions": [
+                                                        {
+                                                          "name": "(time >= t_sta)"
+                                                        }
+                                                      ]
+                                                    },
+                                                    {
+                                                      "arithmetic_expressions": [
+                                                        {
+                                                          "name": "(time < t_end)"
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          }
                                         }
                                       }
                                     }

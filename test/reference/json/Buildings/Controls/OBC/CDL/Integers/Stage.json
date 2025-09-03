@@ -571,7 +571,49 @@
                       "assignment_equation": {
                         "lhs": "checkUpper",
                         "rhs": {
-                          "simple_expression": "not pre(checkUpper) and ([object Object]) or pre(checkUpper) and ([object Object])"
+                          "simple_expression": {
+                            "logical_expression": {
+                              "logical_or": [
+                                {
+                                  "logical_and": [
+                                    {
+                                      "not": true,
+                                      "arithmetic_expressions": [
+                                        {
+                                          "name": "pre(checkUpper)"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "arithmetic_expressions": [
+                                        {
+                                          "name": "(u > (pre(upperThreshold) +h))"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "logical_and": [
+                                    {
+                                      "arithmetic_expressions": [
+                                        {
+                                          "name": "pre(checkUpper)"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "arithmetic_expressions": [
+                                        {
+                                          "name": "(u >= (pre(upperThreshold) -h))"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          }
                         }
                       }
                     },
@@ -579,7 +621,49 @@
                       "assignment_equation": {
                         "lhs": "checkLower",
                         "rhs": {
-                          "simple_expression": "not pre(checkLower) and ([object Object]) or pre(checkLower) and ([object Object])"
+                          "simple_expression": {
+                            "logical_expression": {
+                              "logical_or": [
+                                {
+                                  "logical_and": [
+                                    {
+                                      "not": true,
+                                      "arithmetic_expressions": [
+                                        {
+                                          "name": "pre(checkLower)"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "arithmetic_expressions": [
+                                        {
+                                          "name": "(u > (pre(lowerThreshold) +h))"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "logical_and": [
+                                    {
+                                      "arithmetic_expressions": [
+                                        {
+                                          "name": "pre(checkLower)"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "arithmetic_expressions": [
+                                        {
+                                          "name": "(u >= (pre(lowerThreshold) -h))"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          }
                         }
                       }
                     },
@@ -587,7 +671,7 @@
                       "when_equation": [
                         {
                           "condition": {
-                            "simple_expression": "([object Object])"
+                            "simple_expression": "(time >= pre(tNext) and (checkUpper or not checkLower))"
                           },
                           "then": [
                             {
@@ -710,7 +794,7 @@
                                         "y": -12
                                       }
                                     ],
-                                    "textString": "DynamicSelect(\"\",String(u",
+                                    "textString": "DynamicSelect(\"\",String(u,leftJustified=false,significantDigits=3))",
                                     "textColor": {
                                       "r": 0,
                                       "g": 0,
@@ -731,7 +815,7 @@
                                         "y": -10
                                       }
                                     ],
-                                    "textString": "DynamicSelect(\"\",String(y",
+                                    "textString": "DynamicSelect(\"\",String(y,leftJustified=false,significantDigits=3))",
                                     "textColor": {
                                       "r": 0,
                                       "g": 0,
@@ -752,7 +836,7 @@
                                         "y": 100
                                       }
                                     ],
-                                    "textString": ",textString=",
+                                    "textString": "\"h=%h\"",
                                     "textColor": {
                                       "r": 0,
                                       "g": 0,

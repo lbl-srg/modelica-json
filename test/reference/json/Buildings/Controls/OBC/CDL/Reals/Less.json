@@ -367,7 +367,24 @@
                           },
                           "condition_attribute": {
                             "expression": {
-                              "simple_expression": "not have_hysteresis"
+                              "simple_expression": {
+                                "logical_expression": {
+                                  "logical_or": [
+                                    {
+                                      "logical_and": [
+                                        {
+                                          "not": true,
+                                          "arithmetic_expressions": [
+                                            {
+                                              "name": "have_hysteresis"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              }
                             }
                           },
                           "description": {
@@ -923,7 +940,7 @@
                                       "assignment_equation": {
                                         "lhs": "y",
                                         "rhs": {
-                                          "simple_expression": "([object Object])"
+                                          "simple_expression": "(not pre(y) and u1 < u2 or pre(y) and u1 < u2 +h)"
                                         }
                                       }
                                     }
@@ -1003,7 +1020,7 @@
                                                         "y": 92
                                                       }
                                                     ],
-                                                    "textString": ",textString=",
+                                                    "textString": "\"h=%h\"",
                                                     "textColor": {
                                                       "r": 0,
                                                       "g": 0,
@@ -1557,7 +1574,7 @@
                                         "y": 92
                                       }
                                     ],
-                                    "textString": ",textString=",
+                                    "textString": "\"h=%h\"",
                                     "textColor": {
                                       "r": 0,
                                       "g": 0,
@@ -1578,7 +1595,7 @@
                                         "y": 24
                                       }
                                     ],
-                                    "textString": "DynamicSelect(\"\",String(u1",
+                                    "textString": "DynamicSelect(\"\",String(u1,leftJustified=false,significantDigits=3))",
                                     "textColor": {
                                       "r": 0,
                                       "g": 0,
@@ -1599,7 +1616,7 @@
                                         "y": -34
                                       }
                                     ],
-                                    "textString": "DynamicSelect(\"\",String(u2",
+                                    "textString": "DynamicSelect(\"\",String(u2,leftJustified=false,significantDigits=3))",
                                     "textColor": {
                                       "r": 0,
                                       "g": 0,
@@ -1620,7 +1637,7 @@
                                         "y": 62
                                       }
                                     ],
-                                    "textString": "DynamicSelect(\"\",String(u2",
+                                    "textString": "DynamicSelect(\"\",String(u2,leftJustified=false,significantDigits=3))",
                                     "textColor": {
                                       "r": 235,
                                       "g": 235,
@@ -1642,7 +1659,7 @@
                                         "y": 62
                                       }
                                     ],
-                                    "textString": "DynamicSelect(\"\",String(u2",
+                                    "textString": "DynamicSelect(\"\",String(u2,leftJustified=false,significantDigits=3))",
                                     "textColor": {
                                       "r": 235,
                                       "g": 235,
@@ -1664,7 +1681,7 @@
                                         "y": -14
                                       }
                                     ],
-                                    "textString": "DynamicSelect(\"\",String(u2 +h",
+                                    "textString": "DynamicSelect(\"\",String(u2 +h,leftJustified=false,significantDigits=3))",
                                     "textColor": {
                                       "r": 235,
                                       "g": 235,

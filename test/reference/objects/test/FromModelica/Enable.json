@@ -4857,7 +4857,24 @@
         },
         "condition_attribute": {
           "expression": {
-            "simple_expression": "not use_enthalpy"
+            "simple_expression": {
+              "logical_expression": {
+                "logical_or": [
+                  {
+                    "logical_and": [
+                      {
+                        "not": true,
+                        "arithmetic_expressions": [
+                          {
+                            "name": "use_enthalpy"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
           }
         },
         "description": {

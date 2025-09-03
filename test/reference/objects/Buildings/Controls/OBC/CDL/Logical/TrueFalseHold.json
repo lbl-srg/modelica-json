@@ -799,7 +799,24 @@
           "modification": {
             "equal": true,
             "expression": {
-              "simple_expression": "not u"
+              "simple_expression": {
+                "logical_expression": {
+                  "logical_or": [
+                    {
+                      "logical_and": [
+                        {
+                          "not": true,
+                          "arithmetic_expressions": [
+                            {
+                              "name": "u"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
             }
           }
         },
@@ -828,7 +845,24 @@
           "modification": {
             "equal": true,
             "expression": {
-              "simple_expression": "not y"
+              "simple_expression": {
+                "logical_expression": {
+                  "logical_or": [
+                    {
+                      "logical_and": [
+                        {
+                          "not": true,
+                          "arithmetic_expressions": [
+                            {
+                              "name": "y"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
             }
           }
         },

@@ -416,7 +416,34 @@
                                     "function_call_args": {
                                       "function_argument": {
                                         "expression": {
-                                          "simple_expression": "([object Object]) or ([object Object])"
+                                          "simple_expression": {
+                                            "logical_expression": {
+                                              "logical_or": [
+                                                {
+                                                  "logical_and": [
+                                                    {
+                                                      "arithmetic_expressions": [
+                                                        {
+                                                          "name": "(abs(table[i,j]) < Constants.small)"
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "logical_and": [
+                                                    {
+                                                      "arithmetic_expressions": [
+                                                        {
+                                                          "name": "(abs(table[i,j] -1) < Constants.small)"
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          }
                                         }
                                       },
                                       "function_arguments": {

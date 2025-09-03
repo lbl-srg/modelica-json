@@ -4400,7 +4400,7 @@
                                     }
                                   ],
                                   "value": {
-                                    "simple_expression": "timOff +((dayRef -1) +sum({dayInMonth[i] for i in 1:(monthRef -1)}) +(if [object Object] then 1 else 0))*3600*24"
+                                    "simple_expression": "timOff +((dayRef -1) +sum({dayInMonth[i] for i in 1:(monthRef -1)}) +(if monthRef > 2 and isLeapYear[yearRef -firstYear +1] then 1 else 0))*3600*24"
                                   }
                                 }
                               }
@@ -4462,6 +4462,13 @@
                                                   }
                                                 ],
                                                 "relation_operator": "<"
+                                              },
+                                              {
+                                                "arithmetic_expressions": [
+                                                  {
+                                                    "name": "(if i == 1 then true else unixTimeStampLocal >= timeStampsNewYear[i -1])"
+                                                  }
+                                                ]
                                               }
                                             ]
                                           }
@@ -4557,7 +4564,7 @@
                                                     "name": "(unixTimeStampLocal -epochLastMonth)/3600/24"
                                                   },
                                                   {
-                                                    "name": "(if [object Object] then 1 +dayInMonth[i] else dayInMonth[i])"
+                                                    "name": "(if i == 2 and isLeapYear[yearIndex] then 1 +dayInMonth[i] else dayInMonth[i])"
                                                   }
                                                 ],
                                                 "relation_operator": "<"
@@ -4607,7 +4614,7 @@
                                       }
                                     ],
                                     "value": {
-                                      "simple_expression": "epochLastMonth +(if [object Object] then 1 +dayInMonth[i] else dayInMonth[i])*3600*24"
+                                      "simple_expression": "epochLastMonth +(if i == 2 and isLeapYear[yearIndex] then 1 +dayInMonth[i] else dayInMonth[i])*3600*24"
                                     }
                                   }
                                 }
@@ -4706,7 +4713,7 @@
                                           "if_elseif": [
                                             {
                                               "condition": {
-                                                "simple_expression": "([object Object])"
+                                                "simple_expression": "(pre(hour) == 23)"
                                               },
                                               "then": {
                                                 "simple_expression": "0"
@@ -4829,7 +4836,7 @@
                                           "if_elseif": [
                                             {
                                               "condition": {
-                                                "simple_expression": "([object Object])"
+                                                "simple_expression": "(pre(weekDay) == 7)"
                                               },
                                               "then": {
                                                 "simple_expression": "1"

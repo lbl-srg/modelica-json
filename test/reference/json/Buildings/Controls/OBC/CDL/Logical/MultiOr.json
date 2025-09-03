@@ -251,7 +251,34 @@
                                         "assignment_equation": {
                                           "lhs": "uTemp[i]",
                                           "rhs": {
-                                            "simple_expression": "u[i] or uTemp[i -1]"
+                                            "simple_expression": {
+                                              "logical_expression": {
+                                                "logical_or": [
+                                                  {
+                                                    "logical_and": [
+                                                      {
+                                                        "arithmetic_expressions": [
+                                                          {
+                                                            "name": "u[i]"
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "logical_and": [
+                                                      {
+                                                        "arithmetic_expressions": [
+                                                          {
+                                                            "name": "uTemp[i -1]"
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            }
                                           }
                                         }
                                       }
@@ -273,7 +300,7 @@
                           },
                           {
                             "condition": {
-                              "simple_expression": "([object Object])"
+                              "simple_expression": "(size(u,1) == 1)"
                             },
                             "then": [
                               {

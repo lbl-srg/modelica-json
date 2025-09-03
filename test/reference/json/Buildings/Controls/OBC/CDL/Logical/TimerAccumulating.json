@@ -547,6 +547,13 @@
                                       {
                                         "arithmetic_expressions": [
                                           {
+                                            "name": "u"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "arithmetic_expressions": [
+                                          {
                                             "name": "time"
                                           },
                                           {
@@ -574,7 +581,24 @@
                         },
                         {
                           "condition": {
-                            "simple_expression": "not u"
+                            "simple_expression": {
+                              "logical_expression": {
+                                "logical_or": [
+                                  {
+                                    "logical_and": [
+                                      {
+                                        "not": true,
+                                        "arithmetic_expressions": [
+                                          {
+                                            "name": "u"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            }
                           },
                           "then": [
                             {
@@ -898,7 +922,7 @@
                                         "y": 92
                                       }
                                     ],
-                                    "textString": ",textString=",
+                                    "textString": "\"t=%t\"",
                                     "textColor": {
                                       "r": 0,
                                       "g": 0,
@@ -971,7 +995,7 @@
                                         "y": 10
                                       }
                                     ],
-                                    "textString": "DynamicSelect(\"\",String(y",
+                                    "textString": "DynamicSelect(\"\",String(y,leftJustified=false,significantDigits=3))",
                                     "textColor": {
                                       "r": 0,
                                       "g": 0,

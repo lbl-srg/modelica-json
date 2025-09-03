@@ -212,7 +212,7 @@
                       "assignment_equation": {
                         "lhs": "y",
                         "rhs": {
-                          "simple_expression": "offset +(if [object Object] then 0 else if [object Object] then (time -startTime)*height/duration else height)"
+                          "simple_expression": "offset +(if time < startTime then 0 else if time < (startTime +duration) then (time -startTime)*height/duration else height)"
                         }
                       }
                     }
@@ -450,7 +450,7 @@
                                         "y": -110
                                       }
                                     ],
-                                    "textString": ",textString=",
+                                    "textString": "\"duration=%duration\"",
                                     "textColor": {
                                       "r": 0,
                                       "g": 0,
@@ -486,7 +486,7 @@
                                         "y": 10
                                       }
                                     ],
-                                    "textString": "DynamicSelect(\"\",String(y",
+                                    "textString": "DynamicSelect(\"\",String(y,leftJustified=false,significantDigits=3))",
                                     "textColor": {
                                       "r": 0,
                                       "g": 0,

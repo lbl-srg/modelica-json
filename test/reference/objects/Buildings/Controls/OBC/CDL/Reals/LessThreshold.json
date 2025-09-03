@@ -155,7 +155,7 @@
                                   "y": 92
                                 }
                               ],
-                              "textString": ",textString=",
+                              "textString": "\"h=%h\"",
                               "textColor": {
                                 "r": 0,
                                 "g": 0,
@@ -176,7 +176,7 @@
                                   "y": 24
                                 }
                               ],
-                              "textString": "DynamicSelect(\"\",String(u",
+                              "textString": "DynamicSelect(\"\",String(u,leftJustified=false,significantDigits=3))",
                               "textColor": {
                                 "r": 0,
                                 "g": 0,
@@ -219,7 +219,7 @@
                                   "y": 62
                                 }
                               ],
-                              "textString": "DynamicSelect(\"\",String(t",
+                              "textString": "DynamicSelect(\"\",String(t,leftJustified=false,significantDigits=3))",
                               "textColor": {
                                 "r": 0,
                                 "g": 0,
@@ -241,7 +241,7 @@
                                   "y": -14
                                 }
                               ],
-                              "textString": "DynamicSelect(\"\",String(t +h",
+                              "textString": "DynamicSelect(\"\",String(t +h,leftJustified=false,significantDigits=3))",
                               "textColor": {
                                 "r": 0,
                                 "g": 0,
@@ -843,7 +843,24 @@
         },
         "condition_attribute": {
           "expression": {
-            "simple_expression": "not have_hysteresis"
+            "simple_expression": {
+              "logical_expression": {
+                "logical_or": [
+                  {
+                    "logical_and": [
+                      {
+                        "not": true,
+                        "arithmetic_expressions": [
+                          {
+                            "name": "have_hysteresis"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
           }
         },
         "description": {
@@ -1059,7 +1076,7 @@
                                   "y": 92
                                 }
                               ],
-                              "textString": ",textString=",
+                              "textString": "\"h=%h\"",
                               "textColor": {
                                 "r": 0,
                                 "g": 0,

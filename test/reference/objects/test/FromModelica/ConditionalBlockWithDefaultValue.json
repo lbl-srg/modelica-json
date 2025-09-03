@@ -258,7 +258,24 @@
         },
         "condition_attribute": {
           "expression": {
-            "simple_expression": "not enaBlo"
+            "simple_expression": {
+              "logical_expression": {
+                "logical_or": [
+                  {
+                    "logical_and": [
+                      {
+                        "not": true,
+                        "arithmetic_expressions": [
+                          {
+                            "name": "enaBlo"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
           }
         },
         "description": {

@@ -3219,7 +3219,7 @@
                                                     "y": -70
                                                   }
                                                 ],
-                                                "textString": "DynamicSelect(\" \",String(y"
+                                                "textString": "DynamicSelect(\" \",String(y,significantDigits=significantDigits))"
                                               }
                                             },
                                             {
@@ -7567,7 +7567,7 @@
                                                     "y": -70
                                                   }
                                                 ],
-                                                "textString": "DynamicSelect(\" \",String(y"
+                                                "textString": "DynamicSelect(\" \",String(y,minimumLength=1,significantDigits=0))"
                                               }
                                             },
                                             {
@@ -7839,7 +7839,7 @@
                                                     "y": -70
                                                   }
                                                 ],
-                                                "textString": "DynamicSelect(\" \",String(y"
+                                                "textString": "DynamicSelect(\" \",String(y,minimumLength=1,significantDigits=0))"
                                               }
                                             },
                                             {
@@ -11055,7 +11055,31 @@
                                                       "modification": {
                                                         "equal": true,
                                                         "expression": {
-                                                          "simple_expression": "enableNoise and not useAutomaticLocalSeed"
+                                                          "simple_expression": {
+                                                            "logical_expression": {
+                                                              "logical_or": [
+                                                                {
+                                                                  "logical_and": [
+                                                                    {
+                                                                      "arithmetic_expressions": [
+                                                                        {
+                                                                          "name": "enableNoise"
+                                                                        }
+                                                                      ]
+                                                                    },
+                                                                    {
+                                                                      "not": true,
+                                                                      "arithmetic_expressions": [
+                                                                        {
+                                                                          "name": "useAutomaticLocalSeed"
+                                                                        }
+                                                                      ]
+                                                                    }
+                                                                  ]
+                                                                }
+                                                              ]
+                                                            }
+                                                          }
                                                         }
                                                       }
                                                     }
@@ -11247,7 +11271,30 @@
                                         "modification": {
                                           "equal": true,
                                           "expression": {
-                                            "simple_expression": "enableNoise and globalSeed.enableNoise"
+                                            "simple_expression": {
+                                              "logical_expression": {
+                                                "logical_or": [
+                                                  {
+                                                    "logical_and": [
+                                                      {
+                                                        "arithmetic_expressions": [
+                                                          {
+                                                            "name": "enableNoise"
+                                                          }
+                                                        ]
+                                                      },
+                                                      {
+                                                        "arithmetic_expressions": [
+                                                          {
+                                                            "name": "globalSeed.enableNoise"
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            }
                                           }
                                         }
                                       },
@@ -11405,7 +11452,30 @@
                                   "when_equation": [
                                     {
                                       "condition": {
-                                        "simple_expression": "generateNoise and sample(startTime,samplePeriod)"
+                                        "simple_expression": {
+                                          "logical_expression": {
+                                            "logical_or": [
+                                              {
+                                                "logical_and": [
+                                                  {
+                                                    "arithmetic_expressions": [
+                                                      {
+                                                        "name": "generateNoise"
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "arithmetic_expressions": [
+                                                      {
+                                                        "name": "sample(startTime,samplePeriod)"
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        }
                                       },
                                       "then": [
                                         {
@@ -11440,6 +11510,18 @@
                                               "simple_expression": {
                                                 "logical_expression": {
                                                   "logical_or": [
+                                                    {
+                                                      "logical_and": [
+                                                        {
+                                                          "not": true,
+                                                          "arithmetic_expressions": [
+                                                            {
+                                                              "name": "generateNoise"
+                                                            }
+                                                          ]
+                                                        }
+                                                      ]
+                                                    },
                                                     {
                                                       "logical_and": [
                                                         {

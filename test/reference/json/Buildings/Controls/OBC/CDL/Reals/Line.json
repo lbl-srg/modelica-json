@@ -364,7 +364,34 @@
                         "if_elseif": [
                           {
                             "condition": {
-                              "simple_expression": "limitBelow or limitAbove"
+                              "simple_expression": {
+                                "logical_expression": {
+                                  "logical_or": [
+                                    {
+                                      "logical_and": [
+                                        {
+                                          "arithmetic_expressions": [
+                                            {
+                                              "name": "limitBelow"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "logical_and": [
+                                        {
+                                          "arithmetic_expressions": [
+                                            {
+                                              "name": "limitAbove"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              }
                             },
                             "then": [
                               {
@@ -441,7 +468,30 @@
                         "if_elseif": [
                           {
                             "condition": {
-                              "simple_expression": "limitBelow and limitAbove"
+                              "simple_expression": {
+                                "logical_expression": {
+                                  "logical_or": [
+                                    {
+                                      "logical_and": [
+                                        {
+                                          "arithmetic_expressions": [
+                                            {
+                                              "name": "limitBelow"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "arithmetic_expressions": [
+                                            {
+                                              "name": "limitAbove"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              }
                             },
                             "then": [
                               {
@@ -1216,7 +1266,7 @@
                                         "y": 10
                                       }
                                     ],
-                                    "textString": "DynamicSelect(\"\",String(y",
+                                    "textString": "DynamicSelect(\"\",String(y,leftJustified=false,significantDigits=3))",
                                     "textColor": {
                                       "r": 0,
                                       "g": 0,

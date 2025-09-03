@@ -216,7 +216,44 @@
                         },
                         {
                           "condition": {
-                            "simple_expression": "(not clr) and change(u) and ([object Object]) and ([object Object])"
+                            "simple_expression": {
+                              "logical_expression": {
+                                "logical_or": [
+                                  {
+                                    "logical_and": [
+                                      {
+                                        "arithmetic_expressions": [
+                                          {
+                                            "name": "(not clr)"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "arithmetic_expressions": [
+                                          {
+                                            "name": "change(u)"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "arithmetic_expressions": [
+                                          {
+                                            "name": "(pre(u) == false)"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "arithmetic_expressions": [
+                                          {
+                                            "name": "(pre(y) == false)"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            }
                           },
                           "then": [
                             {
@@ -231,7 +268,44 @@
                         },
                         {
                           "condition": {
-                            "simple_expression": "(not clr) and change(u) and ([object Object]) and ([object Object])"
+                            "simple_expression": {
+                              "logical_expression": {
+                                "logical_or": [
+                                  {
+                                    "logical_and": [
+                                      {
+                                        "arithmetic_expressions": [
+                                          {
+                                            "name": "(not clr)"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "arithmetic_expressions": [
+                                          {
+                                            "name": "change(u)"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "arithmetic_expressions": [
+                                          {
+                                            "name": "(pre(u) == false)"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "arithmetic_expressions": [
+                                          {
+                                            "name": "(pre(y) == true)"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            }
                           },
                           "then": [
                             {
@@ -246,7 +320,37 @@
                         },
                         {
                           "condition": {
-                            "simple_expression": "(not clr) and change(u) and ([object Object])"
+                            "simple_expression": {
+                              "logical_expression": {
+                                "logical_or": [
+                                  {
+                                    "logical_and": [
+                                      {
+                                        "arithmetic_expressions": [
+                                          {
+                                            "name": "(not clr)"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "arithmetic_expressions": [
+                                          {
+                                            "name": "change(u)"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "arithmetic_expressions": [
+                                          {
+                                            "name": "(pre(u) == true)"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            }
                           },
                           "then": [
                             {
