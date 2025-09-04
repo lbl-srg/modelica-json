@@ -35,9 +35,9 @@ parser.addArgument(
 parser.addArgument(
   ['-m', '--mode'],
   {
-    help: "Parsing mode, CDL model or a package of the Modelica Buildings library, 'modelica' is the default.",
+    help: "Parsing mode: 'cdl' (default) or 'modelica' with the 'cxf' output. 'modelica' mode should be used if translating a CDL instance within a Modelica model into CXF.",
     choices: ['cdl', 'modelica'],
-    defaultValue: 'modelica'
+    defaultValue: 'cdl'
   }
 )
 parser.addArgument(
@@ -125,7 +125,7 @@ if (args.output === 'modelica') {
     function (resolve, reject) {
       const moFiles = ut.getMoFiles(args.file)
       // Parse the json representation for moFiles
-      jsons = pa.getJsons(moFiles, args.output, args.directory, args.prettyPrint, args.elementary, args.cxfCore)
+      jsons = pa.getJsons(moFiles, args.output, args.directory, args.prettyPrint, args.elementary, args.cxfCore, args.mode)
       resolve(0)
     }
   )
@@ -135,6 +135,8 @@ if (args.output === 'modelica') {
     }
     if (args.output === 'cxf' && args.cxfCore && args.elementary) {
       ce.getCxfCore(args.file, args.directory, args.prettyPrint)
+    } else if (args.output === 'cxf' && !args.cxfCore && !args.elementary && args.mode === 'modelica') {
+      ce.getCxfFromModelica(args.file, args.directory, args.prettyPrint)
     }
     if (args.output === 'doc' || args.output === 'doc+') {
       const unitData = JSON.parse(

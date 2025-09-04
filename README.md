@@ -118,10 +118,10 @@ This parser takes a .mo file in input and has three possible outputs, that can b
 
 ##### --mode / -m
 
-We offer two different modes of translation that can be chosen with the argument -m :
+This argument is used to specify two parsing modes when generating a `cxf` output. We offer two different modes of translation that can be chosen with the argument -m :
 
-- **modelica** : Parses a Modelica package (must be a directory)
-- **cdl** (default) : Parses a CDL file.
+- **cdl** (default) : Parses a CDL file to generate a CXF translation. 
+- **modelica** : This mode is chosen when you want to parse a Modelica file and translate the CDL instances within the file (using `__cdl(isControls=true))` annotation) to CXF. 
 
 ##### --log / -l
 
