@@ -787,7 +787,6 @@ mo.describe('jsonquery.js', function () {
       as.equal(equalObjects(JSON.stringify(jsonOutput), JSON.stringify(referenceJsonOutput)), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
     })
     mo.it('testing logical_expression logical_expression1', function () {
-      // sinon.stub(jq, 'logicalExpression').withArgs('test logical_expression1').returns('mocked logical_expression1').withArgs(undefined).returns(undefined)
       sinon.stub(jq, 'checkPri').withArgs('test logical_expression1').returns(undefined)
       sinon.stub(jq, 'logicalExpressionObj').withArgs('test logical_expression1').returns('mocked logical_expression')
 
@@ -2080,7 +2079,6 @@ mo.describe('jsonquery.js', function () {
   })
   mo.describe('testing logical_factor_obj', function () {
     mo.it('testing if no rel_op --> returns undefined', function () {
-      // sinon.stub(jq, 'arithmeticExpression').withArgs('test arithmetic_expression1').returns('mocked arithmetic_expression1')
       const rawJson = {
         not: true,
         relation: {
