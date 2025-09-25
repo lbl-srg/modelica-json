@@ -6,9 +6,14 @@
     {
       "@id": "http://example.org#.ReplaceableCDL",
       "@type": "S231P:Block",
-      "S231P:containsBlock": {
-        "@id": "http://example.org#.ReplaceableCDL.conPID"
-      },
+      "S231P:containsBlock": [
+        {
+          "@id": "http://example.org#.ReplaceableCDL.conPID"
+        },
+        {
+          "@id": "http://example.org#.ReplaceableCDL.conPID2"
+        }
+      ],
       "S231P:hasParameter": {
         "@id": "http://example.org#.ReplaceableCDL.k"
       },
@@ -18,9 +23,17 @@
       "@id": "http://example.org#.ReplaceableCDL.conPID",
       "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID",
       "S231P:accessSpecifier": "public",
-      "S231P:constrainedBy": "Buildings.Controls.OBC.CDL.Reals.PID",
+      "S231P:constrainedBy": "Buildings.Controls.OBC.CDL.Reals.PID(k=k)",
       "S231P:isReplaceable": true,
       "S231P:label": "conPID"
+    },
+    {
+      "@id": "http://example.org#.ReplaceableCDL.conPID2",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID",
+      "S231P:accessSpecifier": "public",
+      "S231P:constrainedBy": "Buildings.Controls.OBC.CDL.Reals.PID",
+      "S231P:isReplaceable": true,
+      "S231P:label": "conPID2"
     },
     {
       "@id": "http://example.org#.ReplaceableCDL.k",

@@ -57,6 +57,8 @@ mo.describe('util', function () {
         'MisplacedInfoWithComponent.mo',
         'MisplacedInfoWithEquation.mo',
         'MisplacedInfoWithParameter.mo',
+        'ModelWithControlsBlock.mo',
+        'ModelWithControlsBlock2.mo',
         'MyController.mo',
         'MyControllerWithExportAnnotation1.mo',
         'MyControllerWithPropagate.mo',

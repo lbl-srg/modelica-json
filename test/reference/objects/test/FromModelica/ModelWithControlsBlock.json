@@ -1,0 +1,150 @@
+{
+  "instances": {
+    "ModelWithControlsBlock": {
+      "within": "FromModelica",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/ModelWithControlsBlock.mo",
+      "type": "long_class_specifier",
+      "class_prefixes": "model"
+    },
+    "fan": {
+      "type_specifier": "Buildings.Fluid.Movers.SpeedControlled_y",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "ModelWithControlsBlock",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "fan"
+        },
+        "description": {
+          "description_string": "Fan"
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "FromModelica",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/ModelWithControlsBlock.mo"
+    },
+    "subCon1": {
+      "type_specifier": "SubController",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "ModelWithControlsBlock",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "subCon1"
+        },
+        "description": {
+          "description_string": "Sub controller",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": -10,
+                          "y": -50
+                        },
+                        {
+                          "x": 10,
+                          "y": -30
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "name": "__cdl",
+                  "modification": {
+                    "class_modification": [
+                      {
+                        "element_modification_or_replaceable": {
+                          "element_modification": {
+                            "name": "isControls",
+                            "modification": {
+                              "equal": true,
+                              "expression": {
+                                "simple_expression": "True"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": -10,
+                      "y": -50
+                    },
+                    {
+                      "x": 10,
+                      "y": -30
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "__cdl",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "isControls",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "True"
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {
+        "isControls": "True"
+      },
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "FromModelica",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/ModelWithControlsBlock.mo"
+    }
+  },
+  "requiredReferences": {}
+}

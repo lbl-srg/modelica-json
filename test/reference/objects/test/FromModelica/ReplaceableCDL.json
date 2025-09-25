@@ -2,7 +2,7 @@
   "instances": {
     "ReplaceableCDL": {
       "within": "",
-      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-json/test/FromModelica/ReplaceableCDL.mo",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/ReplaceableCDL.mo",
       "type": "long_class_specifier",
       "class_prefixes": "block",
       "annotation": [
@@ -73,7 +73,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "",
-      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-json/test/FromModelica/ReplaceableCDL.mo"
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/ReplaceableCDL.mo"
     },
     "conPID": {
       "type_specifier": "Buildings.Controls.OBC.CDL.Reals.PID",
@@ -92,10 +92,47 @@
       "arraySubscripts": "",
       "replaceable": true,
       "constraining_clause": {
+        "name": "Buildings.Controls.OBC.CDL.Reals.PID",
+        "class_modification": [
+          {
+            "element_modification_or_replaceable": {
+              "element_modification": {
+                "name": "k",
+                "modification": {
+                  "equal": true,
+                  "expression": {
+                    "simple_expression": "k"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "within": "",
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/ReplaceableCDL.mo"
+    },
+    "conPID2": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Reals.PID",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "ReplaceableCDL",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "conPID2"
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": true,
+      "constraining_clause": {
         "name": "Buildings.Controls.OBC.CDL.Reals.PID"
       },
       "within": "",
-      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-json/test/FromModelica/ReplaceableCDL.mo"
+      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/ReplaceableCDL.mo"
     }
   },
   "requiredReferences": {}

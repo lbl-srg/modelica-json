@@ -26,13 +26,23 @@ logger.level = 'error'
 
 /** Function to get all the Modelica files to be tested
   */
-const getIntFiles = function (mode = 'modelica') {
+const getIntFiles = function (mode = 'cdl') {
   let pattern
   if (mode === 'cdl') {
     pattern = path.join(__dirname, 'FromModelica', '*.mo')
-    return glob.sync(pattern)
+    const filesToExclude = [
+      path.join(__dirname, 'FromModelica', 'ModelWithControlsBlock.mo'),
+      path.join(__dirname, 'FromModelica', 'ModelWithControlsBlock2.mo'),
+      path.join(__dirname, 'FromModelica', 'ExtendsClause_2.mo'),
+      path.join(__dirname, 'FromModelica', 'ExtendsClause_3.mo')
+    ]
+    const allFiles = glob.sync(pattern)
+    return allFiles.filter(f => !filesToExclude.includes(f))
   } else if (mode === 'modelica') {
-    return path.join(__dirname, 'FromModelica')
+    return [
+      path.join(__dirname, 'FromModelica', 'ModelWithControlsBlock.mo'),
+      path.join(__dirname, 'FromModelica', 'ModelWithControlsBlock2.mo')
+    ]
   }
 }
 
@@ -97,16 +107,16 @@ const checkModJSON = function (outFormat, extension, message) {
   // process.env.MODELICAPATH = __dirname
   mo.it(message, () => {
     // mo files package to be tested
-    const testMoFilesTemp = getIntFiles(mode)
-    const testMoFiles = ut.getMoFiles(testMoFilesTemp)
+    // const testMoFilesTemp = getIntFiles(mode)
+    const testMoFiles = getIntFiles(mode)
 
     // Name of subpackage to store json output files
     const subPackName = (outFormat === 'raw-json' ? 'raw-json' : 'json')
     // When parsing mode is 'modelica', the moFiles should feed into parser in package
     // const jsonNewMOD = pa.getJSON(testMoFiles, mode, outFormat)
     pa.getJsons(testMoFiles, outFormat, 'current', 'false')
-    const pattern = path.join('test', 'FromModelica', '*.mo')
-    const files = glob.sync(pattern)
+    // const pattern = path.join('test', 'FromModelica', 'ModelWithControlsBlock*.mo')
+    const files = getIntFiles(mode)
     const expectedOutputPath = path.join(process.cwd(), 'test', 'reference')
 
     for (let i = 0; i < files.length; i++) {
@@ -136,12 +146,12 @@ const checkModJSON = function (outFormat, extension, message) {
 /** Function that checks parsing from Modelica to Objects Json, in 'modelica' parsing mode
   */
 const checkObjectsJSON = function (outFormat, extension, message) {
-  const mode = 'modelica'
   // process.env.MODELICAPATH = __dirname
   mo.it(message, () => {
     // mo files package to be tested
-    const testMoFilesTemp = getIntFiles(mode)
-    const testMoFiles = ut.getMoFiles(testMoFilesTemp)
+    // const testMoFilesTemp = getIntFiles(mode)
+    // const testMoFiles = ut.getMoFiles(testMoFilesTemp)
+    const testMoFiles = ut.getMoFiles(path.join(__dirname, 'FromModelica'))
 
     // Name of subpackage to store json output files
     const subPackName = 'objects'
@@ -213,20 +223,20 @@ const checkObjectsJSON = function (outFormat, extension, message) {
 /** Function that checks parsing from Modelica to Objects Json, in 'modelica' parsing mode
   */
 const checkCxfJson = function (outFormat, extension, message) {
-  const mode = 'modelica'
+  const mode = 'cdl'
   // process.env.MODELICAPATH = __dirname
   mo.it(message, () => {
     // mo files package to be tested
-    const testMoFilesTemp = getIntFiles(mode)
-    const testMoFiles = ut.getMoFiles(testMoFilesTemp)
+    // const testMoFilesTemp = getIntFiles(mode)
+    // const testMoFiles = ut.getMoFiles(testMoFilesTemp)
+    const testMoFiles = getIntFiles(mode)
 
     // Name of subpackage to store json output files
     const subPackName = 'cxf'
     // When parsing mode is 'modelica', the moFiles should feed into parser in package
     // const jsonNewMOD = pa.getJSON(testMoFiles, mode, outFormat)
     pa.getJsons(testMoFiles, outFormat, 'current', 'false')
-    const pattern = path.join('test', 'FromModelica', '*.mo')
-    const files = glob.sync(pattern)
+    const files = getIntFiles(mode)
     const filesToExclude = [
       path.join('test', 'FromModelica', 'ExtendsClause_2.mo'),
       path.join('test', 'FromModelica', 'ExtendsClause_3.mo')
@@ -276,13 +286,13 @@ mo.describe('parser.js', function () {
   mo.describe('Testing Modelica to raw-json using CDL files', function () {
     checkCdlJSON('raw-json', '.json', 'Testing unmodified json for equality, "cdl" mode')
   })
-  mo.describe('Testing Modelica to raw-json using folder', function () {
+  mo.describe('Testing Modelica to raw-json using modelica files', function () {
     checkModJSON('raw-json', '.json', 'Testing unmodified json for equality, "modelica" mode')
   })
   mo.describe('Testing Modelica to JSON using CDL files', function () {
     checkCdlJSON('json', '.json', 'Testing json for equality, "cdl" mode')
   })
-  mo.describe('Testing Modelica to JSON using folder', function () {
+  mo.describe('Testing Modelica to JSON using modelica files', function () {
     checkModJSON('json', '.json', 'Testing json for equality, "modelica" mode')
   })
   mo.describe('Testing parse from Modelica to Objects Json', function () {
@@ -297,7 +307,7 @@ mo.describe('parser.js', function () {
     })
   })
   mo.describe('Testing call to getJsons', function () {
-    const moFile = path.join(getIntFiles('modelica'), 'Enable.mo')
+    const moFile = path.join(path.join(__dirname, 'FromModelica', 'Enable.mo'))
     const jsons = pa.getJsons([moFile], 'json', 'current', false)
     mo.it('Checking the Modelica class names in the returned array', function () {
       // full class names are generated by string replacement in the modelica file path
