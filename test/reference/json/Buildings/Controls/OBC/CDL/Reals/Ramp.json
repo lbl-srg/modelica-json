@@ -850,7 +850,7 @@
                               "modification": {
                                 "equal": true,
                                 "expression": {
-                                  "simple_expression": "\"<html>\n<p>\nBlock that limits the rate of change of the input <code>u</code> by a ramp\nif the boolean input <code>active</code> is <code>true</code>,\notherwise the block outputs <code>y = u</code>.\n</p>\n<p>\nThis block computes a threshold for the rate of change between\ninput <code>u</code> and output <code>y</code> as\n<code>thr = (u-y)/Td</code>, where <code>Td &gt; 0</code> is a parameter.\nThe output <code>y</code> is computed as follows:\n<ul>\n<li>\nIf <code>thr &lt; fallingSlewRate</code>, then <code>dy/dt = fallingSlewRate</code>,\n</li>\n<li>\nif <code>thr &gt; raisingSlewRate</code>, then <code>dy/dt = raisingSlewRate</code>,\n</li>\n<li>\notherwise, <code>dy/dt = thr</code>.\n</li>\n</ul>\n<p>\nA smaller time constant <code>Td &gt; 0</code> means a higher accuracy for the derivative approximation.\n</p>\n<p>\nNote that the block limits the rate of change of the input <code>u</code> in the same\nway as <a href=\\\"modelica://Buildings.Controls.OBC.CDL.Reals.LimitSlewRate\\\">\nBuildings.Controls.OBC.CDL.Reals.LimitSlewRate</a>. However, the\n<a href=\\\"modelica://Buildings.Controls.OBC.CDL.Reals.LimitSlewRate\\\">\nBuildings.Controls.OBC.CDL.Reals.LimitSlewRate</a>\nhas a boolean parameter to flag if the rate of change should be limited, while this\nblock has the boolean input <code>activate</code> to enable or disable the functionality.\nWhen the input <code>activate</code> switches to <code>false</code>,\nthe output <code>y</code> can have a discontinuity.\n</p>\n<h4>Implementation</h4>\n<p>\nFor the block to work with arbitrary inputs and in order to produce a differentiable output,\nthe input is numerically differentiated with derivative time constant <code>Td</code>.\n</p>\n</html>\""
+                                  "simple_expression": "\"<html>\n<p>\nBlock that limits the rate of change of the input <code>u</code> by a ramp\nif the boolean input <code>active</code> is <code>true</code>,\notherwise the block outputs <code>y = u</code>.\n</p>\n<p>\nThis block computes a threshold for the rate of change between\ninput <code>u</code> and output <code>y</code> as\n<code>thr = (u-y)/Td</code>, where <code>Td &gt; 0</code> is a parameter.\nThe output <code>y</code> is computed as follows:\n<ul>\n<li>\nIf <code>thr &lt; fallingSlewRate</code>, then <code>dy/dt = fallingSlewRate</code>,\n</li>\n<li>\nif <code>thr &gt; raisingSlewRate</code>, then <code>dy/dt = raisingSlewRate</code>,\n</li>\n<li>\notherwise, <code>dy/dt = thr</code>.\n</li>\n</ul>\n<p>\nA smaller time constant <code>Td &gt; 0</code> means a higher accuracy for the derivative approximation.\n</p>\n<p>\nNote that when the input <code>activate</code> switches to <code>false</code>,\nthe output <code>y</code> can have a discontinuity.\n</p>\n<h4>Implementation</h4>\n<p>\nFor the block to work with arbitrary inputs and in order to produce a differentiable output,\nthe input is numerically differentiated with derivative time constant <code>Td</code>.\n</p>\n</html>\""
                                 }
                               }
                             }
@@ -863,7 +863,7 @@
                               "modification": {
                                 "equal": true,
                                 "expression": {
-                                  "simple_expression": "\"<html>\n<ul>\n<li>\nAugust 22, 2025, by Jianjun Hu:<br/>\nUpdated documentation to clarify the difference with the block\n<a href=\\\"modelica://Buildings.Controls.OBC.CDL.Reals.LimitSlewRate\\\">\nBuildings.Controls.OBC.CDL.Reals.LimitSlewRate</a>.\n</li>\n<li>\nFebruary 15, 2024, by Michael Wetter:<br/>\nUpdated documentation.\n</li>\n<li>\nNovember 16, 2022, by Jianjun Hu:<br/>\nFirst implementation.\n</li>\n</ul>\n</html>\""
+                                  "simple_expression": "\"<html>\n<ul>\n<li>\nFebruary 15, 2024, by Michael Wetter:<br/>\nUpdated documentation.\n</li>\n<li>\nNovember 16, 2022, by Jianjun Hu:<br/>\nFirst implementation.\n</li>\n</ul>\n</html>\""
                                 }
                               }
                             }
@@ -882,5 +882,5 @@
   ],
   "modelicaFile": "Buildings/Controls/OBC/CDL/Reals/Ramp.mo",
   "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Ramp.mo",
-  "checksum": "0041d3e841ab5f906d2ab026bc33509f"
+  "checksum": "66afa92e7cf5603775c41ddb5776e993"
 }
