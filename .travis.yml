@@ -11,7 +11,7 @@ before_install:
   - unset _JAVA_OPTIONS # To suppress a warning from Java to stderr
 
 install:
-  - git clone --depth=1 --branch=master https://github.com/lbl-srg/modelica-buildings ../.tmp
+  - git clone --depth=1 --branch v12.1.0 https://github.com/lbl-srg/modelica-buildings ../.tmp
   - git clone --depth=1 --branch v4.0.0 https://github.com/modelica/ModelicaStandardLibrary ../.msl
   - make clean-installation
   - make install
