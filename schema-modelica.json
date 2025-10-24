@@ -1076,22 +1076,20 @@
             "type": "boolean"
           },
           "arithmetic_expressions": {
-            "type": "array",
-            "additionalItems": false,
-            "items": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "name": {
-                  "type": "string"
-                }
-              }
-            }
+            "$ref": "#/definitions/arithmeticExpressionObj"
           },
           "relation_operator": {
             "type": "string"
           }
         }
+      }
+    },
+    "arithmeticExpressionObj": {
+      "description": "arithmetic expression array",
+      "type": "array",
+      "additionalItems": false,
+      "items": {
+
       }
     },
     "ifExpressionObj": {
