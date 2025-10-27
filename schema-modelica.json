@@ -1086,11 +1086,35 @@
     },
     "arithmeticExpressionObj": {
       "description": "arithmetic expression array",
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "object",
+          "additionalItems": false,
+          "properties":{
+            "addOps": {
+              "$ref": "#/definitions/addOps"
+            },
+            "terms": {
+              "$ref": "#/definitions/terms"
+            }
+          }
+        }
+      ]
+    },
+    "addOps": {
+      "description": "Array of add operation symbols",
       "type": "array",
       "additionalItems": false,
       "items": {
-
+        "types": "string",
+        "enum": ["+", "-", ".+", ".-"]
       }
+    },
+    "terms": {
+
     },
     "ifExpressionObj": {
       "description": "If-else expression array",
