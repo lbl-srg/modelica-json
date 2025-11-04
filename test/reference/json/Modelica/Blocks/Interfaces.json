@@ -4511,12 +4511,8 @@
                                                       "logical_and": [
                                                         {
                                                           "arithmetic_expressions": [
-                                                            {
-                                                              "name": "time"
-                                                            },
-                                                            {
-                                                              "name": "startTime +samplePeriod/2"
-                                                            }
+                                                            "time",
+                                                            "startTime +samplePeriod/2"
                                                           ],
                                                           "relation_operator": "<="
                                                         }
@@ -11062,17 +11058,13 @@
                                                                   "logical_and": [
                                                                     {
                                                                       "arithmetic_expressions": [
-                                                                        {
-                                                                          "name": "enableNoise"
-                                                                        }
+                                                                        "enableNoise"
                                                                       ]
                                                                     },
                                                                     {
                                                                       "not": true,
                                                                       "arithmetic_expressions": [
-                                                                        {
-                                                                          "name": "useAutomaticLocalSeed"
-                                                                        }
+                                                                        "useAutomaticLocalSeed"
                                                                       ]
                                                                     }
                                                                   ]
@@ -11278,16 +11270,12 @@
                                                     "logical_and": [
                                                       {
                                                         "arithmetic_expressions": [
-                                                          {
-                                                            "name": "enableNoise"
-                                                          }
+                                                          "enableNoise"
                                                         ]
                                                       },
                                                       {
                                                         "arithmetic_expressions": [
-                                                          {
-                                                            "name": "globalSeed.enableNoise"
-                                                          }
+                                                          "globalSeed.enableNoise"
                                                         ]
                                                       }
                                                     ]
@@ -11459,16 +11447,12 @@
                                                 "logical_and": [
                                                   {
                                                     "arithmetic_expressions": [
-                                                      {
-                                                        "name": "generateNoise"
-                                                      }
+                                                      "generateNoise"
                                                     ]
                                                   },
                                                   {
                                                     "arithmetic_expressions": [
-                                                      {
-                                                        "name": "sample(startTime,samplePeriod)"
-                                                      }
+                                                      "sample(startTime,samplePeriod)"
                                                     ]
                                                   }
                                                 ]
@@ -11480,7 +11464,24 @@
                                       "then": [
                                         {
                                           "assignment_equation": {
-                                            "lhs": "(r_raw,state)",
+                                            "lhs": {
+                                              "terms": [
+                                                {
+                                                  "factors": [
+                                                    {
+                                                      "primary1": [
+                                                        {
+                                                          "simple_expression": "r_raw"
+                                                        },
+                                                        {
+                                                          "simple_expression": "state"
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            },
                                             "rhs": {
                                               "simple_expression": {
                                                 "function_call": {
@@ -11515,9 +11516,7 @@
                                                         {
                                                           "not": true,
                                                           "arithmetic_expressions": [
-                                                            {
-                                                              "name": "generateNoise"
-                                                            }
+                                                            "generateNoise"
                                                           ]
                                                         }
                                                       ]
@@ -11526,12 +11525,8 @@
                                                       "logical_and": [
                                                         {
                                                           "arithmetic_expressions": [
-                                                            {
-                                                              "name": "time"
-                                                            },
-                                                            {
-                                                              "name": "startTime"
-                                                            }
+                                                            "time",
+                                                            "startTime"
                                                           ],
                                                           "relation_operator": "<"
                                                         }
@@ -12370,7 +12365,40 @@
                                               },
                                               "condition_attribute": {
                                                 "expression": {
-                                                  "simple_expression": "(use_pder and use_pder2)"
+                                                  "simple_expression": {
+                                                    "terms": [
+                                                      {
+                                                        "factors": [
+                                                          {
+                                                            "primary1": [
+                                                              {
+                                                                "simple_expression": {
+                                                                  "logical_expression": {
+                                                                    "logical_or": [
+                                                                      {
+                                                                        "logical_and": [
+                                                                          {
+                                                                            "arithmetic_expressions": [
+                                                                              "use_pder"
+                                                                            ]
+                                                                          },
+                                                                          {
+                                                                            "arithmetic_expressions": [
+                                                                              "use_pder2"
+                                                                            ]
+                                                                          }
+                                                                        ]
+                                                                      }
+                                                                    ]
+                                                                  }
+                                                                }
+                                                              }
+                                                            ]
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
                                                 }
                                               },
                                               "description": {
@@ -12491,7 +12519,40 @@
                                               },
                                               "condition_attribute": {
                                                 "expression": {
-                                                  "simple_expression": "(use_fder and use_fder2)"
+                                                  "simple_expression": {
+                                                    "terms": [
+                                                      {
+                                                        "factors": [
+                                                          {
+                                                            "primary1": [
+                                                              {
+                                                                "simple_expression": {
+                                                                  "logical_expression": {
+                                                                    "logical_or": [
+                                                                      {
+                                                                        "logical_and": [
+                                                                          {
+                                                                            "arithmetic_expressions": [
+                                                                              "use_fder"
+                                                                            ]
+                                                                          },
+                                                                          {
+                                                                            "arithmetic_expressions": [
+                                                                              "use_fder2"
+                                                                            ]
+                                                                          }
+                                                                        ]
+                                                                      }
+                                                                    ]
+                                                                  }
+                                                                }
+                                                              }
+                                                            ]
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
                                                 }
                                               },
                                               "description": {
@@ -12882,7 +12943,40 @@
                                                     "if_elseif": [
                                                       {
                                                         "condition": {
-                                                          "simple_expression": "(use_pder and use_pder2)"
+                                                          "simple_expression": {
+                                                            "terms": [
+                                                              {
+                                                                "factors": [
+                                                                  {
+                                                                    "primary1": [
+                                                                      {
+                                                                        "simple_expression": {
+                                                                          "logical_expression": {
+                                                                            "logical_or": [
+                                                                              {
+                                                                                "logical_and": [
+                                                                                  {
+                                                                                    "arithmetic_expressions": [
+                                                                                      "use_pder"
+                                                                                    ]
+                                                                                  },
+                                                                                  {
+                                                                                    "arithmetic_expressions": [
+                                                                                      "use_pder2"
+                                                                                    ]
+                                                                                  }
+                                                                                ]
+                                                                              }
+                                                                            ]
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    ]
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          }
                                                         },
                                                         "then": {
                                                           "simple_expression": "der(y1)"
@@ -12974,7 +13068,40 @@
                                                 "if_elseif": [
                                                   {
                                                     "condition": {
-                                                      "simple_expression": "(use_fder and use_fder2)"
+                                                      "simple_expression": {
+                                                        "terms": [
+                                                          {
+                                                            "factors": [
+                                                              {
+                                                                "primary1": [
+                                                                  {
+                                                                    "simple_expression": {
+                                                                      "logical_expression": {
+                                                                        "logical_or": [
+                                                                          {
+                                                                            "logical_and": [
+                                                                              {
+                                                                                "arithmetic_expressions": [
+                                                                                  "use_fder"
+                                                                                ]
+                                                                              },
+                                                                              {
+                                                                                "arithmetic_expressions": [
+                                                                                  "use_fder2"
+                                                                                ]
+                                                                              }
+                                                                            ]
+                                                                          }
+                                                                        ]
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          }
+                                                        ]
+                                                      }
                                                     },
                                                     "then": [
                                                       {
@@ -13015,7 +13142,40 @@
                                                 "if_elseif": [
                                                   {
                                                     "condition": {
-                                                      "simple_expression": "(use_fder and use_fder2)"
+                                                      "simple_expression": {
+                                                        "terms": [
+                                                          {
+                                                            "factors": [
+                                                              {
+                                                                "primary1": [
+                                                                  {
+                                                                    "simple_expression": {
+                                                                      "logical_expression": {
+                                                                        "logical_or": [
+                                                                          {
+                                                                            "logical_and": [
+                                                                              {
+                                                                                "arithmetic_expressions": [
+                                                                                  "use_fder"
+                                                                                ]
+                                                                              },
+                                                                              {
+                                                                                "arithmetic_expressions": [
+                                                                                  "use_fder2"
+                                                                                ]
+                                                                              }
+                                                                            ]
+                                                                          }
+                                                                        ]
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          }
+                                                        ]
+                                                      }
                                                     },
                                                     "then": [
                                                       {
@@ -13044,7 +13204,41 @@
                                                   },
                                                   {
                                                     "condition": {
-                                                      "simple_expression": "(use_fder and not use_fder2)"
+                                                      "simple_expression": {
+                                                        "terms": [
+                                                          {
+                                                            "factors": [
+                                                              {
+                                                                "primary1": [
+                                                                  {
+                                                                    "simple_expression": {
+                                                                      "logical_expression": {
+                                                                        "logical_or": [
+                                                                          {
+                                                                            "logical_and": [
+                                                                              {
+                                                                                "arithmetic_expressions": [
+                                                                                  "use_fder"
+                                                                                ]
+                                                                              },
+                                                                              {
+                                                                                "not": true,
+                                                                                "arithmetic_expressions": [
+                                                                                  "use_fder2"
+                                                                                ]
+                                                                              }
+                                                                            ]
+                                                                          }
+                                                                        ]
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          }
+                                                        ]
+                                                      }
                                                     },
                                                     "then": [
                                                       {
@@ -13703,7 +13897,40 @@
                                               },
                                               "condition_attribute": {
                                                 "expression": {
-                                                  "simple_expression": "(use_pder and use_pder2)"
+                                                  "simple_expression": {
+                                                    "terms": [
+                                                      {
+                                                        "factors": [
+                                                          {
+                                                            "primary1": [
+                                                              {
+                                                                "simple_expression": {
+                                                                  "logical_expression": {
+                                                                    "logical_or": [
+                                                                      {
+                                                                        "logical_and": [
+                                                                          {
+                                                                            "arithmetic_expressions": [
+                                                                              "use_pder"
+                                                                            ]
+                                                                          },
+                                                                          {
+                                                                            "arithmetic_expressions": [
+                                                                              "use_pder2"
+                                                                            ]
+                                                                          }
+                                                                        ]
+                                                                      }
+                                                                    ]
+                                                                  }
+                                                                }
+                                                              }
+                                                            ]
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
                                                 }
                                               },
                                               "description": {
@@ -13824,7 +14051,40 @@
                                               },
                                               "condition_attribute": {
                                                 "expression": {
-                                                  "simple_expression": "(use_fder and use_fder2)"
+                                                  "simple_expression": {
+                                                    "terms": [
+                                                      {
+                                                        "factors": [
+                                                          {
+                                                            "primary1": [
+                                                              {
+                                                                "simple_expression": {
+                                                                  "logical_expression": {
+                                                                    "logical_or": [
+                                                                      {
+                                                                        "logical_and": [
+                                                                          {
+                                                                            "arithmetic_expressions": [
+                                                                              "use_fder"
+                                                                            ]
+                                                                          },
+                                                                          {
+                                                                            "arithmetic_expressions": [
+                                                                              "use_fder2"
+                                                                            ]
+                                                                          }
+                                                                        ]
+                                                                      }
+                                                                    ]
+                                                                  }
+                                                                }
+                                                              }
+                                                            ]
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
                                                 }
                                               },
                                               "description": {
@@ -14215,7 +14475,40 @@
                                                     "if_elseif": [
                                                       {
                                                         "condition": {
-                                                          "simple_expression": "(use_fder and use_fder2)"
+                                                          "simple_expression": {
+                                                            "terms": [
+                                                              {
+                                                                "factors": [
+                                                                  {
+                                                                    "primary1": [
+                                                                      {
+                                                                        "simple_expression": {
+                                                                          "logical_expression": {
+                                                                            "logical_or": [
+                                                                              {
+                                                                                "logical_and": [
+                                                                                  {
+                                                                                    "arithmetic_expressions": [
+                                                                                      "use_fder"
+                                                                                    ]
+                                                                                  },
+                                                                                  {
+                                                                                    "arithmetic_expressions": [
+                                                                                      "use_fder2"
+                                                                                    ]
+                                                                                  }
+                                                                                ]
+                                                                              }
+                                                                            ]
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    ]
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          }
                                                         },
                                                         "then": {
                                                           "simple_expression": "-der(y1)"
@@ -14307,7 +14600,40 @@
                                                 "if_elseif": [
                                                   {
                                                     "condition": {
-                                                      "simple_expression": "(use_pder and use_pder2)"
+                                                      "simple_expression": {
+                                                        "terms": [
+                                                          {
+                                                            "factors": [
+                                                              {
+                                                                "primary1": [
+                                                                  {
+                                                                    "simple_expression": {
+                                                                      "logical_expression": {
+                                                                        "logical_or": [
+                                                                          {
+                                                                            "logical_and": [
+                                                                              {
+                                                                                "arithmetic_expressions": [
+                                                                                  "use_pder"
+                                                                                ]
+                                                                              },
+                                                                              {
+                                                                                "arithmetic_expressions": [
+                                                                                  "use_pder2"
+                                                                                ]
+                                                                              }
+                                                                            ]
+                                                                          }
+                                                                        ]
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          }
+                                                        ]
+                                                      }
                                                     },
                                                     "then": [
                                                       {
@@ -14348,7 +14674,40 @@
                                                 "if_elseif": [
                                                   {
                                                     "condition": {
-                                                      "simple_expression": "(use_pder and use_pder2)"
+                                                      "simple_expression": {
+                                                        "terms": [
+                                                          {
+                                                            "factors": [
+                                                              {
+                                                                "primary1": [
+                                                                  {
+                                                                    "simple_expression": {
+                                                                      "logical_expression": {
+                                                                        "logical_or": [
+                                                                          {
+                                                                            "logical_and": [
+                                                                              {
+                                                                                "arithmetic_expressions": [
+                                                                                  "use_pder"
+                                                                                ]
+                                                                              },
+                                                                              {
+                                                                                "arithmetic_expressions": [
+                                                                                  "use_pder2"
+                                                                                ]
+                                                                              }
+                                                                            ]
+                                                                          }
+                                                                        ]
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          }
+                                                        ]
+                                                      }
                                                     },
                                                     "then": [
                                                       {
@@ -14377,7 +14736,41 @@
                                                   },
                                                   {
                                                     "condition": {
-                                                      "simple_expression": "(use_pder and not use_pder2)"
+                                                      "simple_expression": {
+                                                        "terms": [
+                                                          {
+                                                            "factors": [
+                                                              {
+                                                                "primary1": [
+                                                                  {
+                                                                    "simple_expression": {
+                                                                      "logical_expression": {
+                                                                        "logical_or": [
+                                                                          {
+                                                                            "logical_and": [
+                                                                              {
+                                                                                "arithmetic_expressions": [
+                                                                                  "use_pder"
+                                                                                ]
+                                                                              },
+                                                                              {
+                                                                                "not": true,
+                                                                                "arithmetic_expressions": [
+                                                                                  "use_pder2"
+                                                                                ]
+                                                                              }
+                                                                            ]
+                                                                          }
+                                                                        ]
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          }
+                                                        ]
+                                                      }
                                                     },
                                                     "then": [
                                                       {

@@ -771,7 +771,25 @@
               "simple_expression": {
                 "for_loop": {
                   "expression": {
-                    "simple_expression": "(i -1)/n"
+                    "simple_expression": {
+                      "terms": [
+                        {
+                          "operators": [
+                            "/"
+                          ],
+                          "factors": [
+                            {
+                              "primary1": [
+                                {
+                                  "simple_expression": "i -1"
+                                }
+                              ]
+                            },
+                            "n"
+                          ]
+                        }
+                      ]
+                    }
                   },
                   "for_loop": [
                     {

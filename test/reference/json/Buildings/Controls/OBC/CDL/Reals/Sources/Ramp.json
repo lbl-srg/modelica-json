@@ -212,7 +212,119 @@
                       "assignment_equation": {
                         "lhs": "y",
                         "rhs": {
-                          "simple_expression": "offset +(if time < startTime then 0 else if time < (startTime +duration) then (time -startTime)*height/duration else height)"
+                          "simple_expression": {
+                            "addOps": [
+                              "+"
+                            ],
+                            "terms": [
+                              "offset",
+                              {
+                                "factors": [
+                                  {
+                                    "primary1": [
+                                      {
+                                        "if_expression": {
+                                          "if_elseif": [
+                                            {
+                                              "condition": {
+                                                "simple_expression": {
+                                                  "logical_expression": {
+                                                    "logical_or": [
+                                                      {
+                                                        "logical_and": [
+                                                          {
+                                                            "arithmetic_expressions": [
+                                                              "time",
+                                                              "startTime"
+                                                            ],
+                                                            "relation_operator": "<"
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
+                                                }
+                                              },
+                                              "then": {
+                                                "simple_expression": "0"
+                                              }
+                                            }
+                                          ],
+                                          "else_expression": {
+                                            "if_expression": {
+                                              "if_elseif": [
+                                                {
+                                                  "condition": {
+                                                    "simple_expression": {
+                                                      "logical_expression": {
+                                                        "logical_or": [
+                                                          {
+                                                            "logical_and": [
+                                                              {
+                                                                "arithmetic_expressions": [
+                                                                  "time",
+                                                                  {
+                                                                    "terms": [
+                                                                      {
+                                                                        "factors": [
+                                                                          {
+                                                                            "primary1": [
+                                                                              {
+                                                                                "simple_expression": "startTime +duration"
+                                                                              }
+                                                                            ]
+                                                                          }
+                                                                        ]
+                                                                      }
+                                                                    ]
+                                                                  }
+                                                                ],
+                                                                "relation_operator": "<"
+                                                              }
+                                                            ]
+                                                          }
+                                                        ]
+                                                      }
+                                                    }
+                                                  },
+                                                  "then": {
+                                                    "simple_expression": {
+                                                      "terms": [
+                                                        {
+                                                          "operators": [
+                                                            "*",
+                                                            "/"
+                                                          ],
+                                                          "factors": [
+                                                            {
+                                                              "primary1": [
+                                                                {
+                                                                  "simple_expression": "time -startTime"
+                                                                }
+                                                              ]
+                                                            },
+                                                            "height",
+                                                            "duration"
+                                                          ]
+                                                        }
+                                                      ]
+                                                    }
+                                                  }
+                                                }
+                                              ],
+                                              "else_expression": {
+                                                "simple_expression": "height"
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
                         }
                       }
                     }

@@ -668,7 +668,25 @@
           "modification": {
             "equal": true,
             "expression": {
-              "simple_expression": "(u -y)/Td"
+              "simple_expression": {
+                "terms": [
+                  {
+                    "operators": [
+                      "/"
+                    ],
+                    "factors": [
+                      {
+                        "primary1": [
+                          {
+                            "simple_expression": "u -y"
+                          }
+                        ]
+                      },
+                      "Td"
+                    ]
+                  }
+                ]
+              }
             }
           }
         },

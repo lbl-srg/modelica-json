@@ -1316,14 +1316,70 @@
                                                     {
                                                       "arithmetic_expressions": [
                                                         {
-                                                          "name": "(time >= t_sta)"
+                                                          "terms": [
+                                                            {
+                                                              "factors": [
+                                                                {
+                                                                  "primary1": [
+                                                                    {
+                                                                      "simple_expression": {
+                                                                        "logical_expression": {
+                                                                          "logical_or": [
+                                                                            {
+                                                                              "logical_and": [
+                                                                                {
+                                                                                  "arithmetic_expressions": [
+                                                                                    "time",
+                                                                                    "t_sta"
+                                                                                  ],
+                                                                                  "relation_operator": ">="
+                                                                                }
+                                                                              ]
+                                                                            }
+                                                                          ]
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  ]
+                                                                }
+                                                              ]
+                                                            }
+                                                          ]
                                                         }
                                                       ]
                                                     },
                                                     {
                                                       "arithmetic_expressions": [
                                                         {
-                                                          "name": "(time < t_end)"
+                                                          "terms": [
+                                                            {
+                                                              "factors": [
+                                                                {
+                                                                  "primary1": [
+                                                                    {
+                                                                      "simple_expression": {
+                                                                        "logical_expression": {
+                                                                          "logical_or": [
+                                                                            {
+                                                                              "logical_and": [
+                                                                                {
+                                                                                  "arithmetic_expressions": [
+                                                                                    "time",
+                                                                                    "t_end"
+                                                                                  ],
+                                                                                  "relation_operator": "<"
+                                                                                }
+                                                                              ]
+                                                                            }
+                                                                          ]
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  ]
+                                                                }
+                                                              ]
+                                                            }
+                                                          ]
                                                         }
                                                       ]
                                                     }
@@ -1432,12 +1488,8 @@
                                       "logical_and": [
                                         {
                                           "arithmetic_expressions": [
-                                            {
-                                              "name": "period"
-                                            },
-                                            {
-                                              "name": "minTruFalHol*2"
-                                            }
+                                            "period",
+                                            "minTruFalHol*2"
                                           ],
                                           "relation_operator": ">="
                                         }

@@ -480,7 +480,55 @@
                       "assignment_equation": {
                         "lhs": "TDewPoi",
                         "rhs": {
-                          "simple_expression": "(C14 +C15*alpha +C16*alpha^2 +C17*alpha^3 +C18*(p_w/1000)^0.1984) +273.15"
+                          "simple_expression": {
+                            "addOps": [
+                              "+"
+                            ],
+                            "terms": [
+                              {
+                                "factors": [
+                                  {
+                                    "primary1": [
+                                      {
+                                        "simple_expression": {
+                                          "addOps": [
+                                            "+",
+                                            "+",
+                                            "+",
+                                            "+"
+                                          ],
+                                          "terms": [
+                                            "C14",
+                                            "C15*alpha",
+                                            "C16*alpha^2",
+                                            "C17*alpha^3",
+                                            {
+                                              "operators": [
+                                                "*"
+                                              ],
+                                              "factors": [
+                                                "C18",
+                                                {
+                                                  "operator": "^",
+                                                  "primary1": [
+                                                    {
+                                                      "simple_expression": "p_w/1000"
+                                                    }
+                                                  ],
+                                                  "primary2": "0.1984"
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              "273.15"
+                            ]
+                          }
                         }
                       }
                     }

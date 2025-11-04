@@ -364,7 +364,25 @@
                                 "simple_expression": {
                                   "for_loop": {
                                     "expression": {
-                                      "simple_expression": "(i -1)/n"
+                                      "simple_expression": {
+                                        "terms": [
+                                          {
+                                            "operators": [
+                                              "/"
+                                            ],
+                                            "factors": [
+                                              {
+                                                "primary1": [
+                                                  {
+                                                    "simple_expression": "i -1"
+                                                  }
+                                                ]
+                                              },
+                                              "n"
+                                            ]
+                                          }
+                                        ]
+                                      }
                                     },
                                     "for_loop": [
                                       {
@@ -579,15 +597,55 @@
                                     {
                                       "not": true,
                                       "arithmetic_expressions": [
-                                        {
-                                          "name": "pre(checkUpper)"
-                                        }
+                                        "pre(checkUpper)"
                                       ]
                                     },
                                     {
                                       "arithmetic_expressions": [
                                         {
-                                          "name": "(u > (pre(upperThreshold) +h))"
+                                          "terms": [
+                                            {
+                                              "factors": [
+                                                {
+                                                  "primary1": [
+                                                    {
+                                                      "simple_expression": {
+                                                        "logical_expression": {
+                                                          "logical_or": [
+                                                            {
+                                                              "logical_and": [
+                                                                {
+                                                                  "arithmetic_expressions": [
+                                                                    "u",
+                                                                    {
+                                                                      "terms": [
+                                                                        {
+                                                                          "factors": [
+                                                                            {
+                                                                              "primary1": [
+                                                                                {
+                                                                                  "simple_expression": "pre(upperThreshold) +h"
+                                                                                }
+                                                                              ]
+                                                                            }
+                                                                          ]
+                                                                        }
+                                                                      ]
+                                                                    }
+                                                                  ],
+                                                                  "relation_operator": ">"
+                                                                }
+                                                              ]
+                                                            }
+                                                          ]
+                                                        }
+                                                      }
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
                                         }
                                       ]
                                     }
@@ -597,15 +655,55 @@
                                   "logical_and": [
                                     {
                                       "arithmetic_expressions": [
-                                        {
-                                          "name": "pre(checkUpper)"
-                                        }
+                                        "pre(checkUpper)"
                                       ]
                                     },
                                     {
                                       "arithmetic_expressions": [
                                         {
-                                          "name": "(u >= (pre(upperThreshold) -h))"
+                                          "terms": [
+                                            {
+                                              "factors": [
+                                                {
+                                                  "primary1": [
+                                                    {
+                                                      "simple_expression": {
+                                                        "logical_expression": {
+                                                          "logical_or": [
+                                                            {
+                                                              "logical_and": [
+                                                                {
+                                                                  "arithmetic_expressions": [
+                                                                    "u",
+                                                                    {
+                                                                      "terms": [
+                                                                        {
+                                                                          "factors": [
+                                                                            {
+                                                                              "primary1": [
+                                                                                {
+                                                                                  "simple_expression": "pre(upperThreshold) -h"
+                                                                                }
+                                                                              ]
+                                                                            }
+                                                                          ]
+                                                                        }
+                                                                      ]
+                                                                    }
+                                                                  ],
+                                                                  "relation_operator": ">="
+                                                                }
+                                                              ]
+                                                            }
+                                                          ]
+                                                        }
+                                                      }
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
                                         }
                                       ]
                                     }
@@ -629,15 +727,55 @@
                                     {
                                       "not": true,
                                       "arithmetic_expressions": [
-                                        {
-                                          "name": "pre(checkLower)"
-                                        }
+                                        "pre(checkLower)"
                                       ]
                                     },
                                     {
                                       "arithmetic_expressions": [
                                         {
-                                          "name": "(u > (pre(lowerThreshold) +h))"
+                                          "terms": [
+                                            {
+                                              "factors": [
+                                                {
+                                                  "primary1": [
+                                                    {
+                                                      "simple_expression": {
+                                                        "logical_expression": {
+                                                          "logical_or": [
+                                                            {
+                                                              "logical_and": [
+                                                                {
+                                                                  "arithmetic_expressions": [
+                                                                    "u",
+                                                                    {
+                                                                      "terms": [
+                                                                        {
+                                                                          "factors": [
+                                                                            {
+                                                                              "primary1": [
+                                                                                {
+                                                                                  "simple_expression": "pre(lowerThreshold) +h"
+                                                                                }
+                                                                              ]
+                                                                            }
+                                                                          ]
+                                                                        }
+                                                                      ]
+                                                                    }
+                                                                  ],
+                                                                  "relation_operator": ">"
+                                                                }
+                                                              ]
+                                                            }
+                                                          ]
+                                                        }
+                                                      }
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
                                         }
                                       ]
                                     }
@@ -647,15 +785,55 @@
                                   "logical_and": [
                                     {
                                       "arithmetic_expressions": [
-                                        {
-                                          "name": "pre(checkLower)"
-                                        }
+                                        "pre(checkLower)"
                                       ]
                                     },
                                     {
                                       "arithmetic_expressions": [
                                         {
-                                          "name": "(u >= (pre(lowerThreshold) -h))"
+                                          "terms": [
+                                            {
+                                              "factors": [
+                                                {
+                                                  "primary1": [
+                                                    {
+                                                      "simple_expression": {
+                                                        "logical_expression": {
+                                                          "logical_or": [
+                                                            {
+                                                              "logical_and": [
+                                                                {
+                                                                  "arithmetic_expressions": [
+                                                                    "u",
+                                                                    {
+                                                                      "terms": [
+                                                                        {
+                                                                          "factors": [
+                                                                            {
+                                                                              "primary1": [
+                                                                                {
+                                                                                  "simple_expression": "pre(lowerThreshold) -h"
+                                                                                }
+                                                                              ]
+                                                                            }
+                                                                          ]
+                                                                        }
+                                                                      ]
+                                                                    }
+                                                                  ],
+                                                                  "relation_operator": ">="
+                                                                }
+                                                              ]
+                                                            }
+                                                          ]
+                                                        }
+                                                      }
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
                                         }
                                       ]
                                     }
@@ -671,7 +849,80 @@
                       "when_equation": [
                         {
                           "condition": {
-                            "simple_expression": "(time >= pre(tNext) and (checkUpper or not checkLower))"
+                            "simple_expression": {
+                              "terms": [
+                                {
+                                  "factors": [
+                                    {
+                                      "primary1": [
+                                        {
+                                          "simple_expression": {
+                                            "logical_expression": {
+                                              "logical_or": [
+                                                {
+                                                  "logical_and": [
+                                                    {
+                                                      "arithmetic_expressions": [
+                                                        "time",
+                                                        "pre(tNext)"
+                                                      ],
+                                                      "relation_operator": ">="
+                                                    },
+                                                    {
+                                                      "arithmetic_expressions": [
+                                                        {
+                                                          "terms": [
+                                                            {
+                                                              "factors": [
+                                                                {
+                                                                  "primary1": [
+                                                                    {
+                                                                      "simple_expression": {
+                                                                        "logical_expression": {
+                                                                          "logical_or": [
+                                                                            {
+                                                                              "logical_and": [
+                                                                                {
+                                                                                  "arithmetic_expressions": [
+                                                                                    "checkUpper"
+                                                                                  ]
+                                                                                }
+                                                                              ]
+                                                                            },
+                                                                            {
+                                                                              "logical_and": [
+                                                                                {
+                                                                                  "not": true,
+                                                                                  "arithmetic_expressions": [
+                                                                                    "checkLower"
+                                                                                  ]
+                                                                                }
+                                                                              ]
+                                                                            }
+                                                                          ]
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  ]
+                                                                }
+                                                              ]
+                                                            }
+                                                          ]
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
                           },
                           "then": [
                             {

@@ -153,7 +153,25 @@
                       "assignment_equation": {
                         "lhs": "y",
                         "rhs": {
-                          "simple_expression": "0.5*(u1 +u2)"
+                          "simple_expression": {
+                            "terms": [
+                              {
+                                "operators": [
+                                  "*"
+                                ],
+                                "factors": [
+                                  "0.5",
+                                  {
+                                    "primary1": [
+                                      {
+                                        "simple_expression": "u1 +u2"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
                         }
                       }
                     }

@@ -351,12 +351,8 @@
                                     "logical_and": [
                                       {
                                         "arithmetic_expressions": [
-                                          {
-                                            "name": "time"
-                                          },
-                                          {
-                                            "name": "tStart +delta"
-                                          }
+                                          "time",
+                                          "tStart +delta"
                                         ],
                                         "relation_operator": ">="
                                       }
@@ -392,7 +388,25 @@
                                   "assignment_equation": {
                                     "lhs": "y",
                                     "rhs": {
-                                      "simple_expression": "(mu -muDel)/delta"
+                                      "simple_expression": {
+                                        "terms": [
+                                          {
+                                            "operators": [
+                                              "/"
+                                            ],
+                                            "factors": [
+                                              {
+                                                "primary1": [
+                                                  {
+                                                    "simple_expression": "mu -muDel"
+                                                  }
+                                                ]
+                                              },
+                                              "delta"
+                                            ]
+                                          }
+                                        ]
+                                      }
                                     }
                                   }
                                 }
@@ -405,7 +419,31 @@
                             "assignment_equation": {
                               "lhs": "y",
                               "rhs": {
-                                "simple_expression": "(mu -muDel)/(time -tStart +0.001)"
+                                "simple_expression": {
+                                  "terms": [
+                                    {
+                                      "operators": [
+                                        "/"
+                                      ],
+                                      "factors": [
+                                        {
+                                          "primary1": [
+                                            {
+                                              "simple_expression": "mu -muDel"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "primary1": [
+                                            {
+                                              "simple_expression": "time -tStart +0.001"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
                               }
                             }
                           }

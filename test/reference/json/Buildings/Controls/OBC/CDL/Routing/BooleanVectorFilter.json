@@ -231,12 +231,8 @@
                                       "logical_and": [
                                         {
                                           "arithmetic_expressions": [
-                                            {
-                                              "name": "nout"
-                                            },
-                                            {
-                                              "name": "sum({if msk[i] then 1 else 0 for i in 1:nin})"
-                                            }
+                                            "nout",
+                                            "sum({if msk[i] then 1 else 0 for i in 1:nin})"
                                           ],
                                           "relation_operator": "=="
                                         }

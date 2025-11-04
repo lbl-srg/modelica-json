@@ -323,12 +323,8 @@
                                   "logical_and": [
                                     {
                                       "arithmetic_expressions": [
-                                        {
-                                          "name": "t"
-                                        },
-                                        {
-                                          "name": "0"
-                                        }
+                                        "t",
+                                        "0"
                                       ],
                                       "relation_operator": "<="
                                     }
@@ -365,7 +361,42 @@
                         },
                         {
                           "condition": {
-                            "simple_expression": "(u and time >= t +pre(entryTime))"
+                            "simple_expression": {
+                              "terms": [
+                                {
+                                  "factors": [
+                                    {
+                                      "primary1": [
+                                        {
+                                          "simple_expression": {
+                                            "logical_expression": {
+                                              "logical_or": [
+                                                {
+                                                  "logical_and": [
+                                                    {
+                                                      "arithmetic_expressions": [
+                                                        "u"
+                                                      ]
+                                                    },
+                                                    {
+                                                      "arithmetic_expressions": [
+                                                        "time",
+                                                        "t +pre(entryTime)"
+                                                      ],
+                                                      "relation_operator": ">="
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
                           },
                           "then": [
                             {
@@ -379,12 +410,8 @@
                                           "logical_and": [
                                             {
                                               "arithmetic_expressions": [
-                                                {
-                                                  "name": "t"
-                                                },
-                                                {
-                                                  "name": "0"
-                                                }
+                                                "t",
+                                                "0"
                                               ],
                                               "relation_operator": "<="
                                             }
@@ -408,9 +435,7 @@
                                       {
                                         "not": true,
                                         "arithmetic_expressions": [
-                                          {
-                                            "name": "u"
-                                          }
+                                          "u"
                                         ]
                                       }
                                     ]

@@ -307,7 +307,25 @@
                             "modification": {
                               "equal": true,
                               "expression": {
-                                "simple_expression": "(u -y)/Td"
+                                "simple_expression": {
+                                  "terms": [
+                                    {
+                                      "operators": [
+                                        "/"
+                                      ],
+                                      "factors": [
+                                        {
+                                          "primary1": [
+                                            {
+                                              "simple_expression": "u -y"
+                                            }
+                                          ]
+                                        },
+                                        "Td"
+                                      ]
+                                    }
+                                  ]
+                                }
                               }
                             }
                           },
@@ -352,12 +370,8 @@
                                       "logical_and": [
                                         {
                                           "arithmetic_expressions": [
-                                            {
-                                              "name": "raisingSlewRate"
-                                            },
-                                            {
-                                              "name": "0"
-                                            }
+                                            "raisingSlewRate",
+                                            "0"
                                           ],
                                           "relation_operator": ">"
                                         }
@@ -391,12 +405,8 @@
                                       "logical_and": [
                                         {
                                           "arithmetic_expressions": [
-                                            {
-                                              "name": "fallingSlewRate"
-                                            },
-                                            {
-                                              "name": "0"
-                                            }
+                                            "fallingSlewRate",
+                                            "0"
                                           ],
                                           "relation_operator": "<"
                                         }

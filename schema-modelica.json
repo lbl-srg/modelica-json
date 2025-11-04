@@ -953,6 +953,15 @@
           }
         },
         {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "terms": {
+              "$ref": "#/definitions/terms"
+            }
+          }
+        },
+        {
           "type": "string"
         }
       ]
@@ -1086,23 +1095,27 @@
     },
     "arithmeticExpressionObj": {
       "description": "arithmetic expression array",
-      "oneOf": [
-        {
-          "type": "string"
-        },
-        {
-          "type": "object",
-          "additionalItems": false,
-          "properties":{
-            "addOps": {
-              "$ref": "#/definitions/addOps"
-            },
-            "terms": {
-              "$ref": "#/definitions/terms"
+      "type": "array",
+      "additionalItems": false,
+      "items": {
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "object",
+            "additionalItems": false,
+            "properties":{
+              "addOps": {
+                "$ref": "#/definitions/addOps"
+              },
+              "terms": {
+                "$ref": "#/definitions/terms"
+              }
             }
           }
-        }
-      ]
+        ]
+      }
     },
     "addOps": {
       "description": "Array of add operation symbols",
@@ -1114,7 +1127,68 @@
       }
     },
     "terms": {
-
+      "description": "terms array",
+      "type": "array",
+      "additionalItems": false,
+      "items": {
+        "type": ["string", "object"],
+        "properties": {
+          "operators": {
+            "$ref": "#/definitions/operators"
+          },
+          "factors": {
+            "$ref": "#/definitions/factors"
+          }
+        }
+      }
+    },
+    "factors": {
+      "description": "factors array",
+      "type": "array",
+      "additionalItems": false,
+      "items": {
+        "type": ["string", "object"],
+        "properties": {
+          "operator": {
+            "type": "string"
+          },
+          "primary1": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/expression"
+                }
+              }
+            ]
+          },
+          "primary2": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/expression"
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    "operators": {
+      "description": "Array of add operation symbols",
+      "type": "array",
+      "additionalItems": false,
+      "items": {
+        "types": "string",
+        "enum": ["*", "/", ".*", "./"]
+      }
     },
     "ifExpressionObj": {
       "description": "If-else expression array",

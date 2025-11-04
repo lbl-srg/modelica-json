@@ -229,12 +229,8 @@
                                         "logical_and": [
                                           {
                                             "arithmetic_expressions": [
-                                              {
-                                                "name": "h"
-                                              },
-                                              {
-                                                "name": "1e-10"
-                                              }
+                                              "h",
+                                              "1e-10"
                                             ],
                                             "relation_operator": ">="
                                           }
@@ -392,9 +388,7 @@
                                         {
                                           "not": true,
                                           "arithmetic_expressions": [
-                                            {
-                                              "name": "have_hysteresis"
-                                            }
+                                            "have_hysteresis"
                                           ]
                                         }
                                       ]
@@ -554,12 +548,8 @@
                                                   "logical_and": [
                                                     {
                                                       "arithmetic_expressions": [
-                                                        {
-                                                          "name": "u"
-                                                        },
-                                                        {
-                                                          "name": "t"
-                                                        }
+                                                        "u",
+                                                        "t"
                                                       ],
                                                       "relation_operator": "<"
                                                     }
@@ -874,12 +864,8 @@
                                                       "logical_and": [
                                                         {
                                                           "arithmetic_expressions": [
-                                                            {
-                                                              "name": "h"
-                                                            },
-                                                            {
-                                                              "name": "0"
-                                                            }
+                                                            "h",
+                                                            "0"
                                                           ],
                                                           "relation_operator": ">="
                                                         }
@@ -927,7 +913,59 @@
                                       "assignment_equation": {
                                         "lhs": "y",
                                         "rhs": {
-                                          "simple_expression": "(not pre(y) and u < t or pre(y) and u < t +h)"
+                                          "simple_expression": {
+                                            "terms": [
+                                              {
+                                                "factors": [
+                                                  {
+                                                    "primary1": [
+                                                      {
+                                                        "simple_expression": {
+                                                          "logical_expression": {
+                                                            "logical_or": [
+                                                              {
+                                                                "logical_and": [
+                                                                  {
+                                                                    "not": true,
+                                                                    "arithmetic_expressions": [
+                                                                      "pre(y)"
+                                                                    ]
+                                                                  },
+                                                                  {
+                                                                    "arithmetic_expressions": [
+                                                                      "u",
+                                                                      "t"
+                                                                    ],
+                                                                    "relation_operator": "<"
+                                                                  }
+                                                                ]
+                                                              },
+                                                              {
+                                                                "logical_and": [
+                                                                  {
+                                                                    "arithmetic_expressions": [
+                                                                      "pre(y)"
+                                                                    ]
+                                                                  },
+                                                                  {
+                                                                    "arithmetic_expressions": [
+                                                                      "u",
+                                                                      "t +h"
+                                                                    ],
+                                                                    "relation_operator": "<"
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          }
+                                                        }
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
                                         }
                                       }
                                     }

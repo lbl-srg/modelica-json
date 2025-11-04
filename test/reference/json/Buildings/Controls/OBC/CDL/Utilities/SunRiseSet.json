@@ -1306,7 +1306,49 @@
                                                 }
                                               ],
                                               "value": {
-                                                "simple_expression": "Modelica.Constants.pi*((tNext +86400)/86400 -81)/182"
+                                                "simple_expression": {
+                                                  "terms": [
+                                                    {
+                                                      "operators": [
+                                                        "*",
+                                                        "/"
+                                                      ],
+                                                      "factors": [
+                                                        "Modelica.Constants.pi",
+                                                        {
+                                                          "primary1": [
+                                                            {
+                                                              "simple_expression": {
+                                                                "addOps": [
+                                                                  "-"
+                                                                ],
+                                                                "terms": [
+                                                                  {
+                                                                    "operators": [
+                                                                      "/"
+                                                                    ],
+                                                                    "factors": [
+                                                                      {
+                                                                        "primary1": [
+                                                                          {
+                                                                            "simple_expression": "tNext +86400"
+                                                                          }
+                                                                        ]
+                                                                      },
+                                                                      "86400"
+                                                                    ]
+                                                                  },
+                                                                  "81"
+                                                                ]
+                                                              }
+                                                            }
+                                                          ]
+                                                        },
+                                                        "182"
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
                                               }
                                             }
                                           },
@@ -1319,7 +1361,25 @@
                                                 }
                                               ],
                                               "value": {
-                                                "simple_expression": "60*(9.87*Modelica.Math.sin(2*Bt) -7.53*Modelica.Math.cos(Bt) -1.5*Modelica.Math.sin(Bt))"
+                                                "simple_expression": {
+                                                  "terms": [
+                                                    {
+                                                      "operators": [
+                                                        "*"
+                                                      ],
+                                                      "factors": [
+                                                        "60",
+                                                        {
+                                                          "primary1": [
+                                                            {
+                                                              "simple_expression": "9.87*Modelica.Math.sin(2*Bt) -7.53*Modelica.Math.cos(Bt) -1.5*Modelica.Math.sin(Bt)"
+                                                            }
+                                                          ]
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
                                               }
                                             }
                                           },
@@ -1387,12 +1447,8 @@
                                                         "logical_and": [
                                                           {
                                                             "arithmetic_expressions": [
-                                                              {
-                                                                "name": "abs(cosHou)"
-                                                              },
-                                                              {
-                                                                "name": "1"
-                                                              }
+                                                              "abs(cosHou)",
+                                                              "1"
                                                             ],
                                                             "relation_operator": ">"
                                                           }
@@ -1977,7 +2033,55 @@
                                           }
                                         ],
                                         "value": {
-                                          "simple_expression": "(12 -houAng*24/(2*Modelica.Constants.pi) -timCor/3600)*3600 +floor(tNext/86400)*86400"
+                                          "simple_expression": {
+                                            "addOps": [
+                                              "+"
+                                            ],
+                                            "terms": [
+                                              {
+                                                "operators": [
+                                                  "*"
+                                                ],
+                                                "factors": [
+                                                  {
+                                                    "primary1": [
+                                                      {
+                                                        "simple_expression": {
+                                                          "addOps": [
+                                                            "-",
+                                                            "-"
+                                                          ],
+                                                          "terms": [
+                                                            "12",
+                                                            {
+                                                              "operators": [
+                                                                "*",
+                                                                "/"
+                                                              ],
+                                                              "factors": [
+                                                                "houAng",
+                                                                "24",
+                                                                {
+                                                                  "primary1": [
+                                                                    {
+                                                                      "simple_expression": "2*Modelica.Constants.pi"
+                                                                    }
+                                                                  ]
+                                                                }
+                                                              ]
+                                                            },
+                                                            "timCor/3600"
+                                                          ]
+                                                        }
+                                                      }
+                                                    ]
+                                                  },
+                                                  "3600"
+                                                ]
+                                              },
+                                              "floor(tNext/86400)*86400"
+                                            ]
+                                          }
                                         }
                                       }
                                     },
@@ -1993,12 +2097,8 @@
                                                       "logical_and": [
                                                         {
                                                           "arithmetic_expressions": [
-                                                            {
-                                                              "name": "staTim"
-                                                            },
-                                                            {
-                                                              "name": "sunRis"
-                                                            }
+                                                            "staTim",
+                                                            "sunRis"
                                                           ],
                                                           "relation_operator": ">"
                                                         }
@@ -2577,7 +2677,55 @@
                                           }
                                         ],
                                         "value": {
-                                          "simple_expression": "(12 +houAng*24/(2*Modelica.Constants.pi) -timCor/3600)*3600 +floor(tNext/86400)*86400"
+                                          "simple_expression": {
+                                            "addOps": [
+                                              "+"
+                                            ],
+                                            "terms": [
+                                              {
+                                                "operators": [
+                                                  "*"
+                                                ],
+                                                "factors": [
+                                                  {
+                                                    "primary1": [
+                                                      {
+                                                        "simple_expression": {
+                                                          "addOps": [
+                                                            "+",
+                                                            "-"
+                                                          ],
+                                                          "terms": [
+                                                            "12",
+                                                            {
+                                                              "operators": [
+                                                                "*",
+                                                                "/"
+                                                              ],
+                                                              "factors": [
+                                                                "houAng",
+                                                                "24",
+                                                                {
+                                                                  "primary1": [
+                                                                    {
+                                                                      "simple_expression": "2*Modelica.Constants.pi"
+                                                                    }
+                                                                  ]
+                                                                }
+                                                              ]
+                                                            },
+                                                            "timCor/3600"
+                                                          ]
+                                                        }
+                                                      }
+                                                    ]
+                                                  },
+                                                  "3600"
+                                                ]
+                                              },
+                                              "floor(tNext/86400)*86400"
+                                            ]
+                                          }
                                         }
                                       }
                                     },
@@ -2593,12 +2741,8 @@
                                                       "logical_and": [
                                                         {
                                                           "arithmetic_expressions": [
-                                                            {
-                                                              "name": "staTim"
-                                                            },
-                                                            {
-                                                              "name": "sunSet"
-                                                            }
+                                                            "staTim",
+                                                            "sunSet"
                                                           ],
                                                           "relation_operator": ">"
                                                         }
@@ -2702,12 +2846,8 @@
                                       "logical_and": [
                                         {
                                           "arithmetic_expressions": [
-                                            {
-                                              "name": "cosHou"
-                                            },
-                                            {
-                                              "name": "-1"
-                                            }
+                                            "cosHou",
+                                            "-1"
                                           ],
                                           "relation_operator": "<"
                                         }
@@ -2762,7 +2902,49 @@
                       "assignment_equation": {
                         "lhs": "Bt",
                         "rhs": {
-                          "simple_expression": "Modelica.Constants.pi*((time +86400)/86400 -81)/182"
+                          "simple_expression": {
+                            "terms": [
+                              {
+                                "operators": [
+                                  "*",
+                                  "/"
+                                ],
+                                "factors": [
+                                  "Modelica.Constants.pi",
+                                  {
+                                    "primary1": [
+                                      {
+                                        "simple_expression": {
+                                          "addOps": [
+                                            "-"
+                                          ],
+                                          "terms": [
+                                            {
+                                              "operators": [
+                                                "/"
+                                              ],
+                                              "factors": [
+                                                {
+                                                  "primary1": [
+                                                    {
+                                                      "simple_expression": "time +86400"
+                                                    }
+                                                  ]
+                                                },
+                                                "86400"
+                                              ]
+                                            },
+                                            "81"
+                                          ]
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "182"
+                                ]
+                              }
+                            ]
+                          }
                         }
                       }
                     },
@@ -2770,7 +2952,25 @@
                       "assignment_equation": {
                         "lhs": "eqnTim",
                         "rhs": {
-                          "simple_expression": "60*(9.87*Modelica.Math.sin(2*Bt) -7.53*Modelica.Math.cos(Bt) -1.5*Modelica.Math.sin(Bt))"
+                          "simple_expression": {
+                            "terms": [
+                              {
+                                "operators": [
+                                  "*"
+                                ],
+                                "factors": [
+                                  "60",
+                                  {
+                                    "primary1": [
+                                      {
+                                        "simple_expression": "9.87*Modelica.Math.sin(2*Bt) -7.53*Modelica.Math.cos(Bt) -1.5*Modelica.Math.sin(Bt)"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
                         }
                       }
                     },
@@ -2818,12 +3018,8 @@
                                     "logical_and": [
                                       {
                                         "arithmetic_expressions": [
-                                          {
-                                            "name": "time"
-                                          },
-                                          {
-                                            "name": "pre(nextSunRise)"
-                                          }
+                                          "time",
+                                          "pre(nextSunRise)"
                                         ],
                                         "relation_operator": ">="
                                       }
@@ -2866,12 +3062,8 @@
                                     "logical_and": [
                                       {
                                         "arithmetic_expressions": [
-                                          {
-                                            "name": "time"
-                                          },
-                                          {
-                                            "name": "pre(nextSunSet)"
-                                          }
+                                          "time",
+                                          "pre(nextSunSet)"
                                         ],
                                         "relation_operator": ">="
                                       }
@@ -2914,12 +3106,8 @@
                                   "logical_and": [
                                     {
                                       "arithmetic_expressions": [
-                                        {
-                                          "name": "nextSunSet"
-                                        },
-                                        {
-                                          "name": "nextSunRise"
-                                        }
+                                        "nextSunSet",
+                                        "nextSunRise"
                                       ],
                                       "relation_operator": "<"
                                     }

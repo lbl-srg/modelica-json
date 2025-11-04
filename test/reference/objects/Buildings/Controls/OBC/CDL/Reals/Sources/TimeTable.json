@@ -741,7 +741,25 @@
             ],
             "equal": true,
             "expression": {
-              "simple_expression": "timeScale*(table[end,1] -table[1,1])"
+              "simple_expression": {
+                "terms": [
+                  {
+                    "operators": [
+                      "*"
+                    ],
+                    "factors": [
+                      "timeScale",
+                      {
+                        "primary1": [
+                          {
+                            "simple_expression": "table[end,1] -table[1,1]"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
             }
           }
         },
@@ -872,12 +890,8 @@
                                         "logical_and": [
                                           {
                                             "arithmetic_expressions": [
-                                              {
-                                                "name": "smoothness"
-                                              },
-                                              {
-                                                "name": "CDL.Types.Smoothness.LinearSegments"
-                                              }
+                                              "smoothness",
+                                              "CDL.Types.Smoothness.LinearSegments"
                                             ],
                                             "relation_operator": "=="
                                           }
@@ -920,12 +934,8 @@
                                         "logical_and": [
                                           {
                                             "arithmetic_expressions": [
-                                              {
-                                                "name": "extrapolation"
-                                              },
-                                              {
-                                                "name": "CDL.Types.Extrapolation.HoldLastPoint"
-                                              }
+                                              "extrapolation",
+                                              "CDL.Types.Extrapolation.HoldLastPoint"
                                             ],
                                             "relation_operator": "=="
                                           }
@@ -948,12 +958,8 @@
                                         "logical_and": [
                                           {
                                             "arithmetic_expressions": [
-                                              {
-                                                "name": "extrapolation"
-                                              },
-                                              {
-                                                "name": "CDL.Types.Extrapolation.LastTwoPoints"
-                                              }
+                                              "extrapolation",
+                                              "CDL.Types.Extrapolation.LastTwoPoints"
                                             ],
                                             "relation_operator": "=="
                                           }
@@ -1003,7 +1009,37 @@
                           "if_elseif": [
                             {
                               "condition": {
-                                "simple_expression": "(extrapolation == Types.Extrapolation.Periodic)"
+                                "simple_expression": {
+                                  "terms": [
+                                    {
+                                      "factors": [
+                                        {
+                                          "primary1": [
+                                            {
+                                              "simple_expression": {
+                                                "logical_expression": {
+                                                  "logical_or": [
+                                                    {
+                                                      "logical_and": [
+                                                        {
+                                                          "arithmetic_expressions": [
+                                                            "extrapolation",
+                                                            "Types.Extrapolation.Periodic"
+                                                          ],
+                                                          "relation_operator": "=="
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
                               },
                               "then": {
                                 "simple_expression": "t0"

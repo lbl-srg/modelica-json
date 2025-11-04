@@ -209,12 +209,8 @@
                                       "logical_and": [
                                         {
                                           "arithmetic_expressions": [
-                                            {
-                                              "name": "size(u,1)"
-                                            },
-                                            {
-                                              "name": "1"
-                                            }
+                                            "size(u,1)",
+                                            "1"
                                           ],
                                           "relation_operator": ">"
                                         }
@@ -258,16 +254,12 @@
                                                     "logical_and": [
                                                       {
                                                         "arithmetic_expressions": [
-                                                          {
-                                                            "name": "u[i]"
-                                                          }
+                                                          "u[i]"
                                                         ]
                                                       },
                                                       {
                                                         "arithmetic_expressions": [
-                                                          {
-                                                            "name": "uTemp[i -1]"
-                                                          }
+                                                          "uTemp[i -1]"
                                                         ]
                                                       }
                                                     ]
@@ -296,7 +288,37 @@
                           },
                           {
                             "condition": {
-                              "simple_expression": "(size(u,1) == 1)"
+                              "simple_expression": {
+                                "terms": [
+                                  {
+                                    "factors": [
+                                      {
+                                        "primary1": [
+                                          {
+                                            "simple_expression": {
+                                              "logical_expression": {
+                                                "logical_or": [
+                                                  {
+                                                    "logical_and": [
+                                                      {
+                                                        "arithmetic_expressions": [
+                                                          "size(u,1)",
+                                                          "1"
+                                                        ],
+                                                        "relation_operator": "=="
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
                             },
                             "then": [
                               {

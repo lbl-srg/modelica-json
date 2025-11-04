@@ -138,7 +138,37 @@
                             "if_elseif": [
                               {
                                 "condition": {
-                                  "simple_expression": "(u > 0)"
+                                  "simple_expression": {
+                                    "terms": [
+                                      {
+                                        "factors": [
+                                          {
+                                            "primary1": [
+                                              {
+                                                "simple_expression": {
+                                                  "logical_expression": {
+                                                    "logical_or": [
+                                                      {
+                                                        "logical_and": [
+                                                          {
+                                                            "arithmetic_expressions": [
+                                                              "u",
+                                                              "0"
+                                                            ],
+                                                            "relation_operator": ">"
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
                                 },
                                 "then": {
                                   "simple_expression": "floor(u*fac +0.5)/fac"

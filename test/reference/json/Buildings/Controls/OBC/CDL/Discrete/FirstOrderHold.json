@@ -498,12 +498,8 @@
                                           "logical_and": [
                                             {
                                               "arithmetic_expressions": [
-                                                {
-                                                  "name": "time"
-                                                },
-                                                {
-                                                  "name": "t0 +samplePeriod/2"
-                                                }
+                                                "time",
+                                                "t0 +samplePeriod/2"
                                               ],
                                               "relation_operator": "<="
                                             }
@@ -523,7 +519,29 @@
                       "assignment_equation": {
                         "lhs": "y",
                         "rhs": {
-                          "simple_expression": "pre_uSample +pre(c)*(time -tSample)"
+                          "simple_expression": {
+                            "addOps": [
+                              "+"
+                            ],
+                            "terms": [
+                              "pre_uSample",
+                              {
+                                "operators": [
+                                  "*"
+                                ],
+                                "factors": [
+                                  "pre(c)",
+                                  {
+                                    "primary1": [
+                                      {
+                                        "simple_expression": "time -tSample"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
                         }
                       }
                     }
