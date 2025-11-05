@@ -154,7 +154,7 @@ if (args.output === 'json') {
   }
   const jsonDir = (args.directory === 'current') ? process.cwd() : args.directory
   let jsonFiles = ut.findFilesInDir(path.join(jsonDir, 'json'), '.json')
-  
+
   // exclude CDL folder and possibly Modelica folder
   const pathSep = path.sep
   // const cdlPath = path.join(pathSep, 'CDL', pathSep)

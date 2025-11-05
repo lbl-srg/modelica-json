@@ -50,7 +50,11 @@ const checkCdlJSON = function (outFormat, extension, message) {
     // Name of subpackage to store json output files
     const subPackName = (outFormat === 'raw-json' ? 'raw-json' : 'json')
     // When parsing mode is 'cdl', the moFiles should feed into parser one-by-one
-
+    const testOutputDir = path.join(process.cwd(), subPackName)
+    // If the test output folder exists, it should be deleted so each test will generate new outputs.
+    if (fs.existsSync(testOutputDir)) {
+      ut.removeDir(testOutputDir)
+    }
     const expectedOutputPath = path.join(process.cwd(), 'test', 'reference')
 
     testMoFiles.forEach(fil => {
@@ -59,7 +63,7 @@ const checkCdlJSON = function (outFormat, extension, message) {
       // const jsonNewCDL = pa.getJSON(fil.split(), mode, outFormat)
       pa.getJsons([fil], outFormat, 'current', 'false')
       const idx = fil.lastIndexOf(path.sep)
-      const jsonNewCDLFile = path.join(process.cwd(), subPackName, 'test', 'FromModelica', fil.slice(idx + 1, -3) + extension)
+      const jsonNewCDLFile = path.join(testOutputDir, 'test', 'FromModelica', fil.slice(idx + 1, -3) + extension)
 
       // Read the stored json representation from disk
       // It's like '../test/FromModelica/cdl/json/***.json'
@@ -87,6 +91,7 @@ const checkCdlJSON = function (outFormat, extension, message) {
       as.notEqual(tempOld, undefined, 'JSON is undefined')
       as.deepEqual(tempNew, tempOld, 'JSON result differs for ' + oldFilCDL)
     })
+    ut.removeDir(testOutputDir)
   })
 }
 
@@ -103,6 +108,11 @@ const checkModJSON = function (outFormat, extension, message) {
     // Name of subpackage to store json output files
     const subPackName = (outFormat === 'raw-json' ? 'raw-json' : 'json')
     // When parsing mode is 'modelica', the moFiles should feed into parser in package
+    const testOutputDir = path.join(process.cwd(), subPackName)
+    // If the test output folder exists, it should be deleted so each test will generate new outputs.
+    if (fs.existsSync(testOutputDir)) {
+      ut.removeDir(testOutputDir)
+    }
     // const jsonNewMOD = pa.getJSON(testMoFiles, mode, outFormat)
     pa.getJsons(testMoFiles, outFormat, 'current', 'false')
     const pattern = path.join('test', 'FromModelica', '*.mo')
@@ -119,7 +129,7 @@ const checkModJSON = function (outFormat, extension, message) {
       if (jsonOldMOD.modelicaFile) {
         jsonOldMOD.fullMoFilePath = jsonOldMOD.modelicaFile.split('modelica-json/')[1]
       }
-      const jsonNewMOD = path.join(process.cwd(), subPackName, 'test', 'FromModelica', fileNameMOD)
+      const jsonNewMOD = path.join(testOutputDir, 'test', 'FromModelica', fileNameMOD)
       const neMOD = JSON.parse(fs.readFileSync(jsonNewMOD, 'utf8'))
       if (neMOD.modelicaFile) {
         neMOD.fullMoFilePath = neMOD.modelicaFile.split('modelica-json/')[1]
@@ -130,6 +140,7 @@ const checkModJSON = function (outFormat, extension, message) {
       as.notEqual(tempOld, undefined, 'JSON is undefined')
       as.deepEqual(tempNew, tempOld, 'JSON result differs for ' + oldFileMOD)
     }
+    ut.removeDir(testOutputDir)
   })
 }
 
