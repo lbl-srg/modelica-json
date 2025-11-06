@@ -156,13 +156,17 @@ const checkObjectsJSON = function (outFormat, extension, message) {
 
     // Name of subpackage to store json output files
     const subPackName = 'objects'
+    const testOutputDir = path.join(process.cwd(), subPackName)
     // When parsing mode is 'modelica', the moFiles should feed into parser in package
     // const jsonNewMOD = pa.getJSON(testMoFiles, mode, outFormat)
+    if (fs.existsSync(testOutputDir)) {
+      ut.removeDir(testOutputDir)
+    }
     pa.getJsons(testMoFiles, outFormat, 'current', 'false')
     const pattern = path.join('test', 'FromModelica', '*.mo')
     const files = glob.sync(pattern)
     const expectedOutputPath = path.join(process.cwd(), 'test', 'reference', subPackName, 'test', 'FromModelica')
-    const actualOutputPath = path.join(process.cwd(), subPackName, 'test', 'FromModelica')
+    const actualOutputPath = path.join(testOutputDir, 'test', 'FromModelica')
 
     for (let i = 0; i < files.length; i++) {
       if (outFormat === 'semantic') {
@@ -218,6 +222,13 @@ const checkObjectsJSON = function (outFormat, extension, message) {
       const actualFile = fs.readFileSync(actualFileName, 'utf8')
       as.deepEqual(actualFile, expectedFile, 'Semantic File result differs for ' + actualFileName)
     }
+    ut.removeDir(testOutputDir)
+    ut.removeDir(actualSemanticOutputPath)
+    // delete new json output files
+    const jsonOutputDir = path.join(process.cwd(), 'json')
+    if (fs.existsSync(jsonOutputDir)) {
+      ut.removeDir(jsonOutputDir)
+    }
   })
 }
 
@@ -235,6 +246,10 @@ const checkCxfJson = function (outFormat, extension, message) {
     const subPackName = 'cxf'
     // When parsing mode is 'modelica', the moFiles should feed into parser in package
     // const jsonNewMOD = pa.getJSON(testMoFiles, mode, outFormat)
+    const testOutputDir = path.join(process.cwd(), subPackName)
+    if (fs.existsSync(testOutputDir)) {
+      ut.removeDir(testOutputDir)
+    }
     pa.getJsons(testMoFiles, outFormat, 'current', 'false')
     const pattern = path.join('test', 'FromModelica', '*.mo')
     const files = glob.sync(pattern)
@@ -265,12 +280,29 @@ const checkCxfJson = function (outFormat, extension, message) {
         as.throws(function () { fs.readFileSync(jsonLdPath, 'utf8') }, Error, 'asd')
       }
     }
+    ut.removeDir(testOutputDir)
+    // delete new json output files
+    const jsonOutputDir = path.join(process.cwd(), 'json')
+    if (fs.existsSync(jsonOutputDir)) {
+      ut.removeDir(jsonOutputDir)
+    }
+    // delete new objects output files
+    const objectsOutputDir = path.join(process.cwd(), 'objects')
+    if (fs.existsSync(objectsOutputDir)) {
+      ut.removeDir(objectsOutputDir)
+    }
   })
 }
 
 function checkCxfCoreGeneration () {
   const cdlPath = path.join('Buildings', 'Controls', 'OBC', 'CDL')
   const testMoFiles = ut.getMoFiles(cdlPath)
+
+  const cxfTestOutputDir = path.join(process.cwd(), 'cxf')
+  // If the test output folder exists, it should be deleted so each test will generate new outputs.
+  if (fs.existsSync(cxfTestOutputDir)) {
+    ut.removeDir(cxfTestOutputDir)
+  }
   pa.getJsons(testMoFiles, 'cxf', 'current', true, true, true)
   ce.getCxfCore(path.join(process.cwd(), cdlPath), 'current', true)
 
@@ -281,6 +313,17 @@ function checkCxfCoreGeneration () {
   const refOutputCxfCore = JSON.stringify(JSON.parse(fs.readFileSync(refOutputCxfCorePath, 'utf8')))
 
   as.deepEqual(actualOutputCxfCore, refOutputCxfCore, 'CXF-Core.jsonld different for generated file=' + actualOutputCxfCorePath + ' and reference file=' + refOutputCxfCorePath)
+  ut.removeDir(cxfTestOutputDir)
+  // delete new json output files
+  const jsonOutputDir = path.join(process.cwd(), 'json')
+  if (fs.existsSync(jsonOutputDir)) {
+    ut.removeDir(jsonOutputDir)
+  }
+  // delete new objects output files
+  const objectsOutputDir = path.join(process.cwd(), 'objects')
+  if (fs.existsSync(objectsOutputDir)) {
+    ut.removeDir(objectsOutputDir)
+  }
 }
 
 mo.describe('parser.js', function () {
