@@ -2,7 +2,7 @@
   "instances": {
     "Ramp": {
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Ramp.mo",
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/Ramp.mo",
       "type": "long_class_specifier",
       "class_prefixes": "block",
       "annotation": [
@@ -274,7 +274,7 @@
                                   "y": 10
                                 }
                               ],
-                              "textString": "DynamicSelect(\"\",String(y",
+                              "textString": "DynamicSelect(\"\",String(y,leftJustified=false,significantDigits=3))",
                               "textColor": {
                                 "r": 0,
                                 "g": 0,
@@ -428,7 +428,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Ramp.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/Ramp.mo"
     },
     "fallingSlewRate": {
       "type_prefix": "parameter",
@@ -486,7 +486,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Ramp.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/Ramp.mo"
     },
     "Td": {
       "type_prefix": "parameter",
@@ -559,7 +559,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Ramp.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/Ramp.mo"
     },
     "u": {
       "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
@@ -625,7 +625,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Ramp.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/Ramp.mo"
     },
     "active": {
       "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.BooleanInput",
@@ -715,7 +715,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Ramp.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/Ramp.mo"
     },
     "y": {
       "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
@@ -781,7 +781,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Ramp.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/Ramp.mo"
     },
     "thr": {
       "type_specifier": "Real",
@@ -794,7 +794,25 @@
           "modification": {
             "equal": true,
             "expression": {
-              "simple_expression": "(u -y)/Td"
+              "simple_expression": {
+                "terms": [
+                  {
+                    "operators": [
+                      "/"
+                    ],
+                    "factors": [
+                      {
+                        "primary1": [
+                          {
+                            "simple_expression": "u -y"
+                          }
+                        ]
+                      },
+                      "Td"
+                    ]
+                  }
+                ]
+              }
             }
           }
         },
@@ -810,7 +828,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Ramp.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/Ramp.mo"
     },
     "y_internal": {
       "type_specifier": "Real",
@@ -833,7 +851,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Ramp.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/Ramp.mo"
     }
   },
   "requiredReferences": {

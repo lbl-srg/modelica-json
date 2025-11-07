@@ -1,6 +1,6 @@
 {
   "within": "Buildings.Controls.OBC.CDL.Routing",
-  "class_definition": [
+  "stored_class_definitions": [
     {
       "class_prefixes": "block",
       "class_specifier": {
@@ -187,7 +187,7 @@
                                   "name": "Modelica.Math.BooleanVectors.andTrue",
                                   "arguments": [
                                     {
-                                      "name": "{([object Object]) for i in 1:nout}"
+                                      "name": "{(extract[i] > 0 and extract[i] <= nin) for i in 1:nout}"
                                     }
                                   ]
                                 }
@@ -970,7 +970,7 @@
                                         "y": -110
                                       }
                                     ],
-                                    "textString": ",textString=",
+                                    "textString": "\"extract=%extract\"",
                                     "textColor": {
                                       "r": 0,
                                       "g": 0,
@@ -1052,6 +1052,6 @@
     }
   ],
   "modelicaFile": "Buildings/Controls/OBC/CDL/Routing/RealExtractSignal.mo",
-  "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Routing/RealExtractSignal.mo",
+  "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Routing/RealExtractSignal.mo",
   "checksum": "5046292abc9430aa9d8aff33244b1986"
 }

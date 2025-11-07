@@ -1,6 +1,6 @@
 {
   "within": "Buildings.Controls.OBC.CDL.Logical",
-  "class_definition": [
+  "stored_class_definitions": [
     {
       "class_prefixes": "block",
       "class_specifier": {
@@ -129,7 +129,59 @@
                       "assignment_equation": {
                         "lhs": "y",
                         "rhs": {
-                          "simple_expression": "not (u1 or u2)"
+                          "simple_expression": {
+                            "logical_expression": {
+                              "logical_or": [
+                                {
+                                  "logical_and": [
+                                    {
+                                      "not": true,
+                                      "arithmetic_expressions": [
+                                        {
+                                          "terms": [
+                                            {
+                                              "factors": [
+                                                {
+                                                  "primary1": [
+                                                    {
+                                                      "simple_expression": {
+                                                        "logical_expression": {
+                                                          "logical_or": [
+                                                            {
+                                                              "logical_and": [
+                                                                {
+                                                                  "arithmetic_expressions": [
+                                                                    "u1"
+                                                                  ]
+                                                                }
+                                                              ]
+                                                            },
+                                                            {
+                                                              "logical_and": [
+                                                                {
+                                                                  "arithmetic_expressions": [
+                                                                    "u2"
+                                                                  ]
+                                                                }
+                                                              ]
+                                                            }
+                                                          ]
+                                                        }
+                                                      }
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          }
                         }
                       }
                     }
@@ -375,6 +427,6 @@
     }
   ],
   "modelicaFile": "Buildings/Controls/OBC/CDL/Logical/Nor.mo",
-  "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/Nor.mo",
+  "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Logical/Nor.mo",
   "checksum": "67268c7c6a903db9b1586aa61de27080"
 }
