@@ -43,6 +43,8 @@ test-moParser:
 # This only needs to be run when the output format changes,
 # or when new tests are added.
 generate-reference-output:
+	@echo "Generating new reference results"
+	@echo "-------- Note: the versions of MBL and MSL in the MODELICAPATH should be consistent with the ones in .travis.yml. --------"
 	rm -rf ./test/reference; \
 	(for ff in `find ./test/FromModelica -name '*.mo'`; do \
 		node app.js -l warn -f $${ff} -o raw-json -d ./test/reference; \
