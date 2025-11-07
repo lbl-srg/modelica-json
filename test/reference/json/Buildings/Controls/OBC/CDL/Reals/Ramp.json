@@ -307,7 +307,25 @@
                             "modification": {
                               "equal": true,
                               "expression": {
-                                "simple_expression": "(u -y)/Td"
+                                "simple_expression": {
+                                  "terms": [
+                                    {
+                                      "operators": [
+                                        "/"
+                                      ],
+                                      "factors": [
+                                        {
+                                          "primary1": [
+                                            {
+                                              "simple_expression": "u -y"
+                                            }
+                                          ]
+                                        },
+                                        "Td"
+                                      ]
+                                    }
+                                  ]
+                                }
                               }
                             }
                           },
@@ -352,12 +370,8 @@
                                       "logical_and": [
                                         {
                                           "arithmetic_expressions": [
-                                            {
-                                              "name": "raisingSlewRate"
-                                            },
-                                            {
-                                              "name": "0"
-                                            }
+                                            "raisingSlewRate",
+                                            "0"
                                           ],
                                           "relation_operator": ">"
                                         }
@@ -391,12 +405,8 @@
                                       "logical_and": [
                                         {
                                           "arithmetic_expressions": [
-                                            {
-                                              "name": "fallingSlewRate"
-                                            },
-                                            {
-                                              "name": "0"
-                                            }
+                                            "fallingSlewRate",
+                                            "0"
                                           ],
                                           "relation_operator": "<"
                                         }
@@ -473,7 +483,7 @@
                                   "name": "1"
                                 },
                                 {
-                                  "name": "noEvent(if [object Object] then fallingSlewRate else if [object Object] then raisingSlewRate else thr)"
+                                  "name": "noEvent(if thr < fallingSlewRate then fallingSlewRate else if thr > raisingSlewRate then raisingSlewRate else thr)"
                                 }
                               ]
                             }
@@ -776,7 +786,7 @@
                                         "y": 10
                                       }
                                     ],
-                                    "textString": "DynamicSelect(\"\",String(y",
+                                    "textString": "DynamicSelect(\"\",String(y,leftJustified=false,significantDigits=3))",
                                     "textColor": {
                                       "r": 0,
                                       "g": 0,
@@ -881,6 +891,6 @@
     }
   ],
   "modelicaFile": "Buildings/Controls/OBC/CDL/Reals/Ramp.mo",
-  "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Ramp.mo",
+  "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/Ramp.mo",
   "checksum": "66afa92e7cf5603775c41ddb5776e993"
 }

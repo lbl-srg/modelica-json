@@ -2,7 +2,7 @@
   "instances": {
     "TrueFalseHold": {
       "within": "Buildings.Controls.OBC.CDL.Logical",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/TrueFalseHold.mo",
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Logical/TrueFalseHold.mo",
       "type": "long_class_specifier",
       "class_prefixes": "block",
       "annotation": [
@@ -458,7 +458,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Logical",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/TrueFalseHold.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Logical/TrueFalseHold.mo"
     },
     "falseHoldDuration": {
       "type_prefix": "parameter",
@@ -547,7 +547,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Logical",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/TrueFalseHold.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Logical/TrueFalseHold.mo"
     },
     "u": {
       "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.BooleanInput",
@@ -637,7 +637,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Logical",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/TrueFalseHold.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Logical/TrueFalseHold.mo"
     },
     "y": {
       "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.BooleanOutput",
@@ -727,7 +727,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Logical",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/TrueFalseHold.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Logical/TrueFalseHold.mo"
     },
     "pre_u_start": {
       "type_prefix": "parameter",
@@ -786,7 +786,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Logical",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/TrueFalseHold.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Logical/TrueFalseHold.mo"
     },
     "not_u": {
       "type_specifier": "Boolean",
@@ -799,7 +799,22 @@
           "modification": {
             "equal": true,
             "expression": {
-              "simple_expression": "not u"
+              "simple_expression": {
+                "logical_expression": {
+                  "logical_or": [
+                    {
+                      "logical_and": [
+                        {
+                          "not": true,
+                          "arithmetic_expressions": [
+                            "u"
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
             }
           }
         },
@@ -815,7 +830,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Logical",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/TrueFalseHold.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Logical/TrueFalseHold.mo"
     },
     "not_y": {
       "type_specifier": "Boolean",
@@ -828,7 +843,22 @@
           "modification": {
             "equal": true,
             "expression": {
-              "simple_expression": "not y"
+              "simple_expression": {
+                "logical_expression": {
+                  "logical_or": [
+                    {
+                      "logical_and": [
+                        {
+                          "not": true,
+                          "arithmetic_expressions": [
+                            "y"
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
             }
           }
         },
@@ -844,7 +874,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Logical",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/TrueFalseHold.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Logical/TrueFalseHold.mo"
     },
     "entryTimeTrue": {
       "type_prefix": "discrete",
@@ -900,7 +930,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Logical",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/TrueFalseHold.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Logical/TrueFalseHold.mo"
     },
     "entryTimeFalse": {
       "type_prefix": "discrete",
@@ -956,7 +986,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Logical",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/TrueFalseHold.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Logical/TrueFalseHold.mo"
     }
   },
   "requiredReferences": {

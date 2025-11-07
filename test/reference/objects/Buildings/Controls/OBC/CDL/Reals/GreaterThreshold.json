@@ -2,7 +2,7 @@
   "instances": {
     "GreaterThreshold": {
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/GreaterThreshold.mo",
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/GreaterThreshold.mo",
       "type": "long_class_specifier",
       "class_prefixes": "block",
       "annotation": [
@@ -155,7 +155,7 @@
                                   "y": 92
                                 }
                               ],
-                              "textString": ",textString=",
+                              "textString": "\"h=%h\"",
                               "textColor": {
                                 "r": 0,
                                 "g": 0,
@@ -176,7 +176,7 @@
                                   "y": 24
                                 }
                               ],
-                              "textString": "DynamicSelect(\"\",String(u",
+                              "textString": "DynamicSelect(\"\",String(u,leftJustified=false,significantDigits=3))",
                               "textColor": {
                                 "r": 0,
                                 "g": 0,
@@ -219,7 +219,7 @@
                                   "y": 62
                                 }
                               ],
-                              "textString": "DynamicSelect(\"\",String(t",
+                              "textString": "DynamicSelect(\"\",String(t,leftJustified=false,significantDigits=3))",
                               "textColor": {
                                 "r": 0,
                                 "g": 0,
@@ -241,7 +241,7 @@
                                   "y": -14
                                 }
                               ],
-                              "textString": "DynamicSelect(\"\",String(t -h",
+                              "textString": "DynamicSelect(\"\",String(t -h,leftJustified=false,significantDigits=3))",
                               "textColor": {
                                 "r": 0,
                                 "g": 0,
@@ -328,7 +328,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/GreaterThreshold.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/GreaterThreshold.mo"
     },
     "h": {
       "type_prefix": "parameter",
@@ -403,7 +403,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/GreaterThreshold.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/GreaterThreshold.mo"
     },
     "pre_y_start": {
       "type_prefix": "parameter",
@@ -484,7 +484,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/GreaterThreshold.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/GreaterThreshold.mo"
     },
     "u": {
       "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
@@ -550,7 +550,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/GreaterThreshold.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/GreaterThreshold.mo"
     },
     "y": {
       "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.BooleanOutput",
@@ -616,7 +616,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/GreaterThreshold.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/GreaterThreshold.mo"
     },
     "have_hysteresis": {
       "type_prefix": "parameter",
@@ -637,12 +637,8 @@
                       "logical_and": [
                         {
                           "arithmetic_expressions": [
-                            {
-                              "name": "h"
-                            },
-                            {
-                              "name": "1e-10"
-                            }
+                            "h",
+                            "1e-10"
                           ],
                           "relation_operator": ">="
                         }
@@ -695,7 +691,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/GreaterThreshold.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/GreaterThreshold.mo"
     },
     "greHys": {
       "type_specifier": "GreaterWithHysteresis",
@@ -812,7 +808,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/GreaterThreshold.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/GreaterThreshold.mo"
     },
     "greNoHys": {
       "type_specifier": "GreaterNoHysteresis",
@@ -843,7 +839,22 @@
         },
         "condition_attribute": {
           "expression": {
-            "simple_expression": "not have_hysteresis"
+            "simple_expression": {
+              "logical_expression": {
+                "logical_or": [
+                  {
+                    "logical_and": [
+                      {
+                        "not": true,
+                        "arithmetic_expressions": [
+                          "have_hysteresis"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
           }
         },
         "description": {
@@ -901,11 +912,11 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/GreaterThreshold.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/GreaterThreshold.mo"
     },
     "GreaterNoHysteresis": {
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/GreaterThreshold.mo",
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/GreaterThreshold.mo",
       "classPrefixes": "block",
       "compositionSpecifier": "protected",
       "type": "long_class_specifier",
@@ -983,7 +994,7 @@
     },
     "GreaterWithHysteresis": {
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/GreaterThreshold.mo",
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/GreaterThreshold.mo",
       "classPrefixes": "block",
       "compositionSpecifier": "protected",
       "type": "long_class_specifier",
@@ -1059,7 +1070,7 @@
                                   "y": 92
                                 }
                               ],
-                              "textString": ",textString=",
+                              "textString": "\"h=%h\"",
                               "textColor": {
                                 "r": 0,
                                 "g": 0,

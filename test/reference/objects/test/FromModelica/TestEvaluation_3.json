@@ -2,7 +2,7 @@
   "instances": {
     "TestEvaluation_3": {
       "within": "FromModelica",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/TestEvaluation_3.mo",
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-json/test/FromModelica/TestEvaluation_3.mo",
       "type": "long_class_specifier",
       "class_prefixes": "block",
       "annotation": [
@@ -78,7 +78,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "FromModelica",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/TestEvaluation_3.mo"
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-json/test/FromModelica/TestEvaluation_3.mo"
     },
     "k2": {
       "type_prefix": "parameter",
@@ -92,7 +92,22 @@
           "modification": {
             "equal": true,
             "expression": {
-              "simple_expression": "not k1"
+              "simple_expression": {
+                "logical_expression": {
+                  "logical_or": [
+                    {
+                      "logical_and": [
+                        {
+                          "not": true,
+                          "arithmetic_expressions": [
+                            "k1"
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
             }
           }
         },
@@ -108,7 +123,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "FromModelica",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/TestEvaluation_3.mo"
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-json/test/FromModelica/TestEvaluation_3.mo"
     },
     "con": {
       "type_specifier": "Buildings.Controls.OBC.CDL.Logical.Sources.Constant",
@@ -139,7 +154,22 @@
         },
         "condition_attribute": {
           "expression": {
-            "simple_expression": "not k1"
+            "simple_expression": {
+              "logical_expression": {
+                "logical_or": [
+                  {
+                    "logical_and": [
+                      {
+                        "not": true,
+                        "arithmetic_expressions": [
+                          "k1"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
           }
         },
         "description": {
@@ -197,7 +227,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "FromModelica",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/TestEvaluation_3.mo"
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-json/test/FromModelica/TestEvaluation_3.mo"
     },
     "con1": {
       "type_specifier": "Buildings.Controls.OBC.CDL.Logical.Sources.Constant",
@@ -281,7 +311,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "FromModelica",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-json/test/FromModelica/TestEvaluation_3.mo"
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-json/test/FromModelica/TestEvaluation_3.mo"
     }
   },
   "requiredReferences": {}

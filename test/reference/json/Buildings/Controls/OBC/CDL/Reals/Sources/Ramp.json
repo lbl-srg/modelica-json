@@ -212,7 +212,119 @@
                       "assignment_equation": {
                         "lhs": "y",
                         "rhs": {
-                          "simple_expression": "offset +(if [object Object] then 0 else if [object Object] then (time -startTime)*height/duration else height)"
+                          "simple_expression": {
+                            "addOps": [
+                              "+"
+                            ],
+                            "terms": [
+                              "offset",
+                              {
+                                "factors": [
+                                  {
+                                    "primary1": [
+                                      {
+                                        "if_expression": {
+                                          "if_elseif": [
+                                            {
+                                              "condition": {
+                                                "simple_expression": {
+                                                  "logical_expression": {
+                                                    "logical_or": [
+                                                      {
+                                                        "logical_and": [
+                                                          {
+                                                            "arithmetic_expressions": [
+                                                              "time",
+                                                              "startTime"
+                                                            ],
+                                                            "relation_operator": "<"
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
+                                                }
+                                              },
+                                              "then": {
+                                                "simple_expression": "0"
+                                              }
+                                            }
+                                          ],
+                                          "else_expression": {
+                                            "if_expression": {
+                                              "if_elseif": [
+                                                {
+                                                  "condition": {
+                                                    "simple_expression": {
+                                                      "logical_expression": {
+                                                        "logical_or": [
+                                                          {
+                                                            "logical_and": [
+                                                              {
+                                                                "arithmetic_expressions": [
+                                                                  "time",
+                                                                  {
+                                                                    "terms": [
+                                                                      {
+                                                                        "factors": [
+                                                                          {
+                                                                            "primary1": [
+                                                                              {
+                                                                                "simple_expression": "startTime +duration"
+                                                                              }
+                                                                            ]
+                                                                          }
+                                                                        ]
+                                                                      }
+                                                                    ]
+                                                                  }
+                                                                ],
+                                                                "relation_operator": "<"
+                                                              }
+                                                            ]
+                                                          }
+                                                        ]
+                                                      }
+                                                    }
+                                                  },
+                                                  "then": {
+                                                    "simple_expression": {
+                                                      "terms": [
+                                                        {
+                                                          "operators": [
+                                                            "*",
+                                                            "/"
+                                                          ],
+                                                          "factors": [
+                                                            {
+                                                              "primary1": [
+                                                                {
+                                                                  "simple_expression": "time -startTime"
+                                                                }
+                                                              ]
+                                                            },
+                                                            "height",
+                                                            "duration"
+                                                          ]
+                                                        }
+                                                      ]
+                                                    }
+                                                  }
+                                                }
+                                              ],
+                                              "else_expression": {
+                                                "simple_expression": "height"
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
                         }
                       }
                     }
@@ -450,7 +562,7 @@
                                         "y": -110
                                       }
                                     ],
-                                    "textString": ",textString=",
+                                    "textString": "\"duration=%duration\"",
                                     "textColor": {
                                       "r": 0,
                                       "g": 0,
@@ -486,7 +598,7 @@
                                         "y": 10
                                       }
                                     ],
-                                    "textString": "DynamicSelect(\"\",String(y",
+                                    "textString": "DynamicSelect(\"\",String(y,leftJustified=false,significantDigits=3))",
                                     "textColor": {
                                       "r": 0,
                                       "g": 0,
@@ -547,6 +659,6 @@
     }
   ],
   "modelicaFile": "Buildings/Controls/OBC/CDL/Reals/Sources/Ramp.mo",
-  "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Sources/Ramp.mo",
+  "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/Sources/Ramp.mo",
   "checksum": "01c1482b8753922bcb3d1339eb60b026"
 }

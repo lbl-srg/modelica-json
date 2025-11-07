@@ -2,7 +2,7 @@
   "instances": {
     "TimeTable": {
       "within": "Buildings.Controls.OBC.CDL.Reals.Sources",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Sources/TimeTable.mo",
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/Sources/TimeTable.mo",
       "type": "long_class_specifier",
       "class_prefixes": "block",
       "annotation": [
@@ -372,7 +372,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals.Sources",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Sources/TimeTable.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/Sources/TimeTable.mo"
     },
     "smoothness": {
       "type_prefix": "parameter",
@@ -402,7 +402,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals.Sources",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Sources/TimeTable.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/Sources/TimeTable.mo"
     },
     "extrapolation": {
       "type_prefix": "parameter",
@@ -432,7 +432,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals.Sources",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Sources/TimeTable.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/Sources/TimeTable.mo"
     },
     "offset": {
       "type_prefix": "parameter",
@@ -479,7 +479,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals.Sources",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Sources/TimeTable.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/Sources/TimeTable.mo"
     },
     "timeScale": {
       "type_prefix": "parameter",
@@ -525,7 +525,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals.Sources",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Sources/TimeTable.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/Sources/TimeTable.mo"
     },
     "y": {
       "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
@@ -598,7 +598,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals.Sources",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Sources/TimeTable.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/Sources/TimeTable.mo"
     },
     "nout": {
       "type_prefix": "parameter",
@@ -628,7 +628,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals.Sources",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Sources/TimeTable.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/Sources/TimeTable.mo"
     },
     "t0": {
       "type_prefix": "parameter",
@@ -697,7 +697,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals.Sources",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Sources/TimeTable.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/Sources/TimeTable.mo"
     },
     "timeRange": {
       "type_prefix": "parameter",
@@ -741,7 +741,25 @@
             ],
             "equal": true,
             "expression": {
-              "simple_expression": "timeScale*(table[end,1] -table[1,1])"
+              "simple_expression": {
+                "terms": [
+                  {
+                    "operators": [
+                      "*"
+                    ],
+                    "factors": [
+                      "timeScale",
+                      {
+                        "primary1": [
+                          {
+                            "simple_expression": "table[end,1] -table[1,1]"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
             }
           }
         },
@@ -757,7 +775,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals.Sources",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Sources/TimeTable.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/Sources/TimeTable.mo"
     },
     "nT": {
       "type_prefix": "parameter",
@@ -799,7 +817,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals.Sources",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Sources/TimeTable.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/Sources/TimeTable.mo"
     },
     "tab": {
       "type_specifier": "Modelica.Blocks.Sources.CombiTimeTable",
@@ -872,12 +890,8 @@
                                         "logical_and": [
                                           {
                                             "arithmetic_expressions": [
-                                              {
-                                                "name": "smoothness"
-                                              },
-                                              {
-                                                "name": "CDL.Types.Smoothness.LinearSegments"
-                                              }
+                                              "smoothness",
+                                              "CDL.Types.Smoothness.LinearSegments"
                                             ],
                                             "relation_operator": "=="
                                           }
@@ -920,12 +934,8 @@
                                         "logical_and": [
                                           {
                                             "arithmetic_expressions": [
-                                              {
-                                                "name": "extrapolation"
-                                              },
-                                              {
-                                                "name": "CDL.Types.Extrapolation.HoldLastPoint"
-                                              }
+                                              "extrapolation",
+                                              "CDL.Types.Extrapolation.HoldLastPoint"
                                             ],
                                             "relation_operator": "=="
                                           }
@@ -948,12 +958,8 @@
                                         "logical_and": [
                                           {
                                             "arithmetic_expressions": [
-                                              {
-                                                "name": "extrapolation"
-                                              },
-                                              {
-                                                "name": "CDL.Types.Extrapolation.LastTwoPoints"
-                                              }
+                                              "extrapolation",
+                                              "CDL.Types.Extrapolation.LastTwoPoints"
                                             ],
                                             "relation_operator": "=="
                                           }
@@ -1003,7 +1009,37 @@
                           "if_elseif": [
                             {
                               "condition": {
-                                "simple_expression": "([object Object])"
+                                "simple_expression": {
+                                  "terms": [
+                                    {
+                                      "factors": [
+                                        {
+                                          "primary1": [
+                                            {
+                                              "simple_expression": {
+                                                "logical_expression": {
+                                                  "logical_or": [
+                                                    {
+                                                      "logical_and": [
+                                                        {
+                                                          "arithmetic_expressions": [
+                                                            "extrapolation",
+                                                            "Types.Extrapolation.Periodic"
+                                                          ],
+                                                          "relation_operator": "=="
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
                               },
                               "then": {
                                 "simple_expression": "t0"
@@ -1091,7 +1127,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals.Sources",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Sources/TimeTable.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/Sources/TimeTable.mo"
     }
   },
   "requiredReferences": {

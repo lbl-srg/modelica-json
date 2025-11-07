@@ -1308,7 +1308,86 @@
                                       "assignment_equation": {
                                         "lhs": "y",
                                         "rhs": {
-                                          "simple_expression": "([object Object]) and ([object Object])"
+                                          "simple_expression": {
+                                            "logical_expression": {
+                                              "logical_or": [
+                                                {
+                                                  "logical_and": [
+                                                    {
+                                                      "arithmetic_expressions": [
+                                                        {
+                                                          "terms": [
+                                                            {
+                                                              "factors": [
+                                                                {
+                                                                  "primary1": [
+                                                                    {
+                                                                      "simple_expression": {
+                                                                        "logical_expression": {
+                                                                          "logical_or": [
+                                                                            {
+                                                                              "logical_and": [
+                                                                                {
+                                                                                  "arithmetic_expressions": [
+                                                                                    "time",
+                                                                                    "t_sta"
+                                                                                  ],
+                                                                                  "relation_operator": ">="
+                                                                                }
+                                                                              ]
+                                                                            }
+                                                                          ]
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  ]
+                                                                }
+                                                              ]
+                                                            }
+                                                          ]
+                                                        }
+                                                      ]
+                                                    },
+                                                    {
+                                                      "arithmetic_expressions": [
+                                                        {
+                                                          "terms": [
+                                                            {
+                                                              "factors": [
+                                                                {
+                                                                  "primary1": [
+                                                                    {
+                                                                      "simple_expression": {
+                                                                        "logical_expression": {
+                                                                          "logical_or": [
+                                                                            {
+                                                                              "logical_and": [
+                                                                                {
+                                                                                  "arithmetic_expressions": [
+                                                                                    "time",
+                                                                                    "t_end"
+                                                                                  ],
+                                                                                  "relation_operator": "<"
+                                                                                }
+                                                                              ]
+                                                                            }
+                                                                          ]
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  ]
+                                                                }
+                                                              ]
+                                                            }
+                                                          ]
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          }
                                         }
                                       }
                                     }
@@ -1409,12 +1488,8 @@
                                       "logical_and": [
                                         {
                                           "arithmetic_expressions": [
-                                            {
-                                              "name": "period"
-                                            },
-                                            {
-                                              "name": "minTruFalHol*2"
-                                            }
+                                            "period",
+                                            "minTruFalHol*2"
                                           ],
                                           "relation_operator": ">="
                                         }
@@ -2928,6 +3003,6 @@
     }
   ],
   "modelicaFile": "Buildings/Controls/OBC/CDL/Logical/VariablePulse.mo",
-  "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/VariablePulse.mo",
+  "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Logical/VariablePulse.mo",
   "checksum": "911f9bca1ee7b66cbb887d2e8466b930"
 }

@@ -498,12 +498,8 @@
                                           "logical_and": [
                                             {
                                               "arithmetic_expressions": [
-                                                {
-                                                  "name": "time"
-                                                },
-                                                {
-                                                  "name": "t0 +samplePeriod/2"
-                                                }
+                                                "time",
+                                                "t0 +samplePeriod/2"
                                               ],
                                               "relation_operator": "<="
                                             }
@@ -523,7 +519,29 @@
                       "assignment_equation": {
                         "lhs": "y",
                         "rhs": {
-                          "simple_expression": "pre_uSample +pre(c)*(time -tSample)"
+                          "simple_expression": {
+                            "addOps": [
+                              "+"
+                            ],
+                            "terms": [
+                              "pre_uSample",
+                              {
+                                "operators": [
+                                  "*"
+                                ],
+                                "factors": [
+                                  "pre(c)",
+                                  {
+                                    "primary1": [
+                                      {
+                                        "simple_expression": "time -tSample"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
                         }
                       }
                     }
@@ -699,7 +717,7 @@
                                         "y": 10
                                       }
                                     ],
-                                    "textString": "DynamicSelect(\"\",String(y",
+                                    "textString": "DynamicSelect(\"\",String(y,leftJustified=false,significantDigits=3))",
                                     "textColor": {
                                       "r": 0,
                                       "g": 0,
@@ -760,6 +778,6 @@
     }
   ],
   "modelicaFile": "Buildings/Controls/OBC/CDL/Discrete/FirstOrderHold.mo",
-  "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Discrete/FirstOrderHold.mo",
+  "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Discrete/FirstOrderHold.mo",
   "checksum": "b50481f06cb9e0c5ee6c54fa7751b887"
 }

@@ -129,7 +129,55 @@
                       "assignment_equation": {
                         "lhs": "y",
                         "rhs": {
-                          "simple_expression": "not (u1 and u2)"
+                          "simple_expression": {
+                            "logical_expression": {
+                              "logical_or": [
+                                {
+                                  "logical_and": [
+                                    {
+                                      "not": true,
+                                      "arithmetic_expressions": [
+                                        {
+                                          "terms": [
+                                            {
+                                              "factors": [
+                                                {
+                                                  "primary1": [
+                                                    {
+                                                      "simple_expression": {
+                                                        "logical_expression": {
+                                                          "logical_or": [
+                                                            {
+                                                              "logical_and": [
+                                                                {
+                                                                  "arithmetic_expressions": [
+                                                                    "u1"
+                                                                  ]
+                                                                },
+                                                                {
+                                                                  "arithmetic_expressions": [
+                                                                    "u2"
+                                                                  ]
+                                                                }
+                                                              ]
+                                                            }
+                                                          ]
+                                                        }
+                                                      }
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          }
                         }
                       }
                     }
@@ -375,6 +423,6 @@
     }
   ],
   "modelicaFile": "Buildings/Controls/OBC/CDL/Logical/Nand.mo",
-  "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/Nand.mo",
+  "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Logical/Nand.mo",
   "checksum": "889e6b99983da4a1cbed17a0b85dfc32"
 }

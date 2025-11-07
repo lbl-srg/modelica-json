@@ -209,12 +209,8 @@
                                       "logical_and": [
                                         {
                                           "arithmetic_expressions": [
-                                            {
-                                              "name": "size(u,1)"
-                                            },
-                                            {
-                                              "name": "1"
-                                            }
+                                            "size(u,1)",
+                                            "1"
                                           ],
                                           "relation_operator": ">"
                                         }
@@ -251,7 +247,26 @@
                                         "assignment_equation": {
                                           "lhs": "uTemp[i]",
                                           "rhs": {
-                                            "simple_expression": "u[i] and uTemp[i -1]"
+                                            "simple_expression": {
+                                              "logical_expression": {
+                                                "logical_or": [
+                                                  {
+                                                    "logical_and": [
+                                                      {
+                                                        "arithmetic_expressions": [
+                                                          "u[i]"
+                                                        ]
+                                                      },
+                                                      {
+                                                        "arithmetic_expressions": [
+                                                          "uTemp[i -1]"
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            }
                                           }
                                         }
                                       }
@@ -273,7 +288,37 @@
                           },
                           {
                             "condition": {
-                              "simple_expression": "([object Object])"
+                              "simple_expression": {
+                                "terms": [
+                                  {
+                                    "factors": [
+                                      {
+                                        "primary1": [
+                                          {
+                                            "simple_expression": {
+                                              "logical_expression": {
+                                                "logical_or": [
+                                                  {
+                                                    "logical_and": [
+                                                      {
+                                                        "arithmetic_expressions": [
+                                                          "size(u,1)",
+                                                          "1"
+                                                        ],
+                                                        "relation_operator": "=="
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
                             },
                             "then": [
                               {
@@ -487,6 +532,6 @@
     }
   ],
   "modelicaFile": "Buildings/Controls/OBC/CDL/Logical/MultiAnd.mo",
-  "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/MultiAnd.mo",
+  "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Logical/MultiAnd.mo",
   "checksum": "8266c210c152835428ade29e953a7f97"
 }

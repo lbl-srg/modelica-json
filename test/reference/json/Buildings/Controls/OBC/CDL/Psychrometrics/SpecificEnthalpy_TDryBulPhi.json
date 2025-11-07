@@ -487,7 +487,27 @@
                       "assignment_equation": {
                         "lhs": "w",
                         "rhs": {
-                          "simple_expression": "0.6219647130774989*p_w/(pAtm -p_w)"
+                          "simple_expression": {
+                            "terms": [
+                              {
+                                "operators": [
+                                  "*",
+                                  "/"
+                                ],
+                                "factors": [
+                                  "0.6219647130774989",
+                                  "p_w",
+                                  {
+                                    "primary1": [
+                                      {
+                                        "simple_expression": "pAtm -p_w"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
                         }
                       }
                     },
@@ -495,7 +515,29 @@
                       "assignment_equation": {
                         "lhs": "h",
                         "rhs": {
-                          "simple_expression": "1006*TDryBul_degC +w*(2501014.5 +1860*TDryBul_degC)"
+                          "simple_expression": {
+                            "addOps": [
+                              "+"
+                            ],
+                            "terms": [
+                              "1006*TDryBul_degC",
+                              {
+                                "operators": [
+                                  "*"
+                                ],
+                                "factors": [
+                                  "w",
+                                  {
+                                    "primary1": [
+                                      {
+                                        "simple_expression": "2501014.5 +1860*TDryBul_degC"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
                         }
                       }
                     }
@@ -923,6 +965,6 @@
     }
   ],
   "modelicaFile": "Buildings/Controls/OBC/CDL/Psychrometrics/SpecificEnthalpy_TDryBulPhi.mo",
-  "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Psychrometrics/SpecificEnthalpy_TDryBulPhi.mo",
+  "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Psychrometrics/SpecificEnthalpy_TDryBulPhi.mo",
   "checksum": "032cab10b9c1213b6e18a285e77b4cc0"
 }
