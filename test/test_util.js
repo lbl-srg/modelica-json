@@ -160,19 +160,19 @@ mo.describe('util', function () {
       const expectedOutput4 = true
 
       filesToCheck1.forEach(file => {
-        const actualOutput1 = ut.checkIfCdlElementaryBlockOrPackage(file)
+        const actualOutput1 = ut.checkIfCdlElementaryBlockOrPackage(file, true)
         as.equal(actualOutput1, expectedOutput1, `File ${file} should return ${expectedOutput1}`)
       })
       filesToCheck2.forEach(file => {
-        const actualOutput2 = ut.checkIfCdlElementaryBlockOrPackage(file)
+        const actualOutput2 = ut.checkIfCdlElementaryBlockOrPackage(file, true)
         as.equal(actualOutput2, expectedOutput2, `File ${file} should return ${expectedOutput2}`)
       })
       filesToCheck3.forEach(file => {
-        const actualOutput3 = ut.checkIfCdlElementaryBlockOrPackage(file)
+        const actualOutput3 = ut.checkIfCdlElementaryBlockOrPackage(file, true)
         as.equal(actualOutput3, expectedOutput3, `File ${file} should return ${expectedOutput3}`)
       })
       filesToCheck4.forEach(file => {
-        const actualOutput4 = ut.checkIfCdlElementaryBlockOrPackage(file)
+        const actualOutput4 = ut.checkIfCdlElementaryBlockOrPackage(file, true)
         as.equal(actualOutput4, expectedOutput4, `File ${file} should return ${expectedOutput4}`)
       })
     })
