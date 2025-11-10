@@ -25,6 +25,7 @@ First, set the MODELICAPATH environment variable by adding the following line to
 ```
 export MODELICAPATH=${MODELICAPATH}:/usr/local/Modelica/Library/
 ```
+Note that the library roots in MODELICAPATH shall exactly match the library names and shall not be suffixed by the library version number.
 
 The parser requires Java and node. The java dependency can be installed using:
 ```
