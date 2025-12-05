@@ -25,6 +25,9 @@ First, set the MODELICAPATH environment variable by adding the following line to
 ```
 export MODELICAPATH=${MODELICAPATH}:/usr/local/Modelica/Library/
 ```
+Notes: 
+- The MODELICAPATH should point to all Modelica libraries you use in the models you want to convert, e.g. Modelica Standard Library, Buildings, o.s.
+- You do not need to have any Modelica-IDE installed on your device (e.g. OpenModelica o.s.)
 
 The parser requires Java and node. The java dependency can be installed using:
 ```
