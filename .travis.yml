@@ -5,7 +5,7 @@ node_js:
   - "24"
 
 env:
-  - MODELICAPATH="../.tmp/modelica-buildings:../.msl"
+  - MODELICAPATH="../.tmp:../.msl"
 
 before_install:
   - unset _JAVA_OPTIONS # To suppress a warning from Java to stderr
