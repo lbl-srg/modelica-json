@@ -11161,7 +11161,25 @@
                                                 {
                                                   "if_elseif": [
                                                     {
-                                                      "condition": "size(deltaq,1) == 1",
+                                                      "condition": {
+                                                        "simple_expression": {
+                                                          "logical_expression": {
+                                                            "logical_or": [
+                                                              {
+                                                                "logical_and": [
+                                                                  {
+                                                                    "arithmetic_expressions": [
+                                                                      "size(deltaq,1)",
+                                                                      "1"
+                                                                    ],
+                                                                    "relation_operator": "=="
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          }
+                                                        }
+                                                      },
                                                       "then": "ones(nout)*deltaq[1]"
                                                     }
                                                   ],
@@ -11199,7 +11217,25 @@
                                                 {
                                                   "if_elseif": [
                                                     {
-                                                      "condition": "size(qd_max,1) == 1",
+                                                      "condition": {
+                                                        "simple_expression": {
+                                                          "logical_expression": {
+                                                            "logical_or": [
+                                                              {
+                                                                "logical_and": [
+                                                                  {
+                                                                    "arithmetic_expressions": [
+                                                                      "size(qd_max,1)",
+                                                                      "1"
+                                                                    ],
+                                                                    "relation_operator": "=="
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          }
+                                                        }
+                                                      },
                                                       "then": "ones(nout)*qd_max[1]"
                                                     }
                                                   ],
@@ -11237,7 +11273,25 @@
                                                 {
                                                   "if_elseif": [
                                                     {
-                                                      "condition": "size(qdd_max,1) == 1",
+                                                      "condition": {
+                                                        "simple_expression": {
+                                                          "logical_expression": {
+                                                            "logical_or": [
+                                                              {
+                                                                "logical_and": [
+                                                                  {
+                                                                    "arithmetic_expressions": [
+                                                                      "size(qdd_max,1)",
+                                                                      "1"
+                                                                    ],
+                                                                    "relation_operator": "=="
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          }
+                                                        }
+                                                      },
                                                       "then": "ones(nout)*qdd_max[1]"
                                                     }
                                                   ],
@@ -11574,7 +11628,9 @@
                                                             {
                                                               "if_elseif": [
                                                                 {
-                                                                  "condition": "noWphase",
+                                                                  "condition": {
+                                                                    "simple_expression": "noWphase"
+                                                                  },
                                                                   "then": "(if time < Ta1 +startTime then sdd_max else (if time < Te +startTime then -sdd_max else 0))"
                                                                 }
                                                               ],
@@ -12339,7 +12395,25 @@
                                                 {
                                                   "if_elseif": [
                                                     {
-                                                      "condition": "size(q_begin,1) == 1",
+                                                      "condition": {
+                                                        "simple_expression": {
+                                                          "logical_expression": {
+                                                            "logical_or": [
+                                                              {
+                                                                "logical_and": [
+                                                                  {
+                                                                    "arithmetic_expressions": [
+                                                                      "size(q_begin,1)",
+                                                                      "1"
+                                                                    ],
+                                                                    "relation_operator": "=="
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          }
+                                                        }
+                                                      },
                                                       "then": "ones(nout)*q_begin[1]"
                                                     }
                                                   ],
@@ -12377,7 +12451,25 @@
                                                 {
                                                   "if_elseif": [
                                                     {
-                                                      "condition": "size(q_end,1) == 1",
+                                                      "condition": {
+                                                        "simple_expression": {
+                                                          "logical_expression": {
+                                                            "logical_or": [
+                                                              {
+                                                                "logical_and": [
+                                                                  {
+                                                                    "arithmetic_expressions": [
+                                                                      "size(q_end,1)",
+                                                                      "1"
+                                                                    ],
+                                                                    "relation_operator": "=="
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          }
+                                                        }
+                                                      },
                                                       "then": "ones(nout)*q_end[1]"
                                                     }
                                                   ],
@@ -12415,7 +12507,25 @@
                                                 {
                                                   "if_elseif": [
                                                     {
-                                                      "condition": "size(qd_max,1) == 1",
+                                                      "condition": {
+                                                        "simple_expression": {
+                                                          "logical_expression": {
+                                                            "logical_or": [
+                                                              {
+                                                                "logical_and": [
+                                                                  {
+                                                                    "arithmetic_expressions": [
+                                                                      "size(qd_max,1)",
+                                                                      "1"
+                                                                    ],
+                                                                    "relation_operator": "=="
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          }
+                                                        }
+                                                      },
                                                       "then": "ones(nout)*qd_max[1]"
                                                     }
                                                   ],
@@ -12453,7 +12563,25 @@
                                                 {
                                                   "if_elseif": [
                                                     {
-                                                      "condition": "size(qdd_max,1) == 1",
+                                                      "condition": {
+                                                        "simple_expression": {
+                                                          "logical_expression": {
+                                                            "logical_or": [
+                                                              {
+                                                                "logical_and": [
+                                                                  {
+                                                                    "arithmetic_expressions": [
+                                                                      "size(qdd_max,1)",
+                                                                      "1"
+                                                                    ],
+                                                                    "relation_operator": "=="
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          }
+                                                        }
+                                                      },
                                                       "then": "ones(nout)*qdd_max[1]"
                                                     }
                                                   ],
@@ -16865,7 +16993,25 @@
                                                 {
                                                   "if_elseif": [
                                                     {
-                                                      "condition": "size(offset,1) == 1",
+                                                      "condition": {
+                                                        "simple_expression": {
+                                                          "logical_expression": {
+                                                            "logical_or": [
+                                                              {
+                                                                "logical_and": [
+                                                                  {
+                                                                    "arithmetic_expressions": [
+                                                                      "size(offset,1)",
+                                                                      "1"
+                                                                    ],
+                                                                    "relation_operator": "=="
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          }
+                                                        }
+                                                      },
                                                       "then": "ones(nout)*offset[1]"
                                                     }
                                                   ],
