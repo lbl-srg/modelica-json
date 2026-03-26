@@ -65,6 +65,18 @@ const funcArgsV = require('../jsParser/parser/Function_argumentsVisitor.js').Fun
 const funcAV = require('../jsParser/parser/Function_argumentVisitor.js').Function_argumentVisitor
 const namedArgsV = require('../jsParser/parser/Named_argumentsVisitor.js').Named_argumentsVisitor
 const ilv = require('../jsParser/parser/Import_listVisitor.js').Import_listVisitor
+const ifsv = require('../jsParser/parser/If_statementVisitor.js').If_statementVisitor
+const wsv = require('../jsParser/parser/When_statementVisitor.js').When_statementVisitor
+const whlV = require('../jsParser/parser/While_statementVisitor.js').While_statementVisitor
+const oelv = require('../jsParser/parser/Output_expression_listVisitor.js').Output_expression_listVisitor
+const compV = require('../jsParser/parser/CompositionVisitor.js').CompositionVisitor
+const lev = require('../jsParser/parser/Logical_expressionVisitor.js').Logical_expressionVisitor
+const lfv = require('../jsParser/parser/Logical_factorVisitor.js').Logical_factorVisitor
+const ltv = require('../jsParser/parser/Logical_termVisitor.js').Logical_termVisitor
+const navV = require('../jsParser/parser/Named_argumentVisitor.js').Named_argumentVisitor
+const ropv = require('../jsParser/parser/Rel_opVisitor.js').Rel_opVisitor
+const relV = require('../jsParser/parser/RelationVisitor.js').RelationVisitor
+const sdv = require('../jsParser/parser/Stored_definitionVisitor.js').Stored_definitionVisitor
 
 mo.afterEach(() => {
   sinon.restore()
@@ -148,6 +160,46 @@ class ctxMock {
   function_argument () { return 'mocked function_argument' }
   function_arguments () { return 'mocked function_arguments' }
   import_list () { return 'mocked import_list' }
+  output_expression_list () { return null }
+  getChildCount () { return 0 }
+  getChild () { return null }
+  BREAK () { return null }
+  RETURN () { return null }
+  if_statement () { return null }
+  for_statement () { return null }
+  while_statement () { return null }
+  when_statement () { return null }
+  NOT () { return null }
+  relation () { return null }
+  logical_factor () { return null }
+  logical_term () { return null }
+  logical_expression () { return null }
+  EXTENDS () { return null }
+  SYMBOL_EQUAL () { return null }
+  SYMBOL_COLONEQUAL () { return null }
+  SYMBOL_COLON () { return null }
+  mul_op () { return [] }
+  factor () { return [] }
+  arithmetic_expression () { return [] }
+  rel_op () { return null }
+  UNSIGNED_NUMBER () { return null }
+  STRING () { return null }
+  FALSE () { return null }
+  TRUE () { return null }
+  DER () { return null }
+  END () { return null }
+  FLOW () { return null }
+  STREAM () { return null }
+  DISCRETE () { return null }
+  PARAMETER () { return null }
+  CONSTANT () { return null }
+  INPUT () { return null }
+  OUTPUT () { return null }
+  composition () { return 'mocked composition' }
+  named_argument () { return 'mocked named_argument' }
+  base_prefix () { return 'mocked base_prefix' }
+  enum_list () { return null }
+  get children () { return [] }
   PARTIAL () {
     return this.testing === 'partial_dec' || this.testing === 'partial_dec class_dec' ? new getTextClass('mocked partial_dec') : false
   }
@@ -550,36 +602,134 @@ mo.describe('testing Component_listVisitor.js', function () {
     as.deepEqual(output.component_declaration_list, referenceOutput, 'expected: ' + referenceOutput + ' ; actual: ' + output.component_declaration_list)
   })
 })
-/* Anand will write these tests
 mo.describe('testing Component_referenceVisitor.js', function () {
-    mo.describe('testing visitComponent_reference(ctx)', function () {
-        const tn = require('antlr4/tree/Tree.js').TerminalNodeImpl
-        const crp = require('../jsParser/domain/Component_reference_part.js').Component_reference_part
-        mo.it('testing ', function () {
-            class ctxMock {
-                constructor () {
-                    this.children = [new tn('')]
-                }
-            }
-            sinon.stub(tn.prototype,'getText').returns('.')
-            sinon.stub(crp, 'constructor').callsFake((dot_op, identifier, array_subscripts) => 'mocked')
-            const visitor = new crv()
-            const input = new ctxMock()
-            const output = visitor.visitComponent_reference(input)
-            const referenceOutput = new crp(true, null, null)
-            as.deepEqual(output.component_reference_parts[0], referenceOutput, 'expected: ' + referenceOutput.dot_op + ' ; actual: ' + output)
-        })
+  mo.describe('testing visitComponent_reference(ctx)', function () {
+    const tn = require('antlr4/tree/Tree.js').TerminalNodeImpl
+    mo.it('testing single identifier (no dot)', function () {
+      const node = new tn('')
+      sinon.stub(node, 'getText').returns('myId')
+      const ctx = { children: [node] }
+      const visitor = new crv()
+      const output = visitor.visitComponent_reference(ctx)
+      as.deepEqual(output.component_reference_parts.length, 1, 'expected 1 part ; actual: ' + output.component_reference_parts.length)
+      as.deepEqual(output.component_reference_parts[0].dot_op, false, 'expected dot_op false ; actual: ' + output.component_reference_parts[0].dot_op)
+      as.deepEqual(output.component_reference_parts[0].identifier, 'myId', 'expected identifier myId ; actual: ' + output.component_reference_parts[0].identifier)
     })
-}) */
-/* Anand will write these tests
+    mo.it('testing leading dot then identifier', function () {
+      const dotNode = new tn('')
+      sinon.stub(dotNode, 'getText').returns('.')
+      const idNode = new tn('')
+      sinon.stub(idNode, 'getText').returns('foo')
+      const ctx = { children: [dotNode, idNode] }
+      const visitor = new crv()
+      const output = visitor.visitComponent_reference(ctx)
+      as.deepEqual(output.component_reference_parts.length, 2, 'expected 2 parts ; actual: ' + output.component_reference_parts.length)
+      as.deepEqual(output.component_reference_parts[0].dot_op, true, 'expected first part dot_op true ; actual: ' + output.component_reference_parts[0].dot_op)
+      as.deepEqual(output.component_reference_parts[1].identifier, 'foo', 'expected second part identifier foo ; actual: ' + output.component_reference_parts[1].identifier)
+    })
+    mo.it('testing identifier dot identifier', function () {
+      const id1Node = new tn('')
+      sinon.stub(id1Node, 'getText').returns('a')
+      const dotNode = new tn('')
+      sinon.stub(dotNode, 'getText').returns('.')
+      const id2Node = new tn('')
+      sinon.stub(id2Node, 'getText').returns('b')
+      const ctx = { children: [id1Node, dotNode, id2Node] }
+      const visitor = new crv()
+      const output = visitor.visitComponent_reference(ctx)
+      as.deepEqual(output.component_reference_parts.length, 3, 'expected 3 parts ; actual: ' + output.component_reference_parts.length)
+      as.deepEqual(output.component_reference_parts[0].identifier, 'a', 'expected first identifier a ; actual: ' + output.component_reference_parts[0].identifier)
+      as.deepEqual(output.component_reference_parts[0].dot_op, false, 'expected first dot_op false ; actual: ' + output.component_reference_parts[0].dot_op)
+      as.deepEqual(output.component_reference_parts[2].identifier, 'b', 'expected third identifier b ; actual: ' + output.component_reference_parts[2].identifier)
+    })
+    mo.it('testing array subscripts child sets array_subscripts', function () {
+      const { modelicaParser } = require('../jsParser/antlrFiles/modelicaParser')
+      const idNode = new tn('')
+      sinon.stub(idNode, 'getText').returns('myId')
+      const asChild = Object.create(modelicaParser.Array_subscriptsContext.prototype)
+      sinon.stub(asv.prototype, 'visitArray_subscripts').callsFake((c) => 'mocked array_subscripts')
+      const ctx = { children: [idNode, asChild] }
+      const visitor = new crv()
+      const output = visitor.visitComponent_reference(ctx)
+      as.deepEqual(output.component_reference_parts.length, 1, 'expected 1 part ; actual: ' + output.component_reference_parts.length)
+      as.deepEqual(output.component_reference_parts[0].array_subscripts, 'mocked array_subscripts', 'expected array_subscripts ; actual: ' + output.component_reference_parts[0].array_subscripts)
+    })
+  })
+})
 mo.describe('testing CompositionVisitor.js', function () {
-    mo.describe('testing visitComposition(ctx)', function () {
-        mo.it('testing ', function () {
-            as.deepEqual(true, false)
-        })
-
+  mo.describe('testing visitComposition(ctx)', function () {
+    const { modelicaParser } = require('../jsParser/antlrFiles/modelicaParser')
+    mo.it('testing Element_listContext child sets element_list', function () {
+      const elmChild = Object.create(modelicaParser.Element_listContext.prototype)
+      sinon.stub(elv.prototype, 'visitElement_list').callsFake((c) => 'mocked element_list')
+      sinon.stub(annV.prototype, 'visitAnnotation').callsFake((a) => a)
+      const ctx = { children: [elmChild], annotation: () => null, EXTERNAL: () => null }
+      const visitor = new compV()
+      const output = visitor.visitComposition(ctx)
+      as.deepEqual(output.element_list, 'mocked element_list', 'expected mocked element_list ; actual: ' + output.element_list)
     })
-}) */
+    mo.it('testing protected modifier + Element_listContext adds element_section', function () {
+      const tn = require('antlr4/tree/Tree.js').TerminalNodeImpl
+      const tnProtected = new tn('')
+      sinon.stub(tnProtected, 'getText').returns('protected')
+      const elmChild = Object.create(modelicaParser.Element_listContext.prototype)
+      sinon.stub(elv.prototype, 'visitElement_list').callsFake((c) => 'mocked protected_element_list')
+      sinon.stub(annV.prototype, 'visitAnnotation').callsFake((a) => a)
+      const ctx = { children: [tnProtected, elmChild], annotation: () => null, EXTERNAL: () => null }
+      const visitor = new compV()
+      const output = visitor.visitComposition(ctx)
+      as.deepEqual(output.element_sections.length, 1, 'expected 1 element_section ; actual: ' + output.element_sections.length)
+      as.deepEqual(output.element_sections[0].protected_element_list, 'mocked protected_element_list', 'expected mocked protected_element_list ; actual: ' + output.element_sections[0].protected_element_list)
+    })
+    mo.it('testing public modifier + Element_listContext adds element_section', function () {
+      const tn = require('antlr4/tree/Tree.js').TerminalNodeImpl
+      const tnPublic = new tn('')
+      sinon.stub(tnPublic, 'getText').returns('public')
+      const elmChild = Object.create(modelicaParser.Element_listContext.prototype)
+      sinon.stub(elv.prototype, 'visitElement_list').callsFake((c) => 'mocked public_element_list')
+      sinon.stub(annV.prototype, 'visitAnnotation').callsFake((a) => a)
+      const ctx = { children: [tnPublic, elmChild], annotation: () => null, EXTERNAL: () => null }
+      const visitor = new compV()
+      const output = visitor.visitComposition(ctx)
+      as.deepEqual(output.element_sections.length, 1, 'expected 1 element_section ; actual: ' + output.element_sections.length)
+      as.deepEqual(output.element_sections[0].public_element_list, 'mocked public_element_list', 'expected mocked public_element_list ; actual: ' + output.element_sections[0].public_element_list)
+    })
+    mo.it('testing Equation_sectionContext child adds element_section', function () {
+      const eqsChild = Object.create(modelicaParser.Equation_sectionContext.prototype)
+      sinon.stub(esv.prototype, 'visitEquation_section').callsFake((c) => 'mocked equation_section')
+      sinon.stub(annV.prototype, 'visitAnnotation').callsFake((a) => a)
+      const ctx = { children: [eqsChild], annotation: () => null, EXTERNAL: () => null }
+      const visitor = new compV()
+      const output = visitor.visitComposition(ctx)
+      as.deepEqual(output.element_sections.length, 1, 'expected 1 element_section ; actual: ' + output.element_sections.length)
+      as.deepEqual(output.element_sections[0].equation_section, 'mocked equation_section', 'expected mocked equation_section ; actual: ' + output.element_sections[0].equation_section)
+    })
+    mo.it('testing Algorithm_sectionContext child adds element_section', function () {
+      const algsChild = Object.create(modelicaParser.Algorithm_sectionContext.prototype)
+      sinon.stub(algSV.prototype, 'visitAlgorithm_section').callsFake((c) => 'mocked algorithm_section')
+      sinon.stub(annV.prototype, 'visitAnnotation').callsFake((a) => a)
+      const ctx = { children: [algsChild], annotation: () => null, EXTERNAL: () => null }
+      const visitor = new compV()
+      const output = visitor.visitComposition(ctx)
+      as.deepEqual(output.element_sections.length, 1, 'expected 1 element_section ; actual: ' + output.element_sections.length)
+      as.deepEqual(output.element_sections[0].algorithm_section, 'mocked algorithm_section', 'expected mocked algorithm_section ; actual: ' + output.element_sections[0].algorithm_section)
+    })
+    mo.it('testing single annotation (external=false) sets annotation', function () {
+      sinon.stub(annV.prototype, 'visitAnnotation').callsFake((a) => a)
+      const ctx = { children: [], annotation: () => ['mocked_ann1'], EXTERNAL: () => null }
+      const visitor = new compV()
+      const output = visitor.visitComposition(ctx)
+      as.deepEqual(output.annotation, 'mocked_ann1', 'expected mocked_ann1 ; actual: ' + output.annotation)
+    })
+    mo.it('testing two annotations sets external_annotation (first) and annotation (second)', function () {
+      sinon.stub(annV.prototype, 'visitAnnotation').callsFake((a) => a)
+      const ctx = { children: [], annotation: () => ['mocked_ann1', 'mocked_ann2'], EXTERNAL: () => null }
+      const visitor = new compV()
+      const output = visitor.visitComposition(ctx)
+      as.deepEqual(output.annotation, 'mocked_ann2', 'expected mocked_ann2 for annotation ; actual: ' + output.annotation)
+    })
+  })
+})
 mo.describe('testing Condition_attributeVisitor.js', function () {
   mo.it('testing visitCondition_attribute(ctx)', function () {
     sinon.stub(ev.prototype, 'visitExpression').callsFake((expression) => expression)
@@ -599,6 +749,15 @@ mo.describe('testing Connect_clauseVisitor.js', function () {
     const referenceOutput = [1, 2]
     as.deepEqual(output.from, referenceOutput[0], 'expected value for "from": ' + referenceOutput[0] + ' ; actual value for "from": ' + output.from)
     as.deepEqual(output.to, referenceOutput[1], 'expected value for "to": ' + referenceOutput[1] + ' ; actual value for "to": ' + output.to)
+  })
+  mo.it('testing visitConnect_clause(ctx) when comp_refs.length !== 2', function () {
+    sinon.stub(crv.prototype, 'visitComponent_reference').callsFake((comp_ref) => comp_ref)
+    sinon.stub(ctxMock.prototype, 'component_reference').returns([1])
+    const visitor = new connCV()
+    const input = new ctxMock()
+    const output = visitor.visitConnect_clause(input)
+    as.deepEqual(output.from, null, 'expected from to be null ; actual: ' + output.from)
+    as.deepEqual(output.to, null, 'expected to to be null ; actual: ' + output.to)
   })
 })
 mo.describe('testing Constraining_clauseVisitor.js', function () {
@@ -809,6 +968,22 @@ mo.describe('testing ElementVisitor.js', function () {
         as.deepEqual(output.component_clause, referenceOutput[9], 'expected: ' + referenceOutput[9] + ' ; actual: ' + output.component_clause)
         as.deepEqual(output.comment, referenceOutput[10], 'expected: ' + referenceOutput[10] + ' ; actual: ' + output.comment)
       })
+      mo.it('testing when false (all boolean flags are null)', function () {
+        sinon.stub(icv.prototype, 'visitImport_clause').callsFake((clause) => clause)
+        sinon.stub(ecv.prototype, 'visitExtends_clause').callsFake((clause) => clause)
+        sinon.stub(consCV.prototype, 'visitConstraining_clause').callsFake((clause) => clause)
+        sinon.stub(cdv.prototype, 'visitClass_definition').callsFake((class_definition) => class_definition)
+        sinon.stub(ccv.prototype, 'visitComponent_clause').callsFake((clause) => clause)
+        sinon.stub(cv.prototype, 'visitComment').callsFake((comment) => comment)
+        const visitor = new eleV()
+        const input = new ctxMock(null)
+        const output = visitor.visitElement(input)
+        as.deepEqual(output.redeclare, false, 'expected value for "redeclare": false ; actual: ' + output.redeclare)
+        as.deepEqual(output.is_final, false, 'expected value for "is_final": false ; actual: ' + output.is_final)
+        as.deepEqual(output.inner, false, 'expected value for "inner": false ; actual: ' + output.inner)
+        as.deepEqual(output.outer, false, 'expected value for "outer": false ; actual: ' + output.outer)
+        as.deepEqual(output.replaceable, false, 'expected value for "replaceable": false ; actual: ' + output.replaceable)
+      })
     })
   })
 })
@@ -903,22 +1078,45 @@ mo.describe('testing Expression_listVisitor.js', function () {
     as.deepEqual(output.expressions, referenceOutput, 'expected value for "expressions": ' + referenceOutput + ' ; actual value for "expressions": ' + output.expressions)
   })
 })
-/* WORK IN PROGRESS
 mo.describe('testing ExpressionVisitor.js', function () {
-    mo.describe('testing visitExpression', function () {
-        mo.describe('testing without ctx.expression()', function () {
-            mo.it('testing when ctx.expression() = 2', function () {
-                sinon.stub(ctxMock.prototype,'expression').returns(false)
-                sinon.stub(sev.prototype,'visitSimple_expression').callsFake((exp) => exp)
-                sinon.replace(ev.visitExpression.prototype,'expressions')
-                const visitor = new ev()
-                const input = new ctxMock()
-                const output = visitor.visitExpression(input)
-                console.log('OUTPUT: ' + output.if_expression)
-            })
-        })
+  mo.describe('testing visitExpression', function () {
+    mo.it('testing when ctx.expression() is null (simple_expression only)', function () {
+      sinon.stub(sev.prototype, 'visitSimple_expression').callsFake((exp) => exp)
+      sinon.stub(ctxMock.prototype, 'expression').returns(null)
+      const visitor = new ev()
+      const input = new ctxMock()
+      const output = visitor.visitExpression(input)
+      as.deepEqual(output.simple_expression, 'mocked simple_expression', 'expected: mocked simple_expression ; actual: ' + output.simple_expression)
+      as.deepEqual(output.if_expression, undefined, 'expected: undefined ; actual: ' + output.if_expression)
     })
-}) */
+    mo.it('testing when ctx.expression() returns 2 items (if without else)', function () {
+      class simpleExprCtx {
+        simple_expression () { return null }
+        expression () { return null }
+      }
+      sinon.stub(sev.prototype, 'visitSimple_expression').callsFake((exp) => exp)
+      sinon.stub(ctxMock.prototype, 'expression').returns([new simpleExprCtx(), new simpleExprCtx()])
+      const visitor = new ev()
+      const input = new ctxMock()
+      const output = visitor.visitExpression(input)
+      as.deepEqual(output.if_expression.if_elseif.length, 1, 'expected 1 if_elseif entry ; actual: ' + output.if_expression.if_elseif.length)
+      as.deepEqual(output.if_expression.else_expression, undefined, 'expected: undefined ; actual: ' + output.if_expression.else_expression)
+    })
+    mo.it('testing when ctx.expression() returns 4 items (if with else)', function () {
+      class simpleExprCtx {
+        simple_expression () { return null }
+        expression () { return null }
+      }
+      sinon.stub(sev.prototype, 'visitSimple_expression').callsFake((exp) => exp)
+      sinon.stub(ctxMock.prototype, 'expression').returns([new simpleExprCtx(), new simpleExprCtx(), new simpleExprCtx(), new simpleExprCtx()])
+      const visitor = new ev()
+      const input = new ctxMock()
+      const output = visitor.visitExpression(input)
+      as.deepEqual(output.if_expression.if_elseif.length, 2, 'expected 2 if_elseif entries ; actual: ' + output.if_expression.if_elseif.length)
+      as.notDeepEqual(output.if_expression.else_expression, undefined, 'expected else_expression to be set')
+    })
+  })
+})
 mo.describe('testing Extends_clauseVisitor.js', function () {
   mo.it('testing visitExtends_clause(ctx)', function () {
     sinon.stub(nv.prototype, 'visitName').callsFake((name) => name)
@@ -981,6 +1179,15 @@ mo.describe('testing FactorVisitor.js', function () {
       as.deepEqual(output.op, referenceOutput[1], 'expected: ' + referenceOutput[1] + ' ; actual: ' + output.op)
       as.deepEqual(output.primary2, referenceOutput[2], 'expected value for "primary2": ' + referenceOutput[2] + ' ; actual value for "primary2": ' + output.primary2)
     })
+    mo.it('testing when primarys = 0', function () {
+      sinon.stub(pv.prototype, 'visitPrimary').callsFake((pri) => pri)
+      sinon.stub(ctxMock.prototype, 'primary').returns([])
+      const visitor = new fv()
+      const input = new ctxMock()
+      const output = visitor.visitFactor(input)
+      as.deepEqual(output.primary1, null, 'expected value for "primary1": null ; actual value for "primary1": ' + output.primary1)
+      as.deepEqual(output.primary2, null, 'expected value for "primary2": null ; actual value for "primary2": ' + output.primary2)
+    })
   })
 })
 mo.describe('testing For_equationVisitor.js', function () {
@@ -1028,7 +1235,6 @@ mo.describe('testing For_statementVisitor.js', function () {
     as.deepEqual(output.loop_statements, referenceOutput[1], 'expected value for "loop_statements": ' + referenceOutput[1] + ' ; actual value for "loop_statements": ' + output.loop_statements)
   })
 })
-// NEED TO TEST WITH ctx.function_arguments()
 mo.describe('testing Function_argumentsVisitor.js', function () {
   mo.describe('testing visitFunction_arguments', function () {
     mo.it('testing without ctx.function_arguments()', function () {
@@ -1044,6 +1250,23 @@ mo.describe('testing Function_argumentsVisitor.js', function () {
       as.deepEqual(output.function_argument, referenceOutput[1], 'expected: ' + referenceOutput[1] + ' ; actual: ' + output.function_argument)
       as.deepEqual(output.for_indices, referenceOutput[2], 'expected: ' + referenceOutput[2] + ' ; actual: ' + output.for_indices)
       as.deepEqual(output.function_arguments, referenceOutput[3], 'expected: ' + referenceOutput[3] + ' ; actual: ' + output.function_arguments)
+    })
+    mo.it('testing with ctx.function_arguments() set', function () {
+      sinon.stub(namedArgsV.prototype, 'visitNamed_arguments').callsFake((args) => args)
+      sinon.stub(funcAV.prototype, 'visitFunction_argument').callsFake((arg) => arg)
+      sinon.stub(fiv.prototype, 'visitFor_indices').callsFake((fi) => fi)
+      // function_arguments() returns a ctx that funcArgsV can recursively visit
+      class funcArgsCtx {
+        named_arguments () { return null }
+        function_argument () { return null }
+        function_arguments () { return null }
+        for_indices () { return null }
+      }
+      sinon.stub(ctxMock.prototype, 'function_arguments').returns(new funcArgsCtx())
+      const visitor = new funcArgsV()
+      const input = new ctxMock()
+      const output = visitor.visitFunction_arguments(input)
+      as.notDeepEqual(output.function_arguments, null, 'expected function_arguments to be set ; actual: ' + output.function_arguments)
     })
   })
 })
@@ -1071,22 +1294,58 @@ mo.describe('testing Function_call_argsVisitor.js', function () {
     as.deepEqual(output.function_arguments, referenceOutput, 'expected: ' + referenceOutput + ' ; actual: ' + output.function_arguments)
   })
 })
-/* WORK IN PROGRESS
 mo.describe('testing If_equationVisitor.js', function () {
-    mo.describe('testing visitIf_equation(ctx)', function () {
-        mo.it('testing ', function () {
-
-        })
+  mo.describe('testing visitIf_equation(ctx)', function () {
+    mo.it('testing when ctx.expression() and ctx.equation() are null', function () {
+      sinon.stub(ctxMock.prototype, 'expression').returns(null)
+      sinon.stub(ctxMock.prototype, 'equation').returns(null)
+      sinon.stub(ctxMock.prototype, 'getChildCount').returns(0)
+      const visitor = new iev()
+      const input = new ctxMock()
+      const output = visitor.visitIf_equation(input)
+      as.deepEqual(output.if_elseif, [], 'expected empty if_elseif ; actual: ' + output.if_elseif)
+      as.deepEqual(output.else_equation, [], 'expected empty else_equation ; actual: ' + output.else_equation)
     })
-}) */
-/* WORK IN PROGRESS
+    mo.it('testing when ctx.expression() and ctx.equation() return arrays', function () {
+      sinon.stub(ev.prototype, 'visitExpression').callsFake((exp) => exp)
+      sinon.stub(eqV.prototype, 'visitEquation').callsFake((eqn) => eqn)
+      sinon.stub(ctxMock.prototype, 'expression').returns(['expr1', 'expr2'])
+      sinon.stub(ctxMock.prototype, 'equation').returns(['eqn1', 'eqn2'])
+      sinon.stub(ctxMock.prototype, 'getChildCount').returns(0)
+      const visitor = new iev()
+      const input = new ctxMock()
+      const output = visitor.visitIf_equation(input)
+      as.deepEqual(output.if_elseif, [], 'expected empty if_elseif ; actual: ' + output.if_elseif)
+      as.deepEqual(output.else_equation, [], 'expected empty else_equation ; actual: ' + output.else_equation)
+    })
+  })
+})
 mo.describe('testing If_statementVisitor.js', function () {
-    mo.describe('testing visitIf_statement(ctx)', function () {
-        mo.it('testing ', function () {
-
-        })
+  mo.describe('testing visitIf_statement(ctx)', function () {
+    mo.it('testing when ctx.expression() and ctx.statement() are null', function () {
+      sinon.stub(ctxMock.prototype, 'expression').returns(null)
+      sinon.stub(ctxMock.prototype, 'statement').returns(null)
+      sinon.stub(ctxMock.prototype, 'getChildCount').returns(0)
+      const visitor = new ifsv()
+      const input = new ctxMock()
+      const output = visitor.visitIf_statement(input)
+      as.deepEqual(output.if_elseif, [], 'expected empty if_elseif ; actual: ' + output.if_elseif)
+      as.deepEqual(output.else_statement, [], 'expected empty else_statement ; actual: ' + output.else_statement)
     })
-}) */
+    mo.it('testing when ctx.expression() and ctx.statement() return arrays', function () {
+      sinon.stub(ev.prototype, 'visitExpression').callsFake((exp) => exp)
+      sinon.stub(sv.prototype, 'visitStatement').callsFake((stmt) => stmt)
+      sinon.stub(ctxMock.prototype, 'expression').returns(['expr1', 'expr2'])
+      sinon.stub(ctxMock.prototype, 'statement').returns(['stmt1', 'stmt2'])
+      sinon.stub(ctxMock.prototype, 'getChildCount').returns(0)
+      const visitor = new ifsv()
+      const input = new ctxMock()
+      const output = visitor.visitIf_statement(input)
+      as.deepEqual(output.if_elseif, [], 'expected empty if_elseif ; actual: ' + output.if_elseif)
+      as.deepEqual(output.else_statement, [], 'expected empty else_statement ; actual: ' + output.else_statement)
+    })
+  })
+})
 mo.describe('testing Import_clauseVisitor.js', function () {
   mo.describe('testing visitImport_clause(ctx)', function () {
     mo.it('testing when ctx.IDENT() exists', function () {
@@ -1128,5 +1387,708 @@ mo.describe('testing Import_listVisitor.js', function () {
     const output = visitor.visitImport_list(input)
     const referenceOutput = [1, 2, 3]
     as.deepEqual(output.identifier_list, referenceOutput, 'expected value for "identifier_list: ' + referenceOutput + ' ; actual value for "identifier_list": ' + output.identifier_list)
+  })
+})
+mo.describe('testing StatementVisitor.js', function () {
+  mo.describe('testing visitStatement(ctx)', function () {
+    mo.it('testing assignment_statement (component_reference + value)', function () {
+      sinon.stub(crv.prototype, 'visitComponent_reference').callsFake((c) => c)
+      sinon.stub(ev.prototype, 'visitExpression').callsFake((e) => e)
+      sinon.stub(fcav.prototype, 'visitFunction_call_args').callsFake((a) => a)
+      sinon.stub(cv.prototype, 'visitComment').callsFake((c) => c)
+      const visitor = new sv()
+      const input = new ctxMock()
+      const output = visitor.visitStatement(input)
+      as.notDeepEqual(output.assignment_statement, null, 'expected assignment_statement to be set ; actual: ' + output.assignment_statement)
+      as.deepEqual(output.function_call_statement, null, 'expected function_call_statement null ; actual: ' + output.function_call_statement)
+      as.deepEqual(output.assignment_with_function_call_statement, null, 'expected assignment_with_function_call_statement null ; actual: ' + output.assignment_with_function_call_statement)
+    })
+    mo.it('testing assignment_with_function_call_statement (component_reference + function_call_args + output_expression_list)', function () {
+      sinon.stub(crv.prototype, 'visitComponent_reference').callsFake((c) => c)
+      sinon.stub(fcav.prototype, 'visitFunction_call_args').callsFake((a) => a)
+      sinon.stub(oelv.prototype, 'visitOutput_expression_list').callsFake((o) => o)
+      sinon.stub(cv.prototype, 'visitComment').callsFake((c) => c)
+      sinon.stub(ctxMock.prototype, 'expression').returns(null)
+      sinon.stub(ctxMock.prototype, 'output_expression_list').returns('mocked output_expression_list')
+      const visitor = new sv()
+      const input = new ctxMock()
+      const output = visitor.visitStatement(input)
+      as.notDeepEqual(output.assignment_with_function_call_statement, null, 'expected assignment_with_function_call_statement to be set ; actual: ' + output.assignment_with_function_call_statement)
+      as.deepEqual(output.assignment_statement, null, 'expected assignment_statement null ; actual: ' + output.assignment_statement)
+      as.deepEqual(output.function_call_statement, null, 'expected function_call_statement null ; actual: ' + output.function_call_statement)
+    })
+    mo.it('testing function_call_statement (component_reference + function_call_args, no value)', function () {
+      sinon.stub(crv.prototype, 'visitComponent_reference').callsFake((c) => c)
+      sinon.stub(fcav.prototype, 'visitFunction_call_args').callsFake((a) => a)
+      sinon.stub(cv.prototype, 'visitComment').callsFake((c) => c)
+      sinon.stub(ctxMock.prototype, 'expression').returns(null)
+      const visitor = new sv()
+      const input = new ctxMock()
+      const output = visitor.visitStatement(input)
+      as.notDeepEqual(output.function_call_statement, null, 'expected function_call_statement to be set ; actual: ' + output.function_call_statement)
+      as.deepEqual(output.assignment_statement, null, 'expected assignment_statement null ; actual: ' + output.assignment_statement)
+      as.deepEqual(output.assignment_with_function_call_statement, null, 'expected assignment_with_function_call_statement null ; actual: ' + output.assignment_with_function_call_statement)
+    })
+    mo.it('testing if_statement branch', function () {
+      sinon.stub(ctxMock.prototype, 'component_reference').returns(null)
+      sinon.stub(ctxMock.prototype, 'expression').returns(null)
+      sinon.stub(ctxMock.prototype, 'function_call_args').returns(null)
+      sinon.stub(ctxMock.prototype, 'if_statement').returns('mocked if_statement')
+      sinon.stub(ifsv.prototype, 'visitIf_statement').callsFake((s) => s)
+      sinon.stub(cv.prototype, 'visitComment').callsFake((c) => c)
+      const visitor = new sv()
+      const input = new ctxMock()
+      const output = visitor.visitStatement(input)
+      as.deepEqual(output.if_statement, 'mocked if_statement', 'expected: mocked if_statement ; actual: ' + output.if_statement)
+    })
+    mo.it('testing for_statement branch', function () {
+      sinon.stub(ctxMock.prototype, 'component_reference').returns(null)
+      sinon.stub(ctxMock.prototype, 'expression').returns(null)
+      sinon.stub(ctxMock.prototype, 'function_call_args').returns(null)
+      sinon.stub(ctxMock.prototype, 'for_statement').returns('mocked for_statement')
+      sinon.stub(fsv.prototype, 'visitFor_statement').callsFake((s) => s)
+      sinon.stub(cv.prototype, 'visitComment').callsFake((c) => c)
+      const visitor = new sv()
+      const input = new ctxMock()
+      const output = visitor.visitStatement(input)
+      as.deepEqual(output.for_statement, 'mocked for_statement', 'expected: mocked for_statement ; actual: ' + output.for_statement)
+    })
+    mo.it('testing while_statement branch', function () {
+      sinon.stub(ctxMock.prototype, 'component_reference').returns(null)
+      sinon.stub(ctxMock.prototype, 'expression').returns(null)
+      sinon.stub(ctxMock.prototype, 'function_call_args').returns(null)
+      sinon.stub(ctxMock.prototype, 'while_statement').returns('mocked while_statement')
+      sinon.stub(whlV.prototype, 'visitWhile_statement').callsFake((s) => s)
+      sinon.stub(cv.prototype, 'visitComment').callsFake((c) => c)
+      const visitor = new sv()
+      const input = new ctxMock()
+      const output = visitor.visitStatement(input)
+      as.deepEqual(output.while_statement, 'mocked while_statement', 'expected: mocked while_statement ; actual: ' + output.while_statement)
+    })
+    mo.it('testing when_statement branch', function () {
+      sinon.stub(ctxMock.prototype, 'component_reference').returns(null)
+      sinon.stub(ctxMock.prototype, 'expression').returns(null)
+      sinon.stub(ctxMock.prototype, 'function_call_args').returns(null)
+      sinon.stub(ctxMock.prototype, 'when_statement').returns('mocked when_statement')
+      sinon.stub(wsv.prototype, 'visitWhen_statement').callsFake((s) => s)
+      sinon.stub(cv.prototype, 'visitComment').callsFake((c) => c)
+      const visitor = new sv()
+      const input = new ctxMock()
+      const output = visitor.visitStatement(input)
+      as.deepEqual(output.when_statement, 'mocked when_statement', 'expected: mocked when_statement ; actual: ' + output.when_statement)
+    })
+    mo.it('testing is_break and is_return flags', function () {
+      class ctxMockBreakReturn extends ctxMock {
+        BREAK () { return true }
+        RETURN () { return true }
+      }
+      sinon.stub(crv.prototype, 'visitComponent_reference').callsFake((c) => c)
+      sinon.stub(ev.prototype, 'visitExpression').callsFake((e) => e)
+      sinon.stub(fcav.prototype, 'visitFunction_call_args').callsFake((a) => a)
+      sinon.stub(cv.prototype, 'visitComment').callsFake((c) => c)
+      const visitor = new sv()
+      const input = new ctxMockBreakReturn()
+      const output = visitor.visitStatement(input)
+      as.deepEqual(output.is_break, true, 'expected is_break true ; actual: ' + output.is_break)
+      as.deepEqual(output.is_return, true, 'expected is_return true ; actual: ' + output.is_return)
+    })
+  })
+})
+mo.describe('testing When_equationVisitor.js', function () {
+  mo.describe('testing visitWhen_equation(ctx)', function () {
+    mo.it('testing when ctx.expression() and ctx.equation() are null', function () {
+      sinon.stub(ctxMock.prototype, 'expression').returns(null)
+      sinon.stub(ctxMock.prototype, 'equation').returns(null)
+      const visitor = new wev()
+      const input = new ctxMock()
+      const output = visitor.visitWhen_equation(input)
+      as.deepEqual(output.when_elsewhen, undefined, 'expected when_elsewhen undefined (empty array not stored) ; actual: ' + output.when_elsewhen)
+    })
+    mo.it('testing when ctx.expression() and ctx.equation() return arrays', function () {
+      sinon.stub(ev.prototype, 'visitExpression').callsFake((exp) => exp)
+      sinon.stub(eqV.prototype, 'visitEquation').callsFake((eqn) => eqn)
+      sinon.stub(ctxMock.prototype, 'expression').returns(['expr1', 'expr2'])
+      sinon.stub(ctxMock.prototype, 'equation').returns(['eqn1', 'eqn2'])
+      const visitor = new wev()
+      const input = new ctxMock()
+      const output = visitor.visitWhen_equation(input)
+      as.deepEqual(output.when_elsewhen, undefined, 'expected when_elsewhen undefined (while loop does not run) ; actual: ' + output.when_elsewhen)
+    })
+  })
+})
+mo.describe('testing When_statementVisitor.js', function () {
+  mo.describe('testing visitWhen_statement(ctx)', function () {
+    mo.it('testing when ctx.expression() and ctx.statement() are null', function () {
+      sinon.stub(ctxMock.prototype, 'expression').returns(null)
+      sinon.stub(ctxMock.prototype, 'statement').returns(null)
+      const visitor = new wsv()
+      const input = new ctxMock()
+      const output = visitor.visitWhen_statement(input)
+      as.deepEqual(output.when_elsewhen, undefined, 'expected when_elsewhen undefined (empty array not stored) ; actual: ' + output.when_elsewhen)
+    })
+    mo.it('testing when ctx.expression() and ctx.statement() return arrays', function () {
+      sinon.stub(ev.prototype, 'visitExpression').callsFake((exp) => exp)
+      sinon.stub(sv.prototype, 'visitStatement').callsFake((stmt) => stmt)
+      sinon.stub(ctxMock.prototype, 'expression').returns(['expr1', 'expr2'])
+      sinon.stub(ctxMock.prototype, 'statement').returns(['stmt1', 'stmt2'])
+      const visitor = new wsv()
+      const input = new ctxMock()
+      const output = visitor.visitWhen_statement(input)
+      as.deepEqual(output.when_elsewhen, undefined, 'expected when_elsewhen undefined (while loop does not run) ; actual: ' + output.when_elsewhen)
+    })
+  })
+})
+mo.describe('testing Logical_expressionVisitor.js', function () {
+  mo.describe('testing visitLogical_expression(ctx)', function () {
+    mo.it('testing when ctx.logical_term() is null', function () {
+      sinon.stub(ctxMock.prototype, 'logical_term').returns(null)
+      const visitor = new lev()
+      const input = new ctxMock()
+      const output = visitor.visitLogical_expression(input)
+      as.equal(output.logical_term_list, undefined, 'expected undefined (empty list not stored) ; actual: ' + output.logical_term_list)
+    })
+    mo.it('testing when ctx.logical_term() returns array', function () {
+      sinon.stub(ctxMock.prototype, 'logical_term').returns([1, 2])
+      sinon.stub(ltv.prototype, 'visitLogical_term').callsFake((t) => t)
+      const visitor = new lev()
+      const input = new ctxMock()
+      const output = visitor.visitLogical_expression(input)
+      as.deepEqual(output.logical_term_list, [1, 2], 'expected [1,2] ; actual: ' + output.logical_term_list)
+    })
+  })
+})
+mo.describe('testing Logical_factorVisitor.js', function () {
+  mo.describe('testing visitLogical_factor(ctx)', function () {
+    mo.it('testing when NOT=null, relation=null', function () {
+      const visitor = new lfv()
+      const input = new ctxMock()
+      const output = visitor.visitLogical_factor(input)
+      as.equal(output.not, false, 'expected not=false ; actual: ' + output.not)
+      as.equal(output.relation, undefined, 'expected relation=undefined (null not stored) ; actual: ' + output.relation)
+    })
+    mo.it('testing when NOT=true, relation present', function () {
+      sinon.stub(ctxMock.prototype, 'NOT').returns(true)
+      sinon.stub(ctxMock.prototype, 'relation').returns('mocked relation')
+      sinon.stub(relV.prototype, 'visitRelation').callsFake((r) => r)
+      const visitor = new lfv()
+      const input = new ctxMock()
+      const output = visitor.visitLogical_factor(input)
+      as.equal(output.not, true, 'expected not=true ; actual: ' + output.not)
+      as.equal(output.relation, 'mocked relation', 'expected relation=mocked relation ; actual: ' + output.relation)
+    })
+  })
+})
+mo.describe('testing Logical_termVisitor.js', function () {
+  mo.describe('testing visitLogical_term(ctx)', function () {
+    mo.it('testing when ctx.logical_factor() is null', function () {
+      const visitor = new ltv()
+      const input = new ctxMock()
+      const output = visitor.visitLogical_term(input)
+      as.equal(output.logical_factor_list, undefined, 'expected undefined (empty list not stored) ; actual: ' + output.logical_factor_list)
+    })
+    mo.it('testing when ctx.logical_factor() returns array', function () {
+      sinon.stub(ctxMock.prototype, 'logical_factor').returns([1, 2])
+      sinon.stub(lfv.prototype, 'visitLogical_factor').callsFake((f) => f)
+      const visitor = new ltv()
+      const input = new ctxMock()
+      const output = visitor.visitLogical_term(input)
+      as.deepEqual(output.logical_factor_list, [1, 2], 'expected [1,2] ; actual: ' + output.logical_factor_list)
+    })
+  })
+})
+mo.describe('testing Long_class_specifierVisitor.js', function () {
+  mo.describe('testing visitLong_class_specifier(ctx)', function () {
+    mo.it('testing basic case without EXTENDS', function () {
+      sinon.stub(scv.prototype, 'visitString_comment').callsFake((s) => s)
+      sinon.stub(compV.prototype, 'visitComposition').callsFake((c) => c)
+      sinon.stub(cmv.prototype, 'visitClass_modification').callsFake((c) => c)
+      const visitor = new lcsv()
+      const input = new ctxMock()
+      const output = visitor.visitLong_class_specifier(input)
+      as.equal(output.identifier, 'mocked identifier', 'expected mocked identifier ; actual: ' + output.identifier)
+      as.equal(output.is_extends, false, 'expected is_extends=false ; actual: ' + output.is_extends)
+    })
+    mo.it('testing with EXTENDS=true', function () {
+      sinon.stub(ctxMock.prototype, 'EXTENDS').returns(true)
+      sinon.stub(scv.prototype, 'visitString_comment').callsFake((s) => s)
+      sinon.stub(compV.prototype, 'visitComposition').callsFake((c) => c)
+      sinon.stub(cmv.prototype, 'visitClass_modification').callsFake((c) => c)
+      const visitor = new lcsv()
+      const input = new ctxMock()
+      const output = visitor.visitLong_class_specifier(input)
+      as.equal(output.is_extends, true, 'expected is_extends=true ; actual: ' + output.is_extends)
+    })
+  })
+})
+mo.describe('testing ModificationVisitor.js', function () {
+  mo.describe('testing visitModification(ctx)', function () {
+    mo.it('testing with SYMBOL_EQUAL=true', function () {
+      sinon.stub(ctxMock.prototype, 'SYMBOL_EQUAL').returns(true)
+      sinon.stub(cmv.prototype, 'visitClass_modification').callsFake((c) => c)
+      sinon.stub(ev.prototype, 'visitExpression').callsFake((e) => e)
+      const visitor = new mv()
+      const input = new ctxMock()
+      const output = visitor.visitModification(input)
+      as.equal(output.equal, true, 'expected equal=true ; actual: ' + output.equal)
+      as.equal(output.colon_equal, false, 'expected colon_equal=false ; actual: ' + output.colon_equal)
+    })
+    mo.it('testing with SYMBOL_COLONEQUAL=true', function () {
+      sinon.stub(ctxMock.prototype, 'SYMBOL_COLONEQUAL').returns(true)
+      sinon.stub(ctxMock.prototype, 'class_modification').returns(null)
+      sinon.stub(ctxMock.prototype, 'expression').returns(null)
+      const visitor = new mv()
+      const input = new ctxMock()
+      const output = visitor.visitModification(input)
+      as.equal(output.equal, false, 'expected equal=false ; actual: ' + output.equal)
+      as.equal(output.colon_equal, true, 'expected colon_equal=true ; actual: ' + output.colon_equal)
+    })
+  })
+})
+mo.describe('testing NameVisitor.js', function () {
+  mo.describe('testing visitName(ctx)', function () {
+    mo.it('testing single identifier (no dot)', function () {
+      class nameCtxMock {
+        SYMBOL_DOT () { return [] }
+        IDENT () { return [new getTextClass('foo')] }
+      }
+      const visitor = new nv()
+      const output = visitor.visitName(new nameCtxMock())
+      as.equal(output.name_parts.length, 1, 'expected 1 name_part ; actual: ' + output.name_parts.length)
+      as.equal(output.name_parts[0].dot_op, false, 'expected dot_op=false ; actual: ' + output.name_parts[0].dot_op)
+      as.equal(output.name_parts[0].identifier, 'foo', 'expected foo ; actual: ' + output.name_parts[0].identifier)
+    })
+    mo.it('testing leading dot (dot count equals ident count)', function () {
+      class nameCtxMock {
+        SYMBOL_DOT () { return [new getTextClass('.')] }
+        IDENT () { return [new getTextClass('foo')] }
+      }
+      const visitor = new nv()
+      const output = visitor.visitName(new nameCtxMock())
+      as.equal(output.name_parts[0].dot_op, true, 'expected dot_op=true ; actual: ' + output.name_parts[0].dot_op)
+    })
+    mo.it('testing dotted path (foo.bar)', function () {
+      class nameCtxMock {
+        SYMBOL_DOT () { return [new getTextClass('.')] }
+        IDENT () { return [new getTextClass('foo'), new getTextClass('bar')] }
+      }
+      const visitor = new nv()
+      const output = visitor.visitName(new nameCtxMock())
+      as.equal(output.name_parts.length, 2, 'expected 2 name_parts ; actual: ' + output.name_parts.length)
+      as.equal(output.name_parts[0].identifier, 'foo', 'expected foo ; actual: ' + output.name_parts[0].identifier)
+      as.equal(output.name_parts[1].identifier, 'bar', 'expected bar ; actual: ' + output.name_parts[1].identifier)
+    })
+  })
+})
+mo.describe('testing Named_argumentVisitor.js', function () {
+  mo.describe('testing visitNamed_argument(ctx)', function () {
+    mo.it('testing with IDENT and function_argument', function () {
+      sinon.stub(funcAV.prototype, 'visitFunction_argument').callsFake((a) => a)
+      const visitor = new navV()
+      const input = new ctxMock()
+      const output = visitor.visitNamed_argument(input)
+      as.equal(output.identifier, 'mocked identifier', 'expected mocked identifier ; actual: ' + output.identifier)
+      as.equal(output.value, 'mocked function_argument', 'expected mocked function_argument ; actual: ' + output.value)
+    })
+    mo.it('testing with IDENT=null, function_argument=null', function () {
+      sinon.stub(ctxMock.prototype, 'IDENT').returns(null)
+      sinon.stub(ctxMock.prototype, 'function_argument').returns(null)
+      const visitor = new navV()
+      const input = new ctxMock()
+      const output = visitor.visitNamed_argument(input)
+      as.equal(output.identifier, undefined, 'expected undefined (empty string not stored) ; actual: ' + output.identifier)
+      as.equal(output.value, undefined, 'expected undefined (null not stored) ; actual: ' + output.value)
+    })
+  })
+})
+mo.describe('testing Named_argumentsVisitor.js', function () {
+  mo.describe('testing visitNamed_arguments(ctx)', function () {
+    mo.it('testing without recursion', function () {
+      sinon.stub(ctxMock.prototype, 'named_arguments').returns(null)
+      sinon.stub(navV.prototype, 'visitNamed_argument').callsFake((a) => a)
+      const visitor = new namedArgsV()
+      const input = new ctxMock()
+      const output = visitor.visitNamed_arguments(input)
+      as.equal(output.named_argument, 'mocked named_argument', 'expected mocked named_argument ; actual: ' + output.named_argument)
+      as.equal(output.named_arguments, undefined, 'expected undefined (null not stored) ; actual: ' + output.named_arguments)
+    })
+    mo.it('testing with recursive named_arguments', function () {
+      class namedArgsCtx {
+        named_arguments () { return null }
+        named_argument () { return null }
+      }
+      sinon.stub(ctxMock.prototype, 'named_arguments').returns(new namedArgsCtx())
+      sinon.stub(navV.prototype, 'visitNamed_argument').callsFake((a) => a)
+      const visitor = new namedArgsV()
+      const input = new ctxMock()
+      const output = visitor.visitNamed_arguments(input)
+      as.notEqual(output.named_arguments, null, 'expected nested named_arguments to be set')
+    })
+  })
+})
+mo.describe('testing Output_expression_listVisitor.js', function () {
+  mo.describe('testing visitOutput_expression_list(ctx)', function () {
+    mo.it('testing with null expression', function () {
+      sinon.stub(ctxMock.prototype, 'expression').returns(null)
+      const visitor = new oelv()
+      const input = new ctxMock()
+      const output = visitor.visitOutput_expression_list(input)
+      as.equal(output.output_expressions, undefined, 'expected undefined (empty array not stored) ; actual: ' + output.output_expressions)
+    })
+    mo.it('testing with expression array', function () {
+      sinon.stub(ctxMock.prototype, 'expression').returns(['e1', 'e2'])
+      sinon.stub(ev.prototype, 'visitExpression').callsFake((e) => e)
+      const visitor = new oelv()
+      const input = new ctxMock()
+      const output = visitor.visitOutput_expression_list(input)
+      as.deepEqual(output.output_expressions, ['e1', 'e2'], 'expected [e1,e2] ; actual: ' + output.output_expressions)
+    })
+  })
+})
+mo.describe('testing PrimaryVisitor.js', function () {
+  mo.describe('testing visitPrimary(ctx)', function () {
+    mo.it('testing minimal primary (all null)', function () {
+      sinon.stub(ctxMock.prototype, 'name').returns(null)
+      sinon.stub(ctxMock.prototype, 'function_call_args').returns(null)
+      sinon.stub(ctxMock.prototype, 'component_reference').returns(null)
+      sinon.stub(ctxMock.prototype, 'expression_list').returns(null)
+      sinon.stub(ctxMock.prototype, 'function_arguments').returns(null)
+      const visitor = new pv()
+      const input = new ctxMock()
+      const output = visitor.visitPrimary(input)
+      as.equal(output.unsigned_number, null, 'expected null ; actual: ' + output.unsigned_number)
+      as.equal(output.is_false, false, 'expected false ; actual: ' + output.is_false)
+      as.equal(output.is_true, false, 'expected false ; actual: ' + output.is_true)
+      as.equal(output.component_reference, null, 'expected null ; actual: ' + output.component_reference)
+    })
+    mo.it('testing with UNSIGNED_NUMBER and is_true', function () {
+      sinon.stub(ctxMock.prototype, 'UNSIGNED_NUMBER').returns(new getTextClass('3.14'))
+      sinon.stub(ctxMock.prototype, 'TRUE').returns(true)
+      sinon.stub(ctxMock.prototype, 'name').returns(null)
+      sinon.stub(ctxMock.prototype, 'function_call_args').returns(null)
+      sinon.stub(ctxMock.prototype, 'component_reference').returns(null)
+      sinon.stub(ctxMock.prototype, 'expression_list').returns(null)
+      sinon.stub(ctxMock.prototype, 'function_arguments').returns(null)
+      const visitor = new pv()
+      const input = new ctxMock()
+      const output = visitor.visitPrimary(input)
+      as.equal(output.unsigned_number, 3.14, 'expected 3.14 ; actual: ' + output.unsigned_number)
+      as.equal(output.is_true, true, 'expected true ; actual: ' + output.is_true)
+    })
+    mo.it('testing with component_reference', function () {
+      sinon.stub(ctxMock.prototype, 'name').returns(null)
+      sinon.stub(ctxMock.prototype, 'function_call_args').returns(null)
+      sinon.stub(ctxMock.prototype, 'component_reference').returns('mocked_cref')
+      sinon.stub(ctxMock.prototype, 'expression_list').returns(null)
+      sinon.stub(ctxMock.prototype, 'function_arguments').returns(null)
+      sinon.stub(crv.prototype, 'visitComponent_reference').callsFake((c) => c)
+      const visitor = new pv()
+      const input = new ctxMock()
+      const output = visitor.visitPrimary(input)
+      as.equal(output.component_reference, 'mocked_cref', 'expected mocked_cref ; actual: ' + output.component_reference)
+    })
+  })
+})
+mo.describe('testing Rel_opVisitor.js', function () {
+  mo.describe('testing visitRel_op(ctx)', function () {
+    mo.it('testing with ctx', function () {
+      const visitor = new ropv()
+      const output = visitor.visitRel_op(new getTextClass('<'))
+      as.equal(output, '<', 'expected < ; actual: ' + output)
+    })
+    mo.it('testing with null ctx', function () {
+      const visitor = new ropv()
+      const output = visitor.visitRel_op(null)
+      as.equal(output, '', 'expected empty string ; actual: ' + output)
+    })
+  })
+})
+mo.describe('testing RelationVisitor.js', function () {
+  mo.describe('testing visitRelation(ctx)', function () {
+    mo.it('testing with 0 arithmetic_expressions', function () {
+      const visitor = new relV()
+      const input = new ctxMock()
+      const output = visitor.visitRelation(input)
+      as.equal(output.arithmetic_expression1, null, 'expected null ; actual: ' + output.arithmetic_expression1)
+      as.equal(output.arithmetic_expression2, null, 'expected null ; actual: ' + output.arithmetic_expression2)
+    })
+    mo.it('testing with 1 arithmetic_expression', function () {
+      sinon.stub(ctxMock.prototype, 'arithmetic_expression').returns(['ae1'])
+      sinon.stub(vae.prototype, 'visitArithmetic_expression').callsFake((e) => e)
+      const visitor = new relV()
+      const input = new ctxMock()
+      const output = visitor.visitRelation(input)
+      as.equal(output.arithmetic_expression1, 'ae1', 'expected ae1 ; actual: ' + output.arithmetic_expression1)
+      as.equal(output.arithmetic_expression2, null, 'expected null ; actual: ' + output.arithmetic_expression2)
+    })
+    mo.it('testing with 2 arithmetic_expressions and rel_op', function () {
+      sinon.stub(ctxMock.prototype, 'arithmetic_expression').returns(['ae1', 'ae2'])
+      sinon.stub(vae.prototype, 'visitArithmetic_expression').callsFake((e) => e)
+      sinon.stub(ctxMock.prototype, 'rel_op').returns(new getTextClass('<'))
+      sinon.stub(ropv.prototype, 'visitRel_op').callsFake((r) => r.getText())
+      const visitor = new relV()
+      const input = new ctxMock()
+      const output = visitor.visitRelation(input)
+      as.equal(output.arithmetic_expression1, 'ae1', 'expected ae1 ; actual: ' + output.arithmetic_expression1)
+      as.equal(output.arithmetic_expression2, 'ae2', 'expected ae2 ; actual: ' + output.arithmetic_expression2)
+      as.equal(output.rel_op, '<', 'expected < ; actual: ' + output.rel_op)
+    })
+  })
+})
+mo.describe('testing Short_class_definitionVisitor.js', function () {
+  mo.describe('testing visitShort_class_definition(ctx)', function () {
+    mo.it('testing with class_prefixes and short_class_specifier', function () {
+      sinon.stub(ctxMock.prototype, 'short_class_specifier').returns('mocked short_class_specifier')
+      sinon.stub(cpv.prototype, 'visitClass_prefixes').callsFake((c) => c)
+      sinon.stub(scsv.prototype, 'visitShort_class_specifier').callsFake((s) => s)
+      const visitor = new scdv()
+      const input = new ctxMock()
+      const output = visitor.visitShort_class_definition(input)
+      as.equal(output.class_prefixes, 'mocked class_prefixes', 'expected mocked class_prefixes ; actual: ' + output.class_prefixes)
+      as.equal(output.short_class_specifier, 'mocked short_class_specifier', 'expected mocked short_class_specifier ; actual: ' + output.short_class_specifier)
+    })
+  })
+})
+mo.describe('testing Short_class_specifierVisitor.js', function () {
+  mo.describe('testing visitShort_class_specifier(ctx)', function () {
+    mo.it('testing basic case with IDENT and name', function () {
+      sinon.stub(bpv.prototype, 'visitBase_prefix').callsFake((b) => b)
+      sinon.stub(nv.prototype, 'visitName').callsFake((n) => n)
+      sinon.stub(asv.prototype, 'visitArray_subscripts').callsFake((a) => a)
+      sinon.stub(cmv.prototype, 'visitClass_modification').callsFake((c) => c)
+      sinon.stub(cv.prototype, 'visitComment').callsFake((c) => c)
+      sinon.stub(enumListV.prototype, 'visitEnum_list').callsFake((e) => e)
+      const visitor = new scsv()
+      const input = new ctxMock()
+      const output = visitor.visitShort_class_specifier(input)
+      as.equal(output.identifier, 'mocked identifier', 'expected mocked identifier ; actual: ' + output.identifier)
+      as.notEqual(output.short_class_specifier_value, null, 'expected short_class_specifier_value to be set')
+    })
+    mo.it('testing with null IDENT', function () {
+      sinon.stub(ctxMock.prototype, 'IDENT').returns(null)
+      sinon.stub(bpv.prototype, 'visitBase_prefix').callsFake((b) => b)
+      sinon.stub(nv.prototype, 'visitName').callsFake((n) => n)
+      sinon.stub(asv.prototype, 'visitArray_subscripts').callsFake((a) => a)
+      sinon.stub(cmv.prototype, 'visitClass_modification').callsFake((c) => c)
+      sinon.stub(cv.prototype, 'visitComment').callsFake((c) => c)
+      sinon.stub(enumListV.prototype, 'visitEnum_list').callsFake((e) => e)
+      const visitor = new scsv()
+      const input = new ctxMock()
+      const output = visitor.visitShort_class_specifier(input)
+      as.equal(output.identifier, undefined, 'expected undefined (empty string not stored) ; actual: ' + output.identifier)
+    })
+  })
+})
+mo.describe('testing Simple_expressionVisitor.js', function () {
+  mo.describe('testing visitSimple_expression(ctx)', function () {
+    mo.it('testing with 1 logical_expression', function () {
+      sinon.stub(ctxMock.prototype, 'logical_expression').returns(['le1'])
+      sinon.stub(lev.prototype, 'visitLogical_expression').callsFake((e) => e)
+      const visitor = new sev()
+      const input = new ctxMock()
+      const output = visitor.visitSimple_expression(input)
+      as.equal(output.logical_expression1, 'le1', 'expected le1 ; actual: ' + output.logical_expression1)
+      as.equal(output.logical_expression2, null, 'expected null ; actual: ' + output.logical_expression2)
+      as.equal(output.logical_expression3, null, 'expected null ; actual: ' + output.logical_expression3)
+    })
+    mo.it('testing with 3 logical_expressions', function () {
+      sinon.stub(ctxMock.prototype, 'logical_expression').returns(['le1', 'le2', 'le3'])
+      sinon.stub(lev.prototype, 'visitLogical_expression').callsFake((e) => e)
+      const visitor = new sev()
+      const input = new ctxMock()
+      const output = visitor.visitSimple_expression(input)
+      as.equal(output.logical_expression1, 'le1', 'expected le1 ; actual: ' + output.logical_expression1)
+      as.equal(output.logical_expression2, 'le2', 'expected le2 ; actual: ' + output.logical_expression2)
+      as.equal(output.logical_expression3, 'le3', 'expected le3 ; actual: ' + output.logical_expression3)
+    })
+  })
+})
+mo.describe('testing Stored_definitionVisitor.js', function () {
+  mo.describe('testing visitStored_definition(ctx)', function () {
+    mo.it('testing with no name and no children', function () {
+      sinon.stub(ctxMock.prototype, 'name').returns(null)
+      const visitor = new sdv()
+      const input = new ctxMock()
+      const output = visitor.visitStored_definition(input)
+      as.equal(output.within, undefined, 'expected undefined (empty string not stored) ; actual: ' + output.within)
+      as.equal(output.final_class_definitions, undefined, 'expected undefined (empty array not stored)')
+    })
+    mo.it('testing with Class_definitionContext child', function () {
+      const { modelicaParser } = require('../jsParser/antlrFiles/modelicaParser')
+      const cdChild = Object.create(modelicaParser.Class_definitionContext.prototype)
+      sinon.stub(ctxMock.prototype, 'name').returns(null)
+      sinon.stub(ctxMock.prototype, 'children').get(() => [cdChild])
+      sinon.stub(cdv.prototype, 'visitClass_definition').callsFake((c) => c)
+      const visitor = new sdv()
+      const input = new ctxMock()
+      const output = visitor.visitStored_definition(input)
+      as.equal(output.final_class_definitions.length, 1, 'expected 1 entry ; actual: ' + output.final_class_definitions.length)
+      as.equal(output.final_class_definitions[0].is_final, false, 'expected is_final=false ; actual: ' + output.final_class_definitions[0].is_final)
+    })
+  })
+})
+mo.describe('testing String_commentVisitor.js', function () {
+  mo.describe('testing visitString_comment(ctx)', function () {
+    mo.it('testing with null STRING', function () {
+      const visitor = new scv()
+      const input = new ctxMock()
+      const output = visitor.visitString_comment(input)
+      as.equal(output, '', 'expected empty string ; actual: ' + output)
+    })
+    mo.it('testing with single STRING', function () {
+      sinon.stub(ctxMock.prototype, 'STRING').returns([new getTextClass('"hello"')])
+      const visitor = new scv()
+      const input = new ctxMock()
+      const output = visitor.visitString_comment(input)
+      as.equal(output, '"hello"', 'expected "hello" ; actual: ' + output)
+    })
+    mo.it('testing with multiple STRINGs', function () {
+      sinon.stub(ctxMock.prototype, 'STRING').returns([new getTextClass('"a"'), new getTextClass('"b"')])
+      const visitor = new scv()
+      const input = new ctxMock()
+      const output = visitor.visitString_comment(input)
+      as.equal(output, '"a"+"b"', 'expected "a"+"b" ; actual: ' + output)
+    })
+  })
+})
+mo.describe('testing SubscriptVisitor.js', function () {
+  mo.describe('testing visitSubscript(ctx)', function () {
+    mo.it('testing with SYMBOL_COLON (range operator)', function () {
+      sinon.stub(ctxMock.prototype, 'SYMBOL_COLON').returns(true)
+      sinon.stub(ctxMock.prototype, 'expression').returns(null)
+      const visitor = new subV()
+      const input = new ctxMock()
+      const output = visitor.visitSubscript(input)
+      as.equal(output.colon_op, true, 'expected color_op=true ; actual: ' + output.colon_op)
+      as.equal(output.expression, null, 'expected null ; actual: ' + output.expression)
+    })
+    mo.it('testing with expression, no SYMBOL_COLON', function () {
+      sinon.stub(ev.prototype, 'visitExpression').callsFake((e) => e)
+      const visitor = new subV()
+      const input = new ctxMock()
+      const output = visitor.visitSubscript(input)
+      as.equal(output.colon_op, false, 'expected color_op=false ; actual: ' + output.colon_op)
+      as.equal(output.expression, 'mocked expression', 'expected mocked expression ; actual: ' + output.expression)
+    })
+  })
+})
+mo.describe('testing TermVisitor.js', function () {
+  mo.describe('testing visitTerm(ctx)', function () {
+    mo.it('testing with mul_ops and factors', function () {
+      sinon.stub(ctxMock.prototype, 'mul_op').returns([new getTextClass('*'), new getTextClass('/.')])
+      sinon.stub(ctxMock.prototype, 'factor').returns([1, 2, 3])
+      sinon.stub(fv.prototype, 'visitFactor').callsFake((f) => f)
+      const visitor = new tv()
+      const input = new ctxMock()
+      const output = visitor.visitTerm(input)
+      as.deepEqual(output.mul_ops, ['*', '/.'], 'expected [*,/.] ; actual: ' + output.mul_ops)
+      as.deepEqual(output.factors, [1, 2, 3], 'expected [1,2,3] ; actual: ' + output.factors)
+    })
+    mo.it('testing with empty mul_op and factor', function () {
+      const visitor = new tv()
+      const input = new ctxMock()
+      const output = visitor.visitTerm(input)
+      as.equal(output.mul_ops, undefined, 'expected undefined (empty array not stored) ; actual: ' + output.mul_ops)
+      as.equal(output.factors, undefined, 'expected undefined (empty array not stored) ; actual: ' + output.factors)
+    })
+  })
+})
+mo.describe('testing Type_prefixVisitor.js', function () {
+  mo.describe('testing visitType_prefix(ctx)', function () {
+    mo.it('testing all null returns empty string', function () {
+      const visitor = new tpv()
+      const input = new ctxMock()
+      const output = visitor.visitType_prefix(input)
+      as.equal(output, '', 'expected empty string ; actual: ' + output)
+    })
+    mo.it('testing FLOW only', function () {
+      sinon.stub(ctxMock.prototype, 'FLOW').returns(new getTextClass('flow'))
+      const visitor = new tpv()
+      const input = new ctxMock()
+      const output = visitor.visitType_prefix(input)
+      as.equal(output, 'flow', 'expected flow ; actual: ' + output)
+    })
+    mo.it('testing STREAM only', function () {
+      sinon.stub(ctxMock.prototype, 'STREAM').returns(new getTextClass('stream'))
+      const visitor = new tpv()
+      const input = new ctxMock()
+      const output = visitor.visitType_prefix(input)
+      as.equal(output, 'stream', 'expected stream ; actual: ' + output)
+    })
+    mo.it('testing PARAMETER only', function () {
+      sinon.stub(ctxMock.prototype, 'PARAMETER').returns(new getTextClass('parameter'))
+      const visitor = new tpv()
+      const input = new ctxMock()
+      const output = visitor.visitType_prefix(input)
+      as.equal(output, 'parameter', 'expected parameter ; actual: ' + output)
+    })
+    mo.it('testing INPUT only', function () {
+      sinon.stub(ctxMock.prototype, 'INPUT').returns(new getTextClass('input'))
+      const visitor = new tpv()
+      const input = new ctxMock()
+      const output = visitor.visitType_prefix(input)
+      as.equal(output, 'input', 'expected input ; actual: ' + output)
+    })
+    mo.it('testing FLOW + INPUT', function () {
+      sinon.stub(ctxMock.prototype, 'FLOW').returns(new getTextClass('flow'))
+      sinon.stub(ctxMock.prototype, 'INPUT').returns(new getTextClass('input'))
+      const visitor = new tpv()
+      const input = new ctxMock()
+      const output = visitor.visitType_prefix(input)
+      as.equal(output, 'flow input', 'expected flow input ; actual: ' + output)
+    })
+    mo.it('testing DISCRETE only', function () {
+      sinon.stub(ctxMock.prototype, 'DISCRETE').returns(new getTextClass('discrete'))
+      const visitor = new tpv()
+      const input = new ctxMock()
+      const output = visitor.visitType_prefix(input)
+      as.equal(output, 'discrete', 'expected discrete ; actual: ' + output)
+    })
+    mo.it('testing OUTPUT only', function () {
+      sinon.stub(ctxMock.prototype, 'OUTPUT').returns(new getTextClass('output'))
+      const visitor = new tpv()
+      const input = new ctxMock()
+      const output = visitor.visitType_prefix(input)
+      as.equal(output, 'output', 'expected output ; actual: ' + output)
+    })
+  })
+})
+mo.describe('testing Type_specifierVisitor.js', function () {
+  mo.describe('testing visitType_specifier(ctx)', function () {
+    mo.it('testing with name', function () {
+      sinon.stub(nv.prototype, 'visitName').callsFake((n) => n)
+      const visitor = new tsv()
+      const input = new ctxMock()
+      const output = visitor.visitType_specifier(input)
+      as.equal(output.name, 'mocked name', 'expected mocked name ; actual: ' + output.name)
+    })
+    mo.it('testing with null name', function () {
+      sinon.stub(ctxMock.prototype, 'name').returns(null)
+      const visitor = new tsv()
+      const input = new ctxMock()
+      const output = visitor.visitType_specifier(input)
+      as.equal(output.name, null, 'expected null ; actual: ' + output.name)
+    })
+  })
+})
+mo.describe('testing While_statementVisitor.js', function () {
+  mo.describe('testing visitWhile_statement(ctx)', function () {
+    mo.it('testing with null expression and null statements', function () {
+      sinon.stub(ctxMock.prototype, 'expression').returns(null)
+      sinon.stub(ctxMock.prototype, 'statement').returns(null)
+      const visitor = new whlV()
+      const input = new ctxMock()
+      const output = visitor.visitWhile_statement(input)
+      as.equal(output.expression, undefined, 'expected undefined (null not stored) ; actual: ' + output.expression)
+      as.equal(output.loop_statements, undefined, 'expected undefined (empty array not stored) ; actual: ' + output.loop_statements)
+    })
+    mo.it('testing with expression and statements', function () {
+      sinon.stub(ev.prototype, 'visitExpression').callsFake((e) => e)
+      sinon.stub(sv.prototype, 'visitStatement').callsFake((s) => s)
+      const visitor = new whlV()
+      const input = new ctxMock()
+      const output = visitor.visitWhile_statement(input)
+      as.equal(output.expression, 'mocked expression', 'expected mocked expression ; actual: ' + output.expression)
+      as.deepEqual(output.loop_statements, [1, 2, 3, 4, 5], 'expected [1,2,3,4,5] ; actual: ' + output.loop_statements)
+    })
   })
 })

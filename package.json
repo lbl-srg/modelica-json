@@ -1,7 +1,7 @@
 {
-  "name": "cdl_export_english",
-  "version": "0.1.0",
-  "description": "Export of CDL compliant control sequence to English language specification",
+  "name": "modelica-json",
+  "version": "1.3.1",
+  "description": "Translating and exporting information from Modelica and CDL models to other formats: JSON, JSON-LD, HTML and DOCX.",
   "main": "app.js",
   "repository": "git.test_repo",
   "scripts": {
@@ -48,6 +48,16 @@
       "jsParser/antlrFiles/*",
       "jsParser/domain/*",
       "jsParser/parser/*"
+    ]
+  },
+  "mocha": {
+    "ignore": [
+      "jsParser/antlrFiles/*"
+    ]
+  },
+  "nyc": {
+    "exclude": [
+      "jsParser/antlrFiles/*"
     ]
   }
 }
