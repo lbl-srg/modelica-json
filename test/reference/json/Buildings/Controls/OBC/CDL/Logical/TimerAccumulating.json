@@ -1,6 +1,6 @@
 {
   "within": "Buildings.Controls.OBC.CDL.Logical",
-  "class_definition": [
+  "stored_class_definitions": [
     {
       "class_prefixes": "block",
       "class_specifier": {
@@ -454,12 +454,8 @@
                                   "logical_and": [
                                     {
                                       "arithmetic_expressions": [
-                                        {
-                                          "name": "t"
-                                        },
-                                        {
-                                          "name": "0"
-                                        }
+                                        "t",
+                                        "0"
                                       ],
                                       "relation_operator": "<="
                                     }
@@ -518,12 +514,8 @@
                                           "logical_and": [
                                             {
                                               "arithmetic_expressions": [
-                                                {
-                                                  "name": "t"
-                                                },
-                                                {
-                                                  "name": "0"
-                                                }
+                                                "t",
+                                                "0"
                                               ],
                                               "relation_operator": "<="
                                             }
@@ -546,12 +538,13 @@
                                     "logical_and": [
                                       {
                                         "arithmetic_expressions": [
-                                          {
-                                            "name": "time"
-                                          },
-                                          {
-                                            "name": "t +pre(entryTime) -pre(yAcc)"
-                                          }
+                                          "u"
+                                        ]
+                                      },
+                                      {
+                                        "arithmetic_expressions": [
+                                          "time",
+                                          "t +pre(entryTime) -pre(yAcc)"
                                         ],
                                         "relation_operator": ">="
                                       }
@@ -574,7 +567,22 @@
                         },
                         {
                           "condition": {
-                            "simple_expression": "not u"
+                            "simple_expression": {
+                              "logical_expression": {
+                                "logical_or": [
+                                  {
+                                    "logical_and": [
+                                      {
+                                        "not": true,
+                                        "arithmetic_expressions": [
+                                          "u"
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            }
                           },
                           "then": [
                             {
@@ -898,7 +906,7 @@
                                         "y": 92
                                       }
                                     ],
-                                    "textString": ",textString=",
+                                    "textString": "\"t=%t\"",
                                     "textColor": {
                                       "r": 0,
                                       "g": 0,
@@ -971,7 +979,7 @@
                                         "y": 10
                                       }
                                     ],
-                                    "textString": "DynamicSelect(\"\",String(y",
+                                    "textString": "DynamicSelect(\"\",String(y,leftJustified=false,significantDigits=3))",
                                     "textColor": {
                                       "r": 0,
                                       "g": 0,
@@ -1032,6 +1040,6 @@
     }
   ],
   "modelicaFile": "Buildings/Controls/OBC/CDL/Logical/TimerAccumulating.mo",
-  "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/TimerAccumulating.mo",
+  "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Logical/TimerAccumulating.mo",
   "checksum": "0d0a0b904663cca2e378d8fc009a3f66"
 }

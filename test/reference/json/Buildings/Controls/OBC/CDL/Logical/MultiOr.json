@@ -1,6 +1,6 @@
 {
   "within": "Buildings.Controls.OBC.CDL.Logical",
-  "class_definition": [
+  "stored_class_definitions": [
     {
       "class_prefixes": "block",
       "class_specifier": {
@@ -209,12 +209,8 @@
                                       "logical_and": [
                                         {
                                           "arithmetic_expressions": [
-                                            {
-                                              "name": "size(u,1)"
-                                            },
-                                            {
-                                              "name": "1"
-                                            }
+                                            "size(u,1)",
+                                            "1"
                                           ],
                                           "relation_operator": ">"
                                         }
@@ -251,7 +247,30 @@
                                         "assignment_equation": {
                                           "lhs": "uTemp[i]",
                                           "rhs": {
-                                            "simple_expression": "u[i] or uTemp[i -1]"
+                                            "simple_expression": {
+                                              "logical_expression": {
+                                                "logical_or": [
+                                                  {
+                                                    "logical_and": [
+                                                      {
+                                                        "arithmetic_expressions": [
+                                                          "u[i]"
+                                                        ]
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "logical_and": [
+                                                      {
+                                                        "arithmetic_expressions": [
+                                                          "uTemp[i -1]"
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            }
                                           }
                                         }
                                       }
@@ -273,7 +292,37 @@
                           },
                           {
                             "condition": {
-                              "simple_expression": "([object Object])"
+                              "simple_expression": {
+                                "terms": [
+                                  {
+                                    "factors": [
+                                      {
+                                        "primary1": [
+                                          {
+                                            "simple_expression": {
+                                              "logical_expression": {
+                                                "logical_or": [
+                                                  {
+                                                    "logical_and": [
+                                                      {
+                                                        "arithmetic_expressions": [
+                                                          "size(u,1)",
+                                                          "1"
+                                                        ],
+                                                        "relation_operator": "=="
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
                             },
                             "then": [
                               {
@@ -487,6 +536,6 @@
     }
   ],
   "modelicaFile": "Buildings/Controls/OBC/CDL/Logical/MultiOr.mo",
-  "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/MultiOr.mo",
+  "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Logical/MultiOr.mo",
   "checksum": "70a26ab1d7fb924afdf44f26462dc655"
 }

@@ -1,8 +1,6 @@
 const modelicaVisitor = require('../antlrFiles/modelicaVisitor').modelicaVisitor
 const Stored_definition = require('../domain/Stored_definition')
 const Final_class_definition = require('../domain/Final_class_definition')
-const Name = require('../domain/Name')
-const Class_definition = require('../domain/Class_definition')
 
 const NameVisitor = require('./NameVisitor')
 const { modelicaParser } = require('../antlrFiles/modelicaParser')
@@ -44,7 +42,7 @@ class Stored_definitionVisitor {
         final_class_definitions.push(new Final_class_definition.Final_class_definition(prev_final, class_definition))
         prev_final = false
       } else if (child instanceof TerminalNode) {
-        if (child.getText() == 'final') {
+        if (child.getText() === 'final') {
           prev_final = true
         }
       }

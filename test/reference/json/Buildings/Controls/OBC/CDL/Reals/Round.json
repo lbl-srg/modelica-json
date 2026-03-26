@@ -1,6 +1,6 @@
 {
   "within": "Buildings.Controls.OBC.CDL.Reals",
-  "class_definition": [
+  "stored_class_definitions": [
     {
       "class_prefixes": "block",
       "class_specifier": {
@@ -138,7 +138,37 @@
                             "if_elseif": [
                               {
                                 "condition": {
-                                  "simple_expression": "([object Object])"
+                                  "simple_expression": {
+                                    "terms": [
+                                      {
+                                        "factors": [
+                                          {
+                                            "primary1": [
+                                              {
+                                                "simple_expression": {
+                                                  "logical_expression": {
+                                                    "logical_or": [
+                                                      {
+                                                        "logical_and": [
+                                                          {
+                                                            "arithmetic_expressions": [
+                                                              "u",
+                                                              "0"
+                                                            ],
+                                                            "relation_operator": ">"
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
                                 },
                                 "then": {
                                   "simple_expression": "floor(u*fac +0.5)/fac"
@@ -301,7 +331,7 @@
                                         "y": 10
                                       }
                                     ],
-                                    "textString": "DynamicSelect(\"\",String(y",
+                                    "textString": "DynamicSelect(\"\",String(y,leftJustified=false,significantDigits=3))",
                                     "textColor": {
                                       "r": 0,
                                       "g": 0,
@@ -362,6 +392,6 @@
     }
   ],
   "modelicaFile": "Buildings/Controls/OBC/CDL/Reals/Round.mo",
-  "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Round.mo",
+  "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/Round.mo",
   "checksum": "9bdbf58ca52eb6ad1d7a25e1780c7839"
 }

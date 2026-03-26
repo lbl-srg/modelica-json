@@ -1,6 +1,6 @@
 {
   "within": "Buildings.Controls.OBC.CDL.Logical",
-  "class_definition": [
+  "stored_class_definitions": [
     {
       "class_prefixes": "block",
       "class_specifier": {
@@ -216,7 +216,125 @@
                         },
                         {
                           "condition": {
-                            "simple_expression": "(not clr) and change(u) and ([object Object]) and ([object Object])"
+                            "simple_expression": {
+                              "logical_expression": {
+                                "logical_or": [
+                                  {
+                                    "logical_and": [
+                                      {
+                                        "arithmetic_expressions": [
+                                          {
+                                            "terms": [
+                                              {
+                                                "factors": [
+                                                  {
+                                                    "primary1": [
+                                                      {
+                                                        "simple_expression": {
+                                                          "logical_expression": {
+                                                            "logical_or": [
+                                                              {
+                                                                "logical_and": [
+                                                                  {
+                                                                    "not": true,
+                                                                    "arithmetic_expressions": [
+                                                                      "clr"
+                                                                    ]
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          }
+                                                        }
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "arithmetic_expressions": [
+                                          "change(u)"
+                                        ]
+                                      },
+                                      {
+                                        "arithmetic_expressions": [
+                                          {
+                                            "terms": [
+                                              {
+                                                "factors": [
+                                                  {
+                                                    "primary1": [
+                                                      {
+                                                        "simple_expression": {
+                                                          "logical_expression": {
+                                                            "logical_or": [
+                                                              {
+                                                                "logical_and": [
+                                                                  {
+                                                                    "arithmetic_expressions": [
+                                                                      "pre(u)",
+                                                                      "false"
+                                                                    ],
+                                                                    "relation_operator": "=="
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          }
+                                                        }
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "arithmetic_expressions": [
+                                          {
+                                            "terms": [
+                                              {
+                                                "factors": [
+                                                  {
+                                                    "primary1": [
+                                                      {
+                                                        "simple_expression": {
+                                                          "logical_expression": {
+                                                            "logical_or": [
+                                                              {
+                                                                "logical_and": [
+                                                                  {
+                                                                    "arithmetic_expressions": [
+                                                                      "pre(y)",
+                                                                      "false"
+                                                                    ],
+                                                                    "relation_operator": "=="
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          }
+                                                        }
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            }
                           },
                           "then": [
                             {
@@ -231,7 +349,125 @@
                         },
                         {
                           "condition": {
-                            "simple_expression": "(not clr) and change(u) and ([object Object]) and ([object Object])"
+                            "simple_expression": {
+                              "logical_expression": {
+                                "logical_or": [
+                                  {
+                                    "logical_and": [
+                                      {
+                                        "arithmetic_expressions": [
+                                          {
+                                            "terms": [
+                                              {
+                                                "factors": [
+                                                  {
+                                                    "primary1": [
+                                                      {
+                                                        "simple_expression": {
+                                                          "logical_expression": {
+                                                            "logical_or": [
+                                                              {
+                                                                "logical_and": [
+                                                                  {
+                                                                    "not": true,
+                                                                    "arithmetic_expressions": [
+                                                                      "clr"
+                                                                    ]
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          }
+                                                        }
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "arithmetic_expressions": [
+                                          "change(u)"
+                                        ]
+                                      },
+                                      {
+                                        "arithmetic_expressions": [
+                                          {
+                                            "terms": [
+                                              {
+                                                "factors": [
+                                                  {
+                                                    "primary1": [
+                                                      {
+                                                        "simple_expression": {
+                                                          "logical_expression": {
+                                                            "logical_or": [
+                                                              {
+                                                                "logical_and": [
+                                                                  {
+                                                                    "arithmetic_expressions": [
+                                                                      "pre(u)",
+                                                                      "false"
+                                                                    ],
+                                                                    "relation_operator": "=="
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          }
+                                                        }
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "arithmetic_expressions": [
+                                          {
+                                            "terms": [
+                                              {
+                                                "factors": [
+                                                  {
+                                                    "primary1": [
+                                                      {
+                                                        "simple_expression": {
+                                                          "logical_expression": {
+                                                            "logical_or": [
+                                                              {
+                                                                "logical_and": [
+                                                                  {
+                                                                    "arithmetic_expressions": [
+                                                                      "pre(y)",
+                                                                      "true"
+                                                                    ],
+                                                                    "relation_operator": "=="
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          }
+                                                        }
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            }
                           },
                           "then": [
                             {
@@ -246,7 +482,90 @@
                         },
                         {
                           "condition": {
-                            "simple_expression": "(not clr) and change(u) and ([object Object])"
+                            "simple_expression": {
+                              "logical_expression": {
+                                "logical_or": [
+                                  {
+                                    "logical_and": [
+                                      {
+                                        "arithmetic_expressions": [
+                                          {
+                                            "terms": [
+                                              {
+                                                "factors": [
+                                                  {
+                                                    "primary1": [
+                                                      {
+                                                        "simple_expression": {
+                                                          "logical_expression": {
+                                                            "logical_or": [
+                                                              {
+                                                                "logical_and": [
+                                                                  {
+                                                                    "not": true,
+                                                                    "arithmetic_expressions": [
+                                                                      "clr"
+                                                                    ]
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          }
+                                                        }
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "arithmetic_expressions": [
+                                          "change(u)"
+                                        ]
+                                      },
+                                      {
+                                        "arithmetic_expressions": [
+                                          {
+                                            "terms": [
+                                              {
+                                                "factors": [
+                                                  {
+                                                    "primary1": [
+                                                      {
+                                                        "simple_expression": {
+                                                          "logical_expression": {
+                                                            "logical_or": [
+                                                              {
+                                                                "logical_and": [
+                                                                  {
+                                                                    "arithmetic_expressions": [
+                                                                      "pre(u)",
+                                                                      "true"
+                                                                    ],
+                                                                    "relation_operator": "=="
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          }
+                                                        }
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            }
                           },
                           "then": [
                             {
@@ -640,6 +959,6 @@
     }
   ],
   "modelicaFile": "Buildings/Controls/OBC/CDL/Logical/Toggle.mo",
-  "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/Toggle.mo",
+  "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Logical/Toggle.mo",
   "checksum": "52baaaed994ba9139136b2ea2768399d"
 }

@@ -1,5 +1,4 @@
 const modelicaVisitor = require('../antlrFiles/modelicaVisitor').modelicaVisitor
-const Name = require('../domain/Name')
 const Type_specifier = require('../domain/Type_specifier')
 
 const NameVisitor = require('./NameVisitor')

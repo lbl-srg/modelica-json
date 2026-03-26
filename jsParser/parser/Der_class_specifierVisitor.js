@@ -3,7 +3,7 @@ const Der_class_specifier = require('../domain/Der_class_specifier')
 const Der_class_specifier_value = require('../domain/Der_class_specifier_value')
 
 const NameVisitor = require('./NameVisitor')
-const CommentVisitor = require('./CommentVisitor');
+const CommentVisitor = require('./CommentVisitor')
 
 class Der_class_specifierVisitor {
   constructor () {
@@ -13,7 +13,7 @@ class Der_class_specifierVisitor {
 
   visitDer_class_specifier (ctx) {
     let identifier = ''
-    var der_class_specifier_value = null
+    let der_class_specifier_value = null
     if (ctx.IDENT()) {
       identifier = ctx.IDENT(0).getText()
     }
@@ -36,7 +36,7 @@ class Der_class_specifierVisitor {
       const commentVisitor = new CommentVisitor.CommentVisitor()
       comment = commentVisitor.visitComment(ctx.comment())
     }
-    var der_class_specifier_value = new Der_class_specifier_value.Der_class_specifier_value(type_specifier, identifiers, comment)
+    der_class_specifier_value = new Der_class_specifier_value.Der_class_specifier_value(type_specifier, identifiers, comment)
 
     return new Der_class_specifier.Der_class_specifier(identifier, der_class_specifier_value)
   }

@@ -1,6 +1,6 @@
 {
   "within": "Buildings.Controls.OBC.CDL.Reals",
-  "class_definition": [
+  "stored_class_definitions": [
     {
       "class_prefixes": "block",
       "class_specifier": {
@@ -351,12 +351,8 @@
                                     "logical_and": [
                                       {
                                         "arithmetic_expressions": [
-                                          {
-                                            "name": "time"
-                                          },
-                                          {
-                                            "name": "tStart +delta"
-                                          }
+                                          "time",
+                                          "tStart +delta"
                                         ],
                                         "relation_operator": ">="
                                       }
@@ -392,7 +388,25 @@
                                   "assignment_equation": {
                                     "lhs": "y",
                                     "rhs": {
-                                      "simple_expression": "(mu -muDel)/delta"
+                                      "simple_expression": {
+                                        "terms": [
+                                          {
+                                            "operators": [
+                                              "/"
+                                            ],
+                                            "factors": [
+                                              {
+                                                "primary1": [
+                                                  {
+                                                    "simple_expression": "mu -muDel"
+                                                  }
+                                                ]
+                                              },
+                                              "delta"
+                                            ]
+                                          }
+                                        ]
+                                      }
                                     }
                                   }
                                 }
@@ -405,7 +419,31 @@
                             "assignment_equation": {
                               "lhs": "y",
                               "rhs": {
-                                "simple_expression": "(mu -muDel)/(time -tStart +0.001)"
+                                "simple_expression": {
+                                  "terms": [
+                                    {
+                                      "operators": [
+                                        "/"
+                                      ],
+                                      "factors": [
+                                        {
+                                          "primary1": [
+                                            {
+                                              "simple_expression": "mu -muDel"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "primary1": [
+                                            {
+                                              "simple_expression": "time -tStart +0.001"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
                               }
                             }
                           }
@@ -792,7 +830,7 @@
                                         "y": 10
                                       }
                                     ],
-                                    "textString": "DynamicSelect(\"\",String(y",
+                                    "textString": "DynamicSelect(\"\",String(y,leftJustified=false,significantDigits=3))",
                                     "textColor": {
                                       "r": 0,
                                       "g": 0,
@@ -853,6 +891,6 @@
     }
   ],
   "modelicaFile": "Buildings/Controls/OBC/CDL/Reals/MovingAverage.mo",
-  "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/MovingAverage.mo",
+  "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/MovingAverage.mo",
   "checksum": "d600dc7be55f146fa6732b1439507578"
 }

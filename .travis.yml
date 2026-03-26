@@ -2,13 +2,13 @@ dist: focal
 
 language: node_js
 node_js:
-  - "20"
+  - "24"
 
 env:
   - MODELICAPATH="../.tmp:../.msl"
 
 install:
-  - git clone --depth=1 --branch=master https://github.com/lbl-srg/modelica-buildings ../.tmp
+  - git clone --depth=1 --branch v12.1.0 https://github.com/lbl-srg/modelica-buildings ../.tmp
   - git clone --depth=1 --branch v4.0.0 https://github.com/modelica/ModelicaStandardLibrary ../.msl
   - make clean-installation
   - make install

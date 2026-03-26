@@ -754,7 +754,7 @@ mo.describe('jsonquery.js', function () {
       }
       const jsonOutput = jq.simpleExpression(rawJson)
       const referenceJsonOutput = { function_call: 'mocked function_call_primary', for_loop: undefined, logical_expression: undefined, if_expression: undefined }
-      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
+      as.equal(equalObjects(JSON.stringify(jsonOutput), JSON.stringify(referenceJsonOutput)), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
     })
     mo.it('testing for_loop logical_expression1', function () {
       sinon.stub(jq, 'logicalExpression').withArgs('test logical_expression1').returns('mocked logical_expression1').withArgs(undefined).returns(undefined)
@@ -769,7 +769,7 @@ mo.describe('jsonquery.js', function () {
       }
       const jsonOutput = jq.simpleExpression(rawJson)
       const referenceJsonOutput = { function_call: undefined, for_loop: 'mocked for_loop', logical_expression: undefined, if_expression: undefined }
-      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
+      as.equal(equalObjects(JSON.stringify(jsonOutput), JSON.stringify(referenceJsonOutput)), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
     })
     mo.it('testing ifExpressionObj logical_expression1', function () {
       sinon.stub(jq, 'logicalExpression').withArgs('test logical_expression1').returns('mocked logical_expression1').withArgs(undefined).returns(undefined)
@@ -784,19 +784,44 @@ mo.describe('jsonquery.js', function () {
       }
       const jsonOutput = jq.simpleExpression(rawJson)
       const referenceJsonOutput = { function_call: undefined, for_loop: undefined, logical_expression: undefined, if_expression: 'mocked if_expression' }
-      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
+      as.equal(equalObjects(JSON.stringify(jsonOutput), JSON.stringify(referenceJsonOutput)), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
     })
     mo.it('testing logical_expression logical_expression1', function () {
-      sinon.stub(jq, 'logicalExpression').withArgs('test logical_expression1').returns('mocked logical_expression1').withArgs(undefined).returns(undefined)
       sinon.stub(jq, 'checkPri').withArgs('test logical_expression1').returns(undefined)
       sinon.stub(jq, 'logicalExpressionObj').withArgs('test logical_expression1').returns('mocked logical_expression')
 
       const rawJson = {
-        logical_expression1: 'test logical_expression1'
+        logical_expression1: {
+          logical_term_list: [
+            {
+              logical_factor_list: [
+                {
+                  relation: {
+                    arithmetic_expression1: {
+                      arithmetic_term_list: [
+                        {
+                          term: {
+                            factors: [
+                              {
+                                primary1: {
+                                  primary_string: 'mocked logical_expression'
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
       }
       const jsonOutput = jq.simpleExpression(rawJson)
-      const referenceJsonOutput = { function_call: undefined, for_loop: undefined, logical_expression: 'mocked logical_expression', if_expression: undefined }
-      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
+      const referenceJsonOutput = 'mocked logical_expression'
+      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + referenceJsonOutput + '; actual =' + jsonOutput)
     })
   })
   mo.describe('testing if_expression', function () {
@@ -2053,40 +2078,35 @@ mo.describe('jsonquery.js', function () {
     })
   })
   mo.describe('testing logical_factor_obj', function () {
-    mo.it('testing if no rel_op --> returns undefined', function () {
-      sinon.stub(jq, 'arithmeticExpression').withArgs('test arithmetic_expression1').returns('mocked arithmetic_expression1')
-      const rawJson = {
-        not: true,
-        relation: {
-          arithmetic_expression1: 'test arithmetic_expression1',
-          arithmetic_expression2: 'test arithmetic_expression2'
-        }
-      }
-      const jsonOutput = jq.logicalFactorObj(rawJson)
-      let referenceJsonOutput
-      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
-    })
     mo.it('testing structure with 1 arithmetic_expression', function () {
-      sinon.stub(jq, 'arithmeticExpression').withArgs('test arithmetic_expression1').returns('mocked arithmetic_expression1')
       const rawJson = {
         not: true,
         relation: {
-          arithmetic_expression1: 'test arithmetic_expression1',
-          rel_op: 'test rel_op'
+          arithmetic_expression1: {
+            arithmetic_term_list: [
+              {
+                term: {
+                  factors: [
+                    {
+                      primary1: {
+                        primary_string: 'mocked arithmetic_expression1'
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
         }
       }
       const jsonOutput = jq.logicalFactorObj(rawJson)
       const referenceJsonOutput = {
         not: true,
-        arithmetic_expressions: [{
-          name: 'mocked arithmetic_expression1'
-        }, {
-          name: undefined
-        }
-        ],
-        relation_operator: 'test rel_op'
+        arithmetic_expressions: [
+          'mocked arithmetic_expression1'
+        ]
       }
-      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
+      as.equal(equalObjects(JSON.stringify(jsonOutput), JSON.stringify(referenceJsonOutput)), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
     })
     mo.it('testing structure with 2 arithmetic_expression', function () {
       sinon.stub(jq, 'arithmeticExpression').withArgs('test arithmetic_expression1').returns('mocked arithmetic_expression1')
@@ -2094,19 +2114,46 @@ mo.describe('jsonquery.js', function () {
       const rawJson = {
         not: true,
         relation: {
-          arithmetic_expression1: 'test arithmetic_expression1',
-          rel_op: 'test rel_op',
-          arithmetic_expression2: 'test arithmetic_expression2'
+          arithmetic_expression1: {
+            arithmetic_term_list: [
+              {
+                term: {
+                  factors: [
+                    {
+                      primary1: {
+                        primary_string: 'mocked arithmetic_expression1'
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          arithmetic_expression2: {
+            arithmetic_term_list: [
+              {
+                term: {
+                  factors: [
+                    {
+                      primary1: {
+                        primary_string: 'mocked arithmetic_expression2'
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          rel_op: 'test rel_op'
         }
       }
       const jsonOutput = jq.logicalFactorObj(rawJson)
       const referenceJsonOutput = {
         not: true,
-        arithmetic_expressions: [{
-          name: 'mocked arithmetic_expression1'
-        }, {
-          name: 'mocked arithmetic_expression2'
-        }],
+        arithmetic_expressions: [
+          'mocked arithmetic_expression1',
+          'mocked arithmetic_expression2'
+        ],
         relation_operator: 'test rel_op'
       }
       as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
@@ -2645,11 +2692,17 @@ mo.describe('jsonquery.js', function () {
   mo.describe('testing term_string', function () {
     mo.it('testing with no mul_ops', function () {
       const rawJson = {
-        factors: 'test factors'
+        factors: [
+          {
+            primary1: {
+              primary_string: 'mocked term_string'
+            }
+          }
+        ]
       }
       const jsonOutput = jq.termString(rawJson)
-      let referenceJsonOutput
-      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
+      const referenceJsonOutput = 'mocked term_string'
+      as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + referenceJsonOutput + '; actual =' + jsonOutput)
     })
     mo.it('testing with mul_ops', function () {
       sinon.stub(jq, 'factorString').withArgs('test factor1').returns('mocked factor1')
@@ -2763,13 +2816,19 @@ mo.describe('jsonquery.js', function () {
       const rawJson = {
         is_false: false,
         is_true: false,
-        output_expression_list: 'test output_expression_list'
+        output_expression_list: {
+          output_expression: [
+            {
+              expression: 'test output_expression_list'
+            }
+          ]
+        }
       }
-      const jsonOutput = jq.primary(rawJson)
+      const jsonOutput = jq.primary(rawJson, true)
       const referenceJsonOutput = '(mocked out_exp_lis_string)'
       as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
     })
-    mo.it('testing output_expression_list', function () {
+    mo.it('testing expression_list', function () {
       sinon.stub(jq, 'expLisString').returns('mocked exp_lis_string')
       const rawJson = {
         is_false: false,
@@ -2780,7 +2839,7 @@ mo.describe('jsonquery.js', function () {
           }
         ]
       }
-      const jsonOutput = jq.primary(rawJson)
+      const jsonOutput = jq.primary(rawJson, true)
       const referenceJsonOutput = '[mocked exp_lis_string]'
       as.equal(equalObjects(jsonOutput, referenceJsonOutput), true, 'expected =' + JSON.stringify(referenceJsonOutput) + '; actual =' + JSON.stringify(jsonOutput))
     })

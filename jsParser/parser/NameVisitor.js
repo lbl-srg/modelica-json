@@ -21,14 +21,14 @@ class NameVisitor {
     }
 
     const name_parts = []
-    if (idents.length == dots.length + 1) {
+    if (idents.length === dots.length + 1) {
       name_parts.push(new Name_part.Name_part(false, idents[0]))
-    } else if (idents.length == dots.length) {
+    } else if (idents.length === dots.length) {
       name_parts.push(new Name_part.Name_part(true, idents[0]))
     }
 
     for (let i = 1; i < idents.length; i++) {
-      name_parts.push(new Name_part.Name_part(dots[i - 1] == '.', idents[i]))
+      name_parts.push(new Name_part.Name_part(dots[i - 1] === '.', idents[i]))
     }
 
     return new Name.Name(name_parts)

@@ -1,6 +1,6 @@
 function parse (content, rawJson = false) {
   const nameParser = require('./name')
-  const namedArgumentsParser = require('./named_arguments')
+  const namedArgumentsParser = require('./namedArguments')
   const namedArgumentParser = require('./namedArgument')
   const expressionParser = require('./expression')
 

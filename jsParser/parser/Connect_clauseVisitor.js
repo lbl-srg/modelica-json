@@ -21,7 +21,7 @@ class Connect_clauseVisitor {
       })
     }
 
-    if (comp_refs.length == 2) {
+    if (comp_refs.length === 2) {
       from = comp_refs[0]
       to = comp_refs[1]
     }

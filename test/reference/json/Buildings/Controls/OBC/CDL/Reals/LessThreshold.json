@@ -1,6 +1,6 @@
 {
   "within": "Buildings.Controls.OBC.CDL.Reals",
-  "class_definition": [
+  "stored_class_definitions": [
     {
       "class_prefixes": "block",
       "class_specifier": {
@@ -229,12 +229,8 @@
                                         "logical_and": [
                                           {
                                             "arithmetic_expressions": [
-                                              {
-                                                "name": "h"
-                                              },
-                                              {
-                                                "name": "1e-10"
-                                              }
+                                              "h",
+                                              "1e-10"
                                             ],
                                             "relation_operator": ">="
                                           }
@@ -384,7 +380,22 @@
                           },
                           "condition_attribute": {
                             "expression": {
-                              "simple_expression": "not have_hysteresis"
+                              "simple_expression": {
+                                "logical_expression": {
+                                  "logical_or": [
+                                    {
+                                      "logical_and": [
+                                        {
+                                          "not": true,
+                                          "arithmetic_expressions": [
+                                            "have_hysteresis"
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              }
                             }
                           },
                           "description": {
@@ -537,12 +548,8 @@
                                                   "logical_and": [
                                                     {
                                                       "arithmetic_expressions": [
-                                                        {
-                                                          "name": "u"
-                                                        },
-                                                        {
-                                                          "name": "t"
-                                                        }
+                                                        "u",
+                                                        "t"
                                                       ],
                                                       "relation_operator": "<"
                                                     }
@@ -857,12 +864,8 @@
                                                       "logical_and": [
                                                         {
                                                           "arithmetic_expressions": [
-                                                            {
-                                                              "name": "h"
-                                                            },
-                                                            {
-                                                              "name": "0"
-                                                            }
+                                                            "h",
+                                                            "0"
                                                           ],
                                                           "relation_operator": ">="
                                                         }
@@ -910,7 +913,59 @@
                                       "assignment_equation": {
                                         "lhs": "y",
                                         "rhs": {
-                                          "simple_expression": "([object Object])"
+                                          "simple_expression": {
+                                            "terms": [
+                                              {
+                                                "factors": [
+                                                  {
+                                                    "primary1": [
+                                                      {
+                                                        "simple_expression": {
+                                                          "logical_expression": {
+                                                            "logical_or": [
+                                                              {
+                                                                "logical_and": [
+                                                                  {
+                                                                    "not": true,
+                                                                    "arithmetic_expressions": [
+                                                                      "pre(y)"
+                                                                    ]
+                                                                  },
+                                                                  {
+                                                                    "arithmetic_expressions": [
+                                                                      "u",
+                                                                      "t"
+                                                                    ],
+                                                                    "relation_operator": "<"
+                                                                  }
+                                                                ]
+                                                              },
+                                                              {
+                                                                "logical_and": [
+                                                                  {
+                                                                    "arithmetic_expressions": [
+                                                                      "pre(y)"
+                                                                    ]
+                                                                  },
+                                                                  {
+                                                                    "arithmetic_expressions": [
+                                                                      "u",
+                                                                      "t +h"
+                                                                    ],
+                                                                    "relation_operator": "<"
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          }
+                                                        }
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
                                         }
                                       }
                                     }
@@ -990,7 +1045,7 @@
                                                         "y": 92
                                                       }
                                                     ],
-                                                    "textString": ",textString=",
+                                                    "textString": "\"h=%h\"",
                                                     "textColor": {
                                                       "r": 0,
                                                       "g": 0,
@@ -1404,7 +1459,7 @@
                                         "y": 92
                                       }
                                     ],
-                                    "textString": ",textString=",
+                                    "textString": "\"h=%h\"",
                                     "textColor": {
                                       "r": 0,
                                       "g": 0,
@@ -1425,7 +1480,7 @@
                                         "y": 24
                                       }
                                     ],
-                                    "textString": "DynamicSelect(\"\",String(u",
+                                    "textString": "DynamicSelect(\"\",String(u,leftJustified=false,significantDigits=3))",
                                     "textColor": {
                                       "r": 0,
                                       "g": 0,
@@ -1468,7 +1523,7 @@
                                         "y": 62
                                       }
                                     ],
-                                    "textString": "DynamicSelect(\"\",String(t",
+                                    "textString": "DynamicSelect(\"\",String(t,leftJustified=false,significantDigits=3))",
                                     "textColor": {
                                       "r": 0,
                                       "g": 0,
@@ -1490,7 +1545,7 @@
                                         "y": -14
                                       }
                                     ],
-                                    "textString": "DynamicSelect(\"\",String(t +h",
+                                    "textString": "DynamicSelect(\"\",String(t +h,leftJustified=false,significantDigits=3))",
                                     "textColor": {
                                       "r": 0,
                                       "g": 0,
@@ -1552,6 +1607,6 @@
     }
   ],
   "modelicaFile": "Buildings/Controls/OBC/CDL/Reals/LessThreshold.mo",
-  "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/LessThreshold.mo",
+  "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/LessThreshold.mo",
   "checksum": "78eeab0f1fd05fe958af676dd5ed1bf7"
 }

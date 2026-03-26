@@ -29,12 +29,12 @@ class CompositionVisitor {
     ctx.children.forEach(child => {
       if (child instanceof modelicaParser.Element_listContext) {
         const element_listVisitor = new Element_listVisitor.Element_listVisitor()
-        if (previous_element_list_modifier == null) {
+        if (previous_element_list_modifier === null) {
           element_list = element_listVisitor.visitElement_list(child)
-        } else if (previous_element_list_modifier == 'protected') {
+        } else if (previous_element_list_modifier === 'protected') {
           const protected_element_list = element_listVisitor.visitElement_list(child)
           element_sections.push(new Element_section.Element_section(null, protected_element_list, null, null))
-        } else if (previous_element_list_modifier == 'public') {
+        } else if (previous_element_list_modifier === 'public') {
           const public_element_list = element_listVisitor.visitElement_list(child)
           element_sections.push(new Element_section.Element_section(public_element_list, null, null, null))
         }
@@ -49,9 +49,9 @@ class CompositionVisitor {
       } else if (child instanceof modelicaParser.AnnotationContext) {
         // nothing here
       } else if (child instanceof TerminalNode) {
-        if (child.getText() == 'protected') {
+        if (child.getText() === 'protected') {
           previous_element_list_modifier = 'protected'
-        } else if (child.getText() == 'public') {
+        } else if (child.getText() === 'public') {
           previous_element_list_modifier = 'public'
         }
       } else {
@@ -70,7 +70,7 @@ class CompositionVisitor {
     external = !!ctx.EXTERNAL()
 
     if (annotations.length > 0) {
-      if (annotations.length == 2) {
+      if (annotations.length === 2) {
         external_annotation = annotations[0]
         annotation = annotations[1]
       } else {

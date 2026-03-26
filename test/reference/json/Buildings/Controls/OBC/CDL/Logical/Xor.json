@@ -1,6 +1,6 @@
 {
   "within": "Buildings.Controls.OBC.CDL.Logical",
-  "class_definition": [
+  "stored_class_definitions": [
     {
       "class_prefixes": "block",
       "class_specifier": {
@@ -129,7 +129,127 @@
                       "assignment_equation": {
                         "lhs": "y",
                         "rhs": {
-                          "simple_expression": "not ((u1 and u2) or (not u1 and not u2))"
+                          "simple_expression": {
+                            "logical_expression": {
+                              "logical_or": [
+                                {
+                                  "logical_and": [
+                                    {
+                                      "not": true,
+                                      "arithmetic_expressions": [
+                                        {
+                                          "terms": [
+                                            {
+                                              "factors": [
+                                                {
+                                                  "primary1": [
+                                                    {
+                                                      "simple_expression": {
+                                                        "logical_expression": {
+                                                          "logical_or": [
+                                                            {
+                                                              "logical_and": [
+                                                                {
+                                                                  "arithmetic_expressions": [
+                                                                    {
+                                                                      "terms": [
+                                                                        {
+                                                                          "factors": [
+                                                                            {
+                                                                              "primary1": [
+                                                                                {
+                                                                                  "simple_expression": {
+                                                                                    "logical_expression": {
+                                                                                      "logical_or": [
+                                                                                        {
+                                                                                          "logical_and": [
+                                                                                            {
+                                                                                              "arithmetic_expressions": [
+                                                                                                "u1"
+                                                                                              ]
+                                                                                            },
+                                                                                            {
+                                                                                              "arithmetic_expressions": [
+                                                                                                "u2"
+                                                                                              ]
+                                                                                            }
+                                                                                          ]
+                                                                                        }
+                                                                                      ]
+                                                                                    }
+                                                                                  }
+                                                                                }
+                                                                              ]
+                                                                            }
+                                                                          ]
+                                                                        }
+                                                                      ]
+                                                                    }
+                                                                  ]
+                                                                }
+                                                              ]
+                                                            },
+                                                            {
+                                                              "logical_and": [
+                                                                {
+                                                                  "arithmetic_expressions": [
+                                                                    {
+                                                                      "terms": [
+                                                                        {
+                                                                          "factors": [
+                                                                            {
+                                                                              "primary1": [
+                                                                                {
+                                                                                  "simple_expression": {
+                                                                                    "logical_expression": {
+                                                                                      "logical_or": [
+                                                                                        {
+                                                                                          "logical_and": [
+                                                                                            {
+                                                                                              "not": true,
+                                                                                              "arithmetic_expressions": [
+                                                                                                "u1"
+                                                                                              ]
+                                                                                            },
+                                                                                            {
+                                                                                              "not": true,
+                                                                                              "arithmetic_expressions": [
+                                                                                                "u2"
+                                                                                              ]
+                                                                                            }
+                                                                                          ]
+                                                                                        }
+                                                                                      ]
+                                                                                    }
+                                                                                  }
+                                                                                }
+                                                                              ]
+                                                                            }
+                                                                          ]
+                                                                        }
+                                                                      ]
+                                                                    }
+                                                                  ]
+                                                                }
+                                                              ]
+                                                            }
+                                                          ]
+                                                        }
+                                                      }
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          }
                         }
                       }
                     }
@@ -375,6 +495,6 @@
     }
   ],
   "modelicaFile": "Buildings/Controls/OBC/CDL/Logical/Xor.mo",
-  "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/Xor.mo",
+  "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Logical/Xor.mo",
   "checksum": "c412f4a0a37ff038cc2e563b72885be0"
 }

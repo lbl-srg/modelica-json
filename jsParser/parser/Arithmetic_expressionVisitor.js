@@ -29,7 +29,7 @@ class Arithmetic_expressionVisitor {
     }
     if (terms.length > 0) {
       let extra_term = 0
-      if (add_ops.length == (terms.length - 1)) {
+      if (add_ops.length === (terms.length - 1)) {
         arithmetic_term_list.push(new Arithmetic_term.Arithmetic_term(null, terms[0]))
         extra_term = 1
       }

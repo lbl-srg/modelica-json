@@ -36,6 +36,29 @@ const getIntFiles = function (mode = 'modelica') {
   }
 }
 
+function removeEmptyFields (obj) {
+  if (typeof obj !== 'object' || obj === null) return obj
+
+  if (Array.isArray(obj)) {
+    // Filter empty elements from arrays
+    return obj
+      .map(removeEmptyFields)
+      .filter(item => item !== undefined && item !== null && item !== '')
+  }
+
+  const newObj = {}
+  for (const key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      const value = removeEmptyFields(obj[key])
+      // Keep only non-empty, non-null, non-undefined values
+      if (value !== undefined && value !== null && value !== '' && !(typeof value === 'object' && Object.keys(value).length === 0)) {
+        newObj[key] = value
+      }
+    }
+  }
+  return newObj
+}
+
 /** Function that checks parsing from Modelica to JSON, in 'cdl' parsing mode
   */
 const checkCdlJSON = function (outFormat, extension, message) {
@@ -50,7 +73,11 @@ const checkCdlJSON = function (outFormat, extension, message) {
     // Name of subpackage to store json output files
     const subPackName = (outFormat === 'raw-json' ? 'raw-json' : 'json')
     // When parsing mode is 'cdl', the moFiles should feed into parser one-by-one
-
+    const testOutputDir = path.join(process.cwd(), subPackName)
+    // If the test output folder exists, it should be deleted so each test will generate new outputs.
+    if (fs.existsSync(testOutputDir)) {
+      ut.removeDir(testOutputDir)
+    }
     const expectedOutputPath = path.join(process.cwd(), 'test', 'reference')
 
     testMoFiles.forEach(fil => {
@@ -59,7 +86,7 @@ const checkCdlJSON = function (outFormat, extension, message) {
       // const jsonNewCDL = pa.getJSON(fil.split(), mode, outFormat)
       pa.getJsons([fil], outFormat, 'current', 'false')
       const idx = fil.lastIndexOf(path.sep)
-      const jsonNewCDLFile = path.join(process.cwd(), subPackName, 'test', 'FromModelica', fil.slice(idx + 1, -3) + extension)
+      const jsonNewCDLFile = path.join(testOutputDir, 'test', 'FromModelica', fil.slice(idx + 1, -3) + extension)
 
       // Read the stored json representation from disk
       // It's like '../test/FromModelica/cdl/json/***.json'
@@ -70,8 +97,8 @@ const checkCdlJSON = function (outFormat, extension, message) {
       //                             '.' +
       //                             fil.slice(idx + 1, -3) + extension)
       // Read the old json
-      const neCDL = JSON.parse(fs.readFileSync(jsonNewCDLFile, 'utf8'))
-      const oldCDL = JSON.parse(fs.readFileSync(oldFilCDL, 'utf8'))
+      const neCDL = removeEmptyFields(JSON.parse(fs.readFileSync(jsonNewCDLFile, 'utf8')))
+      const oldCDL = removeEmptyFields(JSON.parse(fs.readFileSync(oldFilCDL, 'utf8')))
 
       // Update the path to be relative to the project home.
       // This is needed for the regression tests to be portable.
@@ -87,6 +114,7 @@ const checkCdlJSON = function (outFormat, extension, message) {
       as.notEqual(tempOld, undefined, 'JSON is undefined')
       as.deepEqual(tempNew, tempOld, 'JSON result differs for ' + oldFilCDL)
     })
+    ut.removeDir(testOutputDir)
   })
 }
 
@@ -103,6 +131,11 @@ const checkModJSON = function (outFormat, extension, message) {
     // Name of subpackage to store json output files
     const subPackName = (outFormat === 'raw-json' ? 'raw-json' : 'json')
     // When parsing mode is 'modelica', the moFiles should feed into parser in package
+    const testOutputDir = path.join(process.cwd(), subPackName)
+    // If the test output folder exists, it should be deleted so each test will generate new outputs.
+    if (fs.existsSync(testOutputDir)) {
+      ut.removeDir(testOutputDir)
+    }
     // const jsonNewMOD = pa.getJSON(testMoFiles, mode, outFormat)
     pa.getJsons(testMoFiles, outFormat, 'current', 'false')
     const pattern = path.join('test', 'FromModelica', '*.mo')
@@ -114,13 +147,13 @@ const checkModJSON = function (outFormat, extension, message) {
       const fileNameMOD = files[i].slice(idx2 + 1, -3) + extension
       const oldFileMOD = path.join(expectedOutputPath, subPackName, 'test', 'FromModelica', fileNameMOD)
       // Read the old json
-      const jsonOldMOD = JSON.parse(fs.readFileSync(oldFileMOD, 'utf8'))
+      const jsonOldMOD = removeEmptyFields(JSON.parse(fs.readFileSync(oldFileMOD, 'utf8')))
 
       if (jsonOldMOD.modelicaFile) {
         jsonOldMOD.fullMoFilePath = jsonOldMOD.modelicaFile.split('modelica-json/')[1]
       }
-      const jsonNewMOD = path.join(process.cwd(), subPackName, 'test', 'FromModelica', fileNameMOD)
-      const neMOD = JSON.parse(fs.readFileSync(jsonNewMOD, 'utf8'))
+      const jsonNewMOD = path.join(testOutputDir, 'test', 'FromModelica', fileNameMOD)
+      const neMOD = removeEmptyFields(JSON.parse(fs.readFileSync(jsonNewMOD, 'utf8')))
       if (neMOD.modelicaFile) {
         neMOD.fullMoFilePath = neMOD.modelicaFile.split('modelica-json/')[1]
       }
@@ -130,6 +163,7 @@ const checkModJSON = function (outFormat, extension, message) {
       as.notEqual(tempOld, undefined, 'JSON is undefined')
       as.deepEqual(tempNew, tempOld, 'JSON result differs for ' + oldFileMOD)
     }
+    ut.removeDir(testOutputDir)
   })
 }
 
@@ -145,13 +179,17 @@ const checkObjectsJSON = function (outFormat, extension, message) {
 
     // Name of subpackage to store json output files
     const subPackName = 'objects'
+    const testOutputDir = path.join(process.cwd(), subPackName)
     // When parsing mode is 'modelica', the moFiles should feed into parser in package
     // const jsonNewMOD = pa.getJSON(testMoFiles, mode, outFormat)
+    if (fs.existsSync(testOutputDir)) {
+      ut.removeDir(testOutputDir)
+    }
     pa.getJsons(testMoFiles, outFormat, 'current', 'false')
     const pattern = path.join('test', 'FromModelica', '*.mo')
     const files = glob.sync(pattern)
     const expectedOutputPath = path.join(process.cwd(), 'test', 'reference', subPackName, 'test', 'FromModelica')
-    const actualOutputPath = path.join(process.cwd(), subPackName, 'test', 'FromModelica')
+    const actualOutputPath = path.join(testOutputDir, 'test', 'FromModelica')
 
     for (let i = 0; i < files.length; i++) {
       if (outFormat === 'semantic') {
@@ -162,7 +200,7 @@ const checkObjectsJSON = function (outFormat, extension, message) {
       const fileNameMOD = files[i].slice(idx2 + 1, -3) + extension
       const oldFileMOD = path.join(expectedOutputPath, fileNameMOD)
       // Read the old json
-      const jsonOldMOD = JSON.parse(fs.readFileSync(oldFileMOD, 'utf8'))
+      const jsonOldMOD = removeEmptyFields(JSON.parse(fs.readFileSync(oldFileMOD, 'utf8')))
       const oldInstances = jsonOldMOD.instances
       for (const oldInstanceId in oldInstances) {
         if ('fullMoFilePath' in oldInstances[oldInstanceId] && oldInstances[oldInstanceId].fullMoFilePath !== undefined) {
@@ -172,7 +210,7 @@ const checkObjectsJSON = function (outFormat, extension, message) {
       jsonOldMOD.instances = oldInstances
 
       const jsonNewMOD = path.join(actualOutputPath, fileNameMOD)
-      const neMOD = JSON.parse(fs.readFileSync(jsonNewMOD, 'utf8'))
+      const neMOD = removeEmptyFields(JSON.parse(fs.readFileSync(jsonNewMOD, 'utf8')))
       const newInstances = neMOD.instances
       for (const newInstanceId in newInstances) {
         if ('fullMoFilePath' in newInstances[newInstanceId] && newInstances[newInstanceId].fullMoFilePath !== undefined) {
@@ -207,6 +245,13 @@ const checkObjectsJSON = function (outFormat, extension, message) {
       const actualFile = fs.readFileSync(actualFileName, 'utf8')
       as.deepEqual(actualFile, expectedFile, 'Semantic File result differs for ' + actualFileName)
     }
+    ut.removeDir(testOutputDir)
+    ut.removeDir(actualSemanticOutputPath)
+    // delete new json output files
+    const jsonOutputDir = path.join(process.cwd(), 'json')
+    if (fs.existsSync(jsonOutputDir)) {
+      ut.removeDir(jsonOutputDir)
+    }
   })
 }
 
@@ -224,6 +269,10 @@ const checkCxfJson = function (outFormat, extension, message) {
     const subPackName = 'cxf'
     // When parsing mode is 'modelica', the moFiles should feed into parser in package
     // const jsonNewMOD = pa.getJSON(testMoFiles, mode, outFormat)
+    const testOutputDir = path.join(process.cwd(), subPackName)
+    if (fs.existsSync(testOutputDir)) {
+      ut.removeDir(testOutputDir)
+    }
     pa.getJsons(testMoFiles, outFormat, 'current', 'false')
     const pattern = path.join('test', 'FromModelica', '*.mo')
     const files = glob.sync(pattern)
@@ -240,10 +289,10 @@ const checkCxfJson = function (outFormat, extension, message) {
       if (!filesToExclude.includes(files[i])) {
         const oldFileMOD = path.join(expectedOutputPath, fileNameMOD)
         // Read the old json
-        const jsonOldMOD = JSON.parse(fs.readFileSync(oldFileMOD, 'utf8'))
+        const jsonOldMOD = removeEmptyFields(JSON.parse(fs.readFileSync(oldFileMOD, 'utf8')))
 
         const jsonNewMOD = path.join(actualOutputPath, fileNameMOD)
-        const neMOD = JSON.parse(fs.readFileSync(jsonNewMOD, 'utf8'))
+        const neMOD = removeEmptyFields(JSON.parse(fs.readFileSync(jsonNewMOD, 'utf8')))
 
         const tempOld = JSON.stringify(jsonOldMOD)
         const tempNew = JSON.stringify(neMOD)
@@ -254,22 +303,50 @@ const checkCxfJson = function (outFormat, extension, message) {
         as.throws(function () { fs.readFileSync(jsonLdPath, 'utf8') }, Error, 'asd')
       }
     }
+    ut.removeDir(testOutputDir)
+    // delete new json output files
+    const jsonOutputDir = path.join(process.cwd(), 'json')
+    if (fs.existsSync(jsonOutputDir)) {
+      ut.removeDir(jsonOutputDir)
+    }
+    // delete new objects output files
+    const objectsOutputDir = path.join(process.cwd(), 'objects')
+    if (fs.existsSync(objectsOutputDir)) {
+      ut.removeDir(objectsOutputDir)
+    }
   })
 }
 
 function checkCxfCoreGeneration () {
   const cdlPath = path.join('Buildings', 'Controls', 'OBC', 'CDL')
   const testMoFiles = ut.getMoFiles(cdlPath)
+
+  const cxfTestOutputDir = path.join(process.cwd(), 'cxf')
+  // If the test output folder exists, it should be deleted so each test will generate new outputs.
+  if (fs.existsSync(cxfTestOutputDir)) {
+    ut.removeDir(cxfTestOutputDir)
+  }
   pa.getJsons(testMoFiles, 'cxf', 'current', true, true, true)
   ce.getCxfCore(path.join(process.cwd(), cdlPath), 'current', true)
 
   const actualOutputCxfCorePath = path.join(process.cwd(), 'cxf', 'CXF-Core.jsonld')
-  const actualOutputCxfCore = JSON.stringify(JSON.parse(fs.readFileSync(actualOutputCxfCorePath, 'utf8')))
+  const actualOutputCxfCore = JSON.stringify(removeEmptyFields(JSON.parse(fs.readFileSync(actualOutputCxfCorePath, 'utf8'))))
 
   const refOutputCxfCorePath = path.join(process.cwd(), 'test', 'reference', 'cxf', 'CXF-Core.jsonld')
-  const refOutputCxfCore = JSON.stringify(JSON.parse(fs.readFileSync(refOutputCxfCorePath, 'utf8')))
+  const refOutputCxfCore = JSON.stringify(removeEmptyFields(JSON.parse(fs.readFileSync(refOutputCxfCorePath, 'utf8'))))
 
   as.deepEqual(actualOutputCxfCore, refOutputCxfCore, 'CXF-Core.jsonld different for generated file=' + actualOutputCxfCorePath + ' and reference file=' + refOutputCxfCorePath)
+  ut.removeDir(cxfTestOutputDir)
+  // delete new json output files
+  const jsonOutputDir = path.join(process.cwd(), 'json')
+  if (fs.existsSync(jsonOutputDir)) {
+    ut.removeDir(jsonOutputDir)
+  }
+  // delete new objects output files
+  const objectsOutputDir = path.join(process.cwd(), 'objects')
+  if (fs.existsSync(objectsOutputDir)) {
+    ut.removeDir(objectsOutputDir)
+  }
 }
 
 mo.describe('parser.js', function () {

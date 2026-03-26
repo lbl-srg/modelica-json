@@ -1,6 +1,6 @@
 {
   "within": "Buildings.Controls.OBC.CDL.Routing",
-  "class_definition": [
+  "stored_class_definitions": [
     {
       "class_prefixes": "block",
       "class_specifier": {
@@ -172,23 +172,15 @@
                                       "logical_and": [
                                         {
                                           "arithmetic_expressions": [
-                                            {
-                                              "name": "index"
-                                            },
-                                            {
-                                              "name": "0"
-                                            }
+                                            "index",
+                                            "0"
                                           ],
                                           "relation_operator": ">"
                                         },
                                         {
                                           "arithmetic_expressions": [
-                                            {
-                                              "name": "index"
-                                            },
-                                            {
-                                              "name": "nin"
-                                            }
+                                            "index",
+                                            "nin"
                                           ],
                                           "relation_operator": "<="
                                         }
@@ -220,7 +212,7 @@
                       "assignment_equation": {
                         "lhs": "y",
                         "rhs": {
-                          "simple_expression": "u[[object Object]]"
+                          "simple_expression": "u[min(nin,max(1,index))]"
                         }
                       }
                     }
@@ -913,6 +905,6 @@
     }
   ],
   "modelicaFile": "Buildings/Controls/OBC/CDL/Routing/IntegerExtractor.mo",
-  "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Routing/IntegerExtractor.mo",
+  "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Routing/IntegerExtractor.mo",
   "checksum": "3648c0d05a8358f923f5d158b312e8f5"
 }

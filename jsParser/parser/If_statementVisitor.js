@@ -1,5 +1,4 @@
 const modelicaVisitor = require('../antlrFiles/modelicaVisitor').modelicaVisitor
-const { TerminalNode } = require('antlr4/tree/Tree')
 const If_statement = require('../domain/If_statement')
 const If_elseif_statement = require('../domain/If_elseif_statement')
 
@@ -37,14 +36,14 @@ class If_statementVisitor {
     let statement_idx =
          0
 
-    while (i < ctx.getChildCount() && !ctx.getChild(i).getText().toLowerCase() == 'end') {
-      if (ctx.getChild(i).getText().toLowerCase() == 'if' || ctx.getChild(i).getText().toLowerCase() == 'elseif') {
+    while (i < ctx.getChildCount() && !ctx.getChild(i).getText().toLowerCase() === 'end') {
+      if (ctx.getChild(i).getText().toLowerCase() === 'if' || ctx.getChild(i).getText().toLowerCase() === 'elseif') {
         const condition = expressions.get(expression_idx)
         expression_idx += 1
         const start_idx = i + 3
         let end_idx = start_idx
         for (let j = start_idx; j < ctx.getChildCount(); j++) {
-          if (!ctx.getChild(j).getText() == ';' && !(ctx.getChild(j) instanceof modelicaParser.StatementContext)) {
+          if (!ctx.getChild(j).getText() === ';' && !(ctx.getChild(j) instanceof modelicaParser.StatementContext)) {
             end_idx = j
             break
           }
@@ -54,11 +53,11 @@ class If_statementVisitor {
         if_elseif.push(new If_elseif_statement.If_elseif_statement(condition, then))
         statement_idx = statement_idx + parseInt((end_idx - start_idx) / 2)
         i = end_idx
-      } else if (ctx.getChild(i).getText().toLowerCase() == 'else') {
+      } else if (ctx.getChild(i).getText().toLowerCase() === 'else') {
         const start_idx = i + 1
         let end_idx = start_idx
         for (let j = start_idx; j < ctx.getChildCount(); j++) {
-          if (!ctx.getChild(j).getText() == ';' && !(ctx.getChild(j) instanceof modelicaParser.StatementContext)) {
+          if (!ctx.getChild(j).getText() === ';' && !(ctx.getChild(j) instanceof modelicaParser.StatementContext)) {
             end_idx = j
             break
           }

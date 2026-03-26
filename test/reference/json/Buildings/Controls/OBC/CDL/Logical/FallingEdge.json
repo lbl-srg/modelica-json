@@ -1,6 +1,6 @@
 {
   "within": "Buildings.Controls.OBC.CDL.Logical",
-  "class_definition": [
+  "stored_class_definitions": [
     {
       "class_prefixes": "block",
       "class_specifier": {
@@ -119,7 +119,22 @@
                             "modification": {
                               "equal": true,
                               "expression": {
-                                "simple_expression": "not u"
+                                "simple_expression": {
+                                  "logical_expression": {
+                                    "logical_or": [
+                                      {
+                                        "logical_and": [
+                                          {
+                                            "not": true,
+                                            "arithmetic_expressions": [
+                                              "u"
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                }
                               }
                             }
                           },
@@ -149,7 +164,22 @@
                           }
                         },
                         "rhs": {
-                          "simple_expression": "not pre_u_start"
+                          "simple_expression": {
+                            "logical_expression": {
+                              "logical_or": [
+                                {
+                                  "logical_and": [
+                                    {
+                                      "not": true,
+                                      "arithmetic_expressions": [
+                                        "pre_u_start"
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          }
                         }
                       }
                     }
@@ -371,6 +401,6 @@
     }
   ],
   "modelicaFile": "Buildings/Controls/OBC/CDL/Logical/FallingEdge.mo",
-  "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Logical/FallingEdge.mo",
+  "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Logical/FallingEdge.mo",
   "checksum": "578ef027eea26bdbcfa2899d84a7d9ba"
 }

@@ -17,7 +17,7 @@ class String_commentVisitor {
     }
 
     if (str_list.length > 0) {
-      if (str_list.length == 1) {
+      if (str_list.length === 1) {
         string_comment = str_list[0]
       } else if (str_list.length > 1) {
         string_comment = str_list.join('+')

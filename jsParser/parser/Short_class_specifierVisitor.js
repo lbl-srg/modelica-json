@@ -17,7 +17,7 @@ class Short_class_specifierVisitor {
 
   visitShort_class_specifier (ctx) {
     let identifier = ''
-    var short_class_specifier_value = null
+    let short_class_specifier_value = null
     if (ctx.IDENT()) {
       identifier = ctx.IDENT().getText()
     }
@@ -53,7 +53,7 @@ class Short_class_specifierVisitor {
       const enum_listVisitor = new Enum_listVisitor.Enum_listVisitor()
       enum_list = enum_listVisitor.visitEnum_list(ctx.enum_list())
     }
-    var short_class_specifier_value = new Short_class_specifier_value.Short_class_specifier_value(base_prefix, name, array_subscripts, class_modification, comment, enum_list)
+    short_class_specifier_value = new Short_class_specifier_value.Short_class_specifier_value(base_prefix, name, array_subscripts, class_modification, comment, enum_list)
 
     return new Short_class_specifier.Short_class_specifier(identifier, short_class_specifier_value)
   }

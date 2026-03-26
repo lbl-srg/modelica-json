@@ -25,11 +25,22 @@ First, set the MODELICAPATH environment variable by adding the following line to
 ```
 export MODELICAPATH=${MODELICAPATH}:/usr/local/Modelica/Library/
 ```
-The parser requires node. The node version should be >= 20 and you can use [Node Version Manager](https://nodejs.org/en/download/package-manager) to set it up. Following is using 0.39.7 version:
+
+Notes: 
+- The MODELICAPATH should point to all Modelica libraries you use in the models you want to convert, e.g. Modelica Standard Library, Buildings, o.s.
+- The library roots in MODELICAPATH shall exactly match the library names and shall not be suffixed by the library version number.
+- You do not need to have any Modelica-IDE installed on your device (e.g. OpenModelica o.s.)
+
+The parser requires Java and node. The java dependency can be installed using:
 ```
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+sudo apt-get install default-jdk default-jre
+```
+The node version should be >= 20 and you can use [Node Version Manager](https://nodejs.org/en/download/package-manager) to set it up. Following is using 0.40.3 version:
+```
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 source ~/.bashrc
 nvm install 20
+nvm use 20
 ```
 
 To install dependencies of the parser, run
