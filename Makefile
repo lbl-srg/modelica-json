@@ -49,3 +49,9 @@ ibpsa-library:
 	node app.js \
 	-o json \
 	-f IBPSA/Fluid/FixedResistances/HydraulicDiameter.mo
+
+# The below command should be run if jsParser/antlr/modelica.g4 
+# grammar file has been updated. It will auto-generate the tokens, 
+# lexers and parsers based on the updated grammar. 
+update-grammar:
+	cd jsParser/antlrFiles && ./generateFiles.sh
