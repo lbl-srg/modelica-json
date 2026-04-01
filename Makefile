@@ -54,4 +54,4 @@ ibpsa-library:
 # grammar file has been updated. It will auto-generate the tokens, 
 # lexers and parsers based on the updated grammar. 
 update-grammar:
-	cd jsParser/antlrFiles && ./generateFiles.sh
+	cd jsParser/antlrFiles && curl -O https://www.antlr.org/download/antlr-4.7.2-complete.jar && ./generateFiles.sh

@@ -166,6 +166,17 @@ The default schema is CDL. To chose the Modelica schema, run:
 node validation.js -f <path to the json file> -m modelica
 ```
 
+## 5. Updating Grammar
+
+This tool uses antlr4 to parse Modelica syntax. The grammar can be found 
+at `jsParser/antlrFiles/modelica.g4`. If you update the grammar file, you can run 
+the following command to regenerate the tokens, lexers and parsers that are used
+by the classes in `jsParser/parser/`:
+
+```
+make update-grammar
+```
+
 ## 6. Useful Links
 
 - [Modelica-json GitHub page](https://github.com/lbl-srg/modelica-json)
