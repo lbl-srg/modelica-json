@@ -6,10 +6,8 @@ export
 
 .PHONY: install-node-packages install test run generate-reference-output clean-node-packages clean-installation
 
-install-node-packages:
+install:
 	npm install --save
-
-install: install-node-packages
 
 test:
 	npm test
@@ -34,16 +32,14 @@ generate-cxfCore:
 	node app.js -f Buildings/Controls/OBC/CDL -o cxf --elementary --cxfCore --prettyPrint; 
 	cp cxf/CXF-Core.jsonld .
 
-clean-node-packages:
+clean-installation:
 	rm -rf node-modules
-
-clean-installation: clean-node-packages
 
 run:
 	node app.js \
 	--log warn \
 	-f Buildings/Controls/OBC/ASHRAE/G36/AHUs/MultiZone/VAV/Economizers/Controller.mo \
-	-o html
+	-o cxf
 
 ibpsa-library:
 	node app.js \
