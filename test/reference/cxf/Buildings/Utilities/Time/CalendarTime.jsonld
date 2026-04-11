@@ -1,6 +1,6 @@
 {
   "@context": {
-    "S231P": "https://data.ashrae.org/S231P#",
+    "S231P": "http://data.ashrae.org/S231P#",
     "ex": "http://example.org#",
     "qudt": "http://qudt.org/schema/qudt#",
     "unit": "http://qudt.org/vocab/unit#"
@@ -170,16 +170,16 @@
     {
       "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.eps_time",
       "@type": "S231P:Constant",
-      "qudt:hasUnit": {
-        "@id": "unit:SEC"
-      },
       "S231P:accessSpecifier": "protected",
       "S231P:description": "Small value for time",
       "S231P:isOfDataType": {
         "@id": "S231P:Real"
       },
       "S231P:label": "eps_time",
-      "S231P:value": 1
+      "S231P:value": 1,
+      "qudt:hasUnit": {
+        "@id": "unit:SEC"
+      }
     },
     {
       "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.firstDaySampling",
@@ -337,27 +337,27 @@
     {
       "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.unixTimeStamp",
       "@type": "S231P:RealOutput",
-      "qudt:hasUnit": {
-        "@id": "unit:SEC"
-      },
       "S231P:accessSpecifier": "public",
       "S231P:conditionalExpression": "outputUnixTimeStamp",
       "S231P:description": "Unix time stamp",
       "S231P:graphics": "Placement(transformation(extent={{100,-100},{120,-80}})),iconTransformation(extent={{100,-100},{120,-80}})))",
       "S231P:isConditionalComponent": true,
       "S231P:label": "unixTimeStamp",
-      "S231P:value": "unixTimeStampLocal -timZon"
+      "S231P:value": "unixTimeStampLocal -timZon",
+      "qudt:hasUnit": {
+        "@id": "unit:SEC"
+      }
     },
     {
       "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.unixTimeStampLocal",
       "@type": "S231P:RealOutput",
-      "qudt:hasUnit": {
-        "@id": "unit:SEC"
-      },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Unix time stamp at local time",
       "S231P:graphics": "Placement(transformation(extent={{100,-78},{120,-58}})),iconTransformation(extent={{100,-78},{120,-58}})))",
-      "S231P:label": "unixTimeStampLocal"
+      "S231P:label": "unixTimeStampLocal",
+      "qudt:hasUnit": {
+        "@id": "unit:SEC"
+      }
     },
     {
       "@id": "http://example.org#Buildings.Utilities.Time.CalendarTime.weekDay",

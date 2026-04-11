@@ -1,8 +1,8 @@
 {
   "@context": {
-    "S231P": "https://data.ashrae.org/S231P#",
-    "qudt": "http://qudt.org/schema/qudt#",
+    "S231P": "http://data.ashrae.org/S231P#",
     "unit": "http://qudt.org/vocab/unit#",
+    "qudt": "http://qudt.org/schema/qudt#",
     "q": "http://qudt.org/vocab/quantitykind#"
   },
   "@graph": [
@@ -40,35 +40,35 @@
     },
     {
       "@id": "http://example.org#FromModelica.VariableModification.abs.u",
-      "qudt:hasUnit": {
-        "@id": "unit:K"
-      },
       "S231P:hasDisplayUnit": {
         "@id": "unit:DEG_C"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:K"
       }
     },
     {
       "@id": "http://example.org#FromModelica.VariableModification.abs.y",
-      "qudt:hasUnit": {
-        "@id": "unit:K"
-      },
       "S231P:hasDisplayUnit": {
         "@id": "unit:DEG_C"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:K"
       }
     },
     {
       "@id": "http://example.org#FromModelica.VariableModification.TOut",
       "@type": "S231P:RealInput",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Temperature input",
+      "S231P:graphics": "Placement(transformation(extent={{-140,20},{-100,60}})),iconTransformation(extent={{-140,20},{-100,60}})))",
+      "S231P:label": "TOut",
       "qudt:hasQuantityKind": {
         "@id": "q:ThermodynamicTemperature"
       },
       "qudt:hasUnit": {
         "@id": "unit:K"
-      },
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Temperature input",
-      "S231P:graphics": "Placement(transformation(extent={{-140,20},{-100,60}})),iconTransformation(extent={{-140,20},{-100,60}})))",
-      "S231P:label": "TOut"
+      }
     },
     {
       "@id": "http://example.org#FromModelica.VariableModification.u",

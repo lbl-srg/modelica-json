@@ -1,6 +1,6 @@
 {
   "@context": {
-    "S231P": "https://data.ashrae.org/S231P#",
+    "S231P": "http://data.ashrae.org/S231P#",
     "qudt": "http://qudt.org/schema/qudt#",
     "q": "http://qudt.org/vocab/quantitykind#",
     "unit": "http://qudt.org/vocab/unit#"
@@ -18,12 +18,6 @@
     {
       "@id": "http://example.org#FromModelica.ParameterWithAttributes.kP",
       "@type": "S231P:Parameter",
-      "qudt:hasQuantityKind": {
-        "@id": "q:Pressure"
-      },
-      "qudt:hasUnit": {
-        "@id": "unit:PA"
-      },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Some comment",
       "S231P:fixed": false,
@@ -44,7 +38,13 @@
         "@value": "0.2",
         "@type": "http://www.w3.org/2001/XMLSchema#decimal"
       },
-      "S231P:value": 1
+      "S231P:value": 1,
+      "qudt:hasQuantityKind": {
+        "@id": "q:Pressure"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:PA"
+      }
     },
     {
       "@id": "http://example.org#FromModelica.ParameterWithAttributes.kP.stateSelect",

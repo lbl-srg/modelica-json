@@ -1,39 +1,27 @@
 {
   "@context": {
-    "S231P": "https://data.ashrae.org/S231P#"
+    "S231P": "http://data.ashrae.org/S231P#"
   },
   "@graph": [
     {
-      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.LessThreshold.lesHys.y",
-      "S231P:isConnectedTo": {
-        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.LessThreshold.y"
-      }
-    },
-    {
-      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.LessThreshold.lesNoHys.y",
-      "S231P:isConnectedTo": {
-        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.LessThreshold.y"
-      }
-    },
-    {
-      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.LessThreshold",
+      "@id": "http://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.LessThreshold",
       "@type": "S231P:ElementaryBlock",
       "S231P:documentation": "info=<html>\n<p>\nBlock that outputs <code>true</code> if the Real input <code>u</code>\nis less than a threshold <code>t</code>, optionally within a hysteresis <code>h</code>.\n</p>\n<p>\nThe parameter <code>h &ge; 0</code> is used to specify a hysteresis.\nFor any <i>h &ge; 0</i>, the output switches to <code>true</code> if <i>u &lt; t</i>,\nwhere <i>t</i> is the threshold,\nand it switches to <code>false</code> if <i>u &ge; t + h</i>.\nNote that in the special case of <i>h = 0</i>, this produces the output <i>y=u &lt; t</i>.\n</p>\n<h4>Usage</h4>\n<p>\nEnabling hysteresis can avoid frequent switching.\nAdding hysteresis is recommended in real controllers to guard against sensor noise, and\nin simulation to guard against numerical noise. Numerical noise can be present if\nan input depends on a state variable or a quantity that requires an iterative solution, such as\na temperature or a mass flow rate of an HVAC system.\nTo disable hysteresis, set <i>h=0</i>.\n</p>\n</html>,revisions=<html>\n<ul>\n<li>\nApril 29, 2022, by Jianjun Hu:<br/>\nCorrected the condition of swiching true back to false.<br/>\nThis is for <a href=\\https://github.com/lbl-srg/modelica-buildings/issues/2981\\>Buildings, issue 2981</a>.\n</li>\n<li>\nFebruary 3, 2021, by Antoine Gautier:<br/>\nCorrected documentation.<br/>\nThis is for <a href=\\https://github.com/lbl-srg/modelica-buildings/issues/2246\\>Buildings, issue 2246</a>.\n</li>\n<li>\nAugust 5, 2020, by Michael Wetter:<br/>\nAdded hysteresis.<br/>\nThis is for <a href=\\https://github.com/lbl-srg/modelica-buildings/issues/2076\\>Buildings, issue 2076</a>.\n</li>\n<li>\nJanuary 3, 2017, by Michael Wetter:<br/>\nFirst implementation, based on the implementation of the\nModelica Standard Library.\n</li>\n</ul>\n</html>",
       "S231P:hasInput": {
-        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.LessThreshold.u"
+        "@id": "http://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.LessThreshold.u"
       },
       "S231P:hasOutput": {
-        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.LessThreshold.y"
+        "@id": "http://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.LessThreshold.y"
       },
       "S231P:hasParameter": [
         {
-          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.LessThreshold.h"
+          "@id": "http://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.LessThreshold.h"
         },
         {
-          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.LessThreshold.pre_y_start"
+          "@id": "http://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.LessThreshold.pre_y_start"
         },
         {
-          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.LessThreshold.t"
+          "@id": "http://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.LessThreshold.t"
         }
       ],
       "S231P:icon": [
@@ -48,7 +36,7 @@
       ]
     },
     {
-      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.LessThreshold.h",
+      "@id": "http://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.LessThreshold.h",
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Hysteresis",
@@ -60,7 +48,7 @@
       "S231P:value": 0
     },
     {
-      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.LessThreshold.lesHys",
+      "@id": "http://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.LessThreshold.lesHys",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.LessThreshold.lesHys.u"
@@ -71,7 +59,7 @@
       ]
     },
     {
-      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.LessThreshold.lesNoHys",
+      "@id": "http://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.LessThreshold.lesNoHys",
       "S231P:hasInstance": [
         {
           "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.LessThreshold.lesNoHys.u"
@@ -82,7 +70,7 @@
       ]
     },
     {
-      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.LessThreshold.pre_y_start",
+      "@id": "http://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.LessThreshold.pre_y_start",
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Value of pre(y) at initial time",
@@ -93,7 +81,7 @@
       "S231P:value": false
     },
     {
-      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.LessThreshold.t",
+      "@id": "http://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.LessThreshold.t",
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Threshold for comparison",
@@ -104,7 +92,7 @@
       "S231P:value": 0
     },
     {
-      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.LessThreshold.u",
+      "@id": "http://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.LessThreshold.u",
       "@type": "S231P:RealInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Input to be compared against the threshold",
@@ -120,12 +108,24 @@
       "S231P:label": "u"
     },
     {
-      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.LessThreshold.y",
+      "@id": "http://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.LessThreshold.y",
       "@type": "S231P:BooleanOutput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Outputs true if u is less than the threshold with hysteresis",
       "S231P:graphics": "Placement(transformation(extent={{100,-20},{140,20}})))",
       "S231P:label": "y"
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.LessThreshold.lesHys.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.LessThreshold.y"
+      }
+    },
+    {
+      "@id": "http://example.org#Buildings.Controls.OBC.CDL.Reals.LessThreshold.lesNoHys.y",
+      "S231P:isConnectedTo": {
+        "@id": "http://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.LessThreshold.y"
+      }
     }
   ]
 }

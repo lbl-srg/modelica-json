@@ -1,9 +1,9 @@
 {
   "@context": {
-    "S231P": "https://data.ashrae.org/S231P#",
+    "S231P": "http://data.ashrae.org/S231P#",
     "qudt": "http://qudt.org/schema/qudt#",
-    "q": "http://qudt.org/vocab/quantitykind#",
-    "unit": "http://qudt.org/vocab/unit#"
+    "unit": "http://qudt.org/vocab/unit#",
+    "q": "http://qudt.org/vocab/quantitykind#"
   },
   "@graph": [
     {
@@ -270,9 +270,6 @@
     {
       "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.kCooCoi",
       "@type": "S231P:Parameter",
-      "qudt:hasUnit": {
-        "@id": "https://data.ashrae.org/S231P#1/K"
-      },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Gain for cooling coil control loop signal",
       "S231P:isOfDataType": {
@@ -282,6 +279,9 @@
       "S231P:value": {
         "@value": "0.1",
         "@type": "http://www.w3.org/2001/XMLSchema#decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "http://data.ashrae.org/S231P#1/K"
       }
     },
     {
@@ -315,26 +315,23 @@
     {
       "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.TAirSup",
       "@type": "S231P:RealInput",
-      "qudt:hasQuantityKind": {
-        "@id": "q:ThermodynamicTemperature"
-      },
-      "qudt:hasUnit": {
-        "@id": "unit:K"
-      },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Supply air temperature measurement",
       "S231P:graphics": "Placement(transformation(extent={{-140,20},{-100,60}})))",
       "S231P:hasDisplayUnit": {
         "@id": "unit:DEG_C"
       },
-      "S231P:label": "TAirSup"
+      "S231P:label": "TAirSup",
+      "qudt:hasQuantityKind": {
+        "@id": "q:ThermodynamicTemperature"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:K"
+      }
     },
     {
       "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.TdCooCoi",
       "@type": "S231P:Parameter",
-      "qudt:hasUnit": {
-        "@id": "unit:SEC"
-      },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Time constant of derivative block for cooling coil control loop signal",
       "S231P:isOfDataType": {
@@ -344,38 +341,41 @@
       "S231P:value": {
         "@value": "0.1",
         "@type": "http://www.w3.org/2001/XMLSchema#decimal"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:SEC"
       }
     },
     {
       "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.TiCooCoi",
       "@type": "S231P:Parameter",
-      "qudt:hasUnit": {
-        "@id": "unit:SEC"
-      },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Time constant of integrator block for cooling coil control loop signal",
       "S231P:isOfDataType": {
         "@id": "S231P:Real"
       },
       "S231P:label": "TiCooCoi",
-      "S231P:value": 900
+      "S231P:value": 900,
+      "qudt:hasUnit": {
+        "@id": "unit:SEC"
+      }
     },
     {
       "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.TSupCooSet",
       "@type": "S231P:RealInput",
-      "qudt:hasQuantityKind": {
-        "@id": "q:ThermodynamicTemperature"
-      },
-      "qudt:hasUnit": {
-        "@id": "unit:K"
-      },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Cooling supply air temperature setpoint",
       "S231P:graphics": "Placement(transformation(extent={{-140,60},{-100,100}})))",
       "S231P:hasDisplayUnit": {
         "@id": "unit:DEG_C"
       },
-      "S231P:label": "TSupCooSet"
+      "S231P:label": "TSupCooSet",
+      "qudt:hasQuantityKind": {
+        "@id": "q:ThermodynamicTemperature"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:K"
+      }
     },
     {
       "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.u1SupFan",

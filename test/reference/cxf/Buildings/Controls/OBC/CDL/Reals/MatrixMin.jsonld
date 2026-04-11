@@ -1,35 +1,35 @@
 {
   "@context": {
-    "S231P": "https://data.ashrae.org/S231P#"
+    "S231P": "http://data.ashrae.org/S231P#"
   },
   "@graph": [
     {
-      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MatrixMin",
+      "@id": "http://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MatrixMin",
       "@type": "S231P:ElementaryBlock",
       "S231P:diagram": "coordinateSystem(extent={{-100,-100},{100,100}},preserveAspectRatio=true)",
       "S231P:documentation": "info=<html>\n<p>\nIf <code>rowMin = true</code>, this block outputs the row-wise minimum\nof the input matrix <code>u</code>,\notherwise it outputs the column-wise minimum of the input matrix <code>u</code>.\n</p>\n</html>,revisions=<html>\n<ul>\n<li>\nMay 17, 2019, by Milica Grahovac:<br/>\nFirst implementation.\n</li>\n</ul>\n</html>",
       "S231P:hasInput": {
-        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MatrixMin.u"
+        "@id": "http://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MatrixMin.u"
       },
       "S231P:hasOutput": {
-        "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MatrixMin.y"
+        "@id": "http://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MatrixMin.y"
       },
       "S231P:hasParameter": [
         {
-          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MatrixMin.nCol"
+          "@id": "http://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MatrixMin.nCol"
         },
         {
-          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MatrixMin.nRow"
+          "@id": "http://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MatrixMin.nRow"
         },
         {
-          "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MatrixMin.rowMin"
+          "@id": "http://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MatrixMin.rowMin"
         }
       ],
       "S231P:icon": "coordinateSystem(extent={{-100,-100},{100,100}},preserveAspectRatio=true),graphics={Rectangle(extent={{-100,-100},{100,100}},lineColor={0,0,127},fillColor={255,255,255},fillPattern=FillPattern.Solid),Text(textString=\"%name\",textColor={0,0,255},extent={{-150,150},{150,110}}),Text(textString=\"[  ] min()\",textColor={0,0,0},extent={{-78,-62},{86,68}})}",
       "S231P:label": "MatrixMin"
     },
     {
-      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MatrixMin.nCol",
+      "@id": "http://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MatrixMin.nCol",
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Number of columns in input matrix",
@@ -40,7 +40,7 @@
       "S231P:min": 1
     },
     {
-      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MatrixMin.nRow",
+      "@id": "http://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MatrixMin.nRow",
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Number of rows in input matrix",
@@ -51,7 +51,7 @@
       "S231P:min": 1
     },
     {
-      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MatrixMin.rowMin",
+      "@id": "http://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MatrixMin.rowMin",
       "@type": "S231P:Parameter",
       "S231P:accessSpecifier": "public",
       "S231P:description": "If true, outputs row-wise minimum, otherwise column-wise",
@@ -62,7 +62,7 @@
       "S231P:value": true
     },
     {
-      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MatrixMin.u",
+      "@id": "http://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MatrixMin.u",
       "@type": "S231P:RealInput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Input for the matrix min function",
@@ -73,7 +73,7 @@
       "S231P:sizeOfDimensions": "(nRow,nCol)"
     },
     {
-      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MatrixMin.y",
+      "@id": "http://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Reals.MatrixMin.y",
       "@type": "S231P:RealOutput",
       "S231P:accessSpecifier": "public",
       "S231P:description": "Output with vector of row- or colum-wise minimum of the input matrix",

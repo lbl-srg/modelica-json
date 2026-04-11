@@ -1,6 +1,6 @@
 {
   "@context": {
-    "S231P": "https://data.ashrae.org/S231P#",
+    "S231P": "http://data.ashrae.org/S231P#",
     "qudt": "http://qudt.org/schema/qudt#",
     "q": "http://qudt.org/vocab/quantitykind#",
     "unit": "http://qudt.org/vocab/unit#"
@@ -99,28 +99,22 @@
     {
       "@id": "http://example.org#FromModelica.RemovableInputs.TOut",
       "@type": "S231P:RealInput",
-      "qudt:hasQuantityKind": {
-        "@id": "q:ThermodynamicTemperature"
-      },
-      "qudt:hasUnit": {
-        "@id": "unit:K"
-      },
       "S231P:accessSpecifier": "public",
       "S231P:conditionalExpression": "enaBlo",
       "S231P:description": "Temperature input",
       "S231P:graphics": "Placement(transformation(extent={{-140,20},{-100,60}})),iconTransformation(extent={{-140,20},{-100,60}})))",
       "S231P:isConditionalComponent": true,
-      "S231P:label": "TOut"
-    },
-    {
-      "@id": "http://example.org#FromModelica.RemovableInputs.TOutWitDef",
-      "@type": "S231P:RealInput",
+      "S231P:label": "TOut",
       "qudt:hasQuantityKind": {
         "@id": "q:ThermodynamicTemperature"
       },
       "qudt:hasUnit": {
         "@id": "unit:K"
-      },
+      }
+    },
+    {
+      "@id": "http://example.org#FromModelica.RemovableInputs.TOutWitDef",
+      "@type": "S231P:RealInput",
       "S231P:accessSpecifier": "public",
       "S231P:conditionalExpression": "enaBlo",
       "S231P:defaultValue": {
@@ -130,7 +124,13 @@
       "S231P:description": "Temperature input with specified default value",
       "S231P:graphics": "Placement(transformation(extent={{-140,-70},{-100,-30}})),iconTransformation(extent={{-140,-80},{-100,-40}})))",
       "S231P:isConditionalComponent": true,
-      "S231P:label": "TOutWitDef"
+      "S231P:label": "TOutWitDef",
+      "qudt:hasQuantityKind": {
+        "@id": "q:ThermodynamicTemperature"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:K"
+      }
     },
     {
       "@id": "http://example.org#FromModelica.RemovableInputs.u",

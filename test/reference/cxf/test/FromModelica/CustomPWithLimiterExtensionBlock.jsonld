@@ -1,6 +1,6 @@
 {
   "@context": {
-    "S231P": "https://data.ashrae.org/S231P#"
+    "S231P": "http://data.ashrae.org/S231P#"
   },
   "@graph": [
     {
@@ -45,8 +45,8 @@
     {
       "@id": "http://example.org#FromModelica.CustomPWithLimiterExtensionBlock.gain",
       "@type": [
-        "http://example.org#Custom.Gain.Block",
-        "S231P:ExtensionBlock"
+        "S231P:ExtensionBlock",
+        "http://example.org#Custom.Gain.Block"
       ],
       "S231P:accessSpecifier": "public",
       "S231P:description": "Constant gain",

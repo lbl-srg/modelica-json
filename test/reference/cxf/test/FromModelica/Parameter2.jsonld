@@ -1,6 +1,6 @@
 {
   "@context": {
-    "S231P": "https://data.ashrae.org/S231P#",
+    "S231P": "http://data.ashrae.org/S231P#",
     "qudt": "http://qudt.org/schema/qudt#",
     "unit": "http://qudt.org/vocab/unit#"
   },
@@ -125,15 +125,15 @@
     {
       "@id": "http://example.org#FromModelica.Parameter2.myParUnit",
       "@type": "S231P:Parameter",
-      "qudt:hasUnit": {
-        "@id": "unit:K"
-      },
       "S231P:accessSpecifier": "public",
       "S231P:description": "Some comment",
       "S231P:isOfDataType": {
         "@id": "S231P:Real"
       },
-      "S231P:label": "myParUnit"
+      "S231P:label": "myParUnit",
+      "qudt:hasUnit": {
+        "@id": "unit:K"
+      }
     }
   ]
 }
