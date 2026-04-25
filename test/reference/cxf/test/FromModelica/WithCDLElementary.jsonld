@@ -1,47 +1,47 @@
 {
   "@context": {
-    "S231P": "http://data.ashrae.org/S231P#"
+    "S231": "http://data.ashrae.org/S231#"
   },
   "@graph": [
     {
       "@id": "http://example.org#FromModelica.WithCDLElementary",
-      "@type": "S231P:Block",
-      "S231P:containsBlock": {
+      "@type": "S231:Block",
+      "S231:containsBlock": {
         "@id": "http://example.org#FromModelica.WithCDLElementary.gre"
       },
-      "S231P:diagram": "coordinateSystem(preserveAspectRatio=false)",
-      "S231P:hasInput": {
+      "S231:diagram": "coordinateSystem(preserveAspectRatio=false)",
+      "S231:hasInput": {
         "@id": "http://example.org#FromModelica.WithCDLElementary.u"
       },
-      "S231P:hasOutput": {
+      "S231:hasOutput": {
         "@id": "http://example.org#FromModelica.WithCDLElementary.y"
       },
-      "S231P:icon": "coordinateSystem(preserveAspectRatio=false)",
-      "S231P:label": "WithCDLElementary"
+      "S231:icon": "coordinateSystem(preserveAspectRatio=false)",
+      "S231:label": "WithCDLElementary"
     },
     {
       "@id": "http://example.org#FromModelica.WithCDLElementary.gre",
       "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Greater",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "CDL elementary block with inside class",
-      "S231P:graphics": "Placement(transformation(extent={{-8,-10},{12,10}})))",
-      "S231P:label": "gre"
+      "S231:accessSpecifier": "public",
+      "S231:description": "CDL elementary block with inside class",
+      "S231:graphics": "Placement(transformation(extent={{-8,-10},{12,10}})))",
+      "S231:label": "gre"
     },
     {
       "@id": "http://example.org#FromModelica.WithCDLElementary.u",
-      "@type": "S231P:RealInput",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Real input",
-      "S231P:graphics": "Placement(transformation(extent={{-140,-20},{-100,20}})),iconTransformation(extent={{-212,-12},{-172,28}})))",
-      "S231P:label": "u"
+      "@type": "S231:RealInput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Real input",
+      "S231:graphics": "Placement(transformation(extent={{-140,-20},{-100,20}})),iconTransformation(extent={{-212,-12},{-172,28}})))",
+      "S231:label": "u"
     },
     {
       "@id": "http://example.org#FromModelica.WithCDLElementary.y",
-      "@type": "S231P:RealOutput",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Real output",
-      "S231P:graphics": "Placement(transformation(extent={{100,-20},{140,20}})),iconTransformation(extent={{-184,-4},{-144,36}})))",
-      "S231P:label": "y"
+      "@type": "S231:RealOutput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Real output",
+      "S231:graphics": "Placement(transformation(extent={{100,-20},{140,20}})),iconTransformation(extent={{-184,-4},{-144,36}})))",
+      "S231:label": "y"
     }
   ]
 }

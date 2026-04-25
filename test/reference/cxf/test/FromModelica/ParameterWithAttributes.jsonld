@@ -1,6 +1,6 @@
 {
   "@context": {
-    "S231P": "http://data.ashrae.org/S231P#",
+    "S231": "http://data.ashrae.org/S231#",
     "qudt": "http://qudt.org/schema/qudt#",
     "q": "http://qudt.org/vocab/quantitykind#",
     "unit": "http://qudt.org/vocab/unit#"
@@ -8,37 +8,37 @@
   "@graph": [
     {
       "@id": "http://example.org#FromModelica.ParameterWithAttributes",
-      "@type": "S231P:Block",
-      "S231P:documentation": "info=<html>\n<p>\nThis is the info section.\n</p>\n</html>",
-      "S231P:hasParameter": {
+      "@type": "S231:Block",
+      "S231:documentation": "info=<html>\n<p>\nThis is the info section.\n</p>\n</html>",
+      "S231:hasParameter": {
         "@id": "http://example.org#FromModelica.ParameterWithAttributes.kP"
       },
-      "S231P:label": "ParameterWithAttributes"
+      "S231:label": "ParameterWithAttributes"
     },
     {
       "@id": "http://example.org#FromModelica.ParameterWithAttributes.kP",
-      "@type": "S231P:Parameter",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Some comment",
-      "S231P:fixed": false,
-      "S231P:hasInstance": {
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Some comment",
+      "S231:fixed": false,
+      "S231:hasInstance": {
         "@id": "http://example.org#FromModelica.ParameterWithAttributes.kP.stateSelect"
       },
-      "S231P:isOfDataType": {
-        "@id": "S231P:Real"
+      "S231:isOfDataType": {
+        "@id": "S231:Real"
       },
-      "S231P:label": "kP",
-      "S231P:max": 2,
-      "S231P:min": 0,
-      "S231P:nominal": {
+      "S231:label": "kP",
+      "S231:max": 2,
+      "S231:min": 0,
+      "S231:nominal": {
         "@value": "0.5",
         "@type": "http://www.w3.org/2001/XMLSchema#decimal"
       },
-      "S231P:start": {
+      "S231:start": {
         "@value": "0.2",
         "@type": "http://www.w3.org/2001/XMLSchema#decimal"
       },
-      "S231P:value": 1,
+      "S231:value": 1,
       "qudt:hasQuantityKind": {
         "@id": "q:Pressure"
       },
@@ -48,7 +48,7 @@
     },
     {
       "@id": "http://example.org#FromModelica.ParameterWithAttributes.kP.stateSelect",
-      "S231P:value": "StateSelect.default"
+      "S231:value": "StateSelect.default"
     }
   ]
 }

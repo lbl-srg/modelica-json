@@ -1,25 +1,25 @@
 {
   "@context": {
-    "S231P": "http://data.ashrae.org/S231P#"
+    "S231": "http://data.ashrae.org/S231#"
   },
   "@graph": [
     {
       "@id": "http://example.org#FromModelica.DynamicTextColor",
-      "@type": "S231P:Block",
-      "S231P:containsBlock": {
+      "@type": "S231:Block",
+      "S231:containsBlock": {
         "@id": "http://example.org#FromModelica.DynamicTextColor.u"
       },
-      "S231P:documentation": "info=<html>\n<p>\nThis is the info section.\n</p>\n</html>",
-      "S231P:icon": "coordinateSystem(extent={{-100,-100},{100,100}},preserveAspectRatio=true),graphics={Text(textString=\"true\",extent={{-90,80},{-46,54}},lineColor={0,0,0}),Text(textString=\"%name\",extent={{-150,150},{150,110}},lineColor={0,0,255})}",
-      "S231P:label": "DynamicTextColor"
+      "S231:documentation": "info=<html>\n<p>\nThis is the info section.\n</p>\n</html>",
+      "S231:icon": "coordinateSystem(extent={{-100,-100},{100,100}},preserveAspectRatio=true),graphics={Text(textString=\"true\",extent={{-90,80},{-46,54}},lineColor={0,0,0}),Text(textString=\"%name\",extent={{-150,150},{150,110}},lineColor={0,0,255})}",
+      "S231:label": "DynamicTextColor"
     },
     {
       "@id": "http://example.org#FromModelica.DynamicTextColor.u",
       "@type": "http://example.org#Buildings.Controls.OBC.CDL.Interfaces.Boolean",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Input connector",
-      "S231P:graphics": "Placement(transformation(extent={{-140,-20},{-100,20}})),iconTransformation(extent={{-140,-20},{-100,20}})))",
-      "S231P:label": "u"
+      "S231:accessSpecifier": "public",
+      "S231:description": "Input connector",
+      "S231:graphics": "Placement(transformation(extent={{-140,-20},{-100,20}})),iconTransformation(extent={{-140,-20},{-100,20}})))",
+      "S231:label": "u"
     }
   ]
 }

@@ -1,18 +1,18 @@
 {
   "@context": {
-    "S231P": "http://data.ashrae.org/S231P#"
+    "S231": "http://data.ashrae.org/S231#"
   },
   "@graph": [
     {
       "@id": "http://example.org#FromModelica.MisplacedInfoWithEquation",
-      "@type": "S231P:Block",
-      "S231P:containsBlock": {
+      "@type": "S231:Block",
+      "S231:containsBlock": {
         "@id": "http://example.org#FromModelica.MisplacedInfoWithEquation.gain"
       },
-      "S231P:hasInput": {
+      "S231:hasInput": {
         "@id": "http://example.org#FromModelica.MisplacedInfoWithEquation.u"
       },
-      "S231P:hasOutput": [
+      "S231:hasOutput": [
         {
           "@id": "http://example.org#FromModelica.MisplacedInfoWithEquation.y1"
         },
@@ -20,18 +20,18 @@
           "@id": "http://example.org#FromModelica.MisplacedInfoWithEquation.y2"
         }
       ],
-      "S231P:hasParameter": {
+      "S231:hasParameter": {
         "@id": "http://example.org#FromModelica.MisplacedInfoWithEquation.k"
       },
-      "S231P:label": "MisplacedInfoWithEquation"
+      "S231:label": "MisplacedInfoWithEquation"
     },
     {
       "@id": "http://example.org#FromModelica.MisplacedInfoWithEquation.gain",
       "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Constant gain",
-      "S231P:graphics": "Placement(transformation(extent={{0,-10},{20,10}})))",
-      "S231P:hasInstance": [
+      "S231:accessSpecifier": "public",
+      "S231:description": "Constant gain",
+      "S231:graphics": "Placement(transformation(extent={{0,-10},{20,10}})))",
+      "S231:hasInstance": [
         {
           "@id": "http://example.org#FromModelica.MisplacedInfoWithEquation.gain.k"
         },
@@ -42,56 +42,56 @@
           "@id": "http://example.org#FromModelica.MisplacedInfoWithEquation.gain.y"
         }
       ],
-      "S231P:label": "gain"
+      "S231:label": "gain"
     },
     {
       "@id": "http://example.org#FromModelica.MisplacedInfoWithEquation.gain.k",
-      "S231P:isFinal": true,
-      "S231P:value": "k"
+      "S231:isFinal": true,
+      "S231:value": "k"
     },
     {
       "@id": "http://example.org#FromModelica.MisplacedInfoWithEquation.gain.y",
-      "S231P:isConnectedTo": {
+      "S231:isConnectedTo": {
         "@id": "http://example.org#FromModelica.MisplacedInfoWithEquation.y1"
       }
     },
     {
       "@id": "http://example.org#FromModelica.MisplacedInfoWithEquation.k",
-      "@type": "S231P:Parameter",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Constant gain",
-      "S231P:isOfDataType": {
-        "@id": "S231P:Real"
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Constant gain",
+      "S231:isOfDataType": {
+        "@id": "S231:Real"
       },
-      "S231P:label": "k",
-      "S231P:value": 2
+      "S231:label": "k",
+      "S231:value": 2
     },
     {
       "@id": "http://example.org#FromModelica.MisplacedInfoWithEquation.u",
-      "@type": "S231P:RealInput",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Input signal",
-      "S231P:graphics": "Placement(transformation(extent={{-140,-20},{-100,20}})),iconTransformation(extent={{-140,20},{-100,60}})))",
-      "S231P:isConnectedTo": {
+      "@type": "S231:RealInput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Input signal",
+      "S231:graphics": "Placement(transformation(extent={{-140,-20},{-100,20}})),iconTransformation(extent={{-140,20},{-100,60}})))",
+      "S231:isConnectedTo": {
         "@id": "http://example.org#FromModelica.MisplacedInfoWithEquation.gain.u"
       },
-      "S231P:label": "u"
+      "S231:label": "u"
     },
     {
       "@id": "http://example.org#FromModelica.MisplacedInfoWithEquation.y1",
-      "@type": "S231P:RealOutput",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Output signal",
-      "S231P:graphics": "Placement(transformation(extent={{100,-10},{120,10}})))",
-      "S231P:label": "y1"
+      "@type": "S231:RealOutput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Output signal",
+      "S231:graphics": "Placement(transformation(extent={{100,-10},{120,10}})))",
+      "S231:label": "y1"
     },
     {
       "@id": "http://example.org#FromModelica.MisplacedInfoWithEquation.y2",
-      "@type": "S231P:RealOutput",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Output signal",
-      "S231P:graphics": "Placement(transformation(extent={{100,-10},{120,10}})))",
-      "S231P:label": "y2"
+      "@type": "S231:RealOutput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Output signal",
+      "S231:graphics": "Placement(transformation(extent={{100,-10},{120,10}})))",
+      "S231:label": "y2"
     }
   ]
 }

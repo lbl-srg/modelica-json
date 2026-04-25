@@ -1,66 +1,66 @@
 {
   "@context": {
-    "S231P": "http://data.ashrae.org/S231P#"
+    "S231": "http://data.ashrae.org/S231#"
   },
   "@graph": [
     {
-      "@id": "http://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.BooleanExtractor",
-      "@type": "S231P:ElementaryBlock",
-      "S231P:documentation": "info=<html>\n<p>\nBlock that returns\n</p>\n<pre>    y = u[index];\n</pre>\n<p>\nwhere <code>u</code> is a vector-valued <code>Boolean</code> input signal and\n<code>index</code> is an <code>Integer</code> input signal. When the <code>index</code>\nis out of range,\n</p>\n<ul>\n<li>\nthen <code>y = u[nin]</code> if <code>index &gt; nin</code>, and\n</li>\n<li>\n<code>y = u[1]</code> if <code>index &lt; 1</code>.\n</li>\n</ul>\n</html>,revisions=<html>\n<ul>\n<li>\nSeptember 30, 2022, by Jianjun Hu:<br/>\nFirst implementation.\n</li>\n</ul>\n</html>",
-      "S231P:hasInput": [
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Routing.BooleanExtractor",
+      "@type": "S231:ElementaryBlock",
+      "S231:documentation": "info=<html>\n<p>\nBlock that returns\n</p>\n<pre>    y = u[index];\n</pre>\n<p>\nwhere <code>u</code> is a vector-valued <code>Boolean</code> input signal and\n<code>index</code> is an <code>Integer</code> input signal. When the <code>index</code>\nis out of range,\n</p>\n<ul>\n<li>\nthen <code>y = u[nin]</code> if <code>index &gt; nin</code>, and\n</li>\n<li>\n<code>y = u[1]</code> if <code>index &lt; 1</code>.\n</li>\n</ul>\n</html>,revisions=<html>\n<ul>\n<li>\nSeptember 30, 2022, by Jianjun Hu:<br/>\nFirst implementation.\n</li>\n</ul>\n</html>",
+      "S231:hasInput": [
         {
-          "@id": "http://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.BooleanExtractor.index"
+          "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Routing.BooleanExtractor.index"
         },
         {
-          "@id": "http://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.BooleanExtractor.u"
+          "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Routing.BooleanExtractor.u"
         }
       ],
-      "S231P:hasOutput": {
-        "@id": "http://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.BooleanExtractor.y"
+      "S231:hasOutput": {
+        "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Routing.BooleanExtractor.y"
       },
-      "S231P:hasParameter": {
-        "@id": "http://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.BooleanExtractor.nin"
+      "S231:hasParameter": {
+        "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Routing.BooleanExtractor.nin"
       },
-      "S231P:icon": "coordinateSystem(extent={{-100,-100},{100,100}},preserveAspectRatio=true),graphics={Rectangle(extent={{-100,-100},{100,100}},lineColor={255,0,255},fillColor={255,255,255},fillPattern=FillPattern.Solid),Rectangle(extent={{-80,50},{-40,-50}},lineColor={0,0,127},fillColor={255,255,255},fillPattern=FillPattern.Solid),Polygon(points={{-84.4104,1.9079},{-84.4104,-2.09208},{-80.4104,-0.09208},{-84.4104,1.9079}},lineColor={255,0,255},fillColor={255,0,255},fillPattern=FillPattern.Solid),Line(color={255,0,255},points={{-62,2},{-50.1395,12.907},{-39.1395,12.907}}),Line(color={255,0,255},points={{-63,4},{-49,40},{-39,40}}),Line(color={255,0,255},points={{-102,0},{-65.0373,-0.01802}}),Ellipse(extent={{-70.0437,4.5925},{-60.0437,-4.90745}},lineColor={0,0,127},fillColor={255,0,255},fillPattern=FillPattern.Solid),Line(color={255,0,255},points={{-63,-5},{-50,-40},{-39,-40}}),Line(color={255,0,255},points={{-62,-2},{-50.0698,-12.907},{-39.0698,-12.907}}),Polygon(points={{-38.8808,-11},{-38.8808,-15},{-34.8808,-13},{-38.8808,-11}},lineColor={255,0,255},fillColor={255,255,255},fillPattern=FillPattern.Solid),Polygon(points={{-39,42},{-39,38},{-35,40},{-39,42}},lineColor={255,0,255},fillColor={255,255,255},fillPattern=FillPattern.Solid),Polygon(points={{-38.8728,-38.0295},{-38.8728,-42.0295},{-34.8728,-40.0295},{-38.8728,-38.0295}},lineColor={255,0,255},fillColor={255,255,255},fillPattern=FillPattern.Solid),Polygon(points={{-38.9983,14.8801},{-38.9983,10.8801},{-34.9983,12.8801},{-38.9983,14.8801}},lineColor={255,0,255},fillColor={255,255,255},fillPattern=FillPattern.Solid),Rectangle(extent={{-30,50},{30,-50}},lineColor={0,0,127},fillColor={235,235,235},fillPattern=FillPattern.Solid),Line(color={255,0,255},points={{100,0},{0,0}}),Line(color={255,128,0},points={{0,2},{0,-104}}),Line(color={255,0,255},points={{-35,40},{-20,40}}),Line(color={255,0,255},points={{-35,13},{-20,13}}),Line(color={255,0,255},points={{-35,-13},{-20,-13}}),Line(color={255,0,255},points={{-35,-40},{-20,-40}}),Polygon(points={{0,0},{-20,13},{-20,13},{0,0},{0,0}},lineColor={255,0,255}),Ellipse(extent={{-6,6},{6,-6}},lineColor={255,128,0},fillColor={255,128,0},fillPattern=FillPattern.Solid),Text(textString=\"%name\",textColor={0,0,255},extent={{-100,100},{100,140}})}",
-      "S231P:label": "BooleanExtractor"
+      "S231:icon": "coordinateSystem(extent={{-100,-100},{100,100}},preserveAspectRatio=true),graphics={Rectangle(extent={{-100,-100},{100,100}},lineColor={255,0,255},fillColor={255,255,255},fillPattern=FillPattern.Solid),Rectangle(extent={{-80,50},{-40,-50}},lineColor={0,0,127},fillColor={255,255,255},fillPattern=FillPattern.Solid),Polygon(points={{-84.4104,1.9079},{-84.4104,-2.09208},{-80.4104,-0.09208},{-84.4104,1.9079}},lineColor={255,0,255},fillColor={255,0,255},fillPattern=FillPattern.Solid),Line(color={255,0,255},points={{-62,2},{-50.1395,12.907},{-39.1395,12.907}}),Line(color={255,0,255},points={{-63,4},{-49,40},{-39,40}}),Line(color={255,0,255},points={{-102,0},{-65.0373,-0.01802}}),Ellipse(extent={{-70.0437,4.5925},{-60.0437,-4.90745}},lineColor={0,0,127},fillColor={255,0,255},fillPattern=FillPattern.Solid),Line(color={255,0,255},points={{-63,-5},{-50,-40},{-39,-40}}),Line(color={255,0,255},points={{-62,-2},{-50.0698,-12.907},{-39.0698,-12.907}}),Polygon(points={{-38.8808,-11},{-38.8808,-15},{-34.8808,-13},{-38.8808,-11}},lineColor={255,0,255},fillColor={255,255,255},fillPattern=FillPattern.Solid),Polygon(points={{-39,42},{-39,38},{-35,40},{-39,42}},lineColor={255,0,255},fillColor={255,255,255},fillPattern=FillPattern.Solid),Polygon(points={{-38.8728,-38.0295},{-38.8728,-42.0295},{-34.8728,-40.0295},{-38.8728,-38.0295}},lineColor={255,0,255},fillColor={255,255,255},fillPattern=FillPattern.Solid),Polygon(points={{-38.9983,14.8801},{-38.9983,10.8801},{-34.9983,12.8801},{-38.9983,14.8801}},lineColor={255,0,255},fillColor={255,255,255},fillPattern=FillPattern.Solid),Rectangle(extent={{-30,50},{30,-50}},lineColor={0,0,127},fillColor={235,235,235},fillPattern=FillPattern.Solid),Line(color={255,0,255},points={{100,0},{0,0}}),Line(color={255,128,0},points={{0,2},{0,-104}}),Line(color={255,0,255},points={{-35,40},{-20,40}}),Line(color={255,0,255},points={{-35,13},{-20,13}}),Line(color={255,0,255},points={{-35,-13},{-20,-13}}),Line(color={255,0,255},points={{-35,-40},{-20,-40}}),Polygon(points={{0,0},{-20,13},{-20,13},{0,0},{0,0}},lineColor={255,0,255}),Ellipse(extent={{-6,6},{6,-6}},lineColor={255,128,0},fillColor={255,128,0},fillPattern=FillPattern.Solid),Text(textString=\"%name\",textColor={0,0,255},extent={{-100,100},{100,140}})}",
+      "S231:label": "BooleanExtractor"
     },
     {
-      "@id": "http://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.BooleanExtractor.index",
-      "@type": "S231P:IntegerInput",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Index of input vector element to be extracted out",
-      "S231P:graphics": "Placement(transformation(origin={0,-120},extent={{-20,-20},{20,20}},rotation=90)))",
-      "S231P:label": "index"
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Routing.BooleanExtractor.index",
+      "@type": "S231:IntegerInput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Index of input vector element to be extracted out",
+      "S231:graphics": "Placement(transformation(origin={0,-120},extent={{-20,-20},{20,20}},rotation=90)))",
+      "S231:label": "index"
     },
     {
-      "@id": "http://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.BooleanExtractor.nin",
-      "@type": "S231P:Parameter",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Number of inputs",
-      "S231P:isOfDataType": {
-        "@id": "S231P:Integer"
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Routing.BooleanExtractor.nin",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Number of inputs",
+      "S231:isOfDataType": {
+        "@id": "S231:Integer"
       },
-      "S231P:label": "nin",
-      "S231P:value": 1
+      "S231:label": "nin",
+      "S231:value": 1
     },
     {
-      "@id": "http://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.BooleanExtractor.u",
-      "@type": "S231P:BooleanInput",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Boolean input signals",
-      "S231P:graphics": "Placement(transformation(extent={{-140,-20},{-100,20}})))",
-      "S231P:isArray": true,
-      "S231P:label": "u[nin]",
-      "S231P:numberDimensions": 1,
-      "S231P:sizeOfDimensions": "(nin)"
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Routing.BooleanExtractor.u",
+      "@type": "S231:BooleanInput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Boolean input signals",
+      "S231:graphics": "Placement(transformation(extent={{-140,-20},{-100,20}})))",
+      "S231:isArray": true,
+      "S231:label": "u[nin]",
+      "S231:numberDimensions": 1,
+      "S231:sizeOfDimensions": "(nin)"
     },
     {
-      "@id": "http://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Routing.BooleanExtractor.y",
-      "@type": "S231P:BooleanOutput",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Boolean signal extracted from input vector, u[index]",
-      "S231P:graphics": "Placement(transformation(extent={{100,-20},{140,20}})))",
-      "S231P:label": "y"
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Routing.BooleanExtractor.y",
+      "@type": "S231:BooleanOutput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Boolean signal extracted from input vector, u[index]",
+      "S231:graphics": "Placement(transformation(extent={{100,-20},{140,20}})))",
+      "S231:label": "y"
     }
   ]
 }

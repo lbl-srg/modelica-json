@@ -1,12 +1,12 @@
 {
   "@context": {
-    "S231P": "http://data.ashrae.org/S231P#"
+    "S231": "http://data.ashrae.org/S231#"
   },
   "@graph": [
     {
       "@id": "http://example.org#FromModelica.Parameter3",
-      "@type": "S231P:Block",
-      "S231P:hasParameter": [
+      "@type": "S231:Block",
+      "S231:hasParameter": [
         {
           "@id": "http://example.org#FromModelica.Parameter3.myPar1"
         },
@@ -14,24 +14,24 @@
           "@id": "http://example.org#FromModelica.Parameter3.myParUnit"
         }
       ],
-      "S231P:label": "Parameter3"
+      "S231:label": "Parameter3"
     },
     {
       "@id": "http://example.org#FromModelica.Parameter3.myPar1",
-      "@type": "S231P:Parameter",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Some comment",
-      "S231P:isOfDataType": {
-        "@id": "S231P:Real"
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Some comment",
+      "S231:isOfDataType": {
+        "@id": "S231:Real"
       },
-      "S231P:label": "myPar1",
-      "S231P:value": 1
+      "S231:label": "myPar1",
+      "S231:value": 1
     },
     {
       "@id": "http://example.org#FromModelica.Parameter3.myParUnit",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Some comment",
-      "S231P:label": "myParUnit"
+      "S231:accessSpecifier": "public",
+      "S231:description": "Some comment",
+      "S231:label": "myParUnit"
     }
   ]
 }

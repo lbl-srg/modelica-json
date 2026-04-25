@@ -1,34 +1,34 @@
 {
   "@context": {
-    "S231P": "http://data.ashrae.org/S231P#"
+    "S231": "http://data.ashrae.org/S231#"
   },
   "@graph": [
     {
       "@id": "http://example.org#FromModelica.BlockInputOutput",
-      "@type": "S231P:Block",
-      "S231P:hasInput": {
+      "@type": "S231:Block",
+      "S231:hasInput": {
         "@id": "http://example.org#FromModelica.BlockInputOutput.u"
       },
-      "S231P:hasOutput": {
+      "S231:hasOutput": {
         "@id": "http://example.org#FromModelica.BlockInputOutput.y"
       },
-      "S231P:label": "BlockInputOutput"
+      "S231:label": "BlockInputOutput"
     },
     {
       "@id": "http://example.org#FromModelica.BlockInputOutput.u",
-      "@type": "S231P:RealInput",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Input connector",
-      "S231P:graphics": "Placement(transformation(extent={{-140,-20},{-100,20}})),iconTransformation(extent={{-140,-20},{-100,20}})))",
-      "S231P:label": "u"
+      "@type": "S231:RealInput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Input connector",
+      "S231:graphics": "Placement(transformation(extent={{-140,-20},{-100,20}})),iconTransformation(extent={{-140,-20},{-100,20}})))",
+      "S231:label": "u"
     },
     {
       "@id": "http://example.org#FromModelica.BlockInputOutput.y",
-      "@type": "S231P:RealOutput",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Output connector",
-      "S231P:graphics": "Placement(transformation(extent={{100,-10},{120,10}})))",
-      "S231P:label": "y"
+      "@type": "S231:RealOutput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Output connector",
+      "S231:graphics": "Placement(transformation(extent={{100,-10},{120,10}})))",
+      "S231:label": "y"
     }
   ]
 }

@@ -1,22 +1,22 @@
 {
   "@context": {
-    "S231P": "http://data.ashrae.org/S231P#"
+    "S231": "http://data.ashrae.org/S231#"
   },
   "@graph": [
     {
       "@id": "http://example.org#FromModelica.TestEvaluation_2",
-      "@type": "S231P:Block",
-      "S231P:containsBlock": {
+      "@type": "S231:Block",
+      "S231:containsBlock": {
         "@id": "http://example.org#FromModelica.TestEvaluation_2.hys"
       },
-      "S231P:diagram": "coordinateSystem(preserveAspectRatio=false)",
-      "S231P:hasInput": {
+      "S231:diagram": "coordinateSystem(preserveAspectRatio=false)",
+      "S231:hasInput": {
         "@id": "http://example.org#FromModelica.TestEvaluation_2.u"
       },
-      "S231P:hasOutput": {
+      "S231:hasOutput": {
         "@id": "http://example.org#FromModelica.TestEvaluation_2.y"
       },
-      "S231P:hasParameter": [
+      "S231:hasParameter": [
         {
           "@id": "http://example.org#FromModelica.TestEvaluation_2.uHigh"
         },
@@ -24,15 +24,15 @@
           "@id": "http://example.org#FromModelica.TestEvaluation_2.uLow"
         }
       ],
-      "S231P:icon": "coordinateSystem(preserveAspectRatio=false)",
-      "S231P:label": "TestEvaluation_2"
+      "S231:icon": "coordinateSystem(preserveAspectRatio=false)",
+      "S231:label": "TestEvaluation_2"
     },
     {
       "@id": "http://example.org#FromModelica.TestEvaluation_2.hys",
       "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Hysteresis",
-      "S231P:accessSpecifier": "public",
-      "S231P:graphics": "Placement(transformation(extent={{-10,-10},{10,10}})))",
-      "S231P:hasInstance": [
+      "S231:accessSpecifier": "public",
+      "S231:graphics": "Placement(transformation(extent={{-10,-10},{10,10}})))",
+      "S231:hasInstance": [
         {
           "@id": "http://example.org#FromModelica.TestEvaluation_2.hys.u"
         },
@@ -46,70 +46,70 @@
           "@id": "http://example.org#FromModelica.TestEvaluation_2.hys.y"
         }
       ],
-      "S231P:label": "hys"
+      "S231:label": "hys"
     },
     {
       "@id": "http://example.org#FromModelica.TestEvaluation_2.hys.u",
-      "S231P:isConnectedTo": {
+      "S231:isConnectedTo": {
         "@id": "http://example.org#FromModelica.TestEvaluation_2.u"
       }
     },
     {
       "@id": "http://example.org#FromModelica.TestEvaluation_2.hys.uHigh",
-      "S231P:value": "uHigh"
+      "S231:value": "uHigh"
     },
     {
       "@id": "http://example.org#FromModelica.TestEvaluation_2.hys.uLow",
-      "S231P:isFinal": true,
-      "S231P:value": "uLow"
+      "S231:isFinal": true,
+      "S231:value": "uLow"
     },
     {
       "@id": "http://example.org#FromModelica.TestEvaluation_2.hys.y",
-      "S231P:isConnectedTo": {
+      "S231:isConnectedTo": {
         "@id": "http://example.org#FromModelica.TestEvaluation_2.y"
       }
     },
     {
       "@id": "http://example.org#FromModelica.TestEvaluation_2.u",
-      "@type": "S231P:RealInput",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Real input signal",
-      "S231P:graphics": "Placement(transformation(extent={{-140,-20},{-100,20}})),iconTransformation(extent={{-118,-20},{-78,20}})))",
-      "S231P:label": "u"
+      "@type": "S231:RealInput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Real input signal",
+      "S231:graphics": "Placement(transformation(extent={{-140,-20},{-100,20}})),iconTransformation(extent={{-118,-20},{-78,20}})))",
+      "S231:label": "u"
     },
     {
       "@id": "http://example.org#FromModelica.TestEvaluation_2.uHigh",
-      "@type": "S231P:Parameter",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "if y=false and u>uHigh, switch to y=true",
-      "S231P:isOfDataType": {
-        "@id": "S231P:Real"
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "if y=false and u>uHigh, switch to y=true",
+      "S231:isOfDataType": {
+        "@id": "S231:Real"
       },
-      "S231P:label": "uHigh",
-      "S231P:value": "2*uLow"
+      "S231:label": "uHigh",
+      "S231:value": "2*uLow"
     },
     {
       "@id": "http://example.org#FromModelica.TestEvaluation_2.uLow",
-      "@type": "S231P:Parameter",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "if y=true and u<uLow, switch to y=false",
-      "S231P:isOfDataType": {
-        "@id": "S231P:Real"
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "if y=true and u<uLow, switch to y=false",
+      "S231:isOfDataType": {
+        "@id": "S231:Real"
       },
-      "S231P:label": "uLow",
-      "S231P:min": 0,
-      "S231P:value": {
+      "S231:label": "uLow",
+      "S231:min": 0,
+      "S231:value": {
         "@value": "0.5",
         "@type": "http://www.w3.org/2001/XMLSchema#decimal"
       }
     },
     {
       "@id": "http://example.org#FromModelica.TestEvaluation_2.y",
-      "@type": "S231P:BooleanOutput",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Boolean output signal",
-      "S231P:graphics": "Placement(transformation(extent={{100,-20},{140,20}})),iconTransformation(extent={{80,-20},{120,20}})))",
-      "S231P:label": "y"
+      "@type": "S231:BooleanOutput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Boolean output signal",
+      "S231:graphics": "Placement(transformation(extent={{100,-20},{140,20}})),iconTransformation(extent={{80,-20},{120,20}})))",
+      "S231:label": "y"
     }
   ]
 }

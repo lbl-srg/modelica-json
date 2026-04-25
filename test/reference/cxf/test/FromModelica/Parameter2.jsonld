@@ -1,14 +1,14 @@
 {
   "@context": {
-    "S231P": "http://data.ashrae.org/S231P#",
+    "S231": "http://data.ashrae.org/S231#",
     "qudt": "http://qudt.org/schema/qudt#",
     "unit": "http://qudt.org/vocab/unit#"
   },
   "@graph": [
     {
       "@id": "http://example.org#FromModelica.Parameter2",
-      "@type": "S231P:Block",
-      "S231P:hasParameter": [
+      "@type": "S231:Block",
+      "S231:hasParameter": [
         {
           "@id": "http://example.org#FromModelica.Parameter2.myPar1"
         },
@@ -37,100 +37,100 @@
           "@id": "http://example.org#FromModelica.Parameter2.myParUnit"
         }
       ],
-      "S231P:label": "Parameter2"
+      "S231:label": "Parameter2"
     },
     {
       "@id": "http://example.org#FromModelica.Parameter2.myPar1",
-      "@type": "S231P:Parameter",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Some comment",
-      "S231P:isOfDataType": {
-        "@id": "S231P:Real"
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Some comment",
+      "S231:isOfDataType": {
+        "@id": "S231:Real"
       },
-      "S231P:label": "myPar1",
-      "S231P:value": 1
+      "S231:label": "myPar1",
+      "S231:value": 1
     },
     {
       "@id": "http://example.org#FromModelica.Parameter2.myParInGroup",
-      "@type": "S231P:Parameter",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Some comment",
-      "S231P:isOfDataType": {
-        "@id": "S231P:Real"
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Some comment",
+      "S231:isOfDataType": {
+        "@id": "S231:Real"
       },
-      "S231P:label": "myParInGroup"
+      "S231:label": "myParInGroup"
     },
     {
       "@id": "http://example.org#FromModelica.Parameter2.myParInTab",
-      "@type": "S231P:Parameter",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Some comment",
-      "S231P:isOfDataType": {
-        "@id": "S231P:Real"
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Some comment",
+      "S231:isOfDataType": {
+        "@id": "S231:Real"
       },
-      "S231P:label": "myParInTab"
+      "S231:label": "myParInTab"
     },
     {
       "@id": "http://example.org#FromModelica.Parameter2.myParInTabInGroup1",
-      "@type": "S231P:Parameter",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Some comment 1",
-      "S231P:isOfDataType": {
-        "@id": "S231P:Real"
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Some comment 1",
+      "S231:isOfDataType": {
+        "@id": "S231:Real"
       },
-      "S231P:label": "myParInTabInGroup1"
+      "S231:label": "myParInTabInGroup1"
     },
     {
       "@id": "http://example.org#FromModelica.Parameter2.myParInTabInGroup2",
-      "@type": "S231P:Parameter",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Some comment 2",
-      "S231P:isOfDataType": {
-        "@id": "S231P:Real"
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Some comment 2",
+      "S231:isOfDataType": {
+        "@id": "S231:Real"
       },
-      "S231P:label": "myParInTabInGroup2"
+      "S231:label": "myParInTabInGroup2"
     },
     {
       "@id": "http://example.org#FromModelica.Parameter2.myParMax",
-      "@type": "S231P:Parameter",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Some comment",
-      "S231P:isOfDataType": {
-        "@id": "S231P:Real"
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Some comment",
+      "S231:isOfDataType": {
+        "@id": "S231:Real"
       },
-      "S231P:label": "myParMax",
-      "S231P:max": 0
+      "S231:label": "myParMax",
+      "S231:max": 0
     },
     {
       "@id": "http://example.org#FromModelica.Parameter2.myParMin",
-      "@type": "S231P:Parameter",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Some comment",
-      "S231P:isOfDataType": {
-        "@id": "S231P:Real"
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Some comment",
+      "S231:isOfDataType": {
+        "@id": "S231:Real"
       },
-      "S231P:label": "myParMin",
-      "S231P:min": 0
+      "S231:label": "myParMin",
+      "S231:min": 0
     },
     {
       "@id": "http://example.org#FromModelica.Parameter2.myParNoValue",
-      "@type": "S231P:Parameter",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Some comment",
-      "S231P:isOfDataType": {
-        "@id": "S231P:Real"
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Some comment",
+      "S231:isOfDataType": {
+        "@id": "S231:Real"
       },
-      "S231P:label": "myParNoValue"
+      "S231:label": "myParNoValue"
     },
     {
       "@id": "http://example.org#FromModelica.Parameter2.myParUnit",
-      "@type": "S231P:Parameter",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Some comment",
-      "S231P:isOfDataType": {
-        "@id": "S231P:Real"
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Some comment",
+      "S231:isOfDataType": {
+        "@id": "S231:Real"
       },
-      "S231P:label": "myParUnit",
+      "S231:label": "myParUnit",
       "qudt:hasUnit": {
         "@id": "unit:K"
       }

@@ -1,23 +1,23 @@
 {
   "@context": {
-    "S231P": "http://data.ashrae.org/S231P#",
+    "S231": "http://data.ashrae.org/S231#",
     "ex": "http://example.org#"
   },
   "@graph": [
     {
       "@id": "http://example.org#FromModelica.MisplacedInfoWithComponent",
-      "@type": "S231P:Block",
-      "S231P:containsBlock": {
+      "@type": "S231:Block",
+      "S231:containsBlock": {
         "@id": "http://example.org#FromModelica.MisplacedInfoWithComponent.bloPub"
       },
-      "S231P:label": "MisplacedInfoWithComponent"
+      "S231:label": "MisplacedInfoWithComponent"
     },
     {
       "@id": "http://example.org#FromModelica.MisplacedInfoWithComponent.bloPub",
       "@type": "ex:Block1",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "A public block",
-      "S231P:label": "bloPub"
+      "S231:accessSpecifier": "public",
+      "S231:description": "A public block",
+      "S231:label": "bloPub"
     }
   ]
 }

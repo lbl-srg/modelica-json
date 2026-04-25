@@ -1,13 +1,13 @@
 {
   "@context": {
-    "S231P": "http://data.ashrae.org/S231P#",
+    "S231": "http://data.ashrae.org/S231#",
     "ex": "http://example.org#"
   },
   "@graph": [
     {
       "@id": "http://example.org#FromModelica.PointList",
-      "@type": "S231P:Block",
-      "S231P:containsBlock": [
+      "@type": "S231:Block",
+      "S231:containsBlock": [
         {
           "@id": "http://example.org#FromModelica.PointList.con1"
         },
@@ -15,10 +15,10 @@
           "@id": "http://example.org#FromModelica.PointList.con2"
         }
       ],
-      "S231P:controlledDevice": "Test device",
-      "S231P:diagram": "coordinateSystem(preserveAspectRatio=false)",
-      "S231P:generatePointlist": true,
-      "S231P:hasInput": [
+      "S231:controlledDevice": "Test device",
+      "S231:diagram": "coordinateSystem(preserveAspectRatio=false)",
+      "S231:generatePointlist": true,
+      "S231:hasInput": [
         {
           "@id": "http://example.org#FromModelica.PointList.u1"
         },
@@ -26,7 +26,7 @@
           "@id": "http://example.org#FromModelica.PointList.u2"
         }
       ],
-      "S231P:hasOutput": [
+      "S231:hasOutput": [
         {
           "@id": "http://example.org#FromModelica.PointList.y1"
         },
@@ -34,16 +34,16 @@
           "@id": "http://example.org#FromModelica.PointList.y2"
         }
       ],
-      "S231P:icon": "coordinateSystem(preserveAspectRatio=false),graphics={Rectangle(extent={{-100,-100},{100,100}},lineColor={0,0,127},fillColor={255,255,255},fillPattern=FillPattern.Solid),Text(textString=\"%name\",extent={{-100,100},{100,140}},lineColor={0,0,255})}",
-      "S231P:label": "PointList"
+      "S231:icon": "coordinateSystem(preserveAspectRatio=false),graphics={Rectangle(extent={{-100,-100},{100,100}},lineColor={0,0,127},fillColor={255,255,255},fillPattern=FillPattern.Solid),Text(textString=\"%name\",extent={{-100,100},{100,140}},lineColor={0,0,255})}",
+      "S231:label": "PointList"
     },
     {
       "@id": "http://example.org#FromModelica.PointList.con1",
       "@type": "ex:MyController",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Subcontroller one",
-      "S231P:graphics": "Placement(transformation(extent={{-10,50},{10,70}})))",
-      "S231P:hasInstance": [
+      "S231:accessSpecifier": "public",
+      "S231:description": "Subcontroller one",
+      "S231:graphics": "Placement(transformation(extent={{-10,50},{10,70}})))",
+      "S231:hasInstance": [
         {
           "@id": "http://example.org#FromModelica.PointList.con1.u1"
         },
@@ -54,22 +54,22 @@
           "@id": "http://example.org#FromModelica.PointList.con1.y"
         }
       ],
-      "S231P:label": "con1"
+      "S231:label": "con1"
     },
     {
       "@id": "http://example.org#FromModelica.PointList.con1.y",
-      "S231P:isConnectedTo": {
+      "S231:isConnectedTo": {
         "@id": "http://example.org#FromModelica.PointList.y2"
       }
     },
     {
       "@id": "http://example.org#FromModelica.PointList.con2",
       "@type": "ex:MyController",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Subcontroller two",
-      "S231P:generatePointlist": true,
-      "S231P:graphics": "Placement(transformation(extent={{-10,-70},{10,-50}})))",
-      "S231P:hasInstance": [
+      "S231:accessSpecifier": "public",
+      "S231:description": "Subcontroller two",
+      "S231:generatePointlist": true,
+      "S231:graphics": "Placement(transformation(extent={{-10,-70},{10,-50}})))",
+      "S231:hasInstance": [
         {
           "@id": "http://example.org#FromModelica.PointList.con2.u1"
         },
@@ -80,21 +80,21 @@
           "@id": "http://example.org#FromModelica.PointList.con2.y"
         }
       ],
-      "S231P:label": "con2"
+      "S231:label": "con2"
     },
     {
       "@id": "http://example.org#FromModelica.PointList.con2.y",
-      "S231P:isConnectedTo": {
+      "S231:isConnectedTo": {
         "@id": "http://example.org#FromModelica.PointList.y1"
       }
     },
     {
       "@id": "http://example.org#FromModelica.PointList.u1",
-      "@type": "S231P:RealInput",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Input one",
-      "S231P:graphics": "Placement(transformation(extent={{-140,40},{-100,80}})),iconTransformation(extent={{-140,40},{-100,80}})))",
-      "S231P:isConnectedTo": [
+      "@type": "S231:RealInput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Input one",
+      "S231:graphics": "Placement(transformation(extent={{-140,40},{-100,80}})),iconTransformation(extent={{-140,40},{-100,80}})))",
+      "S231:isConnectedTo": [
         {
           "@id": "http://example.org#FromModelica.PointList.con1.u1"
         },
@@ -102,15 +102,15 @@
           "@id": "http://example.org#FromModelica.PointList.con2.u1"
         }
       ],
-      "S231P:label": "u1"
+      "S231:label": "u1"
     },
     {
       "@id": "http://example.org#FromModelica.PointList.u2",
-      "@type": "S231P:RealInput",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Input two",
-      "S231P:graphics": "Placement(transformation(extent={{-140,-80},{-100,-40}})),iconTransformation(extent={{-140,-80},{-100,-40}})))",
-      "S231P:isConnectedTo": [
+      "@type": "S231:RealInput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Input two",
+      "S231:graphics": "Placement(transformation(extent={{-140,-80},{-100,-40}})),iconTransformation(extent={{-140,-80},{-100,-40}})))",
+      "S231:isConnectedTo": [
         {
           "@id": "http://example.org#FromModelica.PointList.con1.u2"
         },
@@ -118,23 +118,23 @@
           "@id": "http://example.org#FromModelica.PointList.con2.u2"
         }
       ],
-      "S231P:label": "u2"
+      "S231:label": "u2"
     },
     {
       "@id": "http://example.org#FromModelica.PointList.y1",
-      "@type": "S231P:RealOutput",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Output one",
-      "S231P:graphics": "Placement(transformation(extent={{100,-80},{140,-40}})),iconTransformation(extent={{100,40},{140,80}})))",
-      "S231P:label": "y1"
+      "@type": "S231:RealOutput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Output one",
+      "S231:graphics": "Placement(transformation(extent={{100,-80},{140,-40}})),iconTransformation(extent={{100,40},{140,80}})))",
+      "S231:label": "y1"
     },
     {
       "@id": "http://example.org#FromModelica.PointList.y2",
-      "@type": "S231P:RealOutput",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Output two",
-      "S231P:graphics": "Placement(transformation(extent={{100,40},{140,80}})),iconTransformation(extent={{100,-80},{140,-40}})))",
-      "S231P:label": "y2"
+      "@type": "S231:RealOutput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Output two",
+      "S231:graphics": "Placement(transformation(extent={{100,40},{140,80}})),iconTransformation(extent={{100,-80},{140,-40}})))",
+      "S231:label": "y2"
     }
   ]
 }
