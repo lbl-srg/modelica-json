@@ -1,28 +1,28 @@
 {
   "@context": {
-    "S231P": "https://data.ashrae.org/S231P#"
+    "S231": "http://data.ashrae.org/S231#"
   },
   "@graph": [
     {
-      "@id": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Types.Smoothness",
-      "@type": "S231P:EnumerationType",
-      "S231P:description": "Enumeration defining the smoothness of table interpolation",
-      "S231P:label": "Smoothness",
-      "S231P:value": "Smoothness"
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.Smoothness",
+      "@type": "S231:EnumerationType",
+      "S231:description": "Enumeration defining the smoothness of table interpolation",
+      "S231:label": "Smoothness",
+      "S231:value": "Smoothness"
     },
     {
-      "@id": "https://data.ashrae.org/S231P#Smoothness.ConstantSegments",
-      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Types.Smoothness",
-      "S231P:description": "Table points are not interpolated, but the previous tabulated value is returned",
-      "S231P:label": "ConstantSegments",
-      "S231P:value": "ConstantSegments"
+      "@id": "http://data.ashrae.org/S231#Smoothness.ConstantSegments",
+      "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.Smoothness",
+      "S231:description": "Table points are not interpolated, but the previous tabulated value is returned",
+      "S231:label": "ConstantSegments",
+      "S231:value": "ConstantSegments"
     },
     {
-      "@id": "https://data.ashrae.org/S231P#Smoothness.LinearSegments",
-      "@type": "https://data.ashrae.org/S231P#Buildings.Controls.OBC.CDL.Types.Smoothness",
-      "S231P:description": "Table points are linearly interpolated",
-      "S231P:label": "LinearSegments",
-      "S231P:value": "LinearSegments"
+      "@id": "http://data.ashrae.org/S231#Smoothness.LinearSegments",
+      "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.Smoothness",
+      "S231:description": "Table points are linearly interpolated",
+      "S231:label": "LinearSegments",
+      "S231:value": "LinearSegments"
     }
   ]
 }

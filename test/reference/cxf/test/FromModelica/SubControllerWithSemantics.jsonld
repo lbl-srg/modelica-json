@@ -1,38 +1,38 @@
 {
   "@context": {
-    "S231P": "https://data.ashrae.org/S231P#"
+    "S231": "http://data.ashrae.org/S231#"
   },
   "@graph": [
     {
       "@id": "http://example.org#FromModelica.SubControllerWithSemantics",
-      "@type": "S231P:Block",
-      "S231P:controlledDevice": "Sub Device",
-      "S231P:diagram": "coordinateSystem(preserveAspectRatio=false)",
-      "S231P:generatePointlist": true,
-      "S231P:hasInput": {
+      "@type": "S231:Block",
+      "S231:controlledDevice": "Sub Device",
+      "S231:diagram": "coordinateSystem(preserveAspectRatio=false)",
+      "S231:generatePointlist": true,
+      "S231:hasInput": {
         "@id": "http://example.org#FromModelica.SubControllerWithSemantics.u"
       },
-      "S231P:hasOutput": {
+      "S231:hasOutput": {
         "@id": "http://example.org#FromModelica.SubControllerWithSemantics.y"
       },
-      "S231P:icon": "coordinateSystem(preserveAspectRatio=false),graphics={Rectangle(extent={{-100,-100},{100,100}},lineColor={0,0,127},fillColor={255,255,255},fillPattern=FillPattern.Solid),Text(textString=\"%name\",extent={{-100,100},{100,140}},lineColor={0,0,255})}",
-      "S231P:label": "SubControllerWithSemantics"
+      "S231:icon": "coordinateSystem(preserveAspectRatio=false),graphics={Rectangle(extent={{-100,-100},{100,100}},lineColor={0,0,127},fillColor={255,255,255},fillPattern=FillPattern.Solid),Text(textString=\"%name\",extent={{-100,100},{100,140}},lineColor={0,0,255})}",
+      "S231:label": "SubControllerWithSemantics"
     },
     {
       "@id": "http://example.org#FromModelica.SubControllerWithSemantics.u",
-      "@type": "S231P:RealInput",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Real input",
-      "S231P:graphics": "Placement(transformation(extent={{-140,-20},{-100,20}})),iconTransformation(extent={{-140,-20},{-100,20}})))",
-      "S231P:label": "u"
+      "@type": "S231:RealInput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Real input",
+      "S231:graphics": "Placement(transformation(extent={{-140,-20},{-100,20}})),iconTransformation(extent={{-140,-20},{-100,20}})))",
+      "S231:label": "u"
     },
     {
       "@id": "http://example.org#FromModelica.SubControllerWithSemantics.y",
-      "@type": "S231P:RealOutput",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Real output",
-      "S231P:graphics": "Placement(transformation(extent={{100,-20},{140,20}})),iconTransformation(extent={{100,-20},{140,20}})))",
-      "S231P:label": "y"
+      "@type": "S231:RealOutput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Real output",
+      "S231:graphics": "Placement(transformation(extent={{100,-20},{140,20}})),iconTransformation(extent={{100,-20},{140,20}})))",
+      "S231:label": "y"
     }
   ]
 }

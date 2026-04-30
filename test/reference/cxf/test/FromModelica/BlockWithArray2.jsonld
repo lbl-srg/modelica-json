@@ -1,28 +1,28 @@
 {
   "@context": {
-    "S231P": "https://data.ashrae.org/S231P#"
+    "S231": "http://data.ashrae.org/S231#"
   },
   "@graph": [
     {
       "@id": "http://example.org#FromModelica.BlockWithArray2",
-      "@type": "S231P:Block",
-      "S231P:hasParameter": {
+      "@type": "S231:Block",
+      "S231:hasParameter": {
         "@id": "http://example.org#FromModelica.BlockWithArray2.k"
       },
-      "S231P:label": "BlockWithArray2"
+      "S231:label": "BlockWithArray2"
     },
     {
       "@id": "http://example.org#FromModelica.BlockWithArray2.k",
-      "@type": "S231P:Parameter",
-      "S231P:accessSpecifier": "public",
-      "S231P:isArray": true,
-      "S231P:isOfDataType": {
-        "@id": "S231P:Real"
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:isArray": true,
+      "S231:isOfDataType": {
+        "@id": "S231:Real"
       },
-      "S231P:label": "k[2,3]",
-      "S231P:numberDimensions": 2,
-      "S231P:sizeOfDimensions": "(2,3)",
-      "S231P:value": "{i*0.5 +j for i in 1:2, j in 1:3}"
+      "S231:label": "k[2,3]",
+      "S231:numberDimensions": 2,
+      "S231:sizeOfDimensions": "(2,3)",
+      "S231:value": "{i*0.5 +j for i in 1:2, j in 1:3}"
     }
   ]
 }

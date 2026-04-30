@@ -1,17 +1,17 @@
 {
   "@context": {
-    "S231P": "https://data.ashrae.org/S231P#"
+    "S231": "http://data.ashrae.org/S231#"
   },
   "@graph": [
     {
       "@id": "http://example.org#FromModelica.ExtendsClause_1",
-      "@type": "S231P:Block",
-      "S231P:containsBlock": {
+      "@type": "S231:Block",
+      "S231:containsBlock": {
         "@id": "http://example.org#FromModelica.ExtendsClause_1.gain"
       },
-      "S231P:documentation": "info=<html>\ntest...test...test...test...test...\n</html>,revisions=<html>\ntest...test...test...\n</html>",
-      "S231P:extends": "Buildings.Controls.OBC.CDL.Reals.PID(k=2, Ti=2)",
-      "S231P:hasParameter": [
+      "S231:documentation": "info=<html>\ntest...test...test...test...test...\n</html>,revisions=<html>\ntest...test...test...\n</html>",
+      "S231:extends": "Buildings.Controls.OBC.CDL.Reals.PID(k=2, Ti=2)",
+      "S231:hasParameter": [
         {
           "@id": "http://example.org#FromModelica.ExtendsClause_1.ARound"
         },
@@ -19,36 +19,36 @@
           "@id": "http://example.org#FromModelica.ExtendsClause_1.length"
         }
       ],
-      "S231P:label": "ExtendsClause_1"
+      "S231:label": "ExtendsClause_1"
     },
     {
       "@id": "http://example.org#FromModelica.ExtendsClause_1.ARound",
-      "S231P:accessSpecifier": "protected",
-      "S231P:description": "Cross sectional area (assuming a round cross section area)",
-      "S231P:label": "ARound",
-      "S231P:value": "dh^2*Modelica.Constants.pi/4"
+      "S231:accessSpecifier": "protected",
+      "S231:description": "Cross sectional area (assuming a round cross section area)",
+      "S231:label": "ARound",
+      "S231:value": "dh^2*Modelica.Constants.pi/4"
     },
     {
       "@id": "http://example.org#FromModelica.ExtendsClause_1.gain",
       "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Constant gain",
-      "S231P:graphics": "Placement(transformation(extent={{-60,-50},{-40,-30}})))",
-      "S231P:hasInstance": {
+      "S231:accessSpecifier": "public",
+      "S231:description": "Constant gain",
+      "S231:graphics": "Placement(transformation(extent={{-60,-50},{-40,-30}})))",
+      "S231:hasInstance": {
         "@id": "http://example.org#FromModelica.ExtendsClause_1.gain.k"
       },
-      "S231P:label": "gain"
+      "S231:label": "gain"
     },
     {
       "@id": "http://example.org#FromModelica.ExtendsClause_1.gain.k",
-      "S231P:isFinal": true,
-      "S231P:value": "k"
+      "S231:isFinal": true,
+      "S231:value": "k"
     },
     {
       "@id": "http://example.org#FromModelica.ExtendsClause_1.length",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Length of the pipe",
-      "S231P:label": "length"
+      "S231:accessSpecifier": "public",
+      "S231:description": "Length of the pipe",
+      "S231:label": "length"
     }
   ]
 }

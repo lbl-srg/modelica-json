@@ -118,7 +118,7 @@ This parser takes a .mo file in input and has three possible outputs, that can b
 - **raw-json** : detailed transcription of a Modelica file in JSON
 - **json**: simplified JSON format, easier to read and interpret
 - **semantic**: generate semantic model from semantic information included within `annotation` in the Modelica file
-- **cxf**: generate CXF representation in `.jsonld` of a CDL sequence complying with ASHRAE S231P
+- **cxf**: generate CXF representation in `.jsonld` of a CDL sequence complying with ASHRAE S231
 - **doc**: create the documentation of the sequence of operation in an HTML document
 - **doc+**: create the documentation of the sequence of operation and the list of all variables in an HTML document
 

@@ -1,12 +1,12 @@
 {
   "@context": {
-    "S231P": "https://data.ashrae.org/S231P#"
+    "S231": "http://data.ashrae.org/S231#"
   },
   "@graph": [
     {
       "@id": "http://example.org#FromModelica.TestEvaluation_3",
-      "@type": "S231P:Block",
-      "S231P:containsBlock": [
+      "@type": "S231:Block",
+      "S231:containsBlock": [
         {
           "@id": "http://example.org#FromModelica.TestEvaluation_3.con"
         },
@@ -14,8 +14,8 @@
           "@id": "http://example.org#FromModelica.TestEvaluation_3.con1"
         }
       ],
-      "S231P:diagram": "coordinateSystem(preserveAspectRatio=false)",
-      "S231P:hasParameter": [
+      "S231:diagram": "coordinateSystem(preserveAspectRatio=false)",
+      "S231:hasParameter": [
         {
           "@id": "http://example.org#FromModelica.TestEvaluation_3.k1"
         },
@@ -23,64 +23,64 @@
           "@id": "http://example.org#FromModelica.TestEvaluation_3.k2"
         }
       ],
-      "S231P:icon": "coordinateSystem(preserveAspectRatio=false)",
-      "S231P:label": "TestEvaluation_3"
+      "S231:icon": "coordinateSystem(preserveAspectRatio=false)",
+      "S231:label": "TestEvaluation_3"
     },
     {
       "@id": "http://example.org#FromModelica.TestEvaluation_3.con",
       "@type": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Sources.Constant",
-      "S231P:accessSpecifier": "public",
-      "S231P:conditionalExpression": "not undefined",
-      "S231P:description": "Constant",
-      "S231P:graphics": "Placement(transformation(extent={{-10,10},{10,30}})))",
-      "S231P:hasInstance": {
+      "S231:accessSpecifier": "public",
+      "S231:conditionalExpression": "not undefined",
+      "S231:description": "Constant",
+      "S231:graphics": "Placement(transformation(extent={{-10,10},{10,30}})))",
+      "S231:hasInstance": {
         "@id": "http://example.org#FromModelica.TestEvaluation_3.con.k"
       },
-      "S231P:isConditionalComponent": true,
-      "S231P:label": "con"
+      "S231:isConditionalComponent": true,
+      "S231:label": "con"
     },
     {
       "@id": "http://example.org#FromModelica.TestEvaluation_3.con.k",
-      "S231P:isFinal": true,
-      "S231P:value": "k2"
+      "S231:isFinal": true,
+      "S231:value": "k2"
     },
     {
       "@id": "http://example.org#FromModelica.TestEvaluation_3.con1",
       "@type": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Sources.Constant",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Constant",
-      "S231P:graphics": "Placement(transformation(extent={{-8,-30},{12,-10}})))",
-      "S231P:hasInstance": {
+      "S231:accessSpecifier": "public",
+      "S231:description": "Constant",
+      "S231:graphics": "Placement(transformation(extent={{-8,-30},{12,-10}})))",
+      "S231:hasInstance": {
         "@id": "http://example.org#FromModelica.TestEvaluation_3.con1.k"
       },
-      "S231P:label": "con1"
+      "S231:label": "con1"
     },
     {
       "@id": "http://example.org#FromModelica.TestEvaluation_3.con1.k",
-      "S231P:isFinal": true,
-      "S231P:value": "k1"
+      "S231:isFinal": true,
+      "S231:value": "k1"
     },
     {
       "@id": "http://example.org#FromModelica.TestEvaluation_3.k1",
-      "@type": "S231P:Parameter",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Constant output value",
-      "S231P:isOfDataType": {
-        "@id": "S231P:Boolean"
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Constant output value",
+      "S231:isOfDataType": {
+        "@id": "S231:Boolean"
       },
-      "S231P:label": "k1",
-      "S231P:value": true
+      "S231:label": "k1",
+      "S231:value": true
     },
     {
       "@id": "http://example.org#FromModelica.TestEvaluation_3.k2",
-      "@type": "S231P:Parameter",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Boolean parameter 2",
-      "S231P:isOfDataType": {
-        "@id": "S231P:Boolean"
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Boolean parameter 2",
+      "S231:isOfDataType": {
+        "@id": "S231:Boolean"
       },
-      "S231P:label": "k2",
-      "S231P:value": "not undefined"
+      "S231:label": "k2",
+      "S231:value": "not undefined"
     }
   ]
 }
