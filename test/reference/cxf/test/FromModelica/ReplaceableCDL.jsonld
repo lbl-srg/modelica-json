@@ -1,37 +1,37 @@
 {
   "@context": {
-    "S231P": "https://data.ashrae.org/S231P#"
+    "S231": "http://data.ashrae.org/S231#"
   },
   "@graph": [
     {
       "@id": "http://example.org#.ReplaceableCDL",
-      "@type": "S231P:Block",
-      "S231P:containsBlock": {
+      "@type": "S231:Block",
+      "S231:containsBlock": {
         "@id": "http://example.org#.ReplaceableCDL.conPID"
       },
-      "S231P:hasParameter": {
+      "S231:hasParameter": {
         "@id": "http://example.org#.ReplaceableCDL.k"
       },
-      "S231P:label": "ReplaceableCDL"
+      "S231:label": "ReplaceableCDL"
     },
     {
       "@id": "http://example.org#.ReplaceableCDL.conPID",
       "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID",
-      "S231P:accessSpecifier": "public",
-      "S231P:constrainedBy": "Buildings.Controls.OBC.CDL.Reals.PID",
-      "S231P:isReplaceable": true,
-      "S231P:label": "conPID"
+      "S231:accessSpecifier": "public",
+      "S231:constrainedBy": "Buildings.Controls.OBC.CDL.Reals.PID",
+      "S231:isReplaceable": true,
+      "S231:label": "conPID"
     },
     {
       "@id": "http://example.org#.ReplaceableCDL.k",
-      "@type": "S231P:Parameter",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Proportional gain",
-      "S231P:isOfDataType": {
-        "@id": "S231P:Real"
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Proportional gain",
+      "S231:isOfDataType": {
+        "@id": "S231:Real"
       },
-      "S231P:label": "k",
-      "S231P:value": 2
+      "S231:label": "k",
+      "S231:value": 2
     }
   ]
 }
