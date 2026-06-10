@@ -1,18 +1,19 @@
 {
   "@context": {
-    "S231": "http://data.ashrae.org/S231#"
+    "S231": "http://data.ashrae.org/S231#",
+    "ex": "http://example.org#"
   },
   "@graph": [
     {
-      "@id": "http://example.org#.package",
+      "@id": "ex:package",
       "@type": "S231:Block",
       "S231:hasConstant": {
-        "@id": "http://example.org#.package.one"
+        "@id": "ex:package.one"
       },
       "S231:label": "FromModelica"
     },
     {
-      "@id": "http://example.org#.package.one",
+      "@id": "ex:package.one",
       "@type": "S231:Constant",
       "S231:accessSpecifier": "public",
       "S231:description": "An integer constant with value 1",

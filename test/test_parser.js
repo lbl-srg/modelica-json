@@ -10,7 +10,7 @@ const glob = require('glob-promise')
 const logger = require('winston')
 const se = require('../lib/semanticExtractor.js')
 const ce = require('../lib/cxfExtractor.js')
-// const cheerio = require('cheerio')
+const rdflib = require('rdflib')
 
 logger.configure({
   transports: [
@@ -57,6 +57,69 @@ function removeEmptyFields (obj) {
     }
   }
   return newObj
+}
+
+/**
+ * Parse a JSON-LD string into a sorted array of canonical triple strings.
+ *
+ * rdflib fully expands every IRI using the document's own @context, so the
+ * result is independent of which prefixes were used in the serialization
+ * (e.g. `S231:Block` and `http://data.ashrae.org/S231#Block`, or an
+ * abbreviated `exa:Foo` vs a full `http://example.org#Foo`, all collapse to
+ * the same triples). CXF documents contain no blank nodes (every node has an
+ * explicit @id), so two graphs are equal iff their triple sets are equal.
+ *
+ * rdflib's JSON-LD parsing is asynchronous (the statements are only available
+ * once the callback fires), so this returns a Promise.
+ *
+ * @param {string} jsonldString - The raw JSON-LD document content.
+ * @returns {Promise<string[]>} Sorted canonical triples.
+ */
+function cxfTriples (jsonldString) {
+  return new Promise((resolve, reject) => {
+    const graph = rdflib.graph()
+    rdflib.parse(jsonldString, graph, 'http://example.org/cxf-comparison', 'application/ld+json', (err) => {
+      if (err) {
+        reject(err)
+        return
+      }
+      resolve(graph.statements.map(st => {
+        const o = st.object
+        const datatype = (o.termType === 'Literal' && o.datatype) ? o.datatype.value : ''
+        const language = (o.termType === 'Literal' && o.language) ? o.language : ''
+        return [st.subject.value, st.predicate.value, o.termType, o.value, datatype, language].join(' | ')
+      }).sort())
+    })
+  })
+}
+
+/**
+ * Assert that two CXF JSON-LD documents describe the same RDF graph, ignoring
+ * prefix/serialization differences. On failure it reports the diverging
+ * triples instead of an opaque string mismatch.
+ *
+ * @param {string} actualString - Generated JSON-LD content.
+ * @param {string} expectedString - Reference JSON-LD content.
+ * @param {string} message - Assertion message prefix.
+ */
+async function assertCxfGraphsEqual (actualString, expectedString, message) {
+  const actual = await cxfTriples(actualString)
+  const expected = await cxfTriples(expectedString)
+  // A valid CXF document always yields at least one triple (the block's type).
+  // Guard against a silent parse failure making two empty graphs trivially equal.
+  as.ok(expected.length > 0, message + '\n  reference graph parsed to 0 triples (parse failure?)')
+  const actualSet = new Set(actual)
+  const expectedSet = new Set(expected)
+  const onlyInActual = actual.filter(t => !expectedSet.has(t))
+  const onlyInExpected = expected.filter(t => !actualSet.has(t))
+  as.deepEqual(
+    { onlyInActual, onlyInExpected },
+    { onlyInActual: [], onlyInExpected: [] },
+    message +
+      '\n  ' + onlyInActual.length + ' triple(s) only in actual, ' + onlyInExpected.length + ' only in expected.' +
+      (onlyInActual.length ? '\n  e.g. only in actual:   ' + onlyInActual[0] : '') +
+      (onlyInExpected.length ? '\n  e.g. only in expected: ' + onlyInExpected[0] : '')
+  )
 }
 
 /** Function that checks parsing from Modelica to JSON, in 'cdl' parsing mode
@@ -260,7 +323,7 @@ const checkObjectsJSON = function (outFormat, extension, message) {
 const checkCxfJson = function (outFormat, extension, message) {
   const mode = 'modelica'
   // process.env.MODELICAPATH = __dirname
-  mo.it(message, () => {
+  mo.it(message, async () => {
     // mo files package to be tested
     const testMoFilesTemp = getIntFiles(mode)
     const testMoFiles = ut.getMoFiles(testMoFilesTemp)
@@ -288,19 +351,17 @@ const checkCxfJson = function (outFormat, extension, message) {
       const fileNameMOD = files[i].slice(idx2 + 1, -3) + extension
       if (!filesToExclude.includes(files[i])) {
         const oldFileMOD = path.join(expectedOutputPath, fileNameMOD)
-        // Read the old json
-        const jsonOldMOD = removeEmptyFields(JSON.parse(fs.readFileSync(oldFileMOD, 'utf8')))
-
         const jsonNewMOD = path.join(actualOutputPath, fileNameMOD)
-        const neMOD = removeEmptyFields(JSON.parse(fs.readFileSync(jsonNewMOD, 'utf8')))
-
-        const tempOld = JSON.stringify(jsonOldMOD)
-        const tempNew = JSON.stringify(neMOD)
-        as.notEqual(tempOld, undefined, 'JSON is undefined')
-        as.deepEqual(tempNew, tempOld, 'JSON result differs for ' + oldFileMOD)
+        // Compare the generated and reference CXF as RDF graphs so that
+        // differences in how IRIs are abbreviated (prefixes / @context) are
+        // ignored and only the actual triples are compared.
+        const expectedString = fs.readFileSync(oldFileMOD, 'utf8')
+        const actualString = fs.readFileSync(jsonNewMOD, 'utf8')
+        as.notEqual(expectedString, undefined, 'JSON is undefined')
+        await assertCxfGraphsEqual(actualString, expectedString, 'CXF graph differs for ' + oldFileMOD)
       } else {
         const jsonLdPath = path.join(actualOutputPath, fileNameMOD)
-        as.throws(function () { fs.readFileSync(jsonLdPath, 'utf8') }, Error, 'asd')
+        as.throws(function () { fs.readFileSync(jsonLdPath, 'utf8') }, Error, 'Error should be thrown for CXF generation of' + jsonLdPath)
       }
     }
     ut.removeDir(testOutputDir)
@@ -317,7 +378,7 @@ const checkCxfJson = function (outFormat, extension, message) {
   })
 }
 
-function checkCxfCoreGeneration () {
+async function checkCxfCoreGeneration () {
   const cdlPath = path.join('Buildings', 'Controls', 'OBC', 'CDL')
   const testMoFiles = ut.getMoFiles(cdlPath)
 
@@ -330,12 +391,13 @@ function checkCxfCoreGeneration () {
   ce.getCxfCore(path.join(process.cwd(), cdlPath), 'current', true)
 
   const actualOutputCxfCorePath = path.join(process.cwd(), 'cxf', 'CXF-Core.jsonld')
-  const actualOutputCxfCore = JSON.stringify(removeEmptyFields(JSON.parse(fs.readFileSync(actualOutputCxfCorePath, 'utf8'))))
+  const actualOutputCxfCore = fs.readFileSync(actualOutputCxfCorePath, 'utf8')
 
   const refOutputCxfCorePath = path.join(process.cwd(), 'test', 'reference', 'cxf', 'CXF-Core.jsonld')
-  const refOutputCxfCore = JSON.stringify(removeEmptyFields(JSON.parse(fs.readFileSync(refOutputCxfCorePath, 'utf8'))))
+  const refOutputCxfCore = fs.readFileSync(refOutputCxfCorePath, 'utf8')
 
-  as.deepEqual(actualOutputCxfCore, refOutputCxfCore, 'CXF-Core.jsonld different for generated file=' + actualOutputCxfCorePath + ' and reference file=' + refOutputCxfCorePath)
+  // Compare as RDF graphs so prefix/serialization differences are ignored.
+  await assertCxfGraphsEqual(actualOutputCxfCore, refOutputCxfCore, 'CXF-Core.jsonld different for generated file=' + actualOutputCxfCorePath + ' and reference file=' + refOutputCxfCorePath)
   ut.removeDir(cxfTestOutputDir)
   // delete new json output files
   const jsonOutputDir = path.join(process.cwd(), 'json')
@@ -369,8 +431,8 @@ mo.describe('parser.js', function () {
     checkCxfJson('cxf', '.jsonld', 'Testing json for equality, "cdl" mode')
   })
   mo.describe('Testing CXF-Core.jsonld generation', function () {
-    mo.it('check CXF-Core.jsonld generation and comparison', () => {
-      checkCxfCoreGeneration()
+    mo.it('check CXF-Core.jsonld generation and comparison', async () => {
+      await checkCxfCoreGeneration()
     })
   })
   mo.describe('Testing call to getJsons', function () {
