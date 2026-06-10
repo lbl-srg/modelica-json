@@ -25,5 +25,4 @@ class Enum_listVisitor {
 
 Enum_listVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitEnum_list = this.visitEnum_list
 exports.Enum_listVisitor = Enum_listVisitor

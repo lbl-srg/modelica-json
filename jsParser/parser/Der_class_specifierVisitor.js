@@ -44,5 +44,4 @@ class Der_class_specifierVisitor {
 
 Der_class_specifierVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitDer_class_specifier = this.visitDer_class_specifier
 exports.Der_class_specifierVisitor = Der_class_specifierVisitor

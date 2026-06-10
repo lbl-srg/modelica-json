@@ -95,5 +95,4 @@ class CompositionVisitor {
 
 CompositionVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitComposition = this.visitComposition
 exports.CompositionVisitor = CompositionVisitor

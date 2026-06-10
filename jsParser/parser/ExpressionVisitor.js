@@ -48,5 +48,4 @@ class ExpressionVisitor {
 
 ExpressionVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitExpression = this.visitExpression
 exports.ExpressionVisitor = ExpressionVisitor

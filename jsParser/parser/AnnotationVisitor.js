@@ -22,5 +22,4 @@ class AnnotationVisitor {
 
 AnnotationVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitAnnotation = this.visitAnnotation
 exports.AnnotationVisitor = AnnotationVisitor

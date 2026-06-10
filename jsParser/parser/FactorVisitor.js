@@ -34,5 +34,4 @@ class FactorVisitor {
 
 FactorVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitFactor = this.visitFactor
 exports.FactorVisitor = FactorVisitor

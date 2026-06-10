@@ -61,5 +61,4 @@ class Short_class_specifierVisitor {
 
 Short_class_specifierVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitShort_class_specifier = this.visitShort_class_specifier
 exports.Short_class_specifierVisitor = Short_class_specifierVisitor

@@ -66,5 +66,4 @@ class PrimaryVisitor {
 
 PrimaryVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitPrimary = this.visitPrimary
 exports.PrimaryVisitor = PrimaryVisitor

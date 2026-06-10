@@ -14,5 +14,4 @@ class Rel_opVisitor {
 
 Rel_opVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitRel_op = this.visitRel_op
 exports.Rel_opVisitor = Rel_opVisitor

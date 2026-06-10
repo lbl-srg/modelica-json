@@ -75,5 +75,4 @@ class If_statementVisitor {
 
 If_statementVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitIf_statement = this.visitIf_statement
 exports.If_statementVisitor = If_statementVisitor

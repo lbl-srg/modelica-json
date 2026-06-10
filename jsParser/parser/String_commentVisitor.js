@@ -29,5 +29,4 @@ class String_commentVisitor {
 
 String_commentVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitString_comment = this.visitString_comment
 exports.String_commentVisitor = String_commentVisitor

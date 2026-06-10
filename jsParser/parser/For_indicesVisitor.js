@@ -25,5 +25,4 @@ class For_indicesVisitor {
 
 For_indicesVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitFor_equation = this.visitFor_equation
 exports.For_indicesVisitor = For_indicesVisitor

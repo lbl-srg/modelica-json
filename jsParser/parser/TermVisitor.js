@@ -32,5 +32,4 @@ class TermVisitor {
 
 TermVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitTerm = this.visitTerm
 exports.TermVisitor = TermVisitor

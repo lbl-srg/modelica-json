@@ -27,5 +27,4 @@ class Named_argumentsVisitor {
 
 Named_argumentsVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitNamed_arguments = this.visitNamed_arguments
 exports.Named_argumentsVisitor = Named_argumentsVisitor

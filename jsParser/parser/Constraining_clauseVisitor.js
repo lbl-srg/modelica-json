@@ -30,5 +30,4 @@ class Constraining_clauseVisitor {
 
 Constraining_clauseVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitConstraining_clause = this.visitConstraining_clause
 exports.Constraining_clauseVisitor = Constraining_clauseVisitor

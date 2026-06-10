@@ -24,5 +24,4 @@ class Logical_factorVisitor {
 
 Logical_factorVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitLogical_factor = this.visitLogical_factor
 exports.Logical_factorVisitor = Logical_factorVisitor

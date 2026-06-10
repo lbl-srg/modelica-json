@@ -26,5 +26,4 @@ class Algorithm_sectionVisitor {
 
 Algorithm_sectionVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitAlgorithm_section = this.visitAlgorithm_section
 exports.Algorithm_sectionVisitor = Algorithm_sectionVisitor

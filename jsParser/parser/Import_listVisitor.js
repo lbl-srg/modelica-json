@@ -22,5 +22,4 @@ class Import_listVisitor {
 
 Import_listVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitImport_list = this.visitImport_list
 exports.Import_listVisitor = Import_listVisitor

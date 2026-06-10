@@ -37,5 +37,4 @@ class Element_redeclarationVisitor {
 
 Element_redeclarationVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitElement_redeclaration = this.visitElement_redeclaration
 exports.Element_redeclarationVisitor = Element_redeclarationVisitor

@@ -62,5 +62,4 @@ class Component_referenceVisitor {
 
 Component_referenceVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitComponent_reference = this.visitComponent_reference
 exports.Component_referenceVisitor = Component_referenceVisitor

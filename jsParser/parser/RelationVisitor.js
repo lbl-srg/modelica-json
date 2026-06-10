@@ -41,5 +41,4 @@ class RelationVisitor {
 
 RelationVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitRelation = this.visitRelation
 exports.RelationVisitor = RelationVisitor

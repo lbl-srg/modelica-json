@@ -61,5 +61,4 @@ class When_statementVisitor {
 
 When_statementVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitWhen_statement = this.visitWhen_statement
 exports.When_statementVisitor = When_statementVisitor

@@ -32,5 +32,4 @@ class Connect_clauseVisitor {
 
 Connect_clauseVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitConnect_clause = this.visitConnect_clause
 exports.Connect_clauseVisitor = Connect_clauseVisitor

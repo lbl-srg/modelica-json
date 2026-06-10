@@ -24,5 +24,4 @@ class Output_expression_listVisitor {
 
 Output_expression_listVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitOutput_expression_list = this.visitOutput_expression_list
 exports.Output_expression_listVisitor = Output_expression_listVisitor

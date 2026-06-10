@@ -55,4 +55,3 @@ class Stored_definitionVisitor {
 Stored_definitionVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.Stored_definitionVisitor = Stored_definitionVisitor
-exports.visitStored_definition = this.visitStored_definition

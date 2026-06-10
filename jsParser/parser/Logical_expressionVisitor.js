@@ -25,5 +25,4 @@ class Logical_expressionVisitor {
 
 Logical_expressionVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitLogical_expression = this.visitLogical_expression
 exports.Logical_expressionVisitor = Logical_expressionVisitor

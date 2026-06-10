@@ -28,5 +28,4 @@ class Enumeration_literalVisitor {
 
 Enumeration_literalVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitEnumeration_literal = this.visitEnumeration_literal
 exports.Enumeration_literalVisitor = Enumeration_literalVisitor

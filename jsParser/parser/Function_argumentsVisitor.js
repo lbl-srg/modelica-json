@@ -40,5 +40,4 @@ class Function_argumentsVisitor {
 
 Function_argumentsVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitFunction_arguments = this.visitFunction_arguments
 exports.Function_argumentsVisitor = Function_argumentsVisitor

@@ -66,5 +66,4 @@ class ElementVisitor {
 
 ElementVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitElement = this.visitElement
 exports.ElementVisitor = ElementVisitor

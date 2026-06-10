@@ -32,5 +32,4 @@ class For_equationVisitor {
 
 For_equationVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitFor_equation = this.visitFor_equation
 exports.For_equationVisitor = For_equationVisitor

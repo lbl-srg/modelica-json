@@ -88,5 +88,4 @@ class StatementVisitor {
 
 StatementVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitStatement = this.visitStatement
 exports.StatementVisitor = StatementVisitor

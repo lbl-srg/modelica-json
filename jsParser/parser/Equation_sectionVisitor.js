@@ -26,5 +26,4 @@ class Equation_sectionVisitor {
 
 Equation_sectionVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitEquation_section = this.visitEquation_section
 exports.Equation_sectionVisitor = Equation_sectionVisitor

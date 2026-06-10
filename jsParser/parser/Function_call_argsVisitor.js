@@ -23,5 +23,4 @@ class Function_call_argsVisitor {
 
 Function_call_argsVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitFunction_call_args = this.visitFunction_call_args
 exports.Function_call_argsVisitor = Function_call_argsVisitor

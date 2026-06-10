@@ -28,5 +28,4 @@ class CommentVisitor {
 
 CommentVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitComment = this.visitComment
 exports.CommentVisitor = CommentVisitor

@@ -29,5 +29,4 @@ class Short_class_definitionVisitor {
 
 Short_class_definitionVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitShort_class_definition = this.visitShort_class_definition
 exports.Short_class_definitionVisitor = Short_class_definitionVisitor

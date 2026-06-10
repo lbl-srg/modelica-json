@@ -23,5 +23,4 @@ class SubscriptVisitor {
 
 SubscriptVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitSubscript = this.visitSubscript
 exports.SubscriptVisitor = SubscriptVisitor

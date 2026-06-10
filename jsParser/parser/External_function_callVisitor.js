@@ -35,5 +35,4 @@ class External_function_callVisitor {
 
 External_function_callVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitEnum_list = this.visitEnum_list
 exports.External_function_callVisitor = External_function_callVisitor

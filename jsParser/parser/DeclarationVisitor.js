@@ -30,5 +30,4 @@ class DeclarationVisitor {
 
 DeclarationVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitDeclaration = this.visitDeclaration
 exports.DeclarationVisitor = DeclarationVisitor

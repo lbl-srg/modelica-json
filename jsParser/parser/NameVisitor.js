@@ -37,5 +37,4 @@ class NameVisitor {
 
 NameVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitName = this.visitName
 exports.NameVisitor = NameVisitor

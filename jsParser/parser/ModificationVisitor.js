@@ -31,5 +31,4 @@ class ModificationVisitor {
 
 ModificationVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitModification = this.visitModification
 exports.ModificationVisitor = ModificationVisitor

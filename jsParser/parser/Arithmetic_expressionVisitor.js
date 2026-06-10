@@ -44,5 +44,4 @@ class Arithmetic_expressionVisitor {
 
 Arithmetic_expressionVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitArithmetic_expression = this.visitArithmetic_expression
 exports.Arithmetic_expressionVisitor = Arithmetic_expressionVisitor

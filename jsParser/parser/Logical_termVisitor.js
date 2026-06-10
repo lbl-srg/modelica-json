@@ -25,5 +25,4 @@ class Logical_termVisitor {
 
 Logical_termVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitLogical_term = this.visitLogical_term
 exports.Logical_termVisitor = Logical_termVisitor

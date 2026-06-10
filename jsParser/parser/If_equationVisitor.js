@@ -74,5 +74,4 @@ class If_equationVisitor {
 
 If_equationVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitIf_equation = this.visitIf_equation
 exports.If_equationVisitor = If_equationVisitor

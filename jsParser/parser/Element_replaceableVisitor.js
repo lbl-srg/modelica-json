@@ -35,5 +35,4 @@ class Element_replaceableVisitor {
 
 Element_replaceableVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitElement_replaceable = this.visitElement_replaceable
 exports.Element_replaceableVisitor = Element_replaceableVisitor

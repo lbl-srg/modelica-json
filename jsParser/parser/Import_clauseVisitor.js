@@ -39,5 +39,4 @@ class Import_clauseVisitor {
 
 Import_clauseVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitImport_clause = this.visitImport_clause
 exports.Import_clauseVisitor = Import_clauseVisitor

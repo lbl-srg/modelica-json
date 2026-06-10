@@ -34,5 +34,4 @@ class Class_definitionVisitor {
 
 Class_definitionVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitClass_definition = this.visitClass_definition
 exports.Class_definitionVisitor = Class_definitionVisitor

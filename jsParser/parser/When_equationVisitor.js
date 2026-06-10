@@ -61,5 +61,4 @@ class When_equationVisitor {
 
 When_equationVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitWhen_equation = this.visitWhen_equation
 exports.When_equationVisitor = When_equationVisitor

@@ -23,5 +23,4 @@ class Base_prefixVisitor {
 
 Base_prefixVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitBase_prefix = this.visitBase_prefix
 exports.Base_prefixVisitor = Base_prefixVisitor

@@ -32,5 +32,4 @@ class While_statementVisitor {
 
 While_statementVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitWhile_statement = this.visitWhile_statement
 exports.While_statementVisitor = While_statementVisitor

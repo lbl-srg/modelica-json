@@ -23,5 +23,4 @@ class Type_specifierVisitor {
 
 Type_specifierVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitType_specifier = this.visitType_specifier
 exports.Type_specifierVisitor = Type_specifierVisitor

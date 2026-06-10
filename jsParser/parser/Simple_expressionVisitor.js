@@ -39,5 +39,4 @@ class Simple_expressionVisitor {
 
 Simple_expressionVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitSimple_expression = this.visitSimple_expression
 exports.Simple_expressionVisitor = Simple_expressionVisitor

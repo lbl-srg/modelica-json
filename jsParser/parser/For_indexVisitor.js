@@ -24,5 +24,4 @@ class For_indexVisitor {
 
 For_indexVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitFor_index = this.visitFor_index
 exports.For_indexVisitor = For_indexVisitor

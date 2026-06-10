@@ -46,5 +46,4 @@ class Long_class_specifierVisitor {
 
 Long_class_specifierVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitLong_class_specifier = this.visitLong_class_specifier
 exports.Long_class_specifierVisitor = Long_class_specifierVisitor

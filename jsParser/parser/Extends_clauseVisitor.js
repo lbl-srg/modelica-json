@@ -37,5 +37,4 @@ class Extends_clauseVisitor {
 
 Extends_clauseVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitExtends_clause = this.visitExtends_clause
 exports.Extends_clauseVisitor = Extends_clauseVisitor

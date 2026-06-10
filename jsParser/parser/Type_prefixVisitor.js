@@ -46,5 +46,4 @@ class Type_prefixVisitor {
 
 Type_prefixVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitType_prefix = this.visitType_prefix
 exports.Type_prefixVisitor = Type_prefixVisitor

@@ -32,5 +32,4 @@ class For_statementVisitor {
 
 For_statementVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitFor_statement = this.visitFor_statement
 exports.For_statementVisitor = For_statementVisitor

@@ -23,5 +23,4 @@ class Condition_attributeVisitor {
 
 Condition_attributeVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitCondition_attribute = this.visitCondition_attribute
 exports.Condition_attributeVisitor = Condition_attributeVisitor

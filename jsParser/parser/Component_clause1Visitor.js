@@ -34,5 +34,4 @@ class Component_clause1Visitor {
 
 Component_clause1Visitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitComponent_clause1 = this.visitComponent_clause1
 exports.Component_clause1Visitor = Component_clause1Visitor

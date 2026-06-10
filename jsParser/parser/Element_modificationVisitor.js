@@ -35,5 +35,4 @@ class Element_modificationVisitor {
 
 Element_modificationVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitElement_modification = this.visitElement_modification
 exports.Element_modificationVisitor = Element_modificationVisitor

@@ -29,5 +29,4 @@ class Component_declaration1Visitor {
 
 Component_declaration1Visitor.prototype = Object.create(modelicaVisitor.prototype)
 
-exports.visitComponent_declaration = this.visitComponent_declaration
 exports.Component_declaration1Visitor = Component_declaration1Visitor
