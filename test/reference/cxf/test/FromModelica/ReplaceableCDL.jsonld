@@ -1,50 +1,38 @@
 {
   "@context": {
-    "S231P": "https://data.ashrae.org/S231P#"
+    "S231": "http://data.ashrae.org/S231#",
+    "ex": "http://example.org#"
   },
   "@graph": [
     {
-      "@id": "http://example.org#.ReplaceableCDL",
-      "@type": "S231P:Block",
-      "S231P:containsBlock": [
-        {
-          "@id": "http://example.org#.ReplaceableCDL.conPID"
-        },
-        {
-          "@id": "http://example.org#.ReplaceableCDL.conPID2"
-        }
-      ],
-      "S231P:hasParameter": {
-        "@id": "http://example.org#.ReplaceableCDL.k"
+      "@id": "ex:ReplaceableCDL",
+      "@type": "S231:Block",
+      "S231:containsBlock": {
+        "@id": "ex:ReplaceableCDL.conPID"
       },
-      "S231P:label": "ReplaceableCDL"
-    },
-    {
-      "@id": "http://example.org#.ReplaceableCDL.conPID",
-      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID",
-      "S231P:accessSpecifier": "public",
-      "S231P:constrainedBy": "Buildings.Controls.OBC.CDL.Reals.PID(k=k)",
-      "S231P:isReplaceable": true,
-      "S231P:label": "conPID"
-    },
-    {
-      "@id": "http://example.org#.ReplaceableCDL.conPID2",
-      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PID",
-      "S231P:accessSpecifier": "public",
-      "S231P:constrainedBy": "Buildings.Controls.OBC.CDL.Reals.PID",
-      "S231P:isReplaceable": true,
-      "S231P:label": "conPID2"
-    },
-    {
-      "@id": "http://example.org#.ReplaceableCDL.k",
-      "@type": "S231P:Parameter",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Proportional gain",
-      "S231P:isOfDataType": {
-        "@id": "S231P:Real"
+      "S231:hasParameter": {
+        "@id": "ex:ReplaceableCDL.k"
       },
-      "S231P:label": "k",
-      "S231P:value": 2
+      "S231:label": "ReplaceableCDL"
+    },
+    {
+      "@id": "ex:ReplaceableCDL.conPID",
+      "@type": "ex:Buildings.Controls.OBC.CDL.Reals.PID",
+      "S231:accessSpecifier": "public",
+      "S231:constrainedBy": "Buildings.Controls.OBC.CDL.Reals.PID",
+      "S231:isReplaceable": true,
+      "S231:label": "conPID"
+    },
+    {
+      "@id": "ex:ReplaceableCDL.k",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Proportional gain",
+      "S231:isOfDataType": {
+        "@id": "S231:Real"
+      },
+      "S231:label": "k",
+      "S231:value": 2
     }
   ]
 }

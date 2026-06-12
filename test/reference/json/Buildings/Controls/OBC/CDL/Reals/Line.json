@@ -364,7 +364,30 @@
                         "if_elseif": [
                           {
                             "condition": {
-                              "simple_expression": "limitBelow or limitAbove"
+                              "simple_expression": {
+                                "logical_expression": {
+                                  "logical_or": [
+                                    {
+                                      "logical_and": [
+                                        {
+                                          "arithmetic_expressions": [
+                                            "limitBelow"
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "logical_and": [
+                                        {
+                                          "arithmetic_expressions": [
+                                            "limitAbove"
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              }
                             },
                             "then": [
                               {
@@ -381,12 +404,8 @@
                                                   "logical_and": [
                                                     {
                                                       "arithmetic_expressions": [
-                                                        {
-                                                          "name": "x2"
-                                                        },
-                                                        {
-                                                          "name": "x1"
-                                                        }
+                                                        "x2",
+                                                        "x1"
                                                       ],
                                                       "relation_operator": ">"
                                                     }
@@ -424,7 +443,31 @@
                       "assignment_equation": {
                         "lhs": "b",
                         "rhs": {
-                          "simple_expression": "(f2 -f1)/(x2 -x1)"
+                          "simple_expression": {
+                            "terms": [
+                              {
+                                "operators": [
+                                  "/"
+                                ],
+                                "factors": [
+                                  {
+                                    "primary1": [
+                                      {
+                                        "simple_expression": "f2 -f1"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "primary1": [
+                                      {
+                                        "simple_expression": "x2 -x1"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
                         }
                       }
                     },
@@ -441,7 +484,26 @@
                         "if_elseif": [
                           {
                             "condition": {
-                              "simple_expression": "limitBelow and limitAbove"
+                              "simple_expression": {
+                                "logical_expression": {
+                                  "logical_or": [
+                                    {
+                                      "logical_and": [
+                                        {
+                                          "arithmetic_expressions": [
+                                            "limitBelow"
+                                          ]
+                                        },
+                                        {
+                                          "arithmetic_expressions": [
+                                            "limitAbove"
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              }
                             },
                             "then": [
                               {
@@ -1216,7 +1278,7 @@
                                         "y": 10
                                       }
                                     ],
-                                    "textString": "DynamicSelect(\"\",String(y",
+                                    "textString": "DynamicSelect(\"\",String(y,leftJustified=false,significantDigits=3))",
                                     "textColor": {
                                       "r": 0,
                                       "g": 0,
@@ -1277,6 +1339,6 @@
     }
   ],
   "modelicaFile": "Buildings/Controls/OBC/CDL/Reals/Line.mo",
-  "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Line.mo",
+  "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/Line.mo",
   "checksum": "e1ee021fda204cc371918ade2cb5e3a9"
 }

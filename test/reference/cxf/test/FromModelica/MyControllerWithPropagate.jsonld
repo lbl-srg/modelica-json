@@ -1,13 +1,13 @@
 {
   "@context": {
-    "S231P": "https://data.ashrae.org/S231P#",
+    "S231": "http://data.ashrae.org/S231#",
     "ex": "http://example.org#"
   },
   "@graph": [
     {
       "@id": "http://example.org#FromModelica.MyControllerWithPropagate",
-      "@type": "S231P:Block",
-      "S231P:containsBlock": [
+      "@type": "S231:Block",
+      "S231:containsBlock": [
         {
           "@id": "http://example.org#FromModelica.MyControllerWithPropagate.add2"
         },
@@ -18,10 +18,10 @@
           "@id": "http://example.org#FromModelica.MyControllerWithPropagate.subCon2"
         }
       ],
-      "S231P:controlledDevice": "My Device",
-      "S231P:diagram": "coordinateSystem(preserveAspectRatio=false)",
-      "S231P:generatePointlist": true,
-      "S231P:hasInput": [
+      "S231:controlledDevice": "My Device",
+      "S231:diagram": "coordinateSystem(preserveAspectRatio=false)",
+      "S231:generatePointlist": true,
+      "S231:hasInput": [
         {
           "@id": "http://example.org#FromModelica.MyControllerWithPropagate.u1"
         },
@@ -29,19 +29,19 @@
           "@id": "http://example.org#FromModelica.MyControllerWithPropagate.u2"
         }
       ],
-      "S231P:hasOutput": {
+      "S231:hasOutput": {
         "@id": "http://example.org#FromModelica.MyControllerWithPropagate.y"
       },
-      "S231P:icon": "coordinateSystem(preserveAspectRatio=false),graphics={Rectangle(extent={{-100,-100},{100,100}},lineColor={0,0,127},fillColor={255,255,255},fillPattern=FillPattern.Solid),Text(textString=\"%name\",extent={{-100,100},{100,140}},lineColor={0,0,255})}",
-      "S231P:label": "MyController"
+      "S231:icon": "coordinateSystem(preserveAspectRatio=false),graphics={Rectangle(extent={{-100,-100},{100,100}},lineColor={0,0,127},fillColor={255,255,255},fillPattern=FillPattern.Solid),Text(textString=\"%name\",extent={{-100,100},{100,140}},lineColor={0,0,255})}",
+      "S231:label": "MyController"
     },
     {
       "@id": "http://example.org#FromModelica.MyControllerWithPropagate.add2",
       "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Add",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Add two real inputs",
-      "S231P:graphics": "Placement(transformation(extent={{-10,-10},{10,10}})))",
-      "S231P:hasInstance": [
+      "S231:accessSpecifier": "public",
+      "S231:description": "Add two real inputs",
+      "S231:graphics": "Placement(transformation(extent={{-10,-10},{10,10}})))",
+      "S231:hasInstance": [
         {
           "@id": "http://example.org#FromModelica.MyControllerWithPropagate.add2.u1"
         },
@@ -52,56 +52,56 @@
           "@id": "http://example.org#FromModelica.MyControllerWithPropagate.add2.y"
         }
       ],
-      "S231P:label": "add2"
+      "S231:label": "add2"
     },
     {
       "@id": "http://example.org#FromModelica.MyControllerWithPropagate.add2.y",
-      "S231P:isConnectedTo": {
+      "S231:isConnectedTo": {
         "@id": "http://example.org#FromModelica.MyControllerWithPropagate.y"
       }
     },
     {
       "@id": "http://example.org#FromModelica.MyControllerWithPropagate.subCon1",
       "@type": "ex:SubController",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Sub controller",
-      "S231P:generatePointlist": true,
-      "S231P:graphics": "Placement(transformation(extent={{-10,-50},{10,-30}})))",
-      "S231P:hasInstance": {
+      "S231:accessSpecifier": "public",
+      "S231:description": "Sub controller",
+      "S231:generatePointlist": true,
+      "S231:graphics": "Placement(transformation(extent={{-10,-50},{10,-30}})))",
+      "S231:hasInstance": {
         "@id": "http://example.org#FromModelica.MyControllerWithPropagate.subCon1.u"
       },
-      "S231P:label": "subCon1"
+      "S231:label": "subCon1"
     },
     {
       "@id": "http://example.org#FromModelica.MyControllerWithPropagate.subCon2",
       "@type": "ex:SubController",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Sub controller",
-      "S231P:generatePointlist": true,
-      "S231P:graphics": "Placement(transformation(extent={{-10,-90},{10,-70}})))",
-      "S231P:hasInstance": {
+      "S231:accessSpecifier": "public",
+      "S231:description": "Sub controller",
+      "S231:generatePointlist": true,
+      "S231:graphics": "Placement(transformation(extent={{-10,-90},{10,-70}})))",
+      "S231:hasInstance": {
         "@id": "http://example.org#FromModelica.MyControllerWithPropagate.subCon2.u"
       },
-      "S231P:label": "subCon2"
+      "S231:label": "subCon2"
     },
     {
       "@id": "http://example.org#FromModelica.MyControllerWithPropagate.u1",
-      "@type": "S231P:RealInput",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Real input 1",
-      "S231P:graphics": "Placement(transformation(extent={{-140,20},{-100,60}})),iconTransformation(extent={{-140,40},{-100,80}})))",
-      "S231P:isConnectedTo": {
+      "@type": "S231:RealInput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Real input 1",
+      "S231:graphics": "Placement(transformation(extent={{-140,20},{-100,60}})),iconTransformation(extent={{-140,40},{-100,80}})))",
+      "S231:isConnectedTo": {
         "@id": "http://example.org#FromModelica.MyControllerWithPropagate.add2.u1"
       },
-      "S231P:label": "u1"
+      "S231:label": "u1"
     },
     {
       "@id": "http://example.org#FromModelica.MyControllerWithPropagate.u2",
-      "@type": "S231P:RealInput",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Real input 2",
-      "S231P:graphics": "Placement(transformation(extent={{-140,-60},{-100,-20}})),iconTransformation(extent={{-140,-80},{-100,-40}})))",
-      "S231P:isConnectedTo": [
+      "@type": "S231:RealInput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Real input 2",
+      "S231:graphics": "Placement(transformation(extent={{-140,-60},{-100,-20}})),iconTransformation(extent={{-140,-80},{-100,-40}})))",
+      "S231:isConnectedTo": [
         {
           "@id": "http://example.org#FromModelica.MyControllerWithPropagate.add2.u2"
         },
@@ -112,15 +112,15 @@
           "@id": "http://example.org#FromModelica.MyControllerWithPropagate.subCon2.u"
         }
       ],
-      "S231P:label": "u2"
+      "S231:label": "u2"
     },
     {
       "@id": "http://example.org#FromModelica.MyControllerWithPropagate.y",
-      "@type": "S231P:RealOutput",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Real output",
-      "S231P:graphics": "Placement(transformation(extent={{100,-20},{140,20}})),iconTransformation(extent={{100,-20},{140,20}})))",
-      "S231P:label": "y"
+      "@type": "S231:RealOutput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Real output",
+      "S231:graphics": "Placement(transformation(extent={{100,-20},{140,20}})),iconTransformation(extent={{100,-20},{140,20}})))",
+      "S231:label": "y"
     }
   ]
 }

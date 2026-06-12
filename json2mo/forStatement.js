@@ -1,5 +1,5 @@
 function parse (content, rawJson = false) {
-  const forIndicesParser = require('./for_indices')
+  const forIndicesParser = require('./forIndices')
   const statementParser = require('./statement')
 
   let moOutput = ''

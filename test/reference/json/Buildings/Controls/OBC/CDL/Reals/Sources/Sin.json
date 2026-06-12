@@ -277,7 +277,55 @@
                       "assignment_equation": {
                         "lhs": "y",
                         "rhs": {
-                          "simple_expression": "offset +(if [object Object] then 0 else amplitude*Modelica.Math.sin(2*Buildings.Controls.OBC.CDL.Constants.pi*freqHz*(time -startTime) +phase))"
+                          "simple_expression": {
+                            "addOps": [
+                              "+"
+                            ],
+                            "terms": [
+                              "offset",
+                              {
+                                "factors": [
+                                  {
+                                    "primary1": [
+                                      {
+                                        "if_expression": {
+                                          "if_elseif": [
+                                            {
+                                              "condition": {
+                                                "simple_expression": {
+                                                  "logical_expression": {
+                                                    "logical_or": [
+                                                      {
+                                                        "logical_and": [
+                                                          {
+                                                            "arithmetic_expressions": [
+                                                              "time",
+                                                              "startTime"
+                                                            ],
+                                                            "relation_operator": "<"
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
+                                                }
+                                              },
+                                              "then": {
+                                                "simple_expression": "0"
+                                              }
+                                            }
+                                          ],
+                                          "else_expression": {
+                                            "simple_expression": "amplitude*Modelica.Math.sin(2*Buildings.Controls.OBC.CDL.Constants.pi*freqHz*(time -startTime) +phase)"
+                                          }
+                                        }
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
                         }
                       }
                     }
@@ -600,7 +648,7 @@
                                         "y": -112
                                       }
                                     ],
-                                    "textString": ",textString=",
+                                    "textString": "\"freqHz=%freqHz\"",
                                     "textColor": {
                                       "r": 0,
                                       "g": 0,
@@ -621,7 +669,7 @@
                                         "y": 10
                                       }
                                     ],
-                                    "textString": "DynamicSelect(\"\",String(y",
+                                    "textString": "DynamicSelect(\"\",String(y,leftJustified=false,significantDigits=3))",
                                     "textColor": {
                                       "r": 0,
                                       "g": 0,
@@ -682,6 +730,6 @@
     }
   ],
   "modelicaFile": "Buildings/Controls/OBC/CDL/Reals/Sources/Sin.mo",
-  "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/Sources/Sin.mo",
+  "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/Sources/Sin.mo",
   "checksum": "891dfe21519788b43c5fef09fd0b5508"
 }

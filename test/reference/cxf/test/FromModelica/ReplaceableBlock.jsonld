@@ -1,30 +1,31 @@
 {
   "@context": {
-    "S231P": "https://data.ashrae.org/S231P#"
+    "S231": "http://data.ashrae.org/S231#",
+    "ex": "http://example.org#"
   },
   "@graph": [
     {
-      "@id": "http://example.org#.ReplaceableBlock",
-      "@type": "S231P:Block",
-      "S231P:containsBlock": {
-        "@id": "http://example.org#.ReplaceableBlock.con"
+      "@id": "ex:ReplaceableBlock",
+      "@type": "S231:Block",
+      "S231:containsBlock": {
+        "@id": "ex:ReplaceableBlock.con"
       },
-      "S231P:label": "ReplaceableBlock"
+      "S231:label": "ReplaceableBlock"
     },
     {
-      "@id": "http://example.org#.ReplaceableBlock.con",
-      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Sources.Constant",
-      "S231P:accessSpecifier": "public",
-      "S231P:constrainedBy": "Buildings.Controls.OBC.CDL.Reals.Sources.CivilTime",
-      "S231P:hasInstance": {
-        "@id": "http://example.org#.ReplaceableBlock.con.k"
+      "@id": "ex:ReplaceableBlock.con",
+      "@type": "ex:Buildings.Controls.OBC.CDL.Reals.Sources.Constant",
+      "S231:accessSpecifier": "public",
+      "S231:constrainedBy": "Buildings.Controls.OBC.CDL.Reals.Sources.CivilTime",
+      "S231:hasInstance": {
+        "@id": "ex:ReplaceableBlock.con.k"
       },
-      "S231P:isReplaceable": true,
-      "S231P:label": "con"
+      "S231:isReplaceable": true,
+      "S231:label": "con"
     },
     {
-      "@id": "http://example.org#.ReplaceableBlock.con.k",
-      "S231P:value": 1
+      "@id": "ex:ReplaceableBlock.con.k",
+      "S231:value": 1
     }
   ]
 }

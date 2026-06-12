@@ -413,7 +413,61 @@
                       "assignment_equation": {
                         "lhs": "TWetBul",
                         "rhs": {
-                          "simple_expression": "273.15 +TDryBul_degC*uniCon*Modelica.Math.atan(0.151977*sqrt(rh_per +8.313659)) +uniCon*(Modelica.Math.atan(TDryBul_degC +rh_per) -Modelica.Math.atan(rh_per -1.676331) +0.00391838*rh_per^(1.5)*Modelica.Math.atan(0.023101*rh_per)) -4.686035"
+                          "simple_expression": {
+                            "addOps": [
+                              "+",
+                              "+",
+                              "-"
+                            ],
+                            "terms": [
+                              "273.15",
+                              "TDryBul_degC*uniCon*Modelica.Math.atan(0.151977*sqrt(rh_per +8.313659))",
+                              {
+                                "operators": [
+                                  "*"
+                                ],
+                                "factors": [
+                                  "uniCon",
+                                  {
+                                    "primary1": [
+                                      {
+                                        "simple_expression": {
+                                          "addOps": [
+                                            "-",
+                                            "+"
+                                          ],
+                                          "terms": [
+                                            "Modelica.Math.atan(TDryBul_degC +rh_per)",
+                                            "Modelica.Math.atan(rh_per -1.676331)",
+                                            {
+                                              "operators": [
+                                                "*",
+                                                "*"
+                                              ],
+                                              "factors": [
+                                                "0.00391838",
+                                                {
+                                                  "operator": "^",
+                                                  "primary1": "rh_per",
+                                                  "primary2": [
+                                                    {
+                                                      "simple_expression": "1.5"
+                                                    }
+                                                  ]
+                                                },
+                                                "Modelica.Math.atan(0.023101*rh_per)"
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              "4.686035"
+                            ]
+                          }
                         }
                       }
                     }
@@ -867,6 +921,6 @@
     }
   ],
   "modelicaFile": "Buildings/Controls/OBC/CDL/Psychrometrics/WetBulb_TDryBulPhi.mo",
-  "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Psychrometrics/WetBulb_TDryBulPhi.mo",
+  "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Psychrometrics/WetBulb_TDryBulPhi.mo",
   "checksum": "7d27328256f3ed901b8f0206b2571b9f"
 }

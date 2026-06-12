@@ -1,19 +1,19 @@
 {
   "@context": {
-    "S231P": "https://data.ashrae.org/S231P#"
+    "S231": "http://data.ashrae.org/S231#"
   },
   "@graph": [
     {
       "@id": "http://example.org#FromModelica.GainOutputsTwo",
-      "@type": "S231P:Block",
-      "S231P:containsBlock": {
+      "@type": "S231:Block",
+      "S231:containsBlock": {
         "@id": "http://example.org#FromModelica.GainOutputsTwo.gain"
       },
-      "S231P:diagram": "coordinateSystem(preserveAspectRatio=false)",
-      "S231P:hasInput": {
+      "S231:diagram": "coordinateSystem(preserveAspectRatio=false)",
+      "S231:hasInput": {
         "@id": "http://example.org#FromModelica.GainOutputsTwo.u2"
       },
-      "S231P:hasOutput": [
+      "S231:hasOutput": [
         {
           "@id": "http://example.org#FromModelica.GainOutputsTwo.y1"
         },
@@ -21,16 +21,16 @@
           "@id": "http://example.org#FromModelica.GainOutputsTwo.y2"
         }
       ],
-      "S231P:icon": "coordinateSystem(preserveAspectRatio=false)",
-      "S231P:label": "GainOutputsTwo"
+      "S231:icon": "coordinateSystem(preserveAspectRatio=false)",
+      "S231:label": "GainOutputsTwo"
     },
     {
       "@id": "http://example.org#FromModelica.GainOutputsTwo.gain",
       "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Gain",
-      "S231P:graphics": "Placement(transformation(extent={{-18,-12},{2,8}})))",
-      "S231P:hasInstance": [
+      "S231:accessSpecifier": "public",
+      "S231:description": "Gain",
+      "S231:graphics": "Placement(transformation(extent={{-18,-12},{2,8}})))",
+      "S231:hasInstance": [
         {
           "@id": "http://example.org#FromModelica.GainOutputsTwo.gain.k"
         },
@@ -41,16 +41,16 @@
           "@id": "http://example.org#FromModelica.GainOutputsTwo.gain.y"
         }
       ],
-      "S231P:label": "gain"
+      "S231:label": "gain"
     },
     {
       "@id": "http://example.org#FromModelica.GainOutputsTwo.gain.k",
-      "S231P:isFinal": true,
-      "S231P:value": 1
+      "S231:isFinal": true,
+      "S231:value": 1
     },
     {
       "@id": "http://example.org#FromModelica.GainOutputsTwo.gain.y",
-      "S231P:isConnectedTo": [
+      "S231:isConnectedTo": [
         {
           "@id": "http://example.org#FromModelica.GainOutputsTwo.y1"
         },
@@ -61,30 +61,30 @@
     },
     {
       "@id": "http://example.org#FromModelica.GainOutputsTwo.u2",
-      "@type": "S231P:RealInput",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Real input",
-      "S231P:graphics": "Placement(transformation(extent={{-122,-38},{-82,2}})))",
-      "S231P:isConnectedTo": {
+      "@type": "S231:RealInput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Real input",
+      "S231:graphics": "Placement(transformation(extent={{-122,-38},{-82,2}})))",
+      "S231:isConnectedTo": {
         "@id": "http://example.org#FromModelica.GainOutputsTwo.gain.u"
       },
-      "S231P:label": "u2"
+      "S231:label": "u2"
     },
     {
       "@id": "http://example.org#FromModelica.GainOutputsTwo.y1",
-      "@type": "S231P:RealOutput",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Output 1",
-      "S231P:graphics": "Placement(transformation(extent={{64,14},{104,54}})))",
-      "S231P:label": "y1"
+      "@type": "S231:RealOutput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Output 1",
+      "S231:graphics": "Placement(transformation(extent={{64,14},{104,54}})))",
+      "S231:label": "y1"
     },
     {
       "@id": "http://example.org#FromModelica.GainOutputsTwo.y2",
-      "@type": "S231P:RealOutput",
-      "S231P:accessSpecifier": "public",
-      "S231P:description": "Output 2",
-      "S231P:graphics": "Placement(transformation(extent={{64,-56},{104,-16}})))",
-      "S231P:label": "y2"
+      "@type": "S231:RealOutput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Output 2",
+      "S231:graphics": "Placement(transformation(extent={{64,-56},{104,-16}})))",
+      "S231:label": "y2"
     }
   ]
 }

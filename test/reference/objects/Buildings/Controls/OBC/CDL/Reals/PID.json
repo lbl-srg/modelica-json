@@ -2,7 +2,7 @@
   "instances": {
     "PID": {
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/PID.mo",
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/PID.mo",
       "type": "long_class_specifier",
       "class_prefixes": "block",
       "annotation": [
@@ -118,7 +118,7 @@
                                 "g": 0,
                                 "b": 0
                               },
-                              "visible": "([object Object])",
+                              "visible": "(controllerType == Buildings.Controls.OBC.CDL.Types.SimpleController.P)",
                               "fillColor": {
                                 "r": 175,
                                 "g": 175,
@@ -146,7 +146,7 @@
                                 "g": 0,
                                 "b": 0
                               },
-                              "visible": "([object Object])",
+                              "visible": "(controllerType == Buildings.Controls.OBC.CDL.Types.SimpleController.PI)",
                               "fillColor": {
                                 "r": 175,
                                 "g": 175,
@@ -174,7 +174,7 @@
                                 "g": 0,
                                 "b": 0
                               },
-                              "visible": "([object Object])",
+                              "visible": "(controllerType == Buildings.Controls.OBC.CDL.Types.SimpleController.PD)",
                               "fillColor": {
                                 "r": 175,
                                 "g": 175,
@@ -202,7 +202,7 @@
                                 "g": 0,
                                 "b": 0
                               },
-                              "visible": "([object Object])",
+                              "visible": "(controllerType == Buildings.Controls.OBC.CDL.Types.SimpleController.PID)",
                               "fillColor": {
                                 "r": 175,
                                 "g": 175,
@@ -444,7 +444,7 @@
                                   "y": 10
                                 }
                               ],
-                              "textString": "DynamicSelect(\"\",String(y",
+                              "textString": "DynamicSelect(\"\",String(y,leftJustified=false,significantDigits=3))",
                               "textColor": {
                                 "r": 0,
                                 "g": 0,
@@ -617,7 +617,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/PID.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/PID.mo"
     },
     "k": {
       "type_prefix": "parameter",
@@ -713,7 +713,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/PID.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/PID.mo"
     },
     "Ti": {
       "type_prefix": "parameter",
@@ -810,12 +810,8 @@
                                         "logical_and": [
                                           {
                                             "arithmetic_expressions": [
-                                              {
-                                                "name": "controllerType"
-                                              },
-                                              {
-                                                "name": "CDL.Types.SimpleController.PI"
-                                              }
+                                              "controllerType",
+                                              "CDL.Types.SimpleController.PI"
                                             ],
                                             "relation_operator": "=="
                                           }
@@ -825,12 +821,8 @@
                                         "logical_and": [
                                           {
                                             "arithmetic_expressions": [
-                                              {
-                                                "name": "controllerType"
-                                              },
-                                              {
-                                                "name": "CDL.Types.SimpleController.PID"
-                                              }
+                                              "controllerType",
+                                              "CDL.Types.SimpleController.PID"
                                             ],
                                             "relation_operator": "=="
                                           }
@@ -886,12 +878,8 @@
                                     "logical_and": [
                                       {
                                         "arithmetic_expressions": [
-                                          {
-                                            "name": "controllerType"
-                                          },
-                                          {
-                                            "name": "CDL.Types.SimpleController.PI"
-                                          }
+                                          "controllerType",
+                                          "CDL.Types.SimpleController.PI"
                                         ],
                                         "relation_operator": "=="
                                       }
@@ -901,12 +889,8 @@
                                     "logical_and": [
                                       {
                                         "arithmetic_expressions": [
-                                          {
-                                            "name": "controllerType"
-                                          },
-                                          {
-                                            "name": "CDL.Types.SimpleController.PID"
-                                          }
+                                          "controllerType",
+                                          "CDL.Types.SimpleController.PID"
                                         ],
                                         "relation_operator": "=="
                                       }
@@ -933,7 +917,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/PID.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/PID.mo"
     },
     "Td": {
       "type_prefix": "parameter",
@@ -1030,12 +1014,8 @@
                                         "logical_and": [
                                           {
                                             "arithmetic_expressions": [
-                                              {
-                                                "name": "controllerType"
-                                              },
-                                              {
-                                                "name": "CDL.Types.SimpleController.PD"
-                                              }
+                                              "controllerType",
+                                              "CDL.Types.SimpleController.PD"
                                             ],
                                             "relation_operator": "=="
                                           }
@@ -1045,12 +1025,8 @@
                                         "logical_and": [
                                           {
                                             "arithmetic_expressions": [
-                                              {
-                                                "name": "controllerType"
-                                              },
-                                              {
-                                                "name": "CDL.Types.SimpleController.PID"
-                                              }
+                                              "controllerType",
+                                              "CDL.Types.SimpleController.PID"
                                             ],
                                             "relation_operator": "=="
                                           }
@@ -1106,12 +1082,8 @@
                                     "logical_and": [
                                       {
                                         "arithmetic_expressions": [
-                                          {
-                                            "name": "controllerType"
-                                          },
-                                          {
-                                            "name": "CDL.Types.SimpleController.PD"
-                                          }
+                                          "controllerType",
+                                          "CDL.Types.SimpleController.PD"
                                         ],
                                         "relation_operator": "=="
                                       }
@@ -1121,12 +1093,8 @@
                                     "logical_and": [
                                       {
                                         "arithmetic_expressions": [
-                                          {
-                                            "name": "controllerType"
-                                          },
-                                          {
-                                            "name": "CDL.Types.SimpleController.PID"
-                                          }
+                                          "controllerType",
+                                          "CDL.Types.SimpleController.PID"
                                         ],
                                         "relation_operator": "=="
                                       }
@@ -1153,7 +1121,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/PID.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/PID.mo"
     },
     "r": {
       "type_prefix": "parameter",
@@ -1198,7 +1166,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/PID.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/PID.mo"
     },
     "yMax": {
       "type_prefix": "parameter",
@@ -1279,7 +1247,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/PID.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/PID.mo"
     },
     "yMin": {
       "type_prefix": "parameter",
@@ -1360,7 +1328,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/PID.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/PID.mo"
     },
     "Ni": {
       "type_prefix": "parameter",
@@ -1442,12 +1410,8 @@
                                         "logical_and": [
                                           {
                                             "arithmetic_expressions": [
-                                              {
-                                                "name": "controllerType"
-                                              },
-                                              {
-                                                "name": "CDL.Types.SimpleController.PI"
-                                              }
+                                              "controllerType",
+                                              "CDL.Types.SimpleController.PI"
                                             ],
                                             "relation_operator": "=="
                                           }
@@ -1457,12 +1421,8 @@
                                         "logical_and": [
                                           {
                                             "arithmetic_expressions": [
-                                              {
-                                                "name": "controllerType"
-                                              },
-                                              {
-                                                "name": "CDL.Types.SimpleController.PID"
-                                              }
+                                              "controllerType",
+                                              "CDL.Types.SimpleController.PID"
                                             ],
                                             "relation_operator": "=="
                                           }
@@ -1531,12 +1491,8 @@
                                     "logical_and": [
                                       {
                                         "arithmetic_expressions": [
-                                          {
-                                            "name": "controllerType"
-                                          },
-                                          {
-                                            "name": "CDL.Types.SimpleController.PI"
-                                          }
+                                          "controllerType",
+                                          "CDL.Types.SimpleController.PI"
                                         ],
                                         "relation_operator": "=="
                                       }
@@ -1546,12 +1502,8 @@
                                     "logical_and": [
                                       {
                                         "arithmetic_expressions": [
-                                          {
-                                            "name": "controllerType"
-                                          },
-                                          {
-                                            "name": "CDL.Types.SimpleController.PID"
-                                          }
+                                          "controllerType",
+                                          "CDL.Types.SimpleController.PID"
                                         ],
                                         "relation_operator": "=="
                                       }
@@ -1578,7 +1530,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/PID.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/PID.mo"
     },
     "Nd": {
       "type_prefix": "parameter",
@@ -1660,12 +1612,8 @@
                                         "logical_and": [
                                           {
                                             "arithmetic_expressions": [
-                                              {
-                                                "name": "controllerType"
-                                              },
-                                              {
-                                                "name": "CDL.Types.SimpleController.PD"
-                                              }
+                                              "controllerType",
+                                              "CDL.Types.SimpleController.PD"
                                             ],
                                             "relation_operator": "=="
                                           }
@@ -1675,12 +1623,8 @@
                                         "logical_and": [
                                           {
                                             "arithmetic_expressions": [
-                                              {
-                                                "name": "controllerType"
-                                              },
-                                              {
-                                                "name": "CDL.Types.SimpleController.PID"
-                                              }
+                                              "controllerType",
+                                              "CDL.Types.SimpleController.PID"
                                             ],
                                             "relation_operator": "=="
                                           }
@@ -1749,12 +1693,8 @@
                                     "logical_and": [
                                       {
                                         "arithmetic_expressions": [
-                                          {
-                                            "name": "controllerType"
-                                          },
-                                          {
-                                            "name": "CDL.Types.SimpleController.PD"
-                                          }
+                                          "controllerType",
+                                          "CDL.Types.SimpleController.PD"
                                         ],
                                         "relation_operator": "=="
                                       }
@@ -1764,12 +1704,8 @@
                                     "logical_and": [
                                       {
                                         "arithmetic_expressions": [
-                                          {
-                                            "name": "controllerType"
-                                          },
-                                          {
-                                            "name": "CDL.Types.SimpleController.PID"
-                                          }
+                                          "controllerType",
+                                          "CDL.Types.SimpleController.PID"
                                         ],
                                         "relation_operator": "=="
                                       }
@@ -1796,7 +1732,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/PID.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/PID.mo"
     },
     "xi_start": {
       "type_prefix": "parameter",
@@ -1863,12 +1799,8 @@
                                         "logical_and": [
                                           {
                                             "arithmetic_expressions": [
-                                              {
-                                                "name": "controllerType"
-                                              },
-                                              {
-                                                "name": "CDL.Types.SimpleController.PI"
-                                              }
+                                              "controllerType",
+                                              "CDL.Types.SimpleController.PI"
                                             ],
                                             "relation_operator": "=="
                                           }
@@ -1878,12 +1810,8 @@
                                         "logical_and": [
                                           {
                                             "arithmetic_expressions": [
-                                              {
-                                                "name": "controllerType"
-                                              },
-                                              {
-                                                "name": "CDL.Types.SimpleController.PID"
-                                              }
+                                              "controllerType",
+                                              "CDL.Types.SimpleController.PID"
                                             ],
                                             "relation_operator": "=="
                                           }
@@ -1952,12 +1880,8 @@
                                     "logical_and": [
                                       {
                                         "arithmetic_expressions": [
-                                          {
-                                            "name": "controllerType"
-                                          },
-                                          {
-                                            "name": "CDL.Types.SimpleController.PI"
-                                          }
+                                          "controllerType",
+                                          "CDL.Types.SimpleController.PI"
                                         ],
                                         "relation_operator": "=="
                                       }
@@ -1967,12 +1891,8 @@
                                     "logical_and": [
                                       {
                                         "arithmetic_expressions": [
-                                          {
-                                            "name": "controllerType"
-                                          },
-                                          {
-                                            "name": "CDL.Types.SimpleController.PID"
-                                          }
+                                          "controllerType",
+                                          "CDL.Types.SimpleController.PID"
                                         ],
                                         "relation_operator": "=="
                                       }
@@ -1999,7 +1919,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/PID.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/PID.mo"
     },
     "yd_start": {
       "type_prefix": "parameter",
@@ -2066,12 +1986,8 @@
                                         "logical_and": [
                                           {
                                             "arithmetic_expressions": [
-                                              {
-                                                "name": "controllerType"
-                                              },
-                                              {
-                                                "name": "CDL.Types.SimpleController.PD"
-                                              }
+                                              "controllerType",
+                                              "CDL.Types.SimpleController.PD"
                                             ],
                                             "relation_operator": "=="
                                           }
@@ -2081,12 +1997,8 @@
                                         "logical_and": [
                                           {
                                             "arithmetic_expressions": [
-                                              {
-                                                "name": "controllerType"
-                                              },
-                                              {
-                                                "name": "CDL.Types.SimpleController.PID"
-                                              }
+                                              "controllerType",
+                                              "CDL.Types.SimpleController.PID"
                                             ],
                                             "relation_operator": "=="
                                           }
@@ -2155,12 +2067,8 @@
                                     "logical_and": [
                                       {
                                         "arithmetic_expressions": [
-                                          {
-                                            "name": "controllerType"
-                                          },
-                                          {
-                                            "name": "CDL.Types.SimpleController.PD"
-                                          }
+                                          "controllerType",
+                                          "CDL.Types.SimpleController.PD"
                                         ],
                                         "relation_operator": "=="
                                       }
@@ -2170,12 +2078,8 @@
                                     "logical_and": [
                                       {
                                         "arithmetic_expressions": [
-                                          {
-                                            "name": "controllerType"
-                                          },
-                                          {
-                                            "name": "CDL.Types.SimpleController.PID"
-                                          }
+                                          "controllerType",
+                                          "CDL.Types.SimpleController.PID"
                                         ],
                                         "relation_operator": "=="
                                       }
@@ -2202,7 +2106,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/PID.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/PID.mo"
     },
     "reverseActing": {
       "type_prefix": "parameter",
@@ -2232,7 +2136,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/PID.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/PID.mo"
     },
     "u_s": {
       "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
@@ -2322,7 +2226,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/PID.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/PID.mo"
     },
     "u_m": {
       "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
@@ -2432,7 +2336,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/PID.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/PID.mo"
     },
     "y": {
       "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
@@ -2522,7 +2426,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/PID.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/PID.mo"
     },
     "controlError": {
       "type_specifier": "Buildings.Controls.OBC.CDL.Reals.Subtract",
@@ -2588,7 +2492,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/PID.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/PID.mo"
     },
     "P": {
       "type_specifier": "Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter",
@@ -2672,7 +2576,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/PID.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/PID.mo"
     },
     "I": {
       "type_specifier": "Buildings.Controls.OBC.CDL.Reals.IntegratorWithReset",
@@ -2775,7 +2679,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/PID.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/PID.mo"
     },
     "D": {
       "type_specifier": "Buildings.Controls.OBC.CDL.Reals.Derivative",
@@ -2864,7 +2768,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/PID.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/PID.mo"
     },
     "errP": {
       "type_specifier": "Buildings.Controls.OBC.CDL.Reals.Subtract",
@@ -2930,7 +2834,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/PID.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/PID.mo"
     },
     "errD": {
       "type_specifier": "Buildings.Controls.OBC.CDL.Reals.Subtract",
@@ -3001,7 +2905,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/PID.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/PID.mo"
     },
     "errI1": {
       "type_specifier": "Buildings.Controls.OBC.CDL.Reals.Subtract",
@@ -3072,7 +2976,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/PID.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/PID.mo"
     },
     "errI2": {
       "type_specifier": "Buildings.Controls.OBC.CDL.Reals.Subtract",
@@ -3143,7 +3047,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/PID.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/PID.mo"
     },
     "lim": {
       "type_specifier": "Buildings.Controls.OBC.CDL.Reals.Limiter",
@@ -3241,7 +3145,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/PID.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/PID.mo"
     },
     "revAct": {
       "type_prefix": "parameter",
@@ -3285,7 +3189,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/PID.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/PID.mo"
     },
     "with_I": {
       "type_prefix": "parameter",
@@ -3306,12 +3210,8 @@
                       "logical_and": [
                         {
                           "arithmetic_expressions": [
-                            {
-                              "name": "controllerType"
-                            },
-                            {
-                              "name": "Buildings.Controls.OBC.CDL.Types.SimpleController.PI"
-                            }
+                            "controllerType",
+                            "Buildings.Controls.OBC.CDL.Types.SimpleController.PI"
                           ],
                           "relation_operator": "=="
                         }
@@ -3321,12 +3221,8 @@
                       "logical_and": [
                         {
                           "arithmetic_expressions": [
-                            {
-                              "name": "controllerType"
-                            },
-                            {
-                              "name": "Buildings.Controls.OBC.CDL.Types.SimpleController.PID"
-                            }
+                            "controllerType",
+                            "Buildings.Controls.OBC.CDL.Types.SimpleController.PID"
                           ],
                           "relation_operator": "=="
                         }
@@ -3405,7 +3301,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/PID.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/PID.mo"
     },
     "with_D": {
       "type_prefix": "parameter",
@@ -3426,12 +3322,8 @@
                       "logical_and": [
                         {
                           "arithmetic_expressions": [
-                            {
-                              "name": "controllerType"
-                            },
-                            {
-                              "name": "Buildings.Controls.OBC.CDL.Types.SimpleController.PD"
-                            }
+                            "controllerType",
+                            "Buildings.Controls.OBC.CDL.Types.SimpleController.PD"
                           ],
                           "relation_operator": "=="
                         }
@@ -3441,12 +3333,8 @@
                       "logical_and": [
                         {
                           "arithmetic_expressions": [
-                            {
-                              "name": "controllerType"
-                            },
-                            {
-                              "name": "Buildings.Controls.OBC.CDL.Types.SimpleController.PID"
-                            }
+                            "controllerType",
+                            "Buildings.Controls.OBC.CDL.Types.SimpleController.PID"
                           ],
                           "relation_operator": "=="
                         }
@@ -3525,7 +3413,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/PID.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/PID.mo"
     },
     "kDer": {
       "type_specifier": "Sources.Constant",
@@ -3613,7 +3501,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/PID.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/PID.mo"
     },
     "TDer": {
       "type_specifier": "Sources.Constant",
@@ -3701,7 +3589,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/PID.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/PID.mo"
     },
     "Dzero": {
       "type_specifier": "Buildings.Controls.OBC.CDL.Reals.Sources.Constant",
@@ -3732,7 +3620,22 @@
         },
         "condition_attribute": {
           "expression": {
-            "simple_expression": "not with_D"
+            "simple_expression": {
+              "logical_expression": {
+                "logical_or": [
+                  {
+                    "logical_and": [
+                      {
+                        "not": true,
+                        "arithmetic_expressions": [
+                          "with_D"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
           }
         },
         "description": {
@@ -3842,7 +3745,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/PID.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/PID.mo"
     },
     "uS_revAct": {
       "type_specifier": "Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter",
@@ -3926,7 +3829,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/PID.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/PID.mo"
     },
     "uMea_revAct": {
       "type_specifier": "Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter",
@@ -4010,7 +3913,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/PID.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/PID.mo"
     },
     "addPD": {
       "type_specifier": "Buildings.Controls.OBC.CDL.Reals.Add",
@@ -4076,7 +3979,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/PID.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/PID.mo"
     },
     "addPID": {
       "type_specifier": "Buildings.Controls.OBC.CDL.Reals.Add",
@@ -4142,7 +4045,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/PID.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/PID.mo"
     },
     "antWinErr": {
       "type_specifier": "Buildings.Controls.OBC.CDL.Reals.Subtract",
@@ -4213,7 +4116,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/PID.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/PID.mo"
     },
     "antWinGai": {
       "type_specifier": "Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter",
@@ -4232,7 +4135,25 @@
                     "modification": {
                       "equal": true,
                       "expression": {
-                        "simple_expression": "1/(k*Ni)"
+                        "simple_expression": {
+                          "terms": [
+                            {
+                              "operators": [
+                                "/"
+                              ],
+                              "factors": [
+                                "1",
+                                {
+                                  "primary1": [
+                                    {
+                                      "simple_expression": "k*Ni"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
                       }
                     }
                   }
@@ -4301,7 +4222,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/PID.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/PID.mo"
     },
     "cheYMinMax": {
       "type_specifier": "Buildings.Controls.OBC.CDL.Logical.Sources.Constant",
@@ -4328,12 +4249,8 @@
                                 "logical_and": [
                                   {
                                     "arithmetic_expressions": [
-                                      {
-                                        "name": "yMin"
-                                      },
-                                      {
-                                        "name": "yMax"
-                                      }
+                                      "yMin",
+                                      "yMax"
                                     ],
                                     "relation_operator": "<"
                                   }
@@ -4405,7 +4322,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/PID.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/PID.mo"
     },
     "assMesYMinMax": {
       "type_specifier": "Buildings.Controls.OBC.CDL.Utilities.Assert",
@@ -4488,7 +4405,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/PID.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/PID.mo"
     },
     "Izero": {
       "type_specifier": "Buildings.Controls.OBC.CDL.Reals.Sources.Constant",
@@ -4519,7 +4436,22 @@
         },
         "condition_attribute": {
           "expression": {
-            "simple_expression": "not with_I"
+            "simple_expression": {
+              "logical_expression": {
+                "logical_or": [
+                  {
+                    "logical_and": [
+                      {
+                        "not": true,
+                        "arithmetic_expressions": [
+                          "with_I"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
           }
         },
         "description": {
@@ -4577,7 +4509,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/PID.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/PID.mo"
     },
     "con": {
       "type_specifier": "Buildings.Controls.OBC.CDL.Reals.Sources.Constant",
@@ -4666,7 +4598,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/PID.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/PID.mo"
     },
     "con1": {
       "type_specifier": "Buildings.Controls.OBC.CDL.Logical.Sources.Constant",
@@ -4755,7 +4687,7 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "Buildings.Controls.OBC.CDL.Reals",
-      "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-buildings/Buildings/Controls/OBC/CDL/Reals/PID.mo"
+      "fullMoFilePath": "/home/jianjunhu/Documents/Buildings-v12.1.0/Buildings/Controls/OBC/CDL/Reals/PID.mo"
     }
   },
   "requiredReferences": {

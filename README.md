@@ -1,21 +1,14 @@
 # [Modelica to JSON parser](https://github.com/lbl-srg/modelica-json)
 
-## Content
-1. [General Description](##1.-general-escription)
-2. [Installation and help](##2.-installation-and-help)
-3. [How to use the parser](##3.-how-to-use-the-parser)
-4. [JSON Schemas](##4.-json-schemas)
-5. [Useful Links](##5.-useful-links)
-
 [![Build Status](https://api.travis-ci.com/lbl-srg/modelica-json.svg?branch=master)](https://app.travis-ci.com/github/lbl-srg/modelica-json)
-
 
 ## 1. General Description
 
-__modelica-json__ is a translator that parses the Modelica language to JSON. Two translation modes have been implemented :
-The first mode aims to parse Modelica packages and takes into input a directory of .mo files. The other mode aims to parse CDL files and takes a single .mo file compliant with the CDL language as input. For more information on the CDL Language, please refer to the [OpenBuildingControl ](http://obc.lbl.gov/specification/cdl.html) project website.
+__modelica-json__ is a translator that parses the Modelica and Control Description Language (CDL) models to JSON (and other formats from JSON). 
+For more information on the CDL Language, please refer to the [OpenBuildingControl ](http://obc.lbl.gov/specification/cdl.html) project website.
+CDL has been published as ASHRAE Standard 231. 
 
-See the directory `test/FromModelica` from __modelica-json__ for simple examples from Modelica and CDL to detailed and simplified JSON.
+See the directory `test/FromModelica` from __modelica-json__ for simple examples from Modelica and CDL to the different output formats. 
 
 ## 2. Installation and help
 
@@ -26,24 +19,22 @@ First, set the MODELICAPATH environment variable by adding the following line to
 export MODELICAPATH=${MODELICAPATH}:/usr/local/Modelica/Library/
 ```
 
-The parser requires Java and node. The java dependency can be installed using:
+Notes: 
+- The MODELICAPATH should point to all Modelica libraries you use in the models you want to convert, e.g. Modelica Standard Library, Modelica Buildings Library etc.
+- The library roots in MODELICAPATH shall exactly match the library names and shall not be suffixed by the library version number.
+- You do not need to have any Modelica-IDE installed on your device (e.g. OpenModelica).
+
+The parser requires node.js. The node version should be >= 20 and you can use [Node Version Manager](https://nodejs.org/en/download/package-manager) to set it up. Following is using 0.40.3 version:
 ```
-sudo apt-get install default-jdk default-jre
-```
-The node version should be >= 18 and you can use [Node Version Manager](https://nodejs.org/en/download/package-manager) to set it up. Following is using 0.39.7 version:
-```
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 source ~/.bashrc
-nvm install 18
+nvm install 20
+nvm use 20
 ```
 
 To install dependencies of the parser, run
 ```
 make install
-```
-To compile the Java files, run
-```
-make compile
 ```
 To run the test cases, run
 ```
@@ -65,13 +56,9 @@ make clean-installation
 
 - Then, create the `MODELICAPATH` environment variable and set the value as the path of Modelica Buildings Library, like `E:\modelica-buildings` or `E:\modelica-buildings-master`.
 
-- Install [Java SE Development Kit (64-bit version)](https://www.oracle.com/java/technologies/javase-downloads.html), [Java Runtime Environment (64-bit version)](https://java.com/en/download/manual.jsp) and [Node.js](https://nodejs.org/en/download/).
-
 - Add `path\to\your\nodejs` to the `Path` environment.
 
-- In batch file `InstallOnWindows.bat`, update `JAVA_HOME` path in line `set JAVA_HOME=path\to\your\jdk`.
-
-- Finally, to install dependencies and compile the Java files, run `InstallOnWindows.bat`.
+- Finally, to install dependencies, run `InstallOnWindows.bat`.
 
 To test the installation, from the `\modelica-json` directory, run the parser on Command Prompt:
 ```
@@ -107,12 +94,12 @@ The only required input is the path of the file or package to be parsed.
 
 ##### --output / -o
 
-This parser takes a .mo file in input and has three possible outputs, that can be specified with the argument -o :
+This parser takes a .mo file in input and has three possible outputs, that can be specified with the argument `-o`:
 
 - **raw-json** : detailed transcription of a Modelica file in JSON
 - **json**: simplified JSON format, easier to read and interpret
 - **semantic**: generate semantic model from semantic information included within `annotation` in the Modelica file
-- **cxf**: generate CXF representation in `.jsonld` of a CDL sequence complying with ASHRAE S231P
+- **cxf**: generate CXF representation in `.jsonld` of a CDL sequence complying with ASHRAE S231
 - **doc**: create the documentation of the sequence of operation in an HTML document
 - **doc+**: create the documentation of the sequence of operation and the list of all variables in an HTML document
 
@@ -169,17 +156,12 @@ Examples of models that can be exported this way are provided in test/ModelicaMo
 
 ## 4. JSON Schemas
 
-The JSON representation of Modelica and CXF models must be compliant with the corresponding JSON Schema. This is applicable for the JSON and CXF output respectively.
+The JSON representation of Modelica models must be compliant with the following JSON Schema. This is applicable for the JSON output.
 
 JSON Schemas describe the data format and file structure to ensure the quality of the JSON files.
 
-Two schemas are available (links to the raw files) :
-- [schema-cxf.json](schema-cxf.json) validates the JSON files parsed from CDL classes to form CXF representations
+Following is the schema for the JSON translation (link to the raw file):
 - [schema-modelica.json](schema-modelica.json) validates the JSON files parsed from Modelica models
-
-Graphical viewers are available (please use right click + open in a new tab or refresh the page if necessary - this is not optimized for Firefox) :
-- [CXF Schema viewer](https://htmlpreview.github.io/?https://github.com/lbl-srg/modelica-json/blob/issue214_cxf/cxf-viz.html)
-- [Modelica Schema viewer](https://htmlpreview.github.io/?https://github.com/lbl-srg/modelica-json/blob/master/modelica-viz.html)
 
 ## 5. CXF-Core.jsonld
 
@@ -206,13 +188,43 @@ The default schema is CDL. To chose the Modelica schema, run:
 node validation.js -f <path to the json file> -m modelica
 ```
 
-## 5. Useful Links
+## 6. Updating Grammar
+
+This tool uses antlr4 to parse Modelica syntax. The grammar can be found 
+at `jsParser/antlrFiles/modelica.g4`. If you update the grammar file, you can run 
+the following command to regenerate the tokens, lexers and parsers that are used
+by the classes in `jsParser/parser/`:
+
+```
+make update-grammar
+```
+
+## 7. Useful Links
 
 - [Modelica-json GitHub page](https://github.com/lbl-srg/modelica-json)
 - [The Modelica Association](https://www.modelica.org)
 - [Control Description Language](http://obc.lbl.gov/specification/cdl.html)
 - [JSON Schema](https://json-schema.org)
 
+# Citation
+To cite this software, use: 
+
+Wetter, M., Hu, J., Prakash, A., Ehrlich, P., Fierro, G., Grahovac, M., Pritoni, M., Rivalin, L. and Robin, D (2021). “Modelica-json:Transforming energy models to digitize the control deliveryprocess”. In:17-th IBPSA Conference. Intern. Building Per-formance Simulation Assoc. Brugge, Belgium, pp. 1–8. DOI:10.26868/25222708.2021.30141. URL: https://doi.org/10.26868/25222708.2021.30141.
+
+```
+@InProceedings{WetterHuPrakashEtAl2021,
+  author = "Michael Wetter and Jianjun Hu and Anand Prakash and Paul Ehrlich and Gabe Fierro and Milica Grahovac and Marco Pritoni and Lisa Rivalin and Dave Robin",
+  title = "Modelica-json: Transforming energy models to digitize the control delivery process",
+  Booktitle = {17-th IBPSA Conference},
+  Location = {Brugge, Belgium},
+  Organization = {International Building Performance Simulation Association},
+  pages = {1--8},
+  month = sep,
+  year = "2021",
+  doi = {10.26868/25222708.2021.30141},
+  url = {https://doi.org/10.26868/25222708.2021.30141}
+}
+```
 
 # License
 

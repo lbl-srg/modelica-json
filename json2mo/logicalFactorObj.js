@@ -7,10 +7,12 @@ function parse (content, rawJson = false) {
   }
   if (content.arithmetic_expressions) {
     moOutput += util.format('%s', content.arithmetic_expressions[0].name)
-    moOutput += ' '
-    moOutput += util.format('%s', content.relation_operator)
-    moOutput += ' '
-    moOutput += util.format('%s', content.arithmetic_expressions[1].name)
+    if (content.relation_operator) {
+      moOutput += ' '
+      moOutput += util.format('%s', content.relation_operator)
+      moOutput += ' '
+      moOutput += util.format('%s', content.arithmetic_expressions[1].name)
+    }
   }
   return moOutput
 }
