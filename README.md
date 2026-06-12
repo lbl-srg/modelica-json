@@ -145,6 +145,28 @@ If `--elementary` flag is specified, the CXF (jsonld) files for the elementary b
 If `--cxfCore` flag is specified, generate the  CXF-core.jsonld files for all the elementary blocks. The default option is `false`.
 `-o`/`--output` should be `cxf`, `-f`/`--file` should be `path/to/CDL` and `--elementary` flag must be used.
 
+#### Exporting controls from a Modelica model
+
+A control sequence is often instantiated within a larger Modelica model that is not itself CDL compliant, such as a Buildings library template. To translate only the control sequence to CXF, parse the model with the modelica mode and mark the control block with a __cdl(isControls=true) annotation:
+
+```
+node app.js -f <path of the Modelica model> -o cxf -m modelica
+```
+
+The parser then exports the CXF representation of the control block and of the model that instantiates it. This export only happens when the mode is modelica and a control block carries the `__cdl(isControls=true)` annotation. In the default cdl mode the annotation is ignored.
+
+The annotated control block is found in one of two ways:
+- as a component instance declared directly in the model, for example `SubControllerForControlsExport subCon1 annotation(__cdl(isControls=true))`,
+- or as a component redeclared in an extends clause, which is how the Buildings library templates select a controller, for example `extends Interfaces.VAVBox(redeclare replaceable Controls.G36VAVBoxCoolingOnly ctl annotation(__cdl(isControls=true)))`.
+
+The search also descends into sub-models, so a control block nested inside an instantiated sub-model is found as well.
+
+When the control block is redeclared in an extends clause, the redeclared type must satisfy the constrainedby constraint of the replaceable declaration it overrides, that is, it must be a subtype of the constraining type. If it is not, the parser stops with an error that names the redeclared type and the constraining type.
+
+To keep the translation focused on the control sequence, the parser does not instantiate the whole dependency tree of the Modelica model in modelica mode. Classes from the Buildings library or the Modelica Standard Library are skipped unless they belong to a Templates, Examples or Controls package, so non-control components such as a fan from Buildings.Fluid are not parsed. User defined classes are always parsed.
+
+Examples of models that can be exported this way are provided in test/ModelicaMode. They include templates that redeclare their controller in an extends clause (VAVBoxCoolingOnly and VAVBoxCoolingOnlyOpenLoop) and models that instantiate a control block directly or through a sub-model (ModelWithControlsBlock and ModelWithControlsBlock2).
+
 ## 4. JSON Schemas
 
 The JSON representation of Modelica and CXF models must be compliant with the corresponding JSON Schema. This is applicable for the JSON and CXF output respectively.
