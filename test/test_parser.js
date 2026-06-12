@@ -31,17 +31,18 @@ const getIntFiles = function (mode = 'cdl') {
   if (mode === 'cdl') {
     pattern = path.join(__dirname, 'FromModelica', '*.mo')
     const filesToExclude = [
-      path.join(__dirname, 'FromModelica', 'ModelWithControlsBlock.mo'),
-      path.join(__dirname, 'FromModelica', 'ModelWithControlsBlock2.mo'),
       path.join(__dirname, 'FromModelica', 'ExtendsClause_2.mo'),
       path.join(__dirname, 'FromModelica', 'ExtendsClause_3.mo')
     ]
     const allFiles = glob.sync(pattern)
     return allFiles.filter(f => !filesToExclude.includes(f))
   } else if (mode === 'modelica') {
+    // CDL control blocks instantiated within (non-CDL) Modelica models. These
+    // live in the ModelicaMode package and are parsed in 'modelica' mode so the
+    // generic recursion does not descend into heavy non-CDL dependency trees.
     return [
-      path.join(__dirname, 'FromModelica', 'ModelWithControlsBlock.mo'),
-      path.join(__dirname, 'FromModelica', 'ModelWithControlsBlock2.mo')
+      path.join(__dirname, 'ModelicaMode', 'ModelWithControlsBlock.mo'),
+      path.join(__dirname, 'ModelicaMode', 'ModelWithControlsBlock2.mo')
     ]
   }
 }
@@ -114,22 +115,22 @@ const checkModJSON = function (outFormat, extension, message) {
     const subPackName = (outFormat === 'raw-json' ? 'raw-json' : 'json')
     // When parsing mode is 'modelica', the moFiles should feed into parser in package
     // const jsonNewMOD = pa.getJSON(testMoFiles, mode, outFormat)
-    pa.getJsons(testMoFiles, outFormat, 'current', 'false')
-    // const pattern = path.join('test', 'FromModelica', 'ModelWithControlsBlock*.mo')
+    pa.getJsons(testMoFiles, outFormat, 'current', 'false', false, false, mode)
+    // const pattern = path.join('test', 'ModelicaMode', 'ModelWithControlsBlock*.mo')
     const files = getIntFiles(mode)
     const expectedOutputPath = path.join(process.cwd(), 'test', 'reference')
 
     for (let i = 0; i < files.length; i++) {
       const idx2 = files[i].lastIndexOf(path.sep)
       const fileNameMOD = files[i].slice(idx2 + 1, -3) + extension
-      const oldFileMOD = path.join(expectedOutputPath, subPackName, 'test', 'FromModelica', fileNameMOD)
+      const oldFileMOD = path.join(expectedOutputPath, subPackName, 'test', 'ModelicaMode', fileNameMOD)
       // Read the old json
       const jsonOldMOD = JSON.parse(fs.readFileSync(oldFileMOD, 'utf8'))
 
       if (jsonOldMOD.modelicaFile) {
         jsonOldMOD.fullMoFilePath = jsonOldMOD.modelicaFile.split('modelica-json/')[1]
       }
-      const jsonNewMOD = path.join(process.cwd(), subPackName, 'test', 'FromModelica', fileNameMOD)
+      const jsonNewMOD = path.join(process.cwd(), subPackName, 'test', 'ModelicaMode', fileNameMOD)
       const neMOD = JSON.parse(fs.readFileSync(jsonNewMOD, 'utf8'))
       if (neMOD.modelicaFile) {
         neMOD.fullMoFilePath = neMOD.modelicaFile.split('modelica-json/')[1]
@@ -282,6 +283,34 @@ function checkCxfCoreGeneration () {
   as.deepEqual(actualOutputCxfCore, refOutputCxfCore, 'CXF-Core.jsonld different for generated file=' + actualOutputCxfCorePath + ' and reference file=' + refOutputCxfCorePath)
 }
 
+/** Function that checks CXF export from a Modelica file in 'modelica' parsing
+  * mode (i.e. a CDL control block instantiated within a non-CDL Modelica model
+  * and marked with __cdl(isControls=true)). The export produces CXF for the
+  * enclosing model and for the control block class. The control block may be a
+  * direct component instance or one redeclared in an extends clause (template).
+  *
+  * @param message test description
+  * @param moFilePath path to the top-level Modelica file
+  * @param outputFiles list of generated CXF files (relative to the cxf output
+  *   directory) to compare against the committed references
+  */
+function checkCxfFromModelica (message, moFilePath, outputFiles) {
+  mo.it(message, () => {
+    const moFiles = ut.getMoFiles(moFilePath)
+    pa.getJsons(moFiles, 'cxf', 'current', true, false, false, 'modelica')
+    ce.getCxfFromModelica(moFiles[0], 'current', true)
+
+    for (let i = 0; i < outputFiles.length; i++) {
+      const actualPath = path.join(process.cwd(), 'cxf', outputFiles[i])
+      const refPath = path.join(process.cwd(), 'test', 'reference', 'cxf', outputFiles[i])
+      const actual = JSON.stringify(JSON.parse(fs.readFileSync(actualPath, 'utf8')))
+      const ref = JSON.stringify(JSON.parse(fs.readFileSync(refPath, 'utf8')))
+      as.notEqual(ref, undefined, 'Reference CXF is undefined')
+      as.deepEqual(actual, ref, 'CXF result differs for ' + refPath)
+    }
+  })
+}
+
 mo.describe('parser.js', function () {
   mo.describe('Testing Modelica to raw-json using CDL files', function () {
     checkCdlJSON('raw-json', '.json', 'Testing unmodified json for equality, "cdl" mode')
@@ -304,6 +333,42 @@ mo.describe('parser.js', function () {
   mo.describe('Testing CXF-Core.jsonld generation', function () {
     mo.it('check CXF-Core.jsonld generation and comparison', () => {
       checkCxfCoreGeneration()
+    })
+  })
+  mo.describe('Testing CXF export from Modelica models ("modelica" mode)', function () {
+    // Each entry is a valid model in the ModelicaMode package together with the
+    // CXF files its export produces (the enclosing model and the CDL control
+    // block class). Covers controllers redeclared in an extends clause
+    // (templates), a direct control instance, and a control instance nested in
+    // a sub-model.
+    const cases = [
+      {
+        message: 'template redeclaring its control block to G36 in an extends clause',
+        moFile: 'VAVBoxCoolingOnly.mo',
+        outputs: ['VAVBoxCoolingOnly.jsonld', 'G36VAVBoxCoolingOnly.jsonld']
+      },
+      {
+        message: 'template redeclaring its control block to an open loop controller',
+        moFile: 'VAVBoxCoolingOnlyOpenLoop.mo',
+        outputs: ['VAVBoxCoolingOnlyOpenLoop.jsonld', 'OpenLoopVAVBoxCoolingOnly.jsonld']
+      },
+      {
+        message: 'a control block instance within a Modelica model',
+        moFile: 'ModelWithControlsBlock.mo',
+        outputs: ['ModelWithControlsBlock.jsonld', 'SubControllerForControlsExport.jsonld']
+      },
+      {
+        message: 'a control block instance nested within a sub-model',
+        moFile: 'ModelWithControlsBlock2.mo',
+        outputs: ['ModelWithControlsBlock2.jsonld', 'SubControllerForControlsExport.jsonld']
+      }
+    ]
+    cases.forEach(({ message, moFile, outputs }) => {
+      checkCxfFromModelica(
+        'Testing CXF from ' + message,
+        path.join('test', 'ModelicaMode', moFile),
+        outputs.map(o => path.join('test', 'ModelicaMode', o))
+      )
     })
   })
   mo.describe('Testing call to getJsons', function () {

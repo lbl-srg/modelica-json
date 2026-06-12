@@ -1,0 +1,37 @@
+{
+  "@context": {
+    "exa": "http://example.org#",
+    "S": "https://data.ashrae.org/S231P#"
+  },
+  "@graph": [
+    {
+      "@id": "exa:ModelicaMode.G36VAVBoxCoolingOnly",
+      "@type": "S:Block",
+      "S:diagram": "coordinateSystem(preserveAspectRatio=false)",
+      "S:hasInput": {
+        "@id": "exa:ModelicaMode.G36VAVBoxCoolingOnly.u"
+      },
+      "S:hasOutput": {
+        "@id": "exa:ModelicaMode.G36VAVBoxCoolingOnly.y"
+      },
+      "S:icon": "coordinateSystem(preserveAspectRatio=false),graphics={Rectangle(extent={{-100,-100},{100,100}},lineColor={0,0,127},fillColor={255,255,255},fillPattern=FillPattern.Solid),Text(textString=\"%name\",extent={{-100,100},{100,140}},lineColor={0,0,255})}",
+      "S:label": "G36VAVBoxCoolingOnly"
+    },
+    {
+      "@id": "exa:ModelicaMode.G36VAVBoxCoolingOnly.u",
+      "@type": "S:RealInput",
+      "S:accessSpecifier": "public",
+      "S:description": "Measured zone temperature",
+      "S:graphics": "Placement(transformation(extent={{-140,-20},{-100,20}})),iconTransformation(extent={{-140,-20},{-100,20}})))",
+      "S:label": "u"
+    },
+    {
+      "@id": "exa:ModelicaMode.G36VAVBoxCoolingOnly.y",
+      "@type": "S:RealOutput",
+      "S:accessSpecifier": "public",
+      "S:description": "Damper position setpoint",
+      "S:graphics": "Placement(transformation(extent={{100,-20},{140,20}})),iconTransformation(extent={{100,-20},{140,20}})))",
+      "S:label": "y"
+    }
+  ]
+}

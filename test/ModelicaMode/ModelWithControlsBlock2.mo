@@ -1,4 +1,4 @@
-within FromModelica;
+within ModelicaMode;
 model ModelWithControlsBlock2 "Modelica model with a composite Block"
 
   Buildings.Fluid.Movers.SpeedControlled_y fan "Fan";

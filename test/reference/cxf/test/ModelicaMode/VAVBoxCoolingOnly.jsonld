@@ -1,0 +1,24 @@
+{
+  "@context": {
+    "exa": "http://example.org#",
+    "S": "https://data.ashrae.org/S231P#"
+  },
+  "@graph": [
+    {
+      "@id": "exa:ModelicaMode.VAVBoxCoolingOnly",
+      "@type": "S:Block",
+      "S:containsBlock": {
+        "@id": "exa:ModelicaMode.VAVBoxCoolingOnly.ctl"
+      },
+      "S:documentation": "info=<html>\n<p>\nThis template represents a cooling-only VAV terminal unit. The control block\n<code>ctl</code> is redeclared in the <code>extends</code> clause and marked\nwith <code>__cdl(isControls=true)</code> so that its CXF can be exported with\n<code>--mode modelica</code>.\n</p>\n</html>",
+      "S:label": "VAVBoxCoolingOnly"
+    },
+    {
+      "@id": "exa:ModelicaMode.VAVBoxCoolingOnly.ctl",
+      "@type": "exa:ModelicaMode.G36VAVBoxCoolingOnly",
+      "S:accessSpecifier": "public",
+      "S:isReplaceable": true,
+      "S:label": "ctl"
+    }
+  ]
+}

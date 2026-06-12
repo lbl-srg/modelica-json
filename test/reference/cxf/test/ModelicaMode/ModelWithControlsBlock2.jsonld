@@ -1,0 +1,24 @@
+{
+  "@context": {
+    "exa": "http://example.org#",
+    "S": "https://data.ashrae.org/S231P#"
+  },
+  "@graph": [
+    {
+      "@id": "exa:ModelicaMode.ModelWithControlsBlock2",
+      "@type": "S:Block",
+      "S:containsBlock": {
+        "@id": "exa:ModelicaMode.ModelWithControlsBlock2.subModel.subCon1"
+      },
+      "S:label": "ModelWithControlsBlock2"
+    },
+    {
+      "@id": "exa:ModelicaMode.ModelWithControlsBlock2.subModel.subCon1",
+      "@type": "exa:SubControllerForControlsExport",
+      "S:accessSpecifier": "public",
+      "S:description": "Sub controller",
+      "S:graphics": "Placement(transformation(extent={{-10,-50},{10,-30}})))",
+      "S:label": "subModel.subCon1"
+    }
+  ]
+}
