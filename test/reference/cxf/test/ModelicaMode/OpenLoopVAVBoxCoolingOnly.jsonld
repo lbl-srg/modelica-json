@@ -1,37 +1,37 @@
 {
   "@context": {
-    "exa": "http://example.org#",
-    "S": "https://data.ashrae.org/S231P#"
+    "S231": "http://data.ashrae.org/S231#",
+    "ex": "http://example.org#"
   },
   "@graph": [
     {
-      "@id": "exa:ModelicaMode.OpenLoopVAVBoxCoolingOnly",
-      "@type": "S:Block",
-      "S:diagram": "coordinateSystem(preserveAspectRatio=false)",
-      "S:hasInput": {
-        "@id": "exa:ModelicaMode.OpenLoopVAVBoxCoolingOnly.u"
+      "@id": "ex:ModelicaMode.OpenLoopVAVBoxCoolingOnly",
+      "@type": "S231:Block",
+      "S231:diagram": "coordinateSystem(preserveAspectRatio=false)",
+      "S231:hasInput": {
+        "@id": "ex:ModelicaMode.OpenLoopVAVBoxCoolingOnly.u"
       },
-      "S:hasOutput": {
-        "@id": "exa:ModelicaMode.OpenLoopVAVBoxCoolingOnly.y"
+      "S231:hasOutput": {
+        "@id": "ex:ModelicaMode.OpenLoopVAVBoxCoolingOnly.y"
       },
-      "S:icon": "coordinateSystem(preserveAspectRatio=false),graphics={Rectangle(extent={{-100,-100},{100,100}},lineColor={0,0,127},fillColor={255,255,255},fillPattern=FillPattern.Solid),Text(textString=\"%name\",extent={{-100,100},{100,140}},lineColor={0,0,255})}",
-      "S:label": "OpenLoopVAVBoxCoolingOnly"
+      "S231:icon": "coordinateSystem(preserveAspectRatio=false),graphics={Rectangle(extent={{-100,-100},{100,100}},lineColor={0,0,127},fillColor={255,255,255},fillPattern=FillPattern.Solid),Text(textString=\"%name\",extent={{-100,100},{100,140}},lineColor={0,0,255})}",
+      "S231:label": "OpenLoopVAVBoxCoolingOnly"
     },
     {
-      "@id": "exa:ModelicaMode.OpenLoopVAVBoxCoolingOnly.u",
-      "@type": "S:RealInput",
-      "S:accessSpecifier": "public",
-      "S:description": "Measured zone temperature",
-      "S:graphics": "Placement(transformation(extent={{-140,-20},{-100,20}})),iconTransformation(extent={{-140,-20},{-100,20}})))",
-      "S:label": "u"
+      "@id": "ex:ModelicaMode.OpenLoopVAVBoxCoolingOnly.u",
+      "@type": "S231:RealInput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Measured zone temperature",
+      "S231:graphics": "Placement(transformation(extent={{-140,-20},{-100,20}})),iconTransformation(extent={{-140,-20},{-100,20}})))",
+      "S231:label": "u"
     },
     {
-      "@id": "exa:ModelicaMode.OpenLoopVAVBoxCoolingOnly.y",
-      "@type": "S:RealOutput",
-      "S:accessSpecifier": "public",
-      "S:description": "Damper position setpoint",
-      "S:graphics": "Placement(transformation(extent={{100,-20},{140,20}})),iconTransformation(extent={{100,-20},{140,20}})))",
-      "S:label": "y"
+      "@id": "ex:ModelicaMode.OpenLoopVAVBoxCoolingOnly.y",
+      "@type": "S231:RealOutput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Damper position setpoint",
+      "S231:graphics": "Placement(transformation(extent={{100,-20},{140,20}})),iconTransformation(extent={{100,-20},{140,20}})))",
+      "S231:label": "y"
     }
   ]
 }

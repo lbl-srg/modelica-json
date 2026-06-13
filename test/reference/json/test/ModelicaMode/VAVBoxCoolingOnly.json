@@ -1,0 +1,110 @@
+{
+  "within": "ModelicaMode",
+  "stored_class_definitions": [
+    {
+      "class_prefixes": "model",
+      "class_specifier": {
+        "long_class_specifier": {
+          "identifier": "VAVBoxCoolingOnly",
+          "description_string": "VAV terminal unit cooling only",
+          "composition": {
+            "element_list": [
+              {
+                "extends_clause": {
+                  "name": "ModelicaMode.VAVBox",
+                  "class_modification": [
+                    {
+                      "element_redeclaration": {
+                        "element_replaceable": {
+                          "component_clause1": {
+                            "type_specifier": "ModelicaMode.G36VAVBoxCoolingOnly",
+                            "component_declaration1": {
+                              "declaration": {
+                                "identifier": "ctl"
+                              },
+                              "description": {
+                                "description_string": "Guideline 36 controller for VAV terminal unit cooling only",
+                                "annotation": [
+                                  {
+                                    "element_modification_or_replaceable": {
+                                      "element_modification": {
+                                        "name": "__cdl",
+                                        "modification": {
+                                          "class_modification": [
+                                            {
+                                              "element_modification_or_replaceable": {
+                                                "element_modification": {
+                                                  "name": "isControls",
+                                                  "modification": {
+                                                    "equal": true,
+                                                    "expression": {
+                                                      "simple_expression": "true"
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      }
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            ],
+            "annotation": [
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "defaultComponentName",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "\"VAVBox\""
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "Documentation",
+                    "modification": {
+                      "class_modification": [
+                        {
+                          "element_modification_or_replaceable": {
+                            "element_modification": {
+                              "name": "info",
+                              "modification": {
+                                "equal": true,
+                                "expression": {
+                                  "simple_expression": "\"<html>\n<p>\nThis template represents a cooling-only VAV terminal unit. The control block\n<code>ctl</code> is redeclared in the <code>extends</code> clause and marked\nwith <code>__cdl(isControls=true)</code> so that its CXF can be exported with\n<code>--mode modelica</code>.\n</p>\n</html>\""
+                                }
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "modelicaFile": "test/ModelicaMode/VAVBoxCoolingOnly.mo",
+  "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-json/test/ModelicaMode/VAVBoxCoolingOnly.mo",
+  "checksum": "aa2eea528d2fc9eb63aa918be4393868"
+}

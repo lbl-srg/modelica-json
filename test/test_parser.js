@@ -47,29 +47,6 @@ const getIntFiles = function (mode = 'cdl') {
   }
 }
 
-function removeEmptyFields (obj) {
-  if (typeof obj !== 'object' || obj === null) return obj
-
-  if (Array.isArray(obj)) {
-    // Filter empty elements from arrays
-    return obj
-      .map(removeEmptyFields)
-      .filter(item => item !== undefined && item !== null && item !== '')
-  }
-
-  const newObj = {}
-  for (const key in obj) {
-    if (Object.prototype.hasOwnProperty.call(obj, key)) {
-      const value = removeEmptyFields(obj[key])
-      // Keep only non-empty, non-null, non-undefined values
-      if (value !== undefined && value !== null && value !== '' && !(typeof value === 'object' && Object.keys(value).length === 0)) {
-        newObj[key] = value
-      }
-    }
-  }
-  return newObj
-}
-
 /**
  * Parse a JSON-LD string into a sorted array of canonical triple strings.
  *
@@ -166,13 +143,9 @@ const checkCdlJSON = function (outFormat, extension, message) {
       // It's like '../test/FromModelica/cdl/json/***.json'
       const oldFilCDL = path.join(expectedOutputPath, subPackName, 'test', 'FromModelica', fil.slice(idx + 1, -3) + extension)
 
-      // const oldFilCDL = path.join(packBase, mode, subPackName,
-      //   tempName[tempName.length - 1] +
-      //                             '.' +
-      //                             fil.slice(idx + 1, -3) + extension)
       // Read the old json
-      const neCDL = removeEmptyFields(JSON.parse(fs.readFileSync(jsonNewCDLFile, 'utf8')))
-      const oldCDL = removeEmptyFields(JSON.parse(fs.readFileSync(oldFilCDL, 'utf8')))
+      const neCDL = JSON.parse(fs.readFileSync(jsonNewCDLFile, 'utf8'))
+      const oldCDL = JSON.parse(fs.readFileSync(oldFilCDL, 'utf8'))
 
       // Update the path to be relative to the project home.
       // This is needed for the regression tests to be portable.
@@ -221,18 +194,13 @@ const checkModJSON = function (outFormat, extension, message) {
       const fileNameMOD = files[i].slice(idx2 + 1, -3) + extension
       const oldFileMOD = path.join(expectedOutputPath, subPackName, 'test', 'ModelicaMode', fileNameMOD)
       // Read the old json
-      const jsonOldMOD = removeEmptyFields(JSON.parse(fs.readFileSync(oldFileMOD, 'utf8')))
+      const jsonOldMOD = JSON.parse(fs.readFileSync(oldFileMOD, 'utf8'))
 
       if (jsonOldMOD.modelicaFile) {
         jsonOldMOD.fullMoFilePath = jsonOldMOD.modelicaFile.split('modelica-json/')[1]
       }
-<<<<<<< HEAD
       const jsonNewMOD = path.join(process.cwd(), subPackName, 'test', 'ModelicaMode', fileNameMOD)
       const neMOD = JSON.parse(fs.readFileSync(jsonNewMOD, 'utf8'))
-=======
-      const jsonNewMOD = path.join(testOutputDir, 'test', 'FromModelica', fileNameMOD)
-      const neMOD = removeEmptyFields(JSON.parse(fs.readFileSync(jsonNewMOD, 'utf8')))
->>>>>>> e1a08f24ec23a1cbec4f6889d11df80561a07557
       if (neMOD.modelicaFile) {
         neMOD.fullMoFilePath = neMOD.modelicaFile.split('modelica-json/')[1]
       }
@@ -279,7 +247,7 @@ const checkObjectsJSON = function (outFormat, extension, message) {
       const fileNameMOD = files[i].slice(idx2 + 1, -3) + extension
       const oldFileMOD = path.join(expectedOutputPath, fileNameMOD)
       // Read the old json
-      const jsonOldMOD = removeEmptyFields(JSON.parse(fs.readFileSync(oldFileMOD, 'utf8')))
+      const jsonOldMOD = JSON.parse(fs.readFileSync(oldFileMOD, 'utf8'))
       const oldInstances = jsonOldMOD.instances
       for (const oldInstanceId in oldInstances) {
         if ('fullMoFilePath' in oldInstances[oldInstanceId] && oldInstances[oldInstanceId].fullMoFilePath !== undefined) {
@@ -289,7 +257,7 @@ const checkObjectsJSON = function (outFormat, extension, message) {
       jsonOldMOD.instances = oldInstances
 
       const jsonNewMOD = path.join(actualOutputPath, fileNameMOD)
-      const neMOD = removeEmptyFields(JSON.parse(fs.readFileSync(jsonNewMOD, 'utf8')))
+      const neMOD = JSON.parse(fs.readFileSync(jsonNewMOD, 'utf8'))
       const newInstances = neMOD.instances
       for (const newInstanceId in newInstances) {
         if ('fullMoFilePath' in newInstances[newInstanceId] && newInstances[newInstanceId].fullMoFilePath !== undefined) {

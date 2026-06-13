@@ -1,24 +1,24 @@
 {
   "@context": {
-    "exa": "http://example.org#",
-    "S": "https://data.ashrae.org/S231P#"
+    "S231": "http://data.ashrae.org/S231#",
+    "ex": "http://example.org#"
   },
   "@graph": [
     {
-      "@id": "exa:ModelicaMode.ModelWithControlsBlock2",
-      "@type": "S:Block",
-      "S:containsBlock": {
-        "@id": "exa:ModelicaMode.ModelWithControlsBlock2.subModel.subCon1"
+      "@id": "ex:ModelicaMode.ModelWithControlsBlock2",
+      "@type": "S231:Block",
+      "S231:containsBlock": {
+        "@id": "ex:ModelicaMode.ModelWithControlsBlock2.subModel.subCon1"
       },
-      "S:label": "ModelWithControlsBlock2"
+      "S231:label": "ModelWithControlsBlock2"
     },
     {
-      "@id": "exa:ModelicaMode.ModelWithControlsBlock2.subModel.subCon1",
-      "@type": "exa:SubControllerForControlsExport",
-      "S:accessSpecifier": "public",
-      "S:description": "Sub controller",
-      "S:graphics": "Placement(transformation(extent={{-10,-50},{10,-30}})))",
-      "S:label": "subModel.subCon1"
+      "@id": "ex:ModelicaMode.ModelWithControlsBlock2.subModel.subCon1",
+      "@type": "ex:SubControllerForControlsExport",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Sub controller",
+      "S231:graphics": "Placement(transformation(extent={{-10,-50},{10,-30}})))",
+      "S231:label": "subModel.subCon1"
     }
   ]
 }

@@ -1,0 +1,110 @@
+{
+  "within": "ModelicaMode",
+  "stored_class_definitions": [
+    {
+      "class_prefixes": "model",
+      "class_specifier": {
+        "long_class_specifier": {
+          "identifier": "VAVBoxCoolingOnlyOpenLoop",
+          "description_string": "VAV terminal unit cooling only with an open loop controller",
+          "composition": {
+            "element_list": [
+              {
+                "extends_clause": {
+                  "name": "ModelicaMode.VAVBox",
+                  "class_modification": [
+                    {
+                      "element_redeclaration": {
+                        "element_replaceable": {
+                          "component_clause1": {
+                            "type_specifier": "ModelicaMode.OpenLoopVAVBoxCoolingOnly",
+                            "component_declaration1": {
+                              "declaration": {
+                                "identifier": "ctl"
+                              },
+                              "description": {
+                                "description_string": "Open loop controller for VAV terminal unit cooling only",
+                                "annotation": [
+                                  {
+                                    "element_modification_or_replaceable": {
+                                      "element_modification": {
+                                        "name": "__cdl",
+                                        "modification": {
+                                          "class_modification": [
+                                            {
+                                              "element_modification_or_replaceable": {
+                                                "element_modification": {
+                                                  "name": "isControls",
+                                                  "modification": {
+                                                    "equal": true,
+                                                    "expression": {
+                                                      "simple_expression": "true"
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      }
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            ],
+            "annotation": [
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "defaultComponentName",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "\"VAVBox\""
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "Documentation",
+                    "modification": {
+                      "class_modification": [
+                        {
+                          "element_modification_or_replaceable": {
+                            "element_modification": {
+                              "name": "info",
+                              "modification": {
+                                "equal": true,
+                                "expression": {
+                                  "simple_expression": "\"<html>\n<p>\nThis template is identical to\n<a href=\\\"modelica://ModelicaMode.VAVBoxCoolingOnly\\\">ModelicaMode.VAVBoxCoolingOnly</a>\nexcept that the control block <code>ctl</code> is redeclared in the\n<code>extends</code> clause to a different controller\n(<code>OpenLoopVAVBoxCoolingOnly</code>), again marked with\n<code>__cdl(isControls=true)</code> so that its CXF can be exported with\n<code>--mode modelica</code>.\n</p>\n</html>\""
+                                }
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "modelicaFile": "test/ModelicaMode/VAVBoxCoolingOnlyOpenLoop.mo",
+  "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-json/test/ModelicaMode/VAVBoxCoolingOnlyOpenLoop.mo",
+  "checksum": "12269a0215ac46a9897416be1311baba"
+}
