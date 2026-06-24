@@ -1,28 +1,36 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "schema-cdl.json",
+  "$id": "schema-modelica.json",
   "title": "JSON parsed Modelica file",
   "description": "Json representation of a Modelica model",
-  "$comment": "Version 2, 12/05/2022",
+  "$comment": "08/29/2024",
   "definitions": {
-    "class_definition": {
-      "description": "Class definition",
+    "stored_class_definitions": {
+      "description": "Stored class definitions",
       "type": "array",
       "additionalItems": false,
-      "items": {
-        "type": "object",
-        "required": [
-          "class_prefixes",
-          "class_specifier"
-        ],
-        "additionalProperties": false,
-        "properties": {
-          "class_prefixes": {
-            "type": "string"
-          },
-          "class_specifier": {
-            "$ref": "#/definitions/class_specifier"
-          }
+      "items": { "$ref": "#/definitions/class_definition" }
+    },
+    "class_definition": {
+      "description": "Class definition",
+      "type": "object",
+      "required": [
+        "class_prefixes",
+        "class_specifier"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "final": {
+          "type": "boolean"
+        },
+        "encapsulated": {
+          "type": "boolean"
+        },
+        "class_prefixes": {
+          "type": "string"
+        },
+        "class_specifier": {
+          "$ref": "#/definitions/class_specifier"
         }
       }
     },
@@ -31,7 +39,7 @@
       "oneOf": [
         {
           "type": "object",
-          "additionalItems": false,
+          "additionalProperties": false,
           "properties": {
             "long_class_specifier": {
               "$ref": "#/definitions/long_class_specifier"
@@ -40,7 +48,7 @@
         },
         {
           "type": "object",
-          "additionalItems": false,
+          "additionalProperties": false,
           "properties": {
             "short_class_specifier": {
               "$ref": "#/definitions/short_class_specifier"
@@ -67,9 +75,6 @@
         },
         "composition": {
           "$ref": "#/definitions/composition"
-        },
-        "class_modification": {
-          "$ref": "#/definitions/class_modification"
         }
       }
     },
@@ -100,9 +105,6 @@
           "additionalItems": false,
           "items": {
             "type": "object",
-            "required": [
-              "element_modification_or_replaceable"
-            ],
             "additionalProperties": false,
             "properties": {
               "element_modification_or_replaceable": {
@@ -122,10 +124,6 @@
       "additionalItems": false,
       "items": {
         "type": "object",
-        "required": [
-          "component_clause",
-          "description"
-        ],
         "additionalProperties": false,
         "properties": {
           "final": {
@@ -133,9 +131,6 @@
           },
           "component_clause": {
             "$ref": "#/definitions/component_clause"
-          },
-          "description": {
-            "$ref": "#/definitions/descriptionSchema"
           }
         }
       }
@@ -163,28 +158,19 @@
     "component_clause": {
       "description": "Component clause",
       "type": "object",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "required": [
-          "type_prefix",
-          "type_specifier",
-          "component_list"
-        ],
-        "additionalProperties": false,
-        "properties": {
-          "type_prefix": {
-            "type": "string"
-          },
-          "type_specifier": {
-            "type": "string"
-          },
-          "array_subscripts": {
-            "$ref": "#/definitions/array_subscripts"
-          },
-          "component_list": {
-            "$ref": "#/definitions/component_list"
-          }
+      "additionalProperties": false,
+      "properties": {
+        "type_prefix": {
+          "type": "string"
+        },
+        "type_specifier": {
+          "type": "string"
+        },
+        "array_subscripts": {
+          "$ref": "#/definitions/array_subscripts"
+        },
+        "component_list": {
+          "$ref": "#/definitions/component_list"
         }
       }
     },
@@ -227,9 +213,6 @@
       "oneOf": [
         {
           "type": "object",
-          "required": [
-            "name"
-          ],
           "additionalProperties": false,
           "properties": {
             "name": {
@@ -605,33 +588,51 @@
             "type": "string"
           },
           "attribute": {
-            "$ref": "#/definitions/attribute"
+            "type": "object"
+          }
+        },
+        "if": {
+          "properties": {"name": {"const": "Line"}}
+        },
+        "then": {
+          "properties": {"attribute": {"$ref": "#/definitions/Line"}}
+        },
+        "else": {
+          "if": {
+            "properties": {"name": {"const": "Text"}}
+          },
+          "then": {
+            "properties": {"attribute": {"$ref": "#/definitions/Text"}}
+          },
+          "else": {
+            "if": {
+              "properties": {"name": {"const": "Rectangle"}}
+            },
+            "then": {
+              "properties": {"attribute": {"$ref": "#/definitions/Rectangle"}}
+            },
+            "else": {
+              "if": {
+                "properties": {"name": {"const": "Polygon"}}
+              },
+              "then": {
+                "properties": {"attribute": {"$ref": "#/definitions/Polygon"}}
+              },
+              "else": {
+                "if": {
+                  "properties": {"name": {"const": "Ellipse"}}
+                },
+                "then": {
+                  "properties": {"attribute": {"$ref": "#/definitions/Ellipse"}}
+                },
+                "else": {
+                  "properties": {"attribute": {"$ref": "#/definitions/Bitmap"}}
+                }
+              }
+            }
           }
         }
       }
-    },
-    "attribute": {
-      "description": "graphics item attributes",
-      "oneOf": [
-        {
-          "$ref": "#/definitions/Line"
-        },
-        {
-          "$ref": "#/definitions/Text"
-        },
-        {
-          "$ref": "#/definitions/Rectangle"
-        },
-        {
-          "$ref": "#/definitions/Polygon"
-        },
-        {
-          "$ref": "#/definitions/Ellipse"
-        },
-        {
-          "$ref": "#/definitions/Bitmap"
-        }
-      ]
     },
     "points": {
       "description": "points on a 2d plan",
@@ -720,9 +721,6 @@
     "element_modification_or_replaceable": {
       "description": "Element modification and replaceable",
       "type": "object",
-      "required": [
-        "element_modification"
-      ],
       "additionalProperties": false,
       "properties": {
         "each": {
@@ -756,6 +754,15 @@
           "type": "object",
           "additionalProperties": false,
           "properties": {
+            "function_call": {
+              "$ref": "#/definitions/functionCallObj"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
             "for_loop": {
               "$ref": "#/definitions/forLoopObj"
             }
@@ -780,17 +787,79 @@
           }
         },
         {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "terms": {
+              "$ref": "#/definitions/terms"
+            }
+          }
+        },
+        {
           "type": "string"
         }
       ]
     },
+    "functionCallObj": {
+      "description": "Function call object",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "arguments": {
+          "$ref": "#/definitions/funArgsObj"
+        }
+      }
+    },
+    "funArgsObj": {
+      "description": "Function arguments",
+      "oneOf": [
+        {
+          "$ref": "#/definitions/funArgsObjName"
+        },
+        {
+          "$ref": "#/definitions/funArgsObjExp"
+        }
+      ]
+    },
+    "funArgsObjName": {
+      "type": "array",
+      "additionalItems": false,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "funArgsObjExp": {
+      "type": "array",
+      "additionalItems": false,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "expression": {
+            "$ref": "#/definitions/simpleExpression"
+          },
+          "for_loop": {
+            "$ref": "#/definitions/forLoopIndices"
+          }
+        }
+      }
+    },
     "forLoopObj": {
       "description": "For loop object",
       "type": "object",
-      "additionalItems": false,
+      "additionalProperties": false,
       "properties": {
         "expression": {
-          "$ref": "#/definitions/simpleExpression"
+          "$ref": "#/definitions/expression"
         },
         "for_loop": {
           "$ref": "#/definitions/forLoopIndices"
@@ -803,10 +872,7 @@
       "additionalItems": false,
       "items": {
         "type": "object",
-        "required": [
-          "name"
-        ],
-        "additionalItems": false,
+        "additionalProperties": false,
         "properties": {
           "name": {
             "type": "string"
@@ -820,7 +886,7 @@
     "logicalExpressionObj": {
       "description": "Logical expression",
       "type": "object",
-      "additionalItems": false,
+      "additionalProperties": false,
       "properties": {
         "logical_or": {
           "$ref": "#/definitions/OrArray"
@@ -833,7 +899,7 @@
       "additionalItems": false,
       "items": {
         "type": "object",
-        "additionalItems": false,
+        "additionalProperties": false,
         "properties": {
           "logical_and": {
             "$ref": "#/definitions/AndArray"
@@ -847,28 +913,115 @@
       "additionalItems": false,
       "items": {
         "type": "object",
-        "additionalItems": false,
+        "additionalProperties": false,
         "properties": {
           "not": {
-            "type": "string"
+            "type": "boolean"
           },
           "arithmetic_expressions": {
-            "type": "array",
-            "additionalItems": false,
-            "items": {
-              "type": "object",
-              "additionalItems": false,
-              "properties": {
-                "name": {
-                  "type": "string"
-                }
-              }
-            }
+            "$ref": "#/definitions/arithmeticExpressionObj"
           },
           "relation_operator": {
             "type": "string"
           }
         }
+      }
+    },
+    "arithmeticExpressionObj": {
+      "description": "arithmetic expression array",
+      "type": "array",
+      "additionalItems": false,
+      "items": {
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties":{
+              "addOps": {
+                "$ref": "#/definitions/addOps"
+              },
+              "terms": {
+                "$ref": "#/definitions/terms"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "addOps": {
+      "description": "Array of add operation symbols",
+      "type": "array",
+      "additionalItems": false,
+      "items": {
+        "type": "string",
+        "enum": ["+", "-", ".+", ".-"]
+      }
+    },
+    "terms": {
+      "description": "terms array",
+      "type": "array",
+      "additionalItems": false,
+      "items": {
+        "type": ["string", "object"],
+        "properties": {
+          "operators": {
+            "$ref": "#/definitions/operators"
+          },
+          "factors": {
+            "$ref": "#/definitions/factors"
+          }
+        }
+      }
+    },
+    "factors": {
+      "description": "factors array",
+      "type": "array",
+      "additionalItems": false,
+      "items": {
+        "type": ["string", "object"],
+        "properties": {
+          "operator": {
+            "type": "string"
+          },
+          "primary1": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/expression"
+                }
+              }
+            ]
+          },
+          "primary2": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/expression"
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    "operators": {
+      "description": "Array of multiply/divide operation symbols",
+      "type": "array",
+      "additionalItems": false,
+      "items": {
+        "type": "string",
+        "enum": ["*", "/", ".*", "./"]
       }
     },
     "ifExpressionObj": {
@@ -877,7 +1030,7 @@
       "additionalItems": false,
       "items": {
         "type": "object",
-        "additionalItems": false,
+        "additionalProperties": false,
         "properties": {
           "if_elseif": {
             "$ref": "#/definitions/if_elseIfArray"
@@ -894,10 +1047,10 @@
       "additionalItems": false,
       "items": {
         "type": "object",
-        "additionalItems": false,
+        "additionalProperties": false,
         "properties": {
           "condition": {
-            "type": "string"
+            "$ref": "#/definitions/expression"
           },
           "then": {
             "type": "string"
@@ -945,9 +1098,6 @@
         "properties": {
           "expression": {
             "$ref": "#/definitions/expression"
-          },
-          "colon_op": {
-            "type": "boolean"
           }
         }
       }
@@ -1012,6 +1162,10 @@
       "additionalItems": false,
       "items": {
         "type": "object",
+        "required": [
+          "identifier",
+          "description"
+        ],
         "additionalProperties": false,
         "properties": {
           "identifier": {
@@ -1055,13 +1209,22 @@
         }
       }
     },
+    "equationDescription": {
+      "description": "Equation description",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "description_string": {
+          "type": "string"
+        },
+        "annotation": {
+          "$ref": "#/definitions/class_modification"
+        }
+      }
+    },
     "short_class_definition": {
       "description": "Short class definition",
       "type": "object",
-      "required": [
-        "class_prefixes",
-        "short_class_specifier"
-      ],
       "additionalProperties": false,
       "properties": {
         "class_prefixes": {
@@ -1078,7 +1241,19 @@
       "additionalProperties": false,
       "properties": {
         "equation": {
-          "$ref": "#/definitions/equation"
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "connect_clause": {
+                "$ref": "#/definitions/connect_clause"
+              },
+              "description": {
+                "$ref": "#/definitions/equationDescription"
+              }
+            }
+          }
         }
       }
     },
@@ -1092,23 +1267,6 @@
         },
         "to": {
           "$ref": "#/definitions/component_reference"
-        }
-      }
-    },
-    "equation": {
-      "description": "Equation section",
-      "type": "array",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "connect_clause": {
-            "$ref": "#/definitions/connect_clause"
-          },
-          "description": {
-            "$ref": "#/definitions/descriptionSchema"
-          }
         }
       }
     },
@@ -1136,7 +1294,7 @@
   "type": "object",
   "required": [
     "within",
-    "class_definition"
+    "stored_class_definitions"
   ],
   "additionalProperties": false,
   "properties": {
@@ -1145,8 +1303,8 @@
       "type": "string",
       "pattern": "^([a-zA-Z0-9._*]*)$"
     },
-    "class_definition": {
-      "$ref": "#/definitions/class_definition"
+    "stored_class_definitions": {
+      "$ref": "#/definitions/stored_class_definitions"
     },
     "modelicaFile": {
       "description": "Relative modelica file path.",
@@ -1159,6 +1317,10 @@
     "checksum": {
       "description": "Checksum record of the modelica file",
       "type": "string"
+    },
+    "order": {
+      "description": "Names of class in the package",
+      "type": "array"
     }
   }
 }

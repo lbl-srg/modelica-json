@@ -5,7 +5,8 @@
   "main": "app.js",
   "repository": "git.test_repo",
   "scripts": {
-    "test": "nyc mocha --timeout 120000 && standard"
+    "test": "nyc mocha --timeout 120000 && standard",
+    "postinstall": "patch-package"
   },
   "author": "Michael Wetter",
   "license": "BSD-3-Clause",
@@ -39,6 +40,7 @@
   "devDependencies": {
     "chai": "^4.4.1",
     "mocha": "^11.3.0",
+    "patch-package": "^8.0.1",
     "rewire": "^7.0.0",
     "sinon": "^15.2.0",
     "standard": "^17.1.2"
