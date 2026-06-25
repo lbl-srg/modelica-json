@@ -131,6 +131,9 @@
           },
           "component_clause": {
             "$ref": "#/definitions/component_clause"
+          },
+          "extends_clause": {
+            "$ref": "#/definitions/extends_clause"
           }
         }
       }
@@ -152,6 +155,25 @@
           "equation_section": {
             "$ref": "#/definitions/equation_section"
           }
+        }
+      }
+    },
+    "extends_clause": {
+      "description": "Extends clause",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type_specifier": {
+          "type": "string"
+        },
+        "class_modification": {
+          "$ref": "#/definitions/class_modification"
+        },
+        "annotation": {
+          "$ref": "#/definitions/class_modification"
         }
       }
     },
@@ -1098,6 +1120,9 @@
         "properties": {
           "expression": {
             "$ref": "#/definitions/expression"
+          },
+          "colon_op": {
+            "type": "boolean"
           }
         }
       }
