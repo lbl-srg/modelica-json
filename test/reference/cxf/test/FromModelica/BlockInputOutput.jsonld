@@ -1,21 +1,22 @@
 {
   "@context": {
-    "S231": "http://data.ashrae.org/S231#"
+    "S231": "http://data.ashrae.org/S231#",
+    "ex": "http://example.org#"
   },
   "@graph": [
     {
-      "@id": "http://example.org#FromModelica.BlockInputOutput",
+      "@id": "ex:FromModelica.BlockInputOutput",
       "@type": "S231:Block",
       "S231:hasInput": {
-        "@id": "http://example.org#FromModelica.BlockInputOutput.u"
+        "@id": "ex:FromModelica.BlockInputOutput.u"
       },
       "S231:hasOutput": {
-        "@id": "http://example.org#FromModelica.BlockInputOutput.y"
+        "@id": "ex:FromModelica.BlockInputOutput.y"
       },
       "S231:label": "BlockInputOutput"
     },
     {
-      "@id": "http://example.org#FromModelica.BlockInputOutput.u",
+      "@id": "ex:FromModelica.BlockInputOutput.u",
       "@type": "S231:RealInput",
       "S231:accessSpecifier": "public",
       "S231:description": "Input connector",
@@ -23,7 +24,7 @@
       "S231:label": "u"
     },
     {
-      "@id": "http://example.org#FromModelica.BlockInputOutput.y",
+      "@id": "ex:FromModelica.BlockInputOutput.y",
       "@type": "S231:RealOutput",
       "S231:accessSpecifier": "public",
       "S231:description": "Output connector",

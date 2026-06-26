@@ -2,52 +2,53 @@
   "@context": {
     "S231": "http://data.ashrae.org/S231#",
     "qudt": "http://qudt.org/schema/qudt#",
+    "unit": "http://qudt.org/vocab/unit#",
     "q": "http://qudt.org/vocab/quantitykind#",
-    "unit": "http://qudt.org/vocab/unit#"
+    "ex": "http://example.org#"
   },
   "@graph": [
     {
-      "@id": "http://example.org#FromModelica.RemovableInputs",
+      "@id": "ex:FromModelica.RemovableInputs",
       "@type": "S231:Block",
       "S231:containsBlock": {
-        "@id": "http://example.org#FromModelica.RemovableInputs.abs"
+        "@id": "ex:FromModelica.RemovableInputs.abs"
       },
       "S231:hasInput": [
         {
-          "@id": "http://example.org#FromModelica.RemovableInputs.nOcc"
+          "@id": "ex:FromModelica.RemovableInputs.nOcc"
         },
         {
-          "@id": "http://example.org#FromModelica.RemovableInputs.TOut"
+          "@id": "ex:FromModelica.RemovableInputs.TOut"
         },
         {
-          "@id": "http://example.org#FromModelica.RemovableInputs.TOutWitDef"
+          "@id": "ex:FromModelica.RemovableInputs.TOutWitDef"
         },
         {
-          "@id": "http://example.org#FromModelica.RemovableInputs.u"
+          "@id": "ex:FromModelica.RemovableInputs.u"
         },
         {
-          "@id": "http://example.org#FromModelica.RemovableInputs.uWin"
+          "@id": "ex:FromModelica.RemovableInputs.uWin"
         }
       ],
       "S231:hasOutput": {
-        "@id": "http://example.org#FromModelica.RemovableInputs.y"
+        "@id": "ex:FromModelica.RemovableInputs.y"
       },
       "S231:hasParameter": [
         {
-          "@id": "http://example.org#FromModelica.RemovableInputs.enaBlo"
+          "@id": "ex:FromModelica.RemovableInputs.enaBlo"
         },
         {
-          "@id": "http://example.org#FromModelica.RemovableInputs.have_occSen"
+          "@id": "ex:FromModelica.RemovableInputs.have_occSen"
         },
         {
-          "@id": "http://example.org#FromModelica.RemovableInputs.have_winSen"
+          "@id": "ex:FromModelica.RemovableInputs.have_winSen"
         }
       ],
       "S231:label": "RemovableInputs"
     },
     {
-      "@id": "http://example.org#FromModelica.RemovableInputs.abs",
-      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Abs",
+      "@id": "ex:FromModelica.RemovableInputs.abs",
+      "@type": "ex:Buildings.Controls.OBC.CDL.Reals.Abs",
       "S231:accessSpecifier": "public",
       "S231:conditionalExpression": "not undefined",
       "S231:description": "Instance could be conditional disabled",
@@ -56,7 +57,7 @@
       "S231:label": "abs"
     },
     {
-      "@id": "http://example.org#FromModelica.RemovableInputs.enaBlo",
+      "@id": "ex:FromModelica.RemovableInputs.enaBlo",
       "@type": "S231:Parameter",
       "S231:accessSpecifier": "public",
       "S231:description": "Flag for enabling instance",
@@ -67,7 +68,7 @@
       "S231:value": true
     },
     {
-      "@id": "http://example.org#FromModelica.RemovableInputs.have_occSen",
+      "@id": "ex:FromModelica.RemovableInputs.have_occSen",
       "@type": "S231:Parameter",
       "S231:accessSpecifier": "public",
       "S231:description": "True: there is occupancy sensor",
@@ -77,7 +78,7 @@
       "S231:label": "have_occSen"
     },
     {
-      "@id": "http://example.org#FromModelica.RemovableInputs.have_winSen",
+      "@id": "ex:FromModelica.RemovableInputs.have_winSen",
       "@type": "S231:Parameter",
       "S231:accessSpecifier": "public",
       "S231:description": "True: there is window status sensor",
@@ -87,7 +88,7 @@
       "S231:label": "have_winSen"
     },
     {
-      "@id": "http://example.org#FromModelica.RemovableInputs.nOcc",
+      "@id": "ex:FromModelica.RemovableInputs.nOcc",
       "@type": "S231:IntegerInput",
       "S231:accessSpecifier": "public",
       "S231:conditionalExpression": "have_occSen",
@@ -97,7 +98,7 @@
       "S231:label": "nOcc"
     },
     {
-      "@id": "http://example.org#FromModelica.RemovableInputs.TOut",
+      "@id": "ex:FromModelica.RemovableInputs.TOut",
       "@type": "S231:RealInput",
       "S231:accessSpecifier": "public",
       "S231:conditionalExpression": "enaBlo",
@@ -113,7 +114,7 @@
       }
     },
     {
-      "@id": "http://example.org#FromModelica.RemovableInputs.TOutWitDef",
+      "@id": "ex:FromModelica.RemovableInputs.TOutWitDef",
       "@type": "S231:RealInput",
       "S231:accessSpecifier": "public",
       "S231:conditionalExpression": "enaBlo",
@@ -133,7 +134,7 @@
       }
     },
     {
-      "@id": "http://example.org#FromModelica.RemovableInputs.u",
+      "@id": "ex:FromModelica.RemovableInputs.u",
       "@type": "S231:RealInput",
       "S231:accessSpecifier": "public",
       "S231:conditionalExpression": "enaBlo",
@@ -143,7 +144,7 @@
       "S231:label": "u"
     },
     {
-      "@id": "http://example.org#FromModelica.RemovableInputs.uWin",
+      "@id": "ex:FromModelica.RemovableInputs.uWin",
       "@type": "S231:BooleanInput",
       "S231:accessSpecifier": "public",
       "S231:conditionalExpression": "have_winSen",
@@ -153,7 +154,7 @@
       "S231:label": "uWin"
     },
     {
-      "@id": "http://example.org#FromModelica.RemovableInputs.y",
+      "@id": "ex:FromModelica.RemovableInputs.y",
       "@type": "S231:RealOutput",
       "S231:accessSpecifier": "public",
       "S231:description": "Output connector",

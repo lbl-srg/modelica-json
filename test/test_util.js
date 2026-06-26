@@ -6,11 +6,14 @@ const fs = require('fs')
 
 const env = Object.assign({}, process.env)
 
-mo.afterEach(() => {
-  process.env = Object.assign({}, env)
-})
-
 mo.describe('util', function () {
+  // These tests mutate process.env.MODELICAPATH; restore it after each test.
+  // Scoped to this describe (not a root hook) so it does not reset the
+  // environment for other test files in the suite.
+  mo.afterEach(() => {
+    process.env = Object.assign({}, env)
+  })
+
   mo.describe('testing getMODELICAPATH()', function () {
     mo.it('must contain current directory and modelica-buildings', function () {
       const modelicapaths = ut.getMODELICAPATH()

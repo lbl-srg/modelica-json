@@ -1,51 +1,52 @@
 {
   "@context": {
-    "S231": "http://data.ashrae.org/S231#"
+    "S231": "http://data.ashrae.org/S231#",
+    "ex": "http://example.org#"
   },
   "@graph": [
     {
-      "@id": "http://example.org#FromModelica.ExtendsClause_1",
+      "@id": "ex:FromModelica.ExtendsClause_1",
       "@type": "S231:Block",
       "S231:containsBlock": {
-        "@id": "http://example.org#FromModelica.ExtendsClause_1.gain"
+        "@id": "ex:FromModelica.ExtendsClause_1.gain"
       },
       "S231:documentation": "info=<html>\ntest...test...test...test...test...\n</html>,revisions=<html>\ntest...test...test...\n</html>",
       "S231:extends": "Buildings.Controls.OBC.CDL.Reals.PID(k=2, Ti=2)",
       "S231:hasParameter": [
         {
-          "@id": "http://example.org#FromModelica.ExtendsClause_1.ARound"
+          "@id": "ex:FromModelica.ExtendsClause_1.ARound"
         },
         {
-          "@id": "http://example.org#FromModelica.ExtendsClause_1.length"
+          "@id": "ex:FromModelica.ExtendsClause_1.length"
         }
       ],
       "S231:label": "ExtendsClause_1"
     },
     {
-      "@id": "http://example.org#FromModelica.ExtendsClause_1.ARound",
+      "@id": "ex:FromModelica.ExtendsClause_1.ARound",
       "S231:accessSpecifier": "protected",
       "S231:description": "Cross sectional area (assuming a round cross section area)",
       "S231:label": "ARound",
       "S231:value": "dh^2*Modelica.Constants.pi/4"
     },
     {
-      "@id": "http://example.org#FromModelica.ExtendsClause_1.gain",
-      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter",
+      "@id": "ex:FromModelica.ExtendsClause_1.gain",
+      "@type": "ex:Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter",
       "S231:accessSpecifier": "public",
       "S231:description": "Constant gain",
       "S231:graphics": "Placement(transformation(extent={{-60,-50},{-40,-30}})))",
       "S231:hasInstance": {
-        "@id": "http://example.org#FromModelica.ExtendsClause_1.gain.k"
+        "@id": "ex:FromModelica.ExtendsClause_1.gain.k"
       },
       "S231:label": "gain"
     },
     {
-      "@id": "http://example.org#FromModelica.ExtendsClause_1.gain.k",
+      "@id": "ex:FromModelica.ExtendsClause_1.gain.k",
       "S231:isFinal": true,
       "S231:value": "k"
     },
     {
-      "@id": "http://example.org#FromModelica.ExtendsClause_1.length",
+      "@id": "ex:FromModelica.ExtendsClause_1.length",
       "S231:accessSpecifier": "public",
       "S231:description": "Length of the pipe",
       "S231:label": "length"

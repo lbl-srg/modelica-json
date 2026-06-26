@@ -1,79 +1,80 @@
 {
   "@context": {
-    "S231": "http://data.ashrae.org/S231#"
+    "S231": "http://data.ashrae.org/S231#",
+    "ex": "http://example.org#"
   },
   "@graph": [
     {
-      "@id": "http://example.org#FromModelica.CustomPWithLimiter",
+      "@id": "ex:FromModelica.CustomPWithLimiter",
       "@type": "S231:Block",
       "S231:containsBlock": [
         {
-          "@id": "http://example.org#FromModelica.CustomPWithLimiter.gain"
+          "@id": "ex:FromModelica.CustomPWithLimiter.gain"
         },
         {
-          "@id": "http://example.org#FromModelica.CustomPWithLimiter.minValue"
+          "@id": "ex:FromModelica.CustomPWithLimiter.minValue"
         }
       ],
       "S231:documentation": "info=<html>\n<p>\nBlock that outputs <code>y = min(yMax, k*e)</code>,\nwhere\n<code>yMax</code> and <code>e</code> are real-valued input signals and\n<code>k</code> is a parameter.\n</p>\n</html>",
       "S231:hasInput": [
         {
-          "@id": "http://example.org#FromModelica.CustomPWithLimiter.e"
+          "@id": "ex:FromModelica.CustomPWithLimiter.e"
         },
         {
-          "@id": "http://example.org#FromModelica.CustomPWithLimiter.yMax"
+          "@id": "ex:FromModelica.CustomPWithLimiter.yMax"
         }
       ],
       "S231:hasOutput": {
-        "@id": "http://example.org#FromModelica.CustomPWithLimiter.y"
+        "@id": "ex:FromModelica.CustomPWithLimiter.y"
       },
       "S231:hasParameter": {
-        "@id": "http://example.org#FromModelica.CustomPWithLimiter.k"
+        "@id": "ex:FromModelica.CustomPWithLimiter.k"
       },
       "S231:label": "CustomPWithLimiter"
     },
     {
-      "@id": "http://example.org#FromModelica.CustomPWithLimiter.e",
+      "@id": "ex:FromModelica.CustomPWithLimiter.e",
       "@type": "S231:RealInput",
       "S231:accessSpecifier": "public",
       "S231:description": "Control error",
       "S231:graphics": "Placement(transformation(extent={{-140,-60},{-100,-20}})))",
       "S231:isConnectedTo": {
-        "@id": "http://example.org#FromModelica.CustomPWithLimiter.gain.u"
+        "@id": "ex:FromModelica.CustomPWithLimiter.gain.u"
       },
       "S231:label": "e"
     },
     {
-      "@id": "http://example.org#FromModelica.CustomPWithLimiter.gain",
-      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter",
+      "@id": "ex:FromModelica.CustomPWithLimiter.gain",
+      "@type": "ex:Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter",
       "S231:accessSpecifier": "public",
       "S231:description": "Constant gain",
       "S231:graphics": "Placement(transformation(extent={{-60,-50},{-40,-30}})))",
       "S231:hasInstance": [
         {
-          "@id": "http://example.org#FromModelica.CustomPWithLimiter.gain.k"
+          "@id": "ex:FromModelica.CustomPWithLimiter.gain.k"
         },
         {
-          "@id": "http://example.org#FromModelica.CustomPWithLimiter.gain.u"
+          "@id": "ex:FromModelica.CustomPWithLimiter.gain.u"
         },
         {
-          "@id": "http://example.org#FromModelica.CustomPWithLimiter.gain.y"
+          "@id": "ex:FromModelica.CustomPWithLimiter.gain.y"
         }
       ],
       "S231:label": "gain"
     },
     {
-      "@id": "http://example.org#FromModelica.CustomPWithLimiter.gain.k",
+      "@id": "ex:FromModelica.CustomPWithLimiter.gain.k",
       "S231:isFinal": true,
       "S231:value": "k"
     },
     {
-      "@id": "http://example.org#FromModelica.CustomPWithLimiter.gain.y",
+      "@id": "ex:FromModelica.CustomPWithLimiter.gain.y",
       "S231:isConnectedTo": {
-        "@id": "http://example.org#FromModelica.CustomPWithLimiter.minValue.u2"
+        "@id": "ex:FromModelica.CustomPWithLimiter.minValue.u2"
       }
     },
     {
-      "@id": "http://example.org#FromModelica.CustomPWithLimiter.k",
+      "@id": "ex:FromModelica.CustomPWithLimiter.k",
       "@type": "S231:Parameter",
       "S231:accessSpecifier": "public",
       "S231:description": "Constant gain",
@@ -84,32 +85,32 @@
       "S231:value": 2
     },
     {
-      "@id": "http://example.org#FromModelica.CustomPWithLimiter.minValue",
-      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Min",
+      "@id": "ex:FromModelica.CustomPWithLimiter.minValue",
+      "@type": "ex:Buildings.Controls.OBC.CDL.Reals.Min",
       "S231:accessSpecifier": "public",
       "S231:description": "Outputs the minimum of its inputs",
       "S231:graphics": "Placement(transformation(extent={{20,-10},{40,10}})))",
       "S231:hasInstance": [
         {
-          "@id": "http://example.org#FromModelica.CustomPWithLimiter.minValue.u1"
+          "@id": "ex:FromModelica.CustomPWithLimiter.minValue.u1"
         },
         {
-          "@id": "http://example.org#FromModelica.CustomPWithLimiter.minValue.u2"
+          "@id": "ex:FromModelica.CustomPWithLimiter.minValue.u2"
         },
         {
-          "@id": "http://example.org#FromModelica.CustomPWithLimiter.minValue.y"
+          "@id": "ex:FromModelica.CustomPWithLimiter.minValue.y"
         }
       ],
       "S231:label": "minValue"
     },
     {
-      "@id": "http://example.org#FromModelica.CustomPWithLimiter.minValue.y",
+      "@id": "ex:FromModelica.CustomPWithLimiter.minValue.y",
       "S231:isConnectedTo": {
-        "@id": "http://example.org#FromModelica.CustomPWithLimiter.y"
+        "@id": "ex:FromModelica.CustomPWithLimiter.y"
       }
     },
     {
-      "@id": "http://example.org#FromModelica.CustomPWithLimiter.y",
+      "@id": "ex:FromModelica.CustomPWithLimiter.y",
       "@type": "S231:RealOutput",
       "S231:accessSpecifier": "public",
       "S231:description": "Control signal",
@@ -117,13 +118,13 @@
       "S231:label": "y"
     },
     {
-      "@id": "http://example.org#FromModelica.CustomPWithLimiter.yMax",
+      "@id": "ex:FromModelica.CustomPWithLimiter.yMax",
       "@type": "S231:RealInput",
       "S231:accessSpecifier": "public",
       "S231:description": "Maximum value of output signal",
       "S231:graphics": "Placement(transformation(extent={{-140,20},{-100,60}})))",
       "S231:isConnectedTo": {
-        "@id": "http://example.org#FromModelica.CustomPWithLimiter.minValue.u1"
+        "@id": "ex:FromModelica.CustomPWithLimiter.minValue.u1"
       },
       "S231:label": "yMax"
     }

@@ -1,18 +1,19 @@
 {
   "@context": {
-    "S231": "http://data.ashrae.org/S231#"
+    "S231": "http://data.ashrae.org/S231#",
+    "ex": "http://example.org#"
   },
   "@graph": [
     {
-      "@id": "http://example.org#FromModelica.Parameter1WithVendorAnnotation",
+      "@id": "ex:FromModelica.Parameter1WithVendorAnnotation",
       "@type": "S231:Block",
       "S231:hasParameter": {
-        "@id": "http://example.org#FromModelica.Parameter1WithVendorAnnotation.kP"
+        "@id": "ex:FromModelica.Parameter1WithVendorAnnotation.kP"
       },
       "S231:label": "Parameter1WithVendorAnnotation"
     },
     {
-      "@id": "http://example.org#FromModelica.Parameter1WithVendorAnnotation.kP",
+      "@id": "ex:FromModelica.Parameter1WithVendorAnnotation.kP",
       "@type": "S231:Parameter",
       "S231:accessSpecifier": "public",
       "S231:description": "Some comment",

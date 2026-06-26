@@ -1,45 +1,46 @@
 {
   "@context": {
     "S231": "http://data.ashrae.org/S231#",
-    "unit": "http://qudt.org/vocab/unit#",
     "qudt": "http://qudt.org/schema/qudt#",
-    "q": "http://qudt.org/vocab/quantitykind#"
+    "unit": "http://qudt.org/vocab/unit#",
+    "q": "http://qudt.org/vocab/quantitykind#",
+    "ex": "http://example.org#"
   },
   "@graph": [
     {
-      "@id": "http://example.org#FromModelica.VariableModification",
+      "@id": "ex:FromModelica.VariableModification",
       "@type": "S231:Block",
       "S231:containsBlock": {
-        "@id": "http://example.org#FromModelica.VariableModification.abs"
+        "@id": "ex:FromModelica.VariableModification.abs"
       },
       "S231:hasInput": [
         {
-          "@id": "http://example.org#FromModelica.VariableModification.TOut"
+          "@id": "ex:FromModelica.VariableModification.TOut"
         },
         {
-          "@id": "http://example.org#FromModelica.VariableModification.u"
+          "@id": "ex:FromModelica.VariableModification.u"
         }
       ],
       "S231:label": "VariableModification"
     },
     {
-      "@id": "http://example.org#FromModelica.VariableModification.abs",
-      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Abs",
+      "@id": "ex:FromModelica.VariableModification.abs",
+      "@type": "ex:Buildings.Controls.OBC.CDL.Reals.Abs",
       "S231:accessSpecifier": "public",
       "S231:description": "Instance with modified input and output attributes",
       "S231:graphics": "Placement(transformation(extent={{-8,-10},{12,10}})))",
       "S231:hasInstance": [
         {
-          "@id": "http://example.org#FromModelica.VariableModification.abs.u"
+          "@id": "ex:FromModelica.VariableModification.abs.u"
         },
         {
-          "@id": "http://example.org#FromModelica.VariableModification.abs.y"
+          "@id": "ex:FromModelica.VariableModification.abs.y"
         }
       ],
       "S231:label": "abs"
     },
     {
-      "@id": "http://example.org#FromModelica.VariableModification.abs.u",
+      "@id": "ex:FromModelica.VariableModification.abs.u",
       "S231:hasDisplayUnit": {
         "@id": "unit:DEG_C"
       },
@@ -48,7 +49,7 @@
       }
     },
     {
-      "@id": "http://example.org#FromModelica.VariableModification.abs.y",
+      "@id": "ex:FromModelica.VariableModification.abs.y",
       "S231:hasDisplayUnit": {
         "@id": "unit:DEG_C"
       },
@@ -57,7 +58,7 @@
       }
     },
     {
-      "@id": "http://example.org#FromModelica.VariableModification.TOut",
+      "@id": "ex:FromModelica.VariableModification.TOut",
       "@type": "S231:RealInput",
       "S231:accessSpecifier": "public",
       "S231:description": "Temperature input",
@@ -71,7 +72,7 @@
       }
     },
     {
-      "@id": "http://example.org#FromModelica.VariableModification.u",
+      "@id": "ex:FromModelica.VariableModification.u",
       "@type": "S231:RealInput",
       "S231:accessSpecifier": "public",
       "S231:description": "Input connector",

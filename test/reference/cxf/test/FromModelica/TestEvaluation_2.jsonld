@@ -1,76 +1,77 @@
 {
   "@context": {
-    "S231": "http://data.ashrae.org/S231#"
+    "S231": "http://data.ashrae.org/S231#",
+    "ex": "http://example.org#"
   },
   "@graph": [
     {
-      "@id": "http://example.org#FromModelica.TestEvaluation_2",
+      "@id": "ex:FromModelica.TestEvaluation_2",
       "@type": "S231:Block",
       "S231:containsBlock": {
-        "@id": "http://example.org#FromModelica.TestEvaluation_2.hys"
+        "@id": "ex:FromModelica.TestEvaluation_2.hys"
       },
       "S231:diagram": "coordinateSystem(preserveAspectRatio=false)",
       "S231:hasInput": {
-        "@id": "http://example.org#FromModelica.TestEvaluation_2.u"
+        "@id": "ex:FromModelica.TestEvaluation_2.u"
       },
       "S231:hasOutput": {
-        "@id": "http://example.org#FromModelica.TestEvaluation_2.y"
+        "@id": "ex:FromModelica.TestEvaluation_2.y"
       },
       "S231:hasParameter": [
         {
-          "@id": "http://example.org#FromModelica.TestEvaluation_2.uHigh"
+          "@id": "ex:FromModelica.TestEvaluation_2.uHigh"
         },
         {
-          "@id": "http://example.org#FromModelica.TestEvaluation_2.uLow"
+          "@id": "ex:FromModelica.TestEvaluation_2.uLow"
         }
       ],
       "S231:icon": "coordinateSystem(preserveAspectRatio=false)",
       "S231:label": "TestEvaluation_2"
     },
     {
-      "@id": "http://example.org#FromModelica.TestEvaluation_2.hys",
-      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Hysteresis",
+      "@id": "ex:FromModelica.TestEvaluation_2.hys",
+      "@type": "ex:Buildings.Controls.OBC.CDL.Reals.Hysteresis",
       "S231:accessSpecifier": "public",
       "S231:graphics": "Placement(transformation(extent={{-10,-10},{10,10}})))",
       "S231:hasInstance": [
         {
-          "@id": "http://example.org#FromModelica.TestEvaluation_2.hys.u"
+          "@id": "ex:FromModelica.TestEvaluation_2.hys.u"
         },
         {
-          "@id": "http://example.org#FromModelica.TestEvaluation_2.hys.uHigh"
+          "@id": "ex:FromModelica.TestEvaluation_2.hys.uHigh"
         },
         {
-          "@id": "http://example.org#FromModelica.TestEvaluation_2.hys.uLow"
+          "@id": "ex:FromModelica.TestEvaluation_2.hys.uLow"
         },
         {
-          "@id": "http://example.org#FromModelica.TestEvaluation_2.hys.y"
+          "@id": "ex:FromModelica.TestEvaluation_2.hys.y"
         }
       ],
       "S231:label": "hys"
     },
     {
-      "@id": "http://example.org#FromModelica.TestEvaluation_2.hys.u",
+      "@id": "ex:FromModelica.TestEvaluation_2.hys.u",
       "S231:isConnectedTo": {
-        "@id": "http://example.org#FromModelica.TestEvaluation_2.u"
+        "@id": "ex:FromModelica.TestEvaluation_2.u"
       }
     },
     {
-      "@id": "http://example.org#FromModelica.TestEvaluation_2.hys.uHigh",
+      "@id": "ex:FromModelica.TestEvaluation_2.hys.uHigh",
       "S231:value": "uHigh"
     },
     {
-      "@id": "http://example.org#FromModelica.TestEvaluation_2.hys.uLow",
+      "@id": "ex:FromModelica.TestEvaluation_2.hys.uLow",
       "S231:isFinal": true,
       "S231:value": "uLow"
     },
     {
-      "@id": "http://example.org#FromModelica.TestEvaluation_2.hys.y",
+      "@id": "ex:FromModelica.TestEvaluation_2.hys.y",
       "S231:isConnectedTo": {
-        "@id": "http://example.org#FromModelica.TestEvaluation_2.y"
+        "@id": "ex:FromModelica.TestEvaluation_2.y"
       }
     },
     {
-      "@id": "http://example.org#FromModelica.TestEvaluation_2.u",
+      "@id": "ex:FromModelica.TestEvaluation_2.u",
       "@type": "S231:RealInput",
       "S231:accessSpecifier": "public",
       "S231:description": "Real input signal",
@@ -78,7 +79,7 @@
       "S231:label": "u"
     },
     {
-      "@id": "http://example.org#FromModelica.TestEvaluation_2.uHigh",
+      "@id": "ex:FromModelica.TestEvaluation_2.uHigh",
       "@type": "S231:Parameter",
       "S231:accessSpecifier": "public",
       "S231:description": "if y=false and u>uHigh, switch to y=true",
@@ -89,7 +90,7 @@
       "S231:value": "2*uLow"
     },
     {
-      "@id": "http://example.org#FromModelica.TestEvaluation_2.uLow",
+      "@id": "ex:FromModelica.TestEvaluation_2.uLow",
       "@type": "S231:Parameter",
       "S231:accessSpecifier": "public",
       "S231:description": "if y=true and u<uLow, switch to y=false",
@@ -104,7 +105,7 @@
       }
     },
     {
-      "@id": "http://example.org#FromModelica.TestEvaluation_2.y",
+      "@id": "ex:FromModelica.TestEvaluation_2.y",
       "@type": "S231:BooleanOutput",
       "S231:accessSpecifier": "public",
       "S231:description": "Boolean output signal",

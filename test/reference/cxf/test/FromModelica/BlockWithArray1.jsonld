@@ -1,41 +1,42 @@
 {
   "@context": {
-    "S231": "http://data.ashrae.org/S231#"
+    "S231": "http://data.ashrae.org/S231#",
+    "ex": "http://example.org#"
   },
   "@graph": [
     {
-      "@id": "http://example.org#FromModelica.BlockWithArray1",
+      "@id": "ex:FromModelica.BlockWithArray1",
       "@type": "S231:Block",
       "S231:hasParameter": [
         {
-          "@id": "http://example.org#FromModelica.BlockWithArray1.a"
+          "@id": "ex:FromModelica.BlockWithArray1.a"
         },
         {
-          "@id": "http://example.org#FromModelica.BlockWithArray1.b"
+          "@id": "ex:FromModelica.BlockWithArray1.b"
         },
         {
-          "@id": "http://example.org#FromModelica.BlockWithArray1.c"
+          "@id": "ex:FromModelica.BlockWithArray1.c"
         },
         {
-          "@id": "http://example.org#FromModelica.BlockWithArray1.k1"
+          "@id": "ex:FromModelica.BlockWithArray1.k1"
         },
         {
-          "@id": "http://example.org#FromModelica.BlockWithArray1.k2"
+          "@id": "ex:FromModelica.BlockWithArray1.k2"
         },
         {
-          "@id": "http://example.org#FromModelica.BlockWithArray1.k3"
+          "@id": "ex:FromModelica.BlockWithArray1.k3"
         },
         {
-          "@id": "http://example.org#FromModelica.BlockWithArray1.k4"
+          "@id": "ex:FromModelica.BlockWithArray1.k4"
         },
         {
-          "@id": "http://example.org#FromModelica.BlockWithArray1.k5"
+          "@id": "ex:FromModelica.BlockWithArray1.k5"
         }
       ],
       "S231:label": "BlockWithArray1"
     },
     {
-      "@id": "http://example.org#FromModelica.BlockWithArray1.a",
+      "@id": "ex:FromModelica.BlockWithArray1.a",
       "@type": "S231:Parameter",
       "S231:accessSpecifier": "public",
       "S231:isArray": true,
@@ -48,7 +49,7 @@
       "S231:value": "{1,2,3,4,5}"
     },
     {
-      "@id": "http://example.org#FromModelica.BlockWithArray1.b",
+      "@id": "ex:FromModelica.BlockWithArray1.b",
       "@type": "S231:Parameter",
       "S231:accessSpecifier": "public",
       "S231:isArray": true,
@@ -60,7 +61,7 @@
       "S231:value": "{1,2}"
     },
     {
-      "@id": "http://example.org#FromModelica.BlockWithArray1.c",
+      "@id": "ex:FromModelica.BlockWithArray1.c",
       "@type": "S231:Parameter",
       "S231:accessSpecifier": "public",
       "S231:isArray": true,
@@ -73,7 +74,7 @@
       "S231:value": "{{1,2},{3,4},{5,6}}"
     },
     {
-      "@id": "http://example.org#FromModelica.BlockWithArray1.k1",
+      "@id": "ex:FromModelica.BlockWithArray1.k1",
       "@type": "S231:Parameter",
       "S231:accessSpecifier": "public",
       "S231:isArray": true,
@@ -86,7 +87,7 @@
       "S231:value": "{1,2,3}"
     },
     {
-      "@id": "http://example.org#FromModelica.BlockWithArray1.k2",
+      "@id": "ex:FromModelica.BlockWithArray1.k2",
       "@type": "S231:Parameter",
       "S231:accessSpecifier": "public",
       "S231:isArray": true,
@@ -99,7 +100,7 @@
       "S231:value": "{i for i in 1:3}"
     },
     {
-      "@id": "http://example.org#FromModelica.BlockWithArray1.k3",
+      "@id": "ex:FromModelica.BlockWithArray1.k3",
       "@type": "S231:Parameter",
       "S231:accessSpecifier": "public",
       "S231:isArray": true,
@@ -112,7 +113,7 @@
       "S231:value": "k1"
     },
     {
-      "@id": "http://example.org#FromModelica.BlockWithArray1.k4",
+      "@id": "ex:FromModelica.BlockWithArray1.k4",
       "@type": "S231:Parameter",
       "S231:accessSpecifier": "public",
       "S231:isArray": true,
@@ -125,7 +126,7 @@
       "S231:value": "fill(1,3) +{0,1,2}"
     },
     {
-      "@id": "http://example.org#FromModelica.BlockWithArray1.k5",
+      "@id": "ex:FromModelica.BlockWithArray1.k5",
       "@type": "S231:Parameter",
       "S231:accessSpecifier": "public",
       "S231:isArray": true,
