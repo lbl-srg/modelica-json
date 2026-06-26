@@ -1,34 +1,35 @@
 {
   "@context": {
-    "S231": "http://data.ashrae.org/S231#"
+    "S231": "http://data.ashrae.org/S231#",
+    "ex": "http://example.org#"
   },
   "@graph": [
     {
-      "@id": "http://example.org#FromModelica.WithCDLElementary",
+      "@id": "ex:FromModelica.WithCDLElementary",
       "@type": "S231:Block",
       "S231:containsBlock": {
-        "@id": "http://example.org#FromModelica.WithCDLElementary.gre"
+        "@id": "ex:FromModelica.WithCDLElementary.gre"
       },
       "S231:diagram": "coordinateSystem(preserveAspectRatio=false)",
       "S231:hasInput": {
-        "@id": "http://example.org#FromModelica.WithCDLElementary.u"
+        "@id": "ex:FromModelica.WithCDLElementary.u"
       },
       "S231:hasOutput": {
-        "@id": "http://example.org#FromModelica.WithCDLElementary.y"
+        "@id": "ex:FromModelica.WithCDLElementary.y"
       },
       "S231:icon": "coordinateSystem(preserveAspectRatio=false)",
       "S231:label": "WithCDLElementary"
     },
     {
-      "@id": "http://example.org#FromModelica.WithCDLElementary.gre",
-      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Greater",
+      "@id": "ex:FromModelica.WithCDLElementary.gre",
+      "@type": "ex:Buildings.Controls.OBC.CDL.Reals.Greater",
       "S231:accessSpecifier": "public",
       "S231:description": "CDL elementary block with inside class",
       "S231:graphics": "Placement(transformation(extent={{-8,-10},{12,10}})))",
       "S231:label": "gre"
     },
     {
-      "@id": "http://example.org#FromModelica.WithCDLElementary.u",
+      "@id": "ex:FromModelica.WithCDLElementary.u",
       "@type": "S231:RealInput",
       "S231:accessSpecifier": "public",
       "S231:description": "Real input",
@@ -36,7 +37,7 @@
       "S231:label": "u"
     },
     {
-      "@id": "http://example.org#FromModelica.WithCDLElementary.y",
+      "@id": "ex:FromModelica.WithCDLElementary.y",
       "@type": "S231:RealOutput",
       "S231:accessSpecifier": "public",
       "S231:description": "Real output",

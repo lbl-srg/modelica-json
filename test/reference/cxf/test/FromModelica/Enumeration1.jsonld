@@ -1,31 +1,32 @@
 {
   "@context": {
-    "S231": "http://data.ashrae.org/S231#"
+    "S231": "http://data.ashrae.org/S231#",
+    "ex": "http://example.org#"
   },
   "@graph": [
     {
-      "@id": "http://example.org#Enumeration1.e1",
-      "@type": "http://example.org#FromModelica.Enumeration1",
+      "@id": "ex:Enumeration1.e1",
+      "@type": "ex:FromModelica.Enumeration1",
       "S231:description": "e1",
       "S231:label": "e1",
       "S231:value": "e1"
     },
     {
-      "@id": "http://example.org#Enumeration1.e2",
-      "@type": "http://example.org#FromModelica.Enumeration1",
+      "@id": "ex:Enumeration1.e2",
+      "@type": "ex:FromModelica.Enumeration1",
       "S231:description": "e2",
       "S231:label": "e2",
       "S231:value": "e2"
     },
     {
-      "@id": "http://example.org#Enumeration1.e3",
-      "@type": "http://example.org#FromModelica.Enumeration1",
+      "@id": "ex:Enumeration1.e3",
+      "@type": "ex:FromModelica.Enumeration1",
       "S231:description": "e3",
       "S231:label": "e3",
       "S231:value": "e3"
     },
     {
-      "@id": "http://example.org#FromModelica.Enumeration1",
+      "@id": "ex:FromModelica.Enumeration1",
       "@type": "S231:EnumerationType",
       "S231:description": "Enumeration defining e1, e2 or e3",
       "S231:label": "Enumeration1",

@@ -26,37 +26,25 @@ logger.level = 'error'
 
 /** Function to get all the Modelica files to be tested
   */
-const getIntFiles = function (mode = 'modelica') {
+const getIntFiles = function (mode = 'cdl') {
   let pattern
   if (mode === 'cdl') {
     pattern = path.join(__dirname, 'FromModelica', '*.mo')
-    return glob.sync(pattern)
+    const filesToExclude = [
+      path.join(__dirname, 'FromModelica', 'ExtendsClause_2.mo'),
+      path.join(__dirname, 'FromModelica', 'ExtendsClause_3.mo')
+    ]
+    const allFiles = glob.sync(pattern)
+    return allFiles.filter(f => !filesToExclude.includes(f))
   } else if (mode === 'modelica') {
-    return path.join(__dirname, 'FromModelica')
+    // CDL control blocks instantiated within (non-CDL) Modelica models. These
+    // live in the ModelicaMode package and are parsed in 'modelica' mode so the
+    // generic recursion does not descend into heavy non-CDL dependency trees.
+    return [
+      path.join(__dirname, 'ModelicaMode', 'ModelWithControlsBlock.mo'),
+      path.join(__dirname, 'ModelicaMode', 'ModelWithControlsBlock2.mo')
+    ]
   }
-}
-
-function removeEmptyFields (obj) {
-  if (typeof obj !== 'object' || obj === null) return obj
-
-  if (Array.isArray(obj)) {
-    // Filter empty elements from arrays
-    return obj
-      .map(removeEmptyFields)
-      .filter(item => item !== undefined && item !== null && item !== '')
-  }
-
-  const newObj = {}
-  for (const key in obj) {
-    if (Object.prototype.hasOwnProperty.call(obj, key)) {
-      const value = removeEmptyFields(obj[key])
-      // Keep only non-empty, non-null, non-undefined values
-      if (value !== undefined && value !== null && value !== '' && !(typeof value === 'object' && Object.keys(value).length === 0)) {
-        newObj[key] = value
-      }
-    }
-  }
-  return newObj
 }
 
 /**
@@ -155,13 +143,9 @@ const checkCdlJSON = function (outFormat, extension, message) {
       // It's like '../test/FromModelica/cdl/json/***.json'
       const oldFilCDL = path.join(expectedOutputPath, subPackName, 'test', 'FromModelica', fil.slice(idx + 1, -3) + extension)
 
-      // const oldFilCDL = path.join(packBase, mode, subPackName,
-      //   tempName[tempName.length - 1] +
-      //                             '.' +
-      //                             fil.slice(idx + 1, -3) + extension)
       // Read the old json
-      const neCDL = removeEmptyFields(JSON.parse(fs.readFileSync(jsonNewCDLFile, 'utf8')))
-      const oldCDL = removeEmptyFields(JSON.parse(fs.readFileSync(oldFilCDL, 'utf8')))
+      const neCDL = JSON.parse(fs.readFileSync(jsonNewCDLFile, 'utf8'))
+      const oldCDL = JSON.parse(fs.readFileSync(oldFilCDL, 'utf8'))
 
       // Update the path to be relative to the project home.
       // This is needed for the regression tests to be portable.
@@ -188,8 +172,8 @@ const checkModJSON = function (outFormat, extension, message) {
   // process.env.MODELICAPATH = __dirname
   mo.it(message, () => {
     // mo files package to be tested
-    const testMoFilesTemp = getIntFiles(mode)
-    const testMoFiles = ut.getMoFiles(testMoFilesTemp)
+    // const testMoFilesTemp = getIntFiles(mode)
+    const testMoFiles = getIntFiles(mode)
 
     // Name of subpackage to store json output files
     const subPackName = (outFormat === 'raw-json' ? 'raw-json' : 'json')
@@ -200,23 +184,23 @@ const checkModJSON = function (outFormat, extension, message) {
       ut.removeDir(testOutputDir)
     }
     // const jsonNewMOD = pa.getJSON(testMoFiles, mode, outFormat)
-    pa.getJsons(testMoFiles, outFormat, 'current', 'false')
-    const pattern = path.join('test', 'FromModelica', '*.mo')
-    const files = glob.sync(pattern)
+    pa.getJsons(testMoFiles, outFormat, 'current', 'false', false, false, mode)
+    // const pattern = path.join('test', 'ModelicaMode', 'ModelWithControlsBlock*.mo')
+    const files = getIntFiles(mode)
     const expectedOutputPath = path.join(process.cwd(), 'test', 'reference')
 
     for (let i = 0; i < files.length; i++) {
       const idx2 = files[i].lastIndexOf(path.sep)
       const fileNameMOD = files[i].slice(idx2 + 1, -3) + extension
-      const oldFileMOD = path.join(expectedOutputPath, subPackName, 'test', 'FromModelica', fileNameMOD)
+      const oldFileMOD = path.join(expectedOutputPath, subPackName, 'test', 'ModelicaMode', fileNameMOD)
       // Read the old json
-      const jsonOldMOD = removeEmptyFields(JSON.parse(fs.readFileSync(oldFileMOD, 'utf8')))
+      const jsonOldMOD = JSON.parse(fs.readFileSync(oldFileMOD, 'utf8'))
 
       if (jsonOldMOD.modelicaFile) {
         jsonOldMOD.fullMoFilePath = jsonOldMOD.modelicaFile.split('modelica-json/')[1]
       }
-      const jsonNewMOD = path.join(testOutputDir, 'test', 'FromModelica', fileNameMOD)
-      const neMOD = removeEmptyFields(JSON.parse(fs.readFileSync(jsonNewMOD, 'utf8')))
+      const jsonNewMOD = path.join(process.cwd(), subPackName, 'test', 'ModelicaMode', fileNameMOD)
+      const neMOD = JSON.parse(fs.readFileSync(jsonNewMOD, 'utf8'))
       if (neMOD.modelicaFile) {
         neMOD.fullMoFilePath = neMOD.modelicaFile.split('modelica-json/')[1]
       }
@@ -233,12 +217,12 @@ const checkModJSON = function (outFormat, extension, message) {
 /** Function that checks parsing from Modelica to Objects Json, in 'modelica' parsing mode
   */
 const checkObjectsJSON = function (outFormat, extension, message) {
-  const mode = 'modelica'
   // process.env.MODELICAPATH = __dirname
   mo.it(message, () => {
     // mo files package to be tested
-    const testMoFilesTemp = getIntFiles(mode)
-    const testMoFiles = ut.getMoFiles(testMoFilesTemp)
+    // const testMoFilesTemp = getIntFiles(mode)
+    // const testMoFiles = ut.getMoFiles(testMoFilesTemp)
+    const testMoFiles = ut.getMoFiles(path.join(__dirname, 'FromModelica'))
 
     // Name of subpackage to store json output files
     const subPackName = 'objects'
@@ -263,7 +247,7 @@ const checkObjectsJSON = function (outFormat, extension, message) {
       const fileNameMOD = files[i].slice(idx2 + 1, -3) + extension
       const oldFileMOD = path.join(expectedOutputPath, fileNameMOD)
       // Read the old json
-      const jsonOldMOD = removeEmptyFields(JSON.parse(fs.readFileSync(oldFileMOD, 'utf8')))
+      const jsonOldMOD = JSON.parse(fs.readFileSync(oldFileMOD, 'utf8'))
       const oldInstances = jsonOldMOD.instances
       for (const oldInstanceId in oldInstances) {
         if ('fullMoFilePath' in oldInstances[oldInstanceId] && oldInstances[oldInstanceId].fullMoFilePath !== undefined) {
@@ -273,7 +257,7 @@ const checkObjectsJSON = function (outFormat, extension, message) {
       jsonOldMOD.instances = oldInstances
 
       const jsonNewMOD = path.join(actualOutputPath, fileNameMOD)
-      const neMOD = removeEmptyFields(JSON.parse(fs.readFileSync(jsonNewMOD, 'utf8')))
+      const neMOD = JSON.parse(fs.readFileSync(jsonNewMOD, 'utf8'))
       const newInstances = neMOD.instances
       for (const newInstanceId in newInstances) {
         if ('fullMoFilePath' in newInstances[newInstanceId] && newInstances[newInstanceId].fullMoFilePath !== undefined) {
@@ -321,12 +305,13 @@ const checkObjectsJSON = function (outFormat, extension, message) {
 /** Function that checks parsing from Modelica to Objects Json, in 'modelica' parsing mode
   */
 const checkCxfJson = function (outFormat, extension, message) {
-  const mode = 'modelica'
+  const mode = 'cdl'
   // process.env.MODELICAPATH = __dirname
   mo.it(message, async () => {
     // mo files package to be tested
-    const testMoFilesTemp = getIntFiles(mode)
-    const testMoFiles = ut.getMoFiles(testMoFilesTemp)
+    // const testMoFilesTemp = getIntFiles(mode)
+    // const testMoFiles = ut.getMoFiles(testMoFilesTemp)
+    const testMoFiles = getIntFiles(mode)
 
     // Name of subpackage to store json output files
     const subPackName = 'cxf'
@@ -337,8 +322,7 @@ const checkCxfJson = function (outFormat, extension, message) {
       ut.removeDir(testOutputDir)
     }
     pa.getJsons(testMoFiles, outFormat, 'current', 'false')
-    const pattern = path.join('test', 'FromModelica', '*.mo')
-    const files = glob.sync(pattern)
+    const files = getIntFiles(mode)
     const filesToExclude = [
       path.join('test', 'FromModelica', 'ExtendsClause_2.mo'),
       path.join('test', 'FromModelica', 'ExtendsClause_3.mo')
@@ -411,17 +395,45 @@ async function checkCxfCoreGeneration () {
   }
 }
 
+/** Function that checks CXF export from a Modelica file in 'modelica' parsing
+  * mode (i.e. a CDL control block instantiated within a non-CDL Modelica model
+  * and marked with __cdl(isControls=true)). The export produces CXF for the
+  * enclosing model and for the control block class. The control block may be a
+  * direct component instance or one redeclared in an extends clause (template).
+  *
+  * @param message test description
+  * @param moFilePath path to the top-level Modelica file
+  * @param outputFiles list of generated CXF files (relative to the cxf output
+  *   directory) to compare against the committed references
+  */
+function checkCxfFromModelica (message, moFilePath, outputFiles) {
+  mo.it(message, () => {
+    const moFiles = ut.getMoFiles(moFilePath)
+    pa.getJsons(moFiles, 'cxf', 'current', true, false, false, 'modelica')
+    ce.getCxfFromModelica(moFiles[0], 'current', true)
+
+    for (let i = 0; i < outputFiles.length; i++) {
+      const actualPath = path.join(process.cwd(), 'cxf', outputFiles[i])
+      const refPath = path.join(process.cwd(), 'test', 'reference', 'cxf', outputFiles[i])
+      const actual = JSON.stringify(JSON.parse(fs.readFileSync(actualPath, 'utf8')))
+      const ref = JSON.stringify(JSON.parse(fs.readFileSync(refPath, 'utf8')))
+      as.notEqual(ref, undefined, 'Reference CXF is undefined')
+      as.deepEqual(actual, ref, 'CXF result differs for ' + refPath)
+    }
+  })
+}
+
 mo.describe('parser.js', function () {
   mo.describe('Testing Modelica to raw-json using CDL files', function () {
     checkCdlJSON('raw-json', '.json', 'Testing unmodified json for equality, "cdl" mode')
   })
-  mo.describe('Testing Modelica to raw-json using folder', function () {
+  mo.describe('Testing Modelica to raw-json using modelica files', function () {
     checkModJSON('raw-json', '.json', 'Testing unmodified json for equality, "modelica" mode')
   })
   mo.describe('Testing Modelica to JSON using CDL files', function () {
     checkCdlJSON('json', '.json', 'Testing json for equality, "cdl" mode')
   })
-  mo.describe('Testing Modelica to JSON using folder', function () {
+  mo.describe('Testing Modelica to JSON using modelica files', function () {
     checkModJSON('json', '.json', 'Testing json for equality, "modelica" mode')
   })
   mo.describe('Testing parse from Modelica to Objects Json', function () {
@@ -435,8 +447,44 @@ mo.describe('parser.js', function () {
       await checkCxfCoreGeneration()
     })
   })
+  mo.describe('Testing CXF export from Modelica models ("modelica" mode)', function () {
+    // Each entry is a valid model in the ModelicaMode package together with the
+    // CXF files its export produces (the enclosing model and the CDL control
+    // block class). Covers controllers redeclared in an extends clause
+    // (templates), a direct control instance, and a control instance nested in
+    // a sub-model.
+    const cases = [
+      {
+        message: 'template redeclaring its control block to G36 in an extends clause',
+        moFile: 'VAVBoxCoolingOnly.mo',
+        outputs: ['VAVBoxCoolingOnly.jsonld', 'G36VAVBoxCoolingOnly.jsonld']
+      },
+      {
+        message: 'template redeclaring its control block to an open loop controller',
+        moFile: 'VAVBoxCoolingOnlyOpenLoop.mo',
+        outputs: ['VAVBoxCoolingOnlyOpenLoop.jsonld', 'OpenLoopVAVBoxCoolingOnly.jsonld']
+      },
+      {
+        message: 'a control block instance within a Modelica model',
+        moFile: 'ModelWithControlsBlock.mo',
+        outputs: ['ModelWithControlsBlock.jsonld', 'SubControllerForControlsExport.jsonld']
+      },
+      {
+        message: 'a control block instance nested within a sub-model',
+        moFile: 'ModelWithControlsBlock2.mo',
+        outputs: ['ModelWithControlsBlock2.jsonld', 'SubControllerForControlsExport.jsonld']
+      }
+    ]
+    cases.forEach(({ message, moFile, outputs }) => {
+      checkCxfFromModelica(
+        'Testing CXF from ' + message,
+        path.join('test', 'ModelicaMode', moFile),
+        outputs.map(o => path.join('test', 'ModelicaMode', o))
+      )
+    })
+  })
   mo.describe('Testing call to getJsons', function () {
-    const moFile = path.join(getIntFiles('modelica'), 'Enable.mo')
+    const moFile = path.join(path.join(__dirname, 'FromModelica', 'Enable.mo'))
     const jsons = pa.getJsons([moFile], 'json', 'current', false)
     mo.it('Checking the Modelica class names in the returned array', function () {
       // full class names are generated by string replacement in the modelica file path

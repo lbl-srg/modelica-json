@@ -1,19 +1,20 @@
 {
   "@context": {
-    "S231": "http://data.ashrae.org/S231#"
+    "S231": "http://data.ashrae.org/S231#",
+    "ex": "http://example.org#"
   },
   "@graph": [
     {
-      "@id": "http://example.org#FromModelica.ParameterWithDefaultName",
+      "@id": "ex:FromModelica.ParameterWithDefaultName",
       "@type": "S231:Block",
       "S231:documentation": "info=<html>\n<p>\nThis is the info section.\n</p>\n</html>",
       "S231:hasParameter": {
-        "@id": "http://example.org#FromModelica.ParameterWithDefaultName.kP"
+        "@id": "ex:FromModelica.ParameterWithDefaultName.kP"
       },
       "S231:label": "ParameterWithDefaultName"
     },
     {
-      "@id": "http://example.org#FromModelica.ParameterWithDefaultName.kP",
+      "@id": "ex:FromModelica.ParameterWithDefaultName.kP",
       "@type": "S231:Parameter",
       "S231:accessSpecifier": "public",
       "S231:description": "Some comment",

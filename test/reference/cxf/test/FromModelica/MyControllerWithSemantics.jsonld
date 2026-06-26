@@ -5,17 +5,17 @@
   },
   "@graph": [
     {
-      "@id": "http://example.org#FromModelica.MyControllerWithSemantics",
+      "@id": "ex:FromModelica.MyControllerWithSemantics",
       "@type": "S231:Block",
       "S231:containsBlock": [
         {
-          "@id": "http://example.org#FromModelica.MyControllerWithSemantics.add2"
+          "@id": "ex:FromModelica.MyControllerWithSemantics.add2"
         },
         {
-          "@id": "http://example.org#FromModelica.MyControllerWithSemantics.heaCoi"
+          "@id": "ex:FromModelica.MyControllerWithSemantics.heaCoi"
         },
         {
-          "@id": "http://example.org#FromModelica.MyControllerWithSemantics.subCon2"
+          "@id": "ex:FromModelica.MyControllerWithSemantics.subCon2"
         }
       ],
       "S231:controlledDevice": "My Device",
@@ -23,98 +23,98 @@
       "S231:generatePointlist": true,
       "S231:hasInput": [
         {
-          "@id": "http://example.org#FromModelica.MyControllerWithSemantics.u1"
+          "@id": "ex:FromModelica.MyControllerWithSemantics.u1"
         },
         {
-          "@id": "http://example.org#FromModelica.MyControllerWithSemantics.u2"
+          "@id": "ex:FromModelica.MyControllerWithSemantics.u2"
         }
       ],
       "S231:hasOutput": {
-        "@id": "http://example.org#FromModelica.MyControllerWithSemantics.y"
+        "@id": "ex:FromModelica.MyControllerWithSemantics.y"
       },
       "S231:icon": "coordinateSystem(preserveAspectRatio=false),graphics={Rectangle(extent={{-100,-100},{100,100}},lineColor={0,0,127},fillColor={255,255,255},fillPattern=FillPattern.Solid),Text(textString=\"%name\",extent={{-100,100},{100,140}},lineColor={0,0,255})}",
       "S231:label": "MyControllerWithSemantics"
     },
     {
-      "@id": "http://example.org#FromModelica.MyControllerWithSemantics.add2",
-      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Add",
+      "@id": "ex:FromModelica.MyControllerWithSemantics.add2",
+      "@type": "ex:Buildings.Controls.OBC.CDL.Reals.Add",
       "S231:accessSpecifier": "public",
       "S231:description": "Add two real inputs",
       "S231:graphics": "Placement(transformation(extent={{-10,-10},{10,10}})))",
       "S231:hasInstance": [
         {
-          "@id": "http://example.org#FromModelica.MyControllerWithSemantics.add2.u1"
+          "@id": "ex:FromModelica.MyControllerWithSemantics.add2.u1"
         },
         {
-          "@id": "http://example.org#FromModelica.MyControllerWithSemantics.add2.u2"
+          "@id": "ex:FromModelica.MyControllerWithSemantics.add2.u2"
         },
         {
-          "@id": "http://example.org#FromModelica.MyControllerWithSemantics.add2.y"
+          "@id": "ex:FromModelica.MyControllerWithSemantics.add2.y"
         }
       ],
       "S231:label": "add2"
     },
     {
-      "@id": "http://example.org#FromModelica.MyControllerWithSemantics.add2.y",
+      "@id": "ex:FromModelica.MyControllerWithSemantics.add2.y",
       "S231:isConnectedTo": {
-        "@id": "http://example.org#FromModelica.MyControllerWithSemantics.y"
+        "@id": "ex:FromModelica.MyControllerWithSemantics.y"
       }
     },
     {
-      "@id": "http://example.org#FromModelica.MyControllerWithSemantics.heaCoi",
-      "@type": "ex:SubController",
+      "@id": "ex:FromModelica.MyControllerWithSemantics.heaCoi",
+      "@type": "ex:FromModelica.SubController",
       "S231:accessSpecifier": "public",
       "S231:description": "Heating Coil",
       "S231:generatePointlist": true,
       "S231:graphics": "Placement(transformation(extent={{-10,-50},{10,-30}})))",
       "S231:hasInstance": {
-        "@id": "http://example.org#FromModelica.MyControllerWithSemantics.heaCoi.u"
+        "@id": "ex:FromModelica.MyControllerWithSemantics.heaCoi.u"
       },
       "S231:label": "heaCoi"
     },
     {
-      "@id": "http://example.org#FromModelica.MyControllerWithSemantics.subCon2",
-      "@type": "ex:SubControllerWithSemantics",
+      "@id": "ex:FromModelica.MyControllerWithSemantics.subCon2",
+      "@type": "ex:FromModelica.SubControllerWithSemantics",
       "S231:accessSpecifier": "public",
       "S231:description": "Cooling Coil",
       "S231:graphics": "Placement(transformation(extent={{-10,-90},{10,-70}})))",
       "S231:hasInstance": {
-        "@id": "http://example.org#FromModelica.MyControllerWithSemantics.subCon2.u"
+        "@id": "ex:FromModelica.MyControllerWithSemantics.subCon2.u"
       },
       "S231:label": "subCon2"
     },
     {
-      "@id": "http://example.org#FromModelica.MyControllerWithSemantics.u1",
+      "@id": "ex:FromModelica.MyControllerWithSemantics.u1",
       "@type": "S231:RealInput",
       "S231:accessSpecifier": "public",
       "S231:description": "Real input 1",
       "S231:graphics": "Placement(transformation(extent={{-140,20},{-100,60}})),iconTransformation(extent={{-140,40},{-100,80}})))",
       "S231:isConnectedTo": {
-        "@id": "http://example.org#FromModelica.MyControllerWithSemantics.add2.u1"
+        "@id": "ex:FromModelica.MyControllerWithSemantics.add2.u1"
       },
       "S231:label": "u1"
     },
     {
-      "@id": "http://example.org#FromModelica.MyControllerWithSemantics.u2",
+      "@id": "ex:FromModelica.MyControllerWithSemantics.u2",
       "@type": "S231:RealInput",
       "S231:accessSpecifier": "public",
       "S231:description": "Real input 2",
       "S231:graphics": "Placement(transformation(extent={{-140,-60},{-100,-20}})),iconTransformation(extent={{-140,-80},{-100,-40}})))",
       "S231:isConnectedTo": [
         {
-          "@id": "http://example.org#FromModelica.MyControllerWithSemantics.add2.u2"
+          "@id": "ex:FromModelica.MyControllerWithSemantics.add2.u2"
         },
         {
-          "@id": "http://example.org#FromModelica.MyControllerWithSemantics.heaCoi.u"
+          "@id": "ex:FromModelica.MyControllerWithSemantics.heaCoi.u"
         },
         {
-          "@id": "http://example.org#FromModelica.MyControllerWithSemantics.subCon2.u"
+          "@id": "ex:FromModelica.MyControllerWithSemantics.subCon2.u"
         }
       ],
       "S231:label": "u2"
     },
     {
-      "@id": "http://example.org#FromModelica.MyControllerWithSemantics.y",
+      "@id": "ex:FromModelica.MyControllerWithSemantics.y",
       "@type": "S231:RealOutput",
       "S231:accessSpecifier": "public",
       "S231:description": "Real output",

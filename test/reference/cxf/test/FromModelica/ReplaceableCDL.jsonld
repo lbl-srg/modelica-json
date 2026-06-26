@@ -7,9 +7,14 @@
     {
       "@id": "ex:ReplaceableCDL",
       "@type": "S231:Block",
-      "S231:containsBlock": {
-        "@id": "ex:ReplaceableCDL.conPID"
-      },
+      "S231:containsBlock": [
+        {
+          "@id": "ex:ReplaceableCDL.conPID"
+        },
+        {
+          "@id": "ex:ReplaceableCDL.conPID2"
+        }
+      ],
       "S231:hasParameter": {
         "@id": "ex:ReplaceableCDL.k"
       },
@@ -19,9 +24,17 @@
       "@id": "ex:ReplaceableCDL.conPID",
       "@type": "ex:Buildings.Controls.OBC.CDL.Reals.PID",
       "S231:accessSpecifier": "public",
-      "S231:constrainedBy": "Buildings.Controls.OBC.CDL.Reals.PID",
+      "S231:constrainedBy": "Buildings.Controls.OBC.CDL.Reals.PID(k=k)",
       "S231:isReplaceable": true,
       "S231:label": "conPID"
+    },
+    {
+      "@id": "ex:ReplaceableCDL.conPID2",
+      "@type": "ex:Buildings.Controls.OBC.CDL.Reals.PID",
+      "S231:accessSpecifier": "public",
+      "S231:constrainedBy": "Buildings.Controls.OBC.CDL.Reals.PID",
+      "S231:isReplaceable": true,
+      "S231:label": "conPID2"
     },
     {
       "@id": "ex:ReplaceableCDL.k",

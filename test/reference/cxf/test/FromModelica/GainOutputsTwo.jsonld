@@ -1,77 +1,78 @@
 {
   "@context": {
-    "S231": "http://data.ashrae.org/S231#"
+    "S231": "http://data.ashrae.org/S231#",
+    "ex": "http://example.org#"
   },
   "@graph": [
     {
-      "@id": "http://example.org#FromModelica.GainOutputsTwo",
+      "@id": "ex:FromModelica.GainOutputsTwo",
       "@type": "S231:Block",
       "S231:containsBlock": {
-        "@id": "http://example.org#FromModelica.GainOutputsTwo.gain"
+        "@id": "ex:FromModelica.GainOutputsTwo.gain"
       },
       "S231:diagram": "coordinateSystem(preserveAspectRatio=false)",
       "S231:hasInput": {
-        "@id": "http://example.org#FromModelica.GainOutputsTwo.u2"
+        "@id": "ex:FromModelica.GainOutputsTwo.u2"
       },
       "S231:hasOutput": [
         {
-          "@id": "http://example.org#FromModelica.GainOutputsTwo.y1"
+          "@id": "ex:FromModelica.GainOutputsTwo.y1"
         },
         {
-          "@id": "http://example.org#FromModelica.GainOutputsTwo.y2"
+          "@id": "ex:FromModelica.GainOutputsTwo.y2"
         }
       ],
       "S231:icon": "coordinateSystem(preserveAspectRatio=false)",
       "S231:label": "GainOutputsTwo"
     },
     {
-      "@id": "http://example.org#FromModelica.GainOutputsTwo.gain",
-      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter",
+      "@id": "ex:FromModelica.GainOutputsTwo.gain",
+      "@type": "ex:Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter",
       "S231:accessSpecifier": "public",
       "S231:description": "Gain",
       "S231:graphics": "Placement(transformation(extent={{-18,-12},{2,8}})))",
       "S231:hasInstance": [
         {
-          "@id": "http://example.org#FromModelica.GainOutputsTwo.gain.k"
+          "@id": "ex:FromModelica.GainOutputsTwo.gain.k"
         },
         {
-          "@id": "http://example.org#FromModelica.GainOutputsTwo.gain.u"
+          "@id": "ex:FromModelica.GainOutputsTwo.gain.u"
         },
         {
-          "@id": "http://example.org#FromModelica.GainOutputsTwo.gain.y"
+          "@id": "ex:FromModelica.GainOutputsTwo.gain.y"
         }
       ],
       "S231:label": "gain"
     },
     {
-      "@id": "http://example.org#FromModelica.GainOutputsTwo.gain.k",
+      "@id": "ex:FromModelica.GainOutputsTwo.gain.k",
       "S231:isFinal": true,
       "S231:value": 1
     },
     {
-      "@id": "http://example.org#FromModelica.GainOutputsTwo.gain.y",
+      "@id": "ex:FromModelica.GainOutputsTwo.gain.y",
       "S231:isConnectedTo": [
         {
-          "@id": "http://example.org#FromModelica.GainOutputsTwo.y1"
+          "@id": "ex:FromModelica.GainOutputsTwo.y1"
         },
         {
-          "@id": "http://example.org#FromModelica.GainOutputsTwo.y2"
+          "@id": "ex:FromModelica.GainOutputsTwo.y2"
         }
       ]
     },
     {
-      "@id": "http://example.org#FromModelica.GainOutputsTwo.u2",
+      "@id": "ex:FromModelica.GainOutputsTwo.u2",
       "@type": "S231:RealInput",
       "S231:accessSpecifier": "public",
       "S231:description": "Real input",
       "S231:graphics": "Placement(transformation(extent={{-122,-38},{-82,2}})))",
       "S231:isConnectedTo": {
-        "@id": "http://example.org#FromModelica.GainOutputsTwo.gain.u"
+        "@id": "ex:FromModelica.GainOutputsTwo.gain.u"
       },
       "S231:label": "u2"
     },
     {
-      "@id": "http://example.org#FromModelica.GainOutputsTwo.y1",
+      "@id": "ex:FromModelica.GainOutputsTwo.y1",
       "@type": "S231:RealOutput",
       "S231:accessSpecifier": "public",
       "S231:description": "Output 1",
@@ -79,7 +80,7 @@
       "S231:label": "y1"
     },
     {
-      "@id": "http://example.org#FromModelica.GainOutputsTwo.y2",
+      "@id": "ex:FromModelica.GainOutputsTwo.y2",
       "@type": "S231:RealOutput",
       "S231:accessSpecifier": "public",
       "S231:description": "Output 2",

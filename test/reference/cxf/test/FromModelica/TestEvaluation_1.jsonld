@@ -1,38 +1,39 @@
 {
   "@context": {
-    "S231": "http://data.ashrae.org/S231#"
+    "S231": "http://data.ashrae.org/S231#",
+    "ex": "http://example.org#"
   },
   "@graph": [
     {
-      "@id": "http://example.org#FromModelica.TestEvaluation_1",
+      "@id": "ex:FromModelica.TestEvaluation_1",
       "@type": "S231:Block",
       "S231:containsBlock": {
-        "@id": "http://example.org#FromModelica.TestEvaluation_1.con"
+        "@id": "ex:FromModelica.TestEvaluation_1.con"
       },
       "S231:diagram": "coordinateSystem(preserveAspectRatio=false)",
       "S231:hasParameter": {
-        "@id": "http://example.org#FromModelica.TestEvaluation_1.k1"
+        "@id": "ex:FromModelica.TestEvaluation_1.k1"
       },
       "S231:icon": "coordinateSystem(preserveAspectRatio=false)",
       "S231:label": "TestEvaluation_1"
     },
     {
-      "@id": "http://example.org#FromModelica.TestEvaluation_1.con",
-      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Sources.Constant",
+      "@id": "ex:FromModelica.TestEvaluation_1.con",
+      "@type": "ex:Buildings.Controls.OBC.CDL.Reals.Sources.Constant",
       "S231:accessSpecifier": "public",
       "S231:graphics": "Placement(transformation(extent={{-20,10},{0,30}})))",
       "S231:hasInstance": {
-        "@id": "http://example.org#FromModelica.TestEvaluation_1.con.k"
+        "@id": "ex:FromModelica.TestEvaluation_1.con.k"
       },
       "S231:label": "con"
     },
     {
-      "@id": "http://example.org#FromModelica.TestEvaluation_1.con.k",
+      "@id": "ex:FromModelica.TestEvaluation_1.con.k",
       "S231:isFinal": true,
       "S231:value": "k1"
     },
     {
-      "@id": "http://example.org#FromModelica.TestEvaluation_1.k1",
+      "@id": "ex:FromModelica.TestEvaluation_1.k1",
       "@type": "S231:Parameter",
       "S231:accessSpecifier": "public",
       "S231:description": "Constant output value",

@@ -1,0 +1,110 @@
+{
+  "within": "ModelicaMode",
+  "stored_class_definitions": [
+    {
+      "class_prefixes": "model",
+      "class_specifier": {
+        "long_class_specifier": {
+          "identifier": "VAVBoxCoolingOnlyInvalid",
+          "description_string": "INVALID template: redeclares ctl to a type that violates constrainedby (negative test fixture)",
+          "composition": {
+            "element_list": [
+              {
+                "extends_clause": {
+                  "name": "ModelicaMode.VAVBox",
+                  "class_modification": [
+                    {
+                      "element_redeclaration": {
+                        "element_replaceable": {
+                          "component_clause1": {
+                            "type_specifier": "ModelicaMode.BadController",
+                            "component_declaration1": {
+                              "declaration": {
+                                "identifier": "ctl"
+                              },
+                              "description": {
+                                "description_string": "Controller that does not satisfy the PartialController interface",
+                                "annotation": [
+                                  {
+                                    "element_modification_or_replaceable": {
+                                      "element_modification": {
+                                        "name": "__cdl",
+                                        "modification": {
+                                          "class_modification": [
+                                            {
+                                              "element_modification_or_replaceable": {
+                                                "element_modification": {
+                                                  "name": "isControls",
+                                                  "modification": {
+                                                    "equal": true,
+                                                    "expression": {
+                                                      "simple_expression": "true"
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      }
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            ],
+            "annotation": [
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "defaultComponentName",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "\"VAVBox\""
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "Documentation",
+                    "modification": {
+                      "class_modification": [
+                        {
+                          "element_modification_or_replaceable": {
+                            "element_modification": {
+                              "name": "info",
+                              "modification": {
+                                "equal": true,
+                                "expression": {
+                                  "simple_expression": "\"<html>\n<p>\nThis model is intentionally invalid: it redeclares the control block\n<code>ctl</code> in the <code>extends</code> clause to\n<code>BadController</code>, which is not a subtype of the constraining type\n<code>PartialController</code> declared in <code>VAVBox</code>. It is used to\nverify that <code>constrainedby</code> validation raises an exception.\n</p>\n</html>\""
+                                }
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "modelicaFile": "test/ModelicaMode/VAVBoxCoolingOnlyInvalid.mo",
+  "fullMoFilePath": "/Users/akprakash/Programming/modelica/modelica-json/test/ModelicaMode/VAVBoxCoolingOnlyInvalid.mo",
+  "checksum": "bc4fdb55e298bce65973e1008da70cde"
+}

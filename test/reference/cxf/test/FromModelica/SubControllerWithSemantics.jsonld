@@ -1,25 +1,26 @@
 {
   "@context": {
-    "S231": "http://data.ashrae.org/S231#"
+    "S231": "http://data.ashrae.org/S231#",
+    "ex": "http://example.org#"
   },
   "@graph": [
     {
-      "@id": "http://example.org#FromModelica.SubControllerWithSemantics",
+      "@id": "ex:FromModelica.SubControllerWithSemantics",
       "@type": "S231:Block",
       "S231:controlledDevice": "Sub Device",
       "S231:diagram": "coordinateSystem(preserveAspectRatio=false)",
       "S231:generatePointlist": true,
       "S231:hasInput": {
-        "@id": "http://example.org#FromModelica.SubControllerWithSemantics.u"
+        "@id": "ex:FromModelica.SubControllerWithSemantics.u"
       },
       "S231:hasOutput": {
-        "@id": "http://example.org#FromModelica.SubControllerWithSemantics.y"
+        "@id": "ex:FromModelica.SubControllerWithSemantics.y"
       },
       "S231:icon": "coordinateSystem(preserveAspectRatio=false),graphics={Rectangle(extent={{-100,-100},{100,100}},lineColor={0,0,127},fillColor={255,255,255},fillPattern=FillPattern.Solid),Text(textString=\"%name\",extent={{-100,100},{100,140}},lineColor={0,0,255})}",
       "S231:label": "SubControllerWithSemantics"
     },
     {
-      "@id": "http://example.org#FromModelica.SubControllerWithSemantics.u",
+      "@id": "ex:FromModelica.SubControllerWithSemantics.u",
       "@type": "S231:RealInput",
       "S231:accessSpecifier": "public",
       "S231:description": "Real input",
@@ -27,7 +28,7 @@
       "S231:label": "u"
     },
     {
-      "@id": "http://example.org#FromModelica.SubControllerWithSemantics.y",
+      "@id": "ex:FromModelica.SubControllerWithSemantics.y",
       "@type": "S231:RealOutput",
       "S231:accessSpecifier": "public",
       "S231:description": "Real output",

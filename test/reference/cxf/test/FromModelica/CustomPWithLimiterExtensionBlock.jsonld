@@ -1,52 +1,53 @@
 {
   "@context": {
-    "S231": "http://data.ashrae.org/S231#"
+    "S231": "http://data.ashrae.org/S231#",
+    "ex": "http://example.org#"
   },
   "@graph": [
     {
-      "@id": "http://example.org#FromModelica.CustomPWithLimiterExtensionBlock",
+      "@id": "ex:FromModelica.CustomPWithLimiterExtensionBlock",
       "@type": "S231:Block",
       "S231:containsBlock": [
         {
-          "@id": "http://example.org#FromModelica.CustomPWithLimiterExtensionBlock.gain"
+          "@id": "ex:FromModelica.CustomPWithLimiterExtensionBlock.gain"
         },
         {
-          "@id": "http://example.org#FromModelica.CustomPWithLimiterExtensionBlock.minValue"
+          "@id": "ex:FromModelica.CustomPWithLimiterExtensionBlock.minValue"
         }
       ],
       "S231:documentation": "info=<html>\n<p>\nBlock that outputs <code>y = min(yMax, k*e)</code>,\nwhere\n<code>yMax</code> and <code>e</code> are real-valued input signals and\n<code>k</code> is a parameter.\n</p>\n</html>",
       "S231:hasInput": [
         {
-          "@id": "http://example.org#FromModelica.CustomPWithLimiterExtensionBlock.e"
+          "@id": "ex:FromModelica.CustomPWithLimiterExtensionBlock.e"
         },
         {
-          "@id": "http://example.org#FromModelica.CustomPWithLimiterExtensionBlock.yMax"
+          "@id": "ex:FromModelica.CustomPWithLimiterExtensionBlock.yMax"
         }
       ],
       "S231:hasOutput": {
-        "@id": "http://example.org#FromModelica.CustomPWithLimiterExtensionBlock.y"
+        "@id": "ex:FromModelica.CustomPWithLimiterExtensionBlock.y"
       },
       "S231:hasParameter": {
-        "@id": "http://example.org#FromModelica.CustomPWithLimiterExtensionBlock.k"
+        "@id": "ex:FromModelica.CustomPWithLimiterExtensionBlock.k"
       },
       "S231:label": "CustomPWithLimiterExtensionBlock"
     },
     {
-      "@id": "http://example.org#FromModelica.CustomPWithLimiterExtensionBlock.e",
+      "@id": "ex:FromModelica.CustomPWithLimiterExtensionBlock.e",
       "@type": "S231:RealInput",
       "S231:accessSpecifier": "public",
       "S231:description": "Control error",
       "S231:graphics": "Placement(transformation(extent={{-140,-60},{-100,-20}})))",
       "S231:isConnectedTo": {
-        "@id": "http://example.org#FromModelica.CustomPWithLimiterExtensionBlock.gain.u"
+        "@id": "ex:FromModelica.CustomPWithLimiterExtensionBlock.gain.u"
       },
       "S231:label": "e"
     },
     {
-      "@id": "http://example.org#FromModelica.CustomPWithLimiterExtensionBlock.gain",
+      "@id": "ex:FromModelica.CustomPWithLimiterExtensionBlock.gain",
       "@type": [
         "S231:ExtensionBlock",
-        "http://example.org#Custom.Gain.Block"
+        "ex:Custom.Gain.Block"
       ],
       "S231:accessSpecifier": "public",
       "S231:description": "Constant gain",
@@ -54,30 +55,30 @@
       "S231:hasFmuPath": "Custom/Gain/Block.fmu",
       "S231:hasInstance": [
         {
-          "@id": "http://example.org#FromModelica.CustomPWithLimiterExtensionBlock.gain.k"
+          "@id": "ex:FromModelica.CustomPWithLimiterExtensionBlock.gain.k"
         },
         {
-          "@id": "http://example.org#FromModelica.CustomPWithLimiterExtensionBlock.gain.u"
+          "@id": "ex:FromModelica.CustomPWithLimiterExtensionBlock.gain.u"
         },
         {
-          "@id": "http://example.org#FromModelica.CustomPWithLimiterExtensionBlock.gain.y"
+          "@id": "ex:FromModelica.CustomPWithLimiterExtensionBlock.gain.y"
         }
       ],
       "S231:label": "gain"
     },
     {
-      "@id": "http://example.org#FromModelica.CustomPWithLimiterExtensionBlock.gain.k",
+      "@id": "ex:FromModelica.CustomPWithLimiterExtensionBlock.gain.k",
       "S231:isFinal": true,
       "S231:value": "k"
     },
     {
-      "@id": "http://example.org#FromModelica.CustomPWithLimiterExtensionBlock.gain.y",
+      "@id": "ex:FromModelica.CustomPWithLimiterExtensionBlock.gain.y",
       "S231:isConnectedTo": {
-        "@id": "http://example.org#FromModelica.CustomPWithLimiterExtensionBlock.minValue.u2"
+        "@id": "ex:FromModelica.CustomPWithLimiterExtensionBlock.minValue.u2"
       }
     },
     {
-      "@id": "http://example.org#FromModelica.CustomPWithLimiterExtensionBlock.k",
+      "@id": "ex:FromModelica.CustomPWithLimiterExtensionBlock.k",
       "@type": "S231:Parameter",
       "S231:accessSpecifier": "public",
       "S231:description": "Constant gain",
@@ -88,32 +89,32 @@
       "S231:value": 2
     },
     {
-      "@id": "http://example.org#FromModelica.CustomPWithLimiterExtensionBlock.minValue",
-      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Min",
+      "@id": "ex:FromModelica.CustomPWithLimiterExtensionBlock.minValue",
+      "@type": "ex:Buildings.Controls.OBC.CDL.Reals.Min",
       "S231:accessSpecifier": "public",
       "S231:description": "Outputs the minimum of its inputs",
       "S231:graphics": "Placement(transformation(extent={{20,-10},{40,10}})))",
       "S231:hasInstance": [
         {
-          "@id": "http://example.org#FromModelica.CustomPWithLimiterExtensionBlock.minValue.u1"
+          "@id": "ex:FromModelica.CustomPWithLimiterExtensionBlock.minValue.u1"
         },
         {
-          "@id": "http://example.org#FromModelica.CustomPWithLimiterExtensionBlock.minValue.u2"
+          "@id": "ex:FromModelica.CustomPWithLimiterExtensionBlock.minValue.u2"
         },
         {
-          "@id": "http://example.org#FromModelica.CustomPWithLimiterExtensionBlock.minValue.y"
+          "@id": "ex:FromModelica.CustomPWithLimiterExtensionBlock.minValue.y"
         }
       ],
       "S231:label": "minValue"
     },
     {
-      "@id": "http://example.org#FromModelica.CustomPWithLimiterExtensionBlock.minValue.y",
+      "@id": "ex:FromModelica.CustomPWithLimiterExtensionBlock.minValue.y",
       "S231:isConnectedTo": {
-        "@id": "http://example.org#FromModelica.CustomPWithLimiterExtensionBlock.y"
+        "@id": "ex:FromModelica.CustomPWithLimiterExtensionBlock.y"
       }
     },
     {
-      "@id": "http://example.org#FromModelica.CustomPWithLimiterExtensionBlock.y",
+      "@id": "ex:FromModelica.CustomPWithLimiterExtensionBlock.y",
       "@type": "S231:RealOutput",
       "S231:accessSpecifier": "public",
       "S231:description": "Control signal",
@@ -121,13 +122,13 @@
       "S231:label": "y"
     },
     {
-      "@id": "http://example.org#FromModelica.CustomPWithLimiterExtensionBlock.yMax",
+      "@id": "ex:FromModelica.CustomPWithLimiterExtensionBlock.yMax",
       "@type": "S231:RealInput",
       "S231:accessSpecifier": "public",
       "S231:description": "Maximum value of output signal",
       "S231:graphics": "Placement(transformation(extent={{-140,20},{-100,60}})))",
       "S231:isConnectedTo": {
-        "@id": "http://example.org#FromModelica.CustomPWithLimiterExtensionBlock.minValue.u1"
+        "@id": "ex:FromModelica.CustomPWithLimiterExtensionBlock.minValue.u1"
       },
       "S231:label": "yMax"
     }
