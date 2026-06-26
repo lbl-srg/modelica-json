@@ -1,28 +1,29 @@
 {
   "@context": {
-    "S231": "http://data.ashrae.org/S231#"
+    "S231": "http://data.ashrae.org/S231#",
+    "ex": "http://example.org#"
   },
   "@graph": [
     {
-      "@id": "http://example.org#FromModelica.ConditionalBlockWithDefaultValue",
+      "@id": "ex:FromModelica.ConditionalBlockWithDefaultValue",
       "@type": "S231:Block",
       "S231:containsBlock": {
-        "@id": "http://example.org#FromModelica.ConditionalBlockWithDefaultValue.abs"
+        "@id": "ex:FromModelica.ConditionalBlockWithDefaultValue.abs"
       },
       "S231:hasInput": {
-        "@id": "http://example.org#FromModelica.ConditionalBlockWithDefaultValue.u"
+        "@id": "ex:FromModelica.ConditionalBlockWithDefaultValue.u"
       },
       "S231:hasOutput": {
-        "@id": "http://example.org#FromModelica.ConditionalBlockWithDefaultValue.y"
+        "@id": "ex:FromModelica.ConditionalBlockWithDefaultValue.y"
       },
       "S231:hasParameter": {
-        "@id": "http://example.org#FromModelica.ConditionalBlockWithDefaultValue.enaBlo"
+        "@id": "ex:FromModelica.ConditionalBlockWithDefaultValue.enaBlo"
       },
       "S231:label": "ConditionalBlockWithDefaultValue"
     },
     {
-      "@id": "http://example.org#FromModelica.ConditionalBlockWithDefaultValue.abs",
-      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Integers.Abs",
+      "@id": "ex:FromModelica.ConditionalBlockWithDefaultValue.abs",
+      "@type": "ex:Buildings.Controls.OBC.CDL.Integers.Abs",
       "S231:accessSpecifier": "public",
       "S231:conditionalExpression": "not undefined",
       "S231:description": "Instance could be conditional disabled",
@@ -31,7 +32,7 @@
       "S231:label": "abs"
     },
     {
-      "@id": "http://example.org#FromModelica.ConditionalBlockWithDefaultValue.enaBlo",
+      "@id": "ex:FromModelica.ConditionalBlockWithDefaultValue.enaBlo",
       "@type": "S231:Parameter",
       "S231:accessSpecifier": "public",
       "S231:description": "Flag for enabling instance",
@@ -42,7 +43,7 @@
       "S231:value": true
     },
     {
-      "@id": "http://example.org#FromModelica.ConditionalBlockWithDefaultValue.u",
+      "@id": "ex:FromModelica.ConditionalBlockWithDefaultValue.u",
       "@type": "S231:IntegerInput",
       "S231:accessSpecifier": "public",
       "S231:conditionalExpression": "enaBlo",
@@ -53,7 +54,7 @@
       "S231:label": "u"
     },
     {
-      "@id": "http://example.org#FromModelica.ConditionalBlockWithDefaultValue.y",
+      "@id": "ex:FromModelica.ConditionalBlockWithDefaultValue.y",
       "@type": "S231:IntegerOutput",
       "S231:accessSpecifier": "public",
       "S231:description": "Output connector",

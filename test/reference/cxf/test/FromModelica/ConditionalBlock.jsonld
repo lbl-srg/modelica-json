@@ -1,28 +1,29 @@
 {
   "@context": {
-    "S231": "http://data.ashrae.org/S231#"
+    "S231": "http://data.ashrae.org/S231#",
+    "ex": "http://example.org#"
   },
   "@graph": [
     {
-      "@id": "http://example.org#FromModelica.ConditionalBlock",
+      "@id": "ex:FromModelica.ConditionalBlock",
       "@type": "S231:Block",
       "S231:containsBlock": {
-        "@id": "http://example.org#FromModelica.ConditionalBlock.abs"
+        "@id": "ex:FromModelica.ConditionalBlock.abs"
       },
       "S231:hasInput": {
-        "@id": "http://example.org#FromModelica.ConditionalBlock.u"
+        "@id": "ex:FromModelica.ConditionalBlock.u"
       },
       "S231:hasOutput": {
-        "@id": "http://example.org#FromModelica.ConditionalBlock.y"
+        "@id": "ex:FromModelica.ConditionalBlock.y"
       },
       "S231:hasParameter": {
-        "@id": "http://example.org#FromModelica.ConditionalBlock.enaBlo"
+        "@id": "ex:FromModelica.ConditionalBlock.enaBlo"
       },
       "S231:label": "ConditionalBlock"
     },
     {
-      "@id": "http://example.org#FromModelica.ConditionalBlock.abs",
-      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Abs",
+      "@id": "ex:FromModelica.ConditionalBlock.abs",
+      "@type": "ex:Buildings.Controls.OBC.CDL.Reals.Abs",
       "S231:accessSpecifier": "public",
       "S231:conditionalExpression": "not undefined",
       "S231:description": "Instance could be conditional disabled",
@@ -31,7 +32,7 @@
       "S231:label": "abs"
     },
     {
-      "@id": "http://example.org#FromModelica.ConditionalBlock.enaBlo",
+      "@id": "ex:FromModelica.ConditionalBlock.enaBlo",
       "@type": "S231:Parameter",
       "S231:accessSpecifier": "public",
       "S231:description": "Flag for enabling instance",
@@ -42,7 +43,7 @@
       "S231:value": true
     },
     {
-      "@id": "http://example.org#FromModelica.ConditionalBlock.u",
+      "@id": "ex:FromModelica.ConditionalBlock.u",
       "@type": "S231:RealInput",
       "S231:accessSpecifier": "public",
       "S231:conditionalExpression": "enaBlo",
@@ -52,7 +53,7 @@
       "S231:label": "u"
     },
     {
-      "@id": "http://example.org#FromModelica.ConditionalBlock.y",
+      "@id": "ex:FromModelica.ConditionalBlock.y",
       "@type": "S231:RealOutput",
       "S231:accessSpecifier": "public",
       "S231:description": "Output connector",

@@ -2,27 +2,28 @@
   "@context": {
     "S231": "http://data.ashrae.org/S231#",
     "qudt": "http://qudt.org/schema/qudt#",
+    "unit": "http://qudt.org/vocab/unit#",
     "q": "http://qudt.org/vocab/quantitykind#",
-    "unit": "http://qudt.org/vocab/unit#"
+    "ex": "http://example.org#"
   },
   "@graph": [
     {
-      "@id": "http://example.org#FromModelica.ParameterWithAttributes",
+      "@id": "ex:FromModelica.ParameterWithAttributes",
       "@type": "S231:Block",
       "S231:documentation": "info=<html>\n<p>\nThis is the info section.\n</p>\n</html>",
       "S231:hasParameter": {
-        "@id": "http://example.org#FromModelica.ParameterWithAttributes.kP"
+        "@id": "ex:FromModelica.ParameterWithAttributes.kP"
       },
       "S231:label": "ParameterWithAttributes"
     },
     {
-      "@id": "http://example.org#FromModelica.ParameterWithAttributes.kP",
+      "@id": "ex:FromModelica.ParameterWithAttributes.kP",
       "@type": "S231:Parameter",
       "S231:accessSpecifier": "public",
       "S231:description": "Some comment",
       "S231:fixed": false,
       "S231:hasInstance": {
-        "@id": "http://example.org#FromModelica.ParameterWithAttributes.kP.stateSelect"
+        "@id": "ex:FromModelica.ParameterWithAttributes.kP.stateSelect"
       },
       "S231:isOfDataType": {
         "@id": "S231:Real"
@@ -47,7 +48,7 @@
       }
     },
     {
-      "@id": "http://example.org#FromModelica.ParameterWithAttributes.kP.stateSelect",
+      "@id": "ex:FromModelica.ParameterWithAttributes.kP.stateSelect",
       "S231:value": "StateSelect.default"
     }
   ]
