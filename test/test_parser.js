@@ -135,7 +135,7 @@ const checkCdlJSON = function (outFormat, extension, message) {
       // 'fil.split()' changes string 'fil' to be string array with single element
       // 'fil' is like '../test/FromModelica/***.mo'
       // const jsonNewCDL = pa.getJSON(fil.split(), mode, outFormat)
-      pa.getJsons([fil], outFormat, 'current', 'false')
+      pa.getJsons([fil], outFormat, 'current', 'false', false, false, 'modelica')
       const idx = fil.lastIndexOf(path.sep)
       const jsonNewCDLFile = path.join(testOutputDir, 'test', 'FromModelica', fil.slice(idx + 1, -3) + extension)
 
