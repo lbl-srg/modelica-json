@@ -1,12 +1,13 @@
 {
   "@context": {
     "S231": "http://data.ashrae.org/S231#",
-    "ex": "http://example.org#"
+    "ex": "http://example.org#",
+    "modelica": "https://modelica.org/"
   },
   "@graph": [
     {
       "@id": "ex:ModelicaMode.ModelWithControlsBlock2",
-      "@type": "S231:Block",
+      "@type": "modelica:model",
       "S231:containsBlock": {
         "@id": "ex:ModelicaMode.ModelWithControlsBlock2.subModel.subCon1"
       },
