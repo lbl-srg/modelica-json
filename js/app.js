@@ -5,14 +5,6 @@
 /* global $ */
 
 (function (global) {
-  function init () {
-    setupEditor()
-
-    setupEvents()
-
-    visualizeView()
-  }
-
   function setupEditor () {
     global.jsonEditor = window.ace.edit('editor')
     global.jsonEditor.setTheme('ace/theme/chrome')
@@ -105,5 +97,14 @@
     }
   }
 
-  $(init)
+  // Expose initWithSchema so the HTML page can call it after the JSON schema
+  // has been fetched. This avoids the race condition where visualizeView() was
+  // triggered before the editor contained any content (causing
+  // "SyntaxError: Unexpected end of JSON input").
+  global.appInitWithSchema = function (schemaText) {
+    setupEditor()
+    setupEvents()
+    global.jsonEditor.setValue(schemaText, -1) // -1 moves cursor to start
+    visualizeView()
+  }
 })(window)
