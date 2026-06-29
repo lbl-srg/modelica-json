@@ -58,13 +58,38 @@
     <script src="js/ref-parser.min.js"></script>
     <script src="js/app.js"></script>
     <script type="text/javascript">
-    $.getJSON( "./schema-modelica.json", function( data ) {
-      console.log(data);
-      document.getElementById("json").innerHTML = JSON.stringify(data, null, 4)
-    });
-    </script>
-    <script>
+    if (window.location.protocol === 'file:') {
       NProgress.done();
+      document.getElementById('main-body').innerHTML =
+        '<div style="padding:2em;font-family:sans-serif;">' +
+        '<h3>&#9888; Cannot load schema over <code>file://</code></h3>' +
+        '<p>Browsers block local file requests (CORS) when a page is opened directly ' +
+        'from the filesystem. Please serve the files via a local HTTP server instead:</p>' +
+        '<pre style="background:#f4f4f4;padding:1em;border-radius:4px;">' +
+        'cd ' + window.location.pathname.replace(/\/[^/]*$/, '') + '\n' +
+        'python3 -m http.server 8000\n' +
+        '# then open: http://localhost:8000/modelica-viz.html' +
+        '</pre></div>';
+    } else {
+      fetch('./schema-modelica.json')
+        .then(function(response) {
+          if (!response.ok) {
+            throw new Error('HTTP ' + response.status + ' – ' + response.statusText);
+          }
+          return response.json();
+        })
+        .then(function(data) {
+          appInitWithSchema(JSON.stringify(data, null, 4));
+          NProgress.done();
+        })
+        .catch(function(err) {
+          NProgress.done();
+          document.getElementById('main-body').innerHTML =
+            '<div style="padding:2em;font-family:sans-serif;\">' +
+            '<h3>&#9888; Failed to load schema-modelica.json</h3>' +
+            '<p>' + err + '</p></div>';
+        });
+    }
     </script>
   </body>
 </html>
