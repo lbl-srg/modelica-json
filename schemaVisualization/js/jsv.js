@@ -112,7 +112,7 @@ if (typeof JSV === 'undefined') {
       let i
       // apply config
       for (i in config) {
-        if (JSV.hasOwnProperty(i)) {
+        if (Object.hasOwn(JSV, i)) {
           JSV[i] = config[i]
         }
       }
@@ -410,15 +410,13 @@ if (typeof JSV === 'undefined') {
         } else {
           const pre = ex.find('pre')
 
-          let highEl
-
           pre.find('span.highlight').removeClass('highlight')
 
           if (node.plainName) {
             pre.highlight(node.plainName, 'highlight', true)
           }
           // scroll to highlighted property
-          highEl = pre.find('span.highlight')[0]
+          const highEl = pre.find('span.highlight')[0]
 
           if (highEl) {
             pre.scrollTo(highEl, 900)
@@ -614,7 +612,7 @@ if (typeof JSV === 'undefined') {
       if (depth > this.maxDepth) {
         return
       }
-      let key; let node
+      let key
 
       const s = schema.$ref ? tv4.getSchema(schema.$ref) : schema
 
@@ -652,7 +650,7 @@ if (typeof JSV === 'undefined') {
 
       console.log(s)
 
-      node = {
+      const node = {
         description: schema.description || s.description,
         name: (schema.$ref && real ? name : false) || s.title || name || 'schema',
         isReal: real,
@@ -996,15 +994,13 @@ if (typeof JSV === 'undefined') {
 
       const node = d3.select('#n-' + (src.id))[0][0]
 
-      let dia
-
       let width = 0
 
       if (node) {
         width = node.getBBox().width
       }
 
-      dia = 'M' + (src.y + width) + ',' + src.x +
+      const dia = 'M' + (src.y + width) + ',' + src.x +
             'H' + (d.target.y - 30) + 'V' + d.target.x +
             // + (d.target.children ? '' : 'h' + 30);
             ('h' + 30)
