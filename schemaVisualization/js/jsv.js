@@ -10,7 +10,7 @@ if (!window.location.origin) {
   window.location.origin = window.location.protocol + '//' + window.location.hostname + (window.location.port ? ':' + window.location.port : '')
 }
 
-var JSV
+let JSV
 if (typeof JSV === 'undefined') {
   /**
      * JSV namespace for JSON Schema Viewer.
@@ -109,7 +109,7 @@ if (typeof JSV === 'undefined') {
          */
 
     init: function (config, callback) {
-      var i
+      let i
       // apply config
       for (i in config) {
         if (JSV.hasOwnProperty(i)) {
@@ -137,11 +137,11 @@ if (typeof JSV === 'undefined') {
       $(document).on('pagecontainershow', JSV.resizeBtn)
       $(window).on('throttledresize', JSV.resizeBtn)
 
-      var cb = function () {
+      const cb = function () {
         callback()
 
         // setup search
-        var items = []
+        const items = []
 
         JSV.visit(JSV.treeData, function (me) {
           if (me.isReal) {
@@ -165,9 +165,9 @@ if (typeof JSV === 'undefined') {
 
       /// highlight plugin
       $.fn.highlight = function (str, className, quote) {
-        var string = quote ? '\\"\\b' + str + '\\b\\"' : '\\b' + str + '\\b'
+        const string = quote ? '\\"\\b' + str + '\\b\\"' : '\\b' + str + '\\b'
 
-        var regex = new RegExp(string, 'g')
+        const regex = new RegExp(string, 'g')
 
         return this.each(function () {
           this.innerHTML = this.innerHTML.replace(regex, function (matched) { return '<span class="' + className + '">' + matched + '</span>' })
@@ -176,7 +176,7 @@ if (typeof JSV === 'undefined') {
 
       // restore info-panel state
       $('body').on('pagecontainershow', function (event, ui) {
-        var page = ui.toPage
+        const page = ui.toPage
 
         if (page.attr('id') === 'viewer-page' && JSV.viewerInit) {
           if (page.jqmData('infoOpen')) {
@@ -195,7 +195,7 @@ if (typeof JSV === 'undefined') {
 
       // store info-panel state
       $('body').on('pagecontainerbeforehide', function (event, ui) {
-        var page = ui.prevPage
+        const page = ui.prevPage
         if (page.attr('id') === 'viewer-page') {
           page.jqmData('infoOpen', !!page.find('#info-panel.ui-panel-open').length)
         }
@@ -203,7 +203,7 @@ if (typeof JSV === 'undefined') {
 
       // resize viewer on panel open/close
       $('#info-panel').on('panelopen', function () {
-        var focus = JSV.focusNode
+        const focus = JSV.focusNode
 
         JSV.resizeViewer()
         if (focus) {
@@ -213,7 +213,7 @@ if (typeof JSV === 'undefined') {
       })
 
       $('#info-panel').on('panelclose', function () {
-        var focus = JSV.focusNode
+        const focus = JSV.focusNode
 
         JSV.resizeViewer()
         if (focus) {
@@ -225,12 +225,12 @@ if (typeof JSV === 'undefined') {
 
       // scroll example/schema when tab is activated
       $('#info-panel').on('tabsactivate', function (event, ui) {
-        var id = ui.newPanel.attr('id')
+        const id = ui.newPanel.attr('id')
 
         if (id === 'info-tab-example' || id === 'info-tab-schema') {
-          var pre = ui.newPanel.find('pre')
+          const pre = ui.newPanel.find('pre')
 
-          var highEl = pre.find('span.highlight')[0]
+          const highEl = pre.find('span.highlight')[0]
 
           if (highEl) {
             pre.scrollTo(highEl, 900)
@@ -240,7 +240,7 @@ if (typeof JSV === 'undefined') {
 
       // setup example links
       $('.load-example').each(function (idx, link) {
-        var ljq = $(link)
+        const ljq = $(link)
         ljq.on('click', function (evt) {
           evt.preventDefault()
           JSV.loadInputExample(link.href, ljq.data('target'))
@@ -262,15 +262,15 @@ if (typeof JSV === 'undefined') {
          * (Re)set the viewer page height, set the diagram dimensions.
          */
     contentHeight: function () {
-      var screen = $.mobile.getScreenHeight()
+      const screen = $.mobile.getScreenHeight()
 
-      var header = $('.ui-header').hasClass('ui-header-fixed') ? $('.ui-header').outerHeight() - 1 : $('.ui-header').outerHeight()
+      const header = $('.ui-header').hasClass('ui-header-fixed') ? $('.ui-header').outerHeight() - 1 : $('.ui-header').outerHeight()
 
-      var footer = $('.ui-footer').hasClass('ui-footer-fixed') ? $('.ui-footer').outerHeight() - 1 : $('.ui-footer').outerHeight()
+      const footer = $('.ui-footer').hasClass('ui-footer-fixed') ? $('.ui-footer').outerHeight() - 1 : $('.ui-footer').outerHeight()
 
-      var contentCurrent = $('#main-body.ui-content').outerHeight() - $('#main-body.ui-content').height()
+      const contentCurrent = $('#main-body.ui-content').outerHeight() - $('#main-body.ui-content').height()
 
-      var content = screen - header - footer - contentCurrent
+      const content = screen - header - footer - contentCurrent
 
       $('#main-body.ui-content').css('min-height', content + 'px')
     },
@@ -281,8 +281,8 @@ if (typeof JSV === 'undefined') {
          * @param {number} minSize The navbar width breakpoint.
          */
     resizeBtn: function (minSize) {
-      var bp = typeof minSize === 'number' ? minSize : 800
-      var activePage = $.mobile.pageContainer.pagecontainer('getActivePage')
+      const bp = typeof minSize === 'number' ? minSize : 800
+      const activePage = $.mobile.pageContainer.pagecontainer('getActivePage')
       if ($('.md-navbar', activePage).width() <= bp) {
         $('.md-navbar .md-flex-btn.ui-btn-icon-left').toggleClass('ui-btn-icon-notext ui-btn-icon-left')
       } else {
@@ -313,11 +313,11 @@ if (typeof JSV === 'undefined') {
     },
 
     initValidator: function () {
-      var opts = {
+      const opts = {
         readAsDefault: 'Text',
         on: {
           load: function (e, file) {
-            var data = e.currentTarget.result
+            const data = e.currentTarget.result
 
             try {
               $.parseJSON(data)
@@ -329,7 +329,7 @@ if (typeof JSV === 'undefined') {
             }
           },
           error: function (e, file) {
-            var msg = 'Failed to load ' + file.name + '. ' + e.currentTarget.error.message
+            const msg = 'Failed to load ' + file.name + '. ' + e.currentTarget.error.message
 
             JSV.showError(msg)
           }
@@ -340,7 +340,7 @@ if (typeof JSV === 'undefined') {
       $('body').fileClipboard(opts)
 
       $('#button-validate').click(function () {
-        var result = JSV.validate()
+        const result = JSV.validate()
 
         if (result) {
           JSV.showValResult(result)
@@ -355,11 +355,11 @@ if (typeof JSV === 'undefined') {
          * @param {object} node The d3 tree node.
          */
     setInfo: function (node) {
-      var schema = $('#info-tab-schema')
-      var def = $('#info-tab-def')
-      var ex = $('#info-tab-example')
+      const schema = $('#info-tab-schema')
+      const def = $('#info-tab-def')
+      const ex = $('#info-tab-example')
 
-      var height = ($('#info-panel').innerHeight() - $('#info-panel .ui-panel-inner').outerHeight() + $('#info-panel #info-tabs').height()) -
+      const height = ($('#info-panel').innerHeight() - $('#info-panel .ui-panel-inner').outerHeight() + $('#info-panel #info-tabs').height()) -
                 $('#info-panel #info-tabs-navbar').height() - (schema.outerHeight(true) - schema.height())
 
       $.each([schema, def, ex], function (i, e) {
@@ -370,11 +370,11 @@ if (typeof JSV === 'undefined') {
       $('#info-type').html(node.displayType.toString())
 
       if (node.translation) {
-        var trans = $('<ul></ul>')
+        const trans = $('<ul></ul>')
 
         $.each(node.translation, function (p, v) {
-          var li = $('<li>' + p + '</li>')
-          var ul = $('<ul></ul>')
+          const li = $('<li>' + p + '</li>')
+          const ul = $('<ul></ul>')
 
           $.each(v, function (i, e) {
             ul.append('<li>' + e + '</li>')
@@ -390,12 +390,12 @@ if (typeof JSV === 'undefined') {
 
       JSV.createPre(schema, tv4.getSchema(node.schema), false, node.plainName)
 
-      var example = (!node.example && node.parent && node.parent.example && node.parent.type === 'object' ? node.parent.example : node.example)
+      const example = (!node.example && node.parent && node.parent.example && node.parent.type === 'object' ? node.parent.example : node.example)
 
       if (example) {
         if (example !== JSV.example) {
           $.getJSON(node.schema.match(/^(.*?)(?=[^/]*\.json)/g) + example, function (data) {
-            var pointer = example.split('#')[1]
+            const pointer = example.split('#')[1]
 
             if (pointer) {
               data = jsonpointer.get(data, pointer)
@@ -408,9 +408,9 @@ if (typeof JSV === 'undefined') {
             JSV.example = false
           })
         } else {
-          var pre = ex.find('pre')
+          const pre = ex.find('pre')
 
-          var highEl
+          let highEl
 
           pre.find('span.highlight').removeClass('highlight')
 
@@ -439,9 +439,9 @@ if (typeof JSV === 'undefined') {
          * @param {string} exp The string to highlight
          */
     createPre: function (el, obj, title, exp) {
-      var pre = $('<pre><code class="language-json">' + JSON.stringify(obj, null, '  ') + '</code></pre>')
-      var btn = $('<a href="#" class="ui-btn ui-mini ui-icon-action ui-btn-icon-right">Open in new window</a>').click(function () {
-        var w = window.open('', 'pre', null, true)
+      const pre = $('<pre><code class="language-json">' + JSON.stringify(obj, null, '  ') + '</code></pre>')
+      const btn = $('<a href="#" class="ui-btn ui-mini ui-icon-action ui-btn-icon-right">Open in new window</a>').click(function () {
+        const w = window.open('', 'pre', null, true)
 
         $(w.document.body).html($('<div>').append(pre.clone().height('95%')).html())
         hljs.highlightBlock($(w.document.body).children('pre')[0])
@@ -459,7 +459,7 @@ if (typeof JSV === 'undefined') {
       pre.height(el.height() - btn.outerHeight(true) - (pre.outerHeight(true) - pre.height()))
 
       // scroll to highlighted property
-      var highEl = pre.find('span.highlight')[0]
+      const highEl = pre.find('span.highlight')[0]
 
       if (highEl) {
         pre.scrollTo(highEl, 900)
@@ -470,7 +470,7 @@ if (typeof JSV === 'undefined') {
          * Create a "breadcrumb" for the node.
          */
     compilePath: function (node, path) {
-      var p
+      let p
 
       if (node.parent) {
         p = path ? node.name + ' > ' + path : node.name
@@ -497,9 +497,9 @@ if (typeof JSV === 'undefined') {
          * Create a "permalink" for the node.
          */
     setPermalink: function (node) {
-      var uri = new URI()
+      const uri = new URI()
 
-      var path = JSV.getNodePath(node).join('-')
+      const path = JSV.getNodePath(node).join('-')
 
       // uri.search({ v: path});
       uri.hash($.mobile.activePage.attr('id') + '?v=' + path)
@@ -511,12 +511,12 @@ if (typeof JSV === 'undefined') {
          * Create an index-based path for the node from the root.
          */
     getNodePath: function (node, path) {
-      var p = path || []
+      const p = path || []
 
-      var parent = node.parent
+      const parent = node.parent
 
       if (parent) {
-        var children = parent.children || parent._children
+        const children = parent.children || parent._children
 
         p.unshift(children.indexOf(node))
         return JSV.getNodePath(parent, p)
@@ -529,9 +529,9 @@ if (typeof JSV === 'undefined') {
          * Expand an index-based path for the node from the root.
          */
     expandNodePath: function (path) {
-      var i
+      let i
 
-      var node = JSV.treeData // start with root
+      let node = JSV.treeData // start with root
 
       for (i = 0; i < path.length; i++) {
         if (node._children) {
@@ -550,11 +550,11 @@ if (typeof JSV === 'undefined') {
          * Build Search.
          */
     buildSearchList: function (items, init) {
-      var ul = $('ul#search-result')
+      const ul = $('ul#search-result')
 
       $.each(items, function (i, v) {
-        var data = v.split('|')
-        var li = $('<li/>').attr('data-icon', 'false').appendTo(ul)
+        const data = v.split('|')
+        const li = $('<li/>').attr('data-icon', 'false').appendTo(ul)
 
         $('<a/>').attr('data-path', data[1]).text(data[0]).appendTo(li)
       })
@@ -565,8 +565,8 @@ if (typeof JSV === 'undefined') {
       ul.filterable('refresh')
 
       ul.on('click', function (e) {
-        var path = $(e.target).attr('data-path')
-        var node = JSV.expandNodePath(path.split('-'))
+        const path = $(e.target).attr('data-path')
+        const node = JSV.expandNodePath(path.split('-'))
 
         JSV.flashNode(node)
       })
@@ -576,9 +576,9 @@ if (typeof JSV === 'undefined') {
          * Flash node text
          */
     flashNode: function (node, times) {
-      var t = times || 4
+      let t = times || 4
 
-      var text = $('#n-' + node.id + ' text')
+      const text = $('#n-' + node.id + ' text')
       // flash node text
       while (t--) {
         text.fadeTo(350, 0).fadeTo(350, 1)
@@ -595,10 +595,10 @@ if (typeof JSV === 'undefined') {
       }
       visitFn(parent)
 
-      var children = childrenFn(parent)
+      const children = childrenFn(parent)
 
       if (children) {
-        var count = children.length; var i
+        const count = children.length; let i
         for (i = 0; i < count; i++) {
           JSV.visit(children[i], visitFn, childrenFn)
         }
@@ -614,20 +614,20 @@ if (typeof JSV === 'undefined') {
       if (depth > this.maxDepth) {
         return
       }
-      var key; var node
+      let key; let node
 
-      var s = schema.$ref ? tv4.getSchema(schema.$ref) : schema
+      const s = schema.$ref ? tv4.getSchema(schema.$ref) : schema
 
-      var props = s.properties
+      const props = s.properties
 
-      var items = s.items
+      const items = s.items
 
-      var owns = Object.prototype.hasOwnProperty
+      const owns = Object.prototype.hasOwnProperty
 
-      var all = {}
+      const all = {}
 
-      var parentSchema = function (node) {
-        var schema = node.id || node.$ref || node.schema
+      const parentSchema = function (node) {
+        const schema = node.id || node.$ref || node.schema
 
         if (schema) {
           return schema
@@ -658,7 +658,7 @@ if (typeof JSV === 'undefined') {
         isReal: real,
         plainName: name,
         type: s.type,
-        displayType: s.type || (s['enum'] ? 'enum: ' + s['enum'].join(', ') : s.items ? 'array' : s.properties ? 'object' : 'ambiguous'),
+        displayType: s.type || (s.enum ? 'enum: ' + s.enum.join(', ') : s.items ? 'array' : s.properties ? 'object' : 'ambiguous'),
         translation: schema.translation || s.translation,
         example: schema.example || s.example,
         opacity: real ? 1 : 0.5,
@@ -715,7 +715,7 @@ if (typeof JSV === 'undefined') {
         if (!all[key]) {
           continue
         }
-        var allNode = {
+        const allNode = {
           name: key,
           children: [],
           opacity: 0.5,
@@ -729,7 +729,7 @@ if (typeof JSV === 'undefined') {
           node.children.push(allNode)
         }
 
-        for (var i = 0; i < all[key].length; i++) {
+        for (let i = 0; i < all[key].length; i++) {
           JSV.compileData(all[key][i], allNode, s.title || all[key][i].type, false, depth + 1)
         }
       }
@@ -783,12 +783,12 @@ if (typeof JSV === 'undefined') {
     resetViewer: function () {
       // Firefox will choke if the viewer-page is not visible
       // TODO: fix on refactor to use pagecontainer event
-      var page = $('#viewer-page')
+      const page = $('#viewer-page')
 
       page.css('display', 'block')
 
       // Define the root
-      var root = JSV.treeData
+      const root = JSV.treeData
       root.x0 = JSV.viewerHeight / 2
       root.y0 = 0
 
@@ -808,15 +808,15 @@ if (typeof JSV === 'undefined') {
          * Function to center node when clicked so node doesn't get lost when collapsing with large amount of children.
          */
     centerNode: function (source, ratioX) {
-      var rX = ratioX || 2
+      const rX = ratioX || 2
 
-      var zl = JSV.zoomListener
+      const zl = JSV.zoomListener
 
-      var scale = zl.scale()
+      const scale = zl.scale()
 
-      var x = -source.y0 * scale + JSV.viewerWidth / rX
+      const x = -source.y0 * scale + JSV.viewerWidth / rX
 
-      var y = -source.x0 * scale + JSV.viewerHeight / 2
+      const y = -source.x0 * scale + JSV.viewerHeight / 2
 
       d3.select('g#node-group').transition()
         .duration(JSV.duration)
@@ -847,7 +847,7 @@ if (typeof JSV === 'undefined') {
       }
 
       if (d.children) {
-        var count = d.children.length; var i
+        const count = d.children.length; let i
         for (i = 0; i < count; i++) {
           if (JSV.labels[d.children[i].name]) {
             JSV.expand(d.children[i])
@@ -887,7 +887,7 @@ if (typeof JSV === 'undefined') {
     clickTitle: function (d) {
       if (!JSV.labels[d.name]) {
         if (d3.event && d3.event.defaultPrevented) { return } // click suppressed
-        var panel = $('#info-panel')
+        const panel = $('#info-panel')
 
         if (JSV.focusNode) {
           d3.select('#n-' + JSV.focusNode.id).classed('focus', false)
@@ -920,9 +920,9 @@ if (typeof JSV === 'undefined') {
          */
     interpolateZoom: function (translate, scale) {
       return d3.transition().duration(350).tween('zoom', function () {
-        var iTranslate = d3.interpolate(JSV.zoomListener.translate(), translate)
+        const iTranslate = d3.interpolate(JSV.zoomListener.translate(), translate)
 
-        var iScale = d3.interpolate(JSV.zoomListener.scale(), scale)
+        const iScale = d3.interpolate(JSV.zoomListener.scale(), scale)
         return function (t) {
           JSV.zoomListener
             .scale(iScale(t))
@@ -936,25 +936,25 @@ if (typeof JSV === 'undefined') {
          * Click handler for the zoom control
          */
     zoomClick: function () {
-      var direction = 1
+      let direction = 1
 
-      var factor = 0.2
+      const factor = 0.2
 
-      var targetZoom = 1
+      let targetZoom = 1
 
-      var center = [JSV.viewerWidth / 2, JSV.viewerHeight / 2]
+      const center = [JSV.viewerWidth / 2, JSV.viewerHeight / 2]
 
-      var zl = JSV.zoomListener
+      const zl = JSV.zoomListener
 
-      var extent = zl.scaleExtent()
+      const extent = zl.scaleExtent()
 
-      var translate = zl.translate()
+      const translate = zl.translate()
 
-      var translate0 = []
+      let translate0 = []
 
-      var l = []
+      let l = []
 
-      var view = { x: translate[0], y: translate[1], k: zl.scale() }
+      const view = { x: translate[0], y: translate[1], k: zl.scale() }
 
       d3.event.preventDefault()
       direction = (this.id === 'zoom_in') ? 1 : -1
@@ -992,13 +992,13 @@ if (typeof JSV === 'undefined') {
         diagonal1: d3.svg.diagonal().projection(function (d) { return [d.y, d.x] }),
          */
     diagonal1: function (d) {
-      var src = d.source
+      const src = d.source
 
-      var node = d3.select('#n-' + (src.id))[0][0]
+      const node = d3.select('#n-' + (src.id))[0][0]
 
-      var dia
+      let dia
 
-      var width = 0
+      let width = 0
 
       if (node) {
         width = node.getBBox().width
@@ -1016,13 +1016,13 @@ if (typeof JSV === 'undefined') {
          * Update the tree, removing or adding nodes from/to the passed source node
          */
     update: function (source) {
-      var duration = JSV.duration
-      var root = JSV.treeData
+      const duration = JSV.duration
+      const root = JSV.treeData
       // Compute the new height, function counts total children of root node and sets tree height accordingly.
       // This prevents the layout looking squashed when new nodes are made visible or looking sparse when nodes are removed
       // This makes the layout more consistent.
-      var levelWidth = [1]
-      var childCount = function (level, n) {
+      const levelWidth = [1]
+      const childCount = function (level, n) {
         if (n.children && n.children.length > 0) {
           if (levelWidth.length <= level + 1) { levelWidth.push(0) }
 
@@ -1033,13 +1033,13 @@ if (typeof JSV === 'undefined') {
         }
       }
       childCount(0, root)
-      var newHeight = d3.max(levelWidth) * 45 // 25 pixels per line
+      const newHeight = d3.max(levelWidth) * 45 // 25 pixels per line
       JSV.tree.size([newHeight, JSV.viewerWidth])
 
       // Compute the new tree layout.
-      var nodes = JSV.tree.nodes(root).reverse()
+      const nodes = JSV.tree.nodes(root).reverse()
 
-      var links = JSV.tree.links(nodes)
+      const links = JSV.tree.links(nodes)
 
       // Set widths between levels based on maxLabelLength.
       nodes.forEach(function (d) {
@@ -1049,13 +1049,13 @@ if (typeof JSV === 'undefined') {
         // d.y = (d.depth * 500); //500px per level.
       })
       // Update the nodes…
-      var node = JSV.svgGroup.selectAll('g.node')
+      const node = JSV.svgGroup.selectAll('g.node')
         .data(nodes, function (d) {
           return d.id || (d.id = ++JSV.counter)
         })
 
       // Enter any new nodes at the parent's previous position.
-      var nodeEnter = node.enter().append('g')
+      const nodeEnter = node.enter().append('g')
         .attr('class', function (d) {
           return JSV.labels[d.name] ? 'node label' : 'node'
         })
@@ -1112,7 +1112,7 @@ if (typeof JSV === 'undefined') {
         })
 
       // Transition nodes to their new position.
-      var nodeUpdate = node.transition()
+      const nodeUpdate = node.transition()
         .duration(duration)
         .attr('transform', function (d) {
           return 'translate(' + d.y + ',' + d.x + ')'
@@ -1125,7 +1125,7 @@ if (typeof JSV === 'undefined') {
         })
 
       // Transition exiting nodes to the parent's new position.
-      var nodeExit = node.exit().transition()
+      const nodeExit = node.exit().transition()
         .duration(duration)
         .attr('transform', function (d) {
           return 'translate(' + source.y + ',' + source.x + ')'
@@ -1139,7 +1139,7 @@ if (typeof JSV === 'undefined') {
         .style('fill-opacity', 0)
 
       // Update the links…
-      var link = JSV.svgGroup.selectAll('path.link')
+      const link = JSV.svgGroup.selectAll('path.link')
         .data(links, function (d) {
           return d.target.id
         })
@@ -1148,7 +1148,7 @@ if (typeof JSV === 'undefined') {
       link.enter().insert('path', 'g')
         .attr('class', 'link')
         .attr('d', function (d) {
-          var o = {
+          const o = {
             x: source.x0,
             y: source.y0
           }
@@ -1170,7 +1170,7 @@ if (typeof JSV === 'undefined') {
       link.exit().transition()
         .duration(duration)
         .attr('d', function (d) {
-          var o = {
+          const o = {
             x: source.x,
             y: source.y
           }
@@ -1203,8 +1203,8 @@ if (typeof JSV === 'undefined') {
       // var panBoundary = 20; // Within 20px from edges will pan when dragging.
 
       // size of the diagram
-      var viewerWidth = JSV.viewerWidth ? JSV.viewerWidth : '100%'
-      var viewerHeight = JSV.viewerHeight ? JSV.viewerHeight : '100%'
+      const viewerWidth = JSV.viewerWidth ? JSV.viewerWidth : '100%'
+      const viewerHeight = JSV.viewerHeight ? JSV.viewerHeight : '100%'
 
       JSV.zoomListener = d3.behavior.zoom().scaleExtent([0.1, 3]).on('zoom', JSV.zoom)
 
@@ -1238,7 +1238,7 @@ if (typeof JSV === 'undefined') {
       JSV.centerNode(JSV.treeData, 4)
 
       // define the legend svg, attaching a class for styling
-      var legendData = [{
+      const legendData = [{
         text: 'Expanded',
         y: 20
       }, {
@@ -1267,17 +1267,17 @@ if (typeof JSV === 'undefined') {
         opacity: 0.5
       }]
 
-      var legendSvg = d3.select('#legend-items').append('svg')
+      const legendSvg = d3.select('#legend-items').append('svg')
         .attr('width', 170)
         .attr('height', 180)
 
       // Update the nodes…
-      var legendItem = legendSvg.selectAll('g.item-group')
+      const legendItem = legendSvg.selectAll('g.item-group')
         .data(legendData)
         .enter()
         .append('g')
         .attr('class', function (d) {
-          var cls = 'item-group '
+          let cls = 'item-group '
 
           cls += d.itemCls || ''
           return cls
