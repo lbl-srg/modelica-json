@@ -167,8 +167,8 @@ Following is the schema for the JSON translation of the CDL-compliant sequences:
 - [schema-cdl.json](schema-cdl.json) validates the JSON files parsed from CDL-compliant classes
 
 Graphical viewers are available (please use right click + open in a new tab or refresh the page if necessary - this is not optimized for Firefox) :
-- [Modelica Schema viewer](https://htmlpreview.github.io/?https://github.com/lbl-srg/modelica-json/blob/issue306_cdlSchema/modelica-viz.html)
-- [CDL Schema viewer](https://htmlpreview.github.io/?https://github.com/lbl-srg/modelica-json/blob/issue306_cdlSchema/cdl-viz.html)
+- [Modelica Schema viewer](https://htmlpreview.github.io/?https://github.com/lbl-srg/modelica-json/blob/issue306_cdlSchema/schemaVisualization/modelica-viz.html)
+- [CDL Schema viewer](https://htmlpreview.github.io/?https://github.com/lbl-srg/modelica-json/blob/issue306_cdlSchema/schemaVisualization/cdl-viz.html)
 
 
 ## 5. CXF-Core.jsonld
