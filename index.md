@@ -148,7 +148,7 @@ If `--cxfCore` flag is specified, generate the  CXF-core.jsonld files for all th
 
 #### Exporting controls from a Modelica model
 
-A control sequence is often instantiated within a larger Modelica model that is not itself CDL compliant, such as a Buildings library template. To translate only the control sequence to CXF, parse the model with the modelica mode and mark the control block with a `__cdl(isControls=true)` annotation:
+A control sequence is often instantiated within a larger Modelica model that is not itself CDL compliant, such as a Buildings library template. To translate only the control sequence to CXF, parse the model with the modelica mode and mark the control block with a `__cdl(isControls=true)`git st annotation:
 
 ```
 node app.js -f <path of the Modelica model> -o cxf -m modelica
@@ -181,8 +181,8 @@ Following is the schema for the JSON translation of the CDL-compliant sequences:
 - [schema-cdl.json](schema-cdl.json) validates the JSON files parsed from CDL-compliant classes
 
 Graphical viewers are available (please use right click + open in a new tab or refresh the page if necessary - this is not optimized for Firefox) :
-- [Modelica Schema viewer](https://html-preview.github.io/?url=https://github.com/lbl-srg/modelica-json/blob/issue311_schemaView/schemaVisualization/modelica-viz.html)
-- [CDL Schema viewer](https://html-preview.github.io/?url=https://github.com/lbl-srg/modelica-json/blob/issue311_schemaView/schemaVisualization/cdl-viz.html)
+- [Modelica Schema viewer](modelica-viz.html)
+- [CDL Schema viewer](cdl-viz.html)
 
 
 ## 5. CXF-Core.jsonld
