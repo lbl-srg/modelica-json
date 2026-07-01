@@ -6,7 +6,9 @@
   "repository": "git.test_repo",
   "scripts": {
     "test": "nyc mocha --timeout 120000 && standard",
-    "postinstall": "patch-package"
+    "postinstall": "patch-package",
+    "serve": "python3 -m http.server 8000",
+    "generate-schema-js": "node -e \"const fs=require('fs'),d='schemaVisualization';fs.writeFileSync(d+'/schema-cdl.js','window.__CDL_SCHEMA__ = '+fs.readFileSync('schema-cdl.json','utf8')+';\\n');fs.writeFileSync(d+'/schema-modelica.js','window.__MODELICA_SCHEMA__ = '+fs.readFileSync('schema-modelica.json','utf8')+';\\n');console.log('Done: '+d+'/schema-cdl.js and '+d+'/schema-modelica.js');\""
   },
   "author": "Michael Wetter",
   "license": "BSD-3-Clause",
