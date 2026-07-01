@@ -1,0 +1,74 @@
+{
+  "instances": {
+    "VAVBox": {
+      "within": "ModelicaMode",
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-json/test/ModelicaMode/VAVBox.mo",
+      "type": "long_class_specifier",
+      "class_prefixes": "partial model",
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "defaultComponentName",
+              "modification": {
+                "equal": true,
+                "expression": {
+                  "simple_expression": "\"VAVBox\""
+                }
+              }
+            }
+          }
+        },
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "name": "Documentation",
+              "modification": {
+                "class_modification": [
+                  {
+                    "element_modification_or_replaceable": {
+                      "element_modification": {
+                        "name": "info",
+                        "modification": {
+                          "equal": true,
+                          "expression": {
+                            "simple_expression": "\"<html>\n<p>\nInterface that a VAV terminal unit template extends from. It declares a\nreplaceable controller <code>ctl</code> that concrete templates redeclare.\n</p>\n</html>\""
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {}
+    },
+    "ctl": {
+      "type_specifier": "ModelicaMode.OpenLoopVAVBoxCoolingOnly",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "VAVBox",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "ctl"
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": true,
+      "constraining_clause": {
+        "name": "ModelicaMode.PartialController"
+      },
+      "within": "ModelicaMode",
+      "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-json/test/ModelicaMode/VAVBox.mo"
+    }
+  },
+  "requiredReferences": {}
+}

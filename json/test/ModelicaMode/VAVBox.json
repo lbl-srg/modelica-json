@@ -1,0 +1,101 @@
+{
+  "within": "ModelicaMode",
+  "stored_class_definitions": [
+    {
+      "class_prefixes": "partial model",
+      "class_specifier": {
+        "long_class_specifier": {
+          "identifier": "VAVBox",
+          "description_string": "Interface for a VAV terminal unit with a replaceable controller",
+          "composition": {
+            "element_list": [
+              {
+                "replaceable": true,
+                "constraining_clause": {
+                  "name": "ModelicaMode.PartialController"
+                },
+                "component_clause": {
+                  "type_specifier": "ModelicaMode.OpenLoopVAVBoxCoolingOnly",
+                  "component_list": [
+                    {
+                      "declaration": {
+                        "identifier": "ctl"
+                      }
+                    }
+                  ]
+                },
+                "description": {
+                  "description_string": "Replaceable controller",
+                  "annotation": [
+                    {
+                      "element_modification_or_replaceable": {
+                        "element_modification": {
+                          "Placement": {
+                            "transformation": {
+                              "extent": [
+                                {
+                                  "x": -10,
+                                  "y": -10
+                                },
+                                {
+                                  "x": 10,
+                                  "y": 10
+                                }
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            ],
+            "annotation": [
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "defaultComponentName",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "\"VAVBox\""
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "Documentation",
+                    "modification": {
+                      "class_modification": [
+                        {
+                          "element_modification_or_replaceable": {
+                            "element_modification": {
+                              "name": "info",
+                              "modification": {
+                                "equal": true,
+                                "expression": {
+                                  "simple_expression": "\"<html>\n<p>\nInterface that a VAV terminal unit template extends from. It declares a\nreplaceable controller <code>ctl</code> that concrete templates redeclare.\n</p>\n</html>\""
+                                }
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "modelicaFile": "test/ModelicaMode/VAVBox.mo",
+  "fullMoFilePath": "/home/jianjunhu/GitFolder/modelica-json/test/ModelicaMode/VAVBox.mo",
+  "checksum": "c3b1df9af1ead2d0bdf7d1bc9620de71"
+}
