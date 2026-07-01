@@ -163,6 +163,14 @@ JSON Schemas describe the data format and file structure to ensure the quality o
 Following is the schema for the JSON translation (link to the raw file):
 - [schema-modelica.json](schema-modelica.json) validates the JSON files parsed from Modelica models
 
+Following is the schema for the JSON translation of the CDL-compliant sequences:
+- [schema-cdl.json](schema-cdl.json) validates the JSON files parsed from CDL-compliant classes
+
+Graphical viewers are available (please use right click + open in a new tab or refresh the page if necessary - this is not optimized for Firefox) :
+- [Modelica Schema viewer](https://htmlpreview.github.io/?https://github.com/lbl-srg/modelica-json/blob/master/schemaVisualization/modelica-viz.html)
+- [CDL Schema viewer](https://htmlpreview.github.io/?https://github.com/lbl-srg/modelica-json/blob/master/schemaVisualization/cdl-viz.html)
+
+
 ## 5. CXF-Core.jsonld
 
 [CXF-Core.jsonld](CXF-Core.jsonld) contains the CXF representation of all CDL elementary blocks, classes and relationships.

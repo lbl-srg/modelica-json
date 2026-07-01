@@ -1,0 +1,26 @@
+diff --git a/node_modules/antlr4/RuleContext.js b/node_modules/antlr4/RuleContext.js
+index 02188f8..e280caa 100644
+--- a/node_modules/antlr4/RuleContext.js
++++ b/node_modules/antlr4/RuleContext.js
+@@ -27,7 +27,7 @@
+ 
+ var RuleNode = require('./tree/Tree').RuleNode;
+ var INVALID_INTERVAL = require('./tree/Tree').INVALID_INTERVAL;
+-var INVALID_ALT_NUMBER = require('./atn/ATN').INVALID_ALT_NUMBER;
++var INVALID_ALT_NUMBER = 0; // patch: avoid circular dependency warning (antlr4 4.7.2)
+ 
+ function RuleContext(parent, invokingState) {
+ 	RuleNode.call(this);
+diff --git a/node_modules/antlr4/tree/Trees.js b/node_modules/antlr4/tree/Trees.js
+index 884272e..6f20d02 100644
+--- a/node_modules/antlr4/tree/Trees.js
++++ b/node_modules/antlr4/tree/Trees.js
+@@ -10,7 +10,7 @@ var ErrorNode = require('./Tree').ErrorNode;
+ var TerminalNode = require('./Tree').TerminalNode;
+ var ParserRuleContext = require('./../ParserRuleContext').ParserRuleContext;
+ var RuleContext = require('./../RuleContext').RuleContext;
+-var INVALID_ALT_NUMBER = require('./../atn/ATN').INVALID_ALT_NUMBER;
++var INVALID_ALT_NUMBER = 0; // patch: avoid circular dependency warning (antlr4 4.7.2)
+ 
+ 
+ /** A set of utility routines useful for all kinds of ANTLR trees. */
