@@ -1,756 +1,756 @@
 window.__MODELICA_SCHEMA__ = {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "schema-modelica.json",
-  "title": "JSON parsed Modelica file",
-  "description": "Json representation of a Modelica model",
-  "$comment": "08/29/2024",
-  "definitions": {
-    "stored_class_definitions": {
-      "description": "Stored class definitions",
-      "type": "array",
-      "additionalItems": false,
-      "items": { "$ref": "#/definitions/class_definition" }
+  $schema: 'http://json-schema.org/draft-07/schema#',
+  $id: 'schema-modelica.json',
+  title: 'JSON parsed Modelica file',
+  description: 'Json representation of a Modelica model',
+  $comment: '08/29/2024',
+  definitions: {
+    stored_class_definitions: {
+      description: 'Stored class definitions',
+      type: 'array',
+      additionalItems: false,
+      items: { $ref: '#/definitions/class_definition' }
     },
-    "class_definition": {
-      "description": "Class definition",
-      "type": "object",
-      "required": [
-        "class_prefixes",
-        "class_specifier"
+    class_definition: {
+      description: 'Class definition',
+      type: 'object',
+      required: [
+        'class_prefixes',
+        'class_specifier'
       ],
-      "additionalProperties": false,
-      "properties": {
-        "final": {
-          "type": "boolean"
+      additionalProperties: false,
+      properties: {
+        final: {
+          type: 'boolean'
         },
-        "encapsulated": {
-          "type": "boolean"
+        encapsulated: {
+          type: 'boolean'
         },
-        "class_prefixes": {
-          "type": "string"
+        class_prefixes: {
+          type: 'string'
         },
-        "class_specifier": {
-          "$ref": "#/definitions/class_specifier"
+        class_specifier: {
+          $ref: '#/definitions/class_specifier'
         }
       }
     },
-    "class_specifier": {
-      "description": "Class specifier",
-      "oneOf": [
+    class_specifier: {
+      description: 'Class specifier',
+      oneOf: [
         {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "long_class_specifier": {
-              "$ref": "#/definitions/long_class_specifier"
+          type: 'object',
+          additionalProperties: false,
+          properties: {
+            long_class_specifier: {
+              $ref: '#/definitions/long_class_specifier'
             }
           }
         },
         {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "short_class_specifier": {
-              "$ref": "#/definitions/short_class_specifier"
+          type: 'object',
+          additionalProperties: false,
+          properties: {
+            short_class_specifier: {
+              $ref: '#/definitions/short_class_specifier'
             }
           }
         },
         {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "der_class_specifier": {
-              "$ref": "#/definitions/der_class_specifier"
+          type: 'object',
+          additionalProperties: false,
+          properties: {
+            der_class_specifier: {
+              $ref: '#/definitions/der_class_specifier'
             }
           }
         }
       ]
     },
-    "long_class_specifier": {
-      "description": "Long class specifier",
-      "type": "object",
-      "required": [
-        "identifier",
-        "composition"
+    long_class_specifier: {
+      description: 'Long class specifier',
+      type: 'object',
+      required: [
+        'identifier',
+        'composition'
       ],
-      "additionalProperties": false,
-      "properties": {
-        "identifier": {
-          "type": "string"
+      additionalProperties: false,
+      properties: {
+        identifier: {
+          type: 'string'
         },
-        "description_string": {
-          "type": "string"
+        description_string: {
+          type: 'string'
         },
-        "composition": {
-          "$ref": "#/definitions/composition"
+        composition: {
+          $ref: '#/definitions/composition'
         },
-        "extends": {
-          "type": "boolean"
+        extends: {
+          type: 'boolean'
         },
-        "class_modification": {
-          "$ref": "#/definitions/class_modification"
+        class_modification: {
+          $ref: '#/definitions/class_modification'
         }
       }
     },
-    "composition": {
-      "description": "Composition",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "element_list": {
-          "$ref": "#/definitions/element_list"
+    composition: {
+      description: 'Composition',
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        element_list: {
+          $ref: '#/definitions/element_list'
         },
-        "element_sections": {
-          "$ref": "#/definitions/element_sections"
+        element_sections: {
+          $ref: '#/definitions/element_sections'
         },
-        "external_composition": {
-          "$ref": "#/definitions/external_composition"
+        external_composition: {
+          $ref: '#/definitions/external_composition'
         },
-        "annotation": {
-          "$ref": "#/definitions/class_modification"
+        annotation: {
+          $ref: '#/definitions/class_modification'
         }
       }
     },
-    "class_modification": {
-      "description": "Class modification",
-      "oneOf": [
+    class_modification: {
+      description: 'Class modification',
+      oneOf: [
         {
-          "type": "array",
-          "additionalItems": false,
-          "items": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-              "element_modification_or_replaceable": {
-                "$ref": "#/definitions/element_modification_or_replaceable"
+          type: 'array',
+          additionalItems: false,
+          items: {
+            type: 'object',
+            additionalProperties: false,
+            properties: {
+              element_modification_or_replaceable: {
+                $ref: '#/definitions/element_modification_or_replaceable'
               },
-              "element_redeclaration": {
-                "$ref": "#/definitions/element_redeclaration"
+              element_redeclaration: {
+                $ref: '#/definitions/element_redeclaration'
               }
             }
           }
         },
         {
-          "type": "string"
+          type: 'string'
         }
       ]
     },
-    "element_list": {
-      "description": "Element list",
-      "type": "array",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "import_clause": {
-            "$ref": "#/definitions/import_clause"
+    element_list: {
+      description: 'Element list',
+      type: 'array',
+      additionalItems: false,
+      items: {
+        type: 'object',
+        additionalProperties: false,
+        properties: {
+          import_clause: {
+            $ref: '#/definitions/import_clause'
           },
-          "extends_clause": {
-            "$ref": "#/definitions/extends_clause"
+          extends_clause: {
+            $ref: '#/definitions/extends_clause'
           },
-          "redeclare": {
-            "type": "boolean"
+          redeclare: {
+            type: 'boolean'
           },
-          "final": {
-            "type": "boolean"
+          final: {
+            type: 'boolean'
           },
-          "inner": {
-            "type": "boolean"
+          inner: {
+            type: 'boolean'
           },
-          "outer": {
-            "type": "boolean"
+          outer: {
+            type: 'boolean'
           },
-          "replaceable": {
-            "type": "boolean"
+          replaceable: {
+            type: 'boolean'
           },
-          "constraining_clause": {
-            "$ref": "#/definitions/constraining_clause"
+          constraining_clause: {
+            $ref: '#/definitions/constraining_clause'
           },
-          "class_definition": {
-            "$ref": "#/definitions/class_definition"
+          class_definition: {
+            $ref: '#/definitions/class_definition'
           },
-          "component_clause": {
-            "$ref": "#/definitions/component_clause"
+          component_clause: {
+            $ref: '#/definitions/component_clause'
           },
-          "description": {
-            "$ref": "#/definitions/descriptionSchema"
+          description: {
+            $ref: '#/definitions/descriptionSchema'
           }
         }
       }
     },
-    "element_sections": {
-      "description": "Element sections",
-      "type": "array",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "public_element_list": {
-            "$ref": "#/definitions/element_list"
+    element_sections: {
+      description: 'Element sections',
+      type: 'array',
+      additionalItems: false,
+      items: {
+        type: 'object',
+        additionalProperties: false,
+        properties: {
+          public_element_list: {
+            $ref: '#/definitions/element_list'
           },
-          "protected_element_list": {
-            "$ref": "#/definitions/element_list"
+          protected_element_list: {
+            $ref: '#/definitions/element_list'
           },
-          "equation_section": {
-            "$ref": "#/definitions/equation_section"
+          equation_section: {
+            $ref: '#/definitions/equation_section'
           },
-          "algorithm_section": {
-            "$ref": "#/definitions/algorithm_section"
+          algorithm_section: {
+            $ref: '#/definitions/algorithm_section'
           }
         }
       }
     },
-    "external_function_call": {
-      "description": "External function call",
-      "type": "object",
-      "required": [
-        "identifier"
+    external_function_call: {
+      description: 'External function call',
+      type: 'object',
+      required: [
+        'identifier'
       ],
-      "additionalProperties": false,
-      "properties": {
-        "component_reference": {
-          "$ref": "#/definitions/component_reference"
+      additionalProperties: false,
+      properties: {
+        component_reference: {
+          $ref: '#/definitions/component_reference'
         },
-        "identifier": {
-          "type": "string"
+        identifier: {
+          type: 'string'
         },
-        "expression_list": {
-          "$ref": "#/definitions/expression_list"
+        expression_list: {
+          $ref: '#/definitions/expression_list'
         }
       }
     },
-    "external_composition": {
-      "description": "External composition",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "language_specification": {
-          "type": "string"
+    external_composition: {
+      description: 'External composition',
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        language_specification: {
+          type: 'string'
         },
-        "external_function_call": {
-          "$ref": "#/definitions/external_function_call"
+        external_function_call: {
+          $ref: '#/definitions/external_function_call'
         },
-        "external_annotation": {
-          "$ref": "#/definitions/class_modification"
+        external_annotation: {
+          $ref: '#/definitions/class_modification'
         }
       }
     },
-    "component_clause": {
-      "description": "Component clause",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "type_prefix": {
-          "type": "string"
+    component_clause: {
+      description: 'Component clause',
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        type_prefix: {
+          type: 'string'
         },
-        "type_specifier": {
-          "type": "string"
+        type_specifier: {
+          type: 'string'
         },
-        "array_subscripts": {
-          "$ref": "#/definitions/array_subscripts"
+        array_subscripts: {
+          $ref: '#/definitions/array_subscripts'
         },
-        "component_list": {
-          "$ref": "#/definitions/component_list"
+        component_list: {
+          $ref: '#/definitions/component_list'
         }
       }
     },
-    "extends_clause": {
-      "description": "Extends clause",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "name": {
-          "type": "string"
+    extends_clause: {
+      description: 'Extends clause',
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        name: {
+          type: 'string'
         },
-        "type_specifier": {
-          "type": "string"
+        type_specifier: {
+          type: 'string'
         },
-        "class_modification": {
-          "$ref": "#/definitions/class_modification"
+        class_modification: {
+          $ref: '#/definitions/class_modification'
         },
-        "annotation": {
-          "$ref": "#/definitions/class_modification"
+        annotation: {
+          $ref: '#/definitions/class_modification'
         }
       }
     },
-    "import_clause": {
-      "description": "Import clause",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "identifier": {
-          "type": "string"
+    import_clause: {
+      description: 'Import clause',
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        identifier: {
+          type: 'string'
         },
-        "name": {
-          "type": "string"
+        name: {
+          type: 'string'
         },
-        "dot_star": {
-          "type": "boolean"
+        dot_star: {
+          type: 'boolean'
         },
-        "import_list": {
-          "type": "string"
+        import_list: {
+          type: 'string'
         },
-        "description": {
-          "$ref": "#/definitions/descriptionSchema"
+        description: {
+          $ref: '#/definitions/descriptionSchema'
         }
       }
     },
-    "component_list": {
-      "description": "Component list",
-      "type": "array",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "required": [
-          "declaration",
-          "description"
+    component_list: {
+      description: 'Component list',
+      type: 'array',
+      additionalItems: false,
+      items: {
+        type: 'object',
+        required: [
+          'declaration',
+          'description'
         ],
-        "additionalProperties": false,
-        "properties": {
-          "declaration": {
-            "$ref": "#/definitions/declaration"
+        additionalProperties: false,
+        properties: {
+          declaration: {
+            $ref: '#/definitions/declaration'
           },
-          "condition_attribute": {
-            "$ref": "#/definitions/condition_attribute"
+          condition_attribute: {
+            $ref: '#/definitions/condition_attribute'
           },
-          "description": {
-            "$ref": "#/definitions/descriptionSchema"
+          description: {
+            $ref: '#/definitions/descriptionSchema'
           }
         }
       }
     },
-    "condition_attribute": {
-      "description": "Condition attribute",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "expression": {
-          "$ref": "#/definitions/expression"
+    condition_attribute: {
+      description: 'Condition attribute',
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        expression: {
+          $ref: '#/definitions/expression'
         }
       }
     },
-    "element_modification": {
-      "description": "Element modification",
-      "type": "object",
-      "oneOf": [
+    element_modification: {
+      description: 'Element modification',
+      type: 'object',
+      oneOf: [
         {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "name": {
-              "type": "string"
+          type: 'object',
+          additionalProperties: false,
+          properties: {
+            name: {
+              type: 'string'
             },
-            "modification": {
-              "$ref": "#/definitions/modification"
+            modification: {
+              $ref: '#/definitions/modification'
             },
-            "description_string": {
-              "type": "string"
+            description_string: {
+              type: 'string'
             }
           }
         },
         {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "Line": {
-              "$ref": "#/definitions/Line"
+          type: 'object',
+          additionalProperties: false,
+          properties: {
+            Line: {
+              $ref: '#/definitions/Line'
             }
           }
         },
         {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "Text": {
-              "$ref": "#/definitions/Text"
+          type: 'object',
+          additionalProperties: false,
+          properties: {
+            Text: {
+              $ref: '#/definitions/Text'
             }
           }
         },
         {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "Rectangle": {
-              "$ref": "#/definitions/Rectangle"
+          type: 'object',
+          additionalProperties: false,
+          properties: {
+            Rectangle: {
+              $ref: '#/definitions/Rectangle'
             }
           }
         },
         {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "Polygon": {
-              "$ref": "#/definitions/Polygon"
+          type: 'object',
+          additionalProperties: false,
+          properties: {
+            Polygon: {
+              $ref: '#/definitions/Polygon'
             }
           }
         },
         {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "Ellipse": {
-              "$ref": "#/definitions/Ellipse"
+          type: 'object',
+          additionalProperties: false,
+          properties: {
+            Ellipse: {
+              $ref: '#/definitions/Ellipse'
             }
           }
         },
         {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "Bitmap": {
-              "$ref": "#/definitions/Bitmap"
+          type: 'object',
+          additionalProperties: false,
+          properties: {
+            Bitmap: {
+              $ref: '#/definitions/Bitmap'
             }
           }
         },
         {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "Placement": {
-              "$ref": "#/definitions/Placement"
+          type: 'object',
+          additionalProperties: false,
+          properties: {
+            Placement: {
+              $ref: '#/definitions/Placement'
             }
           }
         },
         {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "coordinateSystem": {
-              "$ref": "#/definitions/coordinateSystem"
+          type: 'object',
+          additionalProperties: false,
+          properties: {
+            coordinateSystem: {
+              $ref: '#/definitions/coordinateSystem'
             }
           }
         },
         {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "graphics": {
-              "$ref": "#/definitions/graphics"
+          type: 'object',
+          additionalProperties: false,
+          properties: {
+            graphics: {
+              $ref: '#/definitions/graphics'
             }
           }
         }
       ]
     },
-    "Line": {
-      "description": "Line object",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "points": {
-          "$ref": "#/definitions/points"
+    Line: {
+      description: 'Line object',
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        points: {
+          $ref: '#/definitions/points'
         },
-        "color": {
-          "$ref": "#/definitions/color"
+        color: {
+          $ref: '#/definitions/color'
         },
-        "pattern": {
-          "type": "string"
+        pattern: {
+          type: 'string'
         },
-        "thickness": {
-          "type": "number"
+        thickness: {
+          type: 'number'
         },
-        "arrowSize": {
-          "type": "number"
+        arrowSize: {
+          type: 'number'
         },
-        "smooth": {
-          "type": "string"
+        smooth: {
+          type: 'string'
         },
-        "visible": {
-          "type": "string"
+        visible: {
+          type: 'string'
         }
       }
     },
-    "Text": {
-      "description": "Text object",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "extent": {
-          "$ref": "#/definitions/points"
+    Text: {
+      description: 'Text object',
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        extent: {
+          $ref: '#/definitions/points'
         },
-        "textString": {
-          "type": "string"
+        textString: {
+          type: 'string'
         },
-        "fontSize": {
-          "type": "number"
+        fontSize: {
+          type: 'number'
         },
-        "fontName": {
-          "type": "string"
+        fontName: {
+          type: 'string'
         },
-        "textColor": {
-          "$ref": "#/definitions/color"
+        textColor: {
+          $ref: '#/definitions/color'
         },
-        "horizontalAlignment": {
-          "type": "string"
+        horizontalAlignment: {
+          type: 'string'
         },
-        "string": {
-          "type": "string"
+        string: {
+          type: 'string'
         },
-        "index": {
-          "type": "number"
+        index: {
+          type: 'number'
         },
-        "lineColor": {
-          "$ref": "#/definitions/color"
+        lineColor: {
+          $ref: '#/definitions/color'
         },
-        "fillColor": {
-          "$ref": "#/definitions/color"
+        fillColor: {
+          $ref: '#/definitions/color'
         },
-        "pattern": {
-          "type": "string"
+        pattern: {
+          type: 'string'
         },
-        "fillPattern": {
-          "type": "string"
+        fillPattern: {
+          type: 'string'
         },
-        "lineThickness": {
-          "type": "number"
+        lineThickness: {
+          type: 'number'
         },
-        "visible": {
-          "type": "string"
+        visible: {
+          type: 'string'
         },
-        "origin": {
-          "$ref": "#/definitions/origin"
+        origin: {
+          $ref: '#/definitions/origin'
         },
-        "rotation": {
-          "type": "number"
+        rotation: {
+          type: 'number'
         }
       }
     },
-    "Rectangle": {
-      "description": "Rectangle object",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "extent": {
-          "$ref": "#/definitions/points"
+    Rectangle: {
+      description: 'Rectangle object',
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        extent: {
+          $ref: '#/definitions/points'
         },
-        "radius": {
-          "type": "number"
+        radius: {
+          type: 'number'
         },
-        "borderPattern": {
-          "type": "string"
+        borderPattern: {
+          type: 'string'
         },
-        "lineColor": {
-          "$ref": "#/definitions/color"
+        lineColor: {
+          $ref: '#/definitions/color'
         },
-        "fillColor": {
-          "$ref": "#/definitions/color"
+        fillColor: {
+          $ref: '#/definitions/color'
         },
-        "pattern": {
-          "type": "string"
+        pattern: {
+          type: 'string'
         },
-        "fillPattern": {
-          "type": "string"
+        fillPattern: {
+          type: 'string'
         },
-        "lineThickness": {
-          "type": "number"
+        lineThickness: {
+          type: 'number'
         },
-        "visible": {
-          "type": "string"
+        visible: {
+          type: 'string'
         },
-        "origin": {
-          "$ref": "#/definitions/origin"
+        origin: {
+          $ref: '#/definitions/origin'
         },
-        "rotation": {
-          "type": "number"
+        rotation: {
+          type: 'number'
         }
       }
     },
-    "Polygon": {
-      "description": "Polygon object",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "points": {
-          "$ref": "#/definitions/points"
+    Polygon: {
+      description: 'Polygon object',
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        points: {
+          $ref: '#/definitions/points'
         },
-        "smooth": {
-          "type": "string"
+        smooth: {
+          type: 'string'
         },
-        "lineColor": {
-          "$ref": "#/definitions/color"
+        lineColor: {
+          $ref: '#/definitions/color'
         },
-        "fillColor": {
-          "$ref": "#/definitions/color"
+        fillColor: {
+          $ref: '#/definitions/color'
         },
-        "pattern": {
-          "type": "string"
+        pattern: {
+          type: 'string'
         },
-        "fillPattern": {
-          "type": "string"
+        fillPattern: {
+          type: 'string'
         },
-        "lineThickness": {
-          "type": "number"
+        lineThickness: {
+          type: 'number'
         },
-        "visible": {
-          "type": "string"
+        visible: {
+          type: 'string'
         },
-        "origin": {
-          "$ref": "#/definitions/origin"
+        origin: {
+          $ref: '#/definitions/origin'
         },
-        "rotation": {
-          "type": "number"
+        rotation: {
+          type: 'number'
         }
       }
     },
-    "Ellipse": {
-      "description": "Ellipse object",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "extent": {
-          "$ref": "#/definitions/points"
+    Ellipse: {
+      description: 'Ellipse object',
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        extent: {
+          $ref: '#/definitions/points'
         },
-        "startAngle": {
-          "type": "number"
+        startAngle: {
+          type: 'number'
         },
-        "endAngle": {
-          "type": "number"
+        endAngle: {
+          type: 'number'
         },
-        "closure": {
-          "type": "string"
+        closure: {
+          type: 'string'
         },
-        "lineColor": {
-          "$ref": "#/definitions/color"
+        lineColor: {
+          $ref: '#/definitions/color'
         },
-        "fillColor": {
-          "$ref": "#/definitions/color"
+        fillColor: {
+          $ref: '#/definitions/color'
         },
-        "pattern": {
-          "type": "string"
+        pattern: {
+          type: 'string'
         },
-        "fillPattern": {
-          "type": "string"
+        fillPattern: {
+          type: 'string'
         },
-        "lineThickness": {
-          "type": "number"
+        lineThickness: {
+          type: 'number'
         },
-        "visible": {
-          "type": "string"
+        visible: {
+          type: 'string'
         },
-        "origin": {
-          "$ref": "#/definitions/origin"
+        origin: {
+          $ref: '#/definitions/origin'
         },
-        "rotation": {
-          "type": "number"
+        rotation: {
+          type: 'number'
         }
       }
     },
-    "Bitmap": {
-      "description": "Bitmap object",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "extent": {
-          "$ref": "#/definitions/points"
+    Bitmap: {
+      description: 'Bitmap object',
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        extent: {
+          $ref: '#/definitions/points'
         },
-        "fileName": {
-          "type": "string"
+        fileName: {
+          type: 'string'
         },
-        "imageSource": {
-          "type": "string"
+        imageSource: {
+          type: 'string'
         },
-        "visible": {
-          "type": "string"
+        visible: {
+          type: 'string'
         },
-        "origin": {
-          "$ref": "#/definitions/origin"
+        origin: {
+          $ref: '#/definitions/origin'
         },
-        "rotation": {
-          "type": "number"
+        rotation: {
+          type: 'number'
         }
       }
     },
-    "Placement": {
-      "description": "Placement object",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "visible": {
-          "type": "string"
+    Placement: {
+      description: 'Placement object',
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        visible: {
+          type: 'string'
         },
-        "iconVisible": {
-          "type": "string"
+        iconVisible: {
+          type: 'string'
         },
-        "transformation": {
-          "$ref": "#/definitions/transformation"
+        transformation: {
+          $ref: '#/definitions/transformation'
         },
-        "iconTransformation": {
-          "$ref": "#/definitions/transformation"
+        iconTransformation: {
+          $ref: '#/definitions/transformation'
         }
       }
     },
-    "coordinateSystem": {
-      "description": "coordinateSystem object",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "extent": {
-          "$ref": "#/definitions/points"
+    coordinateSystem: {
+      description: 'coordinateSystem object',
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        extent: {
+          $ref: '#/definitions/points'
         },
-        "preserveAspectRatio": {
-          "type": "string"
+        preserveAspectRatio: {
+          type: 'string'
         },
-        "initialScale": {
-          "type": "number"
+        initialScale: {
+          type: 'number'
         }
       }
     },
-    "graphics": {
-      "description": "graphic items",
-      "type": "array",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "required": [
-          "name",
-          "attribute"
+    graphics: {
+      description: 'graphic items',
+      type: 'array',
+      additionalItems: false,
+      items: {
+        type: 'object',
+        required: [
+          'name',
+          'attribute'
         ],
-        "additionalProperties": false,
-        "properties": {
-          "name": {
-            "type": "string"
+        additionalProperties: false,
+        properties: {
+          name: {
+            type: 'string'
           },
-          "attribute": {
-            "type": "object"
+          attribute: {
+            type: 'object'
           }
         },
-        "if": {
-          "properties": {"name": {"const": "Line"}}
+        if: {
+          properties: { name: { const: 'Line' } }
         },
-        "then": {
-          "properties": {"attribute": {"$ref": "#/definitions/Line"}}
+        then: {
+          properties: { attribute: { $ref: '#/definitions/Line' } }
         },
-        "else": {
-          "if": {
-            "properties": {"name": {"const": "Text"}}
+        else: {
+          if: {
+            properties: { name: { const: 'Text' } }
           },
-          "then": {
-            "properties": {"attribute": {"$ref": "#/definitions/Text"}}
+          then: {
+            properties: { attribute: { $ref: '#/definitions/Text' } }
           },
-          "else": {
-            "if": {
-              "properties": {"name": {"const": "Rectangle"}}
+          else: {
+            if: {
+              properties: { name: { const: 'Rectangle' } }
             },
-            "then": {
-              "properties": {"attribute": {"$ref": "#/definitions/Rectangle"}}
+            then: {
+              properties: { attribute: { $ref: '#/definitions/Rectangle' } }
             },
-            "else": {
-              "if": {
-                "properties": {"name": {"const": "Polygon"}}
+            else: {
+              if: {
+                properties: { name: { const: 'Polygon' } }
               },
-              "then": {
-                "properties": {"attribute": {"$ref": "#/definitions/Polygon"}}
+              then: {
+                properties: { attribute: { $ref: '#/definitions/Polygon' } }
               },
-              "else": {
-                "if": {
-                  "properties": {"name": {"const": "Ellipse"}}
+              else: {
+                if: {
+                  properties: { name: { const: 'Ellipse' } }
                 },
-                "then": {
-                  "properties": {"attribute": {"$ref": "#/definitions/Ellipse"}}
+                then: {
+                  properties: { attribute: { $ref: '#/definitions/Ellipse' } }
                 },
-                "else": {
-                  "properties": {"attribute": {"$ref": "#/definitions/Bitmap"}}
+                else: {
+                  properties: { attribute: { $ref: '#/definitions/Bitmap' } }
                 }
               }
             }
@@ -758,422 +758,422 @@ window.__MODELICA_SCHEMA__ = {
         }
       }
     },
-    "points": {
-      "description": "points on a 2d plan",
-      "type": "array",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "required": [
-          "x",
-          "y"
+    points: {
+      description: 'points on a 2d plan',
+      type: 'array',
+      additionalItems: false,
+      items: {
+        type: 'object',
+        required: [
+          'x',
+          'y'
         ],
-        "additionalProperties": false,
-        "properties": {
-          "x": {
-            "type": "number"
+        additionalProperties: false,
+        properties: {
+          x: {
+            type: 'number'
           },
-          "y": {
-            "type": "number"
+          y: {
+            type: 'number'
           }
         }
       }
     },
-    "transformation": {
-      "description": "transformation object",
-      "type": "object",
-      "required": [
-        "extent"
+    transformation: {
+      description: 'transformation object',
+      type: 'object',
+      required: [
+        'extent'
       ],
-      "additionalProperties": false,
-      "properties": {
-        "origin": {
-          "$ref": "#/definitions/origin"
+      additionalProperties: false,
+      properties: {
+        origin: {
+          $ref: '#/definitions/origin'
         },
-        "extent": {
-          "$ref": "#/definitions/points"
+        extent: {
+          $ref: '#/definitions/points'
         },
-        "rotation": {
-          "type": "number"
+        rotation: {
+          type: 'number'
         }
       }
     },
-    "origin": {
-      "description": "origin point",
-      "type": "object",
-      "required": [
-        "x",
-        "y"
+    origin: {
+      description: 'origin point',
+      type: 'object',
+      required: [
+        'x',
+        'y'
       ],
-      "additionalProperties": false,
-      "properties": {
-        "x": {
-          "type": "number"
+      additionalProperties: false,
+      properties: {
+        x: {
+          type: 'number'
         },
-        "y": {
-          "type": "number"
+        y: {
+          type: 'number'
         }
       }
     },
-    "color": {
-      "description": "RGB colors",
-      "type": "object",
-      "required": [
-        "r",
-        "g",
-        "b"
+    color: {
+      description: 'RGB colors',
+      type: 'object',
+      required: [
+        'r',
+        'g',
+        'b'
       ],
-      "additionalProperties": false,
-      "properties": {
-        "r": {
-          "type": "number",
-          "minimum": 0,
-          "maximum": 255
+      additionalProperties: false,
+      properties: {
+        r: {
+          type: 'number',
+          minimum: 0,
+          maximum: 255
         },
-        "g": {
-          "type": "number",
-          "minimum": 0,
-          "maximum": 255
+        g: {
+          type: 'number',
+          minimum: 0,
+          maximum: 255
         },
-        "b": {
-          "type": "number",
-          "minimum": 0,
-          "maximum": 255
+        b: {
+          type: 'number',
+          minimum: 0,
+          maximum: 255
         }
       }
     },
-    "element_modification_or_replaceable": {
-      "description": "Element modification and replaceable",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "each": {
-          "type": "boolean"
+    element_modification_or_replaceable: {
+      description: 'Element modification and replaceable',
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        each: {
+          type: 'boolean'
         },
-        "final": {
-          "type": "boolean"
+        final: {
+          type: 'boolean'
         },
-        "element_modification": {
-          "$ref": "#/definitions/element_modification"
+        element_modification: {
+          $ref: '#/definitions/element_modification'
         },
-        "element_replaceable": {
-          "$ref": "#/definitions/element_replaceable"
+        element_replaceable: {
+          $ref: '#/definitions/element_replaceable'
         }
       }
     },
-    "element_redeclaration": {
-      "description": "Element redelcaration",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "each": {
-          "type": "boolean"
+    element_redeclaration: {
+      description: 'Element redelcaration',
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        each: {
+          type: 'boolean'
         },
-        "final": {
-          "type": "boolean"
+        final: {
+          type: 'boolean'
         },
-        "short_class_definition": {
-          "$ref": "#/definitions/short_class_definition"
+        short_class_definition: {
+          $ref: '#/definitions/short_class_definition'
         },
-        "component_clause1": {
-          "$ref": "#/definitions/component_clause1"
+        component_clause1: {
+          $ref: '#/definitions/component_clause1'
         },
-        "element_replaceable": {
-          "$ref": "#/definitions/element_replaceable"
+        element_replaceable: {
+          $ref: '#/definitions/element_replaceable'
         }
       }
     },
-    "expression_list": {
-      "description": "Expression list",
-      "type": "array",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "simple_expression": {
-            "$ref": "#/definitions/simpleExpression"
+    expression_list: {
+      description: 'Expression list',
+      type: 'array',
+      additionalItems: false,
+      items: {
+        type: 'object',
+        additionalProperties: false,
+        properties: {
+          simple_expression: {
+            $ref: '#/definitions/simpleExpression'
           },
-          "if_expression": {
-            "$ref": "#/definitions/ifExpression"
+          if_expression: {
+            $ref: '#/definitions/ifExpression'
           }
         }
       }
     },
-    "expression": {
-      "description": "Expression",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "simple_expression": {
-          "$ref": "#/definitions/simpleExpression"
+    expression: {
+      description: 'Expression',
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        simple_expression: {
+          $ref: '#/definitions/simpleExpression'
         },
-        "if_expression": {
-          "$ref": "#/definitions/ifExpression"
+        if_expression: {
+          $ref: '#/definitions/ifExpression'
         }
       }
     },
-    "simpleExpression": {
-      "description": "Simple expression",
-      "oneOf": [
+    simpleExpression: {
+      description: 'Simple expression',
+      oneOf: [
         {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "function_call": {
-              "$ref": "#/definitions/functionCallObj"
+          type: 'object',
+          additionalProperties: false,
+          properties: {
+            function_call: {
+              $ref: '#/definitions/functionCallObj'
             }
           }
         },
         {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "for_loop": {
-              "$ref": "#/definitions/forLoopObj"
+          type: 'object',
+          additionalProperties: false,
+          properties: {
+            for_loop: {
+              $ref: '#/definitions/forLoopObj'
             }
           }
         },
         {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "logical_expression": {
-              "$ref": "#/definitions/logicalExpressionObj"
+          type: 'object',
+          additionalProperties: false,
+          properties: {
+            logical_expression: {
+              $ref: '#/definitions/logicalExpressionObj'
             }
           }
         },
         {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "if_expression": {
-              "$ref": "#/definitions/ifExpressionObj"
+          type: 'object',
+          additionalProperties: false,
+          properties: {
+            if_expression: {
+              $ref: '#/definitions/ifExpressionObj'
             }
           }
         },
         {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "terms": {
-              "$ref": "#/definitions/terms"
+          type: 'object',
+          additionalProperties: false,
+          properties: {
+            terms: {
+              $ref: '#/definitions/terms'
             }
           }
         },
         {
-          "type": "string"
+          type: 'string'
         }
       ]
     },
-    "functionCallObj": {
-      "description": "Function call object",
-      "type": "object",
-      "additionalItems": false,
-      "properties": {
-        "name": {
-          "type": "string"
+    functionCallObj: {
+      description: 'Function call object',
+      type: 'object',
+      additionalItems: false,
+      properties: {
+        name: {
+          type: 'string'
         },
-        "arguments": {
-          "$ref": "#/definitions/funArgsObj"
+        arguments: {
+          $ref: '#/definitions/funArgsObj'
         }
       }
     },
-    "funArgsObj": {
-      "description": "Function arguments",
-      "oneOf": [
+    funArgsObj: {
+      description: 'Function arguments',
+      oneOf: [
         {
-          "$ref": "#/definitions/funArgsObjName"
+          $ref: '#/definitions/funArgsObjName'
         },
         {
-          "$ref": "#/definitions/funArgsObjExp"
+          $ref: '#/definitions/funArgsObjExp'
         }
       ]
     },
-    "funArgsObjName": {
-      "type": "array",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "name": {
-            "type": "string"
+    funArgsObjName: {
+      type: 'array',
+      additionalItems: false,
+      items: {
+        type: 'object',
+        additionalProperties: false,
+        properties: {
+          name: {
+            type: 'string'
           }
         }
       }
     },
-    "funArgsObjExp": {
-      "type": "array",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "expression": {
-            "$ref": "#/definitions/simpleExpression"
+    funArgsObjExp: {
+      type: 'array',
+      additionalItems: false,
+      items: {
+        type: 'object',
+        additionalProperties: false,
+        properties: {
+          expression: {
+            $ref: '#/definitions/simpleExpression'
           },
-          "for_loop": {
-            "$ref": "#/definitions/forLoopIndices"
+          for_loop: {
+            $ref: '#/definitions/forLoopIndices'
           }
         }
       }
     },
-    "forLoopObj": {
-      "description": "For loop object",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "expression": {
-          "$ref": "#/definitions/expression"
+    forLoopObj: {
+      description: 'For loop object',
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        expression: {
+          $ref: '#/definitions/expression'
         },
-        "for_loop": {
-          "$ref": "#/definitions/forLoopIndices"
+        for_loop: {
+          $ref: '#/definitions/forLoopIndices'
         }
       }
     },
-    "forLoopIndices": {
-      "description": "For loop indices",
-      "type": "array",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "name": {
-            "type": "string"
+    forLoopIndices: {
+      description: 'For loop indices',
+      type: 'array',
+      additionalItems: false,
+      items: {
+        type: 'object',
+        additionalProperties: false,
+        properties: {
+          name: {
+            type: 'string'
           },
-          "range": {
-            "type": "string"
+          range: {
+            type: 'string'
           }
         }
       }
     },
-    "logicalExpressionObj": {
-      "description": "Logical expression",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "logical_or": {
-          "$ref": "#/definitions/OrArray"
+    logicalExpressionObj: {
+      description: 'Logical expression',
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        logical_or: {
+          $ref: '#/definitions/OrArray'
         }
       }
     },
-    "OrArray": {
-      "description": "Or array",
-      "type": "array",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "logical_and": {
-            "$ref": "#/definitions/AndArray"
+    OrArray: {
+      description: 'Or array',
+      type: 'array',
+      additionalItems: false,
+      items: {
+        type: 'object',
+        additionalProperties: false,
+        properties: {
+          logical_and: {
+            $ref: '#/definitions/AndArray'
           }
         }
       }
     },
-    "AndArray": {
-      "description": "And array",
-      "type": "array",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "additionalItems": false,
-        "properties": {
-          "not": {
-            "type": "boolean"
+    AndArray: {
+      description: 'And array',
+      type: 'array',
+      additionalItems: false,
+      items: {
+        type: 'object',
+        additionalItems: false,
+        properties: {
+          not: {
+            type: 'boolean'
           },
-          "arithmetic_expressions": {
-            "$ref": "#/definitions/arithmeticExpressionObj"
+          arithmetic_expressions: {
+            $ref: '#/definitions/arithmeticExpressionObj'
           },
-          "relation_operator": {
-            "type": "string"
+          relation_operator: {
+            type: 'string'
           }
         }
       }
     },
-    "arithmeticExpressionObj": {
-      "description": "arithmetic expression array",
-      "type": "array",
-      "additionalItems": false,
-      "items": {
-        "oneOf": [
+    arithmeticExpressionObj: {
+      description: 'arithmetic expression array',
+      type: 'array',
+      additionalItems: false,
+      items: {
+        oneOf: [
           {
-            "type": "string"
+            type: 'string'
           },
           {
-            "type": "object",
-            "additionalItems": false,
-            "properties":{
-              "addOps": {
-                "$ref": "#/definitions/addOps"
+            type: 'object',
+            additionalItems: false,
+            properties: {
+              addOps: {
+                $ref: '#/definitions/addOps'
               },
-              "terms": {
-                "$ref": "#/definitions/terms"
+              terms: {
+                $ref: '#/definitions/terms'
               }
             }
           }
         ]
       }
     },
-    "addOps": {
-      "description": "Array of add operation symbols",
-      "type": "array",
-      "additionalItems": false,
-      "items": {
-        "types": "string",
-        "enum": ["+", "-", ".+", ".-"]
+    addOps: {
+      description: 'Array of add operation symbols',
+      type: 'array',
+      additionalItems: false,
+      items: {
+        types: 'string',
+        enum: ['+', '-', '.+', '.-']
       }
     },
-    "terms": {
-      "description": "terms array",
-      "type": "array",
-      "additionalItems": false,
-      "items": {
-        "type": ["string", "object"],
-        "properties": {
-          "operators": {
-            "$ref": "#/definitions/operators"
+    terms: {
+      description: 'terms array',
+      type: 'array',
+      additionalItems: false,
+      items: {
+        type: ['string', 'object'],
+        properties: {
+          operators: {
+            $ref: '#/definitions/operators'
           },
-          "factors": {
-            "$ref": "#/definitions/factors"
+          factors: {
+            $ref: '#/definitions/factors'
           }
         }
       }
     },
-    "factors": {
-      "description": "factors array",
-      "type": "array",
-      "additionalItems": false,
-      "items": {
-        "type": ["string", "object"],
-        "properties": {
-          "operator": {
-            "type": "string"
+    factors: {
+      description: 'factors array',
+      type: 'array',
+      additionalItems: false,
+      items: {
+        type: ['string', 'object'],
+        properties: {
+          operator: {
+            type: 'string'
           },
-          "primary1": {
-            "oneOf": [
+          primary1: {
+            oneOf: [
               {
-                "type": "string"
+                type: 'string'
               },
               {
-                "type": "array",
-                "items": {
-                  "$ref": "#/definitions/expression"
+                type: 'array',
+                items: {
+                  $ref: '#/definitions/expression'
                 }
               }
             ]
           },
-          "primary2": {
-            "oneOf": [
+          primary2: {
+            oneOf: [
               {
-                "type": "string"
+                type: 'string'
               },
               {
-                "type": "array",
-                "items": {
-                  "$ref": "#/definitions/expression"
+                type: 'array',
+                items: {
+                  $ref: '#/definitions/expression'
                 }
               }
             ]
@@ -1181,399 +1181,399 @@ window.__MODELICA_SCHEMA__ = {
         }
       }
     },
-    "operators": {
-      "description": "Array of add operation symbols",
-      "type": "array",
-      "additionalItems": false,
-      "items": {
-        "types": "string",
-        "enum": ["*", "/", ".*", "./"]
+    operators: {
+      description: 'Array of add operation symbols',
+      type: 'array',
+      additionalItems: false,
+      items: {
+        types: 'string',
+        enum: ['*', '/', '.*', './']
       }
     },
-    "ifExpressionObj": {
-      "description": "If-else expression array",
-      "type": "array",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "if_elseif": {
-            "$ref": "#/definitions/if_elseIfArray"
+    ifExpressionObj: {
+      description: 'If-else expression array',
+      type: 'array',
+      additionalItems: false,
+      items: {
+        type: 'object',
+        additionalProperties: false,
+        properties: {
+          if_elseif: {
+            $ref: '#/definitions/if_elseIfArray'
           },
-          "else": {
-            "type": "string"
+          else: {
+            type: 'string'
           }
         }
       }
     },
-    "if_elseIfArray": {
-      "description": "If-else array",
-      "type": "array",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "condition": {
-            "$ref": "#/definitions/expression"
+    if_elseIfArray: {
+      description: 'If-else array',
+      type: 'array',
+      additionalItems: false,
+      items: {
+        type: 'object',
+        additionalProperties: false,
+        properties: {
+          condition: {
+            $ref: '#/definitions/expression'
           },
-          "then": {
-            "type": "string"
+          then: {
+            type: 'string'
           }
         }
       }
     },
-    "ifExpression": {
-      "description": "If expression",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "if_elseif": {
-          "$ref": "#/definitions/if_elseIfExpression"
+    ifExpression: {
+      description: 'If expression',
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        if_elseif: {
+          $ref: '#/definitions/if_elseIfExpression'
         },
-        "else_expression": {
-          "$ref": "#/definitions/expression"
+        else_expression: {
+          $ref: '#/definitions/expression'
         }
       }
     },
-    "if_elseIfExpression": {
-      "description": "If-else expression",
-      "type": "array",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "condition": {
-            "$ref": "#/definitions/expression"
+    if_elseIfExpression: {
+      description: 'If-else expression',
+      type: 'array',
+      additionalItems: false,
+      items: {
+        type: 'object',
+        additionalProperties: false,
+        properties: {
+          condition: {
+            $ref: '#/definitions/expression'
           },
-          "then": {
-            "$ref": "#/definitions/expression"
+          then: {
+            $ref: '#/definitions/expression'
           }
         }
       }
     },
-    "array_subscripts": {
-      "description": "Array subscripts",
-      "type": "array",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "expression": {
-            "$ref": "#/definitions/expression"
+    array_subscripts: {
+      description: 'Array subscripts',
+      type: 'array',
+      additionalItems: false,
+      items: {
+        type: 'object',
+        additionalProperties: false,
+        properties: {
+          expression: {
+            $ref: '#/definitions/expression'
           },
-          "colon_op": {
-            "type": "boolean"
+          colon_op: {
+            type: 'boolean'
           }
         }
       }
     },
-    "modification": {
-      "description": "Modification",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "class_modification": {
-          "$ref": "#/definitions/class_modification"
+    modification: {
+      description: 'Modification',
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        class_modification: {
+          $ref: '#/definitions/class_modification'
         },
-        "equal": {
-          "type": "boolean"
+        equal: {
+          type: 'boolean'
         },
-        "colon_equal": {
-          "type": "boolean"
+        colon_equal: {
+          type: 'boolean'
         },
-        "expression": {
-          "$ref": "#/definitions/expression"
+        expression: {
+          $ref: '#/definitions/expression'
         }
       }
     },
-    "der_class_specifier": {
-      "description": "Der class specifier",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "identifier": {
-          "type": "string"
+    der_class_specifier: {
+      description: 'Der class specifier',
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        identifier: {
+          type: 'string'
         },
-        "value": {
-          "$ref": "#/definitions/der_class_specifier_value"
+        value: {
+          $ref: '#/definitions/der_class_specifier_value'
         }
       }
     },
-    "der_class_specifier_value": {
-      "description": "Der class specifier value",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "type_specifier": {
-          "type": "string"
+    der_class_specifier_value: {
+      description: 'Der class specifier value',
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        type_specifier: {
+          type: 'string'
         },
-        "identifier": {
-          "type": "string"
+        identifier: {
+          type: 'string'
         },
-        "description": {
-          "$ref": "#/definitions/descriptionSchema"
+        description: {
+          $ref: '#/definitions/descriptionSchema'
         }
       }
     },
-    "short_class_specifier": {
-      "description": "Short class specifier",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "identifier": {
-          "type": "string"
+    short_class_specifier: {
+      description: 'Short class specifier',
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        identifier: {
+          type: 'string'
         },
-        "value": {
-          "$ref": "#/definitions/short_class_specifier_value"
+        value: {
+          $ref: '#/definitions/short_class_specifier_value'
         }
       }
     },
-    "short_class_specifier_value": {
-      "description": "Short class specifier value",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "base_prefix": {
-          "type": "string"
+    short_class_specifier_value: {
+      description: 'Short class specifier value',
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        base_prefix: {
+          type: 'string'
         },
-        "name": {
-          "type": "string"
+        name: {
+          type: 'string'
         },
-        "array_subscripts": {
-          "$ref": "#/definitions/array_subscripts"
+        array_subscripts: {
+          $ref: '#/definitions/array_subscripts'
         },
-        "class_modification": {
-          "$ref": "#/definitions/class_modification"
+        class_modification: {
+          $ref: '#/definitions/class_modification'
         },
-        "description": {
-          "$ref": "#/definitions/descriptionSchema"
+        description: {
+          $ref: '#/definitions/descriptionSchema'
         },
-        "enum_list": {
-          "$ref": "#/definitions/enum_list"
+        enum_list: {
+          $ref: '#/definitions/enum_list'
         }
       }
     },
-    "enum_list": {
-      "description": "Enumeration list",
-      "type": "array",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "identifier": {
-            "type": "string"
+    enum_list: {
+      description: 'Enumeration list',
+      type: 'array',
+      additionalItems: false,
+      items: {
+        type: 'object',
+        additionalProperties: false,
+        properties: {
+          identifier: {
+            type: 'string'
           },
-          "description": {
-            "$ref": "#/definitions/descriptionSchema"
+          description: {
+            $ref: '#/definitions/descriptionSchema'
           }
         }
       }
     },
-    "declaration": {
-      "description": "Declaration",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "identifier": {
-          "type": "string"
+    declaration: {
+      description: 'Declaration',
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        identifier: {
+          type: 'string'
         },
-        "array_subscripts": {
-          "$ref": "#/definitions/array_subscripts"
+        array_subscripts: {
+          $ref: '#/definitions/array_subscripts'
         },
-        "modification": {
-          "$ref": "#/definitions/modification"
+        modification: {
+          $ref: '#/definitions/modification'
         }
       }
     },
-    "descriptionSchema": {
-      "description": "Description",
-      "type": "object",
-      "required": [
-        "description_string"
+    descriptionSchema: {
+      description: 'Description',
+      type: 'object',
+      required: [
+        'description_string'
       ],
-      "additionalProperties": false,
-      "properties": {
-        "description_string": {
-          "type": "string"
+      additionalProperties: false,
+      properties: {
+        description_string: {
+          type: 'string'
         },
-        "annotation": {
-          "$ref": "#/definitions/class_modification"
+        annotation: {
+          $ref: '#/definitions/class_modification'
         }
       }
     },
-    "equationDescription": {
-      "description": "Equation description",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "description_string": {
-          "type": "string"
+    equationDescription: {
+      description: 'Equation description',
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        description_string: {
+          type: 'string'
         },
-        "annotation": {
-          "$ref": "#/definitions/class_modification"
+        annotation: {
+          $ref: '#/definitions/class_modification'
         }
       }
     },
-    "constraining_clause": {
-      "description": "Constraining clause",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "name": {
-          "type": "string"
+    constraining_clause: {
+      description: 'Constraining clause',
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        name: {
+          type: 'string'
         },
-        "class_modification": {
-          "$ref": "#/definitions/class_modification"
+        class_modification: {
+          $ref: '#/definitions/class_modification'
         }
       }
     },
-    "short_class_definition": {
-      "description": "Short class definition",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "class_prefixes": {
-          "type": "string"
+    short_class_definition: {
+      description: 'Short class definition',
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        class_prefixes: {
+          type: 'string'
         },
-        "short_class_specifier": {
-          "$ref": "#/definitions/short_class_specifier"
+        short_class_specifier: {
+          $ref: '#/definitions/short_class_specifier'
         }
       }
     },
-    "component_clause1": {
-      "description": "Component clause1",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "type_prefix": {
-          "type": "string"
+    component_clause1: {
+      description: 'Component clause1',
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        type_prefix: {
+          type: 'string'
         },
-        "type_specifier": {
-          "type": "string"
+        type_specifier: {
+          type: 'string'
         },
-        "component_declaration1": {
-          "$ref": "#/definitions/component_declaration1"
+        component_declaration1: {
+          $ref: '#/definitions/component_declaration1'
         }
       }
     },
-    "component_declaration1": {
-      "description": "Component declaration1",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "declaration": {
-          "$ref": "#/definitions/declaration"
+    component_declaration1: {
+      description: 'Component declaration1',
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        declaration: {
+          $ref: '#/definitions/declaration'
         },
-        "description": {
-          "$ref": "#/definitions/descriptionSchema"
+        description: {
+          $ref: '#/definitions/descriptionSchema'
         }
       }
     },
-    "element_replaceable": {
-      "description": "Element replaceable",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "short_class_definition": {
-          "$ref": "#/definitions/short_class_definition"
+    element_replaceable: {
+      description: 'Element replaceable',
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        short_class_definition: {
+          $ref: '#/definitions/short_class_definition'
         },
-        "component_clause1": {
-          "$ref": "#/definitions/component_clause1"
+        component_clause1: {
+          $ref: '#/definitions/component_clause1'
         },
-        "constraining_clause": {
-          "$ref": "#/definitions/constraining_clause"
+        constraining_clause: {
+          $ref: '#/definitions/constraining_clause'
         }
       }
     },
-    "equation_section": {
-      "description": "Equation section",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "initial": {
-          "type": "boolean"
+    equation_section: {
+      description: 'Equation section',
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        initial: {
+          type: 'boolean'
         },
-        "equation": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-              "assignment_equation": {
-                "$ref": "#/definitions/assignment_equation"
+        equation: {
+          type: 'array',
+          items: {
+            type: 'object',
+            additionalProperties: false,
+            properties: {
+              assignment_equation: {
+                $ref: '#/definitions/assignment_equation'
               },
-              "if_equation": {
-                "$ref": "#/definitions/if_equation"
+              if_equation: {
+                $ref: '#/definitions/if_equation'
               },
-              "for_equation": {
-                "$ref": "#/definitions/for_equation"
+              for_equation: {
+                $ref: '#/definitions/for_equation'
               },
-              "connect_clause": {
-                "$ref": "#/definitions/connect_clause"
+              connect_clause: {
+                $ref: '#/definitions/connect_clause'
               },
-              "when_equation": {
-                "$ref": "#/definitions/when_equation"
+              when_equation: {
+                $ref: '#/definitions/when_equation'
               },
-              "function_call_equation": {
-                "$ref": "#/definitions/function_call_equation"
+              function_call_equation: {
+                $ref: '#/definitions/function_call_equation'
               },
-              "description": {
-                "$ref": "#/definitions/equationDescription"
+              description: {
+                $ref: '#/definitions/equationDescription'
               }
             }
           }
         }
       }
     },
-    "algorithm_section": {
-      "description": "Algorithm section",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "initial": {
-          "type": "boolean"
+    algorithm_section: {
+      description: 'Algorithm section',
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        initial: {
+          type: 'boolean'
         },
-        "statement": {
-          "$ref": "#/definitions/statement"
+        statement: {
+          $ref: '#/definitions/statement'
         }
       }
     },
-    "assignment_equation": {
-      "description": "Assignment equation",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "lhs": {
-          "$ref": "#/definitions/simpleExpression"
+    assignment_equation: {
+      description: 'Assignment equation',
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        lhs: {
+          $ref: '#/definitions/simpleExpression'
         },
-        "rhs": {
-          "$ref": "#/definitions/expression"
+        rhs: {
+          $ref: '#/definitions/expression'
         }
       }
     },
-    "if_elseIfEquation": {
-      "type": "array",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "condition": {
-            "$ref": "#/definitions/expression"
+    if_elseIfEquation: {
+      type: 'array',
+      additionalItems: false,
+      items: {
+        type: 'object',
+        additionalProperties: false,
+        properties: {
+          condition: {
+            $ref: '#/definitions/expression'
           },
-          "then": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "equation": {
-                  "$ref": "#/definitions/equation"
+          then: {
+            type: 'array',
+            items: {
+              type: 'object',
+              additionalProperties: false,
+              properties: {
+                equation: {
+                  $ref: '#/definitions/equation'
                 }
               }
             }
@@ -1581,408 +1581,408 @@ window.__MODELICA_SCHEMA__ = {
         }
       }
     },
-    "if_equation": {
-      "description": "If equation",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "if_elseif": {
-          "$ref": "#/definitions/if_elseIfEquation"
+    if_equation: {
+      description: 'If equation',
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        if_elseif: {
+          $ref: '#/definitions/if_elseIfEquation'
         },
-        "else_equation": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-              "assignment_equation": {
-                "$ref": "#/definitions/assignment_equation"
+        else_equation: {
+          type: 'array',
+          items: {
+            type: 'object',
+            additionalProperties: false,
+            properties: {
+              assignment_equation: {
+                $ref: '#/definitions/assignment_equation'
               },
-              "if_equation": {
-                "$ref": "#/definitions/if_equation"
+              if_equation: {
+                $ref: '#/definitions/if_equation'
               },
-              "for_equation": {
-                "$ref": "#/definitions/for_equation"
+              for_equation: {
+                $ref: '#/definitions/for_equation'
               },
-              "connect_clause": {
-                "$ref": "#/definitions/connect_clause"
+              connect_clause: {
+                $ref: '#/definitions/connect_clause'
               },
-              "when_equation": {
-                "$ref": "#/definitions/when_equation"
+              when_equation: {
+                $ref: '#/definitions/when_equation'
               },
-              "function_call_equation": {
-                "$ref": "#/definitions/function_call_equation"
+              function_call_equation: {
+                $ref: '#/definitions/function_call_equation'
               },
-              "description": {
-                "$ref": "#/definitions/equationDescription"
+              description: {
+                $ref: '#/definitions/equationDescription'
               }
             }
           }
         }
       }
     },
-    "for_equation": {
-      "description": "For equation",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "for_indices": {
-          "$ref": "#/definitions/for_indices"
+    for_equation: {
+      description: 'For equation',
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        for_indices: {
+          $ref: '#/definitions/for_indices'
         },
-        "loop_equations": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-              "assignment_equation": {
-                "$ref": "#/definitions/assignment_equation"
+        loop_equations: {
+          type: 'array',
+          items: {
+            type: 'object',
+            additionalProperties: false,
+            properties: {
+              assignment_equation: {
+                $ref: '#/definitions/assignment_equation'
               },
-              "if_equation": {
-                "$ref": "#/definitions/if_equation"
+              if_equation: {
+                $ref: '#/definitions/if_equation'
               },
-              "for_equation": {
-                "$ref": "#/definitions/for_equation"
+              for_equation: {
+                $ref: '#/definitions/for_equation'
               },
-              "connect_clause": {
-                "$ref": "#/definitions/connect_clause"
+              connect_clause: {
+                $ref: '#/definitions/connect_clause'
               },
-              "when_equation": {
-                "$ref": "#/definitions/when_equation"
+              when_equation: {
+                $ref: '#/definitions/when_equation'
               },
-              "function_call_equation": {
-                "$ref": "#/definitions/function_call_equation"
+              function_call_equation: {
+                $ref: '#/definitions/function_call_equation'
               },
-              "description": {
-                "$ref": "#/definitions/equationDescription"
+              description: {
+                $ref: '#/definitions/equationDescription'
               }
             }
           }
         }
       }
     },
-    "connect_clause": {
-      "description": "Connect clause",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "from": {
-          "$ref": "#/definitions/component_reference"
+    connect_clause: {
+      description: 'Connect clause',
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        from: {
+          $ref: '#/definitions/component_reference'
         },
-        "to": {
-          "$ref": "#/definitions/component_reference"
+        to: {
+          $ref: '#/definitions/component_reference'
         }
       }
     },
-    "when_equation": {
-      "description": "When equation",
-      "type": "array",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "condition": {
-            "$ref": "#/definitions/expression"
+    when_equation: {
+      description: 'When equation',
+      type: 'array',
+      additionalItems: false,
+      items: {
+        type: 'object',
+        additionalProperties: false,
+        properties: {
+          condition: {
+            $ref: '#/definitions/expression'
           },
-          "then": {
-            "type": "array",
-            "items": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-              "assignment_equation": {
-                "$ref": "#/definitions/assignment_equation"
-              },
-              "if_equation": {
-                "$ref": "#/definitions/if_equation"
-              },
-              "for_equation": {
-                "$ref": "#/definitions/for_equation"
-              },
-              "connect_clause": {
-                "$ref": "#/definitions/connect_clause"
-              },
-              "when_equation": {
-                "$ref": "#/definitions/when_equation"
-              },
-              "function_call_equation": {
-                "$ref": "#/definitions/function_call_equation"
-              },
-              "description": {
-                "$ref": "#/definitions/equationDescription"
+          then: {
+            type: 'array',
+            items: {
+              type: 'object',
+              additionalProperties: false,
+              properties: {
+                assignment_equation: {
+                  $ref: '#/definitions/assignment_equation'
+                },
+                if_equation: {
+                  $ref: '#/definitions/if_equation'
+                },
+                for_equation: {
+                  $ref: '#/definitions/for_equation'
+                },
+                connect_clause: {
+                  $ref: '#/definitions/connect_clause'
+                },
+                when_equation: {
+                  $ref: '#/definitions/when_equation'
+                },
+                function_call_equation: {
+                  $ref: '#/definitions/function_call_equation'
+                },
+                description: {
+                  $ref: '#/definitions/equationDescription'
+                }
               }
             }
           }
+        }
+      }
+    },
+    function_call_equation: {
+      description: 'Function call equation',
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        function_name: {
+          type: 'string'
+        },
+        function_call_args: {
+          $ref: '#/definitions/function_call_args'
+        }
+      }
+    },
+    equation: {
+      description: 'Equation section',
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        assignment_equation: {
+          $ref: '#/definitions/assignment_equation'
+        },
+        if_equation: {
+          $ref: '#/definitions/if_equation'
+        },
+        for_equation: {
+          $ref: '#/definitions/for_equation'
+        },
+        connect_clause: {
+          $ref: '#/definitions/connect_clause'
+        },
+        when_equation: {
+          $ref: '#/definitions/when_equation'
+        },
+        function_call_equation: {
+          $ref: '#/definitions/function_call_equation'
+        },
+        description: {
+          $ref: '#/definitions/equationDescription'
+        }
+      }
+    },
+    component_reference: {
+      description: 'Component reference',
+      type: 'array',
+      additionalItems: false,
+      items: {
+        type: 'object',
+        additionalProperties: false,
+        properties: {
+          dot_op: {
+            type: 'boolean'
+          },
+          identifier: {
+            type: 'string'
+          },
+          array_subscripts: {
+            $ref: '#/definitions/array_subscripts'
           }
         }
       }
     },
-    "function_call_equation": {
-      "description": "Function call equation",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "function_name": {
-          "type": "string"
+    function_argument: {
+      description: 'Function argument',
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        function_name: {
+          type: 'string'
         },
-        "function_call_args": {
-          "$ref": "#/definitions/function_call_args"
+        named_arguments: {
+          $ref: '#/definitions/named_arguments'
+        },
+        expression: {
+          $ref: '#/definitions/expression'
         }
       }
     },
-    "equation": {
-      "description": "Equation section",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "assignment_equation": {
-          "$ref": "#/definitions/assignment_equation"
+    function_arguments: {
+      description: 'Function arguments',
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        named_arguments: {
+          $ref: '#/definitions/named_arguments'
         },
-        "if_equation": {
-          "$ref": "#/definitions/if_equation"
+        function_argument: {
+          $ref: '#/definitions/function_argument'
         },
-        "for_equation": {
-          "$ref": "#/definitions/for_equation"
+        for_indices: {
+          $ref: '#/definitions/for_indices'
         },
-        "connect_clause": {
-          "$ref": "#/definitions/connect_clause"
-        },
-        "when_equation": {
-          "$ref": "#/definitions/when_equation"
-        },
-        "function_call_equation": {
-          "$ref": "#/definitions/function_call_equation"
-        },
-        "description": {
-          "$ref": "#/definitions/equationDescription"
+        function_arguments: {
+          $ref: '#/definitions/function_arguments'
         }
       }
     },
-    "component_reference": {
-      "description": "Component reference",
-      "type": "array",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "dot_op": {
-            "type": "boolean"
+    for_indices: {
+      description: 'For indices',
+      type: 'array',
+      additionalItems: false,
+      items: {
+        type: 'object',
+        additionalProperties: false,
+        properties: {
+          identifier: {
+            type: 'string'
           },
-          "identifier": {
-            "type": "string"
-          },
-          "array_subscripts": {
-            "$ref": "#/definitions/array_subscripts"
+          expression: {
+            $ref: '#/definitions/expression'
           }
         }
       }
     },
-    "function_argument": {
-      "description": "Function argument",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "function_name": {
-          "type": "string"
-        },
-        "named_arguments": {
-          "$ref": "#/definitions/named_arguments"
-        },
-        "expression": {
-          "$ref": "#/definitions/expression"
-        }
-      }
-    },
-    "function_arguments": {
-      "description": "Function arguments",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "named_arguments": {
-          "$ref": "#/definitions/named_arguments"
-        },
-        "function_argument": {
-          "$ref": "#/definitions/function_argument"
-        },
-        "for_indices": {
-          "$ref": "#/definitions/for_indices"
-        },
-        "function_arguments": {
-          "$ref": "#/definitions/function_arguments"
-        }
-      }
-    },
-    "for_indices": {
-      "description": "For indices",
-      "type": "array",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "identifier": {
-            "type": "string"
+    named_arguments: {
+      description: 'Named argument',
+      type: 'array',
+      additionalItems: false,
+      items: {
+        type: 'object',
+        additionalProperties: false,
+        properties: {
+          identifier: {
+            type: 'string'
           },
-          "expression": {
-            "$ref": "#/definitions/expression"
+          value: {
+            $ref: '#/definitions/function_argument'
           }
         }
       }
     },
-    "named_arguments": {
-      "description": "Named argument",
-      "type": "array",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "identifier": {
-            "type": "string"
-          },
-          "value": {
-            "$ref": "#/definitions/function_argument"
-          }
+    function_call_args: {
+      description: 'Call function arguments',
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        named_arguments: {
+          $ref: '#/definitions/named_arguments'
+        },
+        function_argument: {
+          $ref: '#/definitions/function_argument'
+        },
+        for_indices: {
+          $ref: '#/definitions/for_indices'
+        },
+        function_arguments: {
+          $ref: '#/definitions/function_arguments'
         }
       }
     },
-    "function_call_args": {
-      "description": "Call function arguments",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "named_arguments": {
-          "$ref": "#/definitions/named_arguments"
-        },
-        "function_argument": {
-          "$ref": "#/definitions/function_argument"
-        },
-        "for_indices": {
-          "$ref": "#/definitions/for_indices"
-        },
-        "function_arguments": {
-          "$ref": "#/definitions/function_arguments"
-        }
-      }
-    },
-    "assignment_statement": {
-      "description": "Statement assignment",
-      "type": "object",
-      "required": [
-        "identifier",
-        "value"
+    assignment_statement: {
+      description: 'Statement assignment',
+      type: 'object',
+      required: [
+        'identifier',
+        'value'
       ],
-      "additionalProperties": false,
-      "properties": {
-        "identifier": {
-          "$ref": "#/definitions/component_reference"
+      additionalProperties: false,
+      properties: {
+        identifier: {
+          $ref: '#/definitions/component_reference'
         },
-        "value": {
-          "$ref": "#/definitions/expression"
+        value: {
+          $ref: '#/definitions/expression'
         }
       }
     },
-    "Function_call_statement": {
-      "description": "Call function statement",
-      "type": "object",
-      "required": [
-        "function_name",
-        "function_call_args"
+    Function_call_statement: {
+      description: 'Call function statement',
+      type: 'object',
+      required: [
+        'function_name',
+        'function_call_args'
       ],
-      "additionalProperties": false,
-      "properties": {
-        "function_name": {
-          "$ref": "#/definitions/component_reference"
+      additionalProperties: false,
+      properties: {
+        function_name: {
+          $ref: '#/definitions/component_reference'
         },
-        "function_call_args": {
-          "$ref": "#/definitions/function_call_args"
+        function_call_args: {
+          $ref: '#/definitions/function_call_args'
         }
       }
     },
-    "assignment_with_function_call_statement": {
-      "description": "Assignment with function call statement",
-      "type": "object",
-      "required": [
-        "function_name",
-        "function_call_args"
+    assignment_with_function_call_statement: {
+      description: 'Assignment with function call statement',
+      type: 'object',
+      required: [
+        'function_name',
+        'function_call_args'
       ],
-      "additionalProperties": false,
-      "properties": {
-        "output_expression_list": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-              "simple_expression": {
-                "$ref": "#/definitions/simpleExpression"
+      additionalProperties: false,
+      properties: {
+        output_expression_list: {
+          type: 'array',
+          items: {
+            type: 'object',
+            additionalProperties: false,
+            properties: {
+              simple_expression: {
+                $ref: '#/definitions/simpleExpression'
               },
-              "if_expression": {
-                "$ref": "#/definitions/ifExpression"
+              if_expression: {
+                $ref: '#/definitions/ifExpression'
               }
             }
           }
         },
-        "function_name": {
-          "$ref": "#/definitions/component_reference"
+        function_name: {
+          $ref: '#/definitions/component_reference'
         },
-        "function_call_args": {
-          "$ref": "#/definitions/function_call_args"
+        function_call_args: {
+          $ref: '#/definitions/function_call_args'
         }
       }
     },
-    "if_statement": {
-      "description": "If-else statement",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "if_elseif": {
-          "type": "array",
-          "additionalItems": false,
-          "items": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-              "condition": {
-                "$ref": "#/definitions/expression"
+    if_statement: {
+      description: 'If-else statement',
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        if_elseif: {
+          type: 'array',
+          additionalItems: false,
+          items: {
+            type: 'object',
+            additionalProperties: false,
+            properties: {
+              condition: {
+                $ref: '#/definitions/expression'
               },
-              "then": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "additionalProperties": false,
-                  "properties": {
-                    "assignment_statement": {
-                      "$ref": "#/definitions/assignment_statement"
+              then: {
+                type: 'array',
+                items: {
+                  type: 'object',
+                  additionalProperties: false,
+                  properties: {
+                    assignment_statement: {
+                      $ref: '#/definitions/assignment_statement'
                     },
-                    "Function_call_statement": {
-                      "$ref": "#/definitions/Function_call_statement"
+                    Function_call_statement: {
+                      $ref: '#/definitions/Function_call_statement'
                     },
-                    "assignment_with_function_call_statement": {
-                      "$ref": "#/definitions/assignment_with_function_call_statement"
+                    assignment_with_function_call_statement: {
+                      $ref: '#/definitions/assignment_with_function_call_statement'
                     },
-                    "break": {
-                      "type": "boolean"
+                    break: {
+                      type: 'boolean'
                     },
-                    "return": {
-                      "type": "boolean"
+                    return: {
+                      type: 'boolean'
                     },
-                    "if_statement": {
-                      "$ref": "#/definitions/if_statement"
+                    if_statement: {
+                      $ref: '#/definitions/if_statement'
                     },
-                    "for_statement": {
-                      "$ref": "#/definitions/for_statement"
+                    for_statement: {
+                      $ref: '#/definitions/for_statement'
                     },
-                    "while_statement": {
-                      "$ref": "#/definitions/while_statement"
+                    while_statement: {
+                      $ref: '#/definitions/while_statement'
                     },
-                    "when_statement": {
-                      "$ref": "#/definitions/when_statement"
+                    when_statement: {
+                      $ref: '#/definitions/when_statement'
                     },
-                    "description": {
-                      "$ref": "#/definitions/equationDescription"
+                    description: {
+                      $ref: '#/definitions/equationDescription'
                     }
                   }
                 }
@@ -1990,268 +1990,267 @@ window.__MODELICA_SCHEMA__ = {
             }
           }
         },
-        "else_statement": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-              "assignment_statement": {
-                "$ref": "#/definitions/assignment_statement"
+        else_statement: {
+          type: 'array',
+          items: {
+            type: 'object',
+            additionalProperties: false,
+            properties: {
+              assignment_statement: {
+                $ref: '#/definitions/assignment_statement'
               },
-              "Function_call_statement": {
-                "$ref": "#/definitions/Function_call_statement"
+              Function_call_statement: {
+                $ref: '#/definitions/Function_call_statement'
               },
-              "assignment_with_function_call_statement": {
-                "$ref": "#/definitions/assignment_with_function_call_statement"
+              assignment_with_function_call_statement: {
+                $ref: '#/definitions/assignment_with_function_call_statement'
               },
-              "break": {
-                "type": "boolean"
+              break: {
+                type: 'boolean'
               },
-              "return": {
-                "type": "boolean"
+              return: {
+                type: 'boolean'
               },
-              "if_statement": {
-                "$ref": "#/definitions/if_statement"
+              if_statement: {
+                $ref: '#/definitions/if_statement'
               },
-              "for_statement": {
-                "$ref": "#/definitions/for_statement"
+              for_statement: {
+                $ref: '#/definitions/for_statement'
               },
-              "while_statement": {
-                "$ref": "#/definitions/while_statement"
+              while_statement: {
+                $ref: '#/definitions/while_statement'
               },
-              "when_statement": {
-                "$ref": "#/definitions/when_statement"
+              when_statement: {
+                $ref: '#/definitions/when_statement'
               },
-              "description": {
-                "$ref": "#/definitions/equationDescription"
+              description: {
+                $ref: '#/definitions/equationDescription'
               }
             }
           }
         }
       }
     },
-    "for_statement": {
-      "description": "For-loop statement",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "for_indices": {
-          "$ref": "#/definitions/for_indices"
+    for_statement: {
+      description: 'For-loop statement',
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        for_indices: {
+          $ref: '#/definitions/for_indices'
         },
-        "loop_statements": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-              "assignment_statement": {
-                "$ref": "#/definitions/assignment_statement"
+        loop_statements: {
+          type: 'array',
+          items: {
+            type: 'object',
+            additionalProperties: false,
+            properties: {
+              assignment_statement: {
+                $ref: '#/definitions/assignment_statement'
               },
-              "Function_call_statement": {
-                "$ref": "#/definitions/Function_call_statement"
+              Function_call_statement: {
+                $ref: '#/definitions/Function_call_statement'
               },
-              "assignment_with_function_call_statement": {
-                "$ref": "#/definitions/assignment_with_function_call_statement"
+              assignment_with_function_call_statement: {
+                $ref: '#/definitions/assignment_with_function_call_statement'
               },
-              "break": {
-                "type": "boolean"
+              break: {
+                type: 'boolean'
               },
-              "return": {
-                "type": "boolean"
+              return: {
+                type: 'boolean'
               },
-              "if_statement": {
-                "$ref": "#/definitions/if_statement"
+              if_statement: {
+                $ref: '#/definitions/if_statement'
               },
-              "for_statement": {
-                "$ref": "#/definitions/for_statement"
+              for_statement: {
+                $ref: '#/definitions/for_statement'
               },
-              "while_statement": {
-                "$ref": "#/definitions/while_statement"
+              while_statement: {
+                $ref: '#/definitions/while_statement'
               },
-              "when_statement": {
-                "$ref": "#/definitions/when_statement"
+              when_statement: {
+                $ref: '#/definitions/when_statement'
               },
-              "description": {
-                "$ref": "#/definitions/equationDescription"
+              description: {
+                $ref: '#/definitions/equationDescription'
               }
             }
           }
         }
       }
     },
-    "while_statement": {
-      "description": "While statement",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "expression": {
-          "$ref": "#/definitions/expression"
+    while_statement: {
+      description: 'While statement',
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        expression: {
+          $ref: '#/definitions/expression'
         },
-        "loop_statement": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-              "assignment_statement": {
-                "$ref": "#/definitions/assignment_statement"
+        loop_statement: {
+          type: 'array',
+          items: {
+            type: 'object',
+            additionalProperties: false,
+            properties: {
+              assignment_statement: {
+                $ref: '#/definitions/assignment_statement'
               },
-              "Function_call_statement": {
-                "$ref": "#/definitions/Function_call_statement"
+              Function_call_statement: {
+                $ref: '#/definitions/Function_call_statement'
               },
-              "assignment_with_function_call_statement": {
-                "$ref": "#/definitions/assignment_with_function_call_statement"
+              assignment_with_function_call_statement: {
+                $ref: '#/definitions/assignment_with_function_call_statement'
               },
-              "break": {
-                "type": "boolean"
+              break: {
+                type: 'boolean'
               },
-              "return": {
-                "type": "boolean"
+              return: {
+                type: 'boolean'
               },
-              "if_statement": {
-                "$ref": "#/definitions/if_statement"
+              if_statement: {
+                $ref: '#/definitions/if_statement'
               },
-              "for_statement": {
-                "$ref": "#/definitions/for_statement"
+              for_statement: {
+                $ref: '#/definitions/for_statement'
               },
-              "while_statement": {
-                "$ref": "#/definitions/while_statement"
+              while_statement: {
+                $ref: '#/definitions/while_statement'
               },
-              "when_statement": {
-                "$ref": "#/definitions/when_statement"
+              when_statement: {
+                $ref: '#/definitions/when_statement'
               },
-              "description": {
-                "$ref": "#/definitions/equationDescription"
+              description: {
+                $ref: '#/definitions/equationDescription'
               }
             }
           }
         }
       }
     },
-    "when_statement": {
-      "description": "When statement",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "condition": {
-          "$ref": "#/definitions/expression"
+    when_statement: {
+      description: 'When statement',
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        condition: {
+          $ref: '#/definitions/expression'
         },
-        "then": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-              "assignment_statement": {
-                "$ref": "#/definitions/assignment_statement"
+        then: {
+          type: 'array',
+          items: {
+            type: 'object',
+            additionalProperties: false,
+            properties: {
+              assignment_statement: {
+                $ref: '#/definitions/assignment_statement'
               },
-              "Function_call_statement": {
-                "$ref": "#/definitions/Function_call_statement"
+              Function_call_statement: {
+                $ref: '#/definitions/Function_call_statement'
               },
-              "assignment_with_function_call_statement": {
-                "$ref": "#/definitions/assignment_with_function_call_statement"
+              assignment_with_function_call_statement: {
+                $ref: '#/definitions/assignment_with_function_call_statement'
               },
-              "break": {
-                "type": "boolean"
+              break: {
+                type: 'boolean'
               },
-              "return": {
-                "type": "boolean"
+              return: {
+                type: 'boolean'
               },
-              "if_statement": {
-                "$ref": "#/definitions/if_statement"
+              if_statement: {
+                $ref: '#/definitions/if_statement'
               },
-              "for_statement": {
-                "$ref": "#/definitions/for_statement"
+              for_statement: {
+                $ref: '#/definitions/for_statement'
               },
-              "while_statement": {
-                "$ref": "#/definitions/while_statement"
+              while_statement: {
+                $ref: '#/definitions/while_statement'
               },
-              "when_statement": {
-                "$ref": "#/definitions/when_statement"
+              when_statement: {
+                $ref: '#/definitions/when_statement'
               },
-              "description": {
-                "$ref": "#/definitions/equationDescription"
+              description: {
+                $ref: '#/definitions/equationDescription'
               }
             }
           }
         }
       }
     },
-    "statement": {
-      "description": "Constructs allowed in algorithm sections",
-      "type": "array",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "assignment_statement": {
-            "$ref": "#/definitions/assignment_statement"
+    statement: {
+      description: 'Constructs allowed in algorithm sections',
+      type: 'array',
+      additionalItems: false,
+      items: {
+        type: 'object',
+        additionalProperties: false,
+        properties: {
+          assignment_statement: {
+            $ref: '#/definitions/assignment_statement'
           },
-          "Function_call_statement": {
-            "$ref": "#/definitions/Function_call_statement"
+          Function_call_statement: {
+            $ref: '#/definitions/Function_call_statement'
           },
-          "assignment_with_function_call_statement": {
-            "$ref": "#/definitions/assignment_with_function_call_statement"
+          assignment_with_function_call_statement: {
+            $ref: '#/definitions/assignment_with_function_call_statement'
           },
-          "break": {
-            "type": "boolean"
+          break: {
+            type: 'boolean'
           },
-          "return": {
-            "type": "boolean"
+          return: {
+            type: 'boolean'
           },
 
-          "if_statement": {
-            "$ref": "#/definitions/if_statement"
+          if_statement: {
+            $ref: '#/definitions/if_statement'
           },
-          "for_statement": {
-            "$ref": "#/definitions/for_statement"
+          for_statement: {
+            $ref: '#/definitions/for_statement'
           },
-          "while_statement": {
-            "$ref": "#/definitions/while_statement"
+          while_statement: {
+            $ref: '#/definitions/while_statement'
           },
-          "when_statement": {
-            "$ref": "#/definitions/when_statement"
+          when_statement: {
+            $ref: '#/definitions/when_statement'
           },
-          "description": {
-            "$ref": "#/definitions/equationDescription"
+          description: {
+            $ref: '#/definitions/equationDescription'
           }
         }
       }
     }
   },
-  "type": "object",
-  "required": [
-    "within",
-    "stored_class_definitions"
+  type: 'object',
+  required: [
+    'within',
+    'stored_class_definitions'
   ],
-  "additionalProperties": false,
-  "properties": {
-    "within": {
-      "description": "Within statement from the Modelica file : no special characters or spaces. If empty string, it may be a package file.",
-      "type": "string",
-      "pattern": "^([a-zA-Z0-9._*]*)$"
+  additionalProperties: false,
+  properties: {
+    within: {
+      description: 'Within statement from the Modelica file : no special characters or spaces. If empty string, it may be a package file.',
+      type: 'string',
+      pattern: '^([a-zA-Z0-9._*]*)$'
     },
-    "stored_class_definitions": {
-      "$ref": "#/definitions/stored_class_definitions"
+    stored_class_definitions: {
+      $ref: '#/definitions/stored_class_definitions'
     },
-    "modelicaFile": {
-      "description": "Relative modelica file path.",
-      "type": "string"
+    modelicaFile: {
+      description: 'Relative modelica file path.',
+      type: 'string'
     },
-    "fullMoFilePath": {
-      "description": "Absolute modelica file path.",
-      "type": "string"
+    fullMoFilePath: {
+      description: 'Absolute modelica file path.',
+      type: 'string'
     },
-    "checksum": {
-      "description": "Checksum record of the modelica file",
-      "type": "string"
+    checksum: {
+      description: 'Checksum record of the modelica file',
+      type: 'string'
     },
-    "order": {
-      "description": "Names of class in the package",
-      "type": "array"
+    order: {
+      description: 'Names of class in the package',
+      type: 'array'
     }
   }
 }
-;
