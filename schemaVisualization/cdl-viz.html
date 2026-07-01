@@ -4,12 +4,16 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>JSON Schema Viewer</title>
 
     <!-- Bootstrap -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|PT+Sans" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <!-- Inlined local CSS (avoids MIME-type issues on raw.githubusercontent.com) -->
+    <!-- Inlined local CSS.
+         Raw.githubusercontent.com serves files as text/plain + nosniff, so
+         <link href="...css"> from that origin would be ignored by the browser.
+         Inlining avoids this restriction. -->
     <style>
 path.link {
     fill: none;
@@ -101,6 +105,7 @@ button:focus {
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+
   </head>
   <body>
 
@@ -131,7 +136,11 @@ button:focus {
       NProgress.start();
     </script>
 
-    <!-- Inlined schema data (avoids MIME-type block on raw.githubusercontent.com) -->
+    <!-- Inlined schema data and local JS.
+         Raw.githubusercontent.com serves .js files as text/plain + nosniff.
+         Browsers refuse to execute <script src="...js"> with that MIME type.
+         Inlining avoids this restriction; works on file://, any HTTP server,
+         and html-preview.github.io without any fetch() calls. -->
     <script>
 window.__CDL_SCHEMA__ = {
   $schema: 'http://json-schema.org/draft-07/schema#',
@@ -1496,7 +1505,7 @@ window.__CDL_SCHEMA__ = {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tv4/1.2.7/tv4.min.js"></script>
 
-    <!-- Inlined local JS (avoids MIME-type block on raw.githubusercontent.com) -->
+    <!-- Inlined local JS libraries -->
     <script>
 /* global URI */
 /* global hljs */
@@ -3310,7 +3319,7 @@ function extend(){for(var r={},e=0;e<arguments.length;e++){var t=arguments[e];fo
     </script>
 
     <script type="text/javascript">
-    // Schema is always available inline via window.__CDL_SCHEMA__.
+    // Schema is always available inline via __CDL_SCHEMA__.
     // No fetch() needed; works under file://, http://, https://, and htmlpreview.
     if (typeof window.__CDL_SCHEMA__ !== 'undefined') {
       appInitWithSchema(JSON.stringify(window.__CDL_SCHEMA__, null, 4));
@@ -3321,9 +3330,10 @@ function extend(){for(var r={},e=0;e<arguments.length;e++){var t=arguments[e];fo
         '<div style="padding:2em;font-family:sans-serif;">' +
         '<h3>&#9888; Schema data missing</h3>' +
         '<p>The inline schema data (window.__CDL_SCHEMA__) is not defined. ' +
-        'This should not happen in a properly built file. ' +
-        'Try regenerating with <code>npm run generate-schema-js</code> from the project root.</p>' +
-        '</div>';
+        'This file should be regenerated from the project root:</p>' +
+        '<pre style="background:#f4f4f4;padding:1em;border-radius:4px;">' +
+        'npm run build-viz' +
+        '</pre></div>';
     }
     </script>
   </body>
