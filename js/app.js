@@ -32,7 +32,7 @@
   }
 
   function visualizeView () {
-    var schema = {}
+    let schema = {}
 
     try {
       schema = JSON.parse(global.jsonEditor.getValue())
@@ -51,7 +51,7 @@
 
     $('#main-body').empty()
 
-    $RefParser.dereference(schema).then(function (resolvedSchema) {
+    $RefParser.dereference(schema, { resolve: { external: false } }).then(function (resolvedSchema) {
       // Prevent circular references.
       resolvedSchema = JSON.parse(stringify(resolvedSchema))
       JSV.init({
@@ -76,7 +76,7 @@
   }
 
   function serializer (replacer, cycleReplacer) {
-    var stack = []; var keys = []
+    const stack = []; const keys = []
 
     if (cycleReplacer == null) {
       cycleReplacer = function (key, value) {
@@ -87,7 +87,7 @@
 
     return function (key, value) {
       if (stack.length > 0) {
-        var thisPos = stack.indexOf(this)
+        const thisPos = stack.indexOf(this)
         ~thisPos ? stack.splice(thisPos + 1) : stack.push(this)
         ~thisPos ? keys.splice(thisPos, Infinity, key) : keys.push(key)
         if (~stack.indexOf(value)) value = cycleReplacer.call(this, key, value)
