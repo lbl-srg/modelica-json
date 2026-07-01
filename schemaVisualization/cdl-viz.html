@@ -62,12 +62,27 @@
     <script src="js/ref-parser.min.js"></script>
     <script src="js/app.js"></script>
     <script type="text/javascript">
-    if (typeof window.__CDL_SCHEMA__ !== 'undefined') {
-      // Pre-generated schema-cdl.js was loaded successfully (works from file:// and http://).
-      appInitWithSchema(JSON.stringify(window.__CDL_SCHEMA__, null, 4));
-      NProgress.done();
-    } else if (window.location.protocol !== 'file:') {
-      // HTTP mode without pre-generated JS: fall back to fetch.
+    if (window.location.protocol === 'file:') {
+      // file:// mode: fetch() is blocked by CORS null-origin.
+      // Use schema-cdl.js loaded via <script> tag above (same-dir script tags work from file://).
+      if (typeof window.__CDL_SCHEMA__ !== 'undefined') {
+        appInitWithSchema(JSON.stringify(window.__CDL_SCHEMA__, null, 4));
+        NProgress.done();
+      } else {
+        NProgress.done();
+        document.getElementById('main-body').innerHTML =
+          '<div style="padding:2em;font-family:sans-serif;">' +
+          '<h3>&#9888; schema-cdl.js not found</h3>' +
+          '<p>The pre-generated schema wrapper is missing. Run the following command ' +
+          'from the project root to create it, then reload this page:</p>' +
+          '<pre style="background:#f4f4f4;padding:1em;border-radius:4px;">' +
+          'npm run generate-schema-js' +
+          '</pre></div>';
+      }
+    } else {
+      // HTTP mode (local server, htmlpreview, GitHub Pages, etc.).
+      // Use fetch() — the async wait gives the browser time to load CDN libraries
+      // (jQuery, ACE, d3, tv4) which load in parallel via <script src> tags.
       fetch('../schema-cdl.json')
         .then(function(response) {
           if (!response.ok) {
@@ -86,19 +101,6 @@
             '<h3>&#9888; Failed to load schema-cdl.json</h3>' +
             '<p>' + err + '</p></div>';
         });
-    } else {
-      // file:// mode and schema-cdl.js is missing: prompt the user to regenerate it.
-      NProgress.done();
-      document.getElementById('main-body').innerHTML =
-        '<div style="padding:2em;font-family:sans-serif;">' +
-        '<h3>&#9888; schema-cdl.js not found</h3>' +
-        '<p>The pre-generated schema wrapper is missing. Run the following command ' +
-        'from the project root to create it:</p>' +
-        '<pre style="background:#f4f4f4;padding:1em;border-radius:4px;">' +
-        'npm run generate-schema-js' +
-        '</pre>' +
-        '<p>Then reload this page.</p>' +
-        '</div>';
     }
     </script>
   </body>
