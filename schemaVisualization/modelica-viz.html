@@ -81,26 +81,35 @@
       }
     } else {
       // HTTP mode (local server, htmlpreview, GitHub Pages, etc.).
-      // Use fetch() — the async wait gives the browser time to load CDN libraries
-      // (jQuery, ACE, d3, tv4) which load in parallel via <script src> tags.
-      fetch('../schema-modelica.json')
-        .then(function(response) {
-          if (!response.ok) {
-            throw new Error('HTTP ' + response.status + ' \u2013 ' + response.statusText);
-          }
-          return response.json();
-        })
-        .then(function(data) {
-          appInitWithSchema(JSON.stringify(data, null, 4));
-          NProgress.done();
-        })
-        .catch(function(err) {
-          NProgress.done();
-          document.getElementById('main-body').innerHTML =
-            '<div style="padding:2em;font-family:sans-serif;">' +
-            '<h3>&#9888; Failed to load schema-modelica.json</h3>' +
-            '<p>' + err + '</p></div>';
-        });
+      // Prefer the pre-generated schema-modelica.js bundle (window.__MODELICA_SCHEMA__) loaded via
+      // <script> tag above, which works on htmlpreview and any HTTP server without CORS issues.
+      // Only fall back to fetch() if the bundle is absent (e.g. the file wasn't generated).
+      if (typeof window.__MODELICA_SCHEMA__ !== 'undefined') {
+        appInitWithSchema(JSON.stringify(window.__MODELICA_SCHEMA__, null, 4));
+        NProgress.done();
+      } else {
+        fetch('../schema-modelica.json')
+          .then(function(response) {
+            if (!response.ok) {
+              throw new Error('HTTP ' + response.status + ' \u2013 ' + response.statusText);
+            }
+            return response.json();
+          })
+          .then(function(data) {
+            appInitWithSchema(JSON.stringify(data, null, 4));
+            NProgress.done();
+          })
+          .catch(function(err) {
+            NProgress.done();
+            document.getElementById('main-body').innerHTML =
+              '<div style="padding:2em;font-family:sans-serif;">' +
+              '<h3>&#9888; Failed to load schema-modelica.json</h3>' +
+              '<p>' + err + '</p>' +
+              '<p>Tip: run <code>npm run generate-schema-js</code> from the project root ' +
+              'to create the self-contained schema-modelica.js bundle, which works on any host.</p>' +
+              '</div>';
+          });
+      }
     }
     </script>
   </body>
