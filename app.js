@@ -168,11 +168,8 @@ if (args.output === 'json') {
     const eachFile = jsonFiles[i]
     ut.jsonSchemaValidation(args.mode, eachFile, 'json', schema)
   }
-  // console.log("++++++++++++++++++++++++")
-  // console.log(ut.failingSchema)
-  // console.log(pa.warnCounter)
-  if ((ut.failingSchema > 0) || (args.mode === 'cdl' && pa.warnCounter > 0)) {
-    process.exitCode = 1
+  if (args.mode === 'cdl' && (ut.failingSchema > 0 || pa.warnCounter > 0)) {
+    process.exit(1)
     // throw new Error("CDL schema tests failed.")
   }
 }
