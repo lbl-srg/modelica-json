@@ -164,12 +164,15 @@ if (args.output === 'json') {
   const modelicaPath = path.join(pathSep, 'Modelica', pathSep)
   jsonFiles = jsonFiles.filter(obj => !obj.includes(modelicaPath))
   // validate json schema
-  let failingSchema = 0
   for (let i = 0; i < jsonFiles.length; i++) {
     const eachFile = jsonFiles[i]
-    setTimeout(function () { failingSchema = failingSchema + ut.jsonSchemaValidation(args.mode, eachFile, 'json', schema) }, 100)
+    ut.jsonSchemaValidation(args.mode, eachFile, 'json', schema)
   }
-  if ((failingSchema > 0) || (args.mode === 'cdl' && pa.warnCounter > 0)) {
-    process.exit(1)
+  // console.log("++++++++++++++++++++++++")
+  // console.log(ut.failingSchema)
+  // console.log(pa.warnCounter)
+  if ((ut.failingSchema > 0) || (args.mode === 'cdl' && pa.warnCounter > 0)) {
+    process.exitCode = 1
+    // throw new Error("CDL schema tests failed.")
   }
 }
