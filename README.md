@@ -5,7 +5,7 @@
 ## 1. General Description
 
 __modelica-json__ is a translator that parses the Modelica and Control Description Language (CDL) models to JSON (and other formats from JSON). 
-For more information on the CDL Language, please refer to the [OpenBuildingControl ](http://obc.lbl.gov/specification/cdl.html) project website.
+For more information on the CDL Language, please refer to the [OpenBuildingControl](http://obc.lbl.gov/specification/cdl.html) project website.
 CDL has been published as ASHRAE Standard 231. 
 
 See the directory `test/FromModelica` from __modelica-json__ for simple examples from Modelica and CDL to the different output formats. 
