@@ -8,11 +8,13 @@ permalink: /index.html
 # [Modelica to JSON parser](https://github.com/lbl-srg/modelica-json)
 
 ## Content
-1. [General Description](##1.-general-escription)
-2. [Installation and help](##2.-installation-and-help)
-3. [How to use the parser](##3.-how-to-use-the-parser)
-4. [JSON Schemas](##4.-json-schemas)
-5. [Useful Links](##5.-useful-links)
+1. [General Description](##1-general-description)
+2. [Installation and help](##2-installation-and-help)
+3. [How to use the parser](##3-how-to-use-the-parser)
+4. [JSON Schemas](##4-json-schemas)
+5. [CXF-Core.jsonld](##5-cxf-core)
+6. [Updating Grammar](##6-updating-grammar)
+7. [Useful Links](##5-useful-links)
 
 [![Build Status](https://travis-ci.org/lbl-srg/modelica-json.svg?branch=master)](https://travis-ci.org/lbl-srg/modelica-json)
 
@@ -22,7 +24,7 @@ permalink: /index.html
 For more information on the CDL Language, please refer to the [OpenBuildingControl ](http://obc.lbl.gov/specification/cdl.html) project website.
 CDL has been published as ASHRAE Standard 231. 
 
-See the directory `test/FromModelica` from __modelica-json__ for simple examples from Modelica and CDL to the different output formats. 
+See the directory `test/FromModelica` from [modelica-json](https://github.com/lbl-srg/modelica-json) for simple examples from Modelica and CDL to the different output formats. 
 
 ## 2. Installation and help
 
