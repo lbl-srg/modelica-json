@@ -14,7 +14,7 @@ permalink: /index.html
 4. [JSON Schemas](#4-json-schemas)
 5. [CXF-Core.jsonld](#5-cxf-corejsonld)
 6. [Updating Grammar](#6-updating-grammar)
-7. [Useful Links](#5-useful-links)
+7. [Useful Links](#7-useful-links)
 
 [![Build Status](https://travis-ci.org/lbl-srg/modelica-json.svg?branch=master)](https://travis-ci.org/lbl-srg/modelica-json)
 
