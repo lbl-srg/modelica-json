@@ -26,7 +26,6 @@ const fs = require('fs')
 const path = require('path')
 
 const vizDir = path.join(__dirname)
-const rootDir = path.join(__dirname, '..')
 
 // Read shared local files
 const jsvCss = fs.readFileSync(path.join(vizDir, 'css', 'jsv.css'), 'utf8')
