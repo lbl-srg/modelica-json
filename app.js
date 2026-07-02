@@ -170,6 +170,5 @@ if (args.output === 'json') {
   }
   if (args.mode === 'cdl' && (ut.failingSchema > 0 || pa.warnCounter > 0)) {
     process.exit(1)
-    // throw new Error("CDL schema tests failed.")
   }
 }
