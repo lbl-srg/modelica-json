@@ -62,7 +62,7 @@ make clean-installation
 
 To test the installation, from the `\modelica-json` directory, run the parser on Command Prompt:
 ```
-node app.js -f test\FromModelica\Enable.mo
+node app.js -f test\FromModelica\Enable.mo --forceCDL
 ```
 
 Now the `\modelica-json` directory should have a new folder `json` and in the folder, there should be a file in the path `test\FromModelica\Enable.json`.
@@ -129,8 +129,13 @@ If `--elementary` flag is specified, the CXF (jsonld) files for the elementary b
 
 ##### --cxfCore
 
-If `--cxfCore` flag is specified, generate the  CXF-core.jsonld files for all the elementary blocks. The default option is `false`.
+If `--cxfCore` flag is specified, generate the CXF-core.jsonld files for all the elementary blocks. The default option is `false`.
 `-o`/`--output` should be `cxf`, `-f`/`--file` should be `path/to/CDL` and `--elementary` flag must be used.
+
+##### --forceCDL
+
+If `--forceCDL` flag is specified, force to parse in cdl mode. The default option is `false`.
+`-m`/`--mode` should be `cdl`.
 
 #### Exporting controls from a Modelica model
 
