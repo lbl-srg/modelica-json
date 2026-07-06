@@ -75,6 +75,13 @@ parser.addArgument(
     action: 'storeTrue'
   }
 )
+parser.addArgument(
+  ['--forceCDL'],
+  {
+    help: 'If this flag is present, generate json out in cdl mode for files not in OBC package. -o/--output should be json, -m/--mode should be cdl.',
+    action: 'storeTrue'
+  }
+)
 
 const args = parser.parseArgs()
 
@@ -120,12 +127,17 @@ if (args.output === 'modelica') {
       throw new Error('In order to generate CXF-core.jsonld containing all elementary blocks, --elementary flag must be used.')
     }
   }
+  if (args.forceCDL) {
+    if (args.mode !== 'cdl') {
+      throw new Error('In order to force generating json in cdl mode, -m/--mode should be cdl.')
+    }
+  }
   let jsons // Array of json representations of all mo files recursively instantiated by the top-level class
   const completedJsonGeneration = new Promise(
     function (resolve, reject) {
       const moFiles = ut.getMoFiles(args.file)
       // Parse the json representation for moFiles
-      jsons = pa.getJsons(moFiles, args.output, args.directory, args.prettyPrint, args.elementary, args.cxfCore, args.mode)
+      jsons = pa.getJsons(moFiles, args.output, args.directory, args.prettyPrint, args.elementary, args.cxfCore, args.mode, args.forceCDL)
       resolve(0)
     }
   )
