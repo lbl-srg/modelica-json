@@ -166,6 +166,9 @@ if (args.output === 'json') {
   // validate json schema
   for (let i = 0; i < jsonFiles.length; i++) {
     const eachFile = jsonFiles[i]
-    setTimeout(function () { ut.jsonSchemaValidation(args.mode, eachFile, 'json', schema) }, 100)
+    ut.jsonSchemaValidation(args.mode, eachFile, 'json', schema)
+  }
+  if (args.mode === 'cdl' && (ut.failingSchema > 0 || pa.warnCounter > 0)) {
+    process.exit(1)
   }
 }
