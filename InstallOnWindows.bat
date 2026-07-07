@@ -8,7 +8,6 @@
 
 :: set MODELICAPATH
 
-cd..
 :: Install node package
 echo ----------- Installing node package -----------
 CALL npm install --save
