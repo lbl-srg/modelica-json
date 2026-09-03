@@ -1,0 +1,95 @@
+{
+  "instances": {
+    "ParameterWithEnumeration": {
+      "within": "FromModelica",
+      "fullMoFilePath": "/Users/pontus/workspace/dev/ktc/modelica-json-fork/test/FromModelica/ParameterWithEnumeration.mo",
+      "type": "long_class_specifier",
+      "class_prefixes": "block"
+    },
+    "eNoDefault": {
+      "type_prefix": "parameter",
+      "type_specifier": "FromModelica.Enumeration1",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "ParameterWithEnumeration",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "eNoDefault"
+        },
+        "description": {
+          "description_string": "Enumeration parameter without a default"
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "FromModelica",
+      "fullMoFilePath": "/Users/pontus/workspace/dev/ktc/modelica-json-fork/test/FromModelica/ParameterWithEnumeration.mo"
+    },
+    "eWithDefault": {
+      "type_prefix": "parameter",
+      "type_specifier": "FromModelica.Enumeration1",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "ParameterWithEnumeration",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "eWithDefault",
+          "modification": {
+            "equal": true,
+            "expression": {
+              "simple_expression": "FromModelica.Enumeration1.e2"
+            }
+          }
+        },
+        "description": {
+          "description_string": "Enumeration parameter with a default"
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "FromModelica",
+      "fullMoFilePath": "/Users/pontus/workspace/dev/ktc/modelica-json-fork/test/FromModelica/ParameterWithEnumeration.mo"
+    },
+    "conTyp": {
+      "type_prefix": "parameter",
+      "type_specifier": "Buildings.Controls.OBC.CDL.Types.SimpleController",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "ParameterWithEnumeration",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "conTyp",
+          "modification": {
+            "equal": true,
+            "expression": {
+              "simple_expression": "Buildings.Controls.OBC.CDL.Types.SimpleController.PI"
+            }
+          }
+        },
+        "description": {
+          "description_string": "Enumeration parameter of a CDL type"
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "FromModelica",
+      "fullMoFilePath": "/Users/pontus/workspace/dev/ktc/modelica-json-fork/test/FromModelica/ParameterWithEnumeration.mo"
+    }
+  },
+  "requiredReferences": {}
+}

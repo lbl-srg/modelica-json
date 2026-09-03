@@ -73,6 +73,7 @@ mo.describe('util', function () {
         'Parameter3.mo',
         'ParameterWithAttributes.mo',
         'ParameterWithDefaultName.mo',
+        'ParameterWithEnumeration.mo',
         'ParameterWithInfo.mo',
         'ParameterWithVendorAnnotationInInfo.mo',
         'PointList.mo',
@@ -134,6 +135,84 @@ mo.describe('util', function () {
       const actualOutput = ut.searchPath(['Enable'], 'Buildings.Templates.Plants.Controls.HeatRecoveryChillers', sourceFile)
       const expectedOutput = ut.getMoFiles('Buildings/Templates/Plants/Controls/HeatRecoveryChillers/Enable.mo')
       as.deepEqual(actualOutput, expectedOutput)
+    })
+  })
+  mo.describe('testing resolveEnumerationType()', function () {
+    // A declaration writes its type as the source does, so the same enumeration
+    // reaches this function fully qualified, partially qualified or relative to
+    // an enclosing package. All three must resolve to the same qualified name.
+    const sourceFile = ut.getMoFiles('Buildings.Controls.OBC.ASHRAE.G36.TerminalUnits.SeriesFanVVF.Controller.mo')[0]
+    const within = 'Buildings.Controls.OBC.ASHRAE.G36.TerminalUnits.SeriesFanVVF'
+
+    mo.it('resolves a fully qualified enumeration', function () {
+      const actualOutput = ut.resolveEnumerationType('Buildings.Controls.OBC.ASHRAE.G36.Types.VentilationStandard', within, sourceFile)
+      as.deepEqual(actualOutput, {
+        name: 'Buildings.Controls.OBC.ASHRAE.G36.Types.VentilationStandard',
+        within: 'Buildings.Controls.OBC.ASHRAE.G36.Types'
+      })
+    })
+    mo.it('resolves a partially qualified enumeration', function () {
+      const actualOutput = ut.resolveEnumerationType('CDL.Types.SimpleController', within, sourceFile)
+      as.deepEqual(actualOutput, {
+        name: 'Buildings.Controls.OBC.CDL.Types.SimpleController',
+        within: 'Buildings.Controls.OBC.CDL.Types'
+      })
+    })
+    mo.it('resolves an enumeration named relative to the enclosing package', function () {
+      const actualOutput = ut.resolveEnumerationType('Types.VentilationStandard', within, sourceFile)
+      as.deepEqual(actualOutput, {
+        name: 'Buildings.Controls.OBC.ASHRAE.G36.Types.VentilationStandard',
+        within: 'Buildings.Controls.OBC.ASHRAE.G36.Types'
+      })
+    })
+    mo.it('resolves an enumeration declared alongside others in one file', function () {
+      // Buildings/Templates/Components/Types.mo declares `package Types`
+      // containing several enumerations, so the file name is not the name of
+      // the enumeration.
+      const actualOutput = ut.resolveEnumerationType('Buildings.Templates.Components.Types.Damper', within, sourceFile)
+      as.deepEqual(actualOutput, {
+        name: 'Buildings.Templates.Components.Types.Damper',
+        within: 'Buildings.Templates.Components.Types'
+      })
+    })
+    mo.it('resolves when MODELICAPATH points at the library directory itself', function () {
+      // Both conventions are in use: MODELICAPATH may hold the directory
+      // containing the library, or the library directory itself. searchPath
+      // only finds the class under the first, so resolution must not depend
+      // on it alone.
+      const marker = path.sep + 'Buildings' + path.sep
+      const buildingsDir = sourceFile.slice(0, sourceFile.indexOf(marker)) + path.sep + 'Buildings'
+      const previous = process.env.MODELICAPATH
+      process.env.MODELICAPATH = buildingsDir
+      try {
+        const actualOutput = ut.resolveEnumerationType(
+          'Buildings.Controls.OBC.ASHRAE.G36.Types.VentilationStandard', within, sourceFile)
+        as.deepEqual(actualOutput, {
+          name: 'Buildings.Controls.OBC.ASHRAE.G36.Types.VentilationStandard',
+          within: 'Buildings.Controls.OBC.ASHRAE.G36.Types'
+        })
+      } finally {
+        if (previous === undefined) delete process.env.MODELICAPATH
+        else process.env.MODELICAPATH = previous
+      }
+    })
+    mo.it('returns null for a built-in type', function () {
+      as.equal(ut.resolveEnumerationType('Boolean', within, sourceFile), null)
+    })
+    mo.it('returns null for an enumeration named only in documentation', function () {
+      // ModelicaReference/package.mo documents enumeration syntax inside an
+      // info string; a match there must not be mistaken for a declaration.
+      as.equal(ut.resolveEnumerationType('ModelicaReference.E', within, sourceFile), null)
+    })
+    mo.it('returns null rather than a wrong name for a deeply nested declaration', function () {
+      // searchPath resolves this to the monolithic Modelica/Media/package.mo,
+      // where the enumeration sits two packages below the class the file
+      // declares, so the qualified name cannot be reconstructed from the file
+      // alone.
+      as.equal(ut.resolveEnumerationType('Modelica.Media.Interfaces.Choices.ReferenceEnthalpy', within, sourceFile), null)
+    })
+    mo.it('returns null for a type that is not an enumeration', function () {
+      as.equal(ut.resolveEnumerationType('Buildings.Controls.OBC.CDL.Reals.PID', within, sourceFile), null)
     })
   })
   mo.describe('testing joinWithinPath()', function () {
