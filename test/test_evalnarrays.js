@@ -236,7 +236,115 @@ mo.describe('evaluation and arrays', function () {
     })
   })
 
- 
+  mo.describe('Testing the two flags against each other', function () {
+    // This suite tests the interaction between the evaluation and array flattening flags.
+    const sequence = 'FlagsArray'
+    const moFile = path.join(moDir, sequence + '.mo')
+
+    // one output directory per combination, all removed once the suite is done
+    const outDirs = []
+    function run (evaluateExpressions, flattenArrays) {
+      const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'evalAndArraysFlags-'))
+      outDirs.push(dir)
+      pa.getJsons([moFile], 'semantic', dir, true,
+        /* generateElementary= */ false, /* generateCxfCore= */ false,
+        /* mode= */ 'cdl', /* valueProp= */ null,
+        evaluateExpressions, flattenArrays)
+      return hp.readNormalizedObjects(hp.objectsJsonPath(path.join(dir, 'objects', moDir), sequence))
+    }
+
+    mo.after(function () {
+      outDirs.forEach(function (dir) { if (fs.existsSync(dir)) ut.removeDir(dir) })
+    })
+
+    // the components an array of three was written as, by the names they take
+    function arrayComponents (objects) {
+      return Object.keys(objects.instances)
+        .filter(function (name) { return /^multer(_\d+)?$/.test(name) })
+        .sort()
+    }
+
+    // whether a parameter no array depends on kept the expression it was written as
+    function statusIsSymbolic (objects) {
+      const expression = objects.instances.status.single_component_list.declaration.modification.expression
+      return expression.simple_expression === undefined
+    }
+
+    mo.it('Neither flag leaves the arrays and the expressions as written', function () {
+      const objects = run(false, false)
+      as.deepStrictEqual(arrayComponents(objects), ['multer'])
+      as.ok(statusIsSymbolic(objects), 'status was evaluated although neither flag asked for it')
+    })
+
+    mo.it('Evaluation alone resolves the expressions and leaves the arrays', function () {
+      const objects = run(true, false)
+      as.deepStrictEqual(arrayComponents(objects), ['multer'])
+      as.ok(!statusIsSymbolic(objects), 'status was left as an expression although the evaluation was asked for')
+    })
+
+    mo.it('Both flags resolve the expressions and flatten the arrays', function () {
+      const objects = run(true, true)
+      as.deepStrictEqual(arrayComponents(objects), ['multer_1', 'multer_2', 'multer_3'])
+      as.ok(!statusIsSymbolic(objects), 'status was left as an expression although the evaluation was asked for')
+    })
+
+    mo.it('Flattening alone still flattens an array whose size is an expression', function () {
+      
+      const objects = run(false, true)
+      as.deepStrictEqual(arrayComponents(objects), ['multer_1', 'multer_2', 'multer_3'])
+    })
+
+    mo.it('Flattening alone keeps the values the flattening needed and only those', function () {
+      const objects = run(false, true)
+
+      as.strictEqual(
+        hp.parameterValue(objects.instances.k_2), '2',
+        'The array binding was not indexed, so the evaluation did not reach the flattening')
+      as.strictEqual(
+        objects.instances.multer_2.single_component_list.declaration.modification
+          .class_modification[0].element_modification_or_replaceable.element_modification
+          .modification.expression.simple_expression,
+        '2',
+        'The element of the array component was not bound to its own value')
+
+      // and what no array depended on is back to the expression it was written as
+      as.ok(statusIsSymbolic(objects),
+        'status kept the value it evaluated to although the evaluation was not asked for')
+      as.strictEqual(
+        objects.instances.uniArr.single_component_list.declaration.modification
+          .class_modification[0].element_modification_or_replaceable.element_modification
+          .modification.expression.simple_expression,
+        'nZon',
+        'The value the sub sequence is instantiated with kept what it evaluated to')
+    })
+
+    mo.it('No record of what an expression was before it was evaluated is written out', function () {
+      // the reversion is an internal step; none of its bookkeeping is part of the schema
+      ;[[false, false], [true, false], [false, true], [true, true]].forEach(function (flags) {
+        const written = hp.stableStringify(run(flags[0], flags[1]))
+        as.ok(!written.includes('_original'),
+          'evaluateExpressions=' + flags[0] + ', flattenArrays=' + flags[1] +
+            ' wrote the pre-evaluation bookkeeping into the objects json')
+      })
+    })
+
+    mo.it('Flattening alone does not stop on a parameter it cannot resolve', function () {
+      // The test checks that flattening alone does not stop on a parameter it cannot resolve.
+      const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'evalAndArraysFlags-'))
+      outDirs.push(dir)
+      const errorMoFiles = ut.getMoFiles(path.join('test', 'evalAndArraysErrors'))
+
+      as.doesNotThrow(function () {
+        pa.getJsons(errorMoFiles, 'semantic', dir, true, false, false, 'cdl', null,
+          /* evaluateExpressions= */ false, /* flattenArrays= */ true)
+      })
+      as.throws(function () {
+        pa.getJsons(errorMoFiles, 'semantic', dir, true, false, false, 'cdl', null,
+          /* evaluateExpressions= */ true, /* flattenArrays= */ true)
+      }, oe.UnresolvedParameterError)
+    })
+  })
+
   mo.describe('Testing the parameters a sequence leaves without a value', function () {
     const errorMoDir = path.join('test', 'evalAndArraysErrors')
     // supplies every parameter the Modelica sources of that package leave open
