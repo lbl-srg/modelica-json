@@ -1,7 +1,7 @@
 within evalAndArrays;
 
 block FlagsBoth
-  "Flag combination 4 of 4: both expression evaluation and array flattening on"
+  "Flag combination 4 of 4:  both expression evaluation and array flattening on"
 
   parameter Integer nZon = 3 "# of zones";
   parameter Boolean status = if nZon > 1 then true else false

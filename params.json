@@ -1,16 +1,20 @@
 {
-  "HeatingOrCooling": {
+  "Controller": {
     "nZon": 3,
     "nSel": 2,
-    "airConMod": false,
-    "zonConVar": "Buildings.Controls.OBC.DemandFlexibility.Types.ZoneControlVariant.Variant_3",
+    "airConMod": "Buildings.Controls.OBC.DemandFlexibility.Types.AirConditioningMode.Cooling",
+    
+    "zonConVar": "Buildings.Controls.OBC.DemandFlexibility.Types.ZoneControlVariant.Variant_1", 
+    "zonConVar_ALT": "Buildings.Controls.OBC.DemandFlexibility.Types.ZoneControlVariant.Variant_2", 
+    
     "dTShe": 2.0,
     "dTReb": 1.0,
     "dTSheThr": 0.5,
     "dTSheHys": 0.1,
-    "PBuiHys": 500.0,
+    "PBui_nominal": 100000.0,
     "PBuiThrCon": 50000.0,
     "TResInt": 0.5,
-    "setChaWaiTim": 900.0
+    "setChaWaiTim": 900.0,
+    "samSetCha.t0": 0.0
   }
 }
