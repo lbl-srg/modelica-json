@@ -32,16 +32,20 @@ generate-reference-output:
 generate-reference-output-modelica-mode:
 	@echo "Generating new reference results for test/ModelicaMode"
 	@echo "-------- Note: the versions of MBL and MSL in the MODELICAPATH should be consistent with the ones in .travis.yml. --------"
-	rm -rf ./test/reference/raw-json/ModelicaMode; \
-	rm -rf ./test/reference/json/ModelicaMode; \
-	rm -rf ./test/reference/objects/ModelicaMode; \
-	rm -rf ./test/reference/cxf/ModelicaMode; \
+	rm -rf ./test/reference/raw-json/test/ModelicaMode; \
+	rm -rf ./test/reference/json/test/ModelicaMode; \
+	rm -rf ./test/reference/objects/test/ModelicaMode; \
+	rm -rf ./test/reference/cxf/test/ModelicaMode; \
 	(for ff in `find ./test/ModelicaMode -name '*.mo'`; do \
-		node app.js -l warn -f $${ff} -o raw-json -d ./test/reference -m modelica; \
-		node app.js -l warn -f $${ff} -o json -d ./test/reference -m modelica; \
-		node app.js -l warn -f $${ff} -o semantic -d ./test/reference  -m modelica -p; \
-		node app.js -l warn -f $${ff} -o cxf -d ./test/reference  -m modelica -p; \
-		done); 
+		node app.js -l warn -f $${ff} -o json -d ./test/reference; \
+		node app.js -l warn -f $${ff} -o semantic -d ./test/reference -p; \
+		done); \
+	(for ff in ModelWithControlsBlock ModelWithControlsBlock2; do \
+		node app.js -l warn -f ./test/ModelicaMode/$${ff}.mo -o raw-json -d ./test/reference; \
+		done); \
+	(for ff in ModelWithControlsBlock ModelWithControlsBlock2 VAVBoxCoolingOnly VAVBoxCoolingOnlyOpenLoop; do \
+		node app.js -l warn -f ./test/ModelicaMode/$${ff}.mo -o cxf -d ./test/reference -p --exportCxfFromModelica; \
+		done)
 
 generate-cxfCore:
 	node app.js -f Buildings/Controls/OBC/CDL -o cxf --elementary --cxfCore --prettyPrint; 

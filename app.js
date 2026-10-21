@@ -139,7 +139,7 @@ if (args.output === 'modelica') {
   let jsons // Array of json representations of all mo files recursively instantiated by the top-level class
   const completedJsonGeneration = new Promise(
     function (resolve, reject) {
-      const moFiles = ut.getMoFiles(args.file)
+      const moFiles = getInputMoFiles()
       // Parse the json representation for moFiles
       jsons = pa.getJsons(moFiles, args.output, args.directory, args.prettyPrint, args.elementary, args.cxfCore, args.validateCdlSchema, args.exportCxfFromModelica)
       resolve(0)
@@ -155,7 +155,7 @@ if (args.output === 'modelica') {
       ce.getCxfCore(args.file, args.directory, args.prettyPrint)
     } else if (args.output === 'cxf' && args.exportCxfFromModelica) {
       exportedCdlFiles = []
-      const moFiles = ut.getMoFiles(args.file)
+      const moFiles = getInputMoFiles()
       moFiles.forEach(moFile => {
         exportedCdlFiles.push(...ce.getCxfFromModelica(moFile, args.directory, args.prettyPrint, args.elementary))
       })
@@ -174,6 +174,20 @@ if (args.output === 'modelica') {
     }
     process.exit(1)
   })
+}
+
+/**
+ * Get the Modelica files of the input -f. If the input is a package and --cxfCore or --elementary
+ * is used, the classes in Validation packages are skipped.
+ *
+ * @return {Array<string>} - paths of the Modelica files
+ */
+function getInputMoFiles () {
+  const moFiles = ut.getMoFiles(args.file)
+  if (!args.file.endsWith('.mo') && (args.cxfCore || args.elementary)) {
+    return moFiles.filter(moFile => !moFile.split(path.sep).includes('Validation'))
+  }
+  return moFiles
 }
 
 /**

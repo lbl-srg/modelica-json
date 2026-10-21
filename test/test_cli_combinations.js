@@ -11,7 +11,8 @@ const ut = require('../lib/util')
 const MODELICA_MODEL = path.join(__dirname, 'ModelicaMode', 'ModelWithControlsBlock.mo')
 const CDL_BLOCK = path.join(__dirname, 'FromModelica', 'Enable.mo')
 const CDL_BLOCK_NESTED = path.join(__dirname, 'FromModelica', 'MyController.mo')
-const TEMP_CDL_DIR = path.join(__dirname, 'temp_CDL')
+// The CDL package; the argument check of --cxfCore fails before the package is read
+const CDL_PACKAGE = path.join('Buildings', 'Controls', 'OBC', 'CDL')
 
 const outDirs = []
 
@@ -163,6 +164,7 @@ mo.describe('CLI Combinations Testing', function () {
         const res = runParserAndExpectError({ file: modelicaModelNoControls, ...opts('cxf', true, false, elementary, false) }, 'No block annotated with __cdl(isControls=true)')
         as.deepStrictEqual(filesIn(res.dir, 'cxf'), [], 'no cxf should be generated')
         as.ok(filesIn(res.dir, 'json').length > 0, 'simplified json should be generated')
+        as.ok(filesIn(res.dir, 'objects').length > 0, 'intermediate objects should be generated')
       })
     })
 
@@ -244,8 +246,22 @@ mo.describe('CLI Combinations Testing', function () {
   })
 
   mo.describe('CDL Package input', function () {
+    mo.it('json / cxf | elem=true -> classes in Validation packages are skipped', function () {
+      const packagePath = ut.getMODELICAPATH()
+        .map(p => path.join(p, 'Buildings', 'Controls', 'OBC', 'CDL', 'Conversions'))
+        .find(p => fs.existsSync(path.join(p, 'Validation')))
+      if (packagePath === undefined) {
+        this.skip()
+      }
+      ;['json', 'cxf'].forEach(output => {
+        const files = filesIn(runParser({ file: packagePath, ...opts(output, false, false, true, false) }).dir, output)
+        as.ok(files.length > 0, `${output} should be generated`)
+        as.ok(!files.some(f => f.split(path.sep).includes('Validation')), `Validation classes should be skipped for ${output}`)
+      })
+    })
+
     mo.it('cxf | cxfCore=true | elem=false -> Error (cxfCore needs elementary)', () => {
-      runParserAndExpectError({ file: TEMP_CDL_DIR, ...opts('cxf', false, true, false, false) }, '--elementary flag must be used')
+      runParserAndExpectError({ file: CDL_PACKAGE, ...opts('cxf', false, true, false, false) }, '--elementary flag must be used')
     })
 
     mo.it('cxf | cxfCore=true | elem=true -> CXF-Core.jsonld', function () {

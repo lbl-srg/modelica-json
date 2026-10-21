@@ -9,7 +9,6 @@ const ut = require('../lib/util')
 mo.describe('CLI --exportCxfFromModelica', function () {
   const templatesDir = path.join(__dirname, 'ModelicaMode')
   const moFile = path.join(templatesDir, 'VAVBoxCoolingOnly.mo')
-  const directory = process.cwd()
   const referenceDir = path.join(__dirname, 'reference', 'cxf', 'test', 'ModelicaMode')
 
   mo.before(function () {
