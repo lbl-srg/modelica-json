@@ -103,12 +103,11 @@ This parser takes a .mo file in input and has three possible outputs, that can b
 - **doc**: create the documentation of the sequence of operation in an HTML document
 - **doc+**: create the documentation of the sequence of operation and the list of all variables in an HTML document
 
-##### --mode / -m
+##### --validateCdlSchema
 
-This argument is used to specify two parsing modes when generating a `cxf` output. We offer two different modes of translation that can be chosen with the argument -m :
+Validate the JSON output against schema-cdl.json. The default is to use schema-modelica.json.
 
-- **cdl** (default) : Parses a CDL file to generate a CXF translation. 
-- **modelica** : This mode is chosen when you want to parse a Modelica file and translate the CDL instances within the file (using `__cdl(isControls=true))` annotation) to CXF. 
+For a detailed map of how different flag combinations affect the output, see [Expected Outputs](expected_outputs.md).
 
 ##### --log / -l
 
@@ -134,13 +133,13 @@ If `--cxfCore` flag is specified, generate the  CXF-core.jsonld files for all th
 
 #### Exporting controls from a Modelica model
 
-A control sequence is often instantiated within a larger Modelica model that is not itself CDL compliant, such as a Buildings library template. To translate only the control sequence to CXF, parse the model with the modelica mode and mark the control block with a __cdl(isControls=true) annotation:
+A control sequence is often instantiated within a larger Modelica model that is not itself CDL compliant, such as a Buildings library template. To translate only the control sequence to CXF, parse the model with the `--exportCxfFromModelica` flag and mark the control block with a __cdl(isControls=true) annotation:
 
 ```
-node app.js -f <path of the Modelica model> -o cxf -m modelica
+node app.js -f <path of the Modelica model> -o cxf --exportCxfFromModelica
 ```
 
-The parser then exports the CXF representation of the control block and of the model that instantiates it. This export only happens when the mode is modelica and a control block carries the `__cdl(isControls=true)` annotation. In the default cdl mode the annotation is ignored.
+The parser then exports the CXF representation of the control block and of the model that instantiates it. This export only happens when the `--exportCxfFromModelica` flag is used and a control block carries the `__cdl(isControls=true)` annotation.
 
 The annotated control block is found in one of two ways:
 - as a component instance declared directly in the model, for example `SubControllerForControlsExport subCon1 annotation(__cdl(isControls=true))`,
@@ -149,8 +148,6 @@ The annotated control block is found in one of two ways:
 The search also descends into sub-models, so a control block nested inside an instantiated sub-model is found as well.
 
 When the control block is redeclared in an extends clause, the redeclared type must satisfy the constrainedby constraint of the replaceable declaration it overrides, that is, it must be a subtype of the constraining type. If it is not, the parser stops with an error that names the redeclared type and the constraining type.
-
-To keep the translation focused on the control sequence, the parser does not instantiate the whole dependency tree of the Modelica model in modelica mode. Classes from the Buildings library or the Modelica Standard Library are skipped unless they belong to a Templates, Examples or Controls package, so non-control components such as a fan from Buildings.Fluid are not parsed. User defined classes are always parsed.
 
 Examples of models that can be exported this way are provided in test/ModelicaMode. They include templates that redeclare their controller in an extends clause (VAVBoxCoolingOnly and VAVBoxCoolingOnlyOpenLoop) and models that instantiate a control block directly or through a sub-model (ModelWithControlsBlock and ModelWithControlsBlock2).
 
@@ -170,7 +167,6 @@ Graphical viewers are available (please use right click + open in a new tab or r
 - [Modelica Schema viewer](https://lbl-srg.github.io/modelica-json/modelica-viz.html)
 - [CDL Schema viewer](https://lbl-srg.github.io/modelica-json/cdl-viz.html)
 
-
 ## 5. CXF-Core.jsonld
 
 [CXF-Core.jsonld](CXF-Core.jsonld) contains the CXF representation of all CDL elementary blocks, classes and relationships.
@@ -183,17 +179,15 @@ node app.js -f <path/to/modelica-buildings>/Buildings/Controls/OBC/CDL -o cxf --
 
 The `CXF-Core.jsonld` file will be generated in `cxf` folder.
 
-When parsing a file using `app.js`, the schema is chosen according to the mode.
-
 To validate an existing JSON file against the schema, run
 
 ```
 node validation.js -f <path to the json file>
 ```
-The default schema is CDL. To chose the Modelica schema, run:
+The default schema is Modelica. To chose the CDL schema, run:
 
 ```
-node validation.js -f <path to the json file> -m modelica
+node validation.js -f <path to the json file> --validateCdlSchema
 ```
 
 ## 6. Updating Grammar
@@ -210,7 +204,7 @@ make update-grammar
 ## 7. Useful Links
 
 - [Modelica-json GitHub page](https://github.com/lbl-srg/modelica-json)
-- [The Modelica Association](https://www.modelica.org)
+- la-link [The Modelica Association](https://www.modelica.org)
 - [Control Description Language](http://obc.lbl.gov/specification/cdl.html)
 - [JSON Schema](https://json-schema.org)
 

@@ -33,11 +33,10 @@ parser.addArgument(
   }
 )
 parser.addArgument(
-  ['-m', '--mode'],
+  ['--validateCdlSchema'],
   {
-    help: "Parsing mode: 'cdl' (default) or 'modelica' with the 'cxf' output. 'modelica' mode should be used if translating a CDL instance within a Modelica model into CXF.",
-    choices: ['cdl', 'modelica'],
-    defaultValue: 'cdl'
+    help: 'Validate the JSON output against schema-cdl.json. The default is to use schema-modelica.json.',
+    action: 'storeTrue'
   }
 )
 parser.addArgument(
@@ -75,6 +74,13 @@ parser.addArgument(
     action: 'storeTrue'
   }
 )
+parser.addArgument(
+  ['--exportCxfFromModelica'],
+  {
+    help: 'Export CXF from Modelica models by parsing for the __cdl(isControls=true) annotation.',
+    action: 'storeTrue'
+  }
+)
 
 const args = parser.parseArgs()
 
@@ -106,10 +112,15 @@ if (args.output !== 'modelica' && args.file.endsWith('.json')) {
 if (args.output === 'modelica') {
   pa.convertToModelica(args.file, args.directory, false)
 } else {
+  // Validation for exportCxfFromModelica
+  if (args.exportCxfFromModelica && args.output !== 'cxf') {
+    throw new Error('The --exportCxfFromModelica flag can only be used when the output format (-o) is "cxf".')
+  }
+
   // Get mo files array
-  if (args.elementary || args.cxfCore) {
-    if (!args.output === 'cxf') {
-      throw new Error('In order to generate CXF (jsonld) of elementary blocks, -o/--output should be cxf.')
+  if (args.cxfCore) {
+    if (args.output !== 'cxf') {
+      throw new Error('In order to generate CXF-core.jsonld containing all elementary blocks, -o/--output should be cxf.')
     }
   }
   if (args.cxfCore) {
@@ -125,7 +136,7 @@ if (args.output === 'modelica') {
     function (resolve, reject) {
       const moFiles = ut.getMoFiles(args.file)
       // Parse the json representation for moFiles
-      jsons = pa.getJsons(moFiles, args.output, args.directory, args.prettyPrint, args.elementary, args.cxfCore, args.mode)
+      jsons = pa.getJsons(moFiles, args.output, args.directory, args.prettyPrint, args.elementary, args.cxfCore, args.validateCdlSchema, args.exportCxfFromModelica)
       resolve(0)
     }
   )
@@ -135,8 +146,11 @@ if (args.output === 'modelica') {
     }
     if (args.output === 'cxf' && args.cxfCore && args.elementary) {
       ce.getCxfCore(args.file, args.directory, args.prettyPrint)
-    } else if (args.output === 'cxf' && !args.cxfCore && !args.elementary && args.mode === 'modelica') {
-      ce.getCxfFromModelica(args.file, args.directory, args.prettyPrint)
+    } else if (args.output === 'cxf' && !args.cxfCore && !args.elementary && args.exportCxfFromModelica) {
+      const moFiles = ut.getMoFiles(args.file)
+      moFiles.forEach(moFile => {
+        ce.getCxfFromModelica(moFile, args.directory, args.prettyPrint)
+      })
     }
     if (args.output === 'doc' || args.output === 'doc+') {
       const unitData = JSON.parse(
@@ -147,28 +161,33 @@ if (args.output === 'modelica') {
   })
 }
 
-if (args.output === 'json') {
-  let schema
-  if (args.mode === 'cdl') {
-    schema = path.join(`${__dirname}`, 'schema-cdl.json')
-  } else {
-    schema = path.join(`${__dirname}`, 'schema-modelica.json')
-  }
-
+if (args.output === 'json' || args.output === 'cxf') {
   const jsonDir = (args.directory === 'current') ? process.cwd() : args.directory
   let jsonFiles = ut.findFilesInDir(path.join(jsonDir, 'json'), '.json')
 
   // exclude CDL folder and possibly Modelica folder
   const pathSep = path.sep
-  // const cdlPath = path.join(pathSep, 'CDL', pathSep)
   const modelicaPath = path.join(pathSep, 'Modelica', pathSep)
   jsonFiles = jsonFiles.filter(obj => !obj.includes(modelicaPath))
-  // validate json schema
+
   for (let i = 0; i < jsonFiles.length; i++) {
     const eachFile = jsonFiles[i]
-    ut.jsonSchemaValidation(args.mode, eachFile, 'json', schema)
+
+    if (args.output === 'json') {
+      ut.jsonSchemaValidation(false, eachFile, 'json', path.join(__dirname, 'schema-modelica.json'))
+    }
+
+    // Validation against schema-cdl.json is dependent on the --validateCdlSchema flag,
+    // OR if output is CXF (because intermediate ASTs for CXF must be CDL compliant).
+    // CDL elementary blocks are not validated against schema-cdl.json.
+    if (args.validateCdlSchema || args.output === 'cxf') {
+      const moFilePath = eachFile.replace('.json', '.mo')
+      if (!ut.checkIfCdlElementaryBlockOrPackage(moFilePath, false)) {
+        ut.jsonSchemaValidation(true, eachFile, 'json', path.join(__dirname, 'schema-cdl.json'))
+      }
+    }
   }
-  if (args.mode === 'cdl' && (ut.failingSchema > 0 || pa.warnCounter > 0)) {
+  if (args.validateCdlSchema && (ut.failingSchema > 0 || pa.warnCounter > 0)) {
     process.exit(1)
   }
 }
