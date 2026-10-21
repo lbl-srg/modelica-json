@@ -112,11 +112,6 @@ if (args.output !== 'modelica' && args.file.endsWith('.json')) {
 if (args.output === 'modelica') {
   pa.convertToModelica(args.file, args.directory, false)
 } else {
-  // Validation for exportCxfFromModelica
-  if (args.exportCxfFromModelica && args.output !== 'cxf') {
-    throw new Error('The --exportCxfFromModelica flag can only be used when the output format (-o) is "cxf".')
-  }
-
   // Get mo files array
   if (args.cxfCore) {
     if (args.output !== 'cxf') {
@@ -131,6 +126,16 @@ if (args.output === 'modelica') {
       throw new Error('In order to generate CXF-core.jsonld containing all elementary blocks, --elementary flag must be used.')
     }
   }
+
+  // Validation for exportCxfFromModelica
+  if (args.exportCxfFromModelica && args.output !== 'cxf') {
+    throw new Error('The --exportCxfFromModelica flag can only be used when the output format (-o) is "cxf".')
+  }
+  // raw-json output cannot be validated against schema-cdl.json, which describes the simplified json format
+  if (args.validateCdlSchema && args.output === 'raw-json') {
+    logger.warn('The --validateCdlSchema flag is ignored for raw-json output: raw-json cannot be validated against schema-cdl.json.')
+    args.validateCdlSchema = false
+  }
   let jsons // Array of json representations of all mo files recursively instantiated by the top-level class
   const completedJsonGeneration = new Promise(
     function (resolve, reject) {
@@ -144,12 +149,15 @@ if (args.output === 'modelica') {
     if (args.output === 'semantic') {
       se.getSemanticInformation(args.file, args.directory)
     }
+    // CDL classes whose CXF is exported from a Modelica model; only these are validated against schema-cdl.json
+    let exportedCdlFiles = null
     if (args.output === 'cxf' && args.cxfCore && args.elementary) {
       ce.getCxfCore(args.file, args.directory, args.prettyPrint)
-    } else if (args.output === 'cxf' && !args.cxfCore && !args.elementary && args.exportCxfFromModelica) {
+    } else if (args.output === 'cxf' && args.exportCxfFromModelica) {
+      exportedCdlFiles = []
       const moFiles = ut.getMoFiles(args.file)
       moFiles.forEach(moFile => {
-        ce.getCxfFromModelica(moFile, args.directory, args.prettyPrint)
+        exportedCdlFiles.push(...ce.getCxfFromModelica(moFile, args.directory, args.prettyPrint, args.elementary))
       })
     }
     if (args.output === 'doc' || args.output === 'doc+') {
@@ -158,11 +166,28 @@ if (args.output === 'modelica') {
       const includeVariables = (args.output === 'doc+')
       dc.buildDoc(jsons[0], jsons, unitData, args.directory, includeVariables)
     }
+    validateJsons(exportedCdlFiles)
+  }).catch(function (err) {
+    logger.error(err.message)
+    if (args.output === 'cxf' && !args.exportCxfFromModelica) {
+      logger.error('The model may not be CDL-compliant. To export CXF from a Modelica model, use the --exportCxfFromModelica flag.')
+    }
+    process.exit(1)
   })
 }
 
-if (args.output === 'json' || args.output === 'cxf') {
+/**
+ * Validate the generated json files against schema-modelica.json and schema-cdl.json.
+ *
+ * @param {Array<string>|null} exportedCdlFiles - Modelica files of the CDL classes exported with
+ *   --exportCxfFromModelica. If not null, only these are validated against schema-cdl.json.
+ */
+function validateJsons (exportedCdlFiles) {
+  if (args.output !== 'json' && args.output !== 'cxf') {
+    return
+  }
   const jsonDir = (args.directory === 'current') ? process.cwd() : args.directory
+  const exportedCdlJsons = (exportedCdlFiles === null) ? null : exportedCdlFiles.map(moFile => path.resolve(ut.getOutputFile(moFile, 'json', jsonDir)))
   let jsonFiles = ut.findFilesInDir(path.join(jsonDir, 'json'), '.json')
 
   // exclude CDL folder and possibly Modelica folder
@@ -182,7 +207,8 @@ if (args.output === 'json' || args.output === 'cxf') {
     // CDL elementary blocks are not validated against schema-cdl.json.
     if (args.validateCdlSchema || args.output === 'cxf') {
       const moFilePath = eachFile.replace('.json', '.mo')
-      if (!ut.checkIfCdlElementaryBlockOrPackage(moFilePath, false)) {
+      const isExportedCdl = (exportedCdlJsons === null) || exportedCdlJsons.includes(path.resolve(eachFile))
+      if (isExportedCdl && !ut.checkIfCdlElementaryBlockOrPackage(moFilePath, true)) {
         ut.jsonSchemaValidation(true, eachFile, 'json', path.join(__dirname, 'schema-cdl.json'))
       }
     }

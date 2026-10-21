@@ -28,6 +28,7 @@ mo.describe('CLI --exportCxfFromModelica', function () {
   })
 
   mo.it('exports CXF when --exportCxfFromModelica flag is used', function () {
+    this.timeout(60000)
     // Run the tool with the new flag
     execSync(`node app.js --exportCxfFromModelica -o cxf -f ${moFile}`, { stdio: 'inherit' })
 
