@@ -48,7 +48,37 @@
           "modification": {
             "equal": true,
             "expression": {
-              "simple_expression": "true"
+              "if_expression": {
+                "if_elseif": [
+                  {
+                    "condition": {
+                      "simple_expression": {
+                        "logical_expression": {
+                          "logical_or": [
+                            {
+                              "logical_and": [
+                                {
+                                  "arithmetic_expressions": [
+                                    "nZon",
+                                    "1"
+                                  ],
+                                  "relation_operator": ">"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    "then": {
+                      "simple_expression": "true"
+                    }
+                  }
+                ],
+                "else_expression": {
+                  "simple_expression": "false"
+                }
+              }
             }
           }
         },
@@ -439,7 +469,7 @@
                     "modification": {
                       "equal": true,
                       "expression": {
-                        "simple_expression": "3"
+                        "simple_expression": "nZon"
                       }
                     }
                   }
@@ -453,20 +483,7 @@
                     "modification": {
                       "equal": true,
                       "expression": {
-                        "simple_expression": "true"
-                      }
-                    }
-                  }
-                }
-              },
-              {
-                "element_modification_or_replaceable": {
-                  "element_modification": {
-                    "name": "conditional",
-                    "modification": {
-                      "equal": true,
-                      "expression": {
-                        "simple_expression": "3"
+                        "simple_expression": "status"
                       }
                     }
                   }

@@ -1,0 +1,376 @@
+{
+  "instances": {
+    "Specialize": {
+      "within": "evalAndArrays",
+      "fullMoFilePath": "test\\evalAndArrays\\Specialize.mo",
+      "type": "long_class_specifier",
+      "class_prefixes": "block"
+    },
+    "u": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "Specialize",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "u"
+        },
+        "description": {
+          "description_string": "Input signal"
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "evalAndArrays",
+      "fullMoFilePath": "test\\evalAndArrays\\Specialize.mo"
+    },
+    "yKeep": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "Specialize",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "yKeep"
+        },
+        "description": {
+          "description_string": "Output of the instance that keeps the offset"
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "evalAndArrays",
+      "fullMoFilePath": "test\\evalAndArrays\\Specialize.mo"
+    },
+    "yDrop": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "Specialize",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "yDrop"
+        },
+        "description": {
+          "description_string": "Output of the instance that drops the offset"
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "evalAndArrays",
+      "fullMoFilePath": "test\\evalAndArrays\\Specialize.mo"
+    },
+    "yWide_1": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "Specialize",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "yWide_1"
+        },
+        "description": {
+          "description_string": "Output of the instance with two elements"
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "evalAndArrays",
+      "fullMoFilePath": "test\\evalAndArrays\\Specialize.mo",
+      "arrayExpansion": {
+        "arrayName": "yWide",
+        "size": [
+          2
+        ],
+        "index": [
+          1
+        ]
+      }
+    },
+    "yWide_2": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "Specialize",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "yWide_2"
+        },
+        "description": {
+          "description_string": "Output of the instance with two elements"
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "evalAndArrays",
+      "fullMoFilePath": "test\\evalAndArrays\\Specialize.mo",
+      "arrayExpansion": {
+        "arrayName": "yWide",
+        "size": [
+          2
+        ],
+        "index": [
+          2
+        ]
+      }
+    },
+    "uniKeep": {
+      "type_specifier": "evalAndArrays.Specialize_Unit",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "Specialize",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "uniKeep",
+          "modification": {
+            "class_modification": [
+              {
+                "element_modification_or_replaceable": {
+                  "final": true,
+                  "element_modification": {
+                    "name": "useOff",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "true"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "element_modification_or_replaceable": {
+                  "final": true,
+                  "element_modification": {
+                    "name": "p",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "2"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "n",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "1"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "description": {
+          "description_string": "Same structure as the class, expect the class as its type"
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "evalAndArrays",
+      "fullMoFilePath": "test\\evalAndArrays\\Specialize.mo",
+      "subInstanceDefinition": "evalAndArrays.Specialize_Unit.uniKeep"
+    },
+    "uniDrop": {
+      "type_specifier": "evalAndArrays.Specialize_Unit",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "Specialize",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "uniDrop",
+          "modification": {
+            "class_modification": [
+              {
+                "element_modification_or_replaceable": {
+                  "final": true,
+                  "element_modification": {
+                    "name": "useOff",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "false"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "element_modification_or_replaceable": {
+                  "final": true,
+                  "element_modification": {
+                    "name": "p",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "3"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "element_modification_or_replaceable": {
+                  "element_modification": {
+                    "name": "n",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "1"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "description": {
+          "description_string": "Drops the conditional adder, expect the class as its type"
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "evalAndArrays",
+      "fullMoFilePath": "test\\evalAndArrays\\Specialize.mo",
+      "subInstanceDefinition": "evalAndArrays.Specialize_Unit.uniDrop"
+    },
+    "uniWide": {
+      "type_specifier": "evalAndArrays.Specialize_Unit",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "Specialize",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "uniWide",
+          "modification": {
+            "class_modification": [
+              {
+                "element_modification_or_replaceable": {
+                  "final": true,
+                  "element_modification": {
+                    "name": "n",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "2"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "element_modification_or_replaceable": {
+                  "final": true,
+                  "element_modification": {
+                    "name": "useOff",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "true"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "element_modification_or_replaceable": {
+                  "final": true,
+                  "element_modification": {
+                    "name": "p",
+                    "modification": {
+                      "equal": true,
+                      "expression": {
+                        "simple_expression": "4"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "description": {
+          "description_string": "Two elements where the class has one, expect a class of its own"
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "evalAndArrays",
+      "fullMoFilePath": "test\\evalAndArrays\\Specialize.mo",
+      "subInstanceDefinition": "evalAndArrays.Specialize_Unit.uniWide"
+    }
+  },
+  "requiredReferences": {
+    "connections": {
+      "u": [
+        "uniKeep.u_1",
+        "uniKeep.uOne",
+        "uniDrop.u_1",
+        "uniDrop.uOne",
+        "uniWide.u_1",
+        "uniWide.u_2",
+        "uniWide.uOne"
+      ],
+      "uniKeep.yOne": [
+        "yKeep"
+      ],
+      "uniDrop.y_1": [
+        "yDrop"
+      ],
+      "uniWide.y_1": [
+        "yWide_1"
+      ],
+      "uniWide.y_2": [
+        "yWide_2"
+      ]
+    }
+  }
+}

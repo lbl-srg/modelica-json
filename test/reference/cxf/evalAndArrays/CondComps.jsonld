@@ -1,0 +1,98 @@
+{
+  "@context": {
+    "S231": "http://data.ashrae.org/S231#",
+    "ex": "http://example.org#"
+  },
+  "@graph": [
+    {
+      "@id": "ex:evalAndArrays.CondComps",
+      "@type": "S231:Block",
+      "S231:containsBlock": {
+        "@id": "ex:evalAndArrays.CondComps.multKeep"
+      },
+      "S231:hasInput": {
+        "@id": "ex:evalAndArrays.CondComps.u"
+      },
+      "S231:hasOutput": {
+        "@id": "ex:evalAndArrays.CondComps.y"
+      },
+      "S231:hasParameter": [
+        {
+          "@id": "ex:evalAndArrays.CondComps.conditionalVal"
+        },
+        {
+          "@id": "ex:evalAndArrays.CondComps.nZon"
+        }
+      ],
+      "S231:label": "CondComps"
+    },
+    {
+      "@id": "ex:evalAndArrays.CondComps.conditionalVal",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Expected to be true",
+      "S231:isOfDataType": {
+        "@id": "S231:Boolean"
+      },
+      "S231:label": "conditionalVal",
+      "S231:value": true
+    },
+    {
+      "@id": "ex:evalAndArrays.CondComps.multKeep",
+      "@type": "ex:Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Kept",
+      "S231:hasInstance": [
+        {
+          "@id": "ex:evalAndArrays.CondComps.multKeep.k"
+        },
+        {
+          "@id": "ex:evalAndArrays.CondComps.multKeep.u"
+        },
+        {
+          "@id": "ex:evalAndArrays.CondComps.multKeep.y"
+        }
+      ],
+      "S231:label": "multKeep"
+    },
+    {
+      "@id": "ex:evalAndArrays.CondComps.multKeep.k",
+      "S231:isFinal": true,
+      "S231:value": 1
+    },
+    {
+      "@id": "ex:evalAndArrays.CondComps.multKeep.y",
+      "S231:isConnectedTo": {
+        "@id": "ex:evalAndArrays.CondComps.y"
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.CondComps.nZon",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "# of zones",
+      "S231:isOfDataType": {
+        "@id": "S231:Integer"
+      },
+      "S231:label": "nZon",
+      "S231:value": 1
+    },
+    {
+      "@id": "ex:evalAndArrays.CondComps.u",
+      "@type": "S231:RealInput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Measured signal",
+      "S231:isConnectedTo": {
+        "@id": "ex:evalAndArrays.CondComps.multKeep.u"
+      },
+      "S231:label": "u"
+    },
+    {
+      "@id": "ex:evalAndArrays.CondComps.y",
+      "@type": "S231:RealOutput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Control signal",
+      "S231:label": "y"
+    }
+  ]
+}

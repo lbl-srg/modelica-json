@@ -1,0 +1,162 @@
+{
+  "@context": {
+    "S231": "http://data.ashrae.org/S231#",
+    "ex": "http://example.org#",
+    "modelica": "https://modelica.org/"
+  },
+  "@graph": [
+    {
+      "@id": "ex:evalAndArrays.ArrayToReplicator",
+      "@type": "S231:Block",
+      "S231:containsBlock": {
+        "@id": "ex:evalAndArrays.ArrayToReplicator.realScaRep"
+      },
+      "S231:hasInput": {
+        "@id": "ex:evalAndArrays.ArrayToReplicator.u"
+      },
+      "S231:hasOutput": [
+        {
+          "@id": "ex:evalAndArrays.ArrayToReplicator.y_1"
+        },
+        {
+          "@id": "ex:evalAndArrays.ArrayToReplicator.y_2"
+        },
+        {
+          "@id": "ex:evalAndArrays.ArrayToReplicator.y_3"
+        }
+      ],
+      "S231:hasParameter": {
+        "@id": "ex:evalAndArrays.ArrayToReplicator.nZon"
+      },
+      "S231:label": "ArrayToReplicator"
+    },
+    {
+      "@id": "ex:evalAndArrays.ArrayToReplicator.nZon",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "# of zones",
+      "S231:isOfDataType": {
+        "@id": "S231:Integer"
+      },
+      "S231:label": "nZon",
+      "S231:value": 3
+    },
+    {
+      "@id": "ex:evalAndArrays.ArrayToReplicator.realScaRep",
+      "@type": "ex:evalAndArrays.ArrayToReplicator.realScaRep",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Replicates the input to nZon outputs",
+      "S231:hasInstance": [
+        {
+          "@id": "ex:evalAndArrays.ArrayToReplicator.realScaRep.nout"
+        },
+        {
+          "@id": "ex:evalAndArrays.ArrayToReplicator.realScaRep.u"
+        },
+        {
+          "@id": "ex:evalAndArrays.ArrayToReplicator.realScaRep.y_1"
+        },
+        {
+          "@id": "ex:evalAndArrays.ArrayToReplicator.realScaRep.y_2"
+        },
+        {
+          "@id": "ex:evalAndArrays.ArrayToReplicator.realScaRep.y_3"
+        }
+      ],
+      "S231:label": "realScaRep"
+    },
+    {
+      "@id": "ex:evalAndArrays.ArrayToReplicator.realScaRep.nout",
+      "S231:isFinal": true,
+      "S231:value": 3
+    },
+    {
+      "@id": "ex:evalAndArrays.ArrayToReplicator.realScaRep.y_1",
+      "S231:isConnectedTo": {
+        "@id": "ex:evalAndArrays.ArrayToReplicator.y_1"
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.ArrayToReplicator.realScaRep.y_2",
+      "S231:isConnectedTo": {
+        "@id": "ex:evalAndArrays.ArrayToReplicator.y_2"
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.ArrayToReplicator.realScaRep.y_3",
+      "S231:isConnectedTo": {
+        "@id": "ex:evalAndArrays.ArrayToReplicator.y_3"
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.ArrayToReplicator.u",
+      "@type": "S231:RealInput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Input signal for the replicator",
+      "S231:isConnectedTo": {
+        "@id": "ex:evalAndArrays.ArrayToReplicator.realScaRep.u"
+      },
+      "S231:label": "u"
+    },
+    {
+      "@id": "ex:evalAndArrays.ArrayToReplicator.y_1",
+      "@type": "S231:RealOutput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Output of each zone",
+      "S231:label": "y_1",
+      "modelica:arrayExpansion": {
+        "modelica:arrayName": "y",
+        "modelica:index": {
+          "@list": [
+            1
+          ]
+        },
+        "modelica:size": {
+          "@list": [
+            3
+          ]
+        }
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.ArrayToReplicator.y_2",
+      "@type": "S231:RealOutput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Output of each zone",
+      "S231:label": "y_2",
+      "modelica:arrayExpansion": {
+        "modelica:arrayName": "y",
+        "modelica:index": {
+          "@list": [
+            2
+          ]
+        },
+        "modelica:size": {
+          "@list": [
+            3
+          ]
+        }
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.ArrayToReplicator.y_3",
+      "@type": "S231:RealOutput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Output of each zone",
+      "S231:label": "y_3",
+      "modelica:arrayExpansion": {
+        "modelica:arrayName": "y",
+        "modelica:index": {
+          "@list": [
+            3
+          ]
+        },
+        "modelica:size": {
+          "@list": [
+            3
+          ]
+        }
+      }
+    }
+  ]
+}

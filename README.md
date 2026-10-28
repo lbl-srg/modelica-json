@@ -132,6 +132,14 @@ If `--elementary` flag is specified, the CXF (jsonld) files for the elementary b
 If `--cxfCore` flag is specified, generate the  CXF-core.jsonld files for all the elementary blocks. The default option is `false`.
 `-o`/`--output` should be `cxf`, `-f`/`--file` should be `path/to/CDL` and `--elementary` flag must be used.
 
+##### --evaluateExpressions
+
+If `--evaluateExpressions` flag is specified, expressions are resolved into literal values and disabled conditional components are removed. The default option is `false`.
+
+##### --flattenArrays
+
+If `--flattenArrays` flag is specified, arrays are flattened into a single dimension, with the index appended to the variable or component (e.g. `blk[3]` becomes `blk_1`, `blk_2`, `blk_3`). The default option is `false`.
+
 #### Exporting controls from a Modelica model
 
 A control sequence is often instantiated within a larger Modelica model that is not itself CDL compliant, such as a Buildings library template. To translate only the control sequence to CXF, parse the model with the modelica mode and mark the control block with a __cdl(isControls=true) annotation:

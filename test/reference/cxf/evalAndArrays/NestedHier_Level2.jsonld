@@ -1,0 +1,96 @@
+{
+  "@context": {
+    "S231": "http://data.ashrae.org/S231#",
+    "ex": "http://example.org#"
+  },
+  "@graph": [
+    {
+      "@id": "ex:evalAndArrays.NestedHier_Level2",
+      "@type": "S231:Block",
+      "S231:containsBlock": {
+        "@id": "ex:evalAndArrays.NestedHier_Level2.lev3"
+      },
+      "S231:hasInput": {
+        "@id": "ex:evalAndArrays.NestedHier_Level2.u"
+      },
+      "S231:hasOutput": {
+        "@id": "ex:evalAndArrays.NestedHier_Level2.y"
+      },
+      "S231:hasParameter": [
+        {
+          "@id": "ex:evalAndArrays.NestedHier_Level2.mult"
+        },
+        {
+          "@id": "ex:evalAndArrays.NestedHier_Level2.nZon"
+        }
+      ],
+      "S231:label": "NestedHier_Level2"
+    },
+    {
+      "@id": "ex:evalAndArrays.NestedHier_Level2.lev3",
+      "@type": "ex:evalAndArrays.NestedHier_Level3",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Expect mult = 4/3",
+      "S231:hasInstance": [
+        {
+          "@id": "ex:evalAndArrays.NestedHier_Level2.lev3.mult"
+        },
+        {
+          "@id": "ex:evalAndArrays.NestedHier_Level2.lev3.u"
+        },
+        {
+          "@id": "ex:evalAndArrays.NestedHier_Level2.lev3.y"
+        }
+      ],
+      "S231:label": "lev3"
+    },
+    {
+      "@id": "ex:evalAndArrays.NestedHier_Level2.lev3.mult",
+      "S231:isFinal": true,
+      "S231:value": "mult/nZon"
+    },
+    {
+      "@id": "ex:evalAndArrays.NestedHier_Level2.lev3.y",
+      "S231:isConnectedTo": {
+        "@id": "ex:evalAndArrays.NestedHier_Level2.y"
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.NestedHier_Level2.mult",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "From the level above",
+      "S231:isOfDataType": {
+        "@id": "S231:Real"
+      },
+      "S231:label": "mult"
+    },
+    {
+      "@id": "ex:evalAndArrays.NestedHier_Level2.nZon",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "From the level above",
+      "S231:isOfDataType": {
+        "@id": "S231:Integer"
+      },
+      "S231:label": "nZon"
+    },
+    {
+      "@id": "ex:evalAndArrays.NestedHier_Level2.u",
+      "@type": "S231:RealInput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Input signal",
+      "S231:isConnectedTo": {
+        "@id": "ex:evalAndArrays.NestedHier_Level2.lev3.u"
+      },
+      "S231:label": "u"
+    },
+    {
+      "@id": "ex:evalAndArrays.NestedHier_Level2.y",
+      "@type": "S231:RealOutput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Output signal",
+      "S231:label": "y"
+    }
+  ]
+}

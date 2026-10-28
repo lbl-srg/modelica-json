@@ -1,0 +1,127 @@
+{
+  "@context": {
+    "S231": "http://data.ashrae.org/S231#",
+    "ex": "http://example.org#",
+    "modelica": "https://modelica.org/"
+  },
+  "@graph": [
+    {
+      "@id": "ex:evalAndArrays.ArrayToReplicator.realScaRep",
+      "@type": "S231:Block",
+      "S231:documentation": "info=<html>\n<p>\nThis block replicates the Real input signal to an array of <code>nout</code>\nidentical Real output signals.\n</p>\n</html>,revisions=<html>\n<ul>\n<li>\nJuly 27, 2021, by Baptiste Ravache:<br/>\nRenamed to <code>RealScalarReplicator</code>.\n</li>\n<li>\nJuly 24, 2017, by Jianjun Hu:<br/>\nFirst implementation, based on the implementation of the\nModelica Standard Library.\n</li>\n</ul>\n</html>",
+      "S231:hasInput": {
+        "@id": "ex:evalAndArrays.ArrayToReplicator.realScaRep.u"
+      },
+      "S231:hasOutput": [
+        {
+          "@id": "ex:evalAndArrays.ArrayToReplicator.realScaRep.y_1"
+        },
+        {
+          "@id": "ex:evalAndArrays.ArrayToReplicator.realScaRep.y_2"
+        },
+        {
+          "@id": "ex:evalAndArrays.ArrayToReplicator.realScaRep.y_3"
+        }
+      ],
+      "S231:hasParameter": {
+        "@id": "ex:evalAndArrays.ArrayToReplicator.realScaRep.nout"
+      },
+      "S231:icon": "graphics={Rectangle(extent={{-100,-100},{100,100}},lineColor={0,0,127},fillColor={255,255,255},fillPattern=FillPattern.Solid),Line(color={0,0,127},points={{-100,0},{-6,0}}),Line(color={0,0,127},points={{100,0},{10,0}}),Line(color={0,0,127},points={{0,0},{100,10}}),Line(color={0,0,127},points={{0,0},{100,-10}}),Ellipse(extent={{-14,16},{16,-14}},lineColor={0,0,0},fillColor={0,0,127},fillPattern=FillPattern.Solid),Text(textString=\"%name\",textColor={0,0,255},extent={{-150,110},{150,150}})}",
+      "S231:label": "ArrayToReplicator.realScaRep",
+      "modelica:instanceOf": "Buildings.Controls.OBC.CDL.Routing.RealScalarReplicator"
+    },
+    {
+      "@id": "ex:evalAndArrays.ArrayToReplicator.realScaRep.nout",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Number of outputs",
+      "S231:isOfDataType": {
+        "@id": "S231:Integer"
+      },
+      "S231:label": "nout",
+      "S231:value": 3
+    },
+    {
+      "@id": "ex:evalAndArrays.ArrayToReplicator.realScaRep.u",
+      "@type": "S231:RealInput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Input signal to be replicated",
+      "S231:graphics": "Placement(transformation(extent={{-140,-20},{-100,20}})))",
+      "S231:isConnectedTo": [
+        {
+          "@id": "ex:evalAndArrays.ArrayToReplicator.realScaRep.y_1"
+        },
+        {
+          "@id": "ex:evalAndArrays.ArrayToReplicator.realScaRep.y_2"
+        },
+        {
+          "@id": "ex:evalAndArrays.ArrayToReplicator.realScaRep.y_3"
+        }
+      ],
+      "S231:label": "u"
+    },
+    {
+      "@id": "ex:evalAndArrays.ArrayToReplicator.realScaRep.y_1",
+      "@type": "S231:RealOutput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Output with replicated input signal",
+      "S231:graphics": "Placement(transformation(extent={{100,-20},{140,20}})))",
+      "S231:label": "y_1",
+      "modelica:arrayExpansion": {
+        "modelica:arrayName": "y",
+        "modelica:index": {
+          "@list": [
+            1
+          ]
+        },
+        "modelica:size": {
+          "@list": [
+            3
+          ]
+        }
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.ArrayToReplicator.realScaRep.y_2",
+      "@type": "S231:RealOutput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Output with replicated input signal",
+      "S231:graphics": "Placement(transformation(extent={{100,-20},{140,20}})))",
+      "S231:label": "y_2",
+      "modelica:arrayExpansion": {
+        "modelica:arrayName": "y",
+        "modelica:index": {
+          "@list": [
+            2
+          ]
+        },
+        "modelica:size": {
+          "@list": [
+            3
+          ]
+        }
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.ArrayToReplicator.realScaRep.y_3",
+      "@type": "S231:RealOutput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Output with replicated input signal",
+      "S231:graphics": "Placement(transformation(extent={{100,-20},{140,20}})))",
+      "S231:label": "y_3",
+      "modelica:arrayExpansion": {
+        "modelica:arrayName": "y",
+        "modelica:index": {
+          "@list": [
+            3
+          ]
+        },
+        "modelica:size": {
+          "@list": [
+            3
+          ]
+        }
+      }
+    }
+  ]
+}

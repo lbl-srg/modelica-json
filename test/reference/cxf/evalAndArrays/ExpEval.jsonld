@@ -1,0 +1,41 @@
+{
+  "@context": {
+    "S231": "http://data.ashrae.org/S231#",
+    "ex": "http://example.org#"
+  },
+  "@graph": [
+    {
+      "@id": "ex:evalAndArrays.ExpEval",
+      "@type": "S231:Block",
+      "S231:hasParameter": [
+        {
+          "@id": "ex:evalAndArrays.ExpEval.newNZon"
+        },
+        {
+          "@id": "ex:evalAndArrays.ExpEval.nZon"
+        }
+      ],
+      "S231:label": "ExpEval"
+    },
+    {
+      "@id": "ex:evalAndArrays.ExpEval.newNZon",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:isOfDataType": {
+        "@id": "S231:Integer"
+      },
+      "S231:label": "newNZon",
+      "S231:value": 10
+    },
+    {
+      "@id": "ex:evalAndArrays.ExpEval.nZon",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:isOfDataType": {
+        "@id": "S231:Integer"
+      },
+      "S231:label": "nZon",
+      "S231:value": 5
+    }
+  ]
+}

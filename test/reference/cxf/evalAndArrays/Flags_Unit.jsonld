@@ -1,0 +1,110 @@
+{
+  "@context": {
+    "S231": "http://data.ashrae.org/S231#",
+    "ex": "http://example.org#"
+  },
+  "@graph": [
+    {
+      "@id": "ex:evalAndArrays.Flags_Unit",
+      "@type": "S231:Block",
+      "S231:containsBlock": {
+        "@id": "ex:evalAndArrays.Flags_Unit.adder"
+      },
+      "S231:hasInput": {
+        "@id": "ex:evalAndArrays.Flags_Unit.u"
+      },
+      "S231:hasOutput": {
+        "@id": "ex:evalAndArrays.Flags_Unit.y"
+      },
+      "S231:hasParameter": [
+        {
+          "@id": "ex:evalAndArrays.Flags_Unit.conditional"
+        },
+        {
+          "@id": "ex:evalAndArrays.Flags_Unit.nZon"
+        },
+        {
+          "@id": "ex:evalAndArrays.Flags_Unit.status"
+        }
+      ],
+      "S231:label": "Flags_Unit"
+    },
+    {
+      "@id": "ex:evalAndArrays.Flags_Unit.adder",
+      "@type": "ex:Buildings.Controls.OBC.CDL.Reals.AddParameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "The one elementary block of the sub sequence",
+      "S231:hasInstance": [
+        {
+          "@id": "ex:evalAndArrays.Flags_Unit.adder.p"
+        },
+        {
+          "@id": "ex:evalAndArrays.Flags_Unit.adder.u"
+        },
+        {
+          "@id": "ex:evalAndArrays.Flags_Unit.adder.y"
+        }
+      ],
+      "S231:label": "adder"
+    },
+    {
+      "@id": "ex:evalAndArrays.Flags_Unit.adder.p",
+      "S231:isFinal": true,
+      "S231:value": "conditional"
+    },
+    {
+      "@id": "ex:evalAndArrays.Flags_Unit.adder.y",
+      "S231:isConnectedTo": {
+        "@id": "ex:evalAndArrays.Flags_Unit.y"
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.Flags_Unit.conditional",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Derived inside the sub sequence, expect 3",
+      "S231:isOfDataType": {
+        "@id": "S231:Real"
+      },
+      "S231:label": "conditional",
+      "S231:value": " if status then nZon else 0"
+    },
+    {
+      "@id": "ex:evalAndArrays.Flags_Unit.nZon",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "# of zones, propagated from the parent",
+      "S231:isOfDataType": {
+        "@id": "S231:Integer"
+      },
+      "S231:label": "nZon"
+    },
+    {
+      "@id": "ex:evalAndArrays.Flags_Unit.status",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Flag, propagated from the parent",
+      "S231:isOfDataType": {
+        "@id": "S231:Boolean"
+      },
+      "S231:label": "status"
+    },
+    {
+      "@id": "ex:evalAndArrays.Flags_Unit.u",
+      "@type": "S231:RealInput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Input signal",
+      "S231:isConnectedTo": {
+        "@id": "ex:evalAndArrays.Flags_Unit.adder.u"
+      },
+      "S231:label": "u"
+    },
+    {
+      "@id": "ex:evalAndArrays.Flags_Unit.y",
+      "@type": "S231:RealOutput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Output signal",
+      "S231:label": "y"
+    }
+  ]
+}

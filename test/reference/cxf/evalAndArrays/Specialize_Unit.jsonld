@@ -1,0 +1,205 @@
+{
+  "@context": {
+    "S231": "http://data.ashrae.org/S231#",
+    "ex": "http://example.org#",
+    "modelica": "https://modelica.org/"
+  },
+  "@graph": [
+    {
+      "@id": "ex:evalAndArrays.Specialize_Unit",
+      "@type": "S231:Block",
+      "S231:containsBlock": [
+        {
+          "@id": "ex:evalAndArrays.Specialize_Unit.abs_1"
+        },
+        {
+          "@id": "ex:evalAndArrays.Specialize_Unit.adder"
+        }
+      ],
+      "S231:hasInput": [
+        {
+          "@id": "ex:evalAndArrays.Specialize_Unit.u_1"
+        },
+        {
+          "@id": "ex:evalAndArrays.Specialize_Unit.uOne"
+        }
+      ],
+      "S231:hasOutput": [
+        {
+          "@id": "ex:evalAndArrays.Specialize_Unit.y_1"
+        },
+        {
+          "@id": "ex:evalAndArrays.Specialize_Unit.yOne"
+        }
+      ],
+      "S231:hasParameter": [
+        {
+          "@id": "ex:evalAndArrays.Specialize_Unit.n"
+        },
+        {
+          "@id": "ex:evalAndArrays.Specialize_Unit.p"
+        },
+        {
+          "@id": "ex:evalAndArrays.Specialize_Unit.useOff"
+        }
+      ],
+      "S231:label": "Specialize_Unit"
+    },
+    {
+      "@id": "ex:evalAndArrays.Specialize_Unit.abs_1",
+      "@type": "ex:Buildings.Controls.OBC.CDL.Reals.Abs",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Array of elementary blocks, sized by n",
+      "S231:hasInstance": [
+        {
+          "@id": "ex:evalAndArrays.Specialize_Unit.abs_1.u"
+        },
+        {
+          "@id": "ex:evalAndArrays.Specialize_Unit.abs_1.y"
+        }
+      ],
+      "S231:label": "abs_1",
+      "modelica:arrayExpansion": {
+        "modelica:arrayName": "abs",
+        "modelica:index": {
+          "@list": [
+            1
+          ]
+        },
+        "modelica:size": {
+          "@list": [
+            1
+          ]
+        }
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.Specialize_Unit.abs_1.y",
+      "S231:isConnectedTo": {
+        "@id": "ex:evalAndArrays.Specialize_Unit.y_1"
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.Specialize_Unit.adder",
+      "@type": "ex:Buildings.Controls.OBC.CDL.Reals.AddParameter",
+      "S231:accessSpecifier": "public",
+      "S231:conditionalExpression": "useOff",
+      "S231:description": "Offset, only present when useOff is true",
+      "S231:hasInstance": [
+        {
+          "@id": "ex:evalAndArrays.Specialize_Unit.adder.p"
+        },
+        {
+          "@id": "ex:evalAndArrays.Specialize_Unit.adder.u"
+        },
+        {
+          "@id": "ex:evalAndArrays.Specialize_Unit.adder.y"
+        }
+      ],
+      "S231:isConditionalComponent": true,
+      "S231:label": "adder"
+    },
+    {
+      "@id": "ex:evalAndArrays.Specialize_Unit.adder.p",
+      "S231:isFinal": true,
+      "S231:value": "p"
+    },
+    {
+      "@id": "ex:evalAndArrays.Specialize_Unit.adder.y",
+      "S231:isConnectedTo": {
+        "@id": "ex:evalAndArrays.Specialize_Unit.yOne"
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.Specialize_Unit.n",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Size of the array, different per instance",
+      "S231:isOfDataType": {
+        "@id": "S231:Integer"
+      },
+      "S231:label": "n",
+      "S231:value": 1
+    },
+    {
+      "@id": "ex:evalAndArrays.Specialize_Unit.p",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Offset, different per instance",
+      "S231:isOfDataType": {
+        "@id": "S231:Real"
+      },
+      "S231:label": "p"
+    },
+    {
+      "@id": "ex:evalAndArrays.Specialize_Unit.u_1",
+      "@type": "S231:RealInput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Input of each element",
+      "S231:isConnectedTo": {
+        "@id": "ex:evalAndArrays.Specialize_Unit.abs_1.u"
+      },
+      "S231:label": "u_1",
+      "modelica:arrayExpansion": {
+        "modelica:arrayName": "u",
+        "modelica:index": {
+          "@list": [
+            1
+          ]
+        },
+        "modelica:size": {
+          "@list": [
+            1
+          ]
+        }
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.Specialize_Unit.uOne",
+      "@type": "S231:RealInput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Input of the offset",
+      "S231:isConnectedTo": {
+        "@id": "ex:evalAndArrays.Specialize_Unit.adder.u"
+      },
+      "S231:label": "uOne"
+    },
+    {
+      "@id": "ex:evalAndArrays.Specialize_Unit.useOff",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Whether the offset is applied, different per instance",
+      "S231:isOfDataType": {
+        "@id": "S231:Boolean"
+      },
+      "S231:label": "useOff"
+    },
+    {
+      "@id": "ex:evalAndArrays.Specialize_Unit.y_1",
+      "@type": "S231:RealOutput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Output of each element",
+      "S231:label": "y_1",
+      "modelica:arrayExpansion": {
+        "modelica:arrayName": "y",
+        "modelica:index": {
+          "@list": [
+            1
+          ]
+        },
+        "modelica:size": {
+          "@list": [
+            1
+          ]
+        }
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.Specialize_Unit.yOne",
+      "@type": "S231:RealOutput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Output of the offset",
+      "S231:label": "yOne"
+    }
+  ]
+}

@@ -1,0 +1,193 @@
+{
+  "@context": {
+    "S231": "http://data.ashrae.org/S231#",
+    "ex": "http://example.org#"
+  },
+  "@graph": [
+    {
+      "@id": "ex:evalAndArrays.FlagsNone",
+      "@type": "S231:Block",
+      "S231:containsBlock": [
+        {
+          "@id": "ex:evalAndArrays.FlagsNone.multer"
+        },
+        {
+          "@id": "ex:evalAndArrays.FlagsNone.uniNone"
+        }
+      ],
+      "S231:hasInput": [
+        {
+          "@id": "ex:evalAndArrays.FlagsNone.u"
+        },
+        {
+          "@id": "ex:evalAndArrays.FlagsNone.uOne"
+        }
+      ],
+      "S231:hasOutput": [
+        {
+          "@id": "ex:evalAndArrays.FlagsNone.y"
+        },
+        {
+          "@id": "ex:evalAndArrays.FlagsNone.yOne"
+        }
+      ],
+      "S231:hasParameter": [
+        {
+          "@id": "ex:evalAndArrays.FlagsNone.k"
+        },
+        {
+          "@id": "ex:evalAndArrays.FlagsNone.nZon"
+        },
+        {
+          "@id": "ex:evalAndArrays.FlagsNone.status"
+        }
+      ],
+      "S231:label": "FlagsNone"
+    },
+    {
+      "@id": "ex:evalAndArrays.FlagsNone.k",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Derived from nZon, expect {1, 2, 3}",
+      "S231:isArray": true,
+      "S231:isOfDataType": {
+        "@id": "S231:Real"
+      },
+      "S231:label": "k[nZon]",
+      "S231:numberDimensions": 1,
+      "S231:sizeOfDimensions": "(nZon)",
+      "S231:value": "{i for i in 1:nZon}"
+    },
+    {
+      "@id": "ex:evalAndArrays.FlagsNone.multer",
+      "@type": "ex:Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Array of elementary blocks, one per zone",
+      "S231:hasInstance": [
+        {
+          "@id": "ex:evalAndArrays.FlagsNone.multer.k"
+        },
+        {
+          "@id": "ex:evalAndArrays.FlagsNone.multer.u"
+        },
+        {
+          "@id": "ex:evalAndArrays.FlagsNone.multer.y"
+        }
+      ],
+      "S231:isArray": true,
+      "S231:label": "multer[nZon]",
+      "S231:numberDimensions": 1,
+      "S231:sizeOfDimensions": "(nZon)"
+    },
+    {
+      "@id": "ex:evalAndArrays.FlagsNone.multer.k",
+      "S231:isFinal": true,
+      "S231:value": "k"
+    },
+    {
+      "@id": "ex:evalAndArrays.FlagsNone.multer.y",
+      "S231:isConnectedTo": {
+        "@id": "ex:evalAndArrays.FlagsNone.y"
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.FlagsNone.nZon",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "# of zones",
+      "S231:isOfDataType": {
+        "@id": "S231:Integer"
+      },
+      "S231:label": "nZon",
+      "S231:value": 3
+    },
+    {
+      "@id": "ex:evalAndArrays.FlagsNone.status",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Derived from nZon, expect true",
+      "S231:isOfDataType": {
+        "@id": "S231:Boolean"
+      },
+      "S231:label": "status",
+      "S231:value": " if nZon > 1 then true else false"
+    },
+    {
+      "@id": "ex:evalAndArrays.FlagsNone.u",
+      "@type": "S231:RealInput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Input of each zone",
+      "S231:isArray": true,
+      "S231:isConnectedTo": {
+        "@id": "ex:evalAndArrays.FlagsNone.multer.u"
+      },
+      "S231:label": "u[nZon]",
+      "S231:numberDimensions": 1,
+      "S231:sizeOfDimensions": "(nZon)"
+    },
+    {
+      "@id": "ex:evalAndArrays.FlagsNone.uniNone",
+      "@type": "ex:evalAndArrays.Flags_Unit",
+      "S231:accessSpecifier": "public",
+      "S231:description": "The one sub sequence instance",
+      "S231:hasInstance": [
+        {
+          "@id": "ex:evalAndArrays.FlagsNone.uniNone.nZon"
+        },
+        {
+          "@id": "ex:evalAndArrays.FlagsNone.uniNone.status"
+        },
+        {
+          "@id": "ex:evalAndArrays.FlagsNone.uniNone.u"
+        },
+        {
+          "@id": "ex:evalAndArrays.FlagsNone.uniNone.y"
+        }
+      ],
+      "S231:label": "uniNone"
+    },
+    {
+      "@id": "ex:evalAndArrays.FlagsNone.uniNone.nZon",
+      "S231:isFinal": true,
+      "S231:value": "nZon"
+    },
+    {
+      "@id": "ex:evalAndArrays.FlagsNone.uniNone.status",
+      "S231:isFinal": true,
+      "S231:value": "status"
+    },
+    {
+      "@id": "ex:evalAndArrays.FlagsNone.uniNone.y",
+      "S231:isConnectedTo": {
+        "@id": "ex:evalAndArrays.FlagsNone.yOne"
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.FlagsNone.uOne",
+      "@type": "S231:RealInput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Input of the sub sequence",
+      "S231:isConnectedTo": {
+        "@id": "ex:evalAndArrays.FlagsNone.uniNone.u"
+      },
+      "S231:label": "uOne"
+    },
+    {
+      "@id": "ex:evalAndArrays.FlagsNone.y",
+      "@type": "S231:RealOutput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Output of each zone",
+      "S231:isArray": true,
+      "S231:label": "y[nZon]",
+      "S231:numberDimensions": 1,
+      "S231:sizeOfDimensions": "(nZon)"
+    },
+    {
+      "@id": "ex:evalAndArrays.FlagsNone.yOne",
+      "@type": "S231:RealOutput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Output of the sub sequence",
+      "S231:label": "yOne"
+    }
+  ]
+}

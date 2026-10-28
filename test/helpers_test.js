@@ -190,6 +190,27 @@ function parameterValue (instance) {
 }
 
 /**
+ * The value a component's declaration gives one parameter of the class it instantiates.
+ *
+ * @param {Object} instance - the component, as the objects json holds it
+ * @param {string} name - the parameter, `inpVal` for `uni1(inpVal=1)`
+ * @returns {string|undefined} the value, or undefined when the declaration gives none
+ */
+function modificationValue (instance, name) {
+  const declaration = instance.single_component_list && instance.single_component_list.declaration
+  const classModification = (declaration && declaration.modification &&
+    declaration.modification.class_modification) || []
+  const found = classModification
+    .map(function (modification) {
+      return modification.element_modification_or_replaceable &&
+        modification.element_modification_or_replaceable.element_modification
+    })
+    .find(function (element) { return element && element.name === name })
+  return found && found.modification && found.modification.expression &&
+    found.modification.expression.simple_expression
+}
+
+/**
  * Directory the failing comparisons dump their artifacts into.
  *
  * It sits outside the package so a parser run, which wipes `objects/`, cannot
@@ -301,9 +322,10 @@ function ownClass (objectsJson) {
  * Two fields carry everything needed:
  *   * `class_prefixes`, on the entry a file holds for its own class, separates
  *     a sequence from the package file, which is not a sequence at all.
- *   * `instanceOf`, which only the per instantiation files carry, names the
- *     class an instantiation came from. The union of those names over the
- *     package is exactly its set of sub-sequence classes.
+ *   * `instanceOf`, which only the per instantiation files carry, and the
+ *     `type_specifier` of a component name the class an instantiation came
+ *     from. The union of those names over the package is exactly its set of
+ *     sub-sequence classes.
  *
  * The class file of a sub-sequence is deliberately not a test case: its
  * parameters take their values at the point of instantiation, so it still holds
@@ -321,11 +343,13 @@ function testCaseNames (dir) {
     return [name, readObjects(dir, name)]
   }))
 
-  // Every class that some instantiation in this package came from.
+  // Every class that some instantiation in this package came from, whether it
+  // got a file of its own or kept the class as its type.
   const subSequenceClasses = new Set()
   objectsJsons.forEach(function (objectsJson) {
     Object.values(objectsJson.instances || {}).forEach(function (instance) {
       if (instance.instanceOf !== undefined) subSequenceClasses.add(instance.instanceOf)
+      if (instance.type === 'element') subSequenceClasses.add(instance.type_specifier)
     })
   })
 
@@ -382,26 +406,6 @@ function subSequenceFiles (dir, name) {
   return found
 }
 
-/**
- * The sub-sequence blocks of one sequence, in the shape generateCxf hands them
- * to the CXF extractor.
- *
- * @param {string} dir - directory holding the objects json
- * @param {string} name - base name of the sequence to start from
- * @returns {Array<Object>} one `{blockName, instances, requiredReferences}` each
- */
-function subBlocks (dir, name) {
-  return subSequenceFiles(dir, name).map(function (file) {
-    const objects = readNormalizedObjects(objectsJsonPath(dir, file))
-    return {
-      // The file name is the name the block calls itself, without its package.
-      blockName: file,
-      instances: objects.instances,
-      requiredReferences: objects.requiredReferences
-    }
-  })
-}
-
 module.exports.jsonBaseNames = jsonBaseNames
 module.exports.objectsJsonPath = objectsJsonPath
 module.exports.generatedObjectsDir = generatedObjectsDir
@@ -410,6 +414,7 @@ module.exports.readNormalizedObjects = readNormalizedObjects
 module.exports.asNumbers = asNumbers
 module.exports.compare = compare
 module.exports.parameterValue = parameterValue
+module.exports.modificationValue = modificationValue
 module.exports.removeOutputDirs = removeOutputDirs
 module.exports.diffDir = diffDir
 module.exports.stableStringify = stableStringify
@@ -418,4 +423,3 @@ module.exports.readObjects = readObjects
 module.exports.ownClass = ownClass
 module.exports.testCaseNames = testCaseNames
 module.exports.subSequenceFiles = subSequenceFiles
-module.exports.subBlocks = subBlocks

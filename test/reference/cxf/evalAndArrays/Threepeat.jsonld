@@ -1,0 +1,245 @@
+{
+  "@context": {
+    "S231": "http://data.ashrae.org/S231#",
+    "ex": "http://example.org#"
+  },
+  "@graph": [
+    {
+      "@id": "ex:evalAndArrays.Threepeat",
+      "@type": "S231:Block",
+      "S231:containsBlock": [
+        {
+          "@id": "ex:evalAndArrays.Threepeat.mulSum"
+        },
+        {
+          "@id": "ex:evalAndArrays.Threepeat.uni1"
+        },
+        {
+          "@id": "ex:evalAndArrays.Threepeat.uni2"
+        },
+        {
+          "@id": "ex:evalAndArrays.Threepeat.uni3"
+        }
+      ],
+      "S231:hasInput": {
+        "@id": "ex:evalAndArrays.Threepeat.u"
+      },
+      "S231:hasOutput": {
+        "@id": "ex:evalAndArrays.Threepeat.y"
+      },
+      "S231:hasParameter": [
+        {
+          "@id": "ex:evalAndArrays.Threepeat.inpOne"
+        },
+        {
+          "@id": "ex:evalAndArrays.Threepeat.inpThr"
+        },
+        {
+          "@id": "ex:evalAndArrays.Threepeat.inpTwo"
+        }
+      ],
+      "S231:label": "Threepeat"
+    },
+    {
+      "@id": "ex:evalAndArrays.Threepeat.inpOne",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "First instance value",
+      "S231:isOfDataType": {
+        "@id": "S231:Real"
+      },
+      "S231:label": "inpOne",
+      "S231:value": 1
+    },
+    {
+      "@id": "ex:evalAndArrays.Threepeat.inpThr",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Third instance value",
+      "S231:isOfDataType": {
+        "@id": "S231:Real"
+      },
+      "S231:label": "inpThr",
+      "S231:value": 3
+    },
+    {
+      "@id": "ex:evalAndArrays.Threepeat.inpTwo",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Second instance value",
+      "S231:isOfDataType": {
+        "@id": "S231:Real"
+      },
+      "S231:label": "inpTwo",
+      "S231:value": 2
+    },
+    {
+      "@id": "ex:evalAndArrays.Threepeat.mulSum",
+      "@type": "ex:evalAndArrays.Threepeat.mulSum",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Sum of the three instance outputs",
+      "S231:hasInstance": [
+        {
+          "@id": "ex:evalAndArrays.Threepeat.mulSum.nin"
+        },
+        {
+          "@id": "ex:evalAndArrays.Threepeat.mulSum.u_1"
+        },
+        {
+          "@id": "ex:evalAndArrays.Threepeat.mulSum.u_2"
+        },
+        {
+          "@id": "ex:evalAndArrays.Threepeat.mulSum.u_3"
+        },
+        {
+          "@id": "ex:evalAndArrays.Threepeat.mulSum.y"
+        }
+      ],
+      "S231:label": "mulSum"
+    },
+    {
+      "@id": "ex:evalAndArrays.Threepeat.mulSum.nin",
+      "S231:isFinal": true,
+      "S231:value": 3
+    },
+    {
+      "@id": "ex:evalAndArrays.Threepeat.mulSum.y",
+      "S231:isConnectedTo": {
+        "@id": "ex:evalAndArrays.Threepeat.y"
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.Threepeat.u",
+      "@type": "S231:RealInput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Input signal",
+      "S231:isConnectedTo": [
+        {
+          "@id": "ex:evalAndArrays.Threepeat.uni1.u"
+        },
+        {
+          "@id": "ex:evalAndArrays.Threepeat.uni2.u"
+        },
+        {
+          "@id": "ex:evalAndArrays.Threepeat.uni3.u"
+        }
+      ],
+      "S231:label": "u"
+    },
+    {
+      "@id": "ex:evalAndArrays.Threepeat.uni1",
+      "@type": "ex:evalAndArrays.Threepeat_Unit.uni1",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Expect inpVal = 1, derivVal = 2",
+      "S231:hasInstance": [
+        {
+          "@id": "ex:evalAndArrays.Threepeat.uni1.derivVal"
+        },
+        {
+          "@id": "ex:evalAndArrays.Threepeat.uni1.inpVal"
+        },
+        {
+          "@id": "ex:evalAndArrays.Threepeat.uni1.u"
+        },
+        {
+          "@id": "ex:evalAndArrays.Threepeat.uni1.y"
+        }
+      ],
+      "S231:label": "uni1"
+    },
+    {
+      "@id": "ex:evalAndArrays.Threepeat.uni1.derivVal",
+      "S231:value": 2
+    },
+    {
+      "@id": "ex:evalAndArrays.Threepeat.uni1.inpVal",
+      "S231:isFinal": true,
+      "S231:value": 1
+    },
+    {
+      "@id": "ex:evalAndArrays.Threepeat.uni1.y",
+      "S231:isConnectedTo": {
+        "@id": "ex:evalAndArrays.Threepeat.mulSum.u_1"
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.Threepeat.uni2",
+      "@type": "ex:evalAndArrays.Threepeat_Unit.uni2",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Expect inpVal = 2, derivVal = 3",
+      "S231:hasInstance": [
+        {
+          "@id": "ex:evalAndArrays.Threepeat.uni2.derivVal"
+        },
+        {
+          "@id": "ex:evalAndArrays.Threepeat.uni2.inpVal"
+        },
+        {
+          "@id": "ex:evalAndArrays.Threepeat.uni2.u"
+        },
+        {
+          "@id": "ex:evalAndArrays.Threepeat.uni2.y"
+        }
+      ],
+      "S231:label": "uni2"
+    },
+    {
+      "@id": "ex:evalAndArrays.Threepeat.uni2.derivVal",
+      "S231:value": 3
+    },
+    {
+      "@id": "ex:evalAndArrays.Threepeat.uni2.inpVal",
+      "S231:isFinal": true,
+      "S231:value": 2
+    },
+    {
+      "@id": "ex:evalAndArrays.Threepeat.uni2.y",
+      "S231:isConnectedTo": {
+        "@id": "ex:evalAndArrays.Threepeat.mulSum.u_2"
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.Threepeat.uni3",
+      "@type": "ex:evalAndArrays.Threepeat_Unit.uni3",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Expect inpVal = 3, derivVal = 4",
+      "S231:hasInstance": [
+        {
+          "@id": "ex:evalAndArrays.Threepeat.uni3.derivVal"
+        },
+        {
+          "@id": "ex:evalAndArrays.Threepeat.uni3.inpVal"
+        },
+        {
+          "@id": "ex:evalAndArrays.Threepeat.uni3.u"
+        },
+        {
+          "@id": "ex:evalAndArrays.Threepeat.uni3.y"
+        }
+      ],
+      "S231:label": "uni3"
+    },
+    {
+      "@id": "ex:evalAndArrays.Threepeat.uni3.derivVal",
+      "S231:value": 4
+    },
+    {
+      "@id": "ex:evalAndArrays.Threepeat.uni3.inpVal",
+      "S231:isFinal": true,
+      "S231:value": 3
+    },
+    {
+      "@id": "ex:evalAndArrays.Threepeat.uni3.y",
+      "S231:isConnectedTo": {
+        "@id": "ex:evalAndArrays.Threepeat.mulSum.u_3"
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.Threepeat.y",
+      "@type": "S231:RealOutput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Sum of the three outputs",
+      "S231:label": "y"
+    }
+  ]
+}

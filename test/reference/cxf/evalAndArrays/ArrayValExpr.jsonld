@@ -1,0 +1,601 @@
+{
+  "@context": {
+    "S231": "http://data.ashrae.org/S231#",
+    "ex": "http://example.org#",
+    "modelica": "https://modelica.org/"
+  },
+  "@graph": [
+    {
+      "@id": "ex:evalAndArrays.ArrayValExpr",
+      "@type": "S231:Block",
+      "S231:containsBlock": [
+        {
+          "@id": "ex:evalAndArrays.ArrayValExpr.addPar_1"
+        },
+        {
+          "@id": "ex:evalAndArrays.ArrayValExpr.addPar_2"
+        },
+        {
+          "@id": "ex:evalAndArrays.ArrayValExpr.addPar_3"
+        },
+        {
+          "@id": "ex:evalAndArrays.ArrayValExpr.mulSum"
+        }
+      ],
+      "S231:hasInput": [
+        {
+          "@id": "ex:evalAndArrays.ArrayValExpr.u_1"
+        },
+        {
+          "@id": "ex:evalAndArrays.ArrayValExpr.u_2"
+        },
+        {
+          "@id": "ex:evalAndArrays.ArrayValExpr.u_3"
+        }
+      ],
+      "S231:hasOutput": {
+        "@id": "ex:evalAndArrays.ArrayValExpr.y"
+      },
+      "S231:hasParameter": [
+        {
+          "@id": "ex:evalAndArrays.ArrayValExpr.kBas"
+        },
+        {
+          "@id": "ex:evalAndArrays.ArrayValExpr.kNor_1"
+        },
+        {
+          "@id": "ex:evalAndArrays.ArrayValExpr.kNor_2"
+        },
+        {
+          "@id": "ex:evalAndArrays.ArrayValExpr.kNor_3"
+        },
+        {
+          "@id": "ex:evalAndArrays.ArrayValExpr.kSum"
+        },
+        {
+          "@id": "ex:evalAndArrays.ArrayValExpr.kZon_1"
+        },
+        {
+          "@id": "ex:evalAndArrays.ArrayValExpr.kZon_2"
+        },
+        {
+          "@id": "ex:evalAndArrays.ArrayValExpr.kZon_3"
+        },
+        {
+          "@id": "ex:evalAndArrays.ArrayValExpr.nZon"
+        },
+        {
+          "@id": "ex:evalAndArrays.ArrayValExpr.off_1"
+        },
+        {
+          "@id": "ex:evalAndArrays.ArrayValExpr.off_2"
+        },
+        {
+          "@id": "ex:evalAndArrays.ArrayValExpr.off_3"
+        }
+      ],
+      "S231:label": "ArrayValExpr"
+    },
+    {
+      "@id": "ex:evalAndArrays.ArrayValExpr.addPar_1",
+      "@type": "ex:Buildings.Controls.OBC.CDL.Reals.AddParameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Array expression used element by element",
+      "S231:hasInstance": [
+        {
+          "@id": "ex:evalAndArrays.ArrayValExpr.addPar_1.p"
+        },
+        {
+          "@id": "ex:evalAndArrays.ArrayValExpr.addPar_1.u"
+        },
+        {
+          "@id": "ex:evalAndArrays.ArrayValExpr.addPar_1.y"
+        }
+      ],
+      "S231:label": "addPar_1",
+      "modelica:arrayExpansion": {
+        "modelica:arrayName": "addPar",
+        "modelica:index": {
+          "@list": [
+            1
+          ]
+        },
+        "modelica:size": {
+          "@list": [
+            3
+          ]
+        }
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.ArrayValExpr.addPar_1.p",
+      "S231:isFinal": true,
+      "S231:value": {
+        "@value": "1.1666666666666667",
+        "@type": "http://www.w3.org/2001/XMLSchema#decimal"
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.ArrayValExpr.addPar_1.y",
+      "S231:isConnectedTo": {
+        "@id": "ex:evalAndArrays.ArrayValExpr.mulSum.u_1"
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.ArrayValExpr.addPar_2",
+      "@type": "ex:Buildings.Controls.OBC.CDL.Reals.AddParameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Array expression used element by element",
+      "S231:hasInstance": [
+        {
+          "@id": "ex:evalAndArrays.ArrayValExpr.addPar_2.p"
+        },
+        {
+          "@id": "ex:evalAndArrays.ArrayValExpr.addPar_2.u"
+        },
+        {
+          "@id": "ex:evalAndArrays.ArrayValExpr.addPar_2.y"
+        }
+      ],
+      "S231:label": "addPar_2",
+      "modelica:arrayExpansion": {
+        "modelica:arrayName": "addPar",
+        "modelica:index": {
+          "@list": [
+            2
+          ]
+        },
+        "modelica:size": {
+          "@list": [
+            3
+          ]
+        }
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.ArrayValExpr.addPar_2.p",
+      "S231:isFinal": true,
+      "S231:value": {
+        "@value": "1.3333333333333333",
+        "@type": "http://www.w3.org/2001/XMLSchema#decimal"
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.ArrayValExpr.addPar_2.y",
+      "S231:isConnectedTo": {
+        "@id": "ex:evalAndArrays.ArrayValExpr.mulSum.u_2"
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.ArrayValExpr.addPar_3",
+      "@type": "ex:Buildings.Controls.OBC.CDL.Reals.AddParameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Array expression used element by element",
+      "S231:hasInstance": [
+        {
+          "@id": "ex:evalAndArrays.ArrayValExpr.addPar_3.p"
+        },
+        {
+          "@id": "ex:evalAndArrays.ArrayValExpr.addPar_3.u"
+        },
+        {
+          "@id": "ex:evalAndArrays.ArrayValExpr.addPar_3.y"
+        }
+      ],
+      "S231:label": "addPar_3",
+      "modelica:arrayExpansion": {
+        "modelica:arrayName": "addPar",
+        "modelica:index": {
+          "@list": [
+            3
+          ]
+        },
+        "modelica:size": {
+          "@list": [
+            3
+          ]
+        }
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.ArrayValExpr.addPar_3.p",
+      "S231:isFinal": true,
+      "S231:value": {
+        "@value": "1.5",
+        "@type": "http://www.w3.org/2001/XMLSchema#decimal"
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.ArrayValExpr.addPar_3.y",
+      "S231:isConnectedTo": {
+        "@id": "ex:evalAndArrays.ArrayValExpr.mulSum.u_3"
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.ArrayValExpr.kBas",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Base the array expressions are built from",
+      "S231:isOfDataType": {
+        "@id": "S231:Real"
+      },
+      "S231:label": "kBas",
+      "S231:value": 1
+    },
+    {
+      "@id": "ex:evalAndArrays.ArrayValExpr.kNor_1",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Array by scalar, expect {1/6, 1/3, 1/2}",
+      "S231:isOfDataType": {
+        "@id": "S231:Real"
+      },
+      "S231:label": "kNor_1",
+      "S231:value": {
+        "@value": "0.16666666666666666",
+        "@type": "http://www.w3.org/2001/XMLSchema#decimal"
+      },
+      "modelica:arrayExpansion": {
+        "modelica:arrayName": "kNor",
+        "modelica:index": {
+          "@list": [
+            1
+          ]
+        },
+        "modelica:size": {
+          "@list": [
+            3
+          ]
+        }
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.ArrayValExpr.kNor_2",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Array by scalar, expect {1/6, 1/3, 1/2}",
+      "S231:isOfDataType": {
+        "@id": "S231:Real"
+      },
+      "S231:label": "kNor_2",
+      "S231:value": {
+        "@value": "0.3333333333333333",
+        "@type": "http://www.w3.org/2001/XMLSchema#decimal"
+      },
+      "modelica:arrayExpansion": {
+        "modelica:arrayName": "kNor",
+        "modelica:index": {
+          "@list": [
+            2
+          ]
+        },
+        "modelica:size": {
+          "@list": [
+            3
+          ]
+        }
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.ArrayValExpr.kNor_3",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Array by scalar, expect {1/6, 1/3, 1/2}",
+      "S231:isOfDataType": {
+        "@id": "S231:Real"
+      },
+      "S231:label": "kNor_3",
+      "S231:value": {
+        "@value": "0.5",
+        "@type": "http://www.w3.org/2001/XMLSchema#decimal"
+      },
+      "modelica:arrayExpansion": {
+        "modelica:arrayName": "kNor",
+        "modelica:index": {
+          "@list": [
+            3
+          ]
+        },
+        "modelica:size": {
+          "@list": [
+            3
+          ]
+        }
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.ArrayValExpr.kSum",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Array to scalar, expect 6",
+      "S231:isOfDataType": {
+        "@id": "S231:Real"
+      },
+      "S231:label": "kSum",
+      "S231:value": 6
+    },
+    {
+      "@id": "ex:evalAndArrays.ArrayValExpr.kZon_1",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Expect {1, 2, 3}",
+      "S231:isOfDataType": {
+        "@id": "S231:Real"
+      },
+      "S231:label": "kZon_1",
+      "S231:value": 1,
+      "modelica:arrayExpansion": {
+        "modelica:arrayName": "kZon",
+        "modelica:index": {
+          "@list": [
+            1
+          ]
+        },
+        "modelica:size": {
+          "@list": [
+            3
+          ]
+        }
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.ArrayValExpr.kZon_2",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Expect {1, 2, 3}",
+      "S231:isOfDataType": {
+        "@id": "S231:Real"
+      },
+      "S231:label": "kZon_2",
+      "S231:value": 2,
+      "modelica:arrayExpansion": {
+        "modelica:arrayName": "kZon",
+        "modelica:index": {
+          "@list": [
+            2
+          ]
+        },
+        "modelica:size": {
+          "@list": [
+            3
+          ]
+        }
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.ArrayValExpr.kZon_3",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Expect {1, 2, 3}",
+      "S231:isOfDataType": {
+        "@id": "S231:Real"
+      },
+      "S231:label": "kZon_3",
+      "S231:value": 3,
+      "modelica:arrayExpansion": {
+        "modelica:arrayName": "kZon",
+        "modelica:index": {
+          "@list": [
+            3
+          ]
+        },
+        "modelica:size": {
+          "@list": [
+            3
+          ]
+        }
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.ArrayValExpr.mulSum",
+      "@type": "ex:evalAndArrays.ArrayValExpr.mulSum",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Array expression used whole",
+      "S231:hasInstance": [
+        {
+          "@id": "ex:evalAndArrays.ArrayValExpr.mulSum.k"
+        },
+        {
+          "@id": "ex:evalAndArrays.ArrayValExpr.mulSum.nin"
+        },
+        {
+          "@id": "ex:evalAndArrays.ArrayValExpr.mulSum.u_1"
+        },
+        {
+          "@id": "ex:evalAndArrays.ArrayValExpr.mulSum.u_2"
+        },
+        {
+          "@id": "ex:evalAndArrays.ArrayValExpr.mulSum.u_3"
+        },
+        {
+          "@id": "ex:evalAndArrays.ArrayValExpr.mulSum.y"
+        }
+      ],
+      "S231:label": "mulSum"
+    },
+    {
+      "@id": "ex:evalAndArrays.ArrayValExpr.mulSum.k",
+      "S231:isFinal": true,
+      "S231:value": "{0.16666666666666666,0.3333333333333333,0.5}"
+    },
+    {
+      "@id": "ex:evalAndArrays.ArrayValExpr.mulSum.nin",
+      "S231:isFinal": true,
+      "S231:value": 3
+    },
+    {
+      "@id": "ex:evalAndArrays.ArrayValExpr.mulSum.y",
+      "S231:isConnectedTo": {
+        "@id": "ex:evalAndArrays.ArrayValExpr.y"
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.ArrayValExpr.nZon",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "# of zones",
+      "S231:isOfDataType": {
+        "@id": "S231:Integer"
+      },
+      "S231:label": "nZon",
+      "S231:value": 3
+    },
+    {
+      "@id": "ex:evalAndArrays.ArrayValExpr.off_1",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Array addition",
+      "S231:isOfDataType": {
+        "@id": "S231:Real"
+      },
+      "S231:label": "off_1",
+      "S231:value": {
+        "@value": "1.1666666666666667",
+        "@type": "http://www.w3.org/2001/XMLSchema#decimal"
+      },
+      "modelica:arrayExpansion": {
+        "modelica:arrayName": "off",
+        "modelica:index": {
+          "@list": [
+            1
+          ]
+        },
+        "modelica:size": {
+          "@list": [
+            3
+          ]
+        }
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.ArrayValExpr.off_2",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Array addition",
+      "S231:isOfDataType": {
+        "@id": "S231:Real"
+      },
+      "S231:label": "off_2",
+      "S231:value": {
+        "@value": "1.3333333333333333",
+        "@type": "http://www.w3.org/2001/XMLSchema#decimal"
+      },
+      "modelica:arrayExpansion": {
+        "modelica:arrayName": "off",
+        "modelica:index": {
+          "@list": [
+            2
+          ]
+        },
+        "modelica:size": {
+          "@list": [
+            3
+          ]
+        }
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.ArrayValExpr.off_3",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Array addition",
+      "S231:isOfDataType": {
+        "@id": "S231:Real"
+      },
+      "S231:label": "off_3",
+      "S231:value": {
+        "@value": "1.5",
+        "@type": "http://www.w3.org/2001/XMLSchema#decimal"
+      },
+      "modelica:arrayExpansion": {
+        "modelica:arrayName": "off",
+        "modelica:index": {
+          "@list": [
+            3
+          ]
+        },
+        "modelica:size": {
+          "@list": [
+            3
+          ]
+        }
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.ArrayValExpr.u_1",
+      "@type": "S231:RealInput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Input of each zone",
+      "S231:isConnectedTo": {
+        "@id": "ex:evalAndArrays.ArrayValExpr.addPar_1.u"
+      },
+      "S231:label": "u_1",
+      "modelica:arrayExpansion": {
+        "modelica:arrayName": "u",
+        "modelica:index": {
+          "@list": [
+            1
+          ]
+        },
+        "modelica:size": {
+          "@list": [
+            3
+          ]
+        }
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.ArrayValExpr.u_2",
+      "@type": "S231:RealInput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Input of each zone",
+      "S231:isConnectedTo": {
+        "@id": "ex:evalAndArrays.ArrayValExpr.addPar_2.u"
+      },
+      "S231:label": "u_2",
+      "modelica:arrayExpansion": {
+        "modelica:arrayName": "u",
+        "modelica:index": {
+          "@list": [
+            2
+          ]
+        },
+        "modelica:size": {
+          "@list": [
+            3
+          ]
+        }
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.ArrayValExpr.u_3",
+      "@type": "S231:RealInput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Input of each zone",
+      "S231:isConnectedTo": {
+        "@id": "ex:evalAndArrays.ArrayValExpr.addPar_3.u"
+      },
+      "S231:label": "u_3",
+      "modelica:arrayExpansion": {
+        "modelica:arrayName": "u",
+        "modelica:index": {
+          "@list": [
+            3
+          ]
+        },
+        "modelica:size": {
+          "@list": [
+            3
+          ]
+        }
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.ArrayValExpr.y",
+      "@type": "S231:RealOutput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Sum as an output",
+      "S231:label": "y"
+    }
+  ]
+}

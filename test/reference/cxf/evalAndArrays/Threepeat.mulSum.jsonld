@@ -1,0 +1,381 @@
+{
+  "@context": {
+    "S231": "http://data.ashrae.org/S231#",
+    "ex": "http://example.org#",
+    "modelica": "https://modelica.org/"
+  },
+  "@graph": [
+    {
+      "@id": "ex:evalAndArrays.Threepeat.mulSum",
+      "@type": "S231:Block",
+      "S231:containsBlock": [
+        {
+          "@id": "ex:evalAndArrays.Threepeat.mulSum.add_1"
+        },
+        {
+          "@id": "ex:evalAndArrays.Threepeat.mulSum.add_2"
+        },
+        {
+          "@id": "ex:evalAndArrays.Threepeat.mulSum.mul_1"
+        },
+        {
+          "@id": "ex:evalAndArrays.Threepeat.mulSum.mul_2"
+        },
+        {
+          "@id": "ex:evalAndArrays.Threepeat.mulSum.mul_3"
+        }
+      ],
+      "S231:documentation": "info=<html>\n<p>\nBlock that outputs\n</p>\n<p align=\\center\\ style=\\font-style:italic;\\>\ny = &sum;<sub>i=1</sub><sup>n</sup> k<sub>i</sub> &nbsp; u<sub>i</sub>,\n</p>\n<p>\nwhere <i>k</i> is a parameter with <i>n</i> elements and <i>u</i> is\nan input of the same length.\nThe dimension of <i>u</i> can be enlarged by\ndrawing an additional connection line. The connection is automatically connected\nto this new free index.\n</p>\n\n<p>\nIf no connection to the input connector <i>u</i> is present,\nthe output is <i>y=0</i>.\n</p>\n<p>\nSee\n<a href=\\modelica://Buildings.Controls.OBC.CDL.Reals.Validation.MultiSum\\>\nBuildings.Controls.OBC.CDL.Reals.Validation.MultiSum</a>\nfor an example.\n</p>\n</html>,revisions=<html>\n<ul>\n<li>\nMarch 2, 2020, by Michael Wetter:<br/>\nChanged icon to display dynamically the output value.\n</li>\n<li>\nJune 28, 2017, by Jianjun Hu:<br/>\nFirst implementation, based on the implementation of the Modelica Standard\nLibrary. This is for\n<a href=\\https://github.com/lbl-srg/modelica-buildings/issues/825\\>Buildings, issue 825</a>.\n</li>\n</ul>\n</html>",
+      "S231:hasInput": [
+        {
+          "@id": "ex:evalAndArrays.Threepeat.mulSum.u_1"
+        },
+        {
+          "@id": "ex:evalAndArrays.Threepeat.mulSum.u_2"
+        },
+        {
+          "@id": "ex:evalAndArrays.Threepeat.mulSum.u_3"
+        }
+      ],
+      "S231:hasOutput": {
+        "@id": "ex:evalAndArrays.Threepeat.mulSum.y"
+      },
+      "S231:hasParameter": [
+        {
+          "@id": "ex:evalAndArrays.Threepeat.mulSum.k_1"
+        },
+        {
+          "@id": "ex:evalAndArrays.Threepeat.mulSum.k_2"
+        },
+        {
+          "@id": "ex:evalAndArrays.Threepeat.mulSum.k_3"
+        },
+        {
+          "@id": "ex:evalAndArrays.Threepeat.mulSum.nin"
+        }
+      ],
+      "S231:icon": "graphics={Rectangle(extent={{-100,-100},{100,100}},lineColor={0,0,127},fillColor={255,255,255},fillPattern=FillPattern.Solid),Text(textString=\"%k\",textColor={0,0,0},extent={{-200,-110},{200,-140}}),Text(textString=\"+\",textColor={0,0,0},extent={{-82,90},{82,-46}}),Text(textString=\"%name\",textColor={0,0,255},extent={{-144,150},{156,110}}),Text(textString=DynamicSelect(\"\",String(y,leftJustified=false,significantDigits=3)),textColor={0,0,0},extent={{226,60},{106,10}})}",
+      "S231:label": "Threepeat.mulSum",
+      "modelica:instanceOf": "Buildings.Controls.OBC.CDL.Reals.MultiSum"
+    },
+    {
+      "@id": "ex:evalAndArrays.Threepeat.mulSum.add_1",
+      "@type": "ex:Buildings.Controls.OBC.CDL.Reals.Add",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Add of u_1 to u_2",
+      "S231:hasInstance": [
+        {
+          "@id": "ex:evalAndArrays.Threepeat.mulSum.add_1.u1"
+        },
+        {
+          "@id": "ex:evalAndArrays.Threepeat.mulSum.add_1.u2"
+        },
+        {
+          "@id": "ex:evalAndArrays.Threepeat.mulSum.add_1.y"
+        }
+      ],
+      "S231:label": "add_1",
+      "modelica:elementaryExpansion": {
+        "modelica:blockName": "Threepeat.mulSum",
+        "modelica:elementaryBlock": "Buildings.Controls.OBC.CDL.Reals.MultiSum"
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.Threepeat.mulSum.add_1.y",
+      "S231:isConnectedTo": {
+        "@id": "ex:evalAndArrays.Threepeat.mulSum.add_2.u1"
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.Threepeat.mulSum.add_2",
+      "@type": "ex:Buildings.Controls.OBC.CDL.Reals.Add",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Add of u_1 to u_3",
+      "S231:hasInstance": [
+        {
+          "@id": "ex:evalAndArrays.Threepeat.mulSum.add_2.u1"
+        },
+        {
+          "@id": "ex:evalAndArrays.Threepeat.mulSum.add_2.u2"
+        },
+        {
+          "@id": "ex:evalAndArrays.Threepeat.mulSum.add_2.y"
+        }
+      ],
+      "S231:label": "add_2",
+      "modelica:elementaryExpansion": {
+        "modelica:blockName": "Threepeat.mulSum",
+        "modelica:elementaryBlock": "Buildings.Controls.OBC.CDL.Reals.MultiSum"
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.Threepeat.mulSum.add_2.y",
+      "S231:isConnectedTo": {
+        "@id": "ex:evalAndArrays.Threepeat.mulSum.y"
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.Threepeat.mulSum.k_1",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Input gains",
+      "S231:isOfDataType": {
+        "@id": "S231:Real"
+      },
+      "S231:label": "k_1",
+      "S231:value": 1,
+      "modelica:arrayExpansion": {
+        "modelica:arrayName": "k",
+        "modelica:index": {
+          "@list": [
+            1
+          ]
+        },
+        "modelica:size": {
+          "@list": [
+            3
+          ]
+        }
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.Threepeat.mulSum.k_2",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Input gains",
+      "S231:isOfDataType": {
+        "@id": "S231:Real"
+      },
+      "S231:label": "k_2",
+      "S231:value": 1,
+      "modelica:arrayExpansion": {
+        "modelica:arrayName": "k",
+        "modelica:index": {
+          "@list": [
+            2
+          ]
+        },
+        "modelica:size": {
+          "@list": [
+            3
+          ]
+        }
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.Threepeat.mulSum.k_3",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Input gains",
+      "S231:isOfDataType": {
+        "@id": "S231:Real"
+      },
+      "S231:label": "k_3",
+      "S231:value": 1,
+      "modelica:arrayExpansion": {
+        "modelica:arrayName": "k",
+        "modelica:index": {
+          "@list": [
+            3
+          ]
+        },
+        "modelica:size": {
+          "@list": [
+            3
+          ]
+        }
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.Threepeat.mulSum.mul_1",
+      "@type": "ex:Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "u_1 weighted by k[1]",
+      "S231:hasInstance": [
+        {
+          "@id": "ex:evalAndArrays.Threepeat.mulSum.mul_1.k"
+        },
+        {
+          "@id": "ex:evalAndArrays.Threepeat.mulSum.mul_1.u"
+        },
+        {
+          "@id": "ex:evalAndArrays.Threepeat.mulSum.mul_1.y"
+        }
+      ],
+      "S231:label": "mul_1",
+      "modelica:elementaryExpansion": {
+        "modelica:blockName": "Threepeat.mulSum",
+        "modelica:elementaryBlock": "Buildings.Controls.OBC.CDL.Reals.MultiSum"
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.Threepeat.mulSum.mul_1.k",
+      "S231:isFinal": true,
+      "S231:value": 1
+    },
+    {
+      "@id": "ex:evalAndArrays.Threepeat.mulSum.mul_1.y",
+      "S231:isConnectedTo": {
+        "@id": "ex:evalAndArrays.Threepeat.mulSum.add_1.u1"
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.Threepeat.mulSum.mul_2",
+      "@type": "ex:Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "u_2 weighted by k[2]",
+      "S231:hasInstance": [
+        {
+          "@id": "ex:evalAndArrays.Threepeat.mulSum.mul_2.k"
+        },
+        {
+          "@id": "ex:evalAndArrays.Threepeat.mulSum.mul_2.u"
+        },
+        {
+          "@id": "ex:evalAndArrays.Threepeat.mulSum.mul_2.y"
+        }
+      ],
+      "S231:label": "mul_2",
+      "modelica:elementaryExpansion": {
+        "modelica:blockName": "Threepeat.mulSum",
+        "modelica:elementaryBlock": "Buildings.Controls.OBC.CDL.Reals.MultiSum"
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.Threepeat.mulSum.mul_2.k",
+      "S231:isFinal": true,
+      "S231:value": 1
+    },
+    {
+      "@id": "ex:evalAndArrays.Threepeat.mulSum.mul_2.y",
+      "S231:isConnectedTo": {
+        "@id": "ex:evalAndArrays.Threepeat.mulSum.add_1.u2"
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.Threepeat.mulSum.mul_3",
+      "@type": "ex:Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "u_3 weighted by k[3]",
+      "S231:hasInstance": [
+        {
+          "@id": "ex:evalAndArrays.Threepeat.mulSum.mul_3.k"
+        },
+        {
+          "@id": "ex:evalAndArrays.Threepeat.mulSum.mul_3.u"
+        },
+        {
+          "@id": "ex:evalAndArrays.Threepeat.mulSum.mul_3.y"
+        }
+      ],
+      "S231:label": "mul_3",
+      "modelica:elementaryExpansion": {
+        "modelica:blockName": "Threepeat.mulSum",
+        "modelica:elementaryBlock": "Buildings.Controls.OBC.CDL.Reals.MultiSum"
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.Threepeat.mulSum.mul_3.k",
+      "S231:isFinal": true,
+      "S231:value": 1
+    },
+    {
+      "@id": "ex:evalAndArrays.Threepeat.mulSum.mul_3.y",
+      "S231:isConnectedTo": {
+        "@id": "ex:evalAndArrays.Threepeat.mulSum.add_2.u2"
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.Threepeat.mulSum.nin",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Number of input signals",
+      "S231:isOfDataType": {
+        "@id": "S231:Integer"
+      },
+      "S231:label": "nin",
+      "S231:min": 0,
+      "S231:value": 3
+    },
+    {
+      "@id": "ex:evalAndArrays.Threepeat.mulSum.u_1",
+      "@type": "S231:RealInput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Input to multiplied by gain and then added",
+      "S231:graphics": "Placement(transformation(extent={{-140,20},{-100,-20}})))",
+      "S231:isConnectedTo": {
+        "@id": "ex:evalAndArrays.Threepeat.mulSum.mul_1.u"
+      },
+      "S231:label": "u_1",
+      "modelica:arrayExpansion": {
+        "modelica:arrayName": "u",
+        "modelica:index": {
+          "@list": [
+            1
+          ]
+        },
+        "modelica:size": {
+          "@list": [
+            3
+          ]
+        }
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.Threepeat.mulSum.u_2",
+      "@type": "S231:RealInput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Input to multiplied by gain and then added",
+      "S231:graphics": "Placement(transformation(extent={{-140,20},{-100,-20}})))",
+      "S231:isConnectedTo": {
+        "@id": "ex:evalAndArrays.Threepeat.mulSum.mul_2.u"
+      },
+      "S231:label": "u_2",
+      "modelica:arrayExpansion": {
+        "modelica:arrayName": "u",
+        "modelica:index": {
+          "@list": [
+            2
+          ]
+        },
+        "modelica:size": {
+          "@list": [
+            3
+          ]
+        }
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.Threepeat.mulSum.u_3",
+      "@type": "S231:RealInput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Input to multiplied by gain and then added",
+      "S231:graphics": "Placement(transformation(extent={{-140,20},{-100,-20}})))",
+      "S231:isConnectedTo": {
+        "@id": "ex:evalAndArrays.Threepeat.mulSum.mul_3.u"
+      },
+      "S231:label": "u_3",
+      "modelica:arrayExpansion": {
+        "modelica:arrayName": "u",
+        "modelica:index": {
+          "@list": [
+            3
+          ]
+        },
+        "modelica:size": {
+          "@list": [
+            3
+          ]
+        }
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.Threepeat.mulSum.y",
+      "@type": "S231:RealOutput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Sum of inputs times gains",
+      "S231:graphics": "Placement(transformation(extent={{100,-20},{140,20}})))",
+      "S231:label": "y"
+    }
+  ]
+}

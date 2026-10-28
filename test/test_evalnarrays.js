@@ -4,6 +4,7 @@ const mo = require('mocha')
 const path = require('path')
 const fs = require('fs')
 const os = require('os')
+const util = require('util')
 const logger = require('winston')
 
 const pa = require('../lib/parser')
@@ -23,8 +24,14 @@ logger.level = 'error'
 //                    else lives under test/reference/ and is derived from them.
 //   test/reference/objects/evalAndArrays/ -- the objects json every sequence is
 //                    expected to produce
-//   test/reference/params/evalAndArrays/params.json -- user supplied parameter values,
-//                    keyed by sequence name, only for the sequences needing them
+//   test/reference/cxf/evalAndArrays/ -- the CXF graph built from each of those
+//                    objects json files, one file per test case
+//   test/evalAndArrays/params/ -- user supplied parameter values, keyed by sequence
+//                    name, only for the sequences needing them. Hand written input like
+//                    the Modelica files, one file per run that is given values:
+//                      evalAndArrays.json             -- the parse of this package
+//                      evalAndArraysErrors.json       -- every open parameter of test/evalAndArraysErrors
+//                      evalAndArraysErrorsPartial.json -- only DefaultingError, so the run stops on ThreepeatUnbound
 
 // order of exec for this file
 // 1. Parse the Modelica files to generate the objects json.
@@ -38,12 +45,14 @@ logger.level = 'error'
 //   * an array of components becomes one plain component per element, named
 //     "<name>_<index>"", and the connections are expanded to match
 //   * conditional components that are "false" are removed
-//   * each instantiated sub sequence gets a file of its own, named after the
-//     class it came from and the instance path it was resolved at, e.g.
-//     "Threepeat_Unit.uni1.json" beside "Threepeat.json"
-//   * the component that instantiates it names the class it came from as its
-//     `type_specifier`, names the resolved block as `subInstanceDefinition` -- which is
-//     the link the cxf layer follows -- and carries the values it resolved to
+//   * the component that instantiates a sub sequence names the class it came
+//     from as its `type_specifier` and carries the values it resolved to
+//   * an instantiation the class cannot describe, because the values it is
+//     given change what it is made of beyond dropping a conditional component,
+//     gets a file of its own, named after the class it came from and the
+//     instance path it was resolved at, e.g. "Specialize_Unit.uniWide.json"
+//     beside "Specialize.json"; the component then names that block as
+//     `subInstanceDefinition` -- which is the link the cxf layer follows
 
 // The cxf layer gets no specific references; all of it's input comes solely from the objects layer,
 // the bottleneck is the correctness of the objects layer. Thus the cxf creator is unaware of the expression evaluation
@@ -51,7 +60,18 @@ logger.level = 'error'
 
 const moDir = path.join('test', 'evalAndArrays')
 const referenceDir = path.join(__dirname, 'reference', 'objects', 'evalAndArrays')
-const paramsFile = path.join(__dirname, 'reference', 'params', 'evalAndArrays', 'params.json')
+const cxfReferenceDir = path.join(__dirname, 'reference', 'cxf', 'evalAndArrays')
+const paramsDir = path.join(__dirname, 'evalAndArrays', 'params')
+const paramsFile = path.join(paramsDir, 'evalAndArrays.json')
+
+// the flag combination a sequence is parsed with, named for it; every other
+// sequence is parsed with both flags on
+const flagsOf = {
+  FlagsNone: { evaluateExpressions: false, flattenArrays: false },
+  FlagsEval: { evaluateExpressions: true, flattenArrays: false },
+  FlagsArray: { evaluateExpressions: false, flattenArrays: true }
+}
+const bothFlags = { evaluateExpressions: true, flattenArrays: true }
 
 // user supplied parameter values of the package, keyed by sequence name; an
 // absent file simply means no sequence of the package takes supplied values
@@ -64,6 +84,19 @@ const userValues = fs.existsSync(paramsFile)
 //   testCases -- combination of top level and sub sequences
 const { mainCases, testCases } = hp.testCaseNames(referenceDir)
 
+// the sequence each objects json belongs to; a sub instance file such as
+// "Flags_Unit.uniArr" belongs to the sequence that instantiates it
+const sequenceOf = {}
+mainCases.forEach(function (name) {
+  sequenceOf[name] = name
+  hp.subSequenceFiles(referenceDir, name).forEach(function (file) { sequenceOf[file] = name })
+})
+
+// the flags a test case was parsed with, those of the sequence it belongs to
+function flagsFor (name) {
+  return flagsOf[sequenceOf[name] ?? name] || bothFlags
+}
+
 mo.describe('evaluation and arrays', function () {
   mo.describe('Testing parse from Modelica to Objects Json', function () {
     // remove the outputs before running the tests, then generate the object files
@@ -71,12 +104,21 @@ mo.describe('evaluation and arrays', function () {
       hp.removeOutputDirs(['objects', 'json'])
       // dumps of the previous run, so whatever is left behind belongs to this one
       if (fs.existsSync(hp.diffDir())) ut.removeDir(hp.diffDir())
-      /* Both features on: this suite is what tests them, so it asks for them
-         explicitly rather than relying on a default. */
-      pa.getJsons(ut.getMoFiles(moDir), 'semantic', 'current', true,
-        /* generateElementary= */ false, /* generateCxfCore= */ false,
-        /* mode= */ 'cdl', /* valueProp= */ paramsFile,
-        /* evaluateExpressions= */ true, /* flattenArrays= */ true)
+      /* The flags are always passed explicitly rather than relying on a default.
+         The flag sequences are parsed first, each with its own combination; the
+         rest of the package last with both on, so a class they share
+         (Flags_Unit) is left as the both-flags run writes it. */
+      const moFiles = ut.getMoFiles(moDir)
+      function parse (files, flags) {
+        pa.getJsons(files, 'semantic', 'current', true,
+          /* generateElementary= */ false, /* generateCxfCore= */ false,
+          /* mode= */ 'cdl', /* valueProp= */ paramsFile,
+          flags.evaluateExpressions, flags.flattenArrays)
+      }
+      Object.entries(flagsOf).forEach(function ([name, flags]) {
+        parse(moFiles.filter(function (file) { return path.basename(file, '.mo') === name }), flags)
+      })
+      parse(moFiles.filter(function (file) { return flagsOf[path.basename(file, '.mo')] === undefined }), bothFlags)
     })
 
     // remove after running the tests just in case; the dumps a failing
@@ -168,7 +210,8 @@ mo.describe('evaluation and arrays', function () {
     })
 
     // testing if the expected objects hold literal values only
-    testCases.forEach(function (name) {
+    // only for the sequences parsed with the evaluation on
+    testCases.filter(function (name) { return flagsFor(name).evaluateExpressions }).forEach(function (name) {
       mo.it('expected objects of ' + name + ' hold literal values only', function () {
         const objectsJson = hp.readNormalizedObjects(hp.objectsJsonPath(referenceDir, name))
         const unresolved = []
@@ -194,45 +237,135 @@ mo.describe('evaluation and arrays', function () {
   })
 
   mo.describe('Testing CXF generation from the expected objects', function () {
-    // the graph each test case produced, filled in below and read by the last test
+    // the graph each objects json produced, filled in below and read by the last tests
     const graphs = {}
 
-    // built through the way the cxf does it; a sequence gets its subsequences then a graph is built from all of it
-    testCases.forEach(function (name) {
+    // the nodes of a graph; one holding a single node, as the package does, is serialized without "@graph"
+    function nodesOf (cxf) {
+      return Array.isArray(cxf['@graph']) ? cxf['@graph'] : [cxf]
+    }
+
+    // one CXF file per objects json, built the way the parser builds it: the
+    // sequence, every class and every sub instance each a graph of its own
+    hp.jsonBaseNames(referenceDir).forEach(function (name) {
       mo.it('CXF graph of ' + name, function () {
         const objectsJson = hp.readNormalizedObjects(hp.objectsJsonPath(referenceDir, name))
         const cxf = cxfExt.getCxfGraph(
-          objectsJson.instances, objectsJson.requiredReferences, name, false, false,
-          mainCases.includes(name) ? hp.subBlocks(referenceDir, name) : [])
+          objectsJson.instances, objectsJson.requiredReferences, name, false, false)
 
         // assert that the CXF graph is not empty
-        as.ok(cxf !== null && Array.isArray(cxf['@graph']) && cxf['@graph'].length > 0,
+        as.ok(cxf !== null && nodesOf(cxf).some(function (node) { return node['@id'] !== undefined }),
           'CXF of ' + name + ' has an empty graph')
         graphs[name] = cxf
+
+        // compare against the committed cxf reference
+        const referencePath = path.join(cxfReferenceDir, name + '.jsonld')
+        as.ok(fs.existsSync(referencePath), 'No reference CXF for ' + name + ' at ' + referencePath)
+        as.deepStrictEqual(cxf, JSON.parse(fs.readFileSync(referencePath, 'utf8')),
+          'CXF result differs for ' + referencePath)
       })
     })
 
-    mo.it('Every sequence resolves its own sub-sequences', function () {
-    // in the root sequence, every subSequence must be fully defined, thus check for dangling blocks
+    mo.it('Every component is typed by a block with a file of its own', function () {
+    // every sub-sequence must be fully defined, thus check for dangling blocks
+    // a component is typed either by a block in the graph or by a class or sub instance that has a file of its own
+      const classFiles = new Set(hp.jsonBaseNames(referenceDir).map(function (name) {
+        return 'ex:' + hp.ownClass(hp.readObjects(referenceDir, name)).within + '.' + name
+      }))
       const dangling = []
-      mainCases.forEach(function (name) {
+      Object.keys(graphs).forEach(function (name) {
         const cxf = graphs[name]
         if (cxf === undefined) return
-        const blocks = new Set(cxf['@graph']
+        const blocks = new Set(nodesOf(cxf)
           .filter(function (node) { return node['@type'] === 'S231:Block' })
           .map(function (node) { return node['@id'] }))
 
-        cxf['@graph'].forEach(function (node) {
+        nodesOf(cxf).forEach(function (node) {
           const type = node['@type']
           if (typeof type !== 'string') return
 
           // CDL blocks can't dangle so only check for blocks from this suite of tests
           if (!type.startsWith('ex:evalAndArrays.')) return
-          if (!blocks.has(type)) dangling.push(name + ': ' + node['@id'] + ' is a ' + type)
+          if (!blocks.has(type) && !classFiles.has(type)) dangling.push(name + ': ' + node['@id'] + ' is a ' + type)
         })
       })
       // assert that there are no dangling blocks
       as.deepStrictEqual(dangling, [], 'Components with no block definition:\n  ' + dangling.join('\n  '))
+    })
+
+    mo.it('Every expansion record of the objects json is carried into the CXF', function () {
+      // instanceOf, arrayExpansion and elementaryExpansion record what the evaluation and
+      // the flattening changed; each must reach the node of the same instance unchanged
+      const recordKeys = ['instanceOf', 'arrayExpansion', 'elementaryExpansion']
+
+      // a CXF value read back into the shape the objects json has
+      function fromCxf (value) {
+        if (Array.isArray(value)) return value.map(fromCxf)
+        if (value === null || typeof value !== 'object') return value
+        if ('@list' in value) return value['@list'].map(fromCxf)
+        if ('@value' in value) return value['@value']
+        const object = {}
+        Object.entries(value).forEach(function ([key, entry]) {
+          object[key.replace(/^modelica:/, '')] = fromCxf(entry)
+        })
+        return object
+      }
+
+      const missing = []
+      let carried = 0
+      hp.jsonBaseNames(referenceDir).forEach(function (name) {
+        const objectsJson = hp.readObjects(referenceDir, name)
+        const within = hp.ownClass(objectsJson).within
+        const nodes = {}
+        nodesOf(graphs[name]).forEach(function (node) { nodes[node['@id']] = node })
+
+        Object.entries(objectsJson.instances).forEach(function ([instance, instanceDict]) {
+          const id = 'ex:' + within + '.' + (instanceDict.type === 'long_class_specifier' ? name : name + '.' + instance)
+          recordKeys.forEach(function (key) {
+            if (instanceDict[key] === undefined) return
+            carried++
+            const node = nodes[id]
+            const value = node === undefined ? undefined : fromCxf(node['modelica:' + key])
+            // key order is not compared, the serializer sorts the keys of a node
+            if (!util.isDeepStrictEqual(value, instanceDict[key])) {
+              missing.push(name + ': ' + id + ' ' + key + ' is ' + JSON.stringify(value) +
+                ', the objects json has ' + JSON.stringify(instanceDict[key]))
+            }
+          })
+        })
+      })
+      as.ok(carried > 0, 'No expansion record found in the objects references')
+      as.deepStrictEqual(missing, [], 'Expansion records not carried into the CXF:\n  ' + missing.join('\n  '))
+    })
+
+    mo.it('Every instantiation of a sub-sequence gets a block of its own', function () {
+      // uniKeep has the structure of Specialize_Unit, uniDrop only drops a
+      // conditional component the class declares, uniWide has two array
+      // elements where the class has one; each is typed by its own block
+      const types = {}
+      graphs.Specialize['@graph'].forEach(function (node) {
+        types[node['@id']] = node['@type']
+      })
+      ;['uniKeep', 'uniDrop', 'uniWide'].forEach(function (instance) {
+        as.strictEqual(types['ex:evalAndArrays.Specialize.' + instance],
+          'ex:evalAndArrays.Specialize_Unit.' + instance)
+        const block = graphs['Specialize_Unit.' + instance]
+        as.ok(block !== undefined, 'No CXF graph of Specialize_Unit.' + instance)
+        as.ok(block['@graph'].some(function (node) {
+          return node['@id'] === 'ex:evalAndArrays.Specialize_Unit.' + instance && node['@type'] === 'S231:Block'
+        }), 'Specialize_Unit.' + instance + ' does not define its own block')
+      })
+    })
+
+    mo.it('Neither flag gives a sub-sequence a block of its own', function () {
+      // FlagsNone is parsed as the Modelica declared it, so uniNone stays a Flags_Unit
+      const types = {}
+      graphs.FlagsNone['@graph'].forEach(function (node) {
+        types[node['@id']] = node['@type']
+      })
+      as.strictEqual(types['ex:evalAndArrays.FlagsNone.uniNone'], 'ex:evalAndArrays.Flags_Unit')
+      as.ok(!hp.jsonBaseNames(referenceDir).includes('Flags_Unit.uniNone'),
+        'Flags_Unit.uniNone was written although neither flag was on')
     })
   })
 
@@ -348,7 +481,9 @@ mo.describe('evaluation and arrays', function () {
   mo.describe('Testing the parameters a sequence leaves without a value', function () {
     const errorMoDir = path.join('test', 'evalAndArraysErrors')
     // supplies every parameter the Modelica sources of that package leave open
-    const errorParamsFile = path.join(__dirname, 'reference', 'params', 'evalAndArraysErrors', 'params.json')
+    const errorParamsFile = path.join(paramsDir, 'evalAndArraysErrors.json')
+    // supplies DefaultingError only, leaving ThreepeatUnbound open
+    const partialParamsFile = path.join(paramsDir, 'evalAndArraysErrorsPartial.json')
 
     // one output directory per run, so that "no files" is a statement about
     // this run and not about whatever an earlier one left behind
@@ -400,11 +535,8 @@ mo.describe('evaluation and arrays', function () {
          binds. It is named by the path from the sequence down, which is the key
          the values file would have to use to answer it. */
       const outDir = freshOutDir()
-      const partialParams = path.join(outDir, 'partial.json')
-      fs.writeFileSync(partialParams, JSON.stringify({ DefaultingError: { kNone: 0.5 } }))
-
       let raised = null
-      try { run(outDir, partialParams) } catch (error) { raised = error }
+      try { run(outDir, partialParamsFile) } catch (error) { raised = error }
 
       as.ok(raised instanceof oe.UnresolvedParameterError,
         'Expected an UnresolvedParameterError, got ' + raised)
@@ -430,20 +562,22 @@ mo.describe('evaluation and arrays', function () {
       const outDir = freshOutDir()
       as.doesNotThrow(function () { run(outDir, errorParamsFile) })
 
+      /* uni1 has the structure of Threepeat_Unit, so it keeps that class as its
+         type and carries the values it resolved to on its own declaration. */
       const objectsDir = path.join(outDir, 'objects', errorMoDir)
-      const uni1 = hp.objectsJsonPath(objectsDir, 'Threepeat_Unit.uni1')
-      as.ok(fs.existsSync(uni1), 'No objects json was generated at ' + uni1)
+      const sequence = hp.objectsJsonPath(objectsDir, 'ThreepeatUnbound')
+      as.ok(fs.existsSync(sequence), 'No objects json was generated at ' + sequence)
 
       /* inpVal is what the values file supplied. derivVal is declared as
          inpVal + 1 and is checked with it, because a supplied value that the
          expressions of the sub sequence do not see is only half resolved. */
-      const instances = hp.readNormalizedObjects(uni1).instances
+      const uni1 = hp.readNormalizedObjects(sequence).instances.uni1
       const supplied = JSON.parse(fs.readFileSync(errorParamsFile, 'utf8')).ThreepeatUnbound['uni1.inpVal']
       const differences = []
-      hp.compare(hp.parameterValue(instances.inpVal), String(supplied),
-        'Threepeat_Unit.uni1.inpVal', differences, 0.001)
-      hp.compare(hp.parameterValue(instances.derivVal), String(supplied + 1),
-        'Threepeat_Unit.uni1.derivVal', differences, 0.001)
+      hp.compare(hp.modificationValue(uni1, 'inpVal'), String(supplied),
+        'ThreepeatUnbound.uni1.inpVal', differences, 0.001)
+      hp.compare(hp.modificationValue(uni1, 'derivVal'), String(supplied + 1),
+        'ThreepeatUnbound.uni1.derivVal', differences, 0.001)
       as.deepStrictEqual(differences, [],
         'The supplied value did not reach the sub sequence: ' + differences.join(', '))
     })

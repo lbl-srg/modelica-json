@@ -48,7 +48,37 @@
           "modification": {
             "equal": true,
             "expression": {
-              "simple_expression": "true"
+              "if_expression": {
+                "if_elseif": [
+                  {
+                    "condition": {
+                      "simple_expression": {
+                        "logical_expression": {
+                          "logical_or": [
+                            {
+                              "logical_and": [
+                                {
+                                  "arithmetic_expressions": [
+                                    "nZon",
+                                    "1"
+                                  ],
+                                  "relation_operator": ">"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    "then": {
+                      "simple_expression": "true"
+                    }
+                  }
+                ],
+                "else_expression": {
+                  "simple_expression": "false"
+                }
+              }
             }
           }
         },
@@ -66,7 +96,7 @@
       "within": "evalAndArrays",
       "fullMoFilePath": "test\\evalAndArrays\\FlagsNone.mo"
     },
-    "k_1": {
+    "k": {
       "type_prefix": "parameter",
       "type_specifier": "Real",
       "type": "element",
@@ -74,11 +104,30 @@
       "long_class_specifier_identifier": "FlagsNone",
       "single_component_list": {
         "declaration": {
-          "identifier": "k_1",
+          "identifier": "k",
+          "array_subscripts": [
+            {
+              "expression": {
+                "simple_expression": "nZon"
+              }
+            }
+          ],
           "modification": {
             "equal": true,
             "expression": {
-              "simple_expression": "1"
+              "simple_expression": {
+                "for_loop": {
+                  "expression": {
+                    "simple_expression": "i"
+                  },
+                  "for_loop": [
+                    {
+                      "name": "i",
+                      "range": "1:nZon"
+                    }
+                  ]
+                }
+              }
             }
           }
         },
@@ -89,108 +138,28 @@
       "annotation": null,
       "semantics": {},
       "cdl_annotations": {},
-      "isVector": false,
-      "arraySubscripts": "",
+      "isVector": true,
+      "arraySubscripts": "[nZon]",
       "replaceable": null,
       "constraining_clause": null,
       "within": "evalAndArrays",
-      "fullMoFilePath": "test\\evalAndArrays\\FlagsNone.mo",
-      "arrayExpansion": {
-        "arrayName": "k",
-        "size": [
-          3
-        ],
-        "index": [
-          1
-        ]
-      }
+      "fullMoFilePath": "test\\evalAndArrays\\FlagsNone.mo"
     },
-    "k_2": {
-      "type_prefix": "parameter",
-      "type_specifier": "Real",
+    "u": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
       "type": "element",
       "compositionSpecifier": "public",
       "long_class_specifier_identifier": "FlagsNone",
       "single_component_list": {
         "declaration": {
-          "identifier": "k_2",
-          "modification": {
-            "equal": true,
-            "expression": {
-              "simple_expression": "2"
+          "identifier": "u",
+          "array_subscripts": [
+            {
+              "expression": {
+                "simple_expression": "nZon"
+              }
             }
-          }
-        },
-        "description": {
-          "description_string": "Derived from nZon, expect {1, 2, 3}"
-        }
-      },
-      "annotation": null,
-      "semantics": {},
-      "cdl_annotations": {},
-      "isVector": false,
-      "arraySubscripts": "",
-      "replaceable": null,
-      "constraining_clause": null,
-      "within": "evalAndArrays",
-      "fullMoFilePath": "test\\evalAndArrays\\FlagsNone.mo",
-      "arrayExpansion": {
-        "arrayName": "k",
-        "size": [
-          3
-        ],
-        "index": [
-          2
-        ]
-      }
-    },
-    "k_3": {
-      "type_prefix": "parameter",
-      "type_specifier": "Real",
-      "type": "element",
-      "compositionSpecifier": "public",
-      "long_class_specifier_identifier": "FlagsNone",
-      "single_component_list": {
-        "declaration": {
-          "identifier": "k_3",
-          "modification": {
-            "equal": true,
-            "expression": {
-              "simple_expression": "3"
-            }
-          }
-        },
-        "description": {
-          "description_string": "Derived from nZon, expect {1, 2, 3}"
-        }
-      },
-      "annotation": null,
-      "semantics": {},
-      "cdl_annotations": {},
-      "isVector": false,
-      "arraySubscripts": "",
-      "replaceable": null,
-      "constraining_clause": null,
-      "within": "evalAndArrays",
-      "fullMoFilePath": "test\\evalAndArrays\\FlagsNone.mo",
-      "arrayExpansion": {
-        "arrayName": "k",
-        "size": [
-          3
-        ],
-        "index": [
-          3
-        ]
-      }
-    },
-    "u_1": {
-      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
-      "type": "element",
-      "compositionSpecifier": "public",
-      "long_class_specifier_identifier": "FlagsNone",
-      "single_component_list": {
-        "declaration": {
-          "identifier": "u_1"
+          ]
         },
         "description": {
           "description_string": "Input of each zone"
@@ -199,85 +168,12 @@
       "annotation": null,
       "semantics": {},
       "cdl_annotations": {},
-      "isVector": false,
-      "arraySubscripts": "",
+      "isVector": true,
+      "arraySubscripts": "[nZon]",
       "replaceable": null,
       "constraining_clause": null,
       "within": "evalAndArrays",
-      "fullMoFilePath": "test\\evalAndArrays\\FlagsNone.mo",
-      "arrayExpansion": {
-        "arrayName": "u",
-        "size": [
-          3
-        ],
-        "index": [
-          1
-        ]
-      }
-    },
-    "u_2": {
-      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
-      "type": "element",
-      "compositionSpecifier": "public",
-      "long_class_specifier_identifier": "FlagsNone",
-      "single_component_list": {
-        "declaration": {
-          "identifier": "u_2"
-        },
-        "description": {
-          "description_string": "Input of each zone"
-        }
-      },
-      "annotation": null,
-      "semantics": {},
-      "cdl_annotations": {},
-      "isVector": false,
-      "arraySubscripts": "",
-      "replaceable": null,
-      "constraining_clause": null,
-      "within": "evalAndArrays",
-      "fullMoFilePath": "test\\evalAndArrays\\FlagsNone.mo",
-      "arrayExpansion": {
-        "arrayName": "u",
-        "size": [
-          3
-        ],
-        "index": [
-          2
-        ]
-      }
-    },
-    "u_3": {
-      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
-      "type": "element",
-      "compositionSpecifier": "public",
-      "long_class_specifier_identifier": "FlagsNone",
-      "single_component_list": {
-        "declaration": {
-          "identifier": "u_3"
-        },
-        "description": {
-          "description_string": "Input of each zone"
-        }
-      },
-      "annotation": null,
-      "semantics": {},
-      "cdl_annotations": {},
-      "isVector": false,
-      "arraySubscripts": "",
-      "replaceable": null,
-      "constraining_clause": null,
-      "within": "evalAndArrays",
-      "fullMoFilePath": "test\\evalAndArrays\\FlagsNone.mo",
-      "arrayExpansion": {
-        "arrayName": "u",
-        "size": [
-          3
-        ],
-        "index": [
-          3
-        ]
-      }
+      "fullMoFilePath": "test\\evalAndArrays\\FlagsNone.mo"
     },
     "uOne": {
       "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealInput",
@@ -302,14 +198,21 @@
       "within": "evalAndArrays",
       "fullMoFilePath": "test\\evalAndArrays\\FlagsNone.mo"
     },
-    "y_1": {
+    "y": {
       "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
       "type": "element",
       "compositionSpecifier": "public",
       "long_class_specifier_identifier": "FlagsNone",
       "single_component_list": {
         "declaration": {
-          "identifier": "y_1"
+          "identifier": "y",
+          "array_subscripts": [
+            {
+              "expression": {
+                "simple_expression": "nZon"
+              }
+            }
+          ]
         },
         "description": {
           "description_string": "Output of each zone"
@@ -318,85 +221,12 @@
       "annotation": null,
       "semantics": {},
       "cdl_annotations": {},
-      "isVector": false,
-      "arraySubscripts": "",
+      "isVector": true,
+      "arraySubscripts": "[nZon]",
       "replaceable": null,
       "constraining_clause": null,
       "within": "evalAndArrays",
-      "fullMoFilePath": "test\\evalAndArrays\\FlagsNone.mo",
-      "arrayExpansion": {
-        "arrayName": "y",
-        "size": [
-          3
-        ],
-        "index": [
-          1
-        ]
-      }
-    },
-    "y_2": {
-      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
-      "type": "element",
-      "compositionSpecifier": "public",
-      "long_class_specifier_identifier": "FlagsNone",
-      "single_component_list": {
-        "declaration": {
-          "identifier": "y_2"
-        },
-        "description": {
-          "description_string": "Output of each zone"
-        }
-      },
-      "annotation": null,
-      "semantics": {},
-      "cdl_annotations": {},
-      "isVector": false,
-      "arraySubscripts": "",
-      "replaceable": null,
-      "constraining_clause": null,
-      "within": "evalAndArrays",
-      "fullMoFilePath": "test\\evalAndArrays\\FlagsNone.mo",
-      "arrayExpansion": {
-        "arrayName": "y",
-        "size": [
-          3
-        ],
-        "index": [
-          2
-        ]
-      }
-    },
-    "y_3": {
-      "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
-      "type": "element",
-      "compositionSpecifier": "public",
-      "long_class_specifier_identifier": "FlagsNone",
-      "single_component_list": {
-        "declaration": {
-          "identifier": "y_3"
-        },
-        "description": {
-          "description_string": "Output of each zone"
-        }
-      },
-      "annotation": null,
-      "semantics": {},
-      "cdl_annotations": {},
-      "isVector": false,
-      "arraySubscripts": "",
-      "replaceable": null,
-      "constraining_clause": null,
-      "within": "evalAndArrays",
-      "fullMoFilePath": "test\\evalAndArrays\\FlagsNone.mo",
-      "arrayExpansion": {
-        "arrayName": "y",
-        "size": [
-          3
-        ],
-        "index": [
-          3
-        ]
-      }
+      "fullMoFilePath": "test\\evalAndArrays\\FlagsNone.mo"
     },
     "yOne": {
       "type_specifier": "Buildings.Controls.OBC.CDL.Interfaces.RealOutput",
@@ -439,7 +269,7 @@
                     "modification": {
                       "equal": true,
                       "expression": {
-                        "simple_expression": "3"
+                        "simple_expression": "nZon"
                       }
                     }
                   }
@@ -453,20 +283,7 @@
                     "modification": {
                       "equal": true,
                       "expression": {
-                        "simple_expression": "true"
-                      }
-                    }
-                  }
-                }
-              },
-              {
-                "element_modification_or_replaceable": {
-                  "element_modification": {
-                    "name": "conditional",
-                    "modification": {
-                      "equal": true,
-                      "expression": {
-                        "simple_expression": "3"
+                        "simple_expression": "status"
                       }
                     }
                   }
@@ -487,17 +304,23 @@
       "replaceable": null,
       "constraining_clause": null,
       "within": "evalAndArrays",
-      "fullMoFilePath": "test\\evalAndArrays\\FlagsNone.mo",
-      "subInstanceDefinition": "evalAndArrays.Flags_Unit.uniNone"
+      "fullMoFilePath": "test\\evalAndArrays\\FlagsNone.mo"
     },
-    "multer_1": {
+    "multer": {
       "type_specifier": "Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter",
       "type": "element",
       "compositionSpecifier": "public",
       "long_class_specifier_identifier": "FlagsNone",
       "single_component_list": {
         "declaration": {
-          "identifier": "multer_1",
+          "identifier": "multer",
+          "array_subscripts": [
+            {
+              "expression": {
+                "simple_expression": "nZon"
+              }
+            }
+          ],
           "modification": {
             "class_modification": [
               {
@@ -508,7 +331,7 @@
                     "modification": {
                       "equal": true,
                       "expression": {
-                        "simple_expression": "1"
+                        "simple_expression": "k"
                       }
                     }
                   }
@@ -524,142 +347,21 @@
       "annotation": null,
       "semantics": {},
       "cdl_annotations": {},
-      "isVector": false,
-      "arraySubscripts": "",
+      "isVector": true,
+      "arraySubscripts": "[nZon]",
       "replaceable": null,
       "constraining_clause": null,
       "within": "evalAndArrays",
-      "fullMoFilePath": "test\\evalAndArrays\\FlagsNone.mo",
-      "arrayExpansion": {
-        "arrayName": "multer",
-        "size": [
-          3
-        ],
-        "index": [
-          1
-        ]
-      }
-    },
-    "multer_2": {
-      "type_specifier": "Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter",
-      "type": "element",
-      "compositionSpecifier": "public",
-      "long_class_specifier_identifier": "FlagsNone",
-      "single_component_list": {
-        "declaration": {
-          "identifier": "multer_2",
-          "modification": {
-            "class_modification": [
-              {
-                "element_modification_or_replaceable": {
-                  "final": true,
-                  "element_modification": {
-                    "name": "k",
-                    "modification": {
-                      "equal": true,
-                      "expression": {
-                        "simple_expression": "2"
-                      }
-                    }
-                  }
-                }
-              }
-            ]
-          }
-        },
-        "description": {
-          "description_string": "Array of elementary blocks, one per zone"
-        }
-      },
-      "annotation": null,
-      "semantics": {},
-      "cdl_annotations": {},
-      "isVector": false,
-      "arraySubscripts": "",
-      "replaceable": null,
-      "constraining_clause": null,
-      "within": "evalAndArrays",
-      "fullMoFilePath": "test\\evalAndArrays\\FlagsNone.mo",
-      "arrayExpansion": {
-        "arrayName": "multer",
-        "size": [
-          3
-        ],
-        "index": [
-          2
-        ]
-      }
-    },
-    "multer_3": {
-      "type_specifier": "Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter",
-      "type": "element",
-      "compositionSpecifier": "public",
-      "long_class_specifier_identifier": "FlagsNone",
-      "single_component_list": {
-        "declaration": {
-          "identifier": "multer_3",
-          "modification": {
-            "class_modification": [
-              {
-                "element_modification_or_replaceable": {
-                  "final": true,
-                  "element_modification": {
-                    "name": "k",
-                    "modification": {
-                      "equal": true,
-                      "expression": {
-                        "simple_expression": "3"
-                      }
-                    }
-                  }
-                }
-              }
-            ]
-          }
-        },
-        "description": {
-          "description_string": "Array of elementary blocks, one per zone"
-        }
-      },
-      "annotation": null,
-      "semantics": {},
-      "cdl_annotations": {},
-      "isVector": false,
-      "arraySubscripts": "",
-      "replaceable": null,
-      "constraining_clause": null,
-      "within": "evalAndArrays",
-      "fullMoFilePath": "test\\evalAndArrays\\FlagsNone.mo",
-      "arrayExpansion": {
-        "arrayName": "multer",
-        "size": [
-          3
-        ],
-        "index": [
-          3
-        ]
-      }
+      "fullMoFilePath": "test\\evalAndArrays\\FlagsNone.mo"
     }
   },
   "requiredReferences": {
     "connections": {
-      "u_1": [
-        "multer_1.u"
+      "u": [
+        "multer.u"
       ],
-      "u_2": [
-        "multer_2.u"
-      ],
-      "u_3": [
-        "multer_3.u"
-      ],
-      "multer_1.y": [
-        "y_1"
-      ],
-      "multer_2.y": [
-        "y_2"
-      ],
-      "multer_3.y": [
-        "y_3"
+      "multer.y": [
+        "y"
       ],
       "uOne": [
         "uniNone.u"

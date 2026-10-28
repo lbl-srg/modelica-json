@@ -1,0 +1,186 @@
+{
+  "@context": {
+    "S231": "http://data.ashrae.org/S231#",
+    "ex": "http://example.org#"
+  },
+  "@graph": [
+    {
+      "@id": "ex:evalAndArrays.ValueProp",
+      "@type": "S231:Block",
+      "S231:containsBlock": [
+        {
+          "@id": "ex:evalAndArrays.ValueProp.add2"
+        },
+        {
+          "@id": "ex:evalAndArrays.ValueProp.con1"
+        },
+        {
+          "@id": "ex:evalAndArrays.ValueProp.con2"
+        },
+        {
+          "@id": "ex:evalAndArrays.ValueProp.multer"
+        }
+      ],
+      "S231:hasOutput": {
+        "@id": "ex:evalAndArrays.ValueProp.y"
+      },
+      "S231:hasParameter": [
+        {
+          "@id": "ex:evalAndArrays.ValueProp.derivedVal"
+        },
+        {
+          "@id": "ex:evalAndArrays.ValueProp.input1"
+        },
+        {
+          "@id": "ex:evalAndArrays.ValueProp.input2"
+        }
+      ],
+      "S231:label": "ValueProp"
+    },
+    {
+      "@id": "ex:evalAndArrays.ValueProp.add2",
+      "@type": "ex:Buildings.Controls.OBC.CDL.Reals.Add",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Sums input1 and input2",
+      "S231:hasInstance": [
+        {
+          "@id": "ex:evalAndArrays.ValueProp.add2.u1"
+        },
+        {
+          "@id": "ex:evalAndArrays.ValueProp.add2.u2"
+        },
+        {
+          "@id": "ex:evalAndArrays.ValueProp.add2.y"
+        }
+      ],
+      "S231:label": "add2"
+    },
+    {
+      "@id": "ex:evalAndArrays.ValueProp.add2.y",
+      "S231:isConnectedTo": {
+        "@id": "ex:evalAndArrays.ValueProp.multer.u"
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.ValueProp.con1",
+      "@type": "ex:Buildings.Controls.OBC.CDL.Reals.Sources.Constant",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Carries input1 into the sequence",
+      "S231:hasInstance": [
+        {
+          "@id": "ex:evalAndArrays.ValueProp.con1.k"
+        },
+        {
+          "@id": "ex:evalAndArrays.ValueProp.con1.y"
+        }
+      ],
+      "S231:label": "con1"
+    },
+    {
+      "@id": "ex:evalAndArrays.ValueProp.con1.k",
+      "S231:isFinal": true,
+      "S231:value": 1
+    },
+    {
+      "@id": "ex:evalAndArrays.ValueProp.con1.y",
+      "S231:isConnectedTo": {
+        "@id": "ex:evalAndArrays.ValueProp.add2.u1"
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.ValueProp.con2",
+      "@type": "ex:Buildings.Controls.OBC.CDL.Reals.Sources.Constant",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Carries input2 into the sequence",
+      "S231:hasInstance": [
+        {
+          "@id": "ex:evalAndArrays.ValueProp.con2.k"
+        },
+        {
+          "@id": "ex:evalAndArrays.ValueProp.con2.y"
+        }
+      ],
+      "S231:label": "con2"
+    },
+    {
+      "@id": "ex:evalAndArrays.ValueProp.con2.k",
+      "S231:isFinal": true,
+      "S231:value": 2
+    },
+    {
+      "@id": "ex:evalAndArrays.ValueProp.con2.y",
+      "S231:isConnectedTo": {
+        "@id": "ex:evalAndArrays.ValueProp.add2.u2"
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.ValueProp.derivedVal",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Derived from supplied value",
+      "S231:isOfDataType": {
+        "@id": "S231:Real"
+      },
+      "S231:label": "derivedVal",
+      "S231:value": 2
+    },
+    {
+      "@id": "ex:evalAndArrays.ValueProp.input1",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "User supplied, should equal 1",
+      "S231:isOfDataType": {
+        "@id": "S231:Real"
+      },
+      "S231:label": "input1",
+      "S231:value": 1
+    },
+    {
+      "@id": "ex:evalAndArrays.ValueProp.input2",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "User supplied, should equal 2",
+      "S231:isOfDataType": {
+        "@id": "S231:Real"
+      },
+      "S231:label": "input2",
+      "S231:value": 2
+    },
+    {
+      "@id": "ex:evalAndArrays.ValueProp.multer",
+      "@type": "ex:Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Multiplies value by the derivedVal",
+      "S231:hasInstance": [
+        {
+          "@id": "ex:evalAndArrays.ValueProp.multer.k"
+        },
+        {
+          "@id": "ex:evalAndArrays.ValueProp.multer.u"
+        },
+        {
+          "@id": "ex:evalAndArrays.ValueProp.multer.y"
+        }
+      ],
+      "S231:label": "multer"
+    },
+    {
+      "@id": "ex:evalAndArrays.ValueProp.multer.k",
+      "S231:isFinal": true,
+      "S231:value": 2
+    },
+    {
+      "@id": "ex:evalAndArrays.ValueProp.multer.y",
+      "S231:isConnectedTo": {
+        "@id": "ex:evalAndArrays.ValueProp.y"
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.ValueProp.y",
+      "@type": "S231:RealOutput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Output",
+      "S231:label": "y"
+    }
+  ]
+}

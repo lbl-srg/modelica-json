@@ -13,8 +13,15 @@ const expressionEvaluation = rewire('../lib/expressionEvaluation.js')
 
 // Function to unset rewired functions after each test
 let unset
+/* MODELICAPATH is process wide and the cases below add a library of their own to
+   it. Without putting it back, every test file that runs after this one - and
+   every lookup of a class outside the package under test - searches a path this
+   file built. */
+const modelicaPath = process.env.MODELICAPATH
 mocha.afterEach(() => {
   if (unset != null) { unset.call() }
+  if (modelicaPath === undefined) delete process.env.MODELICAPATH
+  else process.env.MODELICAPATH = modelicaPath
 })
 
 logger.level = 'error'
@@ -75,7 +82,7 @@ mocha.describe('cdlDoc', function () {
         path.join(process.cwd(), 'test', 'cdlDoc', 'Library', 'Resources', 'Image.png')
       )
       const libPath = path.join(process.cwd(), 'test', 'cdlDoc')
-      process.env.MODELICAPATH = process.env.MODELICAPATH + `:${libPath}`
+      process.env.MODELICAPATH = process.env.MODELICAPATH + path.delimiter + libPath
       assert.deepStrictEqual(
         processImg($),
         { 'Library_Resources_Image.png': imgPath }
@@ -133,7 +140,7 @@ mocha.describe('cdlDoc', function () {
         }
       ]
       const libPath = path.join(process.cwd(), 'test', 'cdlDoc')
-      process.env.MODELICAPATH = process.env.MODELICAPATH + `:${libPath}`
+      process.env.MODELICAPATH = process.env.MODELICAPATH + path.delimiter + libPath
       const $ = cheerio.load(htmlStr)
       processHref($, documentation)
       assert.strictEqual(

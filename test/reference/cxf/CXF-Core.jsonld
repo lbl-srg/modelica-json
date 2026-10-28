@@ -6663,8 +6663,12 @@
     },
     {
       "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Reals.PID.controllerType",
+      "@type": "S231:Parameter",
       "S231:accessSpecifier": "public",
       "S231:description": "Type of controller",
+      "S231:isOfDataType": {
+        "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.SimpleController"
+      },
       "S231:label": "controllerType",
       "S231:value": "Buildings.Controls.OBC.CDL.Types.SimpleController.PI"
     },
@@ -7458,8 +7462,12 @@
     },
     {
       "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Reals.PIDWithReset.controllerType",
+      "@type": "S231:Parameter",
       "S231:accessSpecifier": "public",
       "S231:description": "Type of controller",
+      "S231:isOfDataType": {
+        "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.SimpleController"
+      },
       "S231:label": "controllerType",
       "S231:value": "Buildings.Controls.OBC.CDL.Types.SimpleController.PI"
     },
@@ -8498,8 +8506,12 @@
     },
     {
       "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Reals.Sources.CalendarTime.zerTim",
+      "@type": "S231:Parameter",
       "S231:accessSpecifier": "public",
       "S231:description": "Enumeration for choosing how reference time (time = 0) should be defined",
+      "S231:isOfDataType": {
+        "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime"
+      },
       "S231:label": "zerTim"
     },
     {
@@ -10194,21 +10206,21 @@
       "S231:value": "Extrapolation"
     },
     {
-      "@id": "http://data.ashrae.org/S231#Extrapolation.HoldLastPoint",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.Extrapolation.HoldLastPoint",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.Extrapolation",
       "S231:description": "Hold the first/last table point outside of the table scope",
       "S231:label": "HoldLastPoint",
       "S231:value": "HoldLastPoint"
     },
     {
-      "@id": "http://data.ashrae.org/S231#Extrapolation.LastTwoPoints",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.Extrapolation.LastTwoPoints",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.Extrapolation",
       "S231:description": "Extrapolate by using the derivative at the first/last table points outside of the table scope",
       "S231:label": "LastTwoPoints",
       "S231:value": "LastTwoPoints"
     },
     {
-      "@id": "http://data.ashrae.org/S231#Extrapolation.Periodic",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.Extrapolation.Periodic",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.Extrapolation",
       "S231:description": "Repeat the table scope periodically",
       "S231:label": "Periodic",
@@ -10222,28 +10234,28 @@
       "S231:value": "SimpleController"
     },
     {
-      "@id": "http://data.ashrae.org/S231#SimpleController.P",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.SimpleController.P",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.SimpleController",
       "S231:description": "P controller",
       "S231:label": "P",
       "S231:value": "P"
     },
     {
-      "@id": "http://data.ashrae.org/S231#SimpleController.PD",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.SimpleController.PD",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.SimpleController",
       "S231:description": "PD controller",
       "S231:label": "PD",
       "S231:value": "PD"
     },
     {
-      "@id": "http://data.ashrae.org/S231#SimpleController.PI",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.SimpleController.PI",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.SimpleController",
       "S231:description": "PI controller",
       "S231:label": "PI",
       "S231:value": "PI"
     },
     {
-      "@id": "http://data.ashrae.org/S231#SimpleController.PID",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.SimpleController.PID",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.SimpleController",
       "S231:description": "PID controller",
       "S231:label": "PID",
@@ -10257,14 +10269,14 @@
       "S231:value": "Smoothness"
     },
     {
-      "@id": "http://data.ashrae.org/S231#Smoothness.ConstantSegments",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.Smoothness.ConstantSegments",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.Smoothness",
       "S231:description": "Table points are not interpolated, but the previous tabulated value is returned",
       "S231:label": "ConstantSegments",
       "S231:value": "ConstantSegments"
     },
     {
-      "@id": "http://data.ashrae.org/S231#Smoothness.LinearSegments",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.Smoothness.LinearSegments",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.Smoothness",
       "S231:description": "Table points are linearly interpolated",
       "S231:label": "LinearSegments",
@@ -10278,308 +10290,308 @@
       "S231:value": "ZeroTime"
     },
     {
-      "@id": "http://data.ashrae.org/S231#ZeroTime.Custom",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime.Custom",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime",
       "S231:description": "User specified local time",
       "S231:label": "Custom",
       "S231:value": "Custom"
     },
     {
-      "@id": "http://data.ashrae.org/S231#ZeroTime.NY2010",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime.NY2010",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime",
       "S231:description": "New year 2010, 00:00:00 local time",
       "S231:label": "NY2010",
       "S231:value": "NY2010"
     },
     {
-      "@id": "http://data.ashrae.org/S231#ZeroTime.NY2011",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime.NY2011",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime",
       "S231:description": "New year 2011, 00:00:00 local time",
       "S231:label": "NY2011",
       "S231:value": "NY2011"
     },
     {
-      "@id": "http://data.ashrae.org/S231#ZeroTime.NY2012",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime.NY2012",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime",
       "S231:description": "New year 2012, 00:00:00 local time",
       "S231:label": "NY2012",
       "S231:value": "NY2012"
     },
     {
-      "@id": "http://data.ashrae.org/S231#ZeroTime.NY2013",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime.NY2013",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime",
       "S231:description": "New year 2013, 00:00:00 local time",
       "S231:label": "NY2013",
       "S231:value": "NY2013"
     },
     {
-      "@id": "http://data.ashrae.org/S231#ZeroTime.NY2014",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime.NY2014",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime",
       "S231:description": "New year 2014, 00:00:00 local time",
       "S231:label": "NY2014",
       "S231:value": "NY2014"
     },
     {
-      "@id": "http://data.ashrae.org/S231#ZeroTime.NY2015",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime.NY2015",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime",
       "S231:description": "New year 2015, 00:00:00 local time",
       "S231:label": "NY2015",
       "S231:value": "NY2015"
     },
     {
-      "@id": "http://data.ashrae.org/S231#ZeroTime.NY2016",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime.NY2016",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime",
       "S231:description": "New year 2016, 00:00:00 local time",
       "S231:label": "NY2016",
       "S231:value": "NY2016"
     },
     {
-      "@id": "http://data.ashrae.org/S231#ZeroTime.NY2017",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime.NY2017",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime",
       "S231:description": "New year 2017, 00:00:00 local time",
       "S231:label": "NY2017",
       "S231:value": "NY2017"
     },
     {
-      "@id": "http://data.ashrae.org/S231#ZeroTime.NY2018",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime.NY2018",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime",
       "S231:description": "New year 2018, 00:00:00 local time",
       "S231:label": "NY2018",
       "S231:value": "NY2018"
     },
     {
-      "@id": "http://data.ashrae.org/S231#ZeroTime.NY2019",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime.NY2019",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime",
       "S231:description": "New year 2019, 00:00:00 local time",
       "S231:label": "NY2019",
       "S231:value": "NY2019"
     },
     {
-      "@id": "http://data.ashrae.org/S231#ZeroTime.NY2020",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime.NY2020",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime",
       "S231:description": "New year 2020, 00:00:00 local time",
       "S231:label": "NY2020",
       "S231:value": "NY2020"
     },
     {
-      "@id": "http://data.ashrae.org/S231#ZeroTime.NY2021",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime.NY2021",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime",
       "S231:description": "New year 2021, 00:00:00 local time",
       "S231:label": "NY2021",
       "S231:value": "NY2021"
     },
     {
-      "@id": "http://data.ashrae.org/S231#ZeroTime.NY2022",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime.NY2022",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime",
       "S231:description": "New year 2022, 00:00:00 local time",
       "S231:label": "NY2022",
       "S231:value": "NY2022"
     },
     {
-      "@id": "http://data.ashrae.org/S231#ZeroTime.NY2023",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime.NY2023",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime",
       "S231:description": "New year 2023, 00:00:00 local time",
       "S231:label": "NY2023",
       "S231:value": "NY2023"
     },
     {
-      "@id": "http://data.ashrae.org/S231#ZeroTime.NY2024",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime.NY2024",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime",
       "S231:description": "New year 2024, 00:00:00 local time",
       "S231:label": "NY2024",
       "S231:value": "NY2024"
     },
     {
-      "@id": "http://data.ashrae.org/S231#ZeroTime.NY2025",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime.NY2025",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime",
       "S231:description": "New year 2025, 00:00:00 local time",
       "S231:label": "NY2025",
       "S231:value": "NY2025"
     },
     {
-      "@id": "http://data.ashrae.org/S231#ZeroTime.NY2026",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime.NY2026",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime",
       "S231:description": "New year 2026, 00:00:00 local time",
       "S231:label": "NY2026",
       "S231:value": "NY2026"
     },
     {
-      "@id": "http://data.ashrae.org/S231#ZeroTime.NY2027",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime.NY2027",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime",
       "S231:description": "New year 2027, 00:00:00 local time",
       "S231:label": "NY2027",
       "S231:value": "NY2027"
     },
     {
-      "@id": "http://data.ashrae.org/S231#ZeroTime.NY2028",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime.NY2028",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime",
       "S231:description": "New year 2028, 00:00:00 local time",
       "S231:label": "NY2028",
       "S231:value": "NY2028"
     },
     {
-      "@id": "http://data.ashrae.org/S231#ZeroTime.NY2029",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime.NY2029",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime",
       "S231:description": "New year 2029, 00:00:00 local time",
       "S231:label": "NY2029",
       "S231:value": "NY2029"
     },
     {
-      "@id": "http://data.ashrae.org/S231#ZeroTime.NY2030",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime.NY2030",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime",
       "S231:description": "New year 2030, 00:00:00 local time",
       "S231:label": "NY2030",
       "S231:value": "NY2030"
     },
     {
-      "@id": "http://data.ashrae.org/S231#ZeroTime.NY2031",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime.NY2031",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime",
       "S231:description": "New year 2031, 00:00:00 local time",
       "S231:label": "NY2031",
       "S231:value": "NY2031"
     },
     {
-      "@id": "http://data.ashrae.org/S231#ZeroTime.NY2032",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime.NY2032",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime",
       "S231:description": "New year 2032, 00:00:00 local time",
       "S231:label": "NY2032",
       "S231:value": "NY2032"
     },
     {
-      "@id": "http://data.ashrae.org/S231#ZeroTime.NY2033",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime.NY2033",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime",
       "S231:description": "New year 2033, 00:00:00 local time",
       "S231:label": "NY2033",
       "S231:value": "NY2033"
     },
     {
-      "@id": "http://data.ashrae.org/S231#ZeroTime.NY2034",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime.NY2034",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime",
       "S231:description": "New year 2034, 00:00:00 local time",
       "S231:label": "NY2034",
       "S231:value": "NY2034"
     },
     {
-      "@id": "http://data.ashrae.org/S231#ZeroTime.NY2035",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime.NY2035",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime",
       "S231:description": "New year 2035, 00:00:00 local time",
       "S231:label": "NY2035",
       "S231:value": "NY2035"
     },
     {
-      "@id": "http://data.ashrae.org/S231#ZeroTime.NY2036",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime.NY2036",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime",
       "S231:description": "New year 2036, 00:00:00 local time",
       "S231:label": "NY2036",
       "S231:value": "NY2036"
     },
     {
-      "@id": "http://data.ashrae.org/S231#ZeroTime.NY2037",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime.NY2037",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime",
       "S231:description": "New year 2037, 00:00:00 local time",
       "S231:label": "NY2037",
       "S231:value": "NY2037"
     },
     {
-      "@id": "http://data.ashrae.org/S231#ZeroTime.NY2038",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime.NY2038",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime",
       "S231:description": "New year 2038, 00:00:00 local time",
       "S231:label": "NY2038",
       "S231:value": "NY2038"
     },
     {
-      "@id": "http://data.ashrae.org/S231#ZeroTime.NY2039",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime.NY2039",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime",
       "S231:description": "New year 2039, 00:00:00 local time",
       "S231:label": "NY2039",
       "S231:value": "NY2039"
     },
     {
-      "@id": "http://data.ashrae.org/S231#ZeroTime.NY2040",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime.NY2040",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime",
       "S231:description": "New year 2040, 00:00:00 local time",
       "S231:label": "NY2040",
       "S231:value": "NY2040"
     },
     {
-      "@id": "http://data.ashrae.org/S231#ZeroTime.NY2041",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime.NY2041",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime",
       "S231:description": "New year 2041, 00:00:00 local time",
       "S231:label": "NY2041",
       "S231:value": "NY2041"
     },
     {
-      "@id": "http://data.ashrae.org/S231#ZeroTime.NY2042",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime.NY2042",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime",
       "S231:description": "New year 2042, 00:00:00 local time",
       "S231:label": "NY2042",
       "S231:value": "NY2042"
     },
     {
-      "@id": "http://data.ashrae.org/S231#ZeroTime.NY2043",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime.NY2043",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime",
       "S231:description": "New year 2043, 00:00:00 local time",
       "S231:label": "NY2043",
       "S231:value": "NY2043"
     },
     {
-      "@id": "http://data.ashrae.org/S231#ZeroTime.NY2044",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime.NY2044",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime",
       "S231:description": "New year 2044, 00:00:00 local time",
       "S231:label": "NY2044",
       "S231:value": "NY2044"
     },
     {
-      "@id": "http://data.ashrae.org/S231#ZeroTime.NY2045",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime.NY2045",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime",
       "S231:description": "New year 2045, 00:00:00 local time",
       "S231:label": "NY2045",
       "S231:value": "NY2045"
     },
     {
-      "@id": "http://data.ashrae.org/S231#ZeroTime.NY2046",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime.NY2046",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime",
       "S231:description": "New year 2046, 00:00:00 local time",
       "S231:label": "NY2046",
       "S231:value": "NY2046"
     },
     {
-      "@id": "http://data.ashrae.org/S231#ZeroTime.NY2047",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime.NY2047",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime",
       "S231:description": "New year 2047, 00:00:00 local time",
       "S231:label": "NY2047",
       "S231:value": "NY2047"
     },
     {
-      "@id": "http://data.ashrae.org/S231#ZeroTime.NY2048",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime.NY2048",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime",
       "S231:description": "New year 2048, 00:00:00 local time",
       "S231:label": "NY2048",
       "S231:value": "NY2048"
     },
     {
-      "@id": "http://data.ashrae.org/S231#ZeroTime.NY2049",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime.NY2049",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime",
       "S231:description": "New year 2049, 00:00:00 local time",
       "S231:label": "NY2049",
       "S231:value": "NY2049"
     },
     {
-      "@id": "http://data.ashrae.org/S231#ZeroTime.NY2050",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime.NY2050",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime",
       "S231:description": "New year 2050, 00:00:00 local time",
       "S231:label": "NY2050",
       "S231:value": "NY2050"
     },
     {
-      "@id": "http://data.ashrae.org/S231#ZeroTime.UnixTimeStamp",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime.UnixTimeStamp",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime",
       "S231:description": "Thu, 01 Jan 1970 00:00:00 local time",
       "S231:label": "UnixTimeStamp",
       "S231:value": "UnixTimeStamp"
     },
     {
-      "@id": "http://data.ashrae.org/S231#ZeroTime.UnixTimeStampGMT",
+      "@id": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime.UnixTimeStampGMT",
       "@type": "http://data.ashrae.org/S231#Buildings.Controls.OBC.CDL.Types.ZeroTime",
       "S231:description": "Thu, 01 Jan 1970 00:00:00 GMT",
       "S231:label": "UnixTimeStampGMT",

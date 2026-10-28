@@ -1,0 +1,280 @@
+{
+  "@context": {
+    "S231": "http://data.ashrae.org/S231#",
+    "ex": "http://example.org#",
+    "modelica": "https://modelica.org/"
+  },
+  "@graph": [
+    {
+      "@id": "ex:evalAndArrays.Specialize",
+      "@type": "S231:Block",
+      "S231:containsBlock": [
+        {
+          "@id": "ex:evalAndArrays.Specialize.uniDrop"
+        },
+        {
+          "@id": "ex:evalAndArrays.Specialize.uniKeep"
+        },
+        {
+          "@id": "ex:evalAndArrays.Specialize.uniWide"
+        }
+      ],
+      "S231:hasInput": {
+        "@id": "ex:evalAndArrays.Specialize.u"
+      },
+      "S231:hasOutput": [
+        {
+          "@id": "ex:evalAndArrays.Specialize.yDrop"
+        },
+        {
+          "@id": "ex:evalAndArrays.Specialize.yKeep"
+        },
+        {
+          "@id": "ex:evalAndArrays.Specialize.yWide_1"
+        },
+        {
+          "@id": "ex:evalAndArrays.Specialize.yWide_2"
+        }
+      ],
+      "S231:label": "Specialize"
+    },
+    {
+      "@id": "ex:evalAndArrays.Specialize.u",
+      "@type": "S231:RealInput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Input signal",
+      "S231:isConnectedTo": [
+        {
+          "@id": "ex:evalAndArrays.Specialize.uniDrop.u_1"
+        },
+        {
+          "@id": "ex:evalAndArrays.Specialize.uniDrop.uOne"
+        },
+        {
+          "@id": "ex:evalAndArrays.Specialize.uniKeep.u_1"
+        },
+        {
+          "@id": "ex:evalAndArrays.Specialize.uniKeep.uOne"
+        },
+        {
+          "@id": "ex:evalAndArrays.Specialize.uniWide.u_1"
+        },
+        {
+          "@id": "ex:evalAndArrays.Specialize.uniWide.u_2"
+        },
+        {
+          "@id": "ex:evalAndArrays.Specialize.uniWide.uOne"
+        }
+      ],
+      "S231:label": "u"
+    },
+    {
+      "@id": "ex:evalAndArrays.Specialize.uniDrop",
+      "@type": "ex:evalAndArrays.Specialize_Unit.uniDrop",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Drops the conditional adder, expect the class as its type",
+      "S231:hasInstance": [
+        {
+          "@id": "ex:evalAndArrays.Specialize.uniDrop.n"
+        },
+        {
+          "@id": "ex:evalAndArrays.Specialize.uniDrop.p"
+        },
+        {
+          "@id": "ex:evalAndArrays.Specialize.uniDrop.u_1"
+        },
+        {
+          "@id": "ex:evalAndArrays.Specialize.uniDrop.uOne"
+        },
+        {
+          "@id": "ex:evalAndArrays.Specialize.uniDrop.useOff"
+        },
+        {
+          "@id": "ex:evalAndArrays.Specialize.uniDrop.y_1"
+        }
+      ],
+      "S231:label": "uniDrop"
+    },
+    {
+      "@id": "ex:evalAndArrays.Specialize.uniDrop.n",
+      "S231:value": 1
+    },
+    {
+      "@id": "ex:evalAndArrays.Specialize.uniDrop.p",
+      "S231:isFinal": true,
+      "S231:value": 3
+    },
+    {
+      "@id": "ex:evalAndArrays.Specialize.uniDrop.useOff",
+      "S231:isFinal": true,
+      "S231:value": false
+    },
+    {
+      "@id": "ex:evalAndArrays.Specialize.uniDrop.y_1",
+      "S231:isConnectedTo": {
+        "@id": "ex:evalAndArrays.Specialize.yDrop"
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.Specialize.uniKeep",
+      "@type": "ex:evalAndArrays.Specialize_Unit.uniKeep",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Same structure as the class, expect the class as its type",
+      "S231:hasInstance": [
+        {
+          "@id": "ex:evalAndArrays.Specialize.uniKeep.n"
+        },
+        {
+          "@id": "ex:evalAndArrays.Specialize.uniKeep.p"
+        },
+        {
+          "@id": "ex:evalAndArrays.Specialize.uniKeep.u_1"
+        },
+        {
+          "@id": "ex:evalAndArrays.Specialize.uniKeep.uOne"
+        },
+        {
+          "@id": "ex:evalAndArrays.Specialize.uniKeep.useOff"
+        },
+        {
+          "@id": "ex:evalAndArrays.Specialize.uniKeep.yOne"
+        }
+      ],
+      "S231:label": "uniKeep"
+    },
+    {
+      "@id": "ex:evalAndArrays.Specialize.uniKeep.n",
+      "S231:value": 1
+    },
+    {
+      "@id": "ex:evalAndArrays.Specialize.uniKeep.p",
+      "S231:isFinal": true,
+      "S231:value": 2
+    },
+    {
+      "@id": "ex:evalAndArrays.Specialize.uniKeep.useOff",
+      "S231:isFinal": true,
+      "S231:value": true
+    },
+    {
+      "@id": "ex:evalAndArrays.Specialize.uniKeep.yOne",
+      "S231:isConnectedTo": {
+        "@id": "ex:evalAndArrays.Specialize.yKeep"
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.Specialize.uniWide",
+      "@type": "ex:evalAndArrays.Specialize_Unit.uniWide",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Two elements where the class has one, expect a class of its own",
+      "S231:hasInstance": [
+        {
+          "@id": "ex:evalAndArrays.Specialize.uniWide.n"
+        },
+        {
+          "@id": "ex:evalAndArrays.Specialize.uniWide.p"
+        },
+        {
+          "@id": "ex:evalAndArrays.Specialize.uniWide.u_1"
+        },
+        {
+          "@id": "ex:evalAndArrays.Specialize.uniWide.u_2"
+        },
+        {
+          "@id": "ex:evalAndArrays.Specialize.uniWide.uOne"
+        },
+        {
+          "@id": "ex:evalAndArrays.Specialize.uniWide.useOff"
+        },
+        {
+          "@id": "ex:evalAndArrays.Specialize.uniWide.y_1"
+        },
+        {
+          "@id": "ex:evalAndArrays.Specialize.uniWide.y_2"
+        }
+      ],
+      "S231:label": "uniWide"
+    },
+    {
+      "@id": "ex:evalAndArrays.Specialize.uniWide.n",
+      "S231:isFinal": true,
+      "S231:value": 2
+    },
+    {
+      "@id": "ex:evalAndArrays.Specialize.uniWide.p",
+      "S231:isFinal": true,
+      "S231:value": 4
+    },
+    {
+      "@id": "ex:evalAndArrays.Specialize.uniWide.useOff",
+      "S231:isFinal": true,
+      "S231:value": true
+    },
+    {
+      "@id": "ex:evalAndArrays.Specialize.uniWide.y_1",
+      "S231:isConnectedTo": {
+        "@id": "ex:evalAndArrays.Specialize.yWide_1"
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.Specialize.uniWide.y_2",
+      "S231:isConnectedTo": {
+        "@id": "ex:evalAndArrays.Specialize.yWide_2"
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.Specialize.yDrop",
+      "@type": "S231:RealOutput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Output of the instance that drops the offset",
+      "S231:label": "yDrop"
+    },
+    {
+      "@id": "ex:evalAndArrays.Specialize.yKeep",
+      "@type": "S231:RealOutput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Output of the instance that keeps the offset",
+      "S231:label": "yKeep"
+    },
+    {
+      "@id": "ex:evalAndArrays.Specialize.yWide_1",
+      "@type": "S231:RealOutput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Output of the instance with two elements",
+      "S231:label": "yWide_1",
+      "modelica:arrayExpansion": {
+        "modelica:arrayName": "yWide",
+        "modelica:index": {
+          "@list": [
+            1
+          ]
+        },
+        "modelica:size": {
+          "@list": [
+            2
+          ]
+        }
+      }
+    },
+    {
+      "@id": "ex:evalAndArrays.Specialize.yWide_2",
+      "@type": "S231:RealOutput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Output of the instance with two elements",
+      "S231:label": "yWide_2",
+      "modelica:arrayExpansion": {
+        "modelica:arrayName": "yWide",
+        "modelica:index": {
+          "@list": [
+            2
+          ]
+        },
+        "modelica:size": {
+          "@list": [
+            2
+          ]
+        }
+      }
+    }
+  ]
+}
