@@ -79,13 +79,25 @@
   },
   {
     "name": "notexppar",
-    "value": " if not ([object Object]) then 1 else 2",
+    "value": " if not (a < b) then 1 else 2",
     "unit": null,
     "displayUnit": null
   },
   {
     "name": "andnotexppar",
-    "value": " if ([object Object]) and not ([object Object]) then 1 else 2",
+    "value": " if (a < b) and not (a < b) then 1 else 2",
+    "unit": null,
+    "displayUnit": null
+  },
+  {
+    "name": "notbool",
+    "value": "not equal",
+    "unit": null,
+    "displayUnit": null
+  },
+  {
+    "name": "notboolexp",
+    "value": " if not equal then 1 else 2",
     "unit": null,
     "displayUnit": null
   },
