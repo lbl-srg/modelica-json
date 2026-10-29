@@ -12,6 +12,13 @@ install:
 test:
 	npm test
 
+# The test libraries (such as FromModelica and ModelicaMode) are located in ./test,
+# which must be on MODELICAPATH so that their classes can be looked up.
+# The outputs are then written to <format>/<library>/, as in the tests (see test/setup/modelicaPath.js).
+ifeq ($(filter $(CURDIR)/test,$(subst :, ,$(MODELICAPATH))),)
+generate-reference-output generate-reference-output-modelica-mode: export MODELICAPATH := $(MODELICAPATH):$(CURDIR)/test
+endif
+
 # Target to generate reference output files
 # This only needs to be run when the output format changes,
 # or when new tests are added.

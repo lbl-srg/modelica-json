@@ -10,9 +10,9 @@ const ce = require('../lib/cxfExtractor.js')
 mo.describe('cxfExtractor.js', function () {
   // The ModelicaMode package lives under test/. Its classes are referenced by
   // fully-qualified name (e.g. ModelicaMode.VAVBox); getMoFiles resolves them via
-  // the modelica-json directory that getMODELICAPATH already prepends, so no
-  // MODELICAPATH change is needed. The objects JSON used by the validation
-  // helpers is generated below in 'modelica' mode.
+  // the test directory, which test/setup/modelicaPath.js appends to MODELICAPATH.
+  // The objects JSON used by the validation helpers is generated below in
+  // 'modelica' mode.
   const templatesDir = path.join(__dirname, 'ModelicaMode')
   const baseClass = 'ModelicaMode.VAVBox'
   const instanceName = 'ctl'
@@ -93,7 +93,7 @@ mo.describe('cxfExtractor.js', function () {
   })
 
   mo.describe('getCxfFromModelica(moFile, directory) — export CXF from a template (issue 280)', function () {
-    const cxfDir = path.join(process.cwd(), 'cxf', 'test', 'ModelicaMode')
+    const cxfDir = path.join(process.cwd(), 'cxf', 'ModelicaMode')
 
     mo.it('exports CXF for a controller redeclared in an extends clause', function () {
       ce.getCxfFromModelica(path.join(templatesDir, 'VAVBoxCoolingOnly.mo'), directory, true)

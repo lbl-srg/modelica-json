@@ -120,10 +120,13 @@ if (args.output === 'modelica') {
       throw new Error('In order to generate CXF-core.jsonld containing all elementary blocks, --elementary flag must be used.')
     }
   }
+  const moFiles = ut.getMoFiles(args.file)
+  if (moFiles.length === 0) {
+    throw new Error(`Cannot find the Modelica file, package or class ${args.file}.`)
+  }
   let jsons // Array of json representations of all mo files recursively instantiated by the top-level class
   const completedJsonGeneration = new Promise(
     function (resolve, reject) {
-      const moFiles = ut.getMoFiles(args.file)
       // Parse the json representation for moFiles
       jsons = pa.getJsons(moFiles, args.output, args.directory, args.prettyPrint, args.elementary, args.cxfCore, args.mode)
       resolve(0)
