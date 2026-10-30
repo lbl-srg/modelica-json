@@ -1,5 +1,6 @@
 const assert = require('assert')
 const cheerio = require('cheerio')
+const childProcess = require('child_process')
 const fs = require('bluebird').promisifyAll(require('fs'))
 const logger = require('winston')
 const math = require('mathjs')
@@ -220,6 +221,30 @@ mocha.describe('cdlDoc', function () {
       assert.strictEqual(
         cheerio.loadBuffer(htmlDoc).text(),
         cheerio.loadBuffer(htmlDocExp).text()
+      )
+    })
+  })
+
+  mocha.describe('app.js -o doc+', function () {
+    mocha.it('should create the expected HTML document from the Modelica file', function () {
+      this.timeout(300000)
+      const outputDir = path.join(process.cwd(), 'tmp')
+      childProcess.execFileSync('node', [
+        path.join(process.cwd(), 'app.js'),
+        '-l', 'error',
+        '-f', 'Buildings/Controls/OBC/ASHRAE/G36/AHUs/MultiZone/VAV/Controller.mo',
+        '-o', 'doc+',
+        '-d', outputDir
+      ])
+      const htmlDoc = fs.readFileSync(path.join(outputDir, 'Sequence of Operation.html'))
+      const htmlDocExp = fs.readFileSync(path.join(
+        process.cwd(), 'test', 'cdlDoc', 'MultiZoneVavDoc.html'
+      ))
+      fs.rmSync(outputDir, { recursive: true, force: true })
+      // The title is not compared: buildDoc is called with a different title in test/cdlDoc/generateReference.js
+      assert.strictEqual(
+        cheerio.loadBuffer(htmlDoc)('body').text(),
+        cheerio.loadBuffer(htmlDocExp)('body').text()
       )
     })
   })
