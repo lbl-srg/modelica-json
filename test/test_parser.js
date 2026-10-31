@@ -133,15 +133,15 @@ const checkCdlJSON = function (outFormat, extension, message) {
 
     testMoFiles.forEach(fil => {
       // 'fil.split()' changes string 'fil' to be string array with single element
-      // 'fil' is like '../test/FromModelica/***.mo'
+      // 'fil' is like '<repo>/test/FromModelica/***.mo'
       // const jsonNewCDL = pa.getJSON(fil.split(), mode, outFormat)
       pa.getJsons([fil], outFormat, 'current', 'false', false, false, 'modelica')
       const idx = fil.lastIndexOf(path.sep)
-      const jsonNewCDLFile = path.join(testOutputDir, 'test', 'FromModelica', fil.slice(idx + 1, -3) + extension)
+      const jsonNewCDLFile = path.join(testOutputDir, 'FromModelica', fil.slice(idx + 1, -3) + extension)
 
       // Read the stored json representation from disk
-      // It's like '../test/FromModelica/cdl/json/***.json'
-      const oldFilCDL = path.join(expectedOutputPath, subPackName, 'test', 'FromModelica', fil.slice(idx + 1, -3) + extension)
+      // It's like '<repo>/test/reference/json/FromModelica/***.json'
+      const oldFilCDL = path.join(expectedOutputPath, subPackName, 'FromModelica', fil.slice(idx + 1, -3) + extension)
 
       // Read the old json
       const neCDL = JSON.parse(fs.readFileSync(jsonNewCDLFile, 'utf8'))
@@ -192,14 +192,14 @@ const checkModJSON = function (outFormat, extension, message) {
     for (let i = 0; i < files.length; i++) {
       const idx2 = files[i].lastIndexOf(path.sep)
       const fileNameMOD = files[i].slice(idx2 + 1, -3) + extension
-      const oldFileMOD = path.join(expectedOutputPath, subPackName, 'test', 'ModelicaMode', fileNameMOD)
+      const oldFileMOD = path.join(expectedOutputPath, subPackName, 'ModelicaMode', fileNameMOD)
       // Read the old json
       const jsonOldMOD = JSON.parse(fs.readFileSync(oldFileMOD, 'utf8'))
 
       if (jsonOldMOD.modelicaFile) {
         jsonOldMOD.fullMoFilePath = jsonOldMOD.modelicaFile.split('modelica-json/')[1]
       }
-      const jsonNewMOD = path.join(process.cwd(), subPackName, 'test', 'ModelicaMode', fileNameMOD)
+      const jsonNewMOD = path.join(process.cwd(), subPackName, 'ModelicaMode', fileNameMOD)
       const neMOD = JSON.parse(fs.readFileSync(jsonNewMOD, 'utf8'))
       if (neMOD.modelicaFile) {
         neMOD.fullMoFilePath = neMOD.modelicaFile.split('modelica-json/')[1]
@@ -235,8 +235,8 @@ const checkObjectsJSON = function (outFormat, extension, message) {
     pa.getJsons(testMoFiles, outFormat, 'current', 'false')
     const pattern = path.join('test', 'FromModelica', '*.mo')
     const files = glob.sync(pattern)
-    const expectedOutputPath = path.join(process.cwd(), 'test', 'reference', subPackName, 'test', 'FromModelica')
-    const actualOutputPath = path.join(testOutputDir, 'test', 'FromModelica')
+    const expectedOutputPath = path.join(process.cwd(), 'test', 'reference', subPackName, 'FromModelica')
+    const actualOutputPath = path.join(testOutputDir, 'FromModelica')
 
     for (let i = 0; i < files.length; i++) {
       if (outFormat === 'semantic') {
@@ -274,12 +274,12 @@ const checkObjectsJSON = function (outFormat, extension, message) {
 
     // This has been hardcoded
     const expectedSemanticOutputPath = path.join(process.cwd(), 'test', 'reference', subPackName)
-    const expectedBrickPath = path.join(expectedSemanticOutputPath, 'Brick', '1.3', 'test', 'FromModelica')
-    const expectedEnPath = path.join(expectedSemanticOutputPath, 'en', 'test', 'FromModelica')
+    const expectedBrickPath = path.join(expectedSemanticOutputPath, 'Brick', '1.3', 'FromModelica')
+    const expectedEnPath = path.join(expectedSemanticOutputPath, 'en', 'FromModelica')
 
     const actualSemanticOutputPath = path.join(process.cwd(), subPackName)
-    const actualBrickPath = path.join(actualSemanticOutputPath, 'Brick', '1.3', 'test', 'FromModelica')
-    const actualEnPath = path.join(actualSemanticOutputPath, 'en', 'test', 'FromModelica')
+    const actualBrickPath = path.join(actualSemanticOutputPath, 'Brick', '1.3', 'FromModelica')
+    const actualEnPath = path.join(actualSemanticOutputPath, 'en', 'FromModelica')
 
     const semanticFiles = {}
     // semanticFiles[path.join(expectedBrickPath, 'MyControllerWithSemantics.ttl')] = path.join(actualBrickPath, 'MyControllerWithSemantics.ttl')
@@ -327,8 +327,8 @@ const checkCxfJson = function (outFormat, extension, message) {
       path.join('test', 'FromModelica', 'ExtendsClause_2.mo'),
       path.join('test', 'FromModelica', 'ExtendsClause_3.mo')
     ]
-    const expectedOutputPath = path.join(process.cwd(), 'test', 'reference', subPackName, 'test', 'FromModelica')
-    const actualOutputPath = path.join(process.cwd(), subPackName, 'test', 'FromModelica')
+    const expectedOutputPath = path.join(process.cwd(), 'test', 'reference', subPackName, 'FromModelica')
+    const actualOutputPath = path.join(process.cwd(), subPackName, 'FromModelica')
 
     for (let i = 0; i < files.length; i++) {
       const idx2 = files[i].lastIndexOf(path.sep)
@@ -479,7 +479,7 @@ mo.describe('parser.js', function () {
       checkCxfFromModelica(
         'Testing CXF from ' + message,
         path.join('test', 'ModelicaMode', moFile),
-        outputs.map(o => path.join('test', 'ModelicaMode', o))
+        outputs.map(o => path.join('ModelicaMode', o))
       )
     })
   })
@@ -491,7 +491,7 @@ mo.describe('parser.js', function () {
       const classNames = jsons.map(({ modelicaFile }) => modelicaFile).map(
         (el) => el.replace(/\//g, '.').replace(/\.mo/, '').replace(/^.*\.Buildings\./, 'Buildings.'))
       const classNamesRef = [
-        'test.FromModelica.Enable',
+        'FromModelica.Enable',
         'Buildings.Controls.OBC.CDL.Interfaces.RealInput',
         'Buildings.Controls.OBC.CDL.Interfaces.BooleanInput',
         'Buildings.Controls.OBC.CDL.Interfaces.IntegerInput',

@@ -3,6 +3,7 @@ const mo = require('mocha')
 const path = require('path')
 const ut = require('../lib/util.js')
 const fs = require('fs')
+const os = require('os')
 
 const env = Object.assign({}, process.env)
 
@@ -39,9 +40,6 @@ mo.describe('util', function () {
         'BlockInputOutput.mo',
         'BlockWithArray1.mo',
         'BlockWithArray2.mo',
-        'BlockWithArray3.mo',
-        'BlockWithArray4.mo',
-        'BlockWithArray5.mo',
         'BlockWithBlock1.mo',
         'ConditionalBlock.mo',
         'ConditionalBlockWithCompoundGuard.mo',
@@ -90,15 +88,12 @@ mo.describe('util', function () {
         'WithCDLElementary.mo',
         'package.mo'
       ]
-      moFiles.forEach(moFile => {
-        as.ok(expectedFilesInTestFolder.includes(path.basename(moFile)), 'File ' + moFile + ' are not found in expected files in test folder')
-      })
+      // Each file must be found once, even if the package is also found below the current directory
+      as.deepEqual(moFiles.map(moFile => path.basename(moFile)).sort(), expectedFilesInTestFolder.toSorted())
     })
-    mo.it('testing with single file', function () {
+    mo.it('testing with a bare class name that is not a top-level class', function () {
       process.env.MODELICAPATH = path.join(__dirname)
-      const moFiles = ut.getMoFiles('Enable.mo')
-      const expectedResult = [path.join(__dirname, 'FromModelica', 'Enable.mo')]
-      as.deepEqual(moFiles, expectedResult)
+      as.deepEqual(ut.getMoFiles('Enable.mo'), [])
     })
     mo.it('testing with single file, packages with "."', function () {
       process.env.MODELICAPATH = path.join(__dirname)
@@ -112,17 +107,55 @@ mo.describe('util', function () {
       const expectedResult = [path.join(__dirname, 'FromModelica', 'Enable.mo')]
       as.deepEqual(moFiles, expectedResult)
     })
-    mo.it('testing with single file without ending with .mo', function () {
+    mo.it('testing with a bare class name that is not a top-level class, without ending with .mo', function () {
       process.env.MODELICAPATH = path.join(__dirname)
-      const moFiles = ut.getMoFiles(path.join('Enable'))
-      const expectedResult = [path.join(__dirname, 'FromModelica', 'Enable.mo')]
-      as.deepEqual(moFiles, expectedResult)
+      as.deepEqual(ut.getMoFiles('Enable'), [])
     })
     mo.it('testing with single file, with package name without ending with .mo', function () {
       process.env.MODELICAPATH = path.join(__dirname)
       const moFiles = ut.getMoFiles('FromModelica.Enable')
       const expectedResult = [path.join(__dirname, 'FromModelica', 'Enable.mo')]
       as.deepEqual(moFiles, expectedResult)
+    })
+    mo.it('testing with a class that does not exist', function () {
+      process.env.MODELICAPATH = path.join(__dirname)
+      as.deepEqual(ut.getMoFiles('FromModelica.NoSuchClass'), [])
+    })
+    mo.it('testing with a relative path starting with ../', function () {
+      const moFiles = ut.getMoFiles(path.join('..', path.basename(process.cwd()), 'test', 'FromModelica', 'Enable.mo'))
+      const expectedResult = [path.join(__dirname, 'FromModelica', 'Enable.mo')]
+      as.deepEqual(moFiles, expectedResult)
+    })
+    mo.it('testing that a relative path starting with ./ is not looked up in MODELICAPATH', function () {
+      process.env.MODELICAPATH = path.join(__dirname)
+      as.deepEqual(ut.getMoFiles('.' + path.sep + path.join('FromModelica', 'Enable.mo')), [])
+    })
+    mo.it('testing with paths containing a directory with a dot in its name', function () {
+      const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'getMoFiles-'))
+      try {
+        const pkgDir = path.join(tmpDir, 'my.lib', 'Pkg')
+        fs.mkdirSync(pkgDir, { recursive: true })
+        const moFile = path.join(pkgDir, 'Enable.mo')
+        fs.copyFileSync(path.join(__dirname, 'FromModelica', 'Enable.mo'), moFile)
+        as.deepEqual(ut.getMoFiles(moFile), [moFile])
+        as.deepEqual(ut.getMoFiles(pkgDir), [moFile])
+      } finally {
+        fs.rmSync(tmpDir, { recursive: true, force: true })
+      }
+    })
+    mo.it('testing with a class name, from a directory outside the repository', function () {
+      process.env.MODELICAPATH = path.join(__dirname)
+      const cwd = process.cwd()
+      const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'getMoFiles-'))
+      try {
+        process.chdir(tmpDir)
+        const moFiles = ut.getMoFiles('FromModelica.Enable')
+        const expectedResult = [path.join(__dirname, 'FromModelica', 'Enable.mo')]
+        as.deepEqual(moFiles, expectedResult)
+      } finally {
+        process.chdir(cwd)
+        fs.rmSync(tmpDir, { recursive: true, force: true })
+      }
     })
   })
   mo.describe('testing searchPath()', function () {
