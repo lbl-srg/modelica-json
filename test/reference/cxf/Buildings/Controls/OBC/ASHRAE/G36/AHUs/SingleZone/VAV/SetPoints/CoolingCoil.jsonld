@@ -3,272 +3,277 @@
     "S231": "http://data.ashrae.org/S231#",
     "qudt": "http://qudt.org/schema/qudt#",
     "unit": "http://qudt.org/vocab/unit#",
-    "q": "http://qudt.org/vocab/quantitykind#"
+    "q": "http://qudt.org/vocab/quantitykind#",
+    "ex": "http://example.org#"
   },
   "@graph": [
     {
-      "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil",
+      "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil",
       "@type": "S231:Block",
       "S231:containsBlock": [
         {
-          "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.and2"
+          "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.and2"
         },
         {
-          "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conCoi"
+          "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conCoi"
         },
         {
-          "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conInt"
+          "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conInt"
         },
         {
-          "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.const"
+          "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.const"
         },
         {
-          "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.intEqu"
+          "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.intEqu"
         },
         {
-          "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.switch"
+          "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.switch"
         }
       ],
       "S231:diagram": "coordinateSystem(preserveAspectRatio=false)",
       "S231:documentation": "info=<html>\n<p>\nThis block outputs the cooling coil control signal if the fan is on and the zone is\nin cooling status (see\n<a href=\\modelica://Buildings.Controls.OBC.ASHRAE.G36.Types.ZoneStates\\>\nBuildings.Controls.OBC.ASHRAE.G36.Types.ZoneStates</a>).\nOtherwise, the control signal for the coil is set to <code>0</code>.\nThe implementation is according to the Section 5.18.5.3 of ASHRAE Guideline 36, May 2020.\n</p>\n</html>,revisions=<html>\n<ul>\n<li>\nAugust 1, 2020, by Jianjun Hu:<br/>\nFirst implementation based on G36 official version.\n</li>\n</ul>\n</html>",
       "S231:hasInput": [
         {
-          "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.TAirSup"
+          "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.TAirSup"
         },
         {
-          "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.TSupCooSet"
+          "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.TSupCooSet"
         },
         {
-          "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.u1SupFan"
+          "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.u1SupFan"
         },
         {
-          "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.uZonSta"
+          "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.uZonSta"
         }
       ],
       "S231:hasOutput": {
-        "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.yCooCoi"
+        "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.yCooCoi"
       },
       "S231:hasParameter": [
         {
-          "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.controllerTypeCooCoi"
+          "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.controllerTypeCooCoi"
         },
         {
-          "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.kCooCoi"
+          "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.kCooCoi"
         },
         {
-          "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.TdCooCoi"
+          "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.TdCooCoi"
         },
         {
-          "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.TiCooCoi"
+          "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.TiCooCoi"
         }
       ],
       "S231:icon": "coordinateSystem(preserveAspectRatio=false),graphics={Rectangle(extent={{-100,-100},{100,100}},lineColor={0,0,127},fillColor={255,255,255},fillPattern=FillPattern.Solid),Text(textString=\"%name\",textColor={0,0,255},extent={{-150,150},{150,110}})}",
       "S231:label": "CoolingCoil"
     },
     {
-      "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.and2",
-      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Logical.And",
+      "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.and2",
+      "@type": "ex:Buildings.Controls.OBC.CDL.Logical.And",
       "S231:accessSpecifier": "protected",
       "S231:description": "Conditions for cooling state",
       "S231:graphics": "Placement(transformation(extent={{0,-10},{20,10}})))",
       "S231:hasInstance": [
         {
-          "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.and2.u1"
+          "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.and2.u1"
         },
         {
-          "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.and2.u2"
+          "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.and2.u2"
         },
         {
-          "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.and2.y"
+          "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.and2.y"
         }
       ],
       "S231:label": "and2"
     },
     {
-      "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.and2.u2",
+      "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.and2.u2",
       "S231:isConnectedTo": {
-        "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.u1SupFan"
+        "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.u1SupFan"
       }
     },
     {
-      "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.and2.y",
+      "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.and2.y",
       "S231:isConnectedTo": {
-        "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.switch.u2"
+        "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.switch.u2"
       }
     },
     {
-      "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conCoi",
-      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.PIDWithReset",
+      "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conCoi",
+      "@type": "ex:Buildings.Controls.OBC.CDL.Reals.PIDWithReset",
       "S231:accessSpecifier": "public",
       "S231:description": "Cooling coil control signal",
       "S231:graphics": "Placement(transformation(extent={{-10,70},{10,90}})))",
       "S231:hasInstance": [
         {
-          "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conCoi.controllerType"
+          "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conCoi.controllerType"
         },
         {
-          "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conCoi.k"
+          "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conCoi.k"
         },
         {
-          "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conCoi.reverseActing"
+          "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conCoi.reverseActing"
         },
         {
-          "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conCoi.Td"
+          "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conCoi.Td"
         },
         {
-          "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conCoi.Ti"
+          "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conCoi.Ti"
         },
         {
-          "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conCoi.trigger"
+          "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conCoi.trigger"
         },
         {
-          "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conCoi.u_m"
+          "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conCoi.u_m"
         },
         {
-          "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conCoi.u_s"
+          "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conCoi.u_s"
         },
         {
-          "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conCoi.y"
+          "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conCoi.y"
         }
       ],
       "S231:label": "conCoi"
     },
     {
-      "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conCoi.controllerType",
+      "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conCoi.controllerType",
       "S231:isFinal": true,
       "S231:value": "controllerTypeCooCoi"
     },
     {
-      "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conCoi.k",
+      "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conCoi.k",
       "S231:isFinal": true,
       "S231:value": "kCooCoi"
     },
     {
-      "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conCoi.reverseActing",
+      "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conCoi.reverseActing",
       "S231:isFinal": true,
       "S231:value": false
     },
     {
-      "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conCoi.Td",
+      "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conCoi.Td",
       "S231:isFinal": true,
       "S231:value": "TdCooCoi"
     },
     {
-      "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conCoi.Ti",
+      "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conCoi.Ti",
       "S231:isFinal": true,
       "S231:value": "TiCooCoi"
     },
     {
-      "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conCoi.trigger",
+      "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conCoi.trigger",
       "S231:isConnectedTo": {
-        "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.u1SupFan"
+        "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.u1SupFan"
       }
     },
     {
-      "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conCoi.u_m",
+      "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conCoi.u_m",
       "S231:isConnectedTo": {
-        "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.TAirSup"
+        "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.TAirSup"
       }
     },
     {
-      "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conCoi.u_s",
+      "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conCoi.u_s",
       "S231:isConnectedTo": {
-        "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.TSupCooSet"
+        "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.TSupCooSet"
       }
     },
     {
-      "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conCoi.y",
+      "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conCoi.y",
       "S231:isConnectedTo": {
-        "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.switch.u1"
+        "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.switch.u1"
       }
     },
     {
-      "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conInt",
-      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Integers.Sources.Constant",
+      "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conInt",
+      "@type": "ex:Buildings.Controls.OBC.CDL.Integers.Sources.Constant",
       "S231:accessSpecifier": "protected",
       "S231:description": "Cooling state value",
       "S231:graphics": "Placement(transformation(extent={{-80,-10},{-60,10}})))",
       "S231:hasInstance": [
         {
-          "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conInt.k"
+          "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conInt.k"
         },
         {
-          "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conInt.y"
+          "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conInt.y"
         }
       ],
       "S231:label": "conInt"
     },
     {
-      "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conInt.k",
+      "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conInt.k",
       "S231:isFinal": true,
       "S231:value": "Buildings.Controls.OBC.ASHRAE.G36.Types.ZoneStates.cooling"
     },
     {
-      "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conInt.y",
+      "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.conInt.y",
       "S231:isConnectedTo": {
-        "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.intEqu.u1"
+        "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.intEqu.u1"
       }
     },
     {
-      "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.const",
-      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Sources.Constant",
+      "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.const",
+      "@type": "ex:Buildings.Controls.OBC.CDL.Reals.Sources.Constant",
       "S231:accessSpecifier": "protected",
       "S231:description": "Cooling off mode",
       "S231:graphics": "Placement(transformation(extent={{20,-50},{40,-30}})))",
       "S231:hasInstance": [
         {
-          "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.const.k"
+          "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.const.k"
         },
         {
-          "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.const.y"
+          "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.const.y"
         }
       ],
       "S231:label": "const"
     },
     {
-      "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.const.k",
+      "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.const.k",
       "S231:value": 0
     },
     {
-      "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.const.y",
+      "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.const.y",
       "S231:isConnectedTo": {
-        "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.switch.u3"
+        "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.switch.u3"
       }
     },
     {
-      "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.controllerTypeCooCoi",
+      "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.controllerTypeCooCoi",
+      "@type": "S231:Parameter",
       "S231:accessSpecifier": "public",
       "S231:description": "Type of controller",
+      "S231:isOfDataType": {
+        "@id": "S231:Buildings.Controls.OBC.CDL.Types.SimpleController"
+      },
       "S231:label": "controllerTypeCooCoi",
       "S231:value": "Buildings.Controls.OBC.CDL.Types.SimpleController.PI"
     },
     {
-      "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.intEqu",
-      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Integers.Equal",
+      "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.intEqu",
+      "@type": "ex:Buildings.Controls.OBC.CDL.Integers.Equal",
       "S231:accessSpecifier": "protected",
       "S231:description": "Logical block to check if zone is in cooling state",
       "S231:graphics": "Placement(transformation(extent={{-40,-10},{-20,10}})))",
       "S231:hasInstance": [
         {
-          "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.intEqu.u1"
+          "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.intEqu.u1"
         },
         {
-          "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.intEqu.u2"
+          "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.intEqu.u2"
         },
         {
-          "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.intEqu.y"
+          "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.intEqu.y"
         }
       ],
       "S231:label": "intEqu"
     },
     {
-      "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.intEqu.y",
+      "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.intEqu.y",
       "S231:isConnectedTo": {
-        "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.and2.u1"
+        "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.and2.u1"
       }
     },
     {
-      "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.kCooCoi",
+      "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.kCooCoi",
       "@type": "S231:Parameter",
       "S231:accessSpecifier": "public",
       "S231:description": "Gain for cooling coil control loop signal",
@@ -285,35 +290,35 @@
       }
     },
     {
-      "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.switch",
-      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Reals.Switch",
+      "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.switch",
+      "@type": "ex:Buildings.Controls.OBC.CDL.Reals.Switch",
       "S231:accessSpecifier": "protected",
       "S231:description": "Switch to assign cooling coil control signal",
       "S231:graphics": "Placement(transformation(extent={{72,-10},{92,10}})))",
       "S231:hasInstance": [
         {
-          "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.switch.u1"
+          "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.switch.u1"
         },
         {
-          "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.switch.u2"
+          "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.switch.u2"
         },
         {
-          "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.switch.u3"
+          "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.switch.u3"
         },
         {
-          "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.switch.y"
+          "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.switch.y"
         }
       ],
       "S231:label": "switch"
     },
     {
-      "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.switch.y",
+      "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.switch.y",
       "S231:isConnectedTo": {
-        "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.yCooCoi"
+        "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.yCooCoi"
       }
     },
     {
-      "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.TAirSup",
+      "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.TAirSup",
       "@type": "S231:RealInput",
       "S231:accessSpecifier": "public",
       "S231:description": "Supply air temperature measurement",
@@ -330,7 +335,7 @@
       }
     },
     {
-      "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.TdCooCoi",
+      "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.TdCooCoi",
       "@type": "S231:Parameter",
       "S231:accessSpecifier": "public",
       "S231:description": "Time constant of derivative block for cooling coil control loop signal",
@@ -347,7 +352,7 @@
       }
     },
     {
-      "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.TiCooCoi",
+      "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.TiCooCoi",
       "@type": "S231:Parameter",
       "S231:accessSpecifier": "public",
       "S231:description": "Time constant of integrator block for cooling coil control loop signal",
@@ -361,7 +366,7 @@
       }
     },
     {
-      "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.TSupCooSet",
+      "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.TSupCooSet",
       "@type": "S231:RealInput",
       "S231:accessSpecifier": "public",
       "S231:description": "Cooling supply air temperature setpoint",
@@ -378,7 +383,7 @@
       }
     },
     {
-      "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.u1SupFan",
+      "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.u1SupFan",
       "@type": "S231:BooleanInput",
       "S231:accessSpecifier": "public",
       "S231:description": "Supply fan proven on",
@@ -386,18 +391,18 @@
       "S231:label": "u1SupFan"
     },
     {
-      "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.uZonSta",
+      "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.uZonSta",
       "@type": "S231:IntegerInput",
       "S231:accessSpecifier": "public",
       "S231:description": "Zone state",
       "S231:graphics": "Placement(transformation(extent={{-140,-40},{-100,0}})),iconTransformation(extent={{-140,-60},{-100,-20}})))",
       "S231:isConnectedTo": {
-        "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.intEqu.u2"
+        "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.intEqu.u2"
       },
       "S231:label": "uZonSta"
     },
     {
-      "@id": "http://example.org#Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.yCooCoi",
+      "@id": "ex:Buildings.Controls.OBC.ASHRAE.G36.AHUs.SingleZone.VAV.SetPoints.CoolingCoil.yCooCoi",
       "@type": "S231:RealOutput",
       "S231:accessSpecifier": "public",
       "S231:description": "Cooling coil valve commanded position",
