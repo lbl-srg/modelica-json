@@ -1,6 +1,7 @@
 'use strict'
 const as = require('assert')
 const mo = require('mocha')
+const os = require('os')
 const path = require('path')
 const pa = require('../lib/parser')
 const ut = require('../lib/util')
@@ -35,6 +36,8 @@ const getIntFiles = function (mode = 'cdl') {
       path.join(__dirname, 'FromModelica', 'ExtendsClause_3.mo')
     ]
     const allFiles = glob.sync(pattern)
+    // Top-level class without within clause
+    allFiles.push(path.join(__dirname, 'NoWithin.mo'))
     return allFiles.filter(f => !filesToExclude.includes(f))
   } else if (mode === 'modelica') {
     // CDL control blocks instantiated within (non-CDL) Modelica models. These
@@ -136,12 +139,13 @@ const checkCdlJSON = function (outFormat, extension, message) {
       // 'fil' is like '<repo>/test/FromModelica/***.mo'
       // const jsonNewCDL = pa.getJSON(fil.split(), mode, outFormat)
       pa.getJsons([fil], outFormat, 'current', 'false', false, false, 'modelica')
-      const idx = fil.lastIndexOf(path.sep)
-      const jsonNewCDLFile = path.join(testOutputDir, 'FromModelica', fil.slice(idx + 1, -3) + extension)
+      // Path of the output file relative to the output directory, such as 'FromModelica/***.json'
+      const relOutputFile = ut.getRelativePath(fil).replace(/\.mo$/, extension)
+      const jsonNewCDLFile = path.join(testOutputDir, relOutputFile)
 
       // Read the stored json representation from disk
       // It's like '<repo>/test/reference/json/FromModelica/***.json'
-      const oldFilCDL = path.join(expectedOutputPath, subPackName, 'FromModelica', fil.slice(idx + 1, -3) + extension)
+      const oldFilCDL = path.join(expectedOutputPath, subPackName, relOutputFile)
 
       // Read the old json
       const neCDL = JSON.parse(fs.readFileSync(jsonNewCDLFile, 'utf8'))
@@ -223,6 +227,8 @@ const checkObjectsJSON = function (outFormat, extension, message) {
     // const testMoFilesTemp = getIntFiles(mode)
     // const testMoFiles = ut.getMoFiles(testMoFilesTemp)
     const testMoFiles = ut.getMoFiles(path.join(__dirname, 'FromModelica'))
+    // Top-level class without within clause
+    testMoFiles.push(path.join(__dirname, 'NoWithin.mo'))
 
     // Name of subpackage to store json output files
     const subPackName = 'objects'
@@ -234,17 +240,17 @@ const checkObjectsJSON = function (outFormat, extension, message) {
     }
     pa.getJsons(testMoFiles, outFormat, 'current', 'false')
     const pattern = path.join('test', 'FromModelica', '*.mo')
-    const files = glob.sync(pattern)
-    const expectedOutputPath = path.join(process.cwd(), 'test', 'reference', subPackName, 'FromModelica')
-    const actualOutputPath = path.join(testOutputDir, 'FromModelica')
+    const files = glob.sync(pattern).concat(path.join('test', 'NoWithin.mo'))
+    const expectedOutputPath = path.join(process.cwd(), 'test', 'reference', subPackName)
+    const actualOutputPath = testOutputDir
 
     for (let i = 0; i < files.length; i++) {
       if (outFormat === 'semantic') {
         se.getSemanticInformation(files[i], process.cwd())
       }
 
-      const idx2 = files[i].lastIndexOf(path.sep)
-      const fileNameMOD = files[i].slice(idx2 + 1, -3) + extension
+      // Path of the output file relative to the output directory, such as 'FromModelica/***.json'
+      const fileNameMOD = ut.getRelativePath(files[i]).replace(/\.mo$/, extension)
       const oldFileMOD = path.join(expectedOutputPath, fileNameMOD)
       // Read the old json
       const jsonOldMOD = JSON.parse(fs.readFileSync(oldFileMOD, 'utf8'))
@@ -327,12 +333,12 @@ const checkCxfJson = function (outFormat, extension, message) {
       path.join('test', 'FromModelica', 'ExtendsClause_2.mo'),
       path.join('test', 'FromModelica', 'ExtendsClause_3.mo')
     ]
-    const expectedOutputPath = path.join(process.cwd(), 'test', 'reference', subPackName, 'FromModelica')
-    const actualOutputPath = path.join(process.cwd(), subPackName, 'FromModelica')
+    const expectedOutputPath = path.join(process.cwd(), 'test', 'reference', subPackName)
+    const actualOutputPath = path.join(process.cwd(), subPackName)
 
     for (let i = 0; i < files.length; i++) {
-      const idx2 = files[i].lastIndexOf(path.sep)
-      const fileNameMOD = files[i].slice(idx2 + 1, -3) + extension
+      // Path of the output file relative to the output directory, such as 'FromModelica/***.jsonld'
+      const fileNameMOD = ut.getRelativePath(files[i]).replace(/\.mo$/, extension)
       if (!filesToExclude.includes(files[i])) {
         const oldFileMOD = path.join(expectedOutputPath, fileNameMOD)
         const jsonNewMOD = path.join(actualOutputPath, fileNameMOD)
@@ -514,6 +520,60 @@ mo.describe('parser.js', function () {
         JSON.stringify(classNames.sort()),
         JSON.stringify(classNamesRef.sort()),
         `Processing ${moFile} with getJsons returned the wrong class names`)
+    })
+  })
+  mo.describe('Testing library root of the input files', function () {
+    mo.it('Checking that the library root is derived from the within clause of the input file', function () {
+      // The library is not on MODELICAPATH: its root must be derived from the input file.
+      const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'getJsons-'))
+      try {
+        const libDir = path.join(tmpDir, 'lib', 'MyLib')
+        const outDir = path.join(tmpDir, 'out')
+        fs.mkdirSync(libDir, { recursive: true })
+        fs.writeFileSync(path.join(libDir, 'package.mo'), 'within ;\npackage MyLib\nend MyLib;\n')
+        fs.writeFileSync(path.join(libDir, 'A.mo'),
+          '// Comment\n/* within Wrong; */\nwithin MyLib;\nblock A\n  MyLib.B b;\nend A;\n')
+        fs.writeFileSync(path.join(libDir, 'B.mo'), 'within MyLib;\nblock B\nend B;\n')
+        as.deepEqual(ut.getMoFiles('MyLib.B'), [], 'MyLib must not be on MODELICAPATH')
+        pa.getJsons([path.join(libDir, 'A.mo')], 'json', outDir, false, false, false, 'modelica')
+        // The outputs of the input file and of the class it uses are stored relative to the library root.
+        as.ok(fs.existsSync(path.join(outDir, 'json', 'MyLib', 'A.json')), 'Output of MyLib.A not found')
+        as.ok(fs.existsSync(path.join(outDir, 'json', 'MyLib', 'B.json')), 'Output of MyLib.B not found')
+        // Classes of the library can now be looked up by name.
+        as.deepEqual(ut.getMoFiles('MyLib.B'), [path.join(libDir, 'B.mo')])
+      } finally {
+        fs.rmSync(tmpDir, { recursive: true, force: true })
+        // Do not keep the deleted library registered.
+        ut.resetLibraryRoots()
+      }
+    })
+    mo.it('Checking that an error is thrown if the within clause cannot be read without parsing', function () {
+      // The parser accepts a comment between the names of the within clause, the scan of the file does not.
+      const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'getJsons-'))
+      // Record the temporary directories created by getJsons
+      const createTempDir = ut.createTempDir
+      const tempDirs = []
+      ut.createTempDir = (outputFormat) => {
+        const dir = createTempDir(outputFormat)
+        tempDirs.push(dir)
+        return dir
+      }
+      try {
+        const moFile = path.join(tmpDir, 'A', 'B', 'C.mo')
+        fs.mkdirSync(path.dirname(moFile), { recursive: true })
+        fs.writeFileSync(moFile, 'within A /* comment */ .B;\nblock C\nend C;\n')
+        as.throws(
+          () => pa.getJsons([moFile], 'json', path.join(tmpDir, 'out'), false, false, false, 'modelica'),
+          /The 'within' clause of .* is 'A\.B', but the file scan returned ''/)
+        // The temporary directory is removed, and no output is written
+        as.strictEqual(tempDirs.length, 1)
+        as.ok(!fs.existsSync(tempDirs[0]), `Temporary directory ${tempDirs[0]} not removed`)
+        as.ok(!fs.existsSync(path.join(tmpDir, 'out')), 'No output must be written')
+      } finally {
+        ut.createTempDir = createTempDir
+        fs.rmSync(tmpDir, { recursive: true, force: true })
+        ut.resetLibraryRoots()
+      }
     })
   })
 })

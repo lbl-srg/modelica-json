@@ -5,16 +5,16 @@
   },
   "@graph": [
     {
-      "@id": "ex:RedeclaredBlock",
+      "@id": "ex:FromModelica.RedeclaredBlock",
       "@type": "S231:Block",
       "S231:containsBlock": {
-        "@id": "ex:RedeclaredBlock.repBlo"
+        "@id": "ex:FromModelica.RedeclaredBlock.repBlo"
       },
       "S231:label": "RedeclaredBlock"
     },
     {
-      "@id": "ex:RedeclaredBlock.repBlo",
-      "@type": "ex:ReplaceableBlock",
+      "@id": "ex:FromModelica.RedeclaredBlock.repBlo",
+      "@type": "ex:FromModelica.ReplaceableBlock",
       "S231:accessSpecifier": "public",
       "S231:label": "repBlo",
       "S231:redeclare": "Buildings.Controls.OBC.CDL.Reals.Sources.Pulse con(period=0.1)"

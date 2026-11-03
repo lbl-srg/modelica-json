@@ -1,3 +1,4 @@
+within FromModelica;
 block ReplaceableCDL "A composite block in a library"
 
    parameter Real k = 2 "Proportional gain";

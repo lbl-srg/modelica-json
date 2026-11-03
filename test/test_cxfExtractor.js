@@ -10,7 +10,8 @@ const ce = require('../lib/cxfExtractor.js')
 mo.describe('cxfExtractor.js', function () {
   // The ModelicaMode package lives under test/. Its classes are referenced by
   // fully-qualified name (e.g. ModelicaMode.VAVBox); getMoFiles resolves them via
-  // the test directory, which test/setup/modelicaPath.js appends to MODELICAPATH.
+  // the test directory, which is registered as a library root by getJsons below,
+  // based on the 'within' clause of the parsed files.
   // The objects JSON used by the validation helpers is generated below in
   // 'modelica' mode.
   const templatesDir = path.join(__dirname, 'ModelicaMode')
