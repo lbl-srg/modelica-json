@@ -38,14 +38,10 @@ const expressionVal = [
   [' if a > b then 0 elseif b == 2 then 1 else -1', 1],
   [' if not (a < b) then 1 else 2', 2],
   [' if a < b and not (a < b) then 1 else 2', 2],
-  [
-    ' if not ([object Object]) then 1 else 2',
-    ' ! ( [ objectObject ] )  ?  1  :  2'
-  ],
-  [
-    ' if ([object Object]) and not ([object Object]) then 1 else 2',
-    ' ( [ objectObject ] ) && ! ( [ objectObject ] )  ?  1  :  2'
-  ],
+  [' if not (a < b) then 1 else 2', 2],
+  [' if (a < b) and not (a < b) then 1 else 2', 2],
+  ['not equal', true],
+  [' if not equal then 1 else 2', 1],
   ['Array(4).fill(a)', [1, 1, 1, 1]],
   ['math.size(fil)[1 - 1]', 4],
   ['math.size(fil)', [4]],
@@ -169,6 +165,26 @@ mocha.describe('expressionEvaluation', function () {
     })
   })
 
+  mocha.describe('#lookupClassName()', function () {
+    const lookupClassName = expressionEvaluation.__get__('lookupClassName')
+    const myController = path.join(process.cwd(), 'test', 'FromModelica', 'MyController.mo')
+    mocha.it('should return the class name based on the within clause, not on the file path', function () {
+      assert.strictEqual(
+        lookupClassName('SubController', 'FromModelica', myController),
+        'FromModelica.SubController')
+    })
+    mocha.it('should return the full class name for a class stored in its own file', function () {
+      assert.strictEqual(
+        lookupClassName('Buildings.Controls.OBC.CDL.Reals.Add', 'FromModelica', myController),
+        'Buildings.Controls.OBC.CDL.Reals.Add')
+    })
+    mocha.it('should return the full class name for a package stored in a package.mo file', function () {
+      assert.strictEqual(
+        lookupClassName('Buildings.Controls.OBC.ASHRAE.G36.Types.FreezeProtectionStages', 'FromModelica', myController),
+        'Buildings.Controls.OBC.ASHRAE.G36.Types.FreezeProtectionStages')
+    })
+  })
+
   mocha.describe('#getParametersAndBindings()', function () {
     mocha.it('should return the given set of parameters for the given class object', function () {
       expressionEvaluation.getParametersAndBindings(
@@ -183,7 +199,7 @@ mocha.describe('expressionEvaluation', function () {
     })
     mocha.it('should return the given set of parameters for the given class definition', function () {
       expressionEvaluation.getParametersAndBindings(
-        enableJsons[0].class_definition[0], enableJsons).parameters.forEach(
+        enableJsons[0].stored_class_definitions[0], enableJsons).parameters.forEach(
         (el) => {
           assert.deepStrictEqual(
             el,

@@ -15,6 +15,8 @@ model Expression
   parameter Integer andnotexp = if a < b and not a < b then 1 else 2;
   parameter Integer notexppar = if not (a < b) then 1 else 2;
   parameter Integer andnotexppar = if (a < b) and not (a < b) then 1 else 2;
+  parameter Boolean notbool = not equal;
+  parameter Integer notboolexp = if not equal then 1 else 2;
   parameter Real fil[:] = fill(a, 4);
   parameter Real siz1 = size(fil, 1);
   parameter Real siz[:] = size(fil);
