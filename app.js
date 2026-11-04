@@ -120,31 +120,27 @@ if (args.output === 'modelica') {
       throw new Error('In order to generate CXF-core.jsonld containing all elementary blocks, --elementary flag must be used.')
     }
   }
-  let jsons // Array of json representations of all mo files recursively instantiated by the top-level class
-  const completedJsonGeneration = new Promise(
-    function (resolve, reject) {
-      const moFiles = ut.getMoFiles(args.file)
-      // Parse the json representation for moFiles
-      jsons = pa.getJsons(moFiles, args.output, args.directory, args.prettyPrint, args.elementary, args.cxfCore, args.mode)
-      resolve(0)
-    }
-  )
-  completedJsonGeneration.then(function () {
-    if (args.output === 'semantic') {
-      se.getSemanticInformation(args.file, args.directory)
-    }
-    if (args.output === 'cxf' && args.cxfCore && args.elementary) {
-      ce.getCxfCore(args.file, args.directory, args.prettyPrint)
-    } else if (args.output === 'cxf' && !args.cxfCore && !args.elementary && args.mode === 'modelica') {
-      ce.getCxfFromModelica(args.file, args.directory, args.prettyPrint)
-    }
-    if (args.output === 'doc' || args.output === 'doc+') {
-      const unitData = JSON.parse(
-        fs.readFileSync(path.join(__dirname, 'units-si.json'), 'utf8'))
-      const includeVariables = (args.output === 'doc+')
-      dc.buildDoc(jsons[0], jsons, unitData, args.directory, includeVariables)
-    }
-  })
+  const moFiles = ut.getMoFiles(args.file)
+  if (moFiles.length === 0) {
+    throw new Error(`Cannot find the Modelica file, package or class ${args.file}.`)
+  }
+  // Parse the json representation for moFiles.
+  // This is synchronous, so that an error stops the program before the outputs are processed below.
+  const jsons = pa.getJsons(moFiles, args.output, args.directory, args.prettyPrint, args.elementary, args.cxfCore, args.mode) // Array of json representations of all mo files recursively instantiated by the top-level class
+  if (args.output === 'semantic') {
+    se.getSemanticInformation(args.file, args.directory)
+  }
+  if (args.output === 'cxf' && args.cxfCore && args.elementary) {
+    ce.getCxfCore(args.file, args.directory, args.prettyPrint)
+  } else if (args.output === 'cxf' && !args.cxfCore && !args.elementary && args.mode === 'modelica') {
+    ce.getCxfFromModelica(args.file, args.directory, args.prettyPrint)
+  }
+  if (args.output === 'doc' || args.output === 'doc+') {
+    const unitData = JSON.parse(
+      fs.readFileSync(path.join(__dirname, 'units-si.json'), 'utf8'))
+    const includeVariables = (args.output === 'doc+')
+    dc.buildDoc(jsons[0], jsons, unitData, args.directory, includeVariables)
+  }
 }
 
 if (args.output === 'json') {

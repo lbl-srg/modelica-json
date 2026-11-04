@@ -1,0 +1,23 @@
+{
+  "@context": {
+    "S231": "http://data.ashrae.org/S231#",
+    "ex": "http://example.org#"
+  },
+  "@graph": [
+    {
+      "@id": "ex:FromModelica.RedeclaredBlock",
+      "@type": "S231:Block",
+      "S231:containsBlock": {
+        "@id": "ex:FromModelica.RedeclaredBlock.repBlo"
+      },
+      "S231:label": "RedeclaredBlock"
+    },
+    {
+      "@id": "ex:FromModelica.RedeclaredBlock.repBlo",
+      "@type": "ex:FromModelica.ReplaceableBlock",
+      "S231:accessSpecifier": "public",
+      "S231:label": "repBlo",
+      "S231:redeclare": "Buildings.Controls.OBC.CDL.Reals.Sources.Pulse con(period=0.1)"
+    }
+  ]
+}
