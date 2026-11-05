@@ -6,6 +6,8 @@ const fs = require('fs')
 const pa = require('../lib/parser')
 const ut = require('../lib/util')
 const ce = require('../lib/cxfExtractor.js')
+const rdflib = require('rdflib')
+const logger = require('winston')
 
 mo.describe('cxfExtractor.js', function () {
   // The ModelicaMode package lives under test/. Its classes are referenced by
@@ -115,6 +117,78 @@ mo.describe('cxfExtractor.js', function () {
         function () { ce.getCxfFromModelica(path.join(templatesDir, 'VAVBoxCoolingOnlyInvalid.mo'), directory, true) },
         /ModelicaMode\.BadController.*not a subtype.*ModelicaMode\.PartialController/
       )
+    })
+  })
+
+  mo.describe('QUDT unit and quantity kind mapping (issue 340)', function () {
+    const s231Ns = rdflib.Namespace('http://data.ashrae.org/S231#')
+    const qudtNs = rdflib.Namespace('http://qudt.org/schema/qudt#')
+    const unitNs = rdflib.Namespace('http://qudt.org/vocab/unit#')
+    const qudtQkNs = rdflib.Namespace('http://qudt.org/vocab/quantitykind#')
+
+    mo.it('maps CDL and MBL units to QUDT unit vocabulary', function () {
+      as.equal(ce.getQudtUnit('1/s', unitNs).value, unitNs('PER-SEC').value)
+      as.equal(ce.getQudtUnit('1/K', unitNs).value, unitNs('PER-K').value)
+      as.equal(ce.getQudtUnit('J/(kg.K)', unitNs).value, unitNs('J-PER-KiloGM-K').value)
+      as.equal(ce.getQudtUnit('Pa', unitNs).value, unitNs('PA').value)
+      as.equal(ce.getQudtUnit('1', unitNs).value, unitNs('UNITLESS').value)
+      as.equal(ce.getQudtUnit('cfm', unitNs).value, unitNs('FT3-PER-MIN').value)
+      as.equal(ce.getQudtUnit('', unitNs), null)
+    })
+
+    mo.it('maps CDL and MBL quantity kinds to QUDT quantitykind vocabulary', function () {
+      as.equal(ce.getQudtQuanityKind('PressureDifference', qudtQkNs).value, qudtQkNs('Pressure').value)
+      as.equal(ce.getQudtQuanityKind('HeatFlowRate', qudtQkNs).value, qudtQkNs('HeatFlowRate').value)
+      as.equal(ce.getQudtQuanityKind('SpecificHeatCapacity', qudtQkNs).value, qudtQkNs('SpecificHeatCapacity').value)
+      as.equal(ce.getQudtQuanityKind('TemperatureSlope', qudtQkNs).value, qudtQkNs('TemperatureRate').value)
+      as.equal(ce.getQudtQuanityKind('Density', qudtQkNs).value, qudtQkNs('Density').value)
+      as.equal(ce.getQudtQuanityKind('', qudtQkNs), null)
+    })
+
+    mo.it('adds qudt:hasUnit, S231:hasDisplayUnit, and qudt:hasQuantityKind for mapped values', function () {
+      const graph = rdflib.graph()
+      const node = s231Ns('TestParam')
+      const modDict = {
+        unit: { value: '1/K' },
+        displayUnit: { value: 'degC' },
+        quantity: { value: 'SpecificHeatCapacity' }
+      }
+      ce.addAttributesToNode(graph, s231Ns, 'unit', modDict, node)
+      ce.addAttributesToNode(graph, s231Ns, 'displayUnit', modDict, node)
+      ce.addAttributesToNode(graph, s231Ns, 'quantity', modDict, node)
+
+      as.equal(graph.any(node, qudtNs('hasUnit')).value, unitNs('PER-K').value)
+      as.equal(graph.any(node, s231Ns('hasDisplayUnit')).value, unitNs('DEG_C').value)
+      as.equal(graph.any(node, qudtNs('hasQuantityKind')).value, qudtQkNs('SpecificHeatCapacity').value)
+    })
+
+    mo.it('falls back to S231:unit, S231:displayUnit, and S231:quantity literals and warns on unmapped values', function () {
+      const warnings = []
+      const origWarn = logger.warn
+      logger.warn = function (msg) { warnings.push(msg) }
+      try {
+        const graph = rdflib.graph()
+        const node = s231Ns('TestUnmappedParam')
+        const modDict = {
+          unit: { value: 'customUnit' },
+          displayUnit: { value: 'customDisplayUnit' },
+          quantity: { value: 'PresureDifference' }
+        }
+        ce.addAttributesToNode(graph, s231Ns, 'unit', modDict, node)
+        ce.addAttributesToNode(graph, s231Ns, 'displayUnit', modDict, node)
+        ce.addAttributesToNode(graph, s231Ns, 'quantity', modDict, node)
+
+        as.equal(graph.any(node, qudtNs('hasUnit')), undefined)
+        as.equal(graph.any(node, s231Ns('hasDisplayUnit')), undefined)
+        as.equal(graph.any(node, qudtNs('hasQuantityKind')), undefined)
+
+        as.equal(graph.any(node, s231Ns('unit')).value, 'customUnit')
+        as.equal(graph.any(node, s231Ns('displayUnit')).value, 'customDisplayUnit')
+        as.equal(graph.any(node, s231Ns('quantity')).value, 'PresureDifference')
+        as.equal(warnings.length, 3)
+      } finally {
+        logger.warn = origWarn
+      }
     })
   })
 })
