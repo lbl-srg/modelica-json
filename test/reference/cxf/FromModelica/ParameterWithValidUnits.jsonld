@@ -1,0 +1,125 @@
+{
+  "@context": {
+    "S231": "http://data.ashrae.org/S231#",
+    "qudt": "http://qudt.org/schema/qudt/",
+    "unit": "http://qudt.org/vocab/unit#",
+    "q": "http://qudt.org/vocab/quantitykind#",
+    "ex": "http://example.org#"
+  },
+  "@graph": [
+    {
+      "@id": "ex:FromModelica.ParameterWithValidUnits",
+      "@type": "S231:Block",
+      "S231:documentation": "info=<html>\n<p>\nThis is the info section.\n</p>\n</html>",
+      "S231:hasParameter": [
+        {
+          "@id": "ex:FromModelica.ParameterWithValidUnits.cp"
+        },
+        {
+          "@id": "ex:FromModelica.ParameterWithValidUnits.kCooCoi"
+        },
+        {
+          "@id": "ex:FromModelica.ParameterWithValidUnits.slewRate"
+        },
+        {
+          "@id": "ex:FromModelica.ParameterWithValidUnits.TSet"
+        },
+        {
+          "@id": "ex:FromModelica.ParameterWithValidUnits.VFlow"
+        }
+      ],
+      "S231:label": "ParameterWithValidUnits"
+    },
+    {
+      "@id": "ex:FromModelica.ParameterWithValidUnits.cp",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Specific heat capacity",
+      "S231:isOfDataType": {
+        "@id": "S231:Real"
+      },
+      "S231:label": "cp",
+      "S231:value": 1,
+      "qudt:hasQuantityKind": {
+        "@id": "q:SpecificHeatCapacity"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:J-PER-KiloGM-K"
+      }
+    },
+    {
+      "@id": "ex:FromModelica.ParameterWithValidUnits.kCooCoi",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Gain for cooling coil control loop signal",
+      "S231:isOfDataType": {
+        "@id": "S231:Real"
+      },
+      "S231:label": "kCooCoi",
+      "S231:value": 1,
+      "qudt:hasQuantityKind": {
+        "@id": "q:LinearExpansionCoefficient"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:PER-K"
+      }
+    },
+    {
+      "@id": "ex:FromModelica.ParameterWithValidUnits.slewRate",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Maximum speed with which to increase the output",
+      "S231:isOfDataType": {
+        "@id": "S231:Real"
+      },
+      "S231:label": "slewRate",
+      "S231:value": 1,
+      "qudt:hasQuantityKind": {
+        "@id": "q:TemperaturePerTime"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:PER-SEC"
+      }
+    },
+    {
+      "@id": "ex:FromModelica.ParameterWithValidUnits.TSet",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Setpoint temperature",
+      "S231:hasDisplayUnit": {
+        "@id": "unit:DEG_C"
+      },
+      "S231:isOfDataType": {
+        "@id": "S231:Real"
+      },
+      "S231:label": "TSet",
+      "S231:value": 1,
+      "qudt:hasQuantityKind": {
+        "@id": "q:ThermodynamicTemperature"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:K"
+      }
+    },
+    {
+      "@id": "ex:FromModelica.ParameterWithValidUnits.VFlow",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Volume flow rate",
+      "S231:hasDisplayUnit": {
+        "@id": "unit:FT3-PER-MIN"
+      },
+      "S231:isOfDataType": {
+        "@id": "S231:Real"
+      },
+      "S231:label": "VFlow",
+      "S231:value": 1,
+      "qudt:hasQuantityKind": {
+        "@id": "q:VolumeFlowRate"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:M3-PER-SEC"
+      }
+    }
+  ]
+}

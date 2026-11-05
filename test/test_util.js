@@ -76,6 +76,8 @@ mo.describe('util', function () {
         'ParameterWithAttributes.mo',
         'ParameterWithDefaultName.mo',
         'ParameterWithInfo.mo',
+        'ParameterWithInvalidUnits.mo',
+        'ParameterWithValidUnits.mo',
         'ParameterWithVendorAnnotationInInfo.mo',
         'PointList.mo',
         'RedeclaredBlock.mo',
