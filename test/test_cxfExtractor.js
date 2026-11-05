@@ -124,10 +124,10 @@ mo.describe('cxfExtractor.js', function () {
   mo.describe('QUDT unit and quantity kind mapping (issue 340)', function () {
     const s231Ns = rdflib.Namespace('http://data.ashrae.org/S231#')
     const qudtNs = rdflib.Namespace('http://qudt.org/schema/qudt/')
-    const unitNs = rdflib.Namespace('http://qudt.org/vocab/unit#')
-    const qudtQkNs = rdflib.Namespace('http://qudt.org/vocab/quantitykind#')
+    const unitNs = rdflib.Namespace('http://qudt.org/vocab/unit/')
+    const qudtQkNs = rdflib.Namespace('http://qudt.org/vocab/quantitykind/')
     const getQudtUnit = ce.__get__('getQudtUnit')
-    const getQudtQuanityKind = ce.__get__('getQudtQuanityKind')
+    const getQudtQuantityKind = ce.__get__('getQudtQuantityKind')
     const addAttributesToNode = ce.__get__('addAttributesToNode')
     const qudtMapping = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'lib', 'units-qudt.json'), 'utf8'))
     const pinned = JSON.parse(fs.readFileSync(path.join(__dirname, 'qudt', 'qudt-vocab.json'), 'utf8'))
@@ -136,7 +136,8 @@ mo.describe('cxfExtractor.js', function () {
       const table = qudtMapping.units
       const vocab = pinned.units
       const out = []
-      for (const [modelica, target] of Object.entries(table)) {
+      for (const [modelica] of Object.entries(table)) {
+        const target = getQudtUnit(modelica).value
         const entry = vocab[target]
         if (entry === undefined) out.push(`${modelica} -> ${target}: not in QUDT ${pinned.qudtVersion}`)
         else if (entry.deprecated) out.push(`${modelica} -> ${target}: deprecated, use ${entry.replacedBy}`)
@@ -148,7 +149,8 @@ mo.describe('cxfExtractor.js', function () {
       const table = qudtMapping.quantityKinds
       const vocab = pinned.quantityKinds
       const out = []
-      for (const [modelica, target] of Object.entries(table)) {
+      for (const [modelica] of Object.entries(table)) {
+        const target = getQudtQuantityKind(modelica).value
         const entry = vocab[target]
         if (entry === undefined) out.push(`${modelica} -> ${target}: not in QUDT ${pinned.qudtVersion}`)
         else if (entry.deprecated) out.push(`${modelica} -> ${target}: deprecated, use ${entry.replacedBy}`)
@@ -167,12 +169,12 @@ mo.describe('cxfExtractor.js', function () {
     })
 
     mo.it('maps CDL and MBL quantity kinds to QUDT quantitykind vocabulary', function () {
-      as.equal(getQudtQuanityKind('PressureDifference', qudtQkNs).value, qudtQkNs('Pressure').value)
-      as.equal(getQudtQuanityKind('HeatFlowRate', qudtQkNs).value, qudtQkNs('HeatFlowRate').value)
-      as.equal(getQudtQuanityKind('SpecificHeatCapacity', qudtQkNs).value, qudtQkNs('SpecificHeatCapacity').value)
-      as.equal(getQudtQuanityKind('TemperatureSlope', qudtQkNs).value, qudtQkNs('TemperaturePerTime').value)
-      as.equal(getQudtQuanityKind('Density', qudtQkNs).value, qudtQkNs('Density').value)
-      as.equal(getQudtQuanityKind('', qudtQkNs), null)
+      as.equal(getQudtQuantityKind('PressureDifference', qudtQkNs).value, qudtQkNs('Pressure').value)
+      as.equal(getQudtQuantityKind('HeatFlowRate', qudtQkNs).value, qudtQkNs('HeatFlowRate').value)
+      as.equal(getQudtQuantityKind('SpecificHeatCapacity', qudtQkNs).value, qudtQkNs('SpecificHeatCapacity').value)
+      as.equal(getQudtQuantityKind('TemperatureSlope', qudtQkNs).value, qudtQkNs('TemperaturePerTime').value)
+      as.equal(getQudtQuantityKind('Density', qudtQkNs).value, qudtQkNs('Density').value)
+      as.equal(getQudtQuantityKind('', qudtQkNs), null)
     })
 
     mo.it('adds qudt:hasUnit, S231:hasDisplayUnit, and qudt:hasQuantityKind for mapped values', function () {

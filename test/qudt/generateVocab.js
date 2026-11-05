@@ -31,6 +31,11 @@ function fetchUrl (url) {
 }
 
 function parseTurtleVocab (ttl, prefix) {
+  const prefixMatch = ttl.match(new RegExp(`@prefix\\s+${prefix}:\\s*<([^>]+)>`))
+  if (!prefixMatch) {
+    throw new Error(`Could not find @prefix ${prefix}: declaration in Turtle file`)
+  }
+  const namespaceUri = prefixMatch[1]
   const vocab = {}
   const blockRegex = new RegExp(`\\n(?=${prefix}:[A-Za-z0-9_-]+\\s)`)
   const subjectRegex = new RegExp(`^${prefix}:([A-Za-z0-9_-]+)\\s`)
@@ -40,16 +45,16 @@ function parseTurtleVocab (ttl, prefix) {
   for (const block of blocks) {
     const match = block.match(subjectRegex)
     if (!match) continue
-    const term = match[1]
+    const fullUri = namespaceUri + match[1]
     const entry = {}
     if (/(?:qudt|owl):deprecated\s+true\b/.test(block)) {
       entry.deprecated = true
       const repMatch = block.match(replacedByRegex)
       if (repMatch) {
-        entry.replacedBy = repMatch[1]
+        entry.replacedBy = namespaceUri + repMatch[1]
       }
     }
-    vocab[term] = entry
+    vocab[fullUri] = entry
   }
 
   const sorted = {}
