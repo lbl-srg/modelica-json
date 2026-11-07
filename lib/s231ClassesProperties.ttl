@@ -599,6 +599,32 @@ S231:AnalogOutput a rdfs:Class ;
     sh:path S231:isOfDataType 
   ] ;
 .
+S231:BooleanInput a rdfs:Class ;
+  rdfs:comment "An input connector for boolean data type";
+  rdfs:subClassOf S231:InputConnector ;
+  a sh:NodeShape ;
+  sh:targetClass S231:BooleanInput ;
+  sh:property [ 
+    a sh:PropertyShape ;
+    sh:class S231:BooleanDataType ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:path S231:isOfDataType 
+  ] ;
+.
+S231:BooleanOutput a rdfs:Class ;
+  rdfs:comment "An output connector for boolean data type";
+  rdfs:subClassOf S231:OutputConnector ;
+  a sh:NodeShape ;
+  sh:targetClass S231:BooleanOutput ;
+  sh:property [ 
+    a sh:PropertyShape ;
+    sh:class S231:BooleanDataType ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:path S231:isOfDataType 
+  ] ;
+.
 S231:IntegerInput a rdfs:Class ;
   rdfs:comment "An input connector for integer data type";
   rdfs:subClassOf S231:InputConnector ;
@@ -763,8 +789,10 @@ S231:icon a rdf:Property .
 S231:generatePointlist a rdf:Property .
 S231:controlledDevice a rdf:Property .
 S231:isReplaceable a rdf:Property .
-S231:constrainedby a rdf:Property .
+S231:constrainedBy a rdf:Property .
 S231:redeclare a rdf:Property .
+S231:extends a rdf:Property .
+S231:hasFmuPath a rdf:Property .
 S231:isFinal a rdf:Property .
 S231:diagram a rdf:Property .
 S231:accessSpecifier a rdf:Property . 
