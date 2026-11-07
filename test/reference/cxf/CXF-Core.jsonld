@@ -10837,6 +10837,56 @@
       }
     },
     {
+      "@id": "S231:BooleanInput",
+      "@type": [
+        "rdfs:Class",
+        "sh:NodeShape"
+      ],
+      "rdfs:comment": "An input connector for boolean data type",
+      "rdfs:subClassOf": {
+        "@id": "S231:InputConnector"
+      },
+      "sh:property": {
+        "@type": "sh:PropertyShape",
+        "sh:class": {
+          "@id": "S231:BooleanDataType"
+        },
+        "sh:maxCount": 1,
+        "sh:minCount": 1,
+        "sh:path": {
+          "@id": "S231:isOfDataType"
+        }
+      },
+      "sh:targetClass": {
+        "@id": "S231:BooleanInput"
+      }
+    },
+    {
+      "@id": "S231:BooleanOutput",
+      "@type": [
+        "rdfs:Class",
+        "sh:NodeShape"
+      ],
+      "rdfs:comment": "An output connector for boolean data type",
+      "rdfs:subClassOf": {
+        "@id": "S231:OutputConnector"
+      },
+      "sh:property": {
+        "@type": "sh:PropertyShape",
+        "sh:class": {
+          "@id": "S231:BooleanDataType"
+        },
+        "sh:maxCount": 1,
+        "sh:minCount": 1,
+        "sh:path": {
+          "@id": "S231:isOfDataType"
+        }
+      },
+      "sh:targetClass": {
+        "@id": "S231:BooleanOutput"
+      }
+    },
+    {
       "@id": "S231:cdlLineNumEnd",
       "@type": "rdf:Property"
     },
@@ -11099,7 +11149,7 @@
       ]
     },
     {
-      "@id": "S231:constrainedby",
+      "@id": "S231:constrainedBy",
       "@type": "rdf:Property"
     },
     {
@@ -11168,6 +11218,10 @@
       ]
     },
     {
+      "@id": "S231:extends",
+      "@type": "rdf:Property"
+    },
+    {
       "@id": "S231:ExtensionBlock",
       "@type": "rdfs:Class",
       "rdfs:comment": "An extension block supports functionalities that cannot, or are hard to, implement with a composite block. \n                They allow, for example, implementation of blocks that contain statistical functions, fault detection and diagnostics methods, as well as proprietary code. \n                They are intended to define new elementary blocks beyond those defined in this standard",
@@ -11211,6 +11265,10 @@
     },
     {
       "@id": "S231:hasDisplayUnit",
+      "@type": "rdf:Property"
+    },
+    {
+      "@id": "S231:hasFmuPath",
       "@type": "rdf:Property"
     },
     {
