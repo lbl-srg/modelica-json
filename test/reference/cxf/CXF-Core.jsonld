@@ -10959,6 +10959,15 @@
             "@id": "qudt:QuantityKind"
           },
           "sh:path": {
+            "@id": "qudt:hasQuantityKind"
+          }
+        },
+        {
+          "rdfs:comment": "The quantity of the constant as written in CDL, used when it has no QUDT QuantityKind",
+          "sh:datatype": {
+            "@id": "xsd:string"
+          },
+          "sh:path": {
             "@id": "S231:quantity"
           }
         },
@@ -11031,6 +11040,15 @@
             "@id": "qudt:Unit"
           },
           "sh:path": {
+            "@id": "qudt:hasUnit"
+          }
+        },
+        {
+          "rdfs:comment": "The unit of the constant used for controls and calculations as written in CDL, used when unit can not be mapped to QUDT",
+          "sh:datatype": {
+            "@id": "xsd:string"
+          },
+          "sh:path": {
             "@id": "S231:unit"
           }
         },
@@ -11038,6 +11056,15 @@
           "rdfs:comment": "The unit of the constant used for display and graphics",
           "sh:class": {
             "@id": "qudt:Unit"
+          },
+          "sh:path": {
+            "@id": "S231:hasDisplayUnit"
+          }
+        },
+        {
+          "rdfs:comment": "The unit of the constant used for display and graphics as written in CDL, used when unit can not be mapped to QUDT",
+          "sh:datatype": {
+            "@id": "xsd:string"
           },
           "sh:path": {
             "@id": "S231:displayUnit"
@@ -11183,6 +11210,10 @@
       }
     },
     {
+      "@id": "S231:hasDisplayUnit",
+      "@type": "rdf:Property"
+    },
+    {
       "@id": "S231:hasInput",
       "@type": "rdf:Property",
       "rdfs:comment": "Used to define an input connector for a block",
@@ -11321,6 +11352,15 @@
             "@id": "qudt:QuantityKind"
           },
           "sh:path": {
+            "@id": "qudt:hasQuantityKind"
+          }
+        },
+        {
+          "rdfs:comment": "The quantity of the input connector as written in CDL, used when it has no QUDT QuantityKind",
+          "sh:datatype": {
+            "@id": "xsd:string"
+          },
+          "sh:path": {
             "@id": "S231:quantity"
           }
         },
@@ -11384,7 +11424,16 @@
             "@id": "qudt:Unit"
           },
           "sh:path": {
-            "@id": "S231:hasUnit"
+            "@id": "qudt:hasUnit"
+          }
+        },
+        {
+          "rdfs:comment": "The unit of the input connector used for controls and calculations as written in CDL, used when unit can not be mapped to QUDT",
+          "sh:datatype": {
+            "@id": "xsd:string"
+          },
+          "sh:path": {
+            "@id": "S231:unit"
           }
         },
         {
@@ -11394,6 +11443,15 @@
           },
           "sh:path": {
             "@id": "S231:hasDisplayUnit"
+          }
+        },
+        {
+          "rdfs:comment": "The unit of the input connector used for display and graphics as written in CDL, used when unit can not be mapped to QUDT",
+          "sh:datatype": {
+            "@id": "xsd:string"
+          },
+          "sh:path": {
+            "@id": "S231:displayUnit"
           }
         },
         {
@@ -11645,6 +11703,15 @@
             "@id": "qudt:QuantityKind"
           },
           "sh:path": {
+            "@id": "qudt:hasQuantityKind"
+          }
+        },
+        {
+          "rdfs:comment": "The quantity of the output connector as written in CDL, used when it has no QUDT QuantityKind",
+          "sh:datatype": {
+            "@id": "xsd:string"
+          },
+          "sh:path": {
             "@id": "S231:quantity"
           }
         },
@@ -11717,7 +11784,16 @@
             "@id": "qudt:Unit"
           },
           "sh:path": {
-            "@id": "S231:hasUnit"
+            "@id": "qudt:hasUnit"
+          }
+        },
+        {
+          "rdfs:comment": "The unit of the output connector used for controls and calculations as written in CDL, used when unit can not be mapped to QUDT",
+          "sh:datatype": {
+            "@id": "xsd:string"
+          },
+          "sh:path": {
+            "@id": "S231:unit"
           }
         },
         {
@@ -11727,6 +11803,15 @@
           },
           "sh:path": {
             "@id": "S231:hasDisplayUnit"
+          }
+        },
+        {
+          "rdfs:comment": "The unit of the output connector used for display and graphics as written in CDL, used when unit can not be mapped to QUDT",
+          "sh:datatype": {
+            "@id": "xsd:string"
+          },
+          "sh:path": {
+            "@id": "S231:displayUnit"
           }
         },
         {
@@ -11831,6 +11916,15 @@
             "@id": "qudt:QuantityKind"
           },
           "sh:path": {
+            "@id": "qudt:hasQuantityKind"
+          }
+        },
+        {
+          "rdfs:comment": "The quantity of the parameter as written in CDL, used when it has no QUDT QuantityKind",
+          "sh:datatype": {
+            "@id": "xsd:string"
+          },
+          "sh:path": {
             "@id": "S231:quantity"
           }
         },
@@ -11903,7 +11997,16 @@
             "@id": "qudt:Unit"
           },
           "sh:path": {
-            "@id": "S231:hasUnit"
+            "@id": "qudt:hasUnit"
+          }
+        },
+        {
+          "rdfs:comment": "The unit of the parameter used for controls and calculations as written in CDL, used when unit can not be mapped to QUDT",
+          "sh:datatype": {
+            "@id": "xsd:string"
+          },
+          "sh:path": {
+            "@id": "S231:unit"
           }
         },
         {
@@ -11913,6 +12016,15 @@
           },
           "sh:path": {
             "@id": "S231:hasDisplayUnit"
+          }
+        },
+        {
+          "rdfs:comment": "The unit of the parameter used for display and graphics as written in CDL, used when unit can not be mapped to QUDT",
+          "sh:datatype": {
+            "@id": "xsd:string"
+          },
+          "sh:path": {
+            "@id": "S231:displayUnit"
           }
         },
         {
