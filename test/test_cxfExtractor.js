@@ -305,5 +305,87 @@ mo.describe('cxfExtractor.js', function () {
         logger.warn = origWarn
       }
     })
+
+    mo.it('only generates S231 classes and properties defined in s231ClassesProperties.ttl across all CXF files', function () {
+      const ttlBody = fs.readFileSync(path.join(__dirname, '..', 'lib', 's231ClassesProperties.ttl'), 'utf8')
+      const schemaGraph = rdflib.graph()
+      rdflib.parse(ttlBody, schemaGraph, 'https://data.ashrae.org/s231.ttl', 'text/turtle')
+      const s231Base = 'http://data.ashrae.org/S231#'
+      const definedTerms = new Set(
+        schemaGraph.statements
+          .filter(st => st.subject.termType === 'NamedNode' && st.subject.value.startsWith(s231Base))
+          .map(st => st.subject.value)
+      )
+
+      const moFiles = [
+        path.join(fromModelicaDir, 'ParameterWithValidUnits.mo'),
+        path.join(fromModelicaDir, 'ParameterWithInvalidUnits.mo')
+      ]
+
+      const warnings = []
+      const origWarn = logger.warn
+      logger.warn = function (msg) { warnings.push(msg) }
+      try {
+        pa.getJsons(moFiles, 'cxf', 'current', true)
+      } finally {
+        logger.warn = origWarn
+      }
+
+      function collectJsonldFiles (dir) {
+        let results = []
+        if (!fs.existsSync(dir)) return results
+        for (const entry of fs.readdirSync(dir)) {
+          const full = path.join(dir, entry)
+          if (fs.statSync(full).isDirectory()) {
+            results = results.concat(collectJsonldFiles(full))
+          } else if (entry.endsWith('.jsonld') && entry !== 'CXF-Core.jsonld') {
+            results.push(full)
+          }
+        }
+        return results
+      }
+
+      const cxfFiles = collectJsonldFiles(cxfFromModelicaDir)
+        .concat(collectJsonldFiles(path.join(__dirname, 'reference', 'cxf')))
+
+      const expandS231 = (term, s231Prefix) => {
+        if (typeof term !== 'string') return null
+        if (term.startsWith('S231:')) return s231Prefix + term.slice('S231:'.length)
+        if (term.startsWith(s231Prefix)) return term
+        return null
+      }
+
+      const isCdlInstanceUri = uri => uri.startsWith(s231Base + 'Buildings.')
+
+      const undefinedTerms = []
+      for (const file of cxfFiles) {
+        const doc = JSON.parse(fs.readFileSync(file, 'utf8'))
+        const s231Prefix = (doc['@context'] && doc['@context'].S231) || s231Base
+        const relFile = path.relative(process.cwd(), file)
+        for (const node of doc['@graph'] || []) {
+          const types = Array.isArray(node['@type']) ? node['@type'] : (node['@type'] ? [node['@type']] : [])
+          for (const t of types) {
+            const uri = expandS231(t, s231Prefix)
+            if (uri && !isCdlInstanceUri(uri) && !definedTerms.has(uri)) {
+              undefinedTerms.push(`${relFile} @type ${t} (${uri})`)
+            }
+          }
+          for (const [pred, val] of Object.entries(node)) {
+            const predUri = expandS231(pred, s231Prefix)
+            if (predUri && !definedTerms.has(predUri)) {
+              undefinedTerms.push(`${relFile} predicate ${pred} (${predUri})`)
+            }
+            const items = Array.isArray(val) ? val : [val]
+            for (const item of items) {
+              const objUri = item && typeof item === 'object' && item['@id'] ? expandS231(item['@id'], s231Prefix) : null
+              if (objUri && !isCdlInstanceUri(objUri) && !definedTerms.has(objUri)) {
+                undefinedTerms.push(`${relFile} object ${item['@id']} (${objUri})`)
+              }
+            }
+          }
+        }
+      }
+      as.deepStrictEqual(undefinedTerms, [], `Undefined S231 term(s) generated:\n  ${undefinedTerms.join('\n  ')}`)
+    })
   })
 })

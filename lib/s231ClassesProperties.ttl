@@ -107,9 +107,14 @@ S231:InputConnector
     sh:datatype xsd:decimal ;
   ] ;
   sh:property [
-    sh:path S231:quantity ;
+    sh:path qudt:hasQuantityKind ;
     rdfs:comment "The QuantityKind associated with the input connector" ;
     sh:class qudt:QuantityKind ;
+  ] ;
+  sh:property [
+    sh:path S231:quantity ;
+    rdfs:comment "The quantity of the input connector as written in CDL, used when it has no QUDT QuantityKind" ;
+    sh:datatype xsd:string ;
   ] ;
   sh:property [
     sh:path S231:fixed ;
@@ -132,14 +137,24 @@ S231:InputConnector
     sh:datatype xsd:decimal ;
   ] ;
   sh:property [
-    sh:path S231:hasUnit ;
+    sh:path qudt:hasUnit ;
     rdfs:comment "The unit of the input connector used for controls and calculations" ;
     sh:class qudt:Unit ;
+  ] ;
+  sh:property [
+    sh:path S231:unit ;
+    rdfs:comment "The unit of the input connector used for controls and calculations as written in CDL, used when unit can not be mapped to QUDT" ;
+    sh:datatype xsd:string ;
   ] ;
   sh:property [
     sh:path S231:hasDisplayUnit ;
     rdfs:comment "The unit of the input connector used for display and graphics" ;
     sh:class qudt:Unit ;
+  ] ;
+  sh:property [
+    sh:path S231:displayUnit ;
+    rdfs:comment "The unit of the input connector used for display and graphics as written in CDL, used when unit can not be mapped to QUDT" ;
+    sh:datatype xsd:string ;
   ] ;
   sh:property [
     sh:path S231:cdlLineNumStart ;
@@ -211,9 +226,14 @@ S231:OutputConnector
     sh:datatype xsd:decimal ;
   ] ;
   sh:property [
-    sh:path S231:quantity ;
+    sh:path qudt:hasQuantityKind ;
     rdfs:comment "The QuantityKind associated with the output connector" ;
     sh:class qudt:QuantityKind ;
+  ] ;
+  sh:property [
+    sh:path S231:quantity ;
+    rdfs:comment "The quantity of the output connector as written in CDL, used when it has no QUDT QuantityKind" ;
+    sh:datatype xsd:string ;
   ] ;
   sh:property [
     sh:path S231:fixed ;
@@ -236,14 +256,24 @@ S231:OutputConnector
     sh:datatype xsd:decimal ;
   ] ;
   sh:property [
-    sh:path S231:hasUnit ;
+    sh:path qudt:hasUnit ;
     rdfs:comment "The unit of the output connector used for controls and calculations" ;
     sh:class qudt:Unit ;
+  ] ;
+  sh:property [
+    sh:path S231:unit ;
+    rdfs:comment "The unit of the output connector used for controls and calculations as written in CDL, used when unit can not be mapped to QUDT" ;
+    sh:datatype xsd:string ;
   ] ;
   sh:property [
     sh:path S231:hasDisplayUnit ;
     rdfs:comment "The unit of the output connector used for display and graphics" ;
     sh:class qudt:Unit ;
+  ] ;
+  sh:property [
+    sh:path S231:displayUnit ;
+    rdfs:comment "The unit of the output connector used for display and graphics as written in CDL, used when unit can not be mapped to QUDT" ;
+    sh:datatype xsd:string ;
   ] ;
   sh:property [
     sh:path S231:cdlLineNumStart ;
@@ -320,9 +350,14 @@ S231:Parameter
     sh:datatype xsd:decimal ;
   ] ;
   sh:property [
-    sh:path S231:quantity ;
+    sh:path qudt:hasQuantityKind ;
     rdfs:comment "The QuantityKind associated with the parameter" ;
     sh:class qudt:QuantityKind ;
+  ] ;
+  sh:property [
+    sh:path S231:quantity ;
+    rdfs:comment "The quantity of the parameter as written in CDL, used when it has no QUDT QuantityKind" ;
+    sh:datatype xsd:string ;
   ] ;
   sh:property [
     sh:path S231:fixed ;
@@ -345,14 +380,24 @@ S231:Parameter
     sh:datatype xsd:decimal ;
   ] ;
   sh:property [
-    sh:path S231:hasUnit ;
+    sh:path qudt:hasUnit ;
     rdfs:comment "The unit of the parameter used for controls and calculations" ;
     sh:class qudt:Unit ;
+  ] ;
+  sh:property [
+    sh:path S231:unit ;
+    rdfs:comment "The unit of the parameter used for controls and calculations as written in CDL, used when unit can not be mapped to QUDT" ;
+    sh:datatype xsd:string ;
   ] ;
   sh:property [
     sh:path S231:hasDisplayUnit ;
     rdfs:comment "The unit of the parameter used for display and graphics" ;
     sh:class qudt:Unit ;
+  ] ;
+  sh:property [
+    sh:path S231:displayUnit ;
+    rdfs:comment "The unit of the parameter used for display and graphics as written in CDL, used when unit can not be mapped to QUDT" ;
+    sh:datatype xsd:string ;
   ] ;
   sh:property [
     sh:path S231:cdlLineNumStart ;
@@ -427,9 +472,14 @@ S231:Constant
     sh:datatype xsd:decimal ;
   ] ;
   sh:property [
-    sh:path S231:quantity ;
+    sh:path qudt:hasQuantityKind ;
     rdfs:comment "The QuantityKind associated with the constant" ;
     sh:class qudt:QuantityKind ;
+  ] ;
+  sh:property [
+    sh:path S231:quantity ;
+    rdfs:comment "The quantity of the constant as written in CDL, used when it has no QUDT QuantityKind" ;
+    sh:datatype xsd:string ;
   ] ;
   sh:property [
     sh:path S231:fixed ;
@@ -452,14 +502,24 @@ S231:Constant
     sh:datatype xsd:decimal ;
   ] ;
   sh:property [
-    sh:path S231:unit ;
+    sh:path qudt:hasUnit ;
     rdfs:comment "The unit of the constant used for controls and calculations" ;
     sh:class qudt:Unit ;
   ] ;
   sh:property [
-    sh:path S231:displayUnit ;
+    sh:path S231:unit ;
+    rdfs:comment "The unit of the constant used for controls and calculations as written in CDL, used when unit can not be mapped to QUDT" ;
+    sh:datatype xsd:string ;
+  ] ;
+  sh:property [
+    sh:path S231:hasDisplayUnit ;
     rdfs:comment "The unit of the constant used for display and graphics" ;
     sh:class qudt:Unit ;
+  ] ;
+  sh:property [
+    sh:path S231:displayUnit ;
+    rdfs:comment "The unit of the constant used for display and graphics as written in CDL, used when unit can not be mapped to QUDT" ;
+    sh:datatype xsd:string ;
   ] ;
   sh:property [
     sh:path S231:cdlLineNumStart ;
@@ -534,6 +594,32 @@ S231:AnalogOutput a rdfs:Class ;
   sh:property [ 
     a sh:PropertyShape ;
     sh:class S231:AnalogDataType ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:path S231:isOfDataType 
+  ] ;
+.
+S231:BooleanInput a rdfs:Class ;
+  rdfs:comment "An input connector for boolean data type";
+  rdfs:subClassOf S231:InputConnector ;
+  a sh:NodeShape ;
+  sh:targetClass S231:BooleanInput ;
+  sh:property [ 
+    a sh:PropertyShape ;
+    sh:class S231:BooleanDataType ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:path S231:isOfDataType 
+  ] ;
+.
+S231:BooleanOutput a rdfs:Class ;
+  rdfs:comment "An output connector for boolean data type";
+  rdfs:subClassOf S231:OutputConnector ;
+  a sh:NodeShape ;
+  sh:targetClass S231:BooleanOutput ;
+  sh:property [ 
+    a sh:PropertyShape ;
+    sh:class S231:BooleanDataType ;
     sh:maxCount 1 ;
     sh:minCount 1 ;
     sh:path S231:isOfDataType 
@@ -703,8 +789,10 @@ S231:icon a rdf:Property .
 S231:generatePointlist a rdf:Property .
 S231:controlledDevice a rdf:Property .
 S231:isReplaceable a rdf:Property .
-S231:constrainedby a rdf:Property .
+S231:constrainedBy a rdf:Property .
 S231:redeclare a rdf:Property .
+S231:extends a rdf:Property .
+S231:hasFmuPath a rdf:Property .
 S231:isFinal a rdf:Property .
 S231:diagram a rdf:Property .
 S231:accessSpecifier a rdf:Property . 
@@ -722,5 +810,6 @@ S231:min a rdf:Property .
 S231:max a rdf:Property .
 S231:unit a rdf:Property .
 S231:displayUnit a rdf:Property .
+S231:hasDisplayUnit a rdf:Property .
 S231:cdlLineNumStart a rdf:Property .
 S231:cdlLineNumEnd a rdf:Property .
