@@ -18,12 +18,22 @@ const schemaModelica = path.join(root, 'schema-modelica.json')
 const schemaModelicaMbl = path.join(root, 'schema-modelica-mbl.json')
 
 /**
+ * Get the entries of MODELICAPATH as absolute paths. Relative entries, such as on CI,
+ * are resolved against the current directory, which is not the one of the processes
+ * started by 'runApp'.
+ *
+ * @returns {string[]} absolute paths
+ */
+function getModelicaPathEntries () {
+  return (process.env.MODELICAPATH ?? '').split(path.delimiter).filter(Boolean).map(p => path.resolve(p))
+}
+
+/**
  * Get the entries of MODELICAPATH that contain the Buildings library, and not the Modelica
  * Standard Library. The verdicts must not depend on the latter being found.
  */
 function getBuildingsPath () {
-  return (process.env.MODELICAPATH ?? '').split(path.delimiter)
-    .filter(p => fs.existsSync(path.join(p, 'Buildings'))).join(path.delimiter)
+  return getModelicaPathEntries().filter(p => fs.existsSync(path.join(p, 'Buildings'))).join(path.delimiter)
 }
 
 function makeTempDir () {
@@ -50,7 +60,7 @@ function check (moFile, options) {
 }
 
 /**
- * Run app.js in a temporary directory.
+ * Run app.js in a temporary directory, with the entries of MODELICAPATH made absolute.
  *
  * @param {string[]} args arguments of app.js
  * @param {Object} [env] environment variables
@@ -60,7 +70,7 @@ function runApp (args, env = {}) {
   return cp.spawnSync('node', [app, ...args], {
     cwd: makeTempDir(),
     encoding: 'utf8',
-    env: Object.assign({}, process.env, env)
+    env: Object.assign({}, process.env, { MODELICAPATH: getModelicaPathEntries().join(path.delimiter) }, env)
   })
 }
 
