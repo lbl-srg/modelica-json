@@ -131,6 +131,28 @@ mo.describe('cdlCompliance.js', function () {
       as.equal(jsons.length, 1)
       as.equal(cc.isCdlCompliant([moFile], jsons), false)
     })
+    mo.it('throws if the JSON representation of a given file is missing', function () {
+      as.throws(() => cc.checkCdlCompliance([fixture('Baseline')], []), /JSON representation of .*Baseline\.mo is missing/)
+    })
+    mo.it('does not need the JSON representation of an elementary block', function () {
+      const moFile = ut.getMoFiles('Buildings.Controls.OBC.CDL.Reals.Add')[0]
+      as.deepEqual(cc.checkCdlCompliance([moFile], []), [])
+    })
+    mo.it('checks a class whose JSON file was written for a copy of it', function () {
+      // The JSON file is found by class name and checksum, so it can come from another copy
+      // of the library, such as another checkout, or the same checkout before it was moved.
+      const dir = makeTempDir()
+      const copies = ['A', 'B'].map((name) => {
+        const copy = path.join(makeTempDir(), name, 'CdlCompliance')
+        fs.cpSync(fixtures, copy, { recursive: true })
+        return copy
+      })
+      copies.forEach((copy) => {
+        const result = runApp(['-f', path.join(copy, 'Case09Model.mo'), '-o', 'json', '-d', dir])
+        as.equal(result.status, 1, `${copy}: ${result.stdout}${result.stderr}`)
+        as.match(result.stdout, /Case09Model is not valid/)
+      })
+    })
     mo.it('all fixtures are covered', function () {
       const names = fs.readdirSync(fixtures).map(file => path.basename(file, '.mo'))
       as.deepEqual(names.sort(), Object.keys(CASES).sort())
