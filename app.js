@@ -44,7 +44,7 @@ parser.addArgument(
 parser.addArgument(
   ['--exclude'],
   {
-    help: "Pattern of the names of the classes given by -f/--file that are neither parsed, validated nor written, such as '**.Validation'. The classes used by the other classes are always parsed and validated, whatever their name. '*' matches within one component of the class name, '**' matches across components, and '|' separates alternatives, at the top level or in parentheses. A pattern that matches a package also excludes the classes in this package. This option can be repeated.",
+    help: "Pattern of the names of the input classes that are neither parsed, validated nor written, such as '**.Validation'. The input classes are the class given by -f/--file or, for a package or a directory, all the classes stored in it and in its subdirectories. The classes used by the other classes are always parsed and validated, whatever their name, even if they are input classes that match a pattern. '*' matches within one component of the class name, '**' matches across components, and '|' separates alternatives, at the top level or in parentheses. A pattern that matches a package also excludes the classes in this package. This option can be repeated.",
     action: 'append',
     defaultValue: []
   }

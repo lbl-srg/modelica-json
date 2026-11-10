@@ -96,6 +96,7 @@ const CASES = {
   ExtendsIcon: /Modelica\.Blocks\.Icons\.Block is a composite block that is not stored in its own file/,
   // Patterns found in the Buildings library, which are compliant.
   UsesExtensionBlock: null,
+  ExtensionBlockWithNonCdlClass: null,
   ExternalExtensionBlock: null,
   ConditionalSources: null,
   OutputToInsideInput: null
@@ -179,6 +180,12 @@ mo.describe('cdlCompliance.js', function () {
       const jsons = getJsons(fixture('UsesExtensionBlock'))
       as.equal(jsons.some(json => ut.getClassNameFromJson(json) === 'CdlCompliance.Case13ExtensionBlock'), true)
       as.deepEqual(cc.checkCdlCompliance([fixture('UsesExtensionBlock')], jsons), [])
+    })
+    mo.it('writes the classes used by an extension block, without checking them', function () {
+      const dir = makeTempDir()
+      const result = runApp(['-f', fixture('ExtensionBlockWithNonCdlClass'), '-o', 'json', '-d', dir])
+      as.equal(result.status, 0, result.stdout + result.stderr)
+      as.equal(fs.existsSync(path.join(dir, 'json', 'Buildings', 'Controls', 'SetPoints', 'Table.json')), true)
     })
     mo.it('fails with -m modelica if a class breaks a project rule', function () {
       const args = ['-o', 'json', '-m', 'modelica', '-d', 'out']
