@@ -5,6 +5,7 @@ const mo = require('mocha')
 const os = require('os')
 const path = require('path')
 const cc = require('../lib/cdlCompliance.js')
+const mj = require('../lib/modelicaToJSON.js')
 const pa = require('../lib/parser.js')
 const ut = require('../lib/util.js')
 const { generate } = require('../scripts/generateMblSchemas.js')
@@ -368,6 +369,39 @@ mo.describe('cdlCompliance.js', function () {
       const result = runApp(['-f', 'a.json', '-o', 'modelica', '--exclude', 'A'])
       as.notEqual(result.status, 0)
       as.match(result.stderr, /only applies to outputs that read \.mo files/)
+    })
+  })
+
+  mo.describe('overhead of the check', function () {
+    // The check of the connections looks up the classes of the instances and of their connectors
+    // for each connect clause, so the same lookups are repeated unless they are cached.
+    // Counting the calls, rather than timing the check, is deterministic.
+    mo.it('looks up each class and parses each file at most once', function () {
+      const moFile = fixture('OutputToInsideInput')
+      const jsons = getJsons(moFile)
+      const lookups = []
+      const parses = []
+      const { searchPath } = ut
+      const { toJSON } = mj
+      ut.searchPath = (names, within, file) => {
+        lookups.push(`${names}|${within}|${file}`)
+        return searchPath(names, within, file)
+      }
+      mj.toJSON = (file, ...args) => {
+        parses.push(path.resolve(file))
+        return toJSON(file, ...args)
+      }
+      try {
+        cc.checkCdlCompliance([moFile], jsons)
+      } finally {
+        ut.searchPath = searchPath
+        mj.toJSON = toJSON
+      }
+      const duplicates = list => [...new Set(list.filter((item, i) => list.indexOf(item) !== i))]
+      as.ok(lookups.length > 0, 'The check must look up classes, or this test checks nothing.')
+      as.ok(parses.length > 0, 'The check must parse files, or this test checks nothing.')
+      as.deepEqual(duplicates(lookups), [], 'Classes are looked up more than once.')
+      as.deepEqual(duplicates(parses), [], 'Files are parsed more than once.')
     })
   })
 })
