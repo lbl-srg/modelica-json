@@ -70,8 +70,7 @@
       "description": "Long class specifier",
       "type": "object",
       "required": [
-        "identifier",
-        "composition"
+        "identifier"
       ],
       "additionalProperties": false,
       "properties": {
@@ -287,7 +286,10 @@
           "type": "string"
         },
         "dot_star": {
-          "type": "boolean"
+          "type": [
+            "boolean",
+            "string"
+          ]
         },
         "import_list": {
           "type": "string"
@@ -304,8 +306,7 @@
       "items": {
         "type": "object",
         "required": [
-          "declaration",
-          "description"
+          "declaration"
         ],
         "additionalProperties": false,
         "properties": {
@@ -334,7 +335,7 @@
     "element_modification": {
       "description": "Element modification",
       "type": "object",
-      "oneOf": [
+      "anyOf": [
         {
           "type": "object",
           "additionalProperties": false,
@@ -448,16 +449,22 @@
           "type": "string"
         },
         "thickness": {
-          "type": "number"
+          "type": [
+            "number",
+            "null"
+          ]
         },
         "arrowSize": {
-          "type": "number"
+          "type": [
+            "number",
+            "null"
+          ]
         },
         "smooth": {
           "type": "string"
         },
         "visible": {
-          "type": "string"
+          "$ref": "#/definitions/simpleExpression"
         }
       }
     },
@@ -473,7 +480,10 @@
           "type": "string"
         },
         "fontSize": {
-          "type": "number"
+          "type": [
+            "number",
+            "null"
+          ]
         },
         "fontName": {
           "type": "string"
@@ -503,16 +513,22 @@
           "type": "string"
         },
         "lineThickness": {
-          "type": "number"
+          "type": [
+            "number",
+            "null"
+          ]
         },
         "visible": {
-          "type": "string"
+          "$ref": "#/definitions/simpleExpression"
         },
         "origin": {
           "$ref": "#/definitions/origin"
         },
         "rotation": {
-          "type": "number"
+          "type": [
+            "number",
+            "null"
+          ]
         }
       }
     },
@@ -525,7 +541,10 @@
           "$ref": "#/definitions/points"
         },
         "radius": {
-          "type": "number"
+          "type": [
+            "number",
+            "null"
+          ]
         },
         "borderPattern": {
           "type": "string"
@@ -543,16 +562,22 @@
           "type": "string"
         },
         "lineThickness": {
-          "type": "number"
+          "type": [
+            "number",
+            "null"
+          ]
         },
         "visible": {
-          "type": "string"
+          "$ref": "#/definitions/simpleExpression"
         },
         "origin": {
           "$ref": "#/definitions/origin"
         },
         "rotation": {
-          "type": "number"
+          "type": [
+            "number",
+            "null"
+          ]
         }
       }
     },
@@ -580,16 +605,22 @@
           "type": "string"
         },
         "lineThickness": {
-          "type": "number"
+          "type": [
+            "number",
+            "null"
+          ]
         },
         "visible": {
-          "type": "string"
+          "$ref": "#/definitions/simpleExpression"
         },
         "origin": {
           "$ref": "#/definitions/origin"
         },
         "rotation": {
-          "type": "number"
+          "type": [
+            "number",
+            "null"
+          ]
         }
       }
     },
@@ -602,10 +633,16 @@
           "$ref": "#/definitions/points"
         },
         "startAngle": {
-          "type": "number"
+          "type": [
+            "number",
+            "null"
+          ]
         },
         "endAngle": {
-          "type": "number"
+          "type": [
+            "number",
+            "null"
+          ]
         },
         "closure": {
           "type": "string"
@@ -623,16 +660,22 @@
           "type": "string"
         },
         "lineThickness": {
-          "type": "number"
+          "type": [
+            "number",
+            "null"
+          ]
         },
         "visible": {
-          "type": "string"
+          "$ref": "#/definitions/simpleExpression"
         },
         "origin": {
           "$ref": "#/definitions/origin"
         },
         "rotation": {
-          "type": "number"
+          "type": [
+            "number",
+            "null"
+          ]
         }
       }
     },
@@ -651,13 +694,16 @@
           "type": "string"
         },
         "visible": {
-          "type": "string"
+          "$ref": "#/definitions/simpleExpression"
         },
         "origin": {
           "$ref": "#/definitions/origin"
         },
         "rotation": {
-          "type": "number"
+          "type": [
+            "number",
+            "null"
+          ]
         }
       }
     },
@@ -667,10 +713,10 @@
       "additionalProperties": false,
       "properties": {
         "visible": {
-          "type": "string"
+          "$ref": "#/definitions/simpleExpression"
         },
         "iconVisible": {
-          "type": "string"
+          "$ref": "#/definitions/simpleExpression"
         },
         "transformation": {
           "$ref": "#/definitions/transformation"
@@ -794,7 +840,10 @@
           "$ref": "#/definitions/points"
         },
         "rotation": {
-          "type": "number"
+          "type": [
+            "number",
+            "null"
+          ]
         }
       }
     },
@@ -826,19 +875,13 @@
       "additionalProperties": false,
       "properties": {
         "r": {
-          "type": "number",
-          "minimum": 0,
-          "maximum": 255
+          "type": "number"
         },
         "g": {
-          "type": "number",
-          "minimum": 0,
-          "maximum": 255
+          "type": "number"
         },
         "b": {
-          "type": "number",
-          "minimum": 0,
-          "maximum": 255
+          "type": "number"
         }
       }
     },
@@ -1011,7 +1054,14 @@
         "additionalProperties": false,
         "properties": {
           "expression": {
-            "$ref": "#/definitions/simpleExpression"
+            "anyOf": [
+              {
+                "$ref": "#/definitions/expression"
+              },
+              {
+                "$ref": "#/definitions/simpleExpression"
+              }
+            ]
           },
           "for_loop": {
             "$ref": "#/definitions/forLoopIndices"
@@ -1192,20 +1242,27 @@
     },
     "ifExpressionObj": {
       "description": "If-else expression array",
-      "type": "array",
-      "additionalItems": false,
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "if_elseif": {
-            "$ref": "#/definitions/if_elseIfArray"
-          },
-          "else": {
-            "type": "string"
+      "anyOf": [
+        {
+          "type": "array",
+          "additionalItems": false,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "if_elseif": {
+                "$ref": "#/definitions/if_elseIfArray"
+              },
+              "else": {
+                "type": "string"
+              }
+            }
           }
+        },
+        {
+          "$ref": "#/definitions/ifExpression"
         }
-      }
+      ]
     },
     "if_elseIfArray": {
       "description": "If-else array",
@@ -1393,9 +1450,6 @@
     "descriptionSchema": {
       "description": "Description",
       "type": "object",
-      "required": [
-        "description_string"
-      ],
       "additionalProperties": false,
       "properties": {
         "description_string": {
@@ -2131,52 +2185,107 @@
     },
     "when_statement": {
       "description": "When statement",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "condition": {
-          "$ref": "#/definitions/expression"
-        },
-        "then": {
+      "oneOf": [
+        {
           "type": "array",
           "items": {
             "type": "object",
             "additionalProperties": false,
             "properties": {
-              "assignment_statement": {
-                "$ref": "#/definitions/assignment_statement"
+              "condition": {
+                "$ref": "#/definitions/expression"
               },
-              "Function_call_statement": {
-                "$ref": "#/definitions/Function_call_statement"
-              },
-              "assignment_with_function_call_statement": {
-                "$ref": "#/definitions/assignment_with_function_call_statement"
-              },
-              "break": {
-                "type": "boolean"
-              },
-              "return": {
-                "type": "boolean"
-              },
-              "if_statement": {
-                "$ref": "#/definitions/if_statement"
-              },
-              "for_statement": {
-                "$ref": "#/definitions/for_statement"
-              },
-              "while_statement": {
-                "$ref": "#/definitions/while_statement"
-              },
-              "when_statement": {
-                "$ref": "#/definitions/when_statement"
-              },
-              "description": {
-                "$ref": "#/definitions/equationDescription"
+              "then": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "assignment_statement": {
+                      "$ref": "#/definitions/assignment_statement"
+                    },
+                    "Function_call_statement": {
+                      "$ref": "#/definitions/Function_call_statement"
+                    },
+                    "assignment_with_function_call_statement": {
+                      "$ref": "#/definitions/assignment_with_function_call_statement"
+                    },
+                    "break": {
+                      "type": "boolean"
+                    },
+                    "return": {
+                      "type": "boolean"
+                    },
+                    "if_statement": {
+                      "$ref": "#/definitions/if_statement"
+                    },
+                    "for_statement": {
+                      "$ref": "#/definitions/for_statement"
+                    },
+                    "while_statement": {
+                      "$ref": "#/definitions/while_statement"
+                    },
+                    "when_statement": {
+                      "$ref": "#/definitions/when_statement"
+                    },
+                    "description": {
+                      "$ref": "#/definitions/equationDescription"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "condition": {
+              "$ref": "#/definitions/expression"
+            },
+            "then": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "assignment_statement": {
+                    "$ref": "#/definitions/assignment_statement"
+                  },
+                  "Function_call_statement": {
+                    "$ref": "#/definitions/Function_call_statement"
+                  },
+                  "assignment_with_function_call_statement": {
+                    "$ref": "#/definitions/assignment_with_function_call_statement"
+                  },
+                  "break": {
+                    "type": "boolean"
+                  },
+                  "return": {
+                    "type": "boolean"
+                  },
+                  "if_statement": {
+                    "$ref": "#/definitions/if_statement"
+                  },
+                  "for_statement": {
+                    "$ref": "#/definitions/for_statement"
+                  },
+                  "while_statement": {
+                    "$ref": "#/definitions/while_statement"
+                  },
+                  "when_statement": {
+                    "$ref": "#/definitions/when_statement"
+                  },
+                  "description": {
+                    "$ref": "#/definitions/equationDescription"
+                  }
+                }
               }
             }
           }
         }
-      }
+      ]
     },
     "statement": {
       "description": "Constructs allowed in algorithm sections",
