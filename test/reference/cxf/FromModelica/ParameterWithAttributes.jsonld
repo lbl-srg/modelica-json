@@ -1,0 +1,55 @@
+{
+  "@context": {
+    "S231": "http://data.ashrae.org/S231#",
+    "qudt": "http://qudt.org/schema/qudt/",
+    "unit": "http://qudt.org/vocab/unit/",
+    "q": "http://qudt.org/vocab/quantitykind/",
+    "ex": "http://example.org#"
+  },
+  "@graph": [
+    {
+      "@id": "ex:FromModelica.ParameterWithAttributes",
+      "@type": "S231:Block",
+      "S231:documentation": "info=<html>\n<p>\nThis is the info section.\n</p>\n</html>",
+      "S231:hasParameter": {
+        "@id": "ex:FromModelica.ParameterWithAttributes.kP"
+      },
+      "S231:label": "ParameterWithAttributes"
+    },
+    {
+      "@id": "ex:FromModelica.ParameterWithAttributes.kP",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Some comment",
+      "S231:fixed": false,
+      "S231:hasInstance": {
+        "@id": "ex:FromModelica.ParameterWithAttributes.kP.stateSelect"
+      },
+      "S231:isOfDataType": {
+        "@id": "S231:Real"
+      },
+      "S231:label": "kP",
+      "S231:max": 2,
+      "S231:min": 0,
+      "S231:nominal": {
+        "@value": "0.5",
+        "@type": "http://www.w3.org/2001/XMLSchema#decimal"
+      },
+      "S231:start": {
+        "@value": "0.2",
+        "@type": "http://www.w3.org/2001/XMLSchema#decimal"
+      },
+      "S231:value": 1,
+      "qudt:hasQuantityKind": {
+        "@id": "q:Pressure"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:PA"
+      }
+    },
+    {
+      "@id": "ex:FromModelica.ParameterWithAttributes.kP.stateSelect",
+      "S231:value": "StateSelect.default"
+    }
+  ]
+}

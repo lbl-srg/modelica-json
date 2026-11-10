@@ -1,3 +1,4 @@
+within FromModelica;
 block ReplaceableBlock
 replaceable Buildings.Controls.OBC.CDL.Reals.Sources.Constant con(k=1)
     constrainedby Buildings.Controls.OBC.CDL.Reals.Sources.CivilTime

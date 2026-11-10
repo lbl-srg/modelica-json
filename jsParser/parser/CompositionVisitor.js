@@ -84,7 +84,7 @@ class CompositionVisitor {
 
     if (external) {
       const language_specification = ctx.language_specification() ? ctx.language_specification().getText() : ''
-      const external_function_callVisitor = External_function_callVisitor.External_function_callVisitor()
+      const external_function_callVisitor = new External_function_callVisitor.External_function_callVisitor()
       const external_function_call = ctx.external_function_call() ? external_function_callVisitor.visitExternal_function_call(ctx.external_function_call()) : null
       external_composition = new External_composition.External_composition(language_specification, external_function_call, external_annotation)
     }

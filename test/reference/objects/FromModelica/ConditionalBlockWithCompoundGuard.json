@@ -1,0 +1,1153 @@
+{
+  "instances": {
+    "ConditionalBlockWithCompoundGuard": {
+      "within": "FromModelica",
+      "fullMoFilePath": "/Users/pontus/workspace/dev/ktc/modelica-json-fork/test/FromModelica/ConditionalBlockWithCompoundGuard.mo",
+      "type": "long_class_specifier",
+      "class_prefixes": "block"
+    },
+    "have_a": {
+      "type_prefix": "parameter",
+      "type_specifier": "Boolean",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "ConditionalBlockWithCompoundGuard",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "have_a",
+          "modification": {
+            "equal": true,
+            "expression": {
+              "simple_expression": "true"
+            }
+          }
+        },
+        "description": {
+          "description_string": "First flag"
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "FromModelica",
+      "fullMoFilePath": "/Users/pontus/workspace/dev/ktc/modelica-json-fork/test/FromModelica/ConditionalBlockWithCompoundGuard.mo"
+    },
+    "have_b": {
+      "type_prefix": "parameter",
+      "type_specifier": "Boolean",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "ConditionalBlockWithCompoundGuard",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "have_b",
+          "modification": {
+            "equal": true,
+            "expression": {
+              "simple_expression": "false"
+            }
+          }
+        },
+        "description": {
+          "description_string": "Second flag"
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "FromModelica",
+      "fullMoFilePath": "/Users/pontus/workspace/dev/ktc/modelica-json-fork/test/FromModelica/ConditionalBlockWithCompoundGuard.mo"
+    },
+    "have_c": {
+      "type_prefix": "parameter",
+      "type_specifier": "Boolean",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "ConditionalBlockWithCompoundGuard",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "have_c",
+          "modification": {
+            "equal": true,
+            "expression": {
+              "simple_expression": "true"
+            }
+          }
+        },
+        "description": {
+          "description_string": "Third flag"
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "FromModelica",
+      "fullMoFilePath": "/Users/pontus/workspace/dev/ktc/modelica-json-fork/test/FromModelica/ConditionalBlockWithCompoundGuard.mo"
+    },
+    "k": {
+      "type_prefix": "parameter",
+      "type_specifier": "Integer",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "ConditionalBlockWithCompoundGuard",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "k",
+          "modification": {
+            "equal": true,
+            "expression": {
+              "simple_expression": "1"
+            }
+          }
+        },
+        "description": {
+          "description_string": "Threshold"
+        }
+      },
+      "annotation": null,
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "FromModelica",
+      "fullMoFilePath": "/Users/pontus/workspace/dev/ktc/modelica-json-fork/test/FromModelica/ConditionalBlockWithCompoundGuard.mo"
+    },
+    "absNot": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Reals.Abs",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "ConditionalBlockWithCompoundGuard",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "absNot"
+        },
+        "condition_attribute": {
+          "expression": {
+            "simple_expression": {
+              "logical_expression": {
+                "logical_or": [
+                  {
+                    "logical_and": [
+                      {
+                        "not": true,
+                        "arithmetic_expressions": [
+                          "have_a"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "description": {
+          "description_string": "Guarded by a negation",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": -8,
+                          "y": 50
+                        },
+                        {
+                          "x": 12,
+                          "y": 70
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": -8,
+                      "y": 50
+                    },
+                    {
+                      "x": 12,
+                      "y": 70
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "FromModelica",
+      "fullMoFilePath": "/Users/pontus/workspace/dev/ktc/modelica-json-fork/test/FromModelica/ConditionalBlockWithCompoundGuard.mo"
+    },
+    "absAnd": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Reals.Abs",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "ConditionalBlockWithCompoundGuard",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "absAnd"
+        },
+        "condition_attribute": {
+          "expression": {
+            "simple_expression": {
+              "logical_expression": {
+                "logical_or": [
+                  {
+                    "logical_and": [
+                      {
+                        "arithmetic_expressions": [
+                          "have_a"
+                        ]
+                      },
+                      {
+                        "arithmetic_expressions": [
+                          "have_b"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "description": {
+          "description_string": "Guarded by a conjunction",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": -8,
+                          "y": 20
+                        },
+                        {
+                          "x": 12,
+                          "y": 40
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": -8,
+                      "y": 20
+                    },
+                    {
+                      "x": 12,
+                      "y": 40
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "FromModelica",
+      "fullMoFilePath": "/Users/pontus/workspace/dev/ktc/modelica-json-fork/test/FromModelica/ConditionalBlockWithCompoundGuard.mo"
+    },
+    "absCmp": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Reals.Abs",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "ConditionalBlockWithCompoundGuard",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "absCmp"
+        },
+        "condition_attribute": {
+          "expression": {
+            "simple_expression": {
+              "logical_expression": {
+                "logical_or": [
+                  {
+                    "logical_and": [
+                      {
+                        "arithmetic_expressions": [
+                          "k",
+                          "0"
+                        ],
+                        "relation_operator": ">"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "description": {
+          "description_string": "Guarded by a comparison",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": -8,
+                          "y": -10
+                        },
+                        {
+                          "x": 12,
+                          "y": 10
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": -8,
+                      "y": -10
+                    },
+                    {
+                      "x": 12,
+                      "y": 10
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "FromModelica",
+      "fullMoFilePath": "/Users/pontus/workspace/dev/ktc/modelica-json-fork/test/FromModelica/ConditionalBlockWithCompoundGuard.mo"
+    },
+    "absGrouped": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Reals.Abs",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "ConditionalBlockWithCompoundGuard",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "absGrouped"
+        },
+        "condition_attribute": {
+          "expression": {
+            "simple_expression": {
+              "logical_expression": {
+                "logical_or": [
+                  {
+                    "logical_and": [
+                      {
+                        "arithmetic_expressions": [
+                          {
+                            "terms": [
+                              {
+                                "factors": [
+                                  {
+                                    "primary1": [
+                                      {
+                                        "simple_expression": {
+                                          "logical_expression": {
+                                            "logical_or": [
+                                              {
+                                                "logical_and": [
+                                                  {
+                                                    "arithmetic_expressions": [
+                                                      "have_a"
+                                                    ]
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "logical_and": [
+                                                  {
+                                                    "arithmetic_expressions": [
+                                                      "have_b"
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        }
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "arithmetic_expressions": [
+                          "have_c"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "description": {
+          "description_string": "Guarded by a parenthesised disjunction; without the parentheses and binds tighter and the meaning changes",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": -8,
+                          "y": -40
+                        },
+                        {
+                          "x": 12,
+                          "y": -20
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": -8,
+                      "y": -40
+                    },
+                    {
+                      "x": 12,
+                      "y": -20
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "FromModelica",
+      "fullMoFilePath": "/Users/pontus/workspace/dev/ktc/modelica-json-fork/test/FromModelica/ConditionalBlockWithCompoundGuard.mo"
+    },
+    "absGroupedOr": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Reals.Abs",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "ConditionalBlockWithCompoundGuard",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "absGroupedOr"
+        },
+        "condition_attribute": {
+          "expression": {
+            "simple_expression": {
+              "logical_expression": {
+                "logical_or": [
+                  {
+                    "logical_and": [
+                      {
+                        "arithmetic_expressions": [
+                          {
+                            "terms": [
+                              {
+                                "factors": [
+                                  {
+                                    "primary1": [
+                                      {
+                                        "simple_expression": {
+                                          "logical_expression": {
+                                            "logical_or": [
+                                              {
+                                                "logical_and": [
+                                                  {
+                                                    "arithmetic_expressions": [
+                                                      "have_a"
+                                                    ]
+                                                  },
+                                                  {
+                                                    "arithmetic_expressions": [
+                                                      "have_b"
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        }
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "logical_and": [
+                      {
+                        "arithmetic_expressions": [
+                          "have_c"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "description": {
+          "description_string": "Guarded by a parenthesised conjunction under a disjunction",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": -8,
+                          "y": -70
+                        },
+                        {
+                          "x": 12,
+                          "y": -50
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": -8,
+                      "y": -70
+                    },
+                    {
+                      "x": 12,
+                      "y": -50
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "FromModelica",
+      "fullMoFilePath": "/Users/pontus/workspace/dev/ktc/modelica-json-fork/test/FromModelica/ConditionalBlockWithCompoundGuard.mo"
+    },
+    "absProduct": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Reals.Abs",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "ConditionalBlockWithCompoundGuard",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "absProduct"
+        },
+        "condition_attribute": {
+          "expression": {
+            "simple_expression": {
+              "logical_expression": {
+                "logical_or": [
+                  {
+                    "logical_and": [
+                      {
+                        "arithmetic_expressions": [
+                          {
+                            "terms": [
+                              {
+                                "operators": [
+                                  "*"
+                                ],
+                                "factors": [
+                                  {
+                                    "primary1": [
+                                      {
+                                        "simple_expression": "k +1"
+                                      }
+                                    ]
+                                  },
+                                  "k"
+                                ]
+                              }
+                            ]
+                          },
+                          "0"
+                        ],
+                        "relation_operator": ">"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "description": {
+          "description_string": "Guarded by a group inside a product",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": -8,
+                          "y": -100
+                        },
+                        {
+                          "x": 12,
+                          "y": -80
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": -8,
+                      "y": -100
+                    },
+                    {
+                      "x": 12,
+                      "y": -80
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "FromModelica",
+      "fullMoFilePath": "/Users/pontus/workspace/dev/ktc/modelica-json-fork/test/FromModelica/ConditionalBlockWithCompoundGuard.mo"
+    },
+    "absPower": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Reals.Abs",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "ConditionalBlockWithCompoundGuard",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "absPower"
+        },
+        "condition_attribute": {
+          "expression": {
+            "simple_expression": {
+              "logical_expression": {
+                "logical_or": [
+                  {
+                    "logical_and": [
+                      {
+                        "arithmetic_expressions": [
+                          {
+                            "terms": [
+                              {
+                                "factors": [
+                                  {
+                                    "operator": "^",
+                                    "primary1": [
+                                      {
+                                        "simple_expression": "k +1"
+                                      }
+                                    ],
+                                    "primary2": "2"
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          "k"
+                        ],
+                        "relation_operator": ">"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "description": {
+          "description_string": "Guarded by a group raised to a power",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": -8,
+                          "y": -130
+                        },
+                        {
+                          "x": 12,
+                          "y": -110
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": -8,
+                      "y": -130
+                    },
+                    {
+                      "x": 12,
+                      "y": -110
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "FromModelica",
+      "fullMoFilePath": "/Users/pontus/workspace/dev/ktc/modelica-json-fork/test/FromModelica/ConditionalBlockWithCompoundGuard.mo"
+    },
+    "absNegated": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Reals.Abs",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "ConditionalBlockWithCompoundGuard",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "absNegated"
+        },
+        "condition_attribute": {
+          "expression": {
+            "simple_expression": {
+              "logical_expression": {
+                "logical_or": [
+                  {
+                    "logical_and": [
+                      {
+                        "arithmetic_expressions": [
+                          {
+                            "addOps": [
+                              "-"
+                            ],
+                            "terms": [
+                              {
+                                "factors": [
+                                  {
+                                    "primary1": [
+                                      {
+                                        "simple_expression": "k +1"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          "0"
+                        ],
+                        "relation_operator": "<"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "description": {
+          "description_string": "Guarded by a negated group, which carries a leading sign",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": -8,
+                          "y": -160
+                        },
+                        {
+                          "x": 12,
+                          "y": -140
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": -8,
+                      "y": -160
+                    },
+                    {
+                      "x": 12,
+                      "y": -140
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "FromModelica",
+      "fullMoFilePath": "/Users/pontus/workspace/dev/ktc/modelica-json-fork/test/FromModelica/ConditionalBlockWithCompoundGuard.mo"
+    },
+    "absSubtracted": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Reals.Abs",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "ConditionalBlockWithCompoundGuard",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "absSubtracted"
+        },
+        "condition_attribute": {
+          "expression": {
+            "simple_expression": {
+              "logical_expression": {
+                "logical_or": [
+                  {
+                    "logical_and": [
+                      {
+                        "arithmetic_expressions": [
+                          {
+                            "addOps": [
+                              "-"
+                            ],
+                            "terms": [
+                              "k",
+                              {
+                                "factors": [
+                                  {
+                                    "primary1": [
+                                      {
+                                        "simple_expression": "k +1"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          "0"
+                        ],
+                        "relation_operator": "<"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "description": {
+          "description_string": "Guarded by a group subtracted from a term",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": -8,
+                          "y": -190
+                        },
+                        {
+                          "x": 12,
+                          "y": -170
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": -8,
+                      "y": -190
+                    },
+                    {
+                      "x": 12,
+                      "y": -170
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "FromModelica",
+      "fullMoFilePath": "/Users/pontus/workspace/dev/ktc/modelica-json-fork/test/FromModelica/ConditionalBlockWithCompoundGuard.mo"
+    },
+    "absNotRelation": {
+      "type_specifier": "Buildings.Controls.OBC.CDL.Reals.Abs",
+      "type": "element",
+      "compositionSpecifier": "public",
+      "long_class_specifier_identifier": "ConditionalBlockWithCompoundGuard",
+      "single_component_list": {
+        "declaration": {
+          "identifier": "absNotRelation"
+        },
+        "condition_attribute": {
+          "expression": {
+            "simple_expression": {
+              "logical_expression": {
+                "logical_or": [
+                  {
+                    "logical_and": [
+                      {
+                        "not": true,
+                        "arithmetic_expressions": [
+                          "k",
+                          "0"
+                        ],
+                        "relation_operator": ">"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "description": {
+          "description_string": "Guarded by a negated relation",
+          "annotation": [
+            {
+              "element_modification_or_replaceable": {
+                "element_modification": {
+                  "Placement": {
+                    "transformation": {
+                      "extent": [
+                        {
+                          "x": -8,
+                          "y": -220
+                        },
+                        {
+                          "x": 12,
+                          "y": -200
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "annotation": [
+        {
+          "element_modification_or_replaceable": {
+            "element_modification": {
+              "Placement": {
+                "transformation": {
+                  "extent": [
+                    {
+                      "x": -8,
+                      "y": -220
+                    },
+                    {
+                      "x": 12,
+                      "y": -200
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "semantics": {},
+      "cdl_annotations": {},
+      "isVector": false,
+      "arraySubscripts": "",
+      "replaceable": null,
+      "constraining_clause": null,
+      "within": "FromModelica",
+      "fullMoFilePath": "/Users/pontus/workspace/dev/ktc/modelica-json-fork/test/FromModelica/ConditionalBlockWithCompoundGuard.mo"
+    }
+  },
+  "requiredReferences": {}
+}

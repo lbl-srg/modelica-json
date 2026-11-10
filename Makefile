@@ -19,7 +19,7 @@ generate-reference-output:
 	@echo "Generating new reference results"
 	@echo "-------- Note: the versions of MBL and MSL in the MODELICAPATH should be consistent with the ones in .travis.yml. --------"
 	rm -rf ./test/reference; \
-	(for ff in `find ./test/FromModelica -name '*.mo'`; do \
+	(for ff in `find ./test/FromModelica -name '*.mo'` ./test/NoWithin.mo; do \
 		node app.js -l warn -f $${ff} -o raw-json -d ./test/reference; \
 		node app.js -l warn -f $${ff} -o json -d ./test/reference; \
 		node app.js -l warn -f $${ff} -o semantic -d ./test/reference -p;\
@@ -42,6 +42,11 @@ generate-reference-output-modelica-mode:
 		node app.js -l warn -f $${ff} -o semantic -d ./test/reference  -m modelica -p; \
 		node app.js -l warn -f $${ff} -o cxf -d ./test/reference  -m modelica -p; \
 		done); 
+
+generate-reference-output-doc:
+	@echo "Generating new reference results for test/expressionEvaluation and test/cdlDoc"
+	@echo "-------- Note: the version of MBL in the MODELICAPATH should be consistent with the one in .travis.yml. --------"
+	node test/cdlDoc/generateReference.js
 
 generate-cxfCore:
 	node app.js -f Buildings/Controls/OBC/CDL -o cxf --elementary --cxfCore --prettyPrint; 

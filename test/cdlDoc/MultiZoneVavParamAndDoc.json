@@ -8233,7 +8233,7 @@
       "instance": {
         "name": "ecoCon.modRet",
         "protected": false,
-        "condition": "([object Object])",
+        "condition": "(buiPreCon == Buildings.Controls.OBC.ASHRAE.G36.Types.PressureControl.ReturnFanMeasuredAir or buiPreCon == Buildings.Controls.OBC.ASHRAE.G36.Types.PressureControl.ReturnFanDp)",
         "cdlAnnotation": null,
         "descriptionString": "Modulate economizer dampers position for buildings with return fan controlling pressure"
       },
@@ -8246,7 +8246,7 @@
       "instance": {
         "name": "ecoCon.modRel",
         "protected": false,
-        "condition": "([object Object])",
+        "condition": "(buiPreCon == Buildings.Controls.OBC.ASHRAE.G36.Types.PressureControl.ReliefDamper or buiPreCon == Buildings.Controls.OBC.ASHRAE.G36.Types.PressureControl.ReliefFan or buiPreCon == Buildings.Controls.OBC.ASHRAE.G36.Types.PressureControl.BarometricRelief)",
         "cdlAnnotation": null,
         "descriptionString": "Modulate economizer dampers position for buildings with relief damper or fan controlling pressure"
       },
@@ -8402,7 +8402,7 @@
       "instance": {
         "name": "relFanCon",
         "protected": false,
-        "condition": "buiPreCon == Buildings.Controls.OBC.ASHRAE.G36.Types.PressureControl.ReliefFan",
+        "condition": "have_ahuRelFan and buiPreCon == Buildings.Controls.OBC.ASHRAE.G36.Types.PressureControl.ReliefFan",
         "cdlAnnotation": null,
         "descriptionString": "Control of relief fan when it is part of AHU"
       },

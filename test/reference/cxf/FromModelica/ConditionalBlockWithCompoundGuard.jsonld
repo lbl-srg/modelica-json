@@ -1,0 +1,203 @@
+{
+  "@context": {
+    "S231": "http://data.ashrae.org/S231#",
+    "ex": "http://example.org#"
+  },
+  "@graph": [
+    {
+      "@id": "ex:FromModelica.ConditionalBlockWithCompoundGuard",
+      "@type": "S231:Block",
+      "S231:containsBlock": [
+        {
+          "@id": "ex:FromModelica.ConditionalBlockWithCompoundGuard.absAnd"
+        },
+        {
+          "@id": "ex:FromModelica.ConditionalBlockWithCompoundGuard.absCmp"
+        },
+        {
+          "@id": "ex:FromModelica.ConditionalBlockWithCompoundGuard.absGrouped"
+        },
+        {
+          "@id": "ex:FromModelica.ConditionalBlockWithCompoundGuard.absGroupedOr"
+        },
+        {
+          "@id": "ex:FromModelica.ConditionalBlockWithCompoundGuard.absNegated"
+        },
+        {
+          "@id": "ex:FromModelica.ConditionalBlockWithCompoundGuard.absNot"
+        },
+        {
+          "@id": "ex:FromModelica.ConditionalBlockWithCompoundGuard.absNotRelation"
+        },
+        {
+          "@id": "ex:FromModelica.ConditionalBlockWithCompoundGuard.absPower"
+        },
+        {
+          "@id": "ex:FromModelica.ConditionalBlockWithCompoundGuard.absProduct"
+        },
+        {
+          "@id": "ex:FromModelica.ConditionalBlockWithCompoundGuard.absSubtracted"
+        }
+      ],
+      "S231:hasParameter": [
+        {
+          "@id": "ex:FromModelica.ConditionalBlockWithCompoundGuard.have_a"
+        },
+        {
+          "@id": "ex:FromModelica.ConditionalBlockWithCompoundGuard.have_b"
+        },
+        {
+          "@id": "ex:FromModelica.ConditionalBlockWithCompoundGuard.have_c"
+        },
+        {
+          "@id": "ex:FromModelica.ConditionalBlockWithCompoundGuard.k"
+        }
+      ],
+      "S231:label": "ConditionalBlockWithCompoundGuard"
+    },
+    {
+      "@id": "ex:FromModelica.ConditionalBlockWithCompoundGuard.absAnd",
+      "@type": "ex:Buildings.Controls.OBC.CDL.Reals.Abs",
+      "S231:accessSpecifier": "public",
+      "S231:conditionalExpression": "have_a and have_b",
+      "S231:description": "Guarded by a conjunction",
+      "S231:graphics": "Placement(transformation(extent={{-8,20},{12,40}})))",
+      "S231:isConditionalComponent": true,
+      "S231:label": "absAnd"
+    },
+    {
+      "@id": "ex:FromModelica.ConditionalBlockWithCompoundGuard.absCmp",
+      "@type": "ex:Buildings.Controls.OBC.CDL.Reals.Abs",
+      "S231:accessSpecifier": "public",
+      "S231:conditionalExpression": "k > 0",
+      "S231:description": "Guarded by a comparison",
+      "S231:graphics": "Placement(transformation(extent={{-8,-10},{12,10}})))",
+      "S231:isConditionalComponent": true,
+      "S231:label": "absCmp"
+    },
+    {
+      "@id": "ex:FromModelica.ConditionalBlockWithCompoundGuard.absGrouped",
+      "@type": "ex:Buildings.Controls.OBC.CDL.Reals.Abs",
+      "S231:accessSpecifier": "public",
+      "S231:conditionalExpression": "(have_a or have_b) and have_c",
+      "S231:description": "Guarded by a parenthesised disjunction; without the parentheses and binds tighter and the meaning changes",
+      "S231:graphics": "Placement(transformation(extent={{-8,-40},{12,-20}})))",
+      "S231:isConditionalComponent": true,
+      "S231:label": "absGrouped"
+    },
+    {
+      "@id": "ex:FromModelica.ConditionalBlockWithCompoundGuard.absGroupedOr",
+      "@type": "ex:Buildings.Controls.OBC.CDL.Reals.Abs",
+      "S231:accessSpecifier": "public",
+      "S231:conditionalExpression": "(have_a and have_b) or have_c",
+      "S231:description": "Guarded by a parenthesised conjunction under a disjunction",
+      "S231:graphics": "Placement(transformation(extent={{-8,-70},{12,-50}})))",
+      "S231:isConditionalComponent": true,
+      "S231:label": "absGroupedOr"
+    },
+    {
+      "@id": "ex:FromModelica.ConditionalBlockWithCompoundGuard.absNegated",
+      "@type": "ex:Buildings.Controls.OBC.CDL.Reals.Abs",
+      "S231:accessSpecifier": "public",
+      "S231:conditionalExpression": "-(k +1) < 0",
+      "S231:description": "Guarded by a negated group, which carries a leading sign",
+      "S231:graphics": "Placement(transformation(extent={{-8,-160},{12,-140}})))",
+      "S231:isConditionalComponent": true,
+      "S231:label": "absNegated"
+    },
+    {
+      "@id": "ex:FromModelica.ConditionalBlockWithCompoundGuard.absNot",
+      "@type": "ex:Buildings.Controls.OBC.CDL.Reals.Abs",
+      "S231:accessSpecifier": "public",
+      "S231:conditionalExpression": "not have_a",
+      "S231:description": "Guarded by a negation",
+      "S231:graphics": "Placement(transformation(extent={{-8,50},{12,70}})))",
+      "S231:isConditionalComponent": true,
+      "S231:label": "absNot"
+    },
+    {
+      "@id": "ex:FromModelica.ConditionalBlockWithCompoundGuard.absNotRelation",
+      "@type": "ex:Buildings.Controls.OBC.CDL.Reals.Abs",
+      "S231:accessSpecifier": "public",
+      "S231:conditionalExpression": "not k > 0",
+      "S231:description": "Guarded by a negated relation",
+      "S231:graphics": "Placement(transformation(extent={{-8,-220},{12,-200}})))",
+      "S231:isConditionalComponent": true,
+      "S231:label": "absNotRelation"
+    },
+    {
+      "@id": "ex:FromModelica.ConditionalBlockWithCompoundGuard.absPower",
+      "@type": "ex:Buildings.Controls.OBC.CDL.Reals.Abs",
+      "S231:accessSpecifier": "public",
+      "S231:conditionalExpression": "(k +1)^2 > k",
+      "S231:description": "Guarded by a group raised to a power",
+      "S231:graphics": "Placement(transformation(extent={{-8,-130},{12,-110}})))",
+      "S231:isConditionalComponent": true,
+      "S231:label": "absPower"
+    },
+    {
+      "@id": "ex:FromModelica.ConditionalBlockWithCompoundGuard.absProduct",
+      "@type": "ex:Buildings.Controls.OBC.CDL.Reals.Abs",
+      "S231:accessSpecifier": "public",
+      "S231:conditionalExpression": "(k +1)*k > 0",
+      "S231:description": "Guarded by a group inside a product",
+      "S231:graphics": "Placement(transformation(extent={{-8,-100},{12,-80}})))",
+      "S231:isConditionalComponent": true,
+      "S231:label": "absProduct"
+    },
+    {
+      "@id": "ex:FromModelica.ConditionalBlockWithCompoundGuard.absSubtracted",
+      "@type": "ex:Buildings.Controls.OBC.CDL.Reals.Abs",
+      "S231:accessSpecifier": "public",
+      "S231:conditionalExpression": "k -(k +1) < 0",
+      "S231:description": "Guarded by a group subtracted from a term",
+      "S231:graphics": "Placement(transformation(extent={{-8,-190},{12,-170}})))",
+      "S231:isConditionalComponent": true,
+      "S231:label": "absSubtracted"
+    },
+    {
+      "@id": "ex:FromModelica.ConditionalBlockWithCompoundGuard.have_a",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "First flag",
+      "S231:isOfDataType": {
+        "@id": "S231:Boolean"
+      },
+      "S231:label": "have_a",
+      "S231:value": true
+    },
+    {
+      "@id": "ex:FromModelica.ConditionalBlockWithCompoundGuard.have_b",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Second flag",
+      "S231:isOfDataType": {
+        "@id": "S231:Boolean"
+      },
+      "S231:label": "have_b",
+      "S231:value": false
+    },
+    {
+      "@id": "ex:FromModelica.ConditionalBlockWithCompoundGuard.have_c",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Third flag",
+      "S231:isOfDataType": {
+        "@id": "S231:Boolean"
+      },
+      "S231:label": "have_c",
+      "S231:value": true
+    },
+    {
+      "@id": "ex:FromModelica.ConditionalBlockWithCompoundGuard.k",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Threshold",
+      "S231:isOfDataType": {
+        "@id": "S231:Integer"
+      },
+      "S231:label": "k",
+      "S231:value": 1
+    }
+  ]
+}

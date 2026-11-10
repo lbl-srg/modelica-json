@@ -1,0 +1,83 @@
+{
+  "@context": {
+    "S231": "http://data.ashrae.org/S231#",
+    "qudt": "http://qudt.org/schema/qudt/",
+    "unit": "http://qudt.org/vocab/unit/",
+    "q": "http://qudt.org/vocab/quantitykind/",
+    "ex": "http://example.org#"
+  },
+  "@graph": [
+    {
+      "@id": "ex:FromModelica.VariableModification",
+      "@type": "S231:Block",
+      "S231:containsBlock": {
+        "@id": "ex:FromModelica.VariableModification.abs"
+      },
+      "S231:hasInput": [
+        {
+          "@id": "ex:FromModelica.VariableModification.TOut"
+        },
+        {
+          "@id": "ex:FromModelica.VariableModification.u"
+        }
+      ],
+      "S231:label": "VariableModification"
+    },
+    {
+      "@id": "ex:FromModelica.VariableModification.abs",
+      "@type": "ex:Buildings.Controls.OBC.CDL.Reals.Abs",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Instance with modified input and output attributes",
+      "S231:graphics": "Placement(transformation(extent={{-8,-10},{12,10}})))",
+      "S231:hasInstance": [
+        {
+          "@id": "ex:FromModelica.VariableModification.abs.u"
+        },
+        {
+          "@id": "ex:FromModelica.VariableModification.abs.y"
+        }
+      ],
+      "S231:label": "abs"
+    },
+    {
+      "@id": "ex:FromModelica.VariableModification.abs.u",
+      "S231:hasDisplayUnit": {
+        "@id": "unit:DEG_C"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:K"
+      }
+    },
+    {
+      "@id": "ex:FromModelica.VariableModification.abs.y",
+      "S231:hasDisplayUnit": {
+        "@id": "unit:DEG_C"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:K"
+      }
+    },
+    {
+      "@id": "ex:FromModelica.VariableModification.TOut",
+      "@type": "S231:RealInput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Temperature input",
+      "S231:graphics": "Placement(transformation(extent={{-140,20},{-100,60}})),iconTransformation(extent={{-140,20},{-100,60}})))",
+      "S231:label": "TOut",
+      "qudt:hasQuantityKind": {
+        "@id": "q:ThermodynamicTemperature"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:K"
+      }
+    },
+    {
+      "@id": "ex:FromModelica.VariableModification.u",
+      "@type": "S231:RealInput",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Input connector",
+      "S231:graphics": "Placement(transformation(extent={{-140,-20},{-100,20}})),iconTransformation(extent={{-140,-40},{-100,0}})))",
+      "S231:label": "u"
+    }
+  ]
+}

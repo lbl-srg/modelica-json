@@ -1,0 +1,31 @@
+{
+  "@context": {
+    "S231": "http://data.ashrae.org/S231#",
+    "ex": "http://example.org#"
+  },
+  "@graph": [
+    {
+      "@id": "ex:FromModelica.ReplaceableBlock",
+      "@type": "S231:Block",
+      "S231:containsBlock": {
+        "@id": "ex:FromModelica.ReplaceableBlock.con"
+      },
+      "S231:label": "ReplaceableBlock"
+    },
+    {
+      "@id": "ex:FromModelica.ReplaceableBlock.con",
+      "@type": "ex:Buildings.Controls.OBC.CDL.Reals.Sources.Constant",
+      "S231:accessSpecifier": "public",
+      "S231:constrainedBy": "Buildings.Controls.OBC.CDL.Reals.Sources.CivilTime",
+      "S231:hasInstance": {
+        "@id": "ex:FromModelica.ReplaceableBlock.con.k"
+      },
+      "S231:isReplaceable": true,
+      "S231:label": "con"
+    },
+    {
+      "@id": "ex:FromModelica.ReplaceableBlock.con.k",
+      "S231:value": 1
+    }
+  ]
+}
