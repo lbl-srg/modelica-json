@@ -232,11 +232,11 @@ mocha.describe('cdlDoc', function () {
       childProcess.execFileSync('node', [
         path.join(process.cwd(), 'app.js'),
         '-l', 'error',
-        '-f', 'Buildings/Controls/OBC/ASHRAE/G36/AHUs/MultiZone/VAV/Controller.mo',
+        '-i', 'Buildings/Controls/OBC/ASHRAE/G36/AHUs/MultiZone/VAV/Controller.mo',
         '-o', 'doc+',
         '-d', outputDir
       ])
-      const htmlDoc = fs.readFileSync(path.join(outputDir, 'Sequence of Operation.html'))
+      const htmlDoc = fs.readFileSync(path.join(outputDir, 'doc', 'Buildings', 'Controls', 'OBC', 'ASHRAE', 'G36', 'AHUs', 'MultiZone', 'VAV', 'Controller.html'))
       const htmlDocExp = fs.readFileSync(path.join(
         process.cwd(), 'test', 'cdlDoc', 'MultiZoneVavDoc.html'
       ))

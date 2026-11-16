@@ -18,16 +18,18 @@ test:
 generate-reference-output:
 	@echo "Generating new reference results"
 	@echo "-------- Note: the versions of MBL and MSL in the MODELICAPATH should be consistent with the ones in .travis.yml. --------"
+	@echo "-------- Note: the classes that are not CDL-compliant, such as ExtendsClause_1, fail with -o cxf, and have no CXF. --------"
 	rm -rf ./test/reference; \
 	(for ff in `find ./test/FromModelica -name '*.mo'` ./test/NoWithin.mo; do \
-		node app.js -l warn -f $${ff} -o raw-json -d ./test/reference; \
-		node app.js -l warn -f $${ff} -o json -d ./test/reference; \
-		node app.js -l warn -f $${ff} -o semantic -d ./test/reference -p;\
-		node app.js -l warn -f $${ff} -o cxf -d ./test/reference -p;\
+		node app.js -l warn -i $${ff} -o raw-json -d ./test/reference; \
+		node app.js -l warn -i $${ff} -o json -d ./test/reference; \
+		node app.js -l warn -i $${ff} -o semantic -d ./test/reference -p;\
+		node app.js -l warn -i $${ff} -o cxf -d ./test/reference -p;\
 		done); \
+	node test/generateObjectsReference.js ./test/reference `find ./test/FromModelica -name '*.mo'` ./test/NoWithin.mo; \
         make generate-reference-output-modelica-mode; \
-	node app.js -f Buildings/Controls/OBC/CDL -o cxf -d ./test/reference --elementary --cxfCore --prettyPrint; \
-	cp ./test/reference/cxf/CXF-Core.jsonld .
+	node app.js -i Buildings/Controls/OBC/CDL -o cxf-core -d ./test/reference --pretty-print; \
+	cp ./test/reference/cxf-core/CXF-Core.jsonld .
 
 generate-reference-output-modelica-mode:
 	@echo "Generating new reference results for test/ModelicaMode"
@@ -37,11 +39,12 @@ generate-reference-output-modelica-mode:
 	rm -rf ./test/reference/objects/ModelicaMode; \
 	rm -rf ./test/reference/cxf/ModelicaMode; \
 	(for ff in `find ./test/ModelicaMode -name '*.mo'`; do \
-		node app.js -l warn -f $${ff} -o raw-json -d ./test/reference -m modelica; \
-		node app.js -l warn -f $${ff} -o json -d ./test/reference -m modelica; \
-		node app.js -l warn -f $${ff} -o semantic -d ./test/reference  -m modelica -p; \
-		node app.js -l warn -f $${ff} -o cxf -d ./test/reference  -m modelica -p; \
-		done); 
+		node app.js -l warn -i $${ff} -o raw-json -d ./test/reference; \
+		node app.js -l warn -i $${ff} -o json -d ./test/reference; \
+		node app.js -l warn -i $${ff} -o semantic -d ./test/reference -p; \
+		node app.js -l warn -i $${ff} -o cxf -d ./test/reference -p; \
+		done); \
+	node test/generateObjectsReference.js ./test/reference `find ./test/ModelicaMode -name '*.mo'`
 
 generate-reference-output-doc:
 	@echo "Generating new reference results for test/expressionEvaluation and test/cdlDoc"
@@ -49,8 +52,8 @@ generate-reference-output-doc:
 	node test/cdlDoc/generateReference.js
 
 generate-cxfCore:
-	node app.js -f Buildings/Controls/OBC/CDL -o cxf --elementary --cxfCore --prettyPrint; 
-	cp cxf/CXF-Core.jsonld .
+	node app.js -i Buildings/Controls/OBC/CDL -o cxf-core --pretty-print;
+	cp cxf-core/CXF-Core.jsonld .
 
 clean-installation:
 	rm -rf node-modules
@@ -58,13 +61,13 @@ clean-installation:
 run:
 	node app.js \
 	--log warn \
-	-f Buildings/Controls/OBC/ASHRAE/G36/AHUs/MultiZone/VAV/Economizers/Controller.mo \
+	-i Buildings/Controls/OBC/ASHRAE/G36/AHUs/MultiZone/VAV/Economizers/Controller.mo \
 	-o cxf
 
 ibpsa-library:
 	node app.js \
 	-o json \
-	-f IBPSA/Fluid/FixedResistances/HydraulicDiameter.mo
+	-i IBPSA/Fluid/FixedResistances/HydraulicDiameter.mo
 
 # The below command should be run if jsParser/antlr/modelica.g4 
 # grammar file has been updated. It will auto-generate the tokens, 

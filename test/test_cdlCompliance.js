@@ -41,8 +41,8 @@ function makeTempDir () {
   return fs.mkdtempSync(path.join(os.tmpdir(), 'cdlCompliance-'))
 }
 
-function getJsons (moFile, mode = 'cdl') {
-  return pa.getJsons([moFile], 'json', makeTempDir(), false, false, false, mode)
+function getJsons (moFile) {
+  return pa.getJsons([moFile], { directory: makeTempDir() })
 }
 
 function fixture (name) {
@@ -160,7 +160,7 @@ mo.describe('cdlCompliance.js', function () {
         return copy
       })
       copies.forEach((copy) => {
-        const result = runApp(['-f', path.join(copy, 'Case09Model.mo'), '-o', 'json', '-d', dir])
+        const result = runApp(['-i', path.join(copy, 'Case09Model.mo'), '-o', 'json', '--validate', 'cdl', '-d', dir])
         as.equal(result.status, 1, `${copy}: ${result.stdout}${result.stderr}`)
         as.match(result.stdout, /Case09Model is not valid/)
       })
@@ -171,18 +171,18 @@ mo.describe('cdlCompliance.js', function () {
     })
   })
 
-  mo.describe('app.js -o json', function () {
+  mo.describe('app.js -o json --validate cdl-mbl', function () {
     Object.entries(CASES).forEach(([name, expected]) => {
       const status = (expected === null && !PROJECT_RULE_CASES.includes(name)) ? 0 : 1
       mo.it(`${name} exits with ${status}`, function () {
-        const result = runApp(['-f', fixture(name), '-o', 'json', '-d', 'out'])
+        const result = runApp(['-i', fixture(name), '-o', 'json', '--validate', 'cdl-mbl', '-d', 'out'])
         as.equal(result.status, status, result.stdout + result.stderr)
       })
     })
     // The class of the Modelica Standard Library is rejected, whether it is found or not.
     ;['Case01MslBlock', 'PlantAndControls'].forEach((name) => {
       mo.it(`${name} exits with 1 without the Modelica Standard Library`, function () {
-        const result = runApp(['-f', fixture(name), '-o', 'json', '-d', 'out'], { MODELICAPATH: getBuildingsPath() })
+        const result = runApp(['-i', fixture(name), '-o', 'json', '--validate', 'cdl-mbl', '-d', 'out'], { MODELICAPATH: getBuildingsPath() })
         as.equal(result.status, 1, result.stdout + result.stderr)
         as.match(result.stdout, /Cannot find class Modelica\./)
       })
@@ -194,16 +194,16 @@ mo.describe('cdlCompliance.js', function () {
     })
     mo.it('writes the classes used by an extension block, without checking them', function () {
       const dir = makeTempDir()
-      const result = runApp(['-f', fixture('ExtensionBlockWithNonCdlClass'), '-o', 'json', '-d', dir])
+      const result = runApp(['-i', fixture('ExtensionBlockWithNonCdlClass'), '-o', 'json', '--validate', 'cdl-mbl', '-d', dir])
       as.equal(result.status, 0, result.stdout + result.stderr)
       as.equal(fs.existsSync(path.join(dir, 'json', 'Buildings', 'Controls', 'SetPoints', 'Table.json')), true)
     })
-    mo.it('fails with -m modelica if a class breaks a project rule', function () {
-      const args = ['-o', 'json', '-m', 'modelica', '-d', 'out']
-      const result = runApp(['-f', fixture('Case10NoInstanceDescription'), ...args])
+    mo.it('fails with --validate modelica-mbl if a class breaks a project rule', function () {
+      const args = ['-o', 'json', '--validate', 'modelica-mbl', '-d', 'out']
+      const result = runApp(['-i', fixture('Case10NoInstanceDescription'), ...args])
       as.equal(result.status, 1, result.stdout + result.stderr)
       as.match(result.stdout, /Case10NoInstanceDescription is not valid/)
-      as.equal(runApp(['-f', fixture('Baseline'), ...args]).status, 0)
+      as.equal(runApp(['-i', fixture('Baseline'), ...args]).status, 0)
     })
   })
 
@@ -211,7 +211,7 @@ mo.describe('cdlCompliance.js', function () {
     PROJECT_RULE_CASES.forEach((name) => {
       mo.it(`writes the CXF of ${name}`, function () {
         const dir = makeTempDir()
-        const result = runApp(['-f', fixture(name), '-o', 'cxf', '-d', dir])
+        const result = runApp(['-i', fixture(name), '-o', 'cxf', '-d', dir])
         as.equal(result.status, 0, result.stdout + result.stderr)
         as.equal(fs.existsSync(path.join(dir, 'cxf', 'CdlCompliance', `${name}.jsonld`)), true)
       })
@@ -308,7 +308,7 @@ mo.describe('cdlCompliance.js', function () {
     }).forEach(([file, reason]) => {
       mo.it(`schema-modelica.json accepts ${file} (${reason})`, function () {
         const moFile = ut.getMoFiles(file)[0]
-        const json = getJsons(moFile, 'modelica').find(obj => obj.fullMoFilePath === moFile)
+        const json = getJsons(moFile).find(obj => obj.fullMoFilePath === moFile)
         as.equal(ut.getSchemaErrors(json, schemaModelica), null)
       })
     })
@@ -316,59 +316,59 @@ mo.describe('cdlCompliance.js', function () {
 
   mo.describe('--exclude', function () {
     mo.it('does not leave out a used class', function () {
-      const args = ['-f', fixture('UsesFailingLibraryClass'), '-o', 'json', '-d', 'out']
+      const args = ['-i', fixture('UsesFailingLibraryClass'), '-o', 'json', '--validate', 'cdl-mbl', '-d', 'out']
       ;['Buildings.HeatTransfer.Sources.FixedTemperature', 'Buildings.HeatTransfer'].forEach((pattern) => {
         const result = runApp([...args, '--exclude', pattern])
         as.equal(result.status, 1, result.stdout + result.stderr)
         as.match(result.stdout, /FixedTemperature is not a CDL connector/)
       })
     })
-    mo.it('leaves out the classes of a package given by -f', function () {
-      const result = runApp(['-f', fixture('Case09Model'), '-o', 'json', '-d', 'out', '--exclude', 'CdlCompliance'])
+    mo.it('leaves out the classes of a package given by -i', function () {
+      const result = runApp(['-i', fixture('Case09Model'), '-o', 'json', '--validate', 'cdl-mbl', '-d', 'out', '--exclude', 'CdlCompliance'])
       as.equal(result.status, 0, result.stdout + result.stderr)
     })
-    mo.it('leaves out a class given by -f, and writes nothing', function () {
+    mo.it('leaves out a class given by -i, and writes nothing', function () {
       const dir = makeTempDir()
-      const result = runApp(['-f', fixture('Case09Model'), '-o', 'json', '-d', dir, '--exclude', 'CdlCompliance.Case09Model'])
+      const result = runApp(['-i', fixture('Case09Model'), '-o', 'json', '--validate', 'cdl-mbl', '-d', dir, '--exclude', 'CdlCompliance.Case09Model'])
       as.equal(result.status, 0, result.stdout + result.stderr)
       as.equal(fs.existsSync(path.join(dir, 'json', 'CdlCompliance', 'Case09Model.json')), false)
     })
     mo.it('reports an unresolved used class, even if it matches a pattern', function () {
-      const result = runApp(['-f', fixture('UnresolvedClass'), '-o', 'json', '-d', 'out', '--exclude', 'NotALibrary'])
+      const result = runApp(['-i', fixture('UnresolvedClass'), '-o', 'json', '--validate', 'cdl-mbl', '-d', 'out', '--exclude', 'NotALibrary'])
       as.equal(result.status, 1, result.stdout + result.stderr)
       as.match(result.stdout, /Cannot find class NotALibrary\.NotAClass/)
     })
     mo.it('rejects a used class of the Modelica Standard Library, even if it matches a pattern', function () {
-      const result = runApp(['-f', fixture('Case01MslBlock'), '-o', 'json', '-d', 'out', '--exclude', 'Modelica.Blocks'])
+      const result = runApp(['-i', fixture('Case01MslBlock'), '-o', 'json', '--validate', 'cdl-mbl', '-d', 'out', '--exclude', 'Modelica.Blocks'])
       as.equal(result.status, 1, result.stdout + result.stderr)
     })
     mo.it('can be repeated', function () {
-      const result = runApp(['-f', fixture('Case09Model'), '-o', 'json', '-d', 'out',
+      const result = runApp(['-i', fixture('Case09Model'), '-o', 'json', '--validate', 'cdl-mbl', '-d', 'out',
         '--exclude', 'Foo', '--exclude', 'CdlCompliance.Case09Model'])
       as.equal(result.status, 0, result.stdout + result.stderr)
     })
     mo.it('does not validate the JSON file left by an earlier run', function () {
       const dir = makeTempDir()
-      const args = ['-f', fixture('Case09Model'), '-o', 'json', '-d', dir]
+      const args = ['-i', fixture('Case09Model'), '-o', 'json', '--validate', 'cdl-mbl', '-d', dir]
       as.equal(runApp(args).status, 1)
       as.equal(fs.existsSync(path.join(dir, 'json', 'CdlCompliance', 'Case09Model.json')), true)
       as.equal(runApp([...args, '--exclude', 'CdlCompliance.Case09Model']).status, 0)
     })
     mo.it('applies to raw-json', function () {
       const dir = makeTempDir()
-      const result = runApp(['-f', fixture('Baseline'), '-o', 'raw-json', '-d', dir, '--exclude', 'CdlCompliance'])
+      const result = runApp(['-i', fixture('Baseline'), '-o', 'raw-json', '-d', dir, '--exclude', 'CdlCompliance'])
       as.equal(result.status, 0, result.stdout + result.stderr)
       as.equal(fs.existsSync(path.join(dir, 'raw-json')), false)
     })
     mo.it('rejects an invalid pattern', function () {
-      const result = runApp(['-f', fixture('Baseline'), '-o', 'json', '--exclude', '**.(Validation'])
+      const result = runApp(['-i', fixture('Baseline'), '-o', 'json', '--exclude', '**.(Validation'])
       as.notEqual(result.status, 0)
       as.match(result.stderr, /Invalid class name pattern/)
     })
     mo.it('is rejected for a .json input', function () {
-      const result = runApp(['-f', 'a.json', '-o', 'modelica', '--exclude', 'A'])
+      const result = runApp(['-i', 'a.json', '-o', 'modelica', '--exclude', 'A'])
       as.notEqual(result.status, 0)
-      as.match(result.stderr, /only applies to outputs that read \.mo files/)
+      as.match(result.stderr, /--exclude does not apply to the output modelica/)
     })
   })
 
@@ -378,7 +378,8 @@ mo.describe('cdlCompliance.js', function () {
     // Counting the calls, rather than timing the check, is deterministic.
     mo.it('looks up each class and parses each file at most once', function () {
       const moFile = fixture('OutputToInsideInput')
-      const jsons = getJsons(moFile)
+      // The used classes are left out, so that the check parses them.
+      const jsons = getJsons(moFile).filter(json => json.fullMoFilePath === moFile)
       const lookups = []
       const parses = []
       const { searchPath } = ut
