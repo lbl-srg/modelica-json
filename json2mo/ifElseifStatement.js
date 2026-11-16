@@ -16,11 +16,10 @@ function parse (content, rawJson = false) {
       thenOutput += statementParser.parse(ele, rawJson)
       thenOutput += ';\n'
     })
-    if (thenOutput !== '') {
-      moOutput += ' then \n'
-      moOutput += thenOutput
-    }
   }
+  // 'then' is required even if the branch has no equation or statement.
+  moOutput += ' then \n'
+  moOutput += thenOutput
   return moOutput
 }
 
