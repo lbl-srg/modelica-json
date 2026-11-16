@@ -64,7 +64,7 @@ parser.addArgument(
       "'raw-json' and 'modelica' read the input only, the other outputs parse the input classes and all their used classes. " +
       "'cxf' exports the input class and its used classes if the input class is CDL-compliant, otherwise the instances " +
       "annotated with __cdl(isControls=true), otherwise this is an error. 'cxf-core' writes 'CXF-Core.jsonld', " +
-      "with the CXF of the input classes, except the classes of the Validation packages. The default is 'modelica' " +
+      "with the CXF of the input classes, except the classes of the Validation packages, but not of the classes they use. The default is 'modelica' " +
       "for a JSON file or a directory that only contains JSON files, and 'json' otherwise.",
     defaultValue: null
   }
@@ -139,7 +139,8 @@ parser.addArgument(
 parser.addArgument(
   ['--cxfCore'],
   {
-    help: "Deprecated: replaces the output cxf with the output cxf-core, which includes the elementary blocks, so '--elementary' is not needed.",
+    help: "Deprecated: replaces the output cxf with the output cxf-core. '--elementary', which this option required, is not needed, " +
+      'as cxf-core contains the CXF of the input classes, whether they are elementary blocks or not.',
     action: 'storeTrue'
   }
 )
@@ -194,7 +195,7 @@ function getArguments () {
     parser.error(`argument "-o/--output": invalid choice: '${args.output}' (choose from ${Object.keys(OUTPUT_FOLDERS).join(', ')}, separated by commas)`)
   }
   if (args.cxfCore) {
-    warnings.push('--cxfCore is deprecated: use -o cxf-core, which includes the elementary blocks.')
+    warnings.push('--cxfCore is deprecated: use -o cxf-core, which does not need --elementary.')
     args.outputs = [...new Set(args.outputs.map(obj => obj === 'cxf' ? 'cxf-core' : obj).concat('cxf-core'))]
     args.elementary = args.elementary && args.outputs.includes('cxf')
   }
