@@ -498,7 +498,7 @@ mo.describe('util.js, class names', function () {
     mo.it('gives the full class name', function () {
       as.equal(ut.getClassName(fixture('Baseline')), 'CdlCompliance.Baseline')
       as.equal(ut.getClassName(path.join(root, 'test', 'FromModelica', 'package.mo')), 'FromModelica')
-      as.equal(ut.getClassName(path.join(root, 'test', 'NoWithin.mo')), 'NoWithin')
+      as.equal(ut.getClassName(path.join(root, 'test', 'TopLevel', 'NoWithin.mo')), 'NoWithin')
     })
   })
   mo.describe('isExtensionBlock', function () {

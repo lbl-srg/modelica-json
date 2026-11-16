@@ -20,13 +20,13 @@ generate-reference-output:
 	@echo "-------- Note: the versions of MBL and MSL in the MODELICAPATH should be consistent with the ones in .travis.yml. --------"
 	@echo "-------- Note: the classes that are not CDL-compliant, such as ExtendsClause_1, fail with -o cxf, and have no CXF. --------"
 	rm -rf ./test/reference; \
-	(for ff in `find ./test/FromModelica -name '*.mo'` ./test/NoWithin.mo; do \
+	(for ff in `find ./test/FromModelica -name '*.mo'` ./test/TopLevel/NoWithin.mo; do \
 		node app.js -l warn -i $${ff} -o raw-json -d ./test/reference; \
 		node app.js -l warn -i $${ff} -o json -d ./test/reference; \
 		node app.js -l warn -i $${ff} -o semantic -d ./test/reference -p;\
 		node app.js -l warn -i $${ff} -o cxf -d ./test/reference -p;\
 		done); \
-	node test/generateObjectsReference.js ./test/reference `find ./test/FromModelica -name '*.mo'` ./test/NoWithin.mo; \
+	node test/scripts/generateObjectsReference.js ./test/reference `find ./test/FromModelica -name '*.mo'` ./test/TopLevel/NoWithin.mo; \
         make generate-reference-output-modelica-mode; \
 	node app.js -i Buildings/Controls/OBC/CDL -o cxf-core -d ./test/reference --pretty-print; \
 	cp ./test/reference/cxf-core/CXF-Core.jsonld .
@@ -44,7 +44,7 @@ generate-reference-output-modelica-mode:
 		node app.js -l warn -i $${ff} -o semantic -d ./test/reference -p; \
 		node app.js -l warn -i $${ff} -o cxf -d ./test/reference -p; \
 		done); \
-	node test/generateObjectsReference.js ./test/reference `find ./test/ModelicaMode -name '*.mo'`
+	node test/scripts/generateObjectsReference.js ./test/reference `find ./test/ModelicaMode -name '*.mo'`
 
 generate-reference-output-doc:
 	@echo "Generating new reference results for test/expressionEvaluation and test/cdlDoc"

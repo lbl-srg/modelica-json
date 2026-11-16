@@ -37,7 +37,7 @@ const getIntFiles = function (mode = 'cdl') {
     ]
     const allFiles = glob.sync(pattern)
     // Top-level class without within clause
-    allFiles.push(path.join(__dirname, 'NoWithin.mo'))
+    allFiles.push(path.join(__dirname, 'TopLevel', 'NoWithin.mo'))
     return allFiles.filter(f => !filesToExclude.includes(f))
   } else if (mode === 'modelica') {
     // CDL control blocks instantiated within (non-CDL) Modelica models. These
@@ -228,7 +228,7 @@ const checkObjectsJSON = function (outFormat, extension, message) {
     // const testMoFiles = ut.getMoFiles(testMoFilesTemp)
     const testMoFiles = ut.getMoFiles(path.join(__dirname, 'FromModelica'))
     // Top-level class without within clause
-    testMoFiles.push(path.join(__dirname, 'NoWithin.mo'))
+    testMoFiles.push(path.join(__dirname, 'TopLevel', 'NoWithin.mo'))
 
     // Name of subpackage to store json output files
     const subPackName = 'objects'
@@ -240,7 +240,7 @@ const checkObjectsJSON = function (outFormat, extension, message) {
     }
     pa.getJsons(testMoFiles, { outputFormat: 'objects' })
     const pattern = path.join('test', 'FromModelica', '*.mo')
-    const files = glob.sync(pattern).concat(path.join('test', 'NoWithin.mo'))
+    const files = glob.sync(pattern).concat(path.join('test', 'TopLevel', 'NoWithin.mo'))
     const expectedOutputPath = path.join(process.cwd(), 'test', 'reference', subPackName)
     const actualOutputPath = testOutputDir
 

@@ -3,7 +3,7 @@
  * These files are intermediate files of the outputs 'semantic' and 'cxf' of app.js, which does not write them.
  *
  * Usage, from the root directory of the repository, as in 'make generate-reference-output':
- *   node test/generateObjectsReference.js <output directory> <Modelica file>...
+ *   node test/scripts/generateObjectsReference.js <output directory> <Modelica file>...
  *
  * The objects of each Modelica file and of all its used classes are written to '<output directory>/objects/'.
  * The JSON files found in '<output directory>/json/' are used, rather than parsing the files again.
@@ -13,14 +13,14 @@ const logger = require('winston')
 const os = require('os')
 const path = require('path')
 
-const parser = require('../lib/parser.js')
-const ut = require('../lib/util.js')
+const parser = require('../../lib/parser.js')
+const ut = require('../../lib/util.js')
 
 logger.level = 'error'
 
 const [outputDir, ...moFiles] = process.argv.slice(2)
 if (outputDir === undefined || moFiles.length === 0) {
-  console.error('Usage: node test/generateObjectsReference.js <output directory> <Modelica file>...')
+  console.error('Usage: node test/scripts/generateObjectsReference.js <output directory> <Modelica file>...')
   process.exit(2)
 }
 
