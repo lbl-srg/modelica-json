@@ -82,9 +82,10 @@ parser.addArgument(
     help: "Validate the parsed classes: 'cdl' checks the CDL compliance with the CDL specification only, " +
       "'cdl-mbl' adds the project rules of the Modelica Buildings Library, 'modelica' validates the classes " +
       "against schema-modelica.json, and 'modelica-mbl' adds the project rules. Any other value is the path to " +
-      'a self-contained JSON schema. The input classes and all their used classes are validated, except the CDL ' +
-      "elementary blocks and the extension blocks, and with 'modelica' and 'modelica-mbl', the classes of the " +
-      'Modelica Standard Library. With the output cxf, the exported classes are validated. ' +
+      "a self-contained JSON schema. With 'cdl' and 'cdl-mbl', the input classes and all their used classes are " +
+      'checked, except the CDL elementary blocks and the extension blocks. Otherwise, the input classes and all ' +
+      "their used classes are validated, but with 'modelica-mbl', only the classes of the Modelica Buildings Library. " +
+      'With the output cxf, the exported classes are validated. ' +
       'If a class is not valid, all errors are printed, the output files are written, and the run fails. ' +
       'Without this option, nothing is validated, except for the output cxf, which always checks the CDL compliance ' +
       'of the exported classes with the CDL specification.'
@@ -371,11 +372,11 @@ function run (args, workDir, outDir) {
     if (['cdl', 'cdl-mbl'].includes(args.validate)) {
       errors.push(...cc.checkCdlCompliance(moFiles, allJsons, { schema: args.schema }))
     } else {
-      // The Modelica Standard Library does not follow the project rules.
-      const isSkipped = ['modelica', 'modelica-mbl'].includes(args.validate)
-        ? className => className === 'Modelica' || className.startsWith('Modelica.')
-        : () => false
-      errors.push(...cc.checkSchema(moFiles, allJsons, { schema: args.schema, isSkipped }))
+      // The project rules only apply to the Modelica Buildings Library.
+      const isValidated = (args.validate === 'modelica-mbl')
+        ? className => className === 'Buildings' || className.startsWith('Buildings.')
+        : () => true
+      errors.push(...cc.checkSchema(moFiles, allJsons, { schema: args.schema, isValidated }))
     }
   }
 

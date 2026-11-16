@@ -198,12 +198,52 @@ mo.describe('cdlCompliance.js', function () {
       as.equal(result.status, 0, result.stdout + result.stderr)
       as.equal(fs.existsSync(path.join(dir, 'json', 'Buildings', 'Controls', 'SetPoints', 'Table.json')), true)
     })
-    mo.it('fails with --validate modelica-mbl if a class breaks a project rule', function () {
-      const args = ['-o', 'json', '--validate', 'modelica-mbl', '-d', 'out']
-      const result = runApp(['-i', fixture('Case10NoInstanceDescription'), ...args])
+    mo.it('validates the project rules with --validate modelica-mbl for the classes of the Buildings library only', function () {
+      // The class breaks a project rule only: its parameter has no description.
+      const write = (library) => {
+        const file = path.join(makeTempDir(), library, 'NoDescription.mo')
+        fs.mkdirSync(path.dirname(file))
+        fs.writeFileSync(file, `within ${library};\nblock NoDescription "Block"\n  parameter Real k=1;\n` +
+          '  annotation (defaultComponentName="noDes", Documentation(info="<html><p>x</p></html>"));\nend NoDescription;\n')
+        return file
+      }
+      const run = (file, validate) => runApp(['-i', file, '-o', 'json', '--validate', validate, '-d', 'out'])
+      const inBuildings = write('Buildings')
+      const result = run(inBuildings, 'modelica-mbl')
       as.equal(result.status, 1, result.stdout + result.stderr)
-      as.match(result.stdout, /Case10NoInstanceDescription is not valid/)
-      as.equal(runApp(['-i', fixture('Baseline'), ...args]).status, 0)
+      as.match(result.stdout, /Buildings\.NoDescription is not valid/)
+      as.equal(run(inBuildings, 'modelica').status, 0)
+      as.equal(run(write('Other'), 'modelica-mbl').status, 0)
+    })
+  })
+
+  mo.describe('checkSchema', function () {
+    // A schema that rejects all classes, to know which classes are validated.
+    const getValidated = (name, options) => {
+      const schema = path.join(makeTempDir(), 'reject.json')
+      fs.writeFileSync(schema, JSON.stringify({ $id: 'reject.json', not: {} }))
+      const moFile = fixture(name)
+      return cc.checkSchema([moFile], getJsons(moFile), { schema, ...options }).map(error => error.className)
+    }
+    mo.it('validates all used classes, including the elementary blocks', function () {
+      const classNames = getValidated('Baseline')
+      as.equal(classNames.includes('CdlCompliance.Baseline'), true, classNames)
+      as.equal(classNames.includes('Buildings.Controls.OBC.CDL.Reals.MultiplyByParameter'), true, classNames)
+    })
+    mo.it('validates the classes of the Modelica Standard Library', function () {
+      const classNames = getValidated('Case01MslBlock')
+      as.equal(classNames.some(name => name.startsWith('Modelica.Blocks.')), true, classNames)
+    })
+    mo.it('validates an extension block and the classes it uses', function () {
+      const classNames = getValidated('ExtensionBlockWithNonCdlClass')
+      as.equal(classNames.includes('CdlCompliance.ExtensionBlockWithNonCdlClass'), true, classNames)
+      as.equal(classNames.includes('Buildings.Controls.SetPoints.Table'), true, classNames)
+      as.equal(classNames.some(name => name.startsWith('Modelica.')), true, classNames)
+    })
+    mo.it('follows the classes that are not validated', function () {
+      const classNames = getValidated('ExtensionBlockWithNonCdlClass', { isValidated: name => name.startsWith('Buildings.') })
+      as.deepEqual(classNames.sort(), ['Buildings.Controls.OBC.CDL.Interfaces.RealInput',
+        'Buildings.Controls.OBC.CDL.Interfaces.RealOutput', 'Buildings.Controls.SetPoints.Table'])
     })
   })
 

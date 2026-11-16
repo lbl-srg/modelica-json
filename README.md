@@ -127,7 +127,7 @@ Validate the parsed classes:
 
 The keywords find their schema in the modelica-json installation, whatever the current directory.
 
-The schema is applied to the input classes and to all their used classes, including the classes they extend, except the CDL elementary blocks and the extension blocks, whose used classes are not followed either. `modelica` and `modelica-mbl` also leave out the Modelica Standard Library, as it does not follow the project rules. With the output `cxf`, the exported classes are validated.
+With `cdl` and `cdl-mbl`, the input classes and all their used classes, including the classes they extend, are checked, except the CDL elementary blocks and the extension blocks, whose used classes are not followed either. Otherwise, the schema is applied to the input classes and to all their used classes, including the classes they extend, without exception. With `modelica-mbl`, all these classes are followed, but only the classes of the Modelica Buildings Library are validated, as the project rules only apply to this library. With the output `cxf`, the exported classes are validated.
 
 If a class is not valid, all errors of all classes are printed, the output files are written, and the run exits with an error.
 
