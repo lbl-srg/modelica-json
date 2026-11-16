@@ -35,14 +35,14 @@ class If_equationVisitor {
     let expression_idx = 0
     let equation_idx = 0
 
-    while (i < ctx.getChildCount() && !ctx.getChild(i).getText().toLowerCase() === 'end') {
+    while (i < ctx.getChildCount() && ctx.getChild(i).getText().toLowerCase() !== 'end') {
       if (ctx.getChild(i).getText().toLowerCase() === 'if' || ctx.getChild(i).getText().toLowerCase() === 'elseif') {
-        const condition = expressions.get(expression_idx)
+        const condition = expressions[expression_idx]
         expression_idx += 1
         const start_idx = i + 3
         let end_idx = start_idx
         for (let j = start_idx; j < ctx.getChildCount(); j++) {
-          if (!ctx.getChild(j).getText() === ';' && !(ctx.getChild(j) instanceof modelicaParser.EquationContext)) {
+          if (ctx.getChild(j).getText() !== ';' && !(ctx.getChild(j) instanceof modelicaParser.EquationContext)) {
             end_idx = j
             break
           }
@@ -56,7 +56,7 @@ class If_equationVisitor {
         const start_idx = i + 1
         let end_idx = start_idx
         for (let j = start_idx; j < ctx.getChildCount(); j++) {
-          if (!ctx.getChild(j).getText() === ';' && !(ctx.getChild(j) instanceof modelicaParser.EquationContext)) {
+          if (ctx.getChild(j).getText() !== ';' && !(ctx.getChild(j) instanceof modelicaParser.EquationContext)) {
             end_idx = j
             break
           }
