@@ -268,7 +268,7 @@ The default schema is `schema-cdl.json`. To choose another schema, use `--valida
 node validation.js -i <path to the json file> --validate modelica
 ```
 
-This only applies the schema to the JSON file: unlike `app.js -o json --validate cdl`, it does not check the rules of CDL compliance that a schema cannot express. `-f` and `-m` are deprecated aliases of `-i` and `--validate`.
+This only applies the schema to the JSON file: unlike `app.js -o json --validate cdl`, it does not check the rules of CDL compliance that a schema cannot express. `-f` is a deprecated alias of `-i`. The deprecated `-m cdl` and `-m modelica` are replaced with `--validate cdl-mbl` and `--validate modelica-mbl`, as the schemas included the project rules when this option was introduced.
 
 ## 6. Updating Grammar
 

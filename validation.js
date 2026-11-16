@@ -35,8 +35,9 @@ validation.addArgument(
 validation.addArgument(
   ['-m', '--mode'],
   {
-    help: 'Deprecated alias of --validate.',
-    choices: ['cdl', 'cdl-mbl', 'modelica', 'modelica-mbl']
+    help: "Deprecated: '-m cdl' and '-m modelica' are replaced with '--validate cdl-mbl' and '--validate modelica-mbl', " +
+      'as the schemas included the project rules of the Modelica Buildings Library when this option was introduced.',
+    choices: ['cdl', 'modelica']
   }
 )
 validation.addArgument(
@@ -62,10 +63,10 @@ if (args.input === null) {
 }
 if (args.mode !== null) {
   if (args.validate !== null) {
-    validation.error('-m/--mode is a deprecated alias of --validate, so only one of them can be used.')
+    validation.error('-m/--mode is deprecated and replaced with --validate, so only one of them can be used.')
   }
-  warnings.push('-m/--mode is deprecated: use --validate.')
-  args.validate = args.mode
+  args.validate = `${args.mode}-mbl`
+  warnings.push(`-m/--mode is deprecated: -m ${args.mode} is replaced with --validate ${args.validate}.`)
 }
 const keywords = ['cdl', 'cdl-mbl', 'modelica', 'modelica-mbl']
 const validate = args.validate ?? 'cdl'

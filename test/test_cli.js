@@ -309,10 +309,21 @@ mo.describe('app.js', function () {
   })
 
   mo.describe('--validate', function () {
-    const moFile = join(cdlCompliance, 'Case10NoInstanceDescription.mo')
+    // Classes that only break a project rule. With 'modelica-mbl', only the classes of
+    // the Buildings library are validated, so the class is stored in a library of this name.
+    const getMoFile = (keyword) => {
+      if (keyword.startsWith('cdl')) {
+        return join(cdlCompliance, 'Case10NoInstanceDescription.mo')
+      }
+      const moFile = join(makeTempDir(), 'Buildings', 'NoDescription.mo')
+      fs.mkdirSync(path.dirname(moFile))
+      fs.writeFileSync(moFile, 'within Buildings;\nblock NoDescription "Block"\n  parameter Real k=1;\n' +
+        '  annotation (defaultComponentName="noDes", Documentation(info="<html><p>x</p></html>"));\nend NoDescription;\n')
+      return moFile
+    }
     ;[['cdl', 0], ['cdl-mbl', 1], ['modelica', 0], ['modelica-mbl', 1]].forEach(([keyword, status]) => {
       mo.it(`${keyword} finds its schema from any directory`, function () {
-        const result = runApp(['-i', moFile, '-o', 'json', '--validate', keyword, '-d', makeTempDir()])
+        const result = runApp(['-i', getMoFile(keyword), '-o', 'json', '--validate', keyword, '-d', makeTempDir()])
         as.equal(result.status, status, result.output)
       })
     })
@@ -380,6 +391,25 @@ mo.describe('app.js', function () {
       const result = runApp(['-i', join(cdlCompliance, 'Case10NoInstanceDescription.mo'), '-o', 'json', '-m', 'modelica', '-d', makeTempDir()])
       as.equal(result.status, 0, result.output)
       as.match(result.output, /-m\/--mode is deprecated and ignored/)
+    })
+    mo.describe('validation.js', function () {
+      // JSON file of a class that only breaks a project rule
+      const getJsonFile = () => {
+        const dir = makeTempDir()
+        as.equal(runApp(['-i', join(cdlCompliance, 'Case10NoInstanceDescription.mo'), '-o', 'json', '-d', dir]).status, 0)
+        return join(dir, 'json', 'CdlCompliance', 'Case10NoInstanceDescription.json')
+      }
+      const runValidation = args => cp.spawnSync('node', [join(root, 'validation.js'), ...args], { cwd: makeTempDir(), encoding: 'utf8' })
+      ;['cdl', 'modelica'].forEach((mode) => {
+        mo.it(`maps -m ${mode} to --validate ${mode}-mbl, with a warning`, function () {
+          const jsonFile = getJsonFile()
+          const result = runValidation(['-f', jsonFile, '-m', mode])
+          as.equal(result.status, 1, result.stdout + result.stderr)
+          as.match(result.stdout + result.stderr, new RegExp(`-m ${mode} is replaced with --validate ${mode}-mbl`))
+          as.equal(runValidation(['-i', jsonFile, '--validate', mode]).status, 0)
+          as.equal(runValidation(['-i', jsonFile, '--validate', `${mode}-mbl`]).status, 1)
+        })
+      })
     })
     mo.it('gives the same output with --prettyPrint and --pretty-print', function () {
       const dirs = [makeTempDir(), makeTempDir()]
