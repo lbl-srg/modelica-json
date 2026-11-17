@@ -377,9 +377,7 @@
       "@type": "S231:Parameter",
       "S231:accessSpecifier": "public",
       "S231:description": "Delta between the temperature hysteresis high and low limit",
-      "S231:hasDisplayUnit": {
-        "@id": "unit:K"
-      },
+      "S231:displayUnit": "K",
       "S231:isOfDataType": {
         "@id": "S231:Real"
       },
@@ -876,10 +874,8 @@
       "@type": "S231:RealInput",
       "S231:accessSpecifier": "public",
       "S231:description": "Outdoor air temperature",
+      "S231:displayUnit": "degC",
       "S231:graphics": "Placement(transformation(extent={{-300,232},{-260,272}})),iconTransformation(extent={{-140,110},{-100,150}})))",
-      "S231:hasDisplayUnit": {
-        "@id": "unit:DEG_C"
-      },
       "S231:isConnectedTo": {
         "@id": "ex:FromModelica.Enable.sub1.u1"
       },
@@ -896,10 +892,8 @@
       "@type": "S231:RealInput",
       "S231:accessSpecifier": "public",
       "S231:description": "OA temperature high limit cutoff. For differential dry bulb temperature condition use return air temperature measurement",
+      "S231:displayUnit": "degC",
       "S231:graphics": "Placement(transformation(extent={{-300,192},{-260,232}})),iconTransformation(extent={{-140,90},{-100,130}})))",
-      "S231:hasDisplayUnit": {
-        "@id": "unit:DEG_C"
-      },
       "S231:isConnectedTo": {
         "@id": "ex:FromModelica.Enable.sub1.u2"
       },
@@ -916,9 +910,7 @@
       "@type": "S231:Parameter",
       "S231:accessSpecifier": "protected",
       "S231:description": "Hysteresis high limit cutoff",
-      "S231:hasDisplayUnit": {
-        "@id": "unit:K"
-      },
+      "S231:displayUnit": "K",
       "S231:isOfDataType": {
         "@id": "S231:Real"
       },

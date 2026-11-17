@@ -58,7 +58,7 @@
       "S231:label": "kCooCoi",
       "S231:value": 1,
       "qudt:hasQuantityKind": {
-        "@id": "q:LinearExpansionCoefficient"
+        "@id": "q:LinearThermalExpansion"
       },
       "qudt:hasUnit": {
         "@id": "unit:PER-K"
@@ -75,7 +75,7 @@
       "S231:label": "slewRate",
       "S231:value": 1,
       "qudt:hasQuantityKind": {
-        "@id": "q:TemperaturePerTime"
+        "@id": "q:TemperatureRateOfChange"
       },
       "qudt:hasUnit": {
         "@id": "unit:PER-SEC"
@@ -86,9 +86,7 @@
       "@type": "S231:Parameter",
       "S231:accessSpecifier": "public",
       "S231:description": "Setpoint temperature",
-      "S231:hasDisplayUnit": {
-        "@id": "unit:DEG_C"
-      },
+      "S231:displayUnit": "degC",
       "S231:isOfDataType": {
         "@id": "S231:Real"
       },
@@ -106,9 +104,7 @@
       "@type": "S231:Parameter",
       "S231:accessSpecifier": "public",
       "S231:description": "Volume flow rate",
-      "S231:hasDisplayUnit": {
-        "@id": "unit:FT3-PER-MIN"
-      },
+      "S231:displayUnit": "cfm",
       "S231:isOfDataType": {
         "@id": "S231:Real"
       },

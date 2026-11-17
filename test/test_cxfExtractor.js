@@ -129,15 +129,25 @@ mo.describe('cxfExtractor.js', function () {
     const getQudtUnit = ce.__get__('getQudtUnit')
     const getQudtQuantityKind = ce.__get__('getQudtQuantityKind')
     const addAttributesToNode = ce.__get__('addAttributesToNode')
-    const qudtMapping = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'lib', 'units-qudt.json'), 'utf8'))
+    const qudt = require('../lib/qudt.js')
+    const qudtVocab = require('../lib/qudtVocab.js')
     const pinned = JSON.parse(fs.readFileSync(path.join(__dirname, 'qudt', 'qudt-vocab.json'), 'utf8'))
 
-    mo.it('checks every unit mapping against the pinned QUDT release', function () {
-      const table = qudtMapping.units
+    mo.it('checks every minted unit mapping against the pinned QUDT release', function () {
       const vocab = pinned.units
       const out = []
-      for (const [modelica] of Object.entries(table)) {
-        const target = getQudtUnit(modelica).value
+      const modelicaUnits = new Set([
+        ...Object.keys(qudtVocab.ATOMIC_UNITS),
+        ...qudtVocab.MINTED_COMPOUND_UNITS.map(([, , moStr]) => moStr),
+        ...Array.from(qudtVocab.MINTED_PREFIXED_ATOMS).map(ql => qudt.qudtToUnit(ql))
+      ])
+      for (const modelica of modelicaUnits) {
+        const node = getQudtUnit(modelica)
+        if (!node) {
+          out.push(`${modelica} -> null`)
+          continue
+        }
+        const target = node.value
         const entry = vocab[target]
         if (entry === undefined) out.push(`${modelica} -> ${target}: not in QUDT ${pinned.qudtVersion}`)
         else if (entry.deprecated) out.push(`${modelica} -> ${target}: deprecated, use ${entry.replacedBy}`)
@@ -146,11 +156,19 @@ mo.describe('cxfExtractor.js', function () {
     })
 
     mo.it('checks every quantityKind mapping against the pinned QUDT release', function () {
-      const table = qudtMapping.quantityKinds
       const vocab = pinned.quantityKinds
       const out = []
-      for (const [modelica] of Object.entries(table)) {
-        const target = getQudtQuantityKind(modelica).value
+      const quantities = new Set([
+        ...qudtVocab.EXACT_QUANTITY_KINDS,
+        ...Object.keys(qudtVocab.MODELICA_TO_QUDT_QK)
+      ])
+      for (const modelica of quantities) {
+        const node = getQudtQuantityKind(modelica)
+        if (!node) {
+          out.push(`${modelica} -> null`)
+          continue
+        }
+        const target = node.value
         const entry = vocab[target]
         if (entry === undefined) out.push(`${modelica} -> ${target}: not in QUDT ${pinned.qudtVersion}`)
         else if (entry.deprecated) out.push(`${modelica} -> ${target}: deprecated, use ${entry.replacedBy}`)
@@ -165,6 +183,9 @@ mo.describe('cxfExtractor.js', function () {
       as.equal(getQudtUnit('Pa', unitNs).value, unitNs('PA').value)
       as.equal(getQudtUnit('1', unitNs).value, unitNs('UNITLESS').value)
       as.equal(getQudtUnit('cfm', unitNs).value, unitNs('FT3-PER-MIN').value)
+      as.equal(getQudtUnit('kg/kg', unitNs).value, unitNs('KiloGM-PER-KiloGM').value)
+      as.equal(getQudtUnit('m3/(s.m2)', unitNs).value, unitNs('M3-PER-SEC-M2').value)
+      as.equal(getQudtUnit('BtuPerHour', unitNs).value, unitNs('BTU_IT-PER-HR').value)
       as.equal(getQudtUnit('', unitNs), null)
     })
 
@@ -172,12 +193,13 @@ mo.describe('cxfExtractor.js', function () {
       as.equal(getQudtQuantityKind('PressureDifference', qudtQkNs).value, qudtQkNs('Pressure').value)
       as.equal(getQudtQuantityKind('HeatFlowRate', qudtQkNs).value, qudtQkNs('HeatFlowRate').value)
       as.equal(getQudtQuantityKind('SpecificHeatCapacity', qudtQkNs).value, qudtQkNs('SpecificHeatCapacity').value)
-      as.equal(getQudtQuantityKind('TemperatureSlope', qudtQkNs).value, qudtQkNs('TemperaturePerTime').value)
+      as.equal(getQudtQuantityKind('TemperatureSlope', qudtQkNs).value, qudtQkNs('TemperatureRateOfChange').value)
+      as.equal(getQudtQuantityKind('LinearTemperatureCoefficient', qudtQkNs).value, qudtQkNs('LinearThermalExpansion').value)
       as.equal(getQudtQuantityKind('Density', qudtQkNs).value, qudtQkNs('Density').value)
       as.equal(getQudtQuantityKind('', qudtQkNs), null)
     })
 
-    mo.it('adds qudt:hasUnit, S231:hasDisplayUnit, and qudt:hasQuantityKind for mapped values', function () {
+    mo.it('adds qudt:hasUnit, S231:displayUnit literal, and qudt:hasQuantityKind for mapped values', function () {
       const graph = rdflib.graph()
       const node = s231Ns('TestParam')
       const modDict = {
@@ -190,11 +212,12 @@ mo.describe('cxfExtractor.js', function () {
       addAttributesToNode(graph, s231Ns, 'quantity', modDict, node)
 
       as.equal(graph.any(node, qudtNs('hasUnit')).value, unitNs('PER-K').value)
-      as.equal(graph.any(node, s231Ns('hasDisplayUnit')).value, unitNs('DEG_C').value)
+      as.equal(graph.any(node, s231Ns('hasDisplayUnit')), undefined)
+      as.equal(graph.any(node, s231Ns('displayUnit')).value, 'degC')
       as.equal(graph.any(node, qudtNs('hasQuantityKind')).value, qudtQkNs('SpecificHeatCapacity').value)
     })
 
-    mo.it('falls back to S231:unit, S231:displayUnit, and S231:quantity literals and warns on unmapped values', function () {
+    mo.it('falls back to S231:unit, S231:displayUnit, and S231:quantity literals and warns with suggestions on unmapped values', function () {
       const warnings = []
       const origWarn = logger.warn
       logger.warn = function (msg) { warnings.push(msg) }
@@ -202,7 +225,7 @@ mo.describe('cxfExtractor.js', function () {
         const graph = rdflib.graph()
         const node = s231Ns('TestUnmappedParam')
         const modDict = {
-          unit: { value: 'customUnit' },
+          unit: { value: 'kpa' },
           displayUnit: { value: 'customDisplayUnit' },
           quantity: { value: 'PresureDifference' }
         }
@@ -214,10 +237,12 @@ mo.describe('cxfExtractor.js', function () {
         as.equal(graph.any(node, s231Ns('hasDisplayUnit')), undefined)
         as.equal(graph.any(node, qudtNs('hasQuantityKind')), undefined)
 
-        as.equal(graph.any(node, s231Ns('unit')).value, 'customUnit')
+        as.equal(graph.any(node, s231Ns('unit')).value, 'kpa')
         as.equal(graph.any(node, s231Ns('displayUnit')).value, 'customDisplayUnit')
         as.equal(graph.any(node, s231Ns('quantity')).value, 'PresureDifference')
-        as.equal(warnings.length, 3)
+        as.equal(warnings.length, 2)
+        as.ok(warnings[0].includes('kPa (unit:KiloPA)'), `expected kPa suggestion in: ${warnings[0]}`)
+        as.ok(warnings[1].includes('Pressure (q:Pressure)'), `expected Pressure suggestion in: ${warnings[1]}`)
       } finally {
         logger.warn = origWarn
       }
@@ -244,13 +269,13 @@ mo.describe('cxfExtractor.js', function () {
 
         const kCooCoi = findByLabel(graph, 'kCooCoi')
         as.deepEqual(kCooCoi['qudt:hasUnit'], { '@id': 'unit:PER-K' })
-        as.deepEqual(kCooCoi['qudt:hasQuantityKind'], { '@id': 'q:LinearExpansionCoefficient' })
+        as.deepEqual(kCooCoi['qudt:hasQuantityKind'], { '@id': 'q:LinearThermalExpansion' })
         as.equal(kCooCoi['S231:unit'], undefined)
         as.equal(kCooCoi['S231:quantity'], undefined)
 
         const slewRate = findByLabel(graph, 'slewRate')
         as.deepEqual(slewRate['qudt:hasUnit'], { '@id': 'unit:PER-SEC' })
-        as.deepEqual(slewRate['qudt:hasQuantityKind'], { '@id': 'q:TemperaturePerTime' })
+        as.deepEqual(slewRate['qudt:hasQuantityKind'], { '@id': 'q:TemperatureRateOfChange' })
 
         const cp = findByLabel(graph, 'cp')
         as.deepEqual(cp['qudt:hasUnit'], { '@id': 'unit:J-PER-KiloGM-K' })
@@ -258,12 +283,14 @@ mo.describe('cxfExtractor.js', function () {
 
         const TSet = findByLabel(graph, 'TSet')
         as.deepEqual(TSet['qudt:hasUnit'], { '@id': 'unit:K' })
-        as.deepEqual(TSet['S231:hasDisplayUnit'], { '@id': 'unit:DEG_C' })
+        as.equal(TSet['S231:hasDisplayUnit'], undefined)
+        as.equal(TSet['S231:displayUnit'], 'degC')
         as.deepEqual(TSet['qudt:hasQuantityKind'], { '@id': 'q:ThermodynamicTemperature' })
 
         const VFlow = findByLabel(graph, 'VFlow')
         as.deepEqual(VFlow['qudt:hasUnit'], { '@id': 'unit:M3-PER-SEC' })
-        as.deepEqual(VFlow['S231:hasDisplayUnit'], { '@id': 'unit:FT3-PER-MIN' })
+        as.equal(VFlow['S231:hasDisplayUnit'], undefined)
+        as.equal(VFlow['S231:displayUnit'], 'cfm')
         as.deepEqual(VFlow['qudt:hasQuantityKind'], { '@id': 'q:VolumeFlowRate' })
 
         as.equal(warnings.length, 0)
@@ -300,7 +327,8 @@ mo.describe('cxfExtractor.js', function () {
         as.equal(unmappedUnitValidQuantity['S231:unit'], 'invalidUnit')
         as.deepEqual(unmappedUnitValidQuantity['qudt:hasQuantityKind'], { '@id': 'q:Time' })
 
-        as.equal(warnings.length, 5)
+        as.equal(warnings.length, 4)
+        as.ok(warnings.some(w => w.includes('PresureDifference') && w.includes('Pressure (q:Pressure)')))
       } finally {
         logger.warn = origWarn
       }

@@ -113,7 +113,7 @@ S231:InputConnector
   ] ;
   sh:property [
     sh:path S231:quantity ;
-    rdfs:comment "The quantity of the input connector as written in CDL, used when it has no QUDT QuantityKind" ;
+    rdfs:comment "The quantity of the input connector as written in CDL, used when quantity could not be mapped to QUDT" ;
     sh:datatype xsd:string ;
   ] ;
   sh:property [
@@ -143,17 +143,12 @@ S231:InputConnector
   ] ;
   sh:property [
     sh:path S231:unit ;
-    rdfs:comment "The unit of the input connector used for controls and calculations as written in CDL, used when unit can not be mapped to QUDT" ;
+    rdfs:comment "The unit of the input connector used for controls and calculations as written in CDL, used when unit could not be mapped to QUDT" ;
     sh:datatype xsd:string ;
   ] ;
   sh:property [
-    sh:path S231:hasDisplayUnit ;
-    rdfs:comment "The unit of the input connector used for display and graphics" ;
-    sh:class qudt:Unit ;
-  ] ;
-  sh:property [
     sh:path S231:displayUnit ;
-    rdfs:comment "The unit of the input connector used for display and graphics as written in CDL, used when unit can not be mapped to QUDT" ;
+    rdfs:comment "The unit of the input connector used for display and graphics as written in CDL" ;
     sh:datatype xsd:string ;
   ] ;
   sh:property [
@@ -232,7 +227,7 @@ S231:OutputConnector
   ] ;
   sh:property [
     sh:path S231:quantity ;
-    rdfs:comment "The quantity of the output connector as written in CDL, used when it has no QUDT QuantityKind" ;
+    rdfs:comment "The quantity of the output connector as written in CDL, used when quantity could not be mapped to QUDT" ;
     sh:datatype xsd:string ;
   ] ;
   sh:property [
@@ -262,17 +257,12 @@ S231:OutputConnector
   ] ;
   sh:property [
     sh:path S231:unit ;
-    rdfs:comment "The unit of the output connector used for controls and calculations as written in CDL, used when unit can not be mapped to QUDT" ;
+    rdfs:comment "The unit of the output connector used for controls and calculations as written in CDL, used when unit could not be mapped to QUDT" ;
     sh:datatype xsd:string ;
   ] ;
   sh:property [
-    sh:path S231:hasDisplayUnit ;
-    rdfs:comment "The unit of the output connector used for display and graphics" ;
-    sh:class qudt:Unit ;
-  ] ;
-  sh:property [
     sh:path S231:displayUnit ;
-    rdfs:comment "The unit of the output connector used for display and graphics as written in CDL, used when unit can not be mapped to QUDT" ;
+    rdfs:comment "The unit of the output connector used for display and graphics as written in CDL" ;
     sh:datatype xsd:string ;
   ] ;
   sh:property [
@@ -356,7 +346,7 @@ S231:Parameter
   ] ;
   sh:property [
     sh:path S231:quantity ;
-    rdfs:comment "The quantity of the parameter as written in CDL, used when it has no QUDT QuantityKind" ;
+    rdfs:comment "The quantity of the parameter as written in CDL, used when quantity could not be mapped to QUDT" ;
     sh:datatype xsd:string ;
   ] ;
   sh:property [
@@ -386,17 +376,12 @@ S231:Parameter
   ] ;
   sh:property [
     sh:path S231:unit ;
-    rdfs:comment "The unit of the parameter used for controls and calculations as written in CDL, used when unit can not be mapped to QUDT" ;
+    rdfs:comment "The unit of the parameter used for controls and calculations as written in CDL, used when unit could not be mapped to QUDT" ;
     sh:datatype xsd:string ;
   ] ;
   sh:property [
-    sh:path S231:hasDisplayUnit ;
-    rdfs:comment "The unit of the parameter used for display and graphics" ;
-    sh:class qudt:Unit ;
-  ] ;
-  sh:property [
     sh:path S231:displayUnit ;
-    rdfs:comment "The unit of the parameter used for display and graphics as written in CDL, used when unit can not be mapped to QUDT" ;
+    rdfs:comment "The unit of the parameter used for display and graphics as written in CDL" ;
     sh:datatype xsd:string ;
   ] ;
   sh:property [
@@ -478,7 +463,7 @@ S231:Constant
   ] ;
   sh:property [
     sh:path S231:quantity ;
-    rdfs:comment "The quantity of the constant as written in CDL, used when it has no QUDT QuantityKind" ;
+    rdfs:comment "The quantity of the constant as written in CDL, used when quantity could not be mapped to QUDT" ;
     sh:datatype xsd:string ;
   ] ;
   sh:property [
@@ -508,17 +493,12 @@ S231:Constant
   ] ;
   sh:property [
     sh:path S231:unit ;
-    rdfs:comment "The unit of the constant used for controls and calculations as written in CDL, used when unit can not be mapped to QUDT" ;
+    rdfs:comment "The unit of the constant used for controls and calculations as written in CDL, used when unit could not be mapped to QUDT" ;
     sh:datatype xsd:string ;
   ] ;
   sh:property [
-    sh:path S231:hasDisplayUnit ;
-    rdfs:comment "The unit of the constant used for display and graphics" ;
-    sh:class qudt:Unit ;
-  ] ;
-  sh:property [
     sh:path S231:displayUnit ;
-    rdfs:comment "The unit of the constant used for display and graphics as written in CDL, used when unit can not be mapped to QUDT" ;
+    rdfs:comment "The unit of the constant used for display and graphics as written in CDL" ;
     sh:datatype xsd:string ;
   ] ;
   sh:property [
@@ -810,6 +790,5 @@ S231:min a rdf:Property .
 S231:max a rdf:Property .
 S231:unit a rdf:Property .
 S231:displayUnit a rdf:Property .
-S231:hasDisplayUnit a rdf:Property .
 S231:cdlLineNumStart a rdf:Property .
 S231:cdlLineNumEnd a rdf:Property .
