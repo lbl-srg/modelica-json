@@ -38,7 +38,7 @@ const SCHEMAS = {
 const CDL_SCHEMA = path.join(__dirname, SCHEMAS.cdl)
 
 const parser = new ArgumentParser({
-  version: '0.0.1',
+  version: require('./package.json').version,
   addHelp: true,
   description: 'Modelica parser'
 })

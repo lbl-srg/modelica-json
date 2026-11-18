@@ -7,7 +7,7 @@ const ArgumentParser = require('argparse').ArgumentParser
 /// ///////////////////////////////////////
 
 const validation = new ArgumentParser({
-  version: '0.0.1',
+  version: require('./package.json').version,
   addHelp: true,
   description: 'Json file validation against schema'
 })
