@@ -1,383 +1,370 @@
 'use strict'
 
 const as = require('assert')
-const mo = require('mocha')
 const fs = require('fs')
+const mo = require('mocha')
 const path = require('path')
-const rdflib = require('rdflib')
-const qudt = require('../lib/qudt')
-const qudtVocab = require('../lib/qudtVocab')
+const { formatUnit, parseUnit, unitKey } = require('../lib/modelicaUnit')
+const { fromCxf, quantityToQudt, qudtToQuantity, qudtToUnit, unitToQudt } = require('../lib/qudt')
+const vocab = require('../lib/qudtVocab')
+const { aliases, quantityKinds, units } = require('../lib/qudtUnits.json')
 
-const {
-  QUDT_DV_NS,
-  QUDT_QK_NS,
-  QUDT_SCHEMA_NS,
-  QUDT_UNIT_NS,
-  S231_NS,
-  convertFromQudt,
-  convertToQudt,
-  fromCxf,
-  quantityToQudt,
-  qudtToQuantity,
-  qudtToUnit,
-  suggestQuantity,
-  suggestUnit,
-  toCxf,
-  unitToQudt
-} = qudt
+const QUDT_SCHEMA_NS = vocab.QUDT_SCHEMA_NS
+const sameUnit = (a, b) => unitKey(parseUnit(a)) === unitKey(parseUnit(b))
 
-const pinned = JSON.parse(fs.readFileSync(path.join(__dirname, 'qudt', 'qudt-vocab.json'), 'utf8'))
+// Allowed values of the quantity attribute in the CDL specification, section 7.4.1.1
+const CDL_QUANTITIES = [
+  'Angle', 'Area', 'Energy', 'Frequency', 'Illuminance', 'Irradiance', 'MassFlowRate',
+  'MassFraction', 'Power', 'PowerFactor', 'Pressure', 'PressureDifference', 'SpecificEnergy',
+  'TemperatureDifference', 'Time', 'ThermodynamicTemperature', 'Velocity', 'VolumeFlowRate'
+]
 
-mo.describe('qudt.js — bidirectional Modelica/CDL <-> QUDT & CXF converter', function () {
-  mo.describe('bidirectional units and ratio preservation', function () {
-    mo.it('preserves same-unit and dimensional ratios by default and cancels when requested', function () {
-      const uKg = unitToQudt('kg/kg')
-      as.strictEqual(uKg.uri, `${QUDT_UNIT_NS}KiloGM-PER-KiloGM`)
-      as.strictEqual(uKg.curie, 'unit:KiloGM-PER-KiloGM')
-      as.strictEqual(uKg.preservedRatio, true)
-      as.strictEqual(uKg.dimensionVector, `${QUDT_DV_NS}A0E0L0I0M0H0T0D1`)
-      as.strictEqual(qudtToUnit(uKg.uri), 'kg/kg')
-      as.strictEqual(qudtToUnit('unit:KiloGM-PER-KiloGM'), 'kg/kg')
-      as.strictEqual(unitToQudt('kg/kg', { cancelRatios: true }).uri, `${QUDT_UNIT_NS}UNITLESS`)
-      as.strictEqual(qudtToUnit('unit:KiloGM-PER-KiloGM', { cancelRatios: true }), '1')
+// Results for the library versions in .travis.yml. These lists change only when
+// a library or QUDT is updated, or when a unit gets a mapping.
+const MBL_UNITS_WITHOUT_QUDT_UNIT = [
+  '(Pa.kg)/m3', '(kg/s)/W', '1/F', '1/s3', 'J/(K.m)', 'J/(K.m2)', 'J/(kg.K.s)', 'J/(kg.K2)',
+  'K/J', 'K/rad', 'K/s3', 'K3', 'K4', 'K4/W', 'N.s/(m2.K)', 'Pa.kg/m3', 'W/(kg/s)',
+  'W/(m.K2)', 'W/(m2.K2)', 'W/K4', 'W/s', 'kg.K2/J', 'kg/(s.m4)', 'm3/(kg.K)', 'm3/(kg.Pa)',
+  'm3/(kg.s)', 's/K'
+]
+const MBL_QUANTITIES_WITHOUT_QUDT_KIND = ['1/s', 'Reactance per meter']
+const MSL_UNITS_WITH_UNKNOWN_SYMBOLS = ['phon', 'sone']
 
-      const uFlux = unitToQudt('m3/(s.m2)')
-      as.strictEqual(uFlux.uri, `${QUDT_UNIT_NS}M3-PER-SEC-M2`)
-      as.strictEqual(uFlux.preservedRatio, true)
-      as.strictEqual(qudtToUnit(uFlux.uri), 'm3/(s.m2)')
-      as.strictEqual(qudtToUnit('unit:M3-PER-M2-SEC'), 'm3/(s.m2)')
-      as.strictEqual(unitToQudt('m3/(s.m2)', { cancelRatios: true }).uri, `${QUDT_UNIT_NS}M-PER-SEC`)
-      as.strictEqual(qudtToUnit(uFlux.uri, { cancelRatios: true }), 'm/s')
+function findLibrary (name) {
+  for (const dir of (process.env.MODELICAPATH || '').split(':')) {
+    const library = path.join(dir, name)
+    if (dir !== '' && fs.existsSync(library)) return library
+  }
+  return null
+}
 
-      const uAch = unitToQudt('m3/(m3.h)')
-      as.strictEqual(uAch.uri, null)
-      as.strictEqual(uAch.preservedRatio, true)
-      as.strictEqual(qudtToUnit(uAch), 'm3/(m3.h)')
-      as.strictEqual(qudtToUnit(uAch.factors), 'm3/(m3.h)')
-      as.strictEqual(qudtToUnit('unit:M3-PER-M3-HR'), 'm3/(m3.h)')
-      as.strictEqual(unitToQudt('m3/(m3.h)', { cancelRatios: true }).uri, `${QUDT_UNIT_NS}PER-HR`)
+function moFiles (dir) {
+  return fs.readdirSync(dir, { withFileTypes: true }).flatMap(entry => {
+    const file = path.join(dir, entry.name)
+    if (entry.isDirectory()) return moFiles(file)
+    return entry.name.endsWith('.mo') ? [file] : []
+  })
+}
 
-      as.strictEqual(unitToQudt('J/s').uri, `${QUDT_UNIT_NS}J-PER-SEC`)
-      as.strictEqual(qudtToUnit('unit:J-PER-SEC'), 'J/s')
-      as.strictEqual(unitToQudt('lm/m2').uri, `${QUDT_UNIT_NS}LM-PER-M2`)
-      as.strictEqual(qudtToUnit('unit:CD-SR'), 'cd.sr')
+/** Returns the distinct non-empty values of an attribute in a library. */
+function attributeValues (dir, attribute) {
+  const regex = new RegExp(`\\b${attribute}\\s*=\\s*"([^"]+)"`, 'g')
+  const values = new Set()
+  for (const file of moFiles(dir)) {
+    for (const match of fs.readFileSync(file, 'latin1').matchAll(regex)) values.add(match[1])
+  }
+  return [...values].sort()
+}
+
+const withoutQudtUnit = list => list.filter(unit => unitToQudt(unit) === null)
+
+function assertRoundTrips (list) {
+  for (const unit of list.filter(u => unitToQudt(u) !== null)) {
+    const name = unitToQudt(unit)
+    const back = qudtToUnit(name)
+    as.ok(sameUnit(unit, back), `${unit} -> ${name} -> ${back}`)
+    as.strictEqual(unitToQudt(back), name, `${back} does not map to ${name}`)
+  }
+}
+
+mo.describe('modelicaUnit.js', function () {
+  mo.it('parses the unit expressions of MLS section 19.1', function () {
+    const cases = {
+      1: '1',
+      m: 'm',
+      'm.s': 'm.s',
+      'm/s': 'm/s',
+      'm2/s-1': 'm2.s',
+      '1/s': '1/s',
+      's-1': '1/s',
+      'J/(kg.K)': 'J/(kg.K)',
+      '(m.K)/W': 'm.K/W',
+      'W/(kg/s)': 'W.s/kg',
+      '(kg/s)/W': 'kg/(s.W)',
+      'm+2': 'm2',
+      'm.m': 'm2',
+      'kg/kg': 'kg/kg',
+      'm(1/2)': 'm(1/2)',
+      'm-(1/2)': '1/m(1/2)',
+      'm(1/2).m(1/2)': 'm',
+      'm(2/4)': 'm(1/2)'
+    }
+    for (const [text, formatted] of Object.entries(cases)) {
+      as.strictEqual(formatUnit(parseUnit(text)), formatted, text)
+    }
+  })
+
+  mo.it('prefers a unit symbol to a prefix and a symbol', function () {
+    const symbol = text => parseUnit(text)[0].symbol
+    as.strictEqual(symbol('min'), 'min')
+    as.strictEqual(symbol('h'), 'h')
+    as.strictEqual(symbol('T'), 'T')
+    as.strictEqual(symbol('cd'), 'cd')
+    as.strictEqual(symbol('ms'), 'ms')
+    as.strictEqual(symbol('hPa'), 'hPa')
+    as.strictEqual(symbol('dam'), 'dam')
+    as.strictEqual(symbol('um'), 'um')
+    as.strictEqual(symbol('l'), 'L')
+    as.strictEqual(symbol('ml'), 'mL')
+  })
+
+  mo.it('expands symbols of compound units and applies the prefix to the first factor', function () {
+    as.strictEqual(formatUnit(parseUnit('kWh')), 'kW.h')
+    as.strictEqual(formatUnit(parseUnit('kVA')), 'kV.A')
+    as.strictEqual(formatUnit(parseUnit('rpm')), 'rev/min')
+    as.strictEqual(formatUnit(parseUnit('cfm')), 'ft3/min')
+    as.strictEqual(formatUnit(parseUnit('rpm2')), 'rev2/min2')
+    as.throws(() => parseUnit('krpm'), /Unrecognized/)
+  })
+
+  mo.it('rejects what the grammar does not allow', function () {
+    for (const text of ['', ' m', 'm s', 'm/s/s', 'm/s.s', 'm^2', '(m/s', 'm)', 'm.', '/s', 'Nm', '1.m', '(m/s)2', 'm(-1/2)', 'm(1/0)']) {
+      as.throws(() => parseUnit(text), Error, JSON.stringify(text))
+    }
+  })
+
+  mo.it('rejects unknown symbols and prefixes on symbols that do not accept one', function () {
+    for (const text of ['BtuPerHour', 'toString', 'kmin', 'kdegC', 'mm_']) {
+      as.throws(() => parseUnit(text), /Unrecognized Modelica unit symbol/, text)
+    }
+  })
+
+  mo.it('gives the same key to units whose factors are in a different order', function () {
+    as.strictEqual(unitKey(parseUnit('m.K/W')), unitKey(parseUnit('K.m/W')))
+    as.notStrictEqual(unitKey(parseUnit('kg/kg')), unitKey(parseUnit('1')))
+  })
+})
+
+mo.describe('qudt.js', function () {
+  mo.describe('units', function () {
+    mo.it('converts Modelica units to QUDT units', function () {
+      const cases = {
+        1: 'UNITLESS',
+        K: 'K',
+        degC: 'DEG_C',
+        kg: 'KiloGM',
+        kPa: 'KiloPA',
+        l: 'L',
+        '1/K': 'PER-K',
+        'm-1': 'PER-M',
+        'm3/(kg)': 'M3-PER-KiloGM',
+        'J/(kg.K)': 'J-PER-KiloGM-K',
+        '(m.K)/W': 'M-K-PER-W',
+        'K.m/W': 'M-K-PER-W',
+        'kg/(s.m2)': 'KiloGM-PER-M2-SEC',
+        'kg/(m2.s)': 'KiloGM-PER-M2-SEC',
+        'm3/(s.m2)': 'M3-PER-SEC-M2',
+        'kg/kg': 'KiloGM-PER-KiloGM',
+        'mol/mol': 'MOL-PER-MOL',
+        'W.h': 'W-HR',
+        Wh: 'W-HR',
+        kWh: 'KiloW-HR',
+        'kW.h': 'KiloW-HR',
+        'kW.h/m2': 'KiloW-HR-PER-M2',
+        'V.A': 'VA',
+        var: 'VAR',
+        rpm: 'REV-PER-MIN',
+        'rev/min': 'REV-PER-MIN',
+        cfm: 'FT3-PER-MIN',
+        'Btu/h': 'BTU_IT-PER-HR',
+        ton: 'TON_FG',
+        quad: 'QUAD',
+        debye: 'DEBYE',
+        'J/mol': 'J-PER-MOL',
+        'S/m': 'S-PER-M',
+        'N.s': 'N-SEC'
+      }
+      for (const [unit, name] of Object.entries(cases)) {
+        as.strictEqual(unitToQudt(unit), name, unit)
+      }
     })
 
-    mo.it('converts systematic QUDT compound names and factor arrays to Modelica syntax', function () {
-      as.strictEqual(qudtToUnit('http://qudt.org/vocab/unit/W-PER-M2-K'), 'W/(m2.K)')
-      as.strictEqual(qudtToUnit('unit:DEG_C'), 'degC')
-      as.strictEqual(qudtToUnit('UNITLESS'), '1')
-      as.strictEqual(qudtToUnit('unit:MilliPA-SEC'), 'mPa.s')
-      as.strictEqual(qudtToUnit('unit:KiloW-PER-M2'), 'kW/m2')
-      as.strictEqual(qudtToUnit('unit:MegaW-HR-PER-M2'), 'MWh/m2')
-      as.strictEqual(qudtToUnit('unit:PER-SEC3'), '1/s3')
-      as.strictEqual(qudtToUnit('unit:EV-A'), 'eV.A')
-      as.strictEqual(qudtToUnit('unit:KiloV-A'), 'kVA')
-      as.strictEqual(qudtToUnit('unit:V-A_Reactive'), 'var')
-      as.strictEqual(
-        qudtToUnit([['unit:KiloGM', 1], ['unit:SEC', -1], ['unit:M', -4]]),
-        'kg/(s.m4)'
+    mo.it('returns null for units without a QUDT unit and for invalid or empty units', function () {
+      for (const unit of ['s/K', 'K4', 'cW', 'BtuPerHour', 'inH2O', 'm^2', 'toString', '']) {
+        as.strictEqual(unitToQudt(unit), null, unit)
+      }
+    })
+
+    mo.it('converts QUDT units to Modelica units', function () {
+      const cases = {
+        UNITLESS: '1',
+        KiloGM: 'kg',
+        DEG_C: 'degC',
+        'J-PER-KiloGM-K': 'J/(kg.K)',
+        'M-K-PER-W': '(m.K)/W',
+        'KiloGM-PER-M2-SEC': 'kg/(s.m2)',
+        'PER-SEC2': '1/s2',
+        'KiloW-HR': 'kW.h',
+        'REV-PER-MIN': 'rev/min',
+        'FT3-PER-MIN': 'ft3/min',
+        VAR: 'var'
+      }
+      for (const [name, unit] of Object.entries(cases)) {
+        as.strictEqual(qudtToUnit(name), unit, name)
+      }
+    })
+
+    mo.it('converts other QUDT names of a unit to the same Modelica unit', function () {
+      as.strictEqual(qudtToUnit('K-M-PER-W'), '(m.K)/W')
+      as.strictEqual(qudtToUnit('KiloGM-PER-SEC-M2'), 'kg/(s.m2)')
+    })
+
+    mo.it('does not treat different QUDT units as the same unit', function () {
+      as.strictEqual(qudtToUnit('BTU_TH'), null)
+      as.strictEqual(qudtToUnit('IN_H2O'), null)
+    })
+
+    mo.it('returns null for unknown QUDT units', function () {
+      for (const name of ['NOT-A-UNIT', 'toString', '']) as.strictEqual(qudtToUnit(name), null, name)
+    })
+  })
+
+  mo.describe('quantities', function () {
+    mo.it('maps every quantity allowed by the CDL specification to a QUDT quantity kind', function () {
+      as.deepStrictEqual(CDL_QUANTITIES.filter(q => quantityToQudt(q) === null), [])
+    })
+
+    mo.it('converts quantities with a different QUDT name in both directions', function () {
+      for (const [quantity, kind] of Object.entries(vocab.QUANTITY_RENAMES)) {
+        as.strictEqual(quantityToQudt(quantity), kind)
+        as.strictEqual(qudtToQuantity(kind), quantity)
+      }
+    })
+
+    mo.it('maps quantities without an exact QUDT kind to a broader one', function () {
+      as.strictEqual(quantityToQudt('PressureDifference'), 'Pressure')
+      as.strictEqual(qudtToQuantity('Pressure'), 'Pressure')
+      as.strictEqual(quantityToQudt('1'), 'DimensionlessRatio')
+    })
+
+    mo.it('maps quantities that are completed by a phase system or medium name', function () {
+      as.strictEqual(quantityToQudt('Voltage.'), 'ElectricPotential')
+      as.strictEqual(quantityToQudt('Voltage.ThreePhase_dq'), 'ElectricPotential')
+      as.strictEqual(quantityToQudt('Current.ThreePhase_dq'), 'ElectricCurrent')
+      as.strictEqual(quantityToQudt('MassFlowRate.Air'), 'MassFlowRate')
+    })
+
+    mo.it('returns null for unknown quantities and kinds', function () {
+      for (const name of ['NotAQuantity', 'toString', '']) {
+        as.strictEqual(quantityToQudt(name), null, name)
+        as.strictEqual(qudtToQuantity(name), null, name)
+      }
+    })
+  })
+
+  mo.describe('fromCxf', function () {
+    mo.it('reads QUDT terms and the display unit', function () {
+      const node = {
+        'qudt:hasUnit': { '@id': 'unit:M3-PER-SEC' },
+        'qudt:hasQuantityKind': { '@id': 'q:TemperatureRateOfChange' },
+        'S231:displayUnit': 'cfm'
+      }
+      as.deepStrictEqual(fromCxf(node), { unit: 'm3/s', quantity: 'TemperatureSlope', displayUnit: 'cfm' })
+    })
+
+    mo.it('falls back to S231 literals', function () {
+      const node = { 'S231:unit': 'W/s', 'S231:quantity': { '@value': 'Custom' }, 'S231:displayUnit': ['kW/s'] }
+      as.deepStrictEqual(fromCxf(node), { unit: 'W/s', quantity: 'Custom', displayUnit: 'kW/s' })
+    })
+
+    mo.it('uses the prefixes of the context and accepts full IRIs', function () {
+      const context = { Q: QUDT_SCHEMA_NS, u: vocab.QUDT_UNIT_NS, k: vocab.QUDT_QK_NS }
+      const node = { 'Q:hasUnit': { '@id': 'u:K' }, 'Q:hasQuantityKind': [{ '@id': 'k:Time' }] }
+      as.deepStrictEqual(fromCxf(node, { context }), { unit: 'K', quantity: 'Time', displayUnit: null })
+      const expanded = { [`${QUDT_SCHEMA_NS}hasUnit`]: { '@id': `${vocab.QUDT_UNIT_NS}K` } }
+      as.strictEqual(fromCxf(expanded).unit, 'K')
+    })
+
+    mo.it('returns nulls for a node without these attributes', function () {
+      as.deepStrictEqual(fromCxf({}), { unit: null, quantity: null, displayUnit: null })
+    })
+  })
+
+  mo.describe('vocabulary', function () {
+    mo.it('has a QUDT unit for every unit symbol', function () {
+      const symbols = { ...vocab.PREFIXABLE_UNITS, ...vocab.UNPREFIXED_UNITS }
+      for (const [symbol, name] of Object.entries(symbols)) {
+        as.strictEqual(unitToQudt(symbol), name, symbol)
+      }
+    })
+
+    mo.it('converts every generated QUDT unit to Modelica and back', function () {
+      for (const [name, unit] of Object.entries(units)) {
+        as.strictEqual(unitToQudt(unit), name, unit)
+        as.strictEqual(qudtToUnit(name), unit, name)
+      }
+    })
+
+    mo.it('has aliases only for units that are in the vocabulary', function () {
+      for (const [alias, name] of Object.entries(aliases)) {
+        as.ok(units[name] !== undefined, `${alias} -> ${name}`)
+        as.ok(units[alias] === undefined, alias)
+      }
+    })
+
+    mo.it('uses the configured preferred QUDT names and Modelica spellings', function () {
+      for (const name of vocab.PREFERRED_QUDT_UNITS) as.ok(units[name] !== undefined, name)
+      for (const unit of vocab.MODELICA_SPELLINGS) as.strictEqual(qudtToUnit(unitToQudt(unit)), unit)
+    })
+
+    mo.it('maps quantities only to QUDT quantity kinds that exist', function () {
+      const targets = [
+        ...Object.values(vocab.QUANTITY_RENAMES),
+        ...Object.values(vocab.BROADER_QUANTITIES),
+        ...Object.values(vocab.QUANTITY_PREFIXES)
+      ]
+      as.deepStrictEqual(targets.filter(kind => !(kind in quantityKinds)), [])
+    })
+  })
+
+  mo.describe('Modelica libraries', function () {
+    let buildings
+    let msl
+
+    mo.before(function () {
+      buildings = findLibrary('Buildings')
+      msl = findLibrary('Modelica')
+    })
+
+    function requireLibrary (context, library) {
+      if (library === null) context.skip()
+    }
+
+    mo.it('maps all CDL units and quantities, except for s/K that QUDT does not have', function () {
+      requireLibrary(this, buildings)
+      const cdl = path.join(buildings, 'Controls', 'OBC')
+      as.deepStrictEqual(withoutQudtUnit(attributeValues(cdl, 'unit')), ['s/K'])
+      as.deepStrictEqual(withoutQudtUnit(attributeValues(cdl, 'displayUnit')), [])
+      as.deepStrictEqual(attributeValues(cdl, 'quantity').filter(q => quantityToQudt(q) === null), [])
+    })
+
+    mo.it('handles all units and quantities of the Buildings library', function () {
+      requireLibrary(this, buildings)
+      const unitValues = attributeValues(buildings, 'unit')
+      const displayUnits = attributeValues(buildings, 'displayUnit')
+      for (const unit of [...unitValues, ...displayUnits]) parseUnit(unit)
+      as.deepStrictEqual(withoutQudtUnit(unitValues), MBL_UNITS_WITHOUT_QUDT_UNIT)
+      as.deepStrictEqual(withoutQudtUnit(displayUnits), [])
+      assertRoundTrips([...unitValues, ...displayUnits])
+      as.deepStrictEqual(
+        attributeValues(buildings, 'quantity').filter(q => quantityToQudt(q) === null),
+        MBL_QUANTITIES_WITHOUT_QUDT_KIND
       )
     })
 
-    mo.it('respects case sensitivity, SI prefixes, and Modelica syntax equivalences', function () {
-      as.strictEqual(unitToQudt('S').uri, `${QUDT_UNIT_NS}S`)
-      as.strictEqual(unitToQudt('s').uri, `${QUDT_UNIT_NS}SEC`)
-      as.strictEqual(unitToQudt('MW').uri, `${QUDT_UNIT_NS}MegaW`)
-      as.strictEqual(unitToQudt('mW').uri, `${QUDT_UNIT_NS}MilliW`)
-      as.strictEqual(unitToQudt('uW').uri, `${QUDT_UNIT_NS}MicroW`)
-      as.strictEqual(unitToQudt('\u03bcW').uri, `${QUDT_UNIT_NS}MicroW`)
-      as.strictEqual(unitToQudt('\u03bcW').ucum, 'uW')
-      as.strictEqual(unitToQudt('1/m').uri, unitToQudt('m-1').uri)
-      as.strictEqual(unitToQudt('1/s').uri, unitToQudt('s-1').uri)
-      as.deepStrictEqual(unitToQudt('(Pa.kg)/m3').factors, unitToQudt('Pa.kg/m3').factors)
-
-      // Valid Modelica prefixed unit that has no minted QUDT IRI in v3.1.11
-      const cW = unitToQudt('cW')
-      as.strictEqual(cW.uri, null)
-      as.strictEqual(cW.ucum, 'cW')
-      as.strictEqual(cW.dimensionVector, unitToQudt('W').dimensionVector)
-      as.strictEqual(qudtToUnit(cW), 'cW')
-    })
-
-    mo.it('handles non-SI HVAC/CDL symbols and prevents femtotonne collision on ft', function () {
-      as.strictEqual(unitToQudt('l').uri, `${QUDT_UNIT_NS}L`)
-      as.strictEqual(unitToQudt('l/s').uri, `${QUDT_UNIT_NS}L-PER-SEC`)
-      as.strictEqual(unitToQudt('ml').uri, `${QUDT_UNIT_NS}MilliL`)
-      as.strictEqual(qudtToUnit('unit:L'), 'L')
-      as.strictEqual(unitToQudt('kJ/kg').uri, `${QUDT_UNIT_NS}KiloJ-PER-KiloGM`)
-      as.strictEqual(unitToQudt('BtuPerHour').uri, `${QUDT_UNIT_NS}BTU_IT-PER-HR`)
-
-      as.strictEqual(unitToQudt('t').uri, `${QUDT_UNIT_NS}TON_Metric`)
-      as.strictEqual(qudtToUnit('unit:TON_Metric'), 't')
-      as.strictEqual(qudtToUnit(unitToQudt('t/h')), 't/h')
-      as.throws(() => unitToQudt('ft'), /Unrecognized Modelica unit symbol/)
-
-      as.strictEqual(unitToQudt('rpm').uri, `${QUDT_UNIT_NS}REV-PER-MIN`)
-      as.strictEqual(unitToQudt('rev/min').uri, `${QUDT_UNIT_NS}REV-PER-MIN`)
-      as.strictEqual(unitToQudt('rev').uri, `${QUDT_UNIT_NS}REV`)
-      as.strictEqual(unitToQudt('dB').uri, `${QUDT_UNIT_NS}DeciB`)
-      as.strictEqual(qudtToUnit('unit:DeciB'), 'dB')
-      as.strictEqual(unitToQudt('eV').uri, `${QUDT_UNIT_NS}EV`)
-      as.strictEqual(unitToQudt('MeV').uri, `${QUDT_UNIT_NS}MegaEV`)
-      as.strictEqual(qudtToUnit('unit:MegaEV'), 'MeV')
-      as.strictEqual(unitToQudt('Np').uri, `${QUDT_UNIT_NS}NP`)
-      as.strictEqual(unitToQudt('degRk').uri, `${QUDT_UNIT_NS}DEG_R`)
-      as.strictEqual(qudtToUnit('unit:DEG_R'), 'degRk')
-      as.strictEqual(unitToQudt('inH2O').uri, `${QUDT_UNIT_NS}IN_H2O_60DEG_F`)
-      as.strictEqual(unitToQudt('cfm').uri, `${QUDT_UNIT_NS}FT3-PER-MIN`)
-    })
-
-    mo.it('parses and formats Modelica §19.1 rational exponents', function () {
-      const noise = unitToQudt('V/Hz(1/2)')
-      as.strictEqual(noise.uri, null)
-      as.strictEqual(noise.dimensionVector, null)
-      as.strictEqual(noise.ucum, null)
-      as.deepStrictEqual(noise.factors, [
-        [`${QUDT_UNIT_NS}V`, 1],
-        [`${QUDT_UNIT_NS}HZ`, '-1/2']
-      ])
-      as.strictEqual(qudtToUnit(noise), 'V/Hz(1/2)')
-
-      const mNeg = unitToQudt('m-(1/3)')
-      as.deepStrictEqual(mNeg.factors, [[`${QUDT_UNIT_NS}M`, '-1/3']])
-      as.deepStrictEqual(mNeg.factors, unitToQudt('m(-1/3)').factors)
-      as.strictEqual(qudtToUnit(mNeg), '1/m(1/3)')
-
-      const mWhole = unitToQudt('m(1/2).m(1/2)')
-      as.strictEqual(mWhole.uri, `${QUDT_UNIT_NS}M`)
-      as.strictEqual(mWhole.dimensionVector, `${QUDT_DV_NS}A0E0L1I0M0H0T0D0`)
-
-      const ratioHalf = unitToQudt('m(1/2)/m(1/2)')
-      as.strictEqual(ratioHalf.preservedRatio, true)
-      as.strictEqual(qudtToUnit(ratioHalf), 'm(1/2)/m(1/2)')
-      as.strictEqual(qudtToUnit(ratioHalf, { cancelRatios: true }), '1')
-    })
-
-    mo.it('handles empty inputs and rejects invalid syntax or Object.prototype keys', function () {
-      as.strictEqual(unitToQudt('').uri, null)
-      as.deepStrictEqual(unitToQudt('').factors, [])
-      as.strictEqual(qudtToUnit(''), null)
-      as.strictEqual(qudtToUnit(null), null)
-      as.strictEqual(qudtToUnit([]), null)
-
-      as.throws(() => unitToQudt('m^2'), /Invalid Modelica unit syntax/)
-      as.throws(() => unitToQudt('(m/s'), /Unclosed/)
-      as.throws(() => unitToQudt('m(1/0)'), /Zero denominator/)
-      as.throws(() => unitToQudt('toString'), /Unrecognized Modelica unit symbol/)
-      as.strictEqual(quantityToQudt('toString'), null)
-      as.strictEqual(qudtToQuantity('toString'), null)
-    })
-  })
-
-  mo.describe('bidirectional quantities, MSL types, and displayUnit preservation', function () {
-    mo.it('converts Modelica/CDL quantities to QUDT QuantityKinds and back', function () {
-      as.strictEqual(quantityToQudt('ThermodynamicTemperature'), `${QUDT_QK_NS}ThermodynamicTemperature`)
-      as.strictEqual(qudtToQuantity(`${QUDT_QK_NS}ThermodynamicTemperature`), 'ThermodynamicTemperature')
-      as.strictEqual(quantityToQudt('PressureDifference'), `${QUDT_QK_NS}Pressure`)
-      as.strictEqual(qudtToQuantity('q:Pressure'), 'Pressure')
-      as.strictEqual(quantityToQudt('Modelica.Units.SI.SpecificEnthalpy'), `${QUDT_QK_NS}SpecificEnthalpy`)
-      as.strictEqual(quantityToQudt('ReflectionCoefficient'), `${QUDT_QK_NS}Reflectance`)
-      as.strictEqual(qudtToQuantity('quantitykind:Reflectance'), 'ReflectionCoefficient')
-      as.strictEqual(quantityToQudt('TemperatureSlope'), `${QUDT_QK_NS}TemperatureRateOfChange`)
-      as.strictEqual(qudtToQuantity('q:TemperatureRateOfChange'), 'TemperatureSlope')
-      as.strictEqual(qudtToQuantity('q:TemperaturePerTime'), 'TemperatureSlope')
-      as.strictEqual(quantityToQudt('LinearTemperatureCoefficient'), `${QUDT_QK_NS}LinearThermalExpansion`)
-      as.strictEqual(qudtToQuantity('q:LinearThermalExpansion'), 'LinearTemperatureCoefficient')
-      as.strictEqual(quantityToQudt('Resistance per meter'), `${QUDT_QK_NS}LineicResistance`)
-      as.strictEqual(qudtToQuantity('q:LineicResistance'), 'Resistance per meter')
-      as.strictEqual(quantityToQudt('Current.AC'), `${QUDT_QK_NS}ElectricCurrent`)
-      as.strictEqual(quantityToQudt('Voltage.RMS'), `${QUDT_QK_NS}ElectricPotential`)
-    })
-
-    mo.it('preserves displayUnit verbatim and resolves MSL SI/NonSI type defaults', function () {
-      const fwd = convertToQudt({
-        unit: 'K',
-        quantity: 'ThermodynamicTemperature',
-        displayUnit: 'degC'
-      })
-      as.strictEqual(fwd.qudtUnit.uri, `${QUDT_UNIT_NS}K`)
-      as.strictEqual(fwd.qudtQuantityKind, `${QUDT_QK_NS}ThermodynamicTemperature`)
-      as.strictEqual(fwd.displayUnit, 'degC')
-
-      const rev = convertFromQudt({
-        qudtUnit: fwd.qudtUnit,
-        qudtQuantityKind: fwd.qudtQuantityKind,
-        displayUnit: fwd.displayUnit
-      })
-      as.deepStrictEqual(rev, {
-        unit: 'K',
-        quantity: 'ThermodynamicTemperature',
-        displayUnit: 'degC'
-      })
-
-      const mslSi = convertToQudt({ typeName: 'Modelica.Units.SI.Pressure' })
-      as.strictEqual(mslSi.qudtUnit.uri, `${QUDT_UNIT_NS}PA`)
-      as.strictEqual(mslSi.qudtQuantityKind, `${QUDT_QK_NS}Pressure`)
-      as.strictEqual(mslSi.displayUnit, 'bar')
-
-      const mslNonSi = convertToQudt({ typeName: 'Modelica.Units.NonSI.Temperature_degC' })
-      as.strictEqual(mslNonSi.qudtUnit.uri, `${QUDT_UNIT_NS}DEG_C`)
-      as.strictEqual(mslNonSi.qudtQuantityKind, `${QUDT_QK_NS}ThermodynamicTemperature`)
-    })
-  })
-
-  mo.describe('CXF JSON-LD and rdflib bidirectional conversion (toCxf / fromCxf)', function () {
-    mo.it('converts mapped attributes to CXF JSON-LD and back', function () {
-      const cxfNode = toCxf({
-        unit: 'm3/s',
-        displayUnit: 'cfm',
-        quantity: 'VolumeFlowRate'
-      })
-      as.deepStrictEqual(cxfNode, {
-        'qudt:hasUnit': { '@id': 'unit:M3-PER-SEC' },
-        'S231:displayUnit': 'cfm',
-        'qudt:hasQuantityKind': { '@id': 'q:VolumeFlowRate' }
-      })
-      as.deepStrictEqual(fromCxf(cxfNode), {
-        unit: 'm3/s',
-        displayUnit: 'cfm',
-        quantity: 'VolumeFlowRate'
-      })
-    })
-
-    mo.it('falls back to S231 literals with suggestion warnings and round-trips back', function () {
-      const warnings = []
-      const cxfNode = toCxf({
-        unit: 'W/s',
-        displayUnit: 'customDisp',
-        quantity: 'PresureDifference',
-        warn: msg => warnings.push(msg)
-      })
-      as.deepStrictEqual(cxfNode, {
-        'S231:unit': 'W/s',
-        'S231:displayUnit': 'customDisp',
-        'S231:quantity': 'PresureDifference'
-      })
-      as.strictEqual(warnings.length, 2)
-      as.ok(warnings[1].includes('Pressure (q:Pressure)'))
-      as.deepStrictEqual(fromCxf(cxfNode), {
-        unit: 'W/s',
-        displayUnit: 'customDisp',
-        quantity: 'PresureDifference'
-      })
-    })
-
-    mo.it('reconstructs Modelica units from QUDT factor units, custom @context, and rdflib graphs', function () {
-      const factorNode = {
-        '@context': {
-          myqudt: QUDT_SCHEMA_NS,
-          u: QUDT_UNIT_NS,
-          qk: QUDT_QK_NS,
-          s: S231_NS
-        },
-        'myqudt:hasFactorUnit': [
-          { 'myqudt:hasUnit': { '@id': 'u:KiloGM' }, 'myqudt:exponent': 1 },
-          { 'myqudt:hasUnit': { '@id': 'u:SEC' }, 'myqudt:exponent': -1 },
-          { 'myqudt:hasUnit': { '@id': 'u:M' }, 'myqudt:exponent': -4 }
-        ],
-        'myqudt:hasQuantityKind': { '@id': 'qk:LinearThermalExpansion' },
-        's:hasDisplayUnit': { '@id': 'u:DEG_C' }
-      }
-      as.deepStrictEqual(fromCxf(factorNode), {
-        unit: 'kg/(s.m4)',
-        quantity: 'LinearTemperatureCoefficient',
-        displayUnit: 'degC'
-      })
-
-      // rdflib graph round-trip
-      const graph = rdflib.graph()
-      const s231Ns = rdflib.Namespace(S231_NS)
-      const qudtNs = rdflib.Namespace(QUDT_SCHEMA_NS)
-      const unitNs = rdflib.Namespace(QUDT_UNIT_NS)
-      const qkNs = rdflib.Namespace(QUDT_QK_NS)
-      const subj = s231Ns('Param1')
-      graph.add(subj, qudtNs('hasUnit'), unitNs('J-PER-KiloGM-K'))
-      graph.add(subj, qudtNs('hasQuantityKind'), qkNs('SpecificHeatCapacity'))
-      graph.add(subj, s231Ns('displayUnit'), 'J/(kg.degC)')
-
-      as.deepStrictEqual(fromCxf(subj, { graph }), {
-        unit: 'J/(kg.K)',
-        quantity: 'SpecificHeatCapacity',
-        displayUnit: 'J/(kg.degC)'
-      })
-    })
-  })
-
-  mo.describe('nearest-match suggestions (suggestUnit / suggestQuantity)', function () {
-    mo.it('suggests quantities using lexical similarity, aliases, and unit dimensions', function () {
-      const torq = suggestQuantity('Torq', { unit: 'N.m', topK: 3 })
-      as.strictEqual(torq[0].qudtUri, `${QUDT_QK_NS}Torque`)
-      as.strictEqual(torq[0].qudtCurie, 'q:Torque')
-      as.strictEqual(torq[0].dimensionMatch, true)
-
-      const presNoUnit = suggestQuantity('PresureDifference', { topK: 3 })
-      as.strictEqual(presNoUnit[0].qudtUri, `${QUDT_QK_NS}Pressure`)
-
-      const presWithUnit = suggestQuantity('PresureDifference', { unit: 'Pa', topK: 3 })
-      as.strictEqual(presWithUnit[0].qudtUri, `${QUDT_QK_NS}Pressure`)
-      as.strictEqual(presWithUnit[0].dimensionMatch, true)
-
-      const react = suggestQuantity('Reactance per meter', { unit: 'Ohm/m', topK: 5 })
-      const uris = react.map(s => s.qudtUri)
-      as.ok(uris.includes(`${QUDT_QK_NS}LineicResistance`))
-      as.ok(uris.includes(`${QUDT_QK_NS}Reactance`))
-
-      const slope = suggestQuantity('TempSlope', { unit: 'K/s', topK: 3 })
-      as.strictEqual(slope[0].qudtUri, `${QUDT_QK_NS}TemperatureRateOfChange`)
-      as.strictEqual(slope[0].dimensionMatch, true)
-
-      // Every suggested QUDT QuantityKind must exist and be non-deprecated in pinned QUDT
-      for (const s of [...torq, ...presWithUnit, ...react, ...slope]) {
-        const entry = pinned.quantityKinds[s.qudtUri]
-        as.ok(entry && !entry.deprecated, `invalid QK suggestion: ${s.qudtUri}`)
-      }
-    })
-
-    mo.it('repairs mistyped units and suggests dimensionally equivalent QUDT units', function () {
-      const powerEquiv = suggestUnit('N.m/s', { topK: 3 })
-      as.strictEqual(powerEquiv[0].modelicaUnit, 'W')
-      as.strictEqual(powerEquiv[0].qudtUri, `${QUDT_UNIT_NS}W`)
-      as.strictEqual(powerEquiv[0].dimensionMatch, true)
-
-      as.strictEqual(suggestUnit('kpa')[0].modelicaUnit, 'kPa')
-      as.strictEqual(suggestUnit('W/(m2K)')[0].modelicaUnit, 'W/(m2.K)')
-      as.strictEqual(suggestUnit('m^2')[0].modelicaUnit, 'm2')
-      as.strictEqual(suggestUnit('ohm')[0].modelicaUnit, 'Ohm')
-      as.strictEqual(suggestUnit('degR')[0].modelicaUnit, 'degRk')
-      as.strictEqual(suggestUnit('\u00b0C')[0].modelicaUnit, 'degC')
-      as.strictEqual(suggestUnit('\u03a9*m')[0].modelicaUnit, 'Ohm.m')
-    })
-  })
-
-  mo.describe('vocabulary & MBL unit round-trip invariants', function () {
-    mo.it('round-trips all MSL_TYPES and compound units with identical factor multisets', function () {
-      const units = new Set([
-        ...Object.keys(qudtVocab.ATOMIC_UNITS),
-        ...qudtVocab.MINTED_COMPOUND_UNITS.map(([, , moStr]) => moStr),
-        ...Object.values(qudtVocab.MSL_TYPES).map(([u]) => u),
-        'kg.m2/s', 'S/m', 'V/m', 'C/m2', 'N.s', 'cd/m2', 'A/m', 'J/mol',
-        'J/(mol.K)', 'm3/mol', 'kg.m/s', 'H/m', 'F/m', '1/H', 'Ohm.m', 'N/m',
-        'W/K4', 'K3', 'K4', 'm/m', 'cd.sr', 'J/(m2.K)', 'W/(m2.K2)'
-      ])
-
-      for (const sym of units) {
-        const q1 = unitToQudt(sym)
-        as.ok(q1.factors.length > 0, `empty factors for ${sym}`)
-        const back = qudtToUnit(q1)
-        as.ok(back !== null, `reverse failed for ${sym}`)
-        const q2 = unitToQudt(back)
-        as.strictEqual(q2.dimensionVector, q1.dimensionVector, `dimension mismatch on round-trip: ${sym} -> ${back}`)
-        if (q1.uri !== null) {
-          as.strictEqual(q2.uri, q1.uri, `URI mismatch on round-trip: ${sym} -> ${back}`)
-        } else {
-          as.deepStrictEqual(
-            q1.factors.slice().sort(),
-            q2.factors.slice().sort(),
-            `factor mismatch on round-trip: ${sym} -> ${back}`
-          )
+    mo.it('handles all units of the Modelica Standard Library', function () {
+      requireLibrary(this, msl)
+      const unitValues = [...attributeValues(msl, 'unit'), ...attributeValues(msl, 'displayUnit')]
+      const invalid = unitValues.filter(unit => {
+        try {
+          parseUnit(unit)
+          return false
+        } catch (_) {
+          return true
         }
-      }
+      })
+      as.deepStrictEqual(invalid, MSL_UNITS_WITH_UNKNOWN_SYMBOLS)
+      assertRoundTrips(unitValues)
     })
   })
 })

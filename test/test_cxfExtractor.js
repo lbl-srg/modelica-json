@@ -129,74 +129,27 @@ mo.describe('cxfExtractor.js', function () {
     const getQudtUnit = ce.__get__('getQudtUnit')
     const getQudtQuantityKind = ce.__get__('getQudtQuantityKind')
     const addAttributesToNode = ce.__get__('addAttributesToNode')
-    const qudt = require('../lib/qudt.js')
-    const qudtVocab = require('../lib/qudtVocab.js')
-    const pinned = JSON.parse(fs.readFileSync(path.join(__dirname, 'qudt', 'qudt-vocab.json'), 'utf8'))
-
-    mo.it('checks every minted unit mapping against the pinned QUDT release', function () {
-      const vocab = pinned.units
-      const out = []
-      const modelicaUnits = new Set([
-        ...Object.keys(qudtVocab.ATOMIC_UNITS),
-        ...qudtVocab.MINTED_COMPOUND_UNITS.map(([, , moStr]) => moStr),
-        ...Array.from(qudtVocab.MINTED_PREFIXED_ATOMS).map(ql => qudt.qudtToUnit(ql))
-      ])
-      for (const modelica of modelicaUnits) {
-        const node = getQudtUnit(modelica)
-        if (!node) {
-          out.push(`${modelica} -> null`)
-          continue
-        }
-        const target = node.value
-        const entry = vocab[target]
-        if (entry === undefined) out.push(`${modelica} -> ${target}: not in QUDT ${pinned.qudtVersion}`)
-        else if (entry.deprecated) out.push(`${modelica} -> ${target}: deprecated, use ${entry.replacedBy}`)
-      }
-      as.deepStrictEqual(out, [], `${out.length} mapping(s) are wrong:\n  ${out.join('\n  ')}`)
-    })
-
-    mo.it('checks every quantityKind mapping against the pinned QUDT release', function () {
-      const vocab = pinned.quantityKinds
-      const out = []
-      const quantities = new Set([
-        ...qudtVocab.EXACT_QUANTITY_KINDS,
-        ...Object.keys(qudtVocab.MODELICA_TO_QUDT_QK)
-      ])
-      for (const modelica of quantities) {
-        const node = getQudtQuantityKind(modelica)
-        if (!node) {
-          out.push(`${modelica} -> null`)
-          continue
-        }
-        const target = node.value
-        const entry = vocab[target]
-        if (entry === undefined) out.push(`${modelica} -> ${target}: not in QUDT ${pinned.qudtVersion}`)
-        else if (entry.deprecated) out.push(`${modelica} -> ${target}: deprecated, use ${entry.replacedBy}`)
-      }
-      as.deepStrictEqual(out, [], `${out.length} mapping(s) are wrong:\n  ${out.join('\n  ')}`)
-    })
-
     mo.it('maps CDL and MBL units to QUDT unit vocabulary', function () {
-      as.equal(getQudtUnit('1/s', unitNs).value, unitNs('PER-SEC').value)
-      as.equal(getQudtUnit('1/K', unitNs).value, unitNs('PER-K').value)
-      as.equal(getQudtUnit('J/(kg.K)', unitNs).value, unitNs('J-PER-KiloGM-K').value)
-      as.equal(getQudtUnit('Pa', unitNs).value, unitNs('PA').value)
-      as.equal(getQudtUnit('1', unitNs).value, unitNs('UNITLESS').value)
-      as.equal(getQudtUnit('cfm', unitNs).value, unitNs('FT3-PER-MIN').value)
-      as.equal(getQudtUnit('kg/kg', unitNs).value, unitNs('KiloGM-PER-KiloGM').value)
-      as.equal(getQudtUnit('m3/(s.m2)', unitNs).value, unitNs('M3-PER-SEC-M2').value)
-      as.equal(getQudtUnit('BtuPerHour', unitNs).value, unitNs('BTU_IT-PER-HR').value)
-      as.equal(getQudtUnit('', unitNs), null)
+      as.equal(getQudtUnit('1/s').value, unitNs('PER-SEC').value)
+      as.equal(getQudtUnit('1/K').value, unitNs('PER-K').value)
+      as.equal(getQudtUnit('J/(kg.K)').value, unitNs('J-PER-KiloGM-K').value)
+      as.equal(getQudtUnit('Pa').value, unitNs('PA').value)
+      as.equal(getQudtUnit('1').value, unitNs('UNITLESS').value)
+      as.equal(getQudtUnit('cfm').value, unitNs('FT3-PER-MIN').value)
+      as.equal(getQudtUnit('kg/kg').value, unitNs('KiloGM-PER-KiloGM').value)
+      as.equal(getQudtUnit('m3/(s.m2)').value, unitNs('M3-PER-SEC-M2').value)
+      as.equal(getQudtUnit('BtuPerHour'), null)
+      as.equal(getQudtUnit(''), null)
     })
 
     mo.it('maps CDL and MBL quantity kinds to QUDT quantitykind vocabulary', function () {
-      as.equal(getQudtQuantityKind('PressureDifference', qudtQkNs).value, qudtQkNs('Pressure').value)
-      as.equal(getQudtQuantityKind('HeatFlowRate', qudtQkNs).value, qudtQkNs('HeatFlowRate').value)
-      as.equal(getQudtQuantityKind('SpecificHeatCapacity', qudtQkNs).value, qudtQkNs('SpecificHeatCapacity').value)
-      as.equal(getQudtQuantityKind('TemperatureSlope', qudtQkNs).value, qudtQkNs('TemperatureRateOfChange').value)
-      as.equal(getQudtQuantityKind('LinearTemperatureCoefficient', qudtQkNs).value, qudtQkNs('LinearThermalExpansion').value)
-      as.equal(getQudtQuantityKind('Density', qudtQkNs).value, qudtQkNs('Density').value)
-      as.equal(getQudtQuantityKind('', qudtQkNs), null)
+      as.equal(getQudtQuantityKind('PressureDifference').value, qudtQkNs('Pressure').value)
+      as.equal(getQudtQuantityKind('HeatFlowRate').value, qudtQkNs('HeatFlowRate').value)
+      as.equal(getQudtQuantityKind('SpecificHeatCapacity').value, qudtQkNs('SpecificHeatCapacity').value)
+      as.equal(getQudtQuantityKind('TemperatureSlope').value, qudtQkNs('TemperatureRateOfChange').value)
+      as.equal(getQudtQuantityKind('LinearTemperatureCoefficient').value, qudtQkNs('LinearThermalExpansion').value)
+      as.equal(getQudtQuantityKind('Density').value, qudtQkNs('Density').value)
+      as.equal(getQudtQuantityKind(''), null)
     })
 
     mo.it('adds qudt:hasUnit, S231:displayUnit literal, and qudt:hasQuantityKind for mapped values', function () {
