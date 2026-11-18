@@ -2185,107 +2185,56 @@ window.__MODELICA_SCHEMA__ = {
     },
     when_statement: {
       description: 'When statement',
-      oneOf: [
-        {
-          type: 'array',
-          items: {
-            type: 'object',
-            additionalProperties: false,
-            properties: {
-              condition: {
-                $ref: '#/definitions/expression'
-              },
-              then: {
-                type: 'array',
-                items: {
-                  type: 'object',
-                  additionalProperties: false,
-                  properties: {
-                    assignment_statement: {
-                      $ref: '#/definitions/assignment_statement'
-                    },
-                    Function_call_statement: {
-                      $ref: '#/definitions/Function_call_statement'
-                    },
-                    assignment_with_function_call_statement: {
-                      $ref: '#/definitions/assignment_with_function_call_statement'
-                    },
-                    break: {
-                      type: 'boolean'
-                    },
-                    return: {
-                      type: 'boolean'
-                    },
-                    if_statement: {
-                      $ref: '#/definitions/if_statement'
-                    },
-                    for_statement: {
-                      $ref: '#/definitions/for_statement'
-                    },
-                    while_statement: {
-                      $ref: '#/definitions/while_statement'
-                    },
-                    when_statement: {
-                      $ref: '#/definitions/when_statement'
-                    },
-                    description: {
-                      $ref: '#/definitions/equationDescription'
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        {
-          type: 'object',
-          additionalProperties: false,
-          properties: {
-            condition: {
-              $ref: '#/definitions/expression'
-            },
-            then: {
-              type: 'array',
-              items: {
-                type: 'object',
-                additionalProperties: false,
-                properties: {
-                  assignment_statement: {
-                    $ref: '#/definitions/assignment_statement'
-                  },
-                  Function_call_statement: {
-                    $ref: '#/definitions/Function_call_statement'
-                  },
-                  assignment_with_function_call_statement: {
-                    $ref: '#/definitions/assignment_with_function_call_statement'
-                  },
-                  break: {
-                    type: 'boolean'
-                  },
-                  return: {
-                    type: 'boolean'
-                  },
-                  if_statement: {
-                    $ref: '#/definitions/if_statement'
-                  },
-                  for_statement: {
-                    $ref: '#/definitions/for_statement'
-                  },
-                  while_statement: {
-                    $ref: '#/definitions/while_statement'
-                  },
-                  when_statement: {
-                    $ref: '#/definitions/when_statement'
-                  },
-                  description: {
-                    $ref: '#/definitions/equationDescription'
-                  }
+      type: 'array',
+      additionalItems: false,
+      items: {
+        type: 'object',
+        additionalProperties: false,
+        properties: {
+          condition: {
+            $ref: '#/definitions/expression'
+          },
+          then: {
+            type: 'array',
+            items: {
+              type: 'object',
+              additionalProperties: false,
+              properties: {
+                assignment_statement: {
+                  $ref: '#/definitions/assignment_statement'
+                },
+                Function_call_statement: {
+                  $ref: '#/definitions/Function_call_statement'
+                },
+                assignment_with_function_call_statement: {
+                  $ref: '#/definitions/assignment_with_function_call_statement'
+                },
+                break: {
+                  type: 'boolean'
+                },
+                return: {
+                  type: 'boolean'
+                },
+                if_statement: {
+                  $ref: '#/definitions/if_statement'
+                },
+                for_statement: {
+                  $ref: '#/definitions/for_statement'
+                },
+                while_statement: {
+                  $ref: '#/definitions/while_statement'
+                },
+                when_statement: {
+                  $ref: '#/definitions/when_statement'
+                },
+                description: {
+                  $ref: '#/definitions/equationDescription'
                 }
               }
             }
           }
         }
-      ]
+      }
     },
     statement: {
       description: 'Constructs allowed in algorithm sections',
