@@ -34,14 +34,14 @@ class When_statementVisitor {
     let expression_idx = 0
     let statement_idx = 0
 
-    while (i < ctx.getChildCount() && !ctx.getChild(i).getText().toLowerCase() === 'end') {
+    while (i < ctx.getChildCount() && ctx.getChild(i).getText().toLowerCase() !== 'end') {
       if (ctx.getChild(i).getText().toLowerCase() === 'when' || ctx.getChild(i).getText().toLowerCase() === 'elsewhen') {
-        const condition = expressions.get(expression_idx)
+        const condition = expressions[expression_idx]
         expression_idx += 1
         const start_idx = i + 3 // start after then (when/elswhen[0] <expr>[1] then[2] <eqn>[3])
         let end_idx = start_idx
         for (let j = start_idx; j < ctx.getChildCount(); j++) {
-          if (!ctx.getChild(j).getText() === ';' && !(ctx.getChild(j) instanceof modelicaParser.StatementContext)) {
+          if (ctx.getChild(j).getText() !== ';' && !(ctx.getChild(j) instanceof modelicaParser.StatementContext)) {
             end_idx = j
             break
           }
