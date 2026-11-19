@@ -313,7 +313,7 @@ mo.describe('qudt.js', function () {
         ...Object.values(vocab.BROADER_QUANTITIES),
         ...Object.values(vocab.QUANTITY_PREFIXES)
       ]
-      as.deepStrictEqual(targets.filter(kind => !(kind in quantityKinds)), [])
+      as.deepStrictEqual(targets.filter(kind => !quantityKinds.includes(kind)), [])
     })
   })
 

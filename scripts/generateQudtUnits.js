@@ -8,7 +8,8 @@
  *   1. the unit tables in lib/qudtVocab.js, for QUDT units that are a symbol,
  *   2. the UCUM code of the unit,
  *   3. the factors in the QUDT name, as not all units have a usable UCUM code.
- * A translation is used only if its dimensions match those stated by QUDT.
+ * A translation is used only if its dimensions match those stated by QUDT. The
+ * dimensions are not written to the output.
  * QUDT units that use symbols unknown to lib/qudtVocab.js are left out.
  */
 'use strict'
@@ -232,17 +233,12 @@ function buildVocabulary (unitsTtl, quantityKindsTtl, qudtVersion = QUDT_VERSION
   const unitConcepts = readConcepts(unitsTtl, QUDT_UNIT_NS)
   const symbolDimensions = symbolDimensionsFrom(unitConcepts)
   const { units, aliases, conflicts, skipped } = buildUnits(unitConcepts, symbolDimensions)
-  const quantityKinds = {}
-  for (const [name, { dimension }] of readConcepts(quantityKindsTtl, QUDT_QK_NS)) {
-    quantityKinds[name] = dimension || null
-  }
   return {
     vocabulary: {
       qudtVersion,
-      symbolDimensions: sortedObject(symbolDimensions),
       units: sortedObject(units),
       aliases: sortedObject(aliases),
-      quantityKinds: sortedObject(quantityKinds)
+      quantityKinds: [...readConcepts(quantityKindsTtl, QUDT_QK_NS).keys()].sort()
     },
     report: { conflicts, skipped }
   }

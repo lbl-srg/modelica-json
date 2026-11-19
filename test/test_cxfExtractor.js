@@ -170,7 +170,7 @@ mo.describe('cxfExtractor.js', function () {
       as.equal(graph.any(node, qudtNs('hasQuantityKind')).value, qudtQkNs('SpecificHeatCapacity').value)
     })
 
-    mo.it('falls back to S231:unit, S231:displayUnit, and S231:quantity literals and warns with suggestions on unmapped values', function () {
+    mo.it('falls back to S231:unit, S231:displayUnit, and S231:quantity literals and warns on unmapped values', function () {
       const warnings = []
       const origWarn = logger.warn
       logger.warn = function (msg) { warnings.push(msg) }
@@ -194,8 +194,8 @@ mo.describe('cxfExtractor.js', function () {
         as.equal(graph.any(node, s231Ns('displayUnit')).value, 'customDisplayUnit')
         as.equal(graph.any(node, s231Ns('quantity')).value, 'PresureDifference')
         as.equal(warnings.length, 2)
-        as.ok(warnings[0].includes('kPa (unit:KiloPA)'), `expected kPa suggestion in: ${warnings[0]}`)
-        as.ok(warnings[1].includes('Pressure (q:Pressure)'), `expected Pressure suggestion in: ${warnings[1]}`)
+        as.equal(warnings[0], 'Unit kpa could not be mapped to QUDT. Using S231:unit with literal value kpa.')
+        as.equal(warnings[1], 'Quantity kind PresureDifference could not be mapped to QUDT. Using S231:quantity with literal value PresureDifference.')
       } finally {
         logger.warn = origWarn
       }
@@ -281,7 +281,7 @@ mo.describe('cxfExtractor.js', function () {
         as.deepEqual(unmappedUnitValidQuantity['qudt:hasQuantityKind'], { '@id': 'q:Time' })
 
         as.equal(warnings.length, 4)
-        as.ok(warnings.some(w => w.includes('PresureDifference') && w.includes('Pressure (q:Pressure)')))
+        as.ok(warnings.includes('Quantity kind PresureDifference could not be mapped to QUDT. Using S231:quantity with literal value PresureDifference.'))
       } finally {
         logger.warn = origWarn
       }

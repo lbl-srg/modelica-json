@@ -112,10 +112,10 @@ mo.describe('generateQudtUnits.js', function () {
   mo.it('reads quantity kinds and leaves out deprecated ones', function () {
     const { quantityKinds } = build('',
       'quantitykind:Length qudt:hasDimensionVector qkdv:A0E0L1I0M0H0T0D0 .\n' +
-      'quantitykind:Lineic qudt:hasDimensionVector qkdv:NotApplicable .\n' +
+      'quantitykind:Area qudt:hasDimensionVector qkdv:A0E0L2I0M0H0T0D0 .\n' +
       'quantitykind:Old qudt:deprecated true .\n'
     ).vocabulary
-    as.deepStrictEqual(quantityKinds, { Length: 'A0E0L1I0M0H0T0D0', Lineic: null })
+    as.deepStrictEqual(quantityKinds, ['Area', 'Length'])
   })
 
   mo.it('has generated a vocabulary with the QUDT version', function () {
