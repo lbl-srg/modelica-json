@@ -1,0 +1,56 @@
+{
+  "@context": {
+    "S231": "http://data.ashrae.org/S231#",
+    "ex": "http://example.org#"
+  },
+  "@graph": [
+    {
+      "@id": "ex:FromModelica.ParameterWithEnumeration",
+      "@type": "S231:Block",
+      "S231:hasParameter": [
+        {
+          "@id": "ex:FromModelica.ParameterWithEnumeration.conTyp"
+        },
+        {
+          "@id": "ex:FromModelica.ParameterWithEnumeration.eNoDefault"
+        },
+        {
+          "@id": "ex:FromModelica.ParameterWithEnumeration.eWithDefault"
+        }
+      ],
+      "S231:label": "ParameterWithEnumeration"
+    },
+    {
+      "@id": "ex:FromModelica.ParameterWithEnumeration.conTyp",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Enumeration parameter of a CDL type",
+      "S231:isOfDataType": {
+        "@id": "S231:Buildings.Controls.OBC.CDL.Types.SimpleController"
+      },
+      "S231:label": "conTyp",
+      "S231:value": "Buildings.Controls.OBC.CDL.Types.SimpleController.PI"
+    },
+    {
+      "@id": "ex:FromModelica.ParameterWithEnumeration.eNoDefault",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Enumeration parameter without a default",
+      "S231:isOfDataType": {
+        "@id": "ex:FromModelica.Enumeration1"
+      },
+      "S231:label": "eNoDefault"
+    },
+    {
+      "@id": "ex:FromModelica.ParameterWithEnumeration.eWithDefault",
+      "@type": "S231:Parameter",
+      "S231:accessSpecifier": "public",
+      "S231:description": "Enumeration parameter with a default",
+      "S231:isOfDataType": {
+        "@id": "ex:FromModelica.Enumeration1"
+      },
+      "S231:label": "eWithDefault",
+      "S231:value": "FromModelica.Enumeration1.e2"
+    }
+  ]
+}

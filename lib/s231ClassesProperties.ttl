@@ -480,7 +480,7 @@ S231:DataType
 S231:Boolean a S231:BooleanDataType,
   S231:DataType 
 .
-S231:Real a S231:Datatype,
+S231:Real a S231:DataType,
   S231:RealDatatype 
 .
 S231:Integer a S231:DataType,
@@ -489,7 +489,7 @@ S231:Integer a S231:DataType,
 S231:Analog a S231:AnalogDataType,
   S231:DataType 
 .
-S231:String a S231:Datatype,
+S231:String a S231:DataType,
   S231:StringDatatype ;
   rdfs:comment "A data type to represent text";
 .
@@ -497,7 +497,7 @@ S231:BooleanDataType a rdfs:Class ;
   rdfs:subClassOf S231:DataType 
 .
 S231:RealDatatype a rdfs:Class ;
-  rdfs:subClassOf S231:Datatype 
+  rdfs:subClassOf S231:DataType 
 .
 S231:IntegerDataType a rdfs:Class ;
   rdfs:subClassOf S231:DataType 
@@ -506,13 +506,13 @@ S231:AnalogDataType a rdfs:Class ;
   rdfs:subClassOf S231:DataType 
 .
 S231:StringDatatype a rdfs:Class ;
-  rdfs:subClassOf S231:Datatype 
+  rdfs:subClassOf S231:DataType 
 .
-S231:EnumerationType a S231:Datatype,
+S231:EnumerationType a S231:DataType,
   S231:EnumerationDatatype 
 .
 S231:EnumerationDatatype a rdfs:Class ;
-  rdfs:subClassOf S231:Datatype 
+  rdfs:subClassOf S231:DataType 
 .
 S231:AnalogInput a rdfs:Class ;
   rdfs:comment "An input connector for real data type";
