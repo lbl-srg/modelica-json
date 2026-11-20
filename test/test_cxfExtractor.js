@@ -16,7 +16,7 @@ mo.describe('cxfExtractor.js', function () {
   // the test directory, which is registered as a library root by getJsons below,
   // based on the 'within' clause of the parsed files.
   // The objects JSON used by the validation helpers is generated below in
-  // 'modelica' mode.
+  // the same way as for the export of controls instances.
   const templatesDir = path.join(__dirname, 'ModelicaMode')
   const baseClass = 'ModelicaMode.VAVBox'
   const instanceName = 'ctl'
@@ -29,7 +29,7 @@ mo.describe('cxfExtractor.js', function () {
       path.join(templatesDir, 'VAVBoxCoolingOnlyInvalid.mo'),
       path.join(templatesDir, 'BadController.mo')
     ]
-    pa.getJsons(files, 'cxf', 'current', true, false, false, 'modelica')
+    pa.getJsons(files, { outputFormat: 'objects', prettyPrint: true, isFollowed: pa.isFollowedForControlsExport })
   })
 
   mo.after(function () {
@@ -238,7 +238,7 @@ mo.describe('cxfExtractor.js', function () {
       logger.warn = function (msg) { warnings.push(msg) }
       try {
         const validMo = path.join(fromModelicaDir, 'ParameterWithValidUnits.mo')
-        pa.getJsons([validMo], 'cxf', 'current', true)
+        pa.getJsons([validMo], { outputFormat: 'cxf', prettyPrint: true })
         const cxfDoc = JSON.parse(fs.readFileSync(path.join(cxfFromModelicaDir, 'ParameterWithValidUnits.jsonld'), 'utf8'))
         const graph = cxfDoc['@graph']
 
@@ -278,7 +278,7 @@ mo.describe('cxfExtractor.js', function () {
       logger.warn = function (msg) { warnings.push(msg) }
       try {
         const invalidMo = path.join(fromModelicaDir, 'ParameterWithInvalidUnits.mo')
-        pa.getJsons([invalidMo], 'cxf', 'current', true)
+        pa.getJsons([invalidMo], { outputFormat: 'cxf', prettyPrint: true })
         const cxfDoc = JSON.parse(fs.readFileSync(path.join(cxfFromModelicaDir, 'ParameterWithInvalidUnits.jsonld'), 'utf8'))
         const graph = cxfDoc['@graph']
 

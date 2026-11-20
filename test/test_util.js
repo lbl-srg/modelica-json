@@ -214,7 +214,7 @@ mo.describe('util', function () {
       as.deepStrictEqual(ut.getLibrary(path.join(__dirname, 'FromModelica', 'Enable.mo')), fromModelica)
       as.deepStrictEqual(ut.getLibrary(path.join(__dirname, 'FromModelica', 'package.mo')), fromModelica)
       // A file without within clause contains a top-level class
-      as.deepStrictEqual(ut.getLibrary(path.join(__dirname, 'NoWithin.mo')), { name: 'NoWithin', root: __dirname })
+      as.deepStrictEqual(ut.getLibrary(path.join(__dirname, 'TopLevel', 'NoWithin.mo')), { name: 'NoWithin', root: path.join(__dirname, 'TopLevel') })
       writeFiles({
         'Lib/Sub/C.mo': 'within Lib.Sub;\nblock C\nend C;\n',
         'Lib/Sub/package.mo': 'within Lib;\npackage Sub\nend Sub;\n',
@@ -269,7 +269,7 @@ mo.describe('util', function () {
       const enable = path.join(__dirname, 'FromModelica', 'Enable.mo')
       as.strictEqual(ut.getRelativePath(enable), path.join('FromModelica', 'Enable.mo'))
       as.strictEqual(ut.getRelativePath(path.join(__dirname, 'FromModelica', 'package.mo')), path.join('FromModelica', 'package.mo'))
-      as.strictEqual(ut.getRelativePath(path.join(__dirname, 'NoWithin.mo')), 'NoWithin.mo')
+      as.strictEqual(ut.getRelativePath(path.join(__dirname, 'TopLevel', 'NoWithin.mo')), 'NoWithin.mo')
       // The path does not depend on the current directory
       const cwd = process.cwd()
       try {
