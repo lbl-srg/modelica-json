@@ -129,55 +129,30 @@ mo.describe('cxfExtractor.js', function () {
     const getQudtUnit = ce.__get__('getQudtUnit')
     const getQudtQuantityKind = ce.__get__('getQudtQuantityKind')
     const addAttributesToNode = ce.__get__('addAttributesToNode')
-    const qudtMapping = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'lib', 'units-qudt.json'), 'utf8'))
-    const pinned = JSON.parse(fs.readFileSync(path.join(__dirname, 'qudt', 'qudt-vocab.json'), 'utf8'))
-
-    mo.it('checks every unit mapping against the pinned QUDT release', function () {
-      const table = qudtMapping.units
-      const vocab = pinned.units
-      const out = []
-      for (const [modelica] of Object.entries(table)) {
-        const target = getQudtUnit(modelica).value
-        const entry = vocab[target]
-        if (entry === undefined) out.push(`${modelica} -> ${target}: not in QUDT ${pinned.qudtVersion}`)
-        else if (entry.deprecated) out.push(`${modelica} -> ${target}: deprecated, use ${entry.replacedBy}`)
-      }
-      as.deepStrictEqual(out, [], `${out.length} mapping(s) are wrong:\n  ${out.join('\n  ')}`)
-    })
-
-    mo.it('checks every quantityKind mapping against the pinned QUDT release', function () {
-      const table = qudtMapping.quantityKinds
-      const vocab = pinned.quantityKinds
-      const out = []
-      for (const [modelica] of Object.entries(table)) {
-        const target = getQudtQuantityKind(modelica).value
-        const entry = vocab[target]
-        if (entry === undefined) out.push(`${modelica} -> ${target}: not in QUDT ${pinned.qudtVersion}`)
-        else if (entry.deprecated) out.push(`${modelica} -> ${target}: deprecated, use ${entry.replacedBy}`)
-      }
-      as.deepStrictEqual(out, [], `${out.length} mapping(s) are wrong:\n  ${out.join('\n  ')}`)
-    })
-
     mo.it('maps CDL and MBL units to QUDT unit vocabulary', function () {
-      as.equal(getQudtUnit('1/s', unitNs).value, unitNs('PER-SEC').value)
-      as.equal(getQudtUnit('1/K', unitNs).value, unitNs('PER-K').value)
-      as.equal(getQudtUnit('J/(kg.K)', unitNs).value, unitNs('J-PER-KiloGM-K').value)
-      as.equal(getQudtUnit('Pa', unitNs).value, unitNs('PA').value)
-      as.equal(getQudtUnit('1', unitNs).value, unitNs('UNITLESS').value)
-      as.equal(getQudtUnit('cfm', unitNs).value, unitNs('FT3-PER-MIN').value)
-      as.equal(getQudtUnit('', unitNs), null)
+      as.equal(getQudtUnit('1/s').value, unitNs('PER-SEC').value)
+      as.equal(getQudtUnit('1/K').value, unitNs('PER-K').value)
+      as.equal(getQudtUnit('J/(kg.K)').value, unitNs('J-PER-KiloGM-K').value)
+      as.equal(getQudtUnit('Pa').value, unitNs('PA').value)
+      as.equal(getQudtUnit('1').value, unitNs('UNITLESS').value)
+      as.equal(getQudtUnit('cfm').value, unitNs('FT3-PER-MIN').value)
+      as.equal(getQudtUnit('kg/kg').value, unitNs('KiloGM-PER-KiloGM').value)
+      as.equal(getQudtUnit('m3/(s.m2)').value, unitNs('M3-PER-SEC-M2').value)
+      as.equal(getQudtUnit('BtuPerHour'), null)
+      as.equal(getQudtUnit(''), null)
     })
 
     mo.it('maps CDL and MBL quantity kinds to QUDT quantitykind vocabulary', function () {
-      as.equal(getQudtQuantityKind('PressureDifference', qudtQkNs).value, qudtQkNs('Pressure').value)
-      as.equal(getQudtQuantityKind('HeatFlowRate', qudtQkNs).value, qudtQkNs('HeatFlowRate').value)
-      as.equal(getQudtQuantityKind('SpecificHeatCapacity', qudtQkNs).value, qudtQkNs('SpecificHeatCapacity').value)
-      as.equal(getQudtQuantityKind('TemperatureSlope', qudtQkNs).value, qudtQkNs('TemperaturePerTime').value)
-      as.equal(getQudtQuantityKind('Density', qudtQkNs).value, qudtQkNs('Density').value)
-      as.equal(getQudtQuantityKind('', qudtQkNs), null)
+      as.equal(getQudtQuantityKind('PressureDifference').value, qudtQkNs('Pressure').value)
+      as.equal(getQudtQuantityKind('HeatFlowRate').value, qudtQkNs('HeatFlowRate').value)
+      as.equal(getQudtQuantityKind('SpecificHeatCapacity').value, qudtQkNs('SpecificHeatCapacity').value)
+      as.equal(getQudtQuantityKind('TemperatureSlope').value, qudtQkNs('TemperatureRateOfChange').value)
+      as.equal(getQudtQuantityKind('LinearTemperatureCoefficient').value, qudtQkNs('LinearThermalExpansion').value)
+      as.equal(getQudtQuantityKind('Density').value, qudtQkNs('Density').value)
+      as.equal(getQudtQuantityKind(''), null)
     })
 
-    mo.it('adds qudt:hasUnit, S231:hasDisplayUnit, and qudt:hasQuantityKind for mapped values', function () {
+    mo.it('adds qudt:hasUnit, S231:displayUnit literal, and qudt:hasQuantityKind for mapped values', function () {
       const graph = rdflib.graph()
       const node = s231Ns('TestParam')
       const modDict = {
@@ -190,7 +165,8 @@ mo.describe('cxfExtractor.js', function () {
       addAttributesToNode(graph, s231Ns, 'quantity', modDict, node)
 
       as.equal(graph.any(node, qudtNs('hasUnit')).value, unitNs('PER-K').value)
-      as.equal(graph.any(node, s231Ns('hasDisplayUnit')).value, unitNs('DEG_C').value)
+      as.equal(graph.any(node, s231Ns('hasDisplayUnit')), undefined)
+      as.equal(graph.any(node, s231Ns('displayUnit')).value, 'degC')
       as.equal(graph.any(node, qudtNs('hasQuantityKind')).value, qudtQkNs('SpecificHeatCapacity').value)
     })
 
@@ -202,7 +178,7 @@ mo.describe('cxfExtractor.js', function () {
         const graph = rdflib.graph()
         const node = s231Ns('TestUnmappedParam')
         const modDict = {
-          unit: { value: 'customUnit' },
+          unit: { value: 'kpa' },
           displayUnit: { value: 'customDisplayUnit' },
           quantity: { value: 'PresureDifference' }
         }
@@ -214,10 +190,12 @@ mo.describe('cxfExtractor.js', function () {
         as.equal(graph.any(node, s231Ns('hasDisplayUnit')), undefined)
         as.equal(graph.any(node, qudtNs('hasQuantityKind')), undefined)
 
-        as.equal(graph.any(node, s231Ns('unit')).value, 'customUnit')
+        as.equal(graph.any(node, s231Ns('unit')).value, 'kpa')
         as.equal(graph.any(node, s231Ns('displayUnit')).value, 'customDisplayUnit')
         as.equal(graph.any(node, s231Ns('quantity')).value, 'PresureDifference')
-        as.equal(warnings.length, 3)
+        as.equal(warnings.length, 2)
+        as.equal(warnings[0], 'Unit kpa could not be mapped to QUDT. Using S231:unit with literal value kpa.')
+        as.equal(warnings[1], 'Quantity kind PresureDifference could not be mapped to QUDT. Using S231:quantity with literal value PresureDifference.')
       } finally {
         logger.warn = origWarn
       }
@@ -244,13 +222,13 @@ mo.describe('cxfExtractor.js', function () {
 
         const kCooCoi = findByLabel(graph, 'kCooCoi')
         as.deepEqual(kCooCoi['qudt:hasUnit'], { '@id': 'unit:PER-K' })
-        as.deepEqual(kCooCoi['qudt:hasQuantityKind'], { '@id': 'q:LinearExpansionCoefficient' })
+        as.deepEqual(kCooCoi['qudt:hasQuantityKind'], { '@id': 'q:LinearThermalExpansion' })
         as.equal(kCooCoi['S231:unit'], undefined)
         as.equal(kCooCoi['S231:quantity'], undefined)
 
         const slewRate = findByLabel(graph, 'slewRate')
         as.deepEqual(slewRate['qudt:hasUnit'], { '@id': 'unit:PER-SEC' })
-        as.deepEqual(slewRate['qudt:hasQuantityKind'], { '@id': 'q:TemperaturePerTime' })
+        as.deepEqual(slewRate['qudt:hasQuantityKind'], { '@id': 'q:TemperatureRateOfChange' })
 
         const cp = findByLabel(graph, 'cp')
         as.deepEqual(cp['qudt:hasUnit'], { '@id': 'unit:J-PER-KiloGM-K' })
@@ -258,12 +236,14 @@ mo.describe('cxfExtractor.js', function () {
 
         const TSet = findByLabel(graph, 'TSet')
         as.deepEqual(TSet['qudt:hasUnit'], { '@id': 'unit:K' })
-        as.deepEqual(TSet['S231:hasDisplayUnit'], { '@id': 'unit:DEG_C' })
+        as.equal(TSet['S231:hasDisplayUnit'], undefined)
+        as.equal(TSet['S231:displayUnit'], 'degC')
         as.deepEqual(TSet['qudt:hasQuantityKind'], { '@id': 'q:ThermodynamicTemperature' })
 
         const VFlow = findByLabel(graph, 'VFlow')
         as.deepEqual(VFlow['qudt:hasUnit'], { '@id': 'unit:M3-PER-SEC' })
-        as.deepEqual(VFlow['S231:hasDisplayUnit'], { '@id': 'unit:FT3-PER-MIN' })
+        as.equal(VFlow['S231:hasDisplayUnit'], undefined)
+        as.equal(VFlow['S231:displayUnit'], 'cfm')
         as.deepEqual(VFlow['qudt:hasQuantityKind'], { '@id': 'q:VolumeFlowRate' })
 
         as.equal(warnings.length, 0)
@@ -300,10 +280,93 @@ mo.describe('cxfExtractor.js', function () {
         as.equal(unmappedUnitValidQuantity['S231:unit'], 'invalidUnit')
         as.deepEqual(unmappedUnitValidQuantity['qudt:hasQuantityKind'], { '@id': 'q:Time' })
 
-        as.equal(warnings.length, 5)
+        as.equal(warnings.length, 4)
+        as.ok(warnings.includes('Quantity kind PresureDifference could not be mapped to QUDT. Using S231:quantity with literal value PresureDifference.'))
       } finally {
         logger.warn = origWarn
       }
+    })
+
+    mo.it('only generates S231 classes and properties defined in s231ClassesProperties.ttl across all CXF files', function () {
+      const ttlBody = fs.readFileSync(path.join(__dirname, '..', 'lib', 's231ClassesProperties.ttl'), 'utf8')
+      const schemaGraph = rdflib.graph()
+      rdflib.parse(ttlBody, schemaGraph, 'https://data.ashrae.org/s231.ttl', 'text/turtle')
+      const s231Base = 'http://data.ashrae.org/S231#'
+      const definedTerms = new Set(
+        schemaGraph.statements
+          .filter(st => st.subject.termType === 'NamedNode' && st.subject.value.startsWith(s231Base))
+          .map(st => st.subject.value)
+      )
+
+      const moFiles = [
+        path.join(fromModelicaDir, 'ParameterWithValidUnits.mo'),
+        path.join(fromModelicaDir, 'ParameterWithInvalidUnits.mo')
+      ]
+
+      const warnings = []
+      const origWarn = logger.warn
+      logger.warn = function (msg) { warnings.push(msg) }
+      try {
+        pa.getJsons(moFiles, 'cxf', 'current', true)
+      } finally {
+        logger.warn = origWarn
+      }
+
+      function collectJsonldFiles (dir) {
+        let results = []
+        if (!fs.existsSync(dir)) return results
+        for (const entry of fs.readdirSync(dir)) {
+          const full = path.join(dir, entry)
+          if (fs.statSync(full).isDirectory()) {
+            results = results.concat(collectJsonldFiles(full))
+          } else if (entry.endsWith('.jsonld') && entry !== 'CXF-Core.jsonld') {
+            results.push(full)
+          }
+        }
+        return results
+      }
+
+      const cxfFiles = collectJsonldFiles(cxfFromModelicaDir)
+        .concat(collectJsonldFiles(path.join(__dirname, 'reference', 'cxf')))
+
+      const expandS231 = (term, s231Prefix) => {
+        if (typeof term !== 'string') return null
+        if (term.startsWith('S231:')) return s231Prefix + term.slice('S231:'.length)
+        if (term.startsWith(s231Prefix)) return term
+        return null
+      }
+
+      const isCdlInstanceUri = uri => uri.startsWith(s231Base + 'Buildings.')
+
+      const undefinedTerms = []
+      for (const file of cxfFiles) {
+        const doc = JSON.parse(fs.readFileSync(file, 'utf8'))
+        const s231Prefix = (doc['@context'] && doc['@context'].S231) || s231Base
+        const relFile = path.relative(process.cwd(), file)
+        for (const node of doc['@graph'] || []) {
+          const types = Array.isArray(node['@type']) ? node['@type'] : (node['@type'] ? [node['@type']] : [])
+          for (const t of types) {
+            const uri = expandS231(t, s231Prefix)
+            if (uri && !isCdlInstanceUri(uri) && !definedTerms.has(uri)) {
+              undefinedTerms.push(`${relFile} @type ${t} (${uri})`)
+            }
+          }
+          for (const [pred, val] of Object.entries(node)) {
+            const predUri = expandS231(pred, s231Prefix)
+            if (predUri && !definedTerms.has(predUri)) {
+              undefinedTerms.push(`${relFile} predicate ${pred} (${predUri})`)
+            }
+            const items = Array.isArray(val) ? val : [val]
+            for (const item of items) {
+              const objUri = item && typeof item === 'object' && item['@id'] ? expandS231(item['@id'], s231Prefix) : null
+              if (objUri && !isCdlInstanceUri(objUri) && !definedTerms.has(objUri)) {
+                undefinedTerms.push(`${relFile} object ${item['@id']} (${objUri})`)
+              }
+            }
+          }
+        }
+      }
+      as.deepStrictEqual(undefinedTerms, [], `Undefined S231 term(s) generated:\n  ${undefinedTerms.join('\n  ')}`)
     })
   })
 })

@@ -4,7 +4,7 @@
 include .env
 export
 
-.PHONY: install-node-packages install test run generate-reference-output clean-node-packages clean-installation
+.PHONY: install-node-packages install test run generate-reference-output generate-qudt-units clean-node-packages clean-installation
 
 install:
 	npm install --save
@@ -47,6 +47,11 @@ generate-reference-output-doc:
 	@echo "Generating new reference results for test/expressionEvaluation and test/cdlDoc"
 	@echo "-------- Note: the version of MBL in the MODELICAPATH should be consistent with the one in .travis.yml. --------"
 	node test/cdlDoc/generateReference.js
+
+# Regenerates lib/qudtUnits.json from the QUDT release pinned in the script.
+# Run it after changing the unit tables in lib/qudtVocab.js.
+generate-qudt-units:
+	node scripts/generateQudtUnits.js
 
 generate-cxfCore:
 	node app.js -f Buildings/Controls/OBC/CDL -o cxf --elementary --cxfCore --prettyPrint; 
