@@ -110,6 +110,27 @@ This argument is used to specify two parsing modes when generating a `cxf` outpu
 - **cdl** (default) : Parses a CDL file to generate a CXF translation. 
 - **modelica** : This mode is chosen when you want to parse a Modelica file and translate the CDL instances within the file (using `__cdl(isControls=true))` annotation) to CXF. 
 
+With the `json` output, the mode also selects the validation, see [JSON Schemas](#4-json-schemas): `cdl` checks the CDL compliance of the classes and of their used classes, and `modelica` validates them against `schema-modelica-mbl.json`. In both modes, all errors are printed, the output files are written, and the run exits with an error.
+
+##### --exclude
+
+Pattern of the names of the input classes that are neither parsed, validated nor written. The option can be repeated, which is the same as joining the patterns with `|`.
+
+The input classes are the class given by `--file`, or, if `--file` is a package or a directory, all the classes stored in it and in its subdirectories, at any depth. Each pattern is tested against the full name of each of these classes.
+
+- `*` matches within one component of the class name: `Buildings.*.Foo` matches `Buildings.Bar.Foo`, but not `Buildings.Bar.Baz.Foo`.
+- `**` matches across components: `**.Validation` matches `Buildings.Controls.Validation`.
+- `|` separates alternatives, at the top level or in parentheses: `'**.Validation|Modelica.Icons'`, `'**.(Validation|Examples)'`.
+- A pattern must match the whole name of a class. A pattern that matches a package also excludes all the classes in this package.
+
+This only applies to the input classes, so a class that is only reached through an excluded class is not parsed either. A class used by a class that is not excluded is always parsed and validated, whatever its name, even if it is an input class that matches a pattern: if it is not compliant, the class that uses it is not compliant either. The option is rejected for a `.json` input.
+
+Patterns must be quoted, as `*` and `|` are special characters for the shell. For instance, validation models are `model` classes, which are not CDL-compliant. To check a package without them, use:
+
+```
+node app.js -f Buildings/Controls/OBC -o json --exclude '**.Validation'
+```
+
 ##### --log / -l
 
 Logging level. The choices are `error`, `warn`, `info` (default), `verbose`, `debug`.
@@ -160,11 +181,27 @@ The JSON representation of Modelica models must be compliant with the following 
 
 JSON Schemas describe the data format and file structure to ensure the quality of the JSON files.
 
-Following is the schema for the JSON translation (link to the raw file):
-- [schema-modelica.json](schema-modelica.json) validates the JSON files parsed from Modelica models
+The following schemas check the rules of the specifications only:
+- [schema-modelica.json](schema-modelica.json) checks that the JSON files have the expected structure. As the parser already enforces the Modelica grammar, a failure points to a bug in modelica-json rather than in the model.
+- [schema-cdl.json](schema-cdl.json) checks the rules of the [CDL specification](https://obc.lbl.gov/specification/cdl.html) that apply to a single class.
 
-Following is the schema for the JSON translation of the CDL-compliant sequences:
-- [schema-cdl.json](schema-cdl.json) validates the JSON files parsed from CDL-compliant classes
+The following schemas add the project rules of the Modelica Buildings Library, such as required description strings and class annotations. They are generated from the schemas above by `npm run generate-schema-mbl`, with the rules held in `scripts/generateMblSchemas.js`, and must not be edited:
+- [schema-modelica-mbl.json](schema-modelica-mbl.json)
+- [schema-cdl-mbl.json](schema-cdl-mbl.json)
+
+When parsing a file using `app.js` with the `json` output, the classes are validated against `schema-cdl-mbl.json` with `-m cdl`, and against `schema-modelica-mbl.json` with `-m modelica`, which leaves out the Modelica Standard Library, as it does not follow the project rules. Any error makes the run fail. `schema-cdl.json` and `schema-modelica.json` can be used with `validation.js`, see below.
+
+### CDL compliance
+
+Passing `schema-cdl.json` does not make a class CDL-compliant, as a schema validates one class at a time. `checkCdlCompliance` in `lib/cdlCompliance.js` is the only definition of CDL compliance: it returns the errors, and `isCdlCompliant` returns the verdict, for code that takes a decision based on it. It checks the given classes and, recursively, the composite blocks they use or extend, and adds the rules that a schema cannot express:
+- A parameter (7.4.2) and a constant (7.4.3) are instances of a native data type: `Real`, `Integer`, `Boolean`, `String` or an enumeration (7.4.1).
+- Any other instance of a block is a connector of the CDL package, an elementary block, a composite block (7.12), or an extension block (7.13). A composite block must be stored in its own file (7.12), and is checked in turn. The classes are checked by their content, not by their name: for instance, a block of the Modelica Standard Library is rejected because its connectors are not CDL connectors and its equations are not connections.
+- A block can only extend a composite block (7.15).
+- Connectors are in a public section (7.8), and their value is not set in their declaration (7.10).
+- Expressions only call the functions of table 7.2 of the specification. Some expressions are stored as strings, in which case the check relies on the text of the expression.
+- Two input connectors of instances cannot be connected together, and an input connector is connected to exactly one output connector. Connections to conditional instances are not counted for the latter. Connecting an input connector of the class to an input connector of an instance is standard.
+
+CDL elementary blocks and extension blocks, that is the classes annotated with `__cdl(extensionBlock=true)`, are exempt from these checks, and the classes they use are not followed. The specification has no rule on the content of packages, so only the schema and the functions are checked for packages.
 
 Graphical viewers are available (please use right click + open in a new tab or refresh the page if necessary - this is not optimized for Firefox) :
 - [Modelica Schema viewer](https://lbl-srg.github.io/modelica-json/modelica-viz.html)
@@ -183,14 +220,12 @@ node app.js -f <path/to/modelica-buildings>/Buildings/Controls/OBC/CDL -o cxf --
 
 The `CXF-Core.jsonld` file will be generated in `cxf` folder.
 
-When parsing a file using `app.js`, the schema is chosen according to the mode.
-
-To validate an existing JSON file against the schema, run
+To validate an existing JSON file against a schema, run
 
 ```
 node validation.js -f <path to the json file>
 ```
-The default schema is CDL. To chose the Modelica schema, run:
+The default schema is `schema-cdl.json`. To choose another schema, use `-m` with `cdl-mbl`, `modelica` or `modelica-mbl`:
 
 ```
 node validation.js -f <path to the json file> -m modelica

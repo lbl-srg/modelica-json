@@ -4,6 +4,7 @@ const ut = require('./lib/util.js')
 const se = require('./lib/semanticExtractor.js')
 const ce = require('./lib/cxfExtractor.js')
 const dc = require('./lib/cdlDoc.js')
+const cc = require('./lib/cdlCompliance.js')
 
 const logger = require('winston')
 const path = require('path')
@@ -38,6 +39,14 @@ parser.addArgument(
     help: "Parsing mode: 'cdl' (default) or 'modelica' with the 'cxf' output. 'modelica' mode should be used if translating a CDL instance within a Modelica model into CXF.",
     choices: ['cdl', 'modelica'],
     defaultValue: 'cdl'
+  }
+)
+parser.addArgument(
+  ['--exclude'],
+  {
+    help: "Pattern of the names of the input classes that are neither parsed, validated nor written, such as '**.Validation'. The input classes are the class given by -f/--file or, for a package or a directory, all the classes stored in it and in its subdirectories. The classes used by the other classes are always parsed and validated, whatever their name, even if they are input classes that match a pattern. '*' matches within one component of the class name, '**' matches across components, and '|' separates alternatives, at the top level or in parentheses. A pattern that matches a package also excludes the classes in this package. This option can be repeated.",
+    action: 'append',
+    defaultValue: []
   }
 )
 parser.addArgument(
@@ -103,6 +112,14 @@ if (args.output !== 'modelica' && args.file.endsWith('.json')) {
   throw new Error("The json input file required only when the output format (-o) is 'modelica'.")
 }
 
+if (args.output === 'modelica' && args.exclude.length > 0) {
+  throw new Error('The option --exclude only applies to outputs that read .mo files.')
+}
+
+const isExcluded = ut.getExcludeFilter(args.exclude)
+let jsons = [] // Array of json representations of all mo files recursively instantiated by the top-level class
+let moFiles = [] // Modelica files given by --file
+
 if (args.output === 'modelica') {
   pa.convertToModelica(args.file, args.directory, false)
 } else {
@@ -120,13 +137,13 @@ if (args.output === 'modelica') {
       throw new Error('In order to generate CXF-core.jsonld containing all elementary blocks, --elementary flag must be used.')
     }
   }
-  const moFiles = ut.getMoFiles(args.file)
+  moFiles = ut.getMoFiles(args.file)
   if (moFiles.length === 0) {
     throw new Error(`Cannot find the Modelica file, package or class ${args.file}.`)
   }
   // Parse the json representation for moFiles.
   // This is synchronous, so that an error stops the program before the outputs are processed below.
-  const jsons = pa.getJsons(moFiles, args.output, args.directory, args.prettyPrint, args.elementary, args.cxfCore, args.mode) // Array of json representations of all mo files recursively instantiated by the top-level class
+  jsons = pa.getJsons(moFiles, args.output, args.directory, args.prettyPrint, args.elementary, args.cxfCore, args.mode, isExcluded)
   if (args.output === 'semantic') {
     se.getSemanticInformation(args.file, args.directory)
   }
@@ -144,27 +161,35 @@ if (args.output === 'modelica') {
 }
 
 if (args.output === 'json') {
-  let schema
-  if (args.mode === 'cdl') {
-    schema = path.join(`${__dirname}`, 'schema-cdl.json')
-  } else {
-    schema = path.join(`${__dirname}`, 'schema-modelica.json')
-  }
-
-  const jsonDir = (args.directory === 'current') ? process.cwd() : args.directory
-  let jsonFiles = ut.findFilesInDir(path.join(jsonDir, 'json'), '.json')
-
-  // exclude CDL folder and possibly Modelica folder
-  const pathSep = path.sep
-  // const cdlPath = path.join(pathSep, 'CDL', pathSep)
-  const modelicaPath = path.join(pathSep, 'Modelica', pathSep)
-  jsonFiles = jsonFiles.filter(obj => !obj.includes(modelicaPath))
-  // validate json schema
-  for (let i = 0; i < jsonFiles.length; i++) {
-    const eachFile = jsonFiles[i]
-    ut.jsonSchemaValidation(args.mode, eachFile, 'json', schema)
-  }
-  if (args.mode === 'cdl' && (ut.failingSchema > 0 || pa.warnCounter > 0)) {
+  const errors = (args.mode === 'cdl')
+    ? cc.checkCdlCompliance(moFiles.filter(moFile => !isExcluded(ut.getClassName(moFile))), jsons,
+      { schema: path.join(__dirname, 'schema-cdl-mbl.json') })
+    : getModelicaErrors(jsons)
+  errors.forEach(({ className, message }) => {
+    console.log('--------------------------')
+    console.log(`Class ${className} is not valid:`)
+    console.log(message)
+    console.log('--------------------------')
+  })
+  if (errors.length > 0) {
     process.exit(1)
   }
+}
+
+/**
+ * Validate classes against schema-modelica-mbl.json.
+ * The Modelica Standard Library is left out, as it does not follow the project rules.
+ * This cannot be done with '--exclude', which only applies to the classes given by '--file':
+ * the classes they use are always validated.
+ *
+ * @param {Array<Object>} jsons simplified JSON representations of the classes
+ * @returns {Array<{className: string, message: string}>} errors, empty if all classes are valid
+ */
+function getModelicaErrors (jsons) {
+  const schema = path.join(__dirname, 'schema-modelica-mbl.json')
+  return jsons.flatMap((json) => {
+    const className = ut.getClassNameFromJson(json)
+    const message = (className === 'Modelica' || className.startsWith('Modelica.')) ? null : ut.getSchemaErrors(json, schema)
+    return message === null ? [] : [{ className, message }]
+  })
 }

@@ -1,6 +1,6 @@
 window.__CDL_SCHEMA__ = {
   $schema: 'http://json-schema.org/draft-07/schema#',
-  $id: 'schema-modelica.json',
+  $id: 'schema-cdl.json',
   title: 'JSON parsed Modelica file',
   description: 'Json representation of a Modelica model',
   $comment: '08/29/2024',
@@ -27,7 +27,13 @@ window.__CDL_SCHEMA__ = {
           type: 'boolean'
         },
         class_prefixes: {
-          type: 'string'
+          description: 'Computations are encapsulated in blocks (7.5). Packages and types, such as enumerations (7.4.1.5), hold no computation.',
+          enum: [
+            'block',
+            'partial block',
+            'package',
+            'type'
+          ]
         },
         class_specifier: {
           $ref: '#/definitions/class_specifier'
@@ -61,9 +67,7 @@ window.__CDL_SCHEMA__ = {
       description: 'Long class specifier',
       type: 'object',
       required: [
-        'identifier',
-        'composition',
-        'description_string'
+        'identifier'
       ],
       additionalProperties: false,
       properties: {
@@ -81,9 +85,6 @@ window.__CDL_SCHEMA__ = {
     composition: {
       description: 'Composition',
       type: 'object',
-      required: [
-        'annotation'
-      ],
       additionalProperties: false,
       properties: {
         element_list: {
@@ -109,6 +110,9 @@ window.__CDL_SCHEMA__ = {
             properties: {
               element_modification_or_replaceable: {
                 $ref: '#/definitions/element_modification_or_replaceable'
+              },
+              element_redeclaration: {
+                $ref: '#/definitions/element_redeclaration'
               }
             }
           }
@@ -126,15 +130,107 @@ window.__CDL_SCHEMA__ = {
         type: 'object',
         additionalProperties: false,
         properties: {
+          redeclare: {
+            type: 'boolean'
+          },
           final: {
             type: 'boolean'
+          },
+          replaceable: {
+            type: 'boolean'
+          },
+          constraining_clause: {
+            $ref: '#/definitions/constraining_clause'
           },
           component_clause: {
             $ref: '#/definitions/component_clause'
           },
           extends_clause: {
             $ref: '#/definitions/extends_clause'
+          },
+          description: {
+            $ref: '#/definitions/descriptionSchema'
           }
+        }
+      }
+    },
+    constraining_clause: {
+      description: 'Constraining clause',
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        name: {
+          type: 'string'
+        },
+        class_modification: {
+          $ref: '#/definitions/class_modification'
+        }
+      }
+    },
+    element_replaceable: {
+      description: 'Element replaceable',
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        short_class_definition: {
+          $ref: '#/definitions/short_class_definition'
+        },
+        component_clause1: {
+          $ref: '#/definitions/component_clause1'
+        },
+        constraining_clause: {
+          $ref: '#/definitions/constraining_clause'
+        }
+      }
+    },
+    element_redeclaration: {
+      description: 'Element redelcaration',
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        each: {
+          type: 'boolean'
+        },
+        final: {
+          type: 'boolean'
+        },
+        short_class_definition: {
+          $ref: '#/definitions/short_class_definition'
+        },
+        component_clause1: {
+          $ref: '#/definitions/component_clause1'
+        },
+        element_replaceable: {
+          $ref: '#/definitions/element_replaceable'
+        }
+      }
+    },
+    component_clause1: {
+      description: 'Component clause1',
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        type_prefix: {
+          type: 'string'
+        },
+        type_specifier: {
+          type: 'string'
+        },
+        component_declaration1: {
+          $ref: '#/definitions/component_declaration1'
+        }
+      }
+    },
+    component_declaration1: {
+      description: 'Component declaration1',
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        declaration: {
+          $ref: '#/definitions/declaration'
+        },
+        description: {
+          $ref: '#/definitions/descriptionSchema'
         }
       }
     },
@@ -194,7 +290,40 @@ window.__CDL_SCHEMA__ = {
         component_list: {
           $ref: '#/definitions/component_list'
         }
-      }
+      },
+      allOf: [
+        {
+          description: 'A variable of a primitive type must be a parameter or a constant: signals are carried by connectors (7.12)',
+          if: {
+            required: [
+              'type_specifier'
+            ],
+            properties: {
+              type_specifier: {
+                enum: [
+                  'Real',
+                  'Integer',
+                  'Boolean',
+                  'String'
+                ]
+              }
+            }
+          },
+          then: {
+            required: [
+              'type_prefix'
+            ],
+            properties: {
+              type_prefix: {
+                enum: [
+                  'parameter',
+                  'constant'
+                ]
+              }
+            }
+          }
+        }
+      ]
     },
     component_list: {
       description: 'Component list',
@@ -203,8 +332,7 @@ window.__CDL_SCHEMA__ = {
       items: {
         type: 'object',
         required: [
-          'declaration',
-          'description'
+          'declaration'
         ],
         additionalProperties: false,
         properties: {
@@ -232,7 +360,7 @@ window.__CDL_SCHEMA__ = {
     },
     element_modification: {
       description: 'Element modification',
-      oneOf: [
+      anyOf: [
         {
           type: 'object',
           additionalProperties: false,
@@ -753,6 +881,9 @@ window.__CDL_SCHEMA__ = {
         },
         element_modification: {
           $ref: '#/definitions/element_modification'
+        },
+        element_replaceable: {
+          $ref: '#/definitions/element_replaceable'
         }
       }
     },
@@ -1188,8 +1319,7 @@ window.__CDL_SCHEMA__ = {
       items: {
         type: 'object',
         required: [
-          'identifier',
-          'description'
+          'identifier'
         ],
         additionalProperties: false,
         properties: {
@@ -1221,9 +1351,6 @@ window.__CDL_SCHEMA__ = {
     descriptionSchema: {
       description: 'Description',
       type: 'object',
-      required: [
-        'description_string'
-      ],
       additionalProperties: false,
       properties: {
         description_string: {

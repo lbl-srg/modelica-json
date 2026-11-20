@@ -10,6 +10,9 @@ root of its library (this directory) is derived from the directory of the file
 and its `within` clause, and the classes of the library are then looked up
 below this root. All files of these libraries must thus have a `within` clause
 that matches their directory.
+`CdlCompliance` contains one class per case of the check of CDL compliance, with the
+expected verdicts in `test_cdlCompliance.js`.
+
 `NoWithin.mo` contains a top-level class: it has no `within` clause, so its
 library root is also this directory.
 
