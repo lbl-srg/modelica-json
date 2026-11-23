@@ -31,7 +31,7 @@ const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'cdlDoc-'))
  * @returns {Array} The JSON representations.
  */
 function getJsons (moFile) {
-  return parser.getJsons(ut.getMoFiles(moFile), 'doc', tmpDir, /* prettyPrint= */ false)
+  return parser.getJsons(ut.getMoFiles(moFile), { directory: tmpDir })
 }
 
 function write (dir, fileName, data, prettyPrint) {
