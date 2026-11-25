@@ -4,12 +4,7 @@ const External_function_call = require('../domain/External_function_call')
 const Component_referenceVisitor = require('./Component_referenceVisitor')
 const Expression_listVisitor = require('./Expression_listVisitor')
 
-class External_function_callVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class External_function_callVisitor extends modelicaVisitor {
   visitExternal_function_call (ctx) {
     let component_reference = null
     let identifier = ''
@@ -32,7 +27,5 @@ class External_function_callVisitor {
     return new External_function_call.External_function_call(component_reference, identifier, expression_list)
   }
 };
-
-External_function_callVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.External_function_callVisitor = External_function_callVisitor

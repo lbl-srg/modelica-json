@@ -3,12 +3,7 @@ const Factor = require('../domain/Factor')
 
 const PrimaryVisitor = require('./PrimaryVisitor')
 
-class FactorVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class FactorVisitor extends modelicaVisitor {
   visitFactor (ctx) {
     const op = ctx.SYMBOL_CARET() ? ctx.SYMBOL_CARET().getText() : (ctx.SYMBOL_DOTCARET() ? ctx.SYMBOL_DOTCARET().getText() : '')
     const primarys = []
@@ -31,7 +26,5 @@ class FactorVisitor {
     return new Factor.Factor(primary1, op, primary2)
   }
 }
-
-FactorVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.FactorVisitor = FactorVisitor

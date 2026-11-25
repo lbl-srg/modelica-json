@@ -3,12 +3,7 @@ const Annotation = require('../domain/Annotation')
 
 const Class_modificationVisitor = require('./Class_modificationVisitor')
 
-class AnnotationVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class AnnotationVisitor extends modelicaVisitor {
   visitAnnotation (ctx) {
     let class_modification = null
 
@@ -19,7 +14,5 @@ class AnnotationVisitor {
     return new Annotation.Annotation(class_modification)
   }
 };
-
-AnnotationVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.AnnotationVisitor = AnnotationVisitor

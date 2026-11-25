@@ -5,12 +5,7 @@ const DeclarationVisitor = require('./DeclarationVisitor')
 const Condition_attributeVisitor = require('./Condition_attributeVisitor')
 const CommentVisitor = require('./CommentVisitor')
 
-class Component_declarationVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class Component_declarationVisitor extends modelicaVisitor {
   visitComponent_declaration (ctx) {
     let declaration = null
     let condition_attribute = null
@@ -32,7 +27,5 @@ class Component_declarationVisitor {
     return new Component_declaration.Component_declaration(declaration, condition_attribute, comment)
   }
 };
-
-Component_declarationVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.Component_declarationVisitor = Component_declarationVisitor

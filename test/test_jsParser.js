@@ -1,7 +1,11 @@
 /* eslint-disable new-cap, camelcase */
 const as = require('assert')
+const fs = require('fs')
+const path = require('path')
+const { createRequire } = require('module')
 const mo = require('mocha')
 const sinon = require('sinon')
+const { modelicaVisitor } = require('../jsParser/antlrFiles/modelicaVisitor')
 const algSV = require('../jsParser/parser/Algorithm_sectionVisitor.js').Algorithm_sectionVisitor
 const sv = require('../jsParser/parser/StatementVisitor.js').StatementVisitor
 const annV = require('../jsParser/parser/AnnotationVisitor.js').AnnotationVisitor
@@ -2089,6 +2093,24 @@ mo.describe('testing While_statementVisitor.js', function () {
       const output = visitor.visitWhile_statement(input)
       as.equal(output.expression, 'mocked expression', 'expected mocked expression ; actual: ' + output.expression)
       as.deepEqual(output.loop_statements, [1, 2, 3, 4, 5], 'expected [1,2,3,4,5] ; actual: ' + output.loop_statements)
+    })
+  })
+})
+mo.describe('testing inheritance of the visitors', function () {
+  const parserDir = path.join(__dirname, '..', 'jsParser', 'parser')
+  fs.readdirSync(parserDir).filter(file => file.endsWith('.js')).forEach(file => {
+    const filePath = path.join(parserDir, file)
+    const className = path.basename(file, '.js')
+    mo.it(className + ' inherits from modelicaVisitor', function () {
+      const visitor = new (require(filePath)[className])()
+      as.ok(visitor instanceof modelicaVisitor)
+      as.equal(typeof visitor.visitChildren, 'function')
+    })
+    mo.it(className + ' is loaded in strict mode', function () {
+      const strictModule = { exports: {} }
+      const load = new Function('require', 'module', 'exports', "'use strict'\n" + fs.readFileSync(filePath, 'utf8')) // eslint-disable-line no-new-func
+      load(createRequire(filePath), strictModule, strictModule.exports)
+      as.equal(typeof strictModule.exports[className], 'function')
     })
   })
 })

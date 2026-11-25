@@ -3,12 +3,7 @@ const Condition_attribute = require('../domain/Condition_attribute')
 
 const ExpressionVisitor = require('./ExpressionVisitor')
 
-class Condition_attributeVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class Condition_attributeVisitor extends modelicaVisitor {
   visitCondition_attribute (ctx) {
     let expression = null
 
@@ -20,7 +15,5 @@ class Condition_attributeVisitor {
     return new Condition_attribute.Condition_attribute(expression)
   }
 };
-
-Condition_attributeVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.Condition_attributeVisitor = Condition_attributeVisitor

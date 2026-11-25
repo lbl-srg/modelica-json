@@ -9,12 +9,7 @@ const Class_definitionVisitor = require('./Class_definitionVisitor')
 
 const util = require('util')
 
-class Stored_definitionVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class Stored_definitionVisitor extends modelicaVisitor {
   visitStored_definition (ctx) {
     let within = ''
     const final_class_definitions = []
@@ -51,7 +46,5 @@ class Stored_definitionVisitor {
     return new Stored_definition.Stored_definition(within, final_class_definitions)
   }
 };
-
-Stored_definitionVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.Stored_definitionVisitor = Stored_definitionVisitor

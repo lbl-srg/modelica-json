@@ -5,12 +5,7 @@ const Type_prefixVisitor = require('./Type_prefixVisitor')
 const Type_specifierVisitor = require('./Type_specifierVisitor')
 const Component_declaration1Visitor = require('./Component_declaration1Visitor')
 
-class Component_clause1Visitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class Component_clause1Visitor extends modelicaVisitor {
   visitComponent_clause1 (ctx) {
     let type_prefix = null
     let type_specifier = null
@@ -31,7 +26,5 @@ class Component_clause1Visitor {
     return new Component_clause1.Component_clause1(type_prefix, type_specifier, component_declaration1)
   }
 };
-
-Component_clause1Visitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.Component_clause1Visitor = Component_clause1Visitor

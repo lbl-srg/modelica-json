@@ -3,12 +3,7 @@ const For_indices = require('../domain/For_indices')
 
 const For_indexVisitor = require('./For_indexVisitor')
 
-class For_indicesVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class For_indicesVisitor extends modelicaVisitor {
   visitFor_indices (ctx) {
     const indices = []
 
@@ -22,7 +17,5 @@ class For_indicesVisitor {
     return new For_indices.For_indices(indices)
   }
 };
-
-For_indicesVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.For_indicesVisitor = For_indicesVisitor

@@ -6,12 +6,7 @@ const EquationVisitor = require('./EquationVisitor')
 const ExpressionVisitor = require('./ExpressionVisitor')
 const { modelicaParser } = require('../antlrFiles/modelicaParser')
 
-class If_equationVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class If_equationVisitor extends modelicaVisitor {
   visitIf_equation (ctx) {
     const if_elseif = []
     let else_equation = []
@@ -71,7 +66,5 @@ class If_equationVisitor {
     return new If_equation.If_equation(if_elseif, else_equation)
   }
 };
-
-If_equationVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.If_equationVisitor = If_equationVisitor

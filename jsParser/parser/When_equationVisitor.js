@@ -6,12 +6,7 @@ const When_elsewhen_equation = require('../domain/When_elsewhen_equation')
 const EquationVisitor = require('./EquationVisitor')
 const ExpressionVisitor = require('./ExpressionVisitor')
 
-class When_equationVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class When_equationVisitor extends modelicaVisitor {
   visitWhen_equation (ctx) {
     const when_elsewhen = []
     const expressions = []
@@ -58,7 +53,5 @@ class When_equationVisitor {
     return new When_equation.When_equation(when_elsewhen)
   }
 };
-
-When_equationVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.When_equationVisitor = When_equationVisitor

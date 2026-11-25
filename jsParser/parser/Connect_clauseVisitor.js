@@ -3,12 +3,7 @@ const Connect_clause = require('../domain/Connect_clause')
 
 const Component_referenceVisitor = require('./Component_referenceVisitor')
 
-class Connect_clauseVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class Connect_clauseVisitor extends modelicaVisitor {
   visitConnect_clause (ctx) {
     let from = null
     let to = null
@@ -29,7 +24,5 @@ class Connect_clauseVisitor {
     return new Connect_clause.Connect_clause(from, to)
   }
 };
-
-Connect_clauseVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.Connect_clauseVisitor = Connect_clauseVisitor

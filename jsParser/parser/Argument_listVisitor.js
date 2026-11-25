@@ -3,12 +3,7 @@ const Argument_list = require('../domain/Argument_list')
 
 const ArgumentVisitor = require('./ArgumentVisitor')
 
-class Argument_listVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class Argument_listVisitor extends modelicaVisitor {
   visitArgument_list (ctx) {
     const args = [] // strict JS does not allow use of this keyword; leave as is for now.
 
@@ -22,7 +17,5 @@ class Argument_listVisitor {
     return new Argument_list.Argument_list(args)
   }
 };
-
-Argument_listVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.Argument_listVisitor = Argument_listVisitor

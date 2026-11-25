@@ -3,12 +3,7 @@ const Logical_expression = require('../domain/Logical_expression')
 
 const Logical_termVisitor = require('./Logical_termVisitor')
 
-class Logical_expressionVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class Logical_expressionVisitor extends modelicaVisitor {
   visitLogical_expression (ctx) {
     const logical_term_list = []
 
@@ -22,7 +17,5 @@ class Logical_expressionVisitor {
     return new Logical_expression.Logical_expression(logical_term_list)
   }
 };
-
-Logical_expressionVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.Logical_expressionVisitor = Logical_expressionVisitor
