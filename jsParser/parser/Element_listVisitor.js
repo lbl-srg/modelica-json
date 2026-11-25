@@ -3,12 +3,7 @@ const Element_list = require('../domain/Element_list')
 
 const ElementVisitor = require('./ElementVisitor')
 
-class Element_listVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class Element_listVisitor extends modelicaVisitor {
   visitElement_list (ctx) {
     const elements = []
 
@@ -22,7 +17,5 @@ class Element_listVisitor {
     return new Element_list.Element_list(elements)
   }
 };
-
-Element_listVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.Element_listVisitor = Element_listVisitor

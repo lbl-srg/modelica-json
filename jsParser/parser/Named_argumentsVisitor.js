@@ -3,12 +3,7 @@ const Named_arguments = require('../domain/Named_arguments')
 
 const Named_argumentVisitor = require('./Named_argumentVisitor')
 
-class Named_argumentsVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class Named_argumentsVisitor extends modelicaVisitor {
   visitNamed_arguments (ctx) {
     let named_argument = null
     let named_arguments = null
@@ -24,7 +19,5 @@ class Named_argumentsVisitor {
     return new Named_arguments.Named_arguments(named_argument, named_arguments)
   }
 };
-
-Named_argumentsVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.Named_argumentsVisitor = Named_argumentsVisitor

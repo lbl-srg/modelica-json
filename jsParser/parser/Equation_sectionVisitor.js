@@ -3,12 +3,7 @@ const Equation_section = require('../domain/Equation_section')
 
 const EquationVisitor = require('./EquationVisitor')
 
-class Equation_sectionVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class Equation_sectionVisitor extends modelicaVisitor {
   visitEquation_section (ctx) {
     const initial = !!ctx.INITIAL()
     const equations = []
@@ -23,7 +18,5 @@ class Equation_sectionVisitor {
     return new Equation_section.Equation_section(initial, equations)
   }
 };
-
-Equation_sectionVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.Equation_sectionVisitor = Equation_sectionVisitor

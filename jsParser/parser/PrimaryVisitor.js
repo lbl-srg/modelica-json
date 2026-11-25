@@ -9,12 +9,7 @@ const Output_expression_listVisitor = require('./Output_expression_listVisitor')
 const Function_argumentsVisitor = require('./Function_argumentsVisitor')
 const Component_referenceVisitor = require('./Component_referenceVisitor')
 
-class PrimaryVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class PrimaryVisitor extends modelicaVisitor {
   visitPrimary (ctx) {
     const unsigned_number = ctx.UNSIGNED_NUMBER() ? parseFloat(ctx.UNSIGNED_NUMBER().getText()) : null
     const primary_string = ctx.STRING() ? ctx.STRING().getText() : ''
@@ -63,7 +58,5 @@ class PrimaryVisitor {
       output_expression_list, expression_lists, function_arguments, end)
   }
 }
-
-PrimaryVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.PrimaryVisitor = PrimaryVisitor

@@ -6,12 +6,7 @@ const Component_reference_part = require('../domain/Component_reference_part')
 
 const Array_subscriptsVisitor = require('./Array_subscriptsVisitor')
 
-class Component_referenceVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class Component_referenceVisitor extends modelicaVisitor {
   visitComponent_reference (ctx) {
     const component_reference_parts = []
 
@@ -59,7 +54,5 @@ class Component_referenceVisitor {
     return new Component_reference.Component_reference(component_reference_parts)
   }
 };
-
-Component_referenceVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.Component_referenceVisitor = Component_referenceVisitor

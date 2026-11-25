@@ -13,12 +13,7 @@ const NameVisitor = require('./NameVisitor')
 const CommentVisitor = require('./CommentVisitor')
 const Function_call_argsVisitor = require('./Function_call_argsVisitor')
 
-class EquationVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class EquationVisitor extends modelicaVisitor {
   visitEquation (ctx) {
     let assignment_equation = null
     let lhs = null
@@ -79,7 +74,5 @@ class EquationVisitor {
     return new Equation.Equation(assignment_equation, if_equation, for_equation, connect_clause, when_equation, function_call_equation, comment)
   }
 };
-
-EquationVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.EquationVisitor = EquationVisitor

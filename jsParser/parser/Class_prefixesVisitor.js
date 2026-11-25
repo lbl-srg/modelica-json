@@ -1,12 +1,7 @@
 const modelicaVisitor = require('../antlrFiles/modelicaVisitor').modelicaVisitor
 const util = require('util')
 
-class Class_prefixesVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class Class_prefixesVisitor extends modelicaVisitor {
   visitClass_prefixes (ctx) {
     let class_prefixes = ''
 
@@ -59,7 +54,5 @@ class Class_prefixesVisitor {
     return class_prefixes
   }
 };
-
-Class_prefixesVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.Class_prefixesVisitor = Class_prefixesVisitor

@@ -4,12 +4,7 @@ const Short_class_definition = require('../domain/Short_class_definition')
 const Class_prefixesVisitor = require('./Class_prefixesVisitor')
 const Short_class_specifierVisitor = require('./Short_class_specifierVisitor')
 
-class Short_class_definitionVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class Short_class_definitionVisitor extends modelicaVisitor {
   visitShort_class_definition (ctx) {
     let class_prefixes = ''
     let short_class_specifier = null
@@ -26,7 +21,5 @@ class Short_class_definitionVisitor {
     return new Short_class_definition.Short_class_definition(class_prefixes, short_class_specifier)
   }
 };
-
-Short_class_definitionVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.Short_class_definitionVisitor = Short_class_definitionVisitor

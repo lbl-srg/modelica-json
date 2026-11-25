@@ -4,12 +4,7 @@ const Arithmetic_term = require('../domain/Arithmetic_term')
 
 const TermVisitor = require('./TermVisitor')
 
-class Arithmetic_expressionVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class Arithmetic_expressionVisitor extends modelicaVisitor {
   visitArithmetic_expression (ctx) {
     const add_ops = []
     const terms = []
@@ -41,7 +36,5 @@ class Arithmetic_expressionVisitor {
     return new Arithmetic_expression.Arithmetic_expression(arithmetic_term_list)
   }
 }
-
-Arithmetic_expressionVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.Arithmetic_expressionVisitor = Arithmetic_expressionVisitor

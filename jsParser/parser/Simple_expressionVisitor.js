@@ -3,12 +3,7 @@ const Simple_expression = require('../domain/Simple_expression')
 
 const Logical_expressionVisitor = require('./Logical_expressionVisitor')
 
-class Simple_expressionVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class Simple_expressionVisitor extends modelicaVisitor {
   visitSimple_expression (ctx) {
     const logical_expressions = []
     let logical_expression1 = null
@@ -36,7 +31,5 @@ class Simple_expressionVisitor {
     return new Simple_expression.Simple_expression(logical_expression1, logical_expression2, logical_expression3)
   }
 };
-
-Simple_expressionVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.Simple_expressionVisitor = Simple_expressionVisitor

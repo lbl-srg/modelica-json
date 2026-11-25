@@ -5,12 +5,7 @@ const Short_class_definitionVisitor = require('./Short_class_definitionVisitor')
 const Component_clause1Visitor = require('./Component_clause1Visitor')
 const Constraining_clauseVisitor = require('./Constraining_clauseVisitor')
 
-class Element_replaceableVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class Element_replaceableVisitor extends modelicaVisitor {
   visitElement_replaceable (ctx) {
     let short_class_definition = null
     let component_clause1 = null
@@ -32,7 +27,5 @@ class Element_replaceableVisitor {
     return new Element_replaceable.Element_replaceable(short_class_definition, component_clause1, constraining_clause)
   }
 };
-
-Element_replaceableVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.Element_replaceableVisitor = Element_replaceableVisitor

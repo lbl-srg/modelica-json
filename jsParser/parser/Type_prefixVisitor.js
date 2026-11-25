@@ -1,11 +1,6 @@
 const modelicaVisitor = require('../antlrFiles/modelicaVisitor').modelicaVisitor
 
-class Type_prefixVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class Type_prefixVisitor extends modelicaVisitor {
   visitType_prefix (ctx) {
     const flow_dec = ctx.FLOW() ? ctx.FLOW().getText() : ''
     const stream_dec = ctx.STREAM() ? ctx.STREAM().getText() : ''
@@ -43,7 +38,5 @@ class Type_prefixVisitor {
     return type_prefix
   }
 };
-
-Type_prefixVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.Type_prefixVisitor = Type_prefixVisitor

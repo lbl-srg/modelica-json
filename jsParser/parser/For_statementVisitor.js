@@ -4,12 +4,7 @@ const For_statement = require('../domain/For_statement')
 const StatementVisitor = require('./StatementVisitor')
 const For_indicesVisitor = require('./For_indicesVisitor')
 
-class For_statementVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class For_statementVisitor extends modelicaVisitor {
   visitFor_statement (ctx) {
     let for_indices = null
     const loop_statements = []
@@ -29,7 +24,5 @@ class For_statementVisitor {
     return new For_statement.For_statement(for_indices, loop_statements)
   }
 };
-
-For_statementVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.For_statementVisitor = For_statementVisitor

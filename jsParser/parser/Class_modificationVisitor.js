@@ -3,12 +3,7 @@ const Class_modification = require('../domain/Class_modification')
 
 const Argument_listVisitor = require('./Argument_listVisitor')
 
-class Class_modificationVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class Class_modificationVisitor extends modelicaVisitor {
   visitClass_modification (ctx) {
     let argument_list = null
 
@@ -20,7 +15,5 @@ class Class_modificationVisitor {
     return new Class_modification.Class_modification(argument_list)
   }
 };
-
-Class_modificationVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.Class_modificationVisitor = Class_modificationVisitor

@@ -5,12 +5,7 @@ const Named_argumentsVisitor = require('./Named_argumentsVisitor')
 const For_indicesVisitor = require('./For_indicesVisitor')
 const Function_argumentVisitor = require('./Function_argumentVisitor')
 
-class Function_argumentsVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class Function_argumentsVisitor extends modelicaVisitor {
   visitFunction_arguments (ctx) {
     let named_arguments = null
     let function_argument = null
@@ -37,7 +32,5 @@ class Function_argumentsVisitor {
     return new Function_arguments.Function_arguments(named_arguments, function_argument, for_indices, function_arguments)
   }
 };
-
-Function_argumentsVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.Function_argumentsVisitor = Function_argumentsVisitor

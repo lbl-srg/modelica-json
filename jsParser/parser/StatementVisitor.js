@@ -14,12 +14,7 @@ const While_statementVisitor = require('./While_statementVisitor')
 const When_statementVisitor = require('./When_statementVisitor')
 const CommentVisitor = require('./CommentVisitor')
 
-class StatementVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class StatementVisitor extends modelicaVisitor {
   visitStatement (ctx) {
     let assignment_statement = null
     let assignment_with_function_call_statement = null
@@ -85,7 +80,5 @@ class StatementVisitor {
       is_return, if_statement, for_statement, while_statement, when_statement, comment)
   }
 };
-
-StatementVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.StatementVisitor = StatementVisitor

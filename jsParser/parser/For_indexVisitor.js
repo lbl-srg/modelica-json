@@ -3,12 +3,7 @@ const For_index = require('../domain/For_index')
 
 const ExpressionVisitor = require('./ExpressionVisitor')
 
-class For_indexVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class For_indexVisitor extends modelicaVisitor {
   visitFor_index (ctx) {
     const identifier = ctx.IDENT() ? ctx.IDENT().getText() : ''
     let expression = null
@@ -21,7 +16,5 @@ class For_indexVisitor {
     return new For_index.For_index(identifier, expression)
   }
 };
-
-For_indexVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.For_indexVisitor = For_indexVisitor
