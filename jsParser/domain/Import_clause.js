@@ -1,3 +1,5 @@
+'use strict'
+
 class Import_clause {
   constructor (identifier, name, dot_star, import_list, comment) {
     identifier != null && identifier != '' ? this.identifier = identifier : ''

@@ -1,15 +1,12 @@
+'use strict'
+
 const modelicaVisitor = require('../antlrFiles/modelicaVisitor').modelicaVisitor
 const For_equation = require('../domain/For_equation')
 
 const EquationVisitor = require('./EquationVisitor')
 const For_indicesVisitor = require('./For_indicesVisitor')
 
-class For_equationVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class For_equationVisitor extends modelicaVisitor {
   visitFor_equation (ctx) {
     let for_indices = null
     const loop_equations = []
@@ -29,7 +26,5 @@ class For_equationVisitor {
     return new For_equation.For_equation(for_indices, loop_equations)
   }
 };
-
-For_equationVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.For_equationVisitor = For_equationVisitor

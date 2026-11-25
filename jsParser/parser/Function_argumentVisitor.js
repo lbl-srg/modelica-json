@@ -1,3 +1,5 @@
+'use strict'
+
 const modelicaVisitor = require('../antlrFiles/modelicaVisitor').modelicaVisitor
 const Function_argument = require('../domain/Function_argument')
 
@@ -5,12 +7,7 @@ const NameVisitor = require('./NameVisitor')
 const Named_argumentsVisitor = require('./Named_argumentsVisitor')
 const ExpressionVisitor = require('./ExpressionVisitor')
 
-class Function_argumentVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class Function_argumentVisitor extends modelicaVisitor {
   visitFunction_argument (ctx) {
     let function_name = null
     let named_arguments = null
@@ -32,7 +29,5 @@ class Function_argumentVisitor {
     return new Function_argument.Function_argument(function_name, named_arguments, expression)
   }
 };
-
-Function_argumentVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.Function_argumentVisitor = Function_argumentVisitor

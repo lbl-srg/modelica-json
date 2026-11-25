@@ -1,3 +1,5 @@
+'use strict'
+
 class Element_section {
   constructor (public_element_list, protected_element_list, equation_section, algorithm_section) {
     public_element_list != null ? this.public_element_list = public_element_list : ''

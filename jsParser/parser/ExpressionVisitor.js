@@ -1,3 +1,5 @@
+'use strict'
+
 const modelicaVisitor = require('../antlrFiles/modelicaVisitor').modelicaVisitor
 const Expression = require('../domain/Expression')
 const If_expression = require('../domain/If_expression')
@@ -5,12 +7,7 @@ const If_elseif_expression = require('../domain/If_elseif_expression')
 
 const Simple_expressionVisitor = require('./Simple_expressionVisitor')
 
-class ExpressionVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class ExpressionVisitor extends modelicaVisitor {
   visitExpression (ctx) {
     let simple_expression = null
     let if_expression = null
@@ -45,7 +42,5 @@ class ExpressionVisitor {
     return new Expression.Expression(simple_expression, if_expression)
   }
 };
-
-ExpressionVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.ExpressionVisitor = ExpressionVisitor

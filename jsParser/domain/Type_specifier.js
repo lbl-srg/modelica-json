@@ -1,3 +1,5 @@
+'use strict'
+
 class Type_specifier {
   constructor (name) {
     name != null ? this.name = name : ''

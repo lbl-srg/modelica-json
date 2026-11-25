@@ -1,3 +1,5 @@
+'use strict'
+
 class Long_class_specifier {
   constructor (identifier, string_comment, composition, is_extends, class_modification) {
     identifier != null && identifier != '' ? this.identifier = identifier : ''

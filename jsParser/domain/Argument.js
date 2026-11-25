@@ -1,3 +1,5 @@
+'use strict'
+
 class Argument {
   constructor (element_modification_or_replaceable, element_redeclaration) {
     element_modification_or_replaceable != null ? this.element_modification_or_replaceable = element_modification_or_replaceable : ''

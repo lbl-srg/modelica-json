@@ -1,14 +1,11 @@
+'use strict'
+
 const modelicaVisitor = require('../antlrFiles/modelicaVisitor').modelicaVisitor
 const Logical_term = require('../domain/Logical_term')
 
 const Logical_factorVisitor = require('./Logical_factorVisitor')
 
-class Logical_termVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class Logical_termVisitor extends modelicaVisitor {
   visitLogical_term (ctx) {
     const logical_factor_list = []
 
@@ -22,7 +19,5 @@ class Logical_termVisitor {
     return new Logical_term.Logical_term(logical_factor_list)
   }
 };
-
-Logical_termVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.Logical_termVisitor = Logical_termVisitor

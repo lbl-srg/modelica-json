@@ -1,3 +1,5 @@
+'use strict'
+
 class For_index {
   constructor (identifier, expression) {
     identifier != null && identifier != '' ? this.identifier = identifier : ''

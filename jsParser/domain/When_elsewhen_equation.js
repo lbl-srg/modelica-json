@@ -1,3 +1,5 @@
+'use strict'
+
 class When_elsewhen_equation {
   constructor (condition, then) {
     condition != null ? this.condition = condition : ''

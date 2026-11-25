@@ -1,3 +1,5 @@
+'use strict'
+
 function parse (content, rawJson = false) {
   const elementModificationParser = require('./elementModification')
   const elementReplaceableParser = require('./elementReplaceable')

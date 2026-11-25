@@ -1,3 +1,5 @@
+'use strict'
+
 function parse (content, rawJson = false, singleLine = false) {
   const argumentListParser = require('./argumentList')
   const argumentParser = require('./argument')

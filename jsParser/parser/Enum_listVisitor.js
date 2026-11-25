@@ -1,14 +1,11 @@
+'use strict'
+
 const modelicaVisitor = require('../antlrFiles/modelicaVisitor').modelicaVisitor
 const Enum_list = require('../domain/Enum_list')
 
 const Enumeration_literalVisitor = require('./Enumeration_literalVisitor')
 
-class Enum_listVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class Enum_listVisitor extends modelicaVisitor {
   visitEnum_list (ctx) {
     const enum_list = []
 
@@ -22,7 +19,5 @@ class Enum_listVisitor {
     return new Enum_list.Enum_list(enum_list)
   }
 };
-
-Enum_listVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.Enum_listVisitor = Enum_listVisitor

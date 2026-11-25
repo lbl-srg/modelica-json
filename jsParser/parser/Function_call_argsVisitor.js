@@ -1,14 +1,11 @@
+'use strict'
+
 const modelicaVisitor = require('../antlrFiles/modelicaVisitor').modelicaVisitor
 const Function_call_args = require('../domain/Function_call_args')
 
 const Function_argumentsVisitor = require('./Function_argumentsVisitor')
 
-class Function_call_argsVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class Function_call_argsVisitor extends modelicaVisitor {
   visitFunction_call_args (ctx) {
     let function_arguments = null
 
@@ -20,7 +17,5 @@ class Function_call_argsVisitor {
     return new Function_call_args.Function_call_args(function_arguments)
   }
 };
-
-Function_call_argsVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.Function_call_argsVisitor = Function_call_argsVisitor

@@ -1,14 +1,11 @@
+'use strict'
+
 const modelicaVisitor = require('../antlrFiles/modelicaVisitor').modelicaVisitor
 const Subscript = require('../domain/Subscript')
 
 const ExpressionVisitor = require('./ExpressionVisitor')
 
-class SubscriptVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class SubscriptVisitor extends modelicaVisitor {
   visitSubscript (ctx) {
     let expression = null
     const color_op = !!ctx.SYMBOL_COLON()
@@ -20,7 +17,5 @@ class SubscriptVisitor {
     return new Subscript.Subscript(expression, color_op)
   }
 };
-
-SubscriptVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.SubscriptVisitor = SubscriptVisitor

@@ -1,3 +1,5 @@
+'use strict'
+
 class Enumeration_literal {
   constructor (identifier, comment) {
     identifier != null && identifier != '' ? this.identifier = identifier : ''

@@ -1,3 +1,5 @@
+'use strict'
+
 class Element_modification_or_replaceable {
   constructor (each, is_final, element_modification, element_replaceable) {
     each != null ? this.each = each : ''

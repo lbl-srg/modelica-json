@@ -1,3 +1,5 @@
+'use strict'
+
 function parse (content, rawJson = false) {
   const longClassSpecifierParser = require('./longClassSpecifier')
   const shortClassSpecifierParser = require('./shortClassSpecifier')

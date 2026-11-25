@@ -1,3 +1,5 @@
+'use strict'
+
 class Element {
   constructor (import_clause, extends_clause, redeclare, is_final, inner, outer, replaceable, constraining_clause, class_definition, component_clause, comment) {
     import_clause != null ? this.import_clause = import_clause : ''

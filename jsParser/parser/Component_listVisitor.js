@@ -1,14 +1,11 @@
+'use strict'
+
 const modelicaVisitor = require('../antlrFiles/modelicaVisitor').modelicaVisitor
 const Component_list = require('../domain/Component_list')
 
 const Component_declarationVisitor = require('./Component_declarationVisitor')
 
-class Component_listVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class Component_listVisitor extends modelicaVisitor {
   visitComponent_list (ctx) {
     const component_declaration_list = []
 
@@ -22,7 +19,5 @@ class Component_listVisitor {
     return new Component_list.Component_list(component_declaration_list)
   }
 };
-
-Component_listVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.Component_listVisitor = Component_listVisitor

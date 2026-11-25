@@ -1,3 +1,5 @@
+'use strict'
+
 class Der_class_specifier_value {
   constructor (type_specifier, identifiers, comment) {
     type_specifier != null ? this.type_specifier = type_specifier : ''

@@ -1,3 +1,5 @@
+'use strict'
+
 /*
  * Generates the reference files used by test/test_expressionEvaluation.js and test/test_cdlDoc.js.
  *

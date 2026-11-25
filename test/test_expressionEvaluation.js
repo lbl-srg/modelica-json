@@ -1,3 +1,5 @@
+'use strict'
+
 const assert = require('assert')
 const fs = require('bluebird').promisifyAll(require('fs'))
 const jsonQuery = require('../lib/jsonquery')

@@ -1,3 +1,5 @@
+'use strict'
+
 function parse (content, rawJson = false) {
   const basePrefixParser = require('./basePrefix')
   const nameParser = require('./name')

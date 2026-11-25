@@ -1,3 +1,5 @@
+'use strict'
+
 class Term {
   constructor (factors, mul_ops) {
     factors != null ? factors.length != 0 ? this.factors = factors : '' : ''

@@ -1,3 +1,5 @@
+'use strict'
+
 class Class_definition {
   constructor (encapsulated, class_prefixes, class_specifier) {
     encapsulated != null ? this.encapsulated = encapsulated : ''

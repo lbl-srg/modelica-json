@@ -1,3 +1,5 @@
+'use strict'
+
 const as = require('assert')
 const mo = require('mocha')
 const gp = require('../lib/graphicalPrimitives.js')

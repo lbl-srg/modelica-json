@@ -1,13 +1,10 @@
+'use strict'
+
 const modelicaVisitor = require('../antlrFiles/modelicaVisitor').modelicaVisitor
 const Name = require('../domain/Name')
 const Name_part = require('../domain/Name_part')
 
-class NameVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class NameVisitor extends modelicaVisitor {
   visitName (ctx) {
     const dots = []
     const idents = []
@@ -34,7 +31,5 @@ class NameVisitor {
     return new Name.Name(name_parts)
   }
 };
-
-NameVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.NameVisitor = NameVisitor

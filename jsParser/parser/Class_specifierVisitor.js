@@ -1,3 +1,5 @@
+'use strict'
+
 const modelicaVisitor = require('../antlrFiles/modelicaVisitor').modelicaVisitor
 const Class_specifier = require('../domain/Class_specifier')
 
@@ -5,12 +7,7 @@ const Long_class_specifierVisitor = require('./Long_class_specifierVisitor')
 const Short_class_specifierVisitor = require('./Short_class_specifierVisitor')
 const Der_class_specifierVisitor = require('./Der_class_specifierVisitor')
 
-class Class_specifierVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class Class_specifierVisitor extends modelicaVisitor {
   visitClass_specifier (ctx) {
     let long_class_specifier = null
     let short_class_specifier = null
@@ -30,7 +27,5 @@ class Class_specifierVisitor {
     return new Class_specifier.Class_specifier(long_class_specifier, short_class_specifier, der_class_specifier)
   }
 };
-
-Class_specifierVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.Class_specifierVisitor = Class_specifierVisitor

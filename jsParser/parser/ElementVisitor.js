@@ -1,3 +1,5 @@
+'use strict'
+
 const modelicaVisitor = require('../antlrFiles/modelicaVisitor').modelicaVisitor
 const Element = require('../domain/Element')
 
@@ -8,12 +10,7 @@ const Class_definitionVisitor = require('./Class_definitionVisitor')
 const Component_clauseVisitor = require('./Component_clauseVisitor')
 const CommentVisitor = require('./CommentVisitor')
 
-class ElementVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class ElementVisitor extends modelicaVisitor {
   visitElement (ctx) {
     let import_clause = null
     let extends_clause = null
@@ -63,7 +60,5 @@ class ElementVisitor {
       replaceable, constraining_clause, class_definition, component_clause, comment)
   }
 };
-
-ElementVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.ElementVisitor = ElementVisitor

@@ -1,15 +1,12 @@
+'use strict'
+
 const modelicaVisitor = require('../antlrFiles/modelicaVisitor').modelicaVisitor
 const Declaration = require('../domain/Declaration')
 
 const Array_subscriptsVisitor = require('./Array_subscriptsVisitor')
 const ModificationVisitor = require('./ModificationVisitor')
 
-class DeclarationVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class DeclarationVisitor extends modelicaVisitor {
   visitDeclaration (ctx) {
     const identifier = ctx.IDENT() ? ctx.IDENT().getText() : ''
     let array_subscripts = null
@@ -27,7 +24,5 @@ class DeclarationVisitor {
     return new Declaration.Declaration(identifier, array_subscripts, modification)
   }
 };
-
-DeclarationVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.DeclarationVisitor = DeclarationVisitor

@@ -1,3 +1,5 @@
+'use strict'
+
 function parse (content, rawJson = false, singleLine = false) {
   const util = require('util')
   const arraySubscriptsParser = require('./arraySubscripts')

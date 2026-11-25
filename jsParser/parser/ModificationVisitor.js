@@ -1,15 +1,12 @@
+'use strict'
+
 const modelicaVisitor = require('../antlrFiles/modelicaVisitor').modelicaVisitor
 const Modification = require('../domain/Modification')
 
 const Class_modificationVisitor = require('./Class_modificationVisitor')
 const ExpressionVisitor = require('./ExpressionVisitor')
 
-class ModificationVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class ModificationVisitor extends modelicaVisitor {
   visitModification (ctx) {
     let class_modification = null
     const equal = !!ctx.SYMBOL_EQUAL()
@@ -28,7 +25,5 @@ class ModificationVisitor {
     return new Modification.Modification(class_modification, equal, colon_equal, expression)
   }
 };
-
-ModificationVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.ModificationVisitor = ModificationVisitor

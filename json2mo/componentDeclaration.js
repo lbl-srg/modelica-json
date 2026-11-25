@@ -1,3 +1,5 @@
+'use strict'
+
 function parse (content, rawJson = false) {
   const declarationParser = require('./declaration')
   const conditionAttributeParser = require('./conditionAttribute')

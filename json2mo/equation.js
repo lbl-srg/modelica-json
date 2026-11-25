@@ -1,3 +1,5 @@
+'use strict'
+
 function parse (content, rawJson = false) {
   const assignmentEquationParser = require('./assignmentEquation')
   const ifEquationParser = require('./ifEquation')

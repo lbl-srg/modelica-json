@@ -1,14 +1,11 @@
+'use strict'
+
 const modelicaVisitor = require('../antlrFiles/modelicaVisitor').modelicaVisitor
 const Term = require('../domain/Term')
 
 const FactorVisitor = require('./FactorVisitor')
 
-class TermVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class TermVisitor extends modelicaVisitor {
   visitTerm (ctx) {
     const mul_ops = []
     const factors = []
@@ -29,7 +26,5 @@ class TermVisitor {
     return new Term.Term(factors, mul_ops)
   }
 }
-
-TermVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.TermVisitor = TermVisitor

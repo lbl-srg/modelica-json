@@ -1,15 +1,12 @@
+'use strict'
+
 const modelicaVisitor = require('../antlrFiles/modelicaVisitor').modelicaVisitor
 const Constraining_clause = require('../domain/Constraining_clause')
 
 const NameVisitor = require('./NameVisitor')
 const Class_modificationVisitor = require('./Class_modificationVisitor')
 
-class Constraining_clauseVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class Constraining_clauseVisitor extends modelicaVisitor {
   visitConstraining_clause (ctx) {
     let name = null
     let class_modification = null
@@ -27,7 +24,5 @@ class Constraining_clauseVisitor {
     return new Constraining_clause.Constraining_clause(name, class_modification)
   }
 };
-
-Constraining_clauseVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.Constraining_clauseVisitor = Constraining_clauseVisitor

@@ -1,3 +1,5 @@
+'use strict'
+
 function parse (content, rawJson = false) {
   const elementListParser = require('./elementList')
   const equationSectionParser = require('./equationSection')

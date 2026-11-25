@@ -1,3 +1,5 @@
+'use strict'
+
 class Composition {
   constructor (element_list, element_sections, external_composition, annotation) {
     element_list != null ? this.element_list = element_list : ''

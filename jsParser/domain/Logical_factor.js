@@ -1,3 +1,5 @@
+'use strict'
+
 class Logical_factor {
   constructor (not, relation) {
     not != null ? this.not = not : ''

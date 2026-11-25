@@ -1,3 +1,5 @@
+'use strict'
+
 class Der_class_specifier {
   constructor (identifier, der_class_specifier_value) {
     identifier != null && identifier != '' ? this.identifier = identifier : ''

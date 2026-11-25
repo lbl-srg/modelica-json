@@ -1,3 +1,5 @@
+'use strict'
+
 class Final_class_definition {
   constructor (is_final, class_definition) {
     is_final != null ? this.is_final = is_final : ''

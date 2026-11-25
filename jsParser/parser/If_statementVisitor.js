@@ -1,3 +1,5 @@
+'use strict'
+
 const modelicaVisitor = require('../antlrFiles/modelicaVisitor').modelicaVisitor
 const If_statement = require('../domain/If_statement')
 const If_elseif_statement = require('../domain/If_elseif_statement')
@@ -6,12 +8,7 @@ const StatementVisitor = require('./StatementVisitor')
 const ExpressionVisitor = require('./ExpressionVisitor')
 const { modelicaParser } = require('../antlrFiles/modelicaParser')
 
-class If_statementVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class If_statementVisitor extends modelicaVisitor {
   visitIf_statement (ctx) {
     const if_elseif = []
     let else_statement = []
@@ -71,7 +68,5 @@ class If_statementVisitor {
     return new If_statement.If_statement(if_elseif, else_statement)
   }
 };
-
-If_statementVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.If_statementVisitor = If_statementVisitor

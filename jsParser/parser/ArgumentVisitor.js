@@ -1,15 +1,12 @@
+'use strict'
+
 const modelicaVisitor = require('../antlrFiles/modelicaVisitor').modelicaVisitor
 const Argument = require('../domain/Argument')
 
 const Element_modification_or_replaceableVisitor = require('./Element_modification_or_replaceableVisitor')
 const Element_redeclarationVisitor = require('./Element_redeclarationVisitor')
 
-class ArgumentVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class ArgumentVisitor extends modelicaVisitor {
   visitArgument (ctx) {
     let element_modification_or_replaceable = null
     let element_redeclaration = null
@@ -26,7 +23,5 @@ class ArgumentVisitor {
     return new Argument.Argument(element_modification_or_replaceable, element_redeclaration)
   }
 };
-
-ArgumentVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.ArgumentVisitor = ArgumentVisitor

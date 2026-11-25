@@ -1,3 +1,5 @@
+'use strict'
+
 function parse (content, rawJson = false) {
   const util = require('util')
   const functionCallArgsObjParser = require('./functionCallArgsObj')

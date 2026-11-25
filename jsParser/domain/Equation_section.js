@@ -1,3 +1,5 @@
+'use strict'
+
 class Equation_section {
   constructor (initial, equations) {
     initial != null ? this.initial = initial : ''

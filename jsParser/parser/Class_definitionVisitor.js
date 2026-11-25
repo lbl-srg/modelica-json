@@ -1,15 +1,12 @@
+'use strict'
+
 const modelicaVisitor = require('../antlrFiles/modelicaVisitor').modelicaVisitor
 const Class_definition = require('../domain/Class_definition')
 
 const Class_prefixesVisitor = require('./Class_prefixesVisitor')
 const Class_specifierVisitor = require('./Class_specifierVisitor')
 
-class Class_definitionVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class Class_definitionVisitor extends modelicaVisitor {
   visitClass_definition (ctx) {
     let encapsulated = false
     let class_prefixes = ''
@@ -31,7 +28,5 @@ class Class_definitionVisitor {
     return new Class_definition.Class_definition(encapsulated, class_prefixes, class_specifier)
   }
 };
-
-Class_definitionVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.Class_definitionVisitor = Class_definitionVisitor

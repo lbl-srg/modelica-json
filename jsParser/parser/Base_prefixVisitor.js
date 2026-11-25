@@ -1,14 +1,11 @@
+'use strict'
+
 const modelicaVisitor = require('../antlrFiles/modelicaVisitor').modelicaVisitor
 const Base_prefix = require('../domain/Base_prefix')
 
 const Type_prefixVisitor = require('./Type_prefixVisitor')
 
-class Base_prefixVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class Base_prefixVisitor extends modelicaVisitor {
   visitBase_prefix (ctx) {
     let type_prefix = ''
 
@@ -20,7 +17,5 @@ class Base_prefixVisitor {
     return new Base_prefix.Base_prefix(type_prefix)
   }
 };
-
-Base_prefixVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.Base_prefixVisitor = Base_prefixVisitor

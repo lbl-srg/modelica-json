@@ -1,11 +1,8 @@
+'use strict'
+
 const modelicaVisitor = require('../antlrFiles/modelicaVisitor').modelicaVisitor
 
-class String_commentVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class String_commentVisitor extends modelicaVisitor {
   visitString_comment (ctx) {
     const str_list = []
     let string_comment = ''
@@ -26,7 +23,5 @@ class String_commentVisitor {
     return string_comment
   }
 };
-
-String_commentVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.String_commentVisitor = String_commentVisitor

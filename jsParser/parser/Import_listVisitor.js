@@ -1,12 +1,9 @@
+'use strict'
+
 const modelicaVisitor = require('../antlrFiles/modelicaVisitor').modelicaVisitor
 const Import_list = require('../domain/Import_list')
 
-class Import_listVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class Import_listVisitor extends modelicaVisitor {
   visitImport_list (ctx) {
     const identifier_list = []
 
@@ -19,7 +16,5 @@ class Import_listVisitor {
     return new Import_list.Import_list(identifier_list)
   }
 };
-
-Import_listVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.Import_listVisitor = Import_listVisitor

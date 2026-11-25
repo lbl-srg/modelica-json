@@ -1,15 +1,12 @@
+'use strict'
+
 const modelicaVisitor = require('../antlrFiles/modelicaVisitor').modelicaVisitor
 const Comment = require('../domain/Comment')
 
 const String_commentVisitor = require('./String_commentVisitor')
 const AnnotationVisitor = require('./AnnotationVisitor')
 
-class CommentVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class CommentVisitor extends modelicaVisitor {
   visitComment (ctx) {
     let string_comment = ''
     let annotation = null
@@ -25,7 +22,5 @@ class CommentVisitor {
     return new Comment.Comment(string_comment, annotation)
   }
 };
-
-CommentVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.CommentVisitor = CommentVisitor

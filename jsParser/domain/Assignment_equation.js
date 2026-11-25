@@ -1,3 +1,5 @@
+'use strict'
+
 class Assignment_equation {
   constructor (lhs, rhs) {
     lhs != null ? this.lhs = lhs : ''

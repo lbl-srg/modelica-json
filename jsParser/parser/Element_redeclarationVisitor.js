@@ -1,3 +1,5 @@
+'use strict'
+
 const modelicaVisitor = require('../antlrFiles/modelicaVisitor').modelicaVisitor
 const Element_redeclaration = require('../domain/Element_redeclaration')
 
@@ -5,12 +7,7 @@ const Short_class_definitionVisitor = require('./Short_class_definitionVisitor')
 const Component_clause1Visitor = require('./Component_clause1Visitor')
 const Element_replaceableVisitor = require('./Element_replaceableVisitor')
 
-class Element_redeclarationVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class Element_redeclarationVisitor extends modelicaVisitor {
   visitElement_redeclaration (ctx) {
     const each = !!ctx.EACH()
     const is_final = !!ctx.FINAL()
@@ -34,7 +31,5 @@ class Element_redeclarationVisitor {
     return new Element_redeclaration.Element_redeclaration(each, is_final, short_class_definition, component_clause1, element_replaceable)
   }
 };
-
-Element_redeclarationVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.Element_redeclarationVisitor = Element_redeclarationVisitor

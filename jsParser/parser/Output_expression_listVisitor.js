@@ -1,14 +1,11 @@
+'use strict'
+
 const modelicaVisitor = require('../antlrFiles/modelicaVisitor').modelicaVisitor
 const Output_expression_list = require('../domain/Output_expression_list')
 
 const ExpressionVisitor = require('./ExpressionVisitor')
 
-class Output_expression_listVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class Output_expression_listVisitor extends modelicaVisitor {
   visitOutput_expression_list (ctx) {
     const output_expressions = []
 
@@ -21,7 +18,5 @@ class Output_expression_listVisitor {
     return new Output_expression_list.Output_expression_list(output_expressions)
   }
 };
-
-Output_expression_listVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.Output_expression_listVisitor = Output_expression_listVisitor

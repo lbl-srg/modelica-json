@@ -1,3 +1,5 @@
+'use strict'
+
 function parse (content, rawJson = false) {
   const forIndicesParser = require('./forIndices')
   const equationParser = require('./equation')

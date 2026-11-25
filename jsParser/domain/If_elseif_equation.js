@@ -1,3 +1,5 @@
+'use strict'
+
 class If_elseif_equation {
   constructor (condition, then) {
     condition != null ? this.condition = condition : ''

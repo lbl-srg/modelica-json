@@ -1,3 +1,5 @@
+'use strict'
+
 class Stored_definition {
   constructor (within, final_class_definitions) {
     within != null && within != '' ? this.within = within : ''

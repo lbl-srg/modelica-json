@@ -1,3 +1,5 @@
+'use strict'
+
 const modelicaVisitor = require('../antlrFiles/modelicaVisitor').modelicaVisitor
 const Import_clause = require('../domain/Import_clause')
 
@@ -5,12 +7,7 @@ const NameVisitor = require('./NameVisitor')
 const Import_listVisitor = require('./Import_listVisitor')
 const CommentVisitor = require('./CommentVisitor')
 
-class Import_clauseVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class Import_clauseVisitor extends modelicaVisitor {
   visitImport_clause (ctx) {
     const identifier = ctx.IDENT() ? ctx.IDENT().getText() : ''
     let name = null
@@ -36,7 +33,5 @@ class Import_clauseVisitor {
     return new Import_clause.Import_clause(identifier, name, dot_star, import_list, comment)
   }
 };
-
-Import_clauseVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.Import_clauseVisitor = Import_clauseVisitor

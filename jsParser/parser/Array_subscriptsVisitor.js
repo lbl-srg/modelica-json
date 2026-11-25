@@ -1,14 +1,11 @@
+'use strict'
+
 const modelicaVisitor = require('../antlrFiles/modelicaVisitor').modelicaVisitor
 const Array_subscripts = require('../domain/Array_subscripts')
 
 const SubscriptVisitor = require('./SubscriptVisitor')
 
-class Array_subscriptsVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class Array_subscriptsVisitor extends modelicaVisitor {
   visitArray_subscripts (ctx) {
     const subscripts = []
 
@@ -21,7 +18,5 @@ class Array_subscriptsVisitor {
     return new Array_subscripts.Array_subscripts(subscripts)
   }
 };
-
-Array_subscriptsVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.Array_subscriptsVisitor = Array_subscriptsVisitor

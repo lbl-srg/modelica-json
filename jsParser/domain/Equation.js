@@ -1,3 +1,5 @@
+'use strict'
+
 class Equation {
   constructor (assignment_equation, if_equation, for_equation, connect_clause, when_equation, function_call_equation, comment) {
     assignment_equation != null ? this.assignment_equation = assignment_equation : ''

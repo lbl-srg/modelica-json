@@ -1,3 +1,5 @@
+'use strict'
+
 function parse (content, rawJson = false) {
   const componentReferenceParser = require('./componentReference')
   const expressionParser = require('./expression')

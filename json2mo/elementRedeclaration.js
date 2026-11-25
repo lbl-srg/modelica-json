@@ -1,3 +1,5 @@
+'use strict'
+
 function parse (content, rawJson) {
   const shortClassDefinitionParser = require('./shortClassDefinition')
   const componentClause1Parser = require('./componentClause1')

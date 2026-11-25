@@ -1,3 +1,5 @@
+'use strict'
+
 const modelicaVisitor = require('../antlrFiles/modelicaVisitor').modelicaVisitor
 const Element_modification = require('../domain/Element_modification')
 
@@ -5,12 +7,7 @@ const NameVisitor = require('./NameVisitor')
 const ModificationVisitor = require('./ModificationVisitor')
 const String_commentVisitor = require('./String_commentVisitor')
 
-class Element_modificationVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class Element_modificationVisitor extends modelicaVisitor {
   visitElement_modification (ctx) {
     let name = null
     let modification = null
@@ -32,7 +29,5 @@ class Element_modificationVisitor {
     return new Element_modification.Element_modification(name, modification, string_comment)
   }
 };
-
-Element_modificationVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.Element_modificationVisitor = Element_modificationVisitor

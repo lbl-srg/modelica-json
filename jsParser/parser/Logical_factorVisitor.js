@@ -1,14 +1,11 @@
+'use strict'
+
 const modelicaVisitor = require('../antlrFiles/modelicaVisitor').modelicaVisitor
 const Logical_factor = require('../domain/Logical_factor')
 
 const RelationVisitor = require('./RelationVisitor')
 
-class Logical_factorVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class Logical_factorVisitor extends modelicaVisitor {
   visitLogical_factor (ctx) {
     const not = !!ctx.NOT()
     let relation = null
@@ -21,7 +18,5 @@ class Logical_factorVisitor {
     return new Logical_factor.Logical_factor(not, relation)
   }
 };
-
-Logical_factorVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.Logical_factorVisitor = Logical_factorVisitor

@@ -5,7 +5,8 @@
   "main": "app.js",
   "repository": "git.test_repo",
   "scripts": {
-    "test": "nyc mocha --timeout 120000 && standard",
+    "test": "nyc mocha --timeout 120000 && standard && npm run lint-strict",
+    "lint-strict": "eslint --no-eslintrc --no-inline-config --parser-options=ecmaVersion:2022 --env node --rule \"strict: [error, global]\" app.js validation.js jsParser/domain jsParser/parser json2mo lib scripts test",
     "postinstall": "patch-package",
     "serve": "python3 -m http.server 8000",
     "generate-schema-mbl": "node scripts/generateMblSchemas.js",
@@ -42,6 +43,7 @@
   },
   "devDependencies": {
     "chai": "^4.4.1",
+    "eslint": "^8.57.1",
     "mocha": "^11.3.0",
     "patch-package": "^8.0.1",
     "rewire": "^7.0.0",

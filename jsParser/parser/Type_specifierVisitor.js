@@ -1,14 +1,11 @@
+'use strict'
+
 const modelicaVisitor = require('../antlrFiles/modelicaVisitor').modelicaVisitor
 const Type_specifier = require('../domain/Type_specifier')
 
 const NameVisitor = require('./NameVisitor')
 
-class Type_specifierVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class Type_specifierVisitor extends modelicaVisitor {
   visitType_specifier (ctx) {
     let name = null
 
@@ -20,7 +17,5 @@ class Type_specifierVisitor {
     return new Type_specifier.Type_specifier(name)
   }
 };
-
-Type_specifierVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.Type_specifierVisitor = Type_specifierVisitor

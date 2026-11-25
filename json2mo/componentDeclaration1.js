@@ -1,3 +1,5 @@
+'use strict'
+
 function parse (content, rawJson) {
   const declarationParser = require('./declaration')
   const commentParser = require('./comment')

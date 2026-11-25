@@ -1,3 +1,5 @@
+'use strict'
+
 class Element_redeclaration {
   constructor (each, is_final, short_class_definition, component_clause1, element_replaceable) {
     each != null ? this.each = each : ''

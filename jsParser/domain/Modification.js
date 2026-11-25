@@ -1,3 +1,5 @@
+'use strict'
+
 class Modification {
   constructor (class_modification, equal, colon_equal, expression) {
     class_modification != null ? this.class_modification = class_modification : ''

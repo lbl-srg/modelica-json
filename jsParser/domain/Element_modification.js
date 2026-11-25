@@ -1,3 +1,5 @@
+'use strict'
+
 class Element_modification {
   constructor (name, modification, string_comment) {
     name != null ? this.name = name : ''

@@ -1,3 +1,5 @@
+'use strict'
+
 class External_composition {
   constructor (language_specification, external_function_call, external_annotation) {
     language_specification != null ? this.language_specification = language_specification : ''

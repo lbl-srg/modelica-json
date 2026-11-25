@@ -1,3 +1,5 @@
+'use strict'
+
 const modelicaVisitor = require('../antlrFiles/modelicaVisitor').modelicaVisitor
 const Composition = require('../domain/Composition')
 const External_composition = require('../domain/External_composition')
@@ -11,12 +13,7 @@ const External_function_callVisitor = require('./External_function_callVisitor')
 const { TerminalNode } = require('antlr4/tree/Tree')
 const { modelicaParser } = require('../antlrFiles/modelicaParser')
 
-class CompositionVisitor {
-  constructor () {
-    modelicaVisitor.call(this)
-    return this
-  }
-
+class CompositionVisitor extends modelicaVisitor {
   visitComposition (ctx) {
     let element_list = null
     const element_sections = []
@@ -92,7 +89,5 @@ class CompositionVisitor {
     return new Composition.Composition(element_list, element_sections, external_composition, annotation)
   }
 };
-
-CompositionVisitor.prototype = Object.create(modelicaVisitor.prototype)
 
 exports.CompositionVisitor = CompositionVisitor

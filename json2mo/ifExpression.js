@@ -1,3 +1,5 @@
+'use strict'
+
 function parse (content, rawJson = false) {
   const ifElseifExpressionParser = require('./ifElseifExpression')
   const expressionParser = require('./expression')

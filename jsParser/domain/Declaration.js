@@ -1,3 +1,5 @@
+'use strict'
+
 class Declaration {
   constructor (identifier, array_subscripts, modification) {
     identifier != null && identifier != '' ? this.identifier = identifier : ''
