@@ -1,3 +1,5 @@
+'use strict'
+
 function parse (content, rawJson = false) {
   const classDefinitionParser = require('./classDefinition')
   const importClauseParser = require('./importClause')

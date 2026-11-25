@@ -1,3 +1,5 @@
+'use strict'
+
 const as = require('assert')
 const cp = require('child_process')
 const fs = require('fs')

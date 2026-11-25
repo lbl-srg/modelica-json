@@ -1,3 +1,5 @@
+'use strict'
+
 class Component_reference_part {
   constructor (dot_op, identifier, array_subscripts) {
     this.dot_op = dot_op

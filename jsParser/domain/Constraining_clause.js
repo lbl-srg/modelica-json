@@ -1,3 +1,5 @@
+'use strict'
+
 class Constraining_clause {
   constructor (name, class_modification) {
     name != null ? this.name = name : ''

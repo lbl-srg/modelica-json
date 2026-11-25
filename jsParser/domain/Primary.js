@@ -1,3 +1,5 @@
+'use strict'
+
 class Primary {
   constructor (unsigned_number, primary_string, is_false, is_true, function_call_primary, component_reference, output_expression_list, expression_lists, function_arguments, end) {
     unsigned_number != null ? this.unsigned_number = unsigned_number : ''

@@ -1,8 +1,9 @@
+'use strict'
+
 /* eslint-disable new-cap, camelcase */
 const as = require('assert')
 const fs = require('fs')
 const path = require('path')
-const { createRequire } = require('module')
 const mo = require('mocha')
 const sinon = require('sinon')
 const { modelicaVisitor } = require('../jsParser/antlrFiles/modelicaVisitor')
@@ -2105,12 +2106,6 @@ mo.describe('testing inheritance of the visitors', function () {
       const visitor = new (require(filePath)[className])()
       as.ok(visitor instanceof modelicaVisitor)
       as.equal(typeof visitor.visitChildren, 'function')
-    })
-    mo.it(className + ' is loaded in strict mode', function () {
-      const strictModule = { exports: {} }
-      const load = new Function('require', 'module', 'exports', "'use strict'\n" + fs.readFileSync(filePath, 'utf8')) // eslint-disable-line no-new-func
-      load(createRequire(filePath), strictModule, strictModule.exports)
-      as.equal(typeof strictModule.exports[className], 'function')
     })
   })
 })

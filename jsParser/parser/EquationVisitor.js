@@ -1,3 +1,5 @@
+'use strict'
+
 const modelicaVisitor = require('../antlrFiles/modelicaVisitor').modelicaVisitor
 const Equation = require('../domain/Equation')
 const Assignment_equation = require('../domain/Assignment_equation')

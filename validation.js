@@ -1,3 +1,5 @@
+'use strict'
+
 const ut = require('./lib/util.js')
 const logger = require('winston')
 const fs = require('fs')

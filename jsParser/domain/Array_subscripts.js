@@ -1,3 +1,5 @@
+'use strict'
+
 class Array_subscripts {
   constructor (subscripts) {
     subscripts != null ? subscripts.length != 0 ? this.subscripts = subscripts : '' : ''

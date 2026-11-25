@@ -1,3 +1,5 @@
+'use strict'
+
 class External_function_call {
   constructor (component_reference, identifier, expression_list) {
     component_reference != null ? this.component_reference = component_reference : ''

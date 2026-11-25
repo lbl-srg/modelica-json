@@ -1,3 +1,5 @@
+'use strict'
+
 function parse (content, rawJson = false) {
   const nameParser = require('./name')
   const classModificationParser = require('./classModification')

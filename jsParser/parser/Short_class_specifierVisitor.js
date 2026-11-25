@@ -1,3 +1,5 @@
+'use strict'
+
 const modelicaVisitor = require('../antlrFiles/modelicaVisitor').modelicaVisitor
 const Short_class_specifier = require('../domain/Short_class_specifier')
 const Short_class_specifier_value = require('../domain/Short_class_specifier_value')

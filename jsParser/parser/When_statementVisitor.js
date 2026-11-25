@@ -1,3 +1,5 @@
+'use strict'
+
 const modelicaVisitor = require('../antlrFiles/modelicaVisitor').modelicaVisitor
 const modelicaParser = require('../antlrFiles/modelicaParser').modelicaParser
 const When_statement = require('../domain/When_statement')

@@ -1,3 +1,5 @@
+'use strict'
+
 function parse (content, rawJson = false) {
   const ifElseifEquationParser = require('./ifElseifEquation')
   const equationParser = require('./equation')

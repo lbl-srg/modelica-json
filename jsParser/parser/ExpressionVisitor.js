@@ -1,3 +1,5 @@
+'use strict'
+
 const modelicaVisitor = require('../antlrFiles/modelicaVisitor').modelicaVisitor
 const Expression = require('../domain/Expression')
 const If_expression = require('../domain/If_expression')

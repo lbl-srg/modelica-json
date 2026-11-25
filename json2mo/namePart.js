@@ -1,3 +1,5 @@
+'use strict'
+
 function parse (content, rawJson = false) {
   let moOutput = ''
   if (rawJson) {

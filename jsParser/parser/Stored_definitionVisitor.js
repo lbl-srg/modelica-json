@@ -1,3 +1,5 @@
+'use strict'
+
 const modelicaVisitor = require('../antlrFiles/modelicaVisitor').modelicaVisitor
 const Stored_definition = require('../domain/Stored_definition')
 const Final_class_definition = require('../domain/Final_class_definition')

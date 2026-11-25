@@ -1,3 +1,5 @@
+'use strict'
+
 class While_statement {
   constructor (expression, loop_statements) {
     expression != null ? this.expression = expression : ''

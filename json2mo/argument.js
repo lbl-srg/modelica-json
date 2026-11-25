@@ -1,3 +1,5 @@
+'use strict'
+
 function parse (content, rawJson = false) {
   const elementModificationOrReplaceable = require('./elementModificationOrReplaceable')
   const elementRedeclaration = require('./elementRedeclaration')

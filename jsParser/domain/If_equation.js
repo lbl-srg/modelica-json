@@ -1,3 +1,5 @@
+'use strict'
+
 class If_equation {
   constructor (if_elseif, else_equation) {
     if_elseif != null ? this.if_elseif = if_elseif : ''

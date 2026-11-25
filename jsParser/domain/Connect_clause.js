@@ -1,3 +1,5 @@
+'use strict'
+
 class Connect_clause {
   constructor (from, to) {
     from != null ? this.from = from : ''

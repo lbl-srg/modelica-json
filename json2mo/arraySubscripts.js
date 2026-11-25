@@ -1,3 +1,5 @@
+'use strict'
+
 function parse (content, rawJson = false) {
   const expressionParser = require('./expression')
   const subscriptParser = require('./subscript')

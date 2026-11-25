@@ -1,3 +1,5 @@
+'use strict'
+
 function parse (content, rawJson = false) {
   const namedArgumentParser = require('./namedArgument')
   const functionArgumentParser = require('./functionArgument')

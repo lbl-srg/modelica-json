@@ -1,3 +1,5 @@
+'use strict'
+
 const fs = require('fs')
 const pa = require('./lib/parser.js')
 const ut = require('./lib/util.js')

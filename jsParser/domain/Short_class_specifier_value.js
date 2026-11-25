@@ -1,3 +1,5 @@
+'use strict'
+
 class Short_class_specifier_value {
   constructor (base_prefix, name, array_subscripts, class_modification, comment, enum_list) {
     base_prefix != null ? this.base_prefix = base_prefix : ''

@@ -1,3 +1,5 @@
+'use strict'
+
 class Algorithm_section {
   constructor (initial, statements) {
     initial !== null ? this.initial = initial : ''

@@ -1,3 +1,5 @@
+'use strict'
+
 function parse (content, rawJson = false) {
   const typeSpecifierParser = require('./typeSpecifier')
   const arraySubscriptsParser = require('./arraySubscripts')

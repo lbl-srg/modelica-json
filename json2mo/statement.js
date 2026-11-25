@@ -1,3 +1,5 @@
+'use strict'
+
 function parse (content, rawJson) {
   const assignmentStatementParser = require('./assignmentStatement')
   const functionCallStatementParser = require('./functionCallStatement')

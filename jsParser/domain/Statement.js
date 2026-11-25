@@ -1,3 +1,5 @@
+'use strict'
+
 class Statement {
   constructor (assignment_statement, function_call_statement, assignment_with_function_call_statement, is_break,
     is_return, if_statement, for_statement, while_statement, when_statement, comment) {

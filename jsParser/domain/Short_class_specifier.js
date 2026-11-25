@@ -1,3 +1,5 @@
+'use strict'
+
 class Short_class_specifier {
   constructor (identifier, short_class_specifier_value) {
     identifier != null && identifier != '' ? this.identifier = identifier : ''

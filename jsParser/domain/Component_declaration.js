@@ -1,3 +1,5 @@
+'use strict'
+
 class Component_declaration {
   constructor (declaration, condition_attribute, comment) {
     declaration != null ? this.declaration = declaration : ''

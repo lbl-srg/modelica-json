@@ -1,3 +1,5 @@
+'use strict'
+
 const modelicaVisitor = require('../antlrFiles/modelicaVisitor').modelicaVisitor
 const Name = require('../domain/Name')
 const Name_part = require('../domain/Name_part')

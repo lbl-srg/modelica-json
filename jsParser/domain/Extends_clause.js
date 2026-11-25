@@ -1,3 +1,5 @@
+'use strict'
+
 class Extends_clause {
   constructor (name, class_modification, annotation) {
     name != null ? this.name = name : ''

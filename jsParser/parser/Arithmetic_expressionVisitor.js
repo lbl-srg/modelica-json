@@ -1,3 +1,5 @@
+'use strict'
+
 const modelicaVisitor = require('../antlrFiles/modelicaVisitor').modelicaVisitor
 const Arithmetic_expression = require('../domain/Arithmetic_expression')
 const Arithmetic_term = require('../domain/Arithmetic_term')

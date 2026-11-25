@@ -1,3 +1,5 @@
+'use strict'
+
 class Named_argument {
   constructor (identifier, value) {
     identifier != null && identifier != '' ? this.identifier = identifier : ''

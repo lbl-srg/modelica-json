@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+'use strict'
+
 /**
  * Generate schema-cdl-mbl.json and schema-modelica-mbl.json.
  *

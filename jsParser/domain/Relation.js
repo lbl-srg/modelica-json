@@ -1,3 +1,5 @@
+'use strict'
+
 class Relation {
   constructor (arithmetic_expression1, rel_op, arithmetic_expression2) {
     arithmetic_expression1 != null ? this.arithmetic_expression1 = arithmetic_expression1 : ''

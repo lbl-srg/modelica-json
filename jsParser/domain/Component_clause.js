@@ -1,3 +1,5 @@
+'use strict'
+
 class Component_clause {
   constructor (type_prefix, type_specifier, array_subscripts, component_list) {
     type_prefix != null && type_prefix != '' ? this.type_prefix = type_prefix : ''

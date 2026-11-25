@@ -1,3 +1,5 @@
+'use strict'
+
 class Expression_list {
   constructor (expressions) {
     expressions != null ? expressions.length != 0 ? this.expressions = expressions : '' : ''

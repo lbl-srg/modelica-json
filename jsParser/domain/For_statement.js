@@ -1,3 +1,5 @@
+'use strict'
+
 class For_statement {
   constructor (for_indices, loop_statements) {
     for_indices != null ? this.for_indices = for_indices : ''

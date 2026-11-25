@@ -1,3 +1,5 @@
+'use strict'
+
 class Function_argument {
   constructor (function_name, named_arguments, expression) {
     function_name != null ? this.function_name = function_name : ''

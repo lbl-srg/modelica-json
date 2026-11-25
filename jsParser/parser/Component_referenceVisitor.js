@@ -1,3 +1,5 @@
+'use strict'
+
 const modelicaVisitor = require('../antlrFiles/modelicaVisitor').modelicaVisitor
 const { TerminalNode } = require('antlr4/tree/Tree')
 const { modelicaParser } = require('../antlrFiles/modelicaParser')

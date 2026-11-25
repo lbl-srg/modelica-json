@@ -1,3 +1,5 @@
+'use strict'
+
 const modelicaVisitor = require('../antlrFiles/modelicaVisitor').modelicaVisitor
 const Primary = require('../domain/Primary')
 const Function_call_primary = require('../domain/Function_call_primary')

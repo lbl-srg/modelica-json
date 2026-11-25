@@ -1,3 +1,5 @@
+'use strict'
+
 const modelicaVisitor = require('../antlrFiles/modelicaVisitor').modelicaVisitor
 const Composition = require('../domain/Composition')
 const External_composition = require('../domain/External_composition')

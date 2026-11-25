@@ -1,3 +1,5 @@
+'use strict'
+
 class Assignment_statement {
   constructor (identifier, value) {
     identifier != null ? this.identifier = identifier : ''

@@ -1,3 +1,5 @@
+'use strict'
+
 /*
  * Generates the reference files of the instances and connections ('objects') used by test/test_parser.js.
  * These files are intermediate files of the outputs 'semantic' and 'cxf' of app.js, which does not write them.
